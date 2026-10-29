@@ -37,10 +37,13 @@ freedom shown explicitly.
    Ob₃ = unit·[(11/4 + 19/4 log 3/2)(G₁+G₃) + 27/8 G₂ − 9 log(3/2) G₅], its Wess–Zumino consistency,
    the composite A–c line, which exists because (Q^GF)² ≠ 0 in Feynman gauge, and
    D₁ = 2cO − (1/3+θ)·unit·{S⁽¹⁾(Δ),O} with a scheme parameter θ.
-6. **In progress**: one-loop counterterms of *all* local operators. At one loop a graph meets a local operator in at
-   most two letters, so the full infinite tower of covariant derivatives reduces to finitely many universal two-letter
-   kernels with bounded outputs. D₁ follows on all operators, and the result is compared with Beisert's complete one-loop
-   dilatation operator. Next: the two-body kernels of Q₁, S₁, K₁, and the inner-product test Q† = S.
+6. **Counterterms of all local operators** (Ch. 10): at one loop a graph meets a local operator in at most two letters,
+   so the counterterm of every operator (arbitrary derivatives, gauge-variant letters, ghosts and antifields) is a sum of
+   universal two-letter kernels with bounded outputs, given in closed form (exact simplex integrals, a Bessel generating
+   function). Checks: Konishi and 20′, the su(2) Heisenberg spectra, and the twist-two harmonic sums, which agree with
+   Beisert's complete one-loop dilatation operator.
+7. **Open, next**: the composite kernels along Δ and P_b beyond the planar scalar sector (needed for D₁ and P₁ on all
+   operators), the two-body kernels of Q₁, S₁, K₁, and the inner-product test Q† = S.
 
 Each chapter carries "Physics notation" supplements that translate the index-free notation into the
 Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/SO(6) R-symmetry indices, γ-matrices).
@@ -49,7 +52,7 @@ Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/
 
 | Path | Content |
 |---|---|
-| `manuscript/` | LaTeX chapters `ch00`–`ch09` (theorem form), `supplements/` (physics-notation remarks), `FORMAT.md` |
+| `manuscript/` | LaTeX chapters `ch00`–`ch10` (theorem form), `supplements/` (physics-notation remarks), `FORMAT.md` |
 | `DESIGN.md`, `DESIGN_STEP2.md` | binding design rules and research directives |
 | `HANDOFF_STEP2_*.md`, `STORY.md` | running log of what has been done and what is open |
 | `step2/` | Step-2 work: theory notes (`theory/`), independent computation engines (`engine_a/`, `engine_b/`), audits (`qa/`), two-letter kernels (`twoletter/`) |
