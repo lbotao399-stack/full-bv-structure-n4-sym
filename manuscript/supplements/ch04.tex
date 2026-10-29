@@ -1,0 +1,136 @@
+% ANCHOR: end_of_section 4.1
+\begin{remark}[Physics notation: unit, minimal subtraction, Schwinger integrals]
+\begin{itemize}
+\item For $\mathfrak{su}(N)$ and $X=-igX^aT^a$: $(X,Y)=2\hbar X^aY^a$, $\mathrm{ad}_X=-igX^aT^a_A$ with the adjoint generators $(T^a_A)^{bc}=-if^{abc}$, and $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)=-g^2N\,X^aY^a$, so that the unit $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ is $-\frac{g^2N}{32\pi^2}$ (physics notation key after Section 1.2). The fourth-order traces of the quartic graphs, in the unit $\frac{\hbar}{16\pi^2}$, are $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}\mathrm{ad}_{X_3}\mathrm{ad}_{X_4})=g^4X_1^aX_2^bX_3^cX_4^d\operatorname{tr}(T^a_AT^b_AT^c_AT^d_A)$.
+\item $I^{CT}[\varepsilon]$ is the one-loop counterterm of the proper-time (heat-kernel) regularisation in minimal subtraction: it is purely singular, the $\varepsilon^{-1}$ (quadratically divergent) and $\log\varepsilon$ (logarithmically divergent) parts of the one-particle-irreducible graphs.
+\item The plane-wave value is the momentum-space amplitude with $(2\pi)^4\delta(p_1+\dots+p_k)$ stripped off; generic leg momenta are non-exceptional momenta.
+\item The Schwinger time $t_e$ is the proper time of the edge $e$; the centre $p_1=\frac{t_2}{t_1+t_2}p$ of Lemma \ref{lem:c4-gauss} is the shifted loop momentum with Feynman parameter $\frac{t_2}{t_1+t_2}$, and the superficial degree, $\deg(\text{numerator})+4-2|E(\gamma)|$, is the superficial degree of divergence.
+\end{itemize}
+\end{remark}
+
+% ANCHOR: after_label ex:c4-gauge
+\begin{remark}[Physics notation: self-energy graphs]
+The three tables are the one-loop self-energies. Gluon: (a), (b) seagulls with a gluon, resp. scalar, loop at the quartic vertex; (c) gluon bubble; (d) scalar bubble; (e) gaugino loop; (f) ghost loop, the ghost line being the $c$--$A^*_m$ propagator. Scalar: (a), (b) seagulls; (c) gluon--scalar bubble; (d) gaugino loop through two Yukawa vertices. Gaugino: (a) gluon, (b) scalar exchange. On two gluon legs, with $(-,-)$ on the colour factors,
+\[
+(A(p),A(-p))=(A_m(p),A_m(-p)),\qquad (\iota_pA(p),\iota_pA(-p))=p_mp_n\,(A_m(p),A_n(-p)),
+\]
+and with $\int(dA|_V,dA|_V)=\tfrac12\int(F^0_{mn},F^0_{mn})$, $\int(d^*A|_V,d^*A|_V)=\int(\partial_mA_m,\partial_nA_n)$ the plane-wave values (\ref{eq:c4-pw}) read
+\[
+\int(A_m,A_m)\mapsto2(A_m(p),A_m(-p)),\qquad \tfrac12\int(F^0_{mn},F^0_{mn})\mapsto2\big(|p|^2\delta_{mn}-p_mp_n\big)(A_m(p),A_n(-p)),\qquad \int(\partial_mA_m,\partial_nA_n)\mapsto2\,p_mp_n(A_m(p),A_n(-p)):
+\]
+the $\log\varepsilon$ entries along $\int(dA|_V,dA|_V)$ are transverse, those along $\int(d^*A|_V,d^*A|_V)$ longitudinal.
+\end{remark}
+
+% ANCHOR: after_label thm:c4-quadratic
+\begin{remark}[Physics notation: the quadratic counterterm]
+In components, with $\mathrm{unit}=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ and $F^0_{mn}=\partial_mA_n-\partial_nA_m$,
+\[
+\begin{aligned}
+I^{CT}[\varepsilon]\big|_{\mathrm{quadratic}}=\mathrm{unit}\,\Big\{&\tfrac94\varepsilon^{-1}\!\int\!\Big[(A_m,A_m)+\tfrac14(A^{ij},A_{ij})\Big]\\
+&+\log\varepsilon\Big[-\tfrac12\!\int\!(F^0_{mn},F^0_{mn})-\tfrac14\!\int\!(\partial_mA^{ij},\partial_mA_{ij})+8i\!\int\!(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)-\!\int\!(\partial_mc,A^*_m)\Big]\Big\},
+\end{aligned}
+\]
+with coefficient $0$ for $\int(\partial_mA_m,\partial_nA_n)$, and $\tfrac14(A^{ij},A_{ij})=\sum_I(A_I,A_I)$. For $\mathfrak{su}(N)$, in the components of the key, the $\varepsilon^{-1}$ part of $I^{CT}[\varepsilon]/\hbar$ is the common mass term of the four gluon and the six scalar components,
+\[
+-\frac{9g^2N}{64\pi^2\,\varepsilon}\int d^4x\,\big(A^a_mA^a_m+A^a_IA^a_I\big).
+\]
+\end{remark}
+
+% ANCHOR: end_of_section 4.2
+\begin{remark}[Physics notation: the logarithmic quadratic counterterm]
+For $\mathfrak{su}(N)$, in the components of the key, the $\log\varepsilon$ part of $I^{CT}[\varepsilon]/\hbar$ without antifields is
+\[
+-\frac{g^2N}{32\pi^2}\,\log\varepsilon\int d^4x\Big\{4\Big(-\tfrac14F^{0a}_{mn}F^{0a}_{mn}-\tfrac12\partial_mA^a_I\partial_mA^a_I\Big)+8\Big(i\,\bar\lambda^a_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda^a_\alpha{}^i\Big)\Big\},
+\]
+$4$ times the free boson Lagrangian and $8$ times the free gaugino Lagrangian, and the ghost term is $-\mathrm{unit}\,\log\varepsilon\int(\partial_mc,A^*_m)$ (Remark \ref{rem:c4-quadratic}). The gluon part is transverse, $2(|p|^2\delta_{mn}-p_mp_n)$ in plane waves, the $p_mp_n$ coefficients $-\tfrac18$ of the gluon bubble and $+\tfrac18$ of the ghost loop cancelling; the gluon and scalar entries combine into a functional of the ten-component field $A_M=(A_m,A_I)$.
+\end{remark}
+
+% ANCHOR: after_label prop:c4-structure
+\begin{remark}[Physics notation: power counting]
+The Weyl weights are mass dimensions: $[A_m]=[A_I]=1$, $[\lambda_\alpha{}^i]=[\bar\lambda_{\dot\alpha i}]=\tfrac32$, $[c]=0$, $[A^*]=3$, $[\lambda^*]=\tfrac52$, $[c^*]=4$, $[\partial_m]=1$; the superficial degree of divergence of a one-loop graph is $4$ minus the dimensions of its legs. Quadratic divergences ($\varepsilon^{-1}$) sit in the mass terms $\int(A_m,A_m)$ and $\int(A_I,A_I)$ alone, and $\log\varepsilon$ multiplies local functionals of dimension $4$. The leg sets of the proposition are: the self-energies of $A_m$, $A_I$, $\lambda$ and the ghost--antifield pair $(c,A^*_m)$; the three-gluon vertex, the gluon--scalar--scalar vertex $A_mA_IA_I$, the gluon--gaugino vertex $\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}A_m\lambda_\alpha{}^i$, the Yukawa vertices $\lambda^jA_{ji}\lambda^i$ and $\bar\lambda_jA^{ji}\bar\lambda_i$, the antifield (BRST-source) vertices $cA_mA^*_m$, $cA^{ij}A^*_{ij}$, $c\lambda\lambda^*$, $c\,c\,c^*$; and the four-point functions $(A_m)^4$, $(A_m)^2(A_I)^2$, $(A_I)^4$.
+\end{remark}
+
+% ANCHOR: end_of_section 4.3.1
+\begin{remark}[Physics notation: cubic tree vertices]
+The tree vertices of the cubic tables are the cubic terms of $S$ in components:
+\begin{itemize}
+\item three-gluon: $-\tfrac18(F_{mn},F_{mn})\supset-\tfrac14(F^0_{mn},[A_m,A_n])$;
+\item gluon--scalar--scalar: $-\tfrac1{16}(D_mA^{ij},D_mA_{ij})\supset-\tfrac18(\partial_mA^{ij},[A_m,A_{ij}])=-\tfrac12\sum_I(\partial_mA_I,[A_m,A_I])$;
+\item gluon--gaugino: $i(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}[A_m,\lambda_\alpha{}^i])$, from $i(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i)$, pairing $S_+\otimes W$ with $S_-\otimes W^*$;
+\item Yukawa: $-\tfrac12(\lambda^j[A_{ji},\lambda^i])-\tfrac12(\bar\lambda_j[A^{ji},\bar\lambda_i])$, the two structures of equal chirality;
+\item antifield vertices: $([A_m,c],A^*_m)$, $\tfrac14([A^{ij},c],A^*_{ij})$, $([c,\lambda_\alpha{}^i],\lambda^{*\alpha}{}_i)-([c,\bar\lambda_{\dot\alpha i}],\bar\lambda^{*\dot\alpha i})$, $\tfrac12([c,c],c^*)$.
+\end{itemize}
+In this order the one-loop $\log\varepsilon$ coefficients are $\mathrm{unit}\cdot\log\varepsilon$ times $6$, $6$, $10$, $10$ and $1$, $1$, $1$, $1$ times the tree vertex; for $\mathfrak{su}(N)$, $\mathrm{unit}=-\frac{g^2N}{32\pi^2}$ and $[X,Y]^c=g\,f^{abc}X^aY^b$ in the components $X=-igX^aT^a$.
+\end{remark}
+
+% ANCHOR: end_of_section 4.3.2
+\begin{remark}[Physics notation: quartic colour and Lorentz factors]
+The quartic tree vertex is the quartic part of the bosonic action,
+\[
+-\tfrac18([A_m,A_n],[A_m,A_n])-\tfrac14\sum_I([A_m,A_I],[A_m,A_I])-\tfrac18\sum_{I,J}([A_I,A_J],[A_I,A_J]),
+\]
+the last two terms being $-\tfrac1{16}([A_m,A^{ij}],[A_m,A_{ij}])$ and $-\tfrac1{128}([A^{ij},A^{kl}],[A_{ij},A_{kl}])$. For $\mathfrak{su}(N)$ the colour factors are
+\[
+([X_1,X_2],[X_3,X_4])=2\hbar g^2f^{abe}f^{cde}X_1^aX_2^bX_3^cX_4^d,\qquad \tfrac1{24}\sum_{\mathrm{orderings}}\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}\mathrm{ad}_{X_3}\mathrm{ad}_{X_4})=g^4X_1^aX_2^bX_3^cX_4^d\;\tfrac1{24}\sum_{\mathrm{orderings}}\operatorname{tr}(T^a_AT^b_AT^c_AT^d_A),
+\]
+the second being the totally symmetrised adjoint trace; the Lorentz factors are $(v_1,v_2)=v_{1m}v_{2m}$ on gluon legs and $(v_1,v_2)=v_{1I}v_{2I}=\tfrac14v_1^{ij}v_{2ij}$ on scalar legs. In each quartic set the symmetrised adjoint trace cancels and the total is $8\cdot\mathrm{unit}\cdot\log\varepsilon$ times the tree vertex.
+\end{remark}
+
+% ANCHOR: after_label thm:c4-log
+\begin{remark}[Physics notation: field rescaling]
+In components the field-counting functional is
+\[
+2\!\int\!\Big[(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})\Big]-4\!\int\!\Big[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\Big]-\!\int\!(c^*,c),
+\]
+whose antibracket counts fields (Lemma \ref{lem:c4-count}). To first order in the unit, $S$ minus the $\log\varepsilon$ part of $I^{CT}[\varepsilon]$ is $S$, with its terms in $F_{mn}$, $D_mA_{ij}$, $\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i$, the Yukawa and the ghost terms, evaluated on the rescaled fields
+\[
+\begin{aligned}
+&A_m,\,A_{ij}\mapsto(1-2\,\mathrm{unit}\log\varepsilon)\,A_m,\,A_{ij},\qquad \lambda_\alpha{}^i,\,\bar\lambda_{\dot\alpha i}\mapsto(1-4\,\mathrm{unit}\log\varepsilon)\,\lambda_\alpha{}^i,\,\bar\lambda_{\dot\alpha i},\qquad c\mapsto(1-\mathrm{unit}\log\varepsilon)\,c,\\
+&A^*\mapsto(1+2\,\mathrm{unit}\log\varepsilon)\,A^*,\qquad \lambda^*\mapsto(1+4\,\mathrm{unit}\log\varepsilon)\,\lambda^*,\qquad c^*\mapsto(1+\mathrm{unit}\log\varepsilon)\,c^*:
+\end{aligned}
+\]
+a one-loop wave-function renormalisation. For $\mathfrak{su}(N)$, at fixed $g$: $A^a_m,A^a_I\mapsto\big(1+\frac{g^2N}{16\pi^2}\log\varepsilon\big)A^a_m,A^a_I$, $\lambda^a\mapsto\big(1+\frac{g^2N}{8\pi^2}\log\varepsilon\big)\lambda^a$, $c\mapsto\big(1+\frac{g^2N}{32\pi^2}\log\varepsilon\big)c$.
+\end{remark}
+
+% ANCHOR: end_of_section 4.3
+\begin{remark}[Physics notation: coupling and mass term]
+Corollary \ref{cor:c4-coupling}: $g$ enters through $(X,Y)=-\frac{4\hbar}{g^2}\operatorname{tr}(XY)$ alone, as the overall factor $\frac1{g^2}$ of $S$ in the fields $A_m$, $A_{ij}$, $\lambda$, so a renormalisation of $g$ is a multiple of $S$ in the $\log\varepsilon$ counterterm; that multiple is $0$. In the usual notation $Z_g=1$ at one loop, and the counterterm is the wave-function renormalisation of Theorem \ref{thm:c4-log}. Remark \ref{rem:c4-epsinv} in components:
+\[
+\big(Q+\{I,-\}\big)\Big(\tfrac94\,\mathrm{unit}\,\varepsilon^{-1}\!\int\!\Big[(A_m,A_m)+\tfrac14(A^{ij},A_{ij})\Big]\Big)=-\tfrac92\,\mathrm{unit}\,\varepsilon^{-1}\!\int(\partial_mc,A_m),
+\]
+from the arrow $c\mapsto-\partial_mc$ of $Q$ in the gluon mass term: the breaking of the Slavnov--Taylor identity by the regulator, $+\frac{9g^2N}{64\pi^2\varepsilon}\int(\partial_mc,A_m)$ for $\mathfrak{su}(N)$.
+\end{remark}
+
+% ANCHOR: after_label thm:c4-obstruction
+\begin{remark}[Physics notation: the obstruction]
+With $d^*(A|_V)=-\partial_mA_m$ and $d^*dc=-\partial^2c$, the functionals of Lemma \ref{lem:c4-sectors} are $\int(\partial_mc,A_m)$ and $\int(\partial^2c,\partial_mA_m)$, and the limit of the theorem is
+\[
+-\tfrac{27}8\,\mathrm{unit}\int(\partial^2c,\partial_mA_m)=\tfrac{27}{16}\,\mathrm{unit}\;Q\!\int(\partial_mA_m,\partial_nA_n),\qquad Q\!\int(\partial_mA_m,\partial_nA_n)=-2\!\int(\partial^2c,\partial_mA_m),
+\]
+the $\varepsilon^{-1}$ terms $-\tfrac92$ (bubbles with one special edge) and $+\tfrac92$ (vertex $-QI^{CT}[\varepsilon]$) times $\mathrm{unit}\,\varepsilon^{-1}\int(\partial_mc,A_m)$ cancelling. This is the violation of the Slavnov--Taylor identity of the gluon two-point function: by Remark \ref{rem:c4-selfenergy} it is $Q$ of the local longitudinal ($p_mp_n$) part of the renormalised gluon self-energy,
+\[
+\tfrac{27}{16}\,\mathrm{unit}\int(\partial_mA_m,\partial_nA_n)=-\frac{27g^2N}{256\pi^2}\,\hbar\int d^4x\,(\partial_mA^a_m)^2\quad\text{for }\mathfrak{su}(N).
+\]
+\end{remark}
+
+% ANCHOR: after_label thm:c4-finite
+\begin{remark}[Physics notation: the finite counterterm]
+\[
+I\ \mapsto\ I-\tfrac{27}{16}\,\mathrm{unit}\int(\partial_mA_m,\partial_nA_n),\qquad \mathfrak{su}(N):\quad \frac I\hbar\ \mapsto\ \frac I\hbar+\frac{27g^2N}{256\pi^2}\int d^4x\,(\partial_mA^a_m)^2,
+\]
+a finite multiple of the Feynman-gauge term $-\tfrac12(\partial_mA^a_m)^2$ of Remark \ref{rem:c3-feynman}. It cancels the local longitudinal part of the gluon self-energy, and with it the $(c,A_m)$ part of the Slavnov--Taylor violation. It is fixed up to multiples of $\int(dA|_V,dA|_V)=\tfrac12\int(F^0_{mn},F^0_{mn})$, i.e. of $\int d^4x\,F^{0a}_{mn}F^{0a}_{mn}$, which is $Q$-closed: a renormalisation condition.
+\end{remark}
+
+% ANCHOR: end_of_section 4.4
+\begin{remark}[Physics notation: defect vertex, special edge, special conformal variation]
+\begin{itemize}
+\item The defect vertex $QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ measures the failure of the regularised quantum master equation (Zinn-Justin equation) at scale $\varepsilon$; its flow, $Q\,W(P(\varepsilon,\infty),J)$, measures the failure of the Slavnov--Taylor identities of the effective interaction at scale $\infty$.
+\item The special edge $K_\varepsilon-K_0$ is the smeared minus the sharp field--antifield contraction: in momentum space $e^{-\varepsilon|p|^2}-1$ times the components of $K_0$, a Schwinger time in $[0,\varepsilon]$. Loops closing at one cubic vertex carry $f^{abc}\delta^{bc}=0$.
+\item Proposition \ref{prop:c4-K} in components, for $v^m=x^2v_1^m-2(v_1\cdot x)x^m$ and $(L_vA)_m=v^n\partial_nA_m+A_n\partial_mv^n$:
+\[
+2\int(\partial_mA_m,\partial_n(L_vA)_n)=8\int(\partial_mA_m,v_{1n}A_n)\neq0:
+\]
+the Feynman-gauge term is invariant under translations, rotations and the dilatation and breaks the special conformal transformations.
+\item Remark \ref{rem:c4-cubic}: the cubic sectors of the obstruction are $(c,A_m,A_n)$, $(c,A_I,A_J)$, $(c,\lambda,\lambda)$ and $(c,c,A^*_m)$.
+\end{itemize}
+\end{remark}

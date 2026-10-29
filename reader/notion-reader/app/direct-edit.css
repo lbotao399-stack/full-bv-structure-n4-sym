@@ -1,0 +1,23 @@
+/* Direct editing stays on the manuscript; math editing is a compact anchored panel. */
+[data-direct-edit-root]{outline:none;cursor:text;min-height:1.45em;caret-color:#237163;overflow-wrap:break-word}
+[data-direct-edit-root]:empty::before{content:'Type here, or / for blocks';color:#9ba69e;pointer-events:none}
+[data-direct-edit-root]:focus-visible{outline:none}
+.direct-math-atom{cursor:text;border-radius:3px}
+.direct-math-atom:hover{box-shadow:0 0 0 2px #7ca99235}
+.direct-math-atom:focus-visible{outline:2px solid #78a78e;outline-offset:3px}
+.direct-math-editor,.direct-slash-menu{position:fixed;z-index:105;background:#fffefb;color:#25362e;border:1px solid #d4ddd3;border-radius:9px;box-shadow:0 12px 45px #1d382529;font-family:system-ui,sans-serif;font-size:13px;line-height:1.5}
+.direct-math-editor{padding:15px;max-height:calc(100vh - 90px);overflow:auto}
+.direct-math-editor label{display:block;font-weight:600;margin-bottom:8px}
+.direct-math-editor textarea{width:100%;box-sizing:border-box;resize:vertical;border:1px solid #bacdbf;border-radius:5px;padding:9px 10px;outline:none;background:#fafcf8;color:#25362e;font:14px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:72px}
+.direct-math-editor textarea:focus{border-color:#508e74;box-shadow:0 0 0 2px #508e7415}
+.direct-edit-hint{color:#829084;font-size:11px;margin:7px 0 12px}
+.direct-math-preview{min-height:36px;padding:8px;overflow:auto;border-top:1px solid #edf0e9}
+.direct-math-error{font-size:11px;color:#a53932;max-height:100px;overflow:auto;overflow-wrap:anywhere}
+.direct-math-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.direct-math-actions button{border:1px solid #d7dfd5;background:#f7faf4;color:#3b5546;border-radius:5px;padding:6px 12px;cursor:pointer}
+.direct-math-actions button:last-child{background:#2b7064;color:white;border-color:#2b7064}
+.direct-slash-menu{width:230px;padding:5px;max-height:min(360px,calc(100vh - 100px));overflow:auto}
+.direct-slash-menu button{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;border:0;border-radius:5px;padding:9px 12px;text-align:left;background:transparent;color:#254e3b;font:inherit;cursor:pointer}
+.direct-slash-menu button[aria-selected=true]{background:#edf4e9}
+.direct-slash-menu button small{font-size:11px;color:#89998f}
+@media print{.direct-math-editor,.direct-slash-menu{display:none!important}.direct-math-atom{box-shadow:none!important}}

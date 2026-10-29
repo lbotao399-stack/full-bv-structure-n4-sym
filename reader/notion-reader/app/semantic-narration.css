@@ -1,0 +1,10 @@
+.narration-mode{border:1px solid var(--line,#dde3dd);background:var(--paper,#fffefa);color:var(--ink,#24332f);border-radius:5px;padding:5px;font-size:11px;max-width:88px}.semantic-reading-cue{background:#fff0b7!important;box-shadow:inset 0 0 0 2px #b88b28!important}.semantic-equation-cue{background:#fff7d8;border-radius:5px;box-shadow:inset 3px 0 #b88b28}.narration-focus{margin:10px 0 3px;padding:8px 12px;border-left:3px solid #b88b28;background:#fff8e3;border-radius:3px;user-select:text}.narration-focus-label{font-size:10px;color:#806422}.narration-focus-term{overflow-x:auto}.narration-focus-term .katex-display{margin:.35em 0}@media print{.narration-focus{display:none!important}.semantic-reading-cue,.semantic-equation-cue{background:transparent!important;box-shadow:none!important}}
+.semantic-image-overlay{position:absolute;inset:0;pointer-events:none;z-index:2}.semantic-image-cue{position:absolute;box-sizing:border-box;border:2px solid #b37b21;border-radius:4px;background:#e9b7440a;box-shadow:0 0 0 3px #e9b74424}.narration-image-panels{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}.narration-image-panel{margin:6px 0 0;flex:0 1 auto;width:100%}.narration-image-panel svg{display:block;overflow:hidden;width:100%;height:auto;max-height:320px;background:white;border:1px solid #e1d5b8;border-radius:3px}.narration-image-panel figcaption{font-size:11px;color:#6d5d37;margin-top:4px}@media print{.semantic-image-overlay{display:none!important}}
+
+/* Keep the complete figure and the current enlargement visible together on wide screens. */
+@media screen and (min-width:900px){
+ .source-block.type-image:has(>.narration-image-focus){display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:start}
+ .source-block.type-image:has(>.narration-image-focus)>.block-content{grid-column:1;min-width:0}
+ .source-block.type-image:has(>.narration-image-focus)>.block-content img{max-height:min(700px,calc(100vh - 220px));width:auto;max-width:100%}
+ .source-block.type-image>.narration-image-focus{grid-column:2;grid-row:1;min-width:0;margin-top:15px;position:sticky;top:82px;max-height:calc(100vh - 220px);overflow:auto}
+}

@@ -1,0 +1,250 @@
+{
+  "title": "Engine plan: one-loop components Q_1, S_1, K_1 (and the twisted Q_1) of N=4 SYM, untwisted, UV boundary only",
+  "date": "2026-10-28",
+  "design_document": "step2/theory/odd_components_design.tex (labels prefixed o-)",
+  "binding_inputs": [
+    "DESIGN_STEP2.md (Parts C, D; directives R1-R4)",
+    "DESIGN.md, DEFINITIONS_v2.md, STORY.md",
+    "manuscript ch01-ch07",
+    "step2/literature/q1_targets.tex (targets T1-T11)",
+    "step2/notation/esw_to_weinberg_srednicki.tex (dictionary: (R1)-(R4), (P1), (G1)-(G4), (F1)-(F3), (K1), (B1)-(B3))",
+    "step2/theory/cubic_structure.tex (Part C: F_3 family, kernel H1-4H3-2H6, H2-2H4)"
+  ],
+  "constraints": {
+    "machine": "24 GB shared Mac; one heavy process at a time per agent, each < 1 GB RSS (this task) / < 1.5 GB (DESIGN_STEP2); never /tmp; kill what you start; no Wolfram",
+    "engines": "engines A and B run every item independently and do not read each other's step2 outputs before the comparison phase; both may import their own Step-1 code",
+    "rules": "Euclidean; UV boundary only (no T, no IR scale, no masses); no dimensional regularisation in any role; exact results (rational, possibly log 2, log 3, pi^2, Li_2 values) by exact integration or >= 40-digit numerics + integer relation on an explicit basis confirmed by a second evaluation; unit = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) written out in reports",
+    "reporting": "every reported formula index-free AND in Weinberg-Srednicki two-component form (R1); the user's Q_1,S_1,D_1,K_1 are one-loop components, the spinor parameters are xi in Sigma, eta in Sigma^* (never the manuscript's Q_1 in Sigma, Q_2 in Sigma^*) (R3 name clash)"
+  },
+  "conventions": {
+    "rank_one_supercharge": {
+      "index_free": "xi = u (x) w in S_+ (x) W, u in S_+, w in W nonzero; auxiliary u' in S_+ with u'^a u_a = 1, n in W^* with n_i w^i = 1",
+      "two_component": "xi_alpha^i = u_alpha w^i, xibar_{alphadot i} = 0",
+      "engine_realisation": "Step-1 superconformal engine: simultaneous eigenvector of sigbar[M]sig[N], (M,N)=(0,1),(2,3),(4,5),(6,7),(8,9), weights (1,-1,1,1,1), Omega=+1; Gaussian-integer vector; Gamma(xi,xi)=0 in all ten components; rank Gamma(xi,-)|_V = 2 (odd_checks/find_rank_one.py, rank_one_vectors.json). u'(x)w: weights (-1,1,1,1,1) (same W-weights, other S_+ weight); normalise u'^a u_a = 1 in code"
+    },
+    "evaluation_along_xi": "r_xi(f) = sum_k (-1)^{k(k-1)/2}/k! f^(k)(xi,...,xi) q^k; twisted action S^xi = S + S^(1)(xi) - 1/2 S^(2)(xi,xi) = S + S^(1)(xi) + 1/4 int (u_a w^i lam*^a_i, u_b w^j lam*^b_j); twisted one-loop differential Q_1^xi = hbar (L_1^(0) + L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi)) (design Lemma lem:o-ev, Def def:o-twisted)",
+    "special_conformal": "K_{v_1}: v^m = x^2 b^m - 2 (b.x) x^m, b = v_1, div v = -8 b.x; (1/4) div v = -2 b.x",
+    "propagator_tails": "A A: 2 (,)^{-1} delta D; A*_V c: -(,)^{-1} d D; D(r) = (1 - e^{-r^2/4eps})/(4 pi^2 r^2) -> 1/(4 pi^2 r^2)",
+    "brackets_and_signs": "cochain bracket and d_CE of ch02 def:c2-dce / eq:c2-dce; for |C| = |O|+1 the arity-two d_CE term is (-1)^{|C|} C^(1)([x1,x2]); bracket {f,g} of ch01 def:c1-bracket (cubic_structure.tex eq:s2c-br); fix every sign in code and record it"
+  },
+  "completed_checks": [
+    {
+      "id": "E0a",
+      "what": "twisted CME coefficient: for rank-one xi, {S^(1)(xi),S^(1)(xi)} != 0, {S^(1)(xi),S^(1)(xi)} - {S,S^(2)(xi,xi)} = 0, {S^(1)(xi),S^(2)(xi,xi)} = 0 => S + S^(1)(xi) + c S^(2)(xi,xi) solves the CME iff c = -1/2",
+      "result": "confirmed exactly, g = su(2), 3.7 s",
+      "files": ["step2/theory/odd_checks/twist_coeff_check.py", "step2/theory/odd_checks/twist_coeff_check.json", "step2/theory/odd_checks/find_rank_one.py", "step2/theory/odd_checks/rank_one_vectors.json"]
+    },
+    {
+      "id": "E0b",
+      "what": "large-distance tail of the floating S^(1)(K) insertion on an A|_V -> c line: sum_m [L_v(D(.-za)e_k)]_m d_m D(y-zb) = ((b.y)y_k - |y|^2 b_k)/(4 pi^4 |y|^6) + O(|y|^-5); S^3 average -3 b_k/(16 pi^4 R^4)",
+      "result": "symbolic at za=zb=0; numeric sphere sampling at R=10,100,1000 with za,zb != 0: ratio -3.00 +- 0.01 to (4 pi^2)^-2 b_k",
+      "files": ["step2/theory/odd_checks/k_ir_check.py", "step2/theory/odd_checks/k_ir_check.txt"]
+    },
+    {
+      "id": "E0c",
+      "what": "Euclidean Fierz sum_m sigbar^{m adot a} sigbar^{m bdot b} = -2 eps^{ab} eps^{adot bdot} and (Gamma(u(x)w,lam)|_V, Gamma(u'(x)w,lam)|_V) = 2 (lambar_{adot i} w^i, lambar^adot_j w^j) for u'^a u_a = 1",
+      "result": "residual 0; coefficient 2",
+      "files": ["step2/theory/odd_checks/fierz_check.py"]
+    },
+    {
+      "id": "E0d",
+      "what": "products eta1 eta2 with Gamma(eta1,eta2)|_V = 0 span ker(Gamma|_V) on Sym^2 Sigma^* (consistency of the definition of the K-components through Sigma^* x Sigma^*)",
+      "result": "rank 132 = 136 - 4",
+      "files": ["step2/theory/odd_checks/gammaV_kernel_span.py"]
+    }
+  ],
+  "computations": [
+    {
+      "id": "E0",
+      "order": 0,
+      "title": "conventions in code (remaining)",
+      "tasks": [
+        "kappa_B: sign and value of the classical component delta_xi O_zeta = kappa_B B_w (design Prop prop:o-konishi; expected |kappa_B| = 1/4)",
+        "identity 1/2 (Gamma(xi,lam)|_V, Gamma(zeta,lam)|_V) = Fbar_w inside the engine realisation (both engines)",
+        "two-component vertex tables of S^(1)(xi) (design eq:o-S1xi), S^(1)(eta) (dictionary F2), S^(2)(xi,xi) (design eq:o-S2xi) against the index-free realisation",
+        "output bases from ch07 prop:c7-select for every target below (enumeration of invariant local functionals of the stated weight, degree, Lorentz and R representation, colour singlet)",
+        "implement r_xi (coefficients 1, 1, -1/2) and the C^bullet-linear extension of operator maps with the shuffle signs of ch02 def:c2-dce"
+      ],
+      "resources": "seconds; numpy/sympy/fractions"
+    },
+    {
+      "id": "E1",
+      "order": 1,
+      "title": "Konishi anomaly target: c_K (Q_1 on the weight-5/2 Konishi descendant)",
+      "targets": ["T5 (BK (3.66), CL25 (2.5), EJSS05 (8), BKRS01 (9))"],
+      "operator": {
+        "index_free": "O_zeta = int omega (lam, rho(A|_{W_R^perp}) zeta), zeta = u' (x) w",
+        "two_component": "int omega (u'^a lam_a^i, A_ij w^j)",
+        "weight": 2.5, "degree": 0, "gauge_invariant": true
+      },
+      "generator": "xi = u (x) w, arity 1, order hbar",
+      "output_structures": {
+        "allowed": ["B_w = int omega ([A^ik, A_kj w^j], A_il w^l) (classical kappa_B + one-loop c_B')", "Fbar_w = int omega (lambar_{adot i} w^i, lambar^adot_j w^j) = 1/2 int omega (Gamma(xi,lam)|_V, Gamma(zeta,lam)|_V) (one loop only)"],
+        "excluded_by_selection_rules": ["(lam,lam) undotted", "(F_A, A)", "(A, dA)", "(c, A*_ij) w^i w^j = 0"]
+      },
+      "sector": "two external legs lambar_{adot i} w^i (momenta p, -p); superficial degree 0; coefficient of eps^0 at p = 0",
+      "graph_classes": {
+        "contributing": ["A: special edge K_eps-K_0 between S^(1)(xi) (quadratic or cubic part) and O_zeta, one loop, O_zeta on the cycle", "B: special edge between I and S^(1)(xi), O_zeta on the cycle", "C: special edge between I (ghost vertices ([A,c],A*), ([c,lam],lam*)) and O_zeta, S^(1)(xi) on the cycle or on an external leg", "D: special edge between two vertices I, O_zeta and S^(1)(xi) on the cycle"],
+        "vanishing_in_limit": ["bridge special edges paired with K_eps-K_0 parts of counterterm brackets: (e^{-eps p^2}-1) x renormalised subgraph -> 0 (verify explicitly)"],
+        "absent": ["T: delta_xi O_zeta trilinear, no one-loop graph with two external lambar", "E1/E2: d_delta I^CT(xi) of O_zeta = 0 by weight/degree; {I^CT(xi)+F^(1)(xi), O_zeta} has outputs (lam,lam), (A,dA) only"]
+      },
+      "method": "enumerate graphs automatically from the vertex tables (ch01 eq:c1-I, design eq:o-S1xi, eq:o-defect); Schwinger parameters: special edge tau_1 in [0,1] (scaled by eps), others in [1,inf); Gaussian loop integral (ch04 lem:c4-gauss extended); eps^0 coefficient exactly",
+      "checks": [
+        "no negative powers of eps, no log eps (selection: no counterterm with this output)",
+        "independence of u' -> u' + t u",
+        "symmetry in the two lambar legs; colour factor reduces to tr_g(ad ad) (su(2) and su(3) give the same multiple of the unit)",
+        "negative control: the (lam,lam) undotted output vanishes graph sum by graph sum",
+        "bridge pairs -> 0",
+        "general covariant check: repeat with general xi, zeta in S_+ (x) W; coefficient of 1/2 (Gamma(xi,lam)|_V,Gamma(zeta,lam)|_V) is the same c_K"
+      ],
+      "expected": "c_K != 0 (twisted image BK (3.66): Q_1(beta_I gamma^J) proportional to delta^J_I f f dc.dc); numerical comparison with BK needs open item 1 of the targets (normalisation of the twisted hbar and letters)",
+      "follow_up": "c_B' from the three-leg graphs (A A A output), same classes; needed for the B-F orthogonality normalisation",
+      "prerequisites": ["E0"],
+      "resources": "minutes; < 1 GB"
+    },
+    {
+      "id": "E2",
+      "order": 2,
+      "title": "renormalisation family of c_K (R3 display)",
+      "tasks": [
+        "operator mixing psi(B_w) = x Fbar_w (weight-3 singlets in the 10): verify c_K -> c_K - kappa_B x (design Prop prop:o-laws (b))",
+        "field redefinitions phi in span{int(A_V,A*_V), int(A_W,A*_W), int(lam*,lam)|_{S+W}, int(lam*,lam)|_{S-W*}, int(c*,c)}: verify c_K unchanged ([s,ad_phi](O_zeta) has no Fbar_w component)",
+        "coupling direction G = S - S^(2): verify Q_1 (arity one) unchanged, Q_1^xi -> Q_1^xi - a Q_0^xi + [Q_0^xi, a N_R]",
+        "arity-one finite counterterm F^(1)(xi): verify no Fbar_w output",
+        "orthogonality normalisation (targets T5 (d), EJSS05 (103)): fix x by two-point orthogonality of the protected combination; report c_K in that normalisation"
+      ],
+      "prerequisites": ["E1"],
+      "resources": "minutes"
+    },
+    {
+      "id": "E3",
+      "order": 3,
+      "title": "action side along xi: arity-one counterterm, obstruction, finite counterterm (two legs)",
+      "tasks": [
+        "I^CT_psl[eps](xi), two legs: singular parts of one-loop 1PI graphs with one S^(1)(xi) on the cycle; by weight no eps^{-1}; log eps coefficient in span{(Gamma(xi,lam)|_V,A*_V), (Gamma(xi,lam)|_W,A*_W), (rho(dA_V)xi,lam*), (rho(dA_W)xi,lam*)}",
+        "PREDICTION to test: log eps part = log eps x unit x {S^(1)(xi), 2 int(A,A*) - 4 int(lam*,lam) - int(c*,c)} (sign per def:c2-dce), i.e. weights 2 on (Gamma(xi,lam),A*) and -2 on the quadratic part of (rho(F)xi,lam*)",
+        "arity-one obstruction along xi: limit of classes B, D (no O) + -Q I^CT(xi) - {I, I^CT(xi)}_eps - {S^(1)(xi), I^CT}_eps - {S^(1)(xi), F_0} in the sectors (lam, A_V), (lam, A_W), (c, lam*); include {S^(1)(xi), (27/16) unit int(d*A_V,d*A_V)}",
+        "solve Ob(xi) = (Q+{I,-}) F^(1)(xi) + {S^(1)(xi), F_0} for F^(1)(xi) (degree -1, weight 4.5 with xi of weight -1/2); state the solution family",
+        "E3b: equivariant admissibility of the Part-C free directions: solve {S^(1)(xi), G_0} = -(Q+{I,-}) G^(1)(xi) for G_0 in the beta-directions and the kernel {H1-4H3-2H6, H2-2H4}; confirm that only field redefinitions and the coupling direction survive (design Prop prop:o-arity0)"
+      ],
+      "checks": ["eps^{-1} cancels against {S^(1)(xi), (9/4) eps^{-1} unit int(A,A)}", "log eps cancels", "Wess-Zumino consistency at arity one"],
+      "prerequisites": ["E0"],
+      "resources": "tens of minutes; < 1 GB"
+    },
+    {
+      "id": "E4",
+      "order": 4,
+      "title": "traceless scalar bilinears along xi",
+      "tasks": [
+        "plane of w (w_a,ij w^j = 0): verify Q_1(O) = 0 exactly (design Prop prop:o-planevanish; target T3 at n=2)",
+        "general traceless bilinear along xi in Sigma: the single coefficient multiplying int omega [(iota_w1 A,(rho(w2)xi,lam)) + (1<->2)] (ch07 cor:c7-Q)"
+      ],
+      "operator": {"index_free": "int omega (iota_w1 A, iota_w2 A), (w1,w2)=0", "two_component": "1/16 int omega (w1^ij A_ij, w2^kl A_kl)"},
+      "sector": "(A_W, lam) and (A_V, lam), (c, lam*) (must vanish for traceless)",
+      "prerequisites": ["E3"],
+      "resources": "minutes"
+    },
+    {
+      "id": "E5",
+      "order": 5,
+      "title": "Konishi primary along xi in Sigma (three numbers of ch07 cor:c7-Q)",
+      "operator": {"index_free": "int omega (A|_W, A|_W)", "two_component": "1/4 int omega (A^ij, A_ij)", "weight": 2},
+      "output_structures": ["(w1,w2) int omega (rho(A|_W) xi, lam) [classical type]", "(w1,w2) int omega (rho(A|_V) xi, lam) [gauge-variant type]", "(w1,w2) int omega (c, (xi, lam*)) [BRST type]"],
+      "prerequisites": ["E3"],
+      "checks": ["for xi = u (x) w compare with the image of the twisted Konishi structure (Q_0 of Tr beta gamma ...)", "scheme family: gauge-variant and BRST types shift by [Q_0, ad_phi] under field redefinitions"],
+      "resources": "minutes"
+    },
+    {
+      "id": "E6",
+      "order": 6,
+      "title": "letters along xi, arities 0 and 1 (target T2)",
+      "operators": ["int omega (X, iota_w1 A)", "int omega (X, iota_v A|_V)", "int omega (zeta, lam)", "int omega (X, c)"],
+      "tasks": ["one-loop BRST L_1^(0) and arity-one component; display as multiples of the classical component plus [Q_0, phi] terms (field-type rescalings)", "verify the twisted statement 'Q_1 vanishes on single letters' holds up to [Q_0^xi, N] with N a field-type rescaling"],
+      "prerequisites": ["E3"],
+      "resources": "minutes"
+    },
+    {
+      "id": "E7",
+      "order": 7,
+      "title": "pair entries with open colour (targets T4, T6)",
+      "tasks": [
+        "arity one with field representatives: beta beta, b gamma, beta b, b b (BK (3.65)-(3.69)) via the letter table of the targets (gamma <-> A_ij w^j, beta <-> (u' lam^i) mod w, dc <-> lambar_{adot i} w^i, b <-> u' F u', d <-> u' sigma D)",
+        "bc entry at arity two along (xi,xi): graphs with two S^(1)(xi) vertices (design Prop prop:o-arity2); include L_1^(0) and L_1^(1)(xi) parts of Q_1^xi",
+        "representatives of b: field u'Fu' (arity two) and lam* component (arity one); verify equality of classes modulo Q_0^xi-exact terms"
+      ],
+      "prerequisites": ["E3", "arity-two action side along (xi,xi): two-leg sectors of the (xi,xi) obstruction"],
+      "resources": "tens of minutes"
+    },
+    {
+      "id": "E8",
+      "order": 8,
+      "title": "S_1 (special supercharges)",
+      "tasks": [
+        "verify S_1(eta)(O) = Q_1(rho(x)eta)(O) + U_eta(O) mod s-exact on the scalar bilinears with U_eta = 0 (design eq:o-SQ, ch07 cor:c7-S)",
+        "U_eta on the weight-3 Konishi descendants B_w, Fbar_w: coefficients of int omega (lam, rho(A|_W) zeta), zeta in Sigma (two-letter -> one-letter at one loop)",
+        "commutant of xi (eta^a_i = u^a m_i with m.w = 0, or eta in S_- (x) W): the R_1 of BK footnote 24; check {Q_0^xi, S_1^xi(eta)} + {S_0^xi(eta), Q_1^xi} = 0 on H(Q_0^xi) (target T10)"
+      ],
+      "notes": "floating S^(1)(eta) decays as |y|^-5: all graphs converge; expand rho(y)eta = rho(z)eta + rho(y-z)eta at the operator point",
+      "prerequisites": ["E1", "E3 (with eta in place of xi)"],
+      "resources": "tens of minutes"
+    },
+    {
+      "id": "E9",
+      "order": 9,
+      "title": "arity-two (xi, eta) component and the dilatation",
+      "tasks": ["compute the arity-two component on (xi, eta) with (xi,eta) != 0 for the Konishi primary; verify that its d_CE term carries 1/2 (xi,eta) D_1 + rotation + R parts with D_1 from Part D (scheme-independent combination)"],
+      "prerequisites": ["E5", "E8", "Part D (D2, D3)"],
+      "resources": "tens of minutes"
+    },
+    {
+      "id": "E10",
+      "order": 10,
+      "title": "K_1 (special conformal)",
+      "tasks": [
+        "E10a (done as E0b): the |y|^-4 tail has nonzero sphere average: arity-one K_eps graphs of classes C, D with floating S^(1)(K) diverge logarithmically for eps > 0 with O(eps) coefficient",
+        "E10b: two-zero-mode tree Y in the sector (A, A*) of the arity-one flow W^(1)(K) (cut trees with stubs b (x) (,)^-1 at the A|_V end and 1 at the c end): decide whether W^(1)(K) and O[infty]^(1)(K) exist on R^4 (Y = 0) or not",
+        "E10c: K_1 via the definition through Sigma^* x Sigma^* (design Def def:o-K): C^(1)(K_{v1}) := -Q C^(2)(eta1,eta2), v1 = Gamma(eta1,eta2)|_V; compute for the 20' and the Konishi primary; compare with K_1 = (1/4) div v gamma_O O = -2 (b.x) gamma_O O (design Thm thm:o-KD): 0 for the 20', 48 (b.x) unit O for Konishi",
+        "E10d: independence of the pair (eta1, eta2) at fixed v1 (numerical; the span property is E0d)",
+        "arity-one counterterm along K: singular parts via the pinned-edge boundary form; check no eps^{-1} and log eps in the span of (v.A,A*), (v.lam,lam*), (v.c,c*)-type structures"
+      ],
+      "prerequisites": ["E8", "Part D"],
+      "resources": "tens of minutes"
+    },
+    {
+      "id": "E11",
+      "order": 11,
+      "title": "P_1 = M_1 = R_1 = 0 (covariance realised)",
+      "tasks": ["internal insertions (P^star v. P^star = v.(P^star)^2, (Q^GF)^2 A* = 2 d*(A*_V)) and arity-one counterterms along translations, so(V), so(W_R^perp) for the letters and bilinears; verify that the equivariant choice gives zero one-loop components for gauge-invariant O (ch07 rem:c7-internal)"],
+      "prerequisites": ["E0"],
+      "resources": "minutes"
+    }
+  ],
+  "graph_class_reference": {
+    "T": "marked vertex {S^(1)(x1),O} (classical transformation), other vertices I: graphs of the operator delta_x1 O",
+    "A": "special edge K_eps-K_0 between S^(1)(x1) and O",
+    "B": "special edge between I and S^(1)(x1), separate vertex O",
+    "C": "special edge between I and O, separate vertex S^(1)(x1) (cycle, tree or leg)",
+    "D": "special edge between two vertices I, separate O and S^(1)(x1)",
+    "E1": "trees with one order-hbar marked vertex (counterterm defects, arity-one action defect, operator counterterm brackets)",
+    "E2": "trees with an order-hbar^0 special edge and one counterterm vertex of complementary arity",
+    "formula": "hbar L_1(O)^(1)(x1)[infty]_tree = lim_{eps->0} [ sum of A..E2 graphs + (d_delta I^CT[eps] of delta_x1 O)[infty]_tree ] (design eq:o-L1graphs)",
+    "placement": "lam*, c*, A*_W never on P(eps,infty); floating S^(1): even x: A_V -> c via (v.A_V, A*_V); odd x: lam -> c via -(Gamma(eps(x),lam)|_V, A*_V); S^(2) never floating"
+  },
+  "large_distance_decay_of_floating_insertions": {
+    "xi in Sigma": "|y|^-6",
+    "translations": "|y|^-6",
+    "eta in Sigma^*": "|y|^-5",
+    "Delta": "|y|^-5",
+    "so(V)": "|y|^-5",
+    "so(W_R^perp)": "no floating insertion",
+    "K_{v1}": "|y|^-4, sphere average -3 b_k/(16 pi^4 R^4) (with propagator factors 2 and -1 removed): logarithmic",
+    "special-edge pair of two S^(1)(eta)": "|y|^-6"
+  },
+  "open_items": [
+    "normalisation map to BK (twisted hbar vs unit, normalised letter map (3.51)): needed to compare c_K numerically with BK (3.66) (targets open item 1)",
+    "kappa_B sign (E0)",
+    "existence of W^(1)(K), O[infty]^(1)(K) on R^4 decided by Y (E10b)",
+    "one-dimensionality of the degree-0 weight-4 equivariant local cohomology (E3b)",
+    "identification of the one-loop quantization restricted by r_xi with BK's twisted quantization up to C S^xi + Im Q_0^xi (design Thm thm:o-twist (v)); tested on T3-T5"
+  ]
+}

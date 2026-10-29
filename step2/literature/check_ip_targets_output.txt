@@ -1,0 +1,77 @@
+=== C1  B03 Table 1: S_2 = (Q_2)^dagger
+  signs (1, 1, 1, 1) -> [{g1i: 0, g2i: 0, g3i: 0, g4i: 0}]
+  signs (1, 1, 1, -1) -> no solution (gamma-independent equation [1/2] )
+  signs (1, 1, -1, 1) -> no solution (gamma-independent equation [-1/2] )
+  signs (1, 1, -1, -1) -> no solution (gamma-independent equation [-1/2, 1/2] )
+  signs (1, -1, 1, 1) -> [{g1i: 0, g2i: 0, g3i: g4i, g3r: -g4r}]
+  signs (1, -1, 1, -1) -> no solution (gamma-independent equation [1/2] )
+  signs (1, -1, -1, 1) -> no solution (gamma-independent equation [-1/2] )
+  signs (1, -1, -1, -1) -> no solution (gamma-independent equation [-1/2, 1/2] )
+  signs (-1, 1, 1, 1) -> no solution (gamma-independent equation [1/2] )
+  signs (-1, 1, 1, -1) -> no solution (gamma-independent equation [1/2, 1/2] )
+  signs (-1, 1, -1, 1) -> no solution (gamma-independent equation [1/2, -1/2] )
+  signs (-1, 1, -1, -1) -> no solution (gamma-independent equation [1/2, -1/2, 1/2] )
+  signs (-1, -1, 1, 1) -> no solution (gamma-independent equation [1/2] )
+  signs (-1, -1, 1, -1) -> no solution (gamma-independent equation [1/2, 1/2] )
+  signs (-1, -1, -1, 1) -> no solution (gamma-independent equation [1/2, -1/2] )
+  signs (-1, -1, -1, -1) -> no solution (gamma-independent equation [1/2, -1/2, 1/2] )
+  gamma-independent sums Q2[i]+S2[i] = [alpha1**2/2, 0, -alpha1**2/2, alpha1**2/2]
+  frame Q_2 = 0 (n4_untwisted D2): Q2 = [0, 0, 0, 0]  gamma imaginary -> not a hermitian frame
+
+=== C2  B03 (4.13) self-adjoint for the B03 Sec.2.1 tree scalar product
+  tree norms <O1|O1> = 4  <O2|O2> = 18
+  M21  corrected (n4_untwisted D5) : G M^T - conj(M) G = Matrix([[0, 0], [0, 0]])
+  M21  printed e^{i b2} e^{-i b2} : G M^T - conj(M) G = Matrix([[0, 36*sqrt(2)*alpha1**3*g**3*(1 - exp(I*beta2))*exp(-I*beta2)], [36*sqrt(2)*alpha1**3*g**3*(1 - exp(I*beta2)), 0]])
+  <O1 + c g O2 , O2 + d g O1>_tree at order g = 0
+
+=== C3  one-loop hermiticity identity and frame covariance (random matrices, n = 7)
+  |d/dh X#(0) - (X1^{dag0} + [X#_0, M])| = 1.3735171915736283e-11
+  |X#_0 - X0^{dag0}| = 3.552713678800501e-15
+  X1' - (X1 + [Z, X0])                 : 1.0668676739802216e-11
+  M'  - (M - Z - Z^{dag0})             : 7.520916798265877e-12
+  identity in the new frame             : 5.6039702766198354e-11
+  X#_1' - (X#_1 + [Z, X#_0])           : 1.2310677675305272e-10
+
+=== C4  conformal sl(2) toy: [K,P] = 2D, [D,P] = P, P^dag = K, lowest weight Delta0 + h*gam, P uncorrected
+  K - G^{-1} P^T G = True
+  M (diagonal)       = [0, gamma/Delta0, gamma*(4*Delta0 + 1)/(Delta0*(2*Delta0 + 1)), gamma*(6*Delta0**2 + 6*Delta0 + 1)/(Delta0*(2*Delta0**2 + 3*Delta0 + 1)), gamma*(16*Delta0**3 + 36*Delta0**2 + 22*Delta0 + 3)/(Delta0*(4*Delta0**3 + 12*Delta0**2 + 11*Delta0 + 3)), gamma*(20*Delta0**4 + 80*Delta0**3 + 105*Delta0**2 + 50*Delta0 + 6)/(Delta0*(4*Delta0**4 + 20*Delta0**3 + 35*Delta0**2 + 25*Delta0 + 6))]
+  K_1 == [K_0, M]    : True
+  2 D_1 == [[K_0,M],P_0] on levels 0..L-2 : True
+  level-one ratio M_1 - M_0 = gamma/Delta0 : True
+
+=== C5  conjugations X -> H X^dagger H^{-1} on gl(4|4)
+   eta=diag(-1_2, 1_2 | 1_4) : max|[X,Y]^c - [Y^c,X^c]| = 0.0  antilinear: True  Delta^c = Delta: True
+      Delta-component of [X, X^c} : {'(2,1) P': np.float64(0.5), '(1,2) K': np.float64(-0.5), '(3,1) Q': np.float64(-0.25), '(2,3) Qbar': np.float64(-0.25), '(1,3) S': np.float64(-0.25), '(3,2) Sbar': np.float64(-0.25)}
+   eta=diag( 1_2,-1_2 | 1_4) : max|[X,Y]^c - [Y^c,X^c]| = 0.0  antilinear: True  Delta^c = Delta: True
+      Delta-component of [X, X^c} : {'(2,1) P': np.float64(0.5), '(1,2) K': np.float64(-0.5), '(3,1) Q': np.float64(0.25), '(2,3) Qbar': np.float64(0.25), '(1,3) S': np.float64(0.25), '(3,2) Sbar': np.float64(0.25)}
+   eta=1 (plain dagger)      : max|[X,Y]^c - [Y^c,X^c]| = 0.0  antilinear: True  Delta^c = Delta: True
+      Delta-component of [X, X^c} : {'(2,1) P': np.float64(-0.5), '(1,2) K': np.float64(0.5), '(3,1) Q': np.float64(0.25), '(2,3) Qbar': np.float64(-0.25), '(1,3) S': np.float64(0.25), '(3,2) Sbar': np.float64(-0.25)}
+   general H (block-diag hermitian, signature -,+|+): {Q,Q^c} Delta-component < 0 for random Q in (3,1): True
+   st([X,Y}) = (-1)^{|X||Y|} [st Y, st X}  (st reverses brackets up to the Koszul sign): 0.0
+   st(D_B) with D_B = diag(1/2,-1/2|0) in the (a,b|c) blocks equals Delta/2: True
+   st o (Beisert conjugation) o st^{-1} == conjugation with eta=diag(-1_2,1_2|1_4): True
+
+=== C6  inversion pushforward on conformal Killing fields of R^4
+  R_*(P_e) == K_e           : True
+  R_*(K_e) == P_e           : True
+  R_*(E)   == -E            : True
+  R_*(rotation) == rotation : True
+  v -> -R_*(v) reverses brackets on (P,K),(E,P),(E,K),(rot,K),(P,rot): True
+  hence Delta = 2E -> 2E, P_e -> -K_e, K_e -> -P_e, rotation -> -rotation (real fields)
+
+=== C7  colour identity of DFS (2.6) and unit conversions
+  SU(2): max|sum_p [[T^a,T^p],T^p] - N T^a| = 0.0
+  SU(3): max|sum_p [[T^a,T^p],T^p] - N T^a| = 0.0
+  SU(4): max|sum_p [[T^a,T^p],T^p] - N T^a| = 4.440892098500626e-16
+  unit (su(N), (X,Y) = -(4 hbar/g^2) tr XY) = -N*g**2/(32*pi**2) ; -24 unit = 3*N*g**2/(4*pi**2)
+  B04 (2.20): 6 g_B^2 with g_B^2 = g^2 N/(8 pi^2) = 3*N*g**2/(4*pi**2)
+  BKRS: order-g^2 log coefficient from (24) / printed (27) = 4 (consistent with g^2 in (27) = 4 g_std^2: BKRS footnote 3, the g of refs [6,7] is 2 g)
+
+=== C8  conjugation on the odd parameters (dictionary entries SPN-sigmaE, Gamma, pairing, brackets)
+  sigmabar_E = -sigma_E^dagger : True
+  factors (undotted, dotted) = (1.0, 1.0) : Gamma(xi2^c,xi1^c)|_V == conj Gamma(xi1,xi2)|_V : True  (xi1, xi1^c) = (-38.513646+0j)
+  factors (undotted, dotted) = (2.0, 0.5) : Gamma(xi2^c,xi1^c)|_V == conj Gamma(xi1,xi2)|_V : True  (xi1, xi1^c) = (-56.930527+0j)
+  factors (undotted, dotted) = (2.0, 1.0) : Gamma(xi2^c,xi1^c)|_V == conj Gamma(xi1,xi2)|_V : False  (xi1, xi1^c) = (-63.629449+0j)
+  factors (undotted, dotted) = (1.0, -1.0) : Gamma(xi2^c,xi1^c)|_V == conj Gamma(xi1,xi2)|_V : False  (xi1, xi1^c) = (-11.717959+0j)
+  => [xi_1,xi_2]^c = [xi_2^c, xi_1^c] with P_v^c = -K_{conj v} (C6) and prop:c2-special forces
+     (undotted factor) x (dotted factor) = 1; (xi, xi^c) < 0 for positive factors.

@@ -1,0 +1,1460 @@
+{
+ "method": "Third, independent exact check (round 2): every purely bosonic one-loop 1PI graph of the five bosonic external sets\n(A|_V)^3, A|_V (A|_Wperp)^2, (A|_V)^4, (A|_V)^2 (A|_Wperp)^2, (A|_Wperp)^4, built from scratch from the action.\n\nInputs from the sources only:  S = int dvol( -1/4 (F_A,F_A) ),  F_A = dA + 1/2[A ^ A],  d only along V  [ESW (31), DESIGN];\nweight e^{+S/hbar}, W(P,I) = hbar log(e^{hbar d_P} e^{I/hbar})  [C07/CG2];  P(eps,infty) = int_eps^infty dt e^{-t k^2} x 2 (-,-)^{-1} (x) metric^{-1}\non A - A (Feynman gauge: H = Laplacian on every component, positive A-A covariance, DESIGN / DEFINITIONS_v2 item 1).\nCode-level choices (not reported notation): g = su(2), orthonormal basis for (-,-), [e_a,e_b] = eps_abc e_c (tr_g(ad_X ad_Y)/(X,Y) = -2);\nV_10 = R^4 (+) R^6 with Euclidean metric, components 0..3 along V, 4..9 along W_R^perp.\n\nMethod (independent of both engines' codes): Feynman rules = full functional derivatives of the cubic and quartic terms at plane waves;\ngraph value = (1/|Aut|) int d^4k/(2pi)^4 N(k) prod_e int_eps^infty dt_e e^{-t_e (k+q_e)^2}; Gaussian k-integral and the scale integral\nover T = sum t_e give for the log eps coefficient (exact):\n    L_G = -(16 pi^2)^{-1} (1/|Aut|) vol(simplex_{n-1}) [ (4^m m!)^{-1} (d_k.d_k)^m N ](k = -(1/n) sum_e q_e),  m = n - 2,\nvalid because (d_k.d_k)^m N is affine in k for omega in {0,1}; (d_k.d_k)^{n-1} N = 0 (no eps^{-1}); only integer powers of T occur (no eps^{-1/2}).\nComparison: engines report log eps part of I^CT[eps] as (number) x u x (structure), u = hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) = -2 hbar/(16 pi^2) here, so\n    sum_G J_G/|Aut_G| = 2 x (engine value),  J_G := vol (4^m m!)^{-1} (d.d)^m N (k_centroid).\nGraph census: brute-force enumeration of cyclic vertex sequences (cubic: 1 external leg, quartic: 2), line species V / W_R^perp, vertex\nselection rule (even number of W_R^perp legs), modulo rotation and reflection; |Aut| = 2 for a bubble with two equal lines, else 1.\nRun: python3 -I compare/third_r2_bosonic.py   -> compare/third_r2_bosonic.json",
+ "su2_identities_ok": true,
+ "sets": {
+  "(A|_V, A|_V, A|_V)": {
+   "census": {
+    "vertices g3[VVV],g3[VVV],g3[VVV] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VVV],g4[VVVV] ; lines P_AA(V),P_AA(V)": {
+     "third": 3,
+     "feynarts": 3
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VWW],g4[VVWW] ; lines P_AA(W),P_AA(W)": {
+     "third": 3,
+     "feynarts": 3
+    }
+   },
+   "census_matches_feynarts": true,
+   "classes": {
+    "vertices g3[VVV],g3[VVV],g3[VVV] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": [
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4",
+      "13/4"
+     ],
+     "engine_A": "13/4",
+     "engine_B": "13/4",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VVV],g4[VVVV] ; lines P_AA(V),P_AA(V)": {
+     "third": [
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2"
+     ],
+     "engine_A": "-9/2",
+     "engine_B": "-9/2",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": [
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2"
+     ],
+     "engine_A": "2",
+     "engine_B": "2",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VWW],g4[VVWW] ; lines P_AA(W),P_AA(W)": {
+     "third": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "engine_A": "0",
+     "engine_B": "absent (no nonzero word)",
+     "match_A": true,
+     "match_B": true
+    }
+   },
+   "n_configurations": 10,
+   "invariant_basis_dimension": 8,
+   "evaluation_rank": 8,
+   "exact_identity_of_forms": true,
+   "quartic_tree_matches_engineA_tree": null,
+   "all_classes_match_A": true,
+   "all_classes_match_B": true
+  },
+  "(A|_V, A|_Wperp, A|_Wperp)": {
+   "census": {
+    "vertices g3[VVV],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VVV],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(W)": {
+     "third": 2,
+     "feynarts": 2
+    },
+    "vertices g3[VWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    }
+   },
+   "census_matches_feynarts": true,
+   "classes": {
+    "vertices g3[VVV],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": [
+      "3/2",
+      "3/2",
+      "3/2",
+      "3/2"
+     ],
+     "engine_A": "3/2",
+     "engine_B": "3/2",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VVV],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "engine_A": "0",
+     "engine_B": "absent (no nonzero word)",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": [
+      "1",
+      "1",
+      "1",
+      "1"
+     ],
+     "engine_A": "1",
+     "engine_B": "1",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(W)": {
+     "third": [
+      "-9/2",
+      "-9/2",
+      "-9/2",
+      "-9/2"
+     ],
+     "engine_A": "-9/2",
+     "engine_B": "-9/2",
+     "match_A": true,
+     "match_B": true
+    },
+    "vertices g3[VWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "engine_A": "0",
+     "engine_B": "absent (no nonzero word)",
+     "match_A": true,
+     "match_B": true
+    }
+   },
+   "n_configurations": 4,
+   "invariant_basis_dimension": 2,
+   "evaluation_rank": 2,
+   "exact_identity_of_forms": true,
+   "quartic_tree_matches_engineA_tree": null,
+   "all_classes_match_A": true,
+   "all_classes_match_B": true
+  },
+  "(A|_V)^4": {
+   "census": {
+    "vertices g3[VVV],g3[VVV],g3[VVV],g3[VVV] ; lines P_AA(V),P_AA(V),P_AA(V),P_AA(V)": {
+     "third": 3,
+     "feynarts": 3
+    },
+    "vertices g3[VVV],g3[VVV],g4[VVVV] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": 6,
+     "feynarts": 6
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(W),P_AA(W),P_AA(W),P_AA(W)": {
+     "third": 3,
+     "feynarts": 3
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": 6,
+     "feynarts": 6
+    },
+    "vertices g4[VVVV],g4[VVVV] ; lines P_AA(V),P_AA(V)": {
+     "third": 3,
+     "feynarts": 3
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(W),P_AA(W)": {
+     "third": 3,
+     "feynarts": 3
+    }
+   },
+   "census_matches_feynarts": true,
+   "classes": {
+    "vertices g3[VVV],g3[VVV],g3[VVV],g3[VVV] ; lines P_AA(V),P_AA(V),P_AA(V),P_AA(V)": {
+     "third": [
+      "13979",
+      "-9070",
+      "227235",
+      "-8629",
+      "2994",
+      "-11635/2",
+      "12704/3",
+      "-445237/4",
+      "3566/3",
+      "-12482/3",
+      "-34870/3",
+      "12490/3",
+      "-7475/2",
+      "5295"
+     ],
+     "engine_A": {
+      "S x x": "-37/4",
+      "b01 x x": "5/12",
+      "b03 x x": "5/6",
+      "S x y": "-37/4",
+      "b01 x y": "5/12",
+      "b03 x y": "-5/12",
+      "S x z": "-37/4",
+      "b01 x z": "-5/6",
+      "b03 x z": "-5/12"
+     },
+     "engine_B": {
+      "S x x": "-37/4",
+      "b01 x x": "5/12",
+      "b03 x x": "5/6",
+      "S x y": "-37/4",
+      "b01 x y": "5/12",
+      "b03 x y": "-5/12",
+      "S x z": "-37/4",
+      "b01 x z": "-5/6",
+      "b03 x z": "-5/12"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "13979",
+      "-9070",
+      "227235",
+      "-8629",
+      "2994",
+      "-11635/2",
+      "12704/3",
+      "-445237/4",
+      "3566/3",
+      "-12482/3",
+      "-34870/3",
+      "12490/3",
+      "-7475/2",
+      "5295"
+     ],
+     "engine_B_at_config": [
+      "13979",
+      "-9070",
+      "227235",
+      "-8629",
+      "2994",
+      "-11635/2",
+      "12704/3",
+      "-445237/4",
+      "3566/3",
+      "-12482/3",
+      "-34870/3",
+      "12490/3",
+      "-7475/2",
+      "5295"
+     ]
+    },
+    "vertices g3[VVV],g3[VVV],g4[VVVV] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": [
+      "-35427",
+      "14739",
+      "-703791/4",
+      "-97743",
+      "3393",
+      "3885/2",
+      "-6208",
+      "593403/4",
+      "-18265/4",
+      "27805",
+      "52562",
+      "11341",
+      "8013/2",
+      "-13869"
+     ],
+     "engine_A": {
+      "S x x": "15",
+      "b01 x x": "-13/4",
+      "b03 x x": "-13/2",
+      "S x y": "15",
+      "b01 x y": "-13/4",
+      "b03 x y": "13/4",
+      "S x z": "15",
+      "b01 x z": "13/2",
+      "b03 x z": "13/4"
+     },
+     "engine_B": {
+      "S x x": "15",
+      "b01 x x": "-13/4",
+      "b03 x x": "-13/2",
+      "S x y": "15",
+      "b01 x y": "-13/4",
+      "b03 x y": "13/4",
+      "S x z": "15",
+      "b01 x z": "13/2",
+      "b03 x z": "13/4"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-35427",
+      "14739",
+      "-703791/4",
+      "-97743",
+      "3393",
+      "3885/2",
+      "-6208",
+      "593403/4",
+      "-18265/4",
+      "27805",
+      "52562",
+      "11341",
+      "8013/2",
+      "-13869"
+     ],
+     "engine_B_at_config": [
+      "-35427",
+      "14739",
+      "-703791/4",
+      "-97743",
+      "3393",
+      "3885/2",
+      "-6208",
+      "593403/4",
+      "-18265/4",
+      "27805",
+      "52562",
+      "11341",
+      "8013/2",
+      "-13869"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(W),P_AA(W),P_AA(W),P_AA(W)": {
+     "third": [
+      "15456",
+      "-11760",
+      "335220",
+      "-34656",
+      "5616",
+      "-9120",
+      "5632",
+      "-151152",
+      "988",
+      "-976",
+      "-8000",
+      "9200",
+      "-5280",
+      "5760"
+     ],
+     "engine_A": {
+      "S x x": "-12",
+      "S x y": "-12",
+      "S x z": "-12"
+     },
+     "engine_B": {
+      "S x x": "-12",
+      "S x y": "-12",
+      "S x z": "-12"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "15456",
+      "-11760",
+      "335220",
+      "-34656",
+      "5616",
+      "-9120",
+      "5632",
+      "-151152",
+      "988",
+      "-976",
+      "-8000",
+      "9200",
+      "-5280",
+      "5760"
+     ],
+     "engine_B_at_config": [
+      "15456",
+      "-11760",
+      "335220",
+      "-34656",
+      "5616",
+      "-9120",
+      "5632",
+      "-151152",
+      "988",
+      "-976",
+      "-8000",
+      "9200",
+      "-5280",
+      "5760"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": [
+      "-40824",
+      "23544",
+      "-520854",
+      "-17496",
+      "-4824",
+      "12420",
+      "-10752",
+      "277326",
+      "-4026",
+      "18312",
+      "42192",
+      "-4344",
+      "8964",
+      "-15624"
+     ],
+     "engine_A": {
+      "S x x": "24",
+      "b01 x x": "-2",
+      "b03 x x": "-4",
+      "S x y": "24",
+      "b01 x y": "-2",
+      "b03 x y": "2",
+      "S x z": "24",
+      "b01 x z": "4",
+      "b03 x z": "2"
+     },
+     "engine_B": {
+      "S x x": "24",
+      "b01 x x": "-2",
+      "b03 x x": "-4",
+      "S x y": "24",
+      "b01 x y": "-2",
+      "b03 x y": "2",
+      "S x z": "24",
+      "b01 x z": "4",
+      "b03 x z": "2"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-40824",
+      "23544",
+      "-520854",
+      "-17496",
+      "-4824",
+      "12420",
+      "-10752",
+      "277326",
+      "-4026",
+      "18312",
+      "42192",
+      "-4344",
+      "8964",
+      "-15624"
+     ],
+     "engine_B_at_config": [
+      "-40824",
+      "23544",
+      "-520854",
+      "-17496",
+      "-4824",
+      "12420",
+      "-10752",
+      "277326",
+      "-4026",
+      "18312",
+      "42192",
+      "-4344",
+      "8964",
+      "-15624"
+     ]
+    },
+    "vertices g4[VVVV],g4[VVVV] ; lines P_AA(V),P_AA(V)": {
+     "third": [
+      "20118",
+      "-5910",
+      "-38745/2",
+      "91182",
+      "-5202",
+      "2715",
+      "2176",
+      "-88707/2",
+      "6113/2",
+      "-20938",
+      "-36740",
+      "-12970",
+      "-645",
+      "8010"
+     ],
+     "engine_A": {
+      "S x x": "-6",
+      "b01 x x": "5/2",
+      "b03 x x": "5",
+      "S x y": "-6",
+      "b01 x y": "5/2",
+      "b03 x y": "-5/2",
+      "S x z": "-6",
+      "b01 x z": "-5",
+      "b03 x z": "-5/2"
+     },
+     "engine_B": {
+      "S x x": "-6",
+      "b01 x x": "5/2",
+      "b03 x x": "5",
+      "S x y": "-6",
+      "b01 x y": "5/2",
+      "b03 x y": "-5/2",
+      "S x z": "-6",
+      "b01 x z": "-5",
+      "b03 x z": "-5/2"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "20118",
+      "-5910",
+      "-38745/2",
+      "91182",
+      "-5202",
+      "2715",
+      "2176",
+      "-88707/2",
+      "6113/2",
+      "-20938",
+      "-36740",
+      "-12970",
+      "-645",
+      "8010"
+     ],
+     "engine_B_at_config": [
+      "20118",
+      "-5910",
+      "-38745/2",
+      "91182",
+      "-5202",
+      "2715",
+      "2176",
+      "-88707/2",
+      "6113/2",
+      "-20938",
+      "-36740",
+      "-12970",
+      "-645",
+      "8010"
+     ]
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(W),P_AA(W)": {
+     "third": [
+      "20412",
+      "-11772",
+      "260427",
+      "8748",
+      "2412",
+      "-6210",
+      "5376",
+      "-138663",
+      "2013",
+      "-9156",
+      "-21096",
+      "2172",
+      "-4482",
+      "7812"
+     ],
+     "engine_A": {
+      "S x x": "-12",
+      "b01 x x": "1",
+      "b03 x x": "2",
+      "S x y": "-12",
+      "b01 x y": "1",
+      "b03 x y": "-1",
+      "S x z": "-12",
+      "b01 x z": "-2",
+      "b03 x z": "-1"
+     },
+     "engine_B": {
+      "S x x": "-12",
+      "b01 x x": "1",
+      "b03 x x": "2",
+      "S x y": "-12",
+      "b01 x y": "1",
+      "b03 x y": "-1",
+      "S x z": "-12",
+      "b01 x z": "-2",
+      "b03 x z": "-1"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "20412",
+      "-11772",
+      "260427",
+      "8748",
+      "2412",
+      "-6210",
+      "5376",
+      "-138663",
+      "2013",
+      "-9156",
+      "-21096",
+      "2172",
+      "-4482",
+      "7812"
+     ],
+     "engine_B_at_config": [
+      "20412",
+      "-11772",
+      "260427",
+      "8748",
+      "2412",
+      "-6210",
+      "5376",
+      "-138663",
+      "2013",
+      "-9156",
+      "-21096",
+      "2172",
+      "-4482",
+      "7812"
+     ]
+    }
+   },
+   "n_configurations": 14,
+   "invariant_basis_dimension": 12,
+   "evaluation_rank": 12,
+   "exact_identity_of_forms": true,
+   "quartic_tree_matches_engineA_tree": true,
+   "all_classes_match_A": true,
+   "all_classes_match_B": true
+  },
+  "(A|_V)^2 (A|_Wperp)^2": {
+   "census": {
+    "vertices g3[VVV],g3[VVV],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(V),P_AA(W)": {
+     "third": 2,
+     "feynarts": 2
+    },
+    "vertices g3[VVV],g3[VVV],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VVV],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W),P_AA(W)": {
+     "third": 2,
+     "feynarts": 2
+    },
+    "vertices g3[VVV],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": 4,
+     "feynarts": 4
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(W),P_AA(W),P_AA(W)": {
+     "third": 2,
+     "feynarts": 2
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVVV] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": 5,
+     "feynarts": 5
+    },
+    "vertices g3[VWW],g3[VWW],g4[WWWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g4[VVVV],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": 1,
+     "feynarts": 1
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(V),P_AA(W)": {
+     "third": 2,
+     "feynarts": 2
+    },
+    "vertices g4[VVWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": 1,
+     "feynarts": 1
+    }
+   },
+   "census_matches_feynarts": true,
+   "classes": {
+    "vertices g3[VVV],g3[VVV],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(V),P_AA(W)": {
+     "third": [
+      "1890",
+      "-12288",
+      "225/2",
+      "3690",
+      "1407/4"
+     ],
+     "engine_A": {
+      "S x x": "-3/2",
+      "b01 x x": "1/8",
+      "b03 x x": "1/4"
+     },
+     "engine_B": {
+      "S x x": "-3/2",
+      "b01 x x": "1/8",
+      "b03 x x": "1/4"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "1890",
+      "-12288",
+      "225/2",
+      "3690",
+      "1407/4"
+     ],
+     "engine_B_at_config": [
+      "1890",
+      "-12288",
+      "225/2",
+      "3690",
+      "1407/4"
+     ]
+    },
+    "vertices g3[VVV],g3[VVV],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(V)": {
+     "third": [
+      "-11340",
+      "73728",
+      "-675",
+      "-22140",
+      "-4221/2"
+     ],
+     "engine_A": {
+      "S x x": "9",
+      "b01 x x": "-3/4",
+      "b03 x x": "-3/2"
+     },
+     "engine_B": {
+      "S x x": "9",
+      "b01 x x": "-3/4",
+      "b03 x x": "-3/2"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-11340",
+      "73728",
+      "-675",
+      "-22140",
+      "-4221/2"
+     ],
+     "engine_B_at_config": [
+      "-11340",
+      "73728",
+      "-675",
+      "-22140",
+      "-4221/2"
+     ]
+    },
+    "vertices g3[VVV],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W),P_AA(W)": {
+     "third": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "engine_A": {},
+     "engine_B": "absent (no nonzero word)",
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "engine_B_at_config": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    },
+    "vertices g3[VVV],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": [
+      "-3780",
+      "-70656",
+      "315",
+      "-18180",
+      "2205/2"
+     ],
+     "engine_A": {
+      "S x x": "-3",
+      "b01 x x": "-5/4",
+      "b03 x x": "-5/2"
+     },
+     "engine_B": {
+      "S x x": "-3",
+      "b01 x x": "-5/4",
+      "b03 x x": "-5/2"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-3780",
+      "-70656",
+      "315",
+      "-18180",
+      "2205/2"
+     ],
+     "engine_B_at_config": [
+      "-3780",
+      "-70656",
+      "315",
+      "-18180",
+      "2205/2"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(W),P_AA(W),P_AA(W)": {
+     "third": [
+      "2520",
+      "-16384",
+      "150",
+      "4920",
+      "469"
+     ],
+     "engine_A": {
+      "S x x": "-2",
+      "b01 x x": "1/6",
+      "b03 x x": "1/3"
+     },
+     "engine_B": {
+      "S x x": "-2",
+      "b01 x x": "1/6",
+      "b03 x x": "1/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "2520",
+      "-16384",
+      "150",
+      "4920",
+      "469"
+     ],
+     "engine_B_at_config": [
+      "2520",
+      "-16384",
+      "150",
+      "4920",
+      "469"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVVV] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": [
+      "-1890",
+      "12288",
+      "-225/2",
+      "-3690",
+      "-1407/4"
+     ],
+     "engine_A": {
+      "S x x": "3/2",
+      "b01 x x": "-1/8",
+      "b03 x x": "-1/4"
+     },
+     "engine_B": {
+      "S x x": "3/2",
+      "b01 x x": "-1/8",
+      "b03 x x": "-1/4"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-1890",
+      "12288",
+      "-225/2",
+      "-3690",
+      "-1407/4"
+     ],
+     "engine_B_at_config": [
+      "-1890",
+      "12288",
+      "-225/2",
+      "-3690",
+      "-1407/4"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": [
+      "-7560",
+      "17408",
+      "-270",
+      "-18360",
+      "-805"
+     ],
+     "engine_A": {
+      "S x x": "4",
+      "b01 x x": "-5/6",
+      "b03 x x": "-5/3"
+     },
+     "engine_B": {
+      "S x x": "4",
+      "b01 x x": "-5/6",
+      "b03 x x": "-5/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-7560",
+      "17408",
+      "-270",
+      "-18360",
+      "-805"
+     ],
+     "engine_B_at_config": [
+      "-7560",
+      "17408",
+      "-270",
+      "-18360",
+      "-805"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[WWWW] ; lines P_AA(W),P_AA(W),P_AA(W)": {
+     "third": [
+      "-12600",
+      "81920",
+      "-750",
+      "-24600",
+      "-2345"
+     ],
+     "engine_A": {
+      "S x x": "10",
+      "b01 x x": "-5/6",
+      "b03 x x": "-5/3"
+     },
+     "engine_B": {
+      "S x x": "10",
+      "b01 x x": "-5/6",
+      "b03 x x": "-5/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-12600",
+      "81920",
+      "-750",
+      "-24600",
+      "-2345"
+     ],
+     "engine_B_at_config": [
+      "-12600",
+      "81920",
+      "-750",
+      "-24600",
+      "-2345"
+     ]
+    },
+    "vertices g4[VVVV],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": [
+      "7560",
+      "-49152",
+      "450",
+      "14760",
+      "1407"
+     ],
+     "engine_A": {
+      "S x x": "-6",
+      "b01 x x": "1/2",
+      "b03 x x": "1"
+     },
+     "engine_B": {
+      "S x x": "-6",
+      "b01 x x": "1/2",
+      "b03 x x": "1"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "7560",
+      "-49152",
+      "450",
+      "14760",
+      "1407"
+     ],
+     "engine_B_at_config": [
+      "7560",
+      "-49152",
+      "450",
+      "14760",
+      "1407"
+     ]
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(V),P_AA(W)": {
+     "third": [
+      "12600",
+      "45056",
+      "30",
+      "39000",
+      "-63"
+     ],
+     "engine_A": {
+      "S x x": "-2",
+      "b01 x x": "13/6",
+      "b03 x x": "13/3"
+     },
+     "engine_B": {
+      "S x x": "-2",
+      "b01 x x": "13/6",
+      "b03 x x": "13/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "12600",
+      "45056",
+      "30",
+      "39000",
+      "-63"
+     ],
+     "engine_B_at_config": [
+      "12600",
+      "45056",
+      "30",
+      "39000",
+      "-63"
+     ]
+    },
+    "vertices g4[VVWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": [
+      "12600",
+      "-81920",
+      "750",
+      "24600",
+      "2345"
+     ],
+     "engine_A": {
+      "S x x": "-10",
+      "b01 x x": "5/6",
+      "b03 x x": "5/3"
+     },
+     "engine_B": {
+      "S x x": "-10",
+      "b01 x x": "5/6",
+      "b03 x x": "5/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "12600",
+      "-81920",
+      "750",
+      "24600",
+      "2345"
+     ],
+     "engine_B_at_config": [
+      "12600",
+      "-81920",
+      "750",
+      "24600",
+      "2345"
+     ]
+    }
+   },
+   "n_configurations": 5,
+   "invariant_basis_dimension": 3,
+   "evaluation_rank": 3,
+   "exact_identity_of_forms": true,
+   "quartic_tree_matches_engineA_tree": true,
+   "all_classes_match_A": true,
+   "all_classes_match_B": true
+  },
+  "(A|_Wperp)^4": {
+   "census": {
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W),P_AA(W)": {
+     "third": 6,
+     "feynarts": 6
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": 6,
+     "feynarts": 6
+    },
+    "vertices g3[VWW],g3[VWW],g4[WWWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": 6,
+     "feynarts": 6
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": 3,
+     "feynarts": 3
+    },
+    "vertices g4[WWWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": 3,
+     "feynarts": 3
+    }
+   },
+   "census_matches_feynarts": true,
+   "classes": {
+    "vertices g3[VWW],g3[VWW],g3[VWW],g3[VWW] ; lines P_AA(V),P_AA(V),P_AA(W),P_AA(W)": {
+     "third": [
+      "-1337",
+      "-1894",
+      "-15168",
+      "12776",
+      "-1527/2",
+      "-420",
+      "7368",
+      "-14313",
+      "-3300",
+      "7054",
+      "-5433"
+     ],
+     "engine_A": {
+      "S x x": "-2",
+      "b01 x x": "1/6",
+      "b03 x x": "1/3",
+      "S x y": "-2",
+      "b01 x y": "1/6",
+      "b03 x y": "-1/6",
+      "S x z": "-2",
+      "b01 x z": "-1/3",
+      "b03 x z": "-1/6"
+     },
+     "engine_B": {
+      "S x x": "-2",
+      "b01 x x": "1/6",
+      "b03 x x": "1/3",
+      "S x y": "-2",
+      "b01 x y": "1/6",
+      "b03 x y": "-1/6",
+      "S x z": "-2",
+      "b01 x z": "-1/3",
+      "b03 x z": "-1/6"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-1337",
+      "-1894",
+      "-15168",
+      "12776",
+      "-1527/2",
+      "-420",
+      "7368",
+      "-14313",
+      "-3300",
+      "7054",
+      "-5433"
+     ],
+     "engine_B_at_config": [
+      "-1337",
+      "-1894",
+      "-15168",
+      "12776",
+      "-1527/2",
+      "-420",
+      "7368",
+      "-14313",
+      "-3300",
+      "7054",
+      "-5433"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[VVWW] ; lines P_AA(V),P_AA(V),P_AA(W)": {
+     "third": [
+      "2674",
+      "3788",
+      "30336",
+      "-25552",
+      "1527",
+      "840",
+      "-14736",
+      "28626",
+      "6600",
+      "-14108",
+      "10866"
+     ],
+     "engine_A": {
+      "S x x": "4",
+      "b01 x x": "-1/3",
+      "b03 x x": "-2/3",
+      "S x y": "4",
+      "b01 x y": "-1/3",
+      "b03 x y": "1/3",
+      "S x z": "4",
+      "b01 x z": "2/3",
+      "b03 x z": "1/3"
+     },
+     "engine_B": {
+      "S x x": "4",
+      "b01 x x": "-1/3",
+      "b03 x x": "-2/3",
+      "S x y": "4",
+      "b01 x y": "-1/3",
+      "b03 x y": "1/3",
+      "S x z": "4",
+      "b01 x z": "2/3",
+      "b03 x z": "1/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "2674",
+      "3788",
+      "30336",
+      "-25552",
+      "1527",
+      "840",
+      "-14736",
+      "28626",
+      "6600",
+      "-14108",
+      "10866"
+     ],
+     "engine_B_at_config": [
+      "2674",
+      "3788",
+      "30336",
+      "-25552",
+      "1527",
+      "840",
+      "-14736",
+      "28626",
+      "6600",
+      "-14108",
+      "10866"
+     ]
+    },
+    "vertices g3[VWW],g3[VWW],g4[WWWW] ; lines P_AA(V),P_AA(W),P_AA(W)": {
+     "third": [
+      "-12404",
+      "25928",
+      "-49536",
+      "-10768",
+      "-28206",
+      "1680",
+      "-6048",
+      "17996",
+      "52800",
+      "8616",
+      "61500"
+     ],
+     "engine_A": {
+      "b01 x x": "-2",
+      "b03 x x": "-4",
+      "b01 x y": "-2",
+      "b03 x y": "2",
+      "b01 x z": "4",
+      "b03 x z": "2"
+     },
+     "engine_B": {
+      "b01 x x": "-2",
+      "b03 x x": "-4",
+      "b01 x y": "-2",
+      "b03 x y": "2",
+      "b01 x z": "4",
+      "b03 x z": "2"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-12404",
+      "25928",
+      "-49536",
+      "-10768",
+      "-28206",
+      "1680",
+      "-6048",
+      "17996",
+      "52800",
+      "8616",
+      "61500"
+     ],
+     "engine_B_at_config": [
+      "-12404",
+      "25928",
+      "-49536",
+      "-10768",
+      "-28206",
+      "1680",
+      "-6048",
+      "17996",
+      "52800",
+      "8616",
+      "61500"
+     ]
+    },
+    "vertices g4[VVWW],g4[VVWW] ; lines P_AA(V),P_AA(V)": {
+     "third": [
+      "-5348",
+      "-7576",
+      "-60672",
+      "51104",
+      "-3054",
+      "-1680",
+      "29472",
+      "-57252",
+      "-13200",
+      "28216",
+      "-21732"
+     ],
+     "engine_A": {
+      "S x x": "-8",
+      "b01 x x": "2/3",
+      "b03 x x": "4/3",
+      "S x y": "-8",
+      "b01 x y": "2/3",
+      "b03 x y": "-2/3",
+      "S x z": "-8",
+      "b01 x z": "-4/3",
+      "b03 x z": "-2/3"
+     },
+     "engine_B": {
+      "S x x": "-8",
+      "b01 x x": "2/3",
+      "b03 x x": "4/3",
+      "S x y": "-8",
+      "b01 x y": "2/3",
+      "b03 x y": "-2/3",
+      "S x z": "-8",
+      "b01 x z": "-4/3",
+      "b03 x z": "-2/3"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "-5348",
+      "-7576",
+      "-60672",
+      "51104",
+      "-3054",
+      "-1680",
+      "29472",
+      "-57252",
+      "-13200",
+      "28216",
+      "-21732"
+     ],
+     "engine_B_at_config": [
+      "-5348",
+      "-7576",
+      "-60672",
+      "51104",
+      "-3054",
+      "-1680",
+      "29472",
+      "-57252",
+      "-13200",
+      "28216",
+      "-21732"
+     ]
+    },
+    "vertices g4[WWWW],g4[WWWW] ; lines P_AA(W),P_AA(W)": {
+     "third": [
+      "5719",
+      "-35398",
+      "-26304",
+      "74648",
+      "48777/2",
+      "-3780",
+      "42888",
+      "-89561",
+      "-69300",
+      "26654",
+      "-88665"
+     ],
+     "engine_A": {
+      "S x x": "-10",
+      "b01 x x": "17/6",
+      "b03 x x": "17/3",
+      "S x y": "-10",
+      "b01 x y": "17/6",
+      "b03 x y": "-17/6",
+      "S x z": "-10",
+      "b01 x z": "-17/3",
+      "b03 x z": "-17/6"
+     },
+     "engine_B": {
+      "S x x": "-10",
+      "b01 x x": "17/6",
+      "b03 x x": "17/3",
+      "S x y": "-10",
+      "b01 x y": "17/6",
+      "b03 x y": "-17/6",
+      "S x z": "-10",
+      "b01 x z": "-17/3",
+      "b03 x z": "-17/6"
+     },
+     "match_A": true,
+     "match_B": true,
+     "engine_A_at_config": [
+      "5719",
+      "-35398",
+      "-26304",
+      "74648",
+      "48777/2",
+      "-3780",
+      "42888",
+      "-89561",
+      "-69300",
+      "26654",
+      "-88665"
+     ],
+     "engine_B_at_config": [
+      "5719",
+      "-35398",
+      "-26304",
+      "74648",
+      "48777/2",
+      "-3780",
+      "42888",
+      "-89561",
+      "-69300",
+      "26654",
+      "-88665"
+     ]
+    }
+   },
+   "n_configurations": 11,
+   "invariant_basis_dimension": 9,
+   "evaluation_rank": 9,
+   "exact_identity_of_forms": true,
+   "quartic_tree_matches_engineA_tree": true,
+   "all_classes_match_A": true,
+   "all_classes_match_B": true
+  }
+ }
+}

@@ -1,0 +1,766 @@
+{
+ "conventions": "Engine B. Weight e^{+S/hbar}; S = int dvol(-1/4 (F_A,F_A) + 1/2 (lambda, dslash_A lambda) + (d_A c, A*) + ([c,lambda],lambda*) + 1/2([c,c],c*)) [ESW (31)] dimensionally reduced to Euclidean R^4 (d only along R^4, A in V_10^vee (x) g, A_V its R^4 part, A_perp = W_R^perp part). Explicit realization (code only): S_+, S_- two-component blocks, sigma = (1, i sigma_k): S_+ -> S_-; W = C^4, W_R^perp realised on Wedge^2 W by antisymmetric 't Hooft blocks; Gamma^mu = gamma^mu (x) 1, Gamma^{4+i} = gamma_5 (x) gamma_6^i; Sigma = S_+(x)W + S_-(x)W^*. Contraction rule d_P(f_X f_Y) = P^{XY}; P(eps,infty) = N(q) e^{-eps q^2}/q^2 with N_AA = 2 (-,-)^{-1} (all ten components), N_{lam lam} = i rho(q)|_{Sigma*->Sigma} read in Sigma(x)Sigma via (-,-), N_{c A*} = N_{A* c} = -i q (-,-)^{-1} (A*_V only), all derived as -(Pi Hessian of the free action)^{-1} (Feynman gauge for A, ghost sector on Im Q^GF). One-loop formula (0-dim verified): W_1 = (hbar/2) sum_n (1/n) STr[(P Pi d^2 I)^n], Pi = parity operator. Fourier Phi(x) = int d^4p/(2pi)^4 e^{ip.x} Phi(p). c_adj = the scalar by which X -> sum_a [t_a,[t^a,X]] acts on simple g (t^a dual to t_a w.r.t. (-,-)); every colour factor reduces to c_adj (c1,c2) (bubbles: +1, quartic tadpoles: -1 per ([c1,t],[c2,t^]) contraction, checked on su(2), su(3) in non-orthonormal bases with rescaled pairings). Units: hbar c_adj/(16 pi^2) for eps^{-1} and log eps coefficients. I^CT[eps] = singular part of W_1 (I - I^CT[eps] is the regularised interaction). Method B: eps d/deps of each graph = -(sum over edges of the graph with that edge pinned at t_e = eps); pinned graphs expanded in eps (Taylor in external momenta), remaining t_f = eps u_f, exact u-integrals over [1,infty).",
+ "graphs": [
+  {
+   "id": "AV-AV:AAA+AAA:AV,AV",
+   "sector": "AV-AV",
+   "vertices": [
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "A_V",
+    "A_V"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B3": "-9/16"
+   },
+   "log_eps": {
+    "B1": "19/24",
+    "B2": "-1/8"
+   },
+   "notes": "gauge loop",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-AV:AAA+AAA:Ap,Ap",
+   "sector": "AV-AV",
+   "vertices": [
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B3": "-3/4"
+   },
+   "log_eps": {
+    "B1": "-1/2"
+   },
+   "notes": "scalar loop through the A_V (A_perp)^2 cubic term",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-AV:AcAs+AcAs:c-As,c-As",
+   "sector": "AV-AV",
+   "vertices": [
+    "AcA*",
+    "AcA*"
+   ],
+   "internal_lines": [
+    "c-A*_V",
+    "A*_V-c"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {
+    "B3": "1/16"
+   },
+   "log_eps": {
+    "B1": "1/24",
+    "B2": "1/8"
+   },
+   "notes": "ghost loop; both orientations are the two blocks c(x)A*, A*c of P",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-AV:lamlamA+lamlamA:lam,lam",
+   "sector": "AV-AV",
+   "vertices": [
+    "lam lam A",
+    "lam lam A"
+   ],
+   "internal_lines": [
+    "lam",
+    "lam"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B3": "-1"
+   },
+   "log_eps": {
+    "B1": "-4/3"
+   },
+   "notes": "gaugino loop (lam (x) lam propagator)",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-AV:AAAA:AV",
+   "sector": "AV-AV",
+   "vertices": [
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_V"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B3": "3/2"
+   },
+   "log_eps": {},
+   "notes": "quartic tadpole",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-AV:AAAA:Ap",
+   "sector": "AV-AV",
+   "vertices": [
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B3": "3"
+   },
+   "log_eps": {},
+   "notes": "quartic tadpole",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap:AAA+AAA:Ap,AV",
+   "sector": "Ap-Ap",
+   "vertices": [
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_V"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {
+    "B5": "-1/4"
+   },
+   "log_eps": {
+    "B4": "1"
+   },
+   "notes": "gauge exchange",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap:AcAs+AcAs:c-As,c-As",
+   "sector": "Ap-Ap",
+   "vertices": [
+    "AcA*",
+    "AcA*"
+   ],
+   "internal_lines": [
+    "c-A*_perp"
+   ],
+   "symmetry_factor": "-",
+   "eps_inv": {},
+   "log_eps": {},
+   "notes": "identically zero: P has no c (x) A*_perp component",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap:lamlamA+lamlamA:lam,lam",
+   "sector": "Ap-Ap",
+   "vertices": [
+    "lam lam A (Yukawa)",
+    "lam lam A (Yukawa)"
+   ],
+   "internal_lines": [
+    "lam",
+    "lam"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B5": "-2"
+   },
+   "log_eps": {
+    "B4": "-2"
+   },
+   "notes": "gaugino loop",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap:AAAA:AV",
+   "sector": "Ap-Ap",
+   "vertices": [
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_V"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B5": "2"
+   },
+   "log_eps": {},
+   "notes": "quartic tadpole",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap:AAAA:Ap",
+   "sector": "Ap-Ap",
+   "vertices": [
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {
+    "B5": "5/2"
+   },
+   "log_eps": {},
+   "notes": "quartic tadpole",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-Ap:AAA+AAA:all",
+   "sector": "AV-Ap",
+   "vertices": [
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "all"
+   ],
+   "symmetry_factor": "-",
+   "eps_inv": {},
+   "log_eps": {},
+   "notes": "identically zero (no A_V A_V A_perp vertex, so(6) selection)",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "AV-Ap:AAAA:all",
+   "sector": "AV-Ap",
+   "vertices": [
+    "AAAA"
+   ],
+   "internal_lines": [
+    "all"
+   ],
+   "symmetry_factor": "-",
+   "eps_inv": {},
+   "log_eps": {},
+   "notes": "identically zero",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "lam-lam:lamlamA+lamlamA:lam,AV",
+   "sector": "lam-lam",
+   "vertices": [
+    "lam lam A",
+    "lam lam A"
+   ],
+   "internal_lines": [
+    "lam",
+    "A_V"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {},
+   "log_eps": {
+    "B6": "1"
+   },
+   "notes": "gauge exchange",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "lam-lam:lamlamA+lamlamA:lam,Ap",
+   "sector": "lam-lam",
+   "vertices": [
+    "lam lam A (Yukawa)",
+    "lam lam A (Yukawa)"
+   ],
+   "internal_lines": [
+    "lam",
+    "A_perp"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {},
+   "log_eps": {
+    "B6": "3"
+   },
+   "notes": "scalar exchange",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "lam-lam:all",
+   "sector": "lam-lam",
+   "vertices": [
+    "lam lam A",
+    "lam lam A"
+   ],
+   "internal_lines": [
+    "all"
+   ],
+   "symmetry_factor": "sum",
+   "eps_inv": {},
+   "log_eps": {
+    "B6": "4"
+   },
+   "notes": "check: equals the sum of the two lam-lam graphs",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "As-c:AcAs+AcAs:AV,c-As",
+   "sector": "As-c",
+   "vertices": [
+    "AcA* (A* external)",
+    "AcA* (c external)"
+   ],
+   "internal_lines": [
+    "A_V",
+    "c-A*_V"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {},
+   "log_eps": {
+    "B7": "-1"
+   },
+   "notes": "ghost self-energy",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "As-c:all",
+   "sector": "As-c",
+   "vertices": [
+    "AcA*",
+    "AcA*"
+   ],
+   "internal_lines": [
+    "all"
+   ],
+   "symmetry_factor": "sum",
+   "eps_inv": {},
+   "log_eps": {
+    "B7": "-1"
+   },
+   "notes": "check: equals the As-c graph; A*_perp external legs give zero",
+   "units": "hbar c_adj/(16 pi^2); coefficient of the basis functional in I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap+O:AAA+AAA+O:Ap,AV,Ap",
+   "sector": "Ap-Ap with O",
+   "vertices": [
+    "O",
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_V",
+    "A_perp"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {},
+   "log_eps": {
+    "O": "2"
+   },
+   "notes": "vertex correction by gauge exchange; structures: O = int omega (iota_w1 A, iota_w2 A); trace_mix = (w1,w2) int omega sum_w (iota_w A, iota_w A); AV_mix = (w1,w2) int omega (A_V,A_V)",
+   "units": "hbar c_adj/(16 pi^2); coefficient in partial_delta I^CT[eps]"
+  },
+  {
+   "id": "Ap-Ap+O:AAAA+O:Ap,Ap",
+   "sector": "Ap-Ap with O",
+   "vertices": [
+    "O",
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {},
+   "log_eps": {
+    "O": "2",
+    "trace_mix": "-2"
+   },
+   "notes": "quartic (A_perp)^4 bubble; structures: O = int omega (iota_w1 A, iota_w2 A); trace_mix = (w1,w2) int omega sum_w (iota_w A, iota_w A); AV_mix = (w1,w2) int omega (A_V,A_V)",
+   "units": "hbar c_adj/(16 pi^2); coefficient in partial_delta I^CT[eps]"
+  },
+  {
+   "id": "AV-AV+O:AAA+AAA+O:Ap,Ap,Ap",
+   "sector": "AV-AV with O",
+   "vertices": [
+    "O",
+    "AAA",
+    "AAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_perp",
+    "A_perp"
+   ],
+   "symmetry_factor": "1",
+   "eps_inv": {},
+   "log_eps": {
+    "AV_mix": "2"
+   },
+   "notes": "mixing into int omega (A_V,A_V); structures: O = int omega (iota_w1 A, iota_w2 A); trace_mix = (w1,w2) int omega sum_w (iota_w A, iota_w A); AV_mix = (w1,w2) int omega (A_V,A_V)",
+   "units": "hbar c_adj/(16 pi^2); coefficient in partial_delta I^CT[eps]"
+  },
+  {
+   "id": "AV-AV+O:AAAA+O:Ap,Ap",
+   "sector": "AV-AV with O",
+   "vertices": [
+    "O",
+    "AAAA"
+   ],
+   "internal_lines": [
+    "A_perp",
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2",
+   "eps_inv": {},
+   "log_eps": {
+    "AV_mix": "-2"
+   },
+   "notes": "mixing into int omega (A_V,A_V); structures: O = int omega (iota_w1 A, iota_w2 A); trace_mix = (w1,w2) int omega sum_w (iota_w A, iota_w A); AV_mix = (w1,w2) int omega (A_V,A_V)",
+   "units": "hbar c_adj/(16 pi^2); coefficient in partial_delta I^CT[eps]"
+  },
+  {
+   "id": "vac:O:Ap",
+   "sector": "O vacuum",
+   "vertices": [
+    "O"
+   ],
+   "internal_lines": [
+    "A_perp"
+   ],
+   "symmetry_factor": "1/2 (x2 orderings)",
+   "eps_inv": {
+    "int omega": "2 dim(g) (w1,w2)  [units hbar/(16 pi^2), not proportional to c_adj]"
+   },
+   "log_eps": {},
+   "notes": "self-contraction of O; P^{AA}(x,x) = 2 (-,-)^{-1} (metric)^{-1} /(16 pi^2 eps)"
+  }
+ ],
+ "ICT_quadratic": {
+  "B1": {
+   "eps_inv": "0",
+   "log_eps": "-1"
+  },
+  "B2": {
+   "eps_inv": "0",
+   "log_eps": "0"
+  },
+  "B3": {
+   "eps_inv": "9/4",
+   "log_eps": "0"
+  },
+  "B4": {
+   "eps_inv": "0",
+   "log_eps": "-1"
+  },
+  "B5": {
+   "eps_inv": "9/4",
+   "log_eps": "0"
+  },
+  "B6": {
+   "eps_inv": "0",
+   "log_eps": "4"
+  },
+  "B7": {
+   "eps_inv": "0",
+   "log_eps": "-1"
+  },
+  "other structures": "none: the A_V-A_perp, lam-A, (A*_perp, c) and all degree-0 mixed sectors vanish identically; no eps^{-1/2} terms (odd Gaussian moments vanish)"
+ },
+ "O_eps": {
+  "scalar_bilinear": {
+   "definition": "O = int omega (iota_w1 A, iota_w2 A), w1,w2 in W_R^perp; O(eps) = O - partial_delta I^CT[eps]",
+   "partial_delta_ICT": {
+    "O": {
+     "eps_inv": "0",
+     "log_eps": "4"
+    },
+    "(w1,w2) int omega sum_w (iota_w A, iota_w A)  [orthonormal basis of W_R^perp]": {
+     "eps_inv": "0",
+     "log_eps": "-2"
+    },
+    "(w1,w2) int omega (A_V, A_V)": {
+     "eps_inv": "0",
+     "log_eps": "0 (graph AV-AV+O:AAA+AAA+O gives +2, AV-AV+O:AAAA+O gives -2)"
+    },
+    "constant (vacuum)": {
+     "eps_inv": "2 dim(g) (w1,w2) int omega   [units hbar/(16 pi^2), NOT proportional to c_adj]",
+     "log_eps": "0"
+    }
+   },
+   "traceless_symmetric_part": {
+    "partial_delta_ICT_log_eps": "4 O",
+    "eps_inv": "none"
+   },
+   "trace_part (O_tr = sum_w (iota_w A, iota_w A))": {
+    "partial_delta_ICT_log_eps": "-8 O_tr",
+    "eps_inv": "2 dim(g) dim(W_R^perp)=12 dim(g) int omega [units hbar/16pi^2]"
+   }
+  },
+  "single_letters": {
+   "int omega (X, iota_w A)": "partial_delta I^CT[eps] = 0 at one loop (no 1PI graph: a univalent vertex cannot lie on the loop; the tadpole loop vanishes by colour)",
+   "int omega (X, A_V(v))": "partial_delta I^CT[eps] = 0 at one loop (same reason)",
+   "int omega (X, (zeta, lambda)), zeta a fixed element of Sigma^*": "partial_delta I^CT[eps] = 0 at one loop (same reason)"
+  }
+ },
+ "dilatation": {
+  "normalisation": "Delta = -E on functions, acting on a field of weight w as -(E+w); weights A:1, lambda:3/2, c:0, A*:3, lambda*:5/2, c*:4",
+  "traceless": {
+   "gamma": "0",
+   "kappa_classical_Delta_on_functional": "-8",
+   "decomposition": "gamma = 2*(4) [vertex log] + 2*(-1)*8 [quadratic counterterm B4 attached to both legs by P(0,infty)] - (-8) [equivariant compensation -Q O_1, O_1 from I^(1)(Delta) = -2 hbar R] = 8 - 16 + 8 = 0"
+  },
+  "trace": {
+   "gamma": "-24",
+   "kappa_classical_Delta_on_functional": "-32",
+   "decomposition": "gamma = 2*(4 - 12) + 16*(-1) + 8 = -24; in terms of the standard coupling (hbar c_adj = -g^2 C_A/2 for (-,-) = (2 hbar/g^2) x positive Killing-normalised form) this is 12 g^2 C_A/(16 pi^2) = 3 g^2 C_A/(4 pi^2) [sanity check only]"
+  },
+  "letters": {
+   "int omega (X, iota_w A)": {
+    "gamma": "-4",
+    "kappa": "-8",
+    "formula": "gamma = -b_4/(-1/4), b_4 = -1 the log eps coefficient of B4, -1/4 the coefficient of B4 in the free action"
+   },
+   "int omega (X, A_V(v))": {
+    "gamma_transverse": "-4",
+    "gamma_longitudinal": "0",
+    "other_structures": "-4 hbar c_adj/(16pi^2) int omega (X, (d (d^*d)^{-1} d^* A_V)(v)) i.e. [(d_CE+Q)O[infty]](Delta) = -(E+1)O + 4 u (O - O_longitudinal), u = hbar c_adj/16pi^2; the longitudinal projection is nonlocal and gauge (Q-direction) only"
+   },
+   "int omega (X, (zeta, lambda))": {
+    "gamma": "-8",
+    "formula": "gamma = -b_6/(1/2), b_6 = 4"
+   },
+   "remark": "letters are gauge dependent (Feynman gauge only here); gamma_letter = -(log eps coefficient)/(free-action coefficient) of the corresponding quadratic basis element"
+  },
+  "route_i": {
+   "formula": "Delta.O[infty] = (Delta.O)[infty] - 2 hbar (d_delta I^CT)_log[infty] - 2 hbar sum_k b_k d^cross_{P(0,infty)}(B_k, O)   [from D_lambda^* P(eps,infty) = P(lambda^2 eps,infty), Delta.P = 2 eps L_eps, eps-independence of O[infty]; Delta.B3,5 = 2 B3,5 kill all eps^{-1} terms]; [(d_CE+Q)O[infty]](Delta) = Delta.O[infty] - Q O_1[infty], O_1 = -2 hbar d^cross_P(R,O), where sum_k b_k B_k = Q R, R = 2 int (A,A*) + (lambda, c parts), forced by the xi-linear equivariant master equation at scale infty: Q I^(1)(Delta) = Delta.I[infty] = -2 hbar Q R",
+   "scalar_bilinear": "d^cross(B4,O) = 8 O; -Q O_1 = -8 u O; result: -(E+2)O + u[(-8+16-8) O + 4 (w1,w2) O_tr]  (u = hbar c_adj/16pi^2) => gamma_traceless = 0, gamma_trace = -24",
+   "general": "gamma_O = 2 b'_O + 8 b_4 (scalar bilinears), gamma_letter = -b_X/k_X (k_X = coefficient of B_X in the free action)"
+  },
+  "route_ii": {
+   "method": "direct UV-boundary graphs: every edge replaced in turn by Delta.P = 2 eps L_eps (pinned at t_e = eps), exact Gaussian factor kept, finite eps (2e-2 ... 6.25e-4 for O graphs, 2e-3 ... 1.25e-4 for self-energy), random rational external momenta/polarisations, eps->0 by fit to 2a/eps - 2b + eps(c log eps + d)",
+   "self_energy_Aperp_all_graphs": {
+    "fit_pole": 83.2125000447308,
+    "pred_pole": 83.2125,
+    "fit_finite": 250.4688837330907,
+    "pred_finite": 250.469625,
+    "max_imag": 0.0
+   },
+   "O_insertion_1PI_Aperp": {
+    "values": [
+     -49004.04723110509,
+     -50029.476936109815,
+     -50617.45537053945,
+     -50948.97864874566,
+     -51133.47465332655,
+     -51235.07962950702
+    ],
+    "eps": [
+     0.02,
+     0.01,
+     0.005,
+     0.0025,
+     0.00125,
+     0.000625
+    ],
+    "fit_finite": -51355.56979870833,
+    "pred_finite": -51355.38133333333,
+    "max_imag": 0.0
+   },
+   "assembly": "pinned 1PI O-loops -> -2u[4 O - 2(w1,w2) O_tr]; reducible chains O-P-(self-energy - I^CT): pinned loop edges + Delta.(-I^CT) -> -2 b_4 x (B4 kernel) per leg = +8u per leg (2a/eps pieces cancel exactly), pinned tree edge (Sigma - I^CT) 2 eps L_eps -> 0; plus the tree -Q O_1 = -8u O; total identical to route (i): gamma_traceless = 0, gamma_trace = -24",
+   "agreement": "relative 3e-6 (self-energy finite part), 3.7e-6 (O vertex), pole 5e-10"
+  }
+ },
+ "selection_rules": [
+  "P_mu, M_munu, R^i_j (so(6)=sl(4)): H = Laplacian (x) id and Q^GF are Euclidean- and R-covariant, so (X(x)1+1(x)X)P(eps,infty)=0, X.K_eps=0, counterterms X-invariant => [(d_CE+Q)O[infty]](X) = (X.O)[infty] exactly: no one-loop correction for any local O; traceless and trace parts of Sym^2(W_R^perp) cannot mix.",
+  "Delta: regulator not covariant (Delta.P = 2 eps L_eps); computed: gamma_traceless = 0, gamma_trace = -24, letters gauge dependent.",
+  "K_mu (dimension -1, component of ghost degree |O|): anomalous part fixed by [K_mu,P_nu] = 2M_munu + 2 delta_munu E [SW (4)] to -2 gamma_O int omega x_mu O; a translation-invariant extra term would need a colour-singlet local vector of dimension w_O - 1: none exists for scalar bilinears or letters (the only dimension-1 vector is the adjoint A_V) => output = -2 gamma_O int omega x_mu O + Q-exact.",
+  "Q^i_alpha, Qbar_{alphadot i} (dimension +1/2, odd; component degree |O|): allowed outputs = fermionic colour-singlet local functionals of dimension w_O + 1/2 in S_+(x)W (resp. S_-(x)W^*) (x) R-rep of O: for the bilinears int omega (iota_w A, lambda) [classical type], gauge-variant int omega (A_V, rho(.) lambda), BRST-type int omega (c, lambda*) (dimension 0 + 5/2, degree 0); nothing else. Not excluded by covariance (linear supersymmetry does not commute with Q^GF); any such term is supported at t = eps.",
+  "S^alpha_i, Sbar^{alphadot i} (dimension -1/2): a translation-invariant output would need a fermionic colour-singlet local operator of dimension w_O - 1/2 = 3/2: none (lambda is adjoint, (c,lambda*) has dimension 5/2) => only x-weighted Q-type structures fixed by {K,Q} ~ S, plus Q-exact terms."
+ ],
+ "checks": [
+  "10d Clifford, Gamma11, pairing symmetry, ESW Assumption 3.1 (realization.py)",
+  "0-dim Grassmann verification of W_1 = (hbar/2) sum (1/n) STr[(P Pi d^2 I)^n] with d_P(f_X f_Y) = P^{XY}, incl. odd backgrounds, quartic and O insertions (toy_verify*.py); 7 other variants fail",
+  "propagators derived by inverting the free Hessian (lam: i rho(q)/q^2; A: 2/q^2; c-A*: -i q/q^2)",
+  "colour: bubble = +c_adj(c1,c2), quartic tadpole = -c_adj(c1,c2) per ([c1,t],[c2,t^]) contraction, on su(2) and su(3), non-orthonormal bases, rescaled pairings",
+  "B2 log coefficient 0 (gauge -1/8 + ghost +1/8): transverse log part",
+  "10d covariance of I^CT_quad: B1 and B4 log coefficients equal (-1), B3 and B5 pole coefficients equal (9/4)",
+  "Q-exactness of the log part: sum b_k B_k = Q(2 int (A,A*) + ...)",
+  "per-graph Feynman-parameter form (B) equals the direct pinned-edge u-integrals (report_data.py)",
+  "lam-lam and As-c sector totals reproduced by an all-blocks run",
+  "O-insertion: int omega (A_V,A_V) mixing cancels between triangle (+2) and bubble (-2)",
+  "route (ii) numerics at finite eps and finite momenta agree with the eps-expansion to <4e-6"
+ ],
+ "formula_chain_data": {
+  "two_point_words": {
+   "AV-AV:AAA+AAA:AV,AV": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': -18}",
+    "C0": "{'p^2 (A(-p),A(p))': -2*x**2 + 2*x - 5, '(p.A(-p))(p.A(p))': -2*(5*x**2 - 5*x - 1)}",
+    "pole_integral": "{'(A(-p),A(p))': -9/4}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': -19/6, '(p.A(-p))(p.A(p))': 11/3}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "AV-AV:AAA+AAA:Ap,Ap": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': -24}",
+    "C0": "{'(p.A(-p))(p.A(p))': -6*(2*x - 1)**2}",
+    "pole_integral": "{'(A(-p),A(p))': -3}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': 2, '(p.A(-p))(p.A(p))': -2}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "AV-AV:AcAs+AcAs:c-As,c-As": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': 2}",
+    "C0": "{'(p.A(-p))(p.A(p))': 2*x*(x - 1)}",
+    "pole_integral": "{'(A(-p),A(p))': 1/4}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': -1/6, '(p.A(-p))(p.A(p))': -1/3}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "AV-AV:lamlamA+lamlamA:lam,lam": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': -32}",
+    "C0": "{'p^2 (A(-p),A(p))': -16*x*(x - 1), '(p.A(-p))(p.A(p))': 32*x*(x - 1)}",
+    "pole_integral": "{'(A(-p),A(p))': -4}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': 16/3, '(p.A(-p))(p.A(p))': -16/3}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "AV-AV:AAAA:AV": {
+    "word": "STr[P(q) Pi d2I_4[A(p),A(-p)]]",
+    "C0": "{'(A(-p),A(p))': 6}",
+    "C1": "{}",
+    "pinned": "eps dX/deps = -(16pi^2)^{-1} C_0/eps"
+   },
+   "AV-AV:AAAA:Ap": {
+    "word": "STr[P(q) Pi d2I_4[A(p),A(-p)]]",
+    "C0": "{'(A(-p),A(p))': 12}",
+    "C1": "{}",
+    "pinned": "eps dX/deps = -(16pi^2)^{-1} C_0/eps"
+   },
+   "Ap-Ap:AAA+AAA:Ap,AV": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': -8}",
+    "C0": "{'p^2 (A(-p),A(p))': -2*x**2 + 2*x - 5}",
+    "pole_integral": "{'(A(-p),A(p))': -1}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': -4}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "Ap-Ap:AcAs+AcAs:c-As,c-As": {
+    "numerator": "0"
+   },
+   "Ap-Ap:lamlamA+lamlamA:lam,lam": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{'(A(-p),A(p))': -64}",
+    "C0": "{'p^2 (A(-p),A(p))': -16*x*(x - 1)}",
+    "pole_integral": "{'(A(-p),A(p))': -8}",
+    "log_integral_A0": "{'p^2 (A(-p),A(p))': 8}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "Ap-Ap:AAAA:AV": {
+    "word": "STr[P(q) Pi d2I_4[A(p),A(-p)]]",
+    "C0": "{'(A(-p),A(p))': 8}",
+    "C1": "{}",
+    "pinned": "eps dX/deps = -(16pi^2)^{-1} C_0/eps"
+   },
+   "Ap-Ap:AAAA:Ap": {
+    "word": "STr[P(q) Pi d2I_4[A(p),A(-p)]]",
+    "C0": "{'(A(-p),A(p))': 10}",
+    "C1": "{}",
+    "pinned": "eps dX/deps = -(16pi^2)^{-1} C_0/eps"
+   },
+   "lam-lam:lamlamA+lamlamA:lam,AV": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{}",
+    "C0": "{'(lam(-p), rho(p) lam(p))': 4*I}",
+    "pole_integral": "{}",
+    "log_integral_A0": "{'(lam(-p), rho(p) lam(p))': 4*I}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "lam-lam:lamlamA+lamlamA:lam,Ap": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{}",
+    "C0": "{'(lam(-p), rho(p) lam(p))': 12*I}",
+    "pole_integral": "{}",
+    "log_integral_A0": "{'(lam(-p), rho(p) lam(p))': 12*I}",
+    "feynman_form_matches_u_integrals": true
+   },
+   "As-c:AcAs+AcAs:AV,c-As": {
+    "word": "STr[P(q) Pi d2I_3[leg at p] P(q-p) Pi d2I_3[leg at -p]]",
+    "C1": "{}",
+    "C0": "{'(p.A*(-p)) c(p)': 2*I}",
+    "pole_integral": "{}",
+    "log_integral_A0": "{'(p.A*(-p)) c(p)': 2*I}",
+    "feynman_form_matches_u_integrals": true
+   }
+  },
+  "O_words": {
+   "Ap-Ap triangle (leg p1, leg p2, O)": {
+    "edges": 3,
+    "moments": {
+     "C1(zero ext. momenta)": {
+      "O": "-8",
+      "trace_mix": "0"
+     }
+    }
+   },
+   "Ap-Ap triangle (leg p2, leg p1, O)": {
+    "edges": 3,
+    "moments": {
+     "C1(zero ext. momenta)": {
+      "O": "-8",
+      "trace_mix": "0"
+     }
+    }
+   },
+   "Ap-Ap bubble (quartic, O)": {
+    "edges": 2,
+    "moments": {
+     "C0(zero ext. momenta)": {
+      "O": "-4",
+      "trace_mix": "4"
+     }
+    }
+   },
+   "Ap-Ap bubble (O, quartic)": {
+    "edges": 2,
+    "moments": {
+     "C0(zero ext. momenta)": {
+      "O": "-4",
+      "trace_mix": "4"
+     }
+    }
+   },
+   "AV-AV triangle (leg p1, leg p2, O)": {
+    "edges": 3,
+    "moments": {
+     "C1(zero ext. momenta)": {
+      "AV_mix": "-8"
+     }
+    }
+   },
+   "AV-AV triangle (leg p2, leg p1, O)": {
+    "edges": 3,
+    "moments": {
+     "C1(zero ext. momenta)": {
+      "AV_mix": "-8"
+     }
+    }
+   },
+   "AV-AV bubble (quartic, O)": {
+    "edges": 2,
+    "moments": {
+     "C0(zero ext. momenta)": {
+      "AV_mix": "4"
+     }
+    }
+   },
+   "AV-AV bubble (O, quartic)": {
+    "edges": 2,
+    "moments": {
+     "C0(zero ext. momenta)": {
+      "AV_mix": "4"
+     }
+    }
+   }
+  }
+ }
+}

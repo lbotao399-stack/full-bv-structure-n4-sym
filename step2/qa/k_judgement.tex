@@ -1,0 +1,338 @@
+\chapter{The special conformal components at a finite endpoint: judgement}
+
+Two independent analyses determined the one-loop component $K_1$ at a finite endpoint $T$ of the transfer: an analytic one [analytic], which proves existence and independence of $T$ from the graphs of the defect and computes the logarithms of $T$ in the flows, and a numerical one [numerics], which evaluates the graphs of the defect and of the flow in the quadratic sector, at arity one along $K_b$ and at arity two along $(\eta_1,\eta_2)\in\Sigma^*\times\Sigma^*$. Their verdicts agree, two of their four flow sectors had not been compared, and the sign of the coefficient of $\log T$ had been fixed by comparison with an engine. This chapter derives that coefficient with its sign from the components of the propagator, recomputes the trees that multiply it in a third realisation, compares every number of the two analyses, and decides the route for $K_1$.
+
+Names. All objects are those of Chapter 8: $\xi\in\Sigma$, $\eta\in\Sigma^*$, $K_b\colon x\mapsto(x,x)b-2(b,x)x$, $P_b$, $\Delta=2E$, $\mathrm{ad}_f=\{f,-\}$, $s=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\}$, $L=s+\hbar L_1+\cdots$, $\Lambda=L-d_{CE}$, the components $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ of Definition \ref{def:c8-components}, $O[T]$ of Definition \ref{def:c8-renorm}, $d_T$ of Definition \ref{def:c8-dT}, $P(\varepsilon,T)$, $K_t$, $L_t$, $\Delta_T$, $\{-,-\}_T$ of Definition \ref{def:c8-PT}, and $e\mapsto v.e$ of Definition \ref{def:c7-vdot}. $\{X_a\}$ is a basis of $\mathfrak g$ and $\{X^a\}$ the dual basis for $(-,-)$; derivatives along modes are left derivatives. Numerical values are in units of $\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$, at the kinematic point of [numerics]: $\mathfrak g=\mathfrak{su}(2)$ in an orthonormal basis, field leg at $p=(1,2,0,1)$, $b=(1,0,-1,2)$, $|p|^2=6$, $(b,p)=3$; the defect values are those stored by [numerics], $X_0$, minus the coefficient of $\delta$ of the total momentum in the graph, and the flow values are coefficients of the effective interaction. Two-component: $v^m=x^2b^m-2(b\cdot x)x^m$, $\operatorname{div}v=-8\,b\cdot x$ (Definition \ref{def:c8-twocomp}).
+
+\section{The judgement}
+
+\begin{theorem}[Judgement on $K_1$ at a finite endpoint]
+\label{thm:kj-verdict}
+At order $\hbar$:
+\begin{itemize}
+\item (i) For every $T\in(0,\infty)$ the limit $\varepsilon\to0$ of the graphs of the defect along $K_b$ (arity one), along $(\eta_1,\eta_2)$ and along $(K_b,P_c)$ (arity two) is the same as at any other finite $T$. The local representative along these generators, in particular $K_1=\hbar L_1(O)^{(1)}(K_b)$, is one local functional for all finite $T$, and its limit $T\to\infty$ is trivial.
+\item (ii) The floating insertions of $S^{(1)}(K_b)$, the composite $A|_V$--$c$ lines that exist because $(Q^{GF})^2\neq0$, contribute finite, local, $T$-independent terms to these limits and are part of $K_1$ and of the arity-one obstruction along $K_b$; they spoil neither locality nor independence of $T$.
+\item (iii) At a fixed $\varepsilon>0$ the coefficient of $\log T$ of the defect is $0$ at arity one in every two-point sector of the action, of order $\varepsilon$ and nonzero for the scalar bilinears, and at arity two along $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V\neq0$ a nonzero multiple of $\varepsilon e^{-\varepsilon|p|^2}$; it vanishes as $\varepsilon\to0$ at fixed $T$. The defect graphs at $T=\infty$ and fixed $\varepsilon$ are not used.
+\item (iv) The flows $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ and $O[T]^{(1)}(K_b)$ carry $\tfrac{3}{8\pi^2}\hbar\log T$ times the trees $\sum_a\partial_{A|_V=b\otimes X_a}\partial_{c=X^a}$ of their order-$\hbar^0$ parts, nonzero in all four two-point sectors and for the scalar bilinears. These terms are $Q$-closed, enter $d_TO[T]$ through $Q$ of them, which vanishes for gauge-invariant $O$, and reach no counterterm, obstruction, finite counterterm or local representative.
+\item (v) Route (A): $K_1$ is defined by the K-route graphs at finite $T$ (Definition \ref{def:c8-K}); the relation $K=P^\dagger$ of Corollary \ref{cor:c8-gram} is a cross-check.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Theorem \ref{thm:kj-Tindep}. (ii) Theorem \ref{thm:kj-Tindep} and Proposition \ref{prop:kj-compare} (ii). (iii) Proposition \ref{prop:kj-defectlog}. (iv) Corollary \ref{cor:kj-flowlog}, Proposition \ref{prop:kj-trees}, Proposition \ref{prop:kj-nocore}. (v) (i) gives existence of the local representative at one finite $T$ as soon as the limit is local, which is Theorem \ref{thm:kj-Tindep} (iii); Theorem \ref{thm:c8-K} then applies.
+\end{proof}
+
+\section{The composite line and the coefficient of $\log T$}
+
+\begin{lemma}[The composite line]
+\label{lem:kj-composite}
+Let $\gamma$ be the odd ghost of $K_b$ and $S=\int\mathrm{dvol}\,(v.A|_V,A^*|_V)\,\gamma$, the term of $S^{(1)}(K_b)\gamma$ that sits on a cycle with both legs on edges $P(\varepsilon,T)$ (Remark \ref{rem:c7-internal}): its $A|_V$ leg on an $A\otimes A$ component, its $A^*|_V$ leg on an $A^*|_V\otimes c$ component. Then $[\partial_{P(\varepsilon,T)},[\partial_{P(\varepsilon,T)},S]]=\partial_{K''}$, with $K''$ twice the kernel of $P(\varepsilon,T)\star\circ v.\circ P(\varepsilon,T)\star$, and the component of this kernel in the slots $(A|_V$ along $e_k$ at $z_a$, $c$ at $z_b)$ is
+\begin{equation}
+-2\,(-,-)^{-1}\int d^4y\,\sum_m\Big[L_v\Big(\frac{e^{-|\cdot-z_a|^2/4T}-e^{-|\cdot-z_a|^2/4\varepsilon}}{4\pi^2|\cdot-z_a|^2}\,e_k\Big)\Big]_m(y)\;\partial_{y_m}\frac{e^{-|y-z_b|^2/4T}-e^{-|y-z_b|^2/4\varepsilon}}{4\pi^2|y-z_b|^2},
+\label{eq:kj-CL}
+\end{equation}
+with $(L_vw)_m=v^n\partial_nw_m+w_n\partial_mv^n$.
+\end{lemma}
+
+\begin{proof}
+$S$ is quadratic, so $[\partial_P,S]=\partial_PS+\{S,-\}_P$ and $[\partial_P,[\partial_P,S]]$ is the second-order operator whose value on a product $\psi_1\psi_2$ of coordinate functionals is the sum of the double contractions of $S\psi_1\psi_2$ in which $\psi_1$ and $\psi_2$ are joined to the two legs of $S$; the two orders of the two applications of $\partial_P$ give the factor $2$. Take $\psi_1$ the coordinate of $A|_V$ along $e_k$ at $z_a$ (even) and $\psi_2$ that of $c$ at $z_b$ (odd). By Proposition \ref{prop:c3-P} with $P(\varepsilon,T)$ in place of $P(\varepsilon,\infty)$: the value of $\partial_P$ on (coordinate of $A_k$ at $z_a$)(coordinate of $A_m$ at $y$) is $2(-,-)^{-1}\delta_{km}$ times the scalar factor at $z_a-y$; on (coordinate of $A^*_m$ at $y$)(coordinate of $c$ at $z_b$), in this order, it is $-(-,-)^{-1}\partial_{y_m}$ of the scalar factor at $y-z_b$ (the row $A^*|_V\otimes c$, first slot at $y$). In $S\psi_1\psi_2$ the odd factors $A^*|_V$ and $\psi_2$ stand in this order with only the even $\psi_1$ between them. The leg $A|_V$ of $S$ enters through $L_v$, and the pairing $(-,-)$ of $S$ contracts one factor $(-,-)^{-1}$. The product of the fibre factors is $2\cdot(-1)$.
+\end{proof}
+
+\begin{proposition}[The limit of the composite line]
+\label{prop:kj-composite}
+Write $I_k(z_a,z_b;\varepsilon,T)$ for the integral in \eqref{eq:kj-CL} without the factor $-2(-,-)^{-1}$.
+\begin{itemize}
+\item (i) $I_k(\lambda z_a,\lambda z_b;\lambda^2\varepsilon,\lambda^2T)=I_k(z_a,z_b;\varepsilon,T)$ for $\lambda>0$.
+\item (ii) At $z_a=z_b=0$,
+\[
+T\partial_TI_k(0,0;\varepsilon,T)=-\frac{(T/\varepsilon-1)\big(3(T/\varepsilon)^2+8\,T/\varepsilon+3\big)}{16\pi^2(T/\varepsilon+1)^3}\,b_k=-\frac{3b_k}{16\pi^2}\Big(1-\frac{4\varepsilon}{3T}+O\big(\tfrac{\varepsilon^2}{T^2}\big)\Big).
+\]
+\item (iii) For all $z_a,z_b$ and $\varepsilon\ge0$, $\lim_{T\to\infty}T\partial_TI_k=-\dfrac{3b_k}{16\pi^2}$.
+\item (iv) $T\partial_T$ of the kernel \eqref{eq:kj-CL} tends to $\dfrac{3}{8\pi^2}\,b\otimes(-,-)^{-1}$, constant in $z_a$, $z_b$ and $\varepsilon$; in units of the engines, $\hbar/(16\pi^2)$, this is $6\,b\otimes(-,-)^{-1}$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) The scalar factor scales as $\lambda^{-2}$, $v(\lambda y)=\lambda^2v(y)$, the two derivatives give $\lambda^{-2}$ and $d^4y$ gives $\lambda^4$. (ii) For radial $f(u)$, $g(u)$, $u=|y|^2$: $\partial f=2yf'$, $v\cdot y=-u\,(b\cdot y)$, $(\partial_mv^k)\,y_m=2u\,b_k-4(b\cdot y)y_k$, so
+\[
+\sum_m[L_v(fe_k)]_m\partial_mg=(v\cdot\partial f)\,\partial_kg+f\,(\partial_mv^k)\,\partial_mg=-4u\,f'g'\,(b\cdot y)y_k+2fg'\big(2u\,b_k-4(b\cdot y)y_k\big),
+\]
+with the average $\tfrac14u\,\delta_{kl}$ of $y_ky_l$ over the sphere and $d^4y=\pi^2u\,du$,
+\[
+I_k=\pi^2b_k\int_0^\infty du\,\big(-u^3f'g'+2u^2fg'\big)\Big|_{f=g},\qquad T\partial_T\frac{e^{-u/4T}-e^{-u/4\varepsilon}}{4\pi^2u}=\frac{e^{-u/4T}}{16\pi^2T}.
+\]
+Inserting $T\partial_T$ on $f$ and on $g$ and integrating gives the closed form; it vanishes at $T=\varepsilon$. (iii) By (i), $T\partial_TI_k(z_a,z_b;\varepsilon,T)$ is $T'\partial_{T'}I_k$ at $T'=1$ and arguments $(z_a/\sqrt T,z_b/\sqrt T,\varepsilon/T)$; the derivative replaces one scalar factor by the Gaussian $(4\pi T)^{-2}Te^{-|\cdot|^2/4T}$, the remaining singularities at $y=z_a$, $y=z_b$ are integrable uniformly, so the value is continuous at $(0,0,0)$, where it is the limit of (ii). With the Schwinger representation of both scalar factors,
+\[
+\begin{aligned}
+T\partial_TI_k&=T\int_\varepsilon^Tdt\,\big(\Phi_k(T,t)+\Phi_k(t,T)\big),\\
+\Phi_k(t_f,t_g)&=\int d^4y\,\sum_m\big[L_v\big((4\pi t_f)^{-2}e^{-|\cdot-z_a|^2/4t_f}e_k\big)\big]_m(y)\,\partial_{y_m}(4\pi t_g)^{-2}e^{-|y-z_b|^2/4t_g},
+\end{aligned}
+\]
+and $\Phi_k$ is a Gaussian moment integral of a polynomial of degree four, evaluated exactly. (iv) Lemma \ref{lem:kj-composite} and (iii): $-2\cdot(-\tfrac{3}{16\pi^2})=\tfrac{3}{8\pi^2}$, and $16\pi^2\cdot\tfrac{3}{8\pi^2}=6$.
+\end{proof}
+
+\begin{corollary}[The logarithm of the flow]
+\label{cor:kj-flowlog}
+For $J_0$ the arity-zero part of $I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}$ and $W=W(P(\varepsilon,T),J_0)$,
+\[
+\begin{aligned}
+W\big(P(\varepsilon,T),J_0+S^{(1)}(K_b)\gamma\big)^{(1)}(K_b)&=e^{-W/\hbar}e^{\hbar\partial_P}\big(S^{(1)}(K_b)e^{J_0/\hbar}\big)\\
+&=S^{(1)}(K_b)+\hbar\,\partial_PS^{(1)}(K_b)+\{S^{(1)}(K_b),W\}_P+\tfrac\hbar2\partial_{K''}W+\tfrac14\{W,W\}_{K''},
+\end{aligned}
+\]
+and at order $\hbar$ the part with $S^{(1)}(K_b)$ on a cycle is $\tfrac\hbar2\partial_{K''}$ of the order-$\hbar^0$ part of $W$. At generic leg momenta and every $\varepsilon\ge0$,
+\[
+\lim_{T\to\infty}T\partial_T\Big(\tfrac\hbar2\partial_{K''}W\Big)_{\hbar}=\frac{3}{8\pi^2}\,\hbar\sum_a\partial_{A|_V=b\otimes X_a}\partial_{c=X^a}\Big(W\big(P(\varepsilon,\infty),I\big)\Big)_{\hbar^0},
+\]
+and the same holds for $O[T]^{(1)}(K_b)$ with the order-$\hbar^0$ part of $O[\infty]$, and at fixed $\varepsilon$ for $\partial_\delta W(P(\varepsilon,T),J+\delta O(\varepsilon))$ with the order-$\hbar^0$ part of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$.
+\end{corollary}
+
+\begin{proof}
+$e^{\hbar\partial_P}Se^{-\hbar\partial_P}=S+\hbar[\partial_P,S]+\tfrac{\hbar^2}2[\partial_P,[\partial_P,S]]$ for quadratic $S$, with $[\partial_P,S]=\partial_PS+\{S,-\}_P$ and $[\partial_P,[\partial_P,S]]=\partial_{K''}$; acting on $e^{W/\hbar}$, $\{S,e^{W/\hbar}\}_P=\hbar^{-1}\{S,W\}_Pe^{W/\hbar}$ and $\partial_{K''}e^{W/\hbar}=\big(\hbar^{-1}\partial_{K''}W+\tfrac12\hbar^{-2}\{W,W\}_{K''}\big)e^{W/\hbar}$. On a product $\psi_1\psi_2R$ with $\psi_1$, $\psi_2$ as in Lemma \ref{lem:kj-composite}, $\tfrac\hbar2\partial_{K''}$ gives $\hbar$ times the kernel \eqref{eq:kj-CL} times $R$, i.e. $\hbar$ times the kernel contracted with $\partial_{c}\partial_{A|_V}$ of the tree. The terms $\{S,W\}_P$, $\tfrac14\{W,W\}_{K''}$ carry the insertion on a tree or a bridge at generic momenta and converge at the rate $e^{-T|p|^2}$. $T\partial_T$ of $\tfrac\hbar2\partial_{K''}W$ is the kernel with one edge pinned at $T$, plus tree edges pinned at $T$, which vanish at generic momenta; Proposition \ref{prop:kj-composite} (iv) and dominated convergence give the limit, the constant kernel $b\otimes(-,-)^{-1}=\sum_a(b\otimes X_a)\otimes X^a$.
+\end{proof}
+
+\section{The zero-mode trees}
+
+\begin{proposition}[Values of the trees]
+\label{prop:kj-trees}
+With $C=\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$, field leg at $p$ with fibre vector $u$ and colour $X_1$, antifield leg at $-p$ with $u^*$, $X_2$, the tree $\sum_a\partial_{A|_V=b\otimes X_a}\partial_{c=X^a}\big(W(P(0,\infty),I)\big)_{\hbar^0}$ equals, up to the factor $(X_1,X_2)$,
+\begin{center}
+\begin{tabular}{l|c|c}
+sector & tree & coefficient of $\log T$, units \\
+\hline
+$(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ & $-2iC\,(b,p)|p|^{-2}(u,u^*)$ & $-6i$ \\
+$(A|_V,A^*|_V)$ & $iC|p|^{-2}\big(-2(b,p)(u,u^*)+(b,u)(p,u^*)\big)$ & $46i$ \\
+$(c,c^*)$ & $iC\,(b,p)|p|^{-2}$ & $3i$ \\
+$(\lambda,\lambda^*)$ & $C|p|^{-2}\big(\rho(ip)\rho(b)u,u^*\big)$ & $8i$ \\
+\end{tabular}
+\end{center}
+\tabcaption{The last column is the coefficient of $\log T$ in $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$, $6\times(\text{tree})/C$ times $e^{-\varepsilon|p|^2}$, at the point and the polarisations of [numerics] ($u=(2,-2,-2,-1)$, $u^*=(1,2,2,0)$ for $A|_V$; the spinor polarisations of its realisation for $\lambda$).}
+The trees are nonzero; their two cubic vertices are joined by one line of momentum $p$.
+\end{proposition}
+
+\begin{proof}
+The trees are those of [analytic, Proposition prop:ktr-values]. They are recomputed here in a third realisation (the Step-1 vertex functions of engine B, with $\mathfrak{su}(2)$ in a non-orthonormal basis and a rescaled pairing, $C=-\tfrac43$ there), by enumerating the two-vertex trees with the legs (field, $A|_V$-mode) and (antifield, $c$-mode), or (field, $c$-mode) and (antifield, $A|_V$-mode), joined by an $A\otimes A$ or a $c$--$A^*|_V$ line with the components of Proposition \ref{prop:c3-P}, and the Grassmann order of the odd parameters tracked explicitly. For $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, by hand: the vertex $-\tfrac12\sum_{\mu,N}(\partial_\mu A_N,[A_\mu,A_N])$ gives $-i(b,p)(u,e_N)([X_1,X_a],Y)$, the line $2(-,-)^{-1}|p|^{-2}$, the vertex $([A,c],A^*)$ gives $(e_N,u^*)([Y',X^a],X_2)$, and $\sum_a[[X_1,X_a],X^a]=CX_1$; the odd parameters $c$, $A^*$ stand in the order of the left derivative. For $(c,c^*)$: the vertex $([A,c],A^*)$ with $A|_V=b\otimes X_a$, the line $A^*|_V\otimes c$ with value $(-,-)^{-1}ip_m|p|^{-2}$ at the incoming momentum $-p$ of the $A^*$ leg, the vertex $\tfrac12([c,c],c^*)$, $\sum_a[[X_a,X_1],X^a]=-CX_1$, and one sign from moving the $c$-mode parameter to the front. The ratio of the recomputed trees to the table is $1$ in the three sectors $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(A|_V,A^*|_V)$, $(c,c^*)$, at a generic rational point. For $(\lambda,\lambda^*)$, the closed form evaluated with the matrices of the realisation of [numerics] gives $-\tfrac{312}{7}i$ engine units at the point of the earlier engine and $8i$ units at the point of [numerics], equal to both engines (Proposition \ref{prop:kj-compare} (i)). Two-component, with $(\rho(ip)\rho(b)u,u^*)$ from \eqref{eq:c8-pairing}: Proposition \ref{prop:kj-twocomp}.
+\end{proof}
+
+\begin{proposition}[No core quantity is reached]
+\label{prop:kj-nocore}
+Let $O$ be gauge invariant, $(Q+\{I,-\})O=0$. The trees of Proposition \ref{prop:kj-trees} and the tree of $O$ are $Q$-closed: $Q$ of the tree of $W$ vanishes, and $Q$ of the tree of $O$ equals minus the tree of $(Q+\{I,-\})O$, which is $0$. Hence the logarithms of Corollary \ref{cor:kj-flowlog} cancel in $d_TO[T]-L(O)[T]$ at arity one along $K_b$, and the counterterms, the obstruction, the finite counterterms and $L(O)$ are independent of $T$.
+\end{proposition}
+
+\begin{proof}
+$Q$ annihilates the constant modes, $Q(c=X)=-dX=0$ and $Q(A|_V=b\otimes X)=0$, so $\partial_{e_0}\circ Q=\pm Q\circ\partial_{e_0}$ along them; at $\varepsilon=0$ the tree-level flow is $Q$-closed up to the special edges, which carry $e^{-\varepsilon|p|^2}-1=0$. The independence of $T$ is Theorem \ref{thm:kj-Tindep} and Proposition \ref{prop:c8-Tindep} (i). The statements are [analytic, Proposition prop:ktr-consistency, Theorem thm:ktr-nocore]; their exact checks reproduce identically on rerun.
+\end{proof}
+
+\section{Comparison of the two analyses}
+
+\begin{proposition}[The numbers of the two analyses]
+\label{prop:kj-compare}
+At the point of [numerics], in units:
+\begin{itemize}
+\item (i) flows along $K_b$:
+\begin{tabular}{l|c|c|c|c}
+sector & [analytic] $6\times$tree$/C$ & [numerics] slope of the graph & earlier engine & third realisation \\
+\hline
+$(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ & $-6i$ & $-6i$ & agrees ($7\cdot10^{-6}$) & $-6i$ \\
+$(A|_V,A^*|_V)$ & $46i$ & $46i$ & agrees ($8\cdot10^{-6}$) & $46i$ \\
+$(c,c^*)$ & $3i$ & $3i$ & agrees ($7\cdot10^{-6}$) & $3i$ \\
+$(\lambda,\lambda^*)$ & $8i$ & $8i$ & agrees ($7\cdot10^{-6}$) & -- \\
+\end{tabular}
+\tabcaption{Coefficient of $\log T$ in $W(P(\varepsilon,T),I+S^{(1)}(K_b))^{(1)}$, units, multiplied by $e^{\varepsilon|p|^2}$; [numerics] stores $X_0$, minus the coefficient of $\delta$: $6i$, $-46i$, $-3i$, $-8i$. The slope is exact in $\varepsilon$ at $\varepsilon=10^{-4},10^{-2},10^{-1}$, and the $\varepsilon\to0$ limits at fixed $T$ grow with the same slope in $\log T$ between $T=10^3$ and $10^6$.}
+\item (ii) defect along $K_b$:
+\begin{tabular}{l|c|c|c|c}
+sector & limit $\varepsilon\to0$ (total $=$ composite $+$ anchored) & spread over $T\in[10,10^6]$ & $\log T$ per composite graph & total $T\partial_T$ at $T=10^6$, $\varepsilon=10^{-4}$ \\
+\hline
+$(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $22i=-2i+24i$ & $2\cdot10^{-7}$ & $\pm9i\,(e^{-\varepsilon|p|^2}-1)$ & $7\cdot10^{-9}$ \\
+$(A|_V,A|_V)$ & $-\tfrac{141}2i=45i-\tfrac{231}2i$ & $1\cdot10^{-6}$ & $\pm\tfrac{147}2i\,(e^{-\varepsilon|p|^2}-1)$ & $6\cdot10^{-8}$ \\
+$(\lambda,\lambda)$ & $\tfrac{44}3=-\tfrac43+16$ & $2\cdot10^{-8}$ & $\pm3\,(e^{-\varepsilon|p|^2}-1)$ & $3\cdot10^{-9}$ \\
+$(c,A^*|_V)$ & $16=-8+24$ & $1\cdot10^{-7}$ & $\pm18\,(e^{-\varepsilon|p|^2}-1)$ & $8\cdot10^{-9}$ \\
+\end{tabular}
+\tabcaption{Arity one along $K_b$, one-loop 1PI graphs of the defect with one special edge, quadratic sector, units, in the convention $X_0$ of [numerics] (minus the coefficient of $\delta$). Limits by interpolation in $(1,\varepsilon,\varepsilon\log\varepsilon,\varepsilon^2)$ through $\varepsilon=10^{-4},3\cdot10^{-4},10^{-3},3\cdot10^{-3}$ at each $T$; the approach is $\varepsilon(a+b\log\varepsilon)$, with no $\varepsilon^{-1}$ and no $\log\varepsilon$ term. The four composite graphs of each sector come in pairs of opposite sign: the $A|_V$ end of the composite line at the one or the other leg.}
+\item (iii) defect along $(\eta_1,\eta_2)$:
+\begin{tabular}{l|c|c}
+sector & $T\partial_T$ of the coefficient of $\delta$ at $T=10^4$, divided by $\varepsilon e^{-\varepsilon|p|^2}$ & share of the $\eta$--$\eta$ chains \\
+\hline
+$(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ & $-48i$ & $0.99999$ \\
+$(A|_V,A^*|_V)$ & $288i$ & $1.00002$ \\
+$(\lambda,\lambda^*)$ & $0$ & -- \\
+$(c,c^*)$ & $48i$ & $0.99998$ \\
+\end{tabular}
+\tabcaption{Convention $Y_0$ of [numerics] (its overall sign dropped). Arity two along $(\eta_1,\eta_2)$ of opposite chirality with $\Gamma(\eta_1,\eta_2)|_V=2e_1$, all graphs and all sixteen terms of the Killing spinors, $\varepsilon=10^{-3},10^{-2},10^{-1}$; the $\eta$--$\eta$ chain is $c$--$A^*|_V$--$S^{(1)}(\eta_1)$--$\lambda\lambda$--$S^{(1)}(\eta_2)$--$A^*|_V$--$c$.}
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+The values of [numerics] are its stored runs, a subset regenerated identically, analysed by fits independent of its own; the values of [analytic] are its closed forms evaluated at the polarisations of [numerics]; the third realisation is Proposition \ref{prop:kj-trees}.
+\end{proof}
+
+\begin{remark}[The two descriptions of the cancellation]
+\label{rem:kj-split}
+[analytic] writes the coefficient of $\log T$ of the defect as $\tfrac{3}{8\pi^2}\hbar$ times $Q$ of the tree at $\varepsilon$, summed over the leg on which $Q$ acts; [numerics] sums graphs, grouped by the leg that carries the $A|_V$ end of the composite line. In $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, with $Q$ mapping the mode $u'e^{i(q,x)}$ of $A|_{W_{\mathbb R}^\perp}$ to $-\tfrac12|q|^2u'e^{i(q,x)}$ of $A^*|_{W_{\mathbb R}^\perp}$, the two terms are
+\[
+6\cdot\big(-\tfrac12|p|^2\big)\Big(\mp2i\frac{(b,p)}{|p|^2}\Big)(u_1,u_2)\,e^{-\varepsilon|p|^2}=\pm18i\,e^{-\varepsilon|p|^2}\ \text{units},
+\]
+and each group of two composite graphs gives $\pm2\cdot9i\,(e^{-\varepsilon|p|^2}-1)$; both totals vanish for every $\varepsilon$.
+\end{remark}
+
+\section{Independence of $T$}
+
+\begin{theorem}[Independence of the endpoint at a fixed $T$]
+\label{thm:kj-Tindep}
+Let $O$ be a homogeneous local functional of degree $0$, $0<T<\infty$, and $\gamma$ a one-loop graph of the defect along $K_b$, $(\eta_1,\eta_2)$ or $(K_b,P_c)$ whose cycle contains the special edge $K_\varepsilon-K_0$.
+\begin{itemize}
+\item (i) $T\partial_T\gamma(\varepsilon,T)=O(\varepsilon)$, uniformly for $T$ in compact subsets of $(0,\infty)$.
+\item (ii) The coefficients of $\varepsilon^{-1}$ and $\log\varepsilon$ and the limit $\varepsilon\to0$ of $\gamma$ are independent of $T$.
+\item (iii) The limit is local; with the bridges and the order-$\hbar$ defect vertices, $d_TO[T]=\big(sO+\hbar L_1(O)\big)[T]$ with $\hbar L_1(O)$ local and independent of $T$; the same for the action, $O=0$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+This is [analytic, Theorem thm:ktr-defect], with each step checked here. (i) Every edge factor of $P(\varepsilon,T)$ is $\int_\varepsilon^Te^{-t|q|^2}dt\le T$ times a polynomial numerator, with no singularity at $q=0$; the polynomial position dependence of $S^{(1)}(K_b)$ and of the Killing spinors of $\eta_1,\eta_2$ enters as derivatives in injected momenta, which act on these factors and on $e^{-\varepsilon|q_s|^2}-1$ without changing the bounds, $|\partial^k(e^{-\varepsilon|q|^2}-1)|\le C\varepsilon(1+|q|)^{2}$. $T\partial_T\gamma=\sum_e\gamma_e$, $\gamma_e$ with the edge $e$ replaced by $TL_T$, of scalar factor $Te^{-T|k+p_e|^2}$:
+\[
+|\gamma_e|\le\varepsilon\,C(T)\int d^4k\,T\,e^{-T|k+p_e|^2}(1+|k|)^N\big(|k|^2+|p_s|^2\big)=O(\varepsilon).
+\]
+(ii) $\gamma(\varepsilon,T_1)-\gamma(\varepsilon,T_0)=\int_{T_0}^{T_1}T\partial_T\gamma\,dT/T=O(\varepsilon)$. (iii) The special edge has range $\sqrt\varepsilon$; with $R$ the rest of the cycle, $\gamma=\int dx_2\big[(e^{\varepsilon\Delta_u}-1)R(x_2+u,x_2)\big]_{u=0}$ up to the fibre pairing; the singular part of $R$ at $u\to0$ comes from the region in which the other vertices approach $x_2$, a polynomial in the jets of the legs and, through the Taylor expansion of $v$ or of the Killing spinors at $x_2$, in $x_2$; the remainder is smooth at $u=0$ and contributes $O(\varepsilon)$ times an integral finite at finite $T$, the composite line being bounded at large distance by Proposition \ref{prop:kj-composite}. A special edge on a bridge carries $e^{-\varepsilon|p|^2}-1$ at a generic momentum times a renormalised subgraph and vanishes with its counterterm pair. The limits are the same at every $T$ by (ii).
+\end{proof}
+
+\begin{remark}[Evidence]
+\label{rem:kj-evidence}
+The bound (i) is realised in every graph of [numerics]: anchored graphs have $T\partial_T=O(\varepsilon/T)$, each composite graph has $T\partial_T\to c\,(e^{-\varepsilon|p|^2}-1)$ exactly in $\varepsilon$, and the arity-two graphs have $|T\partial_TY|=O(\varepsilon)$ for $T=10^2,10^3,10^4$ in all three coefficients of $\delta$, $\partial\delta$, $\partial\partial\delta$. The limits of Proposition \ref{prop:kj-compare} (ii) are homogeneous in $p$: doubling $p$ multiplies the limit by $2.000000$ in $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ and by $1.000001$ in $(c,A^*|_V)$, with no $\log|p|$. The coefficients of $\varepsilon^{-1}$ of the first-derivative coefficient in the 1PI sum, $18i\,b$ and $-108i\,b$ units in $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ and $(A|_V,A|_V)$, are independent of $T$ and proportional to $(u_1,u_2)=1$, $-6$: the structure of the bracket of $S^{(1)}(K_b)$ with the $\varepsilon^{-1}$ mass term of $I^{CT}[\varepsilon]$, a multiple of $\int\mathrm{dvol}\,(b,x)(A,A)$ because $\int\mathrm{dvol}\,(v.A,A)=-\tfrac14\int\mathrm{dvol}\,\operatorname{div}v\,(A,A)$ on $A|_V$ and on $A|_{W_{\mathbb R}^\perp}$, which with $-QI^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](K_b)$ and the one-particle-reducible graphs completes the defect.
+\end{remark}
+
+\begin{proposition}[The logarithm of the defect at a fixed $\varepsilon$]
+\label{prop:kj-defectlog}
+Fix $\varepsilon>0$.
+\begin{itemize}
+\item (i) Arity one along $K_b$: the coefficient of $\log T$ of the defect is $\tfrac{3}{8\pi^2}\hbar\,Q$ of the tree $\sum_a\partial_{A|_V=b\otimes X_a}\partial_{c=X^a}$ of the order-$\hbar^0$ part of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$ (of $W(P(\varepsilon,\infty),I)$ for the action), the terms $\{I_\varepsilon[T],O_\varepsilon[T]\}_T+\hbar\Delta_TO_\varepsilon[T]$ being $o(1)$.
+\item (ii) In every two-point sector of the action it vanishes identically in $\varepsilon$; per composite graph it is a nonzero multiple of $e^{-\varepsilon|p|^2}-1$.
+\item (iii) For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, $\omega=e^{-i(p+q,x)}\mathrm{dvol}$, on two field legs $A|_{W_{\mathbb R}^\perp}=u\otimes X_1e^{i(p,x)}+u'\otimes X_3e^{i(q,x)}$, it is
+\[
+\frac{3}{8\pi^2}\hbar\,2iC\,\big((w_1,u)(w_2,u')+(w_2,u)(w_1,u')\big)(X_1,X_3)\big(e^{-\varepsilon|q|^2}-e^{-\varepsilon|p|^2}\big)\Big(\frac{(b,p)}{|p|^2}e^{-\varepsilon|p|^2}-\frac{(b,q)}{|q|^2}e^{-\varepsilon|q|^2}\Big),
+\]
+of order $\varepsilon$ and nonzero for $|p|\neq|q|$, for the traceless and the trace part.
+\item (iv) Arity two along $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V\neq0$: a nonzero multiple of $\varepsilon e^{-\varepsilon|p|^2}$ (Proposition \ref{prop:kj-compare} (iii)), carried by the $\eta$--$\eta$ chains. At $\varepsilon\to0$ the term of $d_{CE}$, $W^{(1)}$ on $[\eta_1,\eta_2]=-K_{\Gamma(\eta_1,\eta_2)|_V}$, whose coefficient of $\log T$ is $\tfrac{3}{8\pi^2}\hbar$ times a nonzero tree, is therefore cancelled exactly by $Q$ of the logarithm of $W^{(2)}(\eta_1,\eta_2)$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i), (ii), (iii): [analytic, Theorem thm:ktr-defectlog]; the identity
+\[
+a_1r_pr_q+b_1r_q^2+a_2r_qr_p+b_2r_p^2=(r_q-r_p)(a_1r_p-a_2r_q),\qquad b_1=-a_2,\ b_2=-a_1,\ r_k=e^{-\varepsilon|k|^2},
+\]
+with $a_1=2iC(b,p)|p|^{-2}$, $a_2=2iC(b,q)|q|^{-2}$ times the fibre factor, is checked in exact rational arithmetic (rerun identical); the per-graph form of (ii) and its exactness in $\varepsilon$ are those of Proposition \ref{prop:kj-compare} (ii). (iv) By the first identity of \eqref{eq:c8-transfer} at fixed $\varepsilon$, at arity two along $(\eta_1,\eta_2)$ the defect equals the $d_{CE}$ term, $W^{(1)}$ evaluated on $[\eta_1,\eta_2]=-K_{\Gamma(\eta_1,\eta_2)|_V}$, plus $QW^{(2)}(\eta_1,\eta_2)$, plus $K_T$ terms of order $o(1)$; the defect has a $\log T$ coefficient of order $\varepsilon$ (Proposition \ref{prop:kj-compare} (iii)), while the $d_{CE}$ term alone has one of order $\varepsilon^0$, $\tfrac{3}{8\pi^2}\hbar$ times the nonzero tree along $K_{\Gamma(\eta_1,\eta_2)|_V}$ (Proposition \ref{prop:kj-trees}).
+\end{proof}
+
+\section{Where $T\to\infty$ is safe}
+
+\begin{proposition}[The endpoint along the special conformal generators]
+\label{prop:kj-Tsafe}
+\begin{center}
+\begin{tabular}{l|l|l}
+object & at finite $T$ & $T\to\infty$ \\
+\hline
+$I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ along $K_b$ & independent of $T$ & safe (constant) \\
+obstruction and finite counterterm along $K_b$ & independent of $T$ & safe (constant) \\
+$K_1=\hbar L_1(O)^{(1)}(K_b)$ & independent of $T$ & safe (constant) \\
+$L_1(O)^{(2)}(\eta_1,\eta_2)$, $L_1(O)^{(2)}(K_b,P_c)$ & independent of $T$ & safe (constant) \\
+defect along $K_b$ at fixed $\varepsilon$, two-point sectors of the action & finite & safe: $T\partial_T=O(\varepsilon/T)$ \\
+defect along $K_b$ at fixed $\varepsilon$, scalar bilinears & finite & not safe: $O(\varepsilon)\log T$ \\
+defect along $(\eta_1,\eta_2)$ at fixed $\varepsilon$, $\Gamma(\eta_1,\eta_2)|_V\neq0$ & finite & not safe: multiple of $\varepsilon e^{-\varepsilon|p|^2}\log T$ \\
+$W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ & finite & not safe: $\tfrac{3}{8\pi^2}\hbar\log T$ times a nonzero tree \\
+$O[T]^{(1)}(K_b)$, scalar bilinears & finite & not safe: the tree of $O$ is nonzero \\
+$W^{(2)}(\eta_1,\eta_2)$, $O[T]^{(2)}(\eta_1,\eta_2)$, $\Gamma(\eta_1,\eta_2)|_V\neq0$ & finite & not safe: $\log T$ \\
+the same with $\Gamma(\eta_1,\eta_2)|_V=0$ & finite & safe \\
+$d_TO[T]^{(1)}(K_b)$ and $Q\big(O[T]^{(1)}(K_b)\big)$, gauge-invariant $O$, $L_1(O)^{(0)}=0$ & finite & safe \\
+$\{I[T],O[T]\}_T+\hbar\Delta_TO[T]$ along $K_b$ & $O(T^{-1/2}\log T)$ & $\to0$ \\
+\end{tabular}
+\end{center}
+\tabcaption{The order "$\varepsilon\to0$ at fixed $T$, then $T\to\infty$" is part of the definition of $K_1$; after it, $T\to\infty$ is trivial for every core quantity.}
+\end{proposition}
+
+\begin{proof}
+Rows 1--4: Theorem \ref{thm:kj-Tindep} and Proposition \ref{prop:c8-Tindep} (i). Rows 5--7: Proposition \ref{prop:kj-defectlog}. Rows 8--11: Corollary \ref{cor:kj-flowlog}, Proposition \ref{prop:kj-trees}, Proposition \ref{prop:c8-Tsafe}. Rows 12--13: Proposition \ref{prop:kj-nocore} and [analytic, Lemma lem:ktr-KT], a power-counting bound.
+\end{proof}
+
+\section{Consequences for $K_1$}
+
+\begin{definition}[The special conformal components]
+\label{def:kj-K1}
+Definition \ref{def:c8-K} stands: $K_1(O)=\hbar L_1(O)^{(1)}(K_b)$, the part with the fewest legs of the limit $\varepsilon\to0$, at any finite $T$, of the graphs of the defect along $K_b$; it is the same at every $T$. For gauge-invariant $O$ with $L_1(O)^{(0)}=0$ it equals the part with the fewest legs of $\lim_{T\to\infty}Q\big(O[T]^{(1)}(K_b)\big)-\{S^{(1)}(K_b),O\}[\infty]$.
+\end{definition}
+
+\begin{proposition}[Relations, and their status]
+\label{prop:kj-relations}
+On the cohomology of $\Lambda^{(0)}$, from Corollary \ref{cor:c8-homotopy} (ii) at order $\hbar$ with $[K_b,P_c]=(b,c)\Delta+\omega_{bc}$, $\omega_{bc}(x)=2(b,x)c-2(c,x)b$, $[P_c,\Delta]=2P_c$, $[K_b,\Delta]=-2K_b$, $[\eta_1,\eta_2]=-K_{\Gamma(\eta_1,\eta_2)|_V}$, together with the relations at $(K_b,\Delta)$ and $(K_b,K_c)$ of [analytic, Theorem thm:ktr-relations]:
+\[
+\begin{aligned}
+&[K_1(K_b),\mathrm{ad}_{S^{(1)}(P_c)}]+[\mathrm{ad}_{S^{(1)}(K_b)},P_1(P_c)]+(b,c)D_1+M_1(\omega_{bc})\equiv0,\\
+&[P_1(P_c),\mathrm{ad}_{S^{(1)}(\Delta)}]+[\mathrm{ad}_{S^{(1)}(P_c)},D_1]+2P_1(P_c)\equiv0,\\
+&K_1\big(K_{\Gamma(\eta_1,\eta_2)|_V}\big)\equiv[S_1(\eta_1),\mathrm{ad}_{S^{(1)}(\eta_2)}]+[\mathrm{ad}_{S^{(1)}(\eta_1)},S_1(\eta_2)]\quad(\text{anticommutators}).
+\end{aligned}
+\]
+On a family of Lorentz-scalar operators of Weyl weight $w$ with $P_1=p\,\mathrm{ad}_{S^{(1)}(P_c)}$, $D_1=2\gamma+d\,\mathrm{ad}_{S^{(1)}(\Delta)}$, $M_1=m\,\mathrm{ad}_{S^{(1)}(\omega)}$ and $K_1=\int\omega\,(\alpha\,v\cdot\partial f+\tfrac14\operatorname{div}v\,\kappa f)$, the relations force $d=0$, $m=0$, $\alpha=-p$, $\kappa=\gamma-pw$:
+\[
+K_1(O)\equiv\tfrac14\operatorname{div}v\,\gamma\,O-p\,\{S^{(1)}(K_b),O\}.
+\]
+These are conditional: they assume the one-loop master equation with arity two and the local representatives on the family. $K_1$ on the scalar bilinears has not been computed from the graphs along $K_b$; with the values $d=-(\tfrac13+f_S)$, $p=-(\tfrac13+f_P)$ of the internal insertions along $\Delta$ and $P_b$, they predict $f_S=-\tfrac13$ and $K_1(O)\equiv\tfrac14\operatorname{div}v\,\gamma\,O+(\tfrac13+f_P)\{S^{(1)}(K_b),O\}$ in units, which is the test of the direct evaluation.
+\end{proposition}
+
+\begin{proof}
+This is [analytic, Theorems thm:ktr-relations and thm:ktr-KD]; the bracket relations, the cocycle property of $\tfrac14\operatorname{div}$, the order-$\hbar^0$ identity $[\mathrm{ad}_{S^{(1)}(x_1)},\mathrm{ad}_{S^{(1)}(x_2)}]=-\mathrm{ad}_{S^{(1)}([x_1,x_2])}$ for even $x_1,x_2$ and the unique solution reproduce exactly on rerun. In the $(P_c,\Delta)$ relation the terms in $p$ cancel, $p[\mathrm{ad}_{S^{(1)}(P_c)},\mathrm{ad}_{S^{(1)}(\Delta)}]+2p\,\mathrm{ad}_{S^{(1)}(P_c)}=-2p\,\mathrm{ad}_{S^{(1)}(P_c)}+2p\,\mathrm{ad}_{S^{(1)}(P_c)}=0$, and $d[\mathrm{ad}_{S^{(1)}(P_c)},\mathrm{ad}_{S^{(1)}(\Delta)}]=-2d\,\mathrm{ad}_{S^{(1)}(P_c)}$ remains.
+\end{proof}
+
+\begin{corollary}[$K=P^\dagger$ as a cross-check]
+\label{cor:kj-gram}
+Under the hypotheses of Theorem \ref{thm:c8-adjoint} with the radial conjugation built from the full $\Lambda^{(1)}(P_n)$, $\Lambda^{(1)}(K_n)$, the third relation of Corollary \ref{cor:c8-gram} with $P_1=p\,\mathrm{ad}_{S^{(1)}(P_b)}$ reads
+\[
+K_1\ \text{along}\ K_{\bar b}=\bar p\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}+\hbar\big[\mathrm{ad}_{S^{(1)}(K_{\bar b})},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big],
+\]
+since $(\mathrm{ad}_{S^{(1)}(P_b)})^{\rm adj}=-\mathrm{ad}_{S^{(1)}(K_{\bar b})}$; with Proposition \ref{prop:kj-relations}, the rescaling part of the commutator is $-(p+\bar p)\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}$. The finite part $\tfrac a2\,\mathrm{ad}_{S^{(1)}(\Delta)}$ shifts $P_1$ by $-a\,\mathrm{ad}_{S^{(1)}(P_c)}$ and $K_1$ by $+a\,\mathrm{ad}_{S^{(1)}(K_b)}$, and is compatible with the reflection of Theorem \ref{thm:c8-fields} exactly when $\bar a=-a$.
+\end{corollary}
+
+\begin{proof}
+$Y_0=X_0^{\rm adj}$ with $P_b^\dagger=-K_{\bar b}$ (Theorem \ref{thm:c8-dag}); Proposition \ref{prop:c8-laws} (b) with $[\mathrm{ad}_{S^{(1)}(x)},\tfrac a2\mathrm{ad}_{S^{(1)}(\Delta)}]=-\tfrac a2\mathrm{ad}_{S^{(1)}([x,\Delta])}$; $S^{(1)}(\Delta)^{\Theta_n}=-S^{(1)}(\Delta)$ by $\Delta^{\dagger_n}=-\Delta$ and Theorem \ref{thm:c8-fields} (i), and $\{f,g\}^{\Theta_n}=(-1)^{|f|+|g|}\{g^{\Theta_n},f^{\Theta_n}\}$, which give $(\tfrac a2\{S^{(1)}(\Delta),O\})^{\Theta_n}=-\tfrac{\bar a}{2}\{S^{(1)}(\Delta),O^{\Theta_n}\}$.
+\end{proof}
+
+\section{Two-component form}
+
+\begin{proposition}[Two-component summary]
+\label{prop:kj-twocomp}
+With $v^m=x^2b^m-2(b\cdot x)x^m$ and the conventions of Definition \ref{def:c8-twocomp}:
+\begin{itemize}
+\item the floating term is $\int\big(v^n\partial_nA_m+A_n\partial_mv^n,A^*_m\big)$; $T\partial_T$ of the composite line tends to $\tfrac{3}{8\pi^2}$ times the kernel of the constant modes $A_m=b_mX_a$, $c=X^a$, summed over $a$;
+\item the coefficient of $\log T$ in $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ on the quadratic sector is, in units, with $\chi=(-\partial^2)^{-1}\lambda$,
+\[
+\begin{aligned}
+&-3\int\big(b^m\partial_m(-\partial^2)^{-1}A_{ij},A^{*ij}\big)-12\int\big(b^n\partial_n(-\partial^2)^{-1}A_m,A^*_m\big)-6\int\big((-\partial^2)^{-1}b^mA_m,\partial_nA^*_n\big)\\
+&+6\int\big(b^m\partial_m(-\partial^2)^{-1}c,c^*\big)-6\int b_m\big((\sigma^n\bar\sigma^m)_\alpha{}^\beta\partial_n\chi_\beta{}^i,\lambda^{*\alpha}{}_i\big)+6\int b_m\big(\partial_n\bar\chi_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha},\bar\lambda^{*\dot\alpha i}\big);
+\end{aligned}
+\]
+\item the logarithm along $(\eta_1,\eta_2)$ is absent exactly when $v_1^m=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big)=0$;
+\item for $O=\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$ the factor of Proposition \ref{prop:kj-defectlog} (iii) is $\tfrac1{16}\big(w_1^{ij}u_{ij}\,w_2^{kl}u'_{kl}+w_2^{ij}u_{ij}\,w_1^{kl}u'_{kl}\big)(X_1,X_3)$;
+\item on a scalar family with $P_1=p\{S^{(1)}(P_b),-\}$, $K_1(O)\equiv-2(b\cdot x)\,\gamma\,O-p\{S^{(1)}(K_b),O\}$, with $\{S^{(1)}(K_b),-\}$ the transformation by $v.A_m=v^n\partial_nA_m+A_n\partial_mv^n$, $v.A_{ij}=v^n\partial_nA_{ij}-2(b\cdot x)A_{ij}$, $v.\lambda_\alpha{}^i=v^n\partial_n\lambda_\alpha{}^i-\tfrac12(x_mb_n-x_nb_m)(\sigma^m\bar\sigma^n)_\alpha{}^\beta\lambda_\beta{}^i-3(b\cdot x)\lambda_\alpha{}^i$, $v.\bar\lambda_{\dot\alpha i}=v^n\partial_n\bar\lambda_{\dot\alpha i}+\tfrac12(x_mb_n-x_nb_m)\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}-3(b\cdot x)\bar\lambda_{\dot\alpha i}$, $v.c=v^n\partial_nc$.
+\end{itemize}
+Weinberg's form follows with $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ after the Wick map (Proposition \ref{prop:c8-twocomp}).
+\end{proposition}
+
+\begin{proof}
+$(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=\tfrac14(A_{ij},A^{*ij})$, $d^*d=-\partial^2$, $d^*A^*=-\partial_nA^*_n$, and Proposition \ref{prop:kj-trees} times $6$. Spinors: with \eqref{eq:c8-pairing}, $(\rho(b)\chi)^\alpha{}_i=ib_m\bar\chi_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}$, $(\rho(b)\chi)^{\dot\alpha i}=-ib_m\bar\sigma^{m\dot\alpha\alpha}\chi_\alpha{}^i$, then $({\not d}\eta)_\alpha{}^i=-i\partial_n\sigma^n_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}=-b_m\partial_n(\sigma^n\bar\sigma^m)_\alpha{}^\beta\chi_\beta{}^i$ and $({\not d}\eta)_{\dot\alpha i}=i\partial_n\eta^\alpha{}_i\sigma^n_{\alpha\dot\alpha}=-b_m\partial_n\bar\chi_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}$, paired by $(X,\lambda^*)=X_\alpha{}^i\lambda^{*\alpha}{}_i-X_{\dot\alpha i}\bar\lambda^{*\dot\alpha i}$. Spin lift: on $S_+$, $\rho(e_m)\rho(e_n)=-\sigma^m\bar\sigma^n$, and $\tfrac14\rho(d(v,-))=\tfrac18\sum_{m,n}4(x_mb_n-x_nb_m)\rho(e_m)\rho(e_n)$; $\tfrac14\operatorname{div}v=-2b\cdot x$, $\tfrac38\operatorname{div}v=-3b\cdot x$.
+\end{proof}
+
+\section{Verification}
+
+\begin{tabular}{l|l|l}
+statement & method & result \\
+\hline
+six scripts of [analytic] & rerun & identical \\
+five validations of [numerics] & rerun & identical \\
+three runs of [numerics] & rerun on a subset of $(\varepsilon,T)$ & identical \\
+Proposition \ref{prop:kj-composite} (ii) & 4-d quadrature, no sphere average & $1.3\cdot10^{-15}$ \\
+Proposition \ref{prop:kj-composite} (ii) & own radial reduction, exact & same closed form \\
+Proposition \ref{prop:kj-composite} (iii) & exact Gaussian moments, $T\le10^8$ & $1.5\cdot10^{-8}$ \\
+Lemma \ref{lem:kj-composite} & components of Proposition \ref{prop:c3-P} & $+\tfrac{3}{8\pi^2}$ \\
+Proposition \ref{prop:kj-trees} & third realisation, three sectors & ratio $1$ \\
+Proposition \ref{prop:kj-compare} (i), $(\lambda,\lambda^*)$ & closed form, realisation of the engines & $8i$; $-\tfrac{312}{7}i$ vs $-44.5711i$ \\
+Proposition \ref{prop:kj-compare} (ii), (iii) & own fits of the stored runs & as stated \\
+\end{tabular}
+\tabcaption{Checks made for this judgement; the random sphere average of [numerics] reruns as $-6.00007$ against $-6.00005$; the scripts and outputs are listed in the summary file.}

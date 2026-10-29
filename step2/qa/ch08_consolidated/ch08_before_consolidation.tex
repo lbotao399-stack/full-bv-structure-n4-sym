@@ -1,0 +1,547 @@
+\chapter{The one-loop realisation of $\mathfrak{psl}(4|4)$: definitions}
+
+Chapters 4--6 quantised the action and the local operators with the global ghosts of $\mathfrak{psl}(4|4)$ entering through the classical cochain $S^{(1)}+S^{(2)}$. Realising the superconformal symmetry at one loop means two things: an equivariant effective interaction that solves the quantum master equation with values in $C^\bullet(\mathfrak{psl}(4|4))$, and, on local operators, a quantum differential whose components along the generators are the one-loop corrections of the supercharges, the special supercharges, the dilatation and the special conformal transformations. The special conformal fields grow quadratically at large distance and their insertions produce logarithms of the endpoint of the transfer of [C07], so the objects are defined at a finite endpoint $T$, their content is proved to be independent of $T$, and the finite choices on which they depend are separated from the invariant content. This chapter states the definitions at every order in $\hbar$, proves that they are well posed, and defines the conjugations and inner products in which $Q^\dagger=S$ becomes a statement about the one-loop components.
+
+Names. In this chapter the spinor parameters written $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ in Definition \ref{def:c2-odd} are written $\xi\in\Sigma$ and $\eta\in\Sigma^*$, and general elements of $\Sigma\oplus\Sigma^*$ are written $\zeta$; the letters $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ denote the one-loop components of Definition \ref{def:c8-components}, and $Q$ alone is the linear BV differential. The local functionals are $\mathscr O_l(\mathscr E)$ [C07, Def 4.2.2], the cochains $C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))$ of Definition \ref{def:c2-cochains}, with the Chevalley--Eilenberg differential and the cochain bracket of Definition \ref{def:c2-dce}; for a functional $f$, $\mathrm{ad}_f:=\{f,-\}$. The translation along $b\in V$ is $P_b$ and the special conformal field is $K_b$, $x\mapsto(x,x)b-2(b,x)x$ (Definition \ref{def:c2-even}). The unit is
+\[
+\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)} .
+\]
+
+\section{Two-component form of the data}
+
+Every definition of this chapter is stated index-free and in the two-component notation of Srednicki [Srednicki] (M. Srednicki, Quantum Field Theory, Cambridge University Press, 2007, §§34--36), adapted to Euclidean signature by the Wick map below.
+
+\begin{definition}[Two-component realisation]
+\label{def:c8-twocomp}
+The Wick map is $v^0=-iv^4$, $v^k=v^k$ ($k=1,2,3$), so $x^4=it$ and $\partial_0=i\partial_4$. The Euclidean matrices
+\[
+\sigma^m_{\alpha\dot\alpha}=(\sigma^1,\sigma^2,\sigma^3,\,i),\qquad \bar\sigma^{m\dot\alpha\alpha}=(-\sigma^1,-\sigma^2,-\sigma^3,\,i)
+\]
+satisfy $\sigma^\mu v_\mu=\sigma^mv_m$, $\bar\sigma^\mu v_\mu=\bar\sigma^mv_m$ for Srednicki's $\sigma^\mu=(1,\vec\sigma)$, $\bar\sigma^\mu=(1,-\vec\sigma)$, and $\sigma^m\bar\sigma^n+\sigma^n\bar\sigma^m=-2\delta^{mn}$. Indices are raised and lowered with $\varepsilon^{12}=\varepsilon^{\dot1\dot2}=+1$, $\varepsilon_{12}=\varepsilon_{\dot1\dot2}=-1$, and $\chi\psi=\chi^\alpha\psi_\alpha$, $\bar\chi\bar\psi=\bar\chi_{\dot\alpha}\bar\psi^{\dot\alpha}$. The chirality $S_+$ carries undotted indices (Srednicki's left-handed $(2,1)$); $W$ carries an upper index $i=1,\dots,4$, $W^*$ a lower one. An element of $\Sigma=S_+\otimes W\oplus S_-\otimes W^*$ has components $(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i})$, an element of $\Sigma^*=S_+\otimes W^*\oplus S_-\otimes W$ components $(\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$, and
+\begin{equation}
+(\xi,\eta)=\xi_\alpha{}^i\eta^\alpha{}_i-\bar\xi_{\dot\alpha i}\bar\eta^{\dot\alpha i},\qquad (\rho(v)\eta)_\alpha{}^i=-i\,v_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i},\qquad (\rho(v)\eta)_{\dot\alpha i}=i\,v_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha},
+\label{eq:c8-pairing}
+\end{equation}
+\[
+(\rho(v)\xi)^\alpha{}_i=i\,v_m\bar\xi_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha},\qquad (\rho(v)\xi)^{\dot\alpha i}=-i\,v_m\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i .
+\]
+The six scalar directions $W_{\mathbb R}^\perp$ are described by the 't Hooft blocks $\Sigma^I_{ij}=-\Sigma^I_{ji}$, $I=1,\dots,6$: for $a,b,c\in\{1,2,3\}$, $\Sigma^a_{bc}=\epsilon_{abc}$, $\Sigma^a_{b4}=-\Sigma^a_{4b}=\delta_{ab}$, $\Sigma^{a+3}_{bc}=i\,\epsilon_{abc}$, $\Sigma^{a+3}_{b4}=-\Sigma^{a+3}_{4b}=-i\,\delta_{ab}$; they satisfy $\sum_I\Sigma^I_{ij}\Sigma^I_{kl}=2\varepsilon_{ijkl}$ with $\varepsilon_{1234}=\varepsilon^{1234}=1$. For $w\in W_{\mathbb R}^\perp$ with components $w_I$, $w_{ij}=w_I\Sigma^I_{ij}$ and $w^{ij}=\tfrac12\varepsilon^{ijkl}w_{kl}$, and
+\[
+(\rho(w)\xi)^\alpha{}_j=\varepsilon^{\alpha\beta}w_{ji}\xi_\beta{}^i,\quad (\rho(w)\xi)^{\dot\alpha j}=\varepsilon^{\dot\alpha\dot\beta}w^{ji}\bar\xi_{\dot\beta i},\quad (\rho(w)\eta)_\alpha{}^k=-w^{kj}\varepsilon_{\alpha\beta}\eta^\beta{}_j,\quad (\rho(w)\eta)_{\dot\beta k}=-w_{kj}\varepsilon_{\dot\beta\dot\alpha}\bar\eta^{\dot\alpha j}.
+\]
+The $\Gamma$-pairing $(\rho(v)\zeta_1,\zeta_2)=(v,\Gamma(\zeta_1,\zeta_2))$ [ESW, (28)] has the components
+\[
+\begin{aligned}
+&\Gamma(\xi_1,\xi_2)\big|_V^{\,m}=i\big(\bar\xi_{2\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_{1\alpha}{}^i+\bar\xi_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_{2\alpha}{}^i\big),\qquad
+\Gamma(\eta_1,\eta_2)\big|_V^{\,m}=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big),\\
+&\Gamma(\xi_1,\xi_2)_{kl}=2\varepsilon_{jikl}\xi_{1\alpha}{}^j\varepsilon^{\alpha\beta}\xi_{2\beta}{}^i-2\big(\bar\xi_{1\dot\alpha k}\varepsilon^{\dot\alpha\dot\beta}\bar\xi_{2\dot\beta l}-\bar\xi_{1\dot\alpha l}\varepsilon^{\dot\alpha\dot\beta}\bar\xi_{2\dot\beta k}\big),\\
+&\Gamma(\eta_1,\eta_2)^{kl}=-2\varepsilon^{klpj}\varepsilon_{\alpha\beta}\eta_1{}^\beta{}_j\eta_2{}^\alpha{}_p+2\big(\varepsilon_{\dot\beta\dot\alpha}\bar\eta_1^{\dot\alpha l}\bar\eta_2^{\dot\beta k}-\varepsilon_{\dot\beta\dot\alpha}\bar\eta_1^{\dot\alpha k}\bar\eta_2^{\dot\beta l}\big),
+\end{aligned}
+\]
+with $\Gamma_{kl}=\Gamma^I\Sigma^I_{kl}$, $\Gamma^{kl}=\tfrac12\varepsilon^{klij}\Gamma_{ij}$ and $(\Gamma,u)=\Gamma^mu_m+\tfrac14\Gamma_{ij}u^{ij}$. The conformal Killing spinor $x\mapsto\xi+\rho(x)\eta$ of Definition \ref{def:c2-odd} has components
+\begin{equation}
+\epsilon_\alpha{}^i(x)=\xi_\alpha{}^i-i\,x_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i},\qquad \bar\epsilon_{\dot\alpha i}(x)=\bar\xi_{\dot\alpha i}+i\,x_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}.
+\label{eq:c8-killing}
+\end{equation}
+The fields are $A_m$; the scalars $A_{ij}=A_I\Sigma^I_{ij}$, $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$, with $\iota_wA=\tfrac14w^{ij}A_{ij}$; the gaugino $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$; the ghost $c$; the antifields $A^*_m$, $A^*_{ij}$, $\lambda^{*\alpha}{}_i$, $\bar\lambda^{*\dot\alpha i}$, $c^*$, with $(\lambda,\lambda^*)=(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})$. The generators of [SW, (8)] are labelled by the blocks of [SW, (17)]: $Q^i_\alpha$ (component $\xi_\alpha{}^i$), $\bar Q_{\dot\alpha i}$ ($\bar\xi_{\dot\alpha i}$), $S^\alpha{}_i$ ($\eta^\alpha{}_i$), $\bar S^{\dot\alpha i}$ ($\bar\eta^{\dot\alpha i}$); in components $K_b$ is $v^m=x^2b^m-2(b\cdot x)x^m$.
+\end{definition}
+
+\begin{proposition}[Two-component form of the action and of the propagator]
+\label{prop:c8-twocomp}
+The formulas of Definition \ref{def:c8-twocomp} realise $\rho$, $(-,-)$ and $\Gamma$ of Definition \ref{def:c1-spaces}: they satisfy the Clifford relation on $V_{10}$, $(\rho(v)\zeta_1,\zeta_2)=(\zeta_1,\rho(v)\zeta_2)$, [ESW, Assumption 3.1], and $\rho(e_1e_2e_3e_4)=+1$ on $S_+\otimes W$. On the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$, $\rho(v)=-i\gamma_S^\mu v_\mu$ with Srednicki's $\gamma$ matrices, which is $\gamma_W^\mu v_\mu$ with Weinberg's ($\gamma_W=-i\gamma_S$); this gives Weinberg's form of every two-component formula below. Up to total derivatives the kinetic part of the action of Definition \ref{def:c1-action} is
+\[
+S\supset\int d^4x\Big\{-\tfrac18(F_{mn},F_{mn})-\tfrac1{16}(D_mA^{ij},D_mA_{ij})+i\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i\big)+(D_mc,A^*_m)\Big\},
+\]
+and for $\mathfrak g=\mathfrak{su}(N)$ with $(X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY)$, $A_m=-igA^a_mT^a$, $A_I=-igA^a_IT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$, $\operatorname{tr}(T^aT^b)=\tfrac12\delta^{ab}$,
+\[
+\frac S\hbar\supset\int d^4x\Big\{-\tfrac14F^a_{mn}F^a_{mn}-\tfrac12(D_mA_I)^a(D_mA_I)^a+i\bar\lambda^a\bar\sigma^mD_m\lambda^a\Big\},
+\]
+the Wick image of Srednicki's Lagrangian $-\tfrac14F^{a\mu\nu}F^a_{\mu\nu}-\tfrac12D^\mu A_ID_\mu A_I+i\lambda^{\dagger a}\bar\sigma^\mu D_\mu\lambda^a$ [Srednicki, (69.16), (95.77)], with $e^{iS_{\rm Srednicki}}=e^{S/\hbar}$. The components of the propagator of Definition \ref{def:c8-PT} in momentum space are
+\[
+\langle A_mA_n\rangle:\ 2(-,-)^{-1}\delta_{mn},\qquad \langle A_{ij}A_{kl}\rangle:\ 4(-,-)^{-1}\varepsilon_{ijkl},\qquad \langle c\,A^*_m\rangle:\ -(-,-)^{-1}ip_m,\qquad \langle\lambda_\alpha{}^i\bar\lambda_{\dot\beta j}\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j,
+\]
+each multiplied by $(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$.
+\end{proposition}
+
+\begin{proof}
+Each identity is a finite matrix identity, verified by evaluation against the realisation of Chapter 2 on the ten basis vectors of $V_{10}$; the intertwiner with that realisation is unique up to a common sign. The action is the density of \eqref{eq:c1-action} rewritten with $(F,F)=\tfrac12(F_{mn},F_{mn})+\tfrac14(D_mA^{ij},D_mA_{ij})+\tfrac1{32}([A^{ij},A^{kl}],[A_{ij},A_{kl}])$ and $\tfrac12\int(\lambda,{\not d}_A\lambda)=\int\big\{i(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i)+(\text{Yukawa terms})\big\}$. The su$(N)$ form follows with $(X,Y)=2\hbar X^aY^a$. The propagator is Proposition \ref{prop:c3-P} with the scalar factor of Definition \ref{def:c8-PT}.
+\end{proof}
+
+\section{The transfer endpoint}
+
+\begin{definition}[Propagator with an endpoint]
+\label{def:c8-PT}
+For $0<\varepsilon<T\le\infty$,
+\begin{equation}
+P(\varepsilon,T)=\int_\varepsilon^T(Q^{GF}\otimes1)K_t\,dt,\qquad (Q\otimes1+1\otimes Q)\,P(\varepsilon,T)=K_\varepsilon-K_T
+\label{eq:c8-PT}
+\end{equation}
+[C07, Lemma 10.2.1], with $K_\infty=0$ (Definition \ref{def:c3-K}), and $\Delta_T=-\partial_{K_T}$, $\{-,-\}_T$ as in Definition \ref{def:c3-delta} with $T$ in place of $\varepsilon$. The scalar factor of $P(\varepsilon,T)$ is
+\[
+\int_\varepsilon^T\frac{e^{-|x-y|^2/4t}}{(4\pi t)^2}\,dt=\frac{e^{-|x-y|^2/4T}-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2},\qquad \int_\varepsilon^Te^{-t|p|^2}dt=\frac{e^{-\varepsilon|p|^2}-e^{-T|p|^2}}{|p|^2}.
+\]
+$T$ is the endpoint of the transfer, the scale of the effective interaction of [C07]. For $|x-y|^2\gg T$ every component of $P(\varepsilon,T)$ and of its derivatives decays as $e^{-|x-y|^2/4T}$, and for every $T$ they are bounded by a constant multiple, independent of $\varepsilon$ and $T$, of the corresponding components of $P(0,\infty)$.
+\end{definition}
+
+\begin{lemma}[Transfer between endpoints]
+\label{lem:c8-transfer}
+For $0<\varepsilon<T<T'\le\infty$, on functionals with values in $C^\bullet(\mathfrak{psl}(4|4))[[\hbar]]$,
+\begin{equation}
+(d_{CE}+Q+\hbar\Delta_T)\,e^{\hbar\partial_{P(\varepsilon,T)}}=e^{\hbar\partial_{P(\varepsilon,T)}}\,(d_{CE}+Q+\hbar\Delta_\varepsilon),\qquad W\big(P(\varepsilon,T'),J\big)=W\Big(P(T,T'),W\big(P(\varepsilon,T),J\big)\Big).
+\label{eq:c8-transfer}
+\end{equation}
+At $T=\infty$ the first identity is Theorem \ref{thm:c3-uv}; with $(\varepsilon,T)$ replaced by $(T,T')$ it relates the structures at two endpoints [C07, Lemma 10.2.2].
+\end{lemma}
+
+\begin{proof}
+By [C07, §6.4], $[\partial_\phi,Q]=\partial_{Q\phi}$; with \eqref{eq:c8-PT}, $\partial_{P(\varepsilon,T)}Q-Q\,\partial_{P(\varepsilon,T)}=\partial_{K_\varepsilon}-\partial_{K_T}=-\Delta_\varepsilon+\Delta_T$. The operators $\partial_\phi$ commute, so $Q\,\partial_{P(\varepsilon,T)}^n=\partial_{P(\varepsilon,T)}^nQ+n\,\partial_{P(\varepsilon,T)}^{n-1}(\Delta_\varepsilon-\Delta_T)$, and summing the exponential series gives the first identity; $d_{CE}$ commutes with $\partial_{P(\varepsilon,T)}$. The second follows from $P(\varepsilon,T')=P(\varepsilon,T)+P(T,T')$ and $e^{\hbar\partial_{\phi_1+\phi_2}}=e^{\hbar\partial_{\phi_2}}e^{\hbar\partial_{\phi_1}}$ (Definition \ref{def:c3-W}).
+\end{proof}
+
+\section{The quantised equivariant interaction}
+
+\begin{definition}[Equivariant quantisation]
+\label{def:c8-quant}
+Let $I_{\mathfrak{psl}(4|4)}=I+S^{(1)}+S^{(2)}$ be the equivariant interaction (Definition \ref{def:c2-action}) and $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ its counterterms: graph by graph, the singular parts of the flow, order by order in $\hbar$ with the counterterms of lower order inserted, local cochains with coefficients in the span of the functions $\varepsilon^{-m}\log^k\varepsilon$, $(m,k)\neq(0,0)$ (Definition \ref{def:c4-ict} at order $\hbar$, [C07, Thm B] at higher order). A finite counterterm is a local cochain $F_{\mathfrak{psl}(4|4)}=\hbar F_1+\hbar^2F_2+\cdots$ of degree $0$, independent of $\varepsilon$. The effective interaction at scale $T$ is
+\begin{equation}
+I_{\mathfrak{psl}(4|4)}[T]:=\lim_{\varepsilon\to0}W\big(P(\varepsilon,T),\,I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}\big),
+\label{eq:c8-IT}
+\end{equation}
+and $F_{\mathfrak{psl}(4|4)}$ is a quantisation of the equivariant theory if the equivariant quantum master equation holds at scale $T$ [C07, Def 10.3.1], [CG2, Prop 13.3.2.1]:
+\begin{equation}
+(d_{CE}+Q)\,I_{\mathfrak{psl}(4|4)}[T]+\tfrac12\big\{I_{\mathfrak{psl}(4|4)}[T],I_{\mathfrak{psl}(4|4)}[T]\big\}_T+\hbar\Delta_T\,I_{\mathfrak{psl}(4|4)}[T]=0 .
+\label{eq:c8-qme}
+\end{equation}
+A one-loop quantisation is the same statement modulo $\hbar^2$. The one-loop BV structure of the theory is a one-loop quantisation together with the quantum differential of local operators of Definition \ref{def:c8-rep}.
+\end{definition}
+
+\begin{proposition}[Independence of the endpoint]
+\label{prop:c8-Tindep}
+\begin{itemize}
+\item (i) At order $\hbar$ the singular part of every graph with edges $P(\varepsilon,T)$ is independent of $T\in(0,\infty)$, and equal to that at $T=\infty$ in the components whose graphs converge at large distance. At every order in $\hbar$ the counterterms $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ constructed with $P(\varepsilon,T)$ are the same for all $T\in(0,\infty)$ [C07, §1.5].
+\item (ii) For $T<T'<\infty$, $I_{\mathfrak{psl}(4|4)}[T']=W\big(P(T,T'),I_{\mathfrak{psl}(4|4)}[T]\big)$, and \eqref{eq:c8-qme} holds at $T$ exactly when it holds at $T'$. At $T'=\infty$ the same holds in every component in which the graph sums converge as $T'\to\infty$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) At order $\hbar$, in the Schwinger representation of Lemma \ref{lem:c4-local}, the coefficients of $\varepsilon^{-k}$ and $\log\varepsilon$ come from the region in which the Schwinger times of the cycle sum to at most a fixed $\tau_0<T$; there the integration domain is independent of $T$, and the complementary region gives a function with a limit as $\varepsilon\to0$. At higher order, if $\lim_{\varepsilon\to0}W(P(\varepsilon,T),J)$ exists, so does $\lim_{\varepsilon\to0}W(P(\varepsilon,T'),J)=W\big(P(T,T'),\lim_{\varepsilon\to0}W(P(\varepsilon,T),J)\big)$, the edges $P(T,T')$ being smooth, and the uniqueness of the counterterms [C07, Thm B] identifies the counterterms at $T$ and at $T'$. (ii) The flow identity is the second identity of \eqref{eq:c8-transfer} in the limit $\varepsilon\to0$. By the first identity with $(T,T')$ in place of $(\varepsilon,T)$, $(d_{CE}+Q+\hbar\Delta_{T'})e^{I[T']/\hbar}=e^{\hbar\partial_{P(T,T')}}(d_{CE}+Q+\hbar\Delta_T)e^{I[T]/\hbar}$, and $e^{\hbar\partial_{P(T,T')}}$ is invertible; \eqref{eq:c8-qme} is the statement $(d_{CE}+Q+\hbar\Delta_T)e^{I[T]/\hbar}=0$ (Corollary \ref{cor:c3-qme}).
+\end{proof}
+
+\begin{definition}[Defect and obstruction]
+\label{def:c8-ob}
+With $J=I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}$, the defect vertex is
+\[
+(d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J ,
+\]
+and by \eqref{eq:c8-transfer} the left side of \eqref{eq:c8-qme} is the $\varepsilon\to0$ limit of the connected graphs with one defect vertex, other vertices from $J$ and edges $P(\varepsilon,T)$ (Proposition \ref{prop:c4-defectflow}). With $F_{\mathfrak{psl}(4|4)}=0$, the one-loop obstruction is the local cochain $\mathrm{Ob}$ of degree $1$ whose tree-level flow with edges $P(0,T)$ equals the coefficient of $\hbar$ in this limit; it is the equivariant form of Proposition \ref{prop:c4-defect1} and of the anomaly of [CG2, Prop 13.3.2.1], and by Proposition \ref{prop:c8-Tindep} it is independent of $T$.
+\end{definition}
+
+\begin{theorem}[One-loop obstruction theory]
+\label{thm:c8-obstruction}
+Write $s=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\}$ on local cochains; $s^2=0$ by \eqref{eq:c2-mc}. Assume that the obstruction of Definition \ref{def:c8-ob} is local.
+\begin{itemize}
+\item (i) $s\,\mathrm{Ob}=0$.
+\item (ii) A finite counterterm $\hbar F_1$ is a one-loop quantisation exactly when $sF_1=\mathrm{Ob}$.
+\item (iii) The one-loop quantisations form an affine space over the $s$-closed local cochains of degree $0$. Two of them whose difference is $s\phi$, $\phi$ local of degree $-1$, differ by the field redefinition generated by $\phi$; the differences modulo $s$-exact cochains are the classes of $H^0$ of $s$ on local cochains.
+\item (iv) Two classes of $H^0$ are always present: the coupling direction $S-S^{(2)}$, the derivative at $\mu=1$ of the solutions $\mu S+S^{(1)}+\mu^{-1}S^{(2)}$ of \eqref{eq:c2-mc}, and the outer direction $G_B$ of Definition \ref{def:c8-B}.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) is the equivariant form of [CG2, Prop 13.3.2.1]: with $E$ the left side of \eqref{eq:c8-qme}, $(d_{CE}+Q+\hbar\Delta_T)e^{I[T]/\hbar}=\hbar^{-1}Ee^{I[T]/\hbar}$, and applying $d_{CE}+Q+\hbar\Delta_T$ once more gives $\big((d_{CE}+Q)E+\{I[T],E\}_T+\hbar\Delta_TE\big)e^{I[T]/\hbar}=0$, the term $E^2$ vanishing for the odd $E$; at order $\hbar$ this is the tree-level flow of $s\,\mathrm{Ob}$, and the tree-level flow is injective on local cochains by the argument of Proposition \ref{prop:c4-unique} (lowest number of legs first). (ii) Replacing $F_{\mathfrak{psl}(4|4)}=0$ by $\hbar F_1$ adds to the defect vertex $-\hbar\big((d_{CE}+Q)F_1+\{I_{\mathfrak{psl}(4|4)},F_1\}_\varepsilon\big)$ modulo $\hbar^2$; the special-edge part $\{I_{\mathfrak{psl}(4|4)},F_1\}_\varepsilon-\{I_{\mathfrak{psl}(4|4)},F_1\}$ sits on a tree and is multiplied by $e^{-\varepsilon|p|^2}-1$ at a generic momentum, so it vanishes in the limit; the coefficient of $\hbar$ of the obstruction becomes $\mathrm{Ob}-sF_1$. (iii) By (ii) the difference $G$ of two solutions satisfies $sG=0$; for $G=s\phi$ the effective interactions differ by the flow of $\hbar s\phi$, the infinitesimal field redefinition generated by $\phi$. (iv) The family $\mu S+S^{(1)}+\mu^{-1}S^{(2)}$ solves \eqref{eq:c2-mc} because, by Lemma \ref{lem:c2-components}, the arity-$n$ component of the Maurer--Cartan equation is multiplied by $\mu^{2-n}$ in this family; its derivative at $\mu=1$ is $s$-closed. Its class is nonzero: in arity zero $(s\phi)^{(0)}=\{S,\phi^{(0)}\}$, with $\phi^{(0)}$ of degree $-1$ and Weyl weight $4$ a combination of the field-counting functionals (Lemma \ref{lem:c4-enumeration}), and $\{S,\phi^{(0)}\}=S$ is excluded by the computation of Corollary \ref{cor:c4-coupling}. $G_B$: Proposition \ref{prop:c8-B}.
+\end{proof}
+
+\begin{definition}[The outer derivation]
+\label{def:c8-B}
+$B$ is the even linear map of $\mathfrak{psl}(4|4)$ equal to $0$ on the even part, to $+1$ on $S_+\otimes W\subset\Sigma$ and on $S_-\otimes W\subset\Sigma^*$, and to $-1$ on $S_-\otimes W^*\subset\Sigma$ and on $S_+\otimes W^*\subset\Sigma^*$; it is induced by the bracket with $\operatorname{diag}(0_4,1_4)$ in $\mathfrak{gl}(4|4)$, equivalently minus the bracket with $\operatorname{diag}(1_4,0_4)$. Two-component: $B$ multiplies $\xi_\alpha{}^i$ and $\bar\eta^{\dot\alpha i}$ by $+1$ and $\bar\xi_{\dot\alpha i}$ and $\eta^\alpha{}_i$ by $-1$; it counts upper minus lower $W$ indices. The outer direction is
+\[
+G_B:=\frac{d}{dt}\Big|_{t=0}\big(e^{tB}\big)^*S_{\mathfrak{psl}(4|4)},\qquad G_B^{(0)}=0,\quad G_B^{(1)}(x)=S^{(1)}(Bx),\quad G_B^{(2)}(x_1,x_2)=S^{(2)}(Bx_1,x_2)+S^{(2)}(x_1,Bx_2).
+\]
+\end{definition}
+
+\begin{proposition}[The outer direction]
+\label{prop:c8-B}
+$B$ is an outer derivation of $\mathfrak{psl}(4|4)$. $G_B$ is $s$-closed of degree $0$ and Weyl weight $4$, and its class in $H^0$ is independent of the class of the coupling direction.
+\end{proposition}
+
+\begin{proof}
+On odd $x,y$ with $B$-values $b_x,b_y$ the derivation rule reads $(b_x+b_y)[x,y]=0$, and brackets within one $B$-eigenspace vanish: two elements of $\Sigma$, or two of $\Sigma^*$, of equal chirality have $\Gamma|_V=0$ by Definition \ref{def:c8-twocomp}, and an element of $\Sigma$ and one of $\Sigma^*$ in the same eigenspace have opposite chiralities, so their bracket has the Lorentz type $S_+\otimes S_-$, absent from $[\Sigma,\Sigma^*]\subset\mathfrak{so}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)\oplus\mathbb C\Delta$ (Proposition \ref{prop:c2-special}); the even part preserves the eigenspaces, translations mapping $\Sigma^*$ to $\Sigma$ and special conformal fields $\Sigma$ to $\Sigma^*$ by $\rho$, which keeps the factor $W$ or $W^*$. An inner derivation $\mathrm{ad}_y$ equal to $B$ would centralise the semisimple even part, and $\Sigma\oplus\Sigma^*$ contains no invariant vector, so $y=0$, while $B\neq0$. Pulling back by the automorphisms $e^{tB}$ maps solutions of \eqref{eq:c2-mc} to solutions, so $G_B$ is closed; $B$ commutes with $\Delta$, which fixes degree and weight. Independence: if $G_B=a(S-S^{(2)})+s\phi$, the arity-one component along $\xi\in S_+\otimes W$ reads $S^{(1)}(\xi)=\pm\{S^{(1)}(\xi),\phi^{(0)}\}$, since the space of local functionals of degree $-2$ and Weyl weight $\tfrac92$ is zero; averaging over the compact forms of $\mathrm{Spin}(4)\times SU(4)$ and of the gauge group, $\phi^{(0)}$ is a combination $\sum_fa_f\int(f,f^*)$ of the field-counting functionals of $A|_V$, $A|_{W_{\mathbb R}^\perp}$, the two chiralities of $\lambda$ and $c$, and $\{S^{(1)}(\xi),\phi^{(0)}\}$ multiplies each term of \eqref{eq:c2-S1Q} by a difference of two $a_f$. The four linear terms of $S^{(1)}(\xi)$ require four such differences equal to $\pm1$ whose sum is $0$, a contradiction.
+\end{proof}
+
+\section{Observables and the quantum differential}
+
+\begin{definition}[Renormalised local cochains]
+\label{def:c8-renorm}
+A scheme for local operators is a linear map $\psi$ of local cochains, preserving the degree and the Weyl weight, independent of $\varepsilon$ and linear over $C^\bullet(\mathfrak{psl}(4|4))$. For a local cochain $M$ of degree $|M|$ and a square-zero parameter $\delta$ of degree $-|M|$ [CG2, Def 8.3.1.1],
+\[
+M(\varepsilon):=M-\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](M)+\hbar\,\psi(M),\qquad
+M[T]:=\lim_{\varepsilon\to0}\partial_\delta W\big(P(\varepsilon,T),\,I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}+\delta\,M(\varepsilon)\big),
+\]
+where $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](M)$ is the counterterm of the family $I_{\mathfrak{psl}(4|4)}+\delta M$, the singular part of the graphs through the vertex $\delta M$ (Proposition \ref{prop:c5-thmB}). At $T=\infty$, $\psi=0$ and $F_{\mathfrak{psl}(4|4)}=0$ this is Definition \ref{def:c7-component}; $\psi=0$ is the minimal scheme. $M\mapsto M[T]$ is linear over $C^\bullet(\mathfrak{psl}(4|4))$.
+\end{definition}
+
+\begin{definition}[Quantum differential at scale $T$]
+\label{def:c8-dT}
+For an observable $O[T]$ at scale $T$ [CG2, Def 8.3.1.3, Prop 13.4.0.1],
+\[
+d_T\,O[T]:=(d_{CE}+Q)\,O[T]+\big\{I_{\mathfrak{psl}(4|4)}[T],O[T]\big\}_T+\hbar\Delta_T\,O[T].
+\]
+At $T=\infty$, $d_\infty=d_{CE}+Q$.
+\end{definition}
+
+\begin{lemma}[Flow covariance]
+\label{lem:c8-flow}
+Assume \eqref{eq:c8-qme}. Then $d_T^2=0$; for $T<T'<\infty$, $W\big(P(T,T'),I_{\mathfrak{psl}(4|4)}[T]+\delta M[T]\big)=I_{\mathfrak{psl}(4|4)}[T']+\delta M[T']$, and the linearised flow intertwines $d_T$ with $d_{T'}$.
+\end{lemma}
+
+\begin{proof}
+$e^{(I[T]+\delta M[T])/\hbar}=e^{I[T]/\hbar}(1+\hbar^{-1}\delta M[T])$ and, by \eqref{eq:c8-qme} and the product rule of Definition \ref{def:c3-delta}, $(d_{CE}+Q+\hbar\Delta_T)\big(\delta M[T]e^{I[T]/\hbar}\big)=\delta\,(d_TM[T])\,e^{I[T]/\hbar}$ up to the sign of $\delta$; $(d_{CE}+Q+\hbar\Delta_T)^2=0$ gives $d_T^2=0$. The flow identity is the second identity of \eqref{eq:c8-transfer} at $\delta$-linear order in the limit $\varepsilon\to0$, and the intertwining is the first identity with $(T,T')$ in place of $(\varepsilon,T)$.
+\end{proof}
+
+\begin{definition}[Local representative]
+\label{def:c8-rep}
+A local representative of the quantum differential of a local cochain $M$ is a local cochain $L(M)$ of degree $|M|+1$, a formal series in $\hbar$, with
+\begin{equation}
+d_T\,M[T]=\big(L(M)\big)[T].
+\label{eq:c8-rep}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Well-posedness of the quantum differential]
+\label{thm:c8-L}
+Assume \eqref{eq:c8-qme}.
+\begin{itemize}
+\item (i) If $N[T]=0$ for a local cochain $N$, then $N=0$. Hence $L(M)$ is unique when it exists.
+\item (ii) If \eqref{eq:c8-rep} holds at one $T_0\in(0,\infty)$, it holds with the same $L(M)$ at every $T\in(0,\infty)$, and at $T=\infty$ when the graph sums of $M[T]$ and $L(M)[T]$ converge as $T\to\infty$.
+\item (iii) If $L(M)$ and $L(L(M))$ exist, then $L(L(M))=0$.
+\item (iv) $L=d_{CE}+\Lambda$ with $\Lambda$ linear over $C^\bullet(\mathfrak{psl}(4|4))$, and $L\circ L=0$ is the Maurer--Cartan equation $d_{CE}\Lambda+\Lambda d_{CE}+\Lambda\Lambda=0$ for the cochain $\Lambda=\sum_k\Lambda^{(k)}$ with values in the operators on $\mathscr O_l(\mathscr E)[[\hbar]]$, where $(\Lambda\Lambda')(x_1,\dots,x_n)$ is the sum over $(k,l)$-shuffles $\sigma$ of $\operatorname{sgn}(\sigma)\cdot(\text{Koszul sign of }\sigma)\cdot(-1)^{|\Lambda'|k+\sum_{i=1}^k|x_{\sigma(i)}|(l+|\Lambda'|)}\,\Lambda^{(k)}(x_{\sigma(1)},\dots,x_{\sigma(k)})\circ\Lambda'^{(l)}(x_{\sigma(k+1)},\dots,x_{\sigma(n)})$, the sign rule of Definition \ref{def:c2-dce}; the same rule defines the products of field-independent cochains with local cochains. Modulo $\hbar$, $L=s$, $\Lambda^{(0)}=Q+\{I,-\}$, $\Lambda^{(1)}(x)O=(-1)^{|O|(1+|x|)}\{S^{(1)}(x),O\}$, $\Lambda^{(2)}(x_1,x_2)O=(-1)^{|O|(|x_1|+|x_2|)}\{S^{(2)}(x_1,x_2),O\}$, $\Lambda^{(k\ge3)}=0$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) At lowest order in $\hbar$, $N[T]$ is the tree-level flow of $N$ with vertices $I_{\mathfrak{psl}(4|4)}$ and edges $P(0,T)$. By induction on the arity, a tree with $r\ge1$ vertices $I$ has at least $r$ more legs than its vertex $N^{(k)}$, so the part with the fewest legs is a Taylor component of $N^{(k)}$, which therefore vanishes; induction on the number of legs (Proposition \ref{prop:c4-unique}) and then on the order in $\hbar$ gives $N=0$. (ii) By Lemma \ref{lem:c8-flow}, $M[T]$ and $L(M)[T]$ are the linearised flows from $T_0$ of $M[T_0]$ and $L(M)[T_0]$, and the flow intertwines $d_{T_0}$ with $d_T$; for $T<T_0$ the flow is inverted. (iii) $L(L(M))[T]=d_T(L(M)[T])=d_T^2M[T]=0$, and (i). (iv) For a field-independent cochain $c'$, $(c'M)[T]=c'\,M[T]$ and $d_T(c'M[T])=(d_{CE}c')M[T]\pm c'\,d_TM[T]$, so $L(c'M)=(d_{CE}c')M\pm c'\,L(M)$; $\Lambda:=L-d_{CE}$ is therefore $C^\bullet$-linear and determined by its values on local functionals, and $L\circ L=0$ expands to the stated equation. Modulo $\hbar$, $M[T]$ is the tree-level flow of $M$, and by the first identity of \eqref{eq:c8-transfer} $d_TM[T]$ is the tree-level flow of the defect vertex $(d_{CE}+Q)M+\{I_{\mathfrak{psl}(4|4)},M\}_\varepsilon$; the special edges of trees carry $e^{-\varepsilon|p|^2}-1$ at generic momenta and vanish in the limit, which leaves the tree-level flow of $sM$, so $L=s$; the signs of the components are those of the cochain bracket of Definition \ref{def:c2-dce} with the arity-zero argument $O$.
+\end{proof}
+
+\begin{definition}[Components]
+\label{def:c8-components}
+For a local functional $O$ (arity zero) write $L(O)=\sum_kL(O)^{(k)}$ by arity and $L=s+\hbar L_1+\hbar^2L_2+\cdots$. The one-loop components of $O$ are the arity-one values
+\[
+\begin{aligned}
+&Q_1(O):=\hbar L_1(O)^{(1)}(\xi),\ \ \xi\in\Sigma;\qquad S_1(O):=\hbar L_1(O)^{(1)}(\eta),\ \ \eta\in\Sigma^*;\qquad D_1(O):=\hbar L_1(O)^{(1)}(\Delta);\\
+&K_1(O):=\hbar L_1(O)^{(1)}(K_b);\qquad P_1(O):=\hbar L_1(O)^{(1)}(P_b);\qquad M_1(O),\ R_1(O):\ \text{the same along }\mathfrak{so}(V),\ \mathfrak{so}(W_{\mathbb R}^\perp),
+\end{aligned}
+\]
+together with the one-loop BRST correction $\hbar L_1(O)^{(0)}$ and the arity-two values $\hbar L_1(O)^{(2)}(x_1,x_2)$. For $|O|=0$ the full transformation of $O$ along $x\in\mathfrak{psl}(4|4)$ is $L(O)^{(1)}(x)=\{S^{(1)}(x),O\}+\hbar L_1(O)^{(1)}(x)+O(\hbar^2)$. Two-component: $Q_1(O)=\xi_\alpha{}^i\,Q_1(O)^\alpha{}_i+\bar\xi_{\dot\alpha i}\,\bar Q_1(O)^{\dot\alpha i}$, with the coefficient functionals along $Q^i_\alpha$ and $\bar Q_{\dot\alpha i}$, and likewise $S_1(O)=\eta^\alpha{}_i\,S_1(O)_\alpha{}^i+\bar\eta^{\dot\alpha i}\,\bar S_1(O)_{\dot\alpha i}$.
+\end{definition}
+
+\begin{corollary}[The realisation up to homotopy]
+\label{cor:c8-homotopy}
+Assume \eqref{eq:c8-qme} and that the local representatives exist on a space of local functionals stable under $\Lambda$. In arity one and two the Maurer--Cartan equation of Theorem \ref{thm:c8-L} (iv) states, with graded commutators:
+\begin{itemize}
+\item (i) $\Lambda^{(1)}(x)$ commutes with $\Lambda^{(0)}$ for every $x$;
+\item (ii) $[\Lambda^{(1)}(x_1),\Lambda^{(1)}(x_2)]+\Lambda^{(1)}([x_1,x_2])$ is a graded commutator of $\Lambda^{(0)}$ with an operator built from $\Lambda^{(2)}(x_1,x_2)$; modulo $\hbar$ this is the identity
+\[
+\big[\{S^{(1)}(x_1),-\},\{S^{(1)}(x_2),-\}\big]=-\{S^{(1)}([x_1,x_2]),-\}-\big\{\{S,S^{(2)}(x_1,x_2)\},-\big\}
+\]
+obtained from Lemma \ref{lem:c2-components} and the Jacobi identity of Definition \ref{def:c1-bracket}.
+\end{itemize}
+Hence $x\mapsto-\Lambda^{(1)}(x)$ induces a representation of $\mathfrak{psl}(4|4)$ on the cohomology of $\Lambda^{(0)}$; it is the quantum realisation of the superconformal symmetry on local operators, and the one-loop components are its order-$\hbar$ part.
+\end{corollary}
+
+\begin{proof}
+On an arity-zero input the arity-one component of $d_{CE}\Lambda+\Lambda d_{CE}+\Lambda\Lambda$ is $[\Lambda^{(0)},\Lambda^{(1)}(x)]$, since $d_{CE}$ vanishes on arity zero; the arity-two component contains the term $\Lambda^{(1)}([x_1,x_2])$ from $d_{CE}$, the products of two $\Lambda^{(1)}$ and the products of $\Lambda^{(0)}$ with $\Lambda^{(2)}$. The equation has the same form at every order in $\hbar$, and its order-$\hbar^0$ part is the displayed identity, which fixes the signs. On cohomology the last term acts as $0$.
+\end{proof}
+
+\begin{remark}[What is computed]
+The one-loop BV structure of Definition \ref{def:c8-quant} consists of the solution $F_1$ of $sF_1=\mathrm{Ob}$ (Theorem \ref{thm:c8-obstruction}) and of $\Lambda$ modulo $\hbar^2$ on local operators. By Theorem \ref{thm:c8-L} (ii) every one-loop component is a local functional independent of the endpoint; it is read off from the $\varepsilon\to0$ limit of the graphs with one defect vertex of Lemma \ref{lem:c8-transfer} applied to $e^{(J+\delta O(\varepsilon))/\hbar}$, as in \eqref{eq:c6-uvobs} along $\Delta$. Chapter 6 computed the dilatation coefficients through the scaling covariance of the regulator, which give $D_1$ under the identification \eqref{eq:c6-step2}: for the traceless scalar bilinears they vanish, and for the trace bilinear $D_1(O)$ is $-48$ units times $O$, the value $2\times(-24)$ of Theorem \ref{thm:c6-dil}.
+\end{remark}
+
+\section{Scheme freedom and invariant content}
+
+\begin{proposition}[Transformation laws]
+\label{prop:c8-laws}
+Under the following changes, with the labels $O$ of the operators fixed, $L_1$ changes as stated.
+\begin{itemize}
+\item (a) Field redefinition: $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,s\phi$, $\phi$ local of degree $-1$: $L_1\mapsto L_1+[s,\mathrm{ad}_\phi]=L_1-\mathrm{ad}_{s\phi}$, i.e. $L$ is conjugated by $1+\hbar\,\mathrm{ad}_\phi$.
+\item (b) Finite parts of operators: $\psi\mapsto\psi+\psi'$: $L_1\mapsto L_1+[s,\psi']$, i.e. $L$ is conjugated by $1+\hbar\psi'$.
+\item (c) Closed directions: $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,a\,G$ with $sG=0$: $L_1\mapsto L_1-a\,\mathrm{ad}_G$. For the coupling direction $G=S-S^{(2)}$: $L_1^{(0)}\mapsto L_1^{(0)}-a(Q+\{I,-\})$, $L_1^{(1)}$ unchanged, $L_1^{(2)}(x_1,x_2)\mapsto L_1^{(2)}(x_1,x_2)+a\{S^{(2)}(x_1,x_2),-\}$. For $G=G_B$: $L_1^{(0)}$ unchanged and, along a $B$-eigenvector $x$ with eigenvalue $b$, $L_1^{(1)}(x)\mapsto L_1^{(1)}(x)-a\,b\,\{S^{(1)}(x),-\}$.
+\end{itemize}
+In particular $G_B$ changes $Q_1$ by $-a\hbar\{S^{(1)}(\xi),-\}$ for $\xi\in S_+\otimes W$ and by $+a\hbar\{S^{(1)}(\xi),-\}$ for $\xi\in S_-\otimes W^*$, changes $S_1$ by $+a\hbar\{S^{(1)}(\eta),-\}$ for $\eta\in S_+\otimes W^*$ and by $-a\hbar\{S^{(1)}(\eta),-\}$ for $\eta\in S_-\otimes W$, and leaves $D_1$, $K_1$, $P_1$, $M_1$, $R_1$ unchanged; two-component, $Q_1$ along $Q^i_\alpha$ and $S_1$ along $\bar S^{\dot\alpha i}$ (upper $W$ index) change by $-a\hbar$ times the classical transformation, $Q_1$ along $\bar Q_{\dot\alpha i}$ and $S_1$ along $S^\alpha{}_i$ (lower $W$ index) by $+a\hbar$ times it.
+\end{proposition}
+
+\begin{proof}
+(a) At order $\hbar$, $O[T]$ changes by minus the tree insertion of $\hbar s\phi$; the equivariant form of Lemma \ref{lem:c6-bvexact} gives the change $\hbar\big(s\{\phi,O\}-\{\phi,sO\}\big)$ of the local representative, and $s\{\phi,O\}-\{\phi,sO\}=-\{s\phi,O\}$ for odd $\phi$ by the derivation rules of the bracket. (b) $O[T]$ changes by $\hbar\psi'(O)[T]$ and $L(O)[T]$ by $\hbar\psi'(L(O))[T]$, while $d_T(\psi'(O)[T])=(s\psi'(O))[T]+O(\hbar)$. (c) Differentiating the flow along $J\mapsto J-\hbar aG$ gives $d_T\,\mathrm{tree}(G,O)=\{G,O\}[T]+\mathrm{tree}(G,sO)$ for closed even $G$; the components of $\mathrm{ad}_G$ are those of $G$: $(S-S^{(2)})^{(0)}=S$ with $\{S,-\}=Q+\{I,-\}$, $(S-S^{(2)})^{(1)}=0$, $(S-S^{(2)})^{(2)}=-S^{(2)}$; $G_B^{(1)}(x)=S^{(1)}(Bx)=b\,S^{(1)}(x)$. The list follows from Definition \ref{def:c8-B}.
+\end{proof}
+
+\begin{theorem}[Invariant content]
+\label{thm:c8-invariants}
+\begin{itemize}
+\item (i) Under (a) and (b) of Proposition \ref{prop:c8-laws}, the cohomology of $\Lambda^{(0)}$ on local functionals and the representation of $\mathfrak{psl}(4|4)$ induced on it by $-\Lambda^{(1)}$ (Corollary \ref{cor:c8-homotopy}) change by an isomorphism; under the coupling direction they are unchanged.
+\item (ii) Under the outer direction the induced representation is composed with the automorphism $e^{-a\hbar B}$ of $\mathfrak{psl}(4|4)$: the actions of $Q^i_\alpha$, $\bar S^{\dot\alpha i}$ are multiplied by $1-a\hbar$, those of $\bar Q_{\dot\alpha i}$, $S^\alpha{}_i$ by $1+a\hbar$, and the even generators are unchanged.
+\item (iii) The spectrum of the operator induced by $\Lambda^{(1)}(\Delta)$ on the cohomology classes of a fixed classical Weyl weight (the one-loop anomalous dimensions) is invariant under (a), under (b), under the coupling direction and under the outer direction $G_B$; under (c) with an arbitrary $s$-closed $G$ it is invariant when every $s$-closed local cochain of degree $0$ and Weyl weight $4$ lies in $\mathbb C(S-S^{(2)})+\mathbb C\,G_B+\operatorname{Im}s$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Conjugation by $1+\hbar\,\mathrm{ad}_\phi$ or $1+\hbar\psi'$ maps $\Lambda$ to the conjugated Maurer--Cartan element and the cohomology isomorphically, intertwining the induced actions. The coupling direction multiplies $\Lambda^{(0)}$ by $1-a\hbar$ modulo $\hbar^2$ and leaves $\Lambda^{(1)}$ unchanged. (ii) Proposition \ref{prop:c8-laws} (c) with $G=G_B$, $b=\pm1$ on the four odd blocks and $b=0$ on the even part. (iii) Conjugation preserves the spectrum; the coupling direction rescales $\Lambda^{(0)}$ and leaves $\Lambda^{(1)}$ unchanged; for $G_B$, $G_B^{(0)}=0$ and $B\Delta=0$; under the stated hypothesis a closed $G$ is a combination of these and of $s\phi$, which is (a).
+\end{proof}
+
+\section{The supercharge components and the twist}
+
+\begin{lemma}[Evaluation along a square-zero supercharge]
+\label{lem:c8-ev}
+Let $\xi\in\Sigma$ with $[\xi,\xi]=0$ and let $q$ be a variable of degree $1$ and even total parity. The map
+\[
+r_\xi\colon f\mapsto\sum_{k\ge0}\frac{(-1)^{k(k-1)/2}}{k!}\,f^{(k)}(\xi,\dots,\xi)\,q^k
+\]
+intertwines $d_{CE}$ with $0$, the cochain bracket with the $q$-linear extension of the bracket of values, and the product of operator-valued cochains of Theorem \ref{thm:c8-L} (iv) with the composition of their values. Every $\xi\in S_+\otimes W$ satisfies $[\xi,\xi]=0$. For $\xi=u\otimes z$ with $u\in S_+$, $z\in W$ (two-component $\xi_\alpha{}^i=u_\alpha z^i$, $\bar\xi=0$), $\Gamma(\xi,\xi)=0$ in all ten components, and
+\begin{equation}
+S^\xi:=r_\xi(S_{\mathfrak{psl}(4|4)})\big|_{q=1}=S+S^{(1)}(\xi)-\tfrac12S^{(2)}(\xi,\xi),\qquad S^{(2)}(\xi,\xi)=-\tfrac12\int\big(u_\alpha z^i\lambda^{*\alpha}{}_i,\ u_\beta z^j\lambda^{*\beta}{}_j\big),
+\label{eq:c8-twistaction}
+\end{equation}
+solves $\{S^\xi,S^\xi\}=0$, and $c=-\tfrac12$ is the unique value for which $S+S^{(1)}(\xi)+c\,S^{(2)}(\xi,\xi)$ solves it.
+\end{lemma}
+
+\begin{proof}
+For a $(k,l)$-shuffle with all arguments equal to the odd $\xi$, the signs of Definition \ref{def:c2-dce} combine to $(-1)^{kl}$, so $\{f,g\}(\xi^{k+l})=\binom{k+l}{k}(-1)^{kl}\{f(\xi^k),g(\xi^l)\}$, and the coefficients $a_k=(-1)^{k(k-1)/2}/k!$ satisfy $a_ka_l=a_{k+l}\binom{k+l}{k}(-1)^{kl}$; the same shuffle count applies to the product of operator-valued cochains. $d_{CE}$ on $(\xi,\dots,\xi)$ is a sum of terms containing $[\xi,\xi]=0$. By Lemma \ref{lem:c2-components} with $[\xi,\xi]=0$, $\{S,S^{(2)}(\xi,\xi)\}=\{S^{(1)}(\xi),S^{(1)}(\xi)\}$ and $\{S^{(1)}(\xi),S^{(2)}(\xi,\xi)\}=0$, so the square of $S+S^{(1)}(\xi)+cS^{(2)}(\xi,\xi)$ is $(2c+1)\{S^{(1)}(\xi),S^{(1)}(\xi)\}$; this equals $(2c+1)\{S,S^{(2)}(\xi,\xi)\}$, whose part linear in $\lambda$ is $-(2c+1)\int\mathrm{dvol}\,\big((\xi,\lambda^*),(\xi,{\not d}\lambda)\big)$ up to the sign of the pair, with $(\xi,{\not d}\lambda)=i\,u_\alpha z^i\partial_m\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\neq0$. The two-component form of $S^{(2)}(\xi,\xi)$ is \eqref{eq:c2-S2} with $\Gamma(\xi,\xi)=0$.
+\end{proof}
+
+\begin{definition}[Twisted differentials]
+\label{def:c8-twisted}
+For $\xi$ as in Lemma \ref{lem:c8-ev}, the twisted differential on local functionals is
+\[
+Q^\xi:=r_\xi(\Lambda)\big|_{q=1}=\Lambda^{(0)}+\Lambda^{(1)}(\xi)-\tfrac12\Lambda^{(2)}(\xi,\xi)-\tfrac16\Lambda^{(3)}(\xi,\xi,\xi)+\cdots=Q^\xi_0+\hbar\,Q^\xi_1+O(\hbar^2),
+\]
+with $Q^\xi_0=\{S^\xi,-\}$ and $Q^\xi_1=L_1^{(0)}+L_1^{(1)}(\xi)-\tfrac12L_1^{(2)}(\xi,\xi)-\tfrac16L_1^{(3)}(\xi,\xi,\xi)+\cdots$. In the names of Definition \ref{def:c8-components}, $\hbar Q^\xi_1(O)=\hbar L_1(O)^{(0)}+Q_1(O)-\tfrac12\hbar L_1(O)^{(2)}(\xi,\xi)-\cdots$.
+\end{definition}
+
+\begin{theorem}[The twisted one-loop differential as a consequence]
+\label{thm:c8-twist}
+Assume \eqref{eq:c8-qme}, that the local representatives exist on a space of local functionals stable under $\Lambda$, and that the sums defining $r_\xi(\Lambda)$ are finite there. Then $(Q^\xi)^2=0$; at orders $\hbar^0,\hbar^1$, $(Q^\xi_0)^2=0$ and $Q^\xi_0Q^\xi_1+Q^\xi_1Q^\xi_0=0$, so $Q^\xi_1$ induces a map $[Q^\xi_1]$ on the cohomology of $Q^\xi_0$. Under (a), (b) of Proposition \ref{prop:c8-laws}, $Q^\xi_1$ changes by a graded commutator with $Q^\xi_0$; under the coupling direction by $-aQ^\xi_0$ plus such a commutator; under $G_B$ by such a commutator. Hence $[Q^\xi_1]$, its kernel, image and rank are invariant under all of them.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:c8-ev}, $r_\xi$ maps the Maurer--Cartan equation $d_{CE}\Lambda+\Lambda d_{CE}+\Lambda\Lambda=0$ to $r_\xi(\Lambda)^2=0$. For (a), (b), $r_\xi$ of a conjugation is a conjugation, which changes $Q^\xi_1$ by $[Q^\xi_0,\mathrm{ad}_{r_\xi\phi}]$, resp. $[Q^\xi_0,r_\xi\psi']$. For a closed $G$, $Q^\xi_1$ changes by $-a\,\mathrm{ad}_{r_\xi(G)}$: $r_\xi(S-S^{(2)})|_{q=1}=S^\xi-S^{(1)}(\xi)+S^{(2)}(\xi,\xi)$ and $r_\xi(G_B)|_{q=1}=S^{(1)}(\xi)-S^{(2)}(\xi,\xi)$; with $R_\xi\in\mathfrak{so}(W_{\mathbb R}^\perp)$, $[R_\xi,\xi]=\xi$, the derivation $N:=\{S^{(1)}(R_\xi),-\}$ satisfies $NS^\xi=-S^{(1)}(\xi)+S^{(2)}(\xi,\xi)$ by Lemma \ref{lem:c2-components}, so the two changes are $-aQ^\xi_0$, resp. $0$, plus the graded commutator of $Q^\xi_0$ with $\mp aN$. Each of these induces $0$ on the cohomology of $Q^\xi_0$.
+\end{proof}
+
+\begin{remark}[Comparison with the holomorphic twist]
+The twisted theory appears as a consequence: $S^\xi$, $Q^\xi_0$, $Q^\xi_1$ are images of the untwisted equivariant objects under $r_\xi$, computed with the untwisted Feynman-gauge propagator and the vertices $S^{(1)}(\xi)$, $S^{(2)}(\xi,\xi)$. The one-loop differential of the holomorphic twist [BK] (K. Budzik and J. Kulp, arXiv:2512.07771, (3.64)--(3.70)) is to be compared with the class $[Q^\xi_1]$ on the cohomology of $Q^\xi_0$, after its transport to the holomorphic letters through the equivalence of [ESW, Thm 10.9] and provided the two quantisations differ by an element of $\mathbb C\,S^\xi+\mathbb C\,\{S^{(1)}(R_\xi),S^\xi\}+\operatorname{Im}Q^\xi_0$; by Theorem \ref{thm:c8-twist} this class is invariant under the scheme changes listed there, while the individual entries of $Q_1$ are scheme dependent. Two-component: $S^{(1)}(\xi)$ for $\xi_\alpha{}^i=u_\alpha z^i$ is
+\[
+\int\Big\{-i\big(\bar\lambda_{\dot\alpha i}z^i\bar\sigma^{m\dot\alpha\alpha}u_\alpha,A^*_m\big)+\tfrac12\varepsilon_{jikl}z^j\big((u\lambda^i),A^{*kl}\big)-\tfrac14\big(F_{mn}(\sigma^m\bar\sigma^nu)_\alpha,\lambda^{*\alpha}{}_iz^i\big)-\tfrac14\big([A^{ik},A_{kj}z^j]u_\alpha,\lambda^{*\alpha}{}_i\big)-\tfrac i2\big(u^\alpha\sigma^m_{\alpha\dot\alpha}D_m(A_{ij}z^j),\bar\lambda^{*\dot\alpha i}\big)\Big\},
+\]
+index-free $\int\mathrm{dvol}\big(-(\Gamma(\xi,\lambda),A^*)+\tfrac12(\rho(F_A)\xi,\lambda^*)\big)$ \eqref{eq:c2-S1Q}.
+\end{remark}
+
+\section{Large distance and the special conformal components}
+
+\begin{proposition}[Where the endpoint may be removed]
+\label{prop:c8-Tsafe}
+A single insertion of $S^{(1)}(x)$ with both legs on edges of a cycle decays at large distance $|y|$ as $|y|^{-6}$ for $x\in\Sigma$ and translations, as $|y|^{-5}$ for $x\in\Sigma^*$, $\Delta$ and $\mathfrak{so}(V)$, and as $|y|^{-4}$ for the special conformal fields (Remark \ref{rem:c7-ir}). Consequently the graph sums of the arity-zero and arity-one components along $\Sigma$, $\Sigma^*$, $\Delta$, the translations, $\mathfrak{so}(V)$ and $\mathfrak{so}(W_{\mathbb R}^\perp)$ converge as $T\to\infty$, and so do the arity-two graphs along $(\xi,\xi')$ and $(\xi,\eta)$: for two floating odd insertions joined by a $\lambda$ edge the integrand has degree $-1$ at large distance in $\mathbb R^8$ for $(\xi,\xi')$, and $-1$ after the sum over the two orientations for $(\xi,\eta)$. Since the component of \eqref{eq:c8-rep} along $x$ is built from the components of arity at most one along $x$, Theorem \ref{thm:c8-L} (ii) applies component by component, and $Q_1$, $S_1$, $D_1$, $P_1$, $M_1$, $R_1$ and the twisted $Q^\xi_1$ may be computed at $T=\infty$. Along a special conformal field the graphs with the insertion on a cycle are cut off by $P(\varepsilon,T)$ at $|y|^2\sim T$ and grow logarithmically in $T$; the same holds at arity two for two special supercharges $\eta_1,\eta_2$ with $\Gamma(\eta_1,\eta_2)|_V\neq0$, whose bracket is a special conformal field.
+\end{proposition}
+
+\begin{proof}
+The coefficient of the insertion grows as $1$, $|y|$, $|y|^2$ for constant, linear and quadratic vector fields or Killing spinors, and the two adjacent edges decay as $|y|^{-3}$ each (one derivative, Proposition \ref{prop:c3-P}); at finite $T$ every edge is bounded by a constant multiple of its $T=\infty$ form, uniformly in $T$, and decays as $e^{-|y|^2/4T}$, so dominated convergence applies in the first cases. For a $\lambda$-edge pair the three propagators decay as $|y|^{-3}$ each and the Killing spinors grow as $|y|^{g_1+g_2}$ with $g=0$ along $\Sigma$, $g=1$ along $\Sigma^*$, so the degree in $\mathbb R^8$ is $g_1+g_2-1$; for $(\xi,\eta)$ the two orientations traverse the $\lambda$ edge in opposite directions and their leading terms cancel. For $K_b$ the product is of order $|y|^{-4}$ with a nonzero average over the sphere, and $\int_{|y|^2<T}|y|^{-4}d^4y$ grows as $\pi^2\log T$.
+\end{proof}
+
+\begin{definition}[The special conformal components]
+\label{def:c8-K}
+$K_1(O):=\hbar L_1(O)^{(1)}(K_b)$ with the local representative of Definition \ref{def:c8-rep} at a finite endpoint $T$; the arity-two components along $(\eta_1,\eta_2)$ and $(K_b,P_{b'})$ are defined in the same way at finite $T$.
+\end{definition}
+
+\begin{theorem}[Independence of the endpoint for $K_1$]
+\label{thm:c8-K}
+If the local representative $L(O)$ exists at one finite $T_0$, then $K_1(O)$ is the same local functional at every finite $T$, and therefore also in the limit $T\to\infty$. The observables $O[T]$ themselves may keep a term in $\log T$ in their component along $K_b$; such a term is part of the flow of Lemma \ref{lem:c8-flow}, and the local representative is independent of $T$.
+\end{theorem}
+
+\begin{proof}
+Theorem \ref{thm:c8-L} (ii) applies at every finite $T$; the local representative is a $T$-independent local functional, so its limit is trivial. The second statement is Lemma \ref{lem:c8-flow}: $O[T']$ is the linearised flow of $O[T]$, whatever its behaviour as $T'\to\infty$.
+\end{proof}
+
+\begin{remark}[The existence along $K$]
+In the graphs of the defect along $K_b$ the logarithm in $T$ multiplies a tree that contains the special edge $K_\varepsilon-K_0$ at a generic momentum $p$, and therefore carries the factor $e^{-\varepsilon|p|^2}-1$; it vanishes as $\varepsilon\to0$ at fixed $T$. The existence of the local representative at fixed $T$ is thus the locality of the $\varepsilon\to0$ limit of these graphs, the same statement as along the other generators. Two consistency relations constrain $K_1$: the component of $L\circ L=0$ at $(K_b,P_{b'})$, which ties $K_1$ to $D_1$ through $[K_b,P_{b'}]=(b,b')\Delta+(\text{rotation})$ (Remark \ref{rem:c7-KDelta}), and the relation $K=P^\dagger$ of Corollary \ref{cor:c8-gram}.
+\end{remark}
+
+\section{Conjugations}
+
+\begin{lemma}[Conjugation of spinors]
+\label{lem:c8-cc}
+There is a unique antilinear map $\zeta\mapsto\overline\zeta$ of $\Sigma\oplus\Sigma^*$ with $\overline\Sigma=\Sigma^*$, $\overline{\Sigma^*}=\Sigma$, $\overline{\overline\zeta}=\zeta$, $\overline{\rho(v)\zeta}=\rho(\bar v)\overline\zeta$ for $v\in V_{10}$, and $(\zeta,\overline\zeta)>0$ for $\zeta\in\Sigma\setminus0$. It maps $S_+\otimes W$ to $S_+\otimes W^*$ and $S_-\otimes W^*$ to $S_-\otimes W$, and $\Gamma(\overline{\zeta_3},\overline{\zeta_4})=\overline{\Gamma(\zeta_3,\zeta_4)}$. Two-component:
+\begin{equation}
+\overline\xi=\big(\eta^\alpha{}_i=\overline{\xi_\alpha{}^i},\ \bar\eta^{\dot\alpha i}=-\overline{\bar\xi_{\dot\alpha i}}\big),\qquad (\xi,\overline\xi)=\sum|\xi_\alpha{}^i|^2+\sum|\bar\xi_{\dot\alpha i}|^2 .
+\label{eq:c8-cc}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+In the realisation of Chapter 2 the matrices of $\rho(e_M)$ on $\Sigma^*$ are the complex conjugates of those on $\Sigma$, so componentwise conjugation has the properties. Two such maps differ by a linear automorphism of $\Sigma\oplus\Sigma^*$ commuting with every $\rho(v)$, hence by one scalar $a$ on the irreducible Clifford module $\Sigma\oplus\Sigma^*$ (since $\rho(v)$ exchanges $\Sigma$ and $\Sigma^*$, the scalars on the two summands agree); involutivity gives $|a|=1$ and positivity $a>0$, so $a=1$. The two-component form follows from \eqref{eq:c8-pairing}; the minus sign is that of the pairing.
+\end{proof}
+
+\begin{definition}[Radial conjugation]
+\label{def:c8-dag}
+With the inversion $I(x)=x/(x,x)$ and its pushforward $I_*$, for an even element $v$ (a conformal Killing field plus an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$) and an odd element with Killing spinor $\epsilon(x)=\xi+\rho(x)\eta$,
+\[
+v^\dagger:=-I_*\bar v,\qquad \epsilon^\dagger(x):=-\rho(x)\,\overline{\epsilon(I(x))},\quad\text{i.e.}\quad (\xi+\rho(x)\eta)^\dagger=-\overline\eta-\rho(x)\overline\xi .
+\]
+\end{definition}
+
+\begin{theorem}[The radial conjugation]
+\label{thm:c8-dag}
+\begin{itemize}
+\item (i) On the generators: $P_b^\dagger=-K_{\bar b}$, $K_b^\dagger=-P_{\bar b}$, $\Delta^\dagger=\Delta$, $\omega^\dagger=-\bar\omega$ for rotations of $V$ and of $W_{\mathbb R}^\perp$, $\xi^\dagger=-\overline\xi\in\Sigma^*$, $\eta^\dagger=-\overline\eta\in\Sigma$. Two-component:
+\[
+(\xi^\dagger)^\alpha{}_i=-\overline{\xi_\alpha{}^i},\quad (\xi^\dagger)^{\dot\alpha i}=\overline{\bar\xi_{\dot\alpha i}},\qquad (\eta^\dagger)_\alpha{}^i=-\overline{\eta^\alpha{}_i},\quad (\eta^\dagger)_{\dot\alpha i}=\overline{\bar\eta^{\dot\alpha i}},
+\]
+so for the unit basis elements $(Q^i_\alpha)^\dagger=-S^\alpha{}_i$, $(\bar Q_{\dot\alpha i})^\dagger=\bar S^{\dot\alpha i}$, $(S^\alpha{}_i)^\dagger=-Q^i_\alpha$, $(\bar S^{\dot\alpha i})^\dagger=\bar Q_{\dot\alpha i}$; on $\mathfrak{su}(4)$ the conjugation is the matrix adjoint.
+\item (ii) $(X^\dagger)^\dagger=X$ and $[X,Y]^\dagger=[Y^\dagger,X^\dagger]$ for all $X,Y$. The antilinear automorphism $X\mapsto-X^\dagger$ (even $X$), $X\mapsto-iX^\dagger$ (odd $X$) has the fixed real form $\mathfrak{psu}(2,2|4)$ [SW, (7)], with maximal compact even subalgebra $\mathfrak{so}(4)\oplus\mathbb R\,i\Delta\oplus\mathfrak{so}(6)$.
+\item (iii) The antilinear involutive anti-automorphisms with the even part of Definition \ref{def:c8-dag} are exactly $X\mapsto e^{tB}\big((\pm1)^{|X|}X^\dagger\big)$, $t\in\mathbb R$, with $B$ of Definition \ref{def:c8-B}. Positivity of the norm, in a representation $\pi$ with $\pi(X^\natural)=\pi(X)^{\rm adj}$ for the conjugation $X^\natural$ in question, in which $-\tfrac12\Delta$ acts as a self-adjoint operator with a positive eigenvalue on a vector annihilated by $\Sigma^*$ and invariant under $\mathfrak{so}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)$, selects the sign $+$; the realisation on the fields (Theorem \ref{thm:c8-fields}) selects $t=0$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) $(I_*u)(x)=(x,x)u(I(x))-2(u(I(x)),x)x$, which maps the constant field $b$ to $(x,x)b-2(b,x)x$, fixes rotations and maps $2E$ to $-2E$. The odd statements are the definition at $\eta=0$ and at $\xi=0$ with Lemma \ref{lem:c8-cc}. (ii) Write $T_I\epsilon(x)=\rho(x)\overline{\epsilon(I(x))}$; $T_I^2=1$ by $\rho(x)\rho(I(x))=1$. $I_*$ and complex conjugation are automorphisms of vector fields; $T_I$ intertwines the Lie derivative $\mathcal L_v$ of \eqref{eq:c2-evenodd} with $\mathcal L_{I_*\bar v}$, by $\rho(x)\rho(b)\rho(x)=-\rho(K_b(x))$ and the transformation of $\tfrac14\rho(d(v,-))-\tfrac18\operatorname{div}v$; for the odd--odd bracket, $\Gamma(\rho(x)\zeta_1,\rho(x)\zeta_2)=-(x,x)(r_{x/|x|}\oplus1)\Gamma(\zeta_1,\zeta_2)$ together with $(I_*u)(x)=(x,x)r_{x/|x|}u(I(x))$, and the rotation of $W_{\mathbb R}^\perp$ goes to minus its conjugate. The product of the two signs $-1$ of the odd conjugates enters the odd--odd bracket, so the identity holds for a factor $c'$ with $c'^2=1$ and fails for $c'=i$. The real form: the fixed points of the even part are the real rotations, $i\Delta$, $P_b+K_b$, $i(P_b-K_b)$ for real $b$ and the compact $\mathfrak{so}(W_{\mathbb R}^\perp)$; $P_b-K_b$ generates a periodic flow and $P_b+K_b$ a hyperbolic one. (iii) The composite of two such maps is the identity on the even part, hence a scalar on each of the two inequivalent irreducible even-modules of the odd part, with product $1$, real by involutivity. For $\xi\in S_+\otimes W$ and a unit vector $h$ annihilated by $\Sigma^*$, invariant under the rotations, with $\Delta$-eigenvalue $-2d$, $d>0$, $\|\pi(\xi)h\|^2=\langle h,\pi([\xi^\natural,\xi])h\rangle$ is $\pm e^{-t}(\xi,\overline\xi)\,d\,\|h\|^2$, by the dilatation part $\tfrac12(\xi,\eta)\Delta$ of $[\xi,\eta]$ (Proposition \ref{prop:c2-special}). All identities are verified by exact evaluation on all pairs of basis elements in the realisation of Chapter 2.
+\end{proof}
+
+\begin{definition}[Reflections]
+\label{def:c8-Theta}
+For a unit vector $n\in V_{\mathbb R}$ with reflection $r_n(x)=x-2(n,x)n$, $R_n=r_n\oplus1$ on $V_{10}$, the reflection conjugation of $\mathfrak{psl}(4|4)$ is $v^{\dagger_n}:=-(r_n)_*\bar v$, $(\xi+\rho(x)\eta)^{\dagger_n}=\rho(n)\overline\xi-\rho(x)\rho(n)\overline\eta$, and the reflection of the fields is
+\[
+\begin{aligned}
+&(\Theta_nA)(x)=R_n\overline{A(r_nx)},\quad (\Theta_nc)(x)=\overline{c(r_nx)},\quad (\Theta_n\lambda)(x)=\rho(n)\overline{\lambda(r_nx)},\\
+&(\Theta_nA^*)(x)=-R_n\overline{A^*(r_nx)},\quad (\Theta_n\lambda^*)(x)=-\rho(n)\overline{\lambda^*(r_nx)},\quad (\Theta_nc^*)(x)=-\overline{c^*(r_nx)},
+\end{aligned}
+\]
+with the conjugation of Lemma \ref{lem:c8-cc} on spinors and that of the compact real form on $\mathfrak g$. A functional is conjugated by $F^{\Theta}(e):=F(\Theta e)^{\rm c}$, where ${\rm c}$ conjugates coefficients and reverses the order of odd factors. Two-component:
+\[
+\begin{aligned}
+&(\Theta_nA)_m=(r_n)_{mk}\overline{A_k(r_nx)},\quad (\Theta_nA)_{ij}=\overline{A^{ij}(r_nx)},\quad (\Theta_n\lambda)_\alpha{}^i=i\,n_m\sigma^m_{\alpha\dot\alpha}\overline{\bar\lambda_{\dot\alpha i}(r_nx)},\quad (\Theta_n\bar\lambda)_{\dot\alpha i}=i\,n_m\overline{\lambda_\alpha{}^i(r_nx)}\sigma^m_{\alpha\dot\alpha},\\
+&(\Theta_n\lambda^*)^\alpha{}_i=i\,n_m\overline{\bar\lambda^{*\dot\alpha i}(r_nx)}\bar\sigma^{m\dot\alpha\alpha},\quad (\Theta_n\bar\lambda^*)^{\dot\alpha i}=i\,n_m\bar\sigma^{m\dot\alpha\alpha}\overline{\lambda^{*\alpha}{}_i(r_nx)},
+\end{aligned}
+\]
+and $(\xi^{\dagger_n})_\alpha{}^i=i\,n_m\sigma^m_{\alpha\dot\alpha}\overline{\bar\xi_{\dot\alpha i}}$, $(\xi^{\dagger_n})_{\dot\alpha i}=i\,n_m\overline{\xi_\alpha{}^i}\sigma^m_{\alpha\dot\alpha}$: the reflection exchanges $Q^i_\alpha$ with combinations of $\bar Q_{\dot\alpha i}$.
+\end{definition}
+
+\begin{theorem}[The reflection is a symmetry of the regularised theory]
+\label{thm:c8-fields}
+\begin{itemize}
+\item (i) $S^{\Theta_n}=S$, $S^{(1)}(X)^{\Theta_n}=(-1)^{|X|}S^{(1)}(X^{\dagger_n})$, $S^{(2)}(X,Y)^{\Theta_n}=S^{(2)}(Y^{\dagger_n},X^{\dagger_n})$ for all $X,Y\in\mathfrak{psl}(4|4)$, pointwise in the densities.
+\item (ii) $\Theta_n$ is compatible with $K_t$, $P(\varepsilon,T)$, $Q$, $Q^{GF}$, $\Delta_t$, $\{-,-\}_t$ and the flow: $(\partial_{P(\varepsilon,T)}F)^{\Theta_n}=\partial_{P(\varepsilon,T)}(F^{\Theta_n})$, $(\Delta_tF)^{\Theta_n}=(-1)^{|F|}\Delta_t(F^{\Theta_n})$, $\{f,g\}_t^{\Theta_n}=(-1)^{|f|+|g|}\{g^{\Theta_n},f^{\Theta_n}\}_t$, $(FG)^{\Theta_n}=G^{\Theta_n}F^{\Theta_n}$, and $W(P(\varepsilon,T),J)^{\Theta_n}=W(P(\varepsilon,T),J^{\Theta_n})$ for even $J$.
+\item (iii) At every order in $\hbar$ the counterterms are reflection invariant, $I^{CT}[\varepsilon]^{\Theta_n}=I^{CT}[\varepsilon]$, and so are the defect vertex and the obstruction of a reflection-invariant interaction; if $F$ solves the equation of Theorem \ref{thm:c8-obstruction} (ii), so does its conjugate, and the average is a reflection-compatible solution. In the quadratic sector the finite counterterm $\tfrac{27}{16}\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ of Theorem \ref{thm:c4-finite} is reflection invariant.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) The phases of the antifields are forced by the terms $(dc,A^*)$, $\tfrac12([c,c],c^*)$, $([c,\lambda],\lambda^*)$ with the order reversal of odd factors; the bosonic terms are invariant because $R_n$ and the conjugation of $\mathfrak g$ preserve $(-,-)$ and $[-,-]$, and the Dirac term because ${\not d}(\rho(n)\overline{\ell(r_n\cdot)})=-\rho(n)\overline{({\not d}\ell)(r_n\cdot)}$. For $S^{(1)}$, the field transformations of \eqref{eq:c2-S1even} are the infinitesimal conformal action on weighted fields, intertwined by $\Theta_n$ with that of $(r_n)_*\bar v$; for odd $X$ and for $S^{(2)}$ the signs are fixed by evaluation on all odd basis directions. (ii) In momentum space the identities are matrix identities for $Q$, $Q^{GF}$, $H$ and the kernels, together with the anti-multiplicativity of $F\mapsto F^\Theta$; the bracket rule follows from the definition of $\{-,-\}_t$ through $\Delta_t$ (Definition \ref{def:c3-delta}). (iii) By (ii) the order-$\hbar^k$ graphs of a reflection-invariant interaction are mapped to themselves; the singular part is unique (Proposition \ref{prop:c4-unique} at order $\hbar$, [C07, Thm B] beyond) and the functions $\varepsilon^{-m}\log^k\varepsilon$ are real; induction on $k$. The listed functional is invariant pointwise.
+\end{proof}
+
+\begin{proposition}[From the hyperplane to the sphere]
+\label{prop:c8-C}
+Let $C$ be the time $-\tfrac\pi4$ flow of $P_n-K_n$, $x\mapsto n(1-(x,x))+2(n,x)x$,
+\[
+C(x)=\frac{2x+\big((x,x)-1-2(n,x)\big)n}{|x+n|^2}.
+\]
+$C$ maps the half space $\{(n,x)>0\}$ onto the open unit ball, the hyperplane onto the unit sphere, and $C\circ r_n\circ C^{-1}=I$. With $\mathrm{Ad}(C)=\exp\big(\tfrac\pi4\,\mathrm{ad}_{P_n-K_n}\big)$,
+\[
+X^\dagger=\mathrm{Ad}(C)\Big(\big(\mathrm{Ad}(C)^{-1}X\big)^{\dagger_n}\Big),\qquad \Theta_I=(C^{-1})^*\circ\Theta_n\circ C^*,
+\]
+where $\Theta_I$ is the inversion of the fields with the Weyl weights $1,0,\tfrac32,3,\tfrac52,4$ of $A,c,\lambda,A^*,\lambda^*,c^*$, the spinor factors $-\rho(x)/|x|$ on $\lambda$ and $\rho(x)/|x|$ on $\lambda^*$, and the factors $-1$ on $A^*$ and $c^*$, and $g^*$ is the pullback with the Weyl weights; $\Theta_I$ satisfies (i) of Theorem \ref{thm:c8-fields} with $\dagger$ in place of $\dagger_n$, the scalar kinetic density changing by a total derivative.
+\end{proposition}
+
+\begin{proof}
+The flow of $P_n-K_n$ is the rotation of $S^4$ by the angle $2t$ in the plane of $n$ and the axis of stereographic projection; at $t=-\tfrac\pi4$ it maps the great sphere orthogonal to $n$ to the equator, so $C\circ r_n\circ C^{-1}$ is the reflection in the equator, the inversion. The identity for $\dagger$ holds on the even part since $C$ is real and $(C\circ r_n\circ C^{-1})_*=I_*$; by Theorem \ref{thm:c8-dag} (iii) the two sides differ by $e^{tB}(\pm1)^{|X|}$, and evaluation of $\mathrm{Ad}(C)$ as the exponential of $\tfrac\pi4\mathrm{ad}_{P_n-K_n}$ in the realisation gives the factor $+1$. The field identity is the chain rule for the conformal factors and the spinor lifts.
+\end{proof}
+
+\begin{definition}[Radial conjugation of renormalised observables]
+\label{def:c8-radial}
+Assume the local representatives along $P_n$ and $K_n$ exist, with $P_1=0$ (Proposition \ref{prop:c7-cov}), and put $\delta^\hbar:=\Lambda^{(1)}(P_n)-\Lambda^{(1)}(K_n)$. For a renormalised local observable $O$ supported in the open unit ball,
+\[
+O^{\Theta_I,\hbar}:=\exp\big(-\tfrac\pi4\,\delta^\hbar\big)\Big[\big(\exp(\tfrac\pi4\,\delta^\hbar)\,O\big)^{\Theta_n}\Big],
+\]
+modulo $\Lambda^{(0)}$-exact terms and $O(\hbar^2)$. At order $\hbar^0$ this is $O^{\Theta_I}$ (Proposition \ref{prop:c8-C}); at order $\hbar$ it depends on $K_1$ through $\Lambda^{(1)}(K_n)$.
+\end{definition}
+
+\begin{proposition}[Radial conjugation of a scalar primary]
+\label{prop:c8-primary}
+Assume moreover $M_1(O)=R_1(O)=0$. Let $O_x$ be the density at $x$ of a scalar primary $\int\omega f$ of Weyl weight $w_O$ with $D_1(O)=2\kappa\,O$ and $K_1(O)=\tfrac14(\operatorname{div}K_b)\,\kappa\,O=-2(b,x)\,\kappa\,O$ for a number $\kappa$ of order one unit. Then $(O_x)^{\Theta_I,\hbar}=(x,x)^{-(w_O+\kappa)}\,\overline f(I(x))$ modulo $\Lambda^{(0)}$-exact terms and $O(\hbar^2)$, with $\overline f$ the density with conjugated components.
+\end{proposition}
+
+\begin{proof}
+$-\Lambda^{(1)}(v)$ acts on $O_x$ as the classical action of the conformal Killing field $v$ on a density of weight $w_O+\kappa$, since $v\mapsto\tfrac14\operatorname{div}v$ is a $1$-cocycle of the conformal Killing fields with values in functions; the finite action of $C^{\pm1}$ is the pullback with the conformal factor to the power $w_O+\kappa$, $\Theta_n$ has conformal factor $1$, and the conformal factors of $C^{-1}$, $r_n$, $C$ multiply to that of $I$, $(x,x)^{-1}$.
+\end{proof}
+
+\section{Two-point functions and inner products}
+
+\begin{definition}[Two-point function]
+\label{def:c8-2pt}
+For gauge-invariant local operators $O_1,O_2$ of degree $0$ with $(Q+\{I,-\})O_a=0$, background forms $\omega_1,\omega_2$ of disjoint supports, and square-zero parameters $t_1,t_2$ of degree $0$ and of the parities of $O_1,O_2$,
+\[
+\big\langle O_1,O_2\big\rangle:=\lim_{\varepsilon\to0}\partial_{t_2}\partial_{t_1}W\big(P(\varepsilon,\infty),\,I-F^{(0)}_{\mathfrak{psl}(4|4)}-I^{CT}[\varepsilon]+t_1O_1(\varepsilon)+t_2O_2(\varepsilon)\big)\Big|_{e=0},
+\]
+the coefficient of $t_1t_2$ at the zero field, with $F^{(0)}_{\mathfrak{psl}(4|4)}$ the arity-zero part of the finite counterterm (at one loop $\tfrac{27}{16}\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ plus $s$-closed choices) and $O_a(\varepsilon)$ of Definition \ref{def:c8-renorm}; with the global ghosts the same formula with $I_{\mathfrak{psl}(4|4)}$, $F_{\mathfrak{psl}(4|4)}$, $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ defines the two-point cochain. Its tree part is the part of lowest order in the unit, its one-loop part the part of relative order one unit, including the entries between operators of different lengths.
+\end{definition}
+
+\begin{proposition}[Properties of the two-point function]
+\label{prop:c8-2pt}
+\begin{itemize}
+\item (i) Constant terms of $O_a(\varepsilon)$ and $Q$-exact terms of the flow contribute zero. Assume \eqref{eq:c8-qme} modulo $\hbar^2$, and local representatives with $L(O_2)^{(0)}=0$ modulo $\hbar^2$. Then $\langle L(A)^{(0)},O_2\rangle=0$ through relative order one unit for every local $A$ of degree $-1$ with a local representative, where $L(A)^{(0)}=(Q+\{I,-\})A+\hbar L_1(A)^{(0)}$; the two-point function descends to the cohomology of $\Lambda^{(0)}$.
+\item (ii) Through relative order one unit the limit exists at separated supports, and the vertex integrations converge at large distance; the endpoint $T=\infty$ is safe.
+\item (iii) Scaling identity: assume the finite counterterm has Weyl weight $4$ and $\psi$ preserves the Weyl weight, and let $D_1$ denote the dilatation coefficients of Theorem \ref{thm:c6-dil}, obtained from the scaling covariance of the regulator (the component of Definition \ref{def:c8-components} along $\Delta$ under the identification \eqref{eq:c6-step2}). For operators of Weyl weights $w_1,w_2$, with kernel $\langle O_1,O_2\rangle(x,y)$,
+\[
+\big(x\cdot\partial_x+y\cdot\partial_y+w_1+w_2\big)\langle O_1,O_2\rangle(x,y)=-\tfrac12\Big(\langle D_1(O_1),O_2\rangle_{\rm tree}+\langle O_1,D_1(O_2)\rangle_{\rm tree}\Big)(x,y),
+\]
+so for Lorentz-scalar operators $O_a$ of common weight $w$ with tree matrix $C|x|^{-2w}$, $C_{ab}|x|^{-2w}=\langle O_a,O_b\rangle_{\rm tree}$, and $D_1(O_b)=\sum_a(D_1)_{ab}O_a$, the two-point matrix is $|x|^{-2w}\big[C+(\text{one-loop finite part})-\tfrac14(D_1^{\,T}C+CD_1)\log(|x|^2/\ell^2)\big]$, with $\ell$ the unit of length in which $\varepsilon$ is measured.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $W(P,J+c'\,t_1)=W(P,J)+c'\,t_1$ for a constant $c'$; $Q$ is induced by a linear operator on fields, so $(QF)|_{e=0}=0$. The last statement is the arity-zero, $t_1t_2$, $e=0$ part of the flow of the defect vertex of $J+t_1A(\varepsilon)+t_2O_2(\varepsilon)$: the left side vanishes by the first statement, and the right side is $\langle L(A)^{(0)},O_2\rangle\pm\langle A,L(O_2)^{(0)}\rangle$. (ii) A collapsing set of vertices containing both operators is excluded by the separation; the one-loop subgraphs without operators are subtracted by $I^{CT}[\varepsilon]$ (Proposition \ref{prop:c4-limit}) and those through $O_a$ by $\partial_\delta I^{CT}[\varepsilon](O_a)$ (Proposition \ref{prop:c5-thmB}); at large distance each internal vertex of weight $4$ with its edges decays faster than the measure grows, because the weights of $A$, $\lambda$ and the antifields are positive. (iii) The scaling covariance $\sigma_\lambda P(\varepsilon,\infty)=P(\lambda^2\varepsilon,\infty)$ (Proposition \ref{prop:c6-scaling}) moves the $\log\varepsilon$ counterterms into the dependence on the separation; the counterterm of the action is $s$-exact (Theorem \ref{thm:c4-log}) and acts on the two operators as the field counting, which combines with the operator counterterms into $D_1$ as in Theorem \ref{thm:c6-dil}. With $\langle O_a,O_b\rangle=r^{-2w}(C_{ab}+E_{ab}\log r^2)$, $(r\partial_r+2w)$ gives $2E_{ab}r^{-2w}$, while $\langle D_1(O_a),O_b\rangle_{\rm tree}=(D_1^{\,T}C)_{ab}r^{-2w}$ and $\langle O_a,D_1(O_b)\rangle_{\rm tree}=(CD_1)_{ab}r^{-2w}$.
+\end{proof}
+
+\begin{definition}[Inner products]
+\label{def:c8-inner}
+For renormalised observables $a,b$ supported in the half space $\{(n,x)>0\}$, the reflection inner product is $\langle a,b\rangle_n:=\langle a^{\Theta_n},b\rangle$; for $a,b$ supported in the open unit ball minus the origin, the radial inner product is $\langle a,b\rangle_{\rm rad}:=\langle a^{\Theta_I,\hbar},b\rangle$ with Definition \ref{def:c8-radial}. On operators at the origin, the radial inner product is the limit as the supports shrink to the origin; written in a basis $O_a$ it is a Gram matrix, with tree part $\mathrm{Gram}_{\rm tree}$ and one-loop part $\hbar\,\mathrm{Gram}_{\rm 1}$, so that $\langle a,b\rangle_{\rm rad}=\overline a^{\,T}(\mathrm{Gram}_{\rm tree}+\hbar\,\mathrm{Gram}_{\rm 1})\,b$ on coefficient columns. Matrices of operators act on coefficient columns, $YO_b=\sum_aY_{ab}O_a$, and $Y^{\rm adj}:=\mathrm{Gram}_{\rm tree}^{-1}\,\overline{Y}^{\,T}\mathrm{Gram}_{\rm tree}$ is the adjoint for the tree inner product.
+\end{definition}
+
+\begin{theorem}[Adjointness]
+\label{thm:c8-adjoint}
+Assume: the scheme is reflection compatible (the equivariant finite counterterms and the finite parts of the operators are fixed by the conjugation of Theorem \ref{thm:c8-fields}); the local representatives exist on the operators considered, with $P_1=M_1=R_1=0$; and the two-point function satisfies, for every $Y\in\mathfrak{psl}(4|4)$, the Ward identity $\langle\Lambda^{(1)}(Y)F,G\rangle=-(-1)^{|Y||F|}\langle F,\Lambda^{(1)}(Y)G\rangle$ on the observables considered. Then for every $X\in\mathfrak{psl}(4|4)$
+\[
+\big\langle-\Lambda^{(1)}(X)a,\,b\big\rangle_n=\big\langle a,\,-\Lambda^{(1)}(X^{\dagger_n})b\big\rangle_n,\qquad
+\big\langle-\Lambda^{(1)}(X)a,\,b\big\rangle_{\rm rad}=\big\langle a,\,-\Lambda^{(1)}(X^{\dagger})b\big\rangle_{\rm rad},
+\]
+modulo $O(\hbar^2)$. At order $\hbar^0$ both identities hold for the free theory.
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:c8-fields} and the anti-multiplicativity of the conjugation, $\big(\{S^{(1)}(X),a\}\big)^{\Theta_n}=(-1)^{1+|a||X|}\{S^{(1)}(X^{\dagger_n}),a^{\Theta_n}\}$; reflection compatibility extends this to $\Lambda^{(1)}$ at order $\hbar$. The Ward identity applied with $F=a^{\Theta_n}$ and $Y=X^{\dagger_n}$ gives the first identity. The second follows from the first by Proposition \ref{prop:c8-C} and Definition \ref{def:c8-radial}: conjugation by $\exp(\tfrac\pi4\delta^\hbar)$ carries $\Lambda^{(1)}(X)$ to $\Lambda^{(1)}(\mathrm{Ad}(C)^{-1}X)$ modulo $\Lambda^{(0)}$-exact terms by Corollary \ref{cor:c8-homotopy}.
+\end{proof}
+
+\begin{corollary}[The test $Q^\dagger=S$ in Gram form]
+\label{cor:c8-gram}
+Under the hypotheses of Theorem \ref{thm:c8-adjoint}, on a family of operators at the origin closed under the generators considered, let $X_0+\hbar X_1$ be the matrix of $-\Lambda^{(1)}(X)$ and $Y_0+\hbar Y_1$ that of $-\Lambda^{(1)}(X^\dagger)$. Then
+\[
+Y_0=X_0^{\rm adj},\qquad Y_1=X_1^{\rm adj}+\big[Y_0,\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big].
+\]
+In terms of the one-loop components (their matrices on the family, $\hbar X_1$ being minus the matrix of the component along $X$), for the unit generators of Definition \ref{def:c8-twocomp}:
+\[
+\begin{aligned}
+&S_1\text{ along }S^\alpha{}_i=-\big(Q_1\text{ along }Q^i_\alpha\big)^{\rm adj}+\hbar\big[\{S^{(1)}(S^\alpha{}_i),-\},\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big],\\
+&S_1\text{ along }\bar S^{\dot\alpha i}=\big(Q_1\text{ along }\bar Q_{\dot\alpha i}\big)^{\rm adj}+\hbar\big[\{S^{(1)}(\bar S^{\dot\alpha i}),-\},\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big],\\
+&K_1\text{ along }K_{\bar b}=-\big(P_1\text{ along }P_b\big)^{\rm adj}+\hbar\big[\{S^{(1)}(K_{\bar b}),-\},\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big],\\
+&D_1=D_1^{\rm adj}+\hbar\big[\{S^{(1)}(\Delta),-\},\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big].
+\end{aligned}
+\]
+With $P_1=0$ the third relation is the statement $K=P^\dagger$: $K_1$ along $K_{\bar b}$ equals $\hbar\big[\{S^{(1)}(K_{\bar b}),-\},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big]$. Under a finite part $a\mapsto(1+\hbar\psi')a$ of the operators, with $\psi'$ reflection compatible, $\mathrm{Gram}\mapsto\overline{(1+\hbar\psi')}^{\,T}\mathrm{Gram}\,(1+\hbar\psi')$ and $X\mapsto(1+\hbar\psi')^{-1}X(1+\hbar\psi')$ for the matrix of every generator, so $X_1\mapsto X_1+[X_0,\psi']$ and $\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\mapsto\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}+\psi'+\psi'^{\rm adj}$, and the relation is preserved. The shift $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar aG_B$ changes $X_1$ by $-aX_0$ and $Y_1$ by $+aY_0$ for $X=Q^i_\alpha$ (Proposition \ref{prop:c8-laws}); it preserves the relation exactly when $\bar a=-a$, which is also the condition for $aG_B$ to be reflection compatible, $B$ anticommuting with $\dagger_n$: the conjugation fixes the real part of the outer direction.
+\end{corollary}
+
+\begin{proof}
+Write the radial inner product as $\langle a,b\rangle_{\rm rad}=\overline a^{\,T}(\mathrm{Gram}_{\rm tree}+\hbar\,\mathrm{Gram}_{\rm 1})b$ and the adjointness of Theorem \ref{thm:c8-adjoint} as $\overline{X}^{\,T}\mathrm{Gram}=\mathrm{Gram}\,Y$. Order $\hbar^0$ gives $Y_0=X_0^{\rm adj}$; order $\hbar$ gives $\overline{X_1}^{\,T}\mathrm{Gram}_{\rm tree}+\overline{X_0}^{\,T}\mathrm{Gram}_{\rm 1}=\mathrm{Gram}_{\rm tree}Y_1+\mathrm{Gram}_{\rm 1}Y_0$, i.e. $Y_1=X_1^{\rm adj}+Y_0\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}-\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\,Y_0$. The component form uses Theorem \ref{thm:c8-dag} (i): for $X=Q^i_\alpha$, $X^\dagger=-S^\alpha{}_i$, so $\hbar X_1=-Q_1$ and $\hbar Y_1=+S_1$ along the unit generators, and $Y_0$ is the matrix of $\{S^{(1)}(S^\alpha{}_i),-\}$; the other lines are the same with $(\bar Q_{\dot\alpha i})^\dagger=\bar S^{\dot\alpha i}$, $P_b^\dagger=-K_{\bar b}$, $\Delta^\dagger=\Delta$. The covariance is the computation with $(1+\hbar\psi')$ inserted, using $[A,B]^{\rm adj}=[B^{\rm adj},A^{\rm adj}]$. For the outer direction, the change $-aX_0$ requires the change $-\bar aY_0$ on the right side, while Proposition \ref{prop:c8-laws} gives $+aY_0$; hence $\bar a=-a$.
+\end{proof}
+
+\begin{remark}[What the test checks]
+The three ingredients of Corollary \ref{cor:c8-gram} are computed independently: $Q_1$ and $S_1$ from the defect graphs of the equivariant quantum differential, $\mathrm{Gram}_{\rm 1}$ from the two-point graphs of Definition \ref{def:c8-2pt}, and the conjugation from the exact reflection $\Theta_n$ transported by Proposition \ref{prop:c8-C}. Agreement tests the equivariant quantum master equation, the reflection compatibility of the scheme and the definition of $K_1$ together; the relation for $D_1$ states that the one-loop dilatation is self-adjoint for the tree inner product on each space of fixed classical weight, where $\{S^{(1)}(\Delta),-\}$ is a multiple of the identity.
+\end{remark}
+
+\section{Beyond one loop}
+
+\begin{remark}[The definitions at higher order]
+Every definition of this chapter is stated at all orders in $\hbar$: the counterterms are the singular parts graph by graph, with the functions $\varepsilon^{-m}\log^k\varepsilon$, $(m,k)\neq(0,0)$, and the counterterms of lower order inserted [C07, Thm B]; the obstruction at order $\hbar^{k}$ is a local $s$-cocycle once the lower orders are solved; $L=s+\hbar L_1+\hbar^2L_2+\cdots$ with $L\circ L=0$; the twisted differential is $r_\xi(\Lambda)$; the scheme acts by conjugation; the inner products and the adjointness are formal series. At two loops the graphs contain one-loop subgraphs with their counterterm vertices, and the defect graphs contain one special edge and one further cycle; the enumeration of graphs and the exact evaluation of their Schwinger integrals are algorithmic tasks of a size that grows with the loop order.
+\end{remark}

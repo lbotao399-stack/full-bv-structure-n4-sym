@@ -1,0 +1,91 @@
+{
+ "bracket_sign": {
+  "int(A,A)": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": false,
+   "ratio": "1"
+  },
+  "int(lambda,dslash lambda) ~ l1 l2": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": false,
+   "ratio": "1"
+  },
+  "int(dc,A*) ~ g al": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": true,
+   "ratio": "None"
+  },
+  "int(A,A*) ~ a al": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": true,
+   "ratio": "None"
+  },
+  "cubic a^2 al": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": false,
+   "ratio": "1"
+  },
+  "g l1 ls2 (mixed)": {
+   "{S_X,F} == +D_X F": true,
+   "{S_X,F} == -D_X F": false,
+   "ratio": "1"
+  }
+ },
+ "bracket_sign_verdict": "+D_X",
+ "graded_symmetry": {
+  "{f,g} vs {g,f}, f = a al, g = g al": true,
+  "{f,g} vs {g,f}, f = a al, g = a^2": true
+ },
+ "Q_on_coordinates": {
+  "a": "-n*g",
+  "ls1": "m*l2",
+  "ls2": "-m*l1",
+  "gs": "n*al",
+  "al": "-k/2*a",
+  "l1": "0",
+  "l2": "0",
+  "g": "0"
+ },
+ "Q_on_coordinates_meaning": {
+  "Q a = -n g": "D_Q on the A coordinate: field-level Q c = -dc (ch03 proof of prop:c3-H): QA = -dc on functionals",
+  "Q al = -(k/2) a": "field-level Q A = -(1/2) d^*dA",
+  "Q gs = n al": "field-level Q A^* = d^*(A^*|_V) (c^* slot)",
+  "Q ls1 = m l2, Q ls2 = -m l1": "field-level Q lambda = dslash lambda (lambda* slot); Q lambda*_a = (dslash lambda)_a"
+ },
+ "Q_checks": {
+  "Q(A_perp,A*_perp) = -(1/2)(dA,dA)  [S_2 without the (dc,A*) term]": true,
+  "Q(A_V,A*_V) = -(1/2)(dA,dA) - (dc,A*)": true,
+  "Q(lambda*,lambda) = -(lambda,dslash lambda)": true,
+  "Q(c*,c) = -(dc,A*)": true,
+  "Q a = -n g (QA = -dc)": true,
+  "Q al = -(k/2) a": true,
+  "Q gs = n al": true,
+  "Q ls1 = m l2": true,
+  "Q g = 0, Q l = 0": true
+ },
+ "Q S_X (model)": "2*m*x*l1*l2 + -k*x/2*a^2",
+ "Q S_X == +D_X S_2": true,
+ "Q S_X note": "Q S_X = {S_2,S_X} = D_X S_2: in R^4 D_M S_2 = 0 (Weyl weight 4), so Q S^(1)(Delta) = 0 (lem:d-calculus (ii))",
+ "ward_identity_on_engineA_Sigma_perp": {
+  "D_M Sigma": "2*(-4*epsilon*(p0**2 + p1**2 + p2**2 + p3**2) - 9)/epsilon",
+  "4 eps d/deps Sigma": "2*(4*epsilon*(-p0**2 - p1**2 - p2**2 - p3**2) - 9)/epsilon",
+  "D_M Sigma == +4 eps dSigma/deps": true,
+  "D_M Sigma == -4 eps dSigma/deps": false
+ },
+ "D_M_S_M_perp": {
+  "alpha": "0",
+  "beta": [
+   "0",
+   "0",
+   "0",
+   "0"
+  ]
+ },
+ "ghost_placement": {
+  "statement": "Left ghost (theory: f = f^(0) + xi f_Delta) and right ghost (engine B: f = f^(0) + f_Delta xi) differ by f_Delta^left = (-1)^{|f_Delta|} f_Delta^right; for the degree -1 components (S^(1)(Delta), I^CT_Delta, F(Delta)) the sign flips uniformly, for the degree 0 component Ob(Delta) it does not.  All three groups define the arity-one vertex as J_Delta = S^(1)(Delta) - I^CT_Delta[eps] - F(Delta) with S^(1)(Delta) the explicit functional of ex:c2-dil, and Ob(Delta) as the local functional whose tree flow is lim Q W'_J(S^(1)(Delta) - I^CT_Delta); the equation Q W'_J(J_Delta) -> 0 contains no xi, so F(Delta) and Ob(Delta) = (Q + {I,-}) F(Delta) are the same functionals in all three conventions; only the global sign of the component is fixed by the normalisation \"classical part = +{S^(1)(Delta),O}\" (prop:c6-classical), used by all three.",
+  "engine_A": "component normalised so that the classical part is +2(E+w_O)O; J_Delta = S_M - I^CT_Delta - F_Delta (Y1b + CT = C_P(Pi_int - F_Delta, O))",
+  "engine_B": "right ghost: J = I - I^CT - F_0 + (S_M - I^CT_Delta - F(Delta)) xi",
+  "theory": "left ghost; J_Delta = S^(1)(Delta) - I^CT_Delta - hbar F_1(Delta); (Q+{I,-})hbar F_1(Delta) = Ob(Delta) (eq:d-F)",
+  "consistent": true
+ }
+}

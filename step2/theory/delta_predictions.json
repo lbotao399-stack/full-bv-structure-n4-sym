@@ -1,0 +1,67 @@
+{
+ "conventions": {
+  "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+  "S_M": "S^(1)(Delta), {S_M,-} = +D_M (D_M = derivation induced by M = v. for v = 2E)",
+  "Delta": "2E of [SW,(17)]; classical component of O along Delta = +{S^(1)(Delta),O} = 2(E+w_O)O",
+  "FC": "field-counting functional 2 int(A,A*) - 4 int(lambda*,lambda) - int(c*,c)",
+  "C_log": "coefficient of log eps in I^CT[eps] = unit*(Q+{I,-})FC (thm:c4-log)",
+  "Pi_Psi": "renormalised composite two-point functional: one-loop two-point graphs with S^(1)(Delta) on the cycle as the A|_V--c line Psi = kernel of P* M P* = (1/2){M,(P*)^2}, singular part removed (def:d-PiPsi)",
+  "class_i": "graphs with S_M on the cycle (= composite line; Pi_Psi)",
+  "class_ii": "S_M joined by one edge P to a leg of the renormalised self-energy (D_{P*M} W_1)"
+ },
+ "exact_identities_verified_in_toy": [
+  "eq:d-conj (terminates at second order)",
+  "eq:d-D1a",
+  "[Q,D_{P*M}] = {S_M,-}_eps - {S_M,-}_T",
+  "[Q,P*MP*] = 0 at finite T",
+  "P*MP* = (1/2){M,P*^2}",
+  "(Mx1+1xM)P(eps,T) = -4(eps d_eps + T d_T)P",
+  "D_M e^{h d_P} = e^{h d_P} D_M + 4(eps d_eps + T d_T) e^{h d_P}",
+  "transfer identity",
+  "Psi = Q Phi + Phi Q, Phi = k^{-1} P* Psi (finite T)",
+  "Psi = 0 iff (Q^GF)^2 = 0 (Landau-type variant)"
+ ],
+ "two_point_sectors": {
+  "(A_perp, A*_perp)": {
+   "eps^-1": "0 (the +-9/(eps|p|^2) of S_M-P-Sigma and S_M-P-(-I^CT) cancel)",
+   "log eps": "0 (composite cycle in this sector has superficial degree -1)",
+   "Q(class_ii) eps->0": "D_M Sigma_ren = 4 C_log|_perp = -4 unit int(dA_perp,dA_perp)",
+   "class_i eps->0": "Pi_Psi|_perp, local; Q Pi_Psi|_perp = +(1/3) unit int(dA_perp,dA_perp)  [check passed: engine A Pi_int = (5/3)S_M|_perp - (2/3)int(A_perp,A*_perp) gives exactly this with Q int(A_perp,A*_perp) = -(1/2) int(dA_perp,dA_perp)]",
+   "Ob(Delta)": "-(11/3) unit int(dA_perp,dA_perp) = 4C_log + Q Pi_Psi",
+   "F(Delta)": "(22/3) unit int(A_perp,A*_perp) = 8 (field counting) - 2/3 (Pi_Psi translation-invariant part); coefficient of S^(1)(Delta)|_perp not fixed by the two-point equation, fixed by the cubic arity-one equation (S^(1)(Delta)|_perp is Q-closed but not (Q+{I,-})-closed); only the full S^(1)(Delta) (coefficient z) stays free at arity one and is fixed at arity two (prop:d-z)"
+  },
+  "(A_V, A*_V) and (c, c*)": {
+   "eps^-1": "0",
+   "log eps": "nonzero, from the composite cycle only; Q-closed in total, (Q+{I,-})-exact; consistent with the reported unit*log eps*[int(d(iota_x A_V),A*_V) - int(iota_x dc,c*)] (part of Q(int(iota_x A_V,c*) - 1/2 int(rho(x) lambda*,lambda*)))",
+   "Q(class_ii) eps->0": "4 C_log|_{V,c} = unit[-4 int(dA_V,dA_V) - 4 int(dc,A*)], no int(d*A_V,d*A_V) term",
+   "Q Pi_Psi (predicted from Ob, to be tested by computing class_i)": "unit[(1/3) int(dA_V,dA_V) - (2/3) int(dc,A*)]; translation-invariant part of Pi_Psi: -(2/3) int(A_V,A*_V) + (4/3) int(c*,c) modulo Q-closed",
+   "Ob(Delta)": "unit[-(11/3) int(dA_V,dA_V) - (14/3) int(dc,A*)], coefficient of int(d*A_V,d*A_V) = 0 ({S^(1)(Delta),F_0} = D_M F_0 = 0 by weight)"
+  },
+  "(lambda, lambda*)": {
+   "eps^-1": "0",
+   "log eps": "nonzero from the composite cycle (vertex ([c,lambda],lambda*)); reported -unit*log eps*int(rho(x) dslash lambda,lambda*), part of the Q-exact X",
+   "Q(class_ii) eps->0": "4 C_log|_lambda = 16 unit int(lambda,dslash lambda)",
+   "Q Pi_Psi (predicted from Ob, to be tested)": "-(1/3) unit int(lambda,dslash lambda); translation-invariant part of Pi_Psi: +(1/3) int(lambda*,lambda)",
+   "Ob(Delta)": "(47/3) unit int(lambda,dslash lambda) (the reported 2-sample fit is predicted to be exact: 16 - 1/3)",
+   "two-component": "int(lambda,dslash lambda) = 2i int(lambdabar_{alphadot i}, sigmabar^{m alphadot alpha} d_m lambda_alpha^i); int(lambda*,lambda) = int[(lambda_alpha^i,lambda*^alpha_i) - (lambdabar_{alphadot i},lambdabar*^{alphadot i})]; Weinberg: dslash = gamma_W^mu d_mu on (lambda_alpha, lambdabar^alphadot)"
+  }
+ },
+ "F(Delta)_general": "4 unit FC + Y_Psi + z S^(1)(Delta) + G_Delta, (Q+{I,-})Y_Psi = A_Psi, Y_Psi|_quad = Pi_Psi mod Q-closed; with (Q^GF)^2 = 0: Y_Psi = 0",
+ "engine_A_vs_engine_B_on_F_Delta": "no disagreement: both give (22/3) int(A_perp,A*_perp) in the A_perp sector with S^(1)(Delta)|_perp free at two-point level; engine B's translation-invariant solution unit[(11/3)FC - int(lambda*,lambda) + int(c*,c)] = 4 unit FC + Pi_Psi(translation-invariant part predicted)",
+ "trace_anomaly_class": "absent: Ob(Delta) = (Q+{I,-})(4 unit FC + Y_Psi); the would-be class is 4b x (coupling direction), b = coupling coefficient of C_log = 0",
+ "scalar_bilinears_Delta_component_bilinear_part": {
+  "classical": "2(E+w_O)O, w_O = 2",
+  "coefficient (c_O, units)": {
+   "traceless": "0",
+   "trace": "-24"
+  },
+  "D_1(O)": "2 c_O O - z 2(E+w_O)O - {G_Delta,O} + R_O + [(Q+{I,-}),psi]_Delta O",
+  "exact remainder and class": "z: fixed by arity two (Delta,(K,P)); R_O = 0 for (Q^GF)^2 = 0; predicted bilinear part of R_O in span{O, 2(E+w_O)O, terms with d*d on a leg}, coefficient of O zero on cohomology (gauge-fixing independence, thm:d-inv)",
+  "nonlocal Q-exact terms": "predicted absent in the complete set of composite graphs (Y1a together with the composite line on a leg of O and the special-edge cycles); Q(Y1a) alone may be nonlocal (prop:d-T (iii))",
+  "decisive check": "evaluate lim_{eps->0} (hbar/2) d_Psi(Q O_tree[eps]) restricted to (A_perp,A_perp) output (composite line + one special edge K_eps-K_0 on a cycle through O) and compare with Q(Y1a)+Q(Y1b) of engine A; they must agree and be local"
+ },
+ "translation_component": {
+  "general": "P_1(O) = -z_P {S^(1)(P),O} - {G_P,O} + R_{O,v} + scheme term; all composite terms vanish for (Q^GF)^2 = 0",
+  "achieving P_1 = 0": "if R_{O,v} is (Q+{I,-})-exact: scheme with arity-one part; if R_{O,v} = c {S^(1)(P),O} on a family (reported c = -(1/3) unit on scalar bilinears, 0 on letters): scheme psi' = c x (Weyl weight) on that family; D_1, M_1, R_1 unchanged, K_1 shifted by +c, components along Sigma by -c/2, along Sigma* by +c/2 times the classical transformation (order-hbar inner automorphism e^{-(c hbar/2) ad_Delta})"
+ }
+}

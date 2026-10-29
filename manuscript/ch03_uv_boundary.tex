@@ -1,0 +1,422 @@
+\chapter{Costello's data with a UV boundary}
+
+Costello's renormalisation needs a gauge-fixing operator $Q^{GF}$, the heat kernel of $H=[Q,Q^{GF}]$ and the propagator $P(\varepsilon,\infty)=\int_\varepsilon^\infty(Q^{GF}\otimes1)K_t\,dt$ [C07, §6.5], and its axioms [C07, Def 4.3.3] are formulated on a compact manifold; [C07, §5.2] records that Yang--Mills theory in second-order form lies outside them. On Euclidean $\mathbb R^4$ we keep a single regulator, the lower Schwinger limit $\varepsilon$, and set the upper limit to $\infty$, so that $\varepsilon$ is the single scale of the construction. This chapter constructs a Feynman-gauge operator $Q^{GF}$ that satisfies three of the five axioms, identifies the two that fail, and proves the identities that hold with these data: $QP(\varepsilon,\infty)=K_\varepsilon$, the UV-boundary identity, the acyclicity of $Q$ at scale $\infty$ on sections with vanishing moments together with the zero-mode classes that $Q$ has on compactly supported sections, and the one-loop formula for the graph expansion.
+
+\section{The Feynman-gauge operator}
+
+\begin{definition}[Gauge-fixing operator]
+\label{def:c3-qgf}
+$Q^{GF}\colon\mathscr E\to\mathscr E$ is the odd operator of degree $-1$ given by the table; it is zero on the slots of $c$ and $\lambda$.
+
+\begin{tabular}{l|c|c|c}
+on the slot of & $Q^{GF}$ & lands in the slot of & momentum space \\
+\hline
+$A^*$ & $A^*\mapsto-2A^*$ (all ten components, through the metric of $V_{10}$) & $A$ & $-2$ \\
+$A$ & $A\mapsto-d^*(A|_V)$ & $c$ & $i\,\iota_pA$ \\
+$c^*$ & $c^*\mapsto dc^*$ & $A^*|_V$ & $i\,p\,c^*$ \\
+$\lambda^*$ & $\lambda^*\mapsto-{\not d}|_{\Sigma^*}\lambda^*$ & $\lambda$ & $-i\rho(p)\lambda^*$ \\
+\end{tabular}
+\tabcaption{The Feynman-gauge operator $Q^{GF}$.}
+\end{definition}
+
+\begin{proposition}[The Laplacian]
+\label{prop:c3-H}
+\begin{itemize}
+\item $H:=[Q,Q^{GF}]=QQ^{GF}+Q^{GF}Q=d^*d+dd^*$, the Hodge Laplacian of flat $\mathbb R^4$, which acts on every component function of every slot as the positive Laplacian of functions; in momentum space $H=|p|^2$.
+\item $[Q^{GF},H]=0$ and $[Q,H]=0$.
+\item Among operators with the arrows of Definition \ref{def:c3-qgf} and arbitrary coefficients in place of the four coefficients $-2$, $-1$, $1$, $-1$ of the table, these are the unique ones for which $H$ is the componentwise Laplacian.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Using Proposition \ref{prop:c1-Q}, slot by slot:
+\[
+\begin{aligned}
+c:&\quad Q^{GF}Qc=Q^{GF}(-dc)=-\big(-d^*dc\big)=d^*dc,\qquad QQ^{GF}c=0;\\
+A:&\quad QQ^{GF}A=Q\big(-d^*(A|_V)\big)=dd^*(A|_V),\qquad Q^{GF}QA=Q^{GF}\big(-\tfrac12d^*dA\big)=d^*dA;\\
+A^*:&\quad QQ^{GF}A^*=Q(-2A^*)=d^*dA^*,\qquad Q^{GF}QA^*=Q^{GF}\big(d^*(A^*|_V)\big)=dd^*(A^*|_V);\\
+c^*:&\quad QQ^{GF}c^*=Q(dc^*)=d^*dc^*,\qquad Q^{GF}Qc^*=0;\\
+\lambda:&\quad Q^{GF}Q\lambda=-{\not d}|_{\Sigma^*}{\not d}\lambda=d^*d\lambda,\qquad QQ^{GF}\lambda=0;\\
+\lambda^*:&\quad QQ^{GF}\lambda^*=-{\not d}\,{\not d}|_{\Sigma^*}\lambda^*=d^*d\lambda^*,\qquad Q^{GF}Q\lambda^*=0,
+\end{aligned}
+\]
+where on a plane wave $e^{i(p,x)}$ the Dirac operators become $i\rho(p)$, so that $-{\not d}|_{\Sigma^*}{\not d}$ and $-{\not d}\,{\not d}|_{\Sigma^*}$ become $\rho(p)\rho(p)=(p,p)=|p|^2$ by the Clifford relation, the symbol of $d^*d$. On $A|_V$ and on $A^*|_V$ the sum $d^*d+dd^*$ is the Hodge Laplacian on one-forms of flat $\mathbb R^4$, which is the Laplacian $d^*d$ of functions on each component; on $A|_{W_{\mathbb R}^\perp}$ and $A^*|_{W_{\mathbb R}^\perp}$ the term $dd^*$ is absent and $d^*d$ is the Laplacian of each scalar. Since $H$ is a constant-coefficient scalar operator, it commutes with $Q$ and $Q^{GF}$. For the uniqueness, each coefficient is fixed by one slot: the $c$ slot fixes the coefficient of $A\mapsto-d^*(A|_V)$, the transverse part of $A$ fixes the coefficient of $A^*\mapsto-2A^*$ (because $Q$ contributes $-\tfrac12$), the $c^*$ slot fixes the coefficient of $c^*\mapsto dc^*$, and the $\lambda$ slot fixes the coefficient of $\lambda^*\mapsto-{\not d}|_{\Sigma^*}\lambda^*$.
+\end{proof}
+
+\begin{proposition}[Adjointness]
+\label{prop:c3-adjoint}
+For all $e_0,e_1\in\mathscr E_c$,
+\[
+\langle Q^{GF}e_0,e_1\rangle=(-1)^{|e_0|}\langle e_0,Q^{GF}e_1\rangle,\qquad \langle Qe_0,e_1\rangle=-(-1)^{|e_0|}\langle e_0,Qe_1\rangle ;
+\]
+equivalently $(Q^{GF}\otimes1-1\otimes Q^{GF})K_0=0$ and $(Q\otimes1+1\otimes Q)K_0=0$. Thus $Q^{GF}$ has the adjointness opposite to that of $Q$.
+\end{proposition}
+
+\begin{proof}
+The statement for $Q$ is Proposition \ref{prop:c1-Q}. For $Q^{GF}$ the pairing vanishes outside the following cases. For $e_0,e_1$ in the $A^*$ slot (odd),
+\[
+\langle Q^{GF}e_0,e_1\rangle=-2\int\mathrm{dvol}\,(e_0,e_1),\qquad \langle e_0,Q^{GF}e_1\rangle=-\langle-2e_1,e_0\rangle=2\int\mathrm{dvol}\,(e_0,e_1).
+\]
+For $e_0$ in the $A$ slot and $e_1$ in the $c^*$ slot (both even),
+\[
+\langle Q^{GF}e_0,e_1\rangle=-\langle e_1,-d^*(e_0|_V)\rangle=\int\mathrm{dvol}\,(de_1,e_0),\qquad \langle e_0,Q^{GF}e_1\rangle=\int\mathrm{dvol}\,(e_0,de_1).
+\]
+For $e_0,e_1$ in the $\lambda^*$ slot (even), with the symmetry of $\rho(v)$ and integration by parts,
+\[
+\langle Q^{GF}e_0,e_1\rangle=\int\mathrm{dvol}\,({\not d}e_0,e_1),\qquad \langle e_0,Q^{GF}e_1\rangle=-\int\mathrm{dvol}\,({\not d}e_1,e_0)=\int\mathrm{dvol}\,({\not d}e_0,e_1).
+\]
+The case $e_0$ in the $c^*$ slot, $e_1$ in the $A$ slot follows by graded antisymmetry. In each case $\langle Q^{GF}e_0,e_1\rangle=(-1)^{|e_0|}\langle e_0,Q^{GF}e_1\rangle$.
+\end{proof}
+
+\begin{remark}[Names of the adjointness relations in the sources]
+\label{rem:c3-names}
+[C07, §4.3] calls $Q$ ``self adjoint'' and [C07, Def 4.3.3(1)] calls $Q^{GF}$ ``skew self adjoint''; [C07, §1, §1.1, §2.1] and [CG2, §7.2.1] use the opposite names, $Q$ skew self adjoint and $Q^{GF}$ self adjoint. The relations of Proposition \ref{prop:c3-adjoint} fix the content, and condition (1) of [C07, Def 4.3.3] is read here as: $Q^{GF}$ has the adjointness opposite to that of $Q$. The printed adjointness relation of [ESW, Def 1.16] is discussed in Remark \ref{rem:c1-adjoint}.
+\end{remark}
+
+\begin{proposition}[Axioms of a gauge-fixing operator]
+\label{prop:c3-axioms}
+Of the conditions of [C07, Def 4.3.3], three hold:
+\begin{itemize}
+\item (1), read as in Remark \ref{rem:c3-names}: Proposition \ref{prop:c3-adjoint};
+\item (2): every component of $Q^{GF}$ has order $0$ or $1$;
+\item (4): $H=d^*d+dd^*$, the componentwise Laplacian, is a generalised Laplacian (Proposition \ref{prop:c3-H}).
+\end{itemize}
+Condition (3) fails: $(Q^{GF})^2$ vanishes on the slots of $c$, $A$, $\lambda$, $\lambda^*$, and
+\[
+(Q^{GF})^2A^*=2\,d^*(A^*|_V)\ \ (\text{in the slot of }c),\qquad (Q^{GF})^2c^*=-2\,dc^*\ \ (\text{in the slot of }A|_V).
+\]
+Condition (5) fails: $\operatorname{Im}Q\cap\operatorname{Im}Q^{GF}\neq0$, since for every nonzero $c\in\mathscr E_c$ in the ghost slot
+\[
+Qc=-dc=Q^{GF}\big(\tfrac12dc\ \text{in the slot of }A^*|_V\big).
+\]
+Moreover $\operatorname{Im}Q^{GF}$ pairs nontrivially with itself: for $e_0$ in the $A^*$ slot and $e_1$ in the $c^*$ slot,
+\[
+\langle Q^{GF}e_0,Q^{GF}e_1\rangle=-2\int\mathrm{dvol}\,(e_0,de_1).
+\]
+\end{proposition}
+
+\begin{proof}
+$(Q^{GF})^2A^*=Q^{GF}(-2A^*)=-2\big(-d^*(A^*|_V)\big)$ and $(Q^{GF})^2c^*=Q^{GF}(dc^*)=-2\,dc^*$; on the other slots the image of $Q^{GF}$ lies in the slots of $c$ and $\lambda$, where $Q^{GF}$ vanishes. For (5), $Q^{GF}(\tfrac12dc)=-2\cdot\tfrac12dc$. The last formula is $\langle-2e_0,de_1\rangle$ with $-2e_0$ in the $A$ slot.
+\end{proof}
+
+\begin{remark}[Consequences of the two failures]
+Three statements of [C07] use (3) or (5): [C07, Lemma 6.5.1] ($P(0,\infty)$ inverts $Q\colon\operatorname{Im}Q^{GF}\to\operatorname{Im}Q$; its proof uses $(Q^{GF})^2=0$), the real-slice Gaussian over $(\operatorname{Im}Q^{GF})_{\mathbb R}$ of [C07, §6.6], and [C07, Lemma 6.6.2]. Indeed $\operatorname{Im}Q^{GF}$ contains the whole $A$ slot, on which $\langle e,Qe\rangle$ has the longitudinal zero eigenvector (Remark \ref{rem:c1-real}). The arguments below use $Q^2=0$, $H=[Q,Q^{GF}]$, $[Q,H]=0$ and the adjointness relations; Theorem \ref{thm:c3-acyclic} takes the place of [C07, Lemma 6.5.1].
+\end{remark}
+
+\begin{remark}[Feynman gauge]
+\label{rem:c3-feynman}
+In momentum space the $A\otimes A$ component of the propagator $P(0,\infty)$ (Proposition \ref{prop:c3-P} at $\varepsilon=0$) is $2(-,-)^{-1}\otimes(\text{inverse metric of }V_{10})\,|p|^{-2}$. It is the inverse of the second variation of $-\big(\tfrac12\langle A,QA\rangle-\tfrac14\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\big)=\tfrac14\int\mathrm{dvol}\,(A,HA)$, i.e. the covariance of the weight $e^{+S/\hbar}$ for the Yang--Mills kinetic term completed by the Feynman-gauge term $-\tfrac14(d^*A|_V,d^*A|_V)$; it has the eigenvalue $2(-,-)^{-1}|p|^{-2}$, positive, in all ten directions of $V_{10}$. Restricted to $\lambda$, the propagator $P(0,\infty)$ is minus the inverse of the second variation of $\tfrac12\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$.
+\end{remark}
+
+\section{Heat kernel and propagator}
+
+\begin{definition}[Heat kernel]
+\label{def:c3-K}
+For $t>0$, $K_t\in\mathscr E\otimes\mathscr E$ is the kernel with the components of $K_0$ (Definition \ref{def:c1-bracket}) with $\delta(x-y)$ replaced by $(4\pi t)^{-2}e^{-|x-y|^2/4t}$; in momentum space this factor is $e^{-t|p|^2}$. Then $K_t\star e=e^{-tH}e$ [C07, §6.5; C07, §15.2]. The kernel
+\[
+L_t=(Q^{GF}\otimes1)K_t
+\]
+represents $Q^{GF}e^{-tH}$ [C07, §6.5]. On $\mathbb R^4$,
+\[
+K_\infty:=\lim_{t\to\infty}K_t=0,
+\]
+pointwise in $x-y$, and in momentum space for every $p\neq0$.
+\end{definition}
+
+\begin{proposition}[Heat-kernel identities]
+\label{prop:c3-heat}
+\[
+(Q\otimes1+1\otimes Q)K_t=0,\qquad \frac{d}{dt}K_t+(Q\otimes1+1\otimes Q)L_t=0\qquad[\text{C07, §6.5}].
+\]
+\end{proposition}
+
+\begin{proof}
+$K_t=(e^{-tH}\otimes1)K_0$, $[Q,H]=0$ and $(Q\otimes1+1\otimes Q)K_0=0$ give the first identity. For the second, odd operators on different tensor factors anticommute, $(1\otimes Q)(Q^{GF}\otimes1)=-(Q^{GF}\otimes1)(1\otimes Q)$, and $(1\otimes Q)K_t=-(Q\otimes1)K_t$, so
+\[
+(Q\otimes1+1\otimes Q)L_t=(QQ^{GF}\otimes1)K_t+(Q^{GF}Q\otimes1)K_t=(H\otimes1)K_t=-\frac{d}{dt}K_t .
+\]
+\end{proof}
+
+\begin{definition}[Propagator]
+\label{def:c3-P}
+\[
+P(\varepsilon,\infty)=\int_\varepsilon^\infty L_t\,dt=\int_\varepsilon^\infty(Q^{GF}\otimes1)K_t\,dt\qquad[\text{C07, §6.5}],\qquad \varepsilon>0 .
+\]
+The component in a row labelled by two slots in the table below is the value of $\partial_{P(\varepsilon,\infty)}$ [C07, §6.4] on the product of a coordinate functional of the first slot at $x$ and one of the second slot at $y$, in this order.
+\end{definition}
+
+\begin{proposition}[Components of the propagator]
+\label{prop:c3-P}
+The scalar factor of $K_t$ integrates to
+\[
+\int_\varepsilon^\infty(4\pi t)^{-2}e^{-|x-y|^2/4t}\,dt=\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2},\qquad \int_\varepsilon^\infty e^{-t|p|^2}\,dt=\frac{e^{-\varepsilon|p|^2}}{|p|^2},
+\]
+and the nonzero components of $P(\varepsilon,\infty)$ are:
+
+\begin{tabular}{l|c|c|c}
+component & fibre factor & position space & momentum space \\
+\hline
+$A\otimes A$ & $2(-,-)^{-1}\otimes(\text{inverse metric of }V_{10})$ & $\dfrac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}$ & $\dfrac{e^{-\varepsilon|p|^2}}{|p|^2}$ \\
+$c\otimes A^*|_V$ & $-(-,-)^{-1}$ & $d_x\dfrac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}$ & $i\,p\,\dfrac{e^{-\varepsilon|p|^2}}{|p|^2}$ \\
+$A^*|_V\otimes c$ & $-(-,-)^{-1}$ & $d_x\dfrac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}$ & $i\,p\,\dfrac{e^{-\varepsilon|p|^2}}{|p|^2}$ \\
+$\lambda\otimes\lambda$ & $(-,-)^{-1}$ & ${\not d}_x|_{\Sigma^*}\dfrac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}$ & $i\rho(p)|_{\Sigma^*\to\Sigma}\dfrac{e^{-\varepsilon|p|^2}}{|p|^2}$ \\
+\end{tabular}
+\tabcaption{The propagator $P(\varepsilon,\infty)$; the kernel $\rho(p)|_{\Sigma^*\to\Sigma}$ is read as an element of $\Sigma\otimes\Sigma$ through the pairing $\Sigma\otimes\Sigma^*\to\mathbb C$.}
+
+All other components vanish, among them $A\otimes A^*$, $\lambda\otimes\lambda^*$, $c\otimes c^*$ and $c\otimes A^*|_{W_{\mathbb R}^\perp}$. Explicitly,
+\[
+d_x\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}=(x-y)\,\frac{\frac{|x-y|^2}{2\varepsilon}e^{-|x-y|^2/4\varepsilon}-2\big(1-e^{-|x-y|^2/4\varepsilon}\big)}{4\pi^2|x-y|^4},\qquad \frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}\bigg|_{x=y}=\frac1{16\pi^2\varepsilon}.
+\]
+Moreover $P(\varepsilon,\infty)$ is even and graded symmetric: exchanging the two factors together with $x\leftrightarrow y$ ($p\mapsto-p$) multiplies each component by the Koszul sign of the two slots.
+\end{proposition}
+
+\begin{proof}
+Since $\frac{d}{dt}e^{-|x-y|^2/4t}=\frac{|x-y|^2}{4t^2}e^{-|x-y|^2/4t}$,
+\[
+\int_\varepsilon^\infty\frac{e^{-|x-y|^2/4t}}{16\pi^2t^2}\,dt=\frac{1}{4\pi^2|x-y|^2}\Big[e^{-|x-y|^2/4t}\Big]_{t=\varepsilon}^{t=\infty}=\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}.
+\]
+The components follow from $L_t=(Q^{GF}\otimes1)K_t$ and Definition \ref{def:c3-qgf}, with $Q^{GF}$ acting on the first factor at $x$ (Koszul sign $+1$). The $A^*\otimes A$ component of $K_t$, $-(4\pi t)^{-2}e^{-|x-y|^2/4t}$ times the identity, is sent by $A^*\mapsto-2A^*$ to $+2(4\pi t)^{-2}e^{-|x-y|^2/4t}$ in $A\otimes A$. The $A|_V\otimes A^*|_V$ component is sent by $A\mapsto-d^*(A|_V)$, the divergence of $A|_V$ in the first factor, to $-d_x$ of the scalar factor in $c\otimes A^*|_V$. The $c^*\otimes c$ component is sent by $c^*\mapsto dc^*$ to $-d_x$ of the scalar factor in $A^*|_V\otimes c$. The $\lambda^*\otimes\lambda$ component is sent by $\lambda^*\mapsto-{\not d}|_{\Sigma^*}\lambda^*$ to $+{\not d}_x|_{\Sigma^*}$ of the scalar factor in $\lambda\otimes\lambda$. The momentum-space column follows from $d_x\mapsto ip$, and the value at $x=y$ from
+\[
+\lim_{x\to y}\frac{1-e^{-|x-y|^2/4\varepsilon}}{|x-y|^2}=\frac1{4\varepsilon}.
+\]
+Graded symmetry: for $c\otimes A^*|_V$ and $A^*|_V\otimes c$ the Koszul sign is $-1$ and the gradient of the even scalar factor is odd under $x\leftrightarrow y$; for $\lambda\otimes\lambda$ the Koszul sign is $-1$ and $\rho(-p)=-\rho(p)$.
+\end{proof}
+
+\begin{proposition}[The two UV-boundary kernels]
+\label{prop:c3-QP}
+\begin{equation}
+(Q\otimes1+1\otimes Q)P(\varepsilon,\infty)=K_\varepsilon,
+\label{eq:c3-QP}
+\end{equation}
+\begin{equation}
+\varepsilon\frac{d}{d\varepsilon}P(\varepsilon,\infty)=-\varepsilon L_\varepsilon .
+\label{eq:c3-dP}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c3-heat},
+\[
+(Q\otimes1+1\otimes Q)P(\varepsilon,\infty)=\int_\varepsilon^\infty(Q\otimes1+1\otimes Q)L_t\,dt=-\int_\varepsilon^\infty\frac{d}{dt}K_t\,dt=K_\varepsilon-K_\infty=K_\varepsilon .
+\]
+This is [C07, Lemma 10.2.1] with the upper scale at $\infty$ and $K_\infty=0$. In position space the scalar core of \eqref{eq:c3-QP} is $d^*d\,\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}=(4\pi\varepsilon)^{-2}e^{-|x-y|^2/4\varepsilon}$. The second identity is the fundamental theorem of calculus applied to $\int_\varepsilon^\infty L_t\,dt$.
+\end{proof}
+
+\begin{remark}[Two objects at $t=\varepsilon$]
+\label{rem:c3-two}
+The lower end of the Schwinger integral carries two different kernels. By \eqref{eq:c3-dP}, $L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon$ governs the $\varepsilon$-dependence of every graph: for a graph $\gamma$ whose value is the integral of $f_\gamma$ over the Schwinger times $t_e\in[\varepsilon,\infty)$ of its edge set $E(\gamma)$ [C07, §15.5], $\varepsilon\frac{d}{d\varepsilon}$ of the value is minus the sum over $e\in E(\gamma)$ of $\varepsilon f_\gamma$ with $t_e=\varepsilon$, that is, with the edge $e$ carrying $L_\varepsilon$. The singular coefficients ($\varepsilon^{-1}$, $\log\varepsilon$) and the scaling behaviour therefore sit on $L_\varepsilon$ edges. By \eqref{eq:c3-QP}, $K_\varepsilon$ governs the action of $Q$ (Theorem \ref{thm:c3-uv}): the obstruction to the quantum master equation and the $Q$-variation of observables sit on edges carrying $K_\varepsilon$, or $K_\varepsilon-K_0$, and on the counterterm vertices $-QI^{CT}[\varepsilon]-\{I,I^{CT}[\varepsilon]\}_\varepsilon$ (Definition \ref{def:c3-delta}; the counterterm $I^{CT}[\varepsilon]$ is constructed in Chapter 4), together with their $\delta$-derivatives for observables (Chapter 5).
+\end{remark}
+
+\section{The UV-boundary identity}
+
+\begin{remark}[Functionals on $\mathbb R^4$]
+\label{rem:c3-class}
+On $\mathbb R^4$ the operators $\partial_{K_t}$ and $\partial_{P(\varepsilon,\infty)}$ [C07, §6.4] and the brackets below act on functionals of compactly supported sections, $\mathscr O(\mathscr E_c)\supset\mathscr O_l(\mathscr E)$ [C07, Def 4.2.2]. The interaction, its counterterms and their flows are taken modulo constants [CG2, §7.2.6]; the observables of Chapter 5 keep their constant terms, which depend on the four-form $\omega$ and carry the subtraction of the expectation value. A local functional $\int\mathrm{dvol}\,(\text{density})$, such as $S$, $I$ or a counterterm, is a density modulo total derivatives, and on it these operators are evaluated graph by graph (Proposition \ref{prop:c3-graphs}), with compactly supported legs. For the interaction and its counterterms constants are discarded because a contraction that uses every field of a translation-invariant functional is proportional to the volume of $\mathbb R^4$. If the Taylor component of a functional, evaluated on compactly supported sections in its remaining arguments, is an integrable kernel in the two contracted positions, its contraction with $K_t$ is bounded by $(4\pi t)^{-2}$ times the integral of the absolute value of that kernel and tends to $0$ as $t\to\infty$. This applies to every local functional $\int\omega\,(\text{density})$ with $\omega$ a compactly supported four-form [CG2, Lemma 10.1.1.3], to every local functional $\int\mathrm{dvol}\,(\text{density})$ at least quadratic in the fields, and to the bracket of two such functionals: a contraction of two legs at one point is a density times $(4\pi t)^{-2}$, and a contraction between two such functionals pairs two compactly supported densities through $K_t$. For a linear functional $\int\mathrm{dvol}\,(c^*,X)$, $X\in\mathfrak g$, the contraction integrates $K_t$ over one position, and the integral of the scalar factor $(4\pi t)^{-2}e^{-|x-y|^2/4t}$ over $x$ equals $1$ for every $t$; these linear functionals are the zero-mode classes of Theorem \ref{thm:c3-acyclic}.
+\end{remark}
+
+\begin{definition}[Scale-$\varepsilon$ Laplacian and bracket]
+\label{def:c3-delta}
+\[
+\Delta_\varepsilon=-\partial_{K_\varepsilon}\quad[\text{C07, §10.1}],\qquad \{f,g\}_\varepsilon=\Delta_\varepsilon(fg)-\Delta_\varepsilon(f)g-(-1)^{|f|}f\Delta_\varepsilon(g)\quad[\text{CG2, §7.2.8}],
+\]
+the second with the Laplacian $\Delta_\varepsilon$ of [C07] in the product rule of [CG2]. At scale $\infty$ the kernel is $K_\infty:=0$ (Definition \ref{def:c3-K}); accordingly $\Delta_\infty:=-\partial_{K_\infty}=0$ and $\{-,-\}_\infty=0$ identically, on every functional, and this is the scale-$\infty$ structure used throughout. On functionals whose contracted Taylor components are integrable kernels (Remark \ref{rem:c3-class}), in particular on local functionals with a compactly supported four-form, on local functionals $\int\mathrm{dvol}\,(\text{density})$ at least quadratic in the fields, and on brackets of two such, it is also the limit $t\to\infty$ of $\Delta_t$ and $\{-,-\}_t$.
+\end{definition}
+
+\begin{definition}[Renormalisation group flow]
+\label{def:c3-W}
+For an even $\phi\in\mathrm{Sym}^2\mathscr E$ and an even functional $J$, at least cubic modulo $\hbar$,
+\[
+W(\phi,J)=\hbar\log\big(e^{\hbar\partial_\phi}e^{J/\hbar}\big)\qquad[\text{CG2, §7.2.7}],
+\]
+which is $\Gamma(\phi,J)$ of [C07, Def 6.6.1]. The letter $W$ with two arguments always denotes this flow; $W$ alone is the multiplicity space of [ESW, §10], and $\Gamma$ is reserved for the $\Gamma$-pairing of [ESW, (28)].
+\end{definition}
+
+\begin{theorem}[UV-boundary identity]
+\label{thm:c3-uv}
+On functionals with values in $C^\bullet(\mathfrak{psl}(4|4))$ (Chapter 2), as formal power series in $\hbar$,
+\begin{equation}
+(d_{CE}+Q)\,e^{\hbar\partial_{P(\varepsilon,\infty)}}=e^{\hbar\partial_{P(\varepsilon,\infty)}}\,(d_{CE}+Q+\hbar\Delta_\varepsilon).
+\label{eq:c3-uv}
+\end{equation}
+Here $Q^{GF}$ is the operator of Definition \ref{def:c3-qgf}.
+\end{theorem}
+
+\begin{proof}
+By [C07, §6.4], $[\partial_\phi,Q]=\partial_{Q\phi}$ for $\phi\in\mathrm{Sym}^2\mathscr E$, with $Q$ acting on $\mathscr E\otimes\mathscr E$ as $Q\otimes1+1\otimes Q$. With \eqref{eq:c3-QP},
+\[
+\partial_{P(\varepsilon,\infty)}Q-Q\,\partial_{P(\varepsilon,\infty)}=\partial_{K_\varepsilon}=-\Delta_\varepsilon ,\qquad\text{i.e.}\qquad Q\,\partial_{P(\varepsilon,\infty)}=\partial_{P(\varepsilon,\infty)}Q+\Delta_\varepsilon .
+\]
+The operators $\partial_\phi$ mutually commute [C07, §6.4], so $\Delta_\varepsilon$ commutes with $\partial_{P(\varepsilon,\infty)}$, and by induction on $n$
+\[
+Q\,\partial_{P(\varepsilon,\infty)}^n=\partial_{P(\varepsilon,\infty)}^nQ+n\,\partial_{P(\varepsilon,\infty)}^{n-1}\Delta_\varepsilon .
+\]
+Multiplying by $\hbar^n/n!$ and summing over $n$,
+\[
+Q\,e^{\hbar\partial_{P(\varepsilon,\infty)}}=e^{\hbar\partial_{P(\varepsilon,\infty)}}Q+\hbar\,e^{\hbar\partial_{P(\varepsilon,\infty)}}\Delta_\varepsilon .
+\]
+Finally $d_{CE}$ acts on the arguments in $\mathfrak{psl}(4|4)$ and $\partial_{P(\varepsilon,\infty)}$ on the fields; $P(\varepsilon,\infty)$ is a kernel on the fields, independent of the arguments of the cochains, so $[\partial_{P(\varepsilon,\infty)},d_{CE}]=0$. Each step uses $Q^2=0$, \eqref{eq:c3-QP} and the algebra of the operators $\partial_\phi$.
+\end{proof}
+
+\begin{corollary}[Master equations at the two ends]
+\label{cor:c3-qme}
+Let $J$ be an even functional with values in $C^\bullet(\mathfrak{psl}(4|4))[[\hbar]]$, at least cubic modulo $\hbar$ when the arguments of the cochains are counted as fields, as in [CG2, §13.2.2], and let $W(P(\varepsilon,\infty),J)=\hbar\log\big(e^{\hbar\partial_{P(\varepsilon,\infty)}}e^{J/\hbar}\big)$ be its flow (Definition \ref{def:c3-W}). Then
+\[
+(d_{CE}+Q+\hbar\Delta_\varepsilon)e^{J/\hbar}=0\iff(d_{CE}+Q)\,e^{W(P(\varepsilon,\infty),J)/\hbar}=0,
+\]
+and the two sides are equivalent to
+\[
+(d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J=0,\qquad (d_{CE}+Q)\,W(P(\varepsilon,\infty),J)=0 .
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \eqref{eq:c3-uv} to $e^{J/\hbar}$; the operator $e^{\hbar\partial_{P(\varepsilon,\infty)}}$ is invertible. This is [C07, Lemma 10.2.2] with the second scale at $\infty$, where $\Delta_\infty=0$. For an even $J$, the product rule of Definition \ref{def:c3-delta}, applied to the powers $J^n$, gives $\Delta_\varepsilon e^{J/\hbar}=e^{J/\hbar}\big(\hbar^{-1}\Delta_\varepsilon J+\tfrac12\hbar^{-2}\{J,J\}_\varepsilon\big)$, while $d_{CE}+Q$ is a derivation, $(d_{CE}+Q)e^{J/\hbar}=\hbar^{-1}e^{J/\hbar}(d_{CE}+Q)J$; this is the equivalence of [C07, §10.1] with $\Delta_\varepsilon$ in place of $\Delta_0$.
+\end{proof}
+
+\section{Acyclicity at scale infinity}
+
+For a kernel $\phi\in\mathscr E\otimes\mathscr E$ write $\phi\star$ for the operator it represents [C07, §6.3]. Thus $K_t\star=e^{-tH}$, and $P(\varepsilon,\infty)\star=\int_\varepsilon^\infty Q^{GF}e^{-tH}dt$; $P(0,\infty)\star$ is the limit $\varepsilon\to0$. A Schwartz section of the BV bundle is a section whose components are Schwartz functions on $\mathbb R^4$; its moments are the integrals $\int\mathrm{dvol}\,f\,e$ with $f$ a polynomial function on $\mathbb R^4$. A Schwartz section is moment-free when all its moments vanish, equivalently when its Fourier transform (Chapter 1) vanishes to infinite order at $p=0$. The moment-free Schwartz sections form a closed subspace of the Schwartz sections, with the induced topology.
+
+\begin{theorem}[Acyclicity at scale $\infty$]
+\label{thm:c3-acyclic}
+For every $\alpha\in\mathscr E_c$ the integral $P(0,\infty)\star\alpha=\int_0^\infty Q^{GF}e^{-tH}\alpha\,dt$ converges to a smooth section, bounded together with its first derivatives by a multiple of $(1+|x|)^{-2}$, and
+\begin{equation}
+Q\big(P(0,\infty)\star\alpha\big)+P(0,\infty)\star(Q\alpha)=\alpha ;
+\label{eq:c3-homotopy}
+\end{equation}
+in kernel form, $(Q\otimes1+1\otimes Q)P(0,\infty)=K_0$. Moreover:
+\begin{itemize}
+\item The moment-free Schwartz sections form a space stable under $Q$, $Q^{GF}$, $e^{-tH}$ and $P(0,\infty)\star$, on which $P(0,\infty)\star$ acts continuously and \eqref{eq:c3-homotopy} holds. Thus $P(0,\infty)\star$ is a contracting homotopy for $Q$ there: every moment-free Schwartz section $e$ with $Qe=0$ equals $Q\big(P(0,\infty)\star e\big)$, with $P(0,\infty)\star e$ moment-free.
+\item Zero-mode classes. Let $e_0$ be a section in the slot of $c$, of $A|_{W_{\mathbb R}^\perp}$ or of $\lambda$ whose components are polynomial functions on $\mathbb R^4$, with $Qe_0=0$: a constant ghost $e_0=X\in\mathfrak g$, a section of $A|_{W_{\mathbb R}^\perp}$ with harmonic polynomial components, or a polynomial solution of ${\not d}e_0=0$. The linear functional $e\mapsto\langle e_0,e\rangle$ on $\mathscr E_c$ is $Q$-closed and is $Q$-exact for no $e_0\neq0$, and it vanishes on moment-free Schwartz sections. For a constant ghost $X$ it is $-\int\mathrm{dvol}\,(c^*,X)$. For each bound on the polynomial degree of $e_0$ these functionals span a finite-dimensional space.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Compactly supported sections. Each component of $e^{-tH}\alpha$ is the convolution of a component of $\alpha$ with $(4\pi t)^{-2}e^{-|x|^2/4t}$, so $e^{-tH}\alpha$ and its first derivatives are bounded by $(4\pi t)^{-2}$ times $\int\mathrm{dvol}\,|\alpha|$ and $\int\mathrm{dvol}\,|d\alpha|$, and by the suprema of $|\alpha|$ and $|d\alpha|$ for $t\le1$. Since $Q^{GF}$ has constant coefficients and order at most $1$, $\sup_{x\in\mathbb R^4}|Q^{GF}e^{-tH}\alpha|$ is integrable on $(0,\infty)$; the same bounds for the derivatives allow $Q$ to pass under the integral. At a point $x$ with $\operatorname{dist}(x,\operatorname{supp}\alpha)\ge1$, $|e^{-tH}\alpha(x)|\le(4\pi t)^{-2}e^{-\operatorname{dist}(x,\operatorname{supp}\alpha)^2/4t}\int\mathrm{dvol}\,|\alpha|$, and
+\[
+\int_0^\infty(4\pi t)^{-2}e^{-\operatorname{dist}(x,\operatorname{supp}\alpha)^2/4t}\,dt=\frac{1}{4\pi^2\operatorname{dist}(x,\operatorname{supp}\alpha)^2},
+\]
+which gives the bound by a multiple of $(1+|x|)^{-2}$; the first derivatives obey the same bound. Since $[Q,H]=0$, $Q^{GF}e^{-tH}Q\alpha=Q^{GF}Qe^{-tH}\alpha$, and
+\[
+\begin{aligned}
+Q\,P(0,\infty)\star\alpha+P(0,\infty)\star Q\alpha&=\int_0^\infty(QQ^{GF}+Q^{GF}Q)e^{-tH}\alpha\,dt=\int_0^\infty He^{-tH}\alpha\,dt\\
+&=-\int_0^\infty\frac{d}{dt}e^{-tH}\alpha\,dt=\alpha-\lim_{t\to\infty}e^{-tH}\alpha .
+\end{aligned}
+\]
+The limit vanishes because $|e^{-tH}\alpha|\le(4\pi t)^{-2}\int\mathrm{dvol}\,|\alpha|$; this is $K_\infty=0$. The kernel form is \eqref{eq:c3-QP} at $\varepsilon\to0$ with $K_\varepsilon\to K_0$.
+
+Moment-free sections. In momentum space $Q$ and $Q^{GF}$ act by multiplication with the matrices of polynomials in $p$ of Proposition \ref{prop:c1-Q} and Definition \ref{def:c3-qgf}, $e^{-tH}$ by $e^{-t|p|^2}$, and $P(0,\infty)\star$ by the matrix of $Q^{GF}$ times $\int_0^\infty e^{-t|p|^2}dt=|p|^{-2}$. The first three preserve Schwartz functions of $p$ that vanish to infinite order at $p=0$. For such a function $h$ and every $n$, Taylor's formula at $p=0$ bounds every derivative $\partial^\beta h$ on $|p|\le1$ by $|p|^n$ times a multiple of the supremum of the derivatives of $h$ of order $n+|\beta|$ on the unit ball, while every derivative of order $k$ of $|p|^{-2}$ is bounded by a multiple of $|p|^{-2-k}$; by the Leibniz rule every derivative of order $k$ of $|p|^{-2}h$ is bounded on $0<|p|\le1$ by $|p|^{n-2-k}$ times continuous seminorms of $h$. Hence $|p|^{-2}h$ extends smoothly by $0$ at $p=0$ and vanishes there to infinite order; on $|p|\ge1$ the derivatives of $|p|^{-2}$ are bounded, so rapid decay and the seminorm bounds persist. This proves stability and continuity. For $p\neq0$ the matrices satisfy
+\[
+(QQ^{GF}+Q^{GF}Q)\,|p|^{-2}=H\,|p|^{-2}=1
+\]
+by Proposition \ref{prop:c3-H}, and both sides of \eqref{eq:c3-homotopy} vanish to infinite order at $p=0$; this gives \eqref{eq:c3-homotopy} on moment-free Schwartz sections.
+
+Zero-mode classes. The table of Proposition \ref{prop:c1-Q} gives $Qe_0=-de_0$ on the ghost slot, $Qe_0=-\tfrac12d^*de_0$ on $A|_{W_{\mathbb R}^\perp}$ and $Qe_0={\not d}e_0$ on $\lambda$, which vanish exactly for the three kinds of $e_0$ listed. For $e\in\mathscr E_c$ the pairing $\langle e_0,e\rangle$ is defined, and integration by parts with compact support gives $\langle e_0,Qe\rangle=-(-1)^{|e_0|}\langle Qe_0,e\rangle=0$, as in Proposition \ref{prop:c1-Q}; so the functional is $Q$-closed. A $Q$-exact linear functional on $\mathscr E_c$ is, up to sign, $G\circ Q$ for a linear functional $G$. The operator $Q$ vanishes on the slots of $c^*$, $\lambda^*$ and $A^*|_{W_{\mathbb R}^\perp}$, so $G\circ Q$ is independent of the components of $e$ in these slots, while $\langle e_0,e\rangle$ is the pairing of $e_0$ with the component of $e$ in the partner slot of $e_0$, which is one of these three, and is a nonzero functional of it for $e_0\neq0$. Hence $\langle e_0,-\rangle$ is $Q$-exact for no $e_0\neq0$. Since $e_0$ has polynomial components, $\langle e_0,e\rangle$ is a finite combination of moments of $e$; it extends continuously to Schwartz sections and vanishes on moment-free ones. For $e_0=X$ in the ghost slot, Definition \ref{def:c1-pairing} gives $\langle X,e\rangle=-\langle e,X\rangle=-\int\mathrm{dvol}\,(e_{c^*},X)$, with $e_{c^*}$ the component of $e$ in the slot of $c^*$. Polynomial sections of bounded degree form a finite-dimensional space.
+\end{proof}
+
+The derivation $Q$ of [C07, §6.2] acts on an $n$-linear graded-symmetric functional $F$ of parity $|F|$ by
+\[
+QF=(-1)^{|F|}\,F\circ\Big(\sum_{j=1}^n1^{\otimes(j-1)}\otimes Q\otimes1^{\otimes(n-j)}\Big),
+\]
+the operator in brackets being the tensor-product differential of [C07, §6.2], with the Koszul rule for odd operators on tensor factors: in $F(e+rQe,\dots)$ with $e$ even and $r$ an odd element of an auxiliary nilpotent ring [C07, Lemma 6.4.1, proof], the element $r$ passes through $F$.
+
+\begin{corollary}[Functionals at scale $\infty$]
+\label{cor:c3-functionals}
+Let $n\ge1$ and let $F$ be a continuous graded-symmetric $n$-linear functional on moment-free Schwartz sections with $F\circ\big(\sum_{j=1}^n1^{\otimes(j-1)}\otimes Q\otimes1^{\otimes(n-j)}\big)=0$. Then
+\[
+F=\Big(F\circ\frac1n\sum_{i=1}^n1^{\otimes(i-1)}\otimes P(0,\infty)\star\otimes1^{\otimes(n-i)}\Big)\circ\Big(\sum_{j=1}^n1^{\otimes(j-1)}\otimes Q\otimes1^{\otimes(n-j)}\Big),
+\]
+and the functional $F\circ\frac1n\sum_{i=1}^n1^{\otimes(i-1)}\otimes P(0,\infty)\star\otimes1^{\otimes(n-i)}$ is continuous, graded symmetric and of parity $|F|+1$; $F$ equals $(-1)^{|F|+1}$ times $Q$ of it. Hence the complex of continuous polynomial functionals on moment-free Schwartz sections, without constant term, is acyclic for $Q$: every $Q$-closed functional without constant term is $Q$-exact.
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm:c3-acyclic}, $P(0,\infty)\star$ acts continuously on moment-free Schwartz sections, so the composite functional is continuous; averaging over the $n$ factors keeps it graded symmetric, and $P(0,\infty)\star$ is odd, which gives the parity. Odd operators acting on different tensor factors anticommute, so the graded commutator of $Q$ on the $j$-th factor with $P(0,\infty)\star$ on the $i$-th factor vanishes for $i\neq j$, and for $i=j$ it is the identity of the $i$-th factor by \eqref{eq:c3-homotopy}. Summing over $i,j$ and dividing by $n$, the graded commutator of the tensor-product differential with the averaged operator $\frac1n\sum_i1^{\otimes(i-1)}\otimes P(0,\infty)\star\otimes1^{\otimes(n-i)}$ is $\frac1n\sum_{i=1}^n\mathrm{id}=\mathrm{id}$. Composing with $F$ and using $F\circ\big(\sum_j1^{\otimes(j-1)}\otimes Q\otimes1^{\otimes(n-j)}\big)=0$ gives the displayed identity, and the action of $Q$ on functionals of parity $|F|+1$ gives the last statement.
+\end{proof}
+
+\begin{remark}[Where the content of an operator lies]
+\label{rem:c3-story}
+At scale $\infty$ the differential on functionals is $d_{CE}+Q$ ($\Delta_\infty=0$, $\{-,-\}_\infty=0$, Definition \ref{def:c3-delta}). On moment-free Schwartz sections the cohomology of $Q$ on functionals without constant term is zero (Corollary \ref{cor:c3-functionals}): every $Q$-closed functional is $Q$ of a nonlocal functional built with $P(0,\infty)\star$. On compactly supported sections $Q$ has nonzero classes, among them the zero-mode classes of Theorem \ref{thm:c3-acyclic}, the pairings with polynomial zero modes of $Q$, such as $-\int\mathrm{dvol}\,(c^*,X)$ for a constant ghost $X$. The list of Theorem \ref{thm:c3-acyclic} is a list of examples: the slot of $A|_V$ contributes further classes. For $a,b\in V$ with $(a,b)=0$ and $a,b$ linearly independent, the one-form $e_0=(a,x)\,(b,-)$ satisfies $d^*e_0=-(a,b)=0$ and $d^*de_0=0$, hence $Qe_0=-\tfrac12d^*de_0=0$, while $de_0=(a,-)\wedge(b,-)\neq0$. The functional $e\mapsto\langle e_0,e\rangle$ is $Q$-closed; a $Q$-exact linear functional depends on the component of $e$ in the slot of $A^*|_V$ through its image under $d^*$ alone, which vanishes on $d^*\beta$ for every compactly supported two-form $\beta$, while $\langle e_0,d^*\beta\rangle$ is $\pm\int\mathrm{dvol}\,(de_0,\beta)$, nonzero for suitable $\beta$; so this class is nonzero. The zero-mode classes vanish on moment-free sections, sit at $p=0$, are independent of $\varepsilon$, and are finitely many in each polynomial degree and infinitely many in all; products of them give nonlinear classes. On moment-free Schwartz sections every $Q$-closed functional without constant term therefore defines the zero class, whatever functional $O(\varepsilon)$ it is obtained from. The content of an operator is the local functional $O(\varepsilon)$ at the UV end whose flow $O[\infty]$ to scale $\infty$ [CG2, Def 8.3.1.3] has an $\varepsilon\to0$ limit; both are defined in Chapter 5. This requirement fixes the singular part of $O(\varepsilon)$ uniquely; the finite part is the scheme freedom. Correspondingly, an equation expressing $Q\,O[\infty]$ as the scale-$\infty$ observable of a second local functional has content because that functional is local, and for an operator whose observable is a cocycle, $Q\,O[\infty]=0$ (Remark \ref{rem:c5-cocycle}), the anomalous dimension is read off in the cohomology of local functionals.
+\end{remark}
+
+\section{The graph expansion and the one-loop formula}
+
+\begin{proposition}[Graph expansion]
+\label{prop:c3-graphs}
+For $J=\sum_{i\ge0}\hbar^iJ_i$ as in Definition \ref{def:c3-W},
+\[
+W(P(\varepsilon,\infty),J)=\sum_\gamma\hbar^{\,b_1(\gamma)+\sum_v\deg v}\,\frac{1}{|\operatorname{Aut}\gamma|}\,w_\gamma\qquad[\text{C07, §15.4}],
+\]
+the sum over connected graphs $\gamma$ with legs, with vertex set $V(\gamma)$ and edge set $E(\gamma)$ [C07, §15.5] (these always carry the argument $\gamma$) and first Betti number $b_1(\gamma)=|E(\gamma)|-|V(\gamma)|+1$, each vertex $v$ labelled by a Taylor component of $J_{\deg v}$ (vertices of degree $0$ at least trivalent), each edge by $P(\varepsilon,\infty)$, each leg by an argument; $|\operatorname{Aut}\gamma|$ counts the automorphisms fixing the legs, and $w_\gamma$ is obtained from the full multilinear vertex functions, contracted along the edges and summed over all component labels. Edge rule: two contracted coordinate functionals, brought adjacent by Koszul reordering, are replaced by the component of $P(\varepsilon,\infty)$ in the same order (Definition \ref{def:c3-P}). At order $\hbar^1$ either $b_1(\gamma)=1$ and all vertices have degree $0$, or $b_1(\gamma)=0$ and exactly one vertex has degree $1$, for instance a counterterm vertex.
+\end{proposition}
+
+\begin{proof}
+Write $\phi=P(\varepsilon,\infty)=\sum\phi^{\prime}\otimes\phi^{\prime\prime}$. Expanding the exponentials, a term of $e^{\hbar\partial_\phi}e^{J/\hbar}$ is a set of vertices, each a factor $\hbar^{\deg v-1}J_{\deg v}$, with $|E(\gamma)|$ pairs of half-edges contracted by $\hbar\partial_\phi$; the factor $\frac12$ in $\partial_\phi=\frac12\sum\partial_{\phi^{\prime\prime}}\partial_{\phi^{\prime}}$ [C07, §6.4] and the factorials of the exponentials combine to $1/|\operatorname{Aut}\gamma|$, and on two coordinate functionals $\partial_\phi$ returns the component of $P(\varepsilon,\infty)$ in their order. The logarithm keeps the connected graphs, and the overall factor $\hbar$ gives the power
+\[
+\hbar^{1+|E(\gamma)|-|V(\gamma)|+\sum_v\deg v}=\hbar^{b_1(\gamma)+\sum_v\deg v}.
+\]
+The last statement is $b_1(\gamma)+\sum_v\deg v=1$.
+\end{proof}
+
+For the one-loop formula let $\mathscr E$ be a finite-dimensional super vector space, as when the manifold of [C07, §6.6, §10.1] is a point, and let $\phi=\sum\phi^{\prime}\otimes\phi^{\prime\prime}\in\mathrm{Sym}^2\mathscr E$ be even with complex coefficients [C07, §6.4]. Let $J$ be a quadratic functional on $\mathscr E$, even as a whole, whose coefficients lie in a supercommutative algebra: the complex numbers, or an auxiliary nilpotent ring with odd elements as in [C07, Lemma 6.4.1, proof]. The one-loop operator of $(\phi,J)$ is the linear map
+\[
+e\mapsto\sum\phi^{\prime}\,(-1)^{|\phi^{\prime\prime}|}\,\partial_{\phi^{\prime\prime}}\partial_eJ ,
+\]
+i.e. $\phi$ composed with the parity operator $(-1)^{|\cdot|}$ composed with the second derivative of $J$, the right-hand slot differentiated first, with the coefficients written to the right and extended linearly over them. $\mathrm{STr}$ is the supertrace on such linear maps [CG2, §13.7.2]: on the map $e\mapsto e_0\,\ell(e)$, with $e_0\in\mathscr E$ homogeneous and $\ell$ a linear functional with values in the coefficients, it is $(-1)^{|e_0|}\ell(e_0)$.
+
+\begin{proposition}[One-loop formula]
+\label{prop:c3-oneloop}
+As formal power series in $J$,
+\begin{equation}
+\hbar\log\big(e^{\hbar\partial_\phi}e^{J/\hbar}\big)\Big|_{e=0}=\hbar\sum_{n\ge1}\frac1{2n}\,\mathrm{STr}\big((\text{one-loop operator})^n\big)=-\frac\hbar2\,\mathrm{STr}\log\big(1-\text{one-loop operator}\big).
+\label{eq:c3-oneloop}
+\end{equation}
+The term $n=1$ is $\hbar\,\partial_\phi J$, and the term of order $n$ is the sum of the cycles with $n$ vertices, whose automorphism group has order $2n$.
+\end{proposition}
+
+\begin{proof}
+Two identities for an even quadratic functional $F$ with coefficients as above. The second derivative $\partial_e\partial_{e'}F$ is a coefficient of parity $|e|+|e'|$ with $\partial_e\partial_{e'}F=(-1)^{|e||e'|}\partial_{e'}\partial_eF$; since $\phi$ is even, $|\phi^{\prime}|=|\phi^{\prime\prime}|$ in every term.
+
+First, $\tfrac12\mathrm{STr}$ of the one-loop operator of $F$ is $\partial_\phi F$: by the rank-one formula,
+\[
+\tfrac12\mathrm{STr}=\tfrac12\sum(-1)^{|\phi^{\prime}|+|\phi^{\prime\prime}|}\,\partial_{\phi^{\prime\prime}}\partial_{\phi^{\prime}}F=\tfrac12\sum\partial_{\phi^{\prime\prime}}\partial_{\phi^{\prime}}F=\partial_\phi F .
+\]
+
+Second, since $\partial_\phi$ is of order two, $\partial_\phi(F_1F_2)-(\partial_\phi F_1)F_2-F_1(\partial_\phi F_2)$ is the sum of the two terms with one derivative on each factor; for $F_1$ even, the graded symmetry $\sum\phi^{\prime}\otimes\phi^{\prime\prime}=\sum(-1)^{|\phi^{\prime}||\phi^{\prime\prime}|}\phi^{\prime\prime}\otimes\phi^{\prime}$ makes the two terms equal, so this sum is $\sum(\partial_{\phi^{\prime\prime}}F_1)(\partial_{\phi^{\prime}}F_2)$. It is a derivation in each argument; hence, by induction on $m$,
+\[
+\partial_\phi(F^m)=m\,(\partial_\phi F)\,F^{m-1}+\tfrac12m(m-1)\,F^{m-2}\sum(\partial_{\phi^{\prime\prime}}F)(\partial_{\phi^{\prime}}F),
+\]
+\[
+\partial_\phi e^{F/\hbar}=e^{F/\hbar}\Big(\hbar^{-1}\partial_\phi F+\tfrac12\hbar^{-2}\sum(\partial_{\phi^{\prime\prime}}F)(\partial_{\phi^{\prime}}F)\Big).
+\]
+The one-loop operator of the quadratic functional $\tfrac12\sum(\partial_{\phi^{\prime\prime}}F)(\partial_{\phi^{\prime}}F)$ is the square of the one-loop operator of $F$. Indeed, the Leibniz rule for the linear functionals $\partial_{\phi^{\prime\prime}}F$ and $\partial_{\phi^{\prime}}F$ gives two terms for the second derivative, which coincide after the graded symmetry of $\phi$ and the exchange of the two coefficients, so that
+\[
+\partial_e\partial_{e'}\Big(\tfrac12\sum(\partial_{\phi^{\prime\prime}}F)(\partial_{\phi^{\prime}}F)\Big)=\sum(-1)^{|e'||\phi^{\prime\prime}|}\,(\partial_e\partial_{\phi^{\prime\prime}}F)\,(\partial_{e'}\partial_{\phi^{\prime}}F).
+\]
+Writing $\phi=\sum_k\phi^{\prime}_k\otimes\phi^{\prime\prime}_k=\sum_l\phi^{\prime}_l\otimes\phi^{\prime\prime}_l$ for two copies of the same sum, the one-loop operator of this functional sends $e$ to
+\[
+\sum_{l,k}\phi^{\prime}_l(-1)^{|\phi^{\prime\prime}_l|}(-1)^{|e||\phi^{\prime\prime}_k|}(\partial_{\phi^{\prime\prime}_l}\partial_{\phi^{\prime\prime}_k}F)(\partial_e\partial_{\phi^{\prime}_k}F)=\sum_{l,k}\phi^{\prime}_l(-1)^{|\phi^{\prime\prime}_l|}(\partial_{\phi^{\prime\prime}_l}\partial_{\phi^{\prime}_k}F)(-1)^{|\phi^{\prime\prime}_k|}(\partial_{\phi^{\prime\prime}_k}\partial_eF),
+\]
+where the graded symmetry of $\phi$ in the index $k$ contributes $(-1)^{|\phi^{\prime\prime}_k|}$ and $\partial_e\partial_{\phi^{\prime\prime}_k}F=(-1)^{|e||\phi^{\prime\prime}_k|}\partial_{\phi^{\prime\prime}_k}\partial_eF$; the right side is the one-loop operator of $F$ applied twice to $e$.
+
+The flow in an auxiliary formal parameter $s$. Let $J_s$ be the quadratic functional determined, as a formal power series in $s$ and in $J$, by
+\[
+\frac{d}{ds}J_s=\tfrac12\sum(\partial_{\phi^{\prime\prime}}J_s)(\partial_{\phi^{\prime}}J_s),\qquad J_0=J .
+\]
+By the formula for $\partial_\phi e^{F/\hbar}$ with $F=J_s$, the functional $\exp\big(\int_0^s\partial_\phi J_{s^{\prime}}\,ds^{\prime}\big)e^{J_s/\hbar}$ satisfies $\frac{d}{ds}(\cdots)=\hbar\partial_\phi(\cdots)$, as does $e^{s\hbar\partial_\phi}e^{J/\hbar}$; both equal $e^{J/\hbar}$ at $s=0$, and this equation determines the coefficient of each power of $s$ from the previous one, so they coincide. At order $m$ in $J$ the powers $s^k$ that occur have $k\le m$, because $\partial_\phi$ lowers the polynomial degree by two and $J^m$ has degree $2m$; so $s=1$ may be substituted. At the origin $e^{J_1/\hbar}$ equals $1$, hence
+\[
+\hbar\log\big(e^{\hbar\partial_\phi}e^{J/\hbar}\big)\Big|_{e=0}=\hbar\int_0^1\partial_\phi J_s\,ds .
+\]
+The one-loop operator of $J_s$ depends linearly on $J_s$, so by the second identity its derivative in $s$ is its square; its value at $s=0$ is the one-loop operator of $J$, and the unique formal solution is $\sum_{n\ge1}s^{n-1}(\text{one-loop operator of }J)^n$. By the first identity,
+\[
+\begin{aligned}
+\partial_\phi J_s&=\tfrac12\sum_{n\ge1}s^{n-1}\,\mathrm{STr}\big((\text{one-loop operator})^n\big),\\
+\hbar\int_0^1\partial_\phi J_s\,ds&=\hbar\sum_{n\ge1}\frac1{2n}\,\mathrm{STr}\big((\text{one-loop operator})^n\big),
+\end{aligned}
+\]
+which is \eqref{eq:c3-oneloop}, with $\mathrm{STr}\log(1-\text{one-loop operator})=-\sum_{n\ge1}\frac1n\mathrm{STr}\big((\text{one-loop operator})^n\big)$. The term $n=1$ is $\hbar\,\partial_\phi J$ by the first identity. In the graph expansion with vertices $J$ the graphs without legs and with bivalent vertices are the cycles, and a cycle with $n$ vertices has $2n$ automorphisms.
+\end{proof}
+
+\begin{remark}[Use in the field theory]
+\label{rem:c3-oneloop}
+For the one-loop part of $W(P(\varepsilon,\infty),I)$ at a background field configuration, $J$ is the part of $I(\text{background}+\text{fluctuation})$ quadratic in the fluctuation, $\phi=P(\varepsilon,\infty)$, $\mathrm{STr}$ includes the trace over $\mathfrak g$ and the integration over positions, and expanding in the background produces the one-loop one-particle-irreducible graphs with their external legs; the parity operator and the supertrace produce the signs of fermion and ghost loops. When the background contains odd fields, multiplied by odd elements of an auxiliary nilpotent ring as in Definition \ref{def:c1-vertex}, the coefficients of $J$ contain odd elements, and Proposition \ref{prop:c3-oneloop} applies with these coefficients.
+\end{remark}

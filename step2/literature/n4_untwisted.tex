@@ -1,0 +1,529 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{longtable}
+\allowdisplaybreaks
+% typographic macro for Beisert's interaction symbol [B03, (3.2)]: upper row = fields replaced, lower row = replacement
+\newcommand{\bs}[2]{\left\{\begin{smallmatrix}#1\\ #2\end{smallmatrix}\right\}}
+\title{Untwisted $\mathcal N=4$ literature: one-loop corrections to $Q$, $S$, $D$, $K$ on letters and operators, and the Konishi anomaly\\ (source transcription for Step 2, R3/R4)}
+\date{2026-10-28}
+\begin{document}
+\maketitle
+
+\section*{0. Labels, name clash, reading method}
+\begin{itemize}
+\item[{[S]}] statement transcribed from the source at the cited equation; symbols are the source's own.
+\item[{[D]}] derived in this file from [S] items; proof or check script given.
+\item[{[I]}] identification or interpretation not stated in the source.
+\end{itemize}
+Name clash (DESIGN\_STEP2 R3): in the sources below, $Q_k,S_k,H_k,J_k$ denote the coefficient of $g^k$ in a coupling expansion (spin-chain normalisation); the manuscript's $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ are spinor parameters; the user's $Q_1,S_1,D_1,K_1$ are the order-$\hbar$ components. The dictionary between Beisert's $k$ and the loop order is item [D1].
+
+Reading method: arXiv PDFs fetched once by WebFetch (cached by the tool), text by \texttt{pdftotext}; the equations of [B03] (3.26)--(3.37), Table 1, (4.11)--(4.16), [Z05] (2.3), (2.18)--(2.19), [B04] (1.2)--(1.9) checked against 170--200 dpi page images.
+
+\section{Sources}
+\begin{longtable}{p{1.5cm}p{2.6cm}p{12cm}}
+key & arXiv (version read) & title; authors; journal \\ \hline
+{[B03]} & hep-th/0310252v2 & The su(2$|$3) dynamic spin chain; N.~Beisert; Nucl.\ Phys.\ B682 (2004) 487 \\
+{[B03c]} & hep-th/0307015v5 & The complete one-loop dilatation operator of $\mathcal N=4$ super Yang--Mills theory; N.~Beisert; Nucl.\ Phys.\ B676 (2004) 3 \\
+{[B04]} & hep-th/0407277v4 & The dilatation operator of $\mathcal N=4$ super Yang--Mills theory and integrability (dissertation); N.~Beisert; Phys.\ Rept.\ 405 (2004) 1 \\
+{[Z05]} & hep-th/0511109v3 & $\mathcal N=4$ SYM to two loops: compact expressions for the non-compact symmetry algebra of the su(1,1$|$2) sector; B.~I.~Zwiebel; JHEP 0602:055 \\
+{[CY13]} & 1305.6314v2 & 1/16 BPS states in $\mathcal N=4$ SYM; C.-M.~Chang, X.~Yin; Phys.\ Rev.\ D88 (2013) 106005 \\
+{[CL22]} & 2209.06728v4 & Words to describe a black hole; C.-M.~Chang, Y.-H.~Lin; JHEP 02 (2023) 109 \\
+{[GGKM08]} & 0803.4183v1 & Comments on 1/16 BPS quantum states and classical configurations; L.~Grant, P.~A.~Grassi, S.~Kim, S.~Minwalla; JHEP 0805:049 \\
+{[EJSS05]} & hep-th/0501077v2 & Operator mixing in $\mathcal N=4$ SYM: the Konishi anomaly revisited; B.~Eden, C.~Jarczak, E.~Sokatchev, Ya.~S.~Stanev; Nucl.\ Phys.\ B722 (2005) 119 \\
+{[BKRS01]} & hep-th/0104016v1 & Properties of the Konishi multiplet in $\mathcal N=4$ SYM theory; M.~Bianchi, S.~Kovacs, G.~Rossi, Ya.~S.~Stanev; JHEP 0105:042 \\
+\end{longtable}
+Verification of the task's pointer ``Chang--Yin (arXiv 2209.06728)'': 2209.06728 is Chang--Lin [CL22]; Chang--Yin is 1305.6314 [CY13]. Both read.
+Primary sources of the Konishi anomaly outside arXiv, not read: K.~Konishi, Phys.\ Lett.\ B135 (1984) 439; K.~Konishi, K.~Shizuya, Nuovo Cim.\ A90 (1985) 111 (cited as [1] in [EJSS05], [104],[126] in [B04]).
+
+\section{[B03] Beisert, su(2$|$3) dynamic spin chain}
+\subsection{Definitions [S]}
+Letters and states:
+\begin{gather*}
+\phi_a\ (a=1,2,3),\quad \psi_\alpha\ (\alpha=1,2)\ \text{(2.1)};\\ W_{1,2,3}=\phi_{1,2,3},\ W_{4,5}=\psi_{1,2}\ \text{(2.2)};\\ |A_1\dots A_L\rangle=\operatorname{Tr}W_{A_1}\dots W_{A_L}\ \text{(2.3)},
+\end{gather*}
+\begin{gather*}
+|A_1\dots A_L\rangle=(-1)^{(A_1\dots A_k)(A_{k+1}\dots A_L)}|A_{k+1}\dots A_LA_1\dots A_k\rangle\ \text{(2.4)},\\
+P|A_1\dots A_L\rangle=(-1)^{L+k(k+1)/2}|A_L\dots A_1\rangle\ \text{(2.6), $k$ = number of fermions}.
+\end{gather*}
+Algebra (``we enhance the symmetry algebra by one u(1) generator''):
+\begin{gather*}
+J=\{L^\alpha{}_\beta,R^a{}_b,H,\delta H;Q^a{}_\alpha,S^\alpha{}_a\}\ \text{(2.7)},\\ [H,J]=\operatorname{eng}(J)J,\ [\delta H,J]=0\ \text{(2.9)},\\ \operatorname{eng}(Q)=-\operatorname{eng}(S)=\tfrac12\ \text{(2.10)},
+\end{gather*}
+\begin{gather*}
+\{S^\alpha{}_a,Q^b{}_\beta\}=\delta^b_aL^\alpha{}_\beta+\delta^\alpha_\beta R^b{}_a+\delta^b_a\delta^\alpha_\beta\big(\tfrac13H+\tfrac16\delta H\big)\ \text{(2.11)},\\ PJP^{-1}=J\ \text{(2.12)},
+\end{gather*}
+rotations (2.8): $[L^\alpha{}_\beta,J_\gamma]=\delta^\alpha_\gamma J_\beta-\tfrac12\delta^\alpha_\beta J_\gamma$, $[L^\alpha{}_\beta,J^\gamma]=-\delta^\gamma_\beta J^\alpha+\tfrac12\delta^\alpha_\beta J^\gamma$, $[R^a{}_b,J_c]=\delta^a_cJ_b-\tfrac13\delta^a_bJ_c$, $[R^a{}_b,J^c]=-\delta^c_bJ^a+\tfrac13\delta^a_bJ^c$.
+
+Relation to $\mathcal N=4$ (Sec.\ 2.4): restriction $\Delta_0=p+\tfrac12q+\tfrac32q_2$ (2.27);
+\begin{gather*}
+R^4{}_4=\tfrac12D_0,\quad \dot L^{\dot\alpha}{}_{\dot\beta}=0,\quad D_0=L+B\ \text{(2.28)};\\ (R_{su(4)})^a{}_b=R^a{}_b-\tfrac16\delta^a_bD_0\ \text{(2.29)};\\ H=D,\quad \delta H=D-D_0\ \text{(2.30)}.
+\end{gather*}
+Length fluctuation: $\phi_{[1}\phi_2\phi_{3]}\sim\psi_{[1}\psi_{2]}$ (2.24), ``closely related to the Konishi anomaly [23]''; $Q^3{}_2\,\psi_1\sim g\,\phi_{[1}\phi_{2]}$ (2.26), footnote 10: ``In fact, this is part of the `classical' supersymmetry variation (before a rescaling of fields by $g$).''
+
+Interactions:
+\begin{gather*}
+J(g)=\sum_{k=0}^\infty g^kJ_k\ \text{(3.1)},\\ \bs{A_1\dots A_n}{B_1\dots B_m}\sim W_{B_1}\dots W_{B_m}\frac{\delta}{\delta W_{A_m}}\dots\frac{\delta}{\delta W_{A_1}}\ \text{(3.3)},
+\end{gather*}
+(3.2): the symbol replaces every occurrence of $A_1\dots A_n$ by $B_1\dots B_m$; (3.4): action on $|C_1\dots C_L\rangle$ as a cyclic sum with the sign of (2.4). Latin (Greek) letters: bosons 1,2,3 (fermions 4,5). Feynman-diagram rule (Sec.\ 3.1): ``A connected diagram at $k$ orders of the coupling constant has at most $k+2$ external legs; $l$ internal index loops reduce the number of legs by $2l$, i.e.\ $J_k\sim\{\dots\}$ with $n+m=k+2-2l$.'' Gauge identity on cyclic states:
+\begin{equation*}
+\bs{aA_1\dots A_n}{aB_1\dots B_m}+(-1)^{(A_1\dots A_n)(B_1\dots B_m)}\bs{\alpha A_1\dots A_n}{\alpha B_1\dots B_m}\ \hat=\ \bs{A_1\dots A_n}{B_1\dots B_m}\ \hat=\ \bs{A_1\dots A_na}{B_1\dots B_ma}+\bs{A_1\dots A_n\alpha}{B_1\dots B_m\alpha}\ \text{(3.6)},
+\end{equation*}
+\begin{gather*}
+J_k\sim\bs{A_1\dots A_n}{B_1\dots B_m}\ \text{with}\ n+m=k+2\ \text{(3.7)};\\ P\bs{A_1\dots A_n}{B_1\dots B_m}P^{-1}=(-1)^{n+m+i(i+1)/2+j(j+1)/2}\bs{A_n\dots A_1}{B_m\dots B_1}\ \text{(3.8)}.
+\end{gather*}
+
+\subsection{Tree level [S]}
+\begin{equation*}
+R^a{}_b=c_1\bs{a}{b}+c_2\delta^a_b\bs{c}{c},\ L^\alpha{}_\beta=c_3\bs{\alpha}{\beta}+c_4\delta^\alpha_\beta\bs{\gamma}{\gamma},\ H_0=c_5\bs{a}{a}+c_6\bs{\alpha}{\alpha},\ (Q_0)^a{}_\alpha=c_7\bs{a}{\alpha},\ (S_0)^\alpha{}_a=c_8\bs{\alpha}{a}\ \text{(3.10)},
+\end{equation*}
+\begin{gather*}
+c_1=c_3=c_5=1,\ c_2=-\tfrac13,\ c_4=-\tfrac12,\ c_6=\tfrac32,\ c_7=e^{i\beta_1},\ c_8=e^{-i\beta_1}\ \text{(3.11)};\\ H_0=\bs{a}{a}+\tfrac32\bs{\alpha}{\alpha}\ \text{(3.12)},
+\end{gather*}
+\begin{gather*}
+J_0\mapsto e^{2i\beta_1H_0}J_0e^{-2i\beta_1H_0}\ \text{(3.13)},\\ J_0\mapsto e^{i\beta_2L}J_0e^{-i\beta_2L}\ \text{(3.14)},\\ L=\bs{a}{a}+\bs{\alpha}{\alpha}\ \text{(3.15)},\\ [L,J_0]=0\ \text{(3.16)}.
+\end{gather*}
+(3.13): ``related to a possible rescaling of the bosons and fermions''.
+
+\subsection{Orders $g^2$, $g^3$: $H_2$, $H_3$, $Q_1$, $S_1$ [S]}
+Pre-diagonalisation and leading order:
+\begin{gather*}
+[H_0,H(g)]=0\ \text{(3.18)},\\ [H_0,J(g)]=\operatorname{eng}(J)J(g)\ \text{(3.19)},\\ [J(g),\delta H(g)]=0\ \text{(3.21)},\\ [J_0,H_k]=0\ \text{(3.22)},\\ \mathbf 1\notin(\mathbf 3|\mathbf 2)^3,\ \mathbf 3|\mathbf 2\notin(\mathbf 3|\mathbf 2)^2\ \text{(3.24)}.
+\end{gather*}
+General $H_2$ and constraints:
+\begin{gather*}
+H_2=c_1\bs{ab}{ab}+c_2\bs{a\beta}{a\beta}+c_2'\bs{\alpha b}{\alpha b}+c_3\bs{\alpha\beta}{\alpha\beta}+c_4\bs{ab}{ba}+c_5\bs{a\beta}{\beta a}+c_5'\bs{\alpha b}{b\alpha}+c_6\bs{\alpha\beta}{\beta\alpha}\ \text{(3.26)},\\ c_2=c_2',\ c_5=c_5'\ \text{(3.28)},
+\end{gather*}
+\begin{equation*}
+\begin{aligned}
+{}[(Q_0)^a{}_\alpha,H_2]={}&e^{i\beta_1}(c_1-c_2)\Big(\bs{ab}{\alpha b}+\bs{ba}{b\alpha}\Big)+e^{i\beta_1}(c_4-c_5)\Big(\bs{ba}{\alpha b}+\bs{ab}{b\alpha}\Big)\\
+&+e^{i\beta_1}(c_2-c_3)\Big(\bs{a\beta}{\alpha\beta}-\bs{\beta a}{\beta\alpha}\Big)-e^{i\beta_1}(c_5+c_6)\Big(\bs{a\beta}{\beta\alpha}-\bs{\beta a}{\alpha\beta}\Big)\ \text{(3.29)},
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+c_1=c_2=c_3,\quad c_4=c_5=-c_6\ \text{(3.30)};\\ \mathbf 3|\mathbf 2\times\mathbf 3|\mathbf 2=\mathbf 7|\mathbf 6_+ +\mathbf 6|\mathbf 6_-\ \text{(3.31)}.
+\end{gather*}
+Third order ansatz (classical $su(3)\times su(2)$ kept; [B04, Sec.\ 5.3.3]: ``In field theory these correspond to symmetries compatible with the regularisation scheme''):
+\begin{equation*}
+H_3=c_7\varepsilon_{\alpha\beta}\varepsilon^{abc}\bs{\alpha\beta}{abc}+c_8\varepsilon_{abc}\varepsilon^{\alpha\beta}\bs{abc}{\alpha\beta},\quad (Q_1)^a{}_\alpha=c_9\varepsilon_{\alpha\beta}\varepsilon^{abc}\bs{\beta}{bc},\quad (S_1)^\alpha{}_a=c_{10}\varepsilon_{abc}\varepsilon^{\alpha\beta}\bs{bc}{\beta}\ \text{(3.32)},
+\end{equation*}
+\begin{equation*}
+\bs{\beta d}{bcd}+\bs{\beta\delta}{bc\delta}=\bs{d\beta}{dbc}-\bs{\delta\beta}{\delta bc}=\bs{\beta}{bc}\ \text{(3.33)},
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+{}[(Q_0)^a{}_\alpha,H_3]+[(Q_1)^a{}_\alpha,H_2]={}&(c_4c_9-e^{i\beta_1}c_7)\varepsilon^{bcd}\varepsilon_{\alpha\beta}\Big(\bs{a\beta}{bcd}-\bs{\beta a}{bcd}\Big)\\
+&+(c_4c_9-e^{i\beta_1}c_7)\varepsilon^{abc}\varepsilon_{\beta\gamma}\Big(-\bs{\beta\gamma}{\alpha bc}+\bs{\beta\gamma}{b\alpha c}-\bs{\beta\gamma}{bc\alpha}\Big)-(c_1+c_4)c_9\varepsilon^{abc}\varepsilon_{\alpha\beta}\bs{\beta}{bc}\ \text{(3.34)},
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+c_1=-c_4,\\ e^{i\beta_1}c_7=c_4c_9,\\ e^{-i\beta_1}c_8=c_4c_{10}\ \text{(3.35)};\\ c_1=\alpha_1^2,\ c_9=\tfrac{1}{\sqrt2}\alpha_1e^{i\beta_1+i\beta_2},\ c_{10}=\tfrac{1}{\sqrt2}\alpha_1e^{-i\beta_1-i\beta_2'}\ \text{(3.36)}.
+\end{gather*}
+Result (Table 1 form, i.e.\ with $\beta_2'=\beta_2$ (3.38)):
+\begin{equation*}
+\begin{aligned}
+H_2={}&\alpha_1^2\bs{ab}{ab}+\alpha_1^2\Big(\bs{a\beta}{a\beta}+\bs{\alpha b}{\alpha b}\Big)+\alpha_1^2\bs{\alpha\beta}{\alpha\beta}-\alpha_1^2\bs{ab}{ba}-\alpha_1^2\Big(\bs{a\beta}{\beta a}+\bs{\alpha b}{b\alpha}\Big)+\alpha_1^2\bs{\alpha\beta}{\beta\alpha},\\
+H_3={}&-\tfrac{1}{\sqrt2}\alpha_1^3e^{i\beta_2}\varepsilon_{\alpha\beta}\varepsilon^{abc}\bs{\alpha\beta}{abc}-\tfrac{1}{\sqrt2}\alpha_1^3e^{-i\beta_2}\varepsilon_{abc}\varepsilon^{\alpha\beta}\bs{abc}{\alpha\beta},\\
+(Q_0)^a{}_\alpha={}&e^{i\beta_1}\bs{a}{\alpha},\qquad (Q_1)^a{}_\alpha=\tfrac{1}{\sqrt2}\alpha_1e^{i\beta_1+i\beta_2}\varepsilon_{\alpha\beta}\varepsilon^{abc}\bs{\beta}{bc},\\
+(S_0)^\alpha{}_a={}&e^{-i\beta_1}\bs{\alpha}{a},\qquad (S_1)^\alpha{}_a=\tfrac{1}{\sqrt2}\alpha_1e^{-i\beta_1-i\beta_2}\varepsilon_{abc}\varepsilon^{\alpha\beta}\bs{bc}{\beta}.
+\end{aligned}
+\end{equation*}
+Erratum [S vs S]: printed (3.37) has $-\alpha_1^2\bs{\alpha\beta}{\beta\alpha}$; (3.26),(3.30),(3.35) give $c_6=-c_4=c_1=\alpha_1^2$, and Table 1 and [B04, (5.55)] print $+\alpha_1^2\bs{\alpha\beta}{\beta\alpha}$. The Table-1 sign is used above.
+
+Free parameters [S]: $c_9c_{10}=\tfrac12c_1\Rightarrow\beta_2'=\beta_2$ (3.38) (fixed at fourth order);
+\begin{gather*}
+J_0\mapsto\exp(2i\beta_1H_0+i\beta_2L)\,J_0\,\exp(-2i\beta_1H_0-i\beta_2L)\ \text{(3.39)},\\ g\mapsto\alpha_1g\ \text{(3.40)}.
+\end{gather*}
+Anticommutators [S]:
+\begin{gather*}
+\{(S_0)^\alpha{}_a,(Q_0)^b{}_\beta\}=\delta^b_aL^\alpha{}_\beta+\delta^\alpha_\beta R^b{}_a+\tfrac13\delta^b_a\delta^\alpha_\beta H_0\ \text{(3.41)},\\ \{(S_1)^\alpha{}_a,(Q_0)^b{}_\beta\}+\{(S_0)^\alpha{}_a,(Q_1)^b{}_\beta\}=\tfrac12\delta^b_a\delta^\alpha_\beta H_1=0\ \text{(3.42)}.
+\end{gather*}
+Text after (3.40): ``the deformations of the generators are uniquely fixed at one-loop''; ``$[\delta H(g),J(g)]=0$ at order $\mathcal O(g^{2\ell})$ makes the $\ell$-loop energy shift agree within semi-short multiplets whereas $\mathcal O(g^{2\ell+1})$ joins up semi-short multiplets into long multiplets''; ``$H_k,Q_{k-2},S_{k-2}$ collectively as $k$-th order''.
+
+\subsection{Order $g^2$ supercharges, order $g^4$ freedom [S]}
+Table 1:
+\begin{equation*}
+\begin{aligned}
+(Q_2)^a{}_\alpha={}&e^{i\beta_1}\big(\tfrac14\alpha_1^2-\tfrac{i}{2}\gamma_3+\tfrac{i}{2}\gamma_4\big)\Big(\bs{ab}{\alpha b}+\bs{ba}{b\alpha}\Big)+e^{i\beta_1}\big(\tfrac{i}{2}\gamma_3+\tfrac{i}{2}\gamma_4\big)\Big(\bs{a\beta}{\alpha\beta}-\bs{\beta a}{\beta\alpha}\Big)\\
+&+e^{i\beta_1}\big(-\tfrac14\alpha_1^2-i\gamma_1\big)\Big(\bs{ab}{b\alpha}+\bs{ba}{\alpha b}\Big)+e^{i\beta_1}\big(\tfrac14\alpha_1^2+i\gamma_2\big)\Big(\bs{a\beta}{\beta\alpha}-\bs{\beta a}{\alpha\beta}\Big),\\
+(S_2)^\alpha{}_a={}&e^{-i\beta_1}\big(\tfrac14\alpha_1^2+\tfrac{i}{2}\gamma_3-\tfrac{i}{2}\gamma_4\big)\Big(\bs{\alpha b}{ab}+\bs{b\alpha}{ba}\Big)+e^{-i\beta_1}\big(-\tfrac{i}{2}\gamma_3-\tfrac{i}{2}\gamma_4\big)\Big(\bs{\alpha\beta}{a\beta}-\bs{\beta\alpha}{\beta a}\Big)\\
+&+e^{-i\beta_1}\big(-\tfrac14\alpha_1^2+i\gamma_1\big)\Big(\bs{\alpha b}{ba}+\bs{b\alpha}{ab}\Big)+e^{-i\beta_1}\big(\tfrac14\alpha_1^2-i\gamma_2\big)\Big(-\bs{\alpha\beta}{\beta a}+\bs{\beta\alpha}{a\beta}\Big),
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+H_4\big|_{L=2}=\tfrac32\alpha_1^4\Big(\bs{\alpha\beta}{\alpha\beta}-\bs{\alpha\beta}{\beta\alpha}\Big)+2\alpha_1\alpha_3H_2\ \text{(Table 1, (4.16))}.
+\end{equation*}
+($H_4$ on three sites: Table 1, 22 coefficient groups in $\alpha_1,\alpha_3,\gamma_{1,2,3},\delta_{1,2,3}$; not repeated here.)
+\begin{gather*}
+[Q^a{}_\alpha,\delta H]=[S^\alpha{}_a,\delta H]=\mathcal O(g^6)\ \text{(4.2)},\\ \{S^\alpha{}_a,Q^b{}_\beta\}=\delta^b_aL^\alpha{}_\beta+\delta^\alpha_\beta R^b{}_a+\delta^b_a\delta^\alpha_\beta\big(\tfrac13H+\tfrac16\delta H\big)+\mathcal O(g^4)\ \text{(4.3)}.
+\end{gather*}
+Freedoms (Sec.\ 4.2):
+\begin{equation*}
+J(g)\mapsto T(g)J(g)T(g)^{-1}\ \text{(4.4)},\quad L=\bs{ab}{ab}+\bs{a\beta}{a\beta}+\bs{\alpha b}{\alpha b}+\bs{\alpha\beta}{\alpha\beta}\ \text{(4.5)},\quad H_4\mapsto H_4+[T_2,H_2],\ J_2\mapsto J_2+[T_2,J_0]\ \text{(4.6)},
+\end{equation*}
+\begin{gather*}
+[H_2,J_0]=[L,J_0]=[H_2,H_2]=[L,H_2]=0\ \text{(4.7)},\\ \bs{\alpha\beta\gamma}{[\alpha\beta\gamma]}=0\ \text{(4.8)},\\ J(g)\mapsto J(f(g))\ \text{(4.9)},\\ f(g)=\alpha_1g+\alpha_3g^3:\ H_4\mapsto\alpha_1^4H_4+2\alpha_1\alpha_3H_2\ \text{(4.10)}.
+\end{gather*}
+Text: $T_2$ is $su(3)\times su(2)$ invariant, energy and parity preserving, four legs; the six structures of (3.26),(3.28) minus $L$ and $H_2$ leave four, ``the constants $\gamma_{1,2,3,4}$''; $\delta_{1,2}$ multiply the difference of the two sides of (3.6) (zero on cyclic states); $\delta_3$ multiplies the zero structure (4.8). Sec.\ 4.4: ``The only parameter that influences energies is $\alpha_3$''; ``$\gamma_{1,2,3,4}$ rotate only the eigenstates''; $\delta_{1,2,3}$ ``have no effect at all''.
+
+Table 2 (number of coefficients; columns $k=2,3,4,5,6$):
+\begin{center}
+\begin{tabular}{l|ccccc}
+ & 2&3&4&5&6\\ \hline
+$H_k$ & 6&2&25&18&173\\
+$Q_{k-2}$ & 1&1&4&6&32\\
+$S_{k-2}$ & 1&1&4&6&32\\
+total & 8&4&33&30&237\\
+fixed at $\mathcal O(g^k)$ & 5&2&25&26&202\\
+fixed at $\mathcal O(g^{k+1})$ & 1&1&3&1&8\\
+relevant & 1&0&1&0&4\\
+irrelevant & 1&1&4&3&23\\
+symmetries & 1&$-1$&2&$-1$&2\\
+$H_{k-2}$ & 2&0&6&2&25
+\end{tabular}
+\end{center}
+$Q_3,S_3$ ($k=5$): six parity-even structures each, not displayed (``too lengthy'').
+
+\subsection{Short states: the su(2$|$3) form of the Konishi-anomaly mixing [S]}
+\begin{gather*}
+\mathcal O_{(ab)}=\operatorname{Tr}\phi_a\phi_b,\quad \mathcal O_{a\beta}=\operatorname{Tr}\phi_a\psi_\beta,\quad \mathcal O_1=\epsilon^{\alpha\beta}\operatorname{Tr}\psi_\alpha\psi_\beta\ \text{(4.11)};\\ \mathcal O_2=\epsilon^{abc}\operatorname{Tr}\phi_a\phi_b\phi_c\ \text{(4.12)},
+\end{gather*}
+\begin{equation*}
+H(g)=\begin{pmatrix}3+\epsilon g^4 & -2\sqrt2e^{i\beta_2}\alpha_1^3g^3\\ -9\sqrt2e^{i\beta_2}e^{-i\beta_2}\alpha_1^3g^3 & 3+6\alpha_1^2g^2-18\alpha_1^4g^4+12\alpha_1\alpha_3g^4\end{pmatrix}\ \text{(4.13, as printed)},
+\end{equation*}
+\begin{gather*}
+E_1=3+\epsilon g^4-6\alpha_1^4g^4,\quad E_2=3+6\alpha_1^2g^2-12\alpha_1^4g^4+12\alpha_1\alpha_3g^4\ \text{(4.14)},\\ \epsilon=6\alpha_1^4\ \text{(4.15)}.
+\end{gather*}
+$\mathcal O_{(ab)},\mathcal O_{a\beta},\mathcal O_1$: half-BPS $\mathbf 7|\mathbf 6$. Erratum [D]: (4.14) holds iff the product of the off-diagonal entries is $36\alpha_1^6g^6$, i.e.\ the (2,1) entry is $-9\sqrt2e^{-i\beta_2}\alpha_1^3g^3$ (as required by (3.39), which multiplies an $L\to L+1$ entry by $e^{i\beta_2}$ and an $L+1\to L$ entry by $e^{-i\beta_2}$); check: \texttt{check\_beisert\_\allowbreak short\_states.py}. The same printed entry occurs in [B04, (5.73)].
+
+\subsection{Normalisation [S]}
+\begin{gather*}
+\alpha_3=0,\ \sigma_1=0,\ \sigma_2=0\ \text{(6.6)};\\ g^2=\frac{g_{YM}^2N}{8\pi^2}\ \text{(6.7)};\\ \alpha_1=1\ \text{(6.8)}.
+\end{gather*}
+Text before (6.7): ``the Konishi multiplet [26] $\delta D=3g_{YM}^2N/4\pi^4$'' (printed exponent 4; with (6.7),(6.8) and Tab.\ 4 row $E_0=3$, $[0;1;0,0]$, $L=3$: $(\delta E_2,-\delta E_4,\delta E_6)=(6,12,42)^+$, the one-loop value is $6g^2=3g_{YM}^2N/(4\pi^2)$; the printed $4\pi^4$ is a misprint [D]).
+(6.27): $H(g)+\tfrac12\delta H(g)=H_0+\tfrac32\delta H(g)\in su(2|3)$; (6.31): $\{S^\alpha{}_a(g),Q^b{}_\beta(g)\}=\delta^b_aL^\alpha{}_\beta+\delta^\alpha_\beta R^b{}_a+\delta^b_a\delta^\alpha_\beta\big(\tfrac13H_0+\tfrac12\delta H(g)\big)+\mathcal O(g^7)$.
+
+\subsection{Classification}
+\begin{itemize}
+\item (i) defined: representation $J(g)$ of fixed $su(2|3)\times u(1)$ on cyclic super spin chain; interaction symbols; $H=D$, $\delta H=D-D_0$.
+\item (ii) computed: algebraic solution of (1.5) order by order with Feynman-diagram structure constraints (connectedness, (3.7), parity (2.12), classical $su(3)\times su(2)$ kept); no regulator used; the overall coupling normalisation $\alpha_1$ fixed by one external datum ((6.7)--(6.8)); $\alpha_3,\sigma_1,\sigma_2$ by BMN scaling (6.6).
+\item (iii) scheme: similarity $\beta_1,\beta_2$ (3.39), $\gamma_{1..4}$ (4.4)--(4.6); coupling redefinitions $\alpha_1$ (3.40), $\alpha_3$ (4.10); null structures $\delta_{1,2,3}$. Energies independent of $\beta,\gamma,\delta$; $H_2,H_3,Q_1,S_1$ ``uniquely fixed'' up to $\beta_{1,2},\alpha_1$.
+\item (iv) explicit: $Q_0,Q_1,Q_2,S_0,S_1,S_2,H_0,H_2,H_3,H_4$ on letters; $\mathcal O_1$--$\mathcal O_2$ mixing (4.13).
+\end{itemize}
+
+\section{[B03c] Beisert, complete one-loop dilatation operator}
+\subsection{Statements [S]}
+\begin{gather*}
+h(j):=\sum_{k=1}^j\frac1k=\Psi(j+1)-\Psi(1)\ \text{(1.1)},\\ D(g)=D_0+\frac{g_{YM}^2N}{8\pi^2}H+\mathcal O(g^3)\ \text{(1.2)},\\ H_{12}=2h(J_{12}),\ H=\sum_{k=1}^LH_{k,k+1}\ \text{(1.3)}.
+\end{gather*}
+\begin{gather*}
+J_0=(J_0)^B{}_A\operatorname{Tr}W_B\check W^A\ \text{(2.5)},\\ D_0=\sum_A\dim(W_A)\operatorname{Tr}W_A\check W^A\ \text{(2.6)},\\ J(g)=\sum_kg^kJ_k\ \text{(2.7)},\\ [D_0,J_k]=\dim(J)J_k\ \text{(2.9)},\\ [J_0,D_2]=0\ \text{(2.10)},
+\end{gather*}
+\begin{gather*}
+J(g)=J+\mathcal O(g),\\ D(g)=D+\frac{g_{YM}^2N}{8\pi^2}H+\mathcal O(g^3),\\ [J,H]=0\ \text{(2.11)}.
+\end{gather*}
+Footnote 6: ``The odd powers of $g$ are due to normalisation: Propagators are $\mathcal O(g^0)$, three-vertices are $\mathcal O(g)$.'' Text after (2.10): $D_2$ is invariant under the chirality $B_0$ of $sl(4|4)$; ``It is conserved at the one-loop level, but at higher loops it is broken due to the Konishi anomaly.''
+\begin{equation*}
+\begin{aligned}
+H={}&(C_a)^{AB}_{CD}:\operatorname{Tr}[W_A,\check W^C][W_B,\check W^D]:+(C_b)^{AB}_{CD}:\operatorname{Tr}[W_A,W_B][\check W^C,\check W^D]:+(C_c)^A_B:\operatorname{Tr}[W_A,T^a][T^a,\check W^B]:\ \text{(2.12)},\\
+H={}&-N^{-1}C^{AB}_{CD}:\operatorname{Tr}[W_A,\check W^C][W_B,\check W^D]:\ \text{(2.16)},\qquad C^{AB}_{CD}=\sum_{j=0}^\infty C_j(P_j)^{AB}_{CD}\ \text{(2.20)},\qquad C_j=h(j)\ \text{(2.21)},
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+D(g)=D-\frac{g_{YM}^2}{8\pi^2}\sum_{j=0}^\infty h(j)(P_j)^{AB}_{CD}:\operatorname{Tr}[W_A,\check W^C][W_B,\check W^D]:+\mathcal O(g^3)\ \text{(2.22)},\\ H_{12}=\sum_{j=0}^\infty2h(j)P_{12,j}\ \text{(2.24)},
+\end{gather*}
+\begin{gather*}
+V_F\times V_F=\sum_{j=0}^\infty V_j\ \text{(2.18)},\\ w_0=[2;0,0;0,2,0;0,2],\ w_1=[2;0,0;1,0,1;0,2],\ w_j=[j;j-2,j-2;0,0,0;0,2]\ \text{(2.19)},\\ J_{12}^2V_j=j(j+1)V_j\ \text{(2.27)},
+\end{gather*}
+\begin{gather*}
+\text{twist two: } E=4h(j),\\ \delta D=\frac{g_{YM}^2N}{8\pi^2}E=\frac{g_{YM}^2N}{2\pi^2}h(j)\ \text{(2.31)}.
+\end{gather*}
+Letters as oscillators and generators:
+\begin{gather*}
+\mathcal D^k\mathcal F\hat=(a^\dagger)^{k+2}(b^\dagger)^k(c^\dagger)^0|0\rangle,\quad \mathcal D^k\Psi\hat=(a^\dagger)^{k+1}(b^\dagger)^k(c^\dagger)^1|0\rangle,\quad \mathcal D^k\Phi\hat=(a^\dagger)^k(b^\dagger)^k(c^\dagger)^2|0\rangle,\\ \mathcal D^k\dot\Psi\hat=(a^\dagger)^k(b^\dagger)^{k+1}(c^\dagger)^3|0\rangle,\ \mathcal D^k\dot{\mathcal F}\hat=(a^\dagger)^k(b^\dagger)^{k+2}(c^\dagger)^4|0\rangle\ \text{(4.9)},
+\end{gather*}
+\begin{equation*}
+Q^a{}_\alpha=a^\dagger_\alpha c^a,\ S^\alpha{}_a=c^\dagger_aa^\alpha,\ \dot Q_{\dot\alpha a}=b^\dagger_{\dot\alpha}c^\dagger_a,\ \dot S^{\dot\alpha a}=b^{\dot\alpha}c^a,\ P_{\alpha\dot\beta}=a^\dagger_\alpha b^\dagger_{\dot\beta},\ K^{\alpha\dot\beta}=a^\alpha b^{\dot\beta}\ \text{(4.14)};\quad D=1+\tfrac12a^\dagger_\gamma a^\gamma+\tfrac12b^\dagger_{\dot\gamma}b^{\dot\gamma}\ \text{(4.13)}.
+\end{equation*}
+Harmonic action:
+\begin{gather*}
+H_{12}|s_1,\dots,s_n;A\rangle=\sum_{s_1',\dots,s_n'}c_{n,n_{12},n_{21}}\delta_{C_1,0}\delta_{C_2,0}|s_1',\dots,s_n';A\rangle\ \text{(4.27)},\\ c_{n,n_{12},n_{21}}=(-1)^{1+n_{12}n_{21}}\frac{\Gamma\big(\frac12(n_{12}+n_{21})\big)\Gamma\big(1+\frac12(n-n_{12}-n_{21})\big)}{\Gamma\big(1+\frac12n\big)}\ \text{(4.28)},\\ c_{n,0,0}=h(\tfrac12n)\ \text{(4.29)}.
+\end{gather*}
+$sl(2)$ subsector (letters $\frac1{n!}(\mathcal D_{1+i2})^n\Phi_{5+i6}\hat=(a^\dagger)^n|0\rangle$ (3.1); $J'_+=P_{11}$, $J'_-=K^{11}$, $J'_3=D+\frac12\delta D-\frac12L$ (3.4)); ``Using point splitting regularisation'' (and App.\ B, planar four-point functions):
+\begin{equation*}
+H'_{12}(a_1^\dagger)^k(a_2^\dagger)^{n-k}|00\rangle=\sum_{k'=0}^n\Big(\delta_{k=k'}\big(h(k)+h(n-k)\big)-\frac{\delta_{k\neq k'}}{|k-k'|}\Big)(a_1^\dagger)^{k'}(a_2^\dagger)^{n-k'}|00\rangle\ \text{(3.14)}.
+\end{equation*}
+su(2) subsector ($Z=\Phi_{34}$, $\phi$ second scalar):
+\begin{gather*}
+\delta D(g)=-\frac{g_{YM}^2}{8\pi^2}:\operatorname{Tr}[\phi,Z][\check\phi,\check Z]:+\mathcal O(g_{YM}^4)\ \text{(5.12, one-loop part)},\\ \mathcal Q=[\check Z,\check\phi]\ \text{(5.13)},\\ \mathcal Q\,\mathcal O_{1/4\text{-BPS}}=0\ \text{(5.14, conjecture)},
+\end{gather*}
+\begin{gather*}
+\delta S(g)\sim g\operatorname{Tr}\Psi\mathcal Q,\\ \delta\dot S(g)\sim g\operatorname{Tr}\dot\Psi\mathcal Q\ \text{(5.15, conjecture: ``first correction to the superboosts'')}.
+\end{gather*}
+su(2$|$3) subsector: $\Delta_0=p+\frac12q_1+\frac32q_2$ (5.16);
+\begin{gather*}
+\phi_a=c_a^\dagger c_4^\dagger|0\rangle,\quad \psi_\alpha=a_\alpha^\dagger c_4^\dagger|0\rangle\ \text{(5.18)},\\ \mathcal Q_a=\varepsilon_{abc}[\check\phi_b,\check\phi_c]\ \text{(5.23)},\\ D_3\sim\varepsilon_{abc}\varepsilon_{\alpha\beta}\operatorname{Tr}\psi_\alpha[\check\phi_a,[\check\phi_b,[\check\phi_c,\psi_\beta]]]\ \text{(5.24)}.
+\end{gather*}
+Text before (5.21): ``The $\mathcal O(g^3)$ (`3/2-loop') contribution to the dilatation operator transforms three scalars $\varepsilon^{abc}\phi_a\phi_b\phi_c$ into two fermions $\varepsilon^{\alpha\beta}\psi_\alpha\psi_\beta$ or vice versa'' (``effects of the Konishi anomaly'').
+Algebra conventions (App.\ A): $\dim(P)=-\dim(K)=1$, $\dim(Q)=\dim(\dot Q)=-\dim(S)=-\dim(\dot S)=\frac12$ (A.3);
+\begin{equation*}
+\begin{aligned}
+&[S^\alpha{}_a,P_{\beta\dot\gamma}]=\delta^\alpha_\beta\dot Q_{\dot\gamma a},\quad [\dot S^{\dot\alpha a},P_{\beta\dot\gamma}]=\delta^{\dot\alpha}_{\dot\gamma}Q^a{}_\beta,\quad [K^{\alpha\dot\beta},\dot Q_{\dot\gamma c}]=\delta^{\dot\beta}_{\dot\gamma}S^\alpha{}_c,\quad [K^{\alpha\dot\beta},Q^c{}_\gamma]=\delta^\alpha_\gamma\dot S^{\dot\beta c},\\
+&\{\dot Q_{\dot\alpha a},Q^b{}_\beta\}=\delta^b_aP_{\beta\dot\alpha},\quad \{\dot S^{\dot\alpha a},S^\beta{}_b\}=\delta^a_bK^{\beta\dot\alpha}\ \text{(A.5)},\\
+&[K^{\alpha\dot\beta},P_{\gamma\dot\delta}]=\delta^{\dot\beta}_{\dot\delta}L^\alpha{}_\gamma+\delta^\alpha_\gamma\dot L^{\dot\beta}{}_{\dot\delta}+\delta^\alpha_\gamma\delta^{\dot\beta}_{\dot\delta}D,\quad \{S^\alpha{}_a,Q^b{}_\beta\}=\delta^b_aL^\alpha{}_\beta+\delta^\alpha_\beta R^b{}_a+\tfrac12\delta^b_a\delta^\alpha_\beta(D-C),\\
+&\{\dot S^{\dot\alpha a},\dot Q_{\dot\beta b}\}=\delta^a_b\dot L^{\dot\alpha}{}_{\dot\beta}-\delta^{\dot\alpha}_{\dot\beta}R^a{}_b+\tfrac12\delta^a_b\delta^{\dot\alpha}_{\dot\beta}(D+C)\ \text{(A.6)}.
+\end{aligned}
+\end{equation*}
+\subsection{Classification}
+(i) $D_2$ on all letters, non-planar (2.22); (ii) form fixed by $psl(4|4)$ invariance (2.10) and one-loop diagram types (Fig.\ 1); coefficients $C_j=h(j)$ fixed by the $sl(2)$ subsector computed with point splitting (3.14), App.\ B; (iii) the one-loop $D_2$ is the leading term, invariant under classical $psl(4|4)$; no scheme freedom displayed at this order; (iv) explicit: (2.22), (2.24), (4.27)--(4.29), (3.14), (5.12).
+
+\section{[B04] Beisert, dissertation: field-theory normalisation and counting}
+[S] (1.2) $\mathcal D_\mu=\partial_\mu-ig\mathcal A_\mu$, $\mathcal D_\mu\mathcal W:=[\mathcal D_\mu,\mathcal W]=\partial_\mu\mathcal W-ig\mathcal A_\mu\mathcal W+ig\mathcal W\mathcal A_\mu$; text: ``on a classical level, we can absorb it completely by rescaling the fields, this corresponds to $g=1$''; adjoint fields hermitian $N\times N$; (1.3) $\mathcal A_\mu\mapsto U\mathcal A_\mu U^{-1}-ig^{-1}\partial_\mu U\,U^{-1}$; (1.4) $\mathcal F_{\mu\nu}=ig^{-1}[\mathcal D_\mu,\mathcal D_\nu]=\partial_\mu\mathcal A_\nu-\partial_\nu\mathcal A_\mu-ig[\mathcal A_\mu,\mathcal A_\nu]$; (1.5) $\mathcal L_{YM}=\frac14\operatorname{Tr}\mathcal F^{\mu\nu}\mathcal F_{\mu\nu}+\frac12\operatorname{Tr}\mathcal D^\mu\Phi^n\mathcal D_\mu\Phi_n-\frac14g^2\operatorname{Tr}[\Phi^m,\Phi^n][\Phi_m,\Phi_n]+\dots$ (Yukawa terms linear in $g$). (1.9): the supertranslation of $\Psi_{\alpha a}$ contains one term linear in $g$, built from $[\Phi^m,\Phi^n]$; all other $g$-dependence through $\mathcal D$, $\mathcal F$.
+
+[S] (2.29)--(2.31): $J(g)=\sum_kg^kJ_k$; ``The Lorentz and internal rotations $su(2)\times su(2)$, $su(4)$ are manifest symmetries and thus independent of $g$'' (2.31). (2.39) $[D_0,D(g)]=0$: ``In dimensional regularisation we can take (2.39) for granted. If (2.39) does not hold from the beginning, we can diagonalise $D(g)$ perturbatively with respect to $D_0$ by means of a similarity transformation $J(g)\mapsto T(g)J(g)T^{-1}(g)$ (2.40)'', $T(g)=1+\sum_{d\neq0}\frac1d\delta D_d+\dots$ (2.42), $\delta D\mapsto\delta D_0+\sum_{d\neq0}\delta D_d\frac1d\delta D_{-d}+\dots$ (2.43).
+
+[S] Sec.\ 2.5.3: ``there is exactly one power of the coupling constant $g$ for each $f$''; $E=V+2-2L'$ (2.138), $V$ = number of structure constants, $L'$ = number of adjoint index loops; footnote 13: ``The definition of the Hamiltonian $H$ involves two powers of $g$''.
+
+[S] Sec.\ 2.1.3: for a generator relating submultiplets at the unitarity bound, ``the action of this generator is proportional to $\sqrt{\delta D}\sim g$''; ``For the generator one may use the semi-classical expression (1.9) which does involve the coupling constant''; ``one has to take into account modifications of the generators due to the Konishi anomaly [100]'' ([100] = B.~Eden, hep-th/0307081).
+
+[S] Ch.\ 5 repeats [B03] with $\delta D=g^2H$ (5.29), so $H_0^{[B04]}=H_2^{[B03]}$, $H_1^{[B04]}=H_3^{[B03]}$ (5.55); footnote 6 at (5.25): ``In fact, this is part of the `classical' supersymmetry variation.''
+
+\section{[Z05] Zwiebel, su(1,1$|$2) sector to $\mathcal O(g^3)$}
+[S] (2.3):
+\begin{equation*}
+\begin{aligned}
+&\mathfrak J^0(g)=-\mathfrak L+2\mathfrak D_0+\delta\mathfrak D(g),\ \mathfrak R^0=\mathfrak R^2_2-\mathfrak R^3_3,\ \mathfrak J^{++}(g)=\mathfrak P_{22}(g),\ \mathfrak J^{--}(g)=\mathfrak K^{22}(g),\ \mathfrak R^{\uparrow\uparrow}(g)=\mathfrak R^3_2,\ \mathfrak R^{\downarrow\downarrow}(g)=\mathfrak R^2_3,\\
+&\overrightarrow{\mathfrak Q}^{+\downarrow}=\mathfrak Q^2_2,\ \overleftarrow{\mathfrak Q}^{-\uparrow}=\mathfrak S^2_2,\ \overrightarrow{\mathfrak Q}^{+\uparrow}=\mathfrak Q^3_2,\ \overleftarrow{\mathfrak Q}^{-\downarrow}=\mathfrak S^2_3,\ \overleftarrow{\mathfrak Q}^{+\uparrow}=\dot{\mathfrak Q}_{22},\ \overrightarrow{\mathfrak Q}^{-\downarrow}=\dot{\mathfrak S}^{22},\ \overleftarrow{\mathfrak Q}^{+\downarrow}=\dot{\mathfrak Q}_{23},\ \overrightarrow{\mathfrak Q}^{-\uparrow}=\dot{\mathfrak S}^{32}.
+\end{aligned}
+\end{equation*}
+(2.5) $\overrightarrow{\mathfrak T}^+=\dot{\mathfrak Q}_{14}$, $\overleftarrow{\mathfrak T}^-=\dot{\mathfrak S}^{14}$, $\overrightarrow{\mathfrak T}^-=\mathfrak S^1_1$, $\overleftarrow{\mathfrak T}^+=\mathfrak Q^1_1$; $[\mathfrak L,\mathfrak T^\pm]=\pm\mathfrak T^\pm$ (2.6); $\{\overrightarrow{\mathfrak T}^+,\overleftarrow{\mathfrak T}^-\}=\frac12\delta\mathfrak D$, $\{\overrightarrow{\mathfrak T}^-,\overleftarrow{\mathfrak T}^+\}=\frac12\delta\mathfrak D$ (2.7). Letters: $\mathfrak D=\mathfrak D_{22}$ acting on $\overrightarrow\psi=\Psi_{42}$, $\overleftarrow\psi=\dot\Psi_{12}$, $\phi^\downarrow=\Phi_{34}$, $\phi^\uparrow=\Phi_{24}$ (2.8). Coupling: $g^2=g_{YM}^2N/(8\pi^2)$ (2.15). Text: ``the O($g^n$) term of a generator is the sum of interactions involving a total of up to $(n+2)$ initial and final spin sites''; ``for odd $n$, interactions change the length of the spin chain by one''; ``Only the $psu(1|1)^2$ generators receive $\mathcal O(g)$ corrections''.
+
+[S] $\mathcal O(g)$ (2.18) ($l\in\{\uparrow,\downarrow\}$):
+\begin{equation*}
+\begin{aligned}
+\overrightarrow{\mathfrak T}^+_1|\phi^l_m\rangle&=\frac1{\sqrt2}\sum_{k=0}^{m-1}\frac1{\sqrt{k+1}}\Big(|\overrightarrow\psi_k\phi^l_{m-1-k}\rangle-|\phi^l_{m-1-k}\overrightarrow\psi_k\rangle\Big),\qquad
+\overrightarrow{\mathfrak T}^+_1|\overrightarrow\psi_m\rangle=\frac1{\sqrt2}\sum_{k=0}^{m-1}\sqrt{\frac{m+1}{(k+1)(m-k)}}|\overrightarrow\psi_k\overrightarrow\psi_{m-1-k}\rangle,\\
+\overrightarrow{\mathfrak T}^+_1|\overleftarrow\psi_m\rangle&=\frac1{\sqrt2}\sum_{k=0}^{m-1}\sqrt{\frac{m-k}{(k+1)(m+1)}}\Big(|\overrightarrow\psi_k\overleftarrow\psi_{m-1-k}\rangle+|\overleftarrow\psi_{m-1-k}\overrightarrow\psi_k\rangle\Big)-\frac{1}{\sqrt{2(m+1)}}\sum_{k=0}^m\Big(|\phi^\downarrow_k\phi^\uparrow_{m-k}\rangle-|\phi^\uparrow_k\phi^\downarrow_{m-k}\rangle\Big);
+\end{aligned}
+\end{equation*}
+(2.19): $\overleftarrow{\mathfrak T}^+_1$ from (2.18) by $\overrightarrow\psi_k\leftrightarrow\overleftarrow\psi_k$ with $+\frac{1}{\sqrt{2(m+1)}}$ in the last line; $\mathfrak T^-_1$ by hermitian conjugation. ``Up to gauge transformations, and a rescaling of $g$, this solution is completely fixed by the symmetry constraints.''
+
+[S] $\mathcal O(g^2)$:
+\begin{equation*}
+\delta\mathfrak D_2=2\{\overrightarrow{\mathfrak T}^+_1,\overleftarrow{\mathfrak T}^-_1\}=2\{\overrightarrow{\mathfrak T}^-_1,\overleftarrow{\mathfrak T}^+_1\}\ \text{(3.1)},\quad \mathfrak h|\phi^l_k\rangle=\tfrac12h(k)|\phi^l_k\rangle,\ \mathfrak h|\overleftrightarrow\psi_k\rangle=\tfrac12h(k+1)|\overleftrightarrow\psi_k\rangle\ \text{(3.3)},
+\end{equation*}
+\begin{equation*}
+\mathfrak x=\{\overleftarrow{\mathfrak T}^-_1,[\overrightarrow{\mathfrak T}^+_1,\mathfrak h]\}-\{\overleftarrow{\mathfrak T}^+_1,[\overrightarrow{\mathfrak T}^-_1,\mathfrak h]\}=\{\overrightarrow{\mathfrak T}^-_1,[\overleftarrow{\mathfrak T}^+_1,\mathfrak h]\}-\{\overrightarrow{\mathfrak T}^+_1,[\overleftarrow{\mathfrak T}^-_1,\mathfrak h]\}\ \text{(3.4)},
+\end{equation*}
+\begin{gather*}
+\mathfrak X^\pm_2=\pm[\mathfrak X^\pm_0,\mathfrak x]+[\mathfrak X^\pm_0,\mathfrak y]\ \text{(3.6), $\mathfrak X^\pm\in\{\mathfrak J^{++},\mathfrak J^{--},\text{the eight }\mathfrak Q\}$},\\ \mathfrak J\mapsto\mathfrak U\mathfrak J\mathfrak U^{-1},\ \mathfrak U=1+g^2\mathfrak y+\dots\ \text{(3.7)}.
+\end{gather*}
+$\mathfrak y$: two-site to two-site, commuting with $\mathfrak B,\mathfrak D_0,\mathfrak R$; anti-hermitian for $\mathfrak X^+=(\mathfrak X^-)^\dagger$. Sec.\ 3.2: no gauge transformations possible at this order; homogeneous solutions $\delta\mathfrak J^{++}_2,\delta\mathfrak Q^{+}_2$ (3.8)--(3.9) ``not found \dots or ruled out'', fixed once $\delta\mathfrak D_4$ is known. (3.15) $[\mathfrak J^{--}_0,\mathfrak j^{++}]=-\frac12\mathfrak L$ with $\mathfrak j^{++}=[\mathfrak J^{++}_0,\mathfrak h]$; (3.18) $[\mathfrak J^{--},\mathfrak J^{++}]_2=\delta\mathfrak D_2$.
+
+[S] $\mathcal O(g^3)$: $\mathfrak T^\pm_3=\pm[\mathfrak T^\pm_1,\mathfrak x]+[\mathfrak T^\pm_1,\mathfrak y]+\alpha\mathfrak T^\pm_1$ (4.1), $g\mapsto g+\alpha g^3$ (4.2); $\delta\mathfrak D_4=2\{\overrightarrow{\mathfrak T}^+,\overleftarrow{\mathfrak T}^-\}_4$ (4.4); $\delta\mathfrak D_4\mapsto\delta\mathfrak D_4+2\alpha\,\delta\mathfrak D_2$ (4.6), ``to match field theory results $\alpha$ must be zero''.
+
+\section{1/16-BPS supercharge on letters: [CY13], [CL22], [GGKM08]}
+\subsection{[CY13] [S]}
+Supercharges $Q^\alpha_i,\bar Q_{i\dot\alpha}$, special supercharges $S^\alpha_i,\bar S^{i\dot\alpha}$, $i=1..4$, $\alpha=\pm$; ``Following the notation of [13]'' ([13] = [GGKM08]); $Q\equiv Q^4_-$, $S\equiv S^-_4=Q^\dagger$ in radial quantisation; fields $\Phi_{ij}$, $\Psi_{i\alpha}$, $\bar\Psi^{i\dot\alpha}$, $A_{\alpha\dot\beta}$;
+\begin{gather*}
+2\{Q,Q^\dagger\}=\Delta\equiv E-2J-H_1-H_2-H_3\ \text{(2.1)},\\ \Phi^{ij}\equiv\Phi_{ij}^*=\tfrac12\epsilon^{ijkl}\Phi_{kl},
+\end{gather*}
+\begin{gather*}
+\phi^n\equiv\Phi^{4m},\quad \psi_n\equiv-i\Psi_{n+},\ n=1,2,3,\quad \lambda_{\dot\alpha}=\bar\Psi^4_{\dot\alpha},\quad f\equiv-iF_{++}\ \text{(2.2)},\\ D_{\dot\alpha}\equiv D_{+\dot\alpha}\ \text{(2.3)},
+\end{gather*}
+(the printed (2.2) reads $\phi^n\equiv\Phi^{4m}$; [CL22, (2.2)] prints $\phi^i\equiv\Phi^{4i}$; [GGKM08, (2.3)] calls $\Phi^{4m}=\bar\phi^m$, so [CY13]'s $\phi^n$ is [GGKM08]'s $\bar\phi^n$)
+\begin{gather*}
+[D_{\dot\alpha},D_{\dot\beta}]=\epsilon_{\dot\alpha\dot\beta}f,\\ D_{\dot\alpha}\lambda^{\dot\alpha}=[\phi^n,\psi_n]\ \text{(2.4)},
+\end{gather*}
+\begin{gather*}
+[Q,\phi^n]=0,\quad \{Q,\psi_n\}=-i\epsilon_{nmp}[\phi^m,\phi^p],\quad \{Q,\lambda_{\dot\alpha}\}=0,\quad [Q,f]=i[\phi^n,\psi_n]\ \text{(2.5)},\\ [Q,D_{\dot\alpha}\zeta]=-i[\lambda_{\dot\alpha},\zeta]+D_{\dot\alpha}Q\zeta\ \text{(2.6)},
+\end{gather*}
+\begin{gather*}
+\phi^m(z)=\sum_{n\ge0}\tfrac1{n!}(z^{\dot\alpha}D_{\dot\alpha})^n\phi^m,\quad \psi_m(z)=\sum_{n\ge0}\tfrac1{n!}(z^{\dot\alpha}D_{\dot\alpha})^n\psi_m,\\ \lambda(z)=\sum_{n\ge0}\tfrac1{(n+1)!}(z^{\dot\alpha}D_{\dot\alpha})^n(z^{\dot\beta}\lambda_{\dot\beta}),\ f(z)=\sum_{n\ge0}\tfrac1{n!}(z^{\dot\alpha}D_{\dot\alpha})^nf\ \text{(2.7)},
+\end{gather*}
+\begin{equation*}
+\begin{aligned}
+&[Q,\phi^m(z)]=-i[\lambda(z),\phi^m(z)],\quad [Q,f(z)]=-i[\lambda(z),f(z)]+i[\phi^n(z),\psi_n(z)],\\
+&\{Q,\psi_m(z)\}=-i\{\lambda(z),\psi_m(z)\}-i\epsilon_{mnp}[\phi^n(z),\phi^p(z)],\quad \{Q,\lambda(z)\}=-i\lambda(z)^2\ \text{(2.8)},
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+\Psi(z,\theta)=-i\big[\lambda(z)+2\theta_n\phi^n(z)+\epsilon^{mnp}\theta_m\theta_n\psi_p(z)+4\theta_1\theta_2\theta_3f(z)\big]\ \text{(2.9)},\\ \{Q,\Psi(Z)\}=\Psi(Z)^2\ \text{(2.10)},\\ \Psi|_{z^{\dot\alpha}=\theta_n=0}=0\ \text{(2.11)},
+\end{gather*}
+Q-cohomology $=H^*(\mathcal G_N,sl_N;\mathbb C)$, $\mathcal G_N=\mathbb C[z_+,z_-]\otimes\Lambda[\theta_1,\theta_2,\theta_3]\otimes sl_N$ (3.6). Charges (Sec.\ 4 table): $\lambda_\pm$: $E=\frac32$, $J_L^3=0$, $J_R^3=\pm\frac12$, $q_i=\frac12$; $\phi^n$: $1,0,0,\delta_{in}$; $\psi_n$: $\frac32,\frac12,0,\frac12-\delta_{in}$; $f$: $2,1,0,0$; $D_\pm$: $1,\frac12,\pm\frac12,0$; $Q$: $\frac12,-\frac12,0,\frac12$. Single-trace classes (4.4)--(4.5). No coupling constant displayed; ``weak coupling''.
+
+\subsection{[CL22] [S]}
+$\Delta\equiv2\{Q,Q^\dagger\}=D-2J_L^3-q_1-q_2-q_3$ (2.1); letters (2.2) $\phi^i\equiv\Phi^{4i}$, $\psi_i\equiv-i\Psi_{i+}$, $\lambda_{\dot\alpha}\equiv\bar\Psi^4_{\dot\alpha}$, $f\equiv-iF_{++}=F_{\mu\nu}(\sigma^{\mu\nu})_{++}$; $D_{\dot\alpha}\equiv(\sigma^\mu)_{+\dot\alpha}D_\mu$ (2.3); (2.4)--(2.6) as [CY13] (2.4)--(2.6) with $i$ in place of $n$; (2.10) $\{Q,\Psi(\mathcal Z)\}=\Psi(\mathcal Z)^2$; footnote 4: the BPS sector ``is also referred as the $psu(1,2|3)$ subsector''.
+\begin{gather*}
+D=D_0+\frac{g_{YM}^2N}{8\pi^2}H+\mathcal O(g_{YM}^3)\ \text{(3.1)},\\ Q=\operatorname{Tr}\Big(\Psi\Psi\frac{\partial}{\partial\Psi}\Big),\ Q^\dagger=\operatorname{Tr}\Big(\Psi\frac{\partial}{\partial\Psi}\frac{\partial}{\partial\Psi}\Big)\ \text{(3.2, footnote 8: ``at leading order in $g_{YM}$'')},\\ H\propto\{Q,Q^\dagger\}\ \text{(3.3)},
+\end{gather*}
+\begin{equation*}
+H^*(\mathcal G_N,sl_N;\mathbb C[[g_{YM}]])\cong H^*(\mathcal G_N,sl_N;\mathbb C)\otimes_{\mathbb C}\mathbb C[[g_{YM}]]\ \text{(3.5)}.
+\end{equation*}
+Text (Sec.\ 3): ``one can choose a regularization scheme such that the action of $Q$ on the BPS superfield is undeformed perturbatively'' (footnote 10: ``For example, one could use the `dimensional regularization by dimensional reduction' (DRED) scheme [61], or the regularization scheme in [62]'', [62] = hep-th/9801062); ``we have assumed that the $Q$-action satisfies the Leibniz rule in perturbation theory. We do not have a proof, but the only known obstruction, the Konishi anomaly [63], is absent in $\mathcal N=4$ SYM [64].'' Reference check: [64] is printed as ``A.~Kostyuk and H.~Stoecker, Evidence for psi-prime regeneration in heavy ion collisions, nucl-th/0501077'' (verified on arXiv: that is the nuclear-physics paper); [I] the intended reference is hep-th/0501077 = [EJSS05], whose actual statement is (3) below (truncation of the anomaly equation to one renormalised operator), not an absence statement.
+
+\subsection{[GGKM08] [S]}
+(2.1): in radial quantisation $S=Q^\dagger$, $\bar S=\bar Q^\dagger$, $\bar Q=Q^*$, $\bar S=S^*$ componentwise. Sec.\ 2.2: scalars $\Phi_{ij}$ with $\Phi^*_{ij}=\Phi^{ij}$, $\Phi^{ij}=\frac12\epsilon^{ijkl}\Phi_{kl}$; chiral fermions $\Psi_{i\alpha}$, conjugates $\bar\Psi^i_{\dot\alpha}$; gauge field $A_{\alpha\dot\beta}$; (2.3) ($\epsilon^{4mnp}=+\epsilon^{mnp}$):
+\begin{gather*}
+\Phi^{4m}=\bar\phi^m,\\ \tfrac12\epsilon_{pmn}\Phi^{mn}=\Phi_{4p}=\phi_p,\\ \Psi_{4\alpha}=\lambda_\alpha,\\ \Psi_{m\alpha}=\psi_{m\alpha}\ \text{(2.3)};\\ Q^4_\alpha=Q_\alpha,\ S^\alpha_4=S^\alpha;
+\end{gather*}
+(2.4) $\Delta\equiv2\{Q_-,S^-\}=E-2J-H_1-H_2-H_3$; BPS letters at zero coupling: $\bar\phi$, $\bar\lambda_{\dot\alpha}$, $\psi_{m+}$, $f_{++}$ and $D_{+\dot\alpha}$; (2.5) $\partial_{+\dot\beta}\bar\lambda^{\dot\beta}=0$. Appendix A (A.1) (coupling absorbed; ``say in the appendix of [20]'' = hep-th/0606087), the components on letters of $Q_\alpha=Q^4_\alpha$:
+\begin{equation*}
+\begin{aligned}
+&[Q_\alpha,\bar\phi^n]=0,\quad [Q_\alpha,\phi_p]=\psi_{p\alpha},\quad \{Q_\alpha,\lambda_\beta\}=2if_{\alpha\beta}+\epsilon_{\alpha\beta}[\phi_k,\bar\phi^k],\quad \{Q_\alpha,\psi_{n\beta}\}=-\epsilon_{\alpha\beta}\epsilon_{nmp}[\bar\phi^m,\bar\phi^p],\\
+&\{Q_\alpha,\bar\lambda_{\dot\beta}\}=0,\quad \{Q_\alpha,\bar\psi^n_{\dot\beta}\}=-2iD_{\alpha\dot\beta}\bar\phi^n,\quad [Q_\alpha,A_{\beta\dot\gamma}]=-\epsilon_{\alpha\beta}\bar\lambda_{\dot\gamma},\\
+&[Q_\alpha,f_{\beta\gamma}]=\epsilon_{\alpha\{\gamma}D_{\beta\}}{}^{\dot\delta}\bar\lambda_{\dot\delta}=-\tfrac i2\epsilon_{\alpha\gamma}[\bar\phi^m,\psi_{m\beta}]-\tfrac i2\epsilon_{\alpha\beta}[\bar\phi^m,\psi_{m\gamma}],\quad [Q_\alpha,f_{\dot\beta\dot\gamma}]=-D_{\alpha\{\dot\beta}\bar\lambda_{\dot\gamma\}},
+\end{aligned}
+\end{equation*}
+and of $Q^m_\alpha$: $[Q^m_\alpha,\bar\phi^n]=-\epsilon^{mnp}\psi_{p\alpha}$, $[Q^m_\alpha,\phi_p]=-\delta^m_p\lambda_\alpha$, $\{Q^m_\alpha,\lambda_\beta\}=\epsilon_{\alpha\beta}\epsilon^{mnp}[\phi_n,\phi_p]$, $\{Q^m_\alpha,\psi_{n\beta}\}=2i\delta^m_nf_{\alpha\beta}-2\epsilon_{\alpha\beta}[\bar\phi^m,\phi_n]+\epsilon_{\alpha\beta}\delta^m_n[\bar\phi^k,\phi_k]$, $\{Q^m_\alpha,\bar\lambda_{\dot\beta}\}=2iD_{\alpha\dot\beta}\bar\phi^m$, $\{Q^m_\alpha,\bar\psi^n_{\dot\beta}\}=-2i\epsilon^{mnp}D_{\alpha\dot\beta}\phi_p$, $[Q^m_\alpha,A_{\beta\dot\gamma}]=-\epsilon_{\alpha\beta}\bar\psi^m_{\dot\gamma}$, $[Q^m_\alpha,f_{\beta\gamma}]=\epsilon_{\alpha\{\gamma}D_{\beta\}}{}^{\dot\delta}\bar\psi^m_{\dot\delta}$, $[Q^m_\alpha,f_{\dot\beta\dot\gamma}]=-D_{\alpha\{\dot\beta}\bar\psi^m_{\dot\gamma\}}$;
+(A.2) $D_{\alpha\dot\beta}\bar\lambda^{\dot\beta}=i[\bar\phi^m,\psi_{m\alpha}]$, $D_{\beta\dot\alpha}\lambda^\beta=i[\phi_m,\bar\psi^m_{\dot\alpha}]$; text: ``$\{Q^i_\alpha,\bar Q_{j\dot\beta}\}X=2i\delta^i_jD_{\alpha\dot\beta}X$ up to a gauge transformation''. Sec.\ 2.1: ``the action of $Q$ on Yang Mills fields takes the form $QA=[B,C]$''.
+
+\subsection{Classification}
+(i) $Q$ = classical supercharge with nonlinear terms, coupling absorbed in the fields; BPS letters; superfield $\Psi$. (ii) [CY13], [GGKM08]: classical transformation rules, no loop computation; [CL22]: all-order statement (3.5) under the assumption of a scheme with undeformed $Q$ and Leibniz rule. (iii) [CL22]: $Q$-action undeformed in a suitable scheme (claimed, footnote 10 schemes); spectrum statement scheme independent. (iv) (2.5),(2.6),(2.8),(2.10) of [CY13]; (A.1) of [GGKM08].
+
+\section{Konishi anomaly: [EJSS05], [BKRS01]}
+\subsection{[EJSS05] [S]}
+Conventions (Appendix): $\operatorname{Tr}(T^aT^b)=\delta^{ab}$, gauge group $SU(N_c)$,
+\begin{equation*}
+S_{\mathcal N=4}=\int d^4xd^2\theta d^2\bar\theta\operatorname{Tr}\big(e^{gV}\bar\Phi_Ie^{-gV}\Phi^I\big)+\frac14\int d^4x_Ld^2\theta\operatorname{Tr}(W^\alpha W_\alpha)+\frac{g}{3!}\int d^4x_Ld^2\theta\,\epsilon_{IJK}\operatorname{Tr}(\Phi^I[\Phi^J,\Phi^K])+\text{c.c.}\ \text{(109)},
+\end{equation*}
+\begin{gather*}
+\langle\Phi^I(1)\bar\Phi_J(2)\rangle=-\frac{\delta^I_J}{4\pi^2\hat x_{12}^2}\ \text{(110)},\\ \langle V(1)V(2)\rangle=+\frac{\theta_{12}^2\bar\theta_{12}^2}{4\pi^2x_{12}^2}\ \text{(112)},\\ D^2=-\tfrac14D^\alpha D_\alpha,\ \bar D^2=-\tfrac14\bar D_{\dot\alpha}\bar D^{\dot\alpha}\ \text{(footnote 8)};
+\end{gather*}
+regulator: SSDR, $\frac1{x_{12}^2}\to\frac{1}{(x_{12}^2)^{1-\epsilon}}$ (113); superpotential $\mathcal W=(g/3)\epsilon_{IJK}\operatorname{Tr}(\Phi^I\Phi^J\Phi^K)$ (Sec.\ 1).
+\begin{equation*}
+\bar D^2K\equiv\bar D^2\operatorname{Tr}\big(\bar\Phi e^{gV}\Phi\big)=\operatorname{Tr}\Big(\Phi\frac{\partial\mathcal W(\Phi)}{\partial\Phi}\Big)+\frac{g^2}{32\pi^2}\operatorname{Tr}(W^\alpha W_\alpha)\equiv B+\frac{g^2}{32\pi^2}F\ \text{(1, generic $\mathcal N=1$)},
+\end{equation*}
+\begin{gather*}
+[\bar D^2K]_R=a(g)[B]_R+b(g)[F]_R\ \text{(2)},\\ [\bar D^2K]^{\mathcal N=4}_R=a(g)[B]^{\mathcal N=4}_R\equiv K_{\mathbf{10}/1}\ \text{(3)};
+\end{gather*}
+text after (2): ``$a(g)$ and $b(g)$ are finite coefficients whose value depends on the normalization of the operators, i.e.\ on the subtraction scheme''.
+\begin{gather*}
+K=-\tfrac13\operatorname{Tr}\big(e^{gV}\bar\Phi_Ie^{-gV}\Phi^I\big)\ \text{(5)},\\ \bar D^2\big(e^{gV}\bar\Phi_Ie^{-gV}\big)=-\tfrac g2\epsilon_{IJK}[\Phi^J,\Phi^K]\ \text{(6)},\\ \bar D^2K=\tfrac g6\epsilon_{IJK}\operatorname{Tr}\big(\Phi^I[\Phi^J,\Phi^K]\big)\equiv K^{\rm classical}_{\mathbf{10}/1}\ \text{(7)},
+\end{gather*}
+\begin{gather*}
+\bar D^2K=\frac g6\epsilon_{IJK}\operatorname{Tr}\big(\Phi^I[\Phi^J,\Phi^K]\big)+\frac{g^2N}{32\pi^2}\operatorname{Tr}(W^\alpha W_\alpha)\equiv K^{\rm one-loop}_{\mathbf{10}/1}\ \text{(8)},\\ B=\frac g6\epsilon_{IJK}\operatorname{Tr}\big(\Phi^I[\Phi^J,\Phi^K]\big),\ F=\operatorname{Tr}(W^\alpha W_\alpha)\ \text{(9)};
+\end{gather*}
+(8): ``The coefficient of the new term has been computed at one loop (order $g^2$)''; footnote 9: the factor $g$ is included in $B$ ``to have a perturbative expansion in even powers of $g$''. $SU(4)$ form: $\mathbf{10}\to(1,2)+(3,2/3)+(6,-2/3)$;
+\begin{gather*}
+F_6^{IJ}=C_F\operatorname{Tr}\big(\nabla^\alpha\Phi^I\nabla_\alpha\Phi^J\big),\ \nabla_\alpha\Phi^I=e^{gV}\big[D_\alpha\big(e^{-gV}\Phi^Ie^{gV}\big)\big]e^{-gV}\ \text{(10)},\\ B_6^{IJ}=\tfrac g4\epsilon^{IKL}\operatorname{Tr}\big(\Phi^J[\bar\Phi_K,\bar\Phi_L]\big)+(I\leftrightarrow J)\ \text{(11)},\\ K^{IJ}_{\mathbf{10}/6}=Z_BB_6^{IJ}+Z_FF_6^{IJ}\ \text{(12)},\ Z_B=1,\ Z_F=\frac{g^2N}{32\pi^2}\ \text{at order $g^2$},
+\end{gather*}
+$K^I_{\mathbf{10}/3}=\frac g2\operatorname{Tr}\Phi^J[\bar\Phi_J,\Phi^I]+\frac{g^2N}{32\pi^2}\operatorname{Tr}(\nabla^\alpha\Phi^IW_\alpha)$ (text after (12)). Protected descendant and mixing:
+\begin{gather*}
+D^2\mathcal O^{IJ}_{\mathbf{20}'/6}=-\tfrac12\big(F_6^{IJ}-4B_6^{IJ}\big)\equiv\mathcal O^{IJ}_{\mathbf{10}/6}\ \text{(17)},\\ -2D^2\mathcal O=F-4B\equiv[F]_R\ \text{(99; (89) checked to $g^2$ w.r.t.\ $F,D^2\mathcal O$, to $g^4$ w.r.t.\ $B$)},
+\end{gather*}
+\begin{equation*}
+K_{\mathbf{10}}=Z_KB+Z_OD^2\mathcal O\ \text{(101)},\quad Z_K=1+g^2\frac{m_{11}}{\epsilon},\ Z_O=g^2n_{10}+g^4\Big(\frac{n_{21}}{\epsilon}+n_{20}\Big)\ \text{(102)},\quad \langle K_{\mathbf{10}}\bar D^2\bar{\mathcal O}\rangle=\mathcal O(\epsilon)\ \text{(103)},
+\end{equation*}
+\begin{gather*}
+m_{11}=\frac{3M}{2},\quad n_{10}=-\frac M4,\quad n_{21}=-\frac{3M^2}{16},\quad n_{20}=+\frac{3M^2}{16}\ \text{(106)},\quad M=\frac{N}{4\pi^2},\\ m_{11}=\frac{\gamma_1}2\ \text{(107)},\quad n_{21}=\frac12m_{11}n_{10}\ \text{(108)},
+\end{gather*}
+improved $\overline{MS}$ in SSDR (text after (105)). Conclusion (abstract): ``in a superconformal renormalization scheme the separation into `classical' and `quantum' anomaly terms is not possible, and the question whether the Konishi anomaly is one-loop exact is out of context''; ``At one loop we rediscover the correct coefficient of the $F$ term in (1), but already at two loops this coefficient becomes a divergent renormalization factor'' (Sec.\ 1); footnote 13: whether classical field equations receive corrections ``may be a scheme-dependent property''.
+
+\subsection{[BKRS01] [S]}
+Conventions: Fermi--Feynman gauge; footnote 3: $g$ of their earlier papers [6],[7] equals $2g$ here; relevant terms of the action:
+\begin{equation*}
+\begin{aligned}
+S=\int d^4x\,d^2\theta d^2\bar\theta\Big\{&V^a\Box V_a-\Phi^{a\dagger}_I\Phi^I_a-2igf_{abc}\Phi^{\dagger a}_IV^b\Phi^{Ic}+2g^2f_{abe}f_{ecd}\Phi^{\dagger a}_IV^bV^c\Phi^{Id}\\
+&-\frac{ig\sqrt2}{3!}f^{abc}\big[\varepsilon_{IJK}\Phi^I_a\Phi^J_b\Phi^K_c\delta^{(2)}(\bar\theta)-\varepsilon^{IJK}\Phi^\dagger_{aI}\Phi^\dagger_{bJ}\Phi^\dagger_{cK}\delta^{(2)}(\theta)\big]+\dots\Big\}\ \text{(1)}.
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+\mathcal K_{\mathbf 1}=\sum_{I=1}^3:\operatorname{tr}\big(e^{-2gV}\Phi^\dagger_Ie^{2gV}\Phi^I\big):\big|_{\theta=\bar\theta=0}\ \text{(5)},\qquad \mathcal K_\mu=\bar\psi_A\bar\sigma_\mu\psi^A\ \text{(6)},\\
+\tfrac14\bar D^2:\operatorname{tr}\big(e^{-2gV}\Phi_I^\dagger e^{2gV}\Phi^I\big):=\operatorname{tr}\Big(\Phi^I\frac{\partial\mathcal W}{\partial\Phi^I}\Big)+\frac{6g^2N}{32\pi^2}\operatorname{tr}(W^\alpha W_\alpha)\ \text{(7)},\qquad W_\alpha=-\frac1{8g}\bar D^2\big(e^{-2gV}D_\alpha e^{2gV}\big)\ \text{(8)},\\
+(\mathcal K_{\mathbf{10}^*})_{AB}=3\sqrt2g\,t^{ijk}_{AB}\operatorname{tr}(\varphi_i\varphi_j\varphi_k)+\frac{6g^2N}{32\pi^2}\operatorname{tr}(\bar\psi_{\dot\alpha A}\bar\psi_B^{\dot\alpha})\ \text{(9)},\\
+(\mathcal E_{\mathbf{10}^*})_{AB}=-\operatorname{tr}(\bar\psi_{\dot\alpha A}\bar\psi^{\dot\alpha}_B)+\sqrt2g\,t^{ijk}_{AB}\operatorname{tr}(\varphi_i\varphi_j\varphi_k)\ \text{(10)},\qquad \mathcal Q^{(ij)}_{\mathbf{20}'}=\operatorname{tr}\Big(\varphi^i\varphi^j-\frac{\delta^{ij}}6\varphi^k\varphi^k\Big)\ \text{(11)};
+\end{gather*}
+text: ``$\mathcal K_{\mathbf{10}^*}=\delta^2\mathcal K_{\mathbf 1}$'' orthogonal to ``$\mathcal E_{\mathbf{10}}=\delta^2\mathcal Q_{\mathbf{20}'}$''; the anomalous term of (9) makes $\langle\delta^2\mathcal K_{\mathbf 1}(x)\delta^2\mathcal Q_{\mathbf{20}'}(y)\rangle$ vanish. Further levels:
+\begin{equation*}
+(\mathcal K_{\mathbf 6^*\in\mathbf{10}^*})_{11}=3\sqrt2g\operatorname{tr}(\phi_1^\dagger[\phi^2,\phi^3])+\frac{6g^2N}{32\pi^2}\operatorname{tr}(\bar\psi_1\bar\psi_1)\ \text{(12)},
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+(\mathcal K_{\mathbf 6^*\in\mathbf{20}'})_{11}={}&6\sqrt2g\operatorname{tr}([\phi_1^\dagger,\psi^2]\psi^3)+6\sqrt2g^2\big\{\operatorname{tr}([\phi_1^\dagger,\phi^2][\phi_2^\dagger,\phi_1^\dagger])+\operatorname{tr}([\phi_1^\dagger,\phi_3^\dagger][\phi^3,\phi_1^\dagger])\big\}\\
+&+\frac{6g^2N}{32\pi^2}\big\{4\operatorname{tr}(D_\mu\phi_1^\dagger D^\mu\phi_1^\dagger)+\sqrt2g\operatorname{tr}([\phi_1^\dagger,\bar\lambda]\bar\psi_1^\dagger)\big\}\ \text{(13)},
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\mathcal K_{\mathbf 1}'={}&6\sqrt2g\big\{t^i_{AB}\operatorname{tr}([\varphi_i,\psi^A]\psi^B)+t_i^{AB}\operatorname{tr}([\varphi^i,\bar\psi_A]\bar\psi_B)\big\}-3g^2\operatorname{tr}\big([\varphi^i,\varphi^j][\varphi_i,\varphi_j]\big)\\
+&+\frac{6g^2N}{32\pi^2}\big[2\operatorname{tr}(D_\mu\varphi^iD^\mu\varphi_i)-\operatorname{tr}(F^{\mu\nu}F_{\mu\nu})\big]\ \text{(15)}.
+\end{aligned}
+\end{equation*}
+Classification [EJSS05],[BKRS01]: (i) $K$, $B$, $F$, descendants $K_{\mathbf{10}}$, $\mathcal O_{\mathbf{10}}$; (ii) computed: two-point functions in SSDR to $g^4$ [EJSS05]; the anomaly coefficient taken from the one-loop literature and reproduced by orthogonality; (iii) scheme dependent: $a(g),b(g)$ normalisations (2); the classical/quantum split in $\mathcal N=4$; scheme independent: the existence and anomalous dimension of the unique renormalised descendant $K_{\mathbf{10}}$, orthogonality to the protected $\mathcal O_{\mathbf{10}}$; (iv) explicit (7),(8),(12),(17),(99),(101)--(106); [BKRS01] (7),(9),(10),(12),(13),(15).
+
+\section{Derived items [D]}
+\paragraph{[D1] Loop order of an $n\to m$ term of $g^k$.} Canonical normalisation ([B04] (1.2)--(1.5); [B03c] footnote 6): cubic vertices $\propto g_{YM}$, quartic $\propto g_{YM}^2$, propagators $g^0$. A connected diagram with the operator vertex ($n$ legs), $v_3$ cubic and $v_4$ quartic vertices, $I$ internal lines and $m$ outgoing legs:
+\begin{gather*}
+k=v_3+2v_4,\\ 3v_3+4v_4+n=2I+m,\\ L=I-(v_3+v_4+1)+1\ \Longrightarrow\ 2L=v_3+2v_4+n-m,\\ k=2L+m-n.
+\end{gather*}
+Spectator legs change $n$ and $m$ by one each and leave $k,L$ fixed. Assumption for applying this to [B03]: the spin-chain basis differs from the canonical field basis by similarity transformations that respect $k=2L+m-n$ (the $g$-independent $\beta_{1,2}$; $T(g)=1+g^2T_2+\dots$ with $T_2$ a $2\to2$ structure). With coupling in the kinetic term (fields $g\times$ canonical, propagator $\propto g^2$, vertex $\propto g^{-2}$) the same diagram is $\propto g^{2(I-v_3-v_4)}=g^{2L}$ for every $n,m$. Hence, for [B03] Table 1 / (3.37):
+\begin{center}
+\begin{tabular}{l|c|c|c|c}
+term & $n\to m$ & $k$ & loops $L$ & coupling-in-pairing weight\\ \hline
+$Q_1$ & $1\to2$ & 1 & 0 & $g^0$ (classical, [B03] fn.\ 10)\\
+$S_1$ & $2\to1$ & 1 & 1 & $\hbar g^2$\\
+$H_2,Q_2,S_2$ & $2\to2$ & 2 & 1 & $\hbar g^2$\\
+$H_3$: $\bs{\alpha\beta}{abc}$ & $2\to3$ & 3 & 1 & $\hbar g^2$\\
+$H_3$: $\bs{abc}{\alpha\beta}$ & $3\to2$ & 3 & 2 & $\hbar^2g^4$\\
+self-contraction & $n\to n-2$ & 0 & 1 & $\hbar g^2$
+\end{tabular}
+\end{center}
+Consistency with (3.35): $c_7\propto c_4c_9$ (one-loop $\times$ tree, $L=1$) and $c_8\propto c_4c_{10}$ (one-loop $\times$ one-loop, $L=2$). The same table holds for [Z05]: $\mathfrak T^+_1$ ($1\to2$) classical, $\mathfrak T^-_1$ ($2\to1$) one-loop, $\mathfrak X_2$ one-loop. In the user's notation the order-$\hbar$ components along $Q$, $S$, $D$ restricted to su(2$|$3) are therefore: $Q$: $Q_2$ and the $2\to3$ part of $Q_3$; $S$: $S_1$, $S_2$, the $2\to3$ part of $S_3$; $D$: $H_2$ and the $2\to3$ part of $H_3$.
+
+\paragraph{[D2] One-loop supercharge corrections in su(2$|$3): what the similarity moves and what it leaves.} From Table 1, strip $e^{\pm i\beta_1}$ and order the four structures of $Q_2$ and of $S_2$ as printed. Then (\texttt{check\_beisert\_\allowbreak q2s2.py}):
+\begin{gather*}
+Q_2=0\iff(\gamma_1,\gamma_2,\gamma_3,\gamma_4)=\tfrac{i\alpha_1^2}{4}(1,1,-1,1),\\ \text{then}\\ S_2=e^{-i\beta_1}\tfrac{\alpha_1^2}2\Big[\Big(\bs{\alpha b}{ab}+\bs{b\alpha}{ba}\Big)-\Big(\bs{\alpha b}{ba}+\bs{b\alpha}{ab}\Big)+\Big(-\bs{\alpha\beta}{\beta a}+\bs{\beta\alpha}{a\beta}\Big)\Big],
+\end{gather*}
+\begin{gather*}
+S_2=0\iff(\gamma_1,\gamma_2,\gamma_3,\gamma_4)=\tfrac{i\alpha_1^2}{4}(-1,-1,1,-1),\\ \text{then}\\ Q_2=e^{i\beta_1}\tfrac{\alpha_1^2}2\Big[\Big(\bs{ab}{\alpha b}+\bs{ba}{b\alpha}\Big)-\Big(\bs{ab}{b\alpha}+\bs{ba}{\alpha b}\Big)+\Big(\bs{a\beta}{\beta\alpha}-\bs{\beta a}{\alpha\beta}\Big)\Big],
+\end{gather*}
+\begin{gather*}
+Q_2=S_2=0\ \text{has no solution};\\ \text{coefficient}_i(Q_2)e^{-i\beta_1}+\text{coefficient}_i(S_2)e^{i\beta_1}=\tfrac{\alpha_1^2}{2}(1,0,-1,1)\quad(\gamma\text{-independent}).
+\end{gather*}
+The order-$g^2$ similarity (the four-parameter freedom of [B03, (4.4)--(4.6)]) shifts the one-loop correction between $Q$ and $S$ and cannot remove it from both. Invariance of the order-$g^2$ anticommutator under $J_2\mapsto J_2+[T_2,J_0]$:
+\begin{equation*}
+\{S,Q\}_2\mapsto\{S,Q\}_2+\{[T_2,S_0],Q_0\}+\{S_0,[T_2,Q_0]\}=\{S,Q\}_2+[T_2,\{S_0,Q_0\}]=\{S,Q\}_2,
+\end{equation*}
+since $\{S_0,Q_0\}$ is (3.41) and $T_2$ commutes with $L,R,H_0$; by (4.3), $\{S,Q\}_2=\{S_2,Q_0\}+\{S_1,Q_1\}+\{S_0,Q_2\}=\frac12\delta^b_a\delta^\alpha_\beta H_2$. Scope: $\alpha_1,\beta_1,\beta_2$ fixed; Beisert's general solution at this order.
+
+\paragraph{[D3] Sign of $\varepsilon$.} $Q_1,S_1,H_3$ are each linear in $\varepsilon_{\alpha\beta}\varepsilon^{abc}$ (or $\varepsilon_{abc}\varepsilon^{\alpha\beta}$) and carry $e^{i\beta_2}$, $e^{-i\beta_2}$, $e^{\pm i\beta_2}$ respectively; $\varepsilon\to-\varepsilon$ equals $\beta_2\to\beta_2+\pi$, i.e.\ the similarity $e^{i\pi L}$ of (3.39). A change of spinor-metric sign convention (e.g.\ to Srednicki's $\varepsilon^{12}=+1$) is inside Beisert's freedom.
+
+\paragraph{[D4] [Z05] in the frame with uncorrected translations.} (3.6)--(3.7) with $\mathfrak y=-\mathfrak x$ (allowed: $\mathfrak x$ is two-site to two-site and commutes with $\mathfrak B,\mathfrak D_0,\mathfrak R$ by construction from (3.3),(3.4); $\mathfrak X^+=(\mathfrak X^-)^\dagger$ is then lost):
+\begin{gather*}
+\mathfrak X^+_2=0\ \ (\mathfrak P_{22},\mathfrak Q^2_2,\mathfrak Q^3_2,\dot{\mathfrak Q}_{22},\dot{\mathfrak Q}_{23}),\\ \mathfrak X^-_2=-2[\mathfrak X^-_0,\mathfrak x]\ \ (\mathfrak K^{22},\mathfrak S^2_2,\mathfrak S^2_3,\dot{\mathfrak S}^{22},\dot{\mathfrak S}^{32}),\\ \mathfrak T^+_3=\alpha\mathfrak T^+_1,\ \mathfrak T^-_3=-2[\mathfrak T^-_1,\mathfrak x]+\alpha\mathfrak T^-_1.
+\end{gather*}
+Independently of [Z05]'s solution: $[\mathfrak J^{--},\mathfrak J^{++}]=\mathfrak J^0\ni\delta\mathfrak D$ (3.10) at $g^2$ gives $[\mathfrak J^{--}_2,\mathfrak J^{++}_0]+[\mathfrak J^{--}_0,\mathfrak J^{++}_2]=\delta\mathfrak D_2\neq0$; if $\mathfrak J^{++}_2=0$ then $\mathfrak J^{--}_2\neq0$. The one-loop special conformal component is forced whenever translations are uncorrected and the one-loop dilatation is nonzero.
+
+\paragraph{[D5] Eigen-operators of (4.13).} With the (2,1) entry $-9\sqrt2e^{-i\beta_2}\alpha_1^3g^3$ and $H\mathcal O_i=\sum_jM_{ij}\mathcal O_j$; script \texttt{check\_beisert\_\allowbreak short\_states.py}.
+\begin{gather*}
+\text{protected }(E_1=3):\ \mathcal O_1+\tfrac{\sqrt2}{3}e^{i\beta_2}\alpha_1g\,\mathcal O_2+\mathcal O(g^2),\\ \text{Konishi descendant }(E_2=3+6\alpha_1^2g^2+\dots):\ \mathcal O_2-\tfrac{3}{\sqrt2}e^{-i\beta_2}\alpha_1g\,\mathcal O_1+\mathcal O(g^2).
+\end{gather*}
+[I] $\mathcal O_2\leftrightarrow B$, $\mathcal O_1\leftrightarrow F$ of [EJSS05] (same quantum numbers, scalar, $\Delta_0=3$, $SU(3)$-singlet $\varepsilon$ structure): the protected combination is $F$-led with an $\mathcal O(g)$ admixture of the trilinear (cf.\ (17),(99)), the Konishi descendant is trilinear-led with an $\mathcal O(g)$ admixture of the fermion bilinear (cf.\ (8), (101)). The relative coefficient depends on $\beta_2$ (similarity) and on the normalisation of $\mathcal O_1,\mathcal O_2$.
+
+\paragraph{[D6] [EJSS05] one-loop Konishi descendant in the $B,F$ basis.} (99),(101),(102),(106): $K_{\mathbf{10}}=(Z_K+2Z_O)B-\frac12Z_OF$, hence at order $g^2$
+\begin{equation*}
+K_{\mathbf{10}}=\Big(1-\frac{g^2N}{8\pi^2}+g^2\frac{m_{11}}{\epsilon}\Big)B+\frac{g^2N}{32\pi^2}F+\mathcal O(g^4),
+\end{equation*}
+reproducing $Z_F=g^2N/(32\pi^2)$ of (12) and the coefficient in (8). The $F$ coefficient is fixed by (103); the finite part of the $B$ coefficient follows from the choice $Z_K$ minimal in (102) (normalisation, scheme).
+
+\paragraph{[D7] One-loop normalisation cross-checks.} [B03] (6.7)+Tab.\ 4: $\delta D_{\rm Konishi}=6g^2=\frac{3g_{YM}^2N}{4\pi^2}$; [B03c] (2.31), $j=2$, $h(2)=\frac32$: $\frac{g_{YM}^2N}{2\pi^2}\cdot\frac32=\frac{3g_{YM}^2N}{4\pi^2}$; project value (DEFINITIONS\_v2: unit $=-g^2N/(32\pi^2)$ for $su(N)$, Konishi coefficient $-24\times$unit): $-24\cdot(-\frac{g^2N}{32\pi^2})=\frac{3g^2N}{4\pi^2}$. The EJSS anomaly coefficient $g^2N/(32\pi^2)$ equals $-1\times$unit in that identification ([I]: requires $g_{EJSS}=g$ of the project with $\operatorname{Tr}(T^aT^b)=\delta^{ab}$; not checked against the project's pairing).
+
+\paragraph{[D8] Letter content of su(2$|$3) inside the 1/16-BPS sector [I].} [B03c] (5.18),(4.14): $\phi_a=c_a^\dagger c_4^\dagger|0\rangle$, $\psi_\alpha=a_\alpha^\dagger c_4^\dagger|0\rangle$, and $\dot Q_{\dot\alpha4}=b^\dagger_{\dot\alpha}c^\dagger_4$ annihilates both (two $c_4^\dagger$); the su(2$|$3) supercharges are $Q^a{}_\alpha=a^\dagger_\alpha c^a$, $a=1,2,3$. [CY13]: letters without derivatives and without $\psi_n,f$ are $\phi^n$ (3 scalars, $E=1$) and $\lambda_{\dot\alpha}$ (2 fermions, $E=\frac32$, $J_R^3=\pm\frac12$), the letter content of su(2$|$3). The identification of [CY13]'s $Q^4{}_-$ with one $\dot Q_{\dot\alpha4}$ of [B03c] requires the exchange of the two $sl(2)$ factors between the two conventions (not stated in either source). On this sector [CY13]'s $Q$ annihilates every letter classically ((2.5), no $D_{\dot\alpha}$).
+
+\section{Convention inventory for the Weinberg--Srednicki version (R1)}
+\begin{longtable}{p{1.6cm}p{15cm}}
+source & stated / not stated \\ \hline
+{[B03]} & stated: $\varepsilon_{\alpha\beta},\varepsilon^{abc}$ totally antisymmetric, numerical normalisation not stated; fields complex, no reality; coupling $g^2=g_{YM}^2N/8\pi^2$ (6.7); statistics signs (2.4),(3.4). By [D3] the $\varepsilon$ sign is a $\beta_2$ shift. \\
+{[B03c]} & stated: oscillator realisation (4.9)--(4.14); algebra (A.1)--(A.6); $D=\partial-igA$ (Table 1 text); gauge group $U(N)$ footnote 4. Not stated: $\sigma$ matrices, $\varepsilon$ values. \\
+{[B04]} & stated: (1.2)--(1.10), $\sigma^{\{\mu}\sigma^{\nu\}}=\eta^{\mu\nu}$ (1.6), $\sigma^\mu_{\dot\alpha\beta}=\sigma^\mu_{\beta\dot\alpha}$, $\sigma^m_{ab}=-\sigma^m_{ba}$; signature left open (Table 1.1, ``maximally non-compact or complex''); App.\ B identities (not read). \\
+{[Z05]} & stated: generator map (2.3),(2.5) into Beisert's $psu(2,2|4)$ conventions; diagonal metric (2.12). \\
+{[CY13]} & stated: $Q=Q^4{}_-$, letters (2.2), reality of $\Phi$; not stated: values of $\epsilon_{\dot\alpha\dot\beta}$, $\epsilon_{nmp}$ beyond antisymmetry, normalisation of $F_{++}$, coupling placement (absorbed). \\
+{[CL22]} & stated: $f\equiv-iF_{++}=F_{\mu\nu}(\sigma^{\mu\nu})_{++}$, $D_{\dot\alpha}=(\sigma^\mu)_{+\dot\alpha}D_\mu$; not stated: $\sigma^{\mu\nu}$ definition, signature. \\
+{[GGKM08]} & stated: (2.1),(2.3), $\epsilon^{4mnp}=+\epsilon^{mnp}$; transformation rules quoted from hep-th/0606087 (not read). \\
+{[EJSS05]} & stated: (109)--(113), $D^2,\bar D^2$ (footnote 8), $\operatorname{Tr}(T^aT^b)=\delta^{ab}$; spinor algebra ``given in [14]'' = hep-th/0409009 (not read). \\
+{[BKRS01]} & stated: (1)--(3), (8), $g$ footnote 3; Euclidean coordinate-space propagators (2)--(3). \\
+\end{longtable}
+The Weinberg--Srednicki versions of the formulas above require the step2/notation dictionary plus, for [CY13], [CL22], [GGKM08], the convention items listed as not stated; no translation is made in this file.
+
+\end{document}

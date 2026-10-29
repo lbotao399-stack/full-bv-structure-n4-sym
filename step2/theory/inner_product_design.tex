@@ -1,0 +1,580 @@
+% inner_product_design.tex -- standalone; build: pdflatex -output-directory=_build_ip inner_product_design.tex (twice)
+% Revision 2026-10-29 (second audit round): dispositions in step2/qa/ip_findings_disposition.json,
+% proposed corrections of Chapter 8 in step2/qa/ch08_corrections_from_ip.json.
+\documentclass[11pt]{report}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{array,longtable}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{chapter}
+\tcolorboxenvironment{proof}{breakable,enhanced,colback=white,colframe=black!35,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt}
+\newcommand{\tabcaption}[1]{\par\smallskip\noindent\centerline{\parbox{0.92\linewidth}{\small #1}}\par\medskip}
+% \unit expands to the unit written out in full (no new symbol in the rendered text)
+\newcommand{\unit}{\tfrac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}
+\newcommand{\lam}{\tfrac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}}
+\newcommand{\Wp}{W_{\mathbb R}^\perp}
+\newcommand{\Gt}{\mathrm{Gram}_{\rm tree}}
+\newcommand{\Go}{\mathrm{Gram}_{1}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\Ko}{(A|_{\Wp},A|_{\Wp})}
+\allowdisplaybreaks
+\sloppy
+\emergencystretch=3em
+\begin{document}
+\setcounter{chapter}{10}
+\chapter{The one-loop radial inner product and the test $Q^\dagger=S$: design}
+
+The radial inner product turns the two-point function of Chapter 8 into a Hermitian form on operators at the origin, and the conjugation of $\mathfrak{psl}(4|4)$ turns its invariance into relations between the one-loop components along $X$ and along $X^\dagger$. Three features make this subtle at one loop. The conjugate of an operator at the origin is a limit that exists exactly when the one-loop dilatation is self-adjoint, and its transport uses the one-loop components along the translations and the special conformal fields, which the Feynman-gauge regulator corrects by composite rescalings whose universality is a prediction of the master equation. Operators of different lengths have tree norms of different orders in the coupling, so the relations hold order by order in the square root of the unit. And the scheme carries two real freedoms, the frame of the translations and the real part of the classical-type coefficient along $\Sigma$, which the radial lines absorb unless the frame is fixed by the inner automorphism and the real part by the reflection. This chapter makes the inner product computable on top of Chapter 8, separates the content of $Q^\dagger=S$ forced by the equivariant quantum master equation from the content that tests independently computed data, fixes a minimal decisive test set, and states the engine plan; the Konishi anomalous dimension follows in modulus from classical and tree data.
+
+\textbf{Inputs and names.} [ch08, label] is \texttt{manuscript/ch08\_definitions.tex}; [tp, label] is \texttt{step2/theory/two\_point\_design.tex}; [conj, label] is \texttt{step2/theory/conjugation.tex}; [odd, label] is \texttt{step2/theory/odd\_components\_design.tex}; [delta\_theory, label] and [k\_transfer, label] are the files of these names in \texttt{step2/theory}; [lit, Target $n$] is \texttt{step2/literature/ip\_targets.tex}; [checks, C$n$] is \texttt{step2/theory/inner\_product\_checks.py} with output \texttt{inner\_product\_checks.json} (seventeen checks, all passed, 48~s, 0.1~GB). The names are those of Chapter 8: $\xi\in\Sigma$, $\eta\in\Sigma^*$ are spinor parameters, $\overline\xi\in\Sigma^*$ is the conjugate of Lemma c8-cc; $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ are the one-loop components of [ch08, def:c8-components]; ``$S_1(O)$ at $\eta=\overline\xi$'' is the component with parameter $\overline\xi$, ``$Q_1(O)$ at $\xi'$'' the one with parameter $\xi'$; $Q$ is the linear BV differential. $x\mapsto-\Lambda^{(1)}(x)$ is the representation of $\mathfrak{psl}(4|4)$ on the cohomology of $\Lambda^{(0)}$ [ch08, cor:c8-homotopy]; on a basis $O_k$ of a family, the matrix of an operator acts on coefficient columns, $YO_l=\sum_kY_{kl}O_k$; $X_0+\hbar X_1$ is the matrix of $-\Lambda^{(1)}(X)$ and $Y_0+\hbar Y_1$ that of $-\Lambda^{(1)}(X^\dagger)$; $\Gt$, $\Go$ and $Y^{\rm adj}=\Gt^{-1}\overline Y^{\,T}\Gt$ are those of [ch08, def:c8-inner]; for operators $a,b$, $\langle a,b\rangle_{\rad,{\rm tree}}$ and $\langle a,b\rangle_{\rad,1}$ are the parts of $\langle a,b\rangle_\rad$ given by $\Gt$ and $\hbar\Go$, and $\langle a,b\rangle_{n,{\rm tree}}$, $\langle a,b\rangle_{n,1}$ the tree and one-loop parts of the reflection inner product. $f(0)$ is the operator at the origin of a density $f$ and $\overline f$ the density with conjugated components [ch08, prop:c8-primary]. The unit is
+\[
+\unit ,
+\]
+negative on the compact real form; for $\mathfrak{su}(N)$ in the normalisation of [ch08, prop:c8-twocomp] it is $-\tfrac{g^2N}{32\pi^2}$ (sanity remark only). Two-component formulas use [ch08, def:c8-twocomp]: Euclidean $\sigma^m=(\vec\sigma,i)$, $\bar\sigma^m=(-\vec\sigma,i)$, $\varepsilon^{12}=+1$, $\xi=(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i})$, $\eta=(\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$, the generators $Q^i_\alpha$, $\bar Q_{\dot\alpha i}$, $S^\alpha{}_i$, $\bar S^{\dot\alpha i}$, the fields $A_m$, $A_{ij}=A_I\Sigma^I_{ij}$, $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}=A_I\overline{\Sigma^I_{ij}}$, $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$; Weinberg's form of every two-component formula follows from $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ [ch08, prop:c8-twocomp].
+
+\begin{remark}[Inputs checked and reconciled]
+\label{rem:ip-inputs}
+\begin{itemize}
+\item Conjugation. [ch08, thm:c8-dag] and [conj, prop:dag2] give $(Q^i_\alpha)^\dagger=-S^\alpha{}_i$, $(\bar Q_{\dot\alpha i})^\dagger=\bar S^{\dot\alpha i}$, $\xi^\dagger=-\overline\xi$ with $(\xi^\dagger)^\alpha{}_i=-\overline{\xi_\alpha{}^i}$, $(\xi^\dagger)^{\dot\alpha i}=\overline{\bar\xi_{\dot\alpha i}}$. The label line of [lit, Target 7] writes $(Q^i{}_\alpha)^\dagger=S^\alpha{}_i$; its own parameter formula $\eta^\alpha{}_i=-\overline{\xi_\alpha{}^i}$ gives $-S^\alpha{}_i$ on the unit element, and the sign of Chapter 8 is used. The two-component identities used below are re-checked [checks, C7, C12].
+\item Two-point convention. [ch08, def:c8-2pt] prints the coefficient of $t_1t_2$. Since $(t_1O_1)(t_2O_2)=t_2t_1O_1O_2$, the coefficient of $t_2t_1$ is, at tree level, the free expectation $\hbar\partial_{P(0,\infty)}(O_1O_2)$ with $O_1$ on the left, and the coefficient of $t_1t_2$ is $(-1)^{|O_1||O_2|}$ times it. The Ward identity assumed in [ch08, thm:c8-adjoint] holds for the coefficient of $t_2t_1$ and has the opposite sign for odd generators in the printed form (Lemma \ref{lem:ip-ward}). This design uses the coefficient of $t_2t_1$; in it the radial form is positive on the fermionic families by computation (Proposition \ref{prop:ip-spin}). The correction of [ch08, def:c8-2pt] and of [tp, eq:t-def] is proposed.
+\item Gradings. In $\Lambda^{(1)}(x)O=(-1)^{|O|(1+|x|)}\{S^{(1)}(x),O\}$ [ch08, thm:c8-L (iv)] $|O|$ is the degree of $O$ in the sense of [ch02, def:c2-dce], so $\Lambda^{(1)}(x)=\{S^{(1)}(x),-\}$ on functionals of degree $0$ of either parity; in the Ward identities $|F|$, $|Y|$ are total parities. The reading with $|O|$ the total parity would give $[\Lambda^{(1)}(x),\Lambda^{(1)}(y)]=+\Lambda^{(1)}([x,y])$ on fermionic $O$ for even $x,y$, against [ch08, cor:c8-homotopy (ii)].
+\item Two-point functions. The scalar-bilinear result [tp, thm:t-scalar] is used as input; its lemmas used here (Fourier transforms of $\log|q|^2$, $\log^2|q|^2$; the localisation constant $\log(2/3)/(16\pi^2)$) are re-derived [checks, C10]. [tp, eq:t-form] writes $-\tfrac14(D_1C+CD_1^T)$ with $D_1(O_a)=\sum_b(D_1)_{ab}O_b$; [ch08, prop:c8-2pt] writes $-\tfrac14(D_1^TC+CD_1)$ with columns; the content is the same.
+\item Translations. [ch08, def:c8-radial], [ch08, thm:c8-adjoint] and [conj, thm:oneloop] (H2) assume $P_1=0$. Both engines of Part D4 find, for the scalar bilinears in the scheme with a translation-invariant arity-one finite counterterm, the translation component $-\tfrac13\unit\{S^{(1)}(P_b),O\}$ minus the coefficient of $S^{(1)}(P_b)$ in $\hbar F_1^{(1)}(P_b)$ times $\{S^{(1)}(P_b),O\}$, $F_1^{(1)}(P_b)$ the arity-one value along $P_b$ of the one-loop finite counterterm (\texttt{step2/qa/compare\_delta.json}: three evaluations agree; the remainder first reported as nonlocal is local after symmetrisation over the two identical legs), and the composite contribution vanishes on the letters. Its universality on the other test families is a prediction (Section \ref{sec:ip-P}).
+\item Gauge fixing. The covariance of the relations under a change of gauge-fixing operator is a hypothesis: the Feynman operator of the minimal complex has $(Q^{GF})^2\neq0$, and a nilpotent gauge fixing with a Laplacian $H$ needs an enlarged field space [delta\_theory, rem:d-gf] (Theorem \ref{thm:ip-laws} (f)).
+\end{itemize}
+\end{remark}
+
+\begin{lemma}[Grassmann order and the Ward identity]
+\label{lem:ip-ward}
+Let $O_1,O_2$ be local operators of total parities $|O_1|,|O_2|$ and $t_1,t_2$ square-zero parameters of degree $0$ and of the parities of $O_1,O_2$.
+\begin{itemize}
+\item (i) $(t_1O_1)(t_2O_2)=t_2t_1\,O_1O_2=(-1)^{|O_1||O_2|}\,t_1t_2\,O_1O_2$. Hence in $W\big(P(\varepsilon,\infty),J+t_1O_1(\varepsilon)+t_2O_2(\varepsilon)\big)$ the coefficient of $t_2t_1$ at the zero field, $\partial_{t_1}\partial_{t_2}W|_{e=0}$, is at tree level the free expectation of $O_1O_2$, the terms of $e^{\hbar\partial_{P(0,\infty)}}(O_1O_2)|_{e=0}$ in which every field of $O_1$ is contracted with a field of $O_2$ (written $\hbar\partial_{P(0,\infty)}(O_1O_2)$ in [conj, prop:RP] for letters), and the coefficient of $t_1t_2$, $\partial_{t_2}\partial_{t_1}W|_{e=0}$, is $(-1)^{|O_1||O_2|}$ times it.
+\item (ii) If the free expectation $E$ satisfies $E(\delta(FG))=0$ for a derivation $\delta$ of total parity $|Y|$, then $E(\delta F\cdot G)=-(-1)^{|Y||F|}E(F\cdot\delta G)$: the identity assumed in [ch08, thm:c8-adjoint] holds for the coefficient of $t_2t_1$. The coefficient of $t_1t_2$ satisfies $\langle\delta F,G\rangle=-(-1)^{|Y|(|F|+1)}\langle F,\delta G\rangle$, the same for even $Y$ and the opposite sign for odd $Y$.
+\end{itemize}
+Two-component: the parities are those of the fields of [ch08, def:c8-twocomp] ($\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ odd, $A_m$, $A_{ij}$ even); for instance $O_\zeta=\int\omega\,(\lambda_\alpha{}^j,A_{ji})\zeta^{\alpha i}$ below is odd.
+\end{lemma}
+
+\begin{proof}
+(i) Moving $t_2$ to the left past $O_1$ and $t_1$ gives the sign $(-1)^{|t_2|(|O_1|+|t_1|)}=1$, since $|t_1|=|O_1|$; exchanging $t_1,t_2$ gives $(-1)^{|O_1||O_2|}$. At tree level the part of $W$ bilinear in $t_1,t_2$ at $e=0$ is the connected part of $\hbar\,e^{\hbar\partial_P}\big((t_1O_1)(t_2O_2)/\hbar^2\big)$, and $\partial_P$ is even and linear over the parameters, so the parameters factor out as $t_2t_1$. (ii) The derivation rule $\delta(FG)=\delta F\cdot G+(-1)^{|Y||F|}F\,\delta G$; for the other form use $\langle A,B\rangle=(-1)^{|A||B|}E(AB)$ with $|G|=|F|+|Y|$ for a nonzero pairing, which multiplies the sign by $(-1)^{|G|+|F|}=(-1)^{|Y|}$. Exact Grassmann computation and the sign table for all four parity cases [checks, C12].
+\end{proof}
+
+\section{Operators at the origin and the radial Gram matrix}
+
+\begin{definition}[Families of operators at the origin]
+\label{def:ip-family}
+A family is a finite-dimensional space of gauge-invariant local densities $f$ of degree $0$, $(Q+\{I,-\})\int\omega f=0$, of one classical Weyl weight $w$ and one Lorentz type, with a basis $f_k$, such that the components of [ch08, def:c8-components] along the generators considered map the smeared family into the families of the other weights considered modulo $\Lambda^{(0)}$-exact terms. The operator at the origin $f(0)$ is the limit of $\int\omega f$ as $\omega$ tends to the unit point mass at $0$; the jets $\partial^\beta f(0)$ are the limits of $\int\omega\,\partial^\beta f$. The conjugate family is $\{\overline{f_k}\}$, and $\langle\overline{f_k},f_l\rangle(y)$ is the kernel of the two-point function of $\overline{f_k}$ at $y$ and $f_l$ at $0$. The one-loop dilatation matrix is defined by $D_1(\int\omega f_l)=\sum_k(D_1)_{kl}\int\omega f_k$ modulo $\Lambda^{(0)}$-exact terms. A scheme is reflection compatible in the sense of [ch08, thm:c8-adjoint] (equivariant finite counterterms and finite parts of the operators fixed by the conjugation of [ch08, thm:c8-fields]); then $D_1(\overline{f_l})=\overline{D_1(f_l)}$, and the dilatation matrix of the conjugate family is $\overline{D_1}$, the entrywise conjugate. Two-component: for instance $f=\tfrac14(A^{ij},A_{ij})$ (weight $2$), $f=(\lambda_\alpha{}^j,A_{ji})\zeta^{\alpha i}$ (weight $\tfrac52$), with $\overline f$ obtained by conjugating the components, $\overline{A_{ij}}=A^{ij}$ on the real slice.
+\end{definition}
+
+\begin{lemma}[Conjugation of a mixing family]
+\label{lem:ip-W}
+Assume the equivariant quantum master equation [ch08, eq:c8-qme] through one loop, a reflection-compatible scheme, local representatives on $\int\omega f$, $f$ in the family, $\omega$ supported in the open unit ball, along $P_n$, $K_n$, $\Delta$ and the rotations, with $P_1=M_1=R_1=0$ on these smeared operators (the frame of Proposition \ref{prop:ip-frames} (a)), and, for every conformal Killing field $v$ of $V$ and scalar $f_l$,
+\[
+-\Lambda^{(1)}(v)\int\omega f_l=-\int\omega\Big(v(f_l)+\tfrac14\operatorname{div}v\sum_k\big(w\,\delta_{kl}+\tfrac12(D_1)_{kl}\big)f_k\Big)
+\]
+modulo $\Lambda^{(0)}$-exact terms and $O(\hbar^2)$. Then for $0<|x|<1$
+\begin{equation}
+(f_l(x))^{\Theta_I,\hbar}=\sum_k\Big[(x,x)^{-w-\frac12\overline{D_1}}\Big]_{kl}\,\overline{f_k}(I(x)),\qquad (x,x)^{-\frac12\overline{D_1}}=1-\tfrac12\,\overline{D_1}\,\log(x,x)+O(\hbar^2),
+\label{eq:ip-W}
+\end{equation}
+modulo $\Lambda^{(0)}$-exact terms and $O(\hbar^2)$. Two-component: $(x,x)=x_mx_m$, $I(x)^m=x^m/x_nx_n$; for the trace bilinear $\tfrac14(A^{ij},A_{ij})$ with $D_1=-48\,\unit$ this is $(x_mx_m)^{-2+24\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}\,\tfrac14\big(\overline{A^{ij}(I(x))},\overline{A_{ij}(I(x))}\big)$, as in [ch08, prop:c8-primary].
+\end{lemma}
+
+\begin{proof}
+$v\mapsto\tfrac14\operatorname{div}v$ is a $1$-cocycle of the conformal Killing fields with values in functions [odd, proof of thm:o-KD], so $v\mapsto\tfrac14\operatorname{div}v\,(w+\tfrac12D_1)$ is a cocycle with values in functions times the matrices on the family, and $-\Lambda^{(1)}(v)$ acts on family-valued densities as the classical Lie derivative of densities of matrix weight $w+\tfrac12D_1$. The flow of a conformal Killing field $g$ with $dg_x=\Omega_g(x)R_g(x)$ therefore acts by $f_l\mapsto\sum_k[\Omega_g(x)^{w+\frac12D_1}]_{kl}f_k(g(x))$; powers of one matrix commute, so $\Omega_{g\circ h}(x)^{M}=\Omega_g(h(x))^{M}\Omega_h(x)^{M}$ for $M=w+\tfrac12D_1$. In [ch08, def:c8-radial] the first factor $\exp(\tfrac\pi4\delta^\hbar)$ is this action of $C^{-1}$, $\Theta_n$ conjugates the coefficients and maps $f_k$ to $\overline{f_k}$ at the reflected point (conformal factor $1$), so the matrix becomes $\Omega^{\overline M}$, and the last factor acts on the conjugate family, whose matrix weight is $\overline M$ by reflection compatibility. The three conformal factors multiply to that of $I$, $(x,x)^{-1}$, by the chain rule; with $\delta^\hbar$ the full one-loop components along $P_n-K_n$ the composite is exact at order $\hbar$ by Duhamel's formula [conj, thm:oneloop (iii)].
+\end{proof}
+
+\begin{theorem}[The radial Gram matrix at the origin]
+\label{thm:ip-origin}
+Under the hypotheses of Lemma \ref{lem:ip-W}, write [ch08, prop:c8-2pt (iii)] for the pair of families $\{\overline{f_k}\}$, $\{f_l\}$:
+\begin{equation}
+\langle\overline{f_k},f_l\rangle(y)=|y|^{-2w}\Big[\Gt+\hbar\,\Go-\tfrac14\big(\overline{D_1}^{\,T}\Gt+\Gt D_1\big)\log\tfrac{|y|^2}{\ell^2}\Big]_{kl},
+\label{eq:ip-H}
+\end{equation}
+which defines $\Gt+\hbar\Go$ as $|y|^{2w}\langle\overline{f_k},f_l\rangle(y)$ at $|y|=\ell$, $\ell$ the unit of length of $\varepsilon$ (the radius of the unit sphere of $I$). Then, with $\ell=1$,
+\begin{equation}
+\big\langle f_k(x),f_l(0)\big\rangle_\rad=\Big[\Gt+\hbar\,\Go+\tfrac14\log(x,x)\big(\Gt D_1-\overline{D_1}^{\,T}\Gt\big)\Big]_{kl}+O(\hbar^2).
+\label{eq:ip-origin}
+\end{equation}
+\begin{itemize}
+\item (i) The limit $x\to0$, the radial Gram matrix of the family at the origin of [ch08, def:c8-inner], exists if and only if $D_1=D_1^{\rm adj}$, and then it is $\Gt+\hbar\Go$, the conjugated two-point coefficient at unit separation.
+\item (ii) $D_1=D_1^{\rm adj}$ holds: the Ward identity along $K_b$ [tp, prop:t-K], with the local representative $L_1^{(2)}(\eta_1,\eta_2)$ at a finite endpoint [k\_transfer, thm:ktr-defect (v)], gives $\overline{D_1}^{\,T}\Gt=\Gt D_1$ for the two-point function, and reflection compatibility turns it into the self-adjointness.
+\end{itemize}
+Two-component: $\log(x,x)=\log(x_mx_m)$, $|y|^2=y_my_m$; the statement is index-free in the operators.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:ip-W}, $\langle f_k(x),f_l(0)\rangle_\rad=\sum_j[(x,x)^{-w-\frac12\overline{D_1}}]_{jk}\langle\overline{f_j},f_l\rangle(I(x))$. With $|I(x)|^2=(x,x)^{-1}$, $|I(x)|^{-2w}(x,x)^{-w}=1$, $\log|I(x)|^2=-\log(x,x)$, and
+\[
+\begin{aligned}
+&\big(1-\tfrac12\overline{D_1}\log(x,x)\big)^T\Big(\Gt+\hbar\Go+\tfrac14\big(\overline{D_1}^{\,T}\Gt+\Gt D_1\big)\log(x,x)\Big)\\
+&\qquad=\Gt+\hbar\Go+\tfrac14\log(x,x)\big(\Gt D_1-\overline{D_1}^{\,T}\Gt\big)
+\end{aligned}
+\]
+through order $\hbar$, which is \eqref{eq:ip-origin} [checks, C3]. (i) The coefficient of $\log(x,x)$ vanishes exactly when $\Gt D_1=\overline{D_1}^{\,T}\Gt$, i.e. $D_1=\Gt^{-1}\overline{D_1}^{\,T}\Gt=D_1^{\rm adj}$. (ii) For $g_{kl}(x,y)=\langle\overline{f_k}(x),f_l(y)\rangle$ the special conformal identity, with $K_b$ acting on $\overline{f_k}$ through $v(x)\cdot\partial_x+\tfrac14\operatorname{div}v(x)(w+\tfrac12\overline{D_1}^{\,T})$ on the first index and on $f_l$ through $v(y)\cdot\partial_y+\tfrac14\operatorname{div}v(y)(w+\tfrac12D_1)$ on the second, reads, with $r=|x-y|^2$ and $(v(x)\cdot\partial_x+v(y)\cdot\partial_y)r=-2((b,x)+(b,y))r$,
+\[
+-2(b,x)\big(r\,\partial_rg+wg+\tfrac12\overline{D_1}^{\,T}g\big)-2(b,y)\big(r\,\partial_rg+wg+\tfrac12gD_1\big)=0
+\]
+[tp, ex:t-Kcheck]; the coefficients of $(b,x)$ and $(b,y)$ vanish separately, so $\overline{D_1}^{\,T}g=gD_1$, whose tree part is $\overline{D_1}^{\,T}\Gt=\Gt D_1$. The identity along $K_b$ is derived from those along $\Sigma^*$ and the arity-two cochain identity at $(\eta_1,\eta_2)$, in which only the $T$-independent local representative enters; the arity-two flows grow as $\log T$ when $\Gamma(\eta_1,\eta_2)|_V\neq0$ [k\_transfer].
+\end{proof}
+
+\begin{example}[Scalar bilinears]
+\label{ex:ip-scalars}
+For $O_k=\int\omega(\iota_{a_k}A,\iota_{b_k}A)$, $a_k,b_k\in\Wp\otimes\mathbb C$, $\overline{O_k}=\int\omega(\iota_{\overline{a_k}}A,\iota_{\overline{b_k}}A)$, and [tp, thm:t-scalar] in the minimal scheme gives, at the origin,
+\[
+\begin{aligned}
+\langle O_1(0),O_2(0)\rangle_\rad={}&\frac{4\hbar\dim\mathfrak g}{16\pi^4}\Big[\big((\overline{a_1},a_2)(\overline{b_1},b_2)+(\overline{a_1},b_2)(\overline{b_1},a_2)\big)\Big(1+\unit\Big(\frac{27}2+4\log\frac32\Big)\Big)\\
+&\qquad+8\,(\overline{a_1},\overline{b_1})(a_2,b_2)\,\unit\,(\gamma_E-3\log2)\Big].
+\end{aligned}
+\]
+On the $\mathbf{20'}$ (traceless, $D_1=0$) $\Go=(\tfrac{27}2+4\log\tfrac32)\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\Gt$; on the trace bilinear $\int\omega\Ko$ ($D_1=-48\,\unit$)
+\[
+\langle\Ko(0),\Ko(0)\rangle_\rad=\frac{48\hbar\dim\mathfrak g}{16\pi^4}\Big[1+\unit\Big(\frac{27}2+4\log\frac32+24(\gamma_E-3\log2)\Big)\Big],
+\]
+and the mixed entries vanish. $D_1$ is diagonal and real, so Theorem \ref{thm:ip-origin} (i) applies. These are the values in the frame of Proposition \ref{prop:ip-frames} (a). Two-component: $(\overline a,a')=\tfrac14\,\overline{a_{ij}}\,a'_{ij}$ (on the real slice $\overline{A_{ij}}=A^{ij}$, so $\overline a{}^{ij}=\overline{a_{ij}}$), $O_k=\tfrac1{16}\int\omega(a_k^{ij}A_{ij},b_k^{kl}A_{kl})$, the trace bilinear $\tfrac14\int\omega(A^{ij},A_{ij})$.
+\end{example}
+
+\begin{proposition}[Descendants: the one-loop Shapovalov form]
+\label{prop:ip-desc}
+Assume Lemma \ref{lem:ip-W}, and let $D_1=2\kappa$ on the family with $\kappa$ the real number of order one unit of [ch08, prop:c8-primary]. For $f,f'$ in the family and $b,b'$ in the complexified spacetime $V$,
+\[
+\begin{aligned}
+&\big\langle\partial^\beta f(0),\partial^{\beta'}f'(0)\big\rangle_\rad=\lim_{x,y\to0}\overline{\partial_x^{\beta}}\,\partial_y^{\beta'}\Big[(x,x)^{-w-\kappa}\langle\overline f,f'\rangle(I(x)-y)\Big],\\
+&\big\langle\partial_bf(0),\partial_{b'}f'(0)\big\rangle_\rad=2(w+\kappa)(\overline b,b')\,\langle f(0),f'(0)\rangle_\rad,\\
+&\big\langle\partial_m\partial_mf(0),\partial_n\partial_nf'(0)\big\rangle_\rad=32(w+\kappa)(w+\kappa-1)\,\langle f(0),f'(0)\rangle_\rad ,
+\end{aligned}
+\]
+the conformal Shapovalov form at the scaling dimension $w+\kappa$. For a mixing family with $D_1=D_1^{\rm adj}$ the level-one matrix is $(\overline b,b')\big(2w(\Gt+\hbar\Go)+\Gt D_1\big)$. Hence $\Go$ on descendants is fixed by $\Go$ and $D_1$ on primaries. Two-component: $(\overline b,b')=\overline{b_m}\,b'_m$, $\partial_b=b_m\partial_m$.
+\end{proposition}
+
+\begin{proof}
+\eqref{eq:ip-W} holds for every $\omega$, and $\int\omega\,\partial_bf=-\int(\partial_b\omega)f$; the conjugation is antilinear, which gives the first line. With $\langle\overline f,f'\rangle(z)=c\,|z|^{-2(w+\kappa)}$ through order $\hbar$ (Theorem \ref{thm:ip-origin}) and $|I(x)-y|^2=(x,x)^{-1}\big(1-2(x,y)+(x,x)(y,y)\big)$, the bracket is $c\,(1-2(x,y)+(x,x)(y,y))^{-(w+\kappa)}$; its $(1,1)$ Taylor coefficient is $2(w+\kappa)\delta$, and the Laplacians of its $(2,2)$ part $-(w+\kappa)(x,x)(y,y)+2(w+\kappa)(w+\kappa+1)(x,y)^2$ give $32(w+\kappa)(w+\kappa-1)$ [checks, C4]. The algebraic form: with $P_b^\dagger=-K_{\overline b}$, $[K_{\overline b},P_{b'}]=(\overline b,b')\Delta+(\text{rotation})$ [ch07, rem:c7-KDelta], $-\Lambda^{(1)}(K_{\overline b})f(0)=0$ and $-\Lambda^{(1)}(\Delta)f(0)=-(2w+D_1)f(0)$, $\langle-\Lambda^{(1)}(P_b)a,-\Lambda^{(1)}(P_{b'})c\rangle_\rad=(\overline b,b')\langle a,(2w+D_1)c\rangle_\rad$.
+\end{proof}
+
+\begin{proposition}[The classical primaries of the test families are one-loop primaries]
+\label{prop:ip-primary}
+In the frame of Proposition \ref{prop:ip-frames} (a), for the families of Weyl weights $2$ (scalar bilinears), $\tfrac52$ ($\int\omega(\lambda,\rho(A|_{\Wp})\zeta)$ and the $\mathbf{20}$ of fermion--scalar bilinears) and $3$ ($\overline F_z$, $B_z$ and their partners), the one-loop component along $K_b$ at the origin vanishes modulo $\Lambda^{(0)}$-exact terms, and, assuming the cochain identity at $(K_b,P_{b'})$ and the local representatives of [ch08, thm:c8-K], the hypothesis of Lemma \ref{lem:ip-W} holds: $K_1(\int\omega f_l)=\sum_k\tfrac14\operatorname{div}K_b\,\tfrac12(D_1)_{kl}\int\omega f_k$, two-component $-\sum_k(b\cdot x)(D_1)_{kl}\int\omega f_k$ with $v^m=x^2b^m-2(b\cdot x)x^m$.
+\end{proposition}
+
+\begin{proof}
+At the origin the special conformal field and its first derivative vanish, so the component lowers the Weyl weight by one and carries the index of $b$ [ch07, cor:c7-K]. Gauge-invariant colour-singlet local densities of weight $1$, of weight $\tfrac32$, and vectors of weight $2$ do not exist: a singlet needs two adjoint fields, $A$ has weight $1$, $\lambda$ weight $\tfrac32$, and the weight-two bilinears of two letters are $(A|_V,A|_V)$, $(A|_V,A|_{\Wp})$, $(A|_{\Wp},A|_{\Wp})$, of which only the last is gauge invariant and it is a Lorentz scalar. The form at $x\neq0$ is [odd, thm:o-KD] with the matrix $D_1$ in place of $2\gamma_O$; its proof uses only the cochain identity at $(K_b,P_{b'})$ and $[K_b,P_{b'}]=(b,b')\Delta+(\text{rotation})$, and the matrix case is the same computation entrywise.
+\end{proof}
+
+\begin{proposition}[The fermionic family: computed sign of the radial form]
+\label{prop:ip-spin}
+For $\chi\in\Sigma$ put $O_\chi=\int\omega\,(\lambda,\rho(A|_{\Wp})\chi)$ [tp, prop:t-select]. With the two-point function as the coefficient of $t_2t_1$ (Lemma \ref{lem:ip-ward}), the $\lambda\otimes\lambda$ component of [ch03, prop:c3-P] contracted as $\hbar\partial_P\big((\lambda(y),g)(\lambda(x),f)\big)=\hbar\big(\rho(\partial_y)\tfrac1{4\pi^2|y-x|^2}g,f\big)$ times the inverse pairing of $\mathfrak g$ [conj, prop:RP], and the inversion $\Theta_I$ of [ch08, prop:c8-C] (spinor factor $-\rho(x)/|x|$ on $\lambda$):
+\begin{itemize}
+\item (i) at separated points, for $\chi_1,\chi_2\in\Sigma$, $\langle O_{\chi_1}(x),O_{\chi_2}(0)\rangle_{\rm tree}=\dfrac{24\hbar\dim\mathfrak g\,(\rho(x)\chi_1,\chi_2)}{16\pi^4|x|^6}$, nonzero for $\chi_1,\chi_2$ in opposite summands $S_+\otimes W$, $S_-\otimes W^*$; for $\xi\in S_+\otimes W$, $\chi\in S_-\otimes W^*$ it is $24\hbar\dim\mathfrak g\,(\xi,\rho(x)\chi)/(16\pi^4|x|^6)$;
+\item (ii) for $\zeta,\zeta'\in S_+\otimes W$, $(O_\zeta(x))^{\Theta_I}=(x,x)^{-3}O_{\rho(x)\overline\zeta}(I(x))$ and
+\[
+\langle O_\zeta(0),O_{\zeta'}(0)\rangle_{\rad,{\rm tree}}=\frac{24\hbar\dim\mathfrak g}{16\pi^4}\,(\zeta',\overline\zeta),\qquad (\zeta',\overline\zeta)=\sum_{\alpha,i}\zeta'_\alpha{}^i\,\overline{\zeta_\alpha{}^i}\quad\text{(two-component)},
+\]
+independent of $x$ before the limit and positive on $\zeta'=\zeta$. With the coefficient of $t_1t_2$ the value is $-24$, and with the spinor factor $+\rho(x)/|x|$ it is $-24$ as well.
+\item (iii) The radial Gram on $\{O_\zeta\}$ is invariant under the compact forms of $\mathrm{Spin}(4)\times SU(4)$, and $S_+\otimes W$ is irreducible, so by Schur's lemma $\langle O_\zeta(0),O_{\zeta'}(0)\rangle_\rad$ is a multiple of $(\zeta',\overline\zeta)$ at tree level and at one loop.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Write $O_\chi=\sum_I(\lambda,\rho(w_I)\chi)A_I$ in an orthonormal basis $w_I$ of $\Wp$ and an orthonormal basis of $\mathfrak g$. The $A_IA_J$ contraction is $2\delta_{IJ}/(4\pi^2|x|^2)$, the $\lambda$ contraction gives $\big(\rho(\partial_xD)\rho(w_I)\chi_1,\rho(w_I)\chi_2\big)$ with $D=1/(4\pi^2|x|^2)$, the colour sum $\dim\mathfrak g$; by the symmetry of $\rho$ for the pairing and $\sum_I\rho(w_I)\rho(a)\rho(w_I)=-6\rho(a)$ for $a\in V$, the sum is $-6\big(\rho(\partial_xD)\chi_1,\chi_2\big)=\frac{12(\rho(x)\chi_1,\chi_2)}{4\pi^2|x|^4}$, which gives (i). (ii) $\Theta_I$ maps $\lambda(x)$ to $-(x,x)^{-2}\rho(x)\overline{\lambda(I(x))}$ and $A|_{\Wp}(x)$ to $(x,x)^{-1}\overline{A|_{\Wp}(I(x))}$; with $F^\Theta(e)=F(\Theta e)^{\rm c}$, $(\overline{z_1},\overline{z_2})=\overline{(z_1,z_2)}$ and $\rho(x)\rho(w)=-\rho(w)\rho(x)$ for $x\in V$, $w\in\Wp$, $(O_\zeta(x))^{\Theta_I}=(x,x)^{-3}O_{\rho(x)\overline\zeta}(I(x))$, and (i) at $y=I(x)$ gives $(x,x)^{-3}\cdot24\hbar\dim\mathfrak g\,(\rho(I(x))\rho(x)\overline\zeta,\zeta')(x,x)^{3}/(16\pi^4)=24\hbar\dim\mathfrak g\,(\overline\zeta,\zeta')/(16\pi^4)$. The signs: Lemma \ref{lem:ip-ward} (i) for the coefficient of $t_1t_2$ (two odd operators), and the spinor factor enters linearly. All values by exact realisation of [ch08, def:c8-twocomp] at random points and spinors [checks, C12]; the single-letter positivity of [conj, prop:RP] is the same sign. (iii) The radial conjugation and the two-point function are covariant under the compact forms, and $\overline{(\cdot)}$ intertwines $S_+\otimes W$ with its conjugate.
+\end{proof}
+
+\begin{remark}[Physics notation, Section 1]
+$S_+$ carries undotted indices (left-handed Weyl spinors), $S_-$ dotted ones; $W$, $W^*$ are the $\mathbf 4$, $\overline{\mathbf 4}$ of $SU(4)_R$, and $\Wp$ the vector $\mathbf 6$ of $SO(6)_R$, the antisymmetric $\mathbf 6$ of $SU(4)$, $A_{ij}=A_I\Sigma^I_{ij}$; $\rho$ is Clifford multiplication (the ten-dimensional chiral $\Gamma^M$, in four dimensions $\sigma^m$, $\bar\sigma^m$, and $\gamma_W^\mu=-i\gamma_S^\mu$ on the Dirac column); $\Sigma$ and $\Sigma^*$ are the two chiral spinors of $\mathrm{Spin}(10)$, dual to each other, and with ten-dimensional spinor indices kept upper on $\Sigma$ and lower on $\Sigma^*$ the pairing $(\xi,\eta)$ is their contraction. $\lambda$ is a section of $\Pi\Sigma_{10}\otimes\mathfrak g$, Grassmann odd, ghost number $0$; so $O_\zeta$, essentially $\operatorname{Tr}(\lambda_\alpha{}^j\phi_{ji})\zeta^{\alpha i}$, is a fermionic gauge-invariant operator, the $Q$-descendant of the Konishi operator $\operatorname{Tr}\phi_I\phi_I$ in the $\overline{\mathbf 4}$; the radial conjugation is the BPZ-type conjugation $O(x)^\dagger=|x|^{-2\Delta_O}\,\overline O(x/x^2)$ with the spinor factor $-\rho(x)/|x|$ (the image of $\gamma_W\cdot\hat x$). For $\mathfrak{su}(N)$, $(X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY)$, $A_I=-igA_I^aT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$, $\operatorname{tr}T^aT^b=\tfrac12\delta^{ab}$, and $-48$ units are $\tfrac{3g^2N}{2\pi^2}$, twice the Konishi anomalous dimension $\tfrac{3g^2N}{4\pi^2}$ in the normalisation $\Delta=2E$.
+\end{remark}
+
+\section{Operators of different lengths}
+
+\begin{definition}[Tree-normalised basis and orders]
+\label{def:ip-normalised}
+Let a family contain single-trace operators of lengths $L$ and $L+1$ (one pairing $(-,-)$ and $L-2$, resp. $L-1$, brackets). Since the coupling sits in $(-,-)$, the tree radial Gram of a length-$L$ operator is of order (unit)$^{L-2}$ relative to the scale of the length-two operators. A tree-normalised basis is one in which $\Gt$ is the identity on each length. In it every entry is assigned an order in the square root of the unit; the parts of $\mathrm{Gram}$ and of the matrices of order zero, one half and one in this counting are written with the subscripts $\mathrm{tree}$ or $0$, $\tfrac12$, $1$ (extending the indexing of [ch08, cor:c8-gram]). Two-component: the length counts the letters $A_m$, $A_{ij}$, $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ and their derivatives, e.g. length $3$ for $([A^{ik},A_{kj}z^j],A_{il}z^l)$.
+\end{definition}
+
+\begin{proposition}[Orders of the entries]
+\label{prop:ip-orders}
+In a tree-normalised basis of single-trace operators:
+\begin{itemize}
+\item (i) $\mathrm{Gram}$: entries between equal lengths are $\Gt$ plus parts of order one unit; entries between lengths $L$ and $L+1$ start at order one half, from the graphs with one cubic vertex of [tp, prop:t-orderg], whose subdivergence is removed by the length-changing component of $\partial_\delta I^{CT}[\varepsilon]$ of the longer operator; they vanish unless the two legs of the longer operator at the cubic vertex carry the bracket and the third leg matches a leg of the shorter one.
+\item (ii) Classical components $\{S^{(1)}(x),-\}$: length preserving of order zero, and length increasing by one (the bracket terms $\tfrac12[A\wedge A]$ in $\rho(F_A)\xi$, $d_A$) of order one half; they never decrease the length.
+\item (iii) One-loop components: length preserving of order one, length decreasing by one of order one half, length increasing by one of order three halves.
+\end{itemize}
+For the test families (weights $2$, $\tfrac52$, $3$) the entries of order one half of $\mathrm{Gram}$ vanish: there are no trilinears of weight $\le\tfrac52$, and between $B_z$ and $\overline F_z$, $F_n$ the graphs of order one half have one cubic vertex ($3+2+3=8$ half-edges, four edges) and vanish by colour or by field content. Families of weight $\tfrac52$ and $\tfrac72$ have nonzero entries of order one half ($O_\zeta$ with the trilinear part of $\{S^{(1)}(\xi),F_n\}$ [tp, prop:t-orderg]). Two-component: the bracket terms are $[A^{ik},A_{kj}]$ in $(\rho(\tfrac12[A|_{\Wp}\wedge A|_{\Wp}])\xi)_\alpha{}^i=-\tfrac12[A^{ik},A_{kj}]u_\alpha z^j$ and $[A_m,-]$ in $D_m$ [odd, prop:o-konishi].
+\end{proposition}
+
+\begin{proof}
+Tree graphs with $E$ edges and $V'$ vertices carry $(-,-)^{V'-E}$, and the unit is proportional to $(-,-)^{-1}$. (i) Two operators of lengths $L$, $L$: $(-,-)^{2-L}$; lengths $L$, $L+1$ through one cubic vertex: $E=L+2$, $(-,-)^{3-(L+2)}$; dividing by the square roots of the diagonal entries $(-,-)^{2-L}$ and $(-,-)^{1-L}$ leaves $(-,-)^{-\frac12}$. The vanishing criterion and the subdivergence are [tp, prop:t-orderg]. (ii) $S^{(1)}(x)$ is independent of $(-,-)$ and contains at most one bracket; a map from length $L$ to $L+1$ with coefficient of order zero is multiplied by $(\text{norm}_{L+1}/\text{norm}_L)^{1/2}\propto(-,-)^{-\frac12}$ in the normalised basis. Each term of $S^{(1)}$ is linear in one field and replaces it by a field transformation of degree one or two in the fields. (iii) A one-loop coefficient is of order one unit; the normalisation multiplies a map $L\to L\mp1$ by $(-,-)^{\pm\frac12}$. The weight-$3$ entries: the legs of $B_z$ are three scalars, those of the two-fermion bilinear two fermions of one chirality, and the propagator joins $A|_{\Wp}$ to $A|_{\Wp}$ and $\lambda$ to $\bar\lambda$. Either the cubic vertex carries both fermion legs and one leg of $B_z$: it is the Yukawa vertex, the colour factor contains $\delta_{ac}f_{abc}=0$ from the two fermion legs, and the two remaining legs of $B_z$ are joined, $([e_a,e_b],e_c)\delta_{bc}=0$; or it carries two scalar legs of $B_z$ and one fermion leg, and no cubic vertex has the field content $(A|_{\Wp},A|_{\Wp},\lambda)$; every other attachment is disconnected or impossible [tp, prop:t-orderg]. At order one the half-edge counts $3+2+3+3$ and $3+2+4$ are odd, so there are no graphs. Enumeration of all attachments to every cubic vertex type [checks, C14].
+\end{proof}
+
+\begin{theorem}[The Gram form of the adjointness, graded]
+\label{thm:ip-graded}
+Under the hypotheses of [ch08, thm:c8-adjoint], let $X$ be the matrix of $-\Lambda^{(1)}(X)$ and $Y$ that of $-\Lambda^{(1)}(X^\dagger)$ in a tree-normalised basis, expanded in the square root of the unit, with $\Go$ the part of relative order one unit. The exact relation $\overline X^{\,T}\mathrm{Gram}=\mathrm{Gram}\,Y$ gives
+\begin{equation}
+\begin{aligned}
+&Y_0=X_0^{\rm adj},\qquad Y_{\frac12}=X_{\frac12}^{\rm adj}+\big[Y_0,\Gt^{-1}\mathrm{Gram}_{\frac12}\big],\\
+&Y_1=X_1^{\rm adj}+\big[Y_0,\Gt^{-1}\Go\big]+\big[X_{\frac12}^{\rm adj},\Gt^{-1}\mathrm{Gram}_{\frac12}\big]-\Gt^{-1}\mathrm{Gram}_{\frac12}\big[Y_0,\Gt^{-1}\mathrm{Gram}_{\frac12}\big].
+\end{aligned}
+\label{eq:ip-graded}
+\end{equation}
+For $\mathrm{Gram}_{\frac12}=0$: $Y_{\frac12}=X_{\frac12}^{\rm adj}$ maps length $L+1$ to $L$, and $Y_1=X_1^{\rm adj}+[Y_0,\Gt^{-1}\Go]$ is [ch08, cor:c8-gram]. The $\hbar$-expansion of [ch08, cor:c8-gram] applies on a family of one length; on a family containing two lengths it places the one-loop length-decreasing component into $Y_0$, and \eqref{eq:ip-graded} is the correct form (proposed correction of [ch08, cor:c8-gram]). Two-component: for $X=Q^i_\alpha$, $Y$ is the matrix of $-\Lambda^{(1)}(-S^\alpha{}_i)$; for $X=\bar Q_{\dot\alpha i}$, of $-\Lambda^{(1)}(\bar S^{\dot\alpha i})$.
+\end{theorem}
+
+\begin{proof}
+Insert $X=X_0+X_{\frac12}+X_1$, $\mathrm{Gram}=\Gt+\mathrm{Gram}_{\frac12}+\Go$ and $Y=Y_0+Y_{\frac12}+Y_1$ into $\overline X^{\,T}\mathrm{Gram}=\mathrm{Gram}\,Y$ (the matrix form of [ch08, thm:c8-adjoint]) and collect orders: order $\tfrac12$ gives $\overline{X_{\frac12}}^{\,T}\Gt+\overline{X_0}^{\,T}\mathrm{Gram}_{\frac12}=\Gt Y_{\frac12}+\mathrm{Gram}_{\frac12}Y_0$; order $1$ gives $\overline{X_1}^{\,T}\Gt+\overline{X_{\frac12}}^{\,T}\mathrm{Gram}_{\frac12}+\overline{X_0}^{\,T}\Go=\Gt Y_1+\mathrm{Gram}_{\frac12}Y_{\frac12}+\Go Y_0$. Multiply by $\Gt^{-1}$, use $\Gt^{-1}\overline{X_0}^{\,T}=Y_0\Gt^{-1}$ and substitute $Y_{\frac12}$; exact symbolic check on random matrices [checks, C1]. With tree norms of different orders in one basis, the $\hbar$-ordering puts the entry of $Y$ fixed by $\overline{X_{\frac12}}^{\,T}\Gt$ at order $\hbar^0$, while $X_{\frac12}$ is classical and $Y_{\frac12}$ is a one-loop length-decreasing component (Proposition \ref{prop:ip-orders} (ii), (iii)).
+\end{proof}
+
+\begin{remark}[Physics notation, Section 2]
+The length is the number of letters of a single-trace operator; with the coupling in $(-,-)$ a length-$L$ tree two-point function carries $g^{2(L-2)}$ relative to length two, the familiar statement that, in the normalisation with $g$ in the vertices, the order-$g$ supercharge $Q|_{g^1}$ of [lit, Target 27] maps $L$ letters to $L+1$. The order-one-half entries are the order-$g$ mixings between $\operatorname{Tr}[\phi,\phi]\phi$-type and $\operatorname{Tr}\lambda\lambda$-type operators; two-component, $B_z=\int\omega([A^{ik},A_{kj}z^j],A_{il}z^l)$ and $\overline F_z=\int\omega(\bar\lambda_{\dot\alpha i}z^i,\bar\lambda^{\dot\alpha}{}_jz^j)$ are the $z\otimes z$ components of the $\mathbf{10}$ in [BKRS] (9)--(10).
+\end{remark}
+
+\section{Scheme changes}
+
+\begin{theorem}[Transformation laws of the radial Gram matrix]
+\label{thm:ip-laws}
+Let the data be reflection compatible. On a family at the origin, with $\mathrm{Gram}=\Gt+\hbar\Go$ and the matrices of $-\Lambda^{(1)}$:
+\begin{itemize}
+\item (a) Field redefinition $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,s\phi$ [ch08, prop:c8-laws (a)], $\phi$ local of degree $-1$ with $\phi^{\Theta_n}=-\phi$: with $U$ the matrix of $1+\hbar\,\mathrm{ad}_\phi$ on the family,
+\[
+\mathrm{Gram}\mapsto\overline U^{\,T}\mathrm{Gram}\,U,\qquad X\mapsto U^{-1}XU,\qquad \Go\mapsto\Go+\overline{\mathrm{ad}_\phi}^{\,T}\Gt+\Gt\,\mathrm{ad}_\phi .
+\]
+Examples: the field rescaling $\phi=a\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int(A|_{\Wp},A^*|_{\Wp})$, $a$ real, acts on the scalar bilinears as $U=1+2a\,\unit$ and shifts both constants of Example \ref{ex:ip-scalars} by $+4a$ (convention $\{S^{(1)}(\Delta),f(0)\}=2w\,f(0)$, as in [tp, remark after cor:t-checks]); the inner direction $\phi=c\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}S^{(1)}(\Delta)$, $c$ real, with $(s\phi)^{(0)}=0$, acts at the origin as $U=1+2c\,\unit\,w$ on weight $w$; it leaves the two-point function of [ch08, def:c8-2pt] unchanged and changes the radial Gram through the components along $P_n$, $K_n$ in the transport $\delta^\hbar$.
+\item (b) Finite parts $\psi\mapsto\psi+\psi'$, $\psi'(O^{\Theta_n})=\psi'(O)^{\Theta_n}$: $\mathrm{Gram}\mapsto\overline{(1+\hbar\psi')}^{\,T}\mathrm{Gram}(1+\hbar\psi')$, $X\mapsto(1+\hbar\psi')^{-1}X(1+\hbar\psi')$; $\Gt^{-1}\Go\mapsto\Gt^{-1}\Go+\psi'+\psi'^{\rm adj}$ [ch08, cor:c8-gram]. The two-point function changes by (F3) of [tp, prop:t-laws].
+\item (c) Coupling direction $F\mapsto F+\hbar a(S-S^{(2)})$, $a$ real: the arity-zero action becomes $(1-\hbar a)S$, every edge is multiplied by $1+\hbar a$ and every vertex of $I$ by $1-\hbar a$, so $\Go\mapsto\Go+aL\,\Gt$ on the length-$L$ block; $X_1$ is unchanged on the length-preserving parts [ch08, prop:c8-laws (c)]; the entries of order one half change at order three halves.
+\item (d) Outer direction $F\mapsto F+\hbar aG_B$: $\mathrm{Gram}$ unchanged ($G_B^{(0)}=0$ and $B=0$ on the even part, so $\delta^\hbar$ is unchanged); along a $B$-eigenvector $x$ with eigenvalue $b$, $X_1\mapsto X_1-ab\,X_0$. Reflection compatibility is $\overline a=-a$, and exactly then [ch08, cor:c8-gram] is preserved.
+\item (e) Change of the unit of length of $\varepsilon$ from $\ell$ to a second unit $\ell'$ [tp, cor:t-form]: on a family with $D_1=D_1^{\rm adj}$ it is (a) with $\hbar\phi$ equal to $-\log(\ell'^2/\ell^2)$ times the coefficient of $\log\varepsilon$ of the field counting, together with (b) with $\hbar\psi'$ equal to $\log(\ell'^2/\ell^2)$ times the $\log\varepsilon$ coefficient of the operator counterterm; at the origin it is $1+\hbar\psi'$ with $\hbar\psi'=\tfrac14D_1\log(\ell'^2/\ell^2)$, so $\hbar\Go\mapsto\hbar\Go+\tfrac12\Gt D_1\log(\ell'^2/\ell^2)$.
+\item (f) Gauge fixing (hypothesis): if the one-loop quantisations of two gauge-fixing operators differ by changes (a)--(c) [delta\_theory, thm:d-inv], the relations are covariant; for the Feynman operator of the minimal complex, with $(Q^{GF})^2\neq0$, this is not established [tp, prop:t-laws (gauge)], [odd, prop:o-laws (c)].
+\end{itemize}
+[ch08, cor:c8-gram] and \eqref{eq:ip-graded} are covariant under (a)--(e), and under (f) under its hypothesis. Two-component: $\int(A|_{\Wp},A^*|_{\Wp})=\tfrac14\int(A^{ij},A^*_{ij})$, and
+\[
+\begin{aligned}
+S^{(1)}(\Delta)=\int\Big\{&\big(2x_m\partial_mA_n+2A_n,A^*_n\big)+\tfrac14\big(2x_m\partial_mA^{ij}+2A^{ij},A^*_{ij}\big)-\big(2x_m\partial_m\lambda_\alpha{}^i+3\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i\big)\\
+&+\big(2x_m\partial_m\bar\lambda_{\dot\alpha i}+3\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}\big)-\big(2x_m\partial_mc,c^*\big)\Big\}
+\end{aligned}
+\]
+[ch02, ex:c2-dil] with the pairings of [ch08, def:c8-twocomp].
+\end{theorem}
+
+\begin{proof}
+(a) By [ch08, prop:c8-laws (a)] $L$ is conjugated by $1+\hbar\,\mathrm{ad}_\phi$. When $(s\phi)^{(0)}\neq0$, [tp, prop:t-laws (F0)] changes the two-point function by $\langle\{\phi,O_1\},O_2\rangle_{\rm tree}+\langle O_1,\{\phi,O_2\}\rangle_{\rm tree}$, i.e. $\langle UO_1,UO_2\rangle$ through order $\hbar$; $\phi^{\Theta_n}=-\phi$ gives $(s\phi)^{\Theta_n}=s\phi$ ($(QF)^\Theta=(-1)^{|F|}Q(F^\Theta)$, [conj, prop:ops]) and $(UO)^{\Theta_n}=U(O^{\Theta_n})$, so the radial Gram transforms as stated. The rescaling: $S^{(1)}(\Delta)$ contains $\int(2A|_{\Wp},A^*|_{\Wp})$ plus terms with $x$, and $\{S^{(1)}(\Delta),(\iota_aA,\iota_bA)(0)\}=4(\iota_aA,\iota_bA)(0)$, so $\hbar\{\phi,O\}=2a\,\unit\,O$ on the scalar bilinears and $\overline U^{\,T}\mathrm{Gram}\,U=(1+4a\,\unit)\mathrm{Gram}$. For $\phi\propto S^{(1)}(\Delta)$: $S^{(1)}(\Delta)^{\Theta_n}=S^{(1)}(\Delta^{\dagger_n})=-S^{(1)}(\Delta)$ [ch08, thm:c8-fields (i)], real $c$; $(s\phi)^{(0)}=\{S,S^{(1)}(\Delta)\}=0$ (arity-one classical master equation), so the arity-zero interaction and the two-point function are unchanged; $\{S^{(1)}(\Delta),f(0)\}=2wf(0)$. The radial Gram changes through $\delta^\hbar$: with $U^{-1}\Lambda^{(1)}U$ in place of $\Lambda^{(1)}$ in [ch08, def:c8-radial], $O^{\Theta_I,\hbar}\mapsto U^{-1}(UO)^{\Theta_I,\hbar}$, and the tree dilatation Ward identity $\langle\mathrm{ad}_\phi a,b\rangle_{\rm tree}+\langle a,\mathrm{ad}_\phi b\rangle_{\rm tree}=0$ moves $U^{-1}$ to the second slot. (b) [ch08, cor:c8-gram]. (c) The interaction is $I-I^{CT}-F$ [ch08, def:c8-quant], so the arity-zero part of $\hbar aG$ subtracts $\hbar aS$ and the weight becomes $e^{(1-\hbar a)S/\hbar}$: propagators scale by $(1-\hbar a)^{-1}$, vertices of $I$ by $1-\hbar a$ (the sign consistent with $L_1^{(0)}\mapsto L_1^{(0)}-a(Q+\{I,-\})$ of [ch08, prop:c8-laws (c)]; the sentence on the coupling direction in [tp, prop:t-laws (F0)] has the opposite sign); the length-$L$ tree has $L$ edges and no vertex of $I$; $\Lambda^{(1)}$ is unchanged; with $\Gt^{-1}\Go\mapsto\Gt^{-1}\Go+aL$, $[Y_0,L]=0$ for length-preserving $Y_0$. (d) [ch08, prop:c8-laws (c)] and [ch08, cor:c8-gram]. (e) [tp, cor:t-form] with [ch06, eq:c6-fieldren]: $D_1=4(Z-\text{unit}\,\{N,-\})$, $N$ the field-counting functional, so the two pieces combine to $\tfrac14D_1\log(\ell'^2/\ell^2)$. (f) Under its hypothesis the changes are of types (a)--(c). Covariance: \eqref{eq:ip-graded} is the order expansion of an exact relation, and $(\overline U^{\,T}\mathrm{Gram}U,U^{-1}XU)$ satisfies it when $(\mathrm{Gram},X)$ does; for (d) the computation of [ch08, cor:c8-gram]; [checks, C2].
+\end{proof}
+
+\begin{remark}[The radius of the quantisation sphere]
+\label{rem:ip-radius}
+The inversion in the sphere of radius $\ell'$ instead of $\ell$ multiplies the radial Gram of an operator of scaling dimension $w+\kappa$ by $(\ell'/\ell)^{-2(w+\kappa)}$ [checks, C13]: $\lim_{x\to0}(\ell'^2/(x,x))^{w+\kappa}|\ell'^2x/(x,x)|^{-2(w+\kappa)}=\ell'^{-2(w+\kappa)}$ in units of $\ell$. The basis change $1+c\,\unit\,w$ of Theorem \ref{thm:ip-P} (iii) (Gram multiplied by $1+2c\,\unit\,w$) is the classical part of this factor with $\log(\ell'/\ell)=-c\,\unit$; the inner direction of Theorem \ref{thm:ip-laws} (a) ($U=1+2c\,\unit\,w$) corresponds to $\log(\ell'/\ell)=-2c\,\unit$; the change of the unit of length in (e), which multiplies the one-loop part by $(\ell'/\ell)^{2\kappa}$, is the one-loop part of the factor of the sphere of radius $\ell^2/\ell'$. Two-component: the inversion in the sphere of radius $\ell'$ is $x^m\mapsto\ell'^2x^m/x_nx_n$.
+\end{remark}
+
+\begin{remark}[Physics notation, Section 3]
+(a) contains the wave-function renormalisation of the scalars ($\int(A|_{\Wp},A^*|_{\Wp})$ counts the $\phi$'s) and the inner automorphism $e^{\frac c2\,\unit\,\mathrm{ad}_\Delta}$, which rescales each generator according to its dimension; (b) is the finite part of the operator renormalisation $Z$-factor (the [BKRS] normalisation $a(g^2)$); (c) the coupling constant redefinition $g^2\mapsto g^2(1+\hbar a)$; (d) the $U(1)_Y$ phase rotation of the supercharges by the bonus-symmetry generator $\operatorname{diag}(0_4,1_4)$, which a Hermitian scheme allows only with an imaginary coefficient; (e) the renormalisation scale $\mu=1/\ell$.
+\end{remark}
+
+\section{Translations, special conformal components and the frame}
+\label{sec:ip-P}
+
+\begin{theorem}[$P_1$ and $K_1$ in the test]
+\label{thm:ip-P}
+\begin{itemize}
+\item (i) [ch08, def:c8-radial], [ch08, thm:c8-adjoint] and [ch08, cor:c8-gram] hold with $P_1$ arbitrary, $\delta^\hbar=\Lambda^{(1)}(P_n)-\Lambda^{(1)}(K_n)$ containing the one-loop components along $P_n$ and $K_n$; the vanishing of $P_1$ enters the simplification of $\delta^\hbar$, the form of $K_1$ in Lemma \ref{lem:ip-W}, the identification of Theorem \ref{thm:ip-origin}, and the reading $K=P^\dagger$ of the line for $K_1$.
+\item (ii) Suppose that on a family, for every generator $x$ of a subspace of $\mathfrak{psl}(4|4)$, the one-loop component along $x$ is a number times the unit times the classical component $\{S^{(1)}(x),-\}$ (the rescaling of $x$), apart from $D_1$ and $K_1$ of the form of Lemma \ref{lem:ip-W}. The order-$\hbar$ part of [ch08, cor:c8-homotopy] gives: for even $x,y$, and for odd $x,y$ on families with $D_1=0$, the rescaling of $[x,y]$ is the sum of the rescalings of $x$ and $y$ whenever $[x,y]$ acts nontrivially on the cohomology; for odd $x,y$ on a family with $D_1\neq0$ the dilatation part $\tfrac12(x,y)\Delta$ of $[x,y]$ contributes its one-loop component $-\tfrac12(x,y)D_1$ to the order-$\hbar$ part of $-\Lambda^{(1)}([x,y])$, and the odd relations are those of Propositions \ref{prop:ip-konishi} and \ref{prop:ip-twenty} (on the Konishi pair the rescalings of $\xi$ and of $\xi^\dagger$ add up to the rescaling of $\Delta$ minus $12$). The solutions of the additive relations are the differences of three numbers attached to the three diagonal blocks of [SW, (17)] [checks, C9]: $\Delta$ and the rotations of $V$ and of $\Wp$ are not rescaled; the rescalings of $K_b$ and $P_b$ are opposite; on families with $D_1=0$ those of $\xi\in S_+\otimes W$ and $\eta\in S_+\otimes W^*$ are opposite (likewise $S_-\otimes W^*$ and $S_-\otimes W$), and those of $\xi\in S_+\otimes W$ and $\xi'\in S_-\otimes W^*$ add up to that of $P_b$; the two free directions are the inner automorphism by $\Delta$ and the outer derivation $B$.
+\item (iii) On the scalar bilinears the engines' translation component is such a rescaling: $-\tfrac13$ minus the coefficient of $S^{(1)}(P_b)$ in $\hbar F_1^{(1)}(P_b)$ divided by the unit. The master equation at $(P_b,\xi)$ forces the same translation rescaling on every family reached by a nonzero classical $\xi$-map (the trace bilinear to $O_\xi$, $O_\zeta$ to $B_z$, the $\mathbf{20'}$ to the $\mathbf{20}$), and on the letters the composite contribution vanishes (Proposition \ref{prop:ip-universal}). The inner direction therefore gives $P_1=0$ on the gauge-invariant test families exactly when the composite translation components of $O_\zeta$, the $\mathbf{20}$, $\overline F_z$ and $B_z$ equal $-\tfrac13\unit\,\{S^{(1)}(P_b),-\}$, the scalar-bilinear value (a prediction); on the letters it leaves $P_1=+\tfrac13\unit\,\{S^{(1)}(P_b),-\}$. The inner direction $\phi=\tfrac c2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}S^{(1)}(\Delta)$, $c$ real, acts at the origin as the basis change $1+c\,\unit\,w$ on weight $w$; it changes the rescalings by $\tfrac c2$ times the eigenvalue of $\mathrm{ad}_\Delta$ (translations by $-c$, special conformal fields by $+c$, $\Sigma$ by $-\tfrac c2$, $\Sigma^*$ by $+\tfrac c2$), leaves $D_1$, $M_1$, $R_1$ and the two-point function unchanged, and multiplies the radial Gram on weight $w$ by $1+2c\,\unit\,w$; with $c$ equal to the translation rescaling it is the frame $P_1=0$ on the families where the prediction holds; [ch08, cor:c8-gram] is covariant under it [checks, C5, C15]. The finite part $\psi'=c\,w$ of [delta\_theory, prop:d-P (ii)] gives the same matrices on the jets at the origin and changes the two-point function (Proposition \ref{prop:ip-frames} (b)).
+\item (iv) In the frame $P_1=0$ the line for $K_1$ is $K=P^\dagger$:
+\[
+K_1\text{ along }K_{\overline b}=\hbar\big[\{S^{(1)}(K_{\overline b}),-\},\,\Gt^{-1}\Go\big],
+\]
+and on a family with $D_1=2\kappa$ and the level-one Gram of Proposition \ref{prop:ip-desc} it gives $K_1\big(-\Lambda^{(1)}(P_{b'})f(0)\big)=(\overline b,b')D_1(f(0))$, the form $\tfrac14\operatorname{div}K_{\overline b}\,\kappa$ of [odd, thm:o-KD] and of Lemma \ref{lem:ip-W}. In a frame in which $P_1$ is a real number times the unit times $\{S^{(1)}(P_b),-\}$ on the family, the line reads $K_1$ along $K_{\overline b}$ equal to that number times the unit times $\{S^{(1)}(K_{\overline b}),-\}$ plus $\hbar[\{S^{(1)}(K_{\overline b}),-\},\Gt^{-1}\Go]$, where $\mathrm{Gram}$ is the radial Gram of that frame, $1-2\times(\text{that number})\times\unit\times(\text{Weyl weight})$ times the two-point coefficient (Proposition \ref{prop:ip-frames}); with (ii), $K_1$ contains minus that number times the unit times $\{S^{(1)}(K_{\overline b}),-\}$.
+\item (v) Along $\Delta$, (ii) gives a vanishing rescaling of $\Delta$: the coefficient of $\{S^{(1)}(\Delta),O\}$ in $D_1(O)$ vanishes on the cohomology of $\Lambda^{(0)}$. The engines find on the scalar bilinears the coefficient $-(\tfrac13+\text{(coefficient of }S^{(1)}(\Delta)|_{\Wp}\text{ in }\hbar F_1^{(1)}(\Delta))/\text{unit})$ times the unit, $S^{(1)}(\Delta)|_{\Wp}$ the part of $S^{(1)}(\Delta)$ in the sector $(A|_{\Wp},A^*|_{\Wp})$; that coefficient is the coefficient of the whole $S^{(1)}(\Delta)$ plus an offset fixed by the cubic arity-one equation along $\Delta$ [delta\_theory, ex:d-quadratic], not computed. The master equation therefore requires the coefficient of $S^{(1)}(\Delta)|_{\Wp}$ in $\hbar F_1^{(1)}(\Delta)$ to be $-\tfrac13$ units, and on every other test family the total coefficient of $\{S^{(1)}(\Delta),-\}$ in $D_1$ (composite remainder plus the coefficients of $S^{(1)}(\Delta)|_\lambda$ and $S^{(1)}(\Delta)|_V+S^{(1)}(\Delta)|_c$) to vanish. The coefficient of the whole $S^{(1)}(\Delta)$ is fixed by the arity-two equation along $(K_b,P_{b'})$ [delta\_theory, prop:d-z]; the equation along $(\Delta,P_b)$, whose bracket term $\pm\{S^{(1)}(P_b),S^{(1)}(\Delta)\}=\pm2S^{(1)}(P_b)$ is nonzero, constrains the same data. These are predictions for the cubic arity-one and the arity-two computations, and a failure would be an obstruction.
+\end{itemize}
+Two-component: $P_b=b_m\partial_m$, $K_b$: $v^m=x^2b^m-2(b\cdot x)x^m$, $\Delta=2x_m\partial_m$; the blocks are $P$: $(2,1)$, $K$: $(1,2)$, $Q^i_\alpha$: $(3,1)$, $\bar Q_{\dot\alpha i}$: $(2,3)$, $S^\alpha{}_i$: $(1,3)$, $\bar S^{\dot\alpha i}$: $(3,2)$.
+\end{theorem}
+
+\begin{proof}
+(i) The proof of [ch08, thm:c8-adjoint] uses reflection compatibility, the Ward identity, and the transport of $\Lambda^{(1)}(X)$ by $\exp(\tfrac\pi4\delta^\hbar)$ to $\Lambda^{(1)}(\mathrm{Ad}(C)^{-1}X)$, which is [ch08, cor:c8-homotopy] and holds for any $P_1$; the proof of [ch08, cor:c8-gram] is matrix algebra. (ii) Write the one-loop component along $x$ as the rescaling of $x$ times the unit times the classical one; the order-$\hbar$ part of $[\rho(x),\rho(y)]=\rho([x,y])$, $\rho=-\Lambda^{(1)}$, is the sum of the rescalings of $x$ and $y$ times $\rho_0([x,y])$, equal to the rescaling of $[x,y]$ times $\rho_0([x,y])$ plus, when $[x,y]$ has the dilatation part $\tfrac12(x,y)\Delta$, the term $-\tfrac12(x,y)D_1$; $\rho_0([x,y])$ is nonzero on the cohomology for the families considered (for $[\Delta,P_b]=-2P_b$ it is a derivative of the smearing). In the block presentation $[E_{ab},E_{bc}]\propto E_{ac}$, so the rescalings are additive along the blocks, i.e. differences of three numbers; $\Delta=\mathrm{diag}(1,-1|0)$ gives the inner direction, $\mathrm{diag}(0,0|1)$ gives $B$ [ch08, def:c8-B] [checks, C9, C16]. The Konishi value: Proposition \ref{prop:ip-konishi} with $D_1=-48\,\unit$, $\tfrac12(\xi,\xi^\dagger)=-\tfrac12(\xi,\overline\xi)$. (iii) The engine values are \texttt{step2/qa/compare\_delta.json}; Proposition \ref{prop:ip-universal}; Theorem \ref{thm:ip-laws} (a) with $U=1+c\,\unit\,w$: $U^{-1}XU=(1-c\,\unit\,d_x)X$ for $X$ raising the weight by $d_x$, $d_x=1,-1,\tfrac12,-\tfrac12,0$ for $P$, $K$, $\Sigma$, $\Sigma^*$ and the rest, and the eigenvalue of $\mathrm{ad}_\Delta$ on $x$ is $-2d_x$ [ch02, rem:c2-dilatation]; this is the order-$\hbar$ part of the inner automorphism $e^{\frac c2\,\unit\,\mathrm{ad}_\Delta}$. Exact check in a lowest-weight model of $\mathfrak{sl}(2)$ with $h=w+\kappa$ [checks, C5, C15]. (iv) The third line of [ch08, cor:c8-gram]; level one from Proposition \ref{prop:ip-desc}: $\hbar[Y_0,\Gt^{-1}\Go]$ on $-\Lambda^{(1)}(P_{b'})f(0)$ is $\tfrac{\kappa}{w}Y_0(-\Lambda^{(1)}(P_{b'}))f(0)=\tfrac\kappa w\,2w(\overline b,b')f(0)$. (v) (ii) at $(\Delta,P_b)$: $[\rho(\Delta),\rho(P_b)]=\rho([\Delta,P_b])=-2\rho(P_b)$ gives the rescaling of $\Delta$ times $\rho_0(P_b)$ equal to zero; the engine values and the freedom of the sector coefficients at two legs are \texttt{step2/qa/compare\_delta.json} (eq:c6-step2 holds up to the rescaling, exactly when the coefficient of $S^{(1)}(\Delta)|_{\Wp}$ is $-\tfrac13$ units) and [delta\_theory, ex:d-quadratic, prop:d-z].
+\end{proof}
+
+\begin{proposition}[Universality of the translation rescaling]
+\label{prop:ip-universal}
+\begin{itemize}
+\item (i) (Colour.) For letters $i,j$ of a local operator and an orthonormal basis $e_a$ of $\mathfrak g$, $\sum_a\mathrm{ad}^{(i)}_{e_a}\mathrm{ad}^{(j)}_{e_a}$ acting on the colour indices of the pair satisfies, on every gauge-invariant operator, $\sum_{j\neq i}\sum_a\mathrm{ad}^{(i)}_{e_a}\mathrm{ad}^{(j)}_{e_a}=-\lam$. Hence a two-letter kernel equal to a number times $\sum_a\mathrm{ad}^{(i)}_{e_a}\mathrm{ad}^{(j)}_{e_a}$ times the translation of the pair acts on every gauge-invariant operator as $-\lam$ times that number times $\{S^{(1)}(P_b),-\}$, and on a single letter as $0$.
+\item (ii) (Flavour and letter type.) A part of the kernel that exchanges the flavour labels of the pair, or kernels that differ between the pairs $(A,A)$, $(\lambda,A)$, $(\lambda,\lambda)$, act on different gauge-invariant families with different coefficients; the scalar-bilinear value fixes only the combination seen by the scalar bilinears.
+\item (iii) (Master equation at $(P_b,\xi)$.) If on two families $F$, $F'$ the translation components are multiples of the classical ones, the one-loop component along $\xi$ commutes with the classical translation, and the classical component along $\xi$ maps $F$ to $F'$ nontrivially, then the two translation rescalings are equal. Instances: the trace bilinear and $O_\xi$, the $\mathbf{20'}$ and the $\mathbf{20}$, $O_\zeta$ and $B_z$.
+\end{itemize}
+The prediction of the master equation is a common translation rescaling on the test families; since the engines' composite effect is a two-letter effect, its equality on the families with $\lambda$ letters is a computation (engine stage IP6). Two-component: $\mathrm{ad}^{(i)}$ acts on the adjoint index $a$ of the letter $A^a_{ij}$, $\lambda^a{}_\alpha{}^i$, $\bar\lambda^a_{\dot\alpha i}$.
+\end{proposition}
+
+\begin{proof}
+(i) On a gauge-invariant operator $\sum_j\mathrm{ad}^{(j)}_{e_a}=0$, so $\sum_{j\neq i}\mathrm{ad}^{(i)}_{e_a}\mathrm{ad}^{(j)}_{e_a}=-(\mathrm{ad}^{(i)}_{e_a})^2$, and $\sum_a(\mathrm{ad}_{e_a})^2=\lam$ on the adjoint; summing the kernel over the ordered pairs gives $\sum_i(-\lam)\partial_b^{(i)}$, the classical translation times $-\lam$; a single letter has no pair. Numerical confirmation for $\mathfrak{su}(2)$, $\mathfrak{su}(3)$ and lengths $2$--$4$: \texttt{step2/qa/ip\_audit2\_qft-structure/p1\_universality.json}. (ii) The flavour exchange changes sign between symmetric and antisymmetric flavour structures of the pair, e.g. between the scalar bilinears and $B_z$ (same file). (iii) $[P_b,\xi]=0$; the order-$\hbar$ part of $[\rho(P_b),\rho(\xi)]=0$ on $F$ is $[\rho_0(P_b),\hbar\rho_1(\xi)]$ plus (rescaling on $F'$ minus rescaling on $F$) times the unit times $\rho_0(\xi)\rho_0(P_b)$, and the first term vanishes by the hypothesis; $\{S^{(1)}(\xi),\Ko\}$ and $\{S^{(1)}(\xi),O_\zeta\}$ are nonzero (Propositions \ref{prop:ip-tree}, \ref{prop:ip-weight3}).
+\end{proof}
+
+\begin{proposition}[Frames and the radial Gram]
+\label{prop:ip-frames}
+Let the engines' data (the generator matrices of the computations E1--E11 and the two-point coefficients of IP1--IP3) be given in the scheme with translation-invariant arity-one finite counterterms (the engines' frame), and let the translation component on a family be the number $c$ times the unit times $\{S^{(1)}(P_b),-\}$.
+\begin{itemize}
+\item (a) (Inner direction.) The field redefinition of Theorem \ref{thm:ip-P} (iii) with parameter $c$ leads to the frame $P_1=0$ on the family: the generator matrices become $U^{-1}XU$, $U=1+c\,\unit\,w$ at the origin, the two-point function is unchanged, and the radial Gram of that frame is the two-point coefficient of Theorem \ref{thm:ip-origin}. Equivalently, in the engines' frame the radial Gram is $1-2c\,\unit\,w$ times the two-point coefficient.
+\item (b) (Finite part.) The finite part $\psi'=c\times$(Weyl weight) gives the same matrices on the jets at the origin, multiplies the two-point function of operators of weights $w_1,w_2$ by $1+c\,\unit\,(w_1+w_2)$ (F3), and acts on smeared operators away from the origin differently from the inner direction (it is not translation covariant and rescales the two terms of the classical special conformal action differently), so the hypothesis of Lemma \ref{lem:ip-W} is not established in the frame it produces; this design uses (a) for the identification of Theorem \ref{thm:ip-origin}.
+\item (c) (Rule for the engine data.) Convert the generator matrices family by family, $X\mapsto U^{-1}XU$ with the computed translation rescaling of the family, and keep $\Gt$, $\Go$ equal to the two-point coefficients; equivalently keep the engines' matrices and use $1-2c\,\unit\,w$ times the two-point coefficients. Combining the engines' matrices with the unconverted two-point coefficients leaves a residual of the pattern of a real coefficient of $G_B$: in the radial line of the Konishi pair (Proposition \ref{prop:ip-konishi}) it is four times the translation rescaling of the trace bilinear minus five times that of $O_\xi$, in units, $-c$ for a common $c$ [checks, C15].
+\end{itemize}
+Two-component: at the origin $U$ multiplies $\tfrac14(A^{ij},A_{ij})(0)$ by $1+2c\,\unit$ and $O_\zeta(0)=(\lambda_\alpha{}^j,A_{ji})\zeta^{\alpha i}(0)$ by $1+\tfrac52c\,\unit$.
+\end{proposition}
+
+\begin{proof}
+(a) Theorem \ref{thm:ip-laws} (a): the two-point function depends on the arity-zero interaction only, and $(s\phi)^{(0)}=0$; the inner automorphism acts on all smeared operators as the conformal rescaling, so $P_1$ and $K_1$ move by the classical components with the coefficients of Theorem \ref{thm:ip-P} (iii) on every smeared operator, the hypothesis of Lemma \ref{lem:ip-W} holds in the new frame when it holds in the old one up to these rescalings, and Theorem \ref{thm:ip-origin} applies there. By covariance the radial Gram of the old frame is $\overline U^{\,-T}(\text{two-point coefficient})U^{-1}$. Exact check in the $\mathfrak{sl}(2)$ model: the adjointness holds with the frame's own Gram and fails with the mixed data; the previous rule ``multiply the two-point $\Go$ by $1+2c\,\unit\,w$ in the frame $P_1=0$'' leaves a residual proportional to $c\,K_0$ in the line for $K_1$ [checks, C15]. (b) (F3) of [tp, prop:t-laws]; $\psi'(\int\omega\,\partial_bf)=c(w+1)\int\omega\,\partial_bf$ while $\partial_b$ commutes with the inner rescaling only up to its weight, and the classical action of $K_b$ on $\int\omega f$ has a part $v(f)$ of weight $w+1$ and a part $\tfrac w4\operatorname{div}v\,f$ of weight $w$ (with $x$-dependent coefficients). (c) The Konishi pair: frame-$P_1=0$ data satisfying the radial line exactly, transported by $U=\mathrm{diag}(1+2c_1\unit,1+\tfrac52c_2\unit)$ on (trace bilinear, $O_\xi$), shift the $Q_1$ coefficient by $\tfrac52c_2-2c_1$ and the $S_1$ coefficient by $2c_1-\tfrac52c_2$; against unchanged constants the residual is $4c_1-5c_2$ [checks, C15]; a real coefficient $a$ of $G_B$ shifts the same line by $2a$ (Proposition \ref{prop:ip-realpart}).
+\end{proof}
+
+\begin{remark}[What the test needs from $P_1$]
+\label{rem:ip-Pneeds}
+\begin{itemize}
+\item The local representative along $P_n$ on every operator of the test families (smeared in the unit ball), and its value: the composite remainder $R_{O,v}$ of [delta\_theory, prop:d-P] with the arity-one finite counterterm along $P_b$.
+\item Whether it is a multiple of the classical component on each family, and with which number: the inner direction removes a common multiple from all gauge-invariant families (Proposition \ref{prop:ip-frames} (a)); the master equation at $(P_b,\xi)$ predicts a common multiple on the families joined by classical $\xi$-maps (Proposition \ref{prop:ip-universal} (iii)).
+\item A remainder of the form $(Q+\{I,-\})Z_O$ with $Z_O$ local is removed by the arity-one part $-Z_O$ of the finite part $\psi(O)$ along $P_b$ [delta\_theory, prop:d-P (i)]; it leaves the two-point function unchanged, since the arity-one part of $\psi$ does not enter [ch08, def:c8-2pt].
+\item A remainder that is neither enters [ch08, cor:c8-gram] through $\delta^\hbar$ (the conjugation of descendants, Lemma \ref{lem:ip-W}), through the line for $K_1$ ($X_1\neq0$ for $X=P_b$), and through [ch08, cor:c8-homotopy] at $(\xi,\xi')$, $\xi\in S_+\otimes W$, $\xi'\in S_-\otimes W^*$, $[\xi,\xi']\in V$, in the components along $\Sigma$; the lines for $S_1$ then test it.
+\item Its reality: a real multiple, for the reflection compatibility of the inner direction.
+\end{itemize}
+\end{remark}
+
+\begin{remark}[Physics notation, Section 4]
+$P_b$, $K_b$, $\Delta$ are the translation, special conformal and dilatation generators ($\Delta=2E$, twice the Euler operator; on a primary of dimension $\Delta_O$ the classical $-\Lambda^{(1)}(\Delta)$ is $-2\Delta_O$); the radial conjugation has $P^\dagger=-K$ in these conventions [ch08, thm:c8-dag]. The engines' finding is a one-loop rescaling of the translation generator, $P_b\mapsto(1-\tfrac13\unit)P_b$ on the scalar bilinears, created by the Feynman-gauge composite $A_\mu$--ghost line; a rescaling of $P$ by a factor and of $K$ by its inverse is an inner automorphism generated by the dilatation, physically a change of the radius of the quantisation sphere relative to the renormalisation scale (Remark \ref{rem:ip-radius}). For $\mathfrak{su}(N)$ in the normalisation of [ch08, prop:c8-twocomp], $\lam=-\tfrac{g^2N}{2\hbar}$ and the unit is $-\tfrac{g^2N}{32\pi^2}$; the colour-dipole sum of Proposition \ref{prop:ip-universal} (i) is the familiar $\sum_{j\neq i}T_i\cdot T_j=-C_A=-N$ in the normalisation $\operatorname{tr}T^aT^b=\tfrac12\delta^{ab}$, rescaled by the normalisation of $(-,-)$.
+\end{remark}
+
+\section{The content of $Q^\dagger=S$}
+
+\begin{theorem}[Logical structure of the test]
+\label{thm:ip-logic}
+Assume the equivariant quantum master equation [ch08, eq:c8-qme] through one loop in arities $0,1,2$, local representatives on a family closed under the generators considered and along $P_n$, $K_n$, the hypotheses (H2)--(H4) of [tp, thm:t-ward], the two-point function as the coefficient of $t_2t_1$, and a reflection-compatible scheme.
+\begin{itemize}
+\item (i) (Master equation alone.) For every $Y\in\mathfrak{psl}(4|4)$ the two-point function satisfies $\langle-\Lambda^{(1)}(Y)F,G\rangle=-(-1)^{|Y||F|}\langle F,-\Lambda^{(1)}(Y)G\rangle$ ($|F|$, $|Y|$ total parities): directly for $Y\in\Sigma\oplus\Sigma^*$, $\Delta$, translations, rotations [tp, thm:t-ward], and along $K_b$ through the identities along $\Sigma^*$ and the cochain identity at $(\eta_1,\eta_2)$ [tp, prop:t-K], with the local representative $L_1^{(2)}(\eta_1,\eta_2)$ at a finite endpoint, which exists and is independent of $T$ [k\_transfer, thm:ktr-defect (v)] (the arity-two flows grow as $\log T$ when $\Gamma(\eta_1,\eta_2)|_V\neq0$). The map $x\mapsto-\Lambda^{(1)}(x)$ is a representation on the cohomology of $\Lambda^{(0)}$ [ch08, cor:c8-homotopy].
+\item (ii) (With the reflection.) $\langle-\Lambda^{(1)}(X)a,b\rangle_n=\langle a,-\Lambda^{(1)}(X^{\dagger_n})b\rangle_n$ for every $X$ [ch08, thm:c8-adjoint, first identity]. It involves no component along $K$ and no conjugation of descendants: it relates the components along $S_+\otimes W$ to those along $S_-\otimes W^*$, along $S_+\otimes W^*$ to $S_-\otimes W$, and fixes their reality.
+\item (iii) (With the transport by $C$.) The radial identity, [ch08, cor:c8-gram] and \eqref{eq:ip-graded}; the transport uses $\delta^\hbar=\Lambda^{(1)}(P_n)-\Lambda^{(1)}(K_n)$ with the one-loop components along $P_n$ and $K_n$, and the identification of the radial Gram with the two-point coefficient holds in the frame of Proposition \ref{prop:ip-frames} (a).
+\item (iv) (Generation.) If the radial relation holds for all $X\in\Sigma$, it holds for all $X$: $\Sigma\oplus\Sigma^*$ generates $\mathfrak{psl}(4|4)$, the relation for $X^\dagger$ is the adjoint of that for $X$, and for $\rho=-\Lambda^{(1)}$, $\rho(X_1)^{\rm adj}=\rho(X_1^\dagger)$ and $\rho(X_2)^{\rm adj}=\rho(X_2^\dagger)$ imply $\rho([X_1,X_2])^{\rm adj}=\rho([X_1,X_2]^\dagger)$. In particular the lines of [ch08, cor:c8-gram] for $K_1$ and $D_1$ follow from those for $S_1$; with the covariance of the regulator under $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$ and (ii), one generator of $S_+\otimes W$ carries the whole independent content.
+\end{itemize}
+Two-component: $(Q^i_\alpha)^\dagger=-S^\alpha{}_i$, $(\bar Q_{\dot\alpha i})^\dagger=\bar S^{\dot\alpha i}$; $\Theta_n$ maps $Q^i_\alpha$ to combinations of the $\bar Q_{\dot\alpha i}$ through $(\xi^{\dagger_n})_{\dot\alpha i}=i\,n_m\overline{\xi_\alpha{}^i}\sigma^m_{\alpha\dot\alpha}$; the Ward identities hold with $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ odd.
+\end{theorem}
+
+\begin{proof}
+(i) is [tp, thm:t-ward] with Lemma \ref{lem:ip-ward}, [tp, prop:t-K] with the finite-endpoint representative, and [ch08, cor:c8-homotopy]; (ii), (iii) are [ch08, thm:c8-adjoint], Theorem \ref{thm:ip-graded} and Proposition \ref{prop:ip-frames}; the first identity of [ch08, thm:c8-adjoint] uses only $\Theta_n$, which is an exact symmetry of $K_t$, $P(\varepsilon,T)$, $I$ and the counterterms [ch08, thm:c8-fields], together with the Ward identity. (iv) With $\rho$ a representation, $\rho([X_1,X_2]^\dagger)=\rho([X_2^\dagger,X_1^\dagger])=[\rho(X_2^\dagger),\rho(X_1^\dagger)]$ (graded) $=[\rho(X_2)^{\rm adj},\rho(X_1)^{\rm adj}]=[\rho(X_1),\rho(X_2)]^{\rm adj}$, using $[A,B]^{\rm adj}=[B^{\rm adj},A^{\rm adj}]$ for the graded commutator of matrices and the ungraded adjoint of coefficient columns; $\Lambda^{(0)}$-exact terms drop out of the two-point function [ch08, prop:c8-2pt (i)]. $[\Sigma,\Sigma]=V$, $[\Sigma^*,\Sigma^*]$ is spanned by the special conformal fields, $[\Sigma,\Sigma^*]$ spans $\mathbb C\Delta\oplus\mathfrak{so}(V)\oplus\mathfrak{so}(\Wp)$ [ch02, prop:c2-special]. $S_+\otimes W$ and $S_-\otimes W^*$ are irreducible under $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$, and $\Theta_n$ exchanges them. Two-component: $\Sigma$ is spanned by $Q^i_\alpha$ and $\bar Q_{\dot\alpha i}$; the generator $Q^1_1$ ($\xi_\alpha{}^i=\delta_{\alpha1}\delta^{i1}$) with $(Q^1_1)^\dagger=-S^1{}_1$ carries the independent content, and $\Theta_n$ maps $Q^i_\alpha$ to combinations of the $\bar Q_{\dot\alpha i}$ [ch08, def:c8-Theta].
+\end{proof}
+
+\begin{proposition}[The real part of the classical-type coefficient along $\Sigma$]
+\label{prop:ip-realpart}
+\begin{itemize}
+\item (i) The arity-one finite counterterm along $\xi\in S_+\otimes W$ (computation E3) is fixed up to a multiple of $S^{(1)}(\xi)$, with its arity-two partner along $(\xi,\xi)$; the same multiple is the restriction of $G_B$ and of the exact inner cocycle along $R_\xi$ [odd, rem:o-alpha]. Adding the number times $\hbar S^{(1)}(\xi)$ changes $Q_1$ along $S_+\otimes W$ by minus that number times $\hbar\{S^{(1)}(\xi),-\}$ on every operator; the master equation at $(\xi,\eta)$ (the gate \eqref{eq:ip-mcline}) forces the same number in the counterterm along $\eta\in S_+\otimes W^*$, which changes $S_1$ by plus the number times $\hbar$ times the classical component.
+\item (ii) These changes shift the radial lines of Propositions \ref{prop:ip-konishi} and \ref{prop:ip-twenty} and the reflection lines of Proposition \ref{prop:ip-reflline} by twice the real part of the number (in units, times the tree pairing), and leave their imaginary parts, the lines of Proposition \ref{prop:ip-weight3} and the differences of the radial lines of Propositions \ref{prop:ip-konishi} and \ref{prop:ip-twenty} unchanged.
+\item (iii) Reflection compatibility [ch08, thm:c8-fields] requires the arity-one finite counterterm along $S_-\otimes W^*$ to be the $\Theta_n$-image of the one along $S_+\otimes W$. Together with the master equation at $(\xi,\xi^{\dagger_n})$, $[\xi,\xi^{\dagger_n}]\in V$, a universal real rescaling of the supercharges then equals one half of the translation rescaling (block model of [SW, (17)]: reflection compatibility of real rescalings forces the third block number to be the mean of the first two, and the rescaling of $Q^i_\alpha$ is half that of $P_b$; the inner direction by $\Delta$ is reflection compatible with a real coefficient, the outer direction $B$ with an imaginary one [checks, C16]). In the frame $P_1=0$ this fixes the real part of the number of (i).
+\item (iv) Consequently the radial lines of Propositions \ref{prop:ip-konishi} and \ref{prop:ip-twenty} test the data only if the real part is fixed independently: by the reflection lines of Proposition \ref{prop:ip-reflline}, computed with the one-loop components along one generator of $S_-\otimes W^*$, or by the construction of the counterterm along $S_-\otimes W^*$ as the $\Theta_n$-image together with the master equation at $(\xi,\xi^{\dagger_n})$. Without either, the radial line of the Konishi pair fixes the real part, and the independent content is the difference of the two radial lines and the lines of Proposition \ref{prop:ip-weight3}.
+\end{itemize}
+Two-component: for $\xi_\alpha{}^i=u_\alpha z^i$, $S^{(1)}(\xi)$ is the display of [ch08, remark on the comparison with the holomorphic twist]; $G_B$ multiplies $\xi_\alpha{}^i$, $\bar\eta^{\dot\alpha i}$ by $+1$ and $\bar\xi_{\dot\alpha i}$, $\eta^\alpha{}_i$ by $-1$ [ch08, def:c8-B]; $\xi^{\dagger_n}$ has the components $i\,n_m\overline{\xi_\alpha{}^i}\sigma^m_{\alpha\dot\alpha}$ in $S_-\otimes W^*$.
+\end{proposition}
+
+\begin{proof}
+(i) [odd, rem:o-alpha], \texttt{engine\_plan.json} (E3): $\{S,S^{(1)}(\xi)\}=0$ and the obstruction equation at two legs leaves $S^{(1)}(\xi)$ free; [ch08, prop:c8-laws (c)] with $G=G_B$, $b=+1$ on $S_+\otimes W$, $-1$ on $S_+\otimes W^*$. (ii) In the radial line of Proposition \ref{prop:ip-radline} the shifts enter as $\overline{(-\text{number})}$ in $\langle Q_1(a),b\rangle$ and $+\text{number}$ in $\langle a,S_1(b)\rangle$, each times the tree pairing of the classical images, which are equal by the tree adjointness; the sum is twice the real part. The weight-$3$ lines involve $Q_1(O_\zeta)$ through its $\overline F_z$ part, which the classical component does not contain, and $S_1$ on $B_z$, $\overline F_z$, whose classical components vanish at the origin or lie in the conjugate chirality. (iii) [ch08, thm:c8-fields (iii)] and Theorem \ref{thm:ip-P} (ii): real rescalings $r$ with $r(X^{\dagger_n})=\overline{r(X)}$ on the blocks $(3,1)\leftrightarrow(2,3)$, $(1,3)\leftrightarrow(3,2)$ give, for the three block numbers, the third equal to the mean of the first two; then the rescaling of $(3,1)$ is half that of $(2,1)$ [checks, C16]. (iv) (ii) and (iii).
+\end{proof}
+
+\begin{remark}[What is tested]
+\label{rem:ip-tested}
+Under the hypotheses every relation is a theorem; as a test it confronts quantities computed from disjoint sets of graphs: $Q_1$ and $S_1$ from the defect graphs of the equivariant quantum differential along $\xi$ and along $\eta$ [odd, thm:o-classes], $\Go$ from the two-point graphs of [ch08, def:c8-2pt], $D_1$ from the counterterms (scaling route, [ch06, thm:c6-dil]) and from the defect graphs along $\Delta$ (Part D), $K_1$ from the K-route graphs at finite $T$ [ch08, def:c8-K], the classical components and the tree norms from the classical action. The decisive content is: the lines of Proposition \ref{prop:ip-weight3} (i)--(iii); the radial lines of Propositions \ref{prop:ip-konishi} and \ref{prop:ip-twenty} once the frame (Proposition \ref{prop:ip-frames}) and the real part (Proposition \ref{prop:ip-realpart}) are fixed, else their difference; the reflection lines of Proposition \ref{prop:ip-reflline}; and the self-adjointness of $D_1$ on a family with one-loop mixing (Proposition \ref{prop:ip-mixing}). The master-equation lines at $(\xi,\xi^\dagger)$, Proposition \ref{prop:ip-tree} (a), the descendant part of Proposition \ref{prop:ip-Kline} (the kinematic identity of Proposition \ref{prop:ip-desc}) and its line for $K_1$ (the master equation at $(K_b,P_{b'})$) are gates. A failure locates a wrong computation or a failed hypothesis: an anomaly in the equivariant master equation, a scheme that is not reflection compatible, a frame mismatch, or a $K_1$ that is not the local representative.
+\end{remark}
+
+\begin{remark}[Two-letter structure (directive R8)]
+\label{rem:ip-twobody}
+At relative order one unit every graph of [ch08, def:c8-2pt] meets each operator in at most two letters: one in the self-energy class, two in the exchange and quartic classes and in the operator counterterms [tp, prop:t-census-scalar]; the other letters are contracted by free propagators. Hence on a single-trace family $\Gt^{-1}\Go$ is a sum over letters of a one-letter kernel and over pairs of letters of a two-letter kernel, each with the colour factor of its letters, universal in the letters and their derivatives; by \eqref{eq:ip-H} the coefficient of $\log(|y|^2/\ell^2)$ in $\Gt^{-1}\Go$ is $-\tfrac12D_1$. The classical components act letter by letter (the bracket terms create one letter), and $Q_1$, $S_1$ are one-letter plus two-letter operators (R8). On families with $\mathrm{Gram}_{\frac12}=0$ the relations of [ch08, cor:c8-gram] become identities between one- and two-letter kernels; where $\mathrm{Gram}_{\frac12}\neq0$ the order-one relation \eqref{eq:ip-graded} contains products of two order-one-half structures on disjoint pairs, i.e. three- and four-letter components, which stage IP7 includes.
+\end{remark}
+
+\begin{corollary}[The dilatation is self-adjoint]
+\label{cor:ip-D}
+Under the hypotheses of Theorem \ref{thm:ip-logic}, on every family of fixed classical weight $D_1=D_1^{\rm adj}$, its eigenvalues are real, and eigenspaces with different eigenvalues are orthogonal for $\langle-,-\rangle_\rad$. The statement follows from (i) along $K_b$ and $\Delta$ and from (ii); it is equivalent to the existence of the radial Gram matrix at the origin (Theorem \ref{thm:ip-origin}); it is the line for $D_1$ of [ch08, cor:c8-gram], where $\{S^{(1)}(\Delta),-\}$ is $2w$ at the origin and commutes with $\Gt^{-1}\Go$. It is invariant under all changes of Theorem \ref{thm:ip-laws}: they conjugate $D_1$ by $1+\hbar\psi'$ with $[2w,\psi']=0$ on a weight space. It tests $D_1$ against $\Gt$ alone. On the families of the test set it holds identically at weights $2$ and $\tfrac52$ ($D_1$ is diagonal by Schur's lemma and real) and is equivalent to the orthogonality of Proposition \ref{prop:ip-weight3} (iii) at weight $3$ [checks, C17]; an independent test needs one-loop mixing within one length (Proposition \ref{prop:ip-mixing}). Two-component: the same matrices in the bases of Example \ref{ex:ip-scalars} and of [odd, eq:o-BF].
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:ip-origin} (ii); $\langle a,D_1b\rangle_\rad=\langle D_1a,b\rangle_\rad$ gives $(\mu-\overline\nu)\langle a,b\rangle_\rad=0$ for eigenvectors with eigenvalues $\nu,\mu$, and $\nu=\overline\nu$ for $a=b$. At weight $3$, with $D_1$ equal to $-48$ units on the Konishi descendant and $0$ on the protected one, the anti-Hermitian part of $\Gt D_1$ is proportional to their tree pairing [checks, C17].
+\end{proof}
+
+\begin{remark}[Physics notation, Section 5]
+(ii) is Osterwalder--Schrader reflection positivity in the flat picture, where $P_n$ is self-conjugate and $\{Q,Q^{\dagger_n}\}$ is a translation; (iii) is radial quantisation, $Q^\dagger=S$ up to the signs of [ch08, thm:c8-dag], $\{Q,Q^\dagger\}\supset-\tfrac12(\xi,\overline\xi)\Delta$. The real part of Proposition \ref{prop:ip-realpart} is the familiar freedom of rescaling $Q$ by a real factor and $S$ by its inverse, which preserves $\{Q,S\}$ and is fixed by hermiticity together with $\{Q,\bar Q\}\propto P$.
+\end{remark}
+
+\section{The test set}
+\label{sec:ip-tests}
+
+Throughout this section $\xi=u\otimes z\in S_+\otimes W$ (two-component $\xi_\alpha{}^i=u_\alpha z^i$, $\bar\xi=0$), $\overline\xi\in S_+\otimes W^*$ ($\eta^\alpha{}_i=\overline{u_\alpha z^i}$, $\bar\eta=0$), $\xi^\dagger=-\overline\xi$, $(\xi,\overline\xi)=\sum|u_\alpha z^i|^2$, and on cohomology $-\Lambda^{(1)}(\xi^\dagger)=+\Lambda^{(1)}(\overline\xi)$; $\zeta=u'\otimes z$ with $u'^\alpha u_\alpha=1$ and $(\zeta,\overline\xi)=0$, two-component $u'=(-\overline{u_2},\overline{u_1})/(|u_1|^2+|u_2|^2)$. The operators are the trace bilinear $\int\omega\Ko$ (two-component $\tfrac14\int\omega(A^{ij},A_{ij})$), the $\mathbf{20'}$ bilinears $\int\omega(\iota_aA,\iota_bA)$ with $(a,b)=0$ (two-component $\tfrac1{16}\int\omega(a^{ij}A_{ij},b^{kl}A_{kl})$), $O_\zeta=\int\omega(\lambda,\rho(A|_{\Wp})\zeta)$ (two-component $\int\omega(\lambda_\alpha{}^j,A_{ji})\zeta^{\alpha i}$), the $\mathbf{20}$ at weight $\tfrac52$, $\{S^{(1)}(\xi),\int\omega(\iota_aA,\iota_bA)\}$ (two-component $\mp\tfrac14\int\omega\big[(\lambda_\alpha{}^ja_{ji}\xi^{\alpha i},b^{kl}A_{kl})+(a\leftrightarrow b)\big]$, the sign of [ch01, def:c1-bracket]), and at weight $3$ the operators of [odd, eq:o-BF] at $w=z$,
+\[
+\overline F_z=\tfrac12\int\omega\,\big(\Gamma(\xi,\lambda)|_V,\Gamma(\zeta,\lambda)|_V\big),\qquad B_z=-2\int\omega\,\big(\rho(\tfrac12[A|_{\Wp}\wedge A|_{\Wp}])\xi,\rho(A|_{\Wp})\zeta\big),
+\]
+two-component $\overline F_z=\int\omega(\bar\lambda_{\dot\alpha i}z^i,\bar\lambda^{\dot\alpha}{}_jz^j)$, $B_z=\int\omega([A^{ik},A_{kj}z^j],A_{il}z^l)$. All one-loop data are taken in the frame of Proposition \ref{prop:ip-frames} (a) ($P_1=0$ on the family, radial Gram equal to the two-point coefficient), or converted by Proposition \ref{prop:ip-frames} (c).
+
+\begin{proposition}[T0: tree gates]
+\label{prop:ip-tree}
+\begin{itemize}
+\item (a) (Classical master equation at $(\xi,\xi^\dagger)$.) $\{S^{(1)}(\overline\xi),\{S^{(1)}(\xi),\Ko\}\}(0)=-2(\xi,\overline\xi)\Ko(0)$.
+\item (b) (Tree adjointness.) $\big\|\{S^{(1)}(\xi),\Ko\}(0)\big\|^2_{\rad,{\rm tree}}=2(\xi,\overline\xi)\big\|\Ko(0)\big\|^2_{\rad,{\rm tree}}$. With $\{S^{(1)}(\xi),\Ko\}=\mp2\,O_\xi$ [tp, prop:t-konishiward] and the tree values $48$ (Example \ref{ex:ip-scalars}) and $24$ (Proposition \ref{prop:ip-spin}) this passes in modulus.
+\item (c) (Sign gates.) The positivity of $\Gt$ on every test family with the coefficient of $t_2t_1$ (computed for $O_\zeta$, Proposition \ref{prop:ip-spin}); the sign in (a) in the code conventions; the vanishing of the order-one-half entries of Proposition \ref{prop:ip-orders}.
+\end{itemize}
+Two-component: $\{S^{(1)}(\xi),\tfrac14\int\omega(A^{ij},A_{ij})\}=\mp2\int\omega(\lambda_\alpha{}^j,A_{ji})\xi^{\alpha i}$; $(\xi,\overline\xi)=\sum|\xi_\alpha{}^i|^2$.
+\end{proposition}
+
+\begin{proof}
+(a) Classical part of [ch08, cor:c8-homotopy] at $(\xi,\xi^\dagger)$ on $\Ko(0)$: $-\Lambda^{(1)}(\xi^\dagger)\Ko(0)=0$ (no gauge-invariant operator of weight $\tfrac32$), $[\xi,\xi^\dagger]=-[\xi,\overline\xi]$ has dilatation part $-\tfrac12(\xi,\overline\xi)\Delta$ and rotation parts acting trivially on the singlet [ch02, prop:c2-special], and $-\Lambda^{(1)}(\Delta)\Ko(0)=-4\Ko(0)$; so $\rho_0(\xi^\dagger)\rho_0(\xi)\Ko(0)=2(\xi,\overline\xi)\Ko(0)$ with $\rho_0(\xi^\dagger)\rho_0(\xi)=-\{S^{(1)}(\overline\xi),\{S^{(1)}(\xi),-\}\}$. (b) Tree adjointness $Y_0=X_0^{\rm adj}$: $\langle\rho_0(\xi)a,\rho_0(\xi)a\rangle=\langle a,\rho_0(\xi^\dagger)\rho_0(\xi)a\rangle$ and (a); $4\cdot24=2\cdot48$ [checks, C6].
+\end{proof}
+
+\begin{proposition}[The radial line along $\xi$ and the master equation at $(\xi,\xi^\dagger)$]
+\label{prop:ip-radline}
+For $a$ of Weyl weight $w$ and $b$ of weight $w+\tfrac12$ in the families, at the origin, through order $\hbar$ and modulo $\Lambda^{(0)}$-exact terms:
+\begin{equation}
+\big\langle Q_1(a),b\big\rangle_{\rad,{\rm tree}}+\big\langle a,S_1(b)\big|_{\eta=\overline\xi}\big\rangle_{\rad,{\rm tree}}=-\big\langle\{S^{(1)}(\xi),a\},b\big\rangle_{\rad,1}-\big\langle a,\{S^{(1)}(\overline\xi),b\}\big\rangle_{\rad,1},
+\label{eq:ip-radline}
+\end{equation}
+and, with $M_1=R_1=0$,
+\begin{equation}
+\{S^{(1)}(\overline\xi),Q_1(a)\}+S_1\big(\{S^{(1)}(\xi),a\}\big)\big|_{\eta=\overline\xi}+\{S^{(1)}(\xi),S_1(a)|_{\eta=\overline\xi}\}+Q_1\big(\{S^{(1)}(\overline\xi),a\}\big)=-\tfrac12(\xi,\overline\xi)\,D_1(a).
+\label{eq:ip-mcline}
+\end{equation}
+\eqref{eq:ip-radline} is the order-$\hbar$ part of the radial identity of [ch08, thm:c8-adjoint] along $\xi$; \eqref{eq:ip-mcline} is the order-$\hbar$ part of [ch08, cor:c8-homotopy] at $(\xi,\xi^\dagger)$, a master-equation gate (computation E9). Two-component: $Q_1$ along $\xi_\alpha{}^iQ^i_\alpha$, $S_1$ along $\overline{\xi_\alpha{}^i}\,S^\alpha{}_i$.
+\end{proposition}
+
+\begin{proof}
+$-\Lambda^{(1)}(\xi)a=-\{S^{(1)}(\xi),a\}-Q_1(a)$ and $-\Lambda^{(1)}(\xi^\dagger)b=\{S^{(1)}(\overline\xi),b\}+S_1(b)|_{\eta=\overline\xi}$ by the linearity of the components in the generator and $\xi^\dagger=-\overline\xi$. The order-$\hbar$ part of $\langle-\Lambda^{(1)}(\xi)a,b\rangle_\rad=\langle a,-\Lambda^{(1)}(\xi^\dagger)b\rangle_\rad$ is \eqref{eq:ip-radline}, the pairing being antilinear in the first slot. For \eqref{eq:ip-mcline}: $\rho(\xi^\dagger)\rho(\xi)+\rho(\xi)\rho(\xi^\dagger)=\rho([\xi,\xi^\dagger])$ with $\hbar\rho_1(\xi)=-Q_1$, $\hbar\rho_1(\xi^\dagger)=S_1|_{\eta=\overline\xi}$, $\rho_0(\xi^\dagger)=\{S^{(1)}(\overline\xi),-\}$, $\rho_0(\xi)=-\{S^{(1)}(\xi),-\}$, and the dilatation part $-\tfrac12(\xi,\overline\xi)\Delta$ of $[\xi,\xi^\dagger]$, whose one-loop component is $-\tfrac12(\xi,\overline\xi)D_1$.
+\end{proof}
+
+\begin{proposition}[T2: the Konishi pair]
+\label{prop:ip-konishi}
+Let $a=\Ko(0)$ and $b=\{S^{(1)}(\xi),\Ko\}(0)$. By the selection rules [ch07, prop:c7-select] $Q_1(a)$ is a multiple of $b$ (weight $\tfrac52$, type $S_+\otimes W$) and $S_1(b)|_{\eta=\overline\xi}$ a multiple of $\{S^{(1)}(\overline\xi),b\}=-2(\xi,\overline\xi)a$ modulo $\Lambda^{(0)}$-exact terms. With $D_1(a)=-48\,\unit\,a$:
+\begin{equation}
+\begin{aligned}
+&\{S^{(1)}(\overline\xi),Q_1(a)\}+S_1(b)\big|_{\eta=\overline\xi}=24\,(\xi,\overline\xi)\,\unit\,a\qquad\text{(gate)},\\
+&\big\langle Q_1(a),b\big\rangle_{\rad,{\rm tree}}+\big\langle a,S_1(b)|_{\eta=\overline\xi}\big\rangle_{\rad,{\rm tree}}=-\langle b,b\rangle_{\rad,1}+2(\xi,\overline\xi)\langle a,a\rangle_{\rad,1}\qquad\text{(radial line)}.
+\end{aligned}
+\label{eq:ip-konishi}
+\end{equation}
+In words: with the coefficient of $Q_1(a)$ along $b$ and the coefficient of $S_1(b)|_{\eta=\overline\xi}$ along $\{S^{(1)}(\overline\xi),b\}$, both in units, the gate says that they add up to $-12$, and the radial line that the second minus the conjugate of the first equals the one-loop radial constant of $b$ minus that of $a$ (each the one-loop part of the radial norm divided by its tree part, in units). Hence the real part of the first is $-6$ minus half the difference of the constants, the real part of the second is $-6$ plus half of it, and their imaginary parts are opposite. Under the outer direction with $\overline a=-a$ the coefficients move by $\mp a$ and both lines are invariant; under finite parts the coefficients move by the difference of the finite parts and the constants by twice their real parts, and both lines are invariant [checks, C6]. The radial line is decisive when the real part of Proposition \ref{prop:ip-realpart} is fixed; otherwise it fixes it. The one-loop constant of $a$ is $\tfrac{27}2+4\log\tfrac32+24(\gamma_E-3\log2)$ (Example \ref{ex:ip-scalars}); that of $b$ comes from the two-point graphs of [tp, prop:t-census-zeta]. Two-component: $a=\tfrac14(A^{ij},A_{ij})(0)$, $b=\mp2(\lambda_\alpha{}^j,A_{ji})\xi^{\alpha i}(0)$.
+\end{proposition}
+
+\begin{proof}
+Proposition \ref{prop:ip-radline} with $S_1(a)$ and $\{S^{(1)}(\overline\xi),a\}$ equal to $0$ at the origin (weight $\tfrac32$), Proposition \ref{prop:ip-tree} (a) for $\{S^{(1)}(\overline\xi),b\}$, and $-\tfrac12(\xi,\overline\xi)(-48\,\unit)=24(\xi,\overline\xi)\unit$. The gate in coefficients: their sum times the unit times $\{S^{(1)}(\overline\xi),b\}=-2(\xi,\overline\xi)a$ equals $24(\xi,\overline\xi)\unit\,a$. The radial line in coefficients: divide by $\|b\|^2_{\rad,{\rm tree}}=2(\xi,\overline\xi)\|a\|^2_{\rad,{\rm tree}}$. The selection: by the cochain identity [odd, thm:o-cocycle] $Q_1(a)$ is $\Lambda^{(0)}$-closed, and the gauge-invariant classes of weight $\tfrac52$, Lorentz type $S_+$ and $SU(4)$ type $W^*$ are the multiples of $O_\xi$ (the field contents of weight $\tfrac52$ are $\lambda A$ and $\lambda^*$, and $\lambda^*$ is not a colour singlet); the gauge-variant and BRST structures of [ch07, cor:c7-Q] enter in $\Lambda^{(0)}$-exact combinations, which drop out of the two-point function [ch08, prop:c8-2pt (i)]. For the output of $S_1$ the weight-$2$ scalars are the trace bilinear and the $\mathbf{20'}$, and $\zeta\otimes\overline\xi\in W\otimes W^*$ has no component in $\mathrm{Sym}^2_0\Wp$.
+\end{proof}
+
+\begin{proposition}[T1: the $\mathbf{20'}$ pair]
+\label{prop:ip-twenty}
+For $a=(\iota_aA,\iota_bA)(0)$ and $a'$ in the $\mathbf{20'}$ and $b=\{S^{(1)}(\xi),a'\}$, with $D_1=0$ on the multiplet: the gate \eqref{eq:ip-mcline} reads $\{S^{(1)}(\overline\xi),Q_1(a)\}+S_1(\{S^{(1)}(\xi),a\})|_{\eta=\overline\xi}=0$, and the radial line is \eqref{eq:ip-radline}. In words (Schur's lemma on the irreducible $\mathbf{20}$ and $\mathbf{20'}$): the coefficient of $Q_1$ on the $\mathbf{20'}$ along the classical component and the coefficient of $S_1$ along $\overline\xi$ on the $\mathbf{20}$ along the classical component add up to $0$, and the second minus the conjugate of the first equals the one-loop radial constant of the $\mathbf{20}$ minus that of the $\mathbf{20'}$; hence twice the real part of the first plus that difference vanishes. The constant of the $\mathbf{20'}$ is $\tfrac{27}2+4\log\tfrac32$ (Example \ref{ex:ip-scalars}). For $a,b$ in the plane of $z$ the classical and the one-loop components both vanish [odd, prop:o-planevanish] and the pair carries no relation; the test uses generic polarisations. Two-component: as in Proposition \ref{prop:ip-konishi} with $\tfrac1{16}(a^{ij}A_{ij},b^{kl}A_{kl})(0)$.
+\end{proposition}
+
+\begin{proof}
+As for Proposition \ref{prop:ip-konishi}: $-\Lambda^{(1)}(\xi^\dagger)$ vanishes on the $\mathbf{20'}$ at the origin, the order-$\hbar$ part of $\rho([\xi,\xi^\dagger])$ on the $\mathbf{20'}$ is $\tfrac12(\xi,\overline\xi)D_1=0$ ($M_1=R_1=0$), and $\rho_0(\xi^\dagger)\rho_0(\xi)$ is nonzero on the $\mathbf{20'}$; $[0,2,0]\otimes[1,0,0]$ contains the weight-$\tfrac52$ fermion--scalar bilinears only in the $\mathbf{20}$.
+\end{proof}
+
+\begin{proposition}[T1n, T2n: the reflection lines along $S_-\otimes W^*$]
+\label{prop:ip-reflline}
+Let $\xi^{\dagger_n}=\rho(n)\overline\xi\in S_-\otimes W^*$ [ch08, def:c8-Theta], two-component $(\xi^{\dagger_n})_{\dot\alpha i}=i\,n_m\overline{\xi_\alpha{}^i}\sigma^m_{\alpha\dot\alpha}$ and undotted part $0$. For $a$ the trace bilinear (resp. a $\mathbf{20'}$ bilinear) and $b=O_\zeta$ (resp. an element of the $\mathbf{20}$), both smeared in the half space $\{(n,x)>0\}$, through order $\hbar$ and modulo $\Lambda^{(0)}$-exact terms:
+\begin{equation}
+\big\langle Q_1(a),b\big\rangle_{n,{\rm tree}}-\big\langle a,Q_1(b)\big|_{\xi^{\dagger_n}}\big\rangle_{n,{\rm tree}}=-\big\langle\{S^{(1)}(\xi),a\},b\big\rangle_{n,1}+\big\langle a,\{S^{(1)}(\xi^{\dagger_n}),b\}\big\rangle_{n,1}.
+\label{eq:ip-reflline}
+\end{equation}
+The inputs are the one-loop components along one generator of $S_-\otimes W^*$ on the weight-$\tfrac52$ operators (computations E4, E5 extended with the machinery of E12), the classical components, and the two-point functions at separated points of IP1, IP2 with their derivatives. The lines involve no component along $K$, no transport and no frame of the translations; they fix the real part of Proposition \ref{prop:ip-realpart} together with the reality of the components along $S_-\otimes W^*$.
+\end{proposition}
+
+\begin{proof}
+The order-$\hbar$ part of $\langle-\Lambda^{(1)}(\xi)a,b\rangle_n=\langle a,-\Lambda^{(1)}(\xi^{\dagger_n})b\rangle_n$ [ch08, thm:c8-adjoint, first identity], with $-\Lambda^{(1)}(\xi^{\dagger_n})b=-\{S^{(1)}(\xi^{\dagger_n}),b\}-Q_1(b)|_{\xi^{\dagger_n}}$; Theorem \ref{thm:ip-logic} (ii). The Lorentz and $SU(4)$ types: $(O_\xi)^{\Theta_n}$ is an operator with spinor parameter in $S_-\otimes W^*$, whose two-point function with $O_\zeta$, $\zeta\in S_+\otimes W$, is nonzero (Proposition \ref{prop:ip-spin} (i)); $-\Lambda^{(1)}(\xi^{\dagger_n})O_\zeta$ has weight $3$ and contains the derivative of the trace bilinear.
+\end{proof}
+
+\begin{proposition}[T3: the weight-$3$ Konishi sector]
+\label{prop:ip-weight3}
+Through relative order one unit, in the minimal scheme (no entry between $B_z$ and $\overline F_z$ at this order, Proposition \ref{prop:ip-orders}):
+\begin{itemize}
+\item (i) (order one half) $\big\langle O_\zeta(0),S_1(B_z)(0)|_{\eta=\overline\xi}\big\rangle_{\rad,{\rm tree}}=-\big\langle\{S^{(1)}(\xi),O_\zeta\}(0),B_z(0)\big\rangle_{\rad,{\rm tree}}$;
+\item (ii) (radial line for $S_1$ on $\overline F_z$) $\big\langle O_\zeta(0),S_1(\overline F_z)(0)|_{\eta=\overline\xi}\big\rangle_{\rad,{\rm tree}}=-\big\langle Q_1(O_\zeta)(0),\overline F_z(0)\big\rangle_{\rad,{\rm tree}}$;
+\item (iii) (orthogonality of the Konishi and protected descendants) $\big\langle\Lambda^{(1)}(\xi)O_\zeta(0),\Lambda^{(1)}(\xi)\Lambda^{(1)}(\zeta)a'(0)\big\rangle_\rad=0$ for every $a'$ in the $\mathbf{20'}$, through relative order one unit; only the classical part of $\Lambda^{(1)}(\xi)\Lambda^{(1)}(\zeta)a'$ (a combination of $\overline F_z$ and $B_z$, the protected descendant) and $\{S^{(1)}(\xi),O_\zeta\}+Q_1(O_\zeta)$ enter; equivalently, $S_1$ along $\overline\xi$ maps the protected descendant into the $\mathbf{20'}$ multiplet;
+\item (iv) (master equation at $(\xi,\xi^\dagger)$ on $O_\zeta$, with (i))
+\begin{equation}
+\big\|\{S^{(1)}(\xi),O_\zeta\}(0)\big\|^2_{\rad,{\rm tree}}=\tfrac12(\xi,\overline\xi)\,\big\langle O_\zeta(0),D_1(O_\zeta)(0)\big\rangle_{\rad,{\rm tree}} :
+\label{eq:ip-konishiclass}
+\end{equation}
+the one-loop dilatation of the Konishi multiplet is fixed by the classical length-changing supercharge and two tree norms.
+\end{itemize}
+With $\{S^{(1)}(\xi),O_\zeta\}=\mp\tfrac14B_z$ [odd, prop:o-konishi], $\|B_z(0)\|^2_{\rad,{\rm tree}}=\hbar^2\big(\tfrac2{4\pi^2}\big)^3\big(-\lam\dim\mathfrak g\big)\cdot6\cdot48\,(\textstyle\sum_i|z^i|^2)^2$ (computed here: $B_z=\sum c_{IJK}([A_I,A_J],A_K)$ with $c_{IJK}=\overline{\Sigma^I_{ik}}\,\Sigma^J_{kj}z^j\,\Sigma^K_{il}z^l$ and $\sum_{IJK}|c_{[IJK]}|^2=48(\sum_i|z^i|^2)^2$) and $\|O_\zeta(0)\|^2_{\rad,{\rm tree}}=24\hbar\dim\mathfrak g\,(\zeta,\overline\zeta)/(16\pi^4)$ (Proposition \ref{prop:ip-spin}), \eqref{eq:ip-konishiclass} gives $D_1(O_\zeta)=-48\,\unit\,O_\zeta$, the Konishi value of [ch06, thm:c6-dil] and of both engines of Part D, in modulus [checks, C11]. Two-component: $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}=A_I\overline{\Sigma^I_{ij}}$, $B_z=\int\omega([A^{ik},A_{kj}z^j],A_{il}z^l)$; $(\xi,\overline\xi)=|u|^2|z|^2$, $(\zeta,\overline\zeta)=|u'|^2|z|^2$, $|u||u'|=1$; $\overline F_z=\int\omega(\bar\lambda_{\dot\alpha i}z^i,\bar\lambda^{\dot\alpha}{}_jz^j)$.
+\end{proposition}
+
+\begin{proof}
+(i), (ii): the entries $(O_\zeta,B_z)$ and $(O_\zeta,\overline F_z)$ of $\overline X^{\,T}\mathrm{Gram}=\mathrm{Gram}\,Y$ for $X$, $Y$ the matrices of $-\Lambda^{(1)}(\xi)$ and $-\Lambda^{(1)}(\xi^\dagger)=\Lambda^{(1)}(\overline\xi)$ on $\{O_\zeta\}$, $\{\overline F_z,B_z\}$, with $\mathrm{Gram}_{B\overline F}=0$ at this order; the classical components along $\overline\xi$ on $B_z$, $\overline F_z$ vanish at the origin or lie in the conjugate chirality, orthogonal to $O_\zeta$; exact symbolic form [checks, C8]. (iii) $-\Lambda^{(1)}(\xi)O_\zeta$ lies in the Konishi multiplet and $\Lambda^{(1)}(\xi)\Lambda^{(1)}(\zeta)a'$ in the $\mathbf{20'}$ multiplet, which have different $D_1$; Corollary \ref{cor:ip-D}. The $B_z$ part pairs at relative order unit through $\|B_z\|^2$, the $\overline F_z$ part through the $\overline F_z$ component of $Q_1(O_\zeta)$, and the one-loop correction of the protected descendant enters at relative order unit squared; covariance under the finite part $\psi(B_z)=x\overline F_z$ [checks, C8]. (iv) Order $\hbar$ of [ch08, cor:c8-homotopy] at $(\xi,\xi^\dagger)$ on $O_\zeta(0)$: $-\Lambda^{(1)}(\xi^\dagger)O_\zeta\propto(\zeta,\overline\xi)\Ko=0$, so $\rho(\xi^\dagger)\rho(\xi)O_\zeta=\rho([\xi,\xi^\dagger])O_\zeta$; its component along $O_\zeta$ is $\|\rho(\xi)O_\zeta\|^2_\rad$ by the radial adjointness at order one half, i.e. $\|\{S^{(1)}(\xi),O_\zeta\}\|^2_{\rm tree}$ through relative order unit, and on the right $-\tfrac12(\xi,\overline\xi)\langle O_\zeta,\rho(\Delta)O_\zeta\rangle$ plus classical rotations; the classical parts cancel because the left side is of relative order one unit. The numbers: $\|B_z\|^2$ is the sum over the $3!$ pairings of the three $A|_{\Wp}$ edges ($2(-,-)^{-1}\delta_{IJ}$ times $1/(4\pi^2)$ at unit separation), the colour factor of each pairing is its sign times $\sum_{abc}([e_a,e_b],e_c)^2=-\lam\dim\mathfrak g$, and the flavour sum is $6\sum|c_{[IJK]}|^2$. Then $\tfrac1{16}\|B_z(0)\|^2_{\rad,{\rm tree}}=\tfrac94\hbar^2\big(-\lam\dim\mathfrak g\big)(\sum_i|z^i|^2)^2/\pi^6$, while for $D_1(O_\zeta)$ equal to a number times the unit times $O_\zeta$, with $\unit=\frac{\hbar}{16\pi^2}\lam$ and $(\xi,\overline\xi)(\zeta,\overline\zeta)=(\sum_i|z^i|^2)^2$, the right side of \eqref{eq:ip-konishiclass} is that number times $\tfrac3{64}\hbar^2\lam\dim\mathfrak g(\sum_i|z^i|^2)^2/\pi^6$; the number is $-48$ [checks, C11].
+\end{proof}
+
+\begin{remark}[Meaning of T3 (iv)]
+\label{rem:ip-bps}
+\eqref{eq:ip-konishiclass} is the Konishi analogue of [lit, Target 27]: on the component $O_\zeta$, annihilated by $\{\xi,\xi^\dagger\}$ at tree level, the one-loop dilatation equals the tree norm of the classical length-changing image. Its evaluation uses the modulus $\tfrac14$ of the classical coefficient of [odd, prop:o-konishi], the tree two-point value of Proposition \ref{prop:ip-spin} and the flavour sum, and reproduces $D_1=-48\,\unit$ of Chapter 6 with no one-loop graph: a check of the moduli of the normalisations of $S^{(1)}(\xi)$ and of the propagators, given the radial adjointness at order one half and the master equation at $(\xi,\xi^\dagger)$; signs are tested by the gates of Proposition \ref{prop:ip-tree} (c) and IP0. Since the unit is negative on the compact form, the positivity of the two tree norms requires $D_1(O_\zeta)$ to be a negative number of units times $O_\zeta$, as found. (i) then predicts the one-loop length-decreasing component $S_1(B_z)|_{\eta=\overline\xi}$ along $O_\zeta$, a sharp target for the computation E8.
+\end{remark}
+
+\begin{proposition}[T4: descendants and the line for $K_1$ (gate)]
+\label{prop:ip-Kline}
+In the frame $P_1=0$, for $a$ the trace bilinear ($w=2$, $D_1=-48\,\unit$) and for the $\mathbf{20'}$ ($D_1=0$): $\langle\partial_ba(0),\partial_{b'}a(0)\rangle_\rad=(\overline b,b')(4+D_1)\langle a(0),a(0)\rangle_\rad$ with $D_1$ the eigenvalue ($-48\,\unit$, resp. $0$), i.e. $\hbar\,\Gt^{-1}\Go$ on level one minus level zero is $\tfrac14D_1$ (Proposition \ref{prop:ip-desc}), and $K_1\big(-\Lambda^{(1)}(P_{b'})a(0)\big)=(\overline b,b')D_1(a)(0)$, which must agree with the K-route value at finite $T$ [ch08, def:c8-K], $K_1\big(\tfrac14\int\omega(A^{ij},A_{ij})\big)=48\,(b\cdot x)\,\unit\,\tfrac14\int\omega(A^{ij},A_{ij})$ [odd, thm:o-KD], and $0$ on the $\mathbf{20'}$. In the engines' frame the K-route contains in addition minus the translation rescaling times the unit times $\{S^{(1)}(K_b),-\}$ (Theorem \ref{thm:ip-P} (iv)). These are the kinematic identity of Proposition \ref{prop:ip-desc} and the master equation at $(K_b,P_{b'})$, gates for E10. Two-component: $(\overline b,b')=\overline{b_m}b'_m$, $\partial_b=b_m\partial_m$.
+\end{proposition}
+
+\begin{proof}
+Propositions \ref{prop:ip-desc}, \ref{prop:ip-primary} and Theorem \ref{thm:ip-P} (ii), (iv).
+\end{proof}
+
+\begin{proposition}[T5: self-adjointness on a mixing family]
+\label{prop:ip-mixing}
+On a family with one-loop mixing within one length, the dimension-four $\mathbf{20'}$ operators of [BERS] (single-trace length-four scalars in the $\mathbf{20'}$, double traces and the descendant of the Konishi multiplet in the same representation) or the weight-four colour-singlet scalars, $D_1=D_1^{\rm adj}$ with $D_1$ from the two-letter counterterm kernels (stage IP7) and $\Gt$ from the tree two-point functions is a test of the kernels against the tree inner product, invariant under every change of Theorem \ref{thm:ip-laws}; on the families of T1--T3 it holds identically or is T3 (iii) (Corollary \ref{cor:ip-D}). Two-component: length-four words in $A_{ij}$ with the $SU(4)$ projection to $[0,2,0]$.
+\end{proposition}
+
+\begin{proof}
+Corollary \ref{cor:ip-D}; the families have more than one $D_1$-eigenvalue at one weight with tree mixing between single and double traces [lit, Target 16], so $D_1=D_1^{\rm adj}$ constrains off-diagonal kernel entries.
+\end{proof}
+
+{\small
+\begin{longtable}{p{1.4cm}|p{4.1cm}|p{4.2cm}|p{2.0cm}|p{3.2cm}}
+test & equation & inputs & status & target \\
+\hline
+T0 & Prop.~\ref{prop:ip-tree} (a), (b), (c) & classical $S^{(1)}$, tree graphs & gate; (b) passes in modulus & positivity computed for $O_\zeta$ \\
+T1 & gate and radial line, Prop.~\ref{prop:ip-twenty} & $Q_1$ (E4), $S_1$ (E8), IP1, IP2, frame (IP6) & decisive with T1n or the real part fixed & $D_1=0$ [Mi97], [DO02] \\
+T2 & gate and radial line \eqref{eq:ip-konishi} & $Q_1$ (E5), $S_1$ (E8), IP1, IP2, frame (IP6) & decisive with T2n or the real part fixed; else fixes it & gate uses $D_1=-48$ units [BKRS] \\
+T1n, T2n & \eqref{eq:ip-reflline} & $Q_1$ along $S_-\otimes W^*$ (E4, E5 with E12), IP1, IP2 at separated points & decisive & reflection positivity \\
+T3 (i) & Prop.~\ref{prop:ip-weight3} (i) & $S_1$ on $B_z$ (E8), tree norms & decisive & adjointness at order one half \\
+T3 (ii) & Prop.~\ref{prop:ip-weight3} (ii) & $S_1$ on $\overline F_z$ (E8), $Q_1(O_\zeta)$ (E1), IP0 & decisive & \\
+T3 (iii) & Prop.~\ref{prop:ip-weight3} (iii) & $Q_1(O_\zeta)$ (E1), classical protected descendant, tree norms & decisive & [BKRS] (9)--(11), [EJSS] (statements) \\
+T3 (iv) & \eqref{eq:ip-konishiclass} & classical, tree norms & passes in modulus (C11) & Konishi value \\
+T4 & Prop.~\ref{prop:ip-Kline} & IP4, $K_1$ (E10), $P_1$ (E11, IP6) & gate & $K_1$ of [odd, thm:o-KD] \\
+T5 & Prop.~\ref{prop:ip-mixing} & $D_1$ kernels (IP7), $\Gt$ & decisive & [BKS], [BMV], [BERS] \\
+\end{longtable}}
+\tabcaption{The test set. E$n$ are the computations of [odd] and \texttt{engine\_plan.json}; IP$n$ those of \texttt{engine\_plan\_ip.json}. All equations are through relative order one unit, in the frame $P_1=0$ of Proposition \ref{prop:ip-frames} (a). The equations are stated with the operators and components of Chapter 8; the numbers derived from them carry code names only in the engine plan.}
+
+\begin{remark}[Physics notation, Section 6]
+The trace bilinear is the Konishi operator $\operatorname{Tr}\phi_I\phi_I$ (two-component $\tfrac14\operatorname{Tr}\phi^{ij}\phi_{ij}$); $O_\zeta$ its $Q$-descendant $\operatorname{Tr}(\lambda_\alpha{}^j\phi_{ji})\zeta^{\alpha i}$; $B_z$, $\overline F_z$ the $z\otimes z$ components of $\operatorname{Tr}[\phi,\phi]\phi$ and $\operatorname{Tr}\bar\lambda\bar\lambda$ in the $\mathbf{10}$, whose Konishi combination is the [BKRS] $\mathcal K_{\mathbf{10}^*}$ with the Konishi-anomaly term and whose protected combination is $\mathcal E_{\mathbf{10}^*}$; the $\mathbf{20'}$ is $\operatorname{Tr}\phi_{\{I}\phi_{J\}}$, the bottom of the stress-tensor multiplet. The statements are the one-loop forms of $\langle\mathcal O|Q\,\mathcal O'\rangle=\langle Q^\dagger\mathcal O|\mathcal O'\rangle$ in radial quantisation, with ghost number $0$ and the statistics of $\lambda$ entering through Lemma \ref{lem:ip-ward}; for $\mathfrak{su}(N)$ the unit is $-\tfrac{g^2N}{32\pi^2}$.
+\end{remark}
+
+\section{Literature targets and regulators}
+
+{\small
+\begin{longtable}{p{3.0cm}|p{4.6cm}|p{4.3cm}|p{3.0cm}}
+target & statement & regulator & use \\
+\hline
+Konishi dimension & $2+\tfrac{3g^2N}{4\pi^2}$, i.e. $D_1=-48\,\unit$ & [BKRS] (20), (24) point splitting (the $g^2$ of (27) is $4$ times the standard $g^2$, footnote 3); [B04] DR (statement only) & T2, T3 (iv), T4 \\
+$\mathbf{20'}$ & protected, $D_1=0$ & representation theory [Mi97], [DO02] & T1 \\
+protected normalisation & no correction of $C_J$, $C_T$ & non-perturbative [AFGJ], [EHW], [BRvR] & fixing the $\mathbf{20'}$ constant by symmetry \\
+Konishi anomaly and orthogonality & orthogonality of the two weight-$3$ descendants in the $\mathbf{10}^*$ & [BKRS] (9)--(11): coefficient quoted from their ref.~[8], orthogonality stated from the $U_B(1)$ bonus symmetry (statements); [EJSS] SSDR (statement only) & T3 (iii) \\
+Konishi normalisation & free ($a_1$ of [BKRS]) & [BKRS] point splitting & scheme datum \\
+constant and log in fixed ratio & $\tilde B=-\tfrac{Y^2}{32\pi^2}(\log\tfrac{x^2}{\epsilon^2}-1)$, constant zero where the log is zero & [Ryz] smoothing $1/(x^2+\epsilon^2)$ (statement only; fails in the UV-boundary scheme, $\mathbf{20'}$ constant $\tfrac{27}2+4\log\tfrac32$) & none \\
+$D_1$ self-adjoint & real spectrum & [BKS], [B04] DR (statement only); [BMV] algebraic & T5 \\
+complete one-loop $D_1$ & harmonic action, $C_j=h(j)$ & [B03c] hep-th/0307015v5: classical $\mathfrak{psl}(4|4)$ invariance, $C_j$ fixed in the $\mathfrak{sl}(2)$ subsector, point splitting (Sec.~3, App.~B as corrected in v5); statement only & IP7 spectrum \\
+$2\{Q|_{g^1},(Q|_{g^1})^{\rm adj}\}$ & one-loop $D$ on BPS words & algebraic [lit, Target 27] & analogue: T3 (iv) \\
+hermiticity frames & $S_2=(Q_2)^\dagger$ fixes $\gamma$ real & algebraic [B03] & frames of T1, T2 \\
+\end{longtable}}
+\tabcaption{Targets from [lit] and \texttt{n4\_untwisted.json}; statements from papers using dimensional regularisation or its supersymmetric variants are statements only, compared through scheme-independent quantities (eigenvalues, orthogonality, ratios within a multiplet).}
+
+\section{Engine plan}
+
+The plan is \texttt{step2/theory/engine\_plan\_ip.json}. Two engines (A, B) independent in code and in method, each importing only its own code and generating its own graph census from its own vertex tables, run: IP0 conventions (conjugation of operators, tree radial Grams with the coefficient of $t_2t_1$, the classical images, positivity as a computed gate, the one-cubic-vertex trees at weight $3$); IP1 the scalar bilinears; IP2 the weight-$\tfrac52$ two-point functions; IP3 the weight-$3$ tree norms and the $\overline F_z$ block; IP4 descendants; IP6 the frames (translation and dilatation composite remainders on every test family, conversion of the generator matrices); IP5 assembly of T0--T4 in the frame $P_1=0$; IP7 two-letter kernels and T5; IP8 the gauge-fixing check. Engine A evaluates the two-point graphs by its Beta/Dirichlet expansion of the position-space masters; engine B by momentum-space Schwinger--Gaussian evaluation of whole graphs with its closed-form masters and the Fourier lemma, or position-space evaluation at several $\varepsilon$ with exact extrapolation; each re-derives the numerator reduction, the localisation constants, the Fourier lemma and the contact property of the five-line graph; finite-$\varepsilon$ quadrature confirms the $\varepsilon\to0$ constants to $O(\varepsilon\log\varepsilon)$. The one-loop components $Q_1$, $S_1$, $K_1$, $P_1$ come from the computations E1, E3, E4, E5, E8, E10, E11, E12 of \texttt{engine\_plan.json} and Part D. Integrals are position-space UV-boundary graphs evaluated exactly (constants in the basis $1,\gamma_E,\log2,\log3$), without dimensional regularisation and at $T=\infty$ (safe for all two-point functions, [ch08, prop:c8-2pt (ii)]); every process stays below $1.5$~GB, is deterministic, uses file-relative paths and runs from a copied directory.
+
+\section{Status}
+
+\begin{itemize}
+\item Derived and checked: Lemmas \ref{lem:ip-ward}, \ref{lem:ip-W}, Theorems \ref{thm:ip-origin}, \ref{thm:ip-graded}, \ref{thm:ip-laws} ((f) a hypothesis), \ref{thm:ip-logic}, \ref{thm:ip-P}, Propositions \ref{prop:ip-spin}, \ref{prop:ip-desc}, \ref{prop:ip-orders}, \ref{prop:ip-universal}, \ref{prop:ip-frames}, \ref{prop:ip-realpart}, \ref{prop:ip-tree}--\ref{prop:ip-mixing}, as algebraic consequences of the hypotheses stated in each; [checks, C1--C17].
+\item Evaluated: the sign of the fermionic radial form (positive with the coefficient of $t_2t_1$); T0 (b) and T3 (iv) in modulus ($D_1(O_\zeta)=-48$ units from classical and tree data).
+\item Predictions: a common translation rescaling on the gauge-invariant test families equal to the scalar-bilinear value; the coefficient $-\tfrac13$ units of $S^{(1)}(\Delta)|_{\Wp}$ in $\hbar F_1^{(1)}(\Delta)$ and the vanishing of the total coefficient of $\{S^{(1)}(\Delta),-\}$ in $D_1$ on the other test families; in a reflection-compatible scheme, a universal real rescaling of the supercharges equal to half the translation rescaling.
+\item Conditional on the hypotheses of [ch08, thm:c8-adjoint], on the arity-two master equation, and on the gauge-fixing hypothesis: every other relation of the test set.
+\item To compute (engines): the one-loop radial constants of $O_\zeta$ and of the $\mathbf{20}$, the tree norms of $\overline F_z$, $B_z$ and the protected descendant, the signs of the classical images in the code conventions, the composite translation and dilatation remainders on every test family, the one-loop components $Q_1$ (along $S_+\otimes W$ and one generator of $S_-\otimes W^*$), $S_1$, $K_1$, $P_1$, and the length-four kernels for T5.
+\end{itemize}
+
+\end{document}

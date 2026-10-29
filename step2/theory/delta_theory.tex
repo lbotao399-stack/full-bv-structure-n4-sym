@@ -1,0 +1,323 @@
+\chapter{The arity-one master equation along the dilatation}
+
+Along the dilatation the equivariant structure of Chapter 8 is determined by the arity-zero structure: $S^{(1)}(\Delta)$ is quadratic, it generates the Weyl scaling, and the regulator moves under the scaling only through its two endpoints. This chapter turns these facts into exact identities at finite $\varepsilon$ and $T$, computes from them the arity-one counterterm, the obstruction $\mathrm{Ob}(\Delta)$ and the finite counterterm along $\Delta$, and derives the dilatation component $D_1$ of Definition \ref{def:c8-components} for every homogeneous local operator. The difficulty is a single kernel: because $(Q^{GF})^2\neq0$ in Feynman gauge (Proposition \ref{prop:c3-axioms}), $S^{(1)}(\Delta)$ can sit inside a cycle as a composite line from $A|_V$ to $c$, and the identification \eqref{eq:c6-step2} has to be corrected by the terms this line produces.
+
+Names. $M:=v.$ for $v=2E$ (Definition \ref{def:c7-vdot}, Lemma \ref{lem:c7-weights}), and the quadratic functional $S^{(1)}(\Delta)$ of Example \ref{ex:c2-dil} is written out in full or, inside proofs, as $S^{(1)}(\Delta)$. For a linear operator $X$ on $\mathscr E$, $D_X$ is the derivation of functionals induced by $X$ [C07, §6.2], with the convention in which $Q$ acting on functionals is $D_Q$. The scale-$t$ bracket and Laplacian are those of Definition \ref{def:c8-PT}. For a kernel $\phi$, $\phi\star$ is the operator it represents; $P(\varepsilon,T)\star=\int_\varepsilon^TQ^{GF}e^{-tH}dt$. For a second-order operator $\partial_\phi$ and functionals $f,g$,
+\[
+\partial_\phi(fg)=(\partial_\phi f)\,g+(-1)^{|\phi||f|}f\,\partial_\phi g+C_\phi(f,g),
+\]
+which defines the contraction $C_\phi(f,g)$ of one leg of $f$ with one leg of $g$ through $\phi$; for the kernels $K_t$, $\{f,g\}_t=-C_{K_t}(f,g)$ (Definition \ref{def:c3-delta}). The unit is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, and the field-counting functional is $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ (Chapter 6). The arity-one part along $\Delta$ of a cochain $f$ is the coefficient $f_\Delta$ in $f=f^{(0)}+\xi f_\Delta+\cdots$, with $\xi$ the odd coordinate of $\Delta$ in $\mathfrak{psl}(4|4)[1]$ placed on the left; on the line $\mathbb C\Delta$, $d_{CE}=0$ since $[\Delta,\Delta]=0$. Signs of components are normalised by the classical term: the component of $O$ along $\Delta$ at order $\hbar^0$ is $+\{S^{(1)}(\Delta),O\}$ (Proposition \ref{prop:c6-classical}).
+
+\section{The calculus of a quadratic generator}
+
+\begin{lemma}[Quadratic generators and kernels]
+\label{lem:d-calculus}
+Let $X$ be an even operator on $\mathscr E$ preserving $\langle\,,\rangle$, let $\phi$ be an even kernel and $0<\varepsilon<T\le\infty$. Then:
+\begin{itemize}
+\item (i) $[D_X,\partial_\phi]=-\partial_{(X\otimes1+1\otimes X)\phi}$, and $[\partial_{P(\varepsilon,T)},Q]=\partial_{K_\varepsilon}-\partial_{K_T}$.
+\item (ii) $\{S^{(1)}(\Delta),F\}=D_MF$ and $\{S^{(1)}(\Delta),F\}_t=D_{e^{-tH}M}F$ for every functional $F$ and every $t>0$; $Q\,S^{(1)}(\Delta)=0$.
+\item (iii) $C_{P(\varepsilon,T)}\big(S^{(1)}(\Delta),-\big)=D_{P(\varepsilon,T)\star M}$: the contraction of one leg of $S^{(1)}(\Delta)$ through the propagator is the derivation induced by $e\mapsto P(\varepsilon,T)\star Me$.
+\item (iv) $[\partial_{P(\varepsilon,T)},D_{P(\varepsilon,T)\star M}]=\partial_\Psi$, where $\Psi$ is the kernel of the even operator $P(\varepsilon,T)\star\,M\,P(\varepsilon,T)\star$, and $[\partial_{P(\varepsilon,T)},\partial_\Psi]=0$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) On a product of two linear functionals $\partial_\phi$ is the evaluation of their tensor product on $\phi$, and $D_X$ acts on a linear functional $\ell$ by $\ell\mapsto\ell\circ X$; hence $[D_X,\partial_\phi](\ell_1\ell_2)=-(\ell_1\otimes\ell_2)\big((X\otimes1+1\otimes X)\phi\big)$, and both sides are second-order operators with constant coefficients, determined by their values on quadratic monomials. The second identity is Lemma \ref{lem:c8-transfer} in commutator form. (ii) The first identity is the sign measured in Part D4 by both engines and fixed by the toy model; the second follows from $K_t=(e^{-tH}\otimes1)K_0$ applied to one leg of $S^{(1)}(\Delta)$. $Q\,S^{(1)}(\Delta)=\pm\{\tfrac12\langle e,Qe\rangle,S^{(1)}(\Delta)\}=\mp D_M\tfrac12\langle e,Qe\rangle=0$ because $[M,Q]=0$ and $M$ preserves the pairing. (iii) $C_\phi(S^{(1)}(\Delta),\ell)$ for a linear functional $\ell$ is linear; contracting the leg of $\ell$ with $\phi$ and the remaining leg of $S^{(1)}(\Delta)$, whose kernel represents $M$, gives $\ell\circ(\phi\star M)$. (iv) By (i) with the odd operator $P\star M$, $[\partial_P,D_{P\star M}]$ is the second-order operator of the kernel $(P\star M\otimes1+1\otimes P\star M)P$, which is the kernel of $P\star MP\star$ (graded symmetry of $P$, Proposition \ref{prop:c3-P}); it has constant coefficients, so it commutes with $\partial_P$.
+\end{proof}
+
+\begin{remark}[Verification]
+Every identity of this chapter that does not involve a loop integral is a finite matrix identity and is checked in a finite-dimensional model: a fibre with slots $c$, $A$ (longitudinal and transverse), $A^*$, $c^*$, with the arrows of $Q$ and $Q^{GF}$ of Definitions \ref{def:c1-pairing}, \ref{def:c3-qgf} in momentum space, tensored with a truncated polynomial ring on which $H$ acts as multiplication and $M$ as $-4z\frac{d}{dz}+\text{const}$, so that $[M,Q]=0$, $[M,Q^{GF}]=-4Q^{GF}$, $[M,H]=-4H$ hold exactly; once with the Feynman arrow $A^*|_V\mapsto A|_V$ of $Q^{GF}$ and once without it, so that $(Q^{GF})^2\neq0$, resp. $=0$. All identities hold exactly in rational arithmetic.
+\end{remark}
+
+\section{Closed forms along the dilatation}
+
+\begin{proposition}[Graphs with one vertex $S^{(1)}(\Delta)$]
+\label{prop:d-D1a}
+Write $P=P(\varepsilon,T)$ and let $J$ be even. Then
+\begin{equation}
+e^{\hbar\partial_P}\,S^{(1)}(\Delta)=\Big(S^{(1)}(\Delta)+\hbar\,\partial_PS^{(1)}(\Delta)+\hbar\,D_{P\star M}+\tfrac{\hbar^2}2\,\partial_\Psi\Big)\,e^{\hbar\partial_P},
+\label{eq:d-conj}
+\end{equation}
+and with $W=W(P,J)$,
+\begin{equation}
+\frac{d}{d\xi}W\big(P,J+\xi S^{(1)}(\Delta)\big)=S^{(1)}(\Delta)+\hbar\,\partial_PS^{(1)}(\Delta)+D_{P\star M}W+\tfrac\hbar2\,\partial_\Psi W+\tfrac14\,C_\Psi(W,W).
+\label{eq:d-D1a}
+\end{equation}
+The second term is a field-independent constant. The third is the vertex $S^{(1)}(\Delta)$ joined by one edge $P$ to each leg of $W$ in turn; the fourth closes two legs of $W$ by the composite line $\Psi$; the fifth joins two copies of $W$ by $\Psi$.
+\end{proposition}
+
+\begin{proof}
+$e^{\hbar\partial_P}S^{(1)}(\Delta)e^{-\hbar\partial_P}=\sum_n\frac{\hbar^n}{n!}\mathrm{ad}_{\partial_P}^n\big(S^{(1)}(\Delta)\big)$ as operators. By the definition of $C_P$ and Lemma \ref{lem:d-calculus} (iii), $\mathrm{ad}_{\partial_P}(S^{(1)}(\Delta))=\partial_PS^{(1)}(\Delta)+D_{P\star M}$; the constant commutes with $\partial_P$, so by Lemma \ref{lem:d-calculus} (iv) $\mathrm{ad}^2_{\partial_P}(S^{(1)}(\Delta))=\partial_\Psi$ and $\mathrm{ad}^3_{\partial_P}(S^{(1)}(\Delta))=0$. This is \eqref{eq:d-conj}. Since $\xi$ is odd and $\xi^2=0$, $e^{(J+\xi S^{(1)}(\Delta))/\hbar}=e^{J/\hbar}\big(1+\hbar^{-1}\xi S^{(1)}(\Delta)\big)$ and $\frac{d}{d\xi}W(P,J+\xi S^{(1)}(\Delta))=e^{-W/\hbar}e^{\hbar\partial_P}\big(S^{(1)}(\Delta)e^{J/\hbar}\big)$. Insert \eqref{eq:d-conj} with $e^{\hbar\partial_P}e^{J/\hbar}=e^{W/\hbar}$; for the derivation, $\hbar D_{P\star M}e^{W/\hbar}=(D_{P\star M}W)e^{W/\hbar}$, and for the second-order operator, $\partial_\Psi e^{W/\hbar}=\big(\hbar^{-1}\partial_\Psi W+\tfrac12\hbar^{-2}C_\Psi(W,W)\big)e^{W/\hbar}$.
+\end{proof}
+
+\begin{proposition}[The composite line]
+\label{prop:d-psi}
+\begin{itemize}
+\item (i) $P\star MP\star=\tfrac12\big(M(P\star)^2+(P\star)^2M\big)$ and $(P\star)^2=(Q^{GF})^2\big(\int_\varepsilon^Te^{-tH}dt\big)^2$. Hence $\Psi=0$ when $(Q^{GF})^2=0$. For the Feynman-gauge operator, $(Q^{GF})^2A^*=2\,d^*(A^*|_V)$ in the slot of $c$, $(Q^{GF})^2c^*=-2\,dc^*$ in the slot of $A|_V$, and $(Q^{GF})^2=0$ on the slots of $c$, $A$, $\lambda$, $\lambda^*$, so $\Psi$ has components in $c\otimes A|_V$ and $A|_V\otimes c$ only: inside a graph it is a line from an $A|_V$ leg to a $c$ leg.
+\item (ii) $Q\,P\star+P\star\,Q=e^{-\varepsilon H}-e^{-TH}$ and $Q\,(P\star MP\star)-(P\star MP\star)\,Q=0$; equivalently $(Q\otimes1+1\otimes Q)\Psi=0$ and $[Q,\partial_\Psi]=0$.
+\item (iii) For $T<\infty$, or for $T=\infty$ on sections whose Fourier transforms vanish near $p=0$, put $k=e^{-\varepsilon H}-e^{-TH}$ and $\Phi_T:=k^{-1}P\star\,(P\star MP\star)$, an odd operator. Then $P\star MP\star=Q\Phi_T+\Phi_TQ$ and $\partial_\Psi=\partial_{\Phi_T}Q+Q\,\partial_{\Phi_T}$.
+\item (iv) In momentum space, on the slot of $A^*|_V$, $(P\star)^2$ is of order $|p|^{-3}$ as $p\to0$ at $T=\infty$ and bounded by a multiple of $T^2|p|$ at finite $T$; $\Phi_T$ is of order $|p|^{-4}$ as $p\to0$ at $T=\infty$ and bounded at finite $T$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $P(\varepsilon,T)\star=Q^{GF}f(H)$ with $f(H)=\int_\varepsilon^Te^{-tH}dt$. By Proposition \ref{prop:c7-dil}, $[M,Q^{GF}]=-4Q^{GF}$ and $[M,H]=-4H$, so $[M,f(H)]=-4Hf^{\prime}(H)$ and $[M,P\star]=Q^{GF}g(H)$ for a function $g$. Then $P\star MP\star-\tfrac12\big(M(P\star)^2+(P\star)^2M\big)=\tfrac12\big(P\star[M,P\star]-[M,P\star]P\star\big)=\tfrac12(Q^{GF})^2\big(fg-gf\big)(H)=0$, using $[Q^{GF},H]=0$. The square, from Definition \ref{def:c3-qgf}: $(Q^{GF})^2A^*=Q^{GF}(-2A^*)=2d^*(A^*|_V)$, $(Q^{GF})^2c^*=Q^{GF}(dc^*)=-2dc^*$; $Q^{GF}$ maps $A$ to $c$ and $\lambda^*$ to $\lambda$, on which it vanishes. The kernel of an operator from $A^*$ to $c$, resp. from $c^*$ to $A|_V$, lies in $c\otimes A|_V$, resp. $A|_V\otimes c$. (ii) $QP\star+P\star Q=Hf(H)=e^{-\varepsilon H}-e^{-TH}=k$, since $[Q,f(H)]=0$. With $[M,Q]=0$,
+\[
+Q\,P\star MP\star-P\star MP\star\,Q=kMP\star-P\star Mk=Q^{GF}\big(kMf-fMk\big),
+\]
+and $kMf-fMk=-4\big(kHf^{\prime}+kf-fHk^{\prime}\big)=-4\big(k(Hf)^{\prime}-fHk^{\prime}\big)=0$ because $Hf=k$ and $[M,k]=-4Hk^{\prime}$. (iii) $Q\Phi_T+\Phi_TQ=k^{-1}(QP\star+P\star Q)\,P\star MP\star=P\star MP\star$, using (ii) and $[k,Q]=0$; the kernel identity is Lemma \ref{lem:d-calculus} (i) with the odd operator $\Phi_T$. (iv) On $A^*|_V$, $(Q^{GF})^2$ is of order $|p|$ and $f=(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$ is of order $|p|^{-2}$ at $T=\infty$ and bounded by $T$; $(Q^{GF})^3$ is of order $|p|^2$ on $c^*$ and zero on $A^*$, and $k^{-1}f^3$ is of order $|p|^{-6}$ at $T=\infty$ and of order $T^2|p|^{-2}$ at finite $T$.
+\end{proof}
+
+\begin{proposition}[$Q$ of the graphs with one vertex $S^{(1)}(\Delta)$]
+\label{prop:d-D1b}
+With $P=P(\varepsilon,T)$, $J$ even, $W=W(P,J)$ and $I_\Delta:=\frac{d}{d\xi}W(P,J+\xi S^{(1)}(\Delta))$,
+\begin{equation}
+[Q,D_{P\star M}]=\{S^{(1)}(\Delta),-\}_\varepsilon-\{S^{(1)}(\Delta),-\}_T,
+\label{eq:d-homotopy}
+\end{equation}
+\begin{equation}
+Q\,I_\Delta=\{S^{(1)}(\Delta),W\}_\varepsilon-\{S^{(1)}(\Delta),W\}_T-D_{P\star M}(QW)+\tfrac\hbar2\,\partial_\Psi(QW)+\tfrac12\,C_\Psi(QW,W),
+\label{eq:d-D1b}
+\end{equation}
+the bracket in \eqref{eq:d-homotopy} being the graded commutator of two odd operators.
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:d-calculus} (iii), $[Q,D_{P\star M}]=D_{QP\star M+P\star MQ}=D_{(QP\star+P\star Q)M}=D_{kM}$ with $[M,Q]=0$, and $D_{kM}=D_{e^{-\varepsilon H}M}-D_{e^{-TH}M}$ is the right side of \eqref{eq:d-homotopy} by Lemma \ref{lem:d-calculus} (ii). Apply the odd derivation $Q$ to \eqref{eq:d-D1a}: $QS^{(1)}(\Delta)=0$, $Q$ kills constants, $Q(D_{P\star M}W)=[Q,D_{P\star M}]W-D_{P\star M}QW$, $Q\,\partial_\Psi W=\partial_\Psi QW$ by Proposition \ref{prop:d-psi} (ii), and $Q\,C_\Psi(W,W)=C_\Psi(QW,W)+C_\Psi(W,QW)=2C_\Psi(QW,W)$ by the graded symmetry of $C_\Psi$ for even $\Psi$ and even $W$.
+\end{proof}
+
+\begin{proposition}[Scaling Ward identity]
+\label{prop:d-ward}
+For $0<\varepsilon<T\le\infty$ and every even $J$, with $W^{\prime}_J(X):=\frac{d}{dt}\big|_{t=0}W(P(\varepsilon,T),J+tX)$,
+\begin{equation}
+(M\otimes1+1\otimes M)P(\varepsilon,T)=-4\Big(\varepsilon\frac{\partial}{\partial\varepsilon}+T\frac{\partial}{\partial T}\Big)P(\varepsilon,T),
+\label{eq:d-MP}
+\end{equation}
+\begin{equation}
+D_M\,W\big(P(\varepsilon,T),J\big)=W^{\prime}_J(D_MJ)+4\Big(\varepsilon\frac{\partial}{\partial\varepsilon}+T\frac{\partial}{\partial T}\Big)\Big|_JW\big(P(\varepsilon,T),J\big).
+\label{eq:d-ward}
+\end{equation}
+At $T=\infty$ the last term is $4\varepsilon\frac{\partial}{\partial\varepsilon}|_JW$, with the sign $+$.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c7-dil}, $(M\otimes1+1\otimes M)L_t=-4L_t-4t\frac{d}{dt}L_t$; integrating over $(\varepsilon,T)$ gives $-4[tL_t]_\varepsilon^T=4\varepsilon L_\varepsilon-4TL_T$, and $\partial_\varepsilon P(\varepsilon,T)=-L_\varepsilon$, $\partial_TP(\varepsilon,T)=L_T$. By Lemma \ref{lem:d-calculus} (i) and the commutativity of the operators $\partial_\phi$, $D_Me^{\hbar\partial_P}=e^{\hbar\partial_P}D_M-\hbar\,\partial_{(M\otimes1+1\otimes M)P}e^{\hbar\partial_P}=e^{\hbar\partial_P}D_M+4(\varepsilon\partial_\varepsilon+T\partial_T)e^{\hbar\partial_P}$. Apply it to $e^{J/\hbar}$, with $D_Me^{J/\hbar}=\hbar^{-1}(D_MJ)e^{J/\hbar}$, and divide by $\hbar^{-1}e^{W/\hbar}$. The sign agrees with the two-point checks of both engines ($D_M$ of the $A|_{W_{\mathbb R}^\perp}$ self-energy equals $4\varepsilon\partial_\varepsilon$ of it).
+\end{proof}
+
+\begin{corollary}[Callan--Symanzik form at a finite endpoint]
+\label{cor:d-CS}
+Let $J=I-I^{CT}[\varepsilon]-\hbar F_1^{(0)}+\delta\,O(\varepsilon)$ with $O$ homogeneous, the finite counterterm of Weyl weight $4$, and $O(\varepsilon)$ of Definition \ref{def:c8-renorm} with a weight-preserving $\psi$. Modulo $\hbar^2$,
+\[
+\begin{aligned}
+D_M\,O[T]-4T\frac{\partial}{\partial T}O[T]=\ &(D_MO)[T]+4\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[T]\\
+&+4\,\big(\text{tree insertion at scale }T\text{ of the coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\text{ into }O[T]\big),
+\end{aligned}
+\]
+and $D_MI[T]-4T\partial_TI[T]$ is the tree flow at scale $T$ of $4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$. At $T=\infty$ the first statement is twice Theorem \ref{thm:c6-CS}.
+\end{corollary}
+
+\begin{proof}
+Write $\mathcal D:=D_M-4\varepsilon\frac{d}{d\varepsilon}-4T\partial_T$ with the total $\varepsilon$-derivative. By \eqref{eq:d-ward}, $\mathcal D\,W(P(\varepsilon,T),J(\varepsilon))=W^{\prime}_J\big((D_M-4\varepsilon\partial_\varepsilon)J\big)$. $D_MI=0$ and $D_M$ of a density of Weyl weight $k$ is $2(k-4)$ times it (Lemma \ref{lem:c6-data}), so $D_MF_1^{(0)}=0$; at one loop $I^{CT}[\varepsilon]=\varepsilon^{-1}C_{-1}+\log\varepsilon\,C_{\log}$ with $D_MC_{-1}=-4C_{-1}$, $D_MC_{\log}=0$, hence $(D_M-4\varepsilon\partial_\varepsilon)I^{CT}[\varepsilon]=-4C_{\log}$. For $O(\varepsilon)=O-\varepsilon^{-1}V_O-\log\varepsilon\,C_O+\hbar\psi(O)$ the same computation gives $(D_M-4\varepsilon\partial_\varepsilon)O(\varepsilon)=(D_MO)(\varepsilon)+4C_O$ up to constants, which do not contribute (Proposition \ref{prop:c8-2pt} (i)). The flow has a limit as $\varepsilon\to0$, and $\varepsilon\frac{d}{d\varepsilon}$ of it tends to $0$ (its $\varepsilon$-dependence at one loop is a sum of terms $\varepsilon^a\log^b\varepsilon$ with $a>0$, Lemma \ref{lem:c4-local}). Take $\partial_\delta$ and $\varepsilon\to0$.
+\end{proof}
+
+\section{Counterterm, obstruction and finite counterterm along $\Delta$}
+
+\begin{definition}[Arity-one data along $\Delta$]
+\label{def:d-data}
+Let $J=I-I^{CT}[\varepsilon]-\hbar F_1^{(0)}$ with $\hbar F_1^{(0)}$ the arity-zero finite counterterm, $I^{CT}_\Delta[\varepsilon]$ the arity-one part along $\Delta$ of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ and $\hbar F_1(\Delta)$ that of the finite counterterm (Definition \ref{def:c8-quant}), and
+\[
+J_\Delta=S^{(1)}(\Delta)-I^{CT}_\Delta[\varepsilon]-\hbar F_1(\Delta).
+\]
+The arity-one effective interaction along $\Delta$ at scale $T$ is $I_\Delta[T]:=\lim_{\varepsilon\to0}\frac{d}{d\xi}W\big(P(\varepsilon,T),J+\xi J_\Delta\big)$, and the arity-one part along $\Delta$ of \eqref{eq:c8-qme} is, up to the sign of moving $\xi$ to the left,
+\[
+Q\,I_\Delta[T]+\big\{I[T],I_\Delta[T]\big\}_T+\hbar\Delta_TI_\Delta[T]=0 .
+\]
+The arity-one defect along $\Delta$ is the vertex $QJ_\Delta+\{J,J_\Delta\}_\varepsilon+\hbar\Delta_\varepsilon J_\Delta$ of Definition \ref{def:c8-ob}; by Lemma \ref{lem:d-calculus} (ii), $QS^{(1)}(\Delta)=0$ and $D_MI=0$ it equals, modulo constants,
+\[
+\big(\{I,S^{(1)}(\Delta)\}_\varepsilon-\{I,S^{(1)}(\Delta)\}\big)-\{I^{CT}[\varepsilon]+\hbar F_1^{(0)},S^{(1)}(\Delta)\}_\varepsilon-Q\big(I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta)\big)-\{J,I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta)\}_\varepsilon ,
+\]
+the displayed formula of the last section of Chapter 7 with the finite counterterms added.
+\end{definition}
+
+\begin{definition}[The composite cycle]
+\label{def:d-PiPsi}
+The renormalised composite two-point functional is the local quadratic functional
+\[
+\Pi_\Psi:=\lim_{\varepsilon\to0}\Big(\tfrac\hbar2\,\partial_\Psi W\big(P(\varepsilon,\infty),I\big)_{\rm tree}-I^{CT}_\Delta[\varepsilon]\Big)_{\rm quadratic},
+\]
+the one-loop graphs with two external legs in which $S^{(1)}(\Delta)$ sits on the cycle as the composite line of Proposition \ref{prop:d-psi}, with the singular part removed.
+\end{definition}
+
+\begin{axiom}[Locality and large distance; assumed, with the proof strategy stated]
+\label{ax:d-loc}
+\begin{itemize}
+\item (UV) The $\varepsilon\to0$ limit of a one-loop graph with exactly one edge $K_\varepsilon-K_0$ on its cycle, the other edges $P(\varepsilon,T)$ or $\Psi$ or $\Phi_T$, all external legs at generic momenta, is the tree flow of a local functional independent of $T$. Proof strategy: in the Schwinger representation of Lemma \ref{lem:c4-local}, $e^{-\varepsilon|l|^2}-1$ restricts the cycle momentum to $|l|\gtrsim\varepsilon^{-1/2}$, where the integrand expands in the external momenta; the remainder after subtracting the Taylor polynomial of the appropriate degree is dominated by an integrable function and tends to $0$.
+\item (IR) For the arity-one functionals along $\Delta$ and along translations, the contributions of $\{I[T],-\}_T$, $\hbar\Delta_T$ and of edges carrying $TL_T$ tend to $0$ as $T\to\infty$. Proof strategy: the only kernel whose decay is not that of Definition \ref{def:c8-PT} is the composite line, of order $|l|^{-3}$ at small momentum by Proposition \ref{prop:d-psi} (iv), and $M$ acts as an Euler operator, which preserves the degree of homogeneity; a $K_T$ edge closing a cycle through it gives $\int d^4l\,e^{-T|l|^2}|l|^{-3}=O(T^{-1/2})$.
+\end{itemize}
+\end{axiom}
+
+\begin{theorem}[Arity-one structure along $\Delta$]
+\label{thm:d-D2}
+Assume a one-loop arity-zero quantisation ($F_1^{(0)}$ with \eqref{eq:c8-qme} at arity zero modulo $\hbar^2$) and Axiom \ref{ax:d-loc}. Modulo $\hbar^2$:
+\begin{itemize}
+\item (i) $I^{CT}_\Delta[\varepsilon]$ is the singular part of $\tfrac\hbar2\,\partial_\Psi W(P(\varepsilon,T),I)_{\rm tree}$. Every other one-loop graph with one vertex $S^{(1)}(\Delta)$ has a limit as $\varepsilon\to0$; in particular the graphs with $S^{(1)}(\Delta)$ joined by an edge to a self-energy and those joined to the counterterm vertex have singular parts that cancel pairwise. $I^{CT}_\Delta[\varepsilon]=0$ when $(Q^{GF})^2=0$.
+\item (ii) The arity-one obstruction along $\Delta$ is
+\begin{equation}
+\mathrm{Ob}(\Delta)=4\,\big(\text{coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\big)+A_\Psi,
+\label{eq:d-Ob}
+\end{equation}
+where $A_\Psi$ is the local functional with $A_\Psi[\infty]=\lim_{\varepsilon\to0}\big(\tfrac\hbar2\,\partial_\Psi\,Q\,W(P(\varepsilon,\infty),I)_{\rm tree}-(Q+\{I,-\})I^{CT}_\Delta[\varepsilon]\big)$; its quadratic part is $Q\,\Pi_\Psi$.
+\item (iii) $\hbar F_1(\Delta)$ is a one-loop quantisation along $\Delta$ exactly when
+\begin{equation}
+(Q+\{I,-\})\,\hbar F_1(\Delta)+\{S^{(1)}(\Delta),\hbar F_1^{(0)}\}=\mathrm{Ob}(\Delta),\qquad \{S^{(1)}(\Delta),\hbar F_1^{(0)}\}=0 .
+\label{eq:d-F}
+\end{equation}
+With $Y_\Psi$ local, $(Q+\{I,-\})Y_\Psi=A_\Psi$, the solutions are
+\begin{equation}
+\hbar F_1(\Delta)=4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big)+Y_\Psi+z\,S^{(1)}(\Delta)+G_\Delta,
+\label{eq:d-Fsol}
+\end{equation}
+with $z$ a number and $G_\Delta$ an $(Q+\{I,-\})$-closed local functional of degree $-1$ and Weyl weight $4$ other than $S^{(1)}(\Delta)$; the quadratic part of $Y_\Psi$ is $\Pi_\Psi$ modulo $Q$-closed quadratic functionals.
+\item (iv) No trace-anomaly class: modulo $(Q+\{I,-\})$-exact local functionals, $\mathrm{Ob}(\Delta)$ is $4b$ times the arity-zero part $S$ of the coupling direction $S-S^{(2)}$, with $b$ the coefficient of the coupling direction in the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$; $b=0$ (Corollary \ref{cor:c4-coupling}), so $\mathrm{Ob}(\Delta)$ is exact.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Apply \eqref{eq:d-D1a} with $J=I-I^{CT}[\varepsilon]$; the one-loop terms are $D_{P\star M}W_1$, $\tfrac\hbar2\partial_\Psi W_0$ and $\tfrac12C_\Psi(W_0,W_1)$, with $W_0$, $W_1$ the tree and one-loop parts of $W(P,J)$. $W_1$ contains the vertex $-I^{CT}[\varepsilon]$ and has a limit (Proposition \ref{prop:c4-limit}); $D_{P\star M}$ and $C_\Psi(W_0,-)$ attach trees to its legs, at generic momenta, so these terms have limits, the pairwise cancellation being that of $W_1$ itself. The remaining term is a sum of one-loop graphs whose cycle contains $\Psi$; its singular part is the counterterm, and it vanishes with $\Psi$ (Proposition \ref{prop:d-psi} (i)). (ii) At $T=\infty$, by Axiom \ref{ax:d-loc} (IR) the arity-one equation is $Q\,I_\Delta[\infty]=0$. Write $I_\Delta=\frac{d}{d\xi}W(P,J+\xi S^{(1)}(\Delta))-W^{\prime}_J\big(I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta)\big)$ and apply \eqref{eq:d-D1b} with $T=\infty$. First, $\{S^{(1)}(\Delta),W\}_\varepsilon=D_MW+D_{(e^{-\varepsilon H}-1)M}W$; the second term acts on external legs and tends to $0$; by Corollary \ref{cor:d-CS}, $D_MW$ tends to the tree flow of $4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$, the term $D_M\hbar F_1^{(0)}$ vanishing by weight. Second, by Theorem \ref{thm:c3-uv}, $QW$ is the flow of the arity-zero defect; its tree part is the flow of the special-edge trees $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$, which tends to $0$ at generic momenta, and its one-loop part tends to $0$ by the arity-zero quantisation. Hence $D_{P\star M}(QW)$ and $\tfrac12C_\Psi(QW,W)$ tend to $0$ (trees attached to legs), while $\tfrac\hbar2\partial_\Psi QW_{\rm tree}$ closes a cycle through a special edge and has a local limit by Axiom \ref{ax:d-loc} (UV). Third, $Q\,W^{\prime}_J(X)=W^{\prime}_J\big(QX+\{J,X\}_\varepsilon\big)+(\text{terms with the arity-zero defect})$, which tends to the tree flow of $(Q+\{I,-\})X$. Collecting, $Q\,I_\Delta[\infty]$ is the tree flow of the right side of \eqref{eq:d-Ob} minus $(Q+\{I,-\})\hbar F_1(\Delta)$; by Definition \ref{def:c8-ob} this is the statement. The quadratic part: $Q$ preserves the number of legs and, by Proposition \ref{prop:d-psi} (ii), the quadratic part of $\tfrac\hbar2\partial_\Psi QW_{\rm tree}$ is $Q$ of the quadratic part of $\tfrac\hbar2\partial_\Psi W_{\rm tree}$; subtracting $QI^{CT}_\Delta[\varepsilon]$ and taking the limit gives $Q\Pi_\Psi$. (iii) By Theorem \ref{thm:c8-obstruction} (ii) the condition is the arity-one component along $\Delta$ of $sF_1=\mathrm{Ob}$, which is \eqref{eq:d-F} since the cochain bracket with $\xi S^{(1)}(\Delta)$ gives $\{S^{(1)}(\Delta),F_1^{(0)}\}$; this vanishes because $\{S^{(1)}(\Delta),-\}=D_M$ (Lemma \ref{lem:d-calculus}) and $F_1^{(0)}$ has Weyl weight $4$. By \eqref{eq:c6-fieldren} the first term of \eqref{eq:d-Ob} is $(Q+\{I,-\})$ of $4$ units times the field-counting functional, which gives \eqref{eq:d-Fsol}; $S^{(1)}(\Delta)$ is closed because $QS^{(1)}(\Delta)=0$ and $\{I,S^{(1)}(\Delta)\}=\pm D_MI=0$. (iv) Write the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ as $b\,S+(Q+\{I,-\})(\cdot)$ with $S$ restricted to the gauge sector by Theorem \ref{thm:c8-obstruction} (iv); Theorem \ref{thm:c4-log} and Corollary \ref{cor:c4-coupling} give $b=0$, and $A_\Psi=(Q+\{I,-\})Y_\Psi$.
+\end{proof}
+
+\begin{proposition}[Existence of $Y_\Psi$]
+\label{prop:d-Ypsi}
+Under Axiom \ref{ax:d-loc}, $A_\Psi=(Q+\{I,-\})Y_\Psi$ with $Y_\Psi$ the local functional whose tree flow at scale $T$ is the local part of $\lim_{\varepsilon\to0}\big(\tfrac\hbar2\,\partial_{\Phi_T}QW(P(\varepsilon,T),I)_{\rm tree}-(\text{singular part})\big)$; it is independent of $T$.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:d-psi} (iii) at finite $T$ and $Q^2=0$, $\partial_\Psi(QW_{\rm tree})=\partial_{\Phi_T}Q^2W_{\rm tree}+Q\,\partial_{\Phi_T}(QW_{\rm tree})=Q\,\partial_{\Phi_T}(QW_{\rm tree})$. $QW_{\rm tree}$ is the tree flow of the defect: special edges $K_\varepsilon-K_0$ and, at finite $T$, edges $K_T$. Closing the special edges into the cycle gives, by Axiom \ref{ax:d-loc} (UV), the tree flow of a local functional, $T$-independent since the UV region is; the $K_T$ edges and the trees attached to the legs give terms that are cancelled by the brackets $\{I[T],-\}_T$ of the scale-$T$ equation (Definition \ref{def:c8-dT}). At tree level $Q$ of the tree flow of a local $Y$ is the tree flow of $(Q+\{I,-\})Y$ up to the same $K_T$ terms.
+\end{proof}
+
+\begin{example}[The quadratic sector]
+\label{ex:d-quadratic}
+In units and with $\int(dA,dA)=\int(dA|_V,dA|_V)+\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$, the quadratic part of $4\times$(coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$) is $-4\int(dA,dA)+16\int(\lambda,{\not d}\lambda)-4\int(dc,A^*)$ (Theorem \ref{thm:c4-quadratic}). The direct evaluation of Part D4 (special-edge graphs) gives the quadratic part of $\mathrm{Ob}(\Delta)$ to be $-\tfrac{11}3\int(dA,dA)+\tfrac{47}3\int(\lambda,{\not d}\lambda)-\tfrac{14}3\int(dc,A^*)$, so by \eqref{eq:d-Ob}
+\[
+Q\,\Pi_\Psi=\tfrac13\int(dA,dA)-\tfrac13\int(\lambda,{\not d}\lambda)-\tfrac23\int(dc,A^*)\quad\text{(units)}.
+\]
+The second, independent evaluation of Part D4 gives $\Pi_\Psi$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$: $\tfrac53S^{(1)}(\Delta)|_{W_{\mathbb R}^\perp}-\tfrac23\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ (units), finite and local. With $QS^{(1)}(\Delta)=0$ and $Q\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=-\tfrac12\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ (the normalisation in which the engine-B solution $\tfrac{22}3\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ has image $-\tfrac{11}3\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$), its image is $+\tfrac13\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$, in agreement. The two evaluations therefore agree on $F_1(\Delta)$: in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ both give $\tfrac{22}3\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=8\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})-\tfrac23\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, the field-counting part plus the translation-invariant part of $\Pi_\Psi$, and both leave $S^{(1)}(\Delta)|_{W_{\mathbb R}^\perp}$ undetermined by the two-point equation; the translation-invariant solution of the first evaluation
+\[
+\tfrac{11}3\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big)-\int(\lambda^*,\lambda)+\int(c^*,c)=4\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big)+\Big(-\tfrac23\int(A,A^*)+\tfrac13\int(\lambda^*,\lambda)+\tfrac43\int(c^*,c)\Big)
+\]
+is \eqref{eq:d-Fsol} with the predicted translation-invariant part of $\Pi_\Psi$ in the remaining sectors. The single quadratic functional $S^{(1)}(\Delta)|_{W_{\mathbb R}^\perp}$ is $Q$-closed but not $(Q+\{I,-\})$-closed, since $\{I,-\}$ of it rescales only the $A|_{W_{\mathbb R}^\perp}$ legs of $I$; the cubic equation therefore fixes its coefficient, and only the whole $S^{(1)}(\Delta)$ remains free.
+
+Two-component form of the fermionic functionals (Definition \ref{def:c8-twocomp}): $\int(\lambda,{\not d}\lambda)=2i\int\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\big)$, $\int(\lambda^*,\lambda)=\int\big\{(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\big\}$, the outer pairing being that of $\mathfrak g$; in Weinberg's form ${\not d}$ is $\gamma_W^\mu\partial_\mu$ on the Dirac column $(\lambda_\alpha,\bar\lambda^{\dot\alpha})$ (Proposition \ref{prop:c8-twocomp}).
+\end{example}
+
+\begin{remark}[The arity-one counterterm in the data]
+The first evaluation of Part D4 gives $I^{CT}_\Delta[\varepsilon]$ quadratic equal to $\log\varepsilon$ times the units times $\int(d(\iota_xA|_V),A^*|_V)-\int(\iota_xdc,c^*)-\int(\rho(x){\not d}\lambda,\lambda^*)$, with no $\varepsilon^{-1}$ part and no part in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, and this functional equals $Q\big(\int(\iota_xA|_V,c^*)-\tfrac12\int(\rho(x)\lambda^*,\lambda^*)\big)$. Theorem \ref{thm:d-D2} (i) predicts exactly this support: the composite line runs from $A|_V$ to $c$, and in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ the cycle it closes has superficial degree $-1$. Two-component: $(\rho(x){\not d}\lambda,\lambda^*)=-x_n(\sigma^n\bar\sigma^m)_\alpha{}^\beta\big(\partial_m\lambda_\beta{}^i,\lambda^{*\alpha}{}_i\big)+x_n\big(\partial_m\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha},\bar\lambda^{*\dot\alpha i}\big)$ and $(\rho(x)\lambda^*,\lambda^*)=-2i\,x_m\big(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i}\big)$, with $(\sigma^n\bar\sigma^m)_\alpha{}^\beta=\sigma^n_{\alpha\dot\alpha}\bar\sigma^{m\dot\alpha\beta}$ and $(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}=\bar\sigma^{m\dot\beta\alpha}\sigma^n_{\alpha\dot\alpha}$.
+\end{remark}
+
+\section{The dilatation component of local operators}
+
+\begin{definition}[Composite remainder]
+\label{def:d-RO}
+For a homogeneous local functional $O$ with $(Q+\{I,-\})O=0$, the composite remainder $R_O$ is the local functional of degree $|O|$ whose tree flow at scale $\infty$ is
+\[
+\lim_{\varepsilon\to0}\Big(\tfrac\hbar2\,\partial_\Psi\big(Q\,O_{\rm tree}[\varepsilon]\big)_{\text{cycles through }O}-\big(\text{singular part}\big)\Big)-\{Y_\Psi,O\}[\infty],
+\]
+where $O_{\rm tree}[\varepsilon]$ is the tree flow of $O$ with edges $P(\varepsilon,\infty)$ and $Q\,O_{\rm tree}[\varepsilon]$ is the tree flow with one special edge $K_\varepsilon-K_0$ (Theorem \ref{thm:c3-uv} and $(Q+\{I,-\})O=0$): the one-loop graphs in which the composite line and one special edge lie on a common cycle through $O$, minus the bracket of $O$ with the composite part $Y_\Psi$ of the finite counterterm \eqref{eq:d-Fsol}. $R_O=0$ when $(Q^{GF})^2=0$.
+\end{definition}
+
+\begin{theorem}[The dilatation component]
+\label{thm:d-D3}
+Assume the arity-zero quantisation modulo $\hbar^2$, a solution \eqref{eq:d-Fsol} of the arity-one equation along $\Delta$ in all sectors, and Axiom \ref{ax:d-loc}. Let $O$ be a homogeneous local operator of Weyl weight $w_O$ with $(Q+\{I,-\})O=0$ and $\psi$ weight preserving. Then the local representative of Definition \ref{def:c8-rep} exists along $\Delta$ at one loop, is independent of $T$, and
+\begin{equation}
+L(O)^{(1)}(\Delta)=\{S^{(1)}(\Delta),O\}+D_1(O),\qquad D_1(O)=2\,c_O\,O-z\,\{S^{(1)}(\Delta),O\}-\{G_\Delta,O\}+R_O+[(Q+\{I,-\}),\psi]_\Delta(O),
+\label{eq:d-D1}
+\end{equation}
+where $\{S^{(1)}(\Delta),O\}=2(E+w_O)O$ (Proposition \ref{prop:c6-classical}); $c_O\,O$ is the coefficient of Theorem \ref{thm:c6-dil} times $O$, i.e. twice the difference of the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ and the unit times $\{2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c),O\}$ ($c_O=0$ for the traceless scalar bilinears, $-24$ units for the trace; the letter $c_O$ is used in this note only); and the last term is the arity-one part along $\Delta$ of the commutator of Proposition \ref{prop:c8-laws} (b). Equivalently, the identification \eqref{eq:c6-step2} holds in the corrected form
+\begin{equation}
+\begin{aligned}
+\big[d_\infty O[\infty]\big](\Delta)=\ &2s\frac{d}{ds}\Big|_{s=1}\sigma_s\big(O[\infty]\big)-Q\Big(4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\cdot\text{tree insertion of }2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\text{ into }O[\infty]\Big)\\
+&-z\,\big(\{S^{(1)}(\Delta),O\}\big)[\infty]-\{G_\Delta,O\}[\infty]+R_O[\infty]+\big([(Q+\{I,-\}),\psi]_\Delta O\big)[\infty],
+\end{aligned}
+\label{eq:d-step2}
+\end{equation}
+where $[d_\infty O[\infty]](\Delta)$ is the arity-one part along $\Delta$ of $d_\infty O[\infty]$ minus the arity-one part of the tree flow of the arity-zero representative $L(O)^{(0)}$ (zero at order $\hbar^0$ for $(Q+\{I,-\})O=0$).
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:c8-transfer} applied to $e^{(J+\xi J_\Delta+\delta O(\varepsilon))/\hbar}$, $d_TO[T]$ is the $\varepsilon\to0$ limit of the flow of the vertex $(Q+\hbar\Delta_\varepsilon)O(\varepsilon)+\{J+\xi J_\Delta,O(\varepsilon)\}_\varepsilon$ with vertices $J+\xi J_\Delta$, the products of $O(\varepsilon)$ with the arity-zero and arity-one defects tending to $0$ by the two quantisation conditions. Its arity-one part along $\Delta$ consists of (a) the flow, with vertices $J$, of $\{J_\Delta,O(\varepsilon)\}_\varepsilon=\{S^{(1)}(\Delta),O(\varepsilon)\}_\varepsilon-\{I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta),O(\varepsilon)\}_\varepsilon$, and (b) the arity-one part of the flow of the arity-zero vertex $D^\delta:=(Q+\hbar\Delta_\varepsilon)O(\varepsilon)+\{J,O(\varepsilon)\}_\varepsilon$, given by \eqref{eq:d-D1a} with $D^\delta$ in place of one factor $e^{J/\hbar}$.
+
+(a) The vertex $\{S^{(1)}(\Delta),O(\varepsilon)\}_\varepsilon$ is $D_MO(\varepsilon)$, a local functional, plus the special-edge vertex $\{S^{(1)}(\Delta),O(\varepsilon)\}_\varepsilon-\{S^{(1)}(\Delta),O(\varepsilon)\}$, which contributes only inside cycles; the brackets with $I^{CT}_\Delta[\varepsilon]$ and $\hbar F_1(\Delta)$ are local vertices. (b) By $(Q+\{I,-\})O=0$, $D^\delta$ is the special-edge vertex $\{I,O\}_\varepsilon-\{I,O\}$ plus counterterm vertices; its tree flow tends to $0$ at generic momenta, so of \eqref{eq:d-D1a} only the cycles closed by $\Psi$ through a special edge survive, and the one-loop flow of $D^\delta$ tends to the tree flow of $\hbar L_1(O)^{(0)}$, whose arity-one part is subtracted in \eqref{eq:d-step2}. Every surviving contribution is, by Axiom \ref{ax:d-loc}, the tree flow of a local functional; this proves existence. Uniqueness is Theorem \ref{thm:c8-L} (i), and $T$-independence Theorem \ref{thm:c8-L} (ii), the large-distance terms being controlled by Axiom \ref{ax:d-loc} (IR).
+
+The value is computed at $T=\infty$ through $Q$ of the arity-one part of $O[\infty]$ (Lemma \ref{lem:c7-image}), which by uniqueness gives the same representative. By \eqref{eq:d-D1a} differentiated in $\delta$, the arity-one part of $O[\cdot]$ is $D_{P\star M}O[\cdot]+\tfrac\hbar2\partial_\Psi O[\cdot]+\tfrac12C_\Psi(W,O[\cdot])$ minus the tree insertion of $I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta)$ into $O$ minus the arity-one counterterm of $O$. By \eqref{eq:d-D1b} differentiated in $\delta$: $Q\,D_{P\star M}O[\cdot]=\{S^{(1)}(\Delta),O[\cdot]\}_\varepsilon-D_{P\star M}QO[\cdot]$, whose first term tends to $D_MO[\infty]$, equal by Corollary \ref{cor:d-CS} and Lemma \ref{lem:c6-bvexact} to $(D_MO)[\infty]$ plus $4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ plus $4$ times the tree insertion of the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$; $Q$ of the composite terms is $\tfrac\hbar2\partial_\Psi QO[\cdot]+\tfrac12C_\Psi(QW,O[\cdot])+\tfrac12C_\Psi(W,QO[\cdot])$, whose limit is the tree insertion of $A_\Psi$ into $O$ (cycles avoiding $O$) plus the composite cycles of Definition \ref{def:d-RO}; and by Lemma \ref{lem:c6-bvexact}, $Q$ of minus the tree insertion of $X=I^{CT}_\Delta[\varepsilon]+\hbar F_1(\Delta)$ is minus the tree insertion of $(Q+\{I,-\})X$ minus $\{X,O\}[\infty]$. With \eqref{eq:d-F}, $(Q+\{I,-\})\hbar F_1(\Delta)=\mathrm{Ob}(\Delta)$, and \eqref{eq:d-Ob}, the tree insertions of $4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ and of $A_\Psi$ cancel, the singular parts cancel against $I^{CT}_\Delta$, and $-\{\hbar F_1(\Delta),O\}$ with \eqref{eq:d-Fsol} gives $-4$ units times the bracket with the field-counting functional, $-z\{S^{(1)}(\Delta),O\}$, $-\{G_\Delta,O\}$ and $-\{Y_\Psi,O\}$. By Theorem \ref{thm:c6-dil}, $4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ minus $4$ units times the bracket with the field-counting functional is $2c_O\,O$; this is \eqref{eq:d-D1}. Writing $4$ units times the bracket with the field-counting functional through Lemma \ref{lem:c6-bvexact} as the tree insertion of $4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ minus $Q$ of $4$ units times the tree insertion of the field-counting functional gives \eqref{eq:d-step2}.
+\end{proof}
+
+\begin{proposition}[The direction $z$ is fixed at arity two]
+\label{prop:d-z}
+The cochain $c_z$ with $c_z^{(1)}(\Delta)=S^{(1)}(\Delta)$ and all other components $0$ satisfies $(sc_z)^{(1)}=0$ along $\Delta$ and $(sc_z)^{(2)}(K_b,P_{b^{\prime}})=\pm(b,b^{\prime})S^{(1)}(\Delta)\neq0$. No derivation of $\mathfrak{psl}(4|4)$ maps $\Delta$ to a nonzero multiple of $\Delta$, and $S^{(1)}(\Delta)$ is not $(Q+\{I,-\})$-exact. Hence, if every $s$-closed local cochain of degree $0$ and Weyl weight $4$ lies in $\mathbb C(S-S^{(2)})+\mathbb C\,G_B+\operatorname{Im}s$ (the hypothesis of Theorem \ref{thm:c8-invariants} (iii)), the coefficient $z$ in \eqref{eq:d-Fsol} is determined by the arity-two equation along $(K_b,P_{b^{\prime}})$ together with the arity-one finite counterterms along $K_b$ and $P_{b^{\prime}}$; it is not a scheme freedom.
+\end{proposition}
+
+\begin{proof}
+The arity-two component of $d_{CE}c_z$ on $(K_b,P_{b^{\prime}})$ is $\pm c_z^{(1)}([K_b,P_{b^{\prime}}])=\pm(b,b^{\prime})S^{(1)}(\Delta)$ (Remark \ref{rem:c7-KDelta}), and the bracket terms of $s$ vanish since $c_z^{(1)}(K_b)=c_z^{(1)}(P_{b^{\prime}})=0$ and $\{S^{(2)},c_z^{(0)}\}=0$. A derivation $\delta$ with $\delta\Delta=a\Delta$, $a\neq0$, would satisfy $\delta(\mathrm{ad}_\Delta X)=a\,\mathrm{ad}_\Delta X+\mathrm{ad}_\Delta\delta X$, incompatible with the integral spectrum of $\mathrm{ad}_\Delta$ on the finite-dimensional $\mathfrak{psl}(4|4)$ unless $a=0$; the derivations are the inner ones and $B$ (Proposition \ref{prop:c8-B}), and $[y,\Delta]$ has no component along $\Delta$, while $B\Delta=0$. $S^{(1)}(\Delta)$ is not exact: in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ a primitive would have two legs $A^*|_{W_{\mathbb R}^\perp}$, and $Q$ of it is second order in derivatives on the $A|_{W_{\mathbb R}^\perp}$ leg, while $S^{(1)}(\Delta)$ is first order there. Under the hypothesis, an $s$-closed completion of $c_z$ would be $a(S-S^{(2)})+bG_B+s\phi$, whose component along $\Delta$ is $(Q+\{I,-\})\phi^{(1)}(\Delta)\pm D_M\phi^{(0)}$; the second term is $0$ by weight and the first is exact, a contradiction. So $z$ enters the arity-two equation as an inhomogeneous term.
+\end{proof}
+
+\begin{theorem}[Invariant content of the dilatation coefficients]
+\label{thm:d-inv}
+Under the hypotheses of Theorem \ref{thm:d-D3} and of Theorem \ref{thm:c8-invariants} (iii): on the cohomology classes of the scalar bilinears, the operator induced by $\Lambda^{(1)}(\Delta)$ at order $\hbar$ is $2c_O$ plus the contribution of $-z\{S^{(1)}(\Delta),-\}-\{G_\Delta,-\}+R_-$. The last three are, respectively, fixed at arity two (Proposition \ref{prop:d-z}), a sum of brackets with $s$-closed functionals in the directions of Theorem \ref{thm:c8-invariants} (iii), which act on cohomology through the coupling direction (zero along $\Delta$) and $G_B$ ($B\Delta=0$), and the composite remainder. If the one-loop quantisations constructed with two gauge-fixing operators related by a smooth family with the properties of Proposition \ref{prop:c3-H} differ by changes (a), (b) of Proposition \ref{prop:c8-laws}, the spectrum is that of a gauge fixing with $(Q^{GF})^2=0$, for which $R_O=0$ and $Y_\Psi=0$; the one-loop anomalous dimensions are then $2c_O$: $0$ for the traceless scalar bilinears and $-48$ units for the trace (in the normalisation $\Delta=2E$; $-24$ units for the coefficient of Theorem \ref{thm:c6-dil}).
+\end{theorem}
+
+\begin{proof}
+Proposition \ref{prop:c8-laws} and Theorem \ref{thm:c8-invariants} (iii) give the invariance of the spectrum under (a), (b) and the closed directions. With $(Q^{GF})^2=0$, Proposition \ref{prop:d-psi} (i) gives $\Psi=0$, hence $I^{CT}_\Delta=0$, $A_\Psi=0$, $Y_\Psi=0$ and $R_O=0$, and \eqref{eq:d-D1} reduces to $2c_O\,O$ plus the fixed and closed directions.
+\end{proof}
+
+\begin{remark}[The composite term found in the direct evaluation]
+\label{rem:d-Y1a}
+The second evaluation of Part D4 computed $Q$ of the arity-one part of $O[\infty]$ graph by graph and found, besides the terms of \eqref{eq:d-step2}, $Q$ of a nonlocal one-loop graph with the composite line on a cycle through $O$ (a triangle with $O$, a vertex of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$ and a vertex $([A,c],A^*)$). In the closed form \eqref{eq:d-D1a} this graph is a term of $\tfrac\hbar2\partial_\Psi O_{\rm tree}$, and by Proposition \ref{prop:d-psi} (ii) the full set of such terms satisfies $Q\,\tfrac\hbar2\partial_\Psi O_{\rm tree}[\varepsilon]=\tfrac\hbar2\partial_\Psi\big(Q\,O_{\rm tree}[\varepsilon]\big)$, whose right side consists of cycles through a special edge and of trees attached to the composite two-point functional; the former have local limits (Axiom \ref{ax:d-loc}), the latter are cancelled by the tree insertion of $Y_\Psi$ and its bracket with $O$. A nonlocal remainder is therefore a sum of graphs of this set that do not combine into $\partial_\Psi(Q\,O_{\rm tree})$ graph by graph: the composite triangle and the composite line on a leg of $O$ (the graph with $O$ joined to the composite two-point functional) are related by the edge contraction $K_0$ between $O$ and the vertex $([A,c],A^*)$, whose $Q$-images cancel only in the sum. The closed form predicts that the sum of $Q$ of these two graphs, together with the special-edge cycles of Definition \ref{def:d-RO}, is local, with bilinear part in the span of $O$, $\{S^{(1)}(\Delta),O\}$ and functionals with a factor $d^*d$ on a leg.
+\end{remark}
+
+\section{Translations}
+
+\begin{proposition}[The translation component]
+\label{prop:d-P}
+Let $x_1=P_b$ with vector field $v$, $\Psi_v$ the kernel of $P\star\,v.\,P\star=v.\,(P\star)^2$. The statements of Propositions \ref{prop:d-D1a}, \ref{prop:d-psi}, \ref{prop:d-D1b} hold with $(M,\Psi)$ replaced by $(v.,\Psi_v)$, and \eqref{eq:d-ward} holds without the last term: $D_{v.}W(P(\varepsilon,T),J)=W^{\prime}_J(D_{v.}J)$ (Proposition \ref{prop:c7-cov}). Consequently: $\mathrm{Ob}(P_b)=A_{\Psi_v}$, the analogue of $A_\Psi$; $\hbar F_1(P_b)=Y_{\Psi_v}+z_P\,S^{(1)}(P_b)+G_{P_b}$; and for $O$ as in Theorem \ref{thm:d-D3},
+\[
+P_1(O)=-z_P\{S^{(1)}(P_b),O\}-\{G_{P_b},O\}+R_{O,v}+[(Q+\{I,-\}),\psi]_{P_b}(O),
+\]
+with $R_{O,v}$ the composite remainder of Definition \ref{def:d-RO} built with $\Psi_v$. All composite terms vanish when $(Q^{GF})^2=0$, and then $P_1=0$ is the choice $z_P=0$, $G_{P_b}=0$, $\psi$ translation covariant. With $(Q^{GF})^2\neq0$:
+\begin{itemize}
+\item (i) if $R_{O,v}=(Q+\{I,-\})Z_O$ with $Z_O$ local, a scheme $\psi$ with arity-one part $\psi(O)_{P_b}=-Z_O$ gives $P_1(O)=0$;
+\item (ii) if, on a family $\mathcal F$ of operators closed under $\{S^{(1)}(P_b),-\}$, $R_{O,v}=c\,\{S^{(1)}(P_b),O\}$ with one number $c$ (the form reported by the first evaluation of Part D4 for the scalar bilinears, $c=-\tfrac13$ units, and $c=0$ for the letters), the scheme $\psi^{\prime}=c\,w$ on $\mathcal F$, with $w$ the Weyl weight of the operator, gives $P_1=0$ on $\mathcal F$; it leaves $D_1$, $M_1$, $R_1$ unchanged and changes the components along $K_b$, along $\Sigma$ and along $\Sigma^*$ of the operators in $\mathcal F$ by $+c$, $-\tfrac c2$ and $+\tfrac c2$ times the classical transformation.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+For a translation $[v.,Q]=[v.,Q^{GF}]=[v.,H]=0$, so $[v.,P\star]=0$, $P\star v.P\star=v.(P\star)^2$ and $[Q,v.(P\star)^2]=0$; the rest of the proofs of Section 2 apply with $(M\otimes1+1\otimes M)P=0$. The obstruction and the component follow as in Theorems \ref{thm:d-D2}, \ref{thm:d-D3} without the scaling terms; the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ is translation invariant. (i) Proposition \ref{prop:c8-laws} (b): the change of $L_1$ along $P_b$ on $O$ with $(Q+\{I,-\})O=0$ is $(Q+\{I,-\})\psi(O)_{P_b}$. (ii) By Proposition \ref{prop:c8-laws} (b), the change of the component along $x$ is $\{S^{(1)}(x),\psi^{\prime}O\}-\psi^{\prime}\{S^{(1)}(x),O\}=c\,(w_O-w_{x})\{S^{(1)}(x),O\}$, with $w_x$ the Weyl weight of $\{S^{(1)}(x),O\}$: $w_O+1$ along $P_b$, $w_O$ along $\Delta$, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$, $w_O-1$ along $K_b$, $w_O+\tfrac12$ along $\Sigma$, $w_O-\tfrac12$ along $\Sigma^*$ (table of Chapter 7). These are the multiples $-\tfrac c2$ times the eigenvalues of $\mathrm{ad}_\Delta$ of [SW, (17)], the order-$\hbar$ part of the inner automorphism $e^{-(c\hbar/2)\mathrm{ad}_\Delta}$ on $\mathcal F$.
+\end{proof}
+
+\begin{remark}[Gauge fixing with $(Q^{GF})^2=0$]
+\label{rem:d-gf}
+By Proposition \ref{prop:c3-H}, among operators with the arrows of Definition \ref{def:c3-qgf}, the Feynman-gauge operator is the unique one with $H$ the componentwise Laplacian, and it has $(Q^{GF})^2\neq0$. Deleting the arrow $A^*|_V\mapsto A|_V$ gives $(Q^{GF})^2=0$ (the finite-dimensional model checks this) and $H$ equal to the Laplacian on every slot except $A|_V$, $A^*|_V$, where $H=d^*d$ restricted to the transverse part plus $dd^*$ through the ghosts; on $\mathbb R^4$ this $H$ is not a generalised Laplacian on $A|_V$, and [C07, Def 4.3.3] is lost in another axiom. A gauge fixing with $(Q^{GF})^2=0$ and a Laplacian $H$ requires a larger field space (a trivial pair added to the minimal complex). With it, Theorems \ref{thm:d-D2}, \ref{thm:d-D3} and Proposition \ref{prop:d-P} hold with $\Psi=\Psi_v=0$: $I^{CT}_\Delta=0$, $\mathrm{Ob}(\Delta)=4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$, $\hbar F_1(\Delta)=4$ units times the field-counting functional up to closed directions, \eqref{eq:c6-step2} exact up to $z$ and $G_\Delta$, and $P_1=0$; the arity-zero counterterms change by the image of the new fields, which is $s$-exact and leaves the coefficients of Theorem \ref{thm:c6-dil} unchanged (Theorem \ref{thm:c8-invariants}).
+\end{remark}
+
+\section{Finite endpoint and order of limits}
+
+\begin{proposition}[What the endpoint changes]
+\label{prop:d-T}
+\begin{itemize}
+\item (i) At finite $T$ every identity of Sections 2--3 holds with the endpoint terms displayed: $QP\star+P\star Q=e^{-\varepsilon H}-e^{-TH}$, \eqref{eq:d-homotopy} with $-\{S^{(1)}(\Delta),-\}_T$, \eqref{eq:d-ward} with $4T\partial_T$; these terms are exactly the brackets $\{I[T],-\}_T$, $\hbar\Delta_T$ of $d_T$ (Definition \ref{def:c8-dT}) and the transfer of Lemma \ref{lem:c8-flow}, so the local representatives of Theorem \ref{thm:d-D3} are the same at every $T$.
+\item (ii) The composite line has the $Q$-primitive $\Phi_T$ of Proposition \ref{prop:d-psi} (iii) only at finite $T$; at $T=\infty$ it is of order $|p|^{-4}$ at small momentum and its cycles diverge logarithmically at large distance. A decomposition of the composite contributions into a $Q$-exact part and a local part is therefore made at finite $T$, as in Proposition \ref{prop:d-Ypsi}, and the $\varepsilon\to0$ limit is taken before $T\to\infty$, the order of Definition \ref{def:c8-rep}.
+\item (iii) A single composite graph evaluated at $T=\infty$, separated from the other graphs of $\tfrac\hbar2\partial_\Psi O_{\rm tree}$, has a $Q$-image that is $Q$-exact but in general nonlocal; only the sum over the set of Remark \ref{rem:d-Y1a} has the local limit of Theorem \ref{thm:d-D3}. The equivariant observable needs no modification: the $Q$-exact parts drop out of $d_TO[T]$ since $d_T^2=0$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Lemma \ref{lem:c8-transfer} and Propositions \ref{prop:d-D1b}, \ref{prop:d-ward} at finite $T$; Theorem \ref{thm:c8-L} (ii). (ii) Proposition \ref{prop:d-psi} (iv): $\int_{|p|<1}|p|^{-4}d^4p$ diverges logarithmically, while at finite $T$, $\Phi_T$ is bounded. (iii) $Q$ maps the set of graphs of $\tfrac\hbar2\partial_\Psi O_{\rm tree}$ to $\tfrac\hbar2\partial_\Psi(Q\,O_{\rm tree})$ only as a whole, Proposition \ref{prop:d-psi} (ii); a subset of graphs is mapped to graphs with an edge $K_0$, i.e. to graphs with vertices $\{I,O\}$ or $\{I,I\}$ on a cycle, which cancel against $Q$ of the vertices only in the complete sum. For an observable $M[T]+d_TU$, $d_T(M[T]+d_TU)=d_TM[T]$.
+\end{proof}
+
+\section{Predictions for the direct evaluation}
+
+The concrete predictions, per two-point sector and for the scalar bilinears, are collected in the file of predictions accompanying this note. In the units, with the Weyl-weight normalisation $\Delta=2E$:
+\begin{itemize}
+\item $\varepsilon^{-1}$ part of the arity-one two-point functional: $0$ in every sector after the cancellation between the graphs with $S^{(1)}(\Delta)$ on a leg of the self-energy and on a leg of the counterterm vertex. $\log\varepsilon$ part: the singular part of the composite cycle only, $(Q+\{I,-\})$-exact, $0$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$.
+\item $\mathrm{Ob}(\Delta)$ quadratic: $-4\int(dA,dA)+16\int(\lambda,{\not d}\lambda)-4\int(dc,A^*)+Q\Pi_\Psi$, with $Q\Pi_\Psi=\tfrac13\int(dA,dA)-\tfrac13\int(\lambda,{\not d}\lambda)-\tfrac23\int(dc,A^*)$; the $A|_V$, $\lambda$, $c$ entries of $\Pi_\Psi$ (its translation-invariant parts $-\tfrac23\int(A|_V,A^*|_V)$, $\tfrac13\int(\lambda^*,\lambda)$, $\tfrac43\int(c^*,c)$ modulo $Q$-closed functionals) are a direct test.
+\item Scalar bilinears: bilinear part of $L(O)^{(1)}(\Delta)$ equal to $2(E+w_O)O$, plus $2c_O\,O$ with $c_O=0$ (traceless) and $-24$ (trace), plus $-z\,2(E+w_O)O$ with $z$ fixed at arity two, plus a remainder in the span of functionals with a factor $d^*d$ on a leg; no nonlocal term in the complete sum of Remark \ref{rem:d-Y1a}.
+\end{itemize}

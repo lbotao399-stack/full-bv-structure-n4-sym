@@ -1,0 +1,405 @@
+\chapter{The special conformal components at a finite transfer endpoint}
+
+The special conformal field $K_b$ grows quadratically at large distance, and a vertex $S^{(1)}(K_b)$ with both legs on a cycle is integrable over $\mathbb R^4$ only up to a logarithm [ch08, Prop c8-Tsafe]. Chapter 8 therefore defines $K_1$ at a finite endpoint $T$ of the transfer (Definition c8-K) and shows that it is independent of $T$ once the local representative exists at one $T$ (Theorem c8-K). This chapter proves existence and independence of $T$ directly from the graphs of the defect, computes the logarithms of $T$ that remain in the observables and in the effective interaction, proves that they are $Q$-closed and $Q$-exact and enter no core quantity, decides for every object whether $T\to\infty$ is safe, and derives the relations that $K_1$ satisfies when $P_1$ is allowed to be nonzero.
+
+Names. All objects are those of Chapter 8: the spinor parameters $\xi\in\Sigma$, $\eta\in\Sigma^*$; the special conformal field $K_b\colon x\mapsto(x,x)b-2(b,x)x$, the translation $P_b$, the dilatation $\Delta=2E$; $\mathrm{ad}_f=\{f,-\}$; $s=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\}$; the local representative $L=s+\hbar L_1+\cdots$ and $\Lambda=L-d_{CE}$ [ch08, Def c8-rep, Thm c8-L]; the one-loop components $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ [ch08, Def c8-components]; $O[T]$, $M[T]$ [ch08, Def c8-renorm]; $d_T$ [ch08, Def c8-dT]; $P(\varepsilon,T)$, $K_t$, $L_t=(Q^{GF}\otimes1)K_t$, $\Delta_T$, $\{-,-\}_T$ [ch08, Def c8-PT]; the action $e\mapsto v.e$ of an even generator with vector field $v$ [ch07, Def c7-vdot]. For an even generator the ghost coordinate is odd, and the arity-one value $F^{(1)}(x)$ of a cochain-valued functional $F$ is the coefficient to the left of that ghost, the cochain evaluation of [ESW, Def 1.27]. For a kernel $\phi\in\mathscr E\otimes\mathscr E$, $\partial_\phi$ is the second-order operator of [C07, §6.4] and $\{f,g\}_\phi:=\partial_\phi(fg)-(\partial_\phi f)g-(-1)^{|f|}f\,\partial_\phi g$ its bracket, as $\{-,-\}_\varepsilon$ is built from $\Delta_\varepsilon=-\partial_{K_\varepsilon}$ [ch03, Def c3-delta]. The unit is $\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$; for $\mathfrak{su}(2)$ in an orthonormal basis $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)=-2$. Two-component: $v^m=x^2b^m-2(b\cdot x)x^m$, $\operatorname{div}v=-8\,b\cdot x$, $\partial_mv_n-\partial_nv_m=4(x_mb_n-x_nb_m)$ [ch08, Def c8-twocomp]. References [design, \dots] are to the design of the odd components and of the large-distance analysis (odd\_components\_design), [compare-delta] to the comparison of the two engines for the dilatation and the translations, and [dictionary, \dots] to the two-component dictionary.
+
+\section{The kernels at the endpoint}
+
+\begin{lemma}[Non-invariance of the kernels under the special conformal field]
+\label{lem:ktr-noninv}
+Let $v$ be the field of $K_b$ and $m=\tfrac12(x+y)$, so that $\tfrac18\operatorname{div}v(m)=-(b,m)$. Let $G_t(r)=(4\pi t)^{-2}e^{-r^2/4t}$ and $D_{\varepsilon,T}(r)=\big(e^{-r^2/4T}-e^{-r^2/4\varepsilon}\big)/(4\pi^2r^2)$ be the scalar factors of $K_t$ and $P(\varepsilon,T)$ [ch08, Def c8-PT], and write the components of $P(\varepsilon,T)$ as $2(-,-)^{-1}\delta_{mn}D_{\varepsilon,T}(x-y)$ on $A_m(x)\otimes A_n(y)$, $2(-,-)^{-1}D_{\varepsilon,T}(x-y)$ on each component of $A|_{W_{\mathbb R}^\perp}\otimes A|_{W_{\mathbb R}^\perp}$, and $-(-,-)^{-1}\partial_{x_m}D_{\varepsilon,T}(x-y)$ on $c(x)\otimes A^*_m(y)$ [ch03, Prop c3-P]. With $v.$ acting on the factor at $x$ and on the factor at $y$:
+\begin{itemize}
+\item (i) for a scalar field of Weyl weight $w$ at $x$ and its antifield, of weight $4-w$, at $y$,
+\[
+(v.\otimes1+1\otimes v.)\,G_t=\tfrac18\operatorname{div}v(m)\big(-4t\,\partial_tG_t\big)+(4-2w)\,(b,x-y)\,G_t ;
+\]
+\item (ii) on $A|_{W_{\mathbb R}^\perp}\otimes A|_{W_{\mathbb R}^\perp}$,
+\[
+(v.\otimes1+1\otimes v.)\,P(\varepsilon,T)=\tfrac18\operatorname{div}v(m)\big(4\varepsilon L_\varepsilon-4TL_T\big);
+\]
+\item (iii) on $A_m(x)\otimes A_n(y)$,
+\[
+(v.\otimes1+1\otimes v.)\,P(\varepsilon,T)=\tfrac18\operatorname{div}v(m)\big(4\varepsilon L_\varepsilon-4TL_T\big)+(-,-)^{-1}\,4\big((x-y)_mb_n-(x-y)_nb_m\big)D_{\varepsilon,T}(x-y);
+\]
+\item (iv) on $c(x)\otimes A^*_m(y)$,
+\[
+(v.\otimes1+1\otimes v.)\,P(\varepsilon,T)=\tfrac18\operatorname{div}v(m)\big(4\varepsilon L_\varepsilon-4TL_T\big)-(-,-)^{-1}\big(2(x-y)_mb_q+b_m(x-y)_q\big)\partial_{x_q}D_{\varepsilon,T}(x-y).
+\]
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+For a function $g$ of $r=x-y$, $(v(x)\cdot\partial_x+v(y)\cdot\partial_y)g=(v(x)-v(y))\cdot(\partial g)(r)$, and
+\[
+v(x)-v(y)=2(m,r)\,b-2(b,m)\,r-2(b,r)\,m,\qquad (v(x)-v(y))\cdot r=-2(b,m)|r|^2,
+\]
+so for $g=g(|r|^2)$ the transport term is $-4(b,m)|r|^2g'$. The weight terms add $\tfrac w4\operatorname{div}v(x)+\tfrac{4-w}4\operatorname{div}v(y)=-8(b,m)-(2w-4)(b,r)$. With $t\partial_tG_t=(-2+|r|^2/4t)G_t$ the sum is (i). For (ii) both weights are $1$ [ch07, Lemma c7-weights], the weight term is $-4(b,m)$, and
+\[
+-4(b,m)\big(|r|^2D'+D\big)=-4(b,m)\frac{d(|r|^2D_{\varepsilon,T})}{d|r|^2}=-4(b,m)\big(\varepsilon G_\varepsilon-TG_T\big),
+\]
+because $|r|^2D_{\varepsilon,T}=\big(e^{-|r|^2/4T}-e^{-|r|^2/4\varepsilon}\big)/4\pi^2$; with $L_t=2(-,-)^{-1}G_t$ on these components this is (ii). In (iii) the Lie derivative of one-forms, $v.A_m=v^n\partial_nA_m+A_n\partial_mv^n$, adds $(\partial_mv^k)(x)P_{kn}+(\partial_nv^k)(y)P_{mk}$; beyond the weight term these are the rotations $4(x_mb_k-x_kb_m)$ at $x$ and at $y$, whose difference is linear in $r$ and gives the last term. In (iv), $v.c=v^n\partial_nc$ and, from $\int\mathrm{dvol}\,\big((v.A,A^*)+(A,v.A^*)\big)=0$, $v.A^*_m=v^n\partial_nA^*_m+(\operatorname{div}v)A^*_m-(\partial_nv^m)A^*_n$; the same computation gives the last term. The four identities are verified symbolically, at random rational points with $40$-digit arithmetic.
+\end{proof}
+
+\begin{remark}[What the non-invariance does and does not enter]
+\label{rem:ktr-noninv}
+The identities have two kinds of terms. The endpoint terms $\tfrac18\operatorname{div}v(m)(4\varepsilon L_\varepsilon-4TL_T)$ are the special conformal form of the scaling identity of the dilatation at finite $T$, with the constant $\tfrac18\operatorname{div}(2E)=1$ replaced by the midpoint value of $\tfrac18\operatorname{div}v$. The bulk terms of (iii) and (iv), present at every $T$ and at $T=\infty$, record that the Feynman-gauge propagator of $A|_V$ and of the ghost line is not conformally covariant. By the computation $[\partial_\phi,Q]=\partial_{Q\phi}$ of [C07, §6.4], with the even $v.$ in place of $Q$, the derivation $\mathrm{ad}_{S^{(1)}(K_b)}$ commutes with $\partial_{P(\varepsilon,T)}$, $\Delta_T$ and $\{-,-\}_T$ up to $\partial$ of these kernels. No covariance argument therefore produces the component along $K_b$; it is computed from the identity of [ch08, Lemma c8-transfer], in which $K_T$ enters only through $d_T$ on the left side and $T$ enters the right side only through the edges $P(\varepsilon,T)$.
+\end{remark}
+
+\section{The composite line and the zero modes}
+
+\begin{definition}[Composite line, zero-mode kernels, zero-mode trees]
+\label{def:ktr-composite}
+\begin{itemize}
+\item (i) A floating insertion of $S^{(1)}(K_b)$ is a vertex $S^{(1)}(K_b)$ with both legs on edges $P(\varepsilon,T)$ of a cycle; it is the term $(v.A|_V,A^*|_V)$ joining an $A|_V$ line to a $c$ line [design, Lemma lem:o-legs]. The kernel so obtained in the slots $A|_V\otimes c$ is the composite line $P(\varepsilon,T)\star\circ v.\circ P(\varepsilon,T)\star$ [ch07, Rem c7-internal]. With the fibre factors removed its component along the $k$-th direction of $V$ at the $A|_V$ end $z_a$ and at the $c$ end $z_b$ is
+\[
+F_k(z_a,z_b;\varepsilon,T)=\int d^4y\,\sum_m\big[L_v\big(D_{\varepsilon,T}(\cdot-z_a)\,e_k\big)\big]_m(y)\,\partial_{y_m}D_{\varepsilon,T}(y-z_b),
+\]
+with $L_v$ the Lie derivative of one-forms and $e_k$ the $k$-th basis vector.
+\item (ii) The zero-mode kernel of $b\in V$ is the element of the slots $A|_V\otimes c$, constant in both positions, equal to $b\otimes(-,-)^{-1}=\sum_a(b\otimes X_a)\otimes X^a$, with $\{X_a\}$ a basis of $\mathfrak g$ and $\{X^a\}$ the dual basis for $(-,-)$, together with its graded transpose in $c\otimes A|_V$. Its operator acts on a functional $F$ by
+\[
+\partial_{b\otimes(-,-)^{-1}}F=\sum_a\partial_{A|_V=b\otimes X_a}\,\partial_{c=X^a}F ,
+\]
+the derivatives along the constant modes $A|_V=b\otimes X_a$ and $c=X^a$ (the first is even, so the order is immaterial).
+\item (iii) The zero-mode trees along $K_b$ are $\partial_{b\otimes(-,-)^{-1}}$ of the order-$\hbar^0$ part of $W(P(\varepsilon,\infty),I)$ and of the order-$\hbar^0$ part of $\partial_\delta W\big(P(\varepsilon,\infty),I+\delta O\big)$ (the tree-level flow of $O$), at $\varepsilon\ge0$; at $\varepsilon=0$ the second is $\partial_{b\otimes(-,-)^{-1}}$ of the order-$\hbar^0$ part of $O[\infty]$.
+\item (iv) For $v_1\in V$, the zero-mode operator of a pair $(\eta_1,\eta_2)\in\Sigma^*\times\Sigma^*$ with $\Gamma(\eta_1,\eta_2)|_V=v_1$ differentiates once along the constant ghost mode $c=X^a$ and once along the linear ghost mode $c=(v_1,x)X_a$, summed over $a$ and over the two assignments of the two modes, with the factor $\tfrac12$; applied to the order-$\hbar^0$ part of $W(P(0,\infty),I)$ it gives the arity-two zero-mode tree along $(\eta_1,\eta_2)$.
+\end{itemize}
+Two-component: the floating term is $\int\big(v^n\partial_nA_m+A_n\partial_mv^n,\,A^*_m\big)$, and the zero modes are $A_m=b_mX_a$, $c=X^a$.
+\end{definition}
+
+\begin{proposition}[The composite line at the endpoint]
+\label{prop:ktr-composite}
+\begin{itemize}
+\item (i) $F_k(\lambda z_a,\lambda z_b;\lambda^2\varepsilon,\lambda^2T)=F_k(z_a,z_b;\varepsilon,T)$ for every $\lambda>0$.
+\item (ii) At $z_a=z_b=0$, with $\tau=T/\varepsilon$,
+\begin{equation}
+T\partial_TF_k(0,0;\varepsilon,T)=-\frac{(\tau-1)(3\tau^2+8\tau+3)}{16\pi^2(\tau+1)^3}\,b_k .
+\label{eq:ktr-z0}
+\end{equation}
+\item (iii) For all $z_a,z_b$ and $\varepsilon\ge0$, $\lim_{T\to\infty}T\partial_TF_k=-\dfrac{3}{16\pi^2}\,b_k$, locally uniformly in $(z_a,z_b,\varepsilon)$, so that $F_k=-\tfrac{3}{16\pi^2}b_k\log T+O(1)$.
+\item (iv) With the fibre factors $2(-,-)^{-1}$ of $A\otimes A$ and $-(-,-)^{-1}$ of $A^*|_V\otimes c$, $T\partial_T$ of the composite line tends, as $T\to\infty$, to $\tfrac{3}{8\pi^2}$ times the zero-mode kernel $b\otimes(-,-)^{-1}$, locally uniformly in the positions of its ends and in $\varepsilon\ge0$; at every finite $T$ the composite line and its $T$-derivative are bounded at large distance by the uniform bounds of [ch08, Def c8-PT] times $|v|$, and decay as $e^{-|y|^2/4T}$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $D_{\lambda^2\varepsilon,\lambda^2T}(\lambda r)=\lambda^{-2}D_{\varepsilon,T}(r)$ and $v(\lambda y)=\lambda^2v(y)$, so the integrand scales as $\lambda^{-4}$ and $d^4y$ as $\lambda^4$. (ii) At $z_a=z_b=0$ both scalar factors are radial; with $\partial D=2y\,\partial_uD$, $u=|y|^2$, $v\cdot y=-|y|^2(b\cdot y)$, $(\partial_mv^k)y_m=2|y|^2b_k-4(b\cdot y)y_k$ and the sphere average $\langle y_ky_l\rangle=\tfrac14|y|^2\delta_{kl}$,
+\[
+F_k=\pi^2b_k\int_0^\infty du\,\big(-u^3(\partial_uD_{\varepsilon,T})^2+2u^2D_{\varepsilon,T}\,\partial_uD_{\varepsilon,T}\big),
+\]
+and $T\partial_T$ of the integrand, with $T\partial_TD_{\varepsilon,T}=T\,G_T$, integrates in closed form to \eqref{eq:ktr-z0}. (iii) By (i), $T\partial_TF_k(z_a,z_b;\varepsilon,T)$ equals $T'\partial_{T'}F_k$ at $T'=1$ and at the arguments $(z_a/\sqrt T,z_b/\sqrt T,\varepsilon/T)$. The $T'$-derivative replaces one scalar factor by the smooth Gaussian $T'G_{T'}$ and leaves integrable singularities at $y=z_a$ and $y=z_b$, uniformly in the arguments, so it is continuous at $(0,0,0)$, where its value is the limit $\tau\to\infty$ of \eqref{eq:ktr-z0}, $-3b_k/16\pi^2$. (iv) The product of the fibre factors and the orientation of the $c\otimes A^*|_V$ component [ch03, Prop c3-P] turns $-3/16\pi^2$ into $+3/8\pi^2$; the sign and the normalisation are confirmed by the independent evaluation of the flows in Proposition \ref{prop:ktr-values}. The bounds are those of the edges [ch08, Def c8-PT] with the coefficient $|v(y)|\le C|y|^2$. The limit (iii) is confirmed at $z\neq0$ by exact Gaussian moments ($\varepsilon=1$, $T$ up to $10^8$, deviation $10^{-8}$), and (i) to machine precision.
+\end{proof}
+
+\section{The defect along $K_b$ at a finite endpoint}
+
+\begin{theorem}[Existence and independence of the endpoint]
+\label{thm:ktr-defect}
+Let $O$ be a homogeneous local functional of degree $0$ and $0<T<\infty$. At order $\hbar$ and arity one along $K_b$:
+\begin{itemize}
+\item (i) every graph of the defect flow of [ch08, Lemma c8-transfer], in the classes (T), (A)--(E2) of [design, Thm thm:o-classes], with edges $P(\varepsilon,T)$, is finite at generic leg momenta;
+\item (ii) for every one-loop subgraph $\gamma$ whose cycle contains the special edge $K_\varepsilon-K_0$ (a special-edge cycle), $T\partial_T\gamma(\varepsilon,T)=O(\varepsilon)$ as $\varepsilon\to0$, uniformly for $T$ in compact subsets of $(0,\infty)$;
+\item (iii) the singular parts of the special-edge cycles are those at any other $T$ and cancel against the order-$\hbar$ defect vertices as in [ch04, Prop c4-defect1]; the limit $\varepsilon\to0$ of every special-edge cycle is a local functional, the same for every $T$;
+\item (iv) consequently the local representative of [ch08, Def c8-rep] exists at every finite $T$, and $K_1(O)=\hbar L_1(O)^{(1)}(K_b)$ is the same local functional for all $T\in(0,\infty)$, hence also in the limit $T\to\infty$;
+\item (v) the same holds for the arity-two values along $(\eta_1,\eta_2)\in\Sigma^*\times\Sigma^*$ (with the $P$-edge pairs of two floating $S^{(1)}(\eta_a)$) and along $(K_b,P_c)$, and for the action ($O=0$): the arity-one obstruction along $K_b$ and its finite counterterm are independent of $T$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+For $0<\varepsilon<T$ put $I_\varepsilon[T]=W(P(\varepsilon,T),J)$ and $O_\varepsilon[T]=\partial_\delta W\big(P(\varepsilon,T),J+\delta O(\varepsilon)\big)$, with $J$ and $O(\varepsilon)$ of [ch08, Def c8-renorm]. The first identity of [ch08, eq:c8-transfer], applied to $e^{(J+\delta O(\varepsilon))/\hbar}$ and expanded to first order in $\delta$, gives at every $\varepsilon$, before any limit,
+\begin{equation}
+\begin{aligned}
+&(d_{CE}+Q)\,O_\varepsilon[T]+\big\{I_\varepsilon[T],O_\varepsilon[T]\big\}_T+\hbar\Delta_TO_\varepsilon[T]\\
+&\qquad=\big(\text{the connected graphs with one defect vertex and edges }P(\varepsilon,T)\big),
+\end{aligned}
+\label{eq:ktr-exact}
+\end{equation}
+and both sides converge as $\varepsilon\to0$, the left side to $d_TO[T]$.
+
+(i) The position dependence of $S^{(1)}(K_b)$ is polynomial of degree two; in momentum space the insertion is the second derivative at zero injected momentum of the insertion of a vector field $u\,e^{i(P,y)}$, so every graph is a finite sum of derivatives of momentum integrals. Since $\int_\varepsilon^Te^{-t|q|^2}dt\le T$, every scalar factor of $P(\varepsilon,T)$ and each of its derivatives is bounded on compact sets by a polynomial in $T$ and $|q|$, with no singularity at $q=0$, and decays as $e^{-\varepsilon|q|^2}$ at large $|q|$; every loop integral converges.
+
+(ii) $T\partial_T\gamma=\sum_e\gamma_e$, where $\gamma_e$ has the edge $e$ replaced by $TL_T$, scalar factor $Te^{-T|q_e|^2}$ with $q_e=k+p_e$ for the loop momentum $k$. The special edge carries $q_s=k+p_s$ and the factor $e^{-\varepsilon|q_s|^2}-1$ [ch04, Prop c4-defect1], with $|e^{-\varepsilon|q_s|^2}-1|\le\varepsilon|q_s|^2$. All other factors are bounded by $C(T)(1+|k|)^N$ with $C(T)$ bounded on compact sets of $T$, by (i). Hence
+\[
+|\gamma_e|\le\varepsilon\,C(T)\int d^4k\,T\,e^{-T|k+p_e|^2}(1+|k|)^{N}\,(|k|^2+|p_s|^2)=O(\varepsilon).
+\]
+
+(iii) $\gamma(\varepsilon,T_1)-\gamma(\varepsilon,T_0)=\int_{T_0}^{T_1}T\partial_T\gamma\,dT/T=O(\varepsilon)$, so the coefficients of $\varepsilon^{-1}$ and $\log\varepsilon$ and the limit $\varepsilon\to0$ are the same at every $T$, in agreement with [ch08, Prop c8-Tindep (i)]; since the left side of \eqref{eq:ktr-exact} converges, the singular parts cancel in the total. Locality: let $x_1,x_2$ be the ends of the special edge and $R(x_1,x_2)$ the rest of the cycle, the other vertices integrated against the legs; then $\gamma=\int dx_2\,\big[(e^{\varepsilon\Delta_u}-1)R(x_2+u,x_2)\big]_{u=0}$ up to the fibre pairing. The singular part of $R$ at $u\to0$ comes from the region in which the other vertices approach $x_2$; its coefficients are polynomials in the jets of the legs at $x_2$ and, through the Taylor expansion of $v$ at $x_2$, in $x_2$, so its contribution is local. The remainder of $R$ is smooth at $u=0$ and contributes $O(\varepsilon)$ times an integral that is finite at finite $T$, including the region in which the floating insertion is far away, where the composite line is bounded by Proposition \ref{prop:ktr-composite} (iv).
+
+(iv) In \eqref{eq:ktr-exact} at $\varepsilon\to0$: the special-edge cycles inserted in trees give the tree-level flow at scale $T$ of their local limits; a special edge on a bridge carries a generic momentum $p$ and the factor $e^{-\varepsilon|p|^2}-1$ times a subgraph finite at fixed $T$, and tends to $0$ together with its pair in class (E2) [design, Thm thm:o-classes]; the order-$\hbar$ defect vertices are local; the classical vertex $\delta\,sO$ with its one-loop graphs gives $(sO)[T]$. Hence $d_TO[T]=(sO+\hbar L_1(O))[T]$ with $\hbar L_1(O)$ the sum of the local limits, independent of $T$ by (iii); its arity-one value along $K_b$ is $K_1(O)$. This agrees with [ch08, Thm c8-K], which obtains the independence from the flow.
+
+(v) The proof uses only (i)--(iii), which hold for every special-edge cycle at finite $T$, including those with a $P$-edge pair of floating $S^{(1)}(\eta_1)$, $S^{(1)}(\eta_2)$ or with floating $S^{(1)}(K_b)$ and $S^{(1)}(P_c)$; for the action put $O=0$.
+\end{proof}
+
+\begin{theorem}[The logarithm of the defect at a fixed UV boundary]
+\label{thm:ktr-defectlog}
+Fix $\varepsilon>0$ and a gauge-invariant $O$, $(Q+\{I,-\})O=0$. As $T\to\infty$, the order-$\hbar$ arity-one part along $K_b$ of the right side of \eqref{eq:ktr-exact} is
+\[
+\frac{3}{8\pi^2}\,\hbar\log T\;Q\big(\partial_{b\otimes(-,-)^{-1}}O_{\varepsilon,\rm tree}\big)+C(\varepsilon)+o(1),
+\]
+with $O_{\varepsilon,\rm tree}$ the order-$\hbar^0$ part of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$; for the action, $O$ is replaced by $W(P(\varepsilon,\infty),I)$.
+\begin{itemize}
+\item (i) In every two-point sector of the action the coefficient vanishes for every $\varepsilon$.
+\item (ii) For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ with $\omega=e^{-i(p+q,x)}\mathrm{dvol}$, evaluated on $A|_{W_{\mathbb R}^\perp}=u\otimes X_1e^{i(p,x)}+u'\otimes X_3e^{i(q,x)}$ (the output sector of two field legs $A|_{W_{\mathbb R}^\perp}$), the coefficient of $\log T$ is
+\[
+\frac{3}{8\pi^2}\,\hbar\;2i\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\,\mathcal S\,\big(e^{-\varepsilon|q|^2}-e^{-\varepsilon|p|^2}\big)\Big(\frac{(b,p)}{|p|^2}e^{-\varepsilon|p|^2}-\frac{(b,q)}{|q|^2}e^{-\varepsilon|q|^2}\Big),
+\]
+$\mathcal S=\big((w_1,u)(w_2,u')+(w_2,u)(w_1,u')\big)(X_1,X_3)$; it is $O(\varepsilon)$ and nonzero for $|p|\neq|q|$, for the traceless and for the trace part.
+\item (iii) The coefficient tends to $0$ as $\varepsilon\to0$, in agreement with Theorem \ref{thm:ktr-defect}. At $T=\infty$ and fixed $\varepsilon$ the graphs of the defect along $K_b$ of the scalar bilinears diverge logarithmically, so the order of the limits, $\varepsilon\to0$ at finite $T$, is part of the definition of $K_1$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:ktr-exact} the right side equals the left side at every $\varepsilon$. On the left, $d_{CE}$ vanishes on arity zero, and the terms $\{I_\varepsilon[T],O_\varepsilon[T]\}_T+\hbar\Delta_TO_\varepsilon[T]$ are $O(T^{-1/2}\log T)$ by Lemma \ref{lem:ktr-KT}. Hence the coefficient of $\log T$ is $Q$ of that of $O_\varepsilon[T]^{(1)}(K_b)$, which is $\tfrac{3}{8\pi^2}\hbar\,\partial_{b\otimes(-,-)^{-1}}O_{\varepsilon,\rm tree}$ by Theorem \ref{thm:ktr-flowlog} at fixed $\varepsilon$. (i) In a two-point sector of the action the zero-mode tree has one internal line; the two terms of its $Q$-image, $Q$ acting on the one or the other leg, carry the same line momentum and hence the same regulating factor $e^{-\varepsilon|p|^2}$, and their sum vanishes at $\varepsilon=0$, hence for every $\varepsilon$. (ii) The zero-mode tree of $O$ has two trees: the $A|_V$ stub on the cubic vertex of $-\tfrac14(F_A,F_A)$ that couples $A|_V$ to two components of $A|_{W_{\mathbb R}^\perp}$, with the field leg, $O$ in the middle, the $c$ stub on a vertex $([A,c],A^*)$ with the antifield leg (lines of momenta $p$ and $q$); and $O$ at the end, the two stubs on two vertices joined by a line (two lines of momentum $q$). On (field at $p$, antifield at $q$) their values are
+\[
+-4i\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\frac{(b,p)}{|p|^2|q|^2}\,\mathcal S_*\qquad\text{and}\qquad 4i\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\frac{(b,q)}{|q|^4}\,\mathcal S_*,
+\]
+with $\mathcal S_*$ the vertex value of $O$ on the two fibre vectors, and each line carries $e^{-\varepsilon|k|^2}$ at $\varepsilon>0$. $Q$ maps the $A|_{W_{\mathbb R}^\perp}$ mode $u'e^{i(q,x)}$ to the $A^*|_{W_{\mathbb R}^\perp}$ mode $-\tfrac12|q|^2u'e^{i(q,x)}$. Summing over the two legs on which $Q$ acts, the four terms are $a_1r_pr_q+b_1r_q^2+a_2r_qr_p+b_2r_p^2$ with $r_k=e^{-\varepsilon|k|^2}$, $a_1=2iC(b,p)\mathcal S/|p|^2$, $a_2=2iC(b,q)\mathcal S/|q|^2$, $b_1=-a_2$, $b_2=-a_1$, $C=\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$, which is $(r_q-r_p)(a_1r_p-a_2r_q)$. These identities are verified in exact rational arithmetic in the realisation of Chapter 2 at two kinematic points, for a generic, a traceless and the trace bilinear. (iii) $r_q-r_p=O(\varepsilon)$.
+\end{proof}
+
+\begin{remark}[The composite-line mechanism]
+\label{rem:ktr-mechanism}
+The floating insertions of the even generators exist because $(Q^{GF})^2\neq0$ [ch07, Rem c7-internal]. Along $\Delta$ the composite line is $\tfrac12\{v.,(P(\varepsilon,\infty)\star)^2\}$, since $[v.,P(\varepsilon,\infty)\star]=4\varepsilon L_\varepsilon\star$ commutes with $P(\varepsilon,\infty)\star$; along $K_b$ the bulk terms of Lemma \ref{lem:ktr-noninv} make $[v.,P(\varepsilon,T)\star]$ not commute with $P(\varepsilon,T)\star$, and Proposition \ref{prop:ktr-composite} replaces that identity. In the route through $Q$ of the arity-one part of $O[\infty]$, single composite-line graphs (the triangle with $O$, the composite line and two cubic vertices) are nonlocal, and their $Q$-image, symmetrised over the two identical legs of $O$, is the local functional $-2\,\mathrm{ad}_{S^{(1)}(\Delta)}O$ along $\Delta$ and $-2\,\mathrm{ad}_{S^{(1)}(P_b)}O$ along a translation [compare-delta]. Theorem \ref{thm:ktr-defect} shows in general that no nonlocal remainder can survive in $d_TO[T]-(sO)[T]$: the defect graphs are local in the limit. Along $K_b$ the composite lines contribute to $K_1$ through the special-edge cycles (local, Theorem \ref{thm:ktr-defect}) and, at large distance, the logarithms of Theorem \ref{thm:ktr-flowlog}, which lie in the kernel of $Q$ (Proposition \ref{prop:ktr-consistency}); Definition c8-rep needs no change. What changes is the expectation $P_1=0$: on the scalar bilinears the composite lines give $P_1(O)=-(\tfrac13+f_P)\,\mathrm{ad}_{S^{(1)}(P_b)}O$ in units, with $f_P$ the coefficient of $S^{(1)}(P_b)$ in the translation component of the arity-one finite counterterm, which the two-leg master equation leaves free [compare-delta]; Section 6 states the consequences.
+\end{remark}
+
+\section{Logarithms of $T$ in the observables and the effective interaction}
+
+\begin{theorem}[The logarithms of the flows]
+\label{thm:ktr-flowlog}
+At order $\hbar$, at generic leg momenta and for every $\varepsilon\ge0$,
+\begin{equation}
+\begin{aligned}
+&\lim_{T\to\infty}T\partial_T\,W\big(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}\big)^{(1)}(K_b)=\frac{3}{8\pi^2}\,\hbar\,\partial_{b\otimes(-,-)^{-1}}W_{\varepsilon,\rm tree},\\
+&\lim_{T\to\infty}T\partial_T\,O[T]^{(1)}(K_b)=\frac{3}{8\pi^2}\,\hbar\,\partial_{b\otimes(-,-)^{-1}}O_{\rm tree}[\infty],
+\end{aligned}
+\label{eq:ktr-flowlog}
+\end{equation}
+with $W_{\varepsilon,\rm tree}$ and $O_{\rm tree}[\infty]$ the order-$\hbar^0$ parts of $W(P(\varepsilon,\infty),I)$ and of $O[\infty]$; at fixed $\varepsilon>0$ the same holds for $O_\varepsilon[T]=\partial_\delta W\big(P(\varepsilon,T),J+\delta O(\varepsilon)\big)$ with $O_{\varepsilon,\rm tree}$ in place of $O_{\rm tree}[\infty]$. The observables and the effective interaction at scale $T$ carry $\tfrac{3}{8\pi^2}\hbar\log T$ times the zero-mode trees of Definition \ref{def:ktr-composite}. The logarithms sit in the translation-invariant part: the coefficients of the first and second derivatives of the injected momentum have $T\partial_T\to0$. At arity two along $(\eta_1,\eta_2)$ the observables and the effective interaction carry a logarithm of $T$ whose coefficient vanishes exactly when $\Gamma(\eta_1,\eta_2)|_V=0$ and whose $Q$-image is $\tfrac{3}{8\pi^2}\hbar$ times the zero-mode tree along $K_{v_1}$, $v_1=\Gamma(\eta_1,\eta_2)|_V$.
+\end{theorem}
+
+\begin{proof}
+$S:=S^{(1)}(K_b)$ is quadratic, so the commutators of $\partial_P$ with multiplication by $S$ terminate: $[\partial_P,S]$ is the constant $\partial_PS$ plus a derivation, and $[\partial_P,[\partial_P,S]]=\partial_{K''}$ with $K''$ twice the composite line. With $P=P(\varepsilon,T)$, $J_0$ the arity-zero part of $J$, $W=W(P,J_0)$ and the ghost to the right,
+\[
+W(P,J_0+S\,\cdot\,\text{ghost})^{(1)}(K_b)=e^{-W/\hbar}e^{\hbar\partial_P}\big(S\,e^{J_0/\hbar}\big)=S+\hbar\,\partial_PS+\{S,W\}_P+\tfrac\hbar2\,\partial_{K''}W+\tfrac14\{W,W\}_{K''},
+\]
+together with the arity-one counterterms, which are local; the same identity at first order in $\delta$ gives $O[T]^{(1)}(K_b)$. The terms $S$, $\hbar\partial_PS$ (a constant) and $\{S,W\}_P$ ($S$ at the end of an edge) and the bridges $\{W,W\}_{K''}$ at generic momenta converge as $T\to\infty$ at the rate $e^{-T|p|^2}$. At order $\hbar$ the only other term is $\tfrac\hbar2\partial_{K''}W_{\varepsilon,\rm tree}$: the composite line closes a cycle on a tree. Its $T$-derivative is the composite line with one edge pinned at $T$, plus edges of the tree pinned at $T$; the latter carry generic momenta and vanish as $T\to\infty$. By Proposition \ref{prop:ktr-composite} (iv) and dominated convergence (the tree decays at large distance and the composite line is bounded locally uniformly), the limit is $\tfrac{3}{8\pi^2}\hbar$ times $\partial_{b\otimes(-,-)^{-1}}W_{\varepsilon,\rm tree}$; the factor $\tfrac12$ of $\partial_{K''}$ cancels the two orientations of $K''$. The limit kernel is constant, so it multiplies the translation-invariant part only. The sign and the normalisation are those of Proposition \ref{prop:ktr-values}, where they are compared with an independent evaluation. Arity two: for two floating $S^{(1)}(\eta_a)$ joined by a $\lambda$ edge the large-distance symbol of degree $-4$ survives the sum over the two orientations and is proportional to $v_1$ times the first moment of the rest of the cycle [design, Thm thm:o-ir (iv)]; at finite $T$ the shell integrals give $\log T$ with the coefficient $6\pi^2i\,v_1\cdot(f_0g_1-f_1g_0)$ (fibre factors removed, $f$, $g$ the Taylor data of the rest), confirmed numerically to $10^{-15}$, and $0$ for $v_1=0$. The $Q$-image follows from the arity-two component of the master equation at scale $T$ (Proposition \ref{prop:ktr-consistency} (v)).
+\end{proof}
+
+\begin{proposition}[Values of the zero-mode trees]
+\label{prop:ktr-values}
+Write $C=\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$, take the field leg at momentum $p$ with fibre vector $u$ and colour $X_1$ and the antifield leg at $-p$ with $u^*$ and $X_2$.
+\begin{itemize}
+\item (i) In the four two-point sectors the zero-mode tree of $W$ along $K_b$ is, up to the common factor $(X_1,X_2)$:
+\begin{center}
+\begin{tabular}{l|c|c}
+sector & momentum space & functional \\
+\hline
+$(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ & $-2iC\,(b,p)|p|^{-2}(u,u^*)$ & $-2C\int\mathrm{dvol}\,\big((b,\partial)(d^*d)^{-1}A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big)$ \\
+$(A|_V,A^*|_V)$ & $iC|p|^{-2}\big(-2(b,p)(u,u^*)+(b,u)(p,u^*)\big)$ & $C\int\mathrm{dvol}\,\big(-2((b,\partial)(d^*d)^{-1}A|_V,A^*|_V)+((d^*d)^{-1}\iota_bA|_V,d^*A^*|_V)\big)$ \\
+$(c,c^*)$ & $iC\,(b,p)|p|^{-2}$ & $C\int\mathrm{dvol}\,\big((b,\partial)(d^*d)^{-1}c,c^*\big)$ \\
+$(\lambda,\lambda^*)$ & $C|p|^{-2}\big(\rho(ip)\rho(b)u,u^*\big)$ & $C\int\mathrm{dvol}\,\big({\not d}\rho(b)(d^*d)^{-1}\lambda,\lambda^*\big)$ \\
+\end{tabular}
+\end{center}
+\tabcaption{Zero-mode trees of $W$ along $K_b$. The coefficient of $\log T$ in $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ is $\tfrac{3}{8\pi^2}\hbar$ times these: in units, $6$ times the functional divided by $C$, i.e. $-12$, $6$, $6$, $6$ units times the integrals of the last column without $C$.}
+They are nonlocal, nonzero, $Q$-closed and $Q$-exact (Proposition \ref{prop:ktr-consistency}).
+\item (ii) The coefficients of $\log T$ in the sectors $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(A|_V,A^*|_V)$, $(c,c^*)$ agree, to relative accuracy $10^{-5}$ at $\varepsilon=10^{-6}$, $T=10^6$, with $T\partial_T$ of the translation-invariant coefficient of the one-loop graphs evaluated directly, with explicit Schwinger integrals and an edge pinned at $t=T$, in an independent implementation.
+\item (iii) For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ with $\omega=e^{-i(p+q,x)}\mathrm{dvol}$, on the field leg $u\otimes X_1e^{i(p,x)}$ of $A|_{W_{\mathbb R}^\perp}$ and the antifield leg $u^*\otimes X_2e^{i(q,x)}$ of $A^*|_{W_{\mathbb R}^\perp}$, the zero-mode tree of $O$ along $K_b$ is
+\[
+4iC\Big(\frac{(b,q)}{|q|^4}-\frac{(b,p)}{|p|^2|q|^2}\Big)\big((w_1,u)(w_2,u^*)+(w_2,u)(w_1,u^*)\big)(X_1,X_2),
+\]
+nonzero for every nonzero $O$, traceless or trace; $O[T]^{(1)}(K_b)$ diverges as $T\to\infty$.
+\end{itemize}
+Two-component, with $\chi=(-\partial^2)^{-1}\lambda$: $\int\big((b,\partial)(d^*d)^{-1}A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big)=\tfrac14\int\big(b^m\partial_m(-\partial^2)^{-1}A_{ij},A^{*ij}\big)$; the $A|_V$ functional is $-2\int\big(b^n\partial_n(-\partial^2)^{-1}A_m,A^*_m\big)-\int\big((-\partial^2)^{-1}b^mA_m,\partial_nA^*_n\big)$; the ghost functional is $\int\big(b^m\partial_m(-\partial^2)^{-1}c,c^*\big)$; and
+\[
+\big({\not d}\rho(b)\chi,\lambda^*\big)=-b_m\big((\sigma^n\bar\sigma^m)_\alpha{}^\beta\partial_n\chi_\beta{}^i,\lambda^{*\alpha}{}_i\big)+b_m\big(\partial_n\bar\chi_{\dot\beta i}\,(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha},\bar\lambda^{*\dot\alpha i}\big).
+\]
+For the bilinear, $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$, the factor is $\tfrac1{16}\big(w_1^{ij}u_{ij}\,w_2^{kl}u^*_{kl}+w_2^{ij}u_{ij}\,w_1^{kl}u^*_{kl}\big)$.
+\end{proposition}
+
+\begin{proof}
+(i) The zero-mode tree of $W$ with two remaining legs is the sum of the trees with two cubic vertices joined by one line, the $A|_V$ stub on the vertex of the field leg and the $c$ stub, through $([A,c],A^*)$, $([c,\lambda],\lambda^*)$ or $\tfrac12([c,c],c^*)$, on the vertex of the antifield leg; trees with both stubs on one vertex carry a line of zero momentum and vanish by $\sum_a[X_a,X^a]=0$. The values are exact evaluations in the realisation of Chapter 2 (su(2), orthonormal basis, explicit spinors), in two independent ways for the scalar sector (the general tree routine and a direct contraction), and the coefficients of the four structures of the vector sector are determined on four configurations and confirmed on two more. The functionals follow from $\partial\mapsto ik$ on the field leg. (ii) The independent implementation evaluates the cycles with the floating insertion as second derivatives of plane-wave insertions; its values at $T=10^2,10^4,10^6$ converge to $6$ times the table entries in its unit $\hbar/16\pi^2$, e.g. $-6.857094i$ against $-48i/7$ in the scalar sector, $-3.428544i$ against $-24i/7$ in the vector sector and $-1.714274i$ against $-12i/7$ in the ghost sector at the kinematic point used there; its own refinement of the grids changes the values by $3\times10^{-10}$. (iii) The two trees of the proof of Theorem \ref{thm:ktr-defectlog} (ii) at $\varepsilon=0$, evaluated exactly; their sum is nonzero for generic $p,q$. Two-component forms: [ch08, Def c8-twocomp], $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=\tfrac14(A_{ij},A^{*ij})$, $d^*A^*=-\partial_mA^*_m$, and $\rho(v)$ on $\Sigma$, $\Sigma^*$ as there.
+\end{proof}
+
+\begin{proposition}[Consistency of the logarithms]
+\label{prop:ktr-consistency}
+\begin{itemize}
+\item (i) $\partial_{b\otimes(-,-)^{-1}}\circ Q=-Q\circ\partial_{b\otimes(-,-)^{-1}}$.
+\item (ii) $Q\,\partial_{b\otimes(-,-)^{-1}}W_{0,\rm tree}=0$, and $Q\,\partial_{b\otimes(-,-)^{-1}}O_{\rm tree}[\infty]=-\partial_{b\otimes(-,-)^{-1}}\big((Q+\{I,-\})O\big)_{\rm tree}[\infty]$, which is $0$ for gauge-invariant $O$.
+\item (iii) For $\Gamma(\eta_1,\eta_2)|_V=b$, the zero-mode tree of $W$ along $K_b$ is $Q$ of the arity-two zero-mode tree along $(\eta_1,\eta_2)$; the logarithms of the arity-one parts along $K_b$ are $Q$-exact.
+\item (iv) Flow: with Lemma c8-flow, $T\partial_TO[T]=T\big(\hbar\partial_{L_T}O[T]+\{I[T],O[T]\}_{L_T}\big)$, and at arity one along $K_b$ the right side tends to $\tfrac{3}{8\pi^2}\hbar\,\partial_{b\otimes(-,-)^{-1}}O_{\rm tree}[\infty]$: the logarithm is generated by the flow between endpoints, $O[T']=$ the linearised flow of $O[T]$ by $P(T,T')$, and contributes $\tfrac{3}{8\pi^2}\hbar\log(T'/T)$ times the zero-mode tree in the limit of large $T,T'$.
+\item (v) Master equation at scale $T$: at arity one along $K_b$, the coefficient of $\log T$ in the left side of [ch08, eq:c8-qme] is $\tfrac{3}{8\pi^2}\hbar\,Q\,\partial_{b\otimes(-,-)^{-1}}W_{0,\rm tree}=0$; at arity two along $(\eta_1,\eta_2)$ the term $W^{(1)}([\eta_1,\eta_2])=-W^{(1)}(K_{v_1})$ of $d_{CE}$ contributes $-\tfrac{3}{8\pi^2}\hbar$ times the zero-mode tree along $K_{v_1}$, and $Q$ of the arity-two logarithm cancels it, by (iii).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $Q$ annihilates the constant modes: $Q(c=X)=-dX=0$ and $Q(A|_V=b\otimes X)=-\tfrac12d^*d(b\otimes X)=0$ [ch01, Prop c1-Q]. With $(QF)(e)=\partial_rF(e+rQe)$, $r$ odd, $\partial_{e_0}(QF)=\pm Q(\partial_{e_0}F)$ with the sign $-1$ for the odd mode $c=X^a$ and $+1$ for the even mode. (ii) By the tree-level part of [ch08, eq:c8-transfer] at $T=\infty$, $QW_{\varepsilon,\rm tree}$ is the tree-level flow of the special edges, which carry $e^{-\varepsilon|p|^2}-1$ at generic momenta, so $QW_{0,\rm tree}=0$ (the constant modes give zero momentum only to lines that vanish by colour); with (i) this is the first statement, and the second is the same with the vertex $\delta O$. Verified exactly: $Q$ of the zero-mode tree of $W$ in $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, the two terms $\mp\tfrac{11}{882}i$ cancelling, and $Q$ of the zero-mode tree of the scalar bilinear. (iii) The arity-two zero-mode tree with the constant and the linear ghost modes, the linear mode $(b,x)X_a$ acting as $-i(b,\partial_k)$ on the line momentum at the vertex carrying it, evaluated exactly in $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$: $Q$ of it equals the zero-mode tree along $K_b$, ratio $1$. In general (iii) follows from (v) and (ii), up to a $Q$-closed term. (iv) Differentiate the second identity of [ch08, eq:c8-transfer] in $T'$; the bridges with $L_T$ vanish at generic momenta, and the loop with $L_T$ adjacent to the floating insertion is $T\partial_T$ of the composite line, Proposition \ref{prop:ktr-composite} (iv). (v) Expand [ch08, eq:c8-qme] in arity: at arity one the $\log T$ terms are $Q$ of Theorem \ref{thm:ktr-flowlog}, the brackets and $\Delta_T$ being $O(T^{-1/2}\log T)$ (Lemma \ref{lem:ktr-KT}); at arity two, $(d_{CE}F)(x_1,x_2)=F([x_1,x_2])$ for a cochain $F$ of degree $0$ [ch02, eq:c2-dce], and $[\eta_1,\eta_2]=-K_{v_1}$ [ch02, Prop c2-special].
+\end{proof}
+
+\begin{theorem}[The logarithms enter no core quantity]
+\label{thm:ktr-nocore}
+The counterterms $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ and $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, the obstruction, the finite counterterms and the local representative $L(O)$, in particular $K_1$ and the arity-two values along $(\eta_1,\eta_2)$ and $(K_b,P_c)$, are independent of $T$. In the identity $d_TO[T]=L(O)[T]$ at arity one along $K_b$ the logarithms match: on the left $Q$ of the zero-mode tree of $O$, on the right the zero-mode tree of $(Q+\{I,-\})O$ from the one-loop graphs of $(sO)^{(0)}$; for gauge-invariant $O$ both are $0$. If moreover $L_1(O)^{(0)}=0$, then $d_TO[T]^{(1)}(K_b)$ converges as $T\to\infty$, while $O[T]^{(1)}(K_b)$ diverges as soon as the zero-mode tree of $O$ is nonzero, as for the scalar bilinears.
+\end{theorem}
+
+\begin{proof}
+Independence of $T$: [ch08, Prop c8-Tindep (i)] for the counterterms, Theorem \ref{thm:ktr-defect} for the obstruction, the finite counterterms and $L(O)$. The right side $L(O)[T]^{(1)}(K_b)$ at order $\hbar$ consists of the one-loop graphs of the local operator $\{S^{(1)}(K_b),O\}$, which converge at $T=\infty$; of the trees of $\hbar L_1(O)^{(1)}(K_b)$, which converge; of the trees and one-loop graphs of $(sO)^{(0)}=(Q+\{I,-\})O$ with a vertex $S^{(1)}(K_b)$, whose logarithm is the zero-mode tree of $(sO)^{(0)}$ by Theorem \ref{thm:ktr-flowlog}; and of the trees of $\hbar L_1(O)^{(0)}$ with $S^{(1)}(K_b)$. The left side is Theorem \ref{thm:ktr-defectlog} at $\varepsilon\to0$ and Proposition \ref{prop:ktr-consistency} (ii).
+\end{proof}
+
+\section{Where $T\to\infty$ is safe}
+
+\begin{lemma}[The $K_T$ terms of $d_T$]
+\label{lem:ktr-KT}
+At order $\hbar$, at arity one along $K_b$ and at generic leg momenta, $\{I[T],O[T]\}_T$ and $\hbar\Delta_TO[T]$ are $O(T^{-1/2}\log T)$ as $T\to\infty$; the same holds with $\varepsilon>0$ fixed.
+\end{lemma}
+
+\begin{proof}
+A bracket term joins two connected pieces by $K_T$ at a sum of leg momenta, generic, and carries $e^{-T|p|^2}$ times a polynomial in $T$ from the position dependence of $S^{(1)}(K_b)$. A term $\hbar\Delta_T$ closes a cycle with $K_T$, whose scalar factor is $(4\pi T)^{-2}e^{-|x-y|^2/4T}$, without a factor $T$. In position space the worst configuration has the vertex $S^{(1)}(K_b)$ at $y$ with one leg on $K_T$ and the other on an edge to the rest, of order $|y|^{-3}$ after the derivative of $v.$; with $|v(y)|\le C|y|^2$ the integral is bounded by $T^{-2}\int_{|y|^2\lesssim T}|y|^{2-3}d^4y=O(T^{-1/2})$. A factor $\log T$ comes from the zero-mode trees inside $O[T]$ and $I[T]$.
+\end{proof}
+
+\begin{proposition}[Where $T\to\infty$ is safe]
+\label{prop:ktr-Tsafe}
+\begin{center}
+\begin{tabular}{l|l|l}
+object & at finite $T$ & $T\to\infty$ \\
+\hline
+$I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](K_b)$, $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](K_b)$ & independent of $T$ & safe (constant) \\
+obstruction and finite counterterm along $K_b$ & independent of $T$ & safe (constant) \\
+$K_1=\hbar L_1(O)^{(1)}(K_b)$ & independent of $T$ & safe (constant) \\
+$L_1(O)^{(2)}(\eta_1,\eta_2)$, $L_1(O)^{(2)}(K_b,P_c)$ & independent of $T$ & safe (constant) \\
+defect graphs along $K_b$ at fixed $\varepsilon$, two-point sectors of the action & finite & safe: $T\partial_T=O(\varepsilon/T)$ \\
+defect graphs along $K_b$ at fixed $\varepsilon$, scalar bilinears & finite & not safe: $O(\varepsilon)\log T$ \\
+$W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ & finite & not safe: $\tfrac{3}{8\pi^2}\hbar\log T$ times a nonzero tree \\
+$O[T]^{(1)}(K_b)$ & finite & not safe for the scalar bilinears \\
+$d_TO[T]^{(1)}(K_b)=L(O)[T]^{(1)}(K_b)$, gauge-invariant $O$, $L_1(O)^{(0)}=0$ & finite & safe \\
+$Q\big(O[T]^{(1)}(K_b)\big)$, same $O$ & finite & safe, limit $L(O)[\infty]^{(1)}(K_b)$ \\
+$K_T$ terms of $d_T$ along $K_b$ & $O(T^{-1/2}\log T)$ & $\to0$ \\
+$W^{(2)}(\eta_1,\eta_2)$, $O[T]^{(2)}(\eta_1,\eta_2)$, $\Gamma(\eta_1,\eta_2)|_V\neq0$ & finite & not safe: $\log T$ \\
+the same with $\Gamma(\eta_1,\eta_2)|_V=0$ & finite & safe \\
+\end{tabular}
+\end{center}
+\tabcaption{The endpoint $T$ along the special conformal generators.}
+\end{proposition}
+
+\begin{proof}
+Rows 1--4: Theorem \ref{thm:ktr-defect} and [ch08, Prop c8-Tindep (i)]. Rows 5--6: Theorem \ref{thm:ktr-defectlog} (i), (ii), and the independent evaluation of the four two-point sectors, in which $T\cdot T\partial_T$ of the defect divided by $\varepsilon$ tends to a constant ($T=10^4,10^5,10^6$). Rows 7--8: Theorem \ref{thm:ktr-flowlog} and Proposition \ref{prop:ktr-values}. Rows 9--10: Theorem \ref{thm:ktr-nocore}, Lemma \ref{lem:ktr-KT} and Proposition \ref{prop:ktr-consistency} (ii). Rows 12--13: Theorem \ref{thm:ktr-flowlog} and [design, Thm thm:o-ir (iv)].
+\end{proof}
+
+\section{$K_1$ and its consistency relations}
+
+\begin{definition}[The special conformal components]
+\label{def:ktr-K1}
+For a local functional $O$ of degree $0$, $K_1(O):=\hbar L_1(O)^{(1)}(K_b)$ is the local functional with the fewest legs in the limit $\varepsilon\to0$, at any finite $T$, of the graphs of the defect along $K_b$ [design, eq:o-L1graphs]; by Theorem \ref{thm:ktr-defect} it exists and does not depend on $T$. It also equals the part with the fewest legs of $\lim_{T\to\infty}Q\big(O[T]^{(1)}(K_b)\big)-\{S^{(1)}(K_b),O\}[\infty]$ for gauge-invariant $O$ with $L_1(O)^{(0)}=0$ (Theorem \ref{thm:ktr-nocore}). The defect graphs at $T=\infty$ and fixed $\varepsilon$ are not used (Theorem \ref{thm:ktr-defectlog} (iii)).
+\end{definition}
+
+\begin{theorem}[The relations at order $\hbar$]
+\label{thm:ktr-relations}
+Assume the one-loop master equation and the local representatives on a space of local functionals of degree $0$ stable under $\Lambda$ and under the classical transformations. Write $\equiv$ for equality modulo graded commutators with $\Lambda^{(0)}$, i.e. on the cohomology of $\Lambda^{(0)}$, and $\omega_{bc}$ for the rotation $x\mapsto2(b,x)c-2(c,x)b$. Then
+\begin{equation}
+\begin{aligned}
+&(K_b,P_c):\quad [K_1(K_b),\mathrm{ad}_{S^{(1)}(P_c)}]+[\mathrm{ad}_{S^{(1)}(K_b)},P_1(P_c)]+(b,c)\,D_1+M_1(\omega_{bc})\equiv0,\\
+&(P_c,\Delta):\quad [P_1(P_c),\mathrm{ad}_{S^{(1)}(\Delta)}]+[\mathrm{ad}_{S^{(1)}(P_c)},D_1]+2P_1(P_c)\equiv0,\\
+&(K_b,\Delta):\quad [K_1(K_b),\mathrm{ad}_{S^{(1)}(\Delta)}]+[\mathrm{ad}_{S^{(1)}(K_b)},D_1]-2K_1(K_b)\equiv0,\\
+&(K_b,K_c):\quad [K_1(K_b),\mathrm{ad}_{S^{(1)}(K_c)}]+[\mathrm{ad}_{S^{(1)}(K_b)},K_1(K_c)]\equiv0,\\
+&(\eta_1,\eta_2):\quad K_1\big(K_{\Gamma(\eta_1,\eta_2)|_V}\big)\equiv[S_1(\eta_1),\mathrm{ad}_{S^{(1)}(\eta_2)}]+[\mathrm{ad}_{S^{(1)}(\eta_1)},S_1(\eta_2)],
+\end{aligned}
+\label{eq:ktr-relations}
+\end{equation}
+the last with anticommutators.
+\end{theorem}
+
+\begin{proof}
+By [ch08, Cor c8-homotopy (ii)], $[\Lambda^{(1)}(x_1),\Lambda^{(1)}(x_2)]+\Lambda^{(1)}([x_1,x_2])\equiv0$; take its order-$\hbar$ part, with $\Lambda^{(1)}(x)=\mathrm{ad}_{S^{(1)}(x)}+\hbar L_1^{(1)}(x)$ on degree $0$ [ch08, Thm c8-L (iv)] and the components named as in [ch08, Def c8-components]. The brackets are $[K_b,P_c]=(b,c)\Delta+\omega_{bc}$, $[P_c,\Delta]=2P_c$, $[K_b,\Delta]=-2K_b$, $[K_b,K_c]=0$ (vector fields, [ch02, Def c2-bracket]), and $[\eta_1,\eta_2]=-K_{v_1}$, $v_1=\Gamma(\eta_1,\eta_2)|_V$ [ch02, Prop c2-special]; the order-$\hbar^0$ identity $[\mathrm{ad}_{S^{(1)}(x_1)},\mathrm{ad}_{S^{(1)}(x_2)}]=-\mathrm{ad}_{S^{(1)}([x_1,x_2])}$ for even $x_1,x_2$ ($S^{(2)}$ vanishes on even arguments) fixes the signs. All brackets, the identity and the two-component bracket of two special supercharges, $\Gamma(\eta_1,\eta_2)|_V^m=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big)$ with $[\eta_1,\eta_2]|_V=-K_{v_1}$, are verified exactly or to $10^{-14}$; $\eta_2\mapsto\Gamma(\eta_1,\eta_2)|_V$ is onto $V$, so every $K_b$ occurs in the last relation.
+\end{proof}
+
+\begin{theorem}[$K_1$ from $D_1$ and $P_1$]
+\label{thm:ktr-KD}
+Under the hypotheses of Theorem \ref{thm:ktr-relations}, let $O=\int\omega\,f$ run over a family of Lorentz-scalar operators of Weyl weight $w$ closed under the classical transformations, on which, modulo $\Lambda^{(0)}$-exact terms,
+\[
+P_1(P_c)=p\,\mathrm{ad}_{S^{(1)}(P_c)},\qquad D_1=2\gamma+d\,\mathrm{ad}_{S^{(1)}(\Delta)},\qquad M_1(\omega_{bc})=m\,\mathrm{ad}_{S^{(1)}(\omega_{bc})},
+\]
+with numbers $p,\gamma,d,m$ of order one unit, and $K_1(K_b)O=\int\omega\,\big(\alpha\,v\cdot\partial f+\tfrac14\operatorname{div}v\,\kappa f\big)$, the form allowed by [ch07, Cor c7-K] for scalar densities. Then \eqref{eq:ktr-relations} forces
+\[
+d=0,\qquad m=0,\qquad \alpha=-p,\qquad \kappa=\gamma-pw,\qquad\text{i.e.}\qquad K_1(K_b)O\equiv\tfrac14\operatorname{div}v\,\gamma\,O-p\,\{S^{(1)}(K_b),O\},
+\]
+two-component $K_1(O)\equiv-2(b\cdot x)\,\gamma\,O-p\,\{S^{(1)}(K_b),O\}$. The $(P_c,\Delta)$ relation alone gives $d=0$ for every $p$: the one-loop dilatation commutes with the translations on cohomology. The $(K_b,P_c)$ relation alone gives $m=d$, $\alpha=d-p$, $\kappa=\gamma+(d-p)w$, and $(K_b,K_c)$ is then satisfied. With $P_1=0$ and the coefficients of [ch06, Thm c6-dil] this is [design, Thm thm:o-KD]: $K_1=0$ on the traceless scalar bilinears and $K_1=48\,(b\cdot x)$ units times $O$ on $\tfrac14\int\omega\,(A^{ij},A_{ij})$.
+\end{theorem}
+
+\begin{proof}
+On $\int\omega\,E[f]$, with $E$ a linear differential expression with polynomial coefficients, each operator acts by a substitution $f\mapsto\mathcal Lf$ with $\mathcal L$ a first-order differential operator: $\mathrm{ad}_{S^{(1)}(v)}$ by $v\cdot\partial+\tfrac w4\operatorname{div}v$ [ch07, Def c7-vdot, Lemma c7-weights], and the one-loop maps of the statement by the operators displayed. The density of the image of $\int\omega\,E[f]$ is $E$ applied to that of the image of $\int\omega\,f$, by integration by parts in $\omega$; hence composition reverses the order and a commutator of operators corresponds to minus the commutator of the $\mathcal L$'s. The order-$\hbar^0$ identity is then $[v\cdot\partial+\tfrac w4\operatorname{div}v,\,v'\cdot\partial+\tfrac w4\operatorname{div}v']=[v,v']\cdot\partial+\tfrac w4\operatorname{div}[v,v']$, by the cocycle property $\operatorname{div}[v,v']=v(\operatorname{div}v')-v'(\operatorname{div}v)$. Inserting the ansatz in \eqref{eq:ktr-relations} and comparing the coefficients of $f$, $\partial f$, $\partial\partial f$ and of the monomials in $x,b,c$: in $(P_c,\Delta)$ the terms in $p$ cancel and $[\partial_c,\,d(2x\cdot\partial+2w)]=2d\,\partial_c$ remains; in $(K_b,P_c)$, $-[c\cdot\partial,\alpha v\cdot\partial+\tfrac\kappa4\operatorname{div}v]=\alpha\big(2(b,c)x+\omega_{bc}\big)\cdot\partial+2(b,c)\kappa$ and $-p[c\cdot\partial,v\cdot\partial+\tfrac w4\operatorname{div}v]=p\big(2(b,c)x+\omega_{bc}\big)\cdot\partial+2(b,c)pw$ must equal $(b,c)\big(2\gamma+d(2x\cdot\partial+2w)\big)+m\,\omega_{bc}\cdot\partial$. The solution is the stated one (exact symbolic solution); $(K_b,\Delta)$ reduces to $2d\,\mathrm{ad}_{S^{(1)}(K_b)}\equiv0$, consistent; $(K_b,K_c)$ holds by the cocycle property and $[K_b,K_c]=0$. Values: $\tfrac14\operatorname{div}v=-2(b\cdot x)$ and $2\gamma=0$, resp. $-48$ units, the dilatation coefficients in the normalisation $\Delta=2E$ [ch06, Thm c6-dil].
+\end{proof}
+
+\begin{proposition}[The rescaling terms]
+\label{prop:ktr-rescale}
+\begin{itemize}
+\item (i) The finite part $\psi'=\tfrac a2\,\mathrm{ad}_{S^{(1)}(\Delta)}$ of the operators of the family (a linear map preserving the degree and the Weyl weight, independent of $\varepsilon$ [ch08, Def c8-renorm]) changes $L_1$ by $[s,\psi']$ [ch08, Prop c8-laws (b)]: $P_1(P_c)$ by $-a\,\mathrm{ad}_{S^{(1)}(P_c)}$, $K_1(K_b)$ by $+a\,\mathrm{ad}_{S^{(1)}(K_b)}$, $D_1$ and $M_1$ by $0$, and, by $[\Delta,\xi]=-\xi$, $[\Delta,\eta]=\eta$, $Q_1(\xi)$ by $-\tfrac a2\mathrm{ad}_{S^{(1)}(\xi)}$ and $S_1(\eta)$ by $+\tfrac a2\mathrm{ad}_{S^{(1)}(\eta)}$. With $a=p$ it removes the rescaling of Theorem \ref{thm:ktr-KD} from $P_1$ and $K_1$ together. When $p$ is the same on all operators, the field redefinition generated by $\tfrac p2S^{(1)}(\Delta)$ [ch08, Prop c8-laws (a)] has the same effect.
+\item (ii) $\psi'$ is compatible with the reflection of [ch08, Thm c8-fields] exactly when $\bar a=-a$, since $\Delta^{\dagger_n}=-\Delta$; a real rescaling $p$ is not removed by a reflection-compatible finite part.
+\item (iii) With the values of the internal-insertion graphs on the scalar bilinears [compare-delta], $d=-(\tfrac13+f_S)$ and $p=-(\tfrac13+f_P)$ units, $f_S$ and $f_P$ the coefficients of $S^{(1)}(\Delta)$ and of $S^{(1)}(P_b)$ in the arity-one finite counterterms left free by the two-leg master equation, Theorem \ref{thm:ktr-KD} requires $f_S=-\tfrac13$ and predicts $K_1(K_b)O\equiv\tfrac14\operatorname{div}v\,\gamma\,O+(\tfrac13+f_P)\{S^{(1)}(K_b),O\}$ in units and no rescaling in $M_1$; these are tests for the direct evaluation of the graphs along $K_b$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) In the model of the proof of Theorem \ref{thm:ktr-KD}, $[\mathrm{ad}_{S^{(1)}(v)},\psi']=-\tfrac a2\,\mathrm{ad}_{S^{(1)}([v,\Delta])}$ with $[P_c,\Delta]=2P_c$, $[K_b,\Delta]=-2K_b$, $[\omega,\Delta]=0$ (exact symbolic check); for the odd generators the same with [ch02, Prop c2-special]. The field redefinition: $s\big(\tfrac p2S^{(1)}(\Delta)\big)$ has arity-one part $\tfrac p2\{S^{(1)}(x),S^{(1)}(\Delta)\}$, which by [ch02, Lemma c2-components] and $S^{(2)}(x,\Delta)=0$ is the classical transformation along $\pm[x,\Delta]$. (ii) $S^{(1)}(\Delta)^{\Theta_n}=S^{(1)}(\Delta^{\dagger_n})=-S^{(1)}(\Delta)$ [ch08, Thm c8-fields (i)] and $\{f,g\}^{\Theta_n}=(-1)^{|f|+|g|}\{g^{\Theta_n},f^{\Theta_n}\}$ give $(\psi'O)^{\Theta_n}=-\tfrac{\bar a}a\,\psi'(O^{\Theta_n})$. (iii) Insert the values in Theorem \ref{thm:ktr-KD}.
+\end{proof}
+
+\begin{corollary}[The relation $K=P^\dagger$ with $P_1\neq0$]
+\label{cor:ktr-gram}
+Under the hypotheses of [ch08, Thm c8-adjoint] without the assumption $P_1=0$, with the radial conjugation of [ch08, Def c8-radial] built from the full $\Lambda^{(1)}(P_n)$, the third relation of [ch08, Cor c8-gram] reads, for $P_1(P_b)=p\,\mathrm{ad}_{S^{(1)}(P_b)}$ on the family,
+\[
+K_1\text{ along }K_{\bar b}=\bar p\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}+\hbar\big[\mathrm{ad}_{S^{(1)}(K_{\bar b})},\,\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}\big],
+\]
+because $\big(\mathrm{ad}_{S^{(1)}(P_b)}\big)^{\rm adj}=-\mathrm{ad}_{S^{(1)}(K_{\bar b})}$ (the order-$\hbar^0$ relation $Y_0=X_0^{\rm adj}$ with $P_b^\dagger=-K_{\bar b}$). Together with Theorem \ref{thm:ktr-KD} it is a test of the Gram matrix: the rescaling part of $\hbar[\mathrm{ad}_{S^{(1)}(K_{\bar b})},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_{\rm 1}]$ must be $-(p+\bar p)\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}$, and its part in $\tfrac14\operatorname{div}v$ must be $\gamma$.
+\end{corollary}
+
+\begin{proof}
+This is the third line of [ch08, Cor c8-gram], with $\hbar X_1=-P_1$, $(pA)^{\rm adj}=\bar pA^{\rm adj}$, and the expression of $K_1$ of Theorem \ref{thm:ktr-KD}.
+\end{proof}
+
+\begin{remark}[Four determinations of $K_1$]
+\label{rem:ktr-four}
+$K_1$ is fixed by the graphs along $K_b$ at finite $T$ (Definition \ref{def:ktr-K1}) and is constrained on cohomology by $D_1$ and $P_1$ through $(K_b,P_c)$, by $S_1$ through $(\eta_1,\eta_2)$, and by the one-loop Gram matrix through $K=P^\dagger$. $S_1$ and $D_1$ are computed at $T=\infty$ [ch08, Prop c8-Tsafe], so the relation at $(\eta_1,\eta_2)$ determines $K_1$ on cohomology without any endpoint; agreement of the four is a test of the equivariant master equation, of the reflection compatibility of the scheme and of the engines.
+\end{remark}
+
+\begin{remark}[All local operators]
+\label{rem:ktr-twobody}
+At one loop a graph meets a local operator in at most two letters, so $K_1$ on all local operators is a derivation built from finitely many action-level local functionals plus a second-order operator on pairs of letters with a universal kernel (directive R8 of the Step-2 specification). Theorem \ref{thm:ktr-defect} and Theorem \ref{thm:ktr-defectlog} apply kernel by kernel: the two-letter kernels of $K_1$ are the $\varepsilon\to0$ limits at finite $T$ of the special-edge cycles through two letters, independent of $T$; the logarithms of $T$ sit in the zero-mode trees, in which the floating insertion is cut out and the two letters are joined by trees.
+\end{remark}
+
+\section{Two-component form}
+
+\begin{proposition}[Two-component summary]
+\label{prop:ktr-twocomp}
+With $v^m=x^2b^m-2(b\cdot x)x^m$ and the conventions of [ch08, Def c8-twocomp]:
+\begin{itemize}
+\item the floating insertion is $\int\big(v^n\partial_nA_m+A_n\partial_mv^n,A^*_m\big)$, and $T\partial_T$ of the composite line tends to $\tfrac3{8\pi^2}$ times the kernel $A_m=b_mX_a$, $c=X^a$;
+\item the coefficient of $\log T$ in $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ on the quadratic sector is, in units,
+\[
+\begin{aligned}
+&-3\int\big(b^m\partial_m(-\partial^2)^{-1}A_{ij},A^{*ij}\big)-12\int\big(b^n\partial_n(-\partial^2)^{-1}A_m,A^*_m\big)-6\int\big((-\partial^2)^{-1}b^mA_m,\partial_nA^*_n\big)\\
+&+6\int\big(b^m\partial_m(-\partial^2)^{-1}c,c^*\big)+6\int\big({\not d}\rho(b)(-\partial^2)^{-1}\lambda,\lambda^*\big),
+\end{aligned}
+\]
+with $\big({\not d}\rho(b)\chi,\lambda^*\big)$ as in Proposition \ref{prop:ktr-values};
+\item the logarithm at arity two along $(\eta_1,\eta_2)$ vanishes exactly when $v_1^m=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big)=0$;
+\item on a family of scalar operators with $P_1=p\{S^{(1)}(P_b),-\}$, $K_1(O)\equiv-2(b\cdot x)\gamma\,O-p\{S^{(1)}(K_b),O\}$ with $\{S^{(1)}(K_b),-\}$ the classical transformation $\int\big\{(v.A_m,A^*_m)+\tfrac14(v.A_{ij},A^{*ij})-(v.\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)+(v.\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})-(v.c,c^*)\big\}$, $v.A_{ij}=v^n\partial_nA_{ij}-2(b\cdot x)A_{ij}$, $v.\lambda_\alpha{}^i=v^n\partial_n\lambda_\alpha{}^i-\tfrac12(x_mb_n-x_nb_m)(\sigma^m\bar\sigma^n)_\alpha{}^\beta\lambda_\beta{}^i-3(b\cdot x)\lambda_\alpha{}^i$, $v.\bar\lambda_{\dot\alpha i}=v^n\partial_n\bar\lambda_{\dot\alpha i}+\tfrac12(x_mb_n-x_nb_m)\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}-3(b\cdot x)\bar\lambda_{\dot\alpha i}$;
+\item the relation at $(\eta_1,\eta_2)$ is $K_1(K_{v_1})\equiv[S_1(\eta_1),\{S^{(1)}(\eta_2),-\}]+[\{S^{(1)}(\eta_1),-\},S_1(\eta_2)]$ (anticommutators), with the two-component decomposition $S_1(\eta)=\eta^\alpha{}_i\,S_1(-)_\alpha{}^i+\bar\eta^{\dot\alpha i}\,\bar S_1(-)_{\dot\alpha i}$ of [ch08, Def c8-components] and $\{S^{(1)}(\eta),-\}$ from [ch08, Def c8-twocomp] and the dictionary entry (F2).
+\end{itemize}
+Weinberg's form follows with $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ after the Wick map [ch08, Prop c8-twocomp].
+\end{proposition}
+
+\begin{proof}
+Definition c8-twocomp and the dictionary entries for $S^{(1)}(v)$ of an even generator ($X_{mn}=4(x_mb_n-x_nb_m)$, $\operatorname{div}v=-8b\cdot x$, $r=0$); Proposition \ref{prop:ktr-values} with $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=\tfrac14(A_{ij},A^{*ij})$; Theorem \ref{thm:ktr-relations}.
+\end{proof}
+
+\section{Verification}
+
+\begin{tabular}{l|l|l}
+statement & method & result \\
+\hline
+Lemma \ref{lem:ktr-noninv} & symbolic identities at random rational points, 40 digits & residuals below $4\times10^{-42}$ \\
+Prop \ref{prop:ktr-composite} (ii) & exact radial integration & \eqref{eq:ktr-z0} \\
+Prop \ref{prop:ktr-composite} (i), (iii) & exact Gaussian moments, $z\neq0$, $T\le10^8$ & $-3b_k/16\pi^2$ to $10^{-8}$; scaling to $10^{-16}$ \\
+Thm \ref{thm:ktr-flowlog}, Prop \ref{prop:ktr-values} (i) & exact trees, su(2), explicit spinors & four closed forms \\
+Prop \ref{prop:ktr-values} (ii) & independent Schwinger engine, $T\partial_T$ at $T\le10^6$ & agreement $7\times10^{-6}$ in three sectors \\
+Thm \ref{thm:ktr-defectlog} & exact trees with regulated lines & (i) identically $0$; (ii) closed form, $O(\varepsilon)$, nonzero \\
+Thm \ref{thm:ktr-defect} (ii) & independent engine, defect, four two-point sectors & $T\partial_T\propto\varepsilon$, $T\cdot T\partial_T/\varepsilon\to$ const \\
+Prop \ref{prop:ktr-consistency} (ii), (iii) & exact trees & $Q$-closed; $Q$ of arity two $=$ arity one, ratio $1$ \\
+Thm \ref{thm:ktr-flowlog}, arity two & shell integrals at finite $T$ & slope $6\pi^2i\,v_1\cdot(f_0g_1-f_1g_0)$ to $10^{-15}$; $0$ at $v_1=0$ \\
+Thm \ref{thm:ktr-relations}, \ref{thm:ktr-KD}, Prop \ref{prop:ktr-rescale} (i) & exact symbolic algebra; two-component $\sigma$ & unique solution; bracket to $10^{-14}$ \\
+\end{tabular}
+\tabcaption{Checks of the statements of this chapter; the scripts are listed in the summary file of this chapter.}

@@ -1,0 +1,439 @@
+"""Build step2/literature/q1_targets.json (companion of q1_targets.tex).
+
+Labels: S = transcribed from source (via the reader files), D = derived in q1_targets.tex,
+I = identification/inference stated in no source.  Run: python3 -I build_q1_targets.py
+"""
+import json
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+UNIT = "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))"
+
+data = {
+    "file": "step2/literature/q1_targets.json",
+    "companion_tex": "step2/literature/q1_targets.tex",
+    "date": "2026-10-29 (round-2 corrections F0, F1, F5)",
+    "role": "synthesis: target conclusions about the one-loop twisted Q_1 that the untwisted N=4 equivariant program must reproduce (R3), and the R4 novelty list",
+    "labels": {"S": "transcribed from source at cited eq (via reader files)",
+               "D": "derived in q1_targets.tex from quoted formulas",
+               "I": "identification or inference stated in no source"},
+    "name_clash": "Q_0, Q_1, Q_2 = loop components of the twisted differential (BGKWWY (3.28),(D.13); BK (1.3),(1.6)). Manuscript spinor parameters Q_1 in Sigma, Q_2 in Sigma^* never used: elements of Sigma are xi=(xi_alpha^i, xibar_alphadot i), of Sigma^* eta=(eta^alpha_i, etabar^alphadot i) (dictionary thm:real). Spin-chain Q_k, S_k, H_k = coefficients of g^k, always with source key.",
+    "inputs": ["step2/literature/sweep.json", "step2/literature/gkw.tex", "step2/literature/gkw.json",
+               "step2/literature/bgkwwy.tex", "step2/literature/bgkwwy.json",
+               "step2/literature/bgkwwy_checks_output.txt", "step2/literature/n4_untwisted.tex",
+               "step2/literature/n4_untwisted.json", "step2/notation/esw_to_weinberg_srednicki.tex",
+               "manuscript ch02, ch06, ch07", "DESIGN_STEP2.md", "DEFINITIONS_v2.md",
+               "[ESW] local copy arXiv:2002.10517: Defs 2.16-2.18, Prop 2.21, Rem 1.29, Sec 10.1.1, 10.3, 10.3.1, Thm 10.9"],
+    "unit": UNIT,
+    "sources": {
+        "BK": "Budzik, Kulp, Loop Corrected Supercharges from Holomorphic Anomalies, arXiv:2512.07771v3",
+        "BGKWWY": "Budzik, Gaiotto, Kulp, Williams, Wu, Yu, Semi-Chiral Operators in 4d N=1 Gauge Theories, arXiv:2306.01039v2 (PDF eq numbers)",
+        "GKW": "Gaiotto, Kulp, Wu, Higher Operations in Perturbation Theory, arXiv:2403.13049v1",
+        "BGKWY22": "Budzik, Gaiotto, Kulp, Wu, Yu, Feynman Diagrams in Four-Dimensional Holomorphic Theories and the Operatope, arXiv:2207.14321v1",
+        "GWW": "Gui, Wang, Williams, arXiv:2510.26608v2",
+        "W18": "Williams, Renormalization for holomorphic field theories, arXiv:1809.02661v2",
+        "BGWW": "Bomans, Garner, Williams, Wu, Unravelling the Holomorphic Twist II, arXiv:2509.16737v1",
+        "CLW": "Chang, Lin, Wu, arXiv:2310.20086v2",
+        "CL25": "Choi, Lee, Konishi lifts a black hole, arXiv:2511.09519v1",
+        "KvLM": "Kibe, van Leuven, Mathieson, Non-Coulomb Q-cohomology and quantum lifting, arXiv:2610.22332v2",
+        "KKLP": "Kim, Kim, Lee, Park, Quantum black hole cohomologies, arXiv:2606.27955v2",
+        "KLLS": "Kim, Lee, Lee, Song, Black hole cohomologies in N=4 SYM, arXiv:2610.20340v1",
+        "BMV": "Budzik, Murali, Vieira, Following Black Hole States, arXiv:2306.04693v2 (fn 5)",
+        "CY13": "Chang, Yin, 1/16 BPS States in N=4 SYM, arXiv:1305.6314v2",
+        "CL22": "Chang, Lin, Words to describe a black hole, arXiv:2209.06728v4",
+        "GGKM08": "Grant, Grassi, Kim, Minwalla, arXiv:0803.4183v1",
+        "B03": "Beisert, The su(2|3) Dynamic Spin Chain, hep-th/0310252v2",
+        "B03c": "Beisert, The Complete One-Loop Dilatation Operator of N=4 SYM, hep-th/0307015v5",
+        "B04": "Beisert, dissertation, hep-th/0407277v4",
+        "Z05": "Zwiebel, N=4 SYM to Two Loops ... su(1,1|2) Sector, hep-th/0511109v3",
+        "CDSW": "Cachazo, Douglas, Seiberg, Witten, hep-th/0211170v2",
+        "BKRS01": "Bianchi, Kovacs, Rossi, Stanev, hep-th/0104016v1",
+        "EJSS05": "Eden, Jarczak, Sokatchev, Stanev, hep-th/0501077v2 (SSDR: statements only)",
+        "ESW": "Elliott, Safronov, Williams, arXiv:2002.10517",
+    },
+    "dictionary": {
+        "generator": {
+            "S": ["ESW Def 2.16: square-zero supercharge Q in Sigma, Gamma(Q,Q)=0; holomorphic if image of Gamma(Q,-) has dim n/2",
+                  "ESW Sec 10.3 bullet 1: rank (1,0) and (0,1) supercharges automatically square to zero; twists holomorphic; factor through N=1",
+                  "ESW Sec 10.3.1: Q in S_+ (x) W of rank (1,0) in the scalar summand spanning C w_1; alpha: U(1)->G_R gives Q weight 1",
+                  "BK before (3.51): twisting supercharge calQ := Q^4_-; CY13 (2.1): Q=Q^4_-, S=S^-_4=Q^dagger, 2{Q,Q^dagger}=E-2J-H_1-H_2-H_3"],
+            "D": ["x = xi = u (x) w in S_+ (x) W, u in S_+, w in W nonzero; two-component xi_alpha^i = u_alpha w^i, xibar = 0",
+                  "full ten-component Gamma(xi,xi)=0: (G1) needs xibar; (G2) Gamma_kl(xi,xi) = 2 eps_jikl w^j w^i u_alpha eps^{alpha beta} u_beta = 0",
+                  "for xibar=0, Gamma_kl(xi,xi) = eps_jikl contracted with the 2x2 minors of the 2x4 matrix xi_alpha^i: vanishes iff rank xi <= 1; [xi,xi] = Gamma|_V = 0 for every xi in S_+ (x) W (prop:c2-special); rank-two elements = topological twists (ESW Sec 10.3 bullet 2)",
+                  "conjugate twist: rank (0,1) element in S_- (x) W^*",
+                  "fixed auxiliary data: u' in S_+ with u'^alpha u_alpha = 1, n in W^* with n_i w^i = 1; lambda_alpha^i = (u' lambda^i) u_alpha - (u lambda^i) u'_alpha"],
+            "I": ["all rank-one xi are conjugate under Spin(4) x SL(4) (orbit statements ESW Sec 2.5, 10.3): targets are covariant in (u,w); label match Q^4_- <-> (u,w) fixed in step2/notation",
+                  "project upper W-index <-> lower SU(4) index of the fermions/scalars of CY13, GGKM08 (gaugino and supercharge parameter in the same Sigma in the project)"],
+        },
+        "equivariant_vertices_along_xi_D": {
+            "S1_xi": "int{ -i(lambdabar_{alphadot i} w^i sigmabar^{m alphadot alpha} u_alpha, A*_m) + 1/2 eps_jikl w^j((u lambda^i), A*^{kl}) - 1/4(F_mn (sigma^m sigmabar^n u)_alpha, lambda*^alpha_i w^i) - 1/4([A^{ik}, A_kj w^j] u_alpha, lambda*^alpha_i) - i/2(u^alpha sigma^m_{alpha alphadot} D_m(A_ij w^j), lambdabar*^{alphadot i}) }",
+            "S2_xixi": "-1/2 int (u_alpha w^i lambda*^alpha_i, u_beta w^j lambda*^beta_j)  [other two terms of (F3) vanish since Gamma(xi,xi)=0]",
+            "field_transformations": ["xi.A_m = -i (lambdabar_{alphadot i} w^i) sigmabar^{m alphadot alpha} u_alpha",
+                                      "xi.A_kl = 2 eps_jikl w^j (u lambda^i)",
+                                      "xi.lambda_alpha^i = 1/4 F_mn (sigma^m sigmabar^n u)_alpha w^i + 1/4 [A^{ik}, A_kj w^j] u_alpha",
+                                      "xi.lambdabar_{alphadot i} = i/2 u^alpha sigma^m_{alpha alphadot} D_m(A_ij w^j)",
+                                      "xi.c = 0"],
+            "consequences": ["xi.(A_kl w^l) = 0", "xi.(lambdabar_{alphadot i} w^i) = 0",
+                             "mod w: xi.(u lambda^i) = 0 and (u lambda^i) is the image of the transverse scalars (exact); xi.(u' lambda^i) = 1/4 [A^{ik}, A_kj w^j], with w=e_4: proportional to eps^{ikl}[A_l4, A_k4] = structure of CY13 (2.5) and BK (3.50)",
+                             "exact curvature components: u F u and u' F u (+ commutator term); unreached: u' F u'",
+                             "exact derivatives: u^alpha sigma^m_{alpha alphadot} D_m (BK (2.5): antiholomorphic translations Q-exact)"],
+        },
+        "letters": [
+            {"twisted": "gamma", "BK_3.51_S": "gamma^I ~ Phi^{4I}", "two_component_I": "A_ij w^j (3 comps; (A_ij w^j) w^i = 0)",
+             "index_free_I": "contraction with w of A|_{W_R^perp} read in wedge^2 W^*", "weight": 1, "ghost": 0},
+            {"twisted": "beta", "BK_3.51_S": "beta_I ~ Psi_{I+}", "two_component_I": "(u' lambda^i) = u'^alpha lambda_alpha^i modulo w^i",
+             "index_free_I": "coefficient of u in lambda|_{S_+ (x) W}, read in W/Cw", "weight": 1.5, "ghost": 0},
+            {"twisted": "d_alphadot c", "BK_3.51_S": "d_alphadot c ~ Psibar^4_alphadot", "two_component_I": "lambdabar_{alphadot i} w^i",
+             "index_free_I": "lambda|_{S_- (x) W^*} paired with w", "weight": 1.5, "ghost": 0},
+            {"twisted": "c", "BK_3.51_S": "ghost", "two_component_I": "c", "index_free_I": "c", "weight": 0, "ghost": 1},
+            {"twisted": "b", "BK_3.51_S": "b ~ F_{++}", "two_component_I": "u'^alpha F_mn (sigma^m sigmabar^n)_alpha^beta u'_beta (normalisation open); alternative representative: a component of lambda^* (ESW Thm 10.9: (2,0) part of twisted b-field = B^*)",
+             "index_free_I": "self-dual part of F_A on u' (x) u'", "weight": "2 (field rep) or 5/2 (antifield rep)", "ghost": "0 or -1"},
+            {"twisted": "d_alphadot", "BK_3.51_S": "d_alphadot ~ D_{+ alphadot}", "two_component_I": "u'^alpha sigma^m_{alpha alphadot} D_m",
+             "index_free_I": "covariant derivative along u' (x) S_- in V_C", "weight": 1, "ghost": 0},
+        ],
+        "letter_remarks": ["BK (3.51), BGKWWY Sec 3 bullets after (3.3): dictionary with '~', up to field redefinitions in free Q-cohomology, no normalisation (S)",
+                           "ESW Thm 10.9 collections: c+A_{0,1}+B, phi+psi+varsigma^*, xi_ESW+b^*+a^*, a+b+xi_ESW^*, varsigma+psi^*+phi^*, B^*+A^*_{0,1}+c^* (S): untwisted antifields occur in twisted fields",
+                           "u' -> u' + t u changes beta by an exact term (D)"],
+        "evaluation_along_xi": {
+            "S": ["ESW Rem 1.29: (d_CE + Q_BV) I_g + 1/2 {I_g, I_g} = 0",
+                  "ESW Def 2.17: S^Q = S + sum_k S^(k)_A(Q,...,Q) (coefficient 1)",
+                  "ESW Def 2.18: S^(k)(Q,...,Q) has alpha-weight k and degree -k; S^Q has total degree 0",
+                  "ESW Prop 2.21: twist commutes with dimensional reduction",
+                  "manuscript def:c7-component, lem:c7-image"],
+            "D": ["[xi,xi]=0 => restriction to C xi is a chain map to C^.(C xi) (zero differential); ev_xi F = sum_k c_k F^(k)(xi,...,xi), c_k fixed by ESW Def 2.17 normalisation",
+                  "arity-two component on (xi,xi) = Q of the arity-two part of O[infty] (d_CE term vanishes since [xi,xi]=0)"],
+            "I": ["twisted quantum differential = ev_xi o (d_CE + Q) when the equivariant QME holds along xi and (xi,xi) after finite counterterms",
+                  "twisted Q_1 on twisted letters = order-hbar part of ev_xi o (d_CE+Q) transported along the homotopy equivalence of ESW Thm 10.9 (BGKWWY (D.13)-(D.15) form)"],
+            "lemma_arity_D": "arity-k component on (xi,...,xi) of O (weight w_O, ghost |O|): weight w_O + k/2, ghost |O|+1-k; pair entry (w_in,g_in)->(w_out,g_out) has k = 2(w_out - w_in) = 1 + g_in - g_out (consistency check); field-only outputs: k <= |O|+1",
+            "lemma_S2_D": "S^(2)(xi,xi) has only lambda*-legs; P(eps,infty) has components A(x)A, c(x)A*, A*(x)c, lambda(x)lambda only; each graph of the UV-boundary expansion has at most one field-antifield pairing; so S^(2) is joined only through it and its second lambda*-leg is external: at one loop S^(2) contributes only to outputs with lambda*; field-only (xi,xi) outputs come from graphs with two S^(1)(xi) vertices; no one-loop (xi,xi) counterterm from S^(2) graphs; S^(2) enters field-only data through the (xi,xi) master equation (lem:c2-components) and through antifield representatives of twisted letters",
+        },
+        "loop_coupling": {
+            "S": ["BK (1.3),(2.22): hbar counts loops, no coupling in (3.1),(3.53)",
+                  "KKLP (2.13): Q = Q_free + g Q_0 + g^2 Q_1 + O(g^3); (2.2) Q_0 + g^2 Q_1 after Phi -> Phi/g; KLLS fn 2 same",
+                  "project: (X,Y) = -(4 hbar/g^2) tr(XY) for su(N) (dictionary cor:wick); unit = -g^2 N/(32 pi^2) (ch06 rem:c6-konishi)"],
+            "D": "n4_untwisted D1: n->m letters at g^k has L = (k - m + n)/2 loops; twisted Q_1 (2->2, g^2) is one loop = order hbar; twisted Q_0 (1->2, g) classical",
+            "I": "twisted Q_1 has the leg count of B03's order-g^2 Q_2 (2->2), not of B03's order-g Q_1 (sweep.json)",
+        },
+    },
+    "targets": [
+        {
+            "id": "T1", "title": "structure of the loop expansion",
+            "a_source_S": ["BGKWWY (3.33): Q_n O = 1/(n+1)! {I,...,I,O}", "BK (1.6),(2.22)-(2.24): calQ O = {I,O}_0 + hbar/2! {I,I,O}_0 + ...",
+                           "BK (2.25),(2.26),(1.12); BGKWWY (3.41)-(3.42): sum_{n1+n2=n} Q_n1 Q_n2 = 0, {Q_0,Q_1}=0, Q_1^2 + {Q_0,Q_2} = 0; Q_1^2 != 0 => Q_2 != 0 (BGKWWY Sec 3.2.3, (C.8)-(C.9) SU(2))",
+                           "GKW (2.27): QO = {O} + {I,O} + 1/2 {I,I,O} + ...; (3.10): H=2,T=0: only one-loop graph is the triangle",
+                           "KvLM (5.1)-(5.2): [Q_1] nilpotent on H(Q_0)"],
+            "b_conventions": "twisted, hbar loop counting; Schwinger cutoff t>=eps on every propagator, finite, no counterterms (BK (2.42), fn 22; GKW App B; W18 Thm 3.4)",
+            "c_untwisted_I": {"Q_0": "order-hbar^0 part of ev_xi o (d_CE+Q): Q + {I + S^(1)(xi) + c_2 S^(2)(xi,xi), -}",
+                              "Q_1": "order-hbar part: components along xi (arity one) and (xi,xi) (arity two)",
+                              "relations": "{Q_0,Q_1}=0 <-> order-hbar part of the (xi) and (xi,xi) components of (d_CE+Q)^2 O[infty] = 0; Q_1^2 = -{Q_0,Q_2} is order hbar^2 (Step 5), one-loop content [Q_1]^2 = 0 on H(Q_0)",
+                              "graphs": "untwisted one-loop graphs (at most one field-antifield pairing, other edges P(eps,infty)) include bubbles and self-energies; these must reduce to the freedom terms"},
+            "d_scheme": {"independent": ["{Q_0,Q_1}=0", "[Q_1]^2=0 on H(Q_0)"], "dependent": ["triangle only", "letter count n+1 -> 2 (BGKWWY (3.44)-(3.45))"]},
+        },
+        {
+            "id": "T2", "title": "action on pairs; single letters",
+            "a_source_S": ["BK (3.7)-(3.8): Q_1(f_1...f_n) = sum_{i<j} (-1)^{eps_ij} Q_1(f_i f_j) (rest); eps_ij = |f_i| sum_{k<i}|f_k| + |f_j| sum_{k<j,k!=i}|f_k|",
+                           "BGKWWY (C.1)-(C.2): Q_1 O = 1/2 {I,I,O} vanishes on single fields, acts on pairs; (3.43): Q_n V(N_b,N_c,J1,J2) = 0 if N_b+N_c < n+1"],
+            "b_conventions": "BK (3.9)-(3.10): D^tri_{w,z}(f,g) = sum_{m,n} 1/(n+m+2)! e^{z.d}((w-z).d)^n d_alphadot f e^{w.d}((z-w).d)^m d^alphadot g |_{y=0}; D^tri_{0,0}(f,g) = 1/2 d_alphadot f d^alphadot g",
+            "c_untwisted_I": "pair rule <-> one-loop graphs whose loop meets exactly two legs of O; single letters: Step-1 O(eps)=O; target: order-hbar component along xi on int omega (X, A_ij w^j), (X, u' lambda^i), (X, lambdabar_{alphadot i} w^i), (X, c), F-letter is of freedom form (multiple of classical component + [Q_0, phi_1])",
+            "d_scheme": {"dependent_D": "finite coefficient y of hbar s(2 int(A,A*) - 4 int(lambda*,lambda) - int(c*,c)) = letter rescaling N_y: Q_1 -> Q_1 + [Q_0, N_y]; on beta_I: +-(y_c [c,beta_I] + (2 y_gamma - y_beta) 1/2 eps_IJK [gamma^J,gamma^K]), nonzero for generic y",
+                         "statement": "vanishing on single letters and pairwise form hold in the counterterm-free twisted scheme (BK fn 22, W18 Thm 3.4); not scheme independent"},
+        },
+        {
+            "id": "T3", "title": "vanishing on c, gamma letters; chiral primaries",
+            "a_source_S": ["BK (3.11): Q_1(cc) = Q_1(gamma gamma) = Q_1(gamma c) = Q_1(beta c) = 0",
+                           "BK Sec 3.4.1, (3.77): Q_1(gamma^I gamma^J)=0 => Q_1 Tr gamma^(I1...gamma^In) = 0 at any N, and on psl(3|3) descendants (fn 24); single-trace->single-trace part does not lift infinite-N single-trace cohomology; trace splitting/joining open"],
+            "b_conventions": "propagators pair c<->b, gamma<->beta (BK (2.31)-(2.33),(3.1)); vertices Tr b[c,c], beta[c,gamma], W = Tr gamma^1[gamma^2,gamma^3] (BK (3.48))",
+            "c_untwisted": {
+                "D_wick": "for a pair from {d^k c, d^k gamma} the remaining legs of the two triangle vertices contain no b, beta: no third edge; Q_1 = 0 on all polynomials in derivatives of c and gamma, incl. su(2|3)-sector letters {gamma, d c} (n4_untwisted D8, I)",
+                "D_n2": "w_1, w_2 in W_R^perp (x) C with w_{a,ij} w^j = 0 (the 3-plane of w): iota_{w_a} A is a combination of A_ij w^j and (w_1,w_2)=0; Tr gamma^(I gamma^J) <-> O = int omega (iota_{w1}A, iota_{w2}A) (traceless; Step-1 dilatation coefficient 0); cor:c7-Q: component along xi is c x int omega [(iota_{w1}A,(rho(w2)xi,lambda)) + (1<->2)] with c independent of (xi,w1,w2); (rho(w_a)xi,lambda) = iota_{w_a}Gamma(xi,lambda) = -1/2 w_a^{kl} eps_jikl w^j (u lambda^i) = 0; hence the component along xi vanishes exactly at every order where prop:c7-select holds",
+                "two_component": "O = int omega (A_ij w^j m1^i, A_kl w^l m2^k), m1, m2 in W",
+                "n_ge_3": "symmetrised traces of products of A_ij w^j: Step 4"},
+            "d_scheme": {"independent": ["class level: [Q_1] annihilates Tr gamma^(I1...gamma^In) and descendants", "n=2 exact vanishing (selection-rule consequence, every equivariant scheme)"],
+                         "dependent": ["pair values in general"]},
+        },
+        {
+            "id": "T4", "title": "bc entry",
+            "a_source_S": ["BK (3.64): Q_1(b^A c^B) = 1/2 f_ACD f_BCE d_alphadot c^D d^alphadot c^E",
+                           "BK (3.13),(3.21): Q_1(b^A(z) c^B(w)) = f_ACD f_BCE D^tri_{w,z}(c^D,c^E)",
+                           "BK (B.5): Q_1(b^A d1^m d2^n c^B) = f_ACD f_BCE 1/(m+n+2) sum_{k,l} 1/(k+l+1) binom(m,k) binom(n,l) d1^k d2^l d_alphadot c^D d1^{m-k} d2^{n-l} d^alphadot c^E",
+                           "BK fn 23: factor 1/2 at z=w=0 corrected in v3",
+                           "BGKWWY (C.4) SU(2): Q_1(b_A c^B) = -(d_alpha c^A d^alpha c^B - delta^B_A d_alpha c_D d^alpha c^D) = f_ACE f_BDE d c^C d c^D (bgkwwy_checks K1/K2)"],
+            "b_conventions": "BK (3.12) Killing-normalised f, delta^AB; X.Y = d_alphadot X d^alphadot Y; BK (3.1) +1/2[c,c] vs BGKWWY (3.2) -1/2[c,c]; BGKWWY App C internal factor-2/sign issues (CK03, CK04)",
+            "c_untwisted": {"colour_D": "1/2 f_ACD f_BCE X^A Y^B Z^D Z'^E = 1/2 ([X,Z],[Y,Z'])_delta; tr(ad_Z ad_Z') = -f_ACD f_ACE Z^D Z'^E",
+                            "operator_I": "O = int omega (X, u'^alpha F_mn (sigma^m sigmabar^n)_alpha^beta u'_beta)(Y, c); w_O = 2, |O| = 1",
+                            "output_I": "int omega ([X, lambdabar_{alphadot i} w^i], [Y, lambdabar^{alphadot}_j w^j]); weight 3, ghost 0",
+                            "component_D": "arity two: k = 2(3-2) = 2 = 1+1-0: (xi,xi) component at order hbar; field-only part from graphs with two S^(1)(xi) vertices, one O vertex, one field-antifield pairing (lemma S2)",
+                            "alternative_D": "with b represented by its antifield component (ESW Thm 10.9) the entry is arity one: k = 2(3-5/2) = 1 = 1+0-0"},
+            "d_scheme": {"dependent": ["pair value"], "independent": ["class level: see T9"]},
+        },
+        {
+            "id": "T5", "title": "beta gamma entry (Konishi)",
+            "a_source_S": ["BK (3.66): Q_1((beta_I)^A (gamma^J)^B) = 1/2 delta^J_I f_ACD f_BCE d_alphadot c^D d^alphadot c^E",
+                           "BK (3.16): Q_1((beta_I)_i(z)(gamma^J)^j(w)) = -delta^J_I (T_B T_A)^j_i D^tri_{w,z}(c^A,c^B)",
+                           "CL25 (2.5)-(2.6): Q_K = Abar^{ij,kl} g_YM^2/(32 pi^2) (d_psi)_ij (d_Phibar)_kl (SO(N)); example after (2.6): Q Tr Phibar psi_+ = g_YM Tr Phibar dWbar/dPhibar + g_YM^2 (N-2)/(16 pi^2) Tr lambdabar_alphadot lambdabar^alphadot",
+                           "CL25 (2.1)-(2.2): Dbar^2 Tr Phibar e^{[V,.]} Phi |_anomaly = g_YM^2 C(adj)/(16 pi^2) Tr W_alpha W^alpha",
+                           "KvLM (5.5): Q_1 (psi_m)_a (phi^n)_b = -kappa_Q delta^n_m (ff)_ab^de (lambda_alphadot)_d (lambda^alphadot)_e, kappa_Q free",
+                           "KKLP (2.7) (1/4 kappa^2, tr(T_A T_B) = kappa delta_AB (2.4)); KLLS (2.4) (kappa_1^2/16)",
+                           "CDSW (3.3): Dbar^2 J = 1/(32 pi^2) tr_adj (ad W_alpha)(ad W^alpha); (3.4), (3.14)",
+                           "BKRS01 (7): 1/4 Dbar^2 :tr(e^{-2gV} Phi^dagger_I e^{2gV} Phi^I): = tr(Phi^I dW/dPhi^I) + 6 g^2 N/(32 pi^2) tr(W^alpha W_alpha); (9): (K_10*)_AB = 3 sqrt2 g t^{ijk}_AB tr(phi_i phi_j phi_k) + 6 g^2 N/(32 pi^2) tr(psibar_{alphadot A} psibar^alphadot_B)",
+                           "EJSS05 (1): Dbar^2 K = B + g^2/(32 pi^2) F; (8): Dbar^2 K = g/6 eps_IJK Tr(Phi^I[Phi^J,Phi^K]) + g^2 N/(32 pi^2) Tr(W^alpha W_alpha); (12): Z_F = g^2 N/(32 pi^2)"],
+            "b_conventions": "CL25: tau = theta/(2 pi) + 4 pi i/g_YM^2, Tr T_R^A T_R^B = C(R) delta^AB; EJSS05: Tr(T^a T^b) = delta^ab, W = g/3 eps_IJK Tr Phi^I Phi^J Phi^K (109)-(113), SSDR; BKRS01: their-refs g = 2g (fn 3), W_alpha = -1/(8g) Dbar^2(e^{-2gV} D_alpha e^{2gV}) (8)",
+            "c_untwisted": {"operator_I": "O = int omega (u'^alpha lambda_alpha^i, A_ij w^j); |O| = 0, w_O = 5/2; index-free: pairing of the u-coefficient of lambda|_{S_+ (x) W} with the contraction of A|_{W_R^perp} with w",
+                            "classical_D": "component along xi at order hbar^0: +-1/4 int omega ([A^{ik}, A_kj w^j], A_il w^l) (sign in code) = image of 3 W[gamma] (gkw inference I5)",
+                            "one_loop_target": "arity one (k = 2(3-5/2) = 1 = 1+0-0), order hbar, output c_K x " + UNIT + " x int omega (lambdabar_{alphadot i} w^i, lambdabar^{alphadot}_j w^j) = image of Tr Psibar^4_alphadot Psibar^{4 alphadot}",
+                            "BK_sum_D": "sum_I Q_1(delta_AB (beta_I)^A (gamma^I)^B) = 3/2 f_ACD f_ACE dc^D . dc^E = -3/2 tr(ad t_D ad t_E) dc^D . dc^E",
+                            "c_K": "not determined: needs the normalised field map and the twisted-hbar <-> project-unit relation (open item 1)",
+                            "cross_checks": "EJSS05 (8), BKRS01 (9), CL25 (2.5); '= -1 x unit' for EJSS only if trace/coupling normalisations agree (n4_untwisted D7: not checked)"},
+            "d_scheme": {"dependent_D": "operator redefinition phi_1(W[gamma]) = x Tr dc.dc (allowed: B and F mix, BKRS01 (9)-(10), EJSS05 (17),(99)) shifts the Tr dc.dc coefficient of Q_1(sum_I Tr beta_I gamma^I) by -3x mod Q_0-exact (Q_0(sum Tr beta gamma) contains 3W); twisted form of EJSS05 (2) and abstract",
+                         "independent": "coefficient after fixing the Konishi-descendant representative by orthogonality to the protected operator (EJSS05 (103); n4_untwisted D6: K_10 = (1 - g^2 N/(8 pi^2) + g^2 m_11/eps) B + g^2 N/(32 pi^2) F), i.e. after fixing the finite B-F mixing of weight-3 operators in the 10 (Step 4); only nonvanishing enters T8"},
+        },
+        {
+            "id": "T6", "title": "remaining N=4 pair entries, superfield, psl(3|3), derivatives",
+            "a_source_S": ["BK (3.65): Q_1(b^A b^B) = 1/2 ff [dc^D.db^E - db^D.dc^E + d(beta_I)^D.d(gamma^I)^E - d(gamma^I)^D.d(beta_I)^E]",
+                           "BK (3.67): Q_1((beta_I)^A (beta_J)^B) = 1/2 eps_IJK ff [dc^D.d(gamma^K)^E - d(gamma^K)^D.dc^E]",
+                           "BK (3.68): Q_1(b^A (gamma^I)^B) = 1/2 ff [dc^D.d(gamma^I)^E - d(gamma^I)^D.dc^E]",
+                           "BK (3.69): Q_1((beta_I)^A b^B) = 1/2 ff [d(beta_I)^D.dc^E + dc^D.d(beta_I)^E + eps_IJK d(gamma^J)^D.d(gamma^K)^E]",
+                           "BK (3.70)=(1.10): Q_1(C^A(theta) C^B(theta')) = -1/2 f_ACD f_BCE (theta1-theta1')(theta2-theta2')(theta3-theta3') d_alphadot C^D(theta) d^alphadot C^E(theta'); C = c + theta_I gamma^I + 1/2 eps^{IJK} theta_I theta_J beta_K + theta1 theta2 theta3 b ((3.48)-(3.54))",
+                           "BK (3.59)-(3.63): entries from Q_1(bc) by tree-level psl(3|3), e.g. Q_1(b gamma^I) = -Q^I_+ Q_1(bc), Q_1(beta_I gamma^J) = -1/2 S^+_I Q_1(b gamma^J)",
+                           "BK (B.1): Q_1(d f g) = d Q_1(fg) - Q_1(f dg); kernel (B.4); (B.6)-(B.10)",
+                           "KKLP (2.5)-(2.12): Chang-Yin-letter versions"],
+            "b_conventions": "as T4; ff = f_ACD f_BCE; (3.70) not re-derived by readers",
+            "c_untwisted_D_arity_table": [
+                {"entry": "bc (3.64)", "in": "(2,1)", "out": "(3,0)", "k": 2},
+                {"entry": "bb (3.65)", "in": "(4,0)", "out": "(9/2,0)", "k": 1},
+                {"entry": "beta gamma (3.66)", "in": "(5/2,0)", "out": "(3,0)", "k": 1},
+                {"entry": "beta beta (3.67)", "in": "(3,0)", "out": "(7/2,0)", "k": 1},
+                {"entry": "b gamma (3.68)", "in": "(3,0)", "out": "(7/2,0)", "k": 1},
+                {"entry": "beta b (3.69)", "in": "(7/2,0)", "out": "(4,0)", "k": 1}],
+            "c_untwisted_operators_I": "replace letters by the dictionary, e.g. (beta_I)^A (beta_J)^B <-> (X, u' lambda^i)(Y, u' lambda^j); dc.dgamma <-> (lambdabar_{alphadot i} w^i)(u'^alpha sigma^m_alpha^alphadot D_m (A_kj w^j))",
+            "d_scheme": {"dependent": ["pair values"], "independent": ["(3.59)-(3.63) as class relations on H(Q_0), via T10"]},
+        },
+        {
+            "id": "T7", "title": "no Leibniz rule",
+            "a_source_S": ["BK fn 21: generically no associative scheme with Leibniz Q",
+                           "BGKWWY fn 28, (3.26): Leibniz only for the loop-corrected product, not associative; (3.26) fails by a one-loop term",
+                           "CL22 (3.4)-(3.5): Leibniz Q => H^*(G_N, sl_N; C[[g]]) = H^*(G_N, sl_N; C) (x) C[[g]]; fn 10: undeformed-Q scheme via DRED or hep-th/9801062; fn 11: Konishi anomaly only known obstruction (ref [64] misprinted)"],
+            "c_untwisted_I": "order-hbar arity-one component along xi is not a derivation of the classical product of letters modulo Q_0-exact terms; explicit obstructions T5, T8",
+            "d_scheme_I": "scheme independent: lifted pairs (T8) exclude a scheme with Q_1 = derivation + a Q_0 + [Q_0, phi_1]; CL22 DRED scheme excluded in this project (no DR in any role)",
+        },
+        {
+            "id": "T8", "title": "lifting statements on H(Q_0)",
+            "a_source_S": ["CL25 Sec 3: SO(7): Q_K O_f = O_m + Q_0 Lambda, O_m ~ M_1 - M_2 - 4 M_3 independent of the 741 Q_0-exact operators (J_a=0, R_i=3, 8 letters); M_1 + 2M_2 - 10M_3 Q_0-exact (3.3)",
+                           "KvLM (1.2)/(5.3): [Q_1][F_4] = c [S^4], c != 0, S = Tr(lambda_+ lambda_-), SO(7); Sec 6: [Q_1] annihilates monotone classes; nonzero images have vanishing Cartan restriction; (1.3) Delta^k F = Q_0 H",
+                           "KKLP abstract, Sec 3: SU(2) lightest fortuitous class and hairy versions unlifted; many heavier lifted",
+                           "KLLS abstract, Sec 2-3: SU(3) brane-fused family not lifted at first quantum order; several lifted; normalisation irrelevant (after (2.5))",
+                           "BK Sec 3.4.1 (T3)", "BMV fn 5: first higher-loop correction preserves SU(2) threshold class O_0"],
+            "b_conventions": "CY13 (2.2)-(2.3) letters phi^n = Phi^{4n}, psi_n = -i Psi_{n+}, lambda_alphadot = Psibar^4_alphadot, f = -i F_{++}, D_alphadot = D_{+ alphadot}; tree cohomology H^*(G_N, sl_N; C) (CY13 (3.6))",
+            "c_untwisted_I": "statements on pi_0 Q_1 iota_0 on classical 1/16-BPS cohomology = order-hbar part of transported ev_xi o (d_CE+Q) on H(Q_0); follow from T2-T6 once pair entries are reproduced up to freedom terms; direct untwisted computation on these classes outside Steps 2-3",
+            "d_scheme": "independent (BK p.5, fn 9; lemma invariance)",
+        },
+        {
+            "id": "T9", "title": "stress tensor; absent one-loop beta function",
+            "a_source_S": ["BK (2.17)-(2.18): S^(0)_alphadot := S_{+alphadot,+}; D_- S_alphadot = (calQ + dbar) S_alphadot = 0 for superconformal theories",
+                           "contrast pure N=1: BGKWWY (3.40) Q_1 Tr b^2 ~ d_alpha(Tr b d^alpha c); (3.24) (Q+dbar) S_alpha ~ d_alpha Tr(d_beta c d^beta c); (2.20)-(2.22) one-loop beta function => (Q+dbar)S nonzero at one loop",
+                           "reader checks (not source): SU(2) Q_1 Tr b^2 = -4 d_alpha Tr(b d^alpha c) from (C.3) (CK02); coefficient of (3.24) = 1 with (C.6) normalised to (C.4) (CK05)"],
+            "c_untwisted_I": "project: coupling not renormalised at one loop (Step 1); twisted image: [Q_1] annihilates the holomorphic stress-tensor class, N=4 analogue of BGKWWY (3.40) is Q_0-exact; untwisted operator = component of the stress-tensor multiplet selected by (u,u',w) (BK (2.17)); two-component form Step 3/4; N=1 statements not reproducible in this N=4 program (contrast only)",
+            "d_scheme": "independent (class level)",
+        },
+        {
+            "id": "T10", "title": "compatibility with tree-level psl(3|3)",
+            "a_source_S": ["BK (3.55)-(3.58): Q^I_+ ~ d_theta_I, S^+_I ~ theta_I(z^alphadot d_alphadot + theta_J d_theta_J), Qbar_{I alphadot} ~ theta_I d_alphadot, Sbar^{I alphadot} ~ z^alphadot d_theta_I",
+                           "BK fn 24: {Q_1,R_0} + {Q_0,R_1} = 0 on Q_0-cohomology; R_1 not computed",
+                           "KvLM Sec 5: classical commutant Qbar_{m alphadot} anticommute with Q_1 in Q_0-cohomology (used in (5.4))"],
+            "c_untwisted": {"commutant_D": "elements of psl(4|4) with zero bracket with xi = u (x) w: all of S_+ (x) W; xibar' in S_- (x) W^* with xibar'_{alphadot i} w^i = 0; eta in S_+ (x) W^* with eta^alpha_i = u^alpha m_i, m_i w^i = 0; all of S_- (x) W (BK's generators among these, labels as printed)",
+                            "BV_form_I": "fn 24 = order-hbar part of the (xi,R) component of (d_CE+Q)^2 O[infty] = 0; R_1 = arity-one component along R at order hbar; for R in Sigma^* a special-supercharge component S_1 (R4)"},
+            "d_scheme": "class relation independent; R_1 dependent jointly with Q_1 (cf. n4_untwisted D2)",
+        },
+        {
+            "id": "T11", "title": "scheme statements to be reproduced as theorems",
+            "a_source_S": ["BGKWWY Sec 3.2.1: Q scheme dependent, schemes related by quasi-isomorphisms; App E: parametrisation of deformations scheme dependent beyond first order",
+                           "BK Sec 2.2.2: Q_n scheme dependent beyond first order, may vanish in some scheme, schemes related by quasi-isomorphisms of L_infty-conformal algebras; p.5 fn 9: lifting scheme independent",
+                           "GKW Sec 2 after (2.10), after (2.17), fn 13, Sec 6 (6.28),(6.33): eta scheme dependent; translations not corrected (fn 13, (2.31))",
+                           "BGKWY22 (B.6): P -> P + d_y H changes I_Gamma by boundary terms = infinitesimal operator redefinition",
+                           "W18 Thm 3.4: holomorphic theories one-loop finite without counterterms",
+                           "B03 (3.39)-(3.40), (4.4)-(4.10): similarity J_2 -> J_2 + [T_2, J_0], coupling g -> f(g); Z05 (3.7), (4.1)-(4.2)",
+                           "n4_untwisted D2 (derived by reader): su(2|3) Q_2 = 0 iff gamma = i alpha_1^2/4 (1,1,-1,1), then S_2 != 0; Q_2 = S_2 = 0 impossible; {S,Q}_2 = 1/2 delta delta H_2 invariant"],
+            "c_untwisted": "O(eps) unique singular part, free finite part (DEFINITIONS_v2 item 5); finite counterterms in C^.(psl(4|4), O_l(E)); freedom families below",
+        },
+    ],
+    "renormalisation_freedom": {
+        "families_I": [
+            {"id": "F0", "what": "arity-zero finite counterterms F^(0)_psl: two-leg part 27/16 x unit x int(d*A|_V, d*A|_V) (forced) + beta_1 int(dA|_V,dA|_V) + beta_2 int(dA|_Wperp,dA|_Wperp) + beta_3 int(lambda, dslash lambda) + beta_4 int(dc,A*); three-leg part in span{H_1..H_6, H_7, H_8+, H_8-}, H_7 = 1/2 int(lambda, rho([A|_V,lambda])), H_8+ + H_8- = 1/2 int(lambda, rho([A|_Wperp,lambda])) split by chirality (Q H_7 = -G_5, Q H_8+- = 0)",
+             "closed_family_D": "closed cubic-order directions: dim 9 (8 parity-even); five field-counting s phi and the coupling direction span 6 (5 even); Part-C family (three-leg part in span{H_1..H_6}) dim 6, meets that span in dim 3; quotient dim 3, all even, representatives (beta_1,H_1) = (1,1), (beta_2,H_4) = (1/4,1), (beta_3,H_5) = (-1/2,1); Yukawa H_8+ + H_8- and H_5 + H_7 closed, in the quotient (design prop:o-arity0; step2/qa/design_revision_round2/cubic_quotient.json)",
+             "two_component_cubic": "H_7 = int i(lambdabar_{alphadot i}, sigmabar^{m alphadot alpha} [A_m, lambda_alpha^i]); H_8+ = 1/2 int(lambda_alpha^j, eps^{alpha beta} [A_ji, lambda_beta^i]); H_8- = -1/2 int(lambdabar_{alphadot j}, eps^{alphadot betadot} [A^ji, lambdabar_{betadot i}])",
+             "two_component": "beta_1/2 int(F0_mn,F0_mn), beta_2/4 int(d_m A^{ij}, d_m A_ij), 2i beta_3 int(lambdabar_{alphadot i}, sigmabar^{m alphadot alpha} d_m lambda_alpha^i), beta_4 int(d_m c, A*_m)",
+             "effect": "s-exact part = field-type rescaling N_beta: Q_1 -> Q_1 + [Q_0, N_beta]; coupling direction: Q_1 -> Q_1 + a Q_0"},
+            {"id": "F1", "what": "arity-one finite counterterm F(xi): Ob(xi) = (Q + {I,-}) F(xi) + {S^(1)(xi), F^(0)_psl}; ambiguity = s-closed equivariant maps; Schur: a S^(1)(xi) (renormalisation of the supercharge)",
+             "effect": "Q_1 -> Q_1 + a Q_0; s-exact choices act as [Q_0, -]"},
+            {"id": "F2", "what": "arity-two finite counterterm F(xi,xi), correlated with F1",
+             "effect_D": "(xi,xi) master equation linear in S^(2), quadratic in S^(1): S^(1)(xi) -> (1 + a hbar) S^(1)(xi) forces S^(2)(xi,xi) -> (1 + 2a hbar) S^(2)(xi,xi) + O(hbar^2); at one loop only lambda*-outputs affected (lemma S2)"},
+            {"id": "F3", "what": "finite parts of operators: O(eps) -> O(eps) + hbar phi_1(O), same weight, ghost degree, so(V)+so(W_R^perp) representation (e.g. B-F mixing)",
+             "effect": "Q_1 -> Q_1 + [Q_0, phi_1]"},
+            {"id": "F4", "what": "representatives/homotopy data in transport (BGKWWY (D.14) h_0; ESW Thm 10.9; BGKWY22 (B.6))",
+             "effect": "Q_1 -> Q_1 + [Q_0, phi_h]"},
+        ],
+        "lemma_invariance_D": "Q_1' = Q_1 + a Q_0 + [Q_0, phi] (Q_0' = Q_0) => pi_0 Q_1' iota_0 = pi_0 Q_1 iota_0 since pi_0 Q_0 = 0 = Q_0 iota_0; [Q_1] (leading term hbar Q^(1)_0 of BGKWWY (D.15)), kernel, image, rank and lifting pattern independent of F0-F4; tree-level letter rescalings conjugate [Q_1] by an invertible map of H(Q_0)",
+        "display_as_families_scheme_dependent": ["every pair value (3.64)-(3.69) and shifted/derivative versions",
+                                                 "vanishing on single letters; pairwise form", "triangle only",
+                                                 "Konishi-entry coefficient before orthogonality normalisation",
+                                                 "overall size of Q_1 relative to Q_0 up to tree-level letter rescalings"],
+        "reproduce_exactly_scheme_independent": ["{Q_0,Q_1}=0 and [Q_1]^2=0 on H(Q_0)", "[Q_1] on H(Q_0): class statements of T3, T8, T9, T10",
+                                                 "exact vanishing of the xi-component on int omega (iota_{w1}A, iota_{w2}A), w1,w2 in the plane of w (T3)",
+                                                 "Konishi coefficient in the orthogonality normalisation (T5)"],
+    },
+    "R4_novelty": [
+        {"generator": "xi in S_+ (x) W (twisting Q)",
+         "known": "twisted Q_1 complete BK (3.64)-(3.70), App B; untwisted classical Q on letters CY13 (2.5)-(2.8), GGKM08 (A.1)-(A.2); Konishi entry CL25 (2.5)",
+         "not_found": "untwisted one-loop Q along Q^4_- on full letter set incl. 2->1 terms with derivatives (n4_untwisted open issues); Q_1 as component of untwisted equivariant BV cochain (sweep cross-paper 'not found')"},
+        {"generator": "special supercharges eta in Sigma^* (S_1)",
+         "known": "planar su(2|3): B03 (3.37), Table 1 (S_1 at O(g), S_2 at O(g^2) with gamma_1..4), S_3 counted only (Table 2, Sec 5); psu(1,1|2): Z05 (3.6); conjecture B03c (5.15) deltaS(g) ~ g Tr Psi calQ",
+         "not_found": "full-theory one-loop S on local operators; twisted R_1 for S^+_I, Sbar^{I alphadot} (BK fn 24 not computed); S as BV-equivariant component (BGKWWY absent list; gkw.json I6)"},
+        {"generator": "special conformal K (K_1)",
+         "known": "psu(1,1|2) only: Z05 (3.6) K^22 at O(g^2), homogeneous solutions neither found nor excluded (3.8)-(3.9); B03c Sec 6: corrected, not computed; n4_untwisted D4: P uncorrected (y=-x) => K^22_2 = -2[K^22_0, x] != 0",
+         "not_found": "full-theory one-loop K on letters and operators; any twisted-side K (BGWW (3.47)-(3.52) anomalies of holomorphic symmetries as L-equivariant QME failures; N=4 only classical currents (4.82)-(4.85))"},
+        {"generator": "dilatation Delta (D_1)",
+         "known": "complete one-loop D_2 on all local operators B03c (2.22),(2.24),(4.27)-(4.29) (point splitting (3.14)); Konishi 3 g_YM^2 N/(4 pi^2) = -24 x unit (n4_untwisted D7, ch06)",
+         "not_found": "D_1 as Delta-component of an equivariant BV cochain with UV-boundary regulator; identification with the scaling route (DESIGN_STEP2 Part D, D3); gauge-variant letters in a stated gauge"},
+        {"generator": "P, M, R",
+         "known": "expected uncorrected: GKW fn 13, (2.31); B04 (2.31) L, Ldot, R not corrected; B03c Sec 6 lists P among corrected generators in its basis (similarity dependent); prop:c7-cov can be chosen classical",
+         "not_found": "realisation by explicit equivariant counterterms (Step 2)"},
+        {"generator": "arity two (xi,eta), (xi,xi)",
+         "known": "su(2|3): B03 (3.41)-(3.42), (4.3) {S,Q} = ... + delta delta (1/3 H + 1/6 deltaH) + O(g^4); n4_untwisted D2 invariance of {S,Q}_2",
+         "not_found": "BV form ((d_CE+Q)^2 O[infty] = 0 on (xi,eta), cf. rem:c7-KDelta for (K,P))"},
+        {"generator": "equivariant one-loop QME along all psl(4|4) ghosts",
+         "known": "twisted analogue for holomorphic symmetries BGWW (3.46)-(3.49)",
+         "not_found": "untwisted (sweep 'not found in the sweep')"},
+    ],
+    "R4_consequence_I": "S_1 and Q_1 scheme dependent jointly (spin-chain analogue n4_untwisted D2: corrections movable between Q and S, not removable from both); scheme-independent combination = (xi,eta) arity-two relation whose Delta-part is 1/2 (xi,eta) times the dilatation component (prop:c2-special item 3); K_1 tied to D_1 by the (K,P) component (rem:c7-KDelta)",
+    "open_items": [
+        "normalisation BK (3.64)-(3.69) (Killing f, fn 23 factor 1/2, propagator (2.31)-(2.32), measure (2 pi i)^-2) vs BGKWWY (C.3)-(C.4) (SU(2), eps_ABC, 1/(4 pi^2)) vs project unit; twisted hbar vs hbar/(X,Y); normalised field map (3.51) (b <-> u'Fu', dc <-> lambdabar w) given in no source",
+        "constants c_k of ev_xi: ESW Def 2.17 coefficient 1 for S^(2)(Q,Q) vs project cochain-value signs (lem:c2-components, parity k + sum|x_i|): match in code before arity-two numbers are compared",
+        "label identification Q^4_-, +-, alphadot and phases (CY13 (2.5) -i; GGKM08 (2.6); KKLP (2.3); KLLS (2.2); BK (3.49)-(3.50)) with (u,u',w): step2/notation",
+        "representative of b: field u'Fu' (arity two for (3.64)) or antifield (ESW Thm 10.9, arity one): same class required",
+        "BGKWWY App C internal factor 2 and sign (CK03, CK04); (5.21) sign vs CK02; stress tensor Tr b dc (3.19) vs 2 Tr b dc (App B.1)",
+        "possible tension (sweep): Z05 (2.6) [L, T^+-] = +- T^+- => psu(1|1)^2 supercharges odd powers of g; if T^{<-+} = Q^1_1 is Q^4_- up to R-relabelling, twisted Q_1 vanishes on the su(1,1|2) sector; identification made in no source",
+        "CL25 calls C(R) 'dual Coxeter number of R'; EJSS05 Tr(T^a T^b) = delta^ab; 'Konishi coefficient = -1 x unit' unverified",
+        "not read: 2311.04304, 2401.08113, 1906.04221, 2606.05314, 0905.3738, 1111.0083 (abstract only); Konishi 1984, Konishi-Shizuya 1985; hep-th/0606087, hep-th/0409009; BK (3.70) not re-derived",
+        "CL22 fn 10 and EJSS05 rest on DRED/SSDR: statements only",
+    ],
+}
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# REVISION 2026-10-28 (design revision after the literature refuters of workflow wf_c6617485; dispositions in
+# step2/qa/design_revision_disposition.json).  The entries below replace the corresponding entries above.
+# ---------------------------------------------------------------------------------------------------------------
+data["date"] = "2026-10-28 (revised)"
+data["sources"]["BMV"] = "Budzik, Murali, Vieira, Following Black Hole States, arXiv:2306.04693v2 (abstract, main result, fn 5)"
+data["sources"]["Z11"] = "Zwiebel, From Scattering Amplitudes to the Dilatation Generator in N=4 SYM, arXiv:1111.0083v2 (Sec 2.3, (2.33)-(2.34)); his thesis (ref [24]) not read"
+data["sources"]["CLW"] = "Chang, Lin, Wu, On 1/8-BPS black holes and the chiral algebra of N=4 SYM, arXiv:2310.20086v2 (Sec 3.1, (3.1), (3.17)-(3.19), fn 5)"
+data["sources"]["CDSW"] = "Cachazo, Douglas, Seiberg, Witten, Chiral Rings and Anomalies in Supersymmetric Gauge Theory, hep-th/0211170v2"
+T = {t["id"]: t for t in data["targets"]}
+T["T1"]["a_source_S"] = [x if not x.startswith("GKW (2.27)") else
+    "GKW (2.27): QO = {O} + {I,O} + 1/2 {I,I,O} + ...; (3.10) is the global constraint n|Gamma_0| = (n-1)|Gamma_1| + n + 1 on n-Laman graphs; BK after (2.43): 'at one-loop there is only the triangle diagram'"
+    for x in T["T1"]["a_source_S"]]
+T["T3"]["a_source_S"][1] = ("BK Sec 3.4.1, (3.77): Q_1(gamma^I gamma^J)=0 => Q_1 vanishes on the representatives Tr gamma^(I1...gamma^In) at any N; "
+    "their psl(3|3) descendants are Q_1-closed (Sec 3.4.1, using fn 24); single-trace->single-trace part does not lift infinite-N single-trace cohomology; trace splitting/joining open")
+T["T4"]["a_source_S"] = [x for x in T["T4"]["a_source_S"] if not x.startswith("BK fn 23")]
+T["T4"]["a_source_S"].insert(3, "BK fn 23: thanks J. Park for pointing out a missing factor of 1/2 in formulas for z = w = 0 in Sections 3.2, 3.3, 3.4")
+T["T4"]["factor_two_D"] = ("at face value with f = eps: BGKWWY (C.4) = 2 x BK (3.35)/(3.64) and BGKWWY (C.3) = 2 x BK (3.36), same index structure; "
+    "[I] this factor 2 is the 1/2 of BK fn 23; reader check CK02 (Q_1 Tr b^2 = -4 d Tr(b dc)) is BGKWWY-normalised")
+a5 = T["T5"]["a_source_S"]
+for i, x in enumerate(a5):
+    if x.startswith("CL25 (2.5)-(2.6)"):
+        a5[i] = ("CL25 (2.5)-(2.6): Q_K = Abar_{ij,kl} g_YM^2/(32 pi^2) (d_psi)_ij (d_Phibar)_kl (SO(N); lower indices, A_{ij,kl} defined in (2.6)); Q_K 'inferred' from the generalized Konishi anomaly, "
+                 "other quantum corrections possible for more complicated composite operators (after (2.6), Sec 4); unnumbered example after (2.6): Q Tr Phibar psi_+ = g_YM Tr Phibar dWbar/dPhibar + g_YM^2 (N-2)/(16 pi^2) Tr lambdabar_alphadot lambdabar^alphadot")
+    if x.startswith("KvLM (5.5)"):
+        a5[i] = ("KvLM (5.5) (PDF p. 21): Q_1((psi_m)^a (phi^n)^b) = -kappa_Q delta^n_m f^a_{cd} f^{bc}_e (lambda_alphadot)^d (lambda^alphadot)^e; kappa_Q 'the non-zero normalization ... whose precise value will not be needed' "
+                 "(after (5.5)): fixed nonzero constant, not a free parameter; (5.21): [Q_1][F_4] = -12 kappa_Q [S^4]")
+T["T5"]["b_conventions"] = ("CL25: tau = theta/(2 pi) + 4 pi i/g_YM^2, Tr T_R^A T_R^B = C(R) delta^AB; EJSS05: Tr(T^a T^b) = delta^ab (after (109)); (109) S = int d^4x d^2theta d^2thetabar Tr e^{gV} Phibar_I e^{-gV} Phi^I "
+    "+ 1/4 int d^4x_L d^2theta Tr W^alpha W_alpha + g/3! int d^4x_L d^2theta eps_IJK Tr Phi^I[Phi^J,Phi^K] + c.c.; propagators (110), (112); (5) K = -1/3 Tr(e^{gV} Phibar_I e^{-gV} Phi^I) is the K of (7)-(8), "
+    "(1) uses K = Tr(Phibar e^{gV} Phi) without -1/3; fn 8 Dbar^2 = -1/4 Dbar_alphadot Dbar^alphadot; Z_B = 1, Z_F = g^2 N/(32 pi^2) at order g^2 in the text after (12), C_F of (10); SSDR; "
+    "BKRS01: their-refs g = 2g (fn 3), W_alpha = -1/(8g) Dbar^2(e^{-2gV} D_alpha e^{2gV}) (8)")
+T["T5"]["c_untwisted"]["cross_checks"] = ("EJSS05 (8), BKRS01 (9), CL25 (2.5) as statements; the identification 'EJSS coefficient = -1 x unit' is withdrawn: dictionary tr(T^aT^b) = 1/2 delta^ab with (X,Y) = -4hbar/g^2 tr(XY), "
+    "EJSS Tr(T^aT^b) = delta^ab, e^{gV}, K = -1/3 Tr (5), Dbar^2 = -1/4 DbarDbar (fn 8); the EJSS number is a coefficient in a superfield operator relation, not an arity-one component")
+T["T5"]["c_untwisted"]["c_K"] = "scheme-dependent pair value (O_zeta not Q_0^xi-closed); not determined; comparison needs the normalised field map, the twisted-hbar <-> unit relation (open item 1) and the transport Phi"
+T["T5"]["d_scheme"] = {"dependent_D": ("operator redefinition phi_1(W[gamma]) = x Tr dc.dc shifts the Tr dc.dc coefficient of Q_1(sum_I Tr beta_I gamma^I) by -3x mod Q_0-exact (Q_0(sum Tr beta gamma) contains 3W); "
+        "c_K remains scheme dependent after two-point orthogonality: EJSS05 (101)-(106) K_10 = Z_K B + Z_O D^2 O orthogonal to D^2 O ((103)), Z_K minimal subtraction by choice ((102)), -2 D^2 O = F - 4B ((99)); "
+        "B' = B + y g^2 (F - 4B) keeps (99) up to normalisation and orthogonality then gives the F coefficient g^2 N/(32 pi^2) - y g^2; EJSS fn 13 'This may be a scheme-dependent property'; "
+        "twisted: sum Tr beta_I gamma^I not Q_0-closed, so c_K is not in pi_0 Q_1 iota_0 (Lemma inv)"),
+    "EJSS05_statements_S": ["(2): a(g), b(g) 'depend on the normalization of the operators, i.e. on the subtraction scheme'",
+        "abstract: in a superconformal renormalization scheme the separation into 'classical' and 'quantum' anomaly terms 'is not possible'; (3) contains no [F]_R term"],
+    "CDSW_S": "after (3.4): higher-loop contributions to the Konishi anomaly 'are renormalization scheme dependent' and are non-chiral local functionals; the chiral-ring relation (3.4) is exact",
+    "CL25_lifting": "CL25 Sec 3 applies Q_K to the Q_0-closed O_f (Q_K O_f = O_m + Q_0 Lambda); the classical term never enters, only the nonvanishing of the overall normalisation of Q_K"}
+T["T7"]["a_source_S"][2] = ("CL22 (3.4)-(3.5): Leibniz Q => H^*(G_N, sl_N; C[[g]]) = H^*(G_N, sl_N; C) (x) C[[g]]; main text p. 9: 'the only known obstruction, the Konishi anomaly [63], is absent in N = 4 SYM [64]'; "
+    "fn 10: undeformed-Q scheme via DRED [61] or the scheme of [62]; fn 11 is an acknowledgement (D. Gaiotto, J. Kulp)")
+T["T7"]["tension_I"] = "CL22's 'absent in N=4' is in tension with the nonzero Konishi-type pair entries of BK (3.66) and CL25 (2.5)"
+T["T7"]["d_scheme_I"] = ("scheme independent: lifted pairs (T8) exclude Q_1 = a Q_0 + [Q_0, phi] (Lemma inv) and exclude a scheme in which both CL22 p. 9 hypotheses hold "
+    "((i) Q undeformed on the BPS superfield, (ii) Leibniz); a nonzero derivation Q_1 is not excluded (derivations (anti)commuting with Q_0 can act nontrivially on H(Q_0), e.g. BK (3.55) Q^I_+ ~ d_theta_I); CL22 DRED scheme excluded in this project")
+T["T8"]["a_source_S"] = [x if not x.startswith("BMV fn 5") else
+    ("BMV (abstract, main text): one-loop dilatation operator at non-integer N; lightest classically 1/16-BPS black-hole state: protected Delta = 19/2 at N = 2, at infinite N a triple trace "
+     "of Konishi and two BPS operators with Delta = 19/2 + 12 lambda + ...; BK p. 5 credits 'directly computing the one-loop action [37]' (= BMV) for the survival of the lowest SU(2) fortuitous class; "
+     "fn 5: first higher-loop correction of BGKWWY preserves the SU(2) threshold class O_0") for x in T["T8"]["a_source_S"]]
+T["T9"]["a_source_S"][2] = "reader checks (not source): SU(2) Q_1 Tr b^2 = -4 d_alpha Tr(b d^alpha c) from (C.3) in the BGKWWY normalisation (twice BK's, T4) (CK02); coefficient of (3.24) = 1 with (C.6) normalised to (C.4) (CK05)"
+T["T9"]["c_untwisted_I"] = ("project: coupling not renormalised at one loop (Step 1); twisted image: [Q_1] annihilates the holomorphic stress-tensor class; "
+    "[D] no N=4 analogue of the BGKWWY (3.40) lifting: BK (3.49) Q_0 b = [c,b] - [gamma^I,beta_I] gives Q_0 Tr b^2 = -2 Tr b[gamma^I,beta_I] != 0, so Tr b^2 is not Q_0-closed; "
+    "BK (3.65) gives Q_1 Tr b^2 proportional to d^alphadot(Tr b d_alphadot c + Tr gamma^I d_alphadot beta_I), a total derivative of the type of BGWW (4.82): check of compatibility with BK (2.18); "
+    "untwisted operator = component of the stress-tensor multiplet selected by (u,u',w) (BK (2.17)); N=1 statements contrast only")
+T["T10"]["a_source_S"][1] = "BK fn 24: 'The tree-level action of psl(3|3) might also receive loop corrections, however the one-loop differential Q1 (anti)commutes with the tree-level generators R0 ... {Q1,R0}+{Q0,R1} = 0'"
+T["T10"]["a_source_S"][2] = ("KvLM Sec 5, paragraph after (5.4): classical commutant Qbar_{m alphadot} anticommute with Q_1 in Q_0-cohomology, cited from [12] = BK; "
+    "(5.4) is the classical action of six Sbar commutant charges on S^4, proportional to M1 - 3M2")
+T["T10"]["R_1_I"] = "R_1 is not written out in BK (inference [I])"
+T["T11"]["a_source_S"][2] = ("GKW Sec 2 after (2.10), after (2.17), fn 13: eta scheme dependent; translations not corrected (fn 13, (2.31)); GKW (6.28) (BRST anomaly of the regularised interaction) "
+    "and (6.33) (brackets as contour brackets) are not scheme statements")
+T["T11"]["a_source_S"].append("CDSW after (3.4): higher-loop contributions to the Konishi anomaly 'are renormalization scheme dependent'")
+data["targets"].append({"id": "T12", "title": "rank-(1,1) supercharge: no loop corrections (R3 reproduction target)",
+    "a_source_S": ["CLW (3.1): Q_HT = Q^4_- + Q_{-dot 3}",
+        "CLW Sec 3.1: 'all the loop diagrams naively contributing to the BRST differential vanish identically' ((H+T)-Laman graphs with H=1, T=2; top forms vanish on 3-Laman graphs); Q_int = Q_0 to all orders, Leibniz",
+        "CLW fn 5: the leading loop correction Q_1 computed in [32] = Zwiebel hep-th/0511109 'takes the form [Q_0, -]'",
+        "CLW (3.17)-(3.19), BK fn 6 (1.11): nonzero 2d chiral-algebra Q_1^{2d}(C^A(theta)C^B(theta')) = -2 f^{ABC}(theta^1-theta'^1)(theta^2-theta'^2) dC^C"],
+    "c_untwisted_D": "x = xi + xibar', xi = u (x) w, xibar' in S_- (x) W^* rank one with xibar'_{alphadot i} w^i = 0 (commutant, T10 (c)); Gamma(x,x) = 0 in all ten components; target [Q_1^x] = 0 on H(Q_0^x) from the components along xi, xibar', (xi, xibar') (design E12)",
+    "d_scheme": {"independent": ["[Q_1^x] = 0 on H(Q_0^x) (Lemma inv)"], "dependent": ["vanishing pair values (HT scheme of CLW only)"]},
+    "note": "addresses open item 6 (Zwiebel tension)"})
+F = {f["id"]: f for f in data["renormalisation_freedom"]["families_I"]}
+F["F0"]["effect"] = ("s-exact part = field-type rescaling N_beta: Q_1 -> Q_1 + [Q_0, N_beta]; coupling direction G = S - S^(2) (F -> F + hbar a G): Q_1 -> Q_1 - a Q_0 - a [N_R, Q_0] "
+    "(overall rescaling of the twisted action plus the R-rotation); untwisted it changes the one-loop BRST transformation by -a(Q+{I,-}), zero on gauge-invariant O")
+F["F1"]["effect"] = ("with the correlated F2 rescaling, S + (1+a hbar) S^(1)(xi) - 1/2 (1+2a hbar) S^(2)(xi,xi) = S^xi composed with the R-rotation alpha(1+a hbar)^{-1} of ESW Def 2.18 at first order "
+    "(S, omega alpha-invariant; S^(k)(xi,...) alpha-weight k): Q_1 -> Q_1 + a [N_alpha, Q_0] = Q_1 + a Q_0 - a [N_gh, Q_0], a [Q_0, phi]-type shift (0 on c, gamma; 1/2 eps[gamma,gamma] on beta up to the letter-map sign); "
+    "untwisted, a S^(1)(xi) is the restriction to xi of the outer cocycle G_B (F5) and of the exact inner cocycle along R_xi; s-exact choices act as [Q_0, -]; the a of F1 (added to the action) is minus the a of design prop:o-laws (e) (F -> F + hbar a G_B changes the action by -a hbar G_B, r_xi(G_B) = S^(1)(xi) - S^(2)(xi,xi))")
+data["renormalisation_freedom"]["families_I"].append({"id": "F5", "what": ("outer derivation B of psl(4|4) (bracket with diag(0_4,1_4) in gl(4|4), equivalently minus the bracket with diag(1_4,0_4), ch08 Def c8-B): +1 on S_+ (x) W and S_- (x) W, -1 on S_- (x) W^* and S_+ (x) W^*, 0 on the even part; "
+    "G_B = d/dt (e^{tB})^* S_psl s-closed, not s-exact (design prop:o-GB)"),
+    "effect_D": ("F -> F + hbar a G_B: Q_1 -> Q_1 - a hbar ad_{S1(xi)} (S_+ (x) W), + a hbar ad_{S1(xibar)} (S_- (x) W^*); S_1 -> S_1 + a hbar ad_{S1(eta)} (S_+ (x) W^*), - a hbar ad_{S1(etabar)} (S_- (x) W); D_1, K_1, P_1, M_1, R_1 unchanged; "
+    "twisted Q_1 -> Q_1 + a [N_R, Q_0] (Lemma inv form)")})
+data["renormalisation_freedom"]["lemma_invariance_D"] += "; the shifts of F0, F1, F5 are of this form ([N,Q_0] = -[Q_0,N] for an even derivation N)"
+data["renormalisation_freedom"]["display_as_families_scheme_dependent"] = [x if not x.startswith("Konishi-entry") else
+    "Konishi-entry coefficient c_K in every normalisation of the weight-3 operators, orthogonality included" for x in data["renormalisation_freedom"]["display_as_families_scheme_dependent"]]
+data["renormalisation_freedom"]["reproduce_exactly_scheme_independent"] = [x for x in data["renormalisation_freedom"]["reproduce_exactly_scheme_independent"] if not x.startswith("Konishi coefficient")] + ["[Q_1^x] = 0 for the rank-(1,1) supercharge (T12)"]
+N = {n["generator"]: n for n in data["R4_novelty"]}
+N["special supercharges eta in Sigma^* (S_1)"]["known"] = ("planar full chain: Z11 Sec 2.3 (2.33) 2->1 parts (S^C_alpha)_{2->1}, (Sdot^C_alphadot)_{2->1} through the generalized harmonic action H^(1/2,1/2), derived in Zwiebel's thesis, "
+    "'fixed (up to normalization) by superconformal symmetry', one loop by n4_untwisted D1; planar su(2|3): B03 (3.37), Table 1 (S_1 at O(g), S_2 at O(g^2) with gamma_1..4), S_3 counted only; "
+    "psu(1,1|2): Z05 (3.6); conjecture B03c (5.15)")
+N["special supercharges eta in Sigma^* (S_1)"]["not_found"] = ("2->2 part of the one-loop S outside su(2|3) and psu(1,1|2); non-planar part; gauge-variant letters; BV-equivariant form; "
+    "twisted R_1 for S^+_I, Sbar^{I alphadot} (not written out in BK, fn 24 [I]); S as BV-equivariant component (reader file bgkwwy.json 'absent_from_paper'; gkw.json I6)")
+N["special conformal K (K_1)"]["known"] = ("planar full chain: Z11 (2.34) (K)_{2->1} = {(S)_{2->1},(Sdot)_{1->1}} + {(S)_{1->1},(Sdot)_{2->1}} (one loop by D1), (K)_{3->1} = {(S)_{2->1},(Sdot)_{2->1}} (two loops by D1); "
+    "psu(1,1|2): Z05 (3.6) K^22 at O(g^2), homogeneous solutions neither found nor excluded (3.8)-(3.9); B03c Sec 6: corrected, not computed; n4_untwisted D4: P uncorrected (y=-x) => K^22_2 = -2[K^22_0, x] != 0")
+N["special conformal K (K_1)"]["not_found"] = ("2->2 part of the one-loop K outside psu(1,1|2); non-planar part; gauge-variant letters; BV-equivariant form; any twisted-side K "
+    "(BGWW (3.47)-(3.52) anomalies of holomorphic symmetries as L-equivariant QME failures; N=4 only classical currents (4.82)-(4.85))")
+N["dilatation Delta (D_1)"]["known"] = ("complete one-loop D_2 on all local operators B03c (2.22),(2.24),(4.27)-(4.29) (point splitting (3.14)); Konishi B03c (4.49): E = 6, delta Delta = 3 g_YM^2 N/(4 pi^2) "
+    "with (1.2) D(g) = D_0 + g_YM^2 N/(8 pi^2) H + O(g^3); = -24 x unit (n4_untwisted D7, ch06 rem:c6-konishi)")
+N["equivariant one-loop QME along all psl(4|4) ghosts"]["known"] = ("twisted analogue for holomorphic symmetries BGWW (3.46)-(3.49); nearest twisted one-loop data along superconformal generators: BGWW Sec 4.3 (4.73)-(4.77) "
+    "ternary lambda-brackets of the twisted N=4 superconformal currents encoding a = c (c-number), 3-cocycle representative 'for future work'; CLW Sec 3.1: no loop corrections along Q_HT")
+data["R4_consequence_I"] = "outer derivation B (F5) shifts Q_1 and S_1 by opposite multiples of the classical transformations; " + data["R4_consequence_I"]
+oi = data["open_items"]
+for i, x in enumerate(oi):
+    if x.startswith("possible tension"):
+        oi[i] = x + "; CLW fn 5 reads Zwiebel's leading Q_1 as of the form [Q_0,-] (T12): consistent with the [Q_0,-] form, not with a vanishing Q_1 in every scheme"
+    if x.startswith("CL25 calls"):
+        oi[i] = "CL25 calls C(R) 'dual Coxeter number of R'; EJSS05 Tr(T^a T^b) = delta^ab, K = -1/3 Tr, Dbar^2 = -1/4 DbarDbar; the identification 'Konishi coefficient = -1 x unit' is withdrawn (T5 (c))"
+    if x.startswith("not read"):
+        oi[i] = ("not read: 2401.08113, 1906.04221, 2606.05314, 0905.3738; Zwiebel's thesis (Z11 ref [24]); Konishi 1984, Konishi-Shizuya 1985; hep-th/0606087, hep-th/0409009; BK (3.70) not re-derived; "
+                 "twisted-side sources not read for their results: Bomans-Wu 2311.04304 (BK [28]), Saberi-Williams 1910.04120 (BK [27], source of BK (3.55)-(3.56); used here only for the superconformal algebra); "
+                 "Z11 read for Sec 2.3, BMV for its main result")
+
+data["open_items"].append("not re-verified against the sources in the revision of 2026-10-28 (kept as transcribed by the reader files): BGKWWY (3.24),(3.26),(3.33),(3.40)-(3.45),(C.1)-(C.2),(C.5)-(C.9),(D.13)-(D.15), App E, fn 28; GKW (2.27),(2.31), fn 13; W18 Thm 3.4; BGKWY22 (B.6); BGWW (3.46)-(3.52),(4.82)-(4.85); ESW Prop 2.21, Rem 1.29, Sec 10.3; BK App B; B03 Table 2")
+out = os.path.join(HERE, "q1_targets.json")
+with open(out, "w") as f:
+    json.dump(data, f, indent=1, ensure_ascii=False)
+json.load(open(out))
+print("wrote", out, "targets:", len(data["targets"]))

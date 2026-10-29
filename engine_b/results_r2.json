@@ -1,0 +1,1790 @@
+{
+ "engine": "B (round 2): exact Gaussian-integer arithmetic; method B (eps d/deps via pinned edges, Taylor expansion in the external momenta, exact radial integral and exact angular average on the 24 short roots of F4)",
+ "units": "u = hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2)",
+ "legend": "Plane-wave evaluation variables (code level, used only to state multilinear forms): leg j carries polarisation a_j (A|_V), b_j (A|_Wperp), lambda_j (Sigma), incoming momentum p_j; (x.y) is the metric pairing; colour structures: ([X_0,X_1],X_2) for three legs, ([X_0,X_1],[X_2,X_3]) and ([X_0,X_3],[X_1,X_2]) for four legs (([X_0,X_2],[X_1,X_3]) = their sum by Jacobi), and (1/24) sum over orderings of tr_g(ad_{X_s1} ad_{X_s2} ad_{X_s3} ad_{X_s4}) (symmetrised adjoint trace, units hbar/(16 pi^2), not proportional to tr_g(ad_X ad_Y)/(X,Y)). All other colour structures are in units u.",
+ "T1": {
+  "external_sets": {
+   "(A|_V, A|_V, A|_V)": {
+    "external_set": "(A|_V, A|_V, A|_V)",
+    "superficial_degree": 1,
+    "tree_vertex": "the (A|_V)^3 part of int dvol(-1/2 (dA, 1/2[A^A]))",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "13/4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAA(A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": "-9/2 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "2 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*-",
+      "vertices": [
+       "AcA*",
+       "AcA*",
+       "AcA*"
+      ],
+      "internal_lines": [
+       "c-A*",
+       "c-A*",
+       "c-A*"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "-1/12 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "16/3 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "6 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "(a_0.a_1)(a_2.p_0)": "3*I",
+     "(a_0.a_1)(a_2.p_1)": "-3*I",
+     "(a_0.a_2)(a_1.p_0)": "-6*I",
+     "(a_0.a_2)(a_1.p_1)": "-3*I",
+     "(a_1.a_2)(a_0.p_0)": "3*I",
+     "(a_1.a_2)(a_0.p_1)": "6*I",
+     "eps(a_0,a_1,a_2,p_0)": "0",
+     "eps(a_0,a_1,a_2,p_1)": "0"
+    },
+    "predicted_from_A": "6 x tree  [{I,Psi} on a vertex with n_A fields A, n_A* fields A*, n_lambda fields lambda, n_lambda* fields lambda*, n_c fields c, n_c* fields c*: weight 2(n_A - n_A*) + 4(n_lambda - n_lambda*) + (n_c - n_c*); AAA: 2*3 = 6]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 11
+   },
+   "(A|_V, A|_Wperp, A|_Wperp)": {
+    "external_set": "(A|_V, A|_Wperp, A|_Wperp)",
+    "superficial_degree": 1,
+    "tree_vertex": "the A|_V (A|_Wperp)^2 part of int dvol(-1/2 (dA, 1/2[A^A]))",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "3/2 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "-9/2 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "8 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "6 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "(b_1.b_2)(a_0.p_0)": "3*I",
+     "(b_1.b_2)(a_0.p_1)": "6*I"
+    },
+    "predicted_from_A": "6 x tree  [{I,Psi} on a vertex with n_A fields A, n_A* fields A*, n_lambda fields lambda, n_lambda* fields lambda*, n_c fields c, n_c* fields c*: weight 2(n_A - n_A*) + 4(n_lambda - n_lambda*) + (n_c - n_c*); AAA: 2*3 = 6]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 4
+   },
+   "(lambda, lambda, A|_V)": {
+    "external_set": "(lambda, lambda, A|_V)",
+    "superficial_degree": 0,
+    "tree_vertex": "the A|_V part of int dvol 1/2 (lambda, (dslash_A - dslash) lambda)",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_V-",
+      "vertices": [
+       "AAA",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "lambda",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "3 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "lambda",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "3 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(lambda) -A|_V- | lambda lambda A(lambda) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "A|_V",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(lambda) -A|_Wperp- | lambda lambda A(lambda) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "A|_Wperp",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "3 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "10 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree[lambda_0 in +, lambda_1 in +]": "0",
+     "tree[lambda_0 in +, lambda_1 in -]": "10",
+     "tree[lambda_0 in -, lambda_1 in +]": "10",
+     "tree[lambda_0 in -, lambda_1 in -]": "0"
+    },
+    "predicted_from_A": "10 x tree  [2*1 + 4*2 = 10]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 6
+   },
+   "(lambda, lambda, A|_Wperp)": {
+    "external_set": "(lambda, lambda, A|_Wperp)",
+    "superficial_degree": 0,
+    "tree_vertex": "the A|_Wperp part of int dvol 1/2 (lambda, (dslash_A - dslash) lambda)",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "lambda",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "2 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(lambda) -A|_V- | lambda lambda A(lambda) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "A|_V",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(lambda) -A|_Wperp- | lambda lambda A(lambda) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "A|_Wperp",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "10 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree[lambda_0 in +, lambda_1 in +]": "10",
+     "tree[lambda_0 in +, lambda_1 in -]": "0",
+     "tree[lambda_0 in -, lambda_1 in +]": "0",
+     "tree[lambda_0 in -, lambda_1 in -]": "10"
+    },
+    "predicted_from_A": "10 x tree  [2*1 + 4*2 = 10]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 6
+   },
+   "(c, A|_V, A*|_V)": {
+    "external_set": "(c, A|_V, A*|_V)",
+    "superficial_degree": 0,
+    "tree_vertex": "the A|_V part of int dvol ([A,c],A*)",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AcA*(A*|_V) -c-A*- | AcA*(c) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AcA*",
+       "AcA*"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "c-A*",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "3/4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AcA*(A|_V) -c-A*- | AcA*(A*|_V) -A|_V- | AcA*(c) -c-A*-",
+      "vertices": [
+       "AcA*",
+       "AcA*",
+       "AcA*"
+      ],
+      "internal_lines": [
+       "c-A*",
+       "A|_V",
+       "c-A*"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1/4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "1 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree": "1"
+    },
+    "predicted_from_A": "1 x tree  [2*(1-1) + 1 = 1]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 3
+   },
+   "(c, A|_Wperp, A*|_Wperp)": {
+    "external_set": "(c, A|_Wperp, A*|_Wperp)",
+    "superficial_degree": 0,
+    "tree_vertex": "the A|_Wperp part of int dvol ([A,c],A*)",
+    "graphs": [
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | AcA*(c) -c-A*- | AcA*(A*|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AcA*",
+       "AcA*"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "c-A*",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "1 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree": "1"
+    },
+    "predicted_from_A": "1 x tree  [2*(1-1) + 1 = 1]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 3
+   },
+   "(c, lambda, lambda*)": {
+    "external_set": "(c, lambda, lambda*)",
+    "superficial_degree": 0,
+    "tree_vertex": "int dvol ([c,lambda],lambda*)",
+    "graphs": [
+     {
+      "id": "triangle: AcA*(c) -A|_V- | lambda lambda A(lambda) -lambda- | c lambda lambda*(lambda*) -c-A*-",
+      "vertices": [
+       "AcA*",
+       "lambda lambda A",
+       "c lambda lambda*"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "lambda",
+       "c-A*"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "1 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree[lambda in +]": "1",
+     "tree[lambda in -]": "1"
+    },
+    "predicted_from_A": "1 x tree  [4*(1-1) + 1 = 1]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 4
+   },
+   "(c, c, c*)": {
+    "external_set": "(c, c, c*)",
+    "superficial_degree": 0,
+    "tree_vertex": "int dvol 1/2 ([c,c],c*)",
+    "graphs": [
+     {
+      "id": "triangle: AcA*(c) -A|_V- | AcA*(c) -c-A*- | ccc*(c*) -c-A*-",
+      "vertices": [
+       "AcA*",
+       "AcA*",
+       "ccc*"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "c-A*",
+       "c-A*"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "1 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "1 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "tree": "1"
+    },
+    "predicted_from_A": "1 x tree  [(2-1) = 1]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 3
+   },
+   "(A|_V)^4": {
+    "external_set": "(A|_V)^4",
+    "superficial_degree": 0,
+    "tree_vertex": "the (A|_V)^4 part of int dvol(-1/4 (1/2[A^A], 1/2[A^A]))",
+    "graphs": [
+     {
+      "id": "box: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "5/12",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "5/12",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "-5/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "5/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "-5/12",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "-5/12",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "-37/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "-37/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "-37/4"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "-13/4",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "-13/4",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "13/2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "-13/2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "13/4",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "13/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "15",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "15",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "15"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "-12",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "-12",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "-12"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "-2",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "-2",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "4",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "-4",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "24",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "24",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "24"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_V,A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "5/2",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "5/2",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "-5",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "5",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "-5/2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "-5/2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "-6",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "-6",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "-6"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_V,A|_V) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "1",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "1",
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "-2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "-1",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "-1",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "-12",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "-12",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "-12"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*-",
+      "vertices": [
+       "AcA*",
+       "AcA*",
+       "AcA*",
+       "AcA*"
+      ],
+      "internal_lines": [
+       "c-A*",
+       "c-A*",
+       "c-A*",
+       "c-A*"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "1/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "1/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "1/4"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "16/3 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "8 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)": "-4",
+     "([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)": "-4",
+     "([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)": "8",
+     "([X_0,X_1],[X_2,X_3]) x eps(a_0,a_1,a_2,a_3)": "0",
+     "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)": "-8",
+     "([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)": "4",
+     "([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)": "4",
+     "([X_0,X_3],[X_1,X_2]) x eps(a_0,a_1,a_2,a_3)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x eps(a_0,a_1,a_2,a_3)": "0"
+    },
+    "predicted_from_A": "8 x tree  [2*4 = 8]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 7
+   },
+   "(A|_V)^2 (A|_Wperp)^2": {
+    "external_set": "(A|_V)^2 (A|_Wperp)^2",
+    "superficial_degree": 0,
+    "tree_vertex": "the (A|_V)^2 (A|_Wperp)^2 part of int dvol(-1/4 (1/2[A^A], 1/2[A^A]))",
+    "graphs": [
+     {
+      "id": "box: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_Wperp",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "1/8",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "1/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-3/2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-3/4",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-3/2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "9"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_V,A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp",
+       "A|_V"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-5/4",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-5/2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-3"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "1/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "1/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-5/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-5/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "10"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-2/3",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-4/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-1/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-1/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-1/8",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-1/4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "3/2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_V,A|_V) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "1/2",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "1",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-6"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_V,A|_V) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "5/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "5/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-10"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_V,A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "13/6",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "13/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-4/3",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-8/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "16"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-8/3",
+       "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-16/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "-16"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "8 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)": "-4",
+     "([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)": "-8",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)": "0"
+    },
+    "predicted_from_A": "8 x tree  [2*4 = 8]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 3
+   },
+   "(A|_Wperp)^4": {
+    "external_set": "(A|_Wperp)^4",
+    "superficial_degree": 0,
+    "tree_vertex": "the (A|_Wperp)^4 part of int dvol(-1/4 (1/2[A^A], 1/2[A^A]))",
+    "graphs": [
+     {
+      "id": "box: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "1/6",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "1/6",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "-1/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "1/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "-1/6",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "-1/6",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "-2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "-2",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "-2"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": "4 x tree",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "triangle: AAA(A|_Wperp) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAA",
+       "AAAA",
+       "AAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "-1/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "-1/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "2/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "-2/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "1/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "1/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "4",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "4"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_Wperp,A|_Wperp) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_V",
+       "A|_V"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "2/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "2/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "-4/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "4/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "-2/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "-2/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "-8",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "-8",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "-8"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "bubble: AAAA(A|_Wperp,A|_Wperp) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-",
+      "vertices": [
+       "AAAA",
+       "AAAA"
+      ],
+      "internal_lines": [
+       "A|_Wperp",
+       "A|_Wperp"
+      ],
+      "symmetry_factor": "1/2",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "17/6",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "17/6",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "-17/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "17/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "-17/6",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "-17/6",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "-10",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "-10",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "-10"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "box: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-",
+      "vertices": [
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A",
+       "lambda lambda A"
+      ],
+      "internal_lines": [
+       "lambda",
+       "lambda",
+       "lambda",
+       "lambda"
+      ],
+      "symmetry_factor": "1",
+      "log_eps": {
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "-16/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "-16/3",
+       "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "32/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "-32/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "16/3",
+       "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "16/3",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "16",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "16",
+       "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "16"
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": "8 x tree  (log eps, units u; eps^-1 = eps^-1/2 = 0)",
+    "total_structure_fit": {
+     "([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)": "-4",
+     "([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)": "-4",
+     "([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)": "8",
+     "([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)": "-8",
+     "([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)": "4",
+     "([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)": "4",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)": "0",
+     "(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)": "0"
+    },
+    "predicted_from_A": "8 x tree  [2*4 = 8]",
+    "verdict": "agrees",
+    "n_random_exact_configurations": 5
+   }
+  },
+  "coupling_direction": {
+   "ansatz": "log eps part of I^CT[eps] = log eps u [ (Q + {I,-})( alpha_AV int (A|_V,A*|_V) + alpha_AWperp int (A|_Wperp,A*|_Wperp) + alpha_lambda int (lambda*,lambda) + alpha_c int (c*,c) ) + kappa S ],  S = the full action, kappa S = d/dt S[(1+t)(-,-)] at t=0 times kappa",
+   "weights": "(Q+{I,-}) int alpha (A,A*) multiplies a monomial by alpha(n_A - n_A*); int alpha(lambda*,lambda) by -alpha(n_lambda - n_lambda*); int alpha(c*,c) by -alpha(n_c - n_c*)  [bracket of classical_spec.md: {f,g} = sum_i (d_xi_i f)(d_x_i g) + (-1)^|f| (d_x_i f)(d_xi_i g), pairs (x,xi) = (A,A*), (lambda*,lambda), (c*,c)]",
+   "equations": {
+    "kinetic A|_V (-1/4 int (dA|_V,dA|_V))": "2*alpha_AV + kappa = 4",
+    "kinetic A|_Wperp": "2*alpha_AWperp + kappa = 4",
+    "kinetic lambda (1/2 int (lambda, dslash lambda))": "-2*alpha_lambda + kappa = 8",
+    "kinetic ghost (int (dc, A*))": "-alpha_AV - alpha_c + kappa = -1",
+    "(A|_V)^3": "3*alpha_AV + kappa = 6",
+    "A|_V (A|_Wperp)^2": "alpha_AV + 2*alpha_AWperp + kappa = 6",
+    "lambda lambda A|_V": "alpha_AV - 2*alpha_lambda + kappa = 10",
+    "lambda lambda A|_Wperp": "alpha_AWperp - 2*alpha_lambda + kappa = 10",
+    "A|_V c A*|_V": "-alpha_c + kappa = 1",
+    "A|_Wperp c A*|_Wperp": "-alpha_c + kappa = 1",
+    "c lambda lambda*": "-alpha_c + kappa = 1",
+    "c c c*": "-alpha_c + kappa = 1",
+    "(A|_V)^4": "4*alpha_AV + kappa = 8",
+    "(A|_V)^2 (A|_Wperp)^2": "2*alpha_AV + 2*alpha_AWperp + kappa = 8",
+    "(A|_Wperp)^4": "4*alpha_AWperp + kappa = 8"
+   },
+   "quadratic_sector_alone": "[{alpha_AV: 2 - kappa/2, alpha_AWperp: 2 - kappa/2, alpha_c: 3*kappa/2 - 1, alpha_lambda: kappa/2 - 4}] (kappa free: the quadratic sector does not fix the coupling direction)",
+   "solution_all_sectors": "[{alpha_AV: 2, alpha_AWperp: 2, alpha_c: -1, alpha_lambda: -4, kappa: 0}]",
+   "conclusion": "unique solution alpha_AV = alpha_AWperp = 2, alpha_lambda = -4, alpha_c = -1, kappa = 0: the 15 equations (4 quadratic, 8 cubic, 3 quartic) are consistent and force kappa = 0; the coefficient along the coupling direction vanishes at one loop."
+  },
+  "summary": "every external set: computed total log eps coefficient = (A)-prediction x tree vertex; no eps^-1, no eps^-1/2 pieces; non-Lie colour parts (symmetrised adjoint traces) and parity-odd parts cancel in each total",
+  "log_part_of_ICT_cubic_quartic": "u log eps [6 (A|_V)^3 + 6 A|_V(A|_Wperp)^2 parts of int(-1/2 (dA, 1/2[A^A])) + 10 int 1/2(lambda, (dslash_A - dslash)lambda) + int ([A,c],A*) + int ([c,lambda],lambda*) + int 1/2([c,c],c*) + 8 int(-1/4(1/2[A^A],1/2[A^A]))] = u log eps {I, 2 int (A,A*) - 4 int (lambda*,lambda) - int (c*,c)}"
+ },
+ "T2": {
+  "sector": "external legs c and A|_V (ghost number 1, quadratic)",
+  "defect_vertex": "D_eps = 1/2({I,I}_eps - {I,I}_0) + hbar Delta_eps I - Q I^CT[eps] - {I,I^CT[eps]}_eps + O(hbar^2); in this sector hbar Delta_eps I = 0 (every self-contraction of a vertex has colour factor sum_a ([X,t_a],t^a) = 0), {I,I^CT}_eps has at least three legs; one-loop graphs: 1/2({I,I}_eps - {I,I}_0) closed by one P(eps,infty) edge (bubble with one special edge), and -Q I^CT[eps]",
+  "identity_used": "Q e^{hbar d_P} e^{J/hbar} = e^{hbar d_P}(Q + hbar Delta_eps) e^{J/hbar}, J = I - I^CT[eps], so Q W(P(eps,infty),J) = connected graphs with one D_eps vertex",
+  "other_quadratic_sectors": "ghost number 1 bilinears: (c, A) and (c, lambda) only (coordinate degrees c:+1, A,lambda:0, A*,lambda*:-1, c*:-2). (c, A|_Wperp) vanishes: no Spin(6)-invariant pairing of a scalar with a vector of W_R^perp (regulator R-covariant); (c, lambda) vanishes: no Spin(4)-invariant bilinear of a scalar and a spinor.",
+  "graphs": [
+   {
+    "id": "QME2-a",
+    "description": "v1=AcA*[c] v2=AAA[A|_V] special edge A-A* (K_eps - K_0), P edge A|_V",
+    "vertices": [
+     "AcA*[c]",
+     "AAA[A|_V]"
+    ],
+    "internal_lines": [
+     "special edge A-A* carrying K_eps - K_0",
+     "P(eps,infty) edge A|_V"
+    ],
+    "symmetry_factor": "1 (the 1/2 of 1/2{I,I} cancels against the two assignments of v1, v2)",
+    "eps_inv": "-9/4 u eps^-1 int (A|_V, dc)",
+    "log_eps": "0",
+    "finite": "-5/8 u int (d*A|_V, d*dc)",
+    "eps_inv_sq": "0"
+   },
+   {
+    "id": "QME2-b",
+    "description": "v1=AcA*[c] v2=AAA[A|_V] special edge A-A* (K_eps - K_0), P edge A|_Wperp",
+    "vertices": [
+     "AcA*[c]",
+     "AAA[A|_V]"
+    ],
+    "internal_lines": [
+     "special edge A-A* carrying K_eps - K_0",
+     "P(eps,infty) edge A|_Wperp"
+    ],
+    "symmetry_factor": "1 (the 1/2 of 1/2{I,I} cancels against the two assignments of v1, v2)",
+    "eps_inv": "-9/2 u eps^-1 int (A|_V, dc)",
+    "log_eps": "0",
+    "finite": "-5/4 u int (d*A|_V, d*dc)",
+    "eps_inv_sq": "0"
+   },
+   {
+    "id": "QME2-c",
+    "description": "v1=AcA*[c] v2=AcA*[A|_V] special edge A-A* (K_eps - K_0), P edge c-A*",
+    "vertices": [
+     "AcA*[c]",
+     "AcA*[A|_V]"
+    ],
+    "internal_lines": [
+     "special edge A-A* carrying K_eps - K_0",
+     "P(eps,infty) edge c-A*"
+    ],
+    "symmetry_factor": "1 (the 1/2 of 1/2{I,I} cancels against the two assignments of v1, v2)",
+    "eps_inv": "1/8 u eps^-1 int (A|_V, dc)",
+    "log_eps": "0",
+    "finite": "-1/12 u int (d*A|_V, d*dc)",
+    "eps_inv_sq": "0"
+   },
+   {
+    "id": "QME2-d",
+    "description": "v1=c lambda lambda*[c] v2=lambda lambda A[A|_V] special edge lambda-lambda* (K_eps - K_0), P edge lambda",
+    "vertices": [
+     "c",
+     "bda"
+    ],
+    "internal_lines": [
+     "special edge lambda-lambda* carrying K_eps - K_0",
+     "P(eps,infty) edge lambda"
+    ],
+    "symmetry_factor": "1 (the 1/2 of 1/2{I,I} cancels against the two assignments of v1, v2)",
+    "eps_inv": "2 u eps^-1 int (A|_V, dc)",
+    "log_eps": "0",
+    "finite": "-4/3 u int (d*A|_V, d*dc)",
+    "eps_inv_sq": "0"
+   },
+   {
+    "id": "QME2-e",
+    "description": "v1=ccc*[c] v2=AcA*[A|_V] special edge c-c* (K_eps - K_0), P edge c-A*",
+    "vertices": [
+     "ccc*[c]",
+     "AcA*[A|_V]"
+    ],
+    "internal_lines": [
+     "special edge c-c* carrying K_eps - K_0",
+     "P(eps,infty) edge c-A*"
+    ],
+    "symmetry_factor": "1 (the 1/2 of 1/2{I,I} cancels against the two assignments of v1, v2)",
+    "eps_inv": "1/8 u eps^-1 int (A|_V, dc)",
+    "log_eps": "0",
+    "finite": "-1/12 u int (d*A|_V, d*dc)",
+    "eps_inv_sq": "0"
+   },
+   {
+    "id": "QME2-CT",
+    "description": "counterterm vertex -Q I^CT[eps] (quadratic I^CT agreed in round 1)",
+    "vertices": [
+     "-Q I^CT[eps]"
+    ],
+    "internal_lines": [],
+    "symmetry_factor": "1",
+    "eps_inv": "-(9/4) u eps^-1 Q int (A|_V,A|_V) = +(9/2) u eps^-1 int (A|_V, dc)",
+    "log_eps": "0  [Q int (dA,dA) = 0; Q int (dc,A*) restricted to (c, A|_V) is -1/2 int (dc, d*dA|_V) up to sign = 0 since d*d* = 0; coefficient of int (d*A|_V,d*A|_V) in the log part is 0 (round 1)]",
+    "finite": "0"
+   }
+  ],
+  "eps_inv_total": "special-edge graphs: -(9/2) u eps^-1 int (A|_V, dc); counterterm: +(9/2) u eps^-1 int (A|_V, dc); total 0",
+  "eps_inv_sq_total": "0 (each graph)",
+  "log_total": "0 (each graph: special-edge graphs contain only integer powers of eps; counterterm log part has no (c, A|_V) component)",
+  "finite_total": "-27/8 u int (d*A|_V, d*dc)   [plane-wave coefficient of r_c: -27/8 i (p.a) p^2 (X_0,X_1) u, c at +p, A|_V polarisation a at -p]",
+  "obstruction": "O = -27/8 u int (d*A|_V, d*dc) = (27/16) u Q int (d*A|_V, d*A|_V)   [Q int (d*A|_V,d*A|_V) = -2 int (d*A|_V, d*dc), from Q c = -dc in the A|_V slot]",
+  "q_exact": "yes: O = Q( (27/16) u int (d*A|_V, d*A|_V) ); in this sector every dimension-4 local functional is a multiple of int (d*A|_V, d*dc) (int (dc, d*dA|_V) = 0), so the class is fixed by one number",
+  "finite_counterterm": "F = (27/16) u int (d*A|_V, d*A|_V) added to I^CT[eps] (renormalised interaction I - I^CT[eps] - F); then D changes by -Q F = -O and the quadratic obstruction vanishes. In Lemma 12.0.4 form: lift S + hbar S' with S' = -(27/16)(tr_g(ad_X ad_Y)/((X,Y)16pi^2)) int (d*A|_V,d*A|_V).",
+  "cross_check": {
+   "method": "independent: Q W_1|_(c,A|_V) = -V^AA(i p, a), the longitudinal part of the regulated A|_V self-energy (round-1 numerators, no special edges), exact eps -> 0 expansion via incomplete Gamma functions in the Feynman parameter x",
+   "result": {
+    "eps_inv": "-9/2 i(p.a)",
+    "finite": "-27/8 i(p.a)p^2"
+   },
+   "per_graph": {
+    "gauge loop A|_V": {
+     "pole": "-9/8",
+     "log": "-p0**2/4 - p1**2/4 - p2**2/4 - p3**2/4",
+     "finite": "55/48 - log(2)/4"
+    },
+    "scalar loop A|_Wperp": {
+     "pole": "-3/2",
+     "log": "0",
+     "finite": "5/4"
+    },
+    "ghost loop": {
+     "pole": "1/8",
+     "log": "p0**2/4 + p1**2/4 + p2**2/4 + p3**2/4",
+     "finite": "-17/48 + log(2)/4"
+    },
+    "fermion loop": {
+     "pole": "-2",
+     "log": "0",
+     "finite": "4/3"
+    },
+    "quartic tadpole A|_V": {
+     "pole": "3",
+     "log": "0",
+     "finite": "0"
+    },
+    "quartic tadpole A|_Wperp": {
+     "pole": "6",
+     "log": "0",
+     "finite": "0"
+    }
+   },
+   "agreement": "exact: eps^-1 -9/2 and finite -27/8 from both routes; the gauge-loop and ghost-loop log(p^2 eps) and log 2 pieces cancel in the sum"
+  },
+  "interpretation": "the renormalised Feynman-gauge A|_V self-energy at scale infinity is transverse up to the local term (27/16) u int (d*A|_V,d*A|_V); the QME obstruction in the (c,A|_V) sector is its Q-variation",
+  "cubic_sector": "open (not computed): requires triangles and quartic-vertex bubbles with one special edge, the vertex {I, I^CT[eps]}_eps, and the one-particle-reducible graphs -Q I^CT[eps] --P-- I. Structural statement only: the one-loop obstruction is closed under Q + {I,-}, so its cubic part equals (27/16) u {I, int (d*A|_V,d*A|_V)} (cubic part) plus a (Q + {I,-})-closed cubic remainder.",
+  "verdict": "eps^-1 cancels against -Q of (9/4) u eps^-1 int (A|_V,A|_V); no log eps; finite one-loop obstruction in the (c,A|_V) sector is nonzero and Q-exact, removed by the finite counterterm (27/16) u int (d*A|_V,d*A|_V)."
+ },
+ "T3": {
+  "normalisations": "SW (3): Delta = -E; SW (17): Delta = 2E = -2 x (SW (3) Delta); tabulated: the coefficient of u O in the anomalous part of [(d_CE + Q) O[infty]](Delta), same sign convention as round 1 (DEFINITIONS_v2), units u",
+  "table": {
+   "traceless symmetric scalar bilinear (iota_w1 A, iota_w2 A)": {
+    "SW3_Delta_equals_minus_E": 0,
+    "SW17_Delta_equals_2E": 0
+   },
+   "trace scalar bilinear sum_w (iota_w A, iota_w A)": {
+    "SW3_Delta_equals_minus_E": -24,
+    "SW17_Delta_equals_2E": 48
+   },
+   "letter iota_w A": {
+    "SW3_Delta_equals_minus_E": -4,
+    "SW17_Delta_equals_2E": 8
+   },
+   "letter A|_V (transverse part)": {
+    "SW3_Delta_equals_minus_E": -4,
+    "SW17_Delta_equals_2E": 8
+   },
+   "letter A|_V (longitudinal part)": {
+    "SW3_Delta_equals_minus_E": 0,
+    "SW17_Delta_equals_2E": 0
+   },
+   "letter lambda": {
+    "SW3_Delta_equals_minus_E": -8,
+    "SW17_Delta_equals_2E": 16
+   },
+   "letter c (gauge ghost, computed in round 2)": {
+    "SW3_Delta_equals_minus_E": -2,
+    "SW17_Delta_equals_2E": 4
+   }
+  },
+  "konishi_check": "trace: -24 u (SW (3)) = 3 g^2 N/(4 pi^2) for su(N) with u = -g^2 N/(32 pi^2); in SW (17): +48 u = -3 g^2 N/(2 pi^2) (the eigenvalue of Delta = 2E is -2 times)",
+  "ghost_letter_computation": {
+   "O": "int omega (X, c), X a fixed element of g^vee (Q-closed: Q has no component into the c slot)",
+   "route": "round-1 route (i): anomalous part = -2 hbar sum_k b_k d^cross_{P(0,infty)}(B_k, O) - Q O_1, O_1 = -2 hbar d^cross_{P(0,infty)}(R, O), sum_k b_k B_k = Q R, R = 2 int (A,A*) - 4 int (lambda*,lambda) - int (c*,c)",
+   "step1": "P(0,infty) joins c only to A*|_V: component A* (x) c = -(-,-)^-1 d_x (4 pi^2 |x-y|^2)^-1 (momentum space -i k/k^2); only B = int (dc, A*) (log coefficient b = -1) contributes: d^cross_P(int (dc,A*), O) = -int (dc, X d (d*d)^-1 omega) = -O, so -2 hbar b d^cross = -2 u O",
+   "step2": "d^cross_P(R, O) = 2 int (A, -X d (d*d)^-1 omega) => O_1 = 4 u int (A|_V, X d (d*d)^-1 omega); Q O_1 = 4 u int (-dc, X d (d*d)^-1 omega) = -4 u O; -Q O_1 = +4 u O",
+   "sum": "-2 + 4 = +2 in the orientation of the identity anomalous part = 2 hbar {R, O}_0 (from [d_P, Q] = d_{QP}, Q P(0,infty) = K_0); the same computation gives +4 for iota_w A and +8 for lambda, which round 1 tabulates as -4 and -8; in that convention the ghost letter is -2 (SW (3)) and +4 (SW (17))",
+   "general_rule": "Q-closed letter of field phi: coefficient = -2 x (weight of phi in {Psi,-}), weights A: 2, lambda: 4, c: 1"
+  }
+ },
+ "formula_chains": {
+  "T1 (A|_V, A|_V, A|_V) | triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAA'], lines ['A|_V', 'A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 13/4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_V, A|_V) | bubble: AAA(A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAA', 'AAAA'], lines ['A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 1 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): -9/2 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_V, A|_V) | triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAA'], lines ['A|_Wperp', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 2 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_V, A|_V) | triangle: AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AcA*', 'AcA*', 'AcA*'], lines ['c-A*', 'c-A*', 'c-A*']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): -1/12 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_V, A|_V) | triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 16/3 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_Wperp, A|_Wperp) | triangle: AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAA'], lines ['A|_V', 'A|_Wperp', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 3/2 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_Wperp, A|_Wperp) | triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAA'], lines ['A|_Wperp', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 1 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_Wperp, A|_Wperp) | bubble: AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAA', 'AAAA'], lines ['A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 1 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): -9/2 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V, A|_Wperp, A|_Wperp) | triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 3 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^1] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > (the lambda^0 term, an odd polynomial on the sphere, gives eps^{-1/2} x 0)",
+   "local_part": "log eps coefficient (units u): 8 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_V) | triangle: AAA(A|_V) -A|_V- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'lambda lambda A', 'lambda lambda A'], lines ['A|_V', 'lambda', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 3 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_V) | triangle: AAA(A|_V) -A|_Wperp- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'lambda lambda A', 'lambda lambda A'], lines ['A|_Wperp', 'lambda', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 3 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_V) | triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(lambda) -A|_V- | lambda lambda A(lambda) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'A|_V', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 1 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_V) | triangle: lambda lambda A(A|_V) -lambda- | lambda lambda A(lambda) -A|_Wperp- | lambda lambda A(lambda) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'A|_Wperp', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 3 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_Wperp) | triangle: AAA(A|_Wperp) -A|_V- | lambda lambda A(lambda) -lambda- | lambda lambda A(lambda) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'lambda lambda A', 'lambda lambda A'], lines ['A|_V', 'lambda', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 2 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_Wperp) | triangle: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(lambda) -A|_V- | lambda lambda A(lambda) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'A|_V', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (lambda, lambda, A|_Wperp) | triangle: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(lambda) -A|_Wperp- | lambda lambda A(lambda) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'A|_Wperp', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (c, A|_V, A*|_V) | triangle: AAA(A|_V) -A|_V- | AcA*(A*|_V) -c-A*- | AcA*(c) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AcA*', 'AcA*'], lines ['A|_V', 'c-A*', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 3/4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (c, A|_V, A*|_V) | triangle: AcA*(A|_V) -c-A*- | AcA*(A*|_V) -A|_V- | AcA*(c) -c-A*-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AcA*', 'AcA*', 'AcA*'], lines ['c-A*', 'A|_V', 'c-A*']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 1/4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (c, A|_Wperp, A*|_Wperp) | triangle: AAA(A|_Wperp) -A|_V- | AcA*(c) -c-A*- | AcA*(A*|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AcA*', 'AcA*'], lines ['A|_V', 'c-A*', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 1 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (c, lambda, lambda*) | triangle: AcA*(c) -A|_V- | lambda lambda A(lambda) -lambda- | c lambda lambda*(lambda*) -c-A*-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AcA*', 'lambda lambda A', 'c lambda lambda*'], lines ['A|_V', 'lambda', 'c-A*']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 1 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (c, c, c*) | triangle: AcA*(c) -A|_V- | AcA*(c) -c-A*- | ccc*(c*) -c-A*-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AcA*', 'AcA*', 'ccc*'], lines ['A|_V', 'c-A*', 'c-A*']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 1 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | box: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AAA', 'AAA', 'AAA', 'AAA'], lines ['A|_V', 'A|_V', 'A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)\": \"5/12\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)\": \"5/12\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)\": \"-5/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)\": \"5/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)\": \"-5/12\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)\": \"-5/12\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"-37/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"-37/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"-37/4\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_V', 'A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)\": \"-13/4\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)\": \"-13/4\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)\": \"13/2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)\": \"-13/2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)\": \"13/4\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)\": \"13/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"15\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"15\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"15\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | box: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AAA', 'AAA', 'AAA', 'AAA'], lines ['A|_Wperp', 'A|_Wperp', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"-12\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"-12\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"-12\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_Wperp', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)\": \"-2\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)\": \"-2\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)\": \"4\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)\": \"-4\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)\": \"2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)\": \"2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"24\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"24\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"24\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | bubble: AAAA(A|_V,A|_V) -A|_V- | AAAA(A|_V,A|_V) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)\": \"5/2\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)\": \"5/2\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)\": \"-5\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)\": \"5\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)\": \"-5/2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)\": \"-5/2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"-6\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"-6\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"-6\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | bubble: AAAA(A|_V,A|_V) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(a_2.a_3)\": \"1\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_2)(a_1.a_3)\": \"1\", \"([X_0,X_1],[X_2,X_3]) x (a_0.a_3)(a_1.a_2)\": \"-2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(a_2.a_3)\": \"2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_2)(a_1.a_3)\": \"-1\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_3)(a_1.a_2)\": \"-1\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"-12\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"-12\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"-12\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | box: AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*- | AcA*(A|_V) -c-A*-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AcA*', 'AcA*', 'AcA*', 'AcA*'], lines ['c-A*', 'c-A*', 'c-A*', 'c-A*']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(a_2.a_3)\": \"1/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_2)(a_1.a_3)\": \"1/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_3)(a_1.a_2)\": \"1/4\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^4 | box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 16/3 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | box: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AAA', 'AAA', 'AAA', 'AAA'], lines ['A|_V', 'A|_V', 'A|_Wperp', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"1/8\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"1/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-3/2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_V) -A|_V- | AAA(A|_V) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_V', 'A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-3/4\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-3/2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"9\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_V,A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_V', 'A|_Wperp', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-5/4\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-5/2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-3\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | box: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AAA', 'AAA', 'AAA', 'AAA'], lines ['A|_Wperp', 'A|_Wperp', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"1/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"1/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_V) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_Wperp', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-5/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-5/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"10\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_V) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_Wperp', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-2/3\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-4/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_V,A|_V) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_V', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-1/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-1/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | triangle: AAA(A|_Wperp) -A|_V- | AAAA(A|_V,A|_V) -A|_V- | AAA(A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAAA', 'AAA'], lines ['A|_V', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-1/8\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-1/4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"3/2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | bubble: AAAA(A|_V,A|_V) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"1/2\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"1\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-6\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | bubble: AAAA(A|_V,A|_V) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"5/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"5/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-10\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | bubble: AAAA(A|_V,A|_Wperp) -A|_V- | AAAA(A|_V,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"13/6\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"13/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-4/3\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-8/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"16\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_V)^2 (A|_Wperp)^2 | box: lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_V) -lambda- | lambda lambda A(A|_Wperp) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (a_0.a_1)(b_2.b_3)\": \"-8/3\", \"([X_0,X_3],[X_1,X_2]) x (a_0.a_1)(b_2.b_3)\": \"-16/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (a_0.a_1)(b_2.b_3)\": \"-16\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | box: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['AAA', 'AAA', 'AAA', 'AAA'], lines ['A|_V', 'A|_Wperp', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)\": \"1/6\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)\": \"1/6\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)\": \"-1/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)\": \"1/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)\": \"-1/6\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)\": \"-1/6\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)\": \"-2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)\": \"-2\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)\": \"-2\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | triangle: AAA(A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAA', 'AAAA'], lines ['A|_V', 'A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): 4 x tree; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | triangle: AAA(A|_Wperp) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V- | AAA(A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/6) sign(odd reordering) tr_g(M_3...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_2) Pi d^2I_(v3)], vertices ['AAA', 'AAAA', 'AAA'], lines ['A|_V', 'A|_V', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 2 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)\": \"-1/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)\": \"-1/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)\": \"2/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)\": \"-2/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)\": \"1/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)\": \"1/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)\": \"4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)\": \"4\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)\": \"4\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | bubble: AAAA(A|_Wperp,A|_Wperp) -A|_V- | AAAA(A|_Wperp,A|_Wperp) -A|_V-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_V', 'A|_V']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)\": \"2/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)\": \"2/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)\": \"-4/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)\": \"4/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)\": \"-2/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)\": \"-2/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)\": \"-8\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)\": \"-8\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)\": \"-8\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | bubble: AAAA(A|_Wperp,A|_Wperp) -A|_Wperp- | AAAA(A|_Wperp,A|_Wperp) -A|_Wperp-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/4) sign(odd reordering) tr_g(M_2...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_1) Pi d^2I_(v2)], vertices ['AAAA', 'AAAA'], lines ['A|_Wperp', 'A|_Wperp']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 0 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)\": \"17/6\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)\": \"17/6\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)\": \"-17/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)\": \"17/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)\": \"-17/6\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)\": \"-17/6\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)\": \"-10\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)\": \"-10\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)\": \"-10\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T1 (A|_Wperp)^4 | box: lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda- | lambda lambda A(A|_Wperp) -lambda-": {
+   "amplitude": "sum over the words of this graph class (all assignments of the external legs to its vertices, both orientations): (hbar/8) sign(odd reordering) tr_g(M_4...M_1) int d^4q/(2pi)^4 STr[P(q-P_0) Pi d^2I_(v1) ... P(q-P_3) Pi d^2I_(v4)], vertices ['lambda lambda A', 'lambda lambda A', 'lambda lambda A', 'lambda lambda A'], lines ['lambda', 'lambda', 'lambda', 'lambda']",
+   "numerator": "STr numerator homogeneous of degree 2E-4+w = 4 in (q, external momenta); P numerators: 2 (-,-)^-1 (A), i rho(q)|_(Sigma*->Sigma) (lambda), -i q (c-A*); colour tr_g(M_n...M_1) with M = ad_X (cubic vertex), ad_[X,Y], -ad_Y ad_X, -ad_X ad_Y (quartic vertex, three Hodge contractions); tr_g(ad_X ad_Y ad_Z) = (1/2)(tr_g(ad ad)/( , ))([X,Y],Z)",
+   "schwinger": "P(eps,infty)(q - P_e) = N(q - P_e) int_eps^infty dt_e e^{-t_e (q-P_e)^2}, one t_e per edge; Gaussian q-integral with T = sum_e t_e",
+   "eps_expansion": "eps d/deps X = -sum_e X|_{t_e = eps}; Taylor in the external momenta (lambda P): order lambda^j scales as eps^{(j - w)/2}; radial int_0^infty q^{3+2m-2b} e^{-E eps q^2} dq and angular average exact (24 short roots of F4, a spherical 5-design): eps d/deps X = -(16 pi^2)^-1 < [lambda^0] Num(qhat, lambda P) prod_f |qhat - lambda P_f|^-2 > ",
+   "local_part": "log eps coefficient (units u): {\"([X_0,X_1],[X_2,X_3]) x (b_0.b_1)(b_2.b_3)\": \"-16/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_2)(b_1.b_3)\": \"-16/3\", \"([X_0,X_1],[X_2,X_3]) x (b_0.b_3)(b_1.b_2)\": \"32/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_1)(b_2.b_3)\": \"-32/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_2)(b_1.b_3)\": \"16/3\", \"([X_0,X_3],[X_1,X_2]) x (b_0.b_3)(b_1.b_2)\": \"16/3\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_1)(b_2.b_3)\": \"16\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_2)(b_1.b_3)\": \"16\", \"(1/24) sum_sigma tr_g(ad ad ad ad) x (b_0.b_3)(b_1.b_2)\": \"16\"}; eps^-1 and eps^-1/2: 0"
+  },
+  "T2 QME2-a": {
+   "amplitude": "D-graph = -(hbar/2)[d_P d_(K_eps - K_0)(I I)]_cross = -d/d delta W_1[P + delta (K_eps - K_0)] (delta odd) = (1/4) sum_{words, position of the special edge} (-1)^(odd parameters before it) STr[...], kernel rows carry the parity operator",
+   "numerator": "STr[F Pi d^2I(v1) N(q - P) Pi d^2I(v2)] with F = -(fibre identity) on the field-antifield pair of the special edge, N the P(eps,infty) numerator; colour tr_g(ad ad) = tr_g(ad_X ad_Y)",
+   "schwinger": "special edge: (e^{-eps k^2} - 1) = pinned edge (t = eps) minus contact term (K_0); P edge: int_eps^infty dt e^{-t k^2}",
+   "eps_expansion": "pinned part: (16pi^2)^-1 sum_k 2^-k eps^{-1-k} int_1^infty du (1+u)^{-2-k} C_k(1/(1+u), u/(1+u)) e^{-eps p^2 u/(1+u)}; contact part: -(16pi^2)^-1 sum_k 2^-k C_k eps^{-1-k}/(1+k); only integer powers of eps occur (no log eps)",
+   "local_part": "eps^-1: -9/4 u int (A|_V,dc); eps^0: -5/8 u int (d*A|_V, d*dc)"
+  },
+  "T2 QME2-b": {
+   "amplitude": "D-graph = -(hbar/2)[d_P d_(K_eps - K_0)(I I)]_cross = -d/d delta W_1[P + delta (K_eps - K_0)] (delta odd) = (1/4) sum_{words, position of the special edge} (-1)^(odd parameters before it) STr[...], kernel rows carry the parity operator",
+   "numerator": "STr[F Pi d^2I(v1) N(q - P) Pi d^2I(v2)] with F = -(fibre identity) on the field-antifield pair of the special edge, N the P(eps,infty) numerator; colour tr_g(ad ad) = tr_g(ad_X ad_Y)",
+   "schwinger": "special edge: (e^{-eps k^2} - 1) = pinned edge (t = eps) minus contact term (K_0); P edge: int_eps^infty dt e^{-t k^2}",
+   "eps_expansion": "pinned part: (16pi^2)^-1 sum_k 2^-k eps^{-1-k} int_1^infty du (1+u)^{-2-k} C_k(1/(1+u), u/(1+u)) e^{-eps p^2 u/(1+u)}; contact part: -(16pi^2)^-1 sum_k 2^-k C_k eps^{-1-k}/(1+k); only integer powers of eps occur (no log eps)",
+   "local_part": "eps^-1: -9/2 u int (A|_V,dc); eps^0: -5/4 u int (d*A|_V, d*dc)"
+  },
+  "T2 QME2-c": {
+   "amplitude": "D-graph = -(hbar/2)[d_P d_(K_eps - K_0)(I I)]_cross = -d/d delta W_1[P + delta (K_eps - K_0)] (delta odd) = (1/4) sum_{words, position of the special edge} (-1)^(odd parameters before it) STr[...], kernel rows carry the parity operator",
+   "numerator": "STr[F Pi d^2I(v1) N(q - P) Pi d^2I(v2)] with F = -(fibre identity) on the field-antifield pair of the special edge, N the P(eps,infty) numerator; colour tr_g(ad ad) = tr_g(ad_X ad_Y)",
+   "schwinger": "special edge: (e^{-eps k^2} - 1) = pinned edge (t = eps) minus contact term (K_0); P edge: int_eps^infty dt e^{-t k^2}",
+   "eps_expansion": "pinned part: (16pi^2)^-1 sum_k 2^-k eps^{-1-k} int_1^infty du (1+u)^{-2-k} C_k(1/(1+u), u/(1+u)) e^{-eps p^2 u/(1+u)}; contact part: -(16pi^2)^-1 sum_k 2^-k C_k eps^{-1-k}/(1+k); only integer powers of eps occur (no log eps)",
+   "local_part": "eps^-1: 1/8 u int (A|_V,dc); eps^0: -1/12 u int (d*A|_V, d*dc)"
+  },
+  "T2 QME2-d": {
+   "amplitude": "D-graph = -(hbar/2)[d_P d_(K_eps - K_0)(I I)]_cross = -d/d delta W_1[P + delta (K_eps - K_0)] (delta odd) = (1/4) sum_{words, position of the special edge} (-1)^(odd parameters before it) STr[...], kernel rows carry the parity operator",
+   "numerator": "STr[F Pi d^2I(v1) N(q - P) Pi d^2I(v2)] with F = -(fibre identity) on the field-antifield pair of the special edge, N the P(eps,infty) numerator; colour tr_g(ad ad) = tr_g(ad_X ad_Y)",
+   "schwinger": "special edge: (e^{-eps k^2} - 1) = pinned edge (t = eps) minus contact term (K_0); P edge: int_eps^infty dt e^{-t k^2}",
+   "eps_expansion": "pinned part: (16pi^2)^-1 sum_k 2^-k eps^{-1-k} int_1^infty du (1+u)^{-2-k} C_k(1/(1+u), u/(1+u)) e^{-eps p^2 u/(1+u)}; contact part: -(16pi^2)^-1 sum_k 2^-k C_k eps^{-1-k}/(1+k); only integer powers of eps occur (no log eps)",
+   "local_part": "eps^-1: 2 u int (A|_V,dc); eps^0: -4/3 u int (d*A|_V, d*dc)"
+  },
+  "T2 QME2-e": {
+   "amplitude": "D-graph = -(hbar/2)[d_P d_(K_eps - K_0)(I I)]_cross = -d/d delta W_1[P + delta (K_eps - K_0)] (delta odd) = (1/4) sum_{words, position of the special edge} (-1)^(odd parameters before it) STr[...], kernel rows carry the parity operator",
+   "numerator": "STr[F Pi d^2I(v1) N(q - P) Pi d^2I(v2)] with F = -(fibre identity) on the field-antifield pair of the special edge, N the P(eps,infty) numerator; colour tr_g(ad ad) = tr_g(ad_X ad_Y)",
+   "schwinger": "special edge: (e^{-eps k^2} - 1) = pinned edge (t = eps) minus contact term (K_0); P edge: int_eps^infty dt e^{-t k^2}",
+   "eps_expansion": "pinned part: (16pi^2)^-1 sum_k 2^-k eps^{-1-k} int_1^infty du (1+u)^{-2-k} C_k(1/(1+u), u/(1+u)) e^{-eps p^2 u/(1+u)}; contact part: -(16pi^2)^-1 sum_k 2^-k C_k eps^{-1-k}/(1+k); only integer powers of eps occur (no log eps)",
+   "local_part": "eps^-1: 1/8 u int (A|_V,dc); eps^0: -1/12 u int (d*A|_V, d*dc)"
+  }
+ },
+ "checks": [
+  "24 short roots of F4 reproduce all S^3 monomial averages up to degree 5 exactly",
+  "round-1 omega=1 two-point log coefficients reproduced by the round-2 engine: lambda-lambda 4, A*-c -1",
+  "colour reduction tr_g(M_n...M_1) -> {([X,Y],Z), ([.,.],[.,.]), symmetrised trace} checked against explicit su(3) traces (non-orthonormal basis, rescaled pairing): 20/20, Jacobi ([X0,X2],[X1,X3]) = ([X0,X1],[X2,X3]) + ([X0,X3],[X1,X2])",
+  "0-dim Grassmann toy: word expansion with stripped odd parameters exact for triangles and quartic-vertex bubbles with odd legs; transposed Hessian order fails at n = 3 (passes at n <= 2); odd special edge requires the parity operator on the kernel row index",
+  "T1 fits: overdetermined exact linear systems on 3-11 random integer configurations per set, consistent (zero residual)",
+  "T1 per-graph sanity: (A|_V)^3 gauge+ghost+swordfish -4/3, scalars 2, fermions 16/3 (x tree) reproduce the textbook Feynman-gauge split of the three-gluon vertex renormalisation in the ratio -2",
+  "T2: special-edge D-graphs equal -V^AA(ip, a) (independent longitudinal self-energy) exactly in eps^-1 and eps^0"
+ ],
+ "files": {
+  "engine": "engine_b/r2_engine.py",
+  "T1": "engine_b/r2_T1.py (+ r2_T1_*.json)",
+  "T2": "engine_b/r2_T2.py, r2_T2_check.py (+ r2_T2_raw.json, r2_T2_check.json)",
+  "toys": "engine_b/toy_r2.py, toy_r2b.py, toy_r2c.py",
+  "colour": "engine_b/r2_colour_check.py",
+  "regression": "engine_b/r2_regress.py"
+ }
+}

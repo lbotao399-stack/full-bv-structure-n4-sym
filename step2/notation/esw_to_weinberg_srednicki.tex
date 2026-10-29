@@ -1,0 +1,403 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.0cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array,longtable,booktabs}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\allowdisplaybreaks
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.25}
+
+\title{ESW index-free $\longrightarrow$ Weinberg--Srednicki two-component\\[2pt]
+\large Dictionary for the $\mathcal N=4$ Costello--BV program (Step 2, directive R1)}
+\author{}
+\date{2026-10-28}
+
+\begin{document}
+\maketitle
+
+\section{Sources and base entries}
+
+\begin{center}\small
+\begin{tabular}{l|l|p{4.2cm}}
+item & value & evidence \\
+\hline
+spinor metric & $\varepsilon^{12}=\varepsilon^{\dot1\dot2}=+1$, $\varepsilon_{12}=\varepsilon_{\dot1\dot2}=-1$ & S-SPN-2: Srednicki (35.1) \\
+raising, lowering & $\psi^\alpha=\varepsilon^{\alpha\beta}\psi_\beta$, $\psi_\alpha=\varepsilon_{\alpha\beta}\psi^\beta$, same for dotted & S-SPN-3: (34.24), (34.25) \\
+contractions & $\chi\psi=\chi^\alpha\psi_\alpha$, $\bar\chi\bar\psi=\bar\chi_{\dot\alpha}\bar\psi^{\dot\alpha}$ & S-SPN-4: (35.23) \\
+$\sigma$, $\bar\sigma$ & $\sigma^\mu_{\alpha\dot\alpha}=(1,\vec\sigma)$, $\bar\sigma^{\mu\dot\alpha\alpha}=\varepsilon^{\alpha\beta}\varepsilon^{\dot\alpha\dot\beta}\sigma^\mu_{\beta\dot\beta}=(1,-\vec\sigma)$ & S-SPN-5: (34.28), (35.2), (35.3) \\
+metric, Clifford & $g=\mathrm{diag}(-1,1,1,1)$, $\sigma^\mu\bar\sigma^\nu+\sigma^\nu\bar\sigma^\mu=-2g^{\mu\nu}$ & S-MET-1 (2.4), S-MET-5 (36.8) \\
+Weyl block of $\gamma$ & $\gamma_S^\mu=\begin{pmatrix}0&\sigma^\mu\\ \bar\sigma^\mu&0\end{pmatrix}$ on $(\psi_\alpha,\bar\chi^{\dot\alpha})$, $\gamma_{5S}=\mathrm{diag}(-1,-1,1,1)$ & S-SPN-7 (36.44), S-SPN-8 (36.7) \\
+Weinberg $\gamma$ & $\gamma_W^\mu=-i\gamma_S^\mu$ (same Weyl basis), $\gamma_{5W}=-\gamma_{5S}$ & weinberg-qtf-1995 D1, D2 \\
+gauge (Srednicki) & $D_\mu=\partial_\mu-igA^a_\mu T^a$, $F^c=\partial A^c-\partial A^c+gf^{abc}A^aA^b$ & S-GRP-5 (69.12), S-GRP-6 (69.22) \\
+gauge (Weinberg) & $t_\alpha=gT^a$, $C_{\alpha\beta\gamma}=gf^{abc}$, $\Lambda_W=-\Gamma_S$ & weinberg-qtf-1995 D9 \\
+\end{tabular}
+\end{center}
+
+The letters $\alpha,\dot\alpha$ of [SW, (17)] replace Srednicki's $a,\dot a$ (renaming). The Euclidean entries SIG, REP, CONF of STANDARD.md are not used; the Euclidean adaptation below is derived from the realisation of engine B (\texttt{engine\_b/realization.py}) and checked against the realisation of engine A (\texttt{engine\_a/cliff.py} $=$ \texttt{classical/n4\_model.py}). ESW-side formulas are quoted from the manuscript with their labels.
+
+\section{Euclidean two-component realisation}
+
+\begin{definition}[Wick map and Euclidean $\sigma$]\label{def:wick}
+For $v\in V$ with Euclidean components $v^m$, $m=1,2,3,4$, the Lorentzian vector is $v^0=-iv^4$, $v^k=v^k$ ($k=1,2,3$); in particular $x^4=it$ and $\partial_0=i\partial_4$. Define
+\[
+\sigma_E^m{}_{\alpha\dot\alpha}=(\sigma^1,\sigma^2,\sigma^3,\,i\,1),\qquad
+\bar\sigma_E^{m\dot\alpha\alpha}=(-\sigma^1,-\sigma^2,-\sigma^3,\,i\,1).
+\]
+Then
+\[
+\sigma^\mu v_\mu=\sigma_E^m v_m,\qquad \bar\sigma^\mu v_\mu=\bar\sigma_E^m v_m,\qquad
+\sigma_E^m\bar\sigma_E^n+\sigma_E^n\bar\sigma_E^m=-2\delta^{mn},\qquad \bar\sigma_E^m\sigma_E^n+\bar\sigma_E^n\sigma_E^m=-2\delta^{mn},
+\]
+\[
+\bar\sigma_E^{m\dot\alpha\alpha}=\varepsilon^{\alpha\beta}\varepsilon^{\dot\alpha\dot\beta}\sigma^m_{E\,\beta\dot\beta},\qquad \bar\sigma_E^m=-(\sigma_E^m)^\dagger .
+\]
+Below $\sigma^m\equiv\sigma^m_E$, $\bar\sigma^m\equiv\bar\sigma^m_E$, Euclidean indices up or down alike. Orientation of $V$: $dx^1\wedge dx^2\wedge dx^3\wedge dx^4$.
+\end{definition}
+
+\begin{definition}[$SU(4)$ blocks]\label{def:thooft}
+$W\ni w^i$ (upper index), $W^*\ni w_i$ (lower index), $i=1,\dots,4$. On $W_{\mathbb R}^\perp$ with orthonormal basis $e_I$, $I=1,\dots,6$:
+\[
+\Sigma^I_{ij}=(\eta^1,\eta^2,\eta^3,i\bar\eta^1,i\bar\eta^2,i\bar\eta^3)_{ij},\qquad \bar\Sigma^{I}=(\Sigma^I)^{\dagger}=(-\eta^1,-\eta^2,-\eta^3,i\bar\eta^1,i\bar\eta^2,i\bar\eta^3),
+\]
+$\eta^a_{bc}=\bar\eta^a_{bc}=\epsilon_{abc}$ ($b,c\le3$), $\eta^a_{b4}=-\eta^a_{4b}=\delta_{ab}$, $\bar\eta^a_{b4}=-\bar\eta^a_{4b}=-\delta_{ab}$ (engine B, \texttt{thooft}). With $\varepsilon_{1234}=\varepsilon^{1234}=1$:
+\[
+\Sigma^I_{ij}=-\Sigma^I_{ji},\qquad \tfrac12\varepsilon^{ijkl}\Sigma^I_{kl}=-\bar\Sigma^{I\,ij},\qquad \bar\Sigma^I\Sigma^J+\bar\Sigma^J\Sigma^I=2\delta^{IJ},\qquad \mathrm{tr}(\bar\Sigma^I\Sigma^J)=4\delta^{IJ},
+\]
+\[
+\sum_I\Sigma^I_{ij}\Sigma^I_{kl}=2\varepsilon_{ijkl},\qquad \sum_I\bar\Sigma^{I\,ij}\bar\Sigma^{I\,kl}=2\varepsilon^{ijkl},\qquad \sum_I\bar\Sigma^{I\,ij}\Sigma^I_{kl}=-2\big(\delta^i_k\delta^j_l-\delta^i_l\delta^j_k\big).
+\]
+For $u\in W_{\mathbb R}^\perp$ (components $u_I$): $u_{ij}=u_I\Sigma^I_{ij}$, $u^{ij}=-u_I\bar\Sigma^{I\,ij}=\tfrac12\varepsilon^{ijkl}u_{kl}$, and
+\[
+(u,w)=\tfrac14u^{ij}w_{ij},\qquad u_I=\tfrac14\bar\Sigma^{I\,ji}u_{ij},\qquad u^{ik}w_{kj}+w^{ik}u_{kj}=-2(u,w)\,\delta^i_j .
+\]
+\end{definition}
+
+\begin{theorem}[Two-component form of $\Sigma$, $\Sigma^*$, $\rho$, $(-,-)$, $\Gamma$]\label{thm:real}
+Write $\xi\in\Sigma=S_+\otimes W\oplus S_-\otimes W^*$ as $(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i})$ and $\eta\in\Sigma^*=S_+\otimes W^*\oplus S_-\otimes W$ as $(\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$; $S_+$ carries undotted, $S_-$ dotted indices. For $v\in V$ and $w\in W_{\mathbb R}^\perp$:
+\begin{equation}\tag{R1}
+(\rho(v)\xi)^\alpha{}_i=i\,v_m\,\bar\xi_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha},\qquad (\rho(v)\xi)^{\dot\alpha i}=-i\,v_m\,\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i,
+\end{equation}
+\begin{equation}\tag{R2}
+(\rho(v)\eta)_\alpha{}^i=-i\,v_m\,\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i},\qquad (\rho(v)\eta)_{\dot\alpha i}=i\,v_m\,\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha},
+\end{equation}
+\begin{equation}\tag{R3}
+(\rho(w)\xi)^\alpha{}_j=\varepsilon^{\alpha\beta}w_{ji}\,\xi_\beta{}^i=w_{ji}\,\xi^{\alpha i},\qquad (\rho(w)\xi)^{\dot\alpha j}=\varepsilon^{\dot\alpha\dot\beta}w^{ji}\,\bar\xi_{\dot\beta i}=w^{ji}\,\bar\xi^{\dot\alpha}{}_i,
+\end{equation}
+\begin{equation}\tag{R4}
+(\rho(w)\eta)_\alpha{}^k=-w^{kj}\varepsilon_{\alpha\beta}\eta^\beta{}_j=-w^{kj}\eta_{\alpha j},\qquad (\rho(w)\eta)_{\dot\beta k}=-w_{kj}\varepsilon_{\dot\beta\dot\alpha}\bar\eta^{\dot\alpha j}=-w_{kj}\bar\eta_{\dot\beta}{}^j,
+\end{equation}
+\begin{equation}\tag{P1}
+(\xi,\eta)=\xi_\alpha{}^i\eta^\alpha{}_i-\bar\xi_{\dot\alpha i}\bar\eta^{\dot\alpha i}=-(\xi^i\eta_i)-(\bar\xi_i\bar\eta^i),
+\end{equation}
+\begin{equation}\tag{G1}
+\Gamma(\xi_1,\xi_2)\big|_V^{\,m}=i\big(\bar\xi_{2\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_{1\alpha}{}^i+\bar\xi_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_{2\alpha}{}^i\big),
+\end{equation}
+\begin{equation}\tag{G2}
+\begin{aligned}\Gamma(\xi_1,\xi_2)_{kl}&=2\varepsilon_{jikl}\,\xi_{1\alpha}{}^j\varepsilon^{\alpha\beta}\xi_{2\beta}{}^i-2\big(\bar\xi_{1\dot\alpha k}\varepsilon^{\dot\alpha\dot\beta}\bar\xi_{2\dot\beta l}-\bar\xi_{1\dot\alpha l}\varepsilon^{\dot\alpha\dot\beta}\bar\xi_{2\dot\beta k}\big)\\
+&=-2\varepsilon_{jikl}(\xi_1{}^j\xi_2{}^i)-2(\bar\xi_{1k}\bar\xi_{2l})+2(\bar\xi_{1l}\bar\xi_{2k}),\end{aligned}
+\end{equation}
+\begin{equation}\tag{G3}
+\Gamma(\eta_1,\eta_2)\big|_V^{\,m}=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big),
+\end{equation}
+\begin{equation}\tag{G4}
+\Gamma(\eta_1,\eta_2)^{kl}=-2\varepsilon^{klpj}\varepsilon_{\alpha\beta}\eta_1{}^\beta{}_j\eta_2{}^\alpha{}_p+2\big(\varepsilon_{\dot\beta\dot\alpha}\bar\eta_1^{\dot\alpha l}\bar\eta_2^{\dot\beta k}-\varepsilon_{\dot\beta\dot\alpha}\bar\eta_1^{\dot\alpha k}\bar\eta_2^{\dot\beta l}\big),
+\end{equation}
+where $\Gamma_{kl}=\Gamma^I\Sigma^I_{kl}$, $\Gamma^{kl}=-\Gamma^I\bar\Sigma^{I\,kl}$, $(\Gamma,u)=\Gamma^mu_m+\tfrac14\Gamma_{ij}u^{ij}$, $\Gamma$ defined by $(\rho(v)Q_1,Q_2)=(v,\Gamma(Q_1,Q_2))$ [ESW, (28)], ch01 Def c1-spaces. The data satisfy:
+\begin{itemize}
+\item $\rho(v_1)\rho(v_2)+\rho(v_2)\rho(v_1)=2(v_1,v_2)$ on $\Sigma$ and $\Sigma^*$, $(\rho(v)Q_1,Q_2)=(Q_1,\rho(v)Q_2)$ (ch01 Def c1-spaces);
+\item $\Gamma$ symmetric; $\rho(\Gamma(Q_1,Q_2))Q_3+\mathrm{cyclic}=0$ [ESW, Assumption 3.1]; $\Gamma(Q_1,\rho(X)Q_2)+\Gamma(Q_2,\rho(X)Q_1)=-2\iota_{\Gamma(Q_1,Q_2)}X$ [ESW, Prop 2.1];
+\item $\rho(e_1e_2e_3e_4)=+1$ on $S_+\otimes W$, $-1$ on $S_-\otimes W^*$ (ch01 Prop c1-chirality); on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$, $\rho(v)=-i\gamma_S^\mu v_\mu=\gamma_W^\mu v_\mu$ and $\gamma_E^1\gamma_E^2\gamma_E^3\gamma_E^4=-\gamma_{5S}$: undotted $=S_+$ $=$ Srednicki left-handed $(2,1)$;
+\item $\xi_\alpha{}^i=u_\alpha w^i$, $\bar\xi=0$ $\Rightarrow$ $\Gamma(\xi,\xi)=0$.
+\end{itemize}
+\end{theorem}
+
+\begin{proposition}[Identification with the engines]\label{prop:engines}\leavevmode
+\begin{itemize}
+\item Engine B: with the vector map $(m=1,2,3,4;\,I)\mapsto(1,2,3,0;\,3+I)$ and the basis change $\bar\xi_{\dot\alpha i}=\varepsilon_{\dot\alpha\dot\beta}\bar\xi^{\dot\beta}{}_i$ (column $\bar\xi^{\dot\beta}{}_i$ of engine B), $\eta^\alpha{}_i=\varepsilon^{\alpha\beta}\eta_{\beta i}$ (column $\eta_{\beta i}$ of engine B), (R1)--(R4) are engine B's $\rho$ entry by entry, and (P1) is engine B's pairing with its normalisation (first nonzero entry $+1$), factor $1$.
+\item Engine A $=$ classical model: with the vector map $M\mapsto M$ ($m=M+1$ for $M\le3$, $I=M-3$) there are $U\colon\Sigma\to\Sigma_A$, $U^*\colon\Sigma^*\to\Sigma^*_A$, unique up to a common sign, with $\rho_A(e_M)U=U^*\rho(e_M)$, $\rho_A(e_M)U^*=U\rho(e_M)$, $(Ua,U^*b)_A=(a,b)$; $U$ maps $S_+\otimes W$ to the $+1$ eigenspace of $\rho_A(e_0e_1e_2e_3)$.
+\end{itemize}
+\end{proposition}
+
+\begin{remark}[Name clash, R3]
+$\xi,\bar\xi$ (components of an element $Q_1\in\Sigma$ of ch02) and $\eta,\bar\eta$ (components of $Q_2\in\Sigma^*$) are spinor parameters. The one-loop components $Q_1,S_1,D_1,K_1$ of directive R3/R4 are unrelated objects.
+\end{remark}
+
+\section{Fields}
+
+\begin{center}\small
+\begin{tabular}{l|l|c|c}
+ESW (ch01 Def c1-fields) & two-component & weight & parity \\
+\hline
+$A|_V$ & $A_m$, $m=1,\dots,4$ & $1$ & even \\
+$\iota_wA$, $w\in W_{\mathbb R}^\perp$ & $A_I$; $A_{ij}=A_I\Sigma^I_{ij}$, $A^{ij}=-A_I\bar\Sigma^{I\,ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$; $\iota_wA=\tfrac14w^{ij}A_{ij}$ & $1$ & even \\
+$\lambda\in\Pi\Sigma\otimes\mathfrak g$ & $\lambda_\alpha{}^i$ ($S_+\otimes W$), $\bar\lambda_{\dot\alpha i}$ ($S_-\otimes W^*$) & $\tfrac32$ & odd \\
+$c$ & $c$ & $0$ & odd \\
+$A^*$ & $A^*_m$; $A^*_{ij}=A^*_I\Sigma^I_{ij}$, $A^{*ij}=-A^*_I\bar\Sigma^{I\,ij}$ & $3$ & odd \\
+$\lambda^*\in\Pi\Sigma^*\otimes\mathfrak g$ & $\lambda^{*\alpha}{}_i$ ($S_+\otimes W^*$), $\bar\lambda^{*\dot\alpha i}$ ($S_-\otimes W$) & $\tfrac52$ & even \\
+$c^*$ & $c^*$ & $4$ & even \\
+$Q_1\in\Sigma$ & $\xi_\alpha{}^i$ ([SW,(17)] block $(3,1)$, $Q^i_\alpha$), $\bar\xi_{\dot\alpha i}$ (block $(2,3)$, $\bar Q_{\dot\alpha i}$) & & \\
+$Q_2\in\Sigma^*$ & $\eta^\alpha{}_i$ (block $(1,3)$, $S^\alpha{}_i$), $\bar\eta^{\dot\alpha i}$ (block $(3,2)$, $\bar S^{\dot\alpha i}$) & & \\
+\end{tabular}
+\end{center}
+
+$(-,-)$ on $\mathfrak g$ is kept; in every bilinear below it contracts the $\mathfrak g$ factors, in the order written. $\bar\lambda$ is an independent field (complexified Euclidean theory); on a Lorentzian real slice it is Srednicki's $\lambda^\dagger$ (S-CONJ-1). Real slice of the scalars (rem c1-real, $A_I$ real): complex conjugate of $A_{ij}$ $=A^{ij}$.
+
+\begin{proposition}[Pairings of fields]\label{prop:pair}
+\[
+(A,A^*)=(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij}),\qquad (\lambda,\lambda^*)=(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}),\qquad (c^*,c).
+\]
+\end{proposition}
+
+\section{Action, $Q$, $Q^{GF}$, propagators}
+
+\begin{theorem}[Action, ch01 eq:c1-action]\label{thm:action}
+With $F_{mn}=\partial_mA_n-\partial_nA_m+[A_m,A_n]$, $D_m=\partial_m+[A_m,-]$,
+\begin{align*}
+S=\int d^4x\Big\{&-\tfrac18(F_{mn},F_{mn})-\tfrac1{16}(D_mA^{ij},D_mA_{ij})-\tfrac1{128}\big([A^{ij},A^{kl}],[A_{ij},A_{kl}]\big)\\
+&+\tfrac i2\big(\lambda_\alpha{}^i,\bar\sigma^{m\dot\alpha\alpha}D_m\bar\lambda_{\dot\alpha i}\big)+\tfrac i2\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i\big)
++\tfrac12\big(\lambda_\alpha{}^j,\varepsilon^{\alpha\beta}[A_{ji},\lambda_\beta{}^i]\big)-\tfrac12\big(\bar\lambda_{\dot\alpha j},\varepsilon^{\dot\alpha\dot\beta}[A^{ji},\bar\lambda_{\dot\beta i}]\big)\\
+&+(D_mc,A^*_m)+\tfrac14([A^{ij},c],A^*_{ij})+([c,\lambda_\alpha{}^i],\lambda^{*\alpha}{}_i)-([c,\bar\lambda_{\dot\alpha i}],\bar\lambda^{*\dot\alpha i})+\tfrac12([c,c],c^*)\Big\},
+\end{align*}
+pointwise equal to the density of ch01 eq:c1-action. Integrated, with Srednicki contractions,
+\begin{gather*}
+\int\tfrac12(\lambda,{\not d}_A\lambda)=\int\Big\{i\big(\bar\lambda_i\bar\sigma^mD_m\lambda^i\big)-\tfrac12\big(\lambda^j[A_{ji},\lambda^i]\big)-\tfrac12\big(\bar\lambda_j[A^{ji},\bar\lambda_i]\big)\Big\},\\
+\int(\lambda,{\not d}\lambda)=2i\int(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i),\\
+(F,F)=\tfrac12(F_{mn},F_{mn})+\tfrac14(D_mA^{ij},D_mA_{ij})+\tfrac1{32}\big([A^{ij},A^{kl}],[A_{ij},A_{kl}]\big),\\
+\tfrac12\sum_{I,J}([A_I,A_J],[A_I,A_J])=\tfrac1{32}\big([A^{ij},A^{kl}],[A_{ij},A_{kl}]\big).
+\end{gather*}
+\end{theorem}
+
+\begin{corollary}[Wick image of Srednicki's Lagrangian]\label{cor:wick}
+For $\mathfrak g=\mathfrak{su}(N)$ with $(X,Y)=-\tfrac{4\hbar}{g^2}\mathrm{tr}(XY)$ (ch06 rem c6-konishi) and $A_m=-igA^a_mT^a$, $A_I=-igA^a_IT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$ ($\mathrm{tr}(T^aT^b)=\tfrac12\delta^{ab}$, S-GRP-2 (69.8)): $(X,Y)=2\hbar X^aY^a$, $F_{mn}=-igF^a_{mn}T^a$ with $F^a$ of S-GRP-6, $D_m$ the adjoint form of S-GRP-5, and
+\begin{gather*}
+\frac S\hbar\supset\int d^4x\Big\{-\tfrac14F^a_{mn}F^a_{mn}-\tfrac12(D_mA_I)^a(D_mA_I)^a+i\bar\lambda^a\bar\sigma^mD_m\lambda^a\Big\}
+=\int d^4x\;\mathcal L_{\rm Sred}\big|_{x^0=-ix^4},\\ e^{iS_L}=e^{S/\hbar},
+\end{gather*}
+$\mathcal L_{\rm Sred}=-\tfrac14F^{a\mu\nu}F^a_{\mu\nu}-\tfrac12D^\mu A_ID_\mu A_I+i\lambda^{\dagger a}\bar\sigma^\mu D_\mu\lambda^a$ (S-ACT-9 (69.16), S-ACT-7 (3.9), S-ACT-12 (95.77)), using $F_{\mu\nu}F^{\mu\nu}=F_{mn}F_{mn}$ and $\bar\sigma^\mu\partial_\mu=\bar\sigma^m_E\partial_m$.
+\end{corollary}
+
+\begin{proposition}[$Q$ and $Q^{GF}$, ch01 Prop c1-Q, ch03 Def c3-qgf]\label{prop:Q}\ 
+\begin{center}\small
+\begin{tabular}{l|l|l}
+slot & $Q$ & lands in \\
+\hline
+$c$ & $-\partial_mc$ & $A_m$ \\
+$A_m$ & $\tfrac12(\partial^2A_m-\partial_m\partial_nA_n)$ & $A^*_m$ \\
+$A_{ij}$ & $\tfrac12\partial^2A_{ij}$ & $A^*_{ij}$ \\
+$A^*_m$ & $-\partial_mA^*_m$ & $c^*$ \\
+$\lambda_\alpha{}^i$ & $-i\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i$ & $\bar\lambda^{*\dot\alpha i}$ \\
+$\bar\lambda_{\dot\alpha i}$ & $i\,\partial_m\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}$ & $\lambda^{*\alpha}{}_i$ \\
+\end{tabular}
+\qquad
+\begin{tabular}{l|l|l}
+slot & $Q^{GF}$ & lands in \\
+\hline
+$A^*_m$, $A^*_{ij}$ & $-2A^*_m$, $-2A^*_{ij}$ & $A_m$, $A_{ij}$ \\
+$A_m$ & $\partial_mA_m$ & $c$ \\
+$c^*$ & $\partial_mc^*$ & $A^*_m$ \\
+$\lambda^{*\alpha}{}_i$ & $-i\,\partial_m\lambda^{*\alpha}{}_i\sigma^m_{\alpha\dot\alpha}$ & $\bar\lambda_{\dot\alpha i}$ \\
+$\bar\lambda^{*\dot\alpha i}$ & $i\,\sigma^m_{\alpha\dot\alpha}\partial_m\bar\lambda^{*\dot\alpha i}$ & $\lambda_\alpha{}^i$ \\
+\end{tabular}
+\end{center}
+
+$H=[Q,Q^{GF}]=-\partial^2$ on every component ($|p|^2$ in momentum space).
+\end{proposition}
+
+\begin{proposition}[Propagator $P(\varepsilon,\infty)$, ch03 Prop c3-P]\label{prop:prop}
+In momentum space each component is the fibre factor times $e^{-\varepsilon|p|^2}/|p|^2$:
+\begin{gather*}
+\langle A_mA_n\rangle:\ 2(-,-)^{-1}\delta_{mn},\qquad \langle A_{ij}A_{kl}\rangle:\ 4(-,-)^{-1}\varepsilon_{ijkl},\qquad \langle A^{ij}A^{kl}\rangle:\ 4(-,-)^{-1}\varepsilon^{ijkl},\\
+\langle A_{ij}A^{kl}\rangle:\ 4(-,-)^{-1}(\delta_i^k\delta_j^l-\delta_i^l\delta_j^k),\qquad \langle c\,A^*_m\rangle=\langle A^*_m\,c\rangle:\ -(-,-)^{-1}\,ip_m,\\
+\langle\lambda_\alpha{}^i\,\bar\lambda_{\dot\beta j}\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j,\qquad
+\langle\bar\lambda_{\dot\alpha i}\,\lambda_\beta{}^j\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\beta\dot\alpha}\delta_i^j ,
+\end{gather*}
+$\langle\lambda\lambda\rangle=\langle\bar\lambda\bar\lambda\rangle=0$; the $\lambda\otimes\lambda$ entries are $i\rho(p)|_{\Sigma^*\to\Sigma}$ read in $\Sigma\otimes\Sigma$ through (P1).
+\end{proposition}
+
+\section{$\mathfrak{psl}(4|4)$}
+
+\begin{definition}[Generators and Killing spinors, ch02 Def c2-even, c2-odd]\label{def:gen}\ 
+\begin{center}\small
+\begin{tabular}{l|l|l|l|l}
+generator & $v^m(x)$ & $X_{mn}=\partial_mv_n-\partial_nv_m$ & $\operatorname{div}v$ & $r^i{}_j$ \\
+\hline
+translation $b$ ($P_m=\partial_m$) & $b^m$ & $0$ & $0$ & $0$ \\
+rotation $\omega_{mn}=-\omega_{nm}$ & $\omega_{mn}x_n$ & $-2\omega_{mn}$ & $0$ & $0$ \\
+$\Delta=2E$ & $2x^m$ & $0$ & $8$ & $0$ \\
+special conformal $b$ & $x^2b^m-2(b\cdot x)x^m$ & $4(x_mb_n-x_nb_m)$ & $-8\,b\cdot x$ & $0$ \\
+$R\in\mathfrak{so}(W_{\mathbb R}^\perp)$, $v(y)^I=R_{IJ}y_J$ & $0$ & $0$ & $0$ & $\tfrac14R_{IJ}(\bar\Sigma^J\Sigma^I)^i{}_j$ \\
+\end{tabular}
+\end{center}
+
+$r\in\mathfrak{sl}(4)$ is traceless. Odd part: $\xi\in\Sigma$ realised by the constant spinor, $\eta\in\Sigma^*$ by $\rho(x)\eta$; the conformal Killing spinor $x\mapsto\xi+\rho(x)\eta$ is
+\begin{equation}\tag{K1}
+\epsilon_\alpha{}^i(x)=\xi_\alpha{}^i-i\,x_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i},\qquad \bar\epsilon_{\dot\alpha i}(x)=\bar\xi_{\dot\alpha i}+i\,x_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Brackets, ch02 eq:c2-evenodd, eq:c2-oddodd, Prop c2-special]\label{thm:brackets}
+\begin{equation}\tag{B1}
+[\epsilon_1,\epsilon_2]=\Big(x\mapsto i\big(\bar\epsilon_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_{2\alpha}{}^i+\bar\epsilon_{2\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_{1\alpha}{}^i\big)\partial_m\Big)+r,
+\end{equation}
+\begin{equation}\tag{B2}
+r^k{}_i=2\big(\xi_{1\alpha}{}^k\eta_2{}^\alpha{}_i+\bar\xi_{1\dot\alpha i}\bar\eta_2^{\dot\alpha k}\big)+2\big(\xi_{2\alpha}{}^k\eta_1{}^\alpha{}_i+\bar\xi_{2\dot\alpha i}\bar\eta_1^{\dot\alpha k}\big)-\mathrm{trace},
+\end{equation}
+for $\epsilon_a=\xi_a+\rho(x)\eta_a$; the $V$-part of $[\xi,\rho(x)\eta]$ is $\tfrac12(\xi,\eta)\Delta$ plus a rotation, $(\xi,\eta)$ as in (P1). For an even generator,
+\begin{equation}\tag{B3}
+\begin{aligned}
+{}[v,\epsilon]_\alpha{}^i&=v^n\partial_n\epsilon_\alpha{}^i-\tfrac18X_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta\epsilon_\beta{}^i-\tfrac18\operatorname{div}v\,\epsilon_\alpha{}^i+r^i{}_j\epsilon_\alpha{}^j,\\
+[v,\epsilon]_{\dot\alpha i}&=v^n\partial_n\bar\epsilon_{\dot\alpha i}+\tfrac18X_{mn}\bar\epsilon_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}-\tfrac18\operatorname{div}v\,\bar\epsilon_{\dot\alpha i}-\bar\epsilon_{\dot\alpha j}r^j{}_i .
+\end{aligned}
+\end{equation}
+Special cases: $[\Delta,\xi]=-\xi$, $[\Delta,\eta]=\eta$; $[b,\eta]=\rho(b)\eta$, $[K_b,\xi]=\rho(b)\xi$ with (R1), (R2).
+\end{theorem}
+
+\begin{theorem}[Arity one, even generators, ch02 eq:c2-S1even, ch07 Def c7-vdot]\label{thm:S1even}
+$S^{(1)}(v)=\int\big\{(v.A_m,A^*_m)+\tfrac14(v.A_{ij},A^{*ij})-(v.\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)+(v.\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})-(v.c,c^*)\big\}$ with
+\begin{align*}
+v.A_m&=v^n\partial_nA_m+A_n\partial_mv^n,\qquad v.A_{ij}=v^n\partial_nA_{ij}+\tfrac14\operatorname{div}v\,A_{ij}-r^k{}_iA_{kj}-r^k{}_jA_{ik},\qquad v.c=v^n\partial_nc,\\
+v.\lambda_\alpha{}^i&=v^n\partial_n\lambda_\alpha{}^i-\tfrac18X_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta\lambda_\beta{}^i+\tfrac38\operatorname{div}v\,\lambda_\alpha{}^i+r^i{}_j\lambda_\alpha{}^j,\\
+v.\bar\lambda_{\dot\alpha i}&=v^n\partial_n\bar\lambda_{\dot\alpha i}+\tfrac18X_{mn}\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}+\tfrac38\operatorname{div}v\,\bar\lambda_{\dot\alpha i}-\bar\lambda_{\dot\alpha j}r^j{}_i ,
+\end{align*}
+and $v.A^{ij}=v^n\partial_nA^{ij}+\tfrac14\operatorname{div}v\,A^{ij}+r^i{}_kA^{kj}+r^j{}_kA^{ik}$. Dilatation (ch02 ex:c2-dil):
+\[
+\begin{aligned}S^{(1)}(\Delta)=\int\big\{&(2x\!\cdot\!\partial A_m+2A_m,A^*_m)+\tfrac14(2x\!\cdot\!\partial A_{ij}+2A_{ij},A^{*ij})-(2x\!\cdot\!\partial\lambda_\alpha{}^i+3\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)\\
+&+(2x\!\cdot\!\partial\bar\lambda_{\dot\alpha i}+3\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})-(2x\!\cdot\!\partial c,c^*)\big\}.\end{aligned}
+\]
+\end{theorem}
+
+\begin{theorem}[Arity one, odd generators, ch02 eq:c2-S1Q, eq:c2-S1S]\label{thm:S1odd}
+\begin{equation}\tag{F1}
+S^{(1)}(\xi)=\int\Big\{-(\Gamma^m(\xi,\lambda),A^*_m)-\tfrac14(\Gamma_{ij}(\xi,\lambda),A^{*ij})+\tfrac12\big((\rho(F_A)\xi)_\alpha{}^i,\lambda^{*\alpha}{}_i\big)-\tfrac12\big((\rho(F_A)\xi)_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}\big)\Big\},
+\end{equation}
+\[
+\Gamma^m(\xi,\lambda)=i\big(\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i+\bar\xi_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\lambda_\alpha{}^i\big),\qquad
+\Gamma_{kl}(\xi,\lambda)=2\varepsilon_{jikl}\xi_\alpha{}^j\varepsilon^{\alpha\beta}\lambda_\beta{}^i-2\big(\bar\xi_{\dot\alpha k}\varepsilon^{\dot\alpha\dot\beta}\bar\lambda_{\dot\beta l}-\bar\xi_{\dot\alpha l}\varepsilon^{\dot\alpha\dot\beta}\bar\lambda_{\dot\beta k}\big),
+\]
+\begin{align*}
+(\rho(F_A)\xi)_\alpha{}^i&=-\tfrac12F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta\xi_\beta{}^i-\tfrac12[A^{ik},A_{kj}]\,\xi_\alpha{}^j-i\,\sigma^m_{\alpha\dot\alpha}\varepsilon^{\dot\alpha\dot\beta}D_mA^{ij}\,\bar\xi_{\dot\beta j},\\
+(\rho(F_A)\xi)_{\dot\alpha i}&=\tfrac12F_{mn}\bar\xi_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}-\tfrac12[A_{ik},A^{kj}]\,\bar\xi_{\dot\alpha j}+i\,\varepsilon^{\alpha\beta}\sigma^m_{\alpha\dot\alpha}D_mA_{ij}\,\xi_\beta{}^j .
+\end{align*}
+For $\eta\in\Sigma^*$, with $\epsilon=\rho(x)\eta$ of (K1) ($\xi=0$),
+\begin{equation}\tag{F2}
+S^{(1)}(\eta)=S^{(1)}(\xi)\big|_{\xi\to\epsilon(x)}+\int\Big\{\big(A^{kj}\varepsilon_{\alpha\beta}\eta^\beta{}_j,\lambda^{*\alpha}{}_k\big)-\big(A_{kj}\varepsilon_{\dot\beta\dot\alpha}\bar\eta^{\dot\alpha j},\bar\lambda^{*\dot\beta k}\big)\Big\}.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Arity two, ch02 eq:c2-S2]\label{thm:S2}
+For $\epsilon_1,\epsilon_2$ each a constant $\xi$ or $\rho(x)\eta$,
+\begin{equation}\tag{F3}
+\begin{aligned}
+S^{(2)}(\epsilon_1,\epsilon_2)=\int\Big\{&\tfrac14\Big[-2i\,\Gamma^m(\epsilon_1,\epsilon_2)\big(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i}\big)+\tfrac14\Gamma_{kl}(\epsilon_1,\epsilon_2)\Gamma^{kl}(\lambda^*,\lambda^*)\Big]-\tfrac12\big((\epsilon_1,\lambda^*),(\epsilon_2,\lambda^*)\big)\\
+&-\big(\Gamma^m(\epsilon_1,\epsilon_2)A_m+\tfrac14\Gamma_{ij}(\epsilon_1,\epsilon_2)A^{ij},\,c^*\big)\Big\},
+\end{aligned}
+\end{equation}
+$(\epsilon,\lambda^*)=\epsilon_\alpha{}^i\lambda^{*\alpha}{}_i-\bar\epsilon_{\dot\alpha i}\bar\lambda^{*\dot\alpha i}$, $\Gamma^{kl}(\lambda^*,\lambda^*)=-2\varepsilon^{klpj}\big(\varepsilon_{\alpha\beta}\lambda^{*\beta}{}_j,\lambda^{*\alpha}{}_p\big)+2\big(\varepsilon_{\dot\beta\dot\alpha}\bar\lambda^{*\dot\alpha l},\bar\lambda^{*\dot\beta k}\big)-2\big(\varepsilon_{\dot\beta\dot\alpha}\bar\lambda^{*\dot\alpha k},\bar\lambda^{*\dot\beta l}\big)$ ((G4) with $\mathfrak g$ contracted), $\Gamma^m$, $\Gamma_{kl}$ of (G1), (G2).
+\end{theorem}
+
+\begin{corollary}[Closure on fields]\label{cor:closure}
+With $\xi.A=-\Gamma(\xi,\lambda)$, $\xi.\lambda=-\tfrac12\rho(F_A)\xi$ (the field coefficients in (F1), sign pattern of Theorem \ref{thm:S1even}), abelian free fields:
+\[
+\{\xi_a.,\xi_b.\}A_m=-v^nF_{nm}+v^I\partial_mA_I,\qquad \{\xi_a.,\xi_b.\}A_{ij}=-v^n\partial_nA_{ij},\qquad v=\Gamma(\xi_a,\xi_b).
+\]
+\end{corollary}
+
+\section{Step-1 results (ch04, ch05, ch06)}
+
+Unit: $\dfrac{\hbar\,\mathrm{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ (ch04); $\int\equiv\int d^4x$.
+
+\begin{theorem}[Translated Step-1 statements]\label{thm:step1}\leavevmode
+\begin{itemize}
+\item Quadratic counterterm (ch04 thm:c4-quadratic):
+\[
+\begin{aligned}\text{unit}\Big\{&\tfrac94\varepsilon^{-1}\!\int\!\Big[(A_m,A_m)+\tfrac14(A^{ij},A_{ij})\Big]\\
+&+\log\varepsilon\Big[-\tfrac12\!\int\!(F^0_{mn},F^0_{mn})-\tfrac14\!\int\!(\partial_mA^{ij},\partial_mA_{ij})+8i\!\int\!(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)-\!\int\!(\partial_mc,A^*_m)\Big]\Big\},\end{aligned}
+\]
+$F^0_{mn}=\partial_mA_n-\partial_nA_m$; coefficient of $\int(\partial_mA_m,\partial_nA_n)$ equal to $0$.
+\item Logarithmic part (ch04 thm:c4-log): unit $\log\varepsilon\,(Q+\{I,-\})$ of the field-counting functional
+\[
+2\!\int\!\Big[(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})\Big]-4\!\int\!\Big[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\Big]-\!\int\!(c^*,c).
+\]
+\item Mass-term variation (ch04 rem:c4-epsinv): $-\tfrac92\,\text{unit}\,\varepsilon^{-1}\int(\partial_mc,A_m)$. Obstruction and finite counterterm (ch04 eq:c4-obstruction, eq:c4-finite):
+\[
+-\tfrac{27}8\,\text{unit}\int(\partial^2c,\partial_mA_m)=\tfrac{27}{16}\,\text{unit}\;Q\!\int(\partial_mA_m,\partial_nA_n),\qquad I\mapsto I-\tfrac{27}{16}\,\text{unit}\int(\partial_mA_m,\partial_nA_n).
+\]
+\item Scalar bilinears (ch05 def:c5-bilinear, thm:c5-Oeps): $\int\omega(\iota_{w_1}A,\iota_{w_2}A)=\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$, $(w_1,w_2)=\tfrac14w_1^{ij}w_{2ij}$; trace (Konishi) $\int\omega(A|_{W^\perp},A|_{W^\perp})=\tfrac14\int\omega(A^{ij},A_{ij})$; $\mathbf{20'}$: $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})-\tfrac1{96}w_1^{ij}w_{2ij}\int\omega(A^{kl},A_{kl})$;
+\[
+\partial_\delta I^{CT}[\varepsilon]=\text{unit}\,\log\varepsilon\Big[\tfrac14\!\int\!\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})-\tfrac18\,w_1^{ij}w_{2ij}\int\omega\,(A^{kl},A_{kl})\Big]+\frac{\hbar\dim\mathfrak g\,w_1^{ij}w_{2ij}}{32\pi^2\,\varepsilon}\int\omega .
+\]
+\item Dilatation coefficients (ch06 thm:c6-dil, cor:c6-dilcomp), $\Delta=2E$: $[(d_{CE}+Q)O[\infty]](\Delta)=2(E+w_O+\text{coefficient})O[\infty]+\dots$ with coefficient, in units: $\mathbf{20'}$: $0$; Konishi $\tfrac14\int\omega(A^{ij},A_{ij})$: $-24$; $\int\omega\,(X,A_{ij})$: $-4$; $\int\omega(X,A_m)$: $-4$; $\int\omega(\zeta,\lambda)=\int\omega\big[(\lambda_\alpha{}^i,\zeta^\alpha{}_i)-(\bar\lambda_{\dot\alpha i},\bar\zeta^{\dot\alpha i})\big]$: $-8$; $\int\omega(X,c)$: $-2$. For $\mathfrak{su}(N)$: unit $=-\tfrac{g^2N}{32\pi^2}$, Konishi $-24\cdot\text{unit}=\tfrac{3g^2N}{4\pi^2}$ (ch06 rem:c6-konishi).
+\end{itemize}
+\end{theorem}
+
+\section{Step-2 bases (DESIGN\_STEP2.md, Part C)}
+
+\begin{definition}[Two-component bases]\label{def:bases}
+\begin{align*}
+G_1&=\int([c,A|_V],d^*dA|_V)=-\int([c,A_n],\partial_mF^0_{mn}),\\
+G_2&=\int([c,A|_V],dd^*A|_V)=-\int([c,A_n],\partial_n\partial_mA_m),\\
+G_3&=\int([c,A|_{W^\perp}],d^*dA|_{W^\perp})=-\tfrac14\int([c,A^{ij}],\partial^2A_{ij}),\\
+G_4&=\int([c,dc],A^*)=\int([c,\partial_mc],A^*_m),
+\end{align*}
+\[
+G_5=\int([c,\lambda],{\not d}\lambda)=i\int\Big\{\big([c,\lambda_\alpha{}^i],\bar\sigma^{m\dot\alpha\alpha}\partial_m\bar\lambda_{\dot\alpha i}\big)+\big([c,\bar\lambda_{\dot\alpha i}],\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\big)\Big\},
+\]
+\begin{align*}
+H_1&=\int(dA|_V,[A|_V\wedge A|_V])=2\int(\partial_mA_n,[A_m,A_n]),\\
+H_2&=\int(\partial_mA_I,[A_m,A_I])=\tfrac14\int(\partial_mA^{ij},[A_m,A_{ij}]),\\
+H_3&=\int([A|_V,c],A^*|_V)=\int([A_m,c],A^*_m),\\
+H_4&=\int([A|_{W^\perp},c],A^*|_{W^\perp})=\tfrac14\int([A^{ij},c],A^*_{ij}),\\
+H_5&=\int([c,\lambda],\lambda^*)=\int([c,\lambda_\alpha{}^i],\lambda^{*\alpha}{}_i)-\int([c,\bar\lambda_{\dot\alpha i}],\bar\lambda^{*\dot\alpha i}),\\
+H_6&=\int([c,c],c^*).
+\end{align*}
+$H_2$ is read componentwise, $\sum_{m,I}(\partial_mA_I,[A_m,A_I])$; the two-form reading $\int(dA|_{W^\perp},[A\wedge A]|_{V\times W^\perp})$ equals $2H_2$. Free counterterm directions: $\beta_1\int(dA|_V,dA|_V)=\tfrac{\beta_1}2\int(F^0_{mn},F^0_{mn})$, $\beta_2\int(dA|_{W^\perp},dA|_{W^\perp})=\tfrac{\beta_2}4\int(\partial_mA^{ij},\partial_mA_{ij})$, $\beta_3\int(\lambda,{\not d}\lambda)=2i\beta_3\int(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)$, $\beta_4\int(\partial_mc,A^*_m)$; finite $\tfrac{27}{16}\,\text{unit}\int(\partial_mA_m,\partial_nA_n)$.
+\end{definition}
+
+\section{Weinberg column}
+
+\begin{center}\small
+\begin{tabular}{p{3.6cm}|p{5cm}|p{6.3cm}}
+object & Srednicki form (this dictionary) & Weinberg form \\
+\hline
+Clifford action on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ & $\rho(v)=-i\gamma_S^\mu v_\mu|_{\rm Wick}$ & $\rho(v)=\gamma_W^\mu v_\mu|_{\rm Wick}$, $\{\gamma_W^\mu,\gamma_W^\nu\}=2\eta^{\mu\nu}$ (D1) \\
+chirality of $S_+$ & $\gamma_{5S}=-1$ & $\gamma_{5W}=+1$, same projector $P_L$ (D2) \\
+spinor metric & $\varepsilon^{\alpha\beta}$, raise/lower & $e_{ab}$ inserted, $e_{ab}=\varepsilon^{ab}$ numerically (D7) \\
+two-component supercharge & $Q_\alpha$ & $\mathcal Q_a(W)=Q^{\dagger\dot a}(S)$, $\mathcal Q^*_a(W)=Q^a(S)$ (D7) \\
+gauge field, coupling & $A_m=-igA^a_mT^a$, $D=\partial-igA^aT^a$ & $t_\alpha=gT^a$, $A^\alpha_W=A^a$, $D=\partial-it_\alpha A^\alpha$ (D9) \\
+\end{tabular}
+\end{center}
+
+\section{Verification (P4)}
+
+\texttt{check\_dictionary.py} (log \texttt{check\_dictionary.log}, table \texttt{check\_results.json}, entries with residuals \texttt{dictionary.json}) evaluates each displayed formula with spinor, $SU(4)$ or bispinor structure against the index-free formula in the realisation of engine A (the vector-index entries of Proposition \ref{prop:Q} are the manuscript's formulas with $d=dx^m\partial_m$, $d^*=-\partial_m$ on one-forms, checked in T3, H-G1, H-G2; rows 3--5 of the Weinberg column are the database entries D7, D9), on random pointwise jets (pointwise identities) and plane waves with $\sum p=0$ (integrated identities), Grassmann fields by polarisation ($\theta_1\theta_2$ coefficient $B(u_1,u_2)-B(u_2,u_1)$), $\mathfrak g=\mathfrak{su}(2)$ with $(X_a,X_b)=0.83\,\delta_{ab}$.
+
+\begin{center}\small
+\begin{tabular}{l|p{12.5cm}}
+checks & content \\
+\hline
+W1--W8 & Srednicki $\bar\sigma=\varepsilon\varepsilon\sigma$; Wick map; Euclidean Clifford; $\Sigma^I$ identities and Fierz; $F_{\mu\nu}F^{\mu\nu}=F_{mn}F_{mn}$ \\
+R1--R7 & Clifford, symmetry of $(-,-)$, Assumption 3.1, chirality, $\rho=\gamma_W$ on the Dirac column \\
+B0--B2, A0--A3 & equality with engine B; intertwiner with engine A $=$ classical model \\
+S1--S5, G1--G8 & bispinor scalars, reality, quartic identity; $\Gamma$ (G1)--(G4) and suppressed forms; square-zero elements \\
+L1--L7 & action (pointwise and integrated, Grassmann), Yukawa suppressed form \\
+Q1--Q4, P1--P3 & $Q$, $Q^{GF}$, $H$; propagators in both realisations \\
+E-P, E-M, E-D, E-K, E-R & $S^{(1)}(v)$ for all even generator types \\
+O1--O4, K1--K4 & $S^{(1)}(\xi)$, $S^{(1)}(\eta)$, $S^{(2)}$ (three cases), brackets (B1)--(B3) \\
+T1--T10, H-G1--H-H5 & Step-1 functionals, field-counting functional, bilinears; $G_1$--$G_5$, $H_1$--$H_5$ \\
+RT1, RT2 & round trips: spinor and $(\lambda,{\not d}\lambda)$ bilinear form, index-free $\to$ two-component $\to$ index-free \\
+C1--C6 & real-slice negativity of the scalar kinetic term; closure (Cor.~\ref{cor:closure}); [ESW, Prop 2.1]; canonical $\mathfrak{su}(N)$ map; Konishi number \\
+N1--N6 & negative controls: sign-flipped entries fail \\
+\end{tabular}
+\end{center}
+
+Result: 118/118 passed, maximal relative residual $2.9\times10^{-12}$.
+
+\end{document}

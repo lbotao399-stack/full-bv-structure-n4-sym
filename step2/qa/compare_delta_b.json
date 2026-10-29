@@ -1,0 +1,355 @@
+{
+ "role": "QA comparison for Part D (dilatation along psl(4|4), one loop), second pass, aligned with Chapter 8 (ch08_definitions.tex); engines A and B against each other and against the theory note delta_theory.tex / delta_predictions.json",
+ "inputs": {
+  "engine_A": "step2/engine_a/delta_results.json (2026-10-28 18:31); summary wf1_done.json[\"aD\"]",
+  "engine_B": "step2/engine_b/delta_results.json (19:01), delta_K5_ApAp_s31.json (raw K5 samples); summary wf1_done.json[\"bD\"]",
+  "theory": "step2/theory/delta_theory.tex (22:53), delta_predictions.json (22:54)",
+  "definitions": "manuscript/ch08_definitions.tex (21:58), read in full",
+  "earlier_QA": "step2/qa/compare_delta.json (19:49, written before the theory note existed): read; every number used here was recomputed by the scripts of step2/qa/compare_delta_b/"
+ },
+ "unit": "unit = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)); all coefficients below in this unit; Delta = 2E of [SW,(17)]",
+ "scripts": {
+  "conventions.py": "0-dimensional Grassmann model of the ch01 bracket (K_0, Delta_0 = -d_{K_0}) and of the action; canonical-form calculus; Ward sign on engine A's exact self-energy -> conventions.json, conventions.log",
+  "two_point_sectors.py": "exact (sympy) Q-images of engine A's per-graph arity-one two-point functionals in the four sectors, own Q maps, own (graded) symmetrisation, two-component Weyl matrices of def:c8-twocomp for the lambda sector -> two_point_sectors.json, .log",
+  "y1a_check.py": "own Feynman-parameter integrator for the triangle vector That (mpmath, 25 digits), engine A's raw Y1a numbers, symmetrised Q(Y1a), engine B's raw K5 refit, decisive check, translations -> y1a_check.json, .log",
+  "assemble.py": "this file -> step2/qa/compare_delta_b.json"
+ },
+ "convention_alignment": [
+  {
+   "item": "S^(1)(Delta)",
+   "A": "int((2E(A)+2A,A*) - (2E(lambda)+3lambda,lambda*) - (2E(c),c*))",
+   "B": "same",
+   "theory": "ex:c2-dil with v. of lem:c7-weights",
+   "QA": "same as lem:c7-weights (v.A = 2E(A)+2A, v.lambda = 2E(lambda)+3lambda, v.c = 2E(c))",
+   "status": "identical"
+  },
+  {
+   "item": "sign of {S^(1)(Delta),-}",
+   "A": "+D_M (measured)",
+   "B": "+D_M ({S_M,int(A,A)} = -4 int(A,A))",
+   "theory": "+D_M (lem:d-calculus (ii), toy)",
+   "QA": "checked from Def c1-bracket: in the Grassmann model {S_X,F} = +D_X F for six test functionals (bosonic, fermionic, ghost, mixed); graded symmetry {g,f} = (-1)^{|f||g|}{f,g} holds; verdict +D_X",
+   "status": "agree"
+  },
+  {
+   "item": "Q on functionals",
+   "A": "A*|_Wperp -> -(1/2) d*dA",
+   "B": "Q int(A_perp,A*_perp) = -1/2 int(dA,dA); Q int(A_V,A*_V) = -1/2 int(dA_V,dA_V) - int(dc,A*); Q int(lambda*,lambda) = -int(lambda,dslash lambda); Q int(c*,c) = -int(dc,A*)",
+   "theory": "uses B's list (ex:d-quadratic)",
+   "QA": "Q = {S_2,-} with S_2 = -(1/4)(dA,dA) + (1/2)(lambda,dslash lambda) + (dc,A*) equals the derivation induced by ch03's field-level Q (c -> -dc, A -> -(1/2)d*dA, A* -> d*A*|_V, lambda -> dslash lambda); all four of B's images reproduced: {\"Q(A_perp,A*_perp) = -(1/2)(dA,dA)  [S_2 without the (dc,A*) term]\": true, \"Q(A_V,A*_V) = -(1/2)(dA,dA) - (dc,A*)\": true, \"Q(lambda*,lambda) = -(lambda,dslash lambda)\": true, \"Q(c*,c) = -(dc,A*)\": true, \"Q a = -n g (QA = -dc)\": true, \"Q al = -(k/2) a\": true, \"Q gs = n al\": true, \"Q ls1 = m l2\": true, \"Q g = 0, Q l = 0\": true}; on coordinates Q A = -dc, Q c* = d*A*, Q lambda* = dslash lambda, Q A* = -(1/2) d*dA",
+   "status": "agree"
+  },
+  {
+   "item": "scaling Ward identity",
+   "A": "D_M W = W'(D_M J) + 4 eps d/deps|_J W",
+   "B": "same",
+   "theory": "same plus 4 T d/dT at finite T (eq:d-ward)",
+   "QA": "engine A's exact A|_Wperp self-energy: D_M Sigma = 2*(-4*epsilon*(p0**2 + p1**2 + p2**2 + p3**2) - 9)/epsilon = +4 eps dSigma/deps (opposite sign fails)",
+   "status": "agree (sign +)"
+  },
+  {
+   "item": "momentum space, canonical two-leg form",
+   "A": "E -> -(4+p.d/dp); alpha delta + beta^mu d_mu delta, field leg momentum fixed; D_M: alpha -> 2(w1+w2-4+p.d)alpha, beta -> 2(w1+w2-5+p.d)beta",
+   "B": "same (x on the antifield leg); w1+w2 = 4: alpha -> 2p.d alpha, beta -> 2(p.d-1)beta",
+   "theory": "-",
+   "QA": "rule re-derived (x.d delta = -4 delta); D_M S^(1)(Delta)|_perp = 0 from the rule",
+   "status": "identical"
+  },
+  {
+   "item": "ghost placement",
+   "A": "component normalised by the classical term +2(E+w_O)O",
+   "B": "right ghost (Def c2-dce evaluation)",
+   "theory": "left ghost, classical-term normalisation",
+   "QA": "Left ghost (theory: f = f^(0) + xi f_Delta) and right ghost (engine B: f = f^(0) + f_Delta xi) differ by f_Delta^left = (-1)^{|f_Delta|} f_Delta^right; for the degree -1 components (S^(1)(Delta), I^CT_Delta, F(Delta)) the sign flips uniformly, for the degree 0 component Ob(Delta) it does not.  All three groups define the arity-one vertex as J_Delta = S^(1)(Delta) - I^CT_Delta[eps] - F(Delta) with S^(1)(Delta) the explicit functional of ex:c2-dil, and Ob(Delta) as the local functional whose tree flow is lim Q W'_J(S^(1)(Delta) - I^CT_Delta); the equation Q W'_J(J_Delta) -> 0 contains no xi, so F(Delta) and Ob(Delta) = (Q + {I,-}) F(Delta) are the same functionals in all three conventions; only the global sign of the component is fixed by the normalisation \"classical part = +{S^(1)(Delta),O}\" (prop:c6-classical), used by all three.",
+   "status": "no relative sign: F(Delta), Ob(Delta), the component and its classical part are the same functionals in all three"
+  },
+  {
+   "item": "two-leg normalisation",
+   "A": "plane-wave (cross-term) values; O <-> T_O, D_M O <-> (-4,-2k) T_O",
+   "B": "same (T1 = vertex value of O)",
+   "theory": "-",
+   "QA": "for two identical output legs only the (graded) symmetrised kernel is a functional; {int(A,A*),O} = +2 O on the scalar bilinears (from the bracket sign)",
+   "status": "identical; the symmetrisation is the point of the Y1a conflict (below)"
+  }
+ ],
+ "part1_two_point_arity_one": [
+  {
+   "quantity": "sectors of d/dxi W(P, J + xi S^(1)(Delta))",
+   "A": "(A*_perp,A_perp), (A*_V,A_V), (lambda*,lambda), (c*,c)",
+   "B": "same; (A*_V,c) excluded by degree",
+   "theory": "same",
+   "status": "agree"
+  },
+  {
+   "quantity": "mechanism of the internal insertion",
+   "A": "composite A|_V--c line, kernel P*MP* = (1/2){M,(P*)^2}, exists only because (Q^GF)^2 != 0",
+   "B": "same",
+   "theory": "prop:d-psi (i)",
+   "status": "agree"
+  },
+  {
+   "quantity": "eps^-1 part, all sectors",
+   "A": "0 (+-9/(eps|p|^2) cancel between S_M-P-Sigma and S_M-P-(-I^CT))",
+   "B": "0",
+   "theory": "0",
+   "status": "agree"
+  },
+  {
+   "quantity": "log eps part (= quadratic part of the arity-one counterterm along Delta)",
+   "A": "A_perp 0; A_V alpha (a.b), beta a^mu(p.b); c beta -p; lambda beta -(u,rho(p)rho(e^mu)v)",
+   "B": "A_perp 0; X = int(d(iota_x A_V),A*_V) - int(iota_x dc,c*) - int(rho(x)dslash lambda,lambda*) = Q(int(iota_x A_V,c*) - (1/2)int(rho(x)lambda*,lambda*))",
+   "theory": "only from the composite cycle, 0 in A_perp, Q-closed in total, (Q+{I,-})-exact",
+   "QA": "identical canonical data in A and B; Q(X_V + X_c) on (c,A*) = 0 with Q X_V, Q X_c separately -/+1 (x-dependent); Q X_V on (A_V,A_V) = 0; the log-eps part of Q(class i) vanishes in the lambda sector",
+   "status": "agree"
+  },
+  {
+   "quantity": "class (i) A_perp (alpha, beta/p)",
+   "A": "(8/3, 10/3) exact",
+   "B": "(2.6666(2), 3.3333(1)) numerical",
+   "theory": "(5/3) S^(1)(Delta)|_perp - (2/3) int(A_perp,A*_perp)",
+   "status": "agree"
+  },
+  {
+   "quantity": "class (i) c sector",
+   "A": "alpha -8/3, beta -p[log(eps|p|^2) + 5/6 + gamma_E + log 3]",
+   "B": "alpha -2.6666(1), beta -p[log(eps p^2) + 2.509(1)] (constant not identified)",
+   "QA": "5/6 + gamma_E + log 3 = 2.5091612869...: B's constant identified",
+   "status": "agree"
+  },
+  {
+   "quantity": "class (i) A_V and lambda sectors",
+   "A": "computed exactly",
+   "B": "not computed",
+   "theory": "predicted only through Q (below)",
+   "status": "tested through Q below"
+  },
+  {
+   "quantity": "locality of the renormalised class (i) (theory def:d-PiPsi calls it local)",
+   "QA": "{\"A_perp\": {\"nonlocal (log|p|^2 or 1/|p|^2 present)\": false}, \"A_V\": {\"nonlocal (log|p|^2 or 1/|p|^2 present)\": true}, \"c\": {\"nonlocal (log|p|^2 or 1/|p|^2 present)\": true}, \"lambda\": {\"nonlocal (log|p|^2 or 1/|p|^2 present)\": true}}: local only in the A_perp sector; log|p|^2 terms in A_V, lambda, c and (p.a)(p.b)/|p|^2 in A_V. Its Q-image is local in every sector (next block).",
+   "status": "theory wording wrong (see theory_corrections)"
+  },
+  {
+   "quantity": "engine A A_V total finite part, constant of alpha (a.b)",
+   "A": "70/3 (reported)",
+   "QA": "sum of A's own pieces 43/2 + 13/6 = 71/3",
+   "status": "typo in engine A's results file (the pieces are right)"
+  }
+ ],
+ "Ob_Delta_quadratic_by_sector": [
+  {
+   "output structure": "int(dA|_Wperp,dA|_Wperp)",
+   "Q Pi_Psi: QA from engine A class (i)": "1/3",
+   "Q Pi_Psi: theory prediction": "1/3",
+   "Q class (ii): QA from engine A, F_0 included": "-4",
+   "4 x log-eps coefficient of I^CT: theory": "-4",
+   "Ob(Delta): QA from engine A data": "-11/3",
+   "Ob(Delta): engine B (UV-boundary special-edge graphs)": "-11/3",
+   "status": "agree (A = B = theory)"
+  },
+  {
+   "output structure": "int(dA|_V,dA|_V)",
+   "Q Pi_Psi: QA from engine A class (i)": "1/3",
+   "Q Pi_Psi: theory prediction": "1/3",
+   "Q class (ii): QA from engine A, F_0 included": "-4",
+   "4 x log-eps coefficient of I^CT: theory": "-4",
+   "Ob(Delta): QA from engine A data": "-11/3",
+   "Ob(Delta): engine B (UV-boundary special-edge graphs)": "-11/3",
+   "status": "agree (A = B = theory)"
+  },
+  {
+   "output structure": "int(d*A|_V,d*A|_V)",
+   "Q Pi_Psi: QA from engine A class (i)": "0",
+   "Q Pi_Psi: theory prediction": "0",
+   "Q class (ii): QA from engine A, F_0 included": "0",
+   "4 x log-eps coefficient of I^CT: theory": "0",
+   "Ob(Delta): QA from engine A data": "0",
+   "Ob(Delta): engine B (UV-boundary special-edge graphs)": "0",
+   "status": "agree (A = B = theory)"
+  },
+  {
+   "output structure": "int(lambda,dslash lambda)",
+   "Q Pi_Psi: QA from engine A class (i)": "-1/3",
+   "Q Pi_Psi: theory prediction": "-1/3",
+   "Q class (ii): QA from engine A, F_0 included": "16",
+   "4 x log-eps coefficient of I^CT: theory": "16",
+   "Ob(Delta): QA from engine A data": "47/3",
+   "Ob(Delta): engine B (UV-boundary special-edge graphs)": "47/3",
+   "status": "agree (A = B = theory)"
+  },
+  {
+   "output structure": "int(dc,A*)",
+   "Q Pi_Psi: QA from engine A class (i)": "-2/3",
+   "Q Pi_Psi: theory prediction": "-2/3",
+   "Q class (ii): QA from engine A, F_0 included": "-4",
+   "4 x log-eps coefficient of I^CT: theory": "-4",
+   "Ob(Delta): QA from engine A data": "-14/3",
+   "Ob(Delta): engine B (UV-boundary special-edge graphs)": "-14/3",
+   "status": "agree (A = B = theory)"
+  }
+ ],
+ "Ob_Delta_notes": {
+  "F_0": "the arity-zero finite counterterm F_0 = (27/16) int(d*A_V,d*A_V) must be in the renormalised two-point function: without its graph S_M - P - (-F_0) the (c,A*) output of Q(class ii) is -35/2 int(dc,A*) plus the x-dependent local term (27/2) i (gamma, p^mu (p.b)) in canonical form; with it exactly -4 int(dc,A*) (theory: Q(class ii) -> D_M Sigma_ren = 4 C_log needs Q W_1 -> 0, i.e. F_0; B: \"S_M-P-(arity-zero defect) -> 0 after F_0\")",
+  "lambda": "engine B's 47/3 (2-sample fit) is exact: 47/3 = 16 - 1/3 from engine A's exact class (ii) and class (i); convention-free form: Q(class i)/Q(class ii) = -1/48 in engine A's own spinor normalisation, (47/3 - 16)/16 = -1/48 from engine B; checks of the machinery: Q int(lambda*,lambda) = -1, Q S^(1)(Delta)|_lambda = 0, Q of the log-eps coefficient = 0",
+  "two_component": "lambda sector computed with the two-component matrices of def:c8-twocomp: rho(v)^2 = +|v|^2 on Sigma, P rho symmetric, rho(v)rho(w) + rho(w)rho(v) = 2(v,w) on Sigma* (checked); int(lambda,dslash lambda) = 2i int(lambdabar_{alphadot i}, sigmabar^{m alphadot alpha} d_m lambda_alpha^i), int(lambda*,lambda) = int[(lambda_alpha^i, lambda*^alpha_i) - (lambdabar_{alphadot i}, lambdabar*^{alphadot i})] (prop:c8-twocomp; Weinberg: dslash = gamma_W^mu d_mu on (lambda_alpha, lambdabar^alphadot))",
+  "d*A_V": "coefficient of int(d*A_V,d*A_V) is 0 in both classes (theory: D_M F_0 = 0 by weight)",
+  "independence": "class (i) and class (ii) are engine A's direct eps -> 0 evaluations; engine B's Ob is the special-edge (UV-boundary) evaluation; the two routes share no code",
+  "trace_anomaly": "Ob(Delta) quadratic part is Q-exact (F(Delta) exists): no class on the quadratic sector; the coupling-direction coefficient of the log-eps counterterm (b = 0, thm:c4-log) is a Step-1 input and was not retested"
+ },
+ "Pi_Psi_translation_invariant_representative": {
+  "QA (from engine A class (i) via Q)": {
+   "tA": "-2/3",
+   "tc": "4/3",
+   "tl": "1/3"
+  },
+  "theory prediction": {
+   "tA": "-2/3",
+   "tl": "1/3",
+   "tc": "4/3"
+  },
+  "meaning": "the unique translation-invariant local functional -(2/3) int(A,A*) + (1/3) int(lambda*,lambda) + (4/3) int(c*,c) with the same Q-image as the (nonlocal) renormalised class (i)",
+  "status": "confirmed"
+ },
+ "F_Delta": {
+  "engine_A": "A_perp only: (22/3) int(A_perp,A*_perp) + f_S S^(1)(Delta)|_perp, f_S free; open-issue hypothesis \"F proportional to the field-counting functional with multiple 11/3\"",
+  "engine_B": "translation-invariant: (22/3) int(A,A*) - (47/3) int(lambda*,lambda) - (8/3) int(c*,c) = (11/3) FC - int(lambda*,lambda) + int(c*,c); free Q-closed directions S_M|_perp, S_M|_lambda, S_M|_V + S_M|_c, X; A_perp: a int(A,A*) + b int(E A,A*), a - b = 22/3",
+  "theory": "4 FC + Y_Psi + z S^(1)(Delta) + G_Delta; A_perp (22/3) = 8 - 2/3",
+  "QA": "translation-invariant solution rebuilt from engine A's data: {\"int(A,A*)\": \"22/3\", \"int(lambda*,lambda)\": \"-47/3\", \"int(c*,c)\": \"-8/3\"} = engine B's; = 4 FC + [-(2/3) int(A,A*) + (1/3) int(lambda*,lambda) + (4/3) int(c*,c)] (theory); dictionary b = 2 f_S (S^(1)(Delta)|_perp = 2 int(EA,A*) + 2 int(A,A*))",
+  "engine_disagreement": "none in any number. Engine A's hypothesis F = (11/3) FC is refuted by engine A's own class (i) data in the lambda and c sectors (extra -int(lambda*,lambda) + int(c*,c)); the DESIGN D2 expectation \"F(Delta) a multiple of the field-counting functional\" is false (theory and B agree)",
+  "undetermined": "the coefficient of S^(1)(Delta)|_perp (A: f_S, B: b/2) is not fixed by the two-leg equation in either engine; the theory assigns it to the cubic arity-one equation and the full S^(1)(Delta) coefficient z to the arity-two equation along (K_b,P_b'); neither is computed",
+  "status": "agree"
+ },
+ "part2_scalar_bilinear_component": [
+  {
+   "quantity": "classical part",
+   "A": "+2(E+w_O)O, canonical (-4,-2k) T_O",
+   "B": "alpha = -4v, beta = -2kv",
+   "theory": "+{S^(1)(Delta),O} = 2(E+w_O)O",
+   "status": "agree"
+  },
+  {
+   "quantity": "arity-one counterterm of O along Delta",
+   "A": "none (no local functional of weight 2, degree -1)",
+   "B": "none (superficial degree -2)",
+   "status": "agree"
+  },
+  {
+   "quantity": "coefficient multiplying O (thm:c6-dil normalisation)",
+   "A": "0 traceless, -24 trace",
+   "B": "0 traceless, -24 trace (independent of b)",
+   "theory": "c_O = 0 / -24; 2c_O = 0 / -48 in D_1",
+   "status": "agree"
+  },
+  {
+   "quantity": "Q(Y1a) (the engine conflict)",
+   "A": "beta(Y1a) = T_O[8 p2/|p2|^2 + 8|p1|^2 That(p1,p2)], alpha 0; Q(Y1a) declared nonlocal, eq:c6-step2 declared false",
+   "B": "no separate term; K5 (all 1PI special-edge graphs with O, S_M) local: alpha 16 T1 - 16 T2, beta (2/3) k T1",
+   "theory": "complete composite set local; Q(Y1a) alone \"may be nonlocal\" (prop:d-T (iii), rem:d-Y1a)",
+   "QA": "(1) engine A's raw beta/T_O equal the closed form 8p2/|p2|^2 + 8|p1|^2 That within 7.7e-14 (own That integrator, 4 kinematic points, su(2) and gl(3)); (2) That(p2,p1) = -That(p1,p2) and div_q That(q,-k-q) = 2/(|q|^2|q+k|^2), exact (l -> -l; div x/|x|^4 = 2 pi^2 delta) and checked numerically: [{\"q\": [2, 2, 3, 3], \"k\": [-2, -1, -2, 2], \"max |That(q,p_d) + That(p_d,q)|\": \"0.0\", \"div_q That(q,-k-q) (finite difference)\": \"0.00284900284900283\", \"2/(|q|^2|q+k|^2)\": \"0.00284900284900285\"}, {\"q\": [2, -2, -1, -3], \"k\": [2, -1, -1, -2], \"max |That(q,p_d) + That(p_d,q)|\": \"0.0\", \"div_q That(q,-k-q) (finite difference)\": \"0.00205761316872462\", \"2/(|q|^2|q+k|^2)\": \"0.00205761316872428\"}]; (3) the output of Q(Y1a) has two identical A|_Wperp legs; its symmetrisation gives exactly the plane-wave value (l2, (l1/2) k) T_O for coefficients (l1,l2), i.e. (8, 4k) T_O = -2 D_M O for engine A's l1 = l2 = 8: numerically at 5 points, max deviation 1.3e-12; (4) the unsymmetrised alpha_Q/T_O = 8 + 8|p1|^2 p2.That(p1,p2) is momentum dependent (e.g. -2.10031347566 at A's first point), which is what engine A fitted.",
+   "status": "RESOLVED: Q(Y1a) = -2 unit {S^(1)(Delta),O}, local; engine A's nonlocality is an artefact of comparing one ordering of two identical output legs"
+  },
+  {
+   "quantity": "decisive check of the theory (delta_predictions.json): composite special-edge cycles through O",
+   "A": "Q(Y1a)_sym + {class (i)|_perp, O} = (alpha, beta) = (0, 2/3 k) T_O",
+   "B": "K5 - 4 x (log-eps coefficient of d_delta I^CT) = (0, 2/3 k) T1; raw samples refitted exactly: [{\"alpha_ok\": true, \"beta_ok\": true, \"eps^-1 and log parts zero\": true}, {\"alpha_ok\": true, \"beta_ok\": true, \"eps^-1 and log parts zero\": true}, {\"alpha_ok\": true, \"beta_ok\": true, \"eps^-1 and log parts zero\": true}]",
+   "theory": "lim (hbar/2) d_Psi(Q O_tree[eps]) on (A_perp,A_perp) local, equal to Q(Y1a) + Q(Y1b)",
+   "QA": "input: the scaling part of K5 is 4 x (log-eps coefficient of d_delta I^CT) = 16 T1 - 16 T2 (Step 1; theory cor:d-CS; B's alpha). Q(Y1a) + Q(Y1b) = (4/3) O - (1/3) D_M O (engine A) = K5 composite part + C_P(Q Pi_Psi, O) = -(4/3) O - (1/3) D_M O + (8/3) O (engine B); with the Y1a coefficients left free the agreement requires l2 = 8 and l1 = 8: engine B's K5 confirms both of engine A's Y1a coefficients",
+   "status": "PASSES exactly"
+  },
+  {
+   "quantity": "full D_1 on the (A_perp,A_perp) part of the scalar bilinears",
+   "A": "reported C = 2(E+w_O)O + 2c O + z_2 D_M O + Q(Y1a), z_2 = 5/3 - f_S",
+   "B": "D_1(O) = 2c O - (1/3 + b/2) D_M O, b free (b = -2/3 gives exactly 2(E+w_O)O)",
+   "theory": "D_1(O) = 2 c_O O - z {S^(1)(Delta),O} - {G_Delta,O} + R_O + [s,psi]_Delta O",
+   "QA": "A corrected (Q(Y1a) = -2 D_M O): D_1(O) = 2c O - (1/3 + f_S) D_M O; B with b = 2 f_S: identical for every value of the free coefficient. In the theory's decomposition F_1(Delta)|_perp = 4FC + Y_Psi + z S^(1)(Delta) + G_Delta with y_Psi := coefficient of S^(1)(Delta)|_perp in Y_Psi: R_O = -(1/3 + y_Psi){S^(1)(Delta),O} (= -2 {S^(1)(Delta),O} = Q(Y1a) for Y_Psi|_perp = class (i)|_perp; -(1/3){S^(1)(Delta),O} for the translation-invariant Y_Psi), consistent.",
+   "status": "agree; eq:c6-step2 holds up to -(1/3 + f_S) unit {S^(1)(Delta),O}, exactly for f_S = -1/3 (B: b = -2/3)"
+  },
+  {
+   "quantity": "spectrum on the scalar bilinears (Weyl weight 2)",
+   "QA": "eigenvalue of the order-hbar part of Lambda^(1)(Delta): 2c - 4(1/3 + f_S): traceless -4(1/3 + f_S), trace -48 - 4(1/3 + f_S) units; f_S-independent content: trace minus traceless = -48 units (-24 in thm:c6-dil normalisation); the traceless (protected) value vanishes iff f_S = -1/3",
+   "status": "f_S not computed by anyone; needed before D_1 itself (not only the difference) is quoted"
+  },
+  {
+   "quantity": "translation component of the scalar bilinears",
+   "A": "nonlocal Q-exact term (same Y1a mechanism)",
+   "B": "-(1/3) unit {S^(1)(P),O}; closed-form subset = full (844), complement 0; no such graphs for letters",
+   "theory": "R_{O,v} = c {S^(1)(P),O}, c = -(1/3) unit (from B); scheme psi' = c x (Weyl weight)",
+   "QA": "Q(Y1a_T)_sym = -2 D_P O numerically at 3 points ([[\"0.0\", \"-2.0\", \"2.0\", \"4.0\"], [\"2.0\", \"2.0\", \"-4.0\", \"2.0\"], [\"-4.0\", \"0.0\", \"2.0\", \"2.0\"]] vs 2k); P_1(O) = -2 D_P O + (5/3) D_P O - f_P D_P O = -(1/3 + f_P) unit {S^(1)(P_b),O}; letters: not established (see open_issues; they are not (Q+{I,-})-closed); the weight-proportional finite part of the theory changes the components along P_b, K_b, Sigma, Sigma*, Delta by -c, +c, -c/2, +c/2, 0 times the classical ones (arithmetic of prop:c8-laws (b) with the weight shifts +1, -1, +1/2, -1/2, 0: checked)",
+   "status": "agree (A after the symmetrisation correction)"
+  }
+ ],
+ "theory_predictions_status": {
+  "conventions (S_M, sign +D_M, Delta = 2E, FC, C_log)": "confirmed",
+  "(A_perp) eps^-1 0, log eps 0": "confirmed (A, B)",
+  "(A_perp) Q(class ii) -> -4 int(dA,dA)": "confirmed exactly (QA from A)",
+  "(A_perp) Q Pi_Psi = +1/3": "confirmed (QA from A; B route A numerical)",
+  "(A_perp) Ob = -11/3": "confirmed (A, B, QA)",
+  "(A_perp) F = (22/3) int(A,A*) = 8 - 2/3, S^(1)(Delta)|_perp coefficient not fixed at two legs": "confirmed (A, B)",
+  "(A_V,c) log eps from the composite cycle only, Q-closed, consistent with X": "confirmed (QA: Q(X_V + X_c) = 0)",
+  "(A_V,c) Q(class ii) -> -4 int(dA_V,dA_V) - 4 int(dc,A*), no d*A term": "confirmed exactly, with F_0 included (QA from A)",
+  "(A_V,c) Q Pi_Psi = (1/3) int(dA_V,dA_V) - (2/3) int(dc,A*)": "confirmed exactly by an independent class (i) evaluation (engine A data; the prediction had been back-derived from B)",
+  "(A_V,c) translation-invariant part of Pi_Psi -(2/3) int(A_V,A*_V) + (4/3) int(c*,c)": "confirmed",
+  "(A_V,c) Ob d*A coefficient 0": "confirmed (A, B)",
+  "(lambda) log eps from the composite cycle": "confirmed",
+  "(lambda) Q(class ii) -> 16": "confirmed exactly (QA from A)",
+  "(lambda) Q Pi_Psi = -1/3, translation-invariant part (1/3) int(lambda*,lambda)": "confirmed exactly (QA from A)",
+  "(lambda) Ob = 47/3 exact": "confirmed (16 - 1/3 from engine A's exact data)",
+  "F_Delta general form 4FC + Y_Psi + z S + G": "consistent with both engines (two-leg level)",
+  "engine A vs B on F_Delta: no disagreement": "confirmed",
+  "trace-anomaly class absent": "consistent on the quadratic sector (Ob is Q-exact); cubic level not computed",
+  "scalar bilinears: classical 2(E+w_O)O, c_O = 0 / -24": "confirmed (A, B)",
+  "D_1 = 2c_O O - z 2(E+w_O)O - {G,O} + R_O + scheme": "consistent; R_O = -(1/3 + y_Psi){S^(1)(Delta),O} on the computed sector (in the predicted span, no O-coefficient)",
+  "nonlocal Q-exact terms absent in the complete set": "confirmed",
+  "Q(Y1a) alone may be nonlocal": "not realised: Q(Y1a) is local by itself (-2 unit {S^(1)(Delta),O}) after the symmetrisation of its identical output legs",
+  "decisive check": "passes exactly (Y1a + Y1b of A against K5 of B)",
+  "translation component c = -1/3 on bilinears, 0 on letters; scheme psi' = c x weight": "bilinears: consistent (B; A after correction); letters: not established (B's statement concerns only the special-edge cycles through O); the shift arithmetic of the scheme checked",
+  "Pi_Psi local (def:d-PiPsi)": "refuted for the A_V, lambda, c sectors (only its Q-image is local)"
+ },
+ "engine_A_errata": [
+  "Q(Y1a) nonlocal -> the symmetrised Q(Y1a) is -2 unit {S^(1)(Delta),O} (= (8,4k) T_O), local",
+  "eq:c6-step2 \"false, fails by z_2 D_M O + Q(Y1a)\" -> holds up to -(1/3 + f_S) unit {S^(1)(Delta),O}; the classical factor is 1 + z_2 - 2 = 2/3 - f_S, not 1 + z_2",
+  "\"the component is not of the form (local functional)[infty] at one loop\" -> it is, on the computed (A_perp,A_perp) part",
+  "translation: nonlocal Q-exact correction -> -(1/3 + f_P) unit {S^(1)(P_b),O}",
+  "Ward-split coefficients -2/-26 (already not used) -> withdraw",
+  "A_V total finite alpha (a.b) constant 70/3 -> 71/3 (pieces correct)",
+  "open-issue hypothesis F_Delta = (11/3) FC -> false; the translation-invariant F is (11/3) FC - int(lambda*,lambda) + int(c*,c), from A's own class (i)"
+ ],
+ "engine_B_errata": [
+  "c-sector class (i) constant 2.509(1) = 5/6 + gamma_E + log 3 (from engine A)",
+  "lambda coefficient 47/3 of Ob(Delta) is exact (16 - 1/3), not only a fit"
+ ],
+ "theory_corrections": [
+  "prop:d-P (ii): \"c = 0 for the letters\" is taken from engine B, whose statement covers only the special-edge cycles through O; the letters are not (Q+{I,-})-closed and their composite contributions (through the vertex {I,O}, or {class (i)_T,O} = (5/3) D_P O in the direct route) were not computed",
+  "def:d-PiPsi (\"the local quadratic functional\"): the renormalised composite two-point functional is nonlocal in the A_V, lambda and c sectors (log|p|^2; (p.a)(p.b)/|p|^2 in A_V); only its Q-image is local. thm:d-D2 (iii) should read: the quadratic part of Y_Psi is a local functional with Q Y_Psi = Q Pi_Psi, e.g. -(2/3) int(A,A*) + (1/3) int(lambda*,lambda) + (4/3) int(c*,c), unique up to local Q-closed functionals",
+  "prop:d-T (iii), rem:d-Y1a, Finding (b): engine A's nonlocal Q(Y1a) is an artefact (unsymmetrised kernel of two identical legs); the symmetrised Q(Y1a) is local; no computed graph realises the \"single composite graph with nonlocal Q-image\"; the statement should be withdrawn or marked as unrealised in the computed sector",
+  "thm:d-inv: \"the one-loop anomalous dimensions are then 2c_O\" omits -z{S^(1)(Delta),-} (and, in Feynman gauge, R_O = -(1/3 + y_Psi){S^(1)(Delta),-}); on the computed sector these shift the eigenvalue at weight w by -2(1/3 + f_S) w units; the conclusion holds iff the coefficient of S^(1)(Delta)|_perp in F_1(Delta) is -1/3 units (resp. z = 0 for (Q^GF)^2 = 0); f-independent: differences at equal weight (trace - traceless = -48 units)",
+  "key_numbers \"D1_coefficient_traceless 0 / trace -24 (D_1 = -48 units)\": these are 2c_O; the full D_1 contains -(1/3 + f_S){S^(1)(Delta),O} in addition",
+  "Predictions section (last bullet): \"plus a remainder in the span of functionals with a factor d*d on a leg\" is refuted: the remainder on the computed sector is R_O = -(1/3 + y_Psi) unit {S^(1)(Delta),O} (y_Psi the coefficient of S^(1)(Delta)|_perp in Y_Psi), not an equation-of-motion term; delta_predictions.json (span{O, 2(E+w_O)O, d*d terms}, no O-coefficient) is right",
+  "its CH08 item on prop:c8-Tsafe: the count \"of order |y|^-4 at leading order\" for an insertion of S^(1)(Delta) between an A x A edge and a c x A*|_V edge is wrong: the derivative of the vector field falls on the A x A edge, (2y.d_y + 2) |y-a|^-2 ~ -2|y|^-2, times the c x A* edge |y|^-3 gives |y|^-5 (odd at leading order), as ch08 states; only ch08's justification is imprecise",
+  "its CH08 item on Remark \"What is computed\": the proposed replacement says the extra terms \"leave the spectrum unchanged when the quantisation is independent of the gauge fixing\"; on the computed sector the extra terms equal -(1/3 + f_S) unit {S^(1)(Delta),O} and shift the spectrum by -4(1/3 + f_S) units at weight 2 unless f_S = -1/3; see the CH08 item of this comparison"
+ ],
+ "not_tested_here": [
+  "theory toy model identities (delta_toy.py): not rerun; only the signs they fix were checked independently",
+  "theory CH08 item on thm:c8-L (ii) (T -> infinity needs the K_T bracket terms to vanish): logical point, no number of this comparison bears on it; both engines evaluated the Delta sector directly at T = infinity and found finite local results",
+  "theory CH08 item on thm:c8-invariants (iii) (gauge-fixing independence): no gauge fixing with (Q^GF)^2 = 0 has been computed",
+  "finite endpoint T: both engines worked at T = infinity only; the T-independence statements of the theory (prop:d-T (i), thm:d-D3) and the finite-T primitive Phi_T were not tested numerically",
+  "(A_V,A_V) and (c,A*_V) output sectors of the trace bilinear; cubic arity-one equation; arity-two equation along (K_b,P_b'); all letters"
+ ],
+ "CH08_items": [
+  "CH08: Remark 'What is computed' (after cor:c8-homotopy): the sentence identifying D_1 with the Chapter 6 coefficients through eq:c6-step2 and stating that D_1 vanishes on the traceless scalar bilinears is not established; evidence: on the part with two legs A|_Wperp both engines give D_1(O) = 2c O - (1/3 + f) unit {S^(1)(Delta),O}, with c the coefficient of thm:c6-dil (0 traceless, -24 units trace) and f units the coefficient of S^(1)(Delta)|_Wperp in F_1(Delta) (engine B part2.coefficient: factor 1 - (1/3 + b/2) unit, b = 2f; engine A after the symmetrisation of Q(Y1a): 1 + z_2 - 2 = 2/3 - f); f is not fixed by the two-point part of sF_1 = Ob in either engine (compare_delta_b.json part2_scalar_bilinear_component, F_Delta); proposed fix: replace 'Chapter 6 computed the dilatation coefficients through the scaling covariance of the regulator, which give $D_1$ under the identification \\eqref{eq:c6-step2}: for the traceless scalar bilinears they vanish, and for the trace bilinear $D_1(O)$ is $-48$ units times $O$, the value $2\\times(-24)$ of Theorem \\ref{thm:c6-dil}.' by 'Chapter 6 computed the dilatation coefficients through the scaling covariance of the regulator. They give $D_1$ up to a multiple of the classical transformation: on the part of the scalar bilinears with two legs $A|_{W_{\\mathbb R}^\\perp}$, $D_1(O)$ is twice the coefficient of Theorem \\ref{thm:c6-dil} times $O$ ($0$ for the traceless bilinears, $-48$ units times $O$ for the trace) plus $-\\big(\\tfrac13\\text{ units}+\\text{the coefficient of }S^{(1)}(\\Delta)|_{W_{\\mathbb R}^\\perp}\\text{ in }F_1(\\Delta)\\big)$ times $\\{S^{(1)}(\\Delta),O\\}$. That coefficient is not fixed by the two-point part of $sF_1=\\mathrm{Ob}$; under the hypothesis of Theorem \\ref{thm:c8-invariants} (iii) it is fixed by the whole equation, since it changes the spectrum. The identification \\eqref{eq:c6-step2} holds exactly when it equals $-\\tfrac13$ units; the difference of the eigenvalues of $D_1$ between the trace and the traceless bilinears, $-48$ units, does not depend on it.'",
+  "CH08: prop:c8-2pt (iii): the parenthetical identifies the Chapter 6 coefficients used in the scaling identity with the component of def:c8-components along Delta under eq:c6-step2; the scaling identity is an arity-zero statement (it contains no F_1(Delta)) and holds with the Chapter 6 coefficients, while the component differs from them by -(1/3 + f) unit {S^(1)(Delta),-} on the scalar bilinears; evidence: as in the previous item (both engines); in the kernel form of (iii) the extra term drops out because the tree two-point function is classically scale covariant, but in the matrix form (D_1(O_b) = sum_a (D_1)_{ab} O_a on operators at a point) it would add twice the Weyl weight times that multiple to D_1 and a corresponding log(|x|^2/l^2) term that the regulator scaling does not produce, so the matrix in (iii) must be the Chapter 6 one; proposed fix: replace '(the component of Definition \\ref{def:c8-components} along $\\Delta$ under the identification \\eqref{eq:c6-step2})' by '(on the part of the scalar bilinears with two legs $A|_{W_{\\mathbb R}^\\perp}$ they are the component of Definition \\ref{def:c8-components} along $\\Delta$ minus its multiple of $\\{S^{(1)}(\\Delta),-\\}$, which is $-\\big(\\tfrac13\\text{ units}+\\text{the coefficient of }S^{(1)}(\\Delta)|_{W_{\\mathbb R}^\\perp}\\text{ in }F_1(\\Delta)\\big)$; Remark (What is computed))'.",
+  "CH08: def:c8-radial (also thm:c8-adjoint, cor:c8-gram): 'with P_1 = 0 (Proposition prop:c7-cov)' is not a consequence of prop:c7-cov; evidence: on the part of the scalar bilinears with two legs A|_Wperp the composite-line graphs, which exist because (Q^GF)^2 != 0, give P_1(O) = -(1/3 + f_P) unit {S^(1)(P_b),O}, f_P units the coefficient of S^(1)(P_b) in F_1(P_b) (engine B: -1/3 at f_P = 0, closed-form subset 844 = full, complement 0; engine A after symmetrisation: Q(Y1a_T) = -2 D_P O plus (5/3) D_P O from the composite two-point graph; QA y1a_check.json f_translation); the letters, which are not (Q+{I,-})-closed, were not computed; proposed fix: in def:c8-radial replace 'with $P_1=0$ (Proposition \\ref{prop:c7-cov})' by 'in a scheme with $P_1=0$ (Proposition \\ref{prop:c7-cov} does not give it: on the part of the scalar bilinears with two legs $A|_{W_{\\mathbb R}^\\perp}$ the graphs with the composite line, which exist because $(Q^{GF})^2\\neq0$, give $P_1(O)=-\\tfrac13$ units times $\\{S^{(1)}(P_n),O\\}$ when $F_1(P_n)$ has no component along $S^{(1)}(P_n)$; the finite part of the operators equal to $-\\tfrac13$ units times the Weyl weight on the scalar bilinears gives $P_1=0$ there, leaves $D_1$, $M_1$, $R_1$ unchanged and changes the components along $K_b$, $\\Sigma$, $\\Sigma^*$ by $-\\tfrac13$, $+\\tfrac16$, $-\\tfrac16$ units times the classical transformation, Proposition \\ref{prop:c8-laws} (b))'; in thm:c8-adjoint after 'with $P_1=M_1=R_1=0$' add '($P_1=0$ being the scheme condition of Definition \\ref{def:c8-radial})'; in cor:c8-gram replace 'With $P_1=0$ the third relation' by 'In the scheme of Definition \\ref{def:c8-radial}, with $P_1=0$, the third relation'.",
+  "CH08 (via ch07 rem:c7-internal, on which def:c8-radial relies): 'this is the reason these components can be chosen with no one-loop correction for O with (Q+{I,-})O = 0, [(d_CE+Q)O[infty]](x_1) = ({S^(1)(x_1),O})[infty]' fails for translations on the scalar bilinears without a finite part of the operators; evidence: as in the previous item; proposed fix: replace 'this is the reason these components can be chosen with no one-loop correction for $O$ with $(Q+\\{I,-\\})O=0$,' by 'they nevertheless produce a one-loop part: for the translations on the part of the scalar bilinears with two legs $A|_{W_{\\mathbb R}^\\perp}$ it is $-\\tfrac13$ units times the classical transformation when the finite counterterm has no component along $S^{(1)}(x_1)$; it is removed by the finite part of the operators equal to $-\\tfrac13$ units times the Weyl weight on that family (Chapter 8), after which, for $O$ with $(Q+\\{I,-\\})O=0,$' (the rotations of V admit the same composite line, v.(P*)^2 != 0, and were not computed; along so(W_R^perp) the composite line vanishes).",
+  "CH08: prop:c8-Tsafe (proof): 'the two adjacent edges decay as |y|^{-3} each (one derivative, Proposition prop:c3-P)' is false for the A x A component, which carries no derivative and decays as |y|^{-2}; the stated decays (|y|^-6, |y|^-5, |y|^-4) are nevertheless correct because the derivative of the vector field in v.A falls on that edge and the terms of v.A without a derivative of A (dv.A in L_vA, (1/4)(div v)A|_Wperp) have coefficients of one order less; evidence: prop:c8-twocomp (<A_m A_n> = 2(-,-)^{-1} delta_mn (e^{-eps|p|^2} - e^{-T|p|^2})/|p|^2, no momentum factor; <c A*_m> carries -i p_m); for Delta (2y.d_y + 2)|y-a|^{-2} = -2|y|^{-2} + O(|y|^{-3}) times the c x A*|_V edge |y|^{-3} gives |y|^{-5}, odd at leading order; on a cycle only the term (v.A,A*) of S^(1)(x) for even x and (Gamma(epsilon(x),lambda),A*) for odd x have both legs internal (lambda*, c* do not propagate); both engines evaluated the Delta sector directly at T = infinity with finite local results; the theory note's replacement ('of order |y|^{-4} at leading order') is itself wrong for Delta; proposed fix: replace 'and the two adjacent edges decay as $|y|^{-3}$ each (one derivative, Proposition \\ref{prop:c3-P})' by 'and each of the two adjacent edges decays as $|y|^{-3}$ once the derivative of the insertion is counted: on a cycle the insertion is $(v.A,A^*)$ for even and $(\\Gamma(\\epsilon(x),\\lambda),A^*)$ for odd generators, the components $c\\otimes A^*|_V$ and $\\lambda\\otimes\\lambda$ of $P(\\varepsilon,T)$ carry one derivative (Proposition \\ref{prop:c3-P}), and the component $A\\otimes A$, which decays as $|y|^{-2}$, is the edge on which the derivative in $L_vA$ acts, the terms of $v.A$ without a derivative of $A$ having coefficients of one order less in $|y|$'."
+ ],
+ "open_issues": [
+  "Letters: engine B's statement that the letters have no composite graphs concerns only the special-edge cycles through O (K5); the letters are not (Q+{I,-})-closed, so in the UV-boundary form the vertex {I,O} != 0 carries composite loops, and in the direct route of engine A the composite two-point graph on the leg gives {class (i)_T, O} = (5/3) D_P O; the translation (and dilatation) components of the letters are therefore not established, and neither is the theory's \"c = 0 for the letters\" (prop:d-P (ii)) nor B's \"no single F(P) removes it for letters and bilinears\".",
+  "The coefficient of S^(1)(Delta)|_Wperp in F_1(Delta) (engine A f_S, engine B b/2) is undetermined; it sets the classical normalisation 1 - (1/3 + f) unit of the Delta component and the absolute one-loop eigenvalue -4(1/3 + f) units of the traceless bilinears. The theory assigns it to the cubic arity-one equation and the full S^(1)(Delta) coefficient z to the arity-two equation along (K_b,P_b'); protection of the traceless bilinears (arity two along (xi,eta) with R_1 = 0) predicts f = -1/3 units. Not computed.",
+  "Same for the coefficient of S^(1)(P_b) in F_1(P_b) (fixed at arity two along (xi,xi') through [Sigma,Sigma] containing P); not computed.",
+  "Rotations of V: the composite line v.(P*)^2 is nonzero for so(V) (it vanishes for so(W_R^perp)); M_1 on the scalar bilinears (orbital part on integrated operators) was not computed, so the assumption M_1 = 0 of prop:c8-primary and thm:c8-adjoint is untested.",
+  "Only the bilinear (A|_Wperp, A|_Wperp) output of the scalar-bilinear component was computed by either engine; the (A_V,A_V) and (c,A*_V) outputs of the trace bilinear, all letters, the cubic arity-one equation and the arity-two equations are open.",
+  "The decisive check uses the scaling part of engine B's K5 equal to 4 x (log-eps coefficient of d_delta I^CT) (as the theory's cor:d-CS predicts and B's alpha shows); B did not split K5 graph by graph for the dilatation (only for the translation letter).",
+  "Theory note: def:d-PiPsi, prop:d-T (iii), rem:d-Y1a, thm:d-inv and the bullet \"remainder in the span of functionals with a factor d*d on a leg\" need the corrections listed under theory_corrections before material enters the manuscript; delta_predictions.json allows a D_M O term in R_O, the tex predictions bullet does not; the engines find R_O proportional to {S^(1)(Delta),O}.",
+  "Engine A must correct its results file (engine_A_errata); engine B its c-sector constant and the status of 47/3 (engine_B_errata).",
+  "Two-component (Weinberg-Srednicki) forms: the lambda-sector computation of this comparison used the two-component matrices of def:c8-twocomp (sigma^m = (sigma^1,sigma^2,sigma^3,i), pairing xi_alpha eta^alpha - xibar etabar); checked: rho(v)^2 = +|v|^2, P rho symmetric, rho(v)rho(w)+rho(w)rho(v) = 2(v,w) on Sigma*; the structures (u,v), (u,rho(e^mu)rho(p)v) are basis independent, so the results do not depend on the realisation."
+ ]
+}

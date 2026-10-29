@@ -1,0 +1,36 @@
+== 1. tensor structure of (C.3), (C.4) (both contraction conventions) ==
+[K1] (C.3) == -(f_ACE f_BDE + f_BCE f_ADE) d_al b^C d^al c^D : True
+[K1] (C.4) == +f_ACE f_BDE d_al c^C d^al c^D             : True
+[K2] (C.3) == -(f_ACE f_BDE + f_BCE f_ADE) d_al b^C d^al c^D : True
+[K2] (C.4) == +f_ACE f_BDE d_al c^C d^al c^D             : True
+
+== 2. (C.5) ansatz coefficient C1 read off from (C.4) at A=B=1 ==
+[K1] Q1(b_1 c_1) from (C.4) = -2*c2[0,1] c2[1,0] + -2*c3[0,1] c3[1,0]
+[K2] Q1(b_1 c_1) from (C.4) = 2*c2[0,1] c2[1,0] + 2*c3[0,1] c3[1,0]
+
+== 3. (C.6)/(C.7) at n=m=0 with (C1,C2)=(-2,0) versus (C.4)/(C.3) ==
+[K1] ratio (C.6)/(C.4) over all A,B: {Fraction(-2, 1)};  ratio (C.7)/(C.3): {Fraction(-2, 1)}
+[K2] ratio (C.6)/(C.4) over all A,B: {Fraction(2, 1)};  ratio (C.7)/(C.3): {Fraction(2, 1)}
+(C.6) at n=m=0, A=B=1, C1 part (C1=1,C2=0): -2*c2[0,1] c2[1,0] + -2*c3[0,1] c3[1,0]
+(C.6) at n=m=0, A=B=1, C2 part (C1=0,C2=1): 2*c1[0,1] c1[1,0]
+(C.4)[K1] has c1c1 component: False
+
+== 4. Q1 Tr b^2 (Tr t^A t^B = -1/2 delta^AB, (3.20); b^2 = b_A b^A = -2 Tr b^2, (3.23)) ==
+[K1] from (C.3): Q1 Tr b^2 = r * d_al Tr(b d^al c) with r = -4
+[K1] from (C.7), C1=-2, C2=0: Q1 Tr b^2 = r * d_al Tr(b d^al c) with r = 8
+[K2] from (C.3): Q1 Tr b^2 = r * d_al Tr(b d^al c) with r = -4
+[K2] from (C.7), C1=-2, C2=0: Q1 Tr b^2 = r * d_al Tr(b d^al c) with r = -8
+
+== 5. Q1 on S_al = Tr b d_al c = -1/2 b_A d_al c_A via (C.6), C1=-2, C2=0 ==
+[K1] Q1 S_1 = r * d_1 Tr(d_be c d^be c), r = -2
+[K1] Q1 S_2 = r * d_2 Tr(d_be c d^be c), r = -2
+[K1] C2-structure alone (C1=0,C2=1): Q1 S_1 = r * d_1 Tr(d_be c d^be c), r = -1/2
+[K1] C2-structure alone (C1=0,C2=1): Q1 S_2 = r * d_2 Tr(d_be c d^be c), r = -1/2
+[K2] Q1 S_1 = r * d_1 Tr(d_be c d^be c), r = 2
+[K2] Q1 S_2 = r * d_2 Tr(d_be c d^be c), r = 2
+[K2] C2-structure alone (C1=0,C2=1): Q1 S_1 = r * d_1 Tr(d_be c d^be c), r = 1/2
+[K2] C2-structure alone (C1=0,C2=1): Q1 S_2 = r * d_2 Tr(d_be c d^be c), r = 1/2
+
+== 6. (C.6) normalised to reproduce (C.4) at n=m=0: C1=+1 (K1) or C1=-1 (K2), C2=0 ==
+[K1] C1=1: (C.6)=(C.4) at n=m=0: True; (C.7)=(C.3) at n=m=0: True; Q1 S_al = r d_al Tr(d_be c d^be c), r(al=1,2) = [Fraction(1, 1), Fraction(1, 1)]
+[K2] C1=-1: (C.6)=(C.4) at n=m=0: True; (C.7)=(C.3) at n=m=0: True; Q1 S_al = r d_al Tr(d_be c d^be c), r(al=1,2) = [Fraction(1, 1), Fraction(1, 1)]

@@ -1,0 +1,714 @@
+\chapter{One-loop components along the supercharges, the special supercharges and the special conformal generators: design}
+
+The components of the quantum differential of a local operator along the odd generators of $\mathfrak{psl}(4|4)$, along the special conformal fields and along the translations carry the one-loop corrections $Q_1$, $S_1$, $K_1$ and $P_1$ of [ch08, Def c8-components]; along the dilatation they carry $D_1$. Three facts shape their design. The holomorphic-twist $Q_1$ of the literature has to come out of the untwisted cochain with no twist in the input. The special conformal field grows quadratically at large distance, so its insertions on a cycle produce logarithms of the transfer endpoint $T$ in the flows, while the local representative, and with it $K_1$, is the same at every finite $T$. The Feynman-gauge propagator has $(Q^{GF})^2\neq0$, so every even generator with a vector field on $V$ enters a cycle through a composite $A|_V$--$c$ line; for the translations this line gives the scalar bilinears a one-loop rescaling of their translation component, and $P_1=0$ becomes a renormalisation condition. This chapter uses the objects of Chapter 8, lists the graphs, derives the twisted $Q_1$ as the evaluation of the untwisted cochain on a rank-one supercharge, writes the transformation laws under every scheme choice together with the scheme-independent content, decides the route for $K_1$ at finite $T$, and fixes the order of the engine computations.
+
+\section{Conventions and names}
+
+\begin{definition}[Names]
+\label{def:o-names}
+\begin{itemize}
+\item The names of [ch08, Names]: $\xi\in\Sigma$, $\eta\in\Sigma^*$, $\zeta\in\Sigma\oplus\Sigma^*$; $Q$ is the linear BV differential; $\mathrm{ad}_f:=\{f,-\}$; $s:=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\}$; $L=s+\hbar L_1+\cdots=d_{CE}+\Lambda$ [ch08, Thm c8-L]; $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ are the one-loop components of [ch08, Def c8-components]. The spinor parameters written $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ in [ch02, Def c2-odd] are $\xi$, $\eta$; those two symbols do not occur in this chapter. The unit is $\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$, and numbers quoted ``in units'' are multiples of it.
+\item The holomorphic supercharge: $\xi=u\otimes w\in S_+\otimes W$ with $u\in S_+$, $w\in W$ nonzero; two-component $\xi_\alpha{}^i=u_\alpha w^i$, $\bar\xi_{\dot\alpha i}=0$. Fixed auxiliary data: $u'\in S_+$ with $u'^\alpha u_\alpha=1$ and $n\in W^*$ with $n_iw^i=1$ [targets, §2.1]. The letter $w$ without subscript always denotes this element of $W$; $w_1,w_2$ with subscripts are elements of $W_{\mathbb R}^\perp$ as in [ch05, Def c5-bilinear].
+\item The conformal Killing spinor of $\xi+\eta$ is $x\mapsto\xi+\rho(x)\eta$ [ch02, Def c2-odd], two-component [ch08, eq:c8-killing]: $\epsilon_\alpha{}^i(x)=\xi_\alpha{}^i-i\,x_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}$, $\bar\epsilon_{\dot\alpha i}(x)=\bar\xi_{\dot\alpha i}+i\,x_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}$.
+\item $P_b$ is the translation along $b\in V$ and $K_b$ the special conformal field $x\mapsto(x,x)b-2(b,x)x$ [ch08, Names], two-component $v^m=x^2b^m-2(b\cdot x)x^m$, $\operatorname{div}v=-8\,b\cdot x$; $\Delta=2E$. A second translation is $P_{b'}$, and $[K_b,P_{b'}]=(b,b')\Delta+(\text{the rotation }x\mapsto2(b,x)b'-2(b',x)b)$ [ch07, Rem c7-KDelta].
+\item Weyl weights: fields, antifields and derivatives as in [ch07, §Allowed output structures], the explicit position with weight $-1$, and an argument $x\in\mathfrak{psl}(4|4)$ with weight one half of its $\mathrm{ad}_\Delta$-eigenvalue ($-1$, $1$, $-\tfrac12$, $\tfrac12$, $0$ for $P_b$, $K_b$, $\Sigma$, $\Sigma^*$ and the rest); a cochain of weight $w$ has values of weight $w$ minus the weights of the arguments.
+\item $F_{\mathfrak{psl}(4|4)}=\hbar F_1+\hbar^2F_2+\cdots$ is the finite counterterm of [ch08, Def c8-quant], of degree $0$ and Weyl weight $4$; $F^{(k)}_{\mathfrak{psl}(4|4)}$ is its arity-$k$ part [ch08, Def c8-2pt]. $\psi$ is a scheme for local operators [ch08, Def c8-renorm].
+\item $T\in(0,\infty]$ is the endpoint of the transfer and $P(\varepsilon,T)$ the propagator of [ch08, Def c8-PT].
+\end{itemize}
+Two-component formulas are those of [ch08, Def c8-twocomp]: Srednicki's contractions $\chi\psi=\chi^\alpha\psi_\alpha$, $\bar\chi\bar\psi=\bar\chi_{\dot\alpha}\bar\psi^{\dot\alpha}$, $\varepsilon^{12}=+1$, the Euclidean $\sigma^m=(\vec\sigma,i)$, $\bar\sigma^m=(-\vec\sigma,i)$, the fields $A_m$, $A_{ij}=A_I\Sigma^I_{ij}$, $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$, $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$, the antifields $A^*_m$, $A^*_{ij}$, $\lambda^{*\alpha}{}_i$, $\bar\lambda^{*\dot\alpha i}$, $c^*$, and $(-,-)$ on $\mathfrak g$ contracting the $\mathfrak g$ factors in the order written. Weinberg's form follows with $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ after the Wick map [ch08, Prop c8-twocomp].
+\end{definition}
+
+\begin{lemma}[Rank one]
+\label{lem:o-rankone}
+For $\xi\in S_+\otimes W$ the ten-component $\Gamma(\xi,\xi)$ vanishes exactly when $\xi$ has rank one, and $[\xi,\xi]=\Gamma(\xi,\xi)|_V=0$ for every $\xi\in S_+\otimes W$ [ch02, Prop c2-special], [ch08, Lemma c8-ev]. For $\xi=u\otimes w$ the image of $\Gamma(\xi,-)|_V$ is two-dimensional.
+\end{lemma}
+
+\begin{proof}
+By [ch08, Def c8-twocomp],
+\[
+\Gamma^m(\xi,\xi)\big|_V=2i\,\bar\xi_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i=0,\qquad \Gamma_{kl}(\xi,\xi)=2\varepsilon_{jikl}\,\xi_\alpha{}^j\varepsilon^{\alpha\beta}\xi_\beta{}^i ,
+\]
+and $\xi_\alpha{}^j\varepsilon^{\alpha\beta}\xi_\beta{}^i$ is $\varepsilon^{\alpha\beta}$ contracted with the $2\times2$ minors of the matrix $\xi_\alpha{}^i$; it vanishes for all $i,j$ exactly when the rank is one. For $\xi=u\otimes w$, $\Gamma^m(\xi,\lambda)|_V=i\,\bar\lambda_{\dot\alpha i}w^i\bar\sigma^{m\dot\alpha\alpha}u_\alpha$ ranges over the two-dimensional space $\{u^\alpha\sigma^m_{\alpha\dot\alpha}\bar s^{\dot\alpha}\}$. In the exact realisation of Chapter 2 the weight vector of weights $(1,-1,1,1,1)$ for the Cartan elements $\rho(e_0e_1),\rho(e_2e_3),\rho(e_4e_5),\rho(e_6e_7),\rho(e_8e_9)$ lies in $S_+\otimes W$, has $\Gamma(\xi,\xi)=0$ in all ten components and $\dim\operatorname{Im}\Gamma(\xi,-)|_V=2$.
+\end{proof}
+
+\section{The transfer endpoint and the one-loop components}
+
+\begin{definition}[Objects at scale $T$]
+\label{def:o-scale}
+For $0<\varepsilon<T\le\infty$, [ch08, Def c8-PT],
+\begin{equation}
+P(\varepsilon,T)=\int_\varepsilon^T(Q^{GF}\otimes1)K_t\,dt,\qquad (Q\otimes1+1\otimes Q)P(\varepsilon,T)=K_\varepsilon-K_T,
+\label{eq:o-PT}
+\end{equation}
+with $K_\infty=0$, the scalar factors $(e^{-|x-y|^2/4T}-e^{-|x-y|^2/4\varepsilon})/(4\pi^2|x-y|^2)$ and $(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$, and the components of Lemma \ref{lem:o-legs}. The effective interaction $I_{\mathfrak{psl}(4|4)}[T]$ is [ch08, eq:c8-IT], the observable $O[T]$ is [ch08, Def c8-renorm] with $J=I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-F_{\mathfrak{psl}(4|4)}$ and $O(\varepsilon)=O-\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](O)+\hbar\psi(O)$, and the differential at scale $T$ is [ch08, Def c8-dT]
+\begin{equation}
+d_T:=d_{CE}+Q+\big\{I_{\mathfrak{psl}(4|4)}[T],-\big\}_T+\hbar\Delta_T,\qquad \Delta_T=-\partial_{K_T}.
+\label{eq:o-dT}
+\end{equation}
+At $T=\infty$, $d_\infty=d_{CE}+Q$. Unless stated otherwise $\psi=0$.
+\end{definition}
+
+\begin{lemma}[The transfer at finite $T$]
+\label{lem:o-Tflow}
+\begin{itemize}
+\item[(i)] $(d_{CE}+Q+\hbar\Delta_T)\,e^{\hbar\partial_{P(\varepsilon,T)}}=e^{\hbar\partial_{P(\varepsilon,T)}}\,(d_{CE}+Q+\hbar\Delta_\varepsilon)$ [ch08, Lemma c8-transfer].
+\item[(ii)] For $\varepsilon<T<T'\le\infty$: $W(P(\varepsilon,T'),J)=W\big(P(T,T'),W(P(\varepsilon,T),J)\big)$, and the identity (i) holds with $(T,T')$ in place of $(\varepsilon,T)$.
+\item[(iii)] UV-boundary formula at scale $T$:
+\[
+\begin{aligned}
+d_T\,O[T]&=\lim_{\varepsilon\to0}\partial_\delta\Big[e^{-W(P(\varepsilon,T),J_\delta)/\hbar}\,e^{\hbar\partial_{P(\varepsilon,T)}}\Big(\big((d_{CE}+Q)J_\delta+\tfrac12\{J_\delta,J_\delta\}_\varepsilon+\hbar\Delta_\varepsilon J_\delta\big)e^{J_\delta/\hbar}\Big)\Big],\\
+J_\delta&=J+\delta O(\varepsilon);
+\end{aligned}
+\]
+the defect vertex $(d_{CE}+Q)J_\delta+\tfrac12\{J_\delta,J_\delta\}_\varepsilon+\hbar\Delta_\varepsilon J_\delta$ is the same for every $T$.
+\item[(iv)] The singular part of every one-loop graph with edges $P(\varepsilon,T)$ is independent of $T\in(0,\infty)$, and equal to that at $T=\infty$ in the components whose graphs converge at large distance (Proposition \ref{prop:o-Tsafe} (i)) [ch08, Prop c8-Tindep (i)]. Hence $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, $O(\varepsilon)$, the obstruction and the finite counterterms are the same at every $T\in(0,\infty)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i), (ii): [ch08, Lemma c8-transfer]: $\partial_{P(\varepsilon,T)}Q-Q\,\partial_{P(\varepsilon,T)}=\partial_{K_\varepsilon}-\partial_{K_T}=-\Delta_\varepsilon+\Delta_T$ by \eqref{eq:o-PT}, the operators $\partial_\phi$ commute, and $P(\varepsilon,T')=P(\varepsilon,T)+P(T,T')$. (iii) Apply (i) to $e^{J_\delta/\hbar}$; by the product rule of [ch03, Def c3-delta] at scale $T$, $(d_{CE}+Q+\hbar\Delta_T)e^{W/\hbar}=\hbar^{-1}e^{W/\hbar}\big((d_{CE}+Q)W+\tfrac12\{W,W\}_T+\hbar\Delta_TW\big)$ for even $W$, and the $\delta$-linear part of the left side is $d_TO[T]$. (iv) [ch08, Prop c8-Tindep (i)]: in the Schwinger representation of [ch04, Lemma c4-local] the coefficients of $\varepsilon^{-k}$ and $\log\varepsilon$ come from the region where the Schwinger times of the cycle sum to at most a fixed $\tau_0<T$, and the complementary region has a limit as $\varepsilon\to0$; at $T=\infty$ the complementary region converges exactly in the components listed in Proposition \ref{prop:o-Tsafe} (i).
+\end{proof}
+
+\begin{definition}[Local representative and one-loop components]
+\label{def:o-comp}
+For a local cochain $O$ of degree $|O|$, a local representative is a local cochain $L(O)$ of degree $|O|+1$ with [ch08, Def c8-rep]
+\begin{equation}
+d_T\,O[T]=\big(L(O)\big)[T],
+\label{eq:o-rep}
+\end{equation}
+and modulo $\hbar^2$
+\begin{equation}
+L(O)=s\,O+\hbar L_1(O),\qquad s=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\},\qquad s^2=0\ \text{by [ch02, eq:c2-mc]}.
+\label{eq:o-L1}
+\end{equation}
+The one-loop components are those of [ch08, Def c8-components]: $Q_1(O)=\hbar L_1(O)^{(1)}(\xi)$, $S_1(O)=\hbar L_1(O)^{(1)}(\eta)$, $D_1(O)=\hbar L_1(O)^{(1)}(\Delta)$, $K_1(O)=\hbar L_1(O)^{(1)}(K_b)$, $P_1(O)=\hbar L_1(O)^{(1)}(P_b)$, $M_1$, $R_1$ along $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$, the one-loop BRST transformation $\hbar L_1(O)^{(0)}$ and the arity-two values $\hbar L_1(O)^{(2)}(x_1,x_2)$. By [ch08, Thm c8-L (iv)], $\Lambda^{(1)}(x)O=(-1)^{|O|(1+|x|)}\{S^{(1)}(x),O\}$ modulo $\hbar$, so for $|O|=0$
+\[
+(sO)^{(0)}=(Q+\{I,-\})O,\qquad (sO)^{(1)}(x_1)=\mathrm{ad}_{S^{(1)}(x_1)}O,\qquad (sO)^{(2)}(x_1,x_2)=\mathrm{ad}_{S^{(2)}(x_1,x_2)}O .
+\]
+\end{definition}
+
+The two-component form of the classical part along $\xi=u\otimes w$ is the bracket with [ch08, Remark after Thm c8-twist], [targets, §2.2]:
+\begin{equation}
+\begin{aligned}
+S^{(1)}(\xi)=\int\Big\{&-i\big(\bar\lambda_{\dot\alpha i}w^i\bar\sigma^{m\dot\alpha\alpha}u_\alpha,\,A^*_m\big)+\tfrac12\varepsilon_{jikl}w^j\big((u\lambda^i),A^{*kl}\big)-\tfrac14\big(F_{mn}(\sigma^m\bar\sigma^nu)_\alpha,\,\lambda^{*\alpha}{}_iw^i\big)\\
+&-\tfrac14\big([A^{ik},A_{kj}w^j]u_\alpha,\,\lambda^{*\alpha}{}_i\big)-\tfrac i2\big(u^\alpha\sigma^m_{\alpha\dot\alpha}D_m(A_{ij}w^j),\,\bar\lambda^{*\dot\alpha i}\big)\Big\},
+\end{aligned}
+\label{eq:o-S1xi}
+\end{equation}
+index-free $S^{(1)}(\xi)=\int\mathrm{dvol}\big(-(\Gamma(\xi,\lambda),A^*)+\tfrac12(\rho(F_A)\xi,\lambda^*)\big)$ [ch02, eq:c2-S1Q].
+
+\begin{proposition}[Uniqueness]
+\label{prop:o-unique}
+At every $T\in(0,\infty)$, and at $T=\infty$ in the components of Proposition \ref{prop:o-Tsafe} (i): if a local representative exists, it is unique [ch08, Thm c8-L (i)].
+\end{proposition}
+
+\begin{proof}
+At lowest order in $\hbar$, $N[T]$ is the tree-level flow of $N$ with vertices $I_{\mathfrak{psl}(4|4)}$ and edges $P(0,T)$; by induction on the arity, a tree with $r\ge1$ vertices $I$ has at least $r$ legs more than its vertex $N^{(k)}$, so the part with the fewest legs is a Taylor component of $N^{(k)}$; induction on the number of legs [ch04, Prop c4-unique] and on the order in $\hbar$.
+\end{proof}
+
+\begin{proposition}[Independence of the transfer endpoint]
+\label{prop:o-Tindep}
+Assume the equivariant quantum master equation [ch08, eq:c8-qme] modulo $\hbar^2$. If \eqref{eq:o-rep} holds at one $T_0\in(0,\infty)$, it holds with the same $L(O)$ at every $T\in(0,\infty)$, and at $T=\infty$ when the graph sums of $O[T]$ and of $L(O)[T]$ converge as $T\to\infty$ [ch08, Thm c8-L (ii)].
+\end{proposition}
+
+\begin{proof}
+By [ch08, Lemma c8-flow], $O[T]$ and $L(O)[T]$ are the linearised flows from $T_0$ of $O[T_0]$ and $L(O)[T_0]$, and the flow intertwines $d_{T_0}$ with $d_T$; for $T<T_0$ the flow is inverted; Proposition \ref{prop:o-unique} identifies the representative.
+\end{proof}
+
+\begin{theorem}[The cochain identity]
+\label{thm:o-cocycle}
+If local representatives exist for $O$ and for $sO$, then, modulo $\hbar^2$,
+\begin{equation}
+s\,L_1(O)+L_1\big(sO\big)=0 ,
+\label{eq:o-cocycle}
+\end{equation}
+with $L_1$ extended $C^\bullet(\mathfrak{psl}(4|4))$-linearly; this is the order-$\hbar$ part of $L\circ L=0$ [ch08, Thm c8-L (iii), (iv)]. In components on two generators $x_1,x_2$, with $|L_1(O)|=|O|+1$, the $d_{CE}$ term of the first summand is $(-1)^{|O|+1}L_1(O)^{(1)}([x_1,x_2])$ [ch02, eq:c2-dce]; on the cohomology of $\Lambda^{(0)}$ it is the order-$\hbar$ part of [ch08, Cor c8-homotopy (ii)].
+\end{theorem}
+
+\begin{proof}
+[ch08, Thm c8-L (iii)]: $L(L(O))=0$, and $L(L(O))=s^2O+\hbar\big(sL_1(O)+L_1(sO)\big)+O(\hbar^2)$.
+\end{proof}
+
+\section{The UV-boundary formula and the graph classes}
+
+\begin{proposition}[UV-boundary formula for the components]
+\label{prop:o-uv}
+$d_TO[T]$ is given by Lemma \ref{lem:o-Tflow} (iii); at $T=\infty$ this is [ch06, eq:c6-uvobs]. By [ch02, eq:c2-mc], for $|O|=0$, $\psi=0$ and modulo $\hbar^2$ the defect vertex is
+\begin{equation}
+\begin{aligned}
+&\underbrace{\tfrac12\big(\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}_\varepsilon-\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}\big)}_{\text{action special edges}}+\delta\Big[\underbrace{sO}_{\text{classical}}+\underbrace{\{I_{\mathfrak{psl}(4|4)},O\}_\varepsilon-\{I_{\mathfrak{psl}(4|4)},O\}}_{\text{operator special edges}}\Big]\\
+&+\hbar\Delta_\varepsilon I_{\mathfrak{psl}(4|4)}-(d_{CE}+Q)\big(I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+F_{\mathfrak{psl}(4|4)}\big)-\big\{I_{\mathfrak{psl}(4|4)},I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+F_{\mathfrak{psl}(4|4)}\big\}_\varepsilon\\
+&+\delta\Big[\hbar\Delta_\varepsilon O-(d_{CE}+Q)\,\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-\big\{I_{\mathfrak{psl}(4|4)},\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]\big\}_\varepsilon-\big\{I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+F_{\mathfrak{psl}(4|4)},O\big\}_\varepsilon\Big].
+\end{aligned}
+\label{eq:o-defect}
+\end{equation}
+For $\psi\neq0$ the vertex contains in addition $\delta\,\hbar\big((d_{CE}+Q)\psi(O)+\{I_{\mathfrak{psl}(4|4)},\psi(O)\}_\varepsilon\big)$; its effect on $L_1$ is the law (b) of Proposition \ref{prop:o-laws}, and the graph classes below are stated at $\psi=0$. Every special edge carries $K_\varepsilon-K_0$ [ch04, Prop c4-defect1]; for odd $O$ the signs are those of the proof of [ch06, Lemma c6-bvexact]. The defect vertex does not involve $T$; the edges of the graphs are $P(\varepsilon,T)$.
+\end{proposition}
+
+\begin{proof}
+Lemma \ref{lem:o-Tflow} (iii). The order-$\hbar^0$, $\delta$-free part of the defect vertex is $(d_{CE}+Q)I_{\mathfrak{psl}(4|4)}+\tfrac12\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}_\varepsilon$, and [ch02, eq:c2-mc] in the form $(d_{CE}+Q)I_{\mathfrak{psl}(4|4)}=-\tfrac12\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}$ [ESW, Rem 1.29] leaves the special-edge difference; the $\delta$-linear order-$\hbar^0$ part is $(d_{CE}+Q)O+\{I_{\mathfrak{psl}(4|4)},O\}_\varepsilon$; the remaining terms are of order $\hbar$, the self-contraction $\hbar\Delta_\varepsilon$ of the counterterms being of order $\hbar^2$.
+\end{proof}
+
+The reduction of the defect by the classical master equation uses the equation as an identity of densities modulo total derivatives, inside graphs whose other vertices are joined to the defect by propagators. At finite $T$ every component of $P(\varepsilon,T)$ and its derivatives decay as $e^{-|y|^2/4T}$ at large $|y|$, so the surface terms vanish for every component of this chapter, including those along $K_b$. At $T=\infty$ they vanish when every vertex with position-dependent coefficients decays faster than $|y|^{-4}$, which holds in the components of Proposition \ref{prop:o-Tsafe} (i).
+
+\begin{lemma}[Placement of legs]
+\label{lem:o-legs}
+$P(\varepsilon,T)$ has the components $A\otimes A$, $c\otimes A^*|_V$, $A^*|_V\otimes c$, $\lambda\otimes\lambda$ only [ch03, Prop c3-P]; two-component [ch08, Prop c8-twocomp]
+\[
+\begin{aligned}
+&\langle A_mA_n\rangle:\ 2(-,-)^{-1}\delta_{mn},\qquad \langle A_{ij}A_{kl}\rangle:\ 4(-,-)^{-1}\varepsilon_{ijkl},\\
+&\langle c\,A^*_m\rangle:\ -(-,-)^{-1}ip_m,\qquad \langle\lambda_\alpha{}^i\bar\lambda_{\dot\beta j}\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j ,
+\end{aligned}
+\]
+each times $(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$. Consequently:
+\begin{itemize}
+\item a leg $\lambda^*$, $c^*$ or $A^*|_{W_{\mathbb R}^\perp}$ lies on a special edge, on a $K_\varepsilon$ self-contraction, or is external;
+\item a vertex $S^{(1)}(x_1)$ with both legs on edges $P(\varepsilon,T)$ (a floating insertion) is, for even $x_1$ with vector field $v$ on $V$, the term $(v.A|_V,A^*|_V)$ joining an $A|_V$ line to a $c$ line (the composite $A|_V$--$c$ line of [ch07, Rem c7-internal], with kernel $P(\varepsilon,T)\star\circ v.\circ P(\varepsilon,T)\star$); for odd $x_1$ with Killing spinor $\epsilon(x)$, the term $-(\Gamma(\epsilon(x),\lambda)|_V,A^*|_V)$ joining a $\lambda$ line to a $c$ line; two-component $(v^n\partial_nA_m+A_n\partial_mv^n,A^*_m)$ and $-i\big(\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_\alpha{}^i+\bar\epsilon_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\lambda_\alpha{}^i,\,A^*_m\big)$; $\mathfrak{so}(W_{\mathbb R}^\perp)$ has no floating insertion;
+\item two floating even insertions are adjacent through an $A|_V\otimes A|_V$ edge, in the chain $c$ --- $A^*|_V\otimes c$ --- $x_1$ --- $A|_V\otimes A|_V$ --- $x_2$ --- $A^*|_V\otimes c$ --- $c$ with both ends on ghost legs; two floating odd insertions are adjacent through a $\lambda\otimes\lambda$ edge, with $\lambda$ legs of opposite chiralities (a $P$-edge pair); a floating even insertion and a floating odd insertion are never adjacent;
+\item $S^{(2)}(x_1,x_2)$, with legs $\lambda^*\lambda^*$ and $A\,c^*$ [ch02, eq:c2-S2], is never floating: one of its legs lies on a special edge or is external.
+\end{itemize}
+Two-component, with $v$, $v'$ the vector fields of the two insertions, the even--even chain is $c\leftarrow\big(-(-,-)^{-1}ip_m\big)$ --- $\big(v^n\partial_nA_m+A_n\partial_mv^n,A^*_m\big)$ --- $\big(2(-,-)^{-1}\delta_{mn}\big)$ --- $\big(v'^n\partial_nA_m+A_n\partial_mv'^n,A^*_m\big)$ --- $\big(-(-,-)^{-1}ip_m\big)\rightarrow c$.
+\end{lemma}
+
+\begin{proof}
+Read off the propagator table and the field content of \eqref{eq:o-S1xi}, [ch02, eq:c2-S1even, eq:c2-S1S, eq:c2-S2]. A floating odd insertion has the legs $\lambda$ (of the chirality opposite to the Killing spinor value, by $\Gamma|_V$) and $A^*|_V$; a floating even insertion has the legs $A|_V$ and $A^*|_V$. The edges available between their legs are $A|_V\otimes A|_V$ (even--even), $\lambda\otimes\lambda$, which joins opposite chiralities (odd--odd), and none between $\{\lambda,A^*|_V\}$ and $\{A|_V,A^*|_V\}$, since $A\otimes A^*$, $A^*\otimes A^*$ and $\lambda\otimes A$ vanish. The census of all pairs of generators is machine-checked.
+\end{proof}
+
+\begin{theorem}[Graph classes of the arity-one component]
+\label{thm:o-classes}
+At order $\hbar$ and $\psi=0$, the arity-one component along a generator $x_1$ of $d_TO[T]$ for a homogeneous local operator $O$ with $|O|=0$ is the $\varepsilon\to0$ limit, at fixed $T$, of the connected graphs with edges $P(\varepsilon,T)$, exactly one marked vertex taken from \eqref{eq:o-defect}, exactly one vertex carrying $x_1$ and exactly one vertex carrying $\delta$, in the following classes.
+\begin{itemize}
+\item (T) Marked vertex $\mathrm{ad}_{S^{(1)}(x_1)}O$, other vertices $I$: the graphs of the operator $\mathrm{ad}_{S^{(1)}(x_1)}O$ (trees, one-loop graphs, and trees with one vertex $-I^{CT}[\varepsilon]-F^{(0)}_{\mathfrak{psl}(4|4)}$).
+\item (T0) Marked vertex $(Q+\{I,-\})O$, one vertex $S^{(1)}(x_1)$ on a cycle, on a tree or on a leg, other vertices $I$: trees, one-loop graphs, and trees with one counterterm vertex of order $\hbar$; present for gauge-variant $O$.
+\item (A) Marked vertex: the special edge between $S^{(1)}(x_1)$ (quadratic or, for odd $x_1$, cubic part) and $O$; other vertices $I$; one loop.
+\item (B) Marked vertex: the special edge between $I$ and $S^{(1)}(x_1)$; one vertex $O$; one loop.
+\item (C) Marked vertex: the special edge between $I$ and $O$; one vertex $S^{(1)}(x_1)$ on the cycle (floating or adjacent), on a tree, or on an external leg; one loop.
+\item (D) Marked vertex: the special edge between two vertices $I$; one vertex $O$, one vertex $S^{(1)}(x_1)$; one loop.
+\item (E1) Trees whose marked vertex has order $\hbar$: $-Q\,\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](x_1)-\{I,\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](x_1)\}_\varepsilon-\{S^{(1)}(x_1),\partial_\delta I^{CT}[\varepsilon]\}_\varepsilon$; $-\{I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](x_1)+F^{(1)}_{\mathfrak{psl}(4|4)}(x_1),O\}_\varepsilon$; $-\{I^{CT}[\varepsilon]+F^{(0)}_{\mathfrak{psl}(4|4)},O\}_\varepsilon$ with a vertex $S^{(1)}(x_1)$; the arity-one action defect $-QI^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](x_1)-\{I,I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](x_1)\}_\varepsilon-\{S^{(1)}(x_1),I^{CT}[\varepsilon]\}_\varepsilon-(Q+\{I,-\})F^{(1)}_{\mathfrak{psl}(4|4)}(x_1)-\{S^{(1)}(x_1),F^{(0)}_{\mathfrak{psl}(4|4)}\}$ with a vertex $O$; the arity-zero action defect of order $\hbar$ with $O$ and $S^{(1)}(x_1)$; the arity-zero operator defect of order $\hbar$ with $S^{(1)}(x_1)$.
+\item (E2) Trees whose marked vertex is one of the order-$\hbar^0$ special edges of (A)--(D), with one vertex $-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, $-F_{\mathfrak{psl}(4|4)}$ or $-\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ of the complementary arity.
+\end{itemize}
+A special edge on a bridge carries a generic leg momentum $p$ and the factor $e^{-\varepsilon|p|^2}-1$; it is paired with the $K_\varepsilon-K_0$ part of the corresponding counterterm bracket of class (E2), and the pair tends to $(e^{-\varepsilon|p|^2}-1)$ times a renormalised subgraph, hence to $0$ (Part C, classes I-b and III). The graphs of (T) and (T0), with the counterterms of the cochain $sO$, are the arity-one part of $(sO)[T]$, and
+\begin{equation}
+\begin{aligned}
+\hbar L_1(O)^{(1)}(x_1)\big[T\big]_{\rm tree}={}&\lim_{\varepsilon\to0}\Big[\sum_{(A)\text{--}(E2)}\text{graphs}+\big(\text{arity-one part along }x_1\text{ of the tree flow of }\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](sO)\big)\Big]\\
+&-\big(\hbar L_1(O)^{(0)}\big)[T]^{(1)}(x_1),
+\end{aligned}
+\label{eq:o-L1graphs}
+\end{equation}
+where the last term is the arity-one part of the flow of the arity-zero representative, the trees with $\hbar L_1(O)^{(0)}$ and one vertex $S^{(1)}(x_1)$; $\hbar L_1(O)^{(1)}(x_1)$ is read off from the parts with the fewest legs (Proposition \ref{prop:o-unique}). For gauge-invariant $O$ with $L_1(O)^{(0)}=0$ the class (T0) and the last term are absent, and \eqref{eq:o-L1graphs} is the sum over (A)--(E2) plus the tree flow of $\partial_\delta I^{CT}[\varepsilon]$ of the operator $\mathrm{ad}_{S^{(1)}(x_1)}O$.
+\end{theorem}
+
+\begin{proof}
+Order $\hbar$ forces $b_1=1$ with all vertices of order $\hbar^0$, or $b_1=0$ with one vertex of order $\hbar$ [ch03, Prop c3-graphs]. The arity-one, $\delta$-linear part of the product of cochains places $x_1$ and $\delta$ on exactly one vertex each. The order-$\hbar^0$ marked vertices of \eqref{eq:o-defect} at arity one, $\delta$-linear, are: $(sO)^{(1)}(x_1)$; $(sO)^{(0)}$ with $S^{(1)}(x_1)$ elsewhere; the special edges $S^{(1)}(x_1)$--$O$, $I$--$O$ (with $S^{(1)}(x_1)$ elsewhere), $I$--$S^{(1)}(x_1)$ (with $O$ elsewhere), $I$--$I$ (with both elsewhere): classes (T), (T0), (A)--(D). The order-$\hbar$ marked vertices give (E1), the order-$\hbar^0$ special edges with one counterterm vertex give (E2). By \eqref{eq:o-rep} with \eqref{eq:o-L1}, the arity-one part of $d_TO[T]$ is the arity-one part of $(sO)[T]+(\hbar L_1(O))[T]$, and the arity-one part of $(\hbar L_1(O))[T]$ is $\hbar L_1(O)^{(1)}(x_1)[T]_{\rm tree}$ plus the trees of $\hbar L_1(O)^{(0)}$ with one vertex $S^{(1)}(x_1)$. These trees have as many legs as $L_1(O)^{(0)}$ and are nonlocal; for the letter $\int\omega\,(X,\iota_vA|_V)$ the one-loop BRST term is a multiple of $\int\omega\,(X,\iota_vdc)$, joined to $S^{(1)}(\xi)$ through the $c$--$A^*|_V$ line, with one $\lambda$ leg, the leg count of $L_1(O)^{(1)}(\xi)$. The arity-one part of $(sO)[T]$ consists of the graphs of (T) and (T0) minus the arity-one tree flow of the counterterm of $sO$; adding and subtracting that counterterm gives \eqref{eq:o-L1graphs}.
+\end{proof}
+
+\begin{remark}[Completion of the list in the road ahead]
+\label{rem:o-roadahead}
+[ch07, The road ahead] lists the graphs with one vertex given by the arity-one part of [ch07, eq:c7-defect]; these are classes (A), (B) and the corresponding parts of (E1), (E2). The flow of the defect also contains the arity-zero marked vertices with a separate vertex $S^{(1)}(x_1)$: classes (T0), (C) and (D). For the action alone (no $O$) the same holds: the arity-one obstruction along $x_1$ contains the cycles with an $I$--$I$ special edge and $S^{(1)}(x_1)$ on the cycle.
+\end{remark}
+
+\begin{proposition}[Arity two along $(\xi,\xi)$]
+\label{prop:o-arity2}
+For $\xi=u\otimes w$, with $[\xi,\xi]=0$, the arity-two marked vertices of order $\hbar^0$ are $\{S^{(1)}(\xi),S^{(1)}(\xi)\}_\varepsilon-\{S^{(1)}(\xi),S^{(1)}(\xi)\}$, $\{I,S^{(2)}(\xi,\xi)\}_\varepsilon-\{I,S^{(2)}(\xi,\xi)\}$, $\delta\,\mathrm{ad}_{S^{(2)}(\xi,\xi)}O$ and $\delta(\{S^{(2)}(\xi,\xi),O\}_\varepsilon-\{S^{(2)}(\xi,\xi),O\})$; the arity-one marked vertices enter with one further vertex $S^{(1)}(\xi)$, the arity-zero marked vertices with two further vertices $S^{(1)}(\xi)$. Since
+\begin{equation}
+S^{(2)}(\xi,\xi)=-\tfrac12\int\mathrm{dvol}\,\big((\xi,\lambda^*),(\xi,\lambda^*)\big)=-\tfrac12\int\big(u_\alpha w^i\lambda^{*\alpha}{}_i,\;u_\beta w^j\lambda^{*\beta}{}_j\big)
+\label{eq:o-S2xi}
+\end{equation}
+[ch08, eq:c8-twistaction], a vertex $S^{(2)}(\xi,\xi)$ occurs only inside the marked vertices listed, the graphs containing it have an external $\lambda^*$, and the outputs without antifields come from graphs with two vertices $S^{(1)}(\xi)$.
+\end{proposition}
+
+\begin{proof}
+\eqref{eq:o-S2xi} is [ch02, eq:c2-S2] with $\Gamma(\xi,\xi)=0$ (Lemma \ref{lem:o-rankone}) and $(\xi,\lambda^*)=\xi_\alpha{}^i\lambda^{*\alpha}{}_i-\bar\xi_{\dot\alpha i}\bar\lambda^{*\dot\alpha i}$ [ch08, Def c8-twocomp]. A graph has one field--antifield pairing (the marked special edge or bracket); both legs of $S^{(2)}(\xi,\xi)$ are $\lambda^*$, which lie on no edge $P(\varepsilon,T)$ (Lemma \ref{lem:o-legs}); a separate vertex $S^{(2)}(\xi,\xi)$ next to a marked vertex of arity zero would be disconnected from it, and inside a marked vertex at most one of its legs is on the pairing, so the other is external [targets, Lemma lem:S2].
+\end{proof}
+
+\begin{tabular}{l|l|c|l|l|l}
+target & operator (index-free; two-component) & $(w_O,|O|)$ & generator, arity & output legs & allowed output structures \\
+\hline
+Konishi descendant & $\int\omega\,(\lambda,\rho(A|_{W_{\mathbb R}^\perp})(u'\otimes w))$; $\int\omega\,(u'^\alpha\lambda_\alpha{}^i,A_{ij}w^j)$ & $(\tfrac52,0)$ & $\xi$, 1 & $(\bar\lambda,\bar\lambda)$; $(A,A,A)$ & $B_w$, $\bar F_w$ (Prop \ref{prop:o-konishi}) \\
+traceless bilinear, plane of $w$ & $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, $w_{a\,ij}w^j=0$; $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$ & $(2,0)$ & $\xi$, 1 & $(A,\lambda)$ & none (Prop \ref{prop:o-planevanish}) \\
+Konishi primary & $\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$; $\tfrac14\int\omega\,(A^{ij},A_{ij})$ & $(2,0)$ & $\xi\in\Sigma$, 1 & $(A,\lambda)$, $(c,\lambda^*)$ & three [ch07, Cor c7-Q] \\
+letters & $\int\omega\,(X,\iota_{w_1}A)$, $\int\omega\,(X,\iota_vA|_V)$, $\int\omega\,(\zeta,\lambda)$, $\int\omega\,(X,c)$ & $(1,0),(1,0),(\tfrac32,0),(0,1)$ & $\xi$, 0 and 1 & one and two legs & weight $w_O+\tfrac12$ \\
+$bc$ entry & $\int\omega\,(X,u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta)(Y,c)$ & $(2,1)$ & $\xi$, 0, 1, 2 & $(\bar\lambda,\bar\lambda)$ & [targets, T4] \\
+Konishi descendants of weight 3 & $B_w$, $\bar F_w$ & $(3,0)$ & $\eta$, 1 & $(\lambda,A)$ & term in $4\eta$, weight $\tfrac52$ \\
+scalar bilinears & as above & $(2,0)$ & $P_b$, 1 & $(A,A)$ & multiple of $\mathrm{ad}_{S^{(1)}(P_b)}O$ (Prop \ref{prop:o-P1}) \\
+scalar bilinears & as above & $(2,0)$ & $K_b$, 1 & $(A,A)$ & $\tfrac14\operatorname{div}v$ term and $\mathrm{ad}_{S^{(1)}(K_b)}O$ [ch07, Cor c7-K] \\
+\end{tabular}
+\tabcaption{Targets of the first engine computations, with the output structures allowed by [ch07, Prop c7-select]. $B_w$, $\bar F_w$ are defined in \eqref{eq:o-BF}.}
+
+\section{The twisted $Q_1$ as a consequence}
+
+\begin{lemma}[Evaluation along $\xi$]
+\label{lem:o-ev}
+Let $\xi\in\Sigma$ satisfy $[\xi,\xi]=0$ and let $q$ be a variable of degree $1$ and even total parity. The map of [ch08, Lemma c8-ev]
+\begin{equation}
+r_\xi\colon C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))\to\mathscr O_l(\mathscr E)[q],\qquad f\mapsto\sum_{k\ge0}\frac{(-1)^{k(k-1)/2}}{k!}\,f^{(k)}(\xi,\dots,\xi)\,q^k,
+\label{eq:o-ev}
+\end{equation}
+intertwines $d_{CE}$ with $0$, the cochain bracket of [ch02, Def c2-dce] with the $q$-linear extension of $\{-,-\}$, and the products of functional-valued and of operator-valued cochains, defined by the sign rule of [ch08, Thm c8-L (iv)] with total parities, with the product, resp.\ the composition, of their values. For $\xi=u\otimes w$,
+\begin{equation}
+S^\xi:=r_\xi\big(S_{\mathfrak{psl}(4|4)}\big)\big|_{q=1}=S+S^{(1)}(\xi)-\tfrac12S^{(2)}(\xi,\xi)=S+S^{(1)}(\xi)+\tfrac14\int\big(u_\alpha w^i\lambda^{*\alpha}{}_i,\;u_\beta w^j\lambda^{*\beta}{}_j\big)
+\label{eq:o-twistaction}
+\end{equation}
+satisfies $\{S^\xi,S^\xi\}=0$, and $S+S^{(1)}(\xi)+c\,S^{(2)}(\xi,\xi)$ satisfies it exactly for $c=-\tfrac12$. The same holds for every $x\in\Sigma$ with $[x,x]=0$ and $\Gamma(x,x)=0$, for instance $x=\xi+\bar\xi'$ with $\bar\xi'\in S_-\otimes W^*$ of rank one and $\bar\xi'_{\dot\alpha i}w^i=0$, with the nonvanishing of $\{S^{(1)}(x),S^{(1)}(x)\}$ checked separately.
+\end{lemma}
+
+\begin{proof}
+For a $(k,l)$-shuffle $\sigma$ with all arguments equal to the odd $\xi$, $\operatorname{sgn}(\sigma)$ times the Koszul sign is $+1$, and the exponent of [ch02, Def c2-dce] is $|g|k+k(l+|g|)\equiv kl$; hence $\{f,g\}(\xi^{k+l})=\binom{k+l}{k}(-1)^{kl}\{f(\xi^k),g(\xi^l)\}$, the same count for the products, and with $a_k=(-1)^{k(k-1)/2}/k!$,
+\[
+a_ka_l=a_{k+l}\binom{k+l}{k}(-1)^{kl},\qquad\text{since}\quad \tfrac12(k+l)(k+l-1)=\tfrac12k(k-1)+\tfrac12l(l-1)+kl .
+\]
+With the total parity in the sign rule, the product of functional-valued cochains is associative and graded commutative and $r_\xi$ is multiplicative; checked on random cochains with fermionic values, which also show that the reading with the $C^\bullet$ degree breaks graded commutativity. $d_{CE}$ evaluated on $(\xi,\dots,\xi)$ contains $[\xi,\xi]=0$. For the twisted action: by [ch02, Lemma c2-components] in arity one, two and three with $[\xi,\xi]=0$ and $S^{(3)}=0$,
+\[
+\begin{aligned}
+&\{S,S^{(1)}(\xi)\}=0,\qquad \{S,S^{(2)}(\xi,\xi)\}=\{S^{(1)}(\xi),S^{(1)}(\xi)\},\\
+&\{S^{(1)}(\xi),S^{(2)}(\xi,\xi)\}=0,\qquad \{S^{(2)},S^{(2)}\}=0,
+\end{aligned}
+\]
+so the square of $S+S^{(1)}(\xi)+cS^{(2)}(\xi,\xi)$ is $(2c+1)\{S^{(1)}(\xi),S^{(1)}(\xi)\}$, a nonzero functional: its $\lambda^*\lambda$ part is $-\int\mathrm{dvol}\,((\xi,\lambda^*),(\xi,{\not d}_A\lambda))$ up to the sign of the pair, with $(\xi,{\not d}\lambda)=i\,u_\alpha w^i\,\partial_m\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\neq0$ [ch08, Lemma c8-ev]. In the exact realisation of Chapter 2 with $\mathfrak g=\mathfrak{su}(2)$ and the rank-one $\xi$ of Lemma \ref{lem:o-rankone}, $\{S^{(1)}(\xi),S^{(1)}(\xi)\}\neq0$, $\{S^{(1)}(\xi),S^{(1)}(\xi)\}-\{S,S^{(2)}(\xi,\xi)\}=0$ and $\{S^{(1)}(\xi),S^{(2)}(\xi,\xi)\}=0$. For $x=\xi+\bar\xi'$: $\Gamma(x,x)|_V=2\Gamma(\xi,\bar\xi')|_V$ is proportional to $\bar\xi'_{\dot\alpha i}w^i=0$, and the components of $\Gamma$ along $W_{\mathbb R}^\perp$ pair equal chiralities and vanish on the rank-one $\xi$, $\bar\xi'$; the computation above uses only $[x,x]=0$ and $S^{(3)}=0$.
+\end{proof}
+
+\begin{lemma}[No action-side cochains of arity three or more along $\Sigma$]
+\label{lem:o-actiontrunc}
+Write $m(n)$ for the smallest Weyl weight of a translation-invariant local functional of degree $-n$: $m(n)=2n$ for $n$ even and $m(n)=2n+\tfrac12$ for $n$ odd ($n\ge1$). Assume that the $\Sigma$-components of the counterterm cochains have no explicit dependence on the position; this holds for $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, whose graphs with constant $\xi$ are translation invariant [ch07, Prop c7-cov], and for the finite counterterms of the schemes of this chapter (the translation-covariant scheme and its changes by $s(\kappa S^{(1)}(\Delta))$, whose $\Sigma$-components are multiples of $S^{(1)}(\xi)$ and $S^{(2)}(\xi_1,\xi_2)$). Then the arity-$k$ value on $\Sigma^{\otimes k}$ of an equivariant counterterm or finite counterterm of degree $0$ has degree $-k$ and weight $4+\tfrac k2$; since $m(k)>4+\tfrac k2$ for $k\ge3$, it vanishes for $k\ge3$, and $r_\xi$ of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ and $F_{\mathfrak{psl}(4|4)}$ stops at $q^2$.
+\end{lemma}
+
+\begin{proof}
+Degrees and weights: $c$: $(+1,0)$, $A$: $(0,1)$, $\lambda$: $(0,\tfrac32)$, $A^*$: $(-1,3)$, $\lambda^*$: $(-1,\tfrac52)$, $c^*$: $(-2,4)$, a derivative $(0,1)$ [ch07, §Allowed output structures]. A factor $c$ raises the degree at weight $0$, so the smallest weight at degree $-n$ uses $c^*$ and at most one $\lambda^*$: $2n$, resp.\ $2(n-1)+\tfrac52$. For $k=3$: $m(3)=\tfrac{13}{2}>\tfrac{11}2$; for $k\ge4$, $m(k)\ge2k>4+\tfrac k2$. The coefficients $\varepsilon^{-1}$ carry weight $2$ and only lower the weight left to the fields. Machine enumeration of all field contents with at most six factors confirms $m(n)$ for $n\le5$ and the absence of translation-invariant contents at $k=3,4,5$; with explicit position, contents exist at $k=3$ ($(\lambda^*,c^*)$ with one factor of the position) and at $k=4$ ($(c^*,c^*)$ with two), which the hypothesis excludes.
+\end{proof}
+
+\begin{remark}[The coefficient of the arity-two term in the twisted action]
+[ESW, Def 2.17] prints $S^Q=S+\sum_{k\ge1}S^{(k)}_{\mathcal A}(Q,\dots,Q)$. With [ESW, (34)] and [ESW, Lemma 3.6] as reproduced in [ch02, Lemma c2-dcesign], the coefficient of $S^{(2)}(\xi,\xi)$ for which the twisted action solves the classical master equation is $-\tfrac12=a_2$, the décalage coefficient of \eqref{eq:o-ev} [ch08, Lemma c8-ev]. In $\mathrm{ev}_\xi=\sum_kc_kF^{(k)}(\xi,\dots,\xi)$, $c_0=c_1=1$, $c_2=-\tfrac12$; the same coefficients apply to the one-loop components by Lemma \ref{lem:o-ev}.
+\end{remark}
+
+\begin{definition}[Twisted differentials]
+\label{def:o-twisted}
+For $\xi=u\otimes w$ (or any $x$ as in Lemma \ref{lem:o-ev}), [ch08, Def c8-twisted]:
+\[
+\begin{aligned}
+&Q^\xi_0:=\{S^\xi,-\}=Q+\big\{I+S^{(1)}(\xi)-\tfrac12S^{(2)}(\xi,\xi),\,-\big\},\\
+&Q^\xi_1(O):=r_\xi\big(\hbar L_1(O)\big)\big|_{q=1}=\hbar\sum_{k\ge0}\frac{(-1)^{k(k-1)/2}}{k!}\,L_1(O)^{(k)}(\xi,\dots,\xi).
+\end{aligned}
+\]
+In the names of Definition \ref{def:o-comp} the terms $k=0,1$ are $\hbar L_1(O)^{(0)}+Q_1(O)$.
+\end{definition}
+
+\begin{proposition}[Truncation for the targets]
+\label{prop:o-trunc}
+The arity-$k$ value $L_1(O)^{(k)}(\xi,\dots,\xi)$ has Weyl weight $w_O+\tfrac k2$ and degree $|O|+1-k$; when it has no explicit dependence on the position (constant $\xi$, the hypothesis of Lemma \ref{lem:o-actiontrunc}) it vanishes unless $w_O+\tfrac k2\ge m(k-1-|O|)$, which implies $k\le\tfrac13(2w_O+4+4|O|)$. For the operators of the target table and $\xi=u\otimes w$, $L_1(O)^{(k)}(\xi,\dots,\xi)=0$ for $k\ge3$, so
+\[
+Q^\xi_1(O)=\hbar\Big(L_1(O)^{(0)}+L_1(O)^{(1)}(\xi)-\tfrac12L_1(O)^{(2)}(\xi,\xi)\Big).
+\]
+For operators of higher weight the census of the arity-$k$ components with $k\ge3$ allowed by the bound is part of the computation.
+\end{proposition}
+
+\begin{proof}
+[targets, Lemma lem:arity]: each argument carries weight $-\tfrac12$ and lowers the degree by one. Letters ($w_O\le\tfrac32$, $|O|=0$; $w_O=0$, $|O|=1$) and scalar bilinears ($w_O=2$, $|O|=0$): the bound excludes $k\ge3$. Konishi descendant $O_\zeta$ ($w_O=\tfrac52$): $k=3$ requires weight $4$ and degree $-2$, the content $c^*$ alone, which is not a colour singlet; besides, the value carries $w^{\otimes4}$ ($w^{\otimes3}$ from the arguments, one $w$ from $\zeta=u'\otimes w$) and $c^*$ has no $W$ index; $k\ge4$ is excluded by the bound. $bc$ entry ($w_O=2$, $|O|=1$): $k=3$ requires weight $\tfrac72$ and degree $-1$, the contents $(\lambda^*,A)$ and $\partial\lambda^*$; the value carries $w^{\otimes3}$, which needs three lower $W$ indices not two of which sit in one $A_{ij}$, since $A_{ij}w^iw^j=0$; $\lambda^*$ has one lower index and $A_{ij}$ an antisymmetric pair, so both contents give $0$; $k=4$ requires weight $4$ and degree $-2$, the content $c^*$, with no $W$ index; $k\ge5$ is excluded by the bound. Weight-$3$ operators $B_w$, $\bar F_w$ along $\xi$: $k=3$ requires weight $\tfrac92$ at degree $-2$, and no translation-invariant content exists. The enumeration is machine-checked.
+\end{proof}
+
+\begin{theorem}[Recovery of the twisted $Q_1$]
+\label{thm:o-twist}
+Let $\xi=u\otimes w$ (or $x$ as in Lemma \ref{lem:o-ev}). The products of cochain-valued functionals in $W(P,J)$ and the $C^\bullet(\mathfrak{psl}(4|4))$-linear extension of $L_1$ carry the sign rule of [ch08, Thm c8-L (iv)] with total parities, for which $r_\xi$ is multiplicative (Lemma \ref{lem:o-ev}). Assume:
+\begin{itemize}
+\item[(H2)] the one-loop equivariant master equation holds in arities $0,1,2$ along $\xi$ after finite counterterms (arity $\ge3$ along $\Sigma$ is empty by Lemma \ref{lem:o-actiontrunc});
+\item[(H3)] local representatives exist for the operators considered; for (ii) and (iii) on all of $\mathscr O_l$.
+\end{itemize}
+Then:
+\begin{itemize}
+\item[(i)] $Q\big(r_\xi O[\infty]|_{q=1}\big)=\big(Q^\xi_0O+Q^\xi_1(O)\big)[\infty]_\xi+O(\hbar^2)$, where $[\infty]_\xi$ is the construction [ch05, eq:c5-Oinfty] with the interaction $r_\xi(I_{\mathfrak{psl}(4|4)}-F_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon])|_{q=1}$; this is the twisted quantum differential on twisted observables at scale $\infty$, where $\Delta_\infty=0$. At finite $T$ the same statement holds with $Q$ replaced by $Q+\{r_\xi I_{\mathfrak{psl}(4|4)}[T]|_{q=1},-\}_T+\hbar\Delta_T$ and $[\infty]_\xi$ by $[T]_\xi$; the limit $T\to\infty$ is safe along $\xi$ (Theorem \ref{thm:o-ir} (i), (iv)).
+\item[(ii)] $(Q^\xi_0)^2=0$ and $Q^\xi_0\,Q^\xi_1+Q^\xi_1\,Q^\xi_0=0$ on local functionals [ch08, Thm c8-twist].
+\item[(iii)] The induced map $[Q^\xi_1]\colon H(\mathscr O_l,Q^\xi_0)\to H(\mathscr O_l,Q^\xi_0)$ is invariant under the scheme changes (a), (b), (d) with $G$ the coupling direction, and (e) of Proposition \ref{prop:o-laws}; under (d) for every $s$-closed $G$ when moreover (H4) holds: every $s$-closed local cochain of degree $0$ and Weyl weight $4$ lies in $\mathbb C(S-S^{(2)})\oplus\mathbb C\,G_B+\operatorname{Im}s$ (engine E3b, Proposition \ref{prop:o-arity0}). Item (c) of Proposition \ref{prop:o-laws} is a proof plan and enters no statement.
+\item[(iv)] Two one-loop quantisations of the same twisted classical theory whose difference is the $Q^\xi_0$-closed degree-$0$ local functional $D$ have class maps differing by $[\{D,-\}]$. If $D\in\mathbb C\,S^\xi+\operatorname{Im}Q^\xi_0$, the class maps coincide; $\operatorname{Im}Q^\xi_0$ contains $\{S^{(1)}(R_\xi),S^\xi\}=Q^\xi_0S^{(1)}(R_\xi)$ and $r_\xi(G_B)|_{q=1}=-Q^\xi_0S^{(1)}(R_\xi)$, with $R_\xi$ of Proposition \ref{prop:o-laws}.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) By Lemma \ref{lem:o-ev}, $r_\xi$ intertwines $d_{CE}+Q$ with $Q$, the bracket with the bracket and the products of the flow with the products of values, which act on the field dependence of the values and commute with the evaluation of the cochain arguments. Apply $r_\xi$ to \eqref{eq:o-rep} with \eqref{eq:o-L1}; at finite $T$ apply it to \eqref{eq:o-rep} with \eqref{eq:o-dT}. (ii) With the bracket of [ch01, Def c1-bracket], $\mathrm{ad}_f\mathrm{ad}_f=-\tfrac12\mathrm{ad}_{\{f,f\}}$ for even $f$ (checked in a finite-dimensional model), so $(Q^\xi_0)^2=-\tfrac12\{\{S^\xi,S^\xi\},-\}=0$ by Lemma \ref{lem:o-ev}; the second identity is $r_\xi$ of \eqref{eq:o-cocycle}, which by (H3) and Proposition \ref{prop:o-trunc} for the higher components is an identity of finite sums. (iii) By \eqref{eq:o-twistlaws} each listed change adds to $Q^\xi_1$ a term $aQ^\xi_0$ or a graded commutator $[Q^\xi_0,\Psi]$, and both induce $0$ on $H(Q^\xi_0)$: $\pi_0Q^\xi_0=0$, $Q^\xi_0\iota_0=0$ [targets, Lemma lem:inv]. Under (H4) a general closed $G$ is a combination of the coupling direction, $G_B$ and $s\chi$, and $r_\xi(s\chi)=Q^\xi_0r_\xi(\chi)$ gives $-\{Q^\xi_0r_\xi\chi,-\}=-[Q^\xi_0,\{r_\xi\chi,-\}]$. (iv) Changing the order-$\hbar$ interaction by $-\hbar D$ changes $\hbar L_1$ by $-\hbar\{D,-\}$ (Proposition \ref{prop:o-laws}, item (d)); $\{D,-\}$ commutes with $Q^\xi_0$ up to sign because $Q^\xi_0D=0$; for $D=S^\xi$ it is $Q^\xi_0$, for $D=Q^\xi_0\chi$ it is $[Q^\xi_0,\{\chi,-\}]$ up to sign, both zero on $H(Q^\xi_0)$. With the bracket of [ch01, Def c1-bracket], $\{\psi,f\}=\{f,\psi\}$ for odd $\psi$ and even $f$, so $\{S^{(1)}(R_\xi),S^\xi\}=Q^\xi_0S^{(1)}(R_\xi)$; $r_\xi(G_B)|_{q=1}=S^{(1)}(\xi)-S^{(2)}(\xi,\xi)=-\{S^{(1)}(R_\xi),S^\xi\}$ by \eqref{eq:o-twistlaws}.
+\end{proof}
+
+\begin{remark}[Transport to the holomorphic letters: an identification]
+\label{rem:o-transport}
+[ESW, Thm 10.9]: the holomorphic twist on $\mathbb R^4$ is perturbatively equivalent to the BF theory with fields $T^*[-1]\mathrm{Map}(\mathbb C^2_{Dol},B\mathfrak g)$, $U(2)$-equivariantly. Its proof organises the fields, in ESW's own symbols, into the $U(2)$-equivariant collections listed after it, and eliminates trivial pairs [ESW, proof of Thm 10.1, Props 1.21, 1.23]. The quasi-isomorphism $\Phi$ of local-operator complexes that transports $[Q^\xi_1]$ to the $Q_0$-cohomology of the holomorphic letters $c,\gamma,\beta,b$ of [BK] is to be derived from these collections, with the regrading to [BK]'s letters written out, before any numerical comparison. The letter table of [targets, §2.3] is an identification at the level of free $Q^\xi_0$-cohomology, used for comparison.
+\end{remark}
+
+\begin{remark}[Comparison with the twisted computation]
+[BK, (2.42), footnote 22] and [W18, Thm 3.4] quantise the holomorphic theory with the holomorphic gauge fixing and no counterterms; the restriction $r_\xi$ of this chapter uses the untwisted Feynman-gauge propagator and treats $S^{(1)}(\xi)$ as a vertex; the commutator of the linear part of $S^{(1)}(\xi)$ with $Q^{GF}$ is nonzero [ch07, Prop c7-susy], and its effect is carried by the equivariant master equation along $\xi$. By Theorem \ref{thm:o-twist} (iv), agreement at the level of classes holds when the difference of the two quantisations lies in $\mathbb C\,S^\xi+\operatorname{Im}Q^\xi_0$. The twisted BV action [BK, (3.53)] has no coupling constant; loops are counted by $\hbar$ [BK, (1.3)]. The engine checks the agreement on the classes of [targets, T3--T5, T12] (Section 7, E1, E4, E7, E12).
+\end{remark}
+
+\begin{remark}[Reduction of outputs]
+\label{rem:o-exact}
+Outputs are reduced by full $s$-exact cochains: for a local cochain $\chi$, $r_\xi(s\chi)=Q^\xi_0\,r_\xi(\chi)$, with $\chi^{(0)}$, $\chi^{(1)}(\xi)$, $\chi^{(2)}(\xi,\xi)$ all carried along. A term $(Q+\{I,-\})\chi^{(1)}(\xi)$ dropped at arity one alone differs from $Q^\xi_0\chi^{(1)}(\xi)$ by $\{S^{(1)}(\xi),\chi^{(1)}(\xi)\}$ and by $S^{(2)}$ terms of higher arity, which then have to be dropped at arity two with the same $\chi$. The engines record each reduction as the triple $(\chi^{(0)},\chi^{(1)},\chi^{(2)})$.
+\end{remark}
+
+\begin{tabular}{l|l|l}
+target & statement in this chapter & status \\
+\hline
+T1 & Theorem \ref{thm:o-twist} (ii); $[Q^\xi_1]^2=0$ on $H(Q^\xi_0)$ needs order $\hbar^2$ & proved under (H2), (H3) / Step 5 \\
+T2 & pair rule and single letters: families of Proposition \ref{prop:o-laws} & engine E6 \\
+T3 & Proposition \ref{prop:o-planevanish} & proved under [ch07, Prop c7-select] \\
+T4 & arity two along $(\xi,\xi)$, Proposition \ref{prop:o-arity2} & engine E7 \\
+T5 & Proposition \ref{prop:o-konishi}: $c_K$ is a scheme-dependent pair value & engine E1, E2 \\
+T6 & arity one with field representatives & engine E7 \\
+T7, T8, T9, T11 & classes, Theorem \ref{thm:o-invariants} & from E1--E7 \\
+T10 & $(\xi,\eta)$ component with $[\xi,\eta]=0$, Proposition \ref{prop:o-S} (iii) & engine E8 \\
+T12 & rank-$(1,1)$ element $x=\xi+\bar\xi'$: $[Q^x_1]=0$ on $H(Q^x_0)$ & engine E12 \\
+\end{tabular}
+\tabcaption{The targets of [targets, Section 3] and where they are reproduced.}
+
+\section{Renormalisation freedom}
+
+\begin{definition}[The outer derivation]
+\label{def:o-B}
+$B$ is the even linear map of $\mathfrak{psl}(4|4)$ of [ch08, Def c8-B]: $0$ on the even part, $+1$ on $S_+\otimes W\subset\Sigma$ and on $S_-\otimes W\subset\Sigma^*$, $-1$ on $S_-\otimes W^*\subset\Sigma$ and on $S_+\otimes W^*\subset\Sigma^*$; it is induced by the bracket with $\operatorname{diag}(0_4,1_4)$ in $\mathfrak{gl}(4|4)$, equivalently minus the bracket with $\operatorname{diag}(1_4,0_4)$. Two-component: $B$ multiplies $\xi_\alpha{}^i$ and $\bar\eta^{\dot\alpha i}$ by $+1$ and $\bar\xi_{\dot\alpha i}$ and $\eta^\alpha{}_i$ by $-1$; it counts upper minus lower $W$ indices of the odd parameters.
+\end{definition}
+
+\begin{lemma}[$B$ is an outer derivation]
+\label{lem:o-Bouter}
+$B$ is an even derivation of $\mathfrak{psl}(4|4)$, and $B\neq\mathrm{ad}_y$ for every $y\in\mathfrak{psl}(4|4)$ [ch08, Prop c8-B].
+\end{lemma}
+
+\begin{proof}
+On odd $x,y$ with $B$-values $b_x,b_y$ the derivation rule reads $(b_x+b_y)[x,y]=0$, since $[x,y]$ is even. Brackets within one $B$-eigenspace vanish: $[S_+\otimes W,S_+\otimes W]$ and $[S_-\otimes W^*,S_-\otimes W^*]$ lie in the translations $V\cong S_+\otimes S_-$ and have the Lorentz type $S_\pm\otimes S_\pm$; $[S_+\otimes W,S_-\otimes W]$ and $[S_-\otimes W^*,S_+\otimes W^*]$ have the Lorentz type $S_+\otimes S_-$, which does not occur in $[\Sigma,\Sigma^*]\subset\mathfrak{so}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)\oplus\mathbb C\Delta$; $[S_+\otimes W^*,S_+\otimes W^*]$ and $[S_-\otimes W,S_-\otimes W]$ vanish by $\Gamma|_V$ [ch02, Prop c2-special]. The even part preserves the eigenspaces: translations map $\Sigma^*\to\Sigma$ by $\rho(b)$, special conformal fields $\Sigma\to\Sigma^*$ by $\rho(x)$, both keeping the $W$ factor, and $\mathfrak{so}(V)$, $\Delta$, $\mathfrak{so}(W_{\mathbb R}^\perp)$ preserve each summand. On the blocks of [SW, (17)] the bracket with $\operatorname{diag}(0_4,1_4)$ takes the values of $B$ and the bracket with $\operatorname{diag}(1,-1\,|\,0)$ takes the $\mathrm{ad}_\Delta$-eigenvalues $-2,2,-1,1$ on $P$, $K$, $\Sigma$, $\Sigma^*$ (machine-checked block table). If $B=\mathrm{ad}_y$, then $y$ centralises the semisimple even part, and $\Sigma\oplus\Sigma^*$ contains no invariant vector; hence $y=0$, while $B\neq0$.
+\end{proof}
+
+\begin{proposition}[Transformation laws]
+\label{prop:o-laws}
+Keep the labels $O$ of the operators fixed. Under the following changes of scheme, $L_1$ changes as stated [ch08, Prop c8-laws] (shuffle signs of [ch02, Def c2-dce]).
+\begin{itemize}
+\item[(a)] Field redefinition: $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,s\phi$, $\phi$ a local cochain of degree $-1$ and Weyl weight $4$: $L_1\mapsto L_1+[s,\mathrm{ad}_\phi]=L_1-\mathrm{ad}_{s\phi}$. On an arity-zero $O$ the arity-one change along $x_1$ is $-\big\{(Q+\{I,-\})\phi^{(1)}(x_1)+(-1)^{1+|x_1|}\{S^{(1)}(x_1),\phi^{(0)}\},\,O\big\}$. For the exact direction $\phi=\kappa S^{(1)}(\Delta)$, $\kappa$ a number, $\phi^{(0)}$ depends on the position, is invariant under the compact forms of $\mathrm{Spin}(4)\times SU(4)$ and of the gauge group, and $(s\phi)^{(0)}=\kappa\{S,S^{(1)}(\Delta)\}=0$: the components of every operator along $P_b$, $K_b$, $\xi\in\Sigma$, $\eta\in\Sigma^*$ change by $-2\kappa\hbar$, $2\kappa\hbar$, $-\kappa\hbar$, $\kappa\hbar$ times the classical transformation $\mathrm{ad}_{S^{(1)}(x)}O$, and $L_1^{(0)}$, $D_1$, $M_1$, $R_1$ are unchanged.
+\item[(b)] Finite parts of the operators: $\psi\mapsto\psi+\psi'$ [ch08, Def c8-renorm]: $L_1\mapsto L_1+[s,\psi']$. For a family $\mathcal F$ of local operators stable under $\mathrm{ad}_{S^{(1)}(\Delta)}$ and $\mathrm{ad}_{S^{(1)}(P_b)}$, with a projection $\pi_{\mathcal F}$ commuting with both, and a number $c$, the finite part $\psi'=\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\circ\pi_{\mathcal F}$ changes the components along $P_b$, $K_b$, $\xi$, $\eta$ of the operators of $\mathcal F$ by $-c\hbar$, $c\hbar$, $-\tfrac c2\hbar$, $\tfrac c2\hbar$ times the classical transformation, and along $\xi$, $\eta$ in addition by $\tfrac c2\hbar\,\mathrm{ad}_{S^{(1)}(\Delta)}(1-\pi_{\mathcal F})\mathrm{ad}_{S^{(1)}(x)}O$ when $\mathrm{ad}_{S^{(1)}(x)}$ leaves $\mathcal F$; it leaves $D_1$, $M_1$, $R_1$ unchanged and is compatible with the reflection of [ch08, Thm c8-fields] for real $c$.
+\item[(c)] Gauge-fixing operator (proof plan): a smooth family $Q^{GF}_t$ with $[Q,Q^{GF}_t]$ generalised Laplacians commuting with $Q$ and covariant under translations, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$ is expected to change $L_1$ by $[s,\Psi]$ plus changes of types (a), (b), (d).
+\item[(d)] Closed finite counterterm $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,a\,G$ with $sG=0$: $L_1\mapsto L_1-a\,\{G,-\}$. The direction of the coupling is
+\begin{equation}
+G=S-S^{(2)}=\frac{d}{d\mu}\Big|_{\mu=1}\big(\mu S+S^{(1)}+\mu^{-1}S^{(2)}\big),
+\label{eq:o-coupling}
+\end{equation}
+since $\mu S+S^{(1)}+\mu^{-1}S^{(2)}$ solves [ch02, eq:c2-mc] for every $\mu$; it changes $\hbar L_1^{(0)}$ by $-a\hbar\{S,-\}=-a\hbar(Q+\{I,-\})$, which vanishes on gauge-invariant $O$, leaves $L_1^{(1)}$ unchanged and changes $\hbar L_1^{(2)}(x_1,x_2)$ by $+a\hbar\,\mathrm{ad}_{S^{(2)}(x_1,x_2)}$.
+\item[(e)] The outer direction $G_B$ of Proposition \ref{prop:o-GB}, $F_{\mathfrak{psl}(4|4)}\mapsto F_{\mathfrak{psl}(4|4)}+\hbar\,a\,G_B$: $L_1\mapsto L_1-a\{G_B,-\}$; on an arity-zero $O$ the arity-one change of $\hbar L_1$ along a $B$-eigenvector $x_1$ with eigenvalue $b$ is $-a\hbar b\,\mathrm{ad}_{S^{(1)}(x_1)}O$, the arity-two change along $B$-eigenvectors $x_1,x_2$ is $-a\hbar(b_1+b_2)\,\mathrm{ad}_{S^{(2)}(x_1,x_2)}O$, and $L_1^{(0)}$ is unchanged.
+\end{itemize}
+On the twisted differential, with $N:=\{S^{(1)}(R_\xi),-\}$ for $R_\xi\in\mathfrak{so}(W_{\mathbb R}^\perp)$ with $[R_\xi,\xi]=\xi$ (two-component $r^i{}_j=\tfrac43(w^in_j-\tfrac14\delta^i_j)$) [ch08, Thm c8-twist]:
+\begin{equation}
+\begin{aligned}
+&\text{(a), (b)}:\ \hbar Q^\xi_1\mapsto\hbar Q^\xi_1+\hbar[Q^\xi_0,\Psi^\xi],\qquad \text{(d) with \eqref{eq:o-coupling}}:\ \hbar Q^\xi_1\mapsto\hbar Q^\xi_1-a\hbar\,Q^\xi_0-a\hbar\,[N,Q^\xi_0],\\
+&\text{(e)}:\ \hbar Q^\xi_1\mapsto\hbar Q^\xi_1+a\hbar\,[N,Q^\xi_0],\qquad [N,Q^\xi_0]=\big\{-S^{(1)}(\xi)+S^{(2)}(\xi,\xi),-\big\},
+\end{aligned}
+\label{eq:o-twistlaws}
+\end{equation}
+and $-S^{(1)}(\xi)+S^{(2)}(\xi,\xi)$ is the image of $S^\xi$ under the derivation that multiplies a functional of degree $k$ by $k$.
+\end{proposition}
+
+\begin{proof}
+(a) At order $\hbar$, $O[T]$ changes by minus the tree insertion of $\hbar s\phi$ [ch06, Def c6-tree]. The equivariant form of [ch06, Lemma c6-bvexact] gives, for odd $\phi$, $\mathrm{tree}(s\phi,O)=d_T\,\mathrm{tree}(\phi,O)-\{\phi,O\}[T]+\mathrm{tree}(\phi,sO)$; hence the local representative changes by $\hbar\big(s\{\phi,O\}-\{\phi,sO\}\big)=-\hbar\{s\phi,O\}$ (checked with the bracket of [ch01, Def c1-bracket] in a finite-dimensional model, 17 of 17 samples). The arity-one part of $s\phi$ along $x_1$ is $(Q+\{I,-\})\phi^{(1)}(x_1)+(-1)^{1+|x_1|}\{S^{(1)}(x_1),\phi^{(0)}\}$, the term $d_{CE}\phi^{(0)}$ being zero in arity one and the sign that of the $(1,0)$ shuffle. For $\phi=\kappa S^{(1)}(\Delta)$: $\{S,S^{(1)}(\Delta)\}=0$ is the arity-one component of [ch02, eq:c2-mc]; conjugation by $1+\hbar\,\mathrm{ad}_\phi$ is the finite part $\psi'=\kappa\,\mathrm{ad}_{S^{(1)}(\Delta)}$ on all operators, and by [ch08, Cor c8-homotopy (ii)] modulo $\hbar$, with $S^{(2)}(x,\Delta)=0$, $[\mathrm{ad}_{S^{(1)}(x)},\kappa\,\mathrm{ad}_{S^{(1)}(\Delta)}]=-\kappa\,\mathrm{ad}_{S^{(1)}([x,\Delta])}=\kappa e_x\,\mathrm{ad}_{S^{(1)}(x)}$, with $e_x$ the $\mathrm{ad}_\Delta$-eigenvalue $-2,2,-1,1,0$ of $P_b,K_b,\xi,\eta$ and of $\Delta$, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$ (Lemma \ref{lem:o-Bouter}). On scalar densities of weight $w$, with $\{S^{(1)}(v),\int\omega\,f\}=\int\omega\,(v\cdot\partial f+\tfrac w4\operatorname{div}v\,f)$ and composition reversing the order of the density operators, the even multiples $-2\kappa$, $2\kappa$, $0$, $0$ along $P_b$, $K_b$, $\mathfrak{so}(V)$, $\Delta$ are checked in exact symbolic algebra. (b) $O[T]'=O[T]+\hbar\psi'(O)[T]$, $d_T\psi'(O)[T]=(s\psi'(O))[T]+O(\hbar)$, and $L(O)[T]'=L(O)[T]+\hbar\psi'(sO)[T]$. For $\psi'=\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$ the computation of (a) applies on $\mathcal F$; for odd $x$ the bracket $\mathrm{ad}_{S^{(1)}(x)}$ may raise the number of letters (the cubic part of $\tfrac12(\rho(F_A)\xi,\lambda^*)$), which gives the extra term. $\mathrm{ad}_{S^{(1)}(\Delta)}$ acts on densities of weight $w$ as $2(x\cdot\partial+w)$, which commutes with the derivatives of the density and therefore defines a map of local functionals $\int\omega\,f$, and which commutes with the reflection $\Theta_n$, a linear isometry fixing the origin and preserving the weights; for antilinear $\Theta_n$ this gives compatibility exactly for real $c$. (d) For even $G$ with $sG=0$, differentiating the flow along $J\mapsto J-\hbar aG$ gives $d_T\,\mathrm{tree}(G,O)=\{G,O\}[T]+\mathrm{tree}(G,sO)$ (6 of 6 samples in the model); the rest is as in (a). The family $\mu S+S^{(1)}+\mu^{-1}S^{(2)}$: by [ch02, Lemma c2-components] the arity-$n$ component of the Maurer--Cartan equation for $\sum_kc_kS^{(k)}$ is multiplied by $c_0c_n$, $c_{n-1}$ and $c_jc_{n-j}$ in its three kinds of terms; with $c_0=\mu$, $c_1=1$, $c_2=\mu^{-1}$, $c_{k\ge3}=0$ every product in arities $1,2,3$ is $1$, $\mu$, resp.\ $\mu^{-1}$. The components of $-a\{G,-\}$: $G^{(0)}=S$, $G^{(1)}=0$, $G^{(2)}=-S^{(2)}$. (e) Proposition \ref{prop:o-GB}. Twisted forms: $r_\xi(G)|_{q=1}=S+\tfrac12S^{(2)}(\xi,\xi)=S^\xi-S^{(1)}(\xi)+S^{(2)}(\xi,\xi)$; [ch02, Lemma c2-components] with $(R_\xi,\xi)$ and $(R_\xi,\xi,\xi)$ gives $\{S^{(1)}(R_\xi),S^{(1)}(\xi)\}=-S^{(1)}(\xi)$, $\{S^{(1)}(R_\xi),S^{(2)}(\xi,\xi)\}=-2S^{(2)}(\xi,\xi)$, $\{S^{(1)}(R_\xi),S\}=0$, hence $NS^\xi=-S^{(1)}(\xi)+S^{(2)}(\xi,\xi)$ and $[N,Q^\xi_0]=\{NS^\xi,-\}$, so $\{r_\xi(G),-\}=Q^\xi_0+[N,Q^\xi_0]$; $r_\xi(G_B)|_{q=1}=S^{(1)}(\xi)-\tfrac12\cdot2S^{(2)}(\xi,\xi)=-NS^\xi$. The degrees of $S$, $S^{(1)}(\xi)$, $S^{(2)}(\xi,\xi)$ are $0,-1,-2$. (c) Proof plan: Duhamel's formula for $\frac{d}{dt}\int_\varepsilon^TQ^{GF}_te^{-sH_t}ds$ splits $\frac{d}{dt}P_t(\varepsilon,T)$ into $(Q\otimes1+1\otimes Q)$ of a kernel and kernels at Schwinger times $\varepsilon$ and $T$; the first is a homotopy of the flow, the second a UV-boundary term whose limit is local and is to be absorbed by (a), (b), (d), the third a change of the endpoint data [C07, §1.10].
+\end{proof}
+
+\begin{proposition}[The outer direction $G_B$]
+\label{prop:o-GB}
+Put $G_B:=\frac{d}{dt}\big|_{t=0}\big(e^{tB}\big)^*S_{\mathfrak{psl}(4|4)}$ [ch08, Def c8-B], i.e.
+\[
+G_B^{(0)}=0,\qquad G_B^{(1)}(x)=S^{(1)}(Bx),\qquad G_B^{(2)}(x_1,x_2)=S^{(2)}(Bx_1,x_2)+S^{(2)}(x_1,Bx_2),\qquad G_B^{(k\ge3)}=0,
+\]
+two-component: $G_B^{(1)}$ is $S^{(1)}$ with $(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i},\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$ replaced by $(\xi_\alpha{}^i,-\bar\xi_{\dot\alpha i},-\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$, zero on even generators, and $G_B^{(2)}$ is $\pm2S^{(2)}$ on pairs from one $B$-eigenspace and $0$ on pairs from different ones; along $\xi=u\otimes w$, $G_B^{(1)}(\xi)$ is \eqref{eq:o-S1xi} and $G_B^{(2)}(\xi,\xi)=-\int(u_\alpha w^i\lambda^{*\alpha}{}_i,u_\beta w^j\lambda^{*\beta}{}_j)$.
+\begin{itemize}
+\item[(i)] $sG_B=0$, $G_B$ has degree $0$ and Weyl weight $4$.
+\item[(ii)] $G_B\notin\mathbb C(S-S^{(2)})+\operatorname{Im}s$ on local cochains.
+\item[(iii)] Under $F\mapsto F+\hbar aG_B$: $Q_1\mapsto Q_1-a\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$ on $S_+\otimes W$ and $Q_1\mapsto Q_1+a\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$ on $S_-\otimes W^*$; $S_1\mapsto S_1+a\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$ on $S_+\otimes W^*$ and $S_1\mapsto S_1-a\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$ on $S_-\otimes W$; $D_1$, $K_1$, $P_1$, $M_1$, $R_1$ and $L_1^{(0)}$ are unchanged; along $(\xi,\xi)$ the arity-two component of $\hbar L_1$ changes by $-2a\hbar\,\mathrm{ad}_{S^{(2)}(\xi,\xi)}$; twisted, $\hbar Q^\xi_1\mapsto\hbar Q^\xi_1+a\hbar[N,Q^\xi_0]$. Two-component: the components along $Q^i_\alpha$ and $\bar S^{\dot\alpha i}$ change by $-a\hbar$, those along $\bar Q_{\dot\alpha i}$ and $S^\alpha{}_i$ by $+a\hbar$ times the classical transformation.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $e^{tB}$ is a family of automorphisms of $\mathfrak{psl}(4|4)$ (Lemma \ref{lem:o-Bouter}); pulling back cochains by an automorphism commutes with $d_{CE}$ and with the bracket of values, so $(e^{tB})^*S_{\mathfrak{psl}(4|4)}$ solves [ch02, eq:c2-mc] for every $t$, and its derivative at $t=0$ is $s$-closed. $B$ is even and commutes with $\Delta$, which fixes degree and weight. (ii) Suppose $G_B=a(S-S^{(2)})+s\phi$ with $\phi$ local of degree $-1$. Along a translation, $0=G_B^{(1)}(P_b)=(s\phi)^{(1)}(P_b)=(Q+\{I,-\})\phi^{(1)}(P_b)-\{S^{(1)}(P_b),\phi^{(0)}\}$, so $\{S^{(1)}(P_b),\phi^{(0)}\}$ is $(Q+\{I,-\})$-exact for every $b$. $\{S^{(1)}(P_b),-\}$ acts on the explicit polynomial dependence on the position as $-\partial_b$, and $Q+\{I,-\}$ preserves the degree in the position (it acts on the field dependence of the density at a point); if $\phi^{(0)}_m$ is the part of top degree $m\ge1$ in the position, $\partial_b\phi^{(0)}_m=(Q+\{I,-\})\chi_b$ with $\chi_b$ of degree $m-1$, and $m\phi^{(0)}_m=\sum_bx^b\partial_b\phi^{(0)}_m=(Q+\{I,-\})\big(\sum_bx^b\chi_b\big)$. Induction on $m$ replaces $\phi$ by $\phi-s\chi$ with $\chi$ local of degree $-2$ and $\phi^{(0)}$ translation invariant, and $s\phi$ is unchanged. ($\phi^{(0)}=S^{(1)}(\Delta)$ is excluded at this step: $\{S^{(1)}(P_b),S^{(1)}(\Delta)\}=-2S^{(1)}(P_b)$ is not $(Q+\{I,-\})$-exact.) Take the part of degree zero in the position of the arity-one component along $\xi\in S_+\otimes W$: $G^{(1)}=0$ for the coupling direction, so $S^{(1)}(\xi)=\{S^{(1)}(\xi),\phi^{(0)}\}+(Q+\{I,-\})\phi^{(1)}(\xi)_0$, with $\phi^{(1)}(\xi)_0$ translation invariant of degree $-2$ and Weyl weight $\tfrac92$; no such functional exists (Lemma \ref{lem:o-actiontrunc}: $m(2)=4$, and no field has weight $\tfrac12$), so $S^{(1)}(\xi)=\{S^{(1)}(\xi),\phi^{(0)}\}$ for all $\xi\in S_+\otimes W$. Averaging over the compact forms of $\mathrm{Spin}(4)\times SU(4)$ and of the gauge group, the translation-invariant $\phi^{(0)}$ may be taken invariant: by [ch04, Lemma c4-enumeration] and the weight count (three legs need weight $\ge5$) it is a combination $\sum_fa_f\int(f,f^*)$ of the five field-counting functionals of Proposition \ref{prop:o-arity0}, and $\{S^{(1)}(\xi),\phi^{(0)}\}$ multiplies each term of \eqref{eq:o-S1xi} by the difference of the weights $a_f$ of its field and antifield. The four linear terms $(\Gamma(\xi,\lambda)|_V,A^*|_V)$, $(\Gamma(\xi,\lambda)|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(\rho(dA|_V)\xi,\lambda^*)$, $(\rho(dA|_{W_{\mathbb R}^\perp})\xi,\lambda^*)$ give the factors $a_{\lambda,S_-\otimes W^*}-a_{A|_V}$, $a_{\lambda,S_+\otimes W}-a_{A|_{W^\perp}}$, $a_{A|_V}-a_{\lambda,S_+\otimes W}$, $a_{A|_{W^\perp}}-a_{\lambda,S_-\otimes W^*}$, which must all equal $1$; their sum is $0$, a contradiction. The linear system with $\phi^{(0)}=c\,S^{(1)}(\Delta)+\sum_fa_f\int(f,f^*)$ has the solution $c=1$, all $a_f$ equal, along $S_+\otimes W$ alone, none along both blocks of $\Sigma$, and the translation step gives $c=0$ (exact solution of the linear systems). (iii) Item (e) of Proposition \ref{prop:o-laws} with $b=\pm1$ on the odd summands and $b=0$ on the even part; along $(\xi,\xi)$, $b_1+b_2=2$; twisted, $r_\xi(G_B)|_{q=1}=-NS^\xi$.
+\end{proof}
+
+\begin{remark}[The supercharge renormalisation and the R-rotation]
+\label{rem:o-alpha}
+The arity-one finite counterterm $a\,S^{(1)}(\xi)$ along $\xi$ with its arity-two partner $2a\,S^{(2)}(\xi,\xi)$, forced by the $(\xi,\xi)$ component of the master equation, is the restriction to $\xi$ of $G_B$, and also of the exact cocycle $\frac{d}{dt}|_{t=0}(e^{t\,\mathrm{ad}R_\xi})^*S_{\mathfrak{psl}(4|4)}$ (pull-backs by inner automorphisms are $s$-exact). Twisted, both act by $\hbar Q^\xi_1\mapsto\hbar Q^\xi_1+a\hbar[N,Q^\xi_0]$: at first order this is conjugation by the R-rotation $\alpha$ of [ESW, Def 2.18], under which $S^{(k)}(\xi,\dots,\xi)$ has weight $k$ and $S$ weight $0$, and whose derivation is $-N$. The parameter $a$ of [targets, F1], defined by adding $a\hbar S^{(1)}(\xi)$ to the action, is minus the $a$ of Proposition \ref{prop:o-laws} (e): since $J=I_{\mathfrak{psl}(4|4)}-F_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$, the change $F\mapsto F+\hbar aG_B$ changes the twisted action by $-a\hbar\big(S^{(1)}(\xi)-S^{(2)}(\xi,\xi)\big)$. On untwisted letters $[N,Q^\xi_0]=-\mathrm{ad}_{S^{(1)}(\xi)}+\mathrm{ad}_{S^{(2)}(\xi,\xi)}$: it vanishes on $c$ and on $A_{ij}w^j$, and on $(u'\lambda^i)$ modulo $w^i$ it is $-\tfrac14[A^{ik},A_{kj}w^j]$, the image of the term $\tfrac12\varepsilon_{IJK}[\gamma^J,\gamma^K]$ of [BK, (3.50)] up to the sign of the letter map. Both the coupling direction and $G_B$ are of the form of [targets, Lemma lem:inv].
+\end{remark}
+
+\begin{remark}[$G_B$ and the conjugation of radial quantisation]
+\label{rem:o-GBdagger}
+$B$ takes opposite values on $\xi\in S_+\otimes W$ and on the special supercharges $S_+\otimes W^*$ conjugate to it under $X\mapsto X^\dagger$ [ch08, Thm c8-dag (i)], and $B$ anticommutes with $\dagger_n$. Under $F\mapsto F+\hbar aG_B$ the corrections change as $Q_1\mapsto Q_1-a\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$, $S_1\mapsto S_1+a\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$; [ch08, Cor c8-gram] preserves the relation exactly when $\bar a=-a$, which is the condition for $aG_B$ to be reflection compatible. The conjugation fixes the real part of the outer direction.
+\end{remark}
+
+\begin{proposition}[The arity-zero freedom in the equivariant scheme]
+\label{prop:o-arity0}
+\begin{itemize}
+\item[(i)] An arity-zero finite counterterm $G^{(0)}$ is admissible in the equivariant scheme exactly when it extends to an $s$-closed cochain $G^{(0)}+G^{(1)}+G^{(2)}$, i.e.\ $\{S^{(1)}(x_1),G^{(0)}\}=(-1)^{|x_1|}(Q+\{I,-\})G^{(1)}(x_1)$ for every $x_1\in\mathfrak{psl}(4|4)$, and the higher components.
+\item[(ii)] Non-equivariant, at cubic order: let the three-leg part of $F^{(0)}_{\mathfrak{psl}(4|4)}$ range over $\operatorname{span}\{H_1,\dots,H_6,H_7,H_{8+},H_{8-}\}$, with $H_1,\dots,H_6$ of [Part C], $H_7=\tfrac12\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))$ and $H_{8+}+H_{8-}=\tfrac12\int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))$ split by the chirality of the two $\lambda$ ($S_+\otimes W$, resp.\ $S_-\otimes W^*$); $QH_7=-G_5$ and $QH_{8\pm}=0$ [Part C, Prop prop:s2c-QH and the proof of Cor cor:s2c-QI3]. The closed directions, the solutions $(\beta_1,\dots,\beta_4,h)$ of the homogeneous cubic equation $\sum_i\beta_i\{I_3,B_i\}+Qh=0$, form a space $\mathcal C$ of dimension $9$: $8$ parity-even, $1$ parity-odd ($H_{8+}-H_{8-}$). $Q$ on the nine cubic structures has a five-dimensional kernel, spanned by $H_1-4H_3-2H_6$, $H_2-2H_4$, $H_5+H_7$, $H_{8+}$, $H_{8-}$. The Part-C family ($h_7=h_{8\pm}=0$) is six-dimensional.
+\item[(iii)] The arity-zero parts of $s\phi$ for the five field-counting functionals
+\[
+\int(A|_V,A^*|_V),\quad \int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}),\quad \int(\lambda^*,\lambda)\big|_{S_+\otimes W},\quad \int(\lambda^*,\lambda)\big|_{S_-\otimes W^*},\quad \int(c^*,c)
+\]
+and the coupling direction $S$ span a six-dimensional subspace $\mathcal V\subset\mathcal C$ (five parity-even, one parity-odd), $\mathcal V$ meets the Part-C family in dimension $3$, $\mathcal C$ is the sum of $\mathcal V$ and the Part-C family, and $\mathcal C/\mathcal V$ has dimension $3$, all parity even, with representatives $(\beta_1,h_1)=(1,1)$, $(\beta_2,h_4)=(\tfrac14,1)$, $(\beta_3,h_5)=(-\tfrac12,1)$. Modulo $\mathcal V$, the Yukawa direction $H_{8+}+H_{8-}$ equals $-\tfrac12$ times the first representative, and $H_5+H_7$ equals $\tfrac12$ times the first plus the third.
+\item[(iv)] Under hypothesis (H4) of Theorem \ref{thm:o-twist}, an admissible $G^{(0)}$ is the arity-zero part of $cG+s\phi+c'G_B$, i.e.\ $cS+(s\phi)^{(0)}$; the three directions of $\mathcal C/\mathcal V$ then admit no $s$-closed $\mathfrak{psl}(4|4)$-completion. Deciding this is the content of E3b.
+\end{itemize}
+Two-component [ch08, Def c8-twocomp, Prop c8-twocomp]: the field-counting functionals are $\int(A_m,A^*_m)$, $\tfrac14\int(A^{ij},A^*_{ij})$, $\int(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)$, $-\int(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})$, $\int(c^*,c)$; $H_7=\int i\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}[A_m,\lambda_\alpha{}^i]\big)$, $H_{8+}=\tfrac12\int\big(\lambda_\alpha{}^j,\varepsilon^{\alpha\beta}[A_{ji},\lambda_\beta{}^i]\big)$, $H_{8-}=-\tfrac12\int\big(\bar\lambda_{\dot\alpha j},\varepsilon^{\dot\alpha\dot\beta}[A^{ji},\bar\lambda_{\dot\beta i}]\big)$. The forced term $\tfrac{27}{16}\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int(d^*A|_V,d^*A|_V)$ [ch04, Thm c4-finite] has $\{S^{(1)}(\xi),-\}$- and $\{S^{(1)}(K_b),-\}$-variations [ch04, Prop c4-K] that enter the arity-one obstructions along $\xi$ and $K_b$ as $\{S^{(1)}(x_1),F^{(0)}_{\mathfrak{psl}(4|4)}\}$.
+\end{proposition}
+
+\begin{proof}
+(i) The equivariant one-loop master equation changes by $-\hbar\,sG$ under $F\mapsto F+\hbar G$; its arity-one component is the displayed condition, with the shuffle sign of Proposition \ref{prop:o-laws} (a). (ii), (iii) The matrices of $Q$ on the cubic structures and of $\{I_3,-\}$ on the $\beta$-directions are those of [Part C]; the field-counting vectors are fixed by closedness, which also fixes the relative sign of their quadratic and cubic parts; the parity of [Part C] exchanges $H_{8+}$ with $H_{8-}$ and the two gaugino countings and fixes the rest. All dimensions and representatives are exact rational linear algebra. (iv) Under (H4) a closed $G$ is $cG+s\phi+c'G_B$, $G_B^{(0)}=0$, and the weight-$4$, degree-$-1$, translation-invariant local functionals with two legs are the five listed [ch04, Lemma c4-enumeration], with three legs none [Part C, Thm thm:s2c-solve]; position-dependent $\phi^{(0)}$ of weight $4$ contribute $(s\phi)^{(0)}=\{S,\phi^{(0)}\}$, whose part of degree zero in the position is that of a translation-invariant functional, since $\{S,-\}$ preserves the degree in the position.
+\end{proof}
+
+\begin{proposition}[The translation component and the condition $P_1=0$]
+\label{prop:o-P1}
+Let $O$ satisfy $(Q+\{I,-\})O=0$, and let $f_P$ be the coefficient, in units, of $S^{(1)}(P_b)$ in $F^{(1)}_{\mathfrak{psl}(4|4)}(P_b)$.
+\begin{itemize}
+\item[(i)] [delta theory, Prop prop:d-P]: the insertion of $S^{(1)}(P_b)$ on a cycle is the composite $A|_V$--$c$ line with kernel $P\star\,v.\,P\star=v.\,(P\star)^2$, $(P\star)^2=(Q^{GF})^2(\int e^{-tH}dt)^2\neq0$ [ch07, Rem c7-internal], and
+\[
+P_1(O)=-f_P\,\mathrm{ad}_{S^{(1)}(P_b)}O-\{G_{P_b},O\}+R_{O,v}+[(Q+\{I,-\}),\psi]_{P_b}(O),
+\]
+with $G_{P_b}$ the $s$-closed part of $F^{(1)}_{\mathfrak{psl}(4|4)}(P_b)$ and $R_{O,v}$ the composite remainder of [delta theory, Def def:d-RO] built with $v.\,(P\star)^2$. Single composite graphs have nonlocal $Q$-images; the complete set of composite graphs has a local limit [delta theory, Prop prop:d-T (iii)].
+\item[(ii)] In the translation-covariant scheme ($F^{(1)}_{\mathfrak{psl}(4|4)}(P_b)=0$, $\psi$ translation covariant) the three evaluations of Part D4 give, on the scalar bilinears $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ (traceless and trace), $P_1(O)=-\tfrac13\,\mathrm{ad}_{S^{(1)}(P_b)}O$ in units, a local rescaling carried entirely by the composite graphs; on the letters $P_1=0$. With $f_P$: $-(\tfrac13+f_P)$ on the scalar bilinears, $-f_P$ on the letters.
+\item[(iii)] $P_1=0$ is a renormalisation condition. The exact direction $\kappa S^{(1)}(\Delta)$ of Proposition \ref{prop:o-laws} (a) adds $2\kappa\hbar\,S^{(1)}(P_b)$ to $F^{(1)}_{\mathfrak{psl}(4|4)}(P_b)$ and changes $P_1$ of every operator by $-2\kappa\hbar$ times the classical transformation, and therefore leaves the difference between bilinears and letters. On a family $\mathcal F$ on which $P_1\equiv p\,\mathrm{ad}_{S^{(1)}(P_b)}$ modulo $\Lambda^{(0)}$-exact terms, the finite part $\psi'=\tfrac p2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$ of Proposition \ref{prop:o-laws} (b) gives $P_1=0$ on $\mathcal F$ and changes $K_1$, $Q_1$, $S_1$ on $\mathcal F$ by $+p$, $-\tfrac p2$, $+\tfrac p2$ times the classical transformations; it is reflection compatible for real $p$. With $p=-\tfrac13$ on the scalar bilinears and $0$ on the letters, $K_1$, $Q_1$, $S_1$ on the bilinears in the scheme with $P_1=0$ differ from their translation-covariant values by $-\tfrac13$, $+\tfrac16$, $-\tfrac16$ units times the classical transformations.
+\item[(iv)] $R_1=0$ in every $\mathfrak{so}(W_{\mathbb R}^\perp)$-covariant scheme: $S^{(1)}(x)$, $x\in\mathfrak{so}(W_{\mathbb R}^\perp)$, has no insertion on a cycle (Lemma \ref{lem:o-legs}), and the covariance [ch07, Prop c7-cov, eq:c7-flowcov] carries every other graph to the classical transformation. $S^{(1)}(x)$ for $x\in\mathfrak{so}(V)$ contains $(v.A|_V,A^*|_V)$ and enters cycles through the composite line with kernel $v.\,(P\star)^2$; $M_1=0$ is a statement about its composite remainder, and on scalar families the relations of Theorem \ref{thm:o-KD} force its rescaling part to vanish on cohomology.
+\end{itemize}
+Two-component: on $O=\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$ the translation-covariant value is
+\[
+P_1(O)=-\tfrac13\cdot\tfrac1{16}\int\omega\,b^m\partial_m\big(w_1^{ij}A_{ij},w_2^{kl}A_{kl}\big)\quad\text{in units};
+\] the exact direction changes the components along $P_b$, $K_b$ ($v^m=x^2b^m-2(b\cdot x)x^m$), $Q^i_\alpha$, $\bar Q_{\dot\alpha i}$, $S^\alpha{}_i$, $\bar S^{\dot\alpha i}$ by $-2\kappa\hbar$, $2\kappa\hbar$, $-\kappa\hbar$, $-\kappa\hbar$, $\kappa\hbar$, $\kappa\hbar$ times the classical transformation.
+\end{proposition}
+
+\begin{proof}
+(i) [delta theory, Prop prop:d-P]: for a translation $[v.,Q]=[v.,Q^{GF}]=[v.,H]=0$, so $[v.,P\star]=0$ and the proofs along $\Delta$ apply without the scaling terms. (ii) [engine B, part 2]: the translation component of the bilinears is $(1-\tfrac13)$ times $\mathrm{ad}_{S^{(1)}(P_b)}O$ in units; the closed-form subset with $S^{(1)}(P_b)$ on the composite line between two $P$-edges and the special edge between $O$ and an $([A,c],A^*)$ vertex reproduces the full translation part, and the complement is $0$ exactly; engine A, after the correction of its composite term, and the analytic closed form agree on $-(\tfrac13+f_P)$ [compare-delta]. Letters: [delta theory, predictions]. (iii) Proposition \ref{prop:o-laws} (a), (b). (iv) The legs $A^*|_{W_{\mathbb R}^\perp}$ and $\lambda^*$ of $S^{(1)}(x)$, $x\in\mathfrak{so}(W_{\mathbb R}^\perp)$, lie on no edge $P(\varepsilon,T)$, so the second-order term $\tfrac\hbar2\partial_{K''}$ of the conjugation $e^{\hbar\partial_P}S^{(1)}(x)e^{-\hbar\partial_P}$ is absent, and the remaining terms combine by [ch07, eq:c7-flowcov]. $\mathfrak{so}(V)$: Lemma \ref{lem:o-legs} and Theorem \ref{thm:o-KD}.
+\end{proof}
+
+\begin{theorem}[Scheme-independent content]
+\label{thm:o-invariants}
+Under (a), (b), (d) with the coupling direction, and (e) of Proposition \ref{prop:o-laws}:
+\begin{itemize}
+\item[(i)] $[Q^\xi_1]$ on $H(\mathscr O_l,Q^\xi_0)$ is invariant; so are its kernel, image, rank and the lifting statements [targets, T8, Lemma lem:inv]. Under (H4) of Theorem \ref{thm:o-twist} the same holds for (d) with every closed $G$ [ch08, Thm c8-twist].
+\item[(ii)] For a gauge-invariant $O$ with $L_1(O)^{(0)}=0$ in the schemes compared, $D_1(O)$ changes by an $s$-exact local functional under (a) with $\phi$ of Weyl weight $4$, (d), (e), and under (b) when $[\mathrm{ad}_{S^{(1)}(\Delta)},\psi']=0$; the coefficient $\gamma_O$ in $D_1(O)\equiv2\gamma_O\,O$ on cohomology is invariant.
+\item[(iii)] $Q_1$ and $S_1$ change jointly: by $-\{(s\phi)^{(1)}(x_1),-\}$ with the same $\phi$ under (a), in particular by $-\kappa\hbar$ and $+\kappa\hbar$ times the classical transformation for $\phi=\kappa S^{(1)}(\Delta)$; by $[s,\psi']$ with the same $\psi'$ under (b); by $-a\hbar b\,\mathrm{ad}_{S^{(1)}(x_1)}$ with opposite signs on $\xi\in S_+\otimes W$ and on $\eta\in S_+\otimes W^*$ under (e). Their pair values are scheme dependent; for instance $c_K$ of Proposition \ref{prop:o-konishi} changes as $c_K\mapsto c_K-\kappa_Bx$ under $\psi(B_w)=x\,\bar F_w$ and is not an entry of $[Q^\xi_1]$, because $Q^\xi_0O_\zeta=\kappa_BB_w\neq0$.
+\item[(iv)] Write $P_1\equiv p\,\mathrm{ad}_{S^{(1)}(P_b)}$ on a scalar family. Under the hypotheses of Theorem \ref{thm:o-KD}, $K_1(O)+p\,\mathrm{ad}_{S^{(1)}(K_b)}O\equiv\tfrac14\operatorname{div}v\,\gamma_O\,O$ modulo $s$-exact terms; the left side is invariant under the exact direction $\kappa S^{(1)}(\Delta)$ and under the finite parts $\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$, which act on $(P_1,K_1,Q_1,S_1)$ through the $\mathrm{ad}_\Delta$-grading.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Theorem \ref{thm:o-twist} (iii). (ii) The arity-one component along $\Delta$ of $-\mathrm{ad}_{s\phi}(O)$ for a cocycle $O$ is $-\{(Q+\{I,-\})\phi^{(1)}(\Delta),O\}+\{\{S^{(1)}(\Delta),\phi^{(0)}\},O\}$. For $\phi^{(0)}$ of Weyl weight $4$, position-dependent or not, $\{S^{(1)}(\Delta),\phi^{(0)}\}=0$: $S^{(1)}(\Delta)$ acts on a density of total weight $4$ as $2(x\cdot\partial+4)$, an integrated total derivative [ch02, Ex c2-dil]. The first term equals $-(Q+\{I,-\})\{\phi^{(1)}(\Delta),O\}$ on the cocycle $O$, which is $s$-exact. The condition is necessary: $\phi=S^{(1)}(P_b)$, of weight $5$, changes $D_1$ by $2\hbar\,\mathrm{ad}_{S^{(1)}(P_b)}O$. (d) with the coupling direction contributes $-a\{G^{(1)}(\Delta),O\}=0$; (e) contributes $-a\{S^{(1)}(B\Delta),O\}=0$, since $B\Delta=0$. For (b), $[s,\psi']^{(1)}(\Delta)=[\mathrm{ad}_{S^{(1)}(\Delta)},\psi']$. (iii) Proposition \ref{prop:o-laws} (a), (b), (e) with $x_1=\xi$ and $x_1=\eta$, and Proposition \ref{prop:o-GB} (iii). For $c_K$: $(Q+\{I,-\})O_\zeta=0$ by gauge invariance, $\mathrm{ad}_{S^{(2)}(\xi,\xi)}O_\zeta$ is proportional to $(u'^\alpha u_\alpha)A_{ij}w^iw^j=0$, and $\mathrm{ad}_{S^{(1)}(\xi)}O_\zeta=\kappa_BB_w$ (Proposition \ref{prop:o-konishi}). (iv) Theorem \ref{thm:o-KD}; under $\kappa S^{(1)}(\Delta)$, $K_1\mapsto K_1+2\kappa\hbar\,\mathrm{ad}_{S^{(1)}(K_b)}$ and $p\mapsto p-2\kappa\hbar$; under $\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$, $K_1\mapsto K_1+c\hbar\,\mathrm{ad}_{S^{(1)}(K_b)}$ and $p\mapsto p-c\hbar$.
+\end{proof}
+
+\begin{tabular}{l|l|l}
+freedom & $Q_1$ & $S_1$ \\
+\hline
+$\tfrac{27}{16}$ term (forced) & via $\{S^{(1)}(\xi),F^{(0)}_{\mathfrak{psl}(4|4)}\}$ in $F^{(1)}_{\mathfrak{psl}(4|4)}(\xi)$ & via $\{S^{(1)}(\eta),F^{(0)}_{\mathfrak{psl}(4|4)}\}$ in $F^{(1)}_{\mathfrak{psl}(4|4)}(\eta)$ \\
+field redefinitions (a), five field countings & $-\hbar\{\{S^{(1)}(\xi),\phi^{(0)}\}+(Q+\{I,-\})\phi^{(1)}(\xi),-\}$ & $-\hbar\{\{S^{(1)}(\eta),\phi^{(0)}\}+(Q+\{I,-\})\phi^{(1)}(\eta),-\}$ \\
+exact direction $s(\kappa S^{(1)}(\Delta))$ & $-\kappa\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$, both chiralities & $+\kappa\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$, both chiralities \\
+coupling (d) & arity one: none; arity zero $-a\hbar(Q+\{I,-\})$; arity two $+a\hbar\,\mathrm{ad}_{S^{(2)}}$ & idem \\
+outer derivation (e), $G_B$ & $-a\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$ on $S_+\otimes W$, $+a\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$ on $S_-\otimes W^*$ & $+a\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$ on $S_+\otimes W^*$, $-a\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$ on $S_-\otimes W$ \\
+arity-one counterterms, $s$-exact & (a) with $\phi^{(0)}=0$ & idem \\
+operator finite parts (b) & $+\hbar[s,\psi]^{(1)}(\xi)$ & $+\hbar[s,\psi]^{(1)}(\eta)$ \\
+family finite parts $\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$ & $-\tfrac c2\hbar\,\mathrm{ad}_{S^{(1)}(\xi)}$ on $\mathcal F$, plus the letter-raising term & $+\tfrac c2\hbar\,\mathrm{ad}_{S^{(1)}(\eta)}$ on $\mathcal F$, plus the letter-raising term \\
+gauge fixing (c) & proof plan & proof plan \\
+\end{tabular}
+\tabcaption{Effect of the scheme choices on $Q_1$ and $S_1$ ($F\mapsto F+\hbar aG$). Twisted: (a), (b) and the rescaling directions add $\hbar[Q^\xi_0,\Psi^\xi]$, the coupling direction adds $-a\hbar Q^\xi_0-a\hbar[N,Q^\xi_0]$, $G_B$ adds $a\hbar[N,Q^\xi_0]$. Classical-type coefficients (E4, the classical-type entries of E5) are shifted by $G_B$, by the exact direction, by the family finite parts and by the field redefinitions, and are reported as families.}
+
+\begin{tabular}{l|l|l|l|l}
+freedom & $D_1$ & $K_1$ & $P_1$ & $M_1$, $R_1$ \\
+\hline
+$\tfrac{27}{16}$ term (forced) & none & via $\{S^{(1)}(K_b),F^{(0)}_{\mathfrak{psl}(4|4)}\}$ [ch04, Prop c4-K] & none ($F^{(0)}_{\mathfrak{psl}(4|4)}$ covariant) & none \\
+field redefinitions (a), five field countings & $s$-exact & $-\hbar\{(Q+\{I,-\})\phi^{(1)}(K_b),-\}$ & $s$-exact on gauge-invariant $O$ & $s$-exact on gauge-invariant $O$ \\
+exact direction $s(\kappa S^{(1)}(\Delta))$ & none & $+2\kappa\hbar\,\mathrm{ad}_{S^{(1)}(K_b)}$ & $-2\kappa\hbar\,\mathrm{ad}_{S^{(1)}(P_b)}$ & none \\
+$S^{(1)}(\Delta)$-component $z$ of $F^{(1)}_{\mathfrak{psl}(4|4)}(\Delta)$ & $-z\,\mathrm{ad}_{S^{(1)}(\Delta)}$, fixed at arity two & -- & -- & -- \\
+$S^{(1)}(P_b)$-component $f_P$ of $F^{(1)}_{\mathfrak{psl}(4|4)}(P_b)$ & -- & -- & $-f_P\,\mathrm{ad}_{S^{(1)}(P_b)}$ & -- \\
+composite remainders & $R_O$ & $R_{O,K}$ & $R_{O,v}$ ($-\tfrac13$ on bilinears) & $R_{O,v}$ for $\mathfrak{so}(V)$; none for $\mathfrak{so}(W_{\mathbb R}^\perp)$ \\
+coupling (d) & none & none & none & none \\
+outer derivation (e), $G_B$ & none & none & none & none \\
+arity-one counterterms, $s$-exact & $s$-exact on gauge-invariant $O$ & $\phi^{(1)}(K_b)\in\mathbb C\int(c^*,\iota_vA|_V)$ & $s$-exact on gauge-invariant $O$ & $s$-exact on gauge-invariant $O$ ($\mathfrak{so}(V)$); none ($\mathfrak{so}(W_{\mathbb R}^\perp)$) \\
+operator finite parts (b) & $0$ if $[\mathrm{ad}_{S^{(1)}(\Delta)},\psi]=0$ & $+\hbar[s,\psi]^{(1)}(K_b)$ & $0$ for translation-covariant $\psi$ & $0$ for covariant $\psi$ \\
+family finite parts $\tfrac c2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$ & $0$ & $+c\hbar\,\mathrm{ad}_{S^{(1)}(K_b)}$ on $\mathcal F$ & $-c\hbar\,\mathrm{ad}_{S^{(1)}(P_b)}$ on $\mathcal F$ & $0$ \\
+gauge fixing (c) & proof plan & proof plan & proof plan & proof plan \\
+\end{tabular}
+\tabcaption{Effect of the scheme choices on $D_1$, $K_1$, $P_1$, $M_1$, $R_1$. Arity-one primitives of degree $-2$: for $\xi$ the weight count excludes translation-invariant functionals of weight $\tfrac92$; for even $x_1$ with a vector field $v$ on $V$ (translations, rotations of $V$, $\Delta$, special conformal fields) the functional $\int(c^*,\iota_vA|_V)$, two-component $\int(c^*,v^mA_m)$, exists; for $\mathfrak{so}(W_{\mathbb R}^\perp)$ there is none. $z$ is fixed by the arity-two equation along $(K_b,P_{b'})$ [delta theory, Prop prop:d-z], and the rescaling of $D_1$ on cohomology vanishes by Theorem \ref{thm:o-KD}.}
+
+\section{Large distance and the transfer endpoint: $S_1$ and $K_1$}
+
+\begin{proposition}[Floating insertions at large distance]
+\label{prop:o-ir}
+Let a floating insertion of Lemma \ref{lem:o-legs} sit at $y$ and its neighbours at $z_a,z_b$ in a bounded set. With the tails $D(r)=(4\pi^2r^2)^{-1}$ of the propagator at $T=\infty$ [ch03, Prop c3-P], the integrand over $y$ behaves as: $|y|^{-6}$ for $\xi\in\Sigma$ and for translations; $|y|^{-5}$ for $\eta\in\Sigma^*$, for $\Delta$ and for $\mathfrak{so}(V)$; $|y|^{-4}$ for $K_b$ [ch08, Prop c8-Tsafe]. For $K_b$, with the propagator factors $2$ ($A\otimes A$) and $-1$ ($A^*|_V\otimes c$) removed, the $A|_V\to c$ insertion has
+\begin{equation}
+\sum_m\big[L_v\big(D(\cdot-z_a)\,e_k\big)\big]_m(y)\,\partial_{y_m}D(y-z_b)=\frac{(b\cdot y)\,y_k-|y|^2b_k}{4\pi^4|y|^6}+O(|y|^{-5}),
+\label{eq:o-Kir}
+\end{equation}
+with average over the sphere $|y|=R$ equal to $-\dfrac{3}{16\pi^4}\dfrac{b_k}{R^4}\neq0$; two-component, the left side is $\sum_m\big(v^n\partial_n(\delta_{mk}D_a)+D_a\partial_mv^k\big)\partial_mD_b$ with $v^m=y^2b^m-2(b\cdot y)y^m$. A $P$-edge pair of floating odd insertions at $y_1,y_2$, with spinor data of degrees $g_1,g_2$ in the position ($g=0$ for $\Sigma$, $g=1$ for $\Sigma^*$), has, for one orientation, superficial degree $g_1+g_2-1$ at large $(y_1,y_2)\in\mathbb R^8$. A chain of two floating even insertions (Lemma \ref{lem:o-legs}) with vector fields of degrees $d_1,d_2$ in the position ($d=0,1,1,2$ for translations, $\mathfrak{so}(V)$, $\Delta$ and the special conformal fields) has, for one orientation, degree $d_1+d_2-2$ in $\mathbb R^8$. At finite $T$ every component of $P(\varepsilon,T)$ and its derivatives are bounded by the corresponding $T=\infty$ tails, uniformly in $T$, and decay as $e^{-|y|^2/4T}$ for $|y|^2\gg T$.
+\end{proposition}
+
+\begin{proof}
+Coefficient growth: $|\epsilon(y)|\sim1$, $|y|$; $|v(y)|\sim|y|$ for $\Delta$ and $\mathfrak{so}(V)$, $|y|^2$ for $K_b$, with $|dv|\sim1$, $|y|$. Line decay: $D\sim|y|^{-2}$, $\partial D,{\not d}D\sim|y|^{-3}$. Products: $1\cdot|y|^{-3}\cdot|y|^{-3}$; $|y|\cdot|y|^{-3}\cdot|y|^{-3}$; $|y|^2\cdot|y|^{-3}\cdot|y|^{-3}$ and $|y|\cdot|y|^{-2}\cdot|y|^{-3}$. For \eqref{eq:o-Kir} at $z_a=z_b=0$: $v\cdot\partial D=\tfrac{2(b\cdot y)}{4\pi^2|y|^2}$, $\partial_kD=-\tfrac{2y_k}{4\pi^2|y|^4}$, $y_m\partial_mv^k=2v^k$, and the sum is $\frac{4}{(4\pi^2)^2}\big((b\cdot y)y_k-|y|^2b_k\big)|y|^{-6}$; the sphere average of $y_ky_l$ is $\tfrac14R^2\delta_{kl}$. An exact symbolic evaluation with rational anchors $z_a,z_b$ and a momentum-space evaluation give the same coefficient. $P$-edge pair: three propagators $\partial D$, ${\not d}D$, $\partial D$ of order $|y|^{-3}$ each and the coefficients $|y_1|^{g_1}|y_2|^{g_2}$; with $d^8y$ the degree is $8-9+g_1+g_2$. Even chain: two edges $\partial D$ and the $A|_V\otimes A|_V$ edge with the two derivatives of the insertions, $|y|^{-3-4-3}$, coefficients $|y|^{d_1+d_2}$, degree $8-10+d_1+d_2$ (census and degree count machine-checked). Finite $T$: $\partial^k_x\int_\varepsilon^T(4\pi t)^{-2}e^{-|x|^2/4t}dt$ is bounded by $C_k|x|^{-2-k}$ for every $T$, and for $|x|^2\gg T$ by $t^{-2-k/2}$ times $e^{-|x|^2/4T}$ on $t\le T$.
+\end{proof}
+
+\begin{theorem}[Large-distance behaviour of the graphs]
+\label{thm:o-ir}
+\begin{itemize}
+\item[(i)] For $x_1\in\Sigma\oplus\Sigma^*$, $\Delta$, translations, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$, every graph of Theorem \ref{thm:o-classes} converges at $T=\infty$ at generic leg momenta, and the graph sums at scale $T$ converge to those at $T=\infty$ as $T\to\infty$.
+\item[(ii)] For $x_1=K_b$, classes (T), (A), (B), (E1), (E2) converge at $T=\infty$, and so do the graphs of (T0) with $S^{(1)}(K_b)$ on a tree or a leg; the graphs of (T0) with $S^{(1)}(K_b)$ floating on the cycle belong to the arity-one part of $\big((Q+\{I,-\})O\big)[T]$, carry the logarithm of (iii) with the tree of $(Q+\{I,-\})O$, and are removed with $(sO)[T]$ in \eqref{eq:o-L1graphs}. A graph of class (C) or (D) with $S^{(1)}(K_b)$ floating on the cycle has, at finite $T$ and fixed $\varepsilon$, a term $\log T$ whose coefficient is $\tfrac{3}{8\pi^2}\hbar$ times the tree obtained by cutting the insertion out of the cycle and evaluating the freed legs on the constant modes $A|_V=b\otimes X_a$, $c=X^a$, summed over a basis $X_a$ of $\mathfrak g$ and its dual basis $X^a$ for $(-,-)$ [K-judgement, Lemma lem:kj-composite, Prop prop:kj-composite]; this tree contains the special edge at a generic momentum $p$ and carries $e^{-\varepsilon|p|^2}-1$. Per composite graph the coefficient is a nonzero multiple of $e^{-\varepsilon|p|^2}-1$; summed over the graphs it is $\tfrac{3}{8\pi^2}\hbar$ times $Q$ of the zero-mode tree of the order-$\hbar^0$ part of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$, identically $0$ in every two-point sector of the action and of order $\varepsilon$, nonzero, for the scalar bilinears [K-judgement, Prop prop:kj-defectlog]. It vanishes as $\varepsilon\to0$ at fixed $T$.
+\item[(iii)] The arity-one parts $O[T]^{(1)}(K_b)$ and $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ carry $\tfrac{3}{8\pi^2}\hbar\log T$ times the zero-mode trees of their order-$\hbar^0$ parts, which are nonzero in all four two-point sectors and for the scalar bilinears [K-judgement, Cor cor:kj-flowlog, Prop prop:kj-trees]. These trees are $Q$-closed, $Q$ of the tree of a gauge-invariant $O$ vanishes, and the logarithms cancel in $d_TO[T]-L(O)[T]$ [K-judgement, Prop prop:kj-nocore]; $O[T]^{(1)}(K_b)$ and $W^{(1)}(K_b)$ have no limit as $T\to\infty$, the local representative is independent of $T$.
+\item[(iv)] Arity two along $\Sigma^*\times\Sigma^*$. A $P$-edge pair of floating $S^{(1)}(\eta_1)$, $S^{(1)}(\eta_2)$ has after the sum over the two orientations and the two chirality assignments a logarithmic large-distance term: the orientation sum cancels the degree-$1$ part identically, and the surviving degree-$0$ part is proportional to $v_1=\Gamma(\eta_1,\eta_2)|_V$, two-component $v_1^m=-i\big(\eta_2{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_1^{\dot\alpha i}+\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\big)$, times the first moment of the rest of the cycle; with the fibre factors removed and the rest attached through $\hat f(q)=f_0+f_1\cdot q+\cdots$ and $\hat g(p)=g_0+g_1\cdot p+\cdots$, the $S^3$ average of the degree-$(-4)$ symbol is $6i\,v_1\cdot(f_0g_1-f_1g_0)$. In defect graphs its coefficient is a nonzero multiple of $\varepsilon e^{-\varepsilon|p|^2}$, carried by the $\eta$--$\eta$ chains, and vanishes as $\varepsilon\to0$; in $O[T]^{(2)}(\eta_1,\eta_2)$ and $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(2)}(\eta_1,\eta_2)$ it is of order $\varepsilon^0$, and as $\varepsilon\to0$ its $Q$-image cancels the logarithm of the $d_{CE}$ term $W^{(1)}$ on $[\eta_1,\eta_2]=-K_{v_1}$ [K-judgement, Prop prop:kj-defectlog (iv)]. It vanishes pointwise in the degree-$0$ symbol exactly when $v_1=0$. $P$-edge pairs $(\xi,\xi')$ (degree $-1$) and $(\xi,\eta)$ (degree $0$ for one orientation, $-1$ after the orientation sum) converge, and so does every other configuration of the arity-two graphs along $(\xi,\xi')$, $(\xi,\eta)$ and along $(\eta_1,\eta_2)$ with $v_1=0$.
+\item[(v)] Arity two along two even generators. Two floating even insertions joined by an $A|_V\otimes A|_V$ edge have relative orientation sign $-1$; the orientation sum cancels the leading term and lowers the degree $d_1+d_2-2$ by one. The arity-two graphs along pairs of translations, rotations of $V$ and $\Delta$ converge after this sum ($(\Delta,\Delta)$ vanishes by antisymmetry); along $(K_b,x)$ they are defined at finite $T$: $(K_b,P_{b'})$ contains the single floating $S^{(1)}(K_b)$ of (ii), $(K_b,\Delta)$ and $(K_b,\mathfrak{so}(V))$ are logarithmic also through the chain, $(K_b,K_{b'})$ grows as $T^{1/2}$; in defect graphs these terms carry $O(\varepsilon)$ coefficients.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Proposition \ref{prop:o-ir}; vertices with external legs or attached to a special edge or to $O$ are anchored, because every vertex of $I$ carries a leg or a tree to the legs and $K_\varepsilon-K_0$ has range $\sqrt\varepsilon$; at arity one there is a single floating insertion. The limit $T\to\infty$ follows by dominated convergence with the uniform bounds of Proposition \ref{prop:o-ir}. (ii) In (T), (A), (B) the vertex $S^{(1)}(K_b)$ is merged with $O$ or is an end of a special edge, and in (T0) on a tree or a leg it sits at generic momentum; in (E1), (E2) the graphs are trees. In (C), (D) the floating vertex is the composite line of Lemma \ref{lem:o-legs}; [K-judgement, Lemma lem:kj-composite]: $[\partial_P,[\partial_P,S]]=\partial_{K''}$ with $K''=2P\star v.\,P\star$, fibre factors $2(-,-)^{-1}$ and $-(-,-)^{-1}$; [K-judgement, Prop prop:kj-composite]: $T\partial_T$ of the scalar integral of the composite line tends to $-\tfrac{3}{16\pi^2}b_k$ for all ends and $\varepsilon\ge0$ (closed form at coincident ends, checked by four-dimensional quadrature; separated ends by exact Gaussian moments), so $T\partial_T$ of the kernel tends to $\tfrac{3}{8\pi^2}\,b\otimes(-,-)^{-1}$. Cutting the cycle leaves a tree in which every edge carries a generic momentum and the special edge contributes $e^{-\varepsilon|p|^2}-1$. The sum over the graphs: [K-transfer, Thm thm:ktr-defectlog]; the two composite graphs with the $A|_V$ end at one leg cancel the two with it at the other, $\pm9i$, $\pm\tfrac{147}2i$, $\pm3$, $\pm18$ units times $(e^{-\varepsilon|p|^2}-1)$ in the four two-point sectors, and for the bilinears the closed form $(r_q-r_p)(a_1r_p-a_2r_q)$, $r_k=e^{-\varepsilon|k|^2}$, is of order $\varepsilon$ [K-judgement, Prop prop:kj-compare (ii), prop:kj-defectlog (iii)]. (iii) [K-judgement, Cor cor:kj-flowlog]: $e^{\hbar\partial_P}Se^{-\hbar\partial_P}=S+\hbar[\partial_P,S]+\tfrac{\hbar^2}2\partial_{K''}$ for quadratic $S$; the trees in the four sectors are recomputed in three realisations [K-judgement, Prop prop:kj-trees]. (iv) The chain is, up to the fibre factors,
+\begin{equation}
+C(\eta_1,\eta_2)[z,z']=\int\!\!\int\partial_mD(y_1-z)\,\big(\bar\epsilon_1(y_1)\bar\sigma^m\sigma^k\bar\sigma^n\epsilon_2(y_2)\big)\,\partial_kD(y_1-y_2)\,\partial_nD(y_2-z')\,d^4y_1\,d^4y_2 ,
+\label{eq:o-pair}
+\end{equation}
+with $\bar\epsilon_1(y)=i\,y_a\eta_1\sigma^a$, $\epsilon_2(y)=-i\,y_b\sigma^b\bar\eta_2$. The two contractions of the $A^*|_V$ legs with the two ghost ends differ by the exchange of the odd ends (Koszul sign $-1$), and the other chirality assignment is $\eta_1\leftrightarrow\eta_2$; the single-orientation degree-$(-5)$ symbol $4\,(\eta_1{\not p}\bar\eta_2)/|p|^6$ is odd and cancels; the difference is $(f_0g_1-f_1g_0)_c$ times the degree-$(-4)$ symbol $\big(8(\eta_1{\not p}\bar\eta_2)p_c|p|^{-2}+4(\eta_1\sigma^c\bar\eta_2)\big)|p|^{-4}$, with $S^3$ average $6(\eta_1\sigma^c\bar\eta_2)$, and the sum over $1\leftrightarrow2$ gives $6i\,v_1^c$. For $(\xi,\eta)$ the two orientations have equal leading symbols with the $\lambda\lambda$ edge traversed in opposite directions. The defect coefficients and the share of the $\eta$--$\eta$ chains are [K-judgement, Prop prop:kj-compare (iii)]. (v) The relative orientation sign of a chain with two ghost ends is $-1$ for odd--odd and even--even chains alike, and the surviving term is the first moment (machine-checked, leading term $0$, first-moment term equal to its prediction); degrees from Proposition \ref{prop:o-ir}; in defect graphs the special edge carries $O(\varepsilon)$ as in (ii).
+\end{proof}
+
+\begin{definition}[Components along $K$]
+\label{def:o-K}
+$K_1(O):=\hbar L_1(O)^{(1)}(K_b)$, with the local representative at a finite transfer endpoint $T$ [ch08, Def c8-K]: the part with the fewest legs of the $\varepsilon\to0$ limit at fixed $T$ of the K-route graphs of Theorem \ref{thm:o-classes} with $x_1=K_b$ and edges $P(\varepsilon,T)$, read off by \eqref{eq:o-L1graphs}. The limit $\varepsilon\to0$ is taken at fixed $T$; the defect graphs at $T=\infty$ and fixed $\varepsilon$ are not used (Theorem \ref{thm:o-ir} (ii), (iv)). The arity-two components along $(\eta_1,\eta_2)$ and $(K_b,P_{b'})$ are defined in the same way at finite $T$.
+\end{definition}
+
+\begin{proposition}[Existence and independence of the endpoint along $K$]
+\label{prop:o-Kclaim}
+For every $T\in(0,\infty)$ and every homogeneous local functional $O$ of degree $0$, the $\varepsilon\to0$ limit at fixed $T$ of the K-route defect graphs exists, is local, and is the same at every finite $T$; the same holds at arity two along $(\eta_1,\eta_2)$ and $(K_b,P_{b'})$, and for the action ($O=0$). Hence $K_1(O)$ is one local functional for all finite $T$, its limit $T\to\infty$ is trivial, and the composite-line contributions are part of it and of the arity-one obstruction along $K_b$. $K_1$ is defined by Definition \ref{def:o-K} (route (A)); the relation $K=P^\dagger$ is a cross-check (Proposition \ref{prop:o-Kconsistent} (iii)).
+\end{proposition}
+
+\begin{proof}
+[K-transfer, Thm thm:ktr-defect], [K-judgement, Thm thm:kj-Tindep], each step rechecked there. Let $\gamma$ be a one-loop graph of the defect whose cycle contains the special edge $K_\varepsilon-K_0$. Every edge factor of $P(\varepsilon,T)$ is $\int_\varepsilon^Te^{-t|q|^2}dt\le T$ times a polynomial numerator; the polynomial position dependence of $S^{(1)}(K_b)$ and of the Killing spinors enters as derivatives in injected momenta, which preserve the bounds, $|\partial^k(e^{-\varepsilon|q|^2}-1)|\le C\varepsilon(1+|q|)^2$. $T\partial_T\gamma$ is the sum over the edges $e$ of $\gamma$ with $e$ replaced by $TL_T$, of scalar factor $Te^{-T|k+p_e|^2}$, which confines the loop momentum, so $|T\partial_T\gamma|\le\varepsilon\,C(T)$ uniformly on compact subsets of $(0,\infty)$; hence the coefficients of $\varepsilon^{-1}$, $\log\varepsilon$ and the limit $\varepsilon\to0$ are independent of $T$. Locality: the special edge has range $\sqrt\varepsilon$; the singular part of the rest of the cycle at coinciding ends is a polynomial in the jets of the legs and, through the Taylor expansion of $v$ or of the Killing spinors, in the position, and the remainder contributes $O(\varepsilon)$ times an integral finite at finite $T$, the composite line being bounded at large distance. Bridges vanish with their counterterm pairs. Then $d_TO[T]=(sO+\hbar L_1(O))[T]$ with $\hbar L_1(O)$ local and $T$-independent, and [ch08, Thm c8-K] applies. Evidence in the quadratic sector of the action: the $\varepsilon\to0$ limits $22i$, $-\tfrac{141}2i$, $\tfrac{44}3$, $16$ units of the one-particle-irreducible special-edge graphs have spread at most $10^{-6}$ over $T\in[10,10^6]$, are homogeneous in $p$, and are approached as $\varepsilon(a+b\log\varepsilon)$ [K-judgement, Prop prop:kj-compare (ii), Rem rem:kj-evidence].
+\end{proof}
+
+\begin{remark}[The composite line along $K$ and the read-off]
+\label{rem:o-Kcomposite}
+Every insertion of $S^{(1)}(K_b)$ on a cycle is a composite $A|_V$--$c$ line with kernel $P(\varepsilon,T)\star K_b.\,P(\varepsilon,T)\star=K_b.\,(P\star)^2+[P\star,K_b.]\,P\star$; the first term exists because $(Q^{GF})^2\neq0$, as along $\Delta$ and $P_b$, where single composite graphs have nonlocal $Q$-images and the complete set of composite graphs has a local limit [delta theory, Rem rem:d-Y1a, Prop prop:d-T]. $K_1$ is therefore read off from complete composite sums, and contains the composite remainder $R_{O,K}$, the analogue of [delta theory, Def def:d-RO] built with this kernel. For gauge-invariant $O$ with $L_1(O)^{(0)}=0$, $K_1(O)$ also equals the part with the fewest legs of $\lim_{T\to\infty}Q\big(O[T]^{(1)}(K_b)\big)-\{S^{(1)}(K_b),O\}[\infty]$ [K-judgement, Def def:kj-K1].
+\end{remark}
+
+\begin{proposition}[Cross-checks of $K_1$]
+\label{prop:o-Kconsistent}
+Assume [ch08, eq:c8-qme] modulo $\hbar^2$ with arity two, and local representatives on a family of degree-$0$ operators stable under $\Lambda$ and under the classical transformations; write $\equiv$ for equality on the cohomology of $\Lambda^{(0)}$. Then [K-transfer, Thm thm:ktr-relations]:
+\begin{itemize}
+\item[(i)] at $(K_b,P_{b'})$: $[K_1(K_b),\mathrm{ad}_{S^{(1)}(P_{b'})}]+[\mathrm{ad}_{S^{(1)}(K_b)},P_1(P_{b'})]+(b,b')\,D_1+M_1(\text{rotation of }[K_b,P_{b'}])\equiv0$, and at $(P_{b'},\Delta)$: $[P_1(P_{b'}),\mathrm{ad}_{S^{(1)}(\Delta)}]+[\mathrm{ad}_{S^{(1)}(P_{b'})},D_1]+2P_1(P_{b'})\equiv0$;
+\item[(ii)] at $(\eta_1,\eta_2)$, $[\eta_1,\eta_2]=-K_{v_1}$, $v_1=\Gamma(\eta_1,\eta_2)|_V$: $K_1(K_{v_1})\equiv[S_1(\eta_1),\mathrm{ad}_{S^{(1)}(\eta_2)}]+[\mathrm{ad}_{S^{(1)}(\eta_1)},S_1(\eta_2)]$ (anticommutators); since $\eta_2\mapsto\Gamma(\eta_1,\eta_2)|_V$ is onto $V$ and $S_1$ is computed at $T=\infty$, this determines $K_1$ on cohomology without an endpoint;
+\item[(iii)] with the one-loop inner product, under the hypotheses of [ch08, Thm c8-adjoint], the third relation of [ch08, Cor c8-gram] with $P_1\equiv p\,\mathrm{ad}_{S^{(1)}(P_b)}$ on the family reads
+\[
+K_1\text{ along }K_{\bar b}=\bar p\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}+\hbar\big[\mathrm{ad}_{S^{(1)}(K_{\bar b})},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1\big],
+\]
+since $(\mathrm{ad}_{S^{(1)}(P_b)})^{\rm adj}=-\mathrm{ad}_{S^{(1)}(K_{\bar b})}$ [K-transfer, Cor cor:ktr-gram]; with Theorem \ref{thm:o-KD} the rescaling part of the commutator is $-(p+\bar p)\,\mathrm{ad}_{S^{(1)}(K_{\bar b})}$ and its part in $\tfrac14\operatorname{div}v$ is $\gamma_O$. A real $p$ is removed by the reflection-compatible finite part $\tfrac p2\,\mathrm{ad}_{S^{(1)}(\Delta)}\pi_{\mathcal F}$ (Proposition \ref{prop:o-laws} (b)), which preserves the relation [ch08, Cor c8-gram].
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i), (ii) [ch08, Cor c8-homotopy (ii)] at order $\hbar$, with $\Lambda^{(1)}(x)=\mathrm{ad}_{S^{(1)}(x)}+\hbar L_1^{(1)}(x)$ on degree $0$, the brackets $[K_b,P_{b'}]=(b,b')\Delta+(\text{rotation})$, $[P_{b'},\Delta]=2P_{b'}$, $[\eta_1,\eta_2]=-K_{v_1}$ [ch02, Prop c2-special], and $[\mathrm{ad}_{S^{(1)}(x_1)},\mathrm{ad}_{S^{(1)}(x_2)}]=-\mathrm{ad}_{S^{(1)}([x_1,x_2])}$ for even $x_1,x_2$; verified exactly [K-transfer, Thm thm:ktr-relations], rerun identical. (iii) [ch08, Cor c8-gram] with $\hbar X_1=-P_1$, $(pA)^{\rm adj}=\bar pA^{\rm adj}$ and $Y_0=X_0^{\rm adj}$ for $P_b^\dagger=-K_{\bar b}$ [ch08, Thm c8-dag (i)]; the finite part changes $\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1$ by $\psi'+\psi'^{\rm adj}$, and its reflection compatibility for real $p$ is Proposition \ref{prop:o-laws} (b).
+\end{proof}
+
+\begin{proposition}[Where $T\to\infty$ is safe]
+\label{prop:o-Tsafe}
+\begin{itemize}
+\item[(i)] Safe (the graph sums at scale $T$ converge to those at $T=\infty$; the local representatives are those at $T=\infty$ by Proposition \ref{prop:o-Tindep}): arity zero; arity one along $\Sigma$, $\Sigma^*$, $\Delta$, translations, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$; arity two along $(\xi,\xi')$, $(\xi,\eta)$, along $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V=0$, and along pairs of translations, rotations of $V$ and $\Delta$ after the orientation sum. In particular $Q_1$, the twisted $Q^\xi_1$ (Theorem \ref{thm:o-twist}), $S_1$ (Proposition \ref{prop:o-S}), $D_1$, $P_1$, $M_1$ and $R_1$ are computed at $T=\infty$, with complete composite sums (Proposition \ref{prop:o-P1} (i)) and with the decomposition of composite contributions into $Q$-exact and local parts made at finite $T$ [delta theory, Prop prop:d-T (ii)].
+\item[(ii)] Constant in $T$, hence trivially safe: the counterterms, the obstruction and the finite counterterm along $K_b$; $K_1$; $L_1(O)^{(2)}(\eta_1,\eta_2)$ and $L_1(O)^{(2)}(K_b,P_{b'})$; $d_TO[T]^{(1)}(K_b)$ and $Q(O[T]^{(1)}(K_b))$ for gauge-invariant $O$ with $L_1(O)^{(0)}=0$ [K-judgement, Prop prop:kj-Tsafe].
+\item[(iii)] Not safe, used at finite $T$ only: $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)})^{(1)}(K_b)$ and $O[T]^{(1)}(K_b)$ for the scalar bilinears ($\tfrac{3}{8\pi^2}\hbar\log T$ times a nonzero tree); $W^{(2)}$ and $O[T]^{(2)}$ along $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V\neq0$; the defect graphs at fixed $\varepsilon$ along $K_b$ for the scalar bilinears and along $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V\neq0$ ($O(\varepsilon)\log T$); the arity-two graphs along $(K_b,x)$ for every even $x$ (Theorem \ref{thm:o-ir} (v)).
+\item[(iv)] Along $\Delta$ the scaling identity of Part D at finite $T$ reads $(M\otimes1+1\otimes M)P(\varepsilon,T)=-4\big(\varepsilon\partial_\varepsilon+T\partial_T\big)P(\varepsilon,T)=4\varepsilon L_\varepsilon-4TL_T$, with the endpoint term $-4TL_T$; by (i) the scaling route of Part D is used at $T=\infty$, where this term is absent.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Theorem \ref{thm:o-ir} (i), (iv), (v) and dominated convergence with the uniform bounds of Proposition \ref{prop:o-ir}; for the pairs the orientation sum is taken in one integrand before the bound. (ii) Proposition \ref{prop:o-Kclaim}, Lemma \ref{lem:o-Tflow} (iv), Theorem \ref{thm:o-ir} (iii). (iii) Theorem \ref{thm:o-ir} (ii)--(v). (iv) $\partial_\varepsilon P(\varepsilon,T)=-L_\varepsilon$, $\partial_TP(\varepsilon,T)=L_T$ with $L_t=(Q^{GF}\otimes1)K_t$, and $\sigma_\lambda P(\varepsilon,T)=P(\lambda^2\varepsilon,\lambda^2T)$.
+\end{proof}
+
+\begin{theorem}[$K_1$ from $D_1$ and $P_1$]
+\label{thm:o-KD}
+Assume the cochain identity \eqref{eq:o-cocycle} at $(K_b,P_{b'})$ and $(P_{b'},\Delta)$, local representatives along $K_b$ (Proposition \ref{prop:o-Kclaim}) and at $(K_b,P_{b'})$, and $R_1=0$ (Proposition \ref{prop:o-P1} (iv)). Let $\mathcal F$ be a family of Lorentz-scalar operators of Weyl weight $w$ closed under the classical transformations: the scalar bilinears (gauge invariant, $L_1(O)^{(0)}=0$), or the letters, read modulo terms built from $(Q+\{I,-\})O$ [ch06, Rem c6-AV]. Suppose that on $\mathcal F$, modulo $\Lambda^{(0)}$-exact terms,
+\[
+P_1=p\,\mathrm{ad}_{S^{(1)}(P_{b'})},\qquad D_1=2\gamma_O+d\,\mathrm{ad}_{S^{(1)}(\Delta)},\qquad M_1=m\,\mathrm{ad}_{S^{(1)}(\text{rotation})},
+\]
+and $K_1(O)=\int\omega\,(\alpha\,v\cdot\partial f+\tfrac14\operatorname{div}v\,\kappa f)$, the form allowed by [ch07, Cor c7-K]. Then $d=0$, $m=0$, $\alpha=-p$, $\kappa=\gamma_O-pw$:
+\begin{equation}
+K_1(O)\equiv\tfrac14\operatorname{div}v\;\gamma_O\,O-p\,\mathrm{ad}_{S^{(1)}(K_b)}O\qquad\text{modulo }s\text{-exact terms},
+\label{eq:o-KD}
+\end{equation}
+two-component $K_1(O)\equiv-2\,(b\cdot x)\,\gamma_O\,O-p\{S^{(1)}(K_b),O\}$, with $\{S^{(1)}(K_b),-\}$ the transformation $v.A_m=v^n\partial_nA_m+A_n\partial_mv^n$, $v.A_{ij}=v^n\partial_nA_{ij}-2(b\cdot x)A_{ij}$, $v.\lambda_\alpha{}^i=v^n\partial_n\lambda_\alpha{}^i-\tfrac12(x_mb_n-x_nb_m)(\sigma^m\bar\sigma^n)_\alpha{}^\beta\lambda_\beta{}^i-3(b\cdot x)\lambda_\alpha{}^i$, $v.\bar\lambda_{\dot\alpha i}=v^n\partial_n\bar\lambda_{\dot\alpha i}+\tfrac12(x_mb_n-x_nb_m)\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}-3(b\cdot x)\bar\lambda_{\dot\alpha i}$, $v.c=v^n\partial_nc$. With the coefficients of [ch06, Thm c6-dil] (the identification of Part D):
+\begin{itemize}
+\item in a scheme with $P_1=0$ on $\mathcal F$: $K_1=0$ on $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})-\tfrac1{96}w_1^{ij}w_{2ij}\int\omega\,(A^{kl},A_{kl})$; $K_1\equiv48\,(b\cdot x)\,O$ units on $\tfrac14\int\omega\,(A^{ij},A_{ij})$; on the letters $\int\omega\,(X,A_{ij})$, $\int\omega\,(X,A_m)$: $8\,(b\cdot x)\,O$, $\int\omega\,(\zeta,\lambda)$: $16\,(b\cdot x)\,O$, $\int\omega\,(X,c)$: $4\,(b\cdot x)\,O$ units;
+\item in the translation-covariant scheme, $p=-\tfrac13$ units on the scalar bilinears and $p=0$ on the letters (Proposition \ref{prop:o-P1} (ii)): $K_1\equiv\tfrac13\,\mathrm{ad}_{S^{(1)}(K_b)}O$ units on the traceless bilinears and $K_1\equiv48\,(b\cdot x)\,O+\tfrac13\,\mathrm{ad}_{S^{(1)}(K_b)}O$ units on the trace bilinear; the letters as above;
+\item with $f_P$: $p=-(\tfrac13+f_P)$ on the bilinears, $p=-f_P$ on the letters.
+\end{itemize}
+The relation $d=0$ also predicts that the $S^{(1)}(\Delta)$-coefficient of $F^{(1)}_{\mathfrak{psl}(4|4)}(\Delta)$ cancels the composite rescaling of $D_1$ on the bilinears ($-\tfrac13$ units in the normalisation of engine B), a test for the dilatation workflow. This is a conditional algebraic consequence of the hypotheses.
+\end{theorem}
+
+\begin{proof}
+[K-transfer, Thm thm:ktr-KD], with the relations of Proposition \ref{prop:o-Kconsistent} (i). On $\int\omega\,E[f]$ each operator acts by a substitution $f\mapsto\mathcal Lf$ with $\mathcal L$ a first-order differential operator: $\mathrm{ad}_{S^{(1)}(v)}$ by $v\cdot\partial+\tfrac w4\operatorname{div}v$ [ch07, Def c7-vdot, Lemma c7-weights]; composition reverses the order, and a commutator of operators corresponds to minus the commutator of the $\mathcal L$'s; the order-$\hbar^0$ identity follows from the cocycle property $\operatorname{div}[v,v']=v(\operatorname{div}v')-v'(\operatorname{div}v)$. In $(P_{b'},\Delta)$ the terms in $p$ cancel and $[\partial_{b'},d(2x\cdot\partial+2w)]=2d\,\partial_{b'}$ remains, so $d=0$; in $(K_b,P_{b'})$, $-[b'\cdot\partial,\alpha v\cdot\partial+\tfrac\kappa4\operatorname{div}v]$ and $-p[b'\cdot\partial,v\cdot\partial+\tfrac w4\operatorname{div}v]$ must equal $(b,b')\big(2\gamma_O+d(2x\cdot\partial+2w)\big)+m\,(\text{rotation})\cdot\partial$; the unique solution is the stated one (exact symbolic solution, rerun identical, and an independent solution of the order-$\hbar$ homomorphism condition on generic cubic densities). Values: $\tfrac14\operatorname{div}v=-2(b\cdot x)$ and $2\gamma_O=0,-48,-8,-8,-16,-4$ units [ch06, Thm c6-dil] in the normalisation $\Delta=2E$; $p$ from Proposition \ref{prop:o-P1} (ii). Two-component: [K-judgement, Prop prop:kj-twocomp].
+\end{proof}
+
+\begin{proposition}[Special supercharges]
+\label{prop:o-S}
+\begin{itemize}
+\item[(i)] Every graph of the arity-one component along $\eta\in\Sigma^*$ converges at $T=\infty$, and $T\to\infty$ is safe (Theorem \ref{thm:o-ir} (i), Proposition \ref{prop:o-Tsafe}); the vertices are [dictionary, (F2)]
+\[
+S^{(1)}(\eta)=S^{(1)}(\xi)\big|_{\xi\to\epsilon(x)}+\int\Big\{\big(A^{kj}\varepsilon_{\alpha\beta}\eta^\beta{}_j,\lambda^{*\alpha}{}_k\big)-\big(A_{kj}\varepsilon_{\dot\beta\dot\alpha}\bar\eta^{\dot\alpha j},\bar\lambda^{*\dot\beta k}\big)\Big\},
+\]
+index-free [ch02, eq:c2-S1S], with $\epsilon(x)$ of Definition \ref{def:o-names} at $\xi=0$.
+\item[(ii)] With $P_1\equiv p\,\mathrm{ad}_{S^{(1)}(P_{b'})}$ on the family and \eqref{eq:o-cocycle} at $(P_{b'},\eta)$, $[P_{b'},\eta]=\rho(b')\eta\in\Sigma$ [ch02, Prop c2-special]:
+\begin{equation}
+S_1(\eta)(O)\equiv Q_1\big(\rho(x)\eta\big)(O)-p\,\mathrm{ad}_{S^{(1)}(\eta)}O+U_\eta(O)\qquad\text{modulo }s\text{-exact terms},
+\label{eq:o-SQ}
+\end{equation}
+where $Q_1(\xi')$ is the one-loop component along $\xi'\in\Sigma$ evaluated pointwise at the Killing spinor, and $U_\eta(O)$ is translation invariant, linear in ${\not d}(\rho(x)\eta)=4\eta$, of weight $w_O-\tfrac12$. Two-component: $(\rho(x)\eta)_\alpha{}^i=-i\,x_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}$, $(\rho(x)\eta)_{\dot\alpha i}=i\,x_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}$, and the term $-p\,\mathrm{ad}_{S^{(1)}(\eta)}$ has the same coefficient along $S^\alpha{}_i$ and $\bar S^{\dot\alpha i}$. $U_\eta=0$ for the scalar bilinears [ch07, Cor c7-S], so on them $S_1(\eta)\equiv Q_1(\rho(x)\eta)$ in a scheme with $P_1=0$ and $S_1(\eta)\equiv Q_1(\rho(x)\eta)+\tfrac13\,\mathrm{ad}_{S^{(1)}(\eta)}$ units in the translation-covariant scheme. For $B_w$, $\bar F_w$ of weight $3$, $U_\eta$ lies in the span of the weight-$\tfrac52$ singlets $\int\omega\,(\lambda,\rho(A|_{W_{\mathbb R}^\perp})\zeta)$, $\zeta\in\Sigma$ built from $\eta$, $w$, $u'$, two-component
+\[
+\int\omega\,(\lambda,\rho(A|_{W_{\mathbb R}^\perp})\zeta)=\int\omega\Big[\big(\lambda_\alpha{}^j,A_{ji}\big)\zeta^{\alpha i}-\big(\bar\lambda_{\dot\alpha j},A^{ji}\big)\bar\zeta^{\dot\alpha}{}_i\Big].
+\]
+\item[(iii)] For $\eta$ in the commutant of $\xi=u\otimes w$, i.e.\ $\eta^\alpha{}_i=u^\alpha m_i$ with $m_iw^i=0$, or $\eta\in S_-\otimes W$ [targets, T10], the arity-two component of \eqref{eq:o-cocycle} at $(\xi,\eta)$ restricted by $r_\xi$ gives $\{Q^\xi_0,S_1^\xi(\eta)\}+\{S_0^\xi(\eta),Q^\xi_1\}\equiv0$ on $H(Q^\xi_0)$: the BV form of [BK, footnote 24], with $S_1^\xi(\eta)$ the one-loop $R_1$ of the $\mathfrak{psl}(3|3)$ generators, which [BK] do not write out.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(ii) The order-$\hbar$ part of [ch08, Cor c8-homotopy (ii)] at $(\eta,P_{b'})$: $[S_1(\eta),\mathrm{ad}_{S^{(1)}(P_{b'})}]+[\mathrm{ad}_{S^{(1)}(\eta)},P_1(P_{b'})]+Q_1([\eta,P_{b'}])\equiv0$, with $S^{(2)}(\eta,P_{b'})=0$. By [ch07, Prop c7-select], $S_1(\eta)(O)=\int\omega\big(\mathcal W(\rho(x)\eta)+U_\eta\big)$ with $\mathcal W$ linear in the value of the Killing spinor, and $[\mathcal W(\rho(x)\eta),\mathrm{ad}_{S^{(1)}(P_{b'})}]=\mathcal W(\rho(b')\eta)$, the sign fixed by the classical components ($S^{(1)}(\eta)$ is $S^{(1)}(\xi)$ at $\xi\to\rho(x)\eta$ plus the translation-invariant term in $4\eta$). The $P_1$ term is $p[\mathrm{ad}_{S^{(1)}(\eta)},\mathrm{ad}_{S^{(1)}(P_{b'})}]=p\,\mathrm{ad}_{S^{(1)}(\rho(b')\eta)}$, cancelled by the term $-p\,\mathrm{ad}_{S^{(1)}(\eta)}$ of $S_1(\eta)$; $\rho(b')\eta$ spans $\Sigma$. The multiplier analysis of the order-$\hbar$ homomorphism on the blocks of [SW, (17)] gives the same $-p$ for both chiralities, the outer direction cancelling in $S_1(\eta)-Q_1(\rho(x)\eta)$. (iii) $[\xi,\eta]=0$ for these $\eta$ [targets, T10 (c)]; apply $r_\xi$ to the arity-two component.
+\end{proof}
+
+\section{The Konishi target and the engine plan}
+
+\begin{proposition}[The Konishi entry]
+\label{prop:o-konishi}
+Let $\zeta,\xi\in S_+\otimes W$, $O_\zeta:=\int\omega\,(\lambda,\rho(A|_{W_{\mathbb R}^\perp})\zeta)$. The arity-one component along $\xi$ at order $\hbar$ has the form
+\begin{equation}
+\begin{aligned}
+Q_1(O_\zeta)={}&c_B'\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,B(\xi,\zeta)+c_K\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\tfrac12\int\omega\,\big(\Gamma(\xi,\lambda)|_V,\Gamma(\zeta,\lambda)|_V\big)\\
+&+(\text{terms vanishing for }\xi=u\otimes w,\ \zeta=u'\otimes w),
+\end{aligned}
+\label{eq:o-konishi}
+\end{equation}
+with $B(\xi,\zeta)=-2\int\omega\,(\rho(\tfrac12[A|_{W_{\mathbb R}^\perp}\wedge A|_{W_{\mathbb R}^\perp}])\xi,\rho(A|_{W_{\mathbb R}^\perp})\zeta)$. For $\xi=u\otimes w$, $\zeta=u'\otimes w$:
+\begin{equation}
+O_\zeta=\int\omega\,(u'^\alpha\lambda_\alpha{}^i,A_{ij}w^j),\qquad B_w=\int\omega\,\big([A^{ik},A_{kj}w^j],A_{il}w^l\big),\qquad \bar F_w=\int\omega\,\big(\bar\lambda_{\dot\alpha i}w^i,\bar\lambda^{\dot\alpha}{}_jw^j\big),
+\label{eq:o-BF}
+\end{equation}
+$B(\xi,\zeta)=B_w$, $\tfrac12\int\omega\,(\Gamma(\xi,\lambda)|_V,\Gamma(\zeta,\lambda)|_V)=\bar F_w$, and the classical component is $\mathrm{ad}_{S^{(1)}(\xi)}O_\zeta=\kappa_B\,B_w$ with $\kappa_B=\pm\tfrac14$, the sign fixed by the bracket of [ch01, Def c1-bracket] (engine E0). These are the only singlets of weight $3$ and degree $0$ proportional to $w\otimes w$ and to $u'^\alpha u_\alpha$. The number $c_K$ is the untwisted Konishi entry [targets, T5]: a pair value, with $Q^\xi_0O_\zeta=\kappa_BB_w\neq0$, which changes as $c_K\mapsto c_K-\kappa_Bx$ under the finite part $\psi(B_w)=x\,\bar F_w$ of the weight-$3$ operator $B_w$; no normalisation of the weight-$3$ operators is singled out by the program, and an orthogonality condition to the protected combination leaves the freedom $B_w\mapsto B_w+y\,(\text{protected combination})$ open. The exact direction $\kappa S^{(1)}(\Delta)$ and the family finite parts shift $c_B'$ through the classical component and leave $c_K$ unchanged.
+\end{proposition}
+
+\begin{proof}
+Selection rules [ch07, Prop c7-select]: weight $w_O+\tfrac12=3$, degree $0$, singlet, linear in $\xi$ and in $\zeta$. Field contents of weight $3$: $AAA$, $\lambda\lambda$ (two dotted or two undotted), $F_AA$, $A\,\partial A$, $c\,A^*$. The $W$-structure $w^iw^j$ is symmetric; $A_{ij}w^iw^j=0$ removes $F_AA$, $A\,\partial A$ and $c\,A^*_{ij}w^iw^j$; undotted $\lambda^i\lambda^j$ carry upper $W$ indices and cannot contract $w\otimes w$; this leaves $B_w$ and $\bar F_w$, whose spinor factor is $u_\alpha u'^\alpha=1$. Two-component identities: [ch08, Def c8-twocomp] gives $(\rho(A)\zeta)^\alpha{}_j=A_{ji}u'^\alpha w^i$, $(\rho(\tfrac12[A\wedge A])\xi)_\alpha{}^i=-\tfrac12[A^{ik},A_{kj}]u_\alpha w^j$ and the pairing $-\tfrac12(u_\alpha u'^\alpha)B_w$; with $\Gamma^m(\xi,\lambda)=i\bar\lambda_{\dot\alpha i}w^i\bar\sigma^{m\dot\alpha\alpha}u_\alpha$ and the Euclidean identity $\sum_m\bar\sigma^{m\dot\alpha\alpha}\bar\sigma^{m\dot\beta\beta}=-2\varepsilon^{\alpha\beta}\varepsilon^{\dot\alpha\dot\beta}$ (checked exactly), $(\Gamma(\xi,\lambda)|_V,\Gamma(\zeta,\lambda)|_V)=2\,\bar F_w$. The classical component: the bracket pairs $\lambda^*$ of $\tfrac12(\rho(F_A)\xi,\lambda^*)$ with $\lambda$ of $O_\zeta$; the $F_{A|_V}$ and $d_AA|_{W_{\mathbb R}^\perp}$ parts pair to $w^iA_{ij}w^j=0$ and to $\bar\zeta=0$; the term $-(\Gamma(\xi,\lambda)|_{W_{\mathbb R}^\perp},A^*)$ gives $(\lambda,\rho(\Gamma(\xi,\lambda)|_{W_{\mathbb R}^\perp})\zeta)$, which contains $\Gamma_{li}(\xi,\lambda)w^i=-2\varepsilon_{jkli}w^jw^i(u\lambda^k)=0$. $Q^\xi_0O_\zeta$: Theorem \ref{thm:o-invariants} (iii). The family: Proposition \ref{prop:o-laws} (b), $[s,\psi](O_\zeta)^{(1)}(\xi)=s\psi(O_\zeta)-\kappa_B\psi(B_w)$, whose $\bar F_w$ part is $-\kappa_Bx\,\bar F_w$; under $B_w\mapsto B_w+\hbar y\,P_w$, with $P_w=p_F\bar F_w+p_BB_w$ the protected combination of the two weight-$3$ singlets [EJSS05, (99)], [targets, T5 (d)], $c_K$ changes by $-\kappa_Byp_F$. The rescaling directions multiply the classical component $\kappa_BB_w$, and $\bar F_w$ has no classical part.
+\end{proof}
+
+\begin{proposition}[Graphs of $c_K$]
+\label{prop:o-cKgraphs}
+$c_K$ is the coefficient of $\bar F_w$ in the $\varepsilon\to0$ limit of the graphs with two external legs $\bar\lambda_{\dot\alpha i}w^i$ in classes (A)--(D) of Theorem \ref{thm:o-classes} with $O_\zeta$ on the cycle, plus bridge pairs, which tend to $0$. Classes (T), (T0), (E1), (E2) contribute nothing to $\bar F_w$: $\mathrm{ad}_{S^{(1)}(\xi)}O_\zeta$ is trilinear and has no one-loop graph with two external $\bar\lambda$; $O_\zeta$ is gauge invariant; $\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](\xi)$ of $O_\zeta$ vanishes (degree $-1$, weight $3$, singlet: no field content); $\{I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](\xi)+F^{(1)}_{\mathfrak{psl}(4|4)}(\xi),O_\zeta\}$ has outputs $(\lambda,\lambda)$ and $(A,\partial A)$. Each graph has superficial degree $0$; its value is a series in integer powers of $\varepsilon$ after the scaling $t\mapsto\varepsilon t$ of the Schwinger times (special edge in $[0,1]$, other edges in $[1,\infty)$), and the limit is the coefficient of $\varepsilon^0$ at zero external momentum. All graphs converge at $T=\infty$ (Theorem \ref{thm:o-ir} (i)).
+\end{proposition}
+
+\begin{proof}
+Two external $\bar\lambda$ with both legs of $O_\zeta$ internal force $O_\zeta$ onto the cycle. Degree: output weight $3$, operator weight $\tfrac52$, $S^{(1)}(\xi)$ of weight $4$ with $\xi$ of weight $-\tfrac12$ [ch07, Prop c7-select]: superficial degree $\tfrac52+\tfrac12-3=0$. Integer powers: as in [ch04, Lemma c4-special].
+\end{proof}
+
+The engine computations, in this order (details, sectors, checks and resources in the engine plan). Every reduction of an output uses full $s$-exact cochains with their arity partners (Remark \ref{rem:o-exact}).
+\begin{itemize}
+\item E0. Conventions in code: the twisted coefficient $-\tfrac12$ of Lemma \ref{lem:o-ev} (done for $\mathfrak{su}(2)$); the sign rule with total parities for products and for the $C^\bullet$-linear extension of $L_1$ [ch08, Thm c8-L (iv), Lemma c8-ev] (checked on random cochains); the tail \eqref{eq:o-Kir} (done); $\kappa_B$; the identity $\tfrac12(\Gamma(\xi,\lambda)|_V,\Gamma(\zeta,\lambda)|_V)=\bar F_w$; $B$ and $G_B$ in the realisation; output bases from the selection rules; the finite-$T$ propagator in both engines; the canonical form of the two-leg outputs extended by $\gamma^{mn}(p)\partial_m\partial_n\delta$ for $S^{(1)}(K_b)$ and $S^{(2)}(\eta_1,\eta_2)$, quadratic in the position, tested on $\{S^{(1)}(K_b),\int(A,A)\}$.
+\item E1. $c_K$ (Propositions \ref{prop:o-konishi}, \ref{prop:o-cKgraphs}); then $c_B'$ from the three-leg graphs.
+\item E2. The family of $c_K$: under $\psi(B_w)=x\,\bar F_w$, $c_K\mapsto c_K-\kappa_Bx$; under field redefinitions, the exact direction, the coupling direction and $G_B$, $c_K$ is unchanged; reported as a family.
+\item E3. Action side along $\xi$: $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](\xi)$ with two legs; the arity-one obstruction along $\xi$ in the sectors $(\lambda,A|_V)$, $(\lambda,A|_{W_{\mathbb R}^\perp})$, $(c,\lambda^*)$, including $\{S^{(1)}(\xi),F^{(0)}_{\mathfrak{psl}(4|4)}\}$; $F^{(1)}_{\mathfrak{psl}(4|4)}(\xi)$ with its family, which contains $a\,S^{(1)}(\xi)=a\,G_B^{(1)}(\xi)$ and $\kappa S^{(1)}(\xi)$ from the exact direction; E3b: Proposition \ref{prop:o-arity0} with the three-leg part in $\operatorname{span}\{H_1,\dots,H_8\}$ and hypothesis (H4).
+\item E4. The traceless bilinear in the plane of $w$: $Q_1=0$ (Proposition \ref{prop:o-planevanish}); a general traceless bilinear along $\xi\in\Sigma$: one classical-type coefficient, reported as a family.
+\item E5. The Konishi primary along $\xi\in\Sigma$: the three numbers of [ch07, Cor c7-Q], with their families.
+\item E6. Letters along $\xi$, arities $0$ and $1$, with class (T0) and the subtraction of \eqref{eq:o-L1graphs}.
+\item E7. Pair entries [targets, T4, T6]; the arity-two $(\xi,\xi)$ graphs; the two representatives of $b$.
+\item E11. Before E8 and E10: $P_1$, $M_1$, $R_1$ from complete composite sums along $P_b$ and $\mathfrak{so}(V)$ on letters, scalar bilinears and a three-letter operator (testing $p=-\tfrac{n-1}3$ units on operators with $n$ letters), $R_1=0$, the arity-one counterterms along the covariant generators; fix the scheme (translation covariant, and the family finite parts giving $P_1=0$).
+\item E8. $S_1$: \eqref{eq:o-SQ} on the bilinears with the $p$ of E11; $U_\eta$ on $B_w$, $\bar F_w$; the commutant of $\xi$.
+\item E9. The arity-two $(\xi,\eta)$ component and its dilatation part $\tfrac12(\xi,\eta)$ times $D_1$ (Part D), the two orientations of the $P$-edge pairs combined in one integrand at $T=\infty$.
+\item E10. $K$ at finite $T$: logarithms and zero-mode trees (done, [K-judgement]); $K_1$ by Definition \ref{def:o-K} on letters and bilinears with complete composite sums, compared with \eqref{eq:o-KD} in both schemes; the completion of the arity-one obstruction along $K_b$; the cross-checks of Proposition \ref{prop:o-Kconsistent}.
+\item E12. The rank-$(1,1)$ element $x=\xi+\bar\xi'$: the components along $\bar\xi'$ and along $(\xi,\bar\xi')$, and the class statement $[Q^x_1]=0$ on $H(Q^x_0)$ [targets, T12].
+\end{itemize}
+
+\begin{proposition}[The traceless bilinear in the plane of $w$]
+\label{prop:o-planevanish}
+Let $w_1,w_2\in W_{\mathbb R}^\perp$ satisfy $w_{a\,ij}w^j=0$. Under the hypotheses of [ch07, Prop c7-select], the component along $\xi=u\otimes w$ of $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, two-component $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$, vanishes at every order at which the hypotheses hold, in every equivariant scheme.
+\end{proposition}
+
+\begin{proof}
+$(w_1,w_2)=\tfrac14w_1^{ij}w_{2ij}=0$, since $w_1^{ij}$ is a combination of $w^{[i}m^{j]}$ and $w^iw_{2ij}=0$. By [ch07, Cor c7-Q] the component is a multiple of $\int\omega\,[(\iota_{w_1}A,(\rho(w_2)\xi,\lambda))+(\iota_{w_2}A,(\rho(w_1)\xi,\lambda))]$, and $(\lambda,\rho(w_a)\xi)=(w_a,\Gamma(\xi,\lambda))=\tfrac14w_a^{kl}\Gamma_{kl}(\xi,\lambda)=-\tfrac12w_a^{kl}\varepsilon_{jikl}w^j(u\lambda^i)=0$ [ESW, (28)]. Every rescaling direction and $G_B$ change the component by a multiple of the classical component, which is the same functional and vanishes as well.
+\end{proof}

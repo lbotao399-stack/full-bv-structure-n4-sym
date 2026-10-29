@@ -1,0 +1,431 @@
+\chapter{Local operators: from functionals to local $O(\varepsilon)$}
+
+The insertion of a composite operator into a one-loop graph diverges as $\varepsilon\to0$, and Costello's construction asks for a family $O(\varepsilon)$ whose flow to scale $\infty$ has a limit. At scale $\infty$, however, $K_\infty=0$ and $P(0,\infty)$ is a contracting homotopy for $Q$ on moment-free Schwartz sections (Chapter 3), so a general functional family $O(\varepsilon)$ produces the zero class on moment-free Schwartz sections. The content of an operator is therefore the requirement that $O(\varepsilon)$ be local, $O(\varepsilon)=O-\partial_\delta I^{CT}[\varepsilon]$ with coefficients in $\mathrm{span}\{\varepsilon^{-1},\log\varepsilon\}$: locality and the existence of the limit fix the singular part, and the finite part is the scheme. This chapter sets up $O(\varepsilon)$ and $O[\infty]$, proves $O(\varepsilon)=O$ for single letters at one loop, and computes $O(\varepsilon)$ for the scalar bilinears graph by graph.
+
+\section{Observables as first-order deformations}
+
+\begin{definition}[Background field and the family $I+\delta O$]
+\label{def:c5-family}
+A background field is a compactly supported four-form $\omega\in\Omega^4_c(\mathbb R^4)$ [CG2, Lemma 10.1.1.3]. A local operator is a local functional
+\[
+O=\int\omega\,(\text{density}),
+\]
+linear in $\omega$, whose density is a polynomial in the fields and their derivatives at a point; the Weyl weight $w_O$ of $O$ is the sum of the Weyl weights of the fields in the density ($c$: $0$, $A$: $1$, $\lambda$: $\tfrac32$, $A^*$: $3$, $\lambda^*$: $\tfrac52$, $c^*$: $4$) plus the number of derivatives. For $O$ of cohomological degree $i$, $\delta$ is a square-zero parameter of degree $-i$ [CG2, Def 8.3.1.1], and $I+\delta O$ is a family of interactions over $\mathbb C[\delta]/\delta^2$; by [CG2, after Def 8.3.1.3] it satisfies the axioms of a family of theories over $\mathbb C[\delta]/\delta^2$ except locality of the flowed functionals. The scalar bilinears and the letters $\int\omega\,(X,\iota_wA)$, $\int\omega\,(X,\iota_v(A|_V))$, $\int\omega\,(\zeta,\lambda)$ have $i=0$; the ghost letter $\int\omega\,(X,c)$ has $i=1$, and then $\delta$ has degree $-1$.
+\end{definition}
+
+The square-zero parameter $\delta$ is written without argument; the delta distribution is always written with its argument, as in $\delta(x-y)$.
+
+\begin{definition}[The local family and the observable at scale $\infty$]
+\label{def:c5-Oeps}
+Let $I^{CT}[\varepsilon]$ be the one-loop counterterm of $I$ (Definition \ref{def:c4-ict}; the analogue of [C07, Thm B], Remark \ref{rem:c4-thmB}), and write the counterterm of the family $I+\delta O$ as $I^{CT}[\varepsilon]+\delta\,\partial_\delta I^{CT}[\varepsilon]$. Put
+\begin{equation}
+O(\varepsilon):=O-\partial_\delta I^{CT}[\varepsilon],\qquad O[\infty]:=\lim_{\varepsilon\to0}\partial_\delta W\big(P(\varepsilon,\infty),\,I-I^{CT}[\varepsilon]+\delta\,O(\varepsilon)\big),
+\label{eq:c5-Oinfty}
+\end{equation}
+with $W$ the flow of Definition \ref{def:c3-W} [CG2, §7.2.7]. With the global ghosts of $\mathfrak{psl}(4|4)$, $I$ is replaced by the equivariant interaction $I_{\mathfrak{psl}(4|4)}=I+S^{(1)}+S^{(2)}$ [ESW, Rem 1.29] (Definition \ref{def:c2-action}) and $I^{CT}[\varepsilon]$ by the counterterm of the family $I_{\mathfrak{psl}(4|4)}+\delta O$ over $C^\bullet(\mathfrak{psl}(4|4))$:
+\[
+O(\varepsilon):=O-\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon],\qquad O[\infty]:=\lim_{\varepsilon\to0}\partial_\delta W\big(P(\varepsilon,\infty),\,I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+\delta\,O(\varepsilon)\big).
+\]
+Both are cochains on $\mathfrak{psl}(4|4)$; their components of arity $0$ are the functionals \eqref{eq:c5-Oinfty}. This chapter computes the components of arity $0$; the components with arguments in $\mathfrak{psl}(4|4)$ involve the counterterms of $I_{\mathfrak{psl}(4|4)}$ along the ghosts; Chapter 6 treats the dilatation through the scaling covariance, and the ghost components are part of Step 2 (Chapter 7).
+\end{definition}
+
+At scale $\infty$ the differential on observables is $(d_{CE}+Q)O[\infty]$, since the scale-$\infty$ structure is defined by the kernel $K_\infty:=0$, so that $\Delta_\infty=0$ and $\{-,-\}_\infty=0$ (Definition \ref{def:c3-delta}) [CG2, Def 8.3.1.3, Prop 13.4.0.1].
+
+[C07, Thm B] is stated for interactions that are at least cubic modulo $\hbar$, and $\delta O$ is quadratic for the operators below. The construction of [C07, Thm B] is applied graph by graph:
+
+\begin{proposition}[Counterterms of the family]
+\label{prop:c5-thmB}
+Let $O$ be a homogeneous local operator. At order $\hbar$ there is a unique local functional $\partial_\delta I^{CT}[\varepsilon]$ with coefficients in the span of the negative integer powers of $\varepsilon$ and of $\log\varepsilon$, a subspace of $\mathscr A_{<0}$ [C07, Def 1.4.1; CG2, §13.7.2], such that the limit \eqref{eq:c5-Oinfty} exists at generic leg momenta. It is the singular part of the sum of the one-loop graphs in which the vertex $O$ lies on the cycle, each evaluated with $P(\varepsilon,\infty)$; for $w_O\le3$ its coefficients lie in $\mathrm{span}\{\varepsilon^{-1},\log\varepsilon\}$.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c3-graphs}, the order-$\hbar$ part of $\partial_\delta W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon]+\delta O)$ is a sum over connected graphs with exactly one vertex $O$ (since $\delta^2=0$) and either one cycle and vertices $I$, or no cycle and one vertex $-I^{CT}[\varepsilon]$. Every vertex of $I$ is at least trivalent and $O$ occurs once, so for a fixed number of legs the sum is finite. Three classes occur.
+\begin{itemize}
+\item $O$ lies off the cycle. Removing the edges that join $O$ to the rest leaves a one-loop graph without $O$; the corresponding tree graph with the vertex $-I^{CT}[\varepsilon]$ in its place cancels its singular part by Lemma \ref{lem:c4-factor}, with $O$ as the marked vertex, and Definition \ref{def:c4-ict}, and the trees joining $O$ converge to trees with $P(0,\infty)$, because $P(\varepsilon,\infty)-P(0,\infty)=-\int_0^\varepsilon L_t\,dt$ is bounded by a multiple of $\varepsilon$ at fixed nonzero momentum.
+\item $O$ lies on the cycle. The vertex function of $O$ is a polynomial in the momenta times the Fourier transform of $\omega$ at minus the total momentum of its legs (Lemma \ref{lem:c5-vertices}), and the numerator is homogeneous, $O$ being homogeneous, so by Lemma \ref{lem:c4-local} the singular part of such a graph is a local functional with coefficients in the span of the negative powers of $\varepsilon$ and of $\log\varepsilon$, and the tree with the vertex $-\delta\,\partial_\delta I^{CT}[\varepsilon]$ in place of the cycle removes it (Lemma \ref{lem:c4-factor}, with $O$ as the marked vertex). Its superficial degree is $w_O$ minus the sum of the Weyl weights of the legs (proof of Proposition \ref{prop:c5-census}), at most $w_O$, so for $w_O\le3$ the powers $\varepsilon^{-k}$, $k\ge2$, are absent.
+\item Trees with the vertex $-I^{CT}[\varepsilon]$ and with $O$: already paired in the first class.
+\end{itemize}
+Uniqueness: two such counterterms differ by a local functional with coefficients in $\mathscr A_{<0}$ whose tree-level flow has a limit. The part of that flow with as many legs as the component of the difference with the fewest legs is that component itself, which therefore has a limit and vanishes; by induction on the number of legs, as in Proposition \ref{prop:c4-unique}, the difference vanishes.
+\end{proof}
+
+\begin{proposition}[Local representatives]
+\label{prop:c5-local}
+Let $O$ be a homogeneous local operator.
+\begin{itemize}
+\item Two local families $O(\varepsilon)$, $O^{\prime}(\varepsilon)$ for which the limit \eqref{eq:c5-Oinfty} exists have the same singular part.
+\item Adding to $O(\varepsilon)$ an $\varepsilon$-independent local functional of order $\hbar$ adds to $O[\infty]$, at order $\hbar$, the flow of that functional to scale $\infty$ through trees with vertices $I$.
+\item Let $F$ be a continuous polynomial functional of moment-free Schwartz sections, without constant term, with $QF=0$. Then $F$ is $Q$-exact (Corollary \ref{cor:c3-functionals}). On compactly supported sections the $Q$-closed functionals carry in addition nonzero classes, among them the zero-mode classes of Theorem \ref{thm:c3-acyclic} and Remark \ref{rem:c3-story}, finitely many in each polynomial degree and infinitely many in all.
+\end{itemize}
+Consequently a statement about $O[\infty]$ has content when it is written in the form
+\[
+(d_{CE}+Q)\,O[\infty]=(\text{a local functional})[\infty],
+\]
+and, for an operator whose observable is a cocycle (Remark \ref{rem:c5-cocycle}), an anomalous dimension is read off in the cohomology of local functionals.
+\end{proposition}
+
+\begin{proof}
+The first item is the uniqueness part of Proposition \ref{prop:c5-thmB}. The second follows from linearity of \eqref{eq:c5-Oinfty} in the $\delta$-component: at order $\hbar$ the added functional enters through its tree-level flow. The third item is Corollary \ref{cor:c3-functionals}, which rests on the homotopy identity $Q\,P(0,\infty)\star+P(0,\infty)\star\,Q=\mathrm{id}$ of Theorem \ref{thm:c3-acyclic} on moment-free Schwartz sections; the classes on compactly supported sections are those described in Theorem \ref{thm:c3-acyclic} and Remark \ref{rem:c3-story}. Every observable $O[\infty]$ that extends to a continuous functional on moment-free Schwartz sections, with $(d_{CE}+Q)O[\infty]=0$ there, therefore lies in the image of $Q$ on such functionals; what it records about $O$ is the local functional $O(\varepsilon)$, through the first two items.
+\end{proof}
+
+\begin{remark}[Where the content of an operator lies]
+\label{rem:c5-content}
+By Proposition \ref{prop:c5-local}, the singular part of $O(\varepsilon)$ is uniquely fixed and the finite part is the scheme freedom; this is the statement of Remark \ref{rem:c3-story} for operators. In the rest of this chapter $\partial_\delta I^{CT}[\varepsilon]$ is computed; its $\log\varepsilon$ part is the input of the anomalous dimensions in Chapter 6.
+\end{remark}
+
+\begin{remark}[The cocycle condition]
+\label{rem:c5-cocycle}
+Reading the dilatation component of Chapter 6 as the anomalous dimension of a cohomology class requires $O[\infty]$ to be a cocycle at arity zero,
+\[
+Q\,O[\infty]=0\qquad\text{at order }\hbar,
+\]
+the part linear in $\delta$ of the quantum master equation of the family $I+\delta O$ at scale $\infty$. For $O$ with $(Q+\{I,-\})O=0$, Proposition \ref{prop:c4-defectflow} applied to $J=I-I^{CT}[\varepsilon]+\delta O(\varepsilon)$ expresses $Q\,O[\infty]$ at order $\hbar$ as the limit of the graphs with one vertex labelled by the part of the defect vertex linear in $\delta$: the special edge $K_\varepsilon-K_0$ between $I$ and $O$, from $\{I,O\}_\varepsilon-\{I,O\}$; the vertices $-Q\,\partial_\delta I^{CT}[\varepsilon]-\{I,\partial_\delta I^{CT}[\varepsilon]\}_\varepsilon$ and $-\{I^{CT}[\varepsilon],O\}_\varepsilon$; the self-contraction $\hbar\Delta_\varepsilon O$, zero for operators without antifields; and the trees joining $O$ to the action defect of Proposition \ref{prop:c4-defect1}, whose cubic sector is open (Remark \ref{rem:c4-cubic}). For the scalar bilinears the local output of Weyl weight $2$, ghost degree $1$ and colour singlet includes functionals of the type $\int\omega\,(dc,A|_V)$. A nonzero result of this kind is removed by a finite local counterterm of Weyl weight $w_O$ added to $O(\varepsilon)$, for instance a multiple of $\int\omega\,(A|_V,A|_V)$, since
+\[
+Q\int\omega\,(A|_V,A|_V)=-2\int\omega\,(dc,A|_V).
+\]
+Such a counterterm is independent of $\varepsilon$ and of order $\hbar$; by Proposition \ref{prop:c5-local} it adds to $O[\infty]$ the flow of a local functional of the same Weyl weight, and it leaves the $\log\varepsilon$ coefficients of this chapter and the dilatation coefficients of Chapter 6 unchanged. The evaluation of these graphs is part of Step 2 (Chapter 7).
+\end{remark}
+
+\section{Tools for one-loop insertions}
+
+The gauge algebra $\mathfrak g$ is simple. The inverse pairing $(-,-)^{-1}\in\mathfrak g\otimes\mathfrak g$ is symmetric, and a bilinear form on $\mathfrak g$ can be evaluated on it.
+
+\begin{lemma}[Colour contractions]
+\label{lem:c5-colour}
+For $X_1,X_2\in\mathfrak g$:
+\begin{itemize}
+\item the bracket $[-,-]$ evaluated on $(-,-)^{-1}$ is $0$;
+\item for every linear map of $\mathfrak g$, the bilinear form $(Z,Z^{\prime})\mapsto(Z,\text{the map applied to }Z^{\prime})$ evaluated on $(-,-)^{-1}$ is the trace $\operatorname{tr}_{\mathfrak g}$ of the map; in particular $(-,-)$ evaluated on $(-,-)^{-1}$ is $\dim\mathfrak g$, and $(X_1,[-,-])$ and $(-,[X_1,-])$ evaluated on $(-,-)^{-1}$ are $0$;
+\item the bilinear form $([X_1,-],[X_2,-])$ evaluated on $(-,-)^{-1}$ is $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})$;
+\item for all $X,Y\in\mathfrak g$ with $(X,Y)\neq0$, the ratio $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$ is the same number, and $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})=\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\,(X_1,X_2)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+The bracket is antisymmetric and $(-,-)^{-1}$ is symmetric. The inverse pairing is characterised by the property that contracting its second factor with $(Z,-)$ returns $Z$; hence the bilinear form of a linear map, evaluated on $(-,-)^{-1}$, is the trace of the map. By invariance, $(X_1,[Z,Z^{\prime}])=([X_1,Z],Z^{\prime})=-(Z,[X_1,Z^{\prime}])$, which is the case of the map $-\mathrm{ad}_{X_1}$, of trace $0$ because $\mathrm{ad}_{X_1}$ is antisymmetric for $(-,-)$, and $(-,[X_1,-])$ is the case of $\mathrm{ad}_{X_1}$; and $([X_1,Z],[X_2,Z^{\prime}])=-(Z,[X_1,[X_2,Z^{\prime}]])$ is the case of $-\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}$. For simple $\mathfrak g$ every invariant symmetric bilinear form is a multiple of $(-,-)$, which gives the last item.
+\end{proof}
+
+In the following, the number
+\[
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2\,(X,Y)}
+\]
+is the unit of every one-loop coefficient; it is negative when $(-,-)$ is positive definite on the compact real form.
+
+\begin{lemma}[Vertex functions on decomposable legs]
+\label{lem:c5-vertices}
+Give each leg of a vertex a fibre element $(v,-)\otimes Z$ with $v\in V_{10}$ and $Z\in\mathfrak g$; by linearity this determines every vertex function. The quartic vertex function \eqref{eq:c1-AAAA} with legs $(v_j,-)\otimes Z_j$, $j=1,\dots,4$, equals
+\begin{equation}
+\begin{aligned}
+-\frac12\Big[&\big((v_1,v_3)(v_2,v_4)-(v_1,v_4)(v_2,v_3)\big)\big([Z_1,Z_2],[Z_3,Z_4]\big)\\
+&+\big((v_1,v_2)(v_3,v_4)-(v_1,v_4)(v_3,v_2)\big)\big([Z_1,Z_3],[Z_2,Z_4]\big)\\
+&+\big((v_1,v_2)(v_4,v_3)-(v_1,v_3)(v_4,v_2)\big)\big([Z_1,Z_4],[Z_2,Z_3]\big)\Big],
+\end{aligned}
+\label{eq:c5-quartic}
+\end{equation}
+the three terms belonging to the pairings $(12|34)$, $(13|24)$, $(14|23)$ of the legs. The cubic vertex function \eqref{eq:c1-AAA} with two legs $(w,-)\otimes Z$, $(w^{\prime},-)\otimes Z^{\prime}$, $w,w^{\prime}\in W_{\mathbb R}^\perp$, of incoming momenta $p$, $p^{\prime}$, and one leg $(v,-)\otimes Z^{\prime\prime}$, $v\in V$, equals
+\begin{equation}
+-\frac i2\,(v,p^{\prime}-p)\,(w,w^{\prime})\,\big(Z^{\prime\prime},[Z,Z^{\prime}]\big);
+\label{eq:c5-cubic}
+\end{equation}
+The vertex function of $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ on legs $(v,-)\otimes Z$, $(v^{\prime},-)\otimes Z^{\prime}$ is
+\[
+\big[(w_1,v)(w_2,v^{\prime})+(w_1,v^{\prime})(w_2,v)\big](Z,Z^{\prime}),
+\]
+times the Fourier transform of $\omega$ at minus the total momentum of the legs.
+\end{lemma}
+
+\begin{proof}
+With $A_j=(v_j,-)\otimes Z_j$, the two-form $[A_1\wedge A_2]$ of Chapter 1 is $(v_1,-)\wedge(v_2,-)\otimes[Z_1,Z_2]$, because $[A_1\wedge A_2](e,e^{\prime})=(v_1,e)(v_2,e^{\prime})[Z_1,Z_2]-(v_1,e^{\prime})(v_2,e)[Z_1,Z_2]$, and likewise for every pair of legs. Polarising the normalisation of the Hodge pairing in Definition \ref{def:c1-action} gives
+\[
+\big((v_1,-)\wedge(v_2,-),(v_3,-)\wedge(v_4,-)\big)=(v_1,v_3)(v_2,v_4)-(v_1,v_4)(v_2,v_3),
+\]
+and likewise for the other two pairings, which gives \eqref{eq:c5-quartic}. In \eqref{eq:c1-AAA}, $\iota_pA(p_j)=(v_j,p)Z_j$ and $[A(p_i),A(p_j)]=(v_i,v_j)[Z_i,Z_j]$. With legs $1,2$ along $W_{\mathbb R}^\perp$ and leg $3$ along $V$, the momenta lie in $V\perp W_{\mathbb R}^\perp$, so $(v_1,p)=(v_2,p)=0$ and $(v_2,v_3)=(v_3,v_1)=0$; the second and third terms of \eqref{eq:c1-AAA} vanish and the first is $-\tfrac i2(v_3,p_2-p_1)(v_1,v_2)(Z_3,[Z_1,Z_2])$, which is \eqref{eq:c5-cubic}. The last item is the multilinear part of $(\iota_{w_1}A,\iota_{w_2}A)$ on two plane waves (Definition \ref{def:c1-vertex}).
+\end{proof}
+
+\begin{lemma}[Insertion on a cycle]
+\label{lem:c5-cycle}
+Expand around a background consisting of two plane waves with fibre elements $A(p_1)$, $A(p_2)$, as in Remark \ref{rem:c3-oneloop}. The part of the order-$\hbar$ term of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$ that is bilinear in $A(p_1)$, $A(p_2)$ and comes from cycles through the vertex $O$ whose edges all lie in the $A$ slot is $\hbar$ times the sum of
+\begin{itemize}
+\item $\tfrac12$ times each bubble: the cycle through $O$ and one quartic vertex carrying both external legs;
+\item $1$ times each triangle: the cycle through $O$, a cubic vertex carrying $A(p_1)$ and a cubic vertex carrying $A(p_2)$, traversed in one orientation.
+\end{itemize}
+In each cycle the internal legs are contracted along the edges with the $A\otimes A$ component of $P(\varepsilon,\infty)$ (Proposition \ref{prop:c3-P}): an edge of momentum $p$ replaces the fibre elements $(v,-)\otimes Z$, $(v^{\prime},-)\otimes Z^{\prime}$ at its two ends by $2$ times the inverse metric in $v\otimes v^{\prime}$ and $(-,-)^{-1}$ in $Z\otimes Z^{\prime}$, times $\int_\varepsilon^\infty e^{-t|p|^2}dt=e^{-\varepsilon|p|^2}|p|^{-2}$, and the loop momentum $p$ is integrated with $\int d^4p/(2\pi)^4$.
+\end{lemma}
+
+\begin{proof}
+On the $A$ slots the parity operator and the supertrace of Proposition \ref{prop:c3-oneloop} are trivial, and the one-loop operator is $P(\varepsilon,\infty)$ composed with the second derivative of $I+\delta O$ in the fluctuation. The $\delta$-derivative of $\frac1{2n}\mathrm{STr}$ of its $n$-th power is $\frac12\mathrm{STr}$ of the product of $n-1$ factors built from $I$ and one factor built from $O$. The second derivative of $O$ is its vertex function with both legs internal, since $O$ is quadratic. For $n=2$ the factor built from $I$ is bilinear in the two external legs through the quartic vertex: by Definition \ref{def:c1-vertex} the part of the quartic term of $I$ quadratic in the fluctuation and bilinear in $A(p_1)$, $A(p_2)$ is one half of \eqref{eq:c1-AAAA} with two internal legs, whose second derivative is \eqref{eq:c1-AAAA} with two legs open; this gives the weight $\tfrac12$. For $n=3$ the two factors built from $I$ each carry one external leg through a cubic vertex; the two orders of these factors give equal traces, since all second derivatives and $P(\varepsilon,\infty)$ are symmetric and the trace is invariant under transposition and cyclic permutation, so $\tfrac12$ times their sum is one triangle with weight $1$.
+\end{proof}
+
+The singular parts are read off from the following lemma, which also locates them on the lower end $t=\varepsilon$ of the Schwinger integrals (Remark \ref{rem:c3-two}).
+
+\begin{lemma}[Logarithmic coefficient from the UV boundary]
+\label{lem:c5-log}
+Let $\gamma$ be a one-loop graph with edge set $E(\gamma)$ [C07, §15.5], $|E(\gamma)|\ge2$, whose value is
+\[
+F_\gamma(\varepsilon)=\int_{[\varepsilon,\infty)^{E(\gamma)}}\prod_{e\in E(\gamma)}dt_e\int\frac{d^4p}{(2\pi)^4}\,\big(\text{numerator of }\gamma\big)(p)\,\exp\Big(-\sum_{e\in E(\gamma)}t_e|p+p_e|^2\Big)\qquad[\text{C07, §15.4}],
+\]
+with generic $p_e\in V$ and a numerator that is a polynomial in $p$ and the $p_e$, homogeneous of degree $2|E(\gamma)|-4$; let $\big(\text{numerator of }\gamma\big)_{\rm top}$ be its part of degree $2|E(\gamma)|-4$ in $p$, and write
+\[
+\text{(average)}=\frac1{2\pi^2}\int_{|p|=1}\big(\text{numerator of }\gamma\big)_{\rm top}(p)\,d\mathrm{area}(p)
+\]
+for its average over the unit sphere of $V$, of area $2\pi^2$. Then
+\begin{equation}
+\begin{aligned}
+\varepsilon\frac{dF_\gamma}{d\varepsilon}&=-\sum_{e\in E(\gamma)}\big(\varepsilon\cdot\text{the value of }\gamma\text{ with }t_e=\varepsilon\text{ fixed}\big),\\
+\lim_{\varepsilon\to0}\varepsilon\frac{dF_\gamma}{d\varepsilon}&=-\frac{\text{(average)}}{16\pi^2},
+\end{aligned}
+\label{eq:c5-log}
+\end{equation}
+and each of the $|E(\gamma)|$ terms of the sum tends to $\frac{1}{|E(\gamma)|}\cdot\frac{\text{(average)}}{16\pi^2}$. The coefficient of $\log\varepsilon$ in $F_\gamma(\varepsilon)$ is $-\frac{\text{(average)}}{16\pi^2}$, and each edge carries the fraction $\frac1{|E(\gamma)|}$ of it.
+\end{lemma}
+
+\begin{proof}
+The first identity is Proposition \ref{prop:c4-boundary}. Fix an edge $e$. As in the proof of Lemma \ref{lem:c4-local}, with $\tau=\varepsilon+\sum_{e^{\prime}\neq e}t_{e^{\prime}}$, the Gaussian integral over $p$ writes the value of $\gamma$ with $t_e=\varepsilon$ fixed as
+\[
+\sum_{j=0}^{|E(\gamma)|-2}\int_{[\varepsilon,\infty)^{E(\gamma)\setminus e}}\frac{(\text{numerator})_j}{16\pi^2\,\tau^{2+j}}\exp\Big(-\tau\cdot\frac12\sum_{e^{\prime},e^{\prime\prime}}\frac{t_{e^{\prime}}}{\tau}\frac{t_{e^{\prime\prime}}}{\tau}|p_{e^{\prime}}-p_{e^{\prime\prime}}|^2\Big)\prod_{e^{\prime}\neq e}dt_{e^{\prime}} ,
+\]
+the exponent being $\ge0$. The term $j=|E(\gamma)|-2$ contracts all loop momenta of the top-degree part, so in polar coordinates
+\[
+\begin{aligned}
+\int\frac{d^4p}{(2\pi)^4}\big(\text{numerator of }\gamma\big)_{\rm top}(p)\,e^{-\tau|p|^2}&=\text{(average)}\cdot\frac{2\pi^2}{(2\pi)^4}\int_0^\infty|p|^{2|E(\gamma)|-1}e^{-\tau|p|^2}\,d|p|\\
+&=\frac{(|E(\gamma)|-1)!\,\text{(average)}}{16\pi^2\,\tau^{|E(\gamma)|}},
+\end{aligned}
+\]
+i.e. $(\text{numerator})_{|E(\gamma)|-2}=(|E(\gamma)|-1)!\,\text{(average)}$, a constant. Substituting $t_{e^{\prime}}\mapsto\varepsilon t_{e^{\prime}}$ for $e^{\prime}\neq e$, $\varepsilon$ times this term becomes an integral over $[1,\infty)^{E(\gamma)\setminus e}$ of $\frac{(|E(\gamma)|-1)!\,\text{(average)}}{16\pi^2}\big(1+\sum_{e^{\prime}\neq e}t_{e^{\prime}}\big)^{-|E(\gamma)|}$ times an exponential of $\varepsilon$ times a nonnegative function, which is at most $1$ and tends to $1$. The function $\big(1+\sum_{e^{\prime}\neq e}t_{e^{\prime}}\big)^{-|E(\gamma)|}$ is integrable on $[1,\infty)^{|E(\gamma)|-1}$, so by dominated convergence the limit is
+\[
+\begin{aligned}
+\frac{(|E(\gamma)|-1)!\,\text{(average)}}{16\pi^2}\int_{[1,\infty)^{E(\gamma)\setminus e}}\Big(1+\sum_{e^{\prime}\neq e}t_{e^{\prime}}\Big)^{-|E(\gamma)|}\prod_{e^{\prime}\neq e}dt_{e^{\prime}}&=\frac{(|E(\gamma)|-1)!\,\text{(average)}}{16\pi^2\,|E(\gamma)|!}\\
+&=\frac{1}{|E(\gamma)|}\cdot\frac{\text{(average)}}{16\pi^2}.
+\end{aligned}
+\]
+The terms $j\le|E(\gamma)|-3$, of lower degree in $p$, are bounded separately. Their integrands are bounded by a multiple of $\tau^{-2-j}$ times the exponential; on $\tau\ge1$ the integral is bounded as in the proof of Lemma \ref{lem:c4-local}, and on $\tau\le1$ it is bounded by a multiple of $\int_0^1(\varepsilon+\rho)^{|E(\gamma)|-4-j}\,d\rho$, with $|E(\gamma)|-4-j\ge-1$, hence by a multiple of $1+|\log\varepsilon|$. Multiplied by $\varepsilon$ these terms tend to $0$. This proves the limit of each of the $|E(\gamma)|$ terms, and summing over the edges gives the limit in \eqref{eq:c5-log}. Finally, by Lemma \ref{lem:c4-local} with superficial degree $0$, $F_\gamma(\varepsilon)$ is a multiple of $\log\varepsilon$ plus a function $g$ with a limit and with $\varepsilon\frac{dg}{d\varepsilon}\to0$; hence the multiple is $\lim\varepsilon\,dF_\gamma/d\varepsilon$.
+\end{proof}
+
+For $|E(\gamma)|=2$ and numerator $1$ the lemma gives the coefficient $-\frac1{16\pi^2}$ of $\log\varepsilon$ in
+\[
+\int\frac{d^4p}{(2\pi)^4}\frac{e^{-\varepsilon|p|^2}}{|p|^2}\frac{e^{-\varepsilon|p+p_1|^2}}{|p+p_1|^2};
+\]
+in position space this is the singular part $-\frac{\log\varepsilon}{16\pi^2}\,\delta(x-y)$ of the square of $\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}$.
+
+\section{Single letters}
+
+\begin{proposition}[Letters]
+\label{prop:c5-letters}
+Let $X\in\mathfrak g$, $w\in W_{\mathbb R}^\perp$, $v\in V$ and $\zeta\in\Sigma^*\otimes\mathfrak g$. For each of the letters
+\[
+\int\omega\,(X,\iota_wA),\qquad \int\omega\,(X,\iota_v(A|_V)),\qquad \int\omega\,(\zeta,\lambda),\qquad \int\omega\,(X,c),
+\]
+one has $\partial_\delta I^{CT}[\varepsilon]=0$ at one loop, hence
+\begin{equation}
+O(\varepsilon)=O .
+\label{eq:c5-letters}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The vertex $O$ is univalent, and a cycle passes through every one of its vertices along two edges; hence $O$ lies off the cycle in every one-loop graph, and by Proposition \ref{prop:c5-thmB} $\partial_\delta I^{CT}[\varepsilon]$, the singular part of the graphs with $O$ on the cycle, is $0$. The graphs with $O$ off the cycle consist of a one-loop graph with the vertices of $I$, joined to $O$ by a tree. If the one-loop graph has one external leg, it is a cubic vertex of $I$ with two of its legs joined by an edge; every cubic vertex of $I$ has the form $(Z_1,[Z_2,Z_3])$ in its colour factors (Chapter 1), and joining two of its legs evaluates $(Z_1,[-,-])$ or $(-,[Z_2,-])$ on $(-,-)^{-1}$, which is $0$ by Lemma \ref{lem:c5-colour}. If the one-loop graph has more external legs, its singular part is cancelled by the tree with the vertex $-I^{CT}[\varepsilon]$ (first class in the proof of Proposition \ref{prop:c5-thmB}).
+\end{proof}
+
+\section{Scalar bilinears}
+
+\begin{definition}[Scalar bilinears and the symmetric square of $W_{\mathbb R}^\perp$]
+\label{def:c5-bilinear}
+For $w_1,w_2\in W_{\mathbb R}^\perp$,
+\[
+O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A),
+\]
+a gauge-invariant local operator of Weyl weight $w_O=2$, symmetric and bilinear in $(w_1,w_2)$, hence linear in $w_1w_2\in\mathrm{Sym}^2W_{\mathbb R}^\perp$. Under $\mathfrak{so}(W_{\mathbb R}^\perp)$, with $\mathrm{Spin}(6;\mathbb C)\cong SL(4,\mathbb C)$ [ESW, §10.3], the symmetric square of the six-dimensional space $W_{\mathbb R}^\perp$ is the sum of the traceless symmetric tensors, of dimension $20$, and the line spanned by the inverse metric, of dimension $1$. Correspondingly
+\begin{equation}
+\begin{aligned}
+\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)=\ &\Big[\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)\\
+&\quad-\tfrac16(w_1,w_2)\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\Big]\\
+&+\tfrac16(w_1,w_2)\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}),
+\end{aligned}
+\label{eq:c5-decomp}
+\end{equation}
+where $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ contracts the $W_{\mathbb R}^\perp$ factors with the metric and the $\mathfrak g$ factors with $(-,-)$. The bracket is the traceless part: replacing $w_1w_2$ by the inverse metric of $W_{\mathbb R}^\perp$ turns $(w_1,w_2)$ into $6$ and the bracket into $(1-\tfrac16\cdot6)\int\omega(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})=0$. The last term is the trace part, a multiple of $\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$.
+\end{definition}
+
+\begin{proposition}[The graphs]
+\label{prop:c5-census}
+The one-loop graphs with the vertex $O$ of Definition \ref{def:c5-bilinear} on the cycle and superficial degree $\ge0$ are the six graphs of the figure:
+\begin{itemize}
+\item (a) the vacuum graph: one $A|_{W_{\mathbb R}^\perp}$ edge from $O$ to itself, degree $2$;
+\item (b) one external $A|_V$: a cycle of two $A|_{W_{\mathbb R}^\perp}$ edges through a cubic vertex, degree $1$;
+\item (c), (d) two external $A|_V$: the bubble with the quartic vertex of type $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, and the triangle with two cubic vertices of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$ and three $A|_{W_{\mathbb R}^\perp}$ edges, degree $0$;
+\item (e), (f) two external $A|_{W_{\mathbb R}^\perp}$: the bubble with the quartic vertex of type $(A|_{W_{\mathbb R}^\perp})^4$, and the triangle with two cubic vertices of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$, edges $A|_{W_{\mathbb R}^\perp}$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$, degree $0$.
+\end{itemize}
+\end{proposition}
+
+\fig{diagrams/composite/insertion_O1_O6.png}{The one-loop graphs (a)--(f) with one vertex $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ (double line) on the cycle and superficial degree $\ge0$; dashed lines are $A|_{W_{\mathbb R}^\perp}$, wavy lines $A|_V$, every edge carries $P(\varepsilon,\infty)$.}
+
+\begin{proof}
+All vertices of $I$ have Weyl weight $4$ (fields plus derivatives), so a one-loop graph with one vertex $O$ has superficial degree $w_O$ minus the sum of the Weyl weights of its external legs, i.e. $2$ minus that sum. Its external legs have total cohomological degree $0$; an external $c$ (weight $0$) needs an antifield (weight $\ge\frac52$) to compensate its degree, and two $\lambda$ have weight $3$. A single external $\lambda$, of weight $\tfrac32$, is excluded: every vertex of $I$ and of $O$ contains an even number of factors $\lambda$, $\lambda^*$, and every edge carrying the $\lambda\otimes\lambda$ component of $P(\varepsilon,\infty)$ joins two of them, so the number of external legs $\lambda$, $\lambda^*$ is even; equivalently, the element $-1$ of $\mathrm{Spin}(4,\mathbb C)$, which acts by $-1$ on $S_\pm$ and trivially on $V$, preserves the action and the regulator and changes the sign of every functional with an odd number of spinor legs. The external legs of degree $\ge0$ graphs are therefore none, one $A$, or two $A$. The element $-1$ of $SO(W_{\mathbb R}^\perp)$ lies in the image of $\mathrm{Spin}(6;\mathbb C)$ and is a symmetry of the action and of the regulator ($H$ and $Q^{GF}$ commute with $\mathrm{Spin}(6;\mathbb C)$); it fixes $w_1w_2$ and changes the sign of every functional with an odd number of $A|_{W_{\mathbb R}^\perp}$ legs, so the singular parts with one $A|_{W_{\mathbb R}^\perp}$ leg, or with legs $A|_V$, $A|_{W_{\mathbb R}^\perp}$, vanish. Both edges at $O$ are $A|_{W_{\mathbb R}^\perp}$ edges. A cycle that enters a Yukawa vertex along $A|_{W_{\mathbb R}^\perp}$ continues along $\lambda$ and needs an external $\lambda$; a cycle that enters the vertex $([A,c],A^*)$ along $A|_{W_{\mathbb R}^\perp}$ leaves it along $c$ or along $A^*|_{W_{\mathbb R}^\perp}$; $P(\varepsilon,\infty)$ has no component in the slot of $A^*|_{W_{\mathbb R}^\perp}$ (Proposition \ref{prop:c3-P}), and if the cycle leaves along $c$, through the $c\otimes A^*|_V$ component, the leg $A^*|_{W_{\mathbb R}^\perp}$ of that vertex is external, of weight $3$, which is excluded. Hence the cycle passes through cubic vertices of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$ and quartic vertices, with at most two external legs: one cubic vertex gives (b), one quartic vertex gives (c) or (e), and two cubic vertices give (d) or (f), according to whether the edge between them is $A|_{W_{\mathbb R}^\perp}$ or $A|_V$.
+\end{proof}
+
+\begin{proposition}[Singular parts graph by graph]
+\label{prop:c5-table}
+The singular parts of the graphs (a)--(f) are:
+
+\begin{tabular}{l|c|c|c|c}
+graph & $\varepsilon^{-1}\int\omega$ & $\int\omega(\iota_{w_1}A,\iota_{w_2}A)$ & $(w_1,w_2)\int\omega(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $(w_1,w_2)\int\omega(A|_V,A|_V)$ \\
+\hline
+(a) & $\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2}$ & $0$ & $0$ & $0$ \\
+(b) & $0$ & $0$ & $0$ & $0$ \\
+(c) & $0$ & $0$ & $0$ & $-2$ \\
+(d) & $0$ & $0$ & $0$ & $2$ \\
+(e) & $0$ & $2$ & $-2$ & $0$ \\
+(f) & $0$ & $2$ & $0$ & $0$ \\
+\hline
+total & $\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2}$ & $4$ & $-2$ & $0$ \\
+\end{tabular}
+\tabcaption{Singular parts of the graphs of the figure. The first column is the coefficient of $\varepsilon^{-1}\int\omega$; the other entries are coefficients of $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon$ times the functional at the head of the column.}
+\end{proposition}
+
+\begin{proof}
+External fibre elements are taken decomposable, which suffices by linearity; the external momenta are $p_1,p_2$ and $\omega$ absorbs $-p_1-p_2$. By Lemma \ref{lem:c5-log}, the $\log\varepsilon$ coefficient of a graph of degree $0$ depends on the top-degree part of its numerator in the loop momentum $p$, so in numerators the external momenta are set to $0$. The local functionals of the table have the following vertex functions (Lemma \ref{lem:c5-vertices}), the first two on legs $(w_3,-)\otimes X_1$, $(w_4,-)\otimes X_2$ and the third on legs $(v_3,-)\otimes X_1$, $(v_4,-)\otimes X_2$, with $w_3,w_4\in W_{\mathbb R}^\perp$, $v_3,v_4\in V$, $X_1,X_2\in\mathfrak g$:
+\[
+\begin{aligned}
+\int\omega\,(\iota_{w_1}A,\iota_{w_2}A):&\quad\big[(w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)\big](X_1,X_2),\\
+(w_1,w_2)\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}):&\quad 2(w_1,w_2)(w_3,w_4)(X_1,X_2),\\
+(w_1,w_2)\int\omega\,(A|_V,A|_V):&\quad 2(w_1,w_2)(v_3,v_4)(X_1,X_2).
+\end{aligned}
+\] The graphs are computed in the examples below; (a) and (b) are as follows.
+
+Graph (a) is the term $n=1$ of Proposition \ref{prop:c3-oneloop}, $\hbar\,\partial_{P(\varepsilon,\infty)}O$. The $A\otimes A$ component of $P(\varepsilon,\infty)$ at coincident points is $2(-,-)^{-1}\otimes(\text{inverse metric of }V_{10})\cdot\frac1{16\pi^2\varepsilon}$ (Proposition \ref{prop:c3-P}); contracting $\iota_{w_1}\otimes\iota_{w_2}$ with the inverse metric gives $(w_1,w_2)$, and $(-,-)$ on $(-,-)^{-1}$ gives $\dim\mathfrak g$ (Lemma \ref{lem:c5-colour}):
+\[
+\hbar\,\partial_{P(\varepsilon,\infty)}O=\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2\,\varepsilon}\int\omega .
+\]
+Graph (b): by \eqref{eq:c5-cubic} the cubic vertex with external leg $(v_3,-)\otimes X_1$ and internal legs $(w,-)\otimes Z$, $(w^{\prime},-)\otimes Z^{\prime}$ is $-\frac i2(v_3,p^{\prime}-p)(w,w^{\prime})(X_1,[Z,Z^{\prime}])$. Both edges end at $O$, whose vertex function is symmetric in its two legs, so the colour factor is $(X_1,[-,-])$ evaluated on $(-,-)^{-1}$, which is $0$ by Lemma \ref{lem:c5-colour}.
+\end{proof}
+
+\begin{example}[Graph (e): the bubble with external $A|_{W_{\mathbb R}^\perp}$]
+\label{ex:c5-e}
+Take external legs $(w_3,-)\otimes X_1$, $(w_4,-)\otimes X_2$ and internal legs $(w_1,-)\otimes Z_1$, $(w_2,-)\otimes Z_2$ at the quartic vertex. The three pairings of \eqref{eq:c5-quartic}, with legs $1,2$ external and $3,4$ internal, are
+\[
+\begin{aligned}
+(12|34):&\quad\big[(w_3,w_1)(w_4,w_2)-(w_3,w_2)(w_4,w_1)\big]\big([X_1,X_2],[Z_1,Z_2]\big),\\
+(13|24):&\quad\big[(w_3,w_4)(w_1,w_2)-(w_3,w_2)(w_1,w_4)\big]\big([X_1,Z_1],[X_2,Z_2]\big),\\
+(14|23):&\quad\big[(w_3,w_4)(w_2,w_1)-(w_3,w_1)(w_2,w_4)\big]\big([X_1,Z_2],[X_2,Z_1]\big).
+\end{aligned}
+\]
+The two edges join $O$ to the internal legs. By Lemma \ref{lem:c5-cycle} each edge contributes the factor $2$, the inverse metric and $(-,-)^{-1}$; contracting the vertex function of $O$ through the two edges, the internal legs of the quartic vertex receive $(w_1,-)\otimes(w_2,-)+(w_2,-)\otimes(w_1,-)$ tensored with $(-,-)^{-1}$ in $Z_1\otimes Z_2$, and the quartic vertex function is symmetric in legs $3,4$. By Lemma \ref{lem:c5-colour}, $([X_1,X_2],[Z_1,Z_2])$ gives $0$ and the other two colour factors give $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})$, so the quartic vertex evaluated on $(w_1,-)\otimes(w_2,-)\otimes(-,-)^{-1}$ is
+\[
+-\frac12\Big(-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})\Big)\Big[2(w_1,w_2)(w_3,w_4)-(w_1,w_4)(w_2,w_3)-(w_1,w_3)(w_2,w_4)\Big].
+\]
+With the bubble weight $\frac12$ and the edge factor $2^2$, and the factor $2$ from the two terms of the vertex function of $O$,
+\[
+\begin{aligned}
+\text{(e)}=\ &\frac\hbar2\cdot2^2\cdot2\cdot\frac12\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})\Big[2(w_1,w_2)(w_3,w_4)-(w_1,w_3)(w_2,w_4)-(w_1,w_4)(w_2,w_3)\Big]\\
+&\cdot\int\frac{d^4p}{(2\pi)^4}\frac{e^{-\varepsilon|p|^2}}{|p|^2}\frac{e^{-\varepsilon|p+p_1+p_2|^2}}{|p+p_1+p_2|^2}.
+\end{aligned}
+\]
+Lemma \ref{lem:c5-log} with two edges and numerator $1$ replaces the integral by $-\frac{1}{16\pi^2}\log\varepsilon$ in the singular part, and Lemma \ref{lem:c5-colour} replaces $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})$ by $\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}(X_1,X_2)$:
+\[
+\begin{aligned}
+\text{singular part of (e)}&=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\\
+&\quad\cdot\Big[2\big((w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)\big)-4(w_1,w_2)(w_3,w_4)\Big](X_1,X_2)\\
+&=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\,\Big[2\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)-2(w_1,w_2)\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\Big],
+\end{aligned}
+\]
+the second line read off from the vertex functions listed in the proof of Proposition \ref{prop:c5-table}.
+\end{example}
+
+\begin{example}[Graph (f): the triangle with external $A|_{W_{\mathbb R}^\perp}$]
+\label{ex:c5-f}
+Route the loop momentum $p$ from $O$ to the vertex carrying $(w_3,-)\otimes X_1$, then along the $A|_V$ edge to the vertex carrying $(w_4,-)\otimes X_2$, then back to $O$. By \eqref{eq:c5-cubic}, with the external momenta set to $0$ in the numerator, the two cubic vertices are
+\[
+\begin{aligned}
+\text{first vertex: }&\ -\tfrac i2\,(v,0-p)\,(w,w_3)\,\big(Z^{\prime\prime},[Z,X_1]\big)=\tfrac i2\,(v,p)\,(w,w_3)\,\big(Z^{\prime\prime},[Z,X_1]\big),\\
+\text{second vertex: }&\ -\tfrac i2\,(v^{\prime},0+p)\,(w^{\prime},w_4)\,\big(Z^{\prime\prime\prime},[Z^{\prime},X_2]\big),
+\end{aligned}
+\]
+where $(w,-)\otimes Z$ and $(w^{\prime},-)\otimes Z^{\prime}$ are the internal $A|_{W_{\mathbb R}^\perp}$ legs (incoming momenta $p$ and $-p$) and $(v,-)\otimes Z^{\prime\prime}$, $(v^{\prime},-)\otimes Z^{\prime\prime\prime}$ the two ends of the $A|_V$ edge. The edges give:
+\begin{itemize}
+\item the $A|_V$ edge: $2$, $(v,p)(v^{\prime},p)\mapsto|p|^2$, and $(Z^{\prime\prime},[Z,X_1])(Z^{\prime\prime\prime},[Z^{\prime},X_2])\mapsto([Z,X_1],[Z^{\prime},X_2])$;
+\item the two $A|_{W_{\mathbb R}^\perp}$ edges at $O$: the factor $2^2$; the metric contractions of $(w,w_3)(w^{\prime},w_4)$ with the vertex function of $O$, which give $(w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)$; and $(-,-)^{-1}$ in $Z\otimes Z^{\prime}$, so that $([Z,X_1],[Z^{\prime},X_2])$ becomes $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})$ by Lemma \ref{lem:c5-colour}.
+\end{itemize}
+With the triangle weight $1$ and $\frac i2\cdot\big(-\frac i2\big)=\frac14$, the numerator of the graph is
+\[
+\begin{aligned}
+\big(\text{numerator of (f)}\big)(p)=\ &2^3\cdot\frac14\,|p|^2\cdot\Big(-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})\Big)\Big[(w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)\Big]\\
+&+(\text{lower degree in }p),
+\end{aligned}
+\]
+so its average in the sense of Lemma \ref{lem:c5-log} is $-2\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})[(w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)]$, and the lemma with three edges gives
+\[
+\begin{aligned}
+\text{singular part of (f)}&=\hbar\cdot\frac{2\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})}{16\pi^2}\big[(w_1,w_3)(w_2,w_4)+(w_1,w_4)(w_2,w_3)\big]\log\varepsilon\\
+&=2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\int\omega\,(\iota_{w_1}A,\iota_{w_2}A).
+\end{aligned}
+\]
+\end{example}
+
+\begin{example}[Graphs (c) and (d): the cancellation of $(A|_V,A|_V)$]
+\label{ex:c5-cd}
+Take external legs $(v_3,-)\otimes X_1$, $(v_4,-)\otimes X_2$ with $v_3,v_4\in V$.
+
+Graph (c). In \eqref{eq:c5-quartic} with legs $1,2$ external and $3,4$ internal along $w_1,w_2$, the pairing $(12|34)$ carries $(v_3,w_1)(v_4,w_2)-(v_3,w_2)(v_4,w_1)=0$, since $V\perp W_{\mathbb R}^\perp$, and the pairings $(13|24)$, $(14|23)$ carry $(v_3,v_4)(w_1,w_2)$. By Lemma \ref{lem:c5-colour} the quartic vertex evaluated on $(w_1,-)\otimes(w_2,-)\otimes(-,-)^{-1}$ is $-\frac12\cdot2\cdot(-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}))(v_3,v_4)(w_1,w_2)$, and
+\[
+\text{(c)}=\frac\hbar2\cdot2^2\cdot2\cdot\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})(v_3,v_4)(w_1,w_2)\int\frac{d^4p}{(2\pi)^4}\frac{e^{-\varepsilon|p|^2}}{|p|^2}\frac{e^{-\varepsilon|p+p_1+p_2|^2}}{|p+p_1+p_2|^2},
+\]
+\[
+\begin{aligned}
+\text{singular part of (c)}&=-\frac{4\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})}{16\pi^2}(v_3,v_4)(w_1,w_2)\log\varepsilon\\
+&=-2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\,(w_1,w_2)\int\omega\,(A|_V,A|_V).
+\end{aligned}
+\]
+
+Graph (d). Route $p$ from $O$ to the vertex carrying $(v_3,-)\otimes X_1$, to the vertex carrying $(v_4,-)\otimes X_2$, and back to $O$, all three edges along $W_{\mathbb R}^\perp$. In \eqref{eq:c5-cubic} the external leg is the $V$-leg and the internal legs have incoming momenta $p$ and $-p$:
+\[
+-\tfrac i2\,(v_3,-p-p)\,(w,w^{\prime})\,\big(X_1,[Z,Z^{\prime}]\big)=i\,(v_3,p)\,(w,w^{\prime})\,\big(X_1,[Z,Z^{\prime}]\big),
+\]
+and likewise $i\,(v_4,p)(w^{\prime\prime},w^{\prime\prime\prime})(X_2,[Z^{\prime\prime},Z^{\prime\prime\prime}])$ at the second vertex. The metric contractions along the cycle give $(w,w^{\prime\prime\prime})$ from the middle edge and then $(w_1,w_2)+(w_2,w_1)=2(w_1,w_2)$ at $O$. The colour factors, contracted along the middle edge, give $(X_2,[[X_1,Z],Z^{\prime\prime\prime}])=([X_2,[X_1,Z]],Z^{\prime\prime\prime})$, and the two edges at $O$ contract $Z\otimes Z^{\prime\prime\prime}$ with $(-,-)^{-1}$, which gives $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_2}\mathrm{ad}_{X_1})$ by Lemma \ref{lem:c5-colour}. With the edge factor $2^3$, the average $\frac14(v_3,v_4)$ of $(v_3,p)(v_4,p)/|p|^2$ over the unit sphere of $V$ and $i\cdot i=-1$, the average of the top-degree part of the numerator is
+\[
+2^3\cdot(-1)\cdot\tfrac14(v_3,v_4)\cdot2(w_1,w_2)\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})=-4\,(v_3,v_4)(w_1,w_2)\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}),
+\]
+\[
+\begin{aligned}
+\text{singular part of (d)}&=+\frac{4\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})}{16\pi^2}(v_3,v_4)(w_1,w_2)\log\varepsilon\\
+&=2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\,(w_1,w_2)\int\omega\,(A|_V,A|_V).
+\end{aligned}
+\]
+The two singular parts cancel, and the coefficient of $(w_1,w_2)\int\omega\,(A|_V,A|_V)$ in $\partial_\delta I^{CT}[\varepsilon]$ is $0$.
+\end{example}
+
+\begin{theorem}[$O(\varepsilon)$ for the scalar bilinears]
+\label{thm:c5-Oeps}
+For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, at one loop,
+\begin{equation}
+\begin{aligned}
+\partial_\delta I^{CT}[\varepsilon]=\ &\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big[4\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)-2(w_1,w_2)\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\Big]\\
+&+\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2\,\varepsilon}\int\omega .
+\end{aligned}
+\label{eq:c5-dICT}
+\end{equation}
+For the traceless part (the bracket in \eqref{eq:c5-decomp}, and every traceless combination),
+\begin{equation}
+O(\varepsilon)=\Big(1-4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big)\,O ,
+\label{eq:c5-traceless}
+\end{equation}
+and for the trace part $O=\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$,
+\begin{equation}
+O(\varepsilon)=\Big(1+8\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big)\,O-\frac{12\,\hbar\dim\mathfrak g}{16\pi^2\,\varepsilon}\int\omega .
+\label{eq:c5-trace}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Proposition \ref{prop:c5-thmB}, $\partial_\delta I^{CT}[\varepsilon]$ is the sum of the singular parts of the graphs (a)--(f), which is the last row of the table of Proposition \ref{prop:c5-table}; every other set of external legs gives $0$ (proof of Proposition \ref{prop:c5-census}). This is \eqref{eq:c5-dICT}. The map $w_1w_2\mapsto\partial_\delta I^{CT}[\varepsilon]$ is linear on $\mathrm{Sym}^2W_{\mathbb R}^\perp$. On a traceless combination the terms with the factor $(w_1,w_2)$ add up to zero, leaving $4$ times the operator; for the bracket of \eqref{eq:c5-decomp} explicitly,
+\[
+\begin{aligned}
+&\Big[4\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)-2(w_1,w_2)\,\text{(trace)}\Big]-\tfrac16(w_1,w_2)\Big[4\,\text{(trace)}-12\,\text{(trace)}\Big]\\
+&\qquad=4\Big[\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)-\tfrac16(w_1,w_2)\,\text{(trace)}\Big],
+\end{aligned}
+\]
+where (trace) stands for $\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ and the vacuum terms cancel in the same way: $2(w_1,w_2)-\tfrac16(w_1,w_2)\cdot12=0$. For the trace, replace $w_1w_2$ by the inverse metric of $W_{\mathbb R}^\perp$: $(w_1,w_2)$ becomes $\dim W_{\mathbb R}^\perp=6$ and $\int\omega(\iota_{w_1}A,\iota_{w_2}A)$ becomes (trace), so the bracket of \eqref{eq:c5-dICT} becomes $4\,\text{(trace)}-12\,\text{(trace)}=-8\,\text{(trace)}$ and the vacuum term becomes $\frac{12\hbar\dim\mathfrak g}{16\pi^2\varepsilon}\int\omega$. Then $O(\varepsilon)=O-\partial_\delta I^{CT}[\varepsilon]$ gives \eqref{eq:c5-traceless} and \eqref{eq:c5-trace}.
+\end{proof}
+
+\begin{remark}[Method of computation]
+\label{rem:c5-verification}
+The entries of the table of Proposition \ref{prop:c5-table} are exact rational multiples of $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$. In explicit realisations of $V_{10}$, of the Clifford module and of $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$, the Schwinger integrals of each graph are integrated in closed form in exact rational arithmetic and the singular part is read off from the exact $\varepsilon$-expansion; the multiples are the same for both gauge algebras, and the colour factors are reduced for a general simple $\mathfrak g$ by Lemma \ref{lem:c5-colour}. The graphs (a)--(f) are all one-loop graphs with one vertex $O$ on the cycle and superficial degree $\ge0$ (Proposition \ref{prop:c5-census}).
+\end{remark}

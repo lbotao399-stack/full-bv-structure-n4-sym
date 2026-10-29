@@ -1,0 +1,187 @@
+{
+ "role": "adversarial auditor, lens: numbers, round 2",
+ "status": "complete",
+ "date": "2026-10-28",
+ "unit": "hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) (written out in full in every reported formula; the code evaluates it for g = su(2), (t_a,t_b) = delta_ab, hbar = 1, as -2/(16 pi^2))",
+ "inputs_read": [
+  "DESIGN.md",
+  "DEFINITIONS_v2.md",
+  "sources/ledger_SYNTHESIS.md",
+  "classical/classical_spec.md (conventions only: Hodge (F_A,F_A), Q, P(eps,infty) components)",
+  "compare/compare_r2.json (claims under audit)"
+ ],
+ "independence": "fresh exact scripts in qa/audit_numbers2_src (core.py, t1.py, t1_multi.py, t2.py, make_audit.py); no project code imported or copied; own 10d chiral blocks (9 real symmetric anticommuting 16x16 Pauli tensor products + one non-real generator in W_R^perp), own su(2) basis, own vertex tensors (symmetrised multilinear coefficients of the action on plane waves), own one-loop formula",
+ "method": {
+  "one_loop_functional": "W_1 = (1/2) sum_n (1/n) Tr[(P V)^n] for the A sector and -(1/2) sum_n (1/n) Tr[(P V)^n] for the lambda sector and for the odd pair (c, A^*|_V), with P the Wick contraction values of P(eps,infty) and V the matrix of the background-field quadratic part of I (written 1/2 X^T V X); for two external lambda legs: one-loop quadratic form 1/2 lambda^T <Y G Y> lambda with background-corrected lambda and A lines",
+  "propagators_rederived": "A-A: 2 (-,-)^{-1} e^{-eps p^2}/p^2 (inverse of the Feynman-gauge form of -1/4(dA,dA)); lambda-lambda: i (-,-)^{-1} rho(p) e^{-eps p^2}/p^2 (= (-K)^{-1} for 1/2 lambda^T K lambda); c-A^*|_V and A^*|_V-c: -i (-,-)^{-1} p e^{-eps p^2}/p^2 (pseudo-inverse of (dc,A^*)); all agree with classical_spec section 7",
+  "log_eps": "exact: the log eps coefficient of int d^4k/(2pi)^4 F with every line cut off by e^{-eps k_e^2} is -(1/(16 pi^2)) x (S^3 average of the degree -4 part of the large-k expansion of F); expansion in the external momenta done exactly (polynomial-matrix algebra, dyadic floats converted to Fractions, S^3 moments as exact rationals)",
+  "T2_route": "renormalised self-energy route: exact Schwinger evaluation of every A|_V two-point graph with t_e in [eps,infty) (incomplete-Gamma closed form, exact eps -> 0 expansion, Euler constant and log 2 kept symbolic), longitudinal and transverse polarisations; obstruction = Q of the local longitudinal part, because Q of the transverse part and Q of the (c,A^*) two-point vanish in the (c,A|_V) sector ((dc, d^*dA) integrates to 0)",
+  "configurations": "T1: 20 random integer configurations, entries in [-9,9]; every per-class ratio identical at all 20 (a residual structure of degree <= 4 vanishes at a random point with probability <= 4/19). T2: p along a basis axis with colour t_1, and p = (1/2,1/2,1/2,1/2) with colour t_2; identical results"
+ },
+ "T1": {
+  "(A|_V)^3 vertex, log eps coefficient as a multiple of the tree vertex, in the unit": {
+   "per_class": [
+    {
+     "class (fresh script)": "triangle A|_V loop",
+     "compare_r2 engine_A_id": "AV,AV,AV | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+     "fresh": "13/4",
+     "compare_r2": "13/4",
+     "match": true
+    },
+    {
+     "class (fresh script)": "bubble A|_V loop (quartic)",
+     "compare_r2 engine_A_id": "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+     "fresh": "-9/2",
+     "compare_r2": "-9/2",
+     "match": true
+    },
+    {
+     "class (fresh script)": "triangle A|_Wperp loop",
+     "compare_r2 engine_A_id": "AV,AV,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+     "fresh": "2",
+     "compare_r2": "2",
+     "match": true
+    },
+    {
+     "class (fresh script)": "bubble A|_Wperp loop (quartic)",
+     "compare_r2 engine_A_id": "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+     "fresh": "0",
+     "compare_r2": "0",
+     "match": true
+    },
+    {
+     "class (fresh script)": "triangle c-A^* loop",
+     "compare_r2 engine_A_id": "AV,AV,AV | AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~",
+     "fresh": "-1/12",
+     "compare_r2": "-1/12",
+     "match": true
+    },
+    {
+     "class (fresh script)": "triangle lambda loop",
+     "compare_r2 engine_A_id": "AV,AV,AV | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~",
+     "fresh": "16/3",
+     "compare_r2": "16/3",
+     "match": true
+    }
+   ],
+   "total_fresh": "6",
+   "total_compare_r2": "6",
+   "match": true
+  },
+  "(lambda, lambda, A|_Wperp) vertex, log eps coefficient as a multiple of the tree vertex, in the unit": {
+   "per_class": [
+    {
+     "class (fresh script)": "external A|_Wperp on boson line (A|_V and A|_Wperp internal)",
+     "compare_r2 engine_A_id": "l,l,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+     "fresh": "2",
+     "compare_r2": "2",
+     "match": true
+    },
+    {
+     "class (fresh script)": "external A|_Wperp on lambda line, internal A|_V",
+     "compare_r2 engine_A_id": "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~",
+     "fresh": "4",
+     "compare_r2": "4",
+     "match": true
+    },
+    {
+     "class (fresh script)": "external A|_Wperp on lambda line, internal A|_Wperp",
+     "compare_r2 engine_A_id": "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+     "fresh": "4",
+     "compare_r2": "4",
+     "match": true
+    }
+   ],
+   "total_fresh": "10",
+   "total_compare_r2": "10",
+   "match": true
+  },
+  "regressions (same script, same conventions)": {
+   "A|_V two-point log eps coefficient, multiple of tree -1/4 int(dA,dA)": "4",
+   "A|_V two-point per internal lines (A|_V, A|_Wperp, lambda, c-A^*)": [
+    "-19/6",
+    "2",
+    "16/3",
+    "-1/6"
+   ],
+   "A|_V two-point longitudinal log eps (A|_V and c-A^* loops cancel)": "0",
+   "lambda two-point log eps coefficient, multiple of tree 1/2 int(lambda, dslash lambda)": "8",
+   "agreement_with_DEFINITIONS_v2_round1": "4 x (-1/4 int(dA,dA)) = -int(dA|_V,dA|_V) and 8 x (1/2 int(lambda,dslash lambda)) = 4 int(lambda,dslash lambda): agree"
+  },
+  "consistency_with_s_exact_log_counterterm": "with weights 2 (A), 4 (lambda): A^2 -> 4, A^3 -> 6, lambda^2 -> 8, lambda^2 A -> 10, as computed; i.e. the log eps parts of the cubic counterterms equal the cubic parts of log eps (Q + {I,-})(2 int(A,A^*) - 4 int(lambda^*,lambda) - int(c^*,c)) for these two vertices",
+  "verdict": "CONFIRMED: (A|_V)^3 total 6 and (lambda,lambda,A|_Wperp) total 10 (log eps coefficients as multiples of the tree vertex, in the unit hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2)); every per-class value of compare_r2 reproduced exactly, including the vanishing (A|_V)^2 (A|_Wperp)^2-vertex bubble that engine B omits"
+ },
+ "T2": {
+  "sector": "external legs c and A|_V",
+  "fresh totals": {
+   "coefficient of the unit x eps^-1 int(A|_V,A|_V) in W_1": "9/4",
+   "longitudinal log eps coefficient (in the unit)": "0",
+   "coefficient of the unit x int(d^*A|_V,d^*A|_V) in the renormalised one-loop functional": "27/16",
+   "transverse log eps coefficient, multiple of tree -1/4 int(dA,dA)": "4",
+   "transverse eps^-1 equals longitudinal eps^-1 (local term proportional to int(A|_V,A|_V))": true
+  },
+  "fresh obstruction": "special-edge part of the eps^-1 column: -2 x 9/4 = -9/2 (unit x eps^-1 int(dc,A|_V)), cancelled by -Q I^CT[eps] (+9/2); log column 0; finite: Q((27/16) x unit x int(d^*A|_V,d^*A|_V)) = -(27/8) x unit x int(d^*dc,d^*A|_V), using Q c = -dc in the A|_V slot (classical_spec section 5)",
+  "compare_r2 claim": "-27/8 x hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) (ratio independent of X,Y for simple g; DEFINITIONS_v2 \"u\", code-level unit only) x int(d^*dc, d^*A|_V) = 27/16 x hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) (ratio independent of X,Y for simple g; DEFINITIONS_v2 \"u\", code-level unit only) x Q int(d^*A|_V, d^*A|_V): Q-exact",
+  "per_sector": [
+   {
+    "sector": "A|_Wperp internal lines (cubic bubble + quartic tadpole)",
+    "fresh: coefficient of unit x eps^-1 int(A|_V,A|_V) in W_1": "9/4",
+    "fresh: coefficient of unit x int(d^*A|_V,d^*A|_V) in W_1^R": "5/8",
+    "fresh: longitudinal log eps coefficient": "0",
+    "fresh, mapped to the (c,A|_V) obstruction via Q c = -dc: eps^-1 int(dc,A|_V) column": "-9/2",
+    "fresh, mapped: int(d^*dc,d^*A|_V) column": "-5/4",
+    "compare_r2 special-edge graphs summed": [
+     "QME2-b"
+    ],
+    "compare_r2 eps^-1 column (sum)": "-9/2",
+    "compare_r2 finite column (sum)": "-5/4",
+    "match": true
+   },
+   {
+    "sector": "lambda internal lines",
+    "fresh: coefficient of unit x eps^-1 int(A|_V,A|_V) in W_1": "-1",
+    "fresh: coefficient of unit x int(d^*A|_V,d^*A|_V) in W_1^R": "2/3",
+    "fresh: longitudinal log eps coefficient": "0",
+    "fresh, mapped to the (c,A|_V) obstruction via Q c = -dc: eps^-1 int(dc,A|_V) column": "2",
+    "fresh, mapped: int(d^*dc,d^*A|_V) column": "-4/3",
+    "compare_r2 special-edge graphs summed": [
+     "QME2-d"
+    ],
+    "compare_r2 eps^-1 column (sum)": "2",
+    "compare_r2 finite column (sum)": "-4/3",
+    "match": true
+   },
+   {
+    "sector": "A|_V and c - A^* internal lines (gauge bubble + quartic tadpole + ghost bubble)",
+    "fresh: coefficient of unit x eps^-1 int(A|_V,A|_V) in W_1": "1",
+    "fresh: coefficient of unit x int(d^*A|_V,d^*A|_V) in W_1^R": "19/48",
+    "fresh: longitudinal log eps coefficient": "0",
+    "fresh, mapped to the (c,A|_V) obstruction via Q c = -dc: eps^-1 int(dc,A|_V) column": "-2",
+    "fresh, mapped: int(d^*dc,d^*A|_V) column": "-19/24",
+    "compare_r2 special-edge graphs summed": [
+     "QME2-a",
+     "QME2-c",
+     "QME2-e"
+    ],
+    "compare_r2 eps^-1 column (sum)": "-2",
+    "compare_r2 finite column (sum)": "-19/24",
+    "match": true
+   }
+  ],
+  "remark_per_graph": "Matter sectors match graph by graph (A|_Wperp lines <-> QME2-b: eps^-1 -9/2, finite -5/4; lambda lines <-> QME2-d: eps^-1 2, finite -4/3). In the A|_V / c-A^* sector the fresh route splits into an A|_V-line part (log eps coefficient -1/4, Euler constant and log 2 present) and a c-A^* part (+1/4, opposite constants); only their sum (eps^-1 -2, finite -19/24 in the obstruction columns) is regulator-meaningful, and it equals QME2-a + QME2-c + QME2-e. The individual special-edge values -9/4, 1/8, 1/8 (eps^-1) and -5/8, -1/12, -1/12 (finite) were not recomputed graph by graph.",
+  "verdict": "CONFIRMED: eps^-1 total 0 after the tree counterterm vertex, log total 0, finite total -(27/8) x hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) x int(d^*dc, d^*A|_V) = (27/16) x hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) x Q int(d^*A|_V, d^*A|_V); Q-exact; removed by the finite counterterm (27/16) x hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) x int(d^*A|_V,d^*A|_V)"
+ },
+ "disagreements": [],
+ "caveats": [
+  "Convention dependence (not a disagreement): all multiples are in the unit hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) with (F_A,F_A) the Hodge pairing (classical_spec section 4). With -1/4 sum_{M,N}(F_MN,F_MN) instead, every number in this unit halves; ratios such as cubic/quadratic = 3/2 do not change.",
+  "su(2) only; adjoint one-loop colour factors of these graphs reduce to f-structure times tr_g(ad ad) for any simple g (the symmetric part of tr(ad ad ad) vanishes for a real representation), so the numbers in this unit are g-independent.",
+  "numpy on this machine (Accelerate BLAS) emits spurious floating-point warnings on every matmul, also for trivial integer matrices; exactness checked against Python-integer object arrays (max difference 0) and by all outputs being exact rationals that agree across 20 configurations.",
+  "T2 special-edge graphs QME2-a, QME2-c, QME2-e not recomputed individually (sum confirmed); cubic part of the T2 obstruction not computed (also OPEN in compare_r2)."
+ ],
+ "resources": "each run < 0.1 GB resident, < 4 s; one process at a time; no Wolfram kernel used; no files written outside the project folder; no processes left running",
+ "outputs": [
+  "qa/audit_numbers2_src/t1_multi_out.json",
+  "qa/audit_numbers2_src/t2_out.json",
+  "qa/audit_numbers2_src/t2_out_v1.json"
+ ]
+}

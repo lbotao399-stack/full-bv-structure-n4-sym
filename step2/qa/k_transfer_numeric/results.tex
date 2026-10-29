@@ -1,0 +1,108 @@
+% K at a finite transfer endpoint: independent numerics (Step 2, qa/k_transfer_numeric)
+% Numbers from results.json (kn/kn_results.py); (c) table filled by kn/kn_fill_tex.py.
+% Engine: kn/kn_engine.py on engine_a/r2_core.py (Step-1 engine A).
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb,booktabs,geometry}
+\geometry{margin=1.6cm}
+\newcommand{\unitexpr}{\tfrac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}
+\begin{document}
+\section*{$K$ at a finite transfer endpoint $T$: independent numerics}
+
+\subsection*{Objects}
+\begin{gather*}
+P(\varepsilon,T)(k)=\mathrm{Pnum}(k)\,\frac{e^{-\varepsilon|k|^2}-e^{-T|k|^2}}{|k|^2},\qquad
+(K_\varepsilon-K_0)(k)=\widehat K\,(e^{-\varepsilon|k|^2}-1)\qquad[\text{ch08 def:c8-PT, prop:c8-twocomp}],\\
+\text{flow cycle}=\frac1{2n}\sum_{\sigma\in S_n}\operatorname{str}\big[P\,S\,H_{\sigma_1}\cdots P\,S\,H_{\sigma_n}\big],\qquad
+\text{special-edge cycle}=\frac12\sum_{\sigma\in S_n}\operatorname{str}\big[(K_\varepsilon-K_0)\,S\,H_{\sigma_1}\,P\,S\,H_{\sigma_2}\cdots\big],\\
+K_b:\ v(y)=|y|^2b-2(b,y)y,\qquad v^m=x^2b^m-2(b\cdot x)x^m,\qquad
+y^ay^c\,e_m=-\partial_{P_a}\partial_{P_c}\big(e_m\,e^{i(P,y)}\big)\big|_{P=0},\\
+\text{graph}_{K_b}=-\big(X_2^{ac}\,\partial_a\partial_c\delta(\Sigma)+X_1^a\,\partial_a\delta(\Sigma)+X_0\,\delta(\Sigma)\big),\\
+X_0=\sum_{m,a,c}C^m_{ac}\,\partial_{P_a}\partial_{P_c}f_m\big|_{P=0},\qquad C^m_{ac}=\delta_{ac}b_m-b_a\delta_{cm}-b_c\delta_{am},\\
+\eta_1,\eta_2\in\Sigma^*\ \text{of opposite chirality}\ (\eta_1{}^\alpha{}_i,\ \bar\eta_2^{\dot\alpha i}),\qquad
+\Gamma(\eta_1,\eta_2)|_V^{\,m}=-i\,\eta_1{}^\alpha{}_i\sigma^m_{\alpha\dot\alpha}\bar\eta_2^{\dot\alpha i}\neq0,\\
+J=I+c_1S^{(1)}(\epsilon_1)+c_2S^{(1)}(\epsilon_2)-c_1c_2S^{(2)}(\epsilon_1,\epsilon_2),\qquad \epsilon_a(x)=\rho(x)\eta_a,\qquad
+Y_0=\text{coefficient of }\delta(\Sigma)\text{ in the }c_1c_2\text{ part},\\
+p_1=(1,2,0,1),\quad |p_1|^2=6,\quad b=(1,0,-1,2),\quad \mathfrak g=\mathfrak{su}(2),\qquad \text{values in units of }\unitexpr .
+\end{gather*}
+
+\subsection*{Validations}
+{\small
+\begin{tabular}{lll}
+\toprule
+check & this engine & reference\\
+\midrule
+obstruction $(c,A|_V)$, five bubbles & $\varepsilon^{-1}$: $-4.5000000$; finite $-3.37505$ & $-\tfrac92$, $-\tfrac{27}8$ (ch04)\\
+$A|_{W^\perp}$ self-energy & $\varepsilon^{-1}$: $4.5000000$; $\log\varepsilon$: $-1.999996$ & $\tfrac92$, $-2$ (ch04)\\
+composite line along $\Delta$ & $\beta/(\alpha p)\to1.2591$ $(\varepsilon=10^{-4})$, $\alpha\to-\tfrac83$ & $\tfrac54$ (engine A, Part D)\\
+zero-mode kernel along $K_b$ & $\langle G\rangle_{S^3}=-6.0000\,(b\otimes1)$; $0$ off support & $16\pi^2\cdot\tfrac3{8\pi^2}=6$\\
+quadrature 10 vs 14 nodes/decade & max.\ rel.\ diff.\ $3.7\cdot10^{-10}$ & \\
+locality $X_0(2p_1)/X_0(p_1)$ & $2.000000$ $(A|_W,A|_W)$; $1.000001$ $(c,A^*)$ & homogeneous\\
+\bottomrule
+\end{tabular}}
+
+\subsection*{(a) Arity one along $K_b$: defect, quadratic sector (1PI, one special edge)}
+\begin{gather*}
+\text{composite graph }g:\quad T\frac{d}{dT}X_0\Big|_{T\to\infty}=c_g\big(e^{-\varepsilon|p_1|^2}-1\big),\qquad
+\sum_{\text{all graphs}}T\frac{d}{dT}X_0\Big|_{T\to\infty}=0\ \ (\text{every }\varepsilon),\\
+\delta_TX_0(\varepsilon,T):=X_0(\varepsilon,T)-X_0(\varepsilon,10^6)=O(\varepsilon/T),\qquad X_2=0 .
+\end{gather*}
+{\footnotesize
+\begin{tabular}{lccccc}
+\toprule
+legs & $c_g$ (4 graphs) & $\lim_{\varepsilon\to0}X_0$ (total $=$ comp.\ $+$ anch.) & $\max_{T\ge10}|\delta_TX_0|$, $\varepsilon=10^{-4}$ & $\varepsilon=10^{-2}$ & $T$-spread\\
+\midrule
+$(A|_W,A|_W)$ & $\pm9i$ & $22i=-2i+24i$ & $6.9\cdot10^{-4}$ & $6.0\cdot10^{-2}$ & $2.7\cdot10^{-6}$\\
+$(A|_V,A|_V)$ & $\pm\tfrac{147}2i$ & $-\tfrac{141}2i=45i-\tfrac{231}2i$ & $5.6\cdot10^{-3}$ & $4.9\cdot10^{-1}$ & $2.1\cdot10^{-5}$\\
+$(\lambda,\lambda)$ & $\pm3$ & $\tfrac{44}3=-\tfrac43+16$ & $2.8\cdot10^{-4}$ & $2.6\cdot10^{-2}$ & $2.6\cdot10^{-7}$\\
+$(c,A^*)$ & $\pm18$ & $16=-8+24$ & $7.4\cdot10^{-4}$ & $6.7\cdot10^{-2}$ & $2.0\cdot10^{-6}$\\
+\bottomrule
+\end{tabular}}
+\begin{gather*}
+X_0:\ \text{no }\varepsilon^{-1},\ \text{no }\log\varepsilon;\qquad
+X_1\big|_{\varepsilon^{-1}}:\ (18,0,-18,36)\,i\ \ (A|_W),\qquad (-108,0,108,-216)\,i\ \ (A|_V),\qquad 0\ \ (\lambda,\ c),\\
+\max_{T\ge10}|\delta_TX_1|=O(\varepsilon):\ 2.8\cdot10^{-3}\ (A|_W),\ 2.1\cdot10^{-2}\ (A|_V),\ \text{at }\varepsilon=10^{-4}.
+\end{gather*}
+
+\subsection*{(b) Flow $W\big(P(\varepsilon,T),I+S^{(1)}(K_b)\big)^{(1)}$, 1PI (every graph is a composite $A|_V$--$c$ bubble)}
+\[
+T\frac{d}{dT}X_0\Big|_{T\to\infty}=c_f\,e^{-\varepsilon|p_1|^2}\quad(\text{exact in }\varepsilon),\qquad
+c_f=\langle G\rangle\cdot(\text{cut tree}),\qquad \langle G\rangle=6\,(b\otimes1)\ \text{in units }\hbar/16\pi^2 .
+\]
+{\small
+\begin{tabular}{lcc}
+\toprule
+legs & $c_f$ & $\lim_{\varepsilon\to0}X_0$ at $T=10,\,10^2,\,10^3,\,10^4,\,10^5,\,10^6$\\
+\midrule
+$(A|_W,A^*|_W)$ & $6i$ & $29.42i,\ 43.19i,\ 57.00i,\ 70.82i,\ 84.63i,\ 98.45i$\\
+$(A|_V,A^*|_V)$ & $-46i$ & $-247.5i,\ -354.0i,\ -460.0i,\ -565.9i,\ -671.8i,\ -777.8i$\\
+$(\lambda,\lambda^*)$ & $-8i$ & $-33.90i,\ -52.26i,\ -70.67i,\ -89.09i,\ -107.5i,\ -125.9i$\\
+$(c,c^*)$ & $-3i$ & $-14.67i,\ -21.59i,\ -28.50i,\ -35.41i,\ -42.32i,\ -49.22i$\\
+\bottomrule
+\end{tabular}}
+
+\subsection*{(c) Arity two along $(\eta_1,\eta_2)$: defect, all graphs, all $16$ Killing terms $(m_1,m_2)$}
+\[
+T\frac{d}{dT}Y_0\Big|_{T=10^4}=c_\eta\,\varepsilon\,e^{-\varepsilon|p_1|^2}+O(\varepsilon/T),\qquad
+\max_{T\in\{10^2,10^3,10^4\}}\Big|T\frac{d}{dT}Y_{0,1,2}\Big|=O(\varepsilon).
+\]
+{\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+legs & $c_\eta$ & share of $\eta$--$\eta$ chains & $\max_T|T\partial_TY_0|$, $\varepsilon=10^{-3}/10^{-2}/10^{-1}$ & $\max_T|T\partial_TY_1|,\ |T\partial_TY_2|$, $\varepsilon=10^{-3}$\\
+\midrule
+$(A|_W,A^*|_W)$ & $-48.00i$ & 0.99999 & 4.8e-02 / 4.5e-01 / 2.6e+00 & 1.8e-04, 7.4e-05\\
+$(A|_V,A^*|_V)$ & $+287.99i$ & 1.00002 & 2.9e-01 / 2.7e+00 / 1.6e+01 & 1.9e-03, 8.4e-04\\
+$(\lambda,\lambda^*)$ & $0$ ($|B|<10^{-6}$) & no chain graph & 9.0e-05 / 8.5e-04 / 4.6e-03 & 1.0e-03, 3.2e-04\\
+$(c,c^*)$ & $+48.00i$ & 0.99998 & 4.8e-02 / 4.5e-01 / 2.6e+00 & 2.0e-04, 1.9e-04\\
+\bottomrule
+\end{tabular}}
+
+\subsection*{Verdict}
+\begin{gather*}
+\lim_{\varepsilon\to0}\big[\text{defect along }K_b\text{ and along }(\eta_1,\eta_2)\big](\varepsilon,T)\ \text{is independent of }T;\qquad
+\big[\log T\text{ coefficient of the defect}\big]=O(\varepsilon),\\
+\text{arity one: }c_g\big(e^{-\varepsilon|p|^2}-1\big)\text{ per composite graph, }0\text{ in the sum};\qquad
+\text{arity two: }c_\eta\,\varepsilon\,e^{-\varepsilon|p|^2}\neq0\text{ at }\varepsilon>0,\\
+\big[\log T\text{ coefficient of }W(P(\varepsilon,T),I+S^{(1)}(K_b))^{(1)}\big]=c_f\,e^{-\varepsilon|p|^2}\neq0\qquad(\text{zero-mode tree, }\langle G\rangle=6\,(b\otimes1)).
+\end{gather*}
+\end{document}

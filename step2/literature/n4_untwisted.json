@@ -1,0 +1,733 @@
+{
+ "file": "step2/literature/n4_untwisted.json",
+ "companion_tex": "step2/literature/n4_untwisted.tex",
+ "date": "2026-10-28",
+ "role": "untwisted N=4 side: one-loop corrections to Q, S, D, K on letters and operators; 1/16-BPS Q on letters; Konishi anomaly",
+ "labels": {
+  "S": "transcribed from source at cited eq",
+  "D": "derived in this file (proof or script)",
+  "I": "identification/interpretation not stated in the source"
+ },
+ "name_clash": "Source Q_k, S_k, H_k, J_k = coefficient of g^k (spin-chain normalisation). Manuscript Q_1 in Sigma, Q_2 in Sigma^* = spinor parameters. User Q_1,S_1,D_1,K_1 = order-hbar components. Dictionary: derived item D1 (k = 2L + m - n).",
+ "reading_method": "WebFetch-cached arXiv PDFs, pdftotext; key equations checked against 170-200 dpi page images (B03 (3.26)-(3.37), Table 1, (4.11)-(4.16); Z05 (2.3),(2.18),(2.19); B04 (1.2)-(1.9); CY13 (2.1)-(2.6); GGKM08 (2.3),(A.1),(A.2); EJSS05 (6)-(12); BKRS01 (1),(7)-(15)).",
+ "task_pointer_check": "arXiv 2209.06728 = Chang-Lin 'Words to describe a black hole' (not Chang-Yin). Chang-Yin = arXiv 1305.6314. Both read.",
+ "not_read": [
+  "K. Konishi, Phys. Lett. B135 (1984) 439 (not on arXiv)",
+  "K. Konishi, K. Shizuya, Nuovo Cim. A90 (1985) 111 (not on arXiv)",
+  "hep-th/0606087 (source of GGKM08 (A.1))",
+  "hep-th/0409009 (EJSS05 spinor conventions)",
+  "B04 App. B identities"
+ ],
+ "sources": [
+  {
+   "key": "B03",
+   "arxiv": "hep-th/0310252",
+   "version_read": "v2 (9 Dec 2003)",
+   "title": "The su(2|3) Dynamic Spin Chain",
+   "authors": [
+    "N. Beisert"
+   ],
+   "journal": "Nucl. Phys. B682 (2004) 487",
+   "conventions": {
+    "coupling": "J(g)=sum_k g^k J_k (3.1); g^2 = g_YM^2 N/(8 pi^2) (6.7), alpha_1=1 (6.8); planar",
+    "letters": "phi_a (a=1,2,3), psi_alpha (alpha=1,2) (2.1); W_{1,2,3}=phi, W_{4,5}=psi (2.2)",
+    "relation_to_N4": "H=D, deltaH=D-D_0 (2.30); R^4_4 = D_0/2, Ldot=0, D_0=L+B (2.28); (R_su4)^a_b = R^a_b - delta^a_b D_0/6 (2.29)",
+    "epsilon": "epsilon_{alpha beta}, epsilon^{abc} totally antisymmetric; numerical normalisation not stated (sign absorbed by beta_2 -> beta_2+pi, item D3)",
+    "interaction_symbol": "{A_1..A_n over B_1..B_m} replaces A's by B's; ~ W_{B1}..W_{Bm} delta/delta W_{Am}..delta/delta W_{A1} (3.3); cyclic sign (2.4),(3.4)",
+    "twisting_supercharge": "none (untwisted; su(2|3) supercharges Q^a_alpha, S^alpha_a)"
+   },
+   "defined": [
+    "representation J(g) of fixed su(2|3)xu(1) on cyclic super spin chain",
+    "interaction symbols (3.2)-(3.4)",
+    "length operator L (3.15),(4.5)",
+    "parity P (2.6),(3.8)"
+   ],
+   "computed": {
+    "method": "algebraic solution of (1.5)/(2.8)-(2.11) order by order + Feynman-diagram structure (connectedness, n+m=k+2-2l (3.7), parity (2.12), classical su(3)xsu(2) kept)",
+    "regulator": "none used; [B04 Sec 5.3.3]: classical su(3)xsu(2) = 'symmetries compatible with the regularisation scheme'",
+    "external_input": "BMN scaling (6.6) and one scaling dimension or BMN formula (6.7)-(6.8)"
+   },
+   "scheme": {
+    "dependent": [
+     "beta_1, beta_2 similarity (3.13),(3.14),(3.39)",
+     "alpha_1 coupling rescaling (3.40)",
+     "gamma_1..gamma_4: O(g^2) similarity T(g)=1+g^2 T_2 (4.4)-(4.6)",
+     "alpha_3: g -> alpha_1 g + alpha_3 g^3 (4.9),(4.10)",
+     "delta_1,delta_2 gauge (null on cyclic states), delta_3 su(2) identity (4.8)",
+     "sigma_1 (coupling), sigma_2 (Q_{4,0} shift (6.30)), xi_i similarity, zeta_i null (Tab. 3)"
+    ],
+    "independent": [
+     "H_2, H_3, Q_1, S_1 uniquely fixed up to beta_{1,2}, alpha_1 (text after (3.40))",
+     "energies independent of beta, gamma, delta (Sec 4.4)",
+     "c_1=-c_4 (3.35): 7|6 (half-BPS) gets zero energy"
+    ]
+   },
+   "statements": [
+    {
+     "eq": "(2.7)-(2.11)",
+     "kind": "definition",
+     "latex": "J=\\{L^\\alpha{}_\\beta,R^a{}_b,H,\\delta H;Q^a{}_\\alpha,S^\\alpha{}_a\\};\\ [H,J]=\\mathrm{eng}(J)J,\\ [\\delta H,J]=0;\\ \\mathrm{eng}(Q)=-\\mathrm{eng}(S)=\\tfrac12;\\ \\{S^\\alpha{}_a,Q^b{}_\\beta\\}=\\delta^b_aL^\\alpha{}_\\beta+\\delta^\\alpha_\\beta R^b{}_a+\\delta^b_a\\delta^\\alpha_\\beta(\\tfrac13H+\\tfrac16\\delta H)"
+    },
+    {
+     "eq": "(2.26) + fn 10",
+     "kind": "claim",
+     "latex": "Q^3{}_2\\,\\psi_1\\sim g\\,\\phi_{[1}\\phi_{2]}",
+     "note": "footnote 10: part of the 'classical' supersymmetry variation (before a rescaling of fields by g)"
+    },
+    {
+     "eq": "(3.7) + Sec 3.1",
+     "kind": "definition",
+     "latex": "J_k\\sim\\{A_1..A_n\\to B_1..B_m\\},\\ n+m=k+2-2l\\ (l\\ \\text{index loops}),\\ \\text{max legs } n+m=k+2"
+    },
+    {
+     "eq": "(3.10)-(3.12)",
+     "kind": "computed",
+     "latex": "(Q_0)^a{}_\\alpha=e^{i\\beta_1}\\{a\\to\\alpha\\},\\ (S_0)^\\alpha{}_a=e^{-i\\beta_1}\\{\\alpha\\to a\\},\\ H_0=\\{a\\to a\\}+\\tfrac32\\{\\alpha\\to\\alpha\\}"
+    },
+    {
+     "eq": "(3.26),(3.28),(3.30),(3.35),(3.36)",
+     "kind": "computed",
+     "latex": "H_2=c_1\\{ab\\to ab\\}+c_2\\{a\\beta\\to a\\beta\\}+c_2'\\{\\alpha b\\to\\alpha b\\}+c_3\\{\\alpha\\beta\\to\\alpha\\beta\\}+c_4\\{ab\\to ba\\}+c_5\\{a\\beta\\to\\beta a\\}+c_5'\\{\\alpha b\\to b\\alpha\\}+c_6\\{\\alpha\\beta\\to\\beta\\alpha\\};\\ c_2=c_2',c_5=c_5';\\ c_1=c_2=c_3,\\ c_4=c_5=-c_6;\\ c_1=-c_4=\\alpha_1^2"
+    },
+    {
+     "eq": "(3.32),(3.35),(3.36)",
+     "kind": "computed",
+     "latex": "H_3=c_7\\varepsilon_{\\alpha\\beta}\\varepsilon^{abc}\\{\\alpha\\beta\\to abc\\}+c_8\\varepsilon_{abc}\\varepsilon^{\\alpha\\beta}\\{abc\\to\\alpha\\beta\\},\\ (Q_1)^a{}_\\alpha=c_9\\varepsilon_{\\alpha\\beta}\\varepsilon^{abc}\\{\\beta\\to bc\\},\\ (S_1)^\\alpha{}_a=c_{10}\\varepsilon_{abc}\\varepsilon^{\\alpha\\beta}\\{bc\\to\\beta\\};\\ e^{i\\beta_1}c_7=c_4c_9,\\ e^{-i\\beta_1}c_8=c_4c_{10};\\ c_9=\\tfrac{1}{\\sqrt2}\\alpha_1e^{i\\beta_1+i\\beta_2},\\ c_{10}=\\tfrac{1}{\\sqrt2}\\alpha_1e^{-i\\beta_1-i\\beta_2'}"
+    },
+    {
+     "eq": "(3.37) / Table 1",
+     "kind": "computed",
+     "latex": "H_2=\\alpha_1^2[\\{ab\\to ab\\}+\\{a\\beta\\to a\\beta\\}+\\{\\alpha b\\to\\alpha b\\}+\\{\\alpha\\beta\\to\\alpha\\beta\\}-\\{ab\\to ba\\}-\\{a\\beta\\to\\beta a\\}-\\{\\alpha b\\to b\\alpha\\}+\\{\\alpha\\beta\\to\\beta\\alpha\\}];\\ H_3=-\\tfrac1{\\sqrt2}\\alpha_1^3e^{i\\beta_2}\\varepsilon_{\\alpha\\beta}\\varepsilon^{abc}\\{\\alpha\\beta\\to abc\\}-\\tfrac1{\\sqrt2}\\alpha_1^3e^{-i\\beta_2}\\varepsilon_{abc}\\varepsilon^{\\alpha\\beta}\\{abc\\to\\alpha\\beta\\};\\ (Q_1)^a{}_\\alpha=\\tfrac1{\\sqrt2}\\alpha_1e^{i\\beta_1+i\\beta_2}\\varepsilon_{\\alpha\\beta}\\varepsilon^{abc}\\{\\beta\\to bc\\};\\ (S_1)^\\alpha{}_a=\\tfrac1{\\sqrt2}\\alpha_1e^{-i\\beta_1-i\\beta_2}\\varepsilon_{abc}\\varepsilon^{\\alpha\\beta}\\{bc\\to\\beta\\}",
+     "note": "ERRATUM: printed (3.37) has -alpha_1^2{alpha beta -> beta alpha}; (3.26),(3.30),(3.35), Table 1 and B04 (5.55) give +alpha_1^2. Table-1 sign used.",
+     "scheme": "beta_1,beta_2 similarity; alpha_1 coupling"
+    },
+    {
+     "eq": "(3.38),(3.39),(3.40)",
+     "kind": "claim",
+     "latex": "\\beta_2'=\\beta_2\\ (c_9c_{10}=\\tfrac12c_1\\ \\text{at 4th order});\\ J_0\\mapsto e^{2i\\beta_1H_0+i\\beta_2L}J_0e^{-2i\\beta_1H_0-i\\beta_2L};\\ g\\mapsto\\alpha_1g",
+     "scheme": "dependent"
+    },
+    {
+     "eq": "(3.41),(3.42)",
+     "kind": "computed",
+     "latex": "\\{S_0,Q_0\\}=\\delta^b_aL^\\alpha{}_\\beta+\\delta^\\alpha_\\beta R^b{}_a+\\tfrac13\\delta^b_a\\delta^\\alpha_\\beta H_0;\\ \\{S_1,Q_0\\}+\\{S_0,Q_1\\}=\\tfrac12\\delta^b_a\\delta^\\alpha_\\beta H_1=0"
+    },
+    {
+     "eq": "Table 1 (Q_2)",
+     "kind": "computed",
+     "latex": "(Q_2)^a{}_\\alpha=e^{i\\beta_1}(\\tfrac14\\alpha_1^2-\\tfrac i2\\gamma_3+\\tfrac i2\\gamma_4)(\\{ab\\to\\alpha b\\}+\\{ba\\to b\\alpha\\})+e^{i\\beta_1}(\\tfrac i2\\gamma_3+\\tfrac i2\\gamma_4)(\\{a\\beta\\to\\alpha\\beta\\}-\\{\\beta a\\to\\beta\\alpha\\})+e^{i\\beta_1}(-\\tfrac14\\alpha_1^2-i\\gamma_1)(\\{ab\\to b\\alpha\\}+\\{ba\\to\\alpha b\\})+e^{i\\beta_1}(\\tfrac14\\alpha_1^2+i\\gamma_2)(\\{a\\beta\\to\\beta\\alpha\\}-\\{\\beta a\\to\\alpha\\beta\\})",
+     "scheme": "gamma_i similarity"
+    },
+    {
+     "eq": "Table 1 (S_2)",
+     "kind": "computed",
+     "latex": "(S_2)^\\alpha{}_a=e^{-i\\beta_1}(\\tfrac14\\alpha_1^2+\\tfrac i2\\gamma_3-\\tfrac i2\\gamma_4)(\\{\\alpha b\\to ab\\}+\\{b\\alpha\\to ba\\})+e^{-i\\beta_1}(-\\tfrac i2\\gamma_3-\\tfrac i2\\gamma_4)(\\{\\alpha\\beta\\to a\\beta\\}-\\{\\beta\\alpha\\to\\beta a\\})+e^{-i\\beta_1}(-\\tfrac14\\alpha_1^2+i\\gamma_1)(\\{\\alpha b\\to ba\\}+\\{b\\alpha\\to ab\\})+e^{-i\\beta_1}(\\tfrac14\\alpha_1^2-i\\gamma_2)(-\\{\\alpha\\beta\\to\\beta a\\}+\\{\\beta\\alpha\\to a\\beta\\})",
+     "scheme": "gamma_i similarity"
+    },
+    {
+     "eq": "Table 1, (4.16)",
+     "kind": "computed",
+     "latex": "H_4|_{L=2}=\\tfrac32\\alpha_1^4(\\{\\alpha\\beta\\to\\alpha\\beta\\}-\\{\\alpha\\beta\\to\\beta\\alpha\\})+2\\alpha_1\\alpha_3H_2"
+    },
+    {
+     "eq": "(4.2),(4.3)",
+     "kind": "definition",
+     "latex": "[Q,\\delta H]=[S,\\delta H]=O(g^6);\\ \\{S^\\alpha{}_a,Q^b{}_\\beta\\}=\\delta^b_aL^\\alpha{}_\\beta+\\delta^\\alpha_\\beta R^b{}_a+\\delta^b_a\\delta^\\alpha_\\beta(\\tfrac13H+\\tfrac16\\delta H)+O(g^4)"
+    },
+    {
+     "eq": "(4.4)-(4.10)",
+     "kind": "claim",
+     "latex": "J(g)\\mapsto T(g)J(g)T(g)^{-1};\\ L=\\{ab\\to ab\\}+\\{a\\beta\\to a\\beta\\}+\\{\\alpha b\\to\\alpha b\\}+\\{\\alpha\\beta\\to\\alpha\\beta\\};\\ H_4\\mapsto H_4+[T_2,H_2],\\ J_2\\mapsto J_2+[T_2,J_0];\\ [H_2,J_0]=[L,J_0]=[H_2,H_2]=[L,H_2]=0;\\ \\{\\alpha\\beta\\gamma\\to[\\alpha\\beta\\gamma]\\}=0;\\ f(g)=\\alpha_1g+\\alpha_3g^3:\\ H_4\\mapsto\\alpha_1^4H_4+2\\alpha_1\\alpha_3H_2",
+     "note": "Sec 4.4: only alpha_3 influences energies; gamma_{1..4} rotate eigenstates; delta_{1,2,3} no effect",
+     "scheme": "dependent"
+    },
+    {
+     "eq": "Table 2",
+     "kind": "computed",
+     "latex": "k=2..6:\\ H_k=6,2,25,18,173;\\ Q_{k-2}=S_{k-2}=1,1,4,6,32;\\ \\text{fixed at }O(g^k)=5,2,25,26,202;\\ O(g^{k+1})=1,1,3,1,8;\\ \\text{relevant}=1,0,1,0,4;\\ \\text{irrelevant}=1,1,4,3,23;\\ \\text{symmetries}=1,-1,2,-1,2;\\ H_{k-2}=2,0,6,2,25",
+     "note": "Q_3,S_3 (k=5) not displayed"
+    },
+    {
+     "eq": "(4.11)-(4.15)",
+     "kind": "computed",
+     "latex": "\\mathcal O_1=\\epsilon^{\\alpha\\beta}\\mathrm{Tr}\\psi_\\alpha\\psi_\\beta,\\ \\mathcal O_2=\\epsilon^{abc}\\mathrm{Tr}\\phi_a\\phi_b\\phi_c;\\ H(g)=\\begin{pmatrix}3+\\epsilon g^4&-2\\sqrt2e^{i\\beta_2}\\alpha_1^3g^3\\\\-9\\sqrt2e^{i\\beta_2}e^{-i\\beta_2}\\alpha_1^3g^3&3+6\\alpha_1^2g^2-18\\alpha_1^4g^4+12\\alpha_1\\alpha_3g^4\\end{pmatrix};\\ E_1=3+\\epsilon g^4-6\\alpha_1^4g^4,\\ E_2=3+6\\alpha_1^2g^2-12\\alpha_1^4g^4+12\\alpha_1\\alpha_3g^4;\\ \\epsilon=6\\alpha_1^4",
+     "note": "ERRATUM (D): (4.14) requires the (2,1) entry -9 sqrt2 e^{-i beta_2} alpha_1^3 g^3 (printed has an extra e^{i beta_2}; same in B04 (5.73)); check_beisert_short_states.py"
+    },
+    {
+     "eq": "(6.6)-(6.8)",
+     "kind": "normalisation",
+     "latex": "\\alpha_3=0,\\ \\sigma_1=0,\\ \\sigma_2=0;\\ g^2=g_{YM}^2N/(8\\pi^2);\\ \\alpha_1=1",
+     "note": "text before (6.7) prints Konishi 'deltaD = 3 g_YM^2 N/4 pi^4'; consistent value 3 g_YM^2 N/(4 pi^2) (Tab. 4: deltaE_2=6); printed pi^4 is a misprint"
+    },
+    {
+     "eq": "(6.27),(6.31)",
+     "kind": "claim",
+     "latex": "H(g)+\\tfrac12\\delta H(g)=H_0+\\tfrac32\\delta H(g)\\in su(2|3);\\ \\{S^\\alpha{}_a(g),Q^b{}_\\beta(g)\\}=\\delta^b_aL^\\alpha{}_\\beta+\\delta^\\alpha_\\beta R^b{}_a+\\delta^b_a\\delta^\\alpha_\\beta(\\tfrac13H_0+\\tfrac12\\delta H(g))+O(g^7)"
+    }
+   ],
+   "errata": [
+    "(3.37) sign of alpha_1^2{alpha beta -> beta alpha} (use +)",
+    "(4.13) (2,1) entry phase (use e^{-i beta_2})",
+    "text before (6.7): pi^4 -> pi^2"
+   ]
+  },
+  {
+   "key": "B03c",
+   "arxiv": "hep-th/0307015",
+   "version_read": "v5 (27 Feb 2011)",
+   "title": "The Complete One-Loop Dilatation Operator of N=4 Super Yang-Mills Theory",
+   "authors": [
+    "N. Beisert"
+   ],
+   "journal": "Nucl. Phys. B676 (2004) 3",
+   "conventions": {
+    "coupling": "D(g)=D_0+(g_YM^2 N/8 pi^2) H + O(g^3) (1.2); footnote 6: propagators O(g^0), three-vertices O(g)",
+    "gauge_group": "U(N), W_A = T^a W_A^a (footnote 4)",
+    "algebra": "gl(4|4) App. A (A.1)-(A.7); oscillators (4.9)-(4.14)",
+    "letters": "D^k F, D^k Psi, D^k Phi, D^k Psidot, D^k Fdot (Table 1, (4.9))"
+   },
+   "defined": [
+    "H via (2.12),(2.16) with invariant coefficients C_j",
+    "harmonic action (4.27)-(4.29)"
+   ],
+   "computed": {
+    "method": "psl(4|4) invariance (2.10) + one-loop diagram types; C_j fixed in sl(2) subsector",
+    "regulator": "point splitting (Sec 3 (3.14), App. B, planar four-point functions)"
+   },
+   "scheme": {
+    "dependent": [],
+    "independent": [
+     "one-loop D_2 is classically psl(4|4) invariant (2.10); C_j = h(j) (2.21)"
+    ]
+   },
+   "statements": [
+    {
+     "eq": "(1.1)-(1.3)",
+     "kind": "definition",
+     "latex": "h(j)=\\sum_{k=1}^j\\tfrac1k;\\ D(g)=D_0+\\tfrac{g_{YM}^2N}{8\\pi^2}H+O(g^3);\\ H_{12}=2h(J_{12}),\\ H=\\sum_kH_{k,k+1}"
+    },
+    {
+     "eq": "(2.11) + text",
+     "kind": "claim",
+     "latex": "J(g)=J+O(g),\\ D(g)=D+\\tfrac{g_{YM}^2N}{8\\pi^2}H+O(g^3),\\ [J,H]=0",
+     "note": "chirality B_0 conserved at one loop, broken at higher loops by the Konishi anomaly"
+    },
+    {
+     "eq": "(2.16),(2.20)-(2.22)",
+     "kind": "computed",
+     "latex": "H=-N^{-1}C^{AB}_{CD}:\\mathrm{Tr}[W_A,\\check W^C][W_B,\\check W^D]:,\\ C^{AB}_{CD}=\\sum_jh(j)(P_j)^{AB}_{CD};\\ D(g)=D-\\tfrac{g_{YM}^2}{8\\pi^2}\\sum_jh(j)(P_j)^{AB}_{CD}:\\mathrm{Tr}[W_A,\\check W^C][W_B,\\check W^D]:+O(g^3)"
+    },
+    {
+     "eq": "(2.18),(2.19),(2.27)",
+     "kind": "definition",
+     "latex": "V_F\\times V_F=\\sum_jV_j;\\ w_0=[2;0,0;0,2,0;0,2],\\ w_1=[2;0,0;1,0,1;0,2],\\ w_j=[j;j-2,j-2;0,0,0;0,2];\\ J_{12}^2V_j=j(j+1)V_j"
+    },
+    {
+     "eq": "(2.31)",
+     "kind": "computed",
+     "latex": "\\text{twist two: }E=4h(j),\\ \\delta D=\\tfrac{g_{YM}^2N}{2\\pi^2}h(j)"
+    },
+    {
+     "eq": "(4.27)-(4.29)",
+     "kind": "computed",
+     "latex": "H_{12}|s;A\\rangle=\\sum_{s'}c_{n,n_{12},n_{21}}\\delta_{C_1,0}\\delta_{C_2,0}|s';A\\rangle,\\ c_{n,n_{12},n_{21}}=(-1)^{1+n_{12}n_{21}}\\frac{\\Gamma(\\frac12(n_{12}+n_{21}))\\Gamma(1+\\frac12(n-n_{12}-n_{21}))}{\\Gamma(1+\\frac12n)},\\ c_{n,0,0}=h(\\tfrac n2)"
+    },
+    {
+     "eq": "(3.1),(3.4),(3.14)",
+     "kind": "computed",
+     "latex": "H'_{12}(a_1^\\dagger)^k(a_2^\\dagger)^{n-k}|00\\rangle=\\sum_{k'}\\big(\\delta_{k=k'}(h(k)+h(n-k))-\\tfrac{\\delta_{k\\neq k'}}{|k-k'|}\\big)(a_1^\\dagger)^{k'}(a_2^\\dagger)^{n-k'}|00\\rangle;\\ J'_+=P_{11},J'_-=K^{11},J'_3=D+\\tfrac12\\delta D-\\tfrac12L",
+     "note": "point splitting regularisation"
+    },
+    {
+     "eq": "(5.12),(5.13),(5.14)",
+     "kind": "computed/conjecture",
+     "latex": "\\delta D(g)=-\\tfrac{g_{YM}^2}{8\\pi^2}:\\mathrm{Tr}[\\phi,Z][\\check\\phi,\\check Z]:+O(g_{YM}^4);\\ \\mathcal Q=[\\check Z,\\check\\phi];\\ \\mathcal Q\\,\\mathcal O_{1/4\\text{-BPS}}=0\\ (\\text{conjecture})"
+    },
+    {
+     "eq": "(5.15)",
+     "kind": "conjecture",
+     "latex": "\\delta S(g)\\sim g\\,\\mathrm{Tr}\\,\\Psi\\mathcal Q,\\quad \\delta\\dot S(g)\\sim g\\,\\mathrm{Tr}\\,\\dot\\Psi\\mathcal Q",
+     "note": "'Q is an essential part in the first correction to the superboosts'"
+    },
+    {
+     "eq": "(5.18),(5.23),(5.24)",
+     "kind": "definition/conjecture",
+     "latex": "\\phi_a=c_a^\\dagger c_4^\\dagger|0\\rangle,\\ \\psi_\\alpha=a_\\alpha^\\dagger c_4^\\dagger|0\\rangle;\\ \\mathcal Q_a=\\varepsilon_{abc}[\\check\\phi_b,\\check\\phi_c];\\ D_3\\sim\\varepsilon_{abc}\\varepsilon_{\\alpha\\beta}\\mathrm{Tr}\\psi_\\alpha[\\check\\phi_a,[\\check\\phi_b,[\\check\\phi_c,\\psi_\\beta]]]",
+     "note": "O(g^3) ('3/2-loop') term maps eps^{abc}phi phi phi <-> eps^{alpha beta} psi psi; 'effects of the Konishi anomaly'"
+    },
+    {
+     "eq": "(4.14),(A.3),(A.5),(A.6)",
+     "kind": "definition",
+     "latex": "Q^a{}_\\alpha=a^\\dagger_\\alpha c^a,\\ S^\\alpha{}_a=c^\\dagger_aa^\\alpha,\\ \\dot Q_{\\dot\\alpha a}=b^\\dagger_{\\dot\\alpha}c^\\dagger_a,\\ \\dot S^{\\dot\\alpha a}=b^{\\dot\\alpha}c^a,\\ P_{\\alpha\\dot\\beta}=a^\\dagger_\\alpha b^\\dagger_{\\dot\\beta},\\ K^{\\alpha\\dot\\beta}=a^\\alpha b^{\\dot\\beta};\\ \\{\\dot Q_{\\dot\\alpha a},Q^b{}_\\beta\\}=\\delta^b_aP_{\\beta\\dot\\alpha};\\ [K^{\\alpha\\dot\\beta},P_{\\gamma\\dot\\delta}]=\\delta^{\\dot\\beta}_{\\dot\\delta}L^\\alpha{}_\\gamma+\\delta^\\alpha_\\gamma\\dot L^{\\dot\\beta}{}_{\\dot\\delta}+\\delta^\\alpha_\\gamma\\delta^{\\dot\\beta}_{\\dot\\delta}D;\\ \\{S^\\alpha{}_a,Q^b{}_\\beta\\}=\\delta^b_aL^\\alpha{}_\\beta+\\delta^\\alpha_\\beta R^b{}_a+\\tfrac12\\delta^b_a\\delta^\\alpha_\\beta(D-C);\\ \\{\\dot S^{\\dot\\alpha a},\\dot Q_{\\dot\\beta b}\\}=\\delta^a_b\\dot L^{\\dot\\alpha}{}_{\\dot\\beta}-\\delta^{\\dot\\alpha}_{\\dot\\beta}R^a{}_b+\\tfrac12\\delta^a_b\\delta^{\\dot\\alpha}_{\\dot\\beta}(D+C)"
+    }
+   ]
+  },
+  {
+   "key": "B04",
+   "arxiv": "hep-th/0407277",
+   "version_read": "v4 (22 Oct 2005)",
+   "title": "The Dilatation Operator of N=4 Super Yang-Mills Theory and Integrability (dissertation)",
+   "authors": [
+    "N. Beisert"
+   ],
+   "journal": "Phys. Rept. 405 (2004) 1",
+   "conventions": {
+    "covariant_derivative": "D_mu = d_mu - i g A_mu (1.2); F = i g^{-1}[D,D] (1.4)",
+    "coupling": "canonical: one g per structure constant (Sec 2.5.3); classically absorbable by rescaling fields (text after (1.2))",
+    "signature": "left open: maximally non-compact or complex (Tab. 1.1)",
+    "sigma": "sigma^{mu}_{alphadot beta}=sigma^mu_{beta alphadot}, sigma^m_{ab}=-sigma^m_{ba}, sigma^{{mu}sigma^{nu}}=eta^{mu nu} (1.6)"
+   },
+   "statements": [
+    {
+     "eq": "(1.5),(1.9)",
+     "kind": "definition",
+     "latex": "\\mathcal L_{YM}=\\tfrac14\\mathrm{Tr}\\mathcal F^{\\mu\\nu}\\mathcal F_{\\mu\\nu}+\\tfrac12\\mathrm{Tr}\\mathcal D^\\mu\\Phi^n\\mathcal D_\\mu\\Phi_n-\\tfrac14g^2\\mathrm{Tr}[\\Phi^m,\\Phi^n][\\Phi_m,\\Phi_n]+\\dots",
+     "note": "delta Psi contains one O(g) term built from [Phi^m,Phi^n] (classical nonlinear SUSY)"
+    },
+    {
+     "eq": "(2.31)",
+     "kind": "claim",
+     "latex": "L(g)=L,\\ \\dot L(g)=\\dot L,\\ R(g)=R",
+     "note": "rotations not corrected"
+    },
+    {
+     "eq": "(2.39)-(2.43)",
+     "kind": "claim",
+     "latex": "[D_0,D(g)]=0;\\ J(g)\\mapsto T(g)J(g)T^{-1}(g);\\ T(g)=1+\\sum_{d\\neq0}\\tfrac1d\\delta D_d+\\dots;\\ \\delta D\\mapsto\\delta D_0+\\sum_{d\\neq0}\\delta D_d\\tfrac1d\\delta D_{-d}+\\dots",
+     "note": "'In dimensional regularisation we can take (2.39) for granted'"
+    },
+    {
+     "eq": "(2.138),(2.139) + fn 13",
+     "kind": "claim",
+     "latex": "E=V+2-2L'",
+     "note": "V = number of structure constants (= power of g), L' = adjoint index loops; H carries two extra powers of g"
+    },
+    {
+     "eq": "Sec 2.1.3",
+     "kind": "claim",
+     "latex": "generator joining submultiplets acts as sqrt(deltaD) ~ g; semi-classical (1.9) may be used; modifications due to the Konishi anomaly [100 = hep-th/0307081]"
+    },
+    {
+     "eq": "(5.29),(5.55),(5.25 fn 6)",
+     "kind": "definition",
+     "latex": "\\delta D=g^2H;\\ H_0^{[B04]}=H_2^{[B03]},\\ H_1^{[B04]}=H_3^{[B03]}",
+     "note": "fn 6: Q^3_2 psi_1 ~ g phi_[1 phi_2] is part of the classical SUSY variation"
+    },
+    {
+     "eq": "Sec 5.3.3",
+     "kind": "claim",
+     "latex": "classical su(3)xsu(2) kept: 'In field theory these correspond to symmetries compatible with the regularisation scheme'"
+    }
+   ]
+  },
+  {
+   "key": "Z05",
+   "arxiv": "hep-th/0511109",
+   "version_read": "v3 (15 Mar 2006)",
+   "title": "N=4 SYM to Two Loops: Compact Expressions for the Non-Compact Symmetry Algebra of the su(1,1|2) Sector",
+   "authors": [
+    "B. I. Zwiebel"
+   ],
+   "journal": "JHEP 0602:055 (2006)",
+   "conventions": {
+    "coupling": "g^2 = g_YM^2 N/(8 pi^2) (2.15)",
+    "generators": "map (2.3),(2.5) into Beisert psu(2,2|4) notation; J^{++}=P_22, J^{--}=K^22",
+    "letters": "D=D_22 on psi->=Psi_42, psi<-=Psidot_12, phi_down=Phi_34, phi_up=Phi_24 (2.8)",
+    "metric": "diagonal (2.12); X^+ and X^- hermitian conjugate for anti-hermitian y"
+   },
+   "computed": {
+    "method": "symmetry algebra + Feynman-diagram structure (parity (2.14), leg count), checked against field-theory results",
+    "regulator": "none"
+   },
+   "scheme": {
+    "dependent": [
+     "gauge transformations (2.17) (O(g),O(g^3))",
+     "similarity y (3.7), same y at O(g^3) (4.1)",
+     "coupling g -> g + alpha g^3 (4.2) (alpha=0 to match field theory)",
+     "homogeneous solutions (3.8)-(3.9),(4.3): not found, not ruled out"
+    ],
+    "independent": [
+     "deltaD_2 = 2{T_1^+,T_1^-} (3.1) = harmonic action"
+    ]
+   },
+   "statements": [
+    {
+     "eq": "(2.5),(2.7)",
+     "kind": "definition",
+     "latex": "\\overrightarrow{\\mathfrak T}^+=\\dot{\\mathfrak Q}_{14},\\ \\overleftarrow{\\mathfrak T}^-=\\dot{\\mathfrak S}^{14},\\ \\overrightarrow{\\mathfrak T}^-=\\mathfrak S^1_1,\\ \\overleftarrow{\\mathfrak T}^+=\\mathfrak Q^1_1;\\ \\{\\overrightarrow{\\mathfrak T}^+,\\overleftarrow{\\mathfrak T}^-\\}=\\{\\overrightarrow{\\mathfrak T}^-,\\overleftarrow{\\mathfrak T}^+\\}=\\tfrac12\\delta\\mathfrak D"
+    },
+    {
+     "eq": "Sec 2.7",
+     "kind": "claim",
+     "latex": "Only the psu(1|1)^2 generators receive O(g) corrections"
+    },
+    {
+     "eq": "(2.18)",
+     "kind": "computed",
+     "latex": "\\overrightarrow{\\mathfrak T}^+_1|\\phi^l_m\\rangle=\\tfrac1{\\sqrt2}\\sum_{k=0}^{m-1}\\tfrac1{\\sqrt{k+1}}(|\\overrightarrow\\psi_k\\phi^l_{m-1-k}\\rangle-|\\phi^l_{m-1-k}\\overrightarrow\\psi_k\\rangle);\\ \\overrightarrow{\\mathfrak T}^+_1|\\overrightarrow\\psi_m\\rangle=\\tfrac1{\\sqrt2}\\sum_{k=0}^{m-1}\\sqrt{\\tfrac{m+1}{(k+1)(m-k)}}|\\overrightarrow\\psi_k\\overrightarrow\\psi_{m-1-k}\\rangle;\\ \\overrightarrow{\\mathfrak T}^+_1|\\overleftarrow\\psi_m\\rangle=\\tfrac1{\\sqrt2}\\sum_{k=0}^{m-1}\\sqrt{\\tfrac{m-k}{(k+1)(m+1)}}(|\\overrightarrow\\psi_k\\overleftarrow\\psi_{m-1-k}\\rangle+|\\overleftarrow\\psi_{m-1-k}\\overrightarrow\\psi_k\\rangle)-\\tfrac1{\\sqrt{2(m+1)}}\\sum_{k=0}^m(|\\phi^\\downarrow_k\\phi^\\uparrow_{m-k}\\rangle-|\\phi^\\uparrow_k\\phi^\\downarrow_{m-k}\\rangle)",
+     "note": "(2.19): left-arrow T^+_1 by psi-> <-> psi<- with + sign in last line; T^-_1 by hermitian conjugation"
+    },
+    {
+     "eq": "(3.1),(3.3),(3.4)",
+     "kind": "computed",
+     "latex": "\\delta\\mathfrak D_2=2\\{\\overrightarrow{\\mathfrak T}^+_1,\\overleftarrow{\\mathfrak T}^-_1\\};\\ \\mathfrak h|\\phi^l_k\\rangle=\\tfrac12h(k)|\\phi^l_k\\rangle,\\ \\mathfrak h|\\psi_k\\rangle=\\tfrac12h(k+1)|\\psi_k\\rangle;\\ \\mathfrak x=\\{\\overleftarrow{\\mathfrak T}^-_1,[\\overrightarrow{\\mathfrak T}^+_1,\\mathfrak h]\\}-\\{\\overleftarrow{\\mathfrak T}^+_1,[\\overrightarrow{\\mathfrak T}^-_1,\\mathfrak h]\\}"
+    },
+    {
+     "eq": "(3.6),(3.7)",
+     "kind": "computed",
+     "latex": "\\mathfrak X^\\pm_2=\\pm[\\mathfrak X^\\pm_0,\\mathfrak x]+[\\mathfrak X^\\pm_0,\\mathfrak y],\\ \\mathfrak X^\\pm\\in\\{\\mathfrak J^{++}=\\mathfrak P_{22},\\mathfrak J^{--}=\\mathfrak K^{22},\\text{eight }\\mathfrak Q\\};\\ \\mathfrak U=1+g^2\\mathfrak y+\\dots",
+     "note": "one-loop correction to the special conformal generator K^{22} in this sector",
+     "scheme": "y similarity"
+    },
+    {
+     "eq": "(4.1),(4.2),(4.6)",
+     "kind": "computed",
+     "latex": "\\mathfrak T^\\pm_3=\\pm[\\mathfrak T^\\pm_1,\\mathfrak x]+[\\mathfrak T^\\pm_1,\\mathfrak y]+\\alpha\\mathfrak T^\\pm_1;\\ g\\mapsto g+\\alpha g^3;\\ \\delta\\mathfrak D_4\\mapsto\\delta\\mathfrak D_4+2\\alpha\\delta\\mathfrak D_2"
+    }
+   ]
+  },
+  {
+   "key": "CY13",
+   "arxiv": "1305.6314",
+   "version_read": "v2 (5 Sep 2013)",
+   "title": "1/16 BPS States in N = 4 SYM",
+   "authors": [
+    "C.-M. Chang",
+    "X. Yin"
+   ],
+   "journal": "Phys. Rev. D 88 (2013) 106005",
+   "conventions": {
+    "twisting_supercharge": "Q = Q^4_-, S = S^-_4 = Q^dagger (radial quantisation); follows notation of GGKM08",
+    "fields": "Phi_ij, Phi^ij = Phi_ij^* = (1/2) eps^{ijkl} Phi_kl; Psi_{i alpha}; Psibar^{i alphadot}; A_{alpha betadot}",
+    "coupling": "not displayed (absorbed); 'weak coupling'",
+    "not_stated": "values of eps_{alphadot betadot}, eps_{nmp} beyond antisymmetry; normalisation of F_{++}"
+   },
+   "statements": [
+    {
+     "eq": "(2.1)",
+     "kind": "definition",
+     "latex": "2\\{Q,Q^\\dagger\\}=\\Delta\\equiv E-2J-H_1-H_2-H_3"
+    },
+    {
+     "eq": "(2.2),(2.3)",
+     "kind": "definition",
+     "latex": "\\phi^n\\equiv\\Phi^{4m},\\ \\psi_n\\equiv-i\\Psi_{n+},\\ \\lambda_{\\dot\\alpha}=\\bar\\Psi^4_{\\dot\\alpha},\\ f\\equiv-iF_{++};\\ D_{\\dot\\alpha}\\equiv D_{+\\dot\\alpha}",
+     "note": "printed Phi^{4m} (index typo; CL22 prints Phi^{4i}); CY13 phi^n = GGKM08 phibar^n"
+    },
+    {
+     "eq": "(2.4)",
+     "kind": "definition",
+     "latex": "[D_{\\dot\\alpha},D_{\\dot\\beta}]=\\epsilon_{\\dot\\alpha\\dot\\beta}f,\\ D_{\\dot\\alpha}\\lambda^{\\dot\\alpha}=[\\phi^n,\\psi_n]"
+    },
+    {
+     "eq": "(2.5),(2.6)",
+     "kind": "definition",
+     "latex": "[Q,\\phi^n]=0,\\ \\{Q,\\psi_n\\}=-i\\epsilon_{nmp}[\\phi^m,\\phi^p],\\ \\{Q,\\lambda_{\\dot\\alpha}\\}=0,\\ [Q,f]=i[\\phi^n,\\psi_n];\\ [Q,D_{\\dot\\alpha}\\zeta]=-i[\\lambda_{\\dot\\alpha},\\zeta]+D_{\\dot\\alpha}Q\\zeta",
+     "note": "classical nonlinear Q (O(g) in canonical normalisation)"
+    },
+    {
+     "eq": "(2.8)",
+     "kind": "definition",
+     "latex": "[Q,\\phi^m(z)]=-i[\\lambda(z),\\phi^m(z)],\\ [Q,f(z)]=-i[\\lambda(z),f(z)]+i[\\phi^n(z),\\psi_n(z)],\\ \\{Q,\\psi_m(z)\\}=-i\\{\\lambda(z),\\psi_m(z)\\}-i\\epsilon_{mnp}[\\phi^n(z),\\phi^p(z)],\\ \\{Q,\\lambda(z)\\}=-i\\lambda(z)^2"
+    },
+    {
+     "eq": "(2.9)-(2.11),(3.6)",
+     "kind": "definition",
+     "latex": "\\Psi(z,\\theta)=-i[\\lambda(z)+2\\theta_n\\phi^n(z)+\\epsilon^{mnp}\\theta_m\\theta_n\\psi_p(z)+4\\theta_1\\theta_2\\theta_3f(z)];\\ \\{Q,\\Psi(Z)\\}=\\Psi(Z)^2;\\ \\Psi|_{z=\\theta=0}=0;\\ H^*(\\mathcal G_N,sl_N;\\mathbb C)"
+    },
+    {
+     "eq": "(4.4),(4.5)",
+     "kind": "computed",
+     "latex": "[Q,\\partial_{\\theta_n}\\Psi]=[\\Psi,\\partial_{\\theta_n}\\Psi],\\ \\{Q,\\partial_{z^{\\dot\\alpha}}\\Psi\\}=\\{\\Psi,\\partial_{z^{\\dot\\alpha}}\\Psi\\},\\dots;\\ \\text{single-trace classes }(\\partial_{z^+})^{p_1}(\\partial_{z^-})^{p_2}\\prod\\partial_{\\theta}^{q}\\mathrm{Tr}(\\partial_{z^+}\\Psi)^{k_1}(\\partial_{z^-}\\Psi)^{k_2}\\prod(\\partial_{\\theta_i}\\Psi)^{m_i}|_{z=\\theta=0}"
+    }
+   ]
+  },
+  {
+   "key": "CL22",
+   "arxiv": "2209.06728",
+   "version_read": "v4 (16 Feb 2023)",
+   "title": "Words to describe a black hole",
+   "authors": [
+    "C.-M. Chang",
+    "Y.-H. Lin"
+   ],
+   "journal": "JHEP 02 (2023) 109",
+   "conventions": {
+    "twisting_supercharge": "Q = Q^4_-, Q^dagger = S = S^-_4 (BPZ conjugate)",
+    "letters": "phi^i = Phi^{4i}, psi_i = -i Psi_{i+}, lambda_alphadot = Psibar^4_alphadot, f = -i F_{++} = F_{mu nu}(sigma^{mu nu})_{++}; D_alphadot = (sigma^mu)_{+ alphadot} D_mu",
+    "coupling": "D = D_0 + (g_YM^2 N/8 pi^2) H + O(g_YM^3) (3.1)"
+   },
+   "scheme": {
+    "dependent": [
+     "choice of scheme with undeformed Q on Psi (footnote 10: DRED [61] or hep-th/9801062 [62])"
+    ],
+    "independent": [
+     "1/16-BPS spectrum to all orders (3.5), assuming Leibniz rule"
+    ]
+   },
+   "statements": [
+    {
+     "eq": "(2.1),(2.6),(2.10)",
+     "kind": "definition",
+     "latex": "\\Delta\\equiv2\\{Q,Q^\\dagger\\}=D-2J^3_L-q_1-q_2-q_3;\\ (2.6)=\\text{CY13 (2.5),(2.6)};\\ \\{Q,\\Psi(\\mathcal Z)\\}=\\Psi(\\mathcal Z)^2"
+    },
+    {
+     "eq": "(3.1)-(3.3)",
+     "kind": "claim",
+     "latex": "D=D_0+\\tfrac{g_{YM}^2N}{8\\pi^2}H+O(g_{YM}^3);\\ Q=\\mathrm{Tr}(\\Psi\\Psi\\tfrac{\\partial}{\\partial\\Psi}),\\ Q^\\dagger=\\mathrm{Tr}(\\Psi\\tfrac{\\partial}{\\partial\\Psi}\\tfrac{\\partial}{\\partial\\Psi})\\ \\text{(leading order, fn 8)};\\ H\\propto\\{Q,Q^\\dagger\\}"
+    },
+    {
+     "eq": "Sec 3 text + fn 10, 11",
+     "kind": "claim",
+     "latex": "one can choose a regularization scheme such that the action of Q on the BPS superfield is undeformed perturbatively; Leibniz rule assumed (no proof); 'the only known obstruction, the Konishi anomaly [63], is absent in N = 4 SYM [64]'",
+     "note": "REFERENCE ERROR: [64] printed as nucl-th/0501077 (Kostyuk-Stoecker, psi-prime regeneration; verified); intended presumably hep-th/0501077 = EJSS05, whose statement is the truncated anomaly equation (3), not an absence",
+     "scheme": "dependent"
+    },
+    {
+     "eq": "(3.5)",
+     "kind": "claim",
+     "latex": "H^*(\\mathcal G_N,sl_N;\\mathbb C[[g_{YM}]])\\cong H^*(\\mathcal G_N,sl_N;\\mathbb C)\\otimes_{\\mathbb C}\\mathbb C[[g_{YM}]]",
+     "scheme": "independent"
+    },
+    {
+     "eq": "(2.19)",
+     "kind": "computed",
+     "latex": "single-graviton operators: Q-closed, not Q-exact in single-trace words"
+    }
+   ]
+  },
+  {
+   "key": "GGKM08",
+   "arxiv": "0803.4183",
+   "version_read": "v1 (28 Mar 2008)",
+   "title": "Comments on 1/16 BPS Quantum States and Classical Configurations",
+   "authors": [
+    "L. Grant",
+    "P. A. Grassi",
+    "S. Kim",
+    "S. Minwalla"
+   ],
+   "journal": "JHEP 0805:049 (2008)",
+   "conventions": {
+    "fields": "Phi_ij, Phi_ij^* = Phi^ij = (1/2) eps^{ijkl} Phi_kl; Psi_{i alpha}; Psibar^i_alphadot; A_{alpha betadot}",
+    "chiral_fields_(2.3)": "eps^{4mnp}=+eps^{mnp}; Phi^{4m}=phibar^m, (1/2) eps_{pmn} Phi^{mn} = Phi_{4p} = phi_p, Psi_{4 alpha} = lambda_alpha, Psi_{m alpha} = psi_{m alpha}; Q^4_alpha = Q_alpha, S^alpha_4 = S^alpha",
+    "coupling": "absorbed; transformation rules quoted from hep-th/0606087 appendix (not read)",
+    "algebra": "{Q^i_alpha, Qbar_{j betadot}} X = 2 i delta^i_j D_{alpha betadot} X up to gauge transformation"
+   },
+   "statements": [
+    {
+     "eq": "(2.4),(2.5)",
+     "kind": "definition",
+     "latex": "\\Delta\\equiv2\\{Q_-,S^-\\}=E-2J-H_1-H_2-H_3;\\ \\partial_{+\\dot\\beta}\\bar\\lambda^{\\dot\\beta}=0",
+     "note": "BPS letters at zero coupling: phibar, lambdabar_alphadot, psi_{m+}, f_{++}, D_{+alphadot}"
+    },
+    {
+     "eq": "(A.1) Q_alpha=Q^4_alpha",
+     "kind": "definition",
+     "latex": "[Q_\\alpha,\\bar\\phi^n]=0,\\ [Q_\\alpha,\\phi_p]=\\psi_{p\\alpha},\\ \\{Q_\\alpha,\\lambda_\\beta\\}=2if_{\\alpha\\beta}+\\epsilon_{\\alpha\\beta}[\\phi_k,\\bar\\phi^k],\\ \\{Q_\\alpha,\\psi_{n\\beta}\\}=-\\epsilon_{\\alpha\\beta}\\epsilon_{nmp}[\\bar\\phi^m,\\bar\\phi^p],\\ \\{Q_\\alpha,\\bar\\lambda_{\\dot\\beta}\\}=0,\\ \\{Q_\\alpha,\\bar\\psi^n_{\\dot\\beta}\\}=-2iD_{\\alpha\\dot\\beta}\\bar\\phi^n,\\ [Q_\\alpha,A_{\\beta\\dot\\gamma}]=-\\epsilon_{\\alpha\\beta}\\bar\\lambda_{\\dot\\gamma},\\ [Q_\\alpha,f_{\\beta\\gamma}]=\\epsilon_{\\alpha\\{\\gamma}D_{\\beta\\}}{}^{\\dot\\delta}\\bar\\lambda_{\\dot\\delta}=-\\tfrac i2\\epsilon_{\\alpha\\gamma}[\\bar\\phi^m,\\psi_{m\\beta}]-\\tfrac i2\\epsilon_{\\alpha\\beta}[\\bar\\phi^m,\\psi_{m\\gamma}],\\ [Q_\\alpha,f_{\\dot\\beta\\dot\\gamma}]=-D_{\\alpha\\{\\dot\\beta}\\bar\\lambda_{\\dot\\gamma\\}}"
+    },
+    {
+     "eq": "(A.1) Q^m_alpha",
+     "kind": "definition",
+     "latex": "[Q^m_\\alpha,\\bar\\phi^n]=-\\epsilon^{mnp}\\psi_{p\\alpha},\\ [Q^m_\\alpha,\\phi_p]=-\\delta^m_p\\lambda_\\alpha,\\ \\{Q^m_\\alpha,\\lambda_\\beta\\}=\\epsilon_{\\alpha\\beta}\\epsilon^{mnp}[\\phi_n,\\phi_p],\\ \\{Q^m_\\alpha,\\psi_{n\\beta}\\}=2i\\delta^m_nf_{\\alpha\\beta}-2\\epsilon_{\\alpha\\beta}[\\bar\\phi^m,\\phi_n]+\\epsilon_{\\alpha\\beta}\\delta^m_n[\\bar\\phi^k,\\phi_k],\\ \\{Q^m_\\alpha,\\bar\\lambda_{\\dot\\beta}\\}=2iD_{\\alpha\\dot\\beta}\\bar\\phi^m,\\ \\{Q^m_\\alpha,\\bar\\psi^n_{\\dot\\beta}\\}=-2i\\epsilon^{mnp}D_{\\alpha\\dot\\beta}\\phi_p,\\ [Q^m_\\alpha,A_{\\beta\\dot\\gamma}]=-\\epsilon_{\\alpha\\beta}\\bar\\psi^m_{\\dot\\gamma},\\ [Q^m_\\alpha,f_{\\beta\\gamma}]=\\epsilon_{\\alpha\\{\\gamma}D_{\\beta\\}}{}^{\\dot\\delta}\\bar\\psi^m_{\\dot\\delta},\\ [Q^m_\\alpha,f_{\\dot\\beta\\dot\\gamma}]=-D_{\\alpha\\{\\dot\\beta}\\bar\\psi^m_{\\dot\\gamma\\}}"
+    },
+    {
+     "eq": "(A.2)",
+     "kind": "definition",
+     "latex": "D_{\\alpha\\dot\\beta}\\bar\\lambda^{\\dot\\beta}=i[\\bar\\phi^m,\\psi_{m\\alpha}],\\ D_{\\beta\\dot\\alpha}\\lambda^\\beta=i[\\phi_m,\\bar\\psi^m_{\\dot\\alpha}]"
+    }
+   ]
+  },
+  {
+   "key": "EJSS05",
+   "arxiv": "hep-th/0501077",
+   "version_read": "v2 (3 Feb 2005)",
+   "title": "Operator mixing in N=4 SYM: The Konishi anomaly revisited",
+   "authors": [
+    "B. Eden",
+    "C. Jarczak",
+    "E. Sokatchev",
+    "Ya. S. Stanev"
+   ],
+   "journal": "Nucl. Phys. B722 (2005) 119",
+   "conventions": {
+    "action": "(109): int d^4x d^2theta d^2thetabar Tr(e^{gV} Phibar_I e^{-gV} Phi^I) + (1/4) int d^4x_L d^2theta Tr(W^alpha W_alpha) + (g/3!) int d^4x_L d^2theta eps_{IJK} Tr(Phi^I[Phi^J,Phi^K]) + c.c.",
+    "trace": "Tr(T^a T^b) = delta^{ab}, SU(N_c)",
+    "propagators": "<Phi^I Phibar_J> = -delta^I_J/(4 pi^2 xhat_12^2) (110); <VV> = + theta_12^2 thetabar_12^2/(4 pi^2 x_12^2) (112)",
+    "Dsquared": "D^2 = -(1/4) D^alpha D_alpha, Dbar^2 = -(1/4) Dbar_alphadot Dbar^alphadot (fn 8)",
+    "superpotential": "W = (g/3) eps_{IJK} Tr(Phi^I Phi^J Phi^K)",
+    "regulator": "SSDR: 1/x_12^2 -> 1/(x_12^2)^{1-eps} (113); improved MSbar",
+    "B_includes_g": "fn 9"
+   },
+   "scheme": {
+    "dependent": [
+     "a(g), b(g) in (2): depend on operator normalisation = subtraction scheme",
+     "classical/quantum split of the anomaly in N=4 (abstract)",
+     "finite part of Z_K (minimal choice (102))",
+     "fn 13: whether classical field equations get corrected 'may be a scheme-dependent property'"
+    ],
+    "independent": [
+     "unique renormalised descendant K_10 with Konishi anomalous dimension on the RHS of (3)",
+     "orthogonality to protected O_10 (103)",
+     "one-loop F coefficient g^2 N/(32 pi^2) relative to B normalised at tree level"
+    ]
+   },
+   "statements": [
+    {
+     "eq": "(1)",
+     "kind": "claim",
+     "latex": "\\bar D^2K\\equiv\\bar D^2\\mathrm{Tr}\\bar\\Phi e^{gV}\\Phi=\\mathrm{Tr}\\big(\\Phi\\tfrac{\\partial\\mathcal W(\\Phi)}{\\partial\\Phi}\\big)+\\tfrac{g^2}{32\\pi^2}\\mathrm{Tr}(W^\\alpha W_\\alpha)\\equiv B+\\tfrac{g^2}{32\\pi^2}F",
+     "note": "generic N=1 (refs Clark-Piguet-Sibold; Konishi 1984)"
+    },
+    {
+     "eq": "(2),(3)",
+     "kind": "claim",
+     "latex": "[\\bar D^2K]_R=a(g)[B]_R+b(g)[F]_R;\\ [\\bar D^2K]^{\\mathcal N=4}_R=a(g)[B]^{\\mathcal N=4}_R\\equiv K_{\\mathbf{10}/1}",
+     "scheme": "dependent"
+    },
+    {
+     "eq": "(5)-(9)",
+     "kind": "computed",
+     "latex": "K=-\\tfrac13\\mathrm{Tr}(e^{gV}\\bar\\Phi_Ie^{-gV}\\Phi^I);\\ \\bar D^2(e^{gV}\\bar\\Phi_Ie^{-gV})=-\\tfrac g2\\epsilon_{IJK}[\\Phi^J,\\Phi^K];\\ \\bar D^2K=\\tfrac g6\\epsilon_{IJK}\\mathrm{Tr}(\\Phi^I[\\Phi^J,\\Phi^K])\\ (\\text{classical});\\ \\bar D^2K=\\tfrac g6\\epsilon_{IJK}\\mathrm{Tr}(\\Phi^I[\\Phi^J,\\Phi^K])+\\tfrac{g^2N}{32\\pi^2}\\mathrm{Tr}(W^\\alpha W_\\alpha)\\ (\\text{one loop});\\ B=\\tfrac g6\\epsilon_{IJK}\\mathrm{Tr}(\\Phi^I[\\Phi^J,\\Phi^K]),\\ F=\\mathrm{Tr}(W^\\alpha W_\\alpha)",
+     "note": "coefficient computed at one loop (order g^2)"
+    },
+    {
+     "eq": "(10)-(12)",
+     "kind": "computed",
+     "latex": "F_6^{IJ}=C_F\\mathrm{Tr}(\\nabla^\\alpha\\Phi^I\\nabla_\\alpha\\Phi^J),\\ \\nabla_\\alpha\\Phi^I=e^{gV}[D_\\alpha(e^{-gV}\\Phi^Ie^{gV})]e^{-gV};\\ B_6^{IJ}=\\tfrac g4\\epsilon^{IKL}\\mathrm{Tr}(\\Phi^J[\\bar\\Phi_K,\\bar\\Phi_L])+(I\\leftrightarrow J);\\ K^{IJ}_{\\mathbf{10}/6}=Z_BB_6^{IJ}+Z_FF_6^{IJ},\\ Z_B=1,\\ Z_F=\\tfrac{g^2N}{32\\pi^2}\\ (O(g^2))"
+    },
+    {
+     "eq": "text after (12)",
+     "kind": "claim",
+     "latex": "K^I_{\\mathbf{10}/3}=\\tfrac g2\\mathrm{Tr}\\Phi^J[\\bar\\Phi_J,\\Phi^I]+\\tfrac{g^2N}{32\\pi^2}\\mathrm{Tr}(\\nabla^\\alpha\\Phi^IW_\\alpha)"
+    },
+    {
+     "eq": "(17),(89),(99)",
+     "kind": "computed",
+     "latex": "D^2\\mathcal O^{IJ}_{\\mathbf{20}'/6}=-\\tfrac12(F_6^{IJ}-4B_6^{IJ})\\equiv\\mathcal O^{IJ}_{\\mathbf{10}/6};\\ -2D^2\\mathcal O=F-4B\\equiv[F]_R",
+     "note": "checked to g^2 (w.r.t. F, D^2 O) and g^4 (w.r.t. B) in SSDR; conjectured all orders"
+    },
+    {
+     "eq": "(101)-(108)",
+     "kind": "computed",
+     "latex": "K_{\\mathbf{10}}=Z_KB+Z_OD^2\\mathcal O;\\ Z_K=1+g^2\\tfrac{m_{11}}\\epsilon,\\ Z_O=g^2n_{10}+g^4(\\tfrac{n_{21}}\\epsilon+n_{20});\\ \\langle K_{\\mathbf{10}}\\bar D^2\\bar{\\mathcal O}\\rangle=O(\\epsilon);\\ m_{11}=\\tfrac{3M}2,\\ n_{10}=-\\tfrac M4,\\ n_{21}=-\\tfrac{3M^2}{16},\\ n_{20}=\\tfrac{3M^2}{16},\\ M=\\tfrac N{4\\pi^2};\\ m_{11}=\\tfrac{\\gamma_1}2,\\ n_{21}=\\tfrac12m_{11}n_{10}",
+     "note": "SSDR, improved MSbar"
+    }
+   ]
+  },
+  {
+   "key": "BKRS01",
+   "arxiv": "hep-th/0104016",
+   "version_read": "v1 (2 Apr 2001)",
+   "title": "Properties of the Konishi multiplet in N=4 SYM theory",
+   "authors": [
+    "M. Bianchi",
+    "S. Kovacs",
+    "G. Rossi",
+    "Ya. S. Stanev"
+   ],
+   "journal": "JHEP 0105:042 (2001)",
+   "conventions": {
+    "gauge": "Fermi-Feynman",
+    "action_(1)": "int d^4x d^2theta d^2thetabar {V^a Box V_a - Phi^{a dagger}_I Phi^I_a - 2ig f_abc Phi^{dagger a}_I V^b Phi^{Ic} + 2g^2 f_abe f_ecd Phi^{dagger a}_I V^b V^c Phi^{Id} - (ig sqrt2/3!) f^abc [eps_IJK Phi^I_a Phi^J_b Phi^K_c delta2(thetabar) - eps^IJK Phidagger_aI Phidagger_bJ Phidagger_cK delta2(theta)] + ...}",
+    "g_normalisation": "fn 3: g of their refs [6],[7] = 2g here",
+    "W_alpha": "W_alpha = -(1/(8g)) Dbar^2(e^{-2gV} D_alpha e^{2gV}) (8)"
+   },
+   "statements": [
+    {
+     "eq": "(5),(7)",
+     "kind": "claim",
+     "latex": "\\mathcal K_{\\mathbf 1}=\\sum_I:\\mathrm{tr}(e^{-2gV}\\Phi^\\dagger_Ie^{2gV}\\Phi^I):|_{\\theta=\\bar\\theta=0};\\ \\tfrac14\\bar D^2:\\mathrm{tr}(e^{-2gV}\\Phi^\\dagger_Ie^{2gV}\\Phi^I):=\\mathrm{tr}(\\Phi^I\\tfrac{\\partial\\mathcal W}{\\partial\\Phi^I})+\\tfrac{6g^2N}{32\\pi^2}\\mathrm{tr}(W^\\alpha W_\\alpha)"
+    },
+    {
+     "eq": "(9),(10),(11)",
+     "kind": "claim",
+     "latex": "(\\mathcal K_{\\mathbf{10}^*})_{AB}=3\\sqrt2g\\,t^{ijk}_{AB}\\mathrm{tr}(\\varphi_i\\varphi_j\\varphi_k)+\\tfrac{6g^2N}{32\\pi^2}\\mathrm{tr}(\\bar\\psi_{\\dot\\alpha A}\\bar\\psi^{\\dot\\alpha}_B);\\ (\\mathcal E_{\\mathbf{10}^*})_{AB}=-\\mathrm{tr}(\\bar\\psi_{\\dot\\alpha A}\\bar\\psi^{\\dot\\alpha}_B)+\\sqrt2g\\,t^{ijk}_{AB}\\mathrm{tr}(\\varphi_i\\varphi_j\\varphi_k);\\ \\mathcal Q^{(ij)}_{\\mathbf{20}'}=\\mathrm{tr}(\\varphi^i\\varphi^j-\\tfrac{\\delta^{ij}}6\\varphi^k\\varphi^k)",
+     "note": "K_10* = delta^2 K_1 orthogonal to E_10 = delta^2 Q_20'; anomalous term needed for orthogonality"
+    },
+    {
+     "eq": "(12),(13)",
+     "kind": "claim",
+     "latex": "(\\mathcal K_{\\mathbf 6^*\\in\\mathbf{10}^*})_{11}=3\\sqrt2g\\,\\mathrm{tr}(\\phi_1^\\dagger[\\phi^2,\\phi^3])+\\tfrac{6g^2N}{32\\pi^2}\\mathrm{tr}(\\bar\\psi_1\\bar\\psi_1);\\ (\\mathcal K_{\\mathbf 6^*\\in\\mathbf{20}'})_{11}=6\\sqrt2g\\,\\mathrm{tr}([\\phi_1^\\dagger,\\psi^2]\\psi^3)+6\\sqrt2g^2\\{\\mathrm{tr}([\\phi_1^\\dagger,\\phi^2][\\phi_2^\\dagger,\\phi_1^\\dagger])+\\mathrm{tr}([\\phi_1^\\dagger,\\phi_3^\\dagger][\\phi^3,\\phi_1^\\dagger])\\}+\\tfrac{6g^2N}{32\\pi^2}\\{4\\mathrm{tr}(D_\\mu\\phi_1^\\dagger D^\\mu\\phi_1^\\dagger)+\\sqrt2g\\,\\mathrm{tr}([\\phi_1^\\dagger,\\bar\\lambda]\\bar\\psi_1^\\dagger)\\}"
+    },
+    {
+     "eq": "(15)",
+     "kind": "claim",
+     "latex": "\\mathcal K_{\\mathbf 1}'=6\\sqrt2g\\{t^i_{AB}\\mathrm{tr}([\\varphi_i,\\psi^A]\\psi^B)+t_i^{AB}\\mathrm{tr}([\\varphi^i,\\bar\\psi_A]\\bar\\psi_B)\\}-3g^2\\mathrm{tr}([\\varphi^i,\\varphi^j][\\varphi_i,\\varphi_j])+\\tfrac{6g^2N}{32\\pi^2}[2\\mathrm{tr}(D_\\mu\\varphi^iD^\\mu\\varphi_i)-\\mathrm{tr}(F^{\\mu\\nu}F_{\\mu\\nu})]"
+    }
+   ]
+  }
+ ],
+ "derived": [
+  {
+   "id": "D1",
+   "title": "loop order of an n->m term at g^k (canonical normalisation)",
+   "latex": "k=v_3+2v_4,\\ 3v_3+4v_4+n=2I+m,\\ L=I-v_3-v_4\\ \\Rightarrow\\ k=2L+m-n;\\ \\text{coupling-in-kinetic-term weight }g^{2L}",
+   "table": {
+    "Q_1 (1->2, k=1)": "L=0 classical",
+    "S_1 (2->1, k=1)": "L=1",
+    "H_2,Q_2,S_2 (2->2, k=2)": "L=1",
+    "H_3 alpha beta->abc (2->3, k=3)": "L=1",
+    "H_3 abc->alpha beta (3->2, k=3)": "L=2",
+    "self-contraction (n->n-2, k=0)": "L=1"
+   },
+   "consequence": "order-hbar components in su(2|3): along Q: Q_2 + (2->3 part of Q_3); along S: S_1 + S_2 + (2->3 part of S_3); along D: H_2 + (2->3 part of H_3). Consistency: c_7 ~ c_4 c_9 (L=1), c_8 ~ c_4 c_10 (L=2) from (3.35).",
+   "assumption": "spin-chain basis differs from canonical field basis by similarity transformations respecting k=2L+m-n"
+  },
+  {
+   "id": "D2",
+   "title": "one-loop supercharge corrections in su(2|3): similarity moves them between Q and S",
+   "latex": "Q_2=0\\iff\\gamma=\\tfrac{i\\alpha_1^2}4(1,1,-1,1),\\ S_2=e^{-i\\beta_1}\\tfrac{\\alpha_1^2}2[(\\{\\alpha b\\to ab\\}+\\{b\\alpha\\to ba\\})-(\\{\\alpha b\\to ba\\}+\\{b\\alpha\\to ab\\})+(-\\{\\alpha\\beta\\to\\beta a\\}+\\{\\beta\\alpha\\to a\\beta\\})];\\ S_2=0\\iff\\gamma=\\tfrac{i\\alpha_1^2}4(-1,-1,1,-1),\\ Q_2=e^{i\\beta_1}\\tfrac{\\alpha_1^2}2[(\\{ab\\to\\alpha b\\}+\\{ba\\to b\\alpha\\})-(\\{ab\\to b\\alpha\\}+\\{ba\\to\\alpha b\\})+(\\{a\\beta\\to\\beta\\alpha\\}-\\{\\beta a\\to\\alpha\\beta\\})];\\ Q_2=S_2=0\\ \\text{impossible};\\ \\text{coef}_i(Q_2)e^{-i\\beta_1}+\\text{coef}_i(S_2)e^{i\\beta_1}=\\tfrac{\\alpha_1^2}2(1,0,-1,1)",
+   "proof": "step2/literature/check_beisert_q2s2.py (sympy, Table 1 input); invariance {S,Q}_2 -> {S,Q}_2 + [T_2,{S_0,Q_0}] = {S,Q}_2 = (1/2) delta delta H_2 by (3.41),(4.3)"
+  },
+  {
+   "id": "D3",
+   "title": "epsilon sign = beta_2 shift",
+   "latex": "\\varepsilon\\to-\\varepsilon\\ \\equiv\\ \\beta_2\\to\\beta_2+\\pi\\ (\\text{similarity }e^{i\\pi L})",
+   "use": "Srednicki eps^{12}=+1 vs any other sign is inside Beisert's freedom"
+  },
+  {
+   "id": "D4",
+   "title": "Z05 in the frame with uncorrected translations",
+   "latex": "\\mathfrak y=-\\mathfrak x:\\ \\mathfrak X^+_2=0\\ (\\mathfrak P_{22},\\mathfrak Q^2_2,\\mathfrak Q^3_2,\\dot{\\mathfrak Q}_{22},\\dot{\\mathfrak Q}_{23}),\\ \\mathfrak X^-_2=-2[\\mathfrak X^-_0,\\mathfrak x]\\ (\\mathfrak K^{22},\\mathfrak S^2_2,\\mathfrak S^2_3,\\dot{\\mathfrak S}^{22},\\dot{\\mathfrak S}^{32}),\\ \\mathfrak T^+_3=\\alpha\\mathfrak T^+_1,\\ \\mathfrak T^-_3=-2[\\mathfrak T^-_1,\\mathfrak x]+\\alpha\\mathfrak T^-_1;\\ [\\mathfrak J^{--},\\mathfrak J^{++}]_2=\\delta\\mathfrak D_2\\neq0\\Rightarrow(\\mathfrak J^{++}_2=0\\Rightarrow\\mathfrak J^{--}_2\\neq0)",
+   "note": "hermiticity X^+=(X^-)^dagger lost for y=-x; one-loop K forced nonzero when P uncorrected"
+  },
+  {
+   "id": "D5",
+   "title": "eigen-operators of B03 (4.13) with corrected (2,1) entry",
+   "latex": "\\text{protected: }\\mathcal O_1+\\tfrac{\\sqrt2}3e^{i\\beta_2}\\alpha_1g\\,\\mathcal O_2+O(g^2);\\ \\text{Konishi descendant: }\\mathcal O_2-\\tfrac3{\\sqrt2}e^{-i\\beta_2}\\alpha_1g\\,\\mathcal O_1+O(g^2)",
+   "proof": "step2/literature/check_beisert_short_states.py",
+   "identification_I": "O_2 <-> B, O_1 <-> F of EJSS05 (same quantum numbers); structure matches (17),(99) protected F-4B and (8),(101) Konishi B + O(g^2) F"
+  },
+  {
+   "id": "D6",
+   "title": "EJSS05 one-loop Konishi descendant in B,F basis",
+   "latex": "K_{\\mathbf{10}}=(Z_K+2Z_O)B-\\tfrac12Z_OF=\\big(1-\\tfrac{g^2N}{8\\pi^2}+g^2\\tfrac{m_{11}}\\epsilon\\big)B+\\tfrac{g^2N}{32\\pi^2}F+O(g^4)",
+   "note": "F coefficient fixed by orthogonality (103); finite part of B coefficient from minimal Z_K choice (scheme)"
+  },
+  {
+   "id": "D7",
+   "title": "one-loop Konishi normalisation cross-checks",
+   "latex": "6g^2|_{(6.7)}=\\tfrac{3g_{YM}^2N}{4\\pi^2}=\\tfrac{g_{YM}^2N}{2\\pi^2}h(2)=-24\\times(-\\tfrac{g^2N}{32\\pi^2})",
+   "note": "last equality uses the project's DEFINITIONS_v2 unit conversion; EJSS anomaly coefficient g^2N/(32pi^2) = -1 x unit only if g and Tr normalisations agree (not checked)"
+  },
+  {
+   "id": "D8",
+   "title": "su(2|3) letter content inside the 1/16-BPS sector (I)",
+   "latex": "\\phi_a=c_a^\\dagger c_4^\\dagger|0\\rangle,\\ \\psi_\\alpha=a_\\alpha^\\dagger c_4^\\dagger|0\\rangle;\\ \\dot Q_{\\dot\\alpha4}\\phi_a=\\dot Q_{\\dot\\alpha4}\\psi_\\alpha=0;\\ \\text{CY13: }\\{\\phi^n,\\lambda_{\\dot\\alpha}\\}\\ \\text{same content}",
+   "note": "identification of CY13 Q^4_- with a Qdot_{alphadot 4} of B03c needs the exchange of the two sl(2) factors (not stated); CY13 Q annihilates this sector letter-wise (2.5)"
+  }
+ ],
+ "errata_found": [
+  "B03 (3.37): sign of alpha_1^2{alpha beta -> beta alpha} (Table 1 and B04 (5.55) have +)",
+  "B03 (4.13) and B04 (5.73): (2,1) entry phase e^{i beta_2} e^{-i beta_2} -> e^{-i beta_2} (required by (4.14))",
+  "B03 text before (6.7): Konishi deltaD printed 3 g_YM^2 N/4 pi^4 -> 4 pi^2",
+  "CY13 (2.2): phi^n = Phi^{4m} index typo",
+  "CL22 ref [64]: nucl-th/0501077 (Kostyuk-Stoecker) printed; intended presumably hep-th/0501077"
+ ],
+ "R1_convention_inventory": "see tex Sec. 9; Weinberg-Srednicki versions require step2/notation dictionary; not stated in sources: eps numerical values (B03, CY13), sigma^{mu nu} definition (CL22), F_{++} normalisation (CY13), signature (B04, CL22)",
+ "check_scripts": [
+  "step2/literature/check_beisert_q2s2.py",
+  "step2/literature/check_beisert_short_states.py"
+ ]
+}

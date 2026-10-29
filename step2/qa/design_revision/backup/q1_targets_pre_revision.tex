@@ -1,0 +1,340 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{array,longtable,booktabs}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{definition}
+\newtheorem{target}{Target}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\allowdisplaybreaks
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Sl}{\textup{[S]}}
+\newcommand{\Dl}{\textup{[D]}}
+\newcommand{\Il}{\textup{[I]}}
+\newcommand{\unit}{\dfrac{\hbar\,\tr_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}
+
+\title{Target conclusions about the one-loop correction $Q_1$ of the twisting supercharge,\\ translated into the untwisted equivariant $\mathcal N=4$ program\\[2pt]
+\large Step 2, directives R1--R4 (synthesis of the literature readers)}
+\date{2026-10-28}
+
+\begin{document}
+\maketitle
+
+\section{Scope, labels, sources}
+
+\textbf{Labels.} \Sl\ transcribed from the source at the cited equation (through the reader files below, which were checked against the arXiv PDFs); \Dl\ derived in this file from quoted formulas (proof given or indicated); \Il\ identification or inference stated in no source. Nothing in this file is a computation of the program; every untwisted coefficient is a target to be computed.
+
+\textbf{Name clash (R3).} Here $Q_0,Q_1,Q_2$ are the loop components of the twisted differential of the holomorphic-twist literature ([BGKWWY] (3.28), (D.13); [BK] (1.3), (1.6)). The manuscript's spinor parameters $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ (Prop.~prop:c7-susy) never appear: an element of $\Sigma$ is written $\xi=(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i})$ and an element of $\Sigma^*$ is written $\eta=(\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})$, as in \texttt{step2/notation/esw\_to\_weinberg\_srednicki.tex} (Thm.~thm:real). Spin-chain $Q_k,S_k,H_k$ ([B03], [Z05]) are coefficients of $g^k$, $g^2=g_{YM}^2N/(8\pi^2)$, and are always written with the source key.
+
+\textbf{Inputs.} \texttt{step2/literature/}: \texttt{sweep.json}, \texttt{gkw.tex/.json}, \texttt{bgkwwy.tex/.json}, \texttt{bgkwwy\_checks\_output.txt}, \texttt{n4\_untwisted.tex/.json}; the dictionary \texttt{step2/notation/}\allowbreak\texttt{esw\_to\_weinberg\_srednicki.tex}; the manuscript (ch02, ch06, ch07); DESIGN\_STEP2.md, DEFINITIONS\_v2.md; [ESW] read directly (local copy of arXiv:2002.10517, Defs.~2.16--2.18, Prop.~2.21, Rem.~1.29, \S10.1.1, \S10.3, \S10.3.1, Thm.~10.9).
+
+\textbf{Two-component conventions (R1).} Srednicki contractions $\chi\psi=\chi^\alpha\psi_\alpha$, $\bar\chi\bar\psi=\bar\chi_{\dot\alpha}\bar\psi^{\dot\alpha}$, $\varepsilon^{12}=+1$; Euclidean $\sigma^m$, $\bar\sigma^m$ of Def.~def:wick of the dictionary; $A_m$, $A_{ij}=A_I\Sigma^I_{ij}$, $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$, $\lambda_\alpha{}^i$ ($S_+\otimes W$), $\bar\lambda_{\dot\alpha i}$ ($S_-\otimes W^*$), antifields $A^*_m,A^*_{ij},\lambda^{*\alpha}{}_i,\bar\lambda^{*\dot\alpha i},c^*$; $(-,-)$ the coupling-carrying invariant pairing of $\mathfrak g$, contracting the $\mathfrak g$ factors in the order written. The unit is $\unit$, written out wherever it occurs.
+
+\textbf{Source keys.}
+\begin{longtable}{p{2.3cm}p{13.7cm}}
+{[BK]} & K.~Budzik, J.~Kulp, \emph{Loop Corrected Supercharges from Holomorphic Anomalies}, arXiv:2512.07771v3 (JHEP 08 (2026) 089).\\
+{[BGKWWY]} & K.~Budzik, D.~Gaiotto, J.~Kulp, B.~R.~Williams, J.~Wu, M.~Yu, \emph{Semi-Chiral Operators in 4d $\mathcal N=1$ Gauge Theories}, arXiv:2306.01039v2 (JHEP 05 (2024) 245); PDF equation numbers.\\
+{[GKW]} & D.~Gaiotto, J.~Kulp, J.~Wu, \emph{Higher Operations in Perturbation Theory}, arXiv:2403.13049v1.\\
+{[BGKWY22]} & K.~Budzik, D.~Gaiotto, J.~Kulp, J.~Wu, M.~Yu, \emph{Feynman Diagrams in Four-Dimensional Holomorphic Theories and the Operatope}, arXiv:2207.14321v1.\\
+{[GWW]} & Z.~Gui, M.~Wang, B.~R.~Williams, arXiv:2510.26608v2 (triangle weight only).\\
+{[W18]} & B.~R.~Williams, \emph{Renormalization for holomorphic field theories}, arXiv:1809.02661v2.\\
+{[BGWW]} & P.~Bomans, N.~Garner, B.~R.~Williams, J.~Wu, \emph{Unravelling the Holomorphic Twist II}, arXiv:2509.16737v1.\\
+{[CLW]} & C.-M.~Chang, Y.-H.~Lin, J.~Wu, arXiv:2310.20086v2.\\
+{[CL25]} & J.~Choi, E.~Lee, \emph{Konishi lifts a black hole}, arXiv:2511.09519v1.\\
+{[KvLM]} & T.~Kibe, S.~van Leuven, K.~Mathieson, \emph{Non-Coulomb Q-cohomology and quantum lifting}, arXiv:2610.22332v2.\\
+{[KKLP]} & S.~Kim, S.~Kim, S.~Lee, J.~Park, \emph{Quantum black hole cohomologies}, arXiv:2606.27955v2.\\
+{[KLLS]} & S.~Kim, J.~Lee, S.~Lee, J.~Song, \emph{Black hole cohomologies in $\mathcal N=4$ SYM}, arXiv:2610.20340v1.\\
+{[BMV]} & K.~Budzik, H.~Murali, P.~Vieira, \emph{Following Black Hole States}, arXiv:2306.04693v2 (footnote 5 only).\\
+{[CY13]} & C.-M.~Chang, X.~Yin, \emph{1/16 BPS States in $\mathcal N=4$ SYM}, arXiv:1305.6314v2.\\
+{[CL22]} & C.-M.~Chang, Y.-H.~Lin, \emph{Words to describe a black hole}, arXiv:2209.06728v4.\\
+{[GGKM08]} & L.~Grant, P.~A.~Grassi, S.~Kim, S.~Minwalla, arXiv:0803.4183v1.\\
+{[B03]} & N.~Beisert, \emph{The su(2$|$3) Dynamic Spin Chain}, hep-th/0310252v2.\\
+{[B03c]} & N.~Beisert, \emph{The Complete One-Loop Dilatation Operator of $\mathcal N=4$ SYM}, hep-th/0307015v5.\\
+{[B04]} & N.~Beisert, dissertation, hep-th/0407277v4.\\
+{[Z05]} & B.~I.~Zwiebel, \emph{$\mathcal N=4$ SYM to Two Loops: \dots\ su(1,1$|$2) Sector}, hep-th/0511109v3.\\
+{[CDSW]} & F.~Cachazo, M.~R.~Douglas, N.~Seiberg, E.~Witten, hep-th/0211170v2.\\
+{[BKRS01]} & M.~Bianchi, S.~Kovacs, G.~Rossi, Y.~S.~Stanev, hep-th/0104016v1.\\
+{[EJSS05]} & B.~Eden, C.~Jarczak, E.~Sokatchev, Y.~S.~Stanev, hep-th/0501077v2 (regulator SSDR: statements only, never used as a regulator).\\
+{[ESW]} & C.~Elliott, P.~Safronov, B.~R.~Williams, arXiv:2002.10517 (project primary source).
+\end{longtable}
+
+\section{The twisting supercharge as a generator of $\mathfrak{psl}(4|4)$ and the letter dictionary}
+
+\subsection{The generator}
+
+\Sl\ [ESW, Def.~2.16]: a square-zero supercharge is a nonzero $Q\in\Sigma$ with $\Gamma(Q,Q)=0$; it is holomorphic if the image of $\Gamma(Q,-)$ has dimension $n/2$. [ESW, \S10.3, first bullet]: in 4d $\mathcal N=4$, ``Rank $(1,0)$ and $(0,1)$ supercharges automatically square to zero. The corresponding twists are holomorphic.'' [ESW, \S10.3.1]: the supercharge is $Q\in S_+\otimes W$ of rank $(1,0)$ in the scalar summand spanning $\mathbb Cw_1\subset W$, with a homomorphism $\alpha:U(1)\to G_R$ giving $Q$ weight $1$. [BK] (before (3.51)): twisting supercharge $\mathcal Q:=Q^4_-$; [CY13] (2.1): $Q=Q^4_-$, $S=S^-_4=Q^\dagger$, $2\{Q,Q^\dagger\}=\Delta\equiv E-2J-H_1-H_2-H_3$.
+
+\Dl\ In the project, the generator is
+\[
+x=\xi=u\otimes w\in S_+\otimes W,\quad u\in S_+,\ w\in W\ \text{nonzero};\qquad \xi_\alpha{}^i=u_\alpha w^i,\quad \bar\xi_{\dot\alpha i}=0 .
+\]
+By (G1) of the dictionary $\Gamma(\xi,\xi)|_V=0$ (it needs $\bar\xi$), and by (G2) $\Gamma_{kl}(\xi,\xi)=2\varepsilon_{jikl}w^jw^i\,u_\alpha\varepsilon^{\alpha\beta}u_\beta=0$: the full ten-component $\Gamma(\xi,\xi)$ vanishes (dictionary, Thm.~thm:real, last bullet; checked in \texttt{check\_dictionary.py}, group ``square-zero elements''). For $\bar\xi=0$ and a general $\xi$, $\Gamma_{kl}(\xi,\xi)=2\varepsilon_{jikl}\,\xi_\alpha{}^j\varepsilon^{\alpha\beta}\xi_\beta{}^i$ is $\varepsilon_{jikl}$ contracted with the $2\times2$ minors of the $2\times4$ matrix $\xi_\alpha{}^i$; hence within $S_+\otimes W$ the ten-dimensional $\Gamma(\xi,\xi)$ vanishes exactly on the rank-one elements, whereas $[\xi,\xi]=\Gamma(\xi,\xi)|_V=0$ (Prop.~prop:c2-special) for every $\xi\in S_+\otimes W$ (the rank-two ones being the topological twists of [ESW, \S10.3, second bullet]). The rank-$(0,1)$ element $\bar\xi=\bar u\otimes n\in S_-\otimes W^*$ gives the conjugate twist and is treated identically with $S_\pm$, $W$, $W^*$ exchanged.
+
+\Il\ All rank-one $\xi$ are related by $\mathrm{Spin}(4)\times SL(4)$ (orbit statement of [ESW, \S2.5, \S10.3]), so every target below is stated covariantly in $(u,w)$; the matching of the label ``$Q^4_-$'' of [BK], [CY13] with a particular $(u,w)$ in the basis of [SW, (17)] is a convention fixed in \texttt{step2/notation}. Index bookkeeping found here: in the project the gaugino and the supercharge parameter lie in the same $\Sigma$ (the transformation is $-\Gamma(\xi,\lambda)$), whereas in [CY13], [GGKM08] the fermion $\Psi_{i\alpha}$ carries the index dual to that of $Q^i_\alpha$; the project's upper $W$-index therefore corresponds to the lower $SU(4)$ index of the fermions and scalars of [CY13], [GGKM08] (e.g. $\Phi^{4I}$ of [BK] (3.51) $\leftrightarrow$ $A_{ij}w^j$ below).
+
+Throughout, fix $u'\in S_+$ with $u'^\alpha u_\alpha=1$ and $n\in W^*$ with $n_iw^i=1$; then $\lambda_\alpha{}^i=(u'\lambda^i)\,u_\alpha-(u\lambda^i)\,u'_\alpha$ with $(u'\lambda^i)=u'^\alpha\lambda_\alpha{}^i$, $(u\lambda^i)=u^\alpha\lambda_\alpha{}^i$ \Dl.
+
+\subsection{The equivariant vertices along $\xi$}
+
+\Dl\ Substituting $\xi_\alpha{}^i=u_\alpha w^i$, $\bar\xi=0$ into (F1), (F3) of the dictionary (= ch02 eq:c2-S1Q, eq:c2-S2), using $u_\alpha\varepsilon^{\alpha\beta}=-u^\beta$ and $\varepsilon^{\alpha\beta}u_\beta=u^\alpha$:
+\begin{align*}
+S^{(1)}(\xi)=\int\Big\{&-i\big(\bar\lambda_{\dot\alpha i}w^i\,\bar\sigma^{m\dot\alpha\alpha}u_\alpha,\,A^*_m\big)+\tfrac12\varepsilon_{jikl}w^j\big((u\lambda^i),A^{*kl}\big)
+-\tfrac14\big(F_{mn}(\sigma^m\bar\sigma^nu)_\alpha,\,\lambda^{*\alpha}{}_iw^i\big)\\
+&-\tfrac14\big([A^{ik},A_{kj}w^j]u_\alpha,\,\lambda^{*\alpha}{}_i\big)-\tfrac i2\big(u^\alpha\sigma^m_{\alpha\dot\alpha}D_m(A_{ij}w^j),\,\bar\lambda^{*\dot\alpha i}\big)\Big\},
+\end{align*}
+\[
+S^{(2)}(\xi,\xi)=-\tfrac12\int\big(u_\alpha w^i\lambda^{*\alpha}{}_i,\;u_\beta w^j\lambda^{*\beta}{}_j\big),
+\]
+the two other terms of (F3) vanishing because $\Gamma(\xi,\xi)=0$ (this confirms inference I2 of \texttt{gkw.tex}). With the sign pattern $\xi.A=-\Gamma(\xi,\lambda)$, $\xi.\lambda=-\tfrac12\rho(F_A)\xi$ (dictionary, Cor.~cor:closure):
+\begin{align*}
+\xi.A_m&=-i\,(\bar\lambda_{\dot\alpha i}w^i)\,\bar\sigma^{m\dot\alpha\alpha}u_\alpha, &
+\xi.A_{kl}&=2\varepsilon_{jikl}w^j(u\lambda^i),\\
+\xi.\lambda_\alpha{}^i&=\tfrac14F_{mn}(\sigma^m\bar\sigma^nu)_\alpha w^i+\tfrac14[A^{ik},A_{kj}w^j]\,u_\alpha, &
+\xi.\bar\lambda_{\dot\alpha i}&=\tfrac i2\,u^\alpha\sigma^m_{\alpha\dot\alpha}D_m(A_{ij}w^j),\qquad \xi.c=0 .
+\end{align*}
+
+\subsection{Letters}
+
+\Dl\ Consequences of the last display: $\xi.(A_{kl}w^l)=0$ ($\varepsilon_{jikl}w^jw^l=0$); $\xi.(\bar\lambda_{\dot\alpha i}w^i)=0$ ($A_{ij}w^iw^j=0$); the scalars $A_{kl}$ transverse to $w$ map onto $(u\lambda^i)$ modulo $w$; modulo $w^i$, $\xi.(u'\lambda^i)=\tfrac14[A^{ik},A_{kj}w^j]$ and $\xi.(u\lambda^i)=0$; with $w=e_4$, $A^{ik}=\varepsilon^{ikl}A_{l4}$ for $i,k\le3$, so $\xi.(u'\lambda^i)\propto\varepsilon^{ikl}[A_{l4},A_{k4}]$, the structure of [CY13] (2.5) $\{Q,\psi_n\}=-i\epsilon_{nmp}[\phi^m,\phi^p]$ and of [BK] (3.50) $Q_0\beta_I\ni\tfrac12\varepsilon_{IJK}[\gamma^J,\gamma^K]$. On the $w$-component of $\lambda$, $u^\alpha\,\xi.\lambda_\alpha=\tfrac14u^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u_\beta$ and $u'^\alpha\,\xi.\lambda_\alpha$ contains $\tfrac14u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u_\beta$; the curvature component not reached is $u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta$. The derivatives $u^\alpha\sigma^m_{\alpha\dot\alpha}D_m$ of $A_{ij}w^j$ are reached ($\xi.\bar\lambda$), in agreement with [BK] (2.5) ($\{\mathcal Q,\bar Q^1_{\dot\alpha}\}=P_{-\dot\alpha}$, antiholomorphic translations exact).
+
+\begin{longtable}{p{2.0cm}p{2.6cm}p{5.0cm}p{4.0cm}p{1.6cm}}
+\toprule
+twisted letter & [BK] (3.51) \Sl & project, two-component \Il & project, index-free \Il & (weight, ghost)\\
+\midrule
+$\gamma$ & $\gamma^I\sim\Phi^{4I}$ & $A_{ij}w^j$ ($3$ components, $(A_{ij}w^j)w^i=0$) & contraction with $w$ of $A|_{W_{\mathbb R}^\perp}$ read in $\wedge^2W^*$ & $(1,0)$\\
+$\beta$ & $\beta_I\sim\Psi_{I+}$ & $(u'\lambda^i)=u'^\alpha\lambda_\alpha{}^i$ modulo $w^i$ & coefficient of $u$ in $\lambda|_{S_+\otimes W}$, read in $W/\mathbb Cw$ & $(\tfrac32,0)$\\
+$\partial_{\dot\alpha}c$ & $\partial_{\dot\alpha}c\sim\bar\Psi^4_{\dot\alpha}$ & $\bar\lambda_{\dot\alpha i}w^i$ & $\lambda|_{S_-\otimes W^*}$ paired with $w$ & $(\tfrac32,0)$\\
+$c$ & ghost & $c$ & $c$ & $(0,1)$\\
+$b$ & $b\sim F_{++}$ & $u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta$ (normalisation open); alternative representative: a component of $\lambda^*$ & $F_A$ self-dual part evaluated on $u'\otimes u'$ & $(2,0)$; $(\tfrac52,-1)$\\
+$\partial_{\dot\alpha}$ & $\partial_{\dot\alpha}\sim D_{+\dot\alpha}$ & $u'^\alpha\sigma^m_{\alpha\dot\alpha}D_m$ (exact directions: $u^\alpha\sigma^m_{\alpha\dot\alpha}D_m$) & covariant derivative along $u'\otimes S_-\subset V_{\mathbb C}$ & $(1,0)$\\
+\bottomrule
+\end{longtable}
+
+Remarks. (i) [BK] (3.51) and [BGKWWY] \S3 (bullets after (3.3)) state the dictionary with ``$\sim$'', up to field redefinitions at the level of free $\mathcal Q$-cohomology and without normalisation factors \Sl. (ii) [ESW, Thm.~10.9 and the collections after its proof] \Sl: the twisted fields are $c+A_{0,1}+B$, $\varphi+\psi+\varsigma^*$, $\xi_{\rm ESW}+b^*+a^*$, $a+b+\xi_{\rm ESW}^*$, $\varsigma+\psi^*+\varphi^*$, $B^*+A^*_{0,1}+c^*$ (ESW's own symbols; $\xi_{\rm ESW}$ is ESW's $\Omega^{2,0}$ gauge fermion); untwisted antifields occur in the twisted fields, and the $(2,0)$-form part of the twisted $b$-field is the antifield $B^*$. Hence a twisted letter may be represented by an untwisted field or by an antifield; the two representatives of $b$ in the table differ by one unit of $\xi$ (Lemma~\ref{lem:arity}). (iii) The choice of $u'$ is immaterial modulo exact terms: $u'\to u'+tu$ adds $t(u\lambda^i)$, which is $\xi.$-exact modulo $w$ \Dl.
+
+\subsection{From the equivariant cochain to the twisted differential}
+
+\Sl\ [ESW, Rem.~1.29]: an action of $\mathfrak g$ is $I_{\mathfrak g}=I+\sum_{k\ge1}S^{(k)}_{\mathfrak g}$ with $(d_{CE}+Q_{BV})I_{\mathfrak g}+\tfrac12\{I_{\mathfrak g},I_{\mathfrak g}\}=0$. [ESW, Def.~2.17]: the $Q$-twisted theory has the same fields and pairing and action $S^Q=S+\sum_{k\ge1}S^{(k)}_{\mathcal A}(Q,\dots,Q)$. [ESW, Def.~2.18]: for $\alpha$ compatible with $Q$, $S^{(k)}_{\mathcal A}(Q,\dots,Q)$ has $\alpha$-weight $k$ and cohomological degree $-k$, so $S^Q$ has total degree $0$. [ESW, Prop.~2.21]: twisting commutes with dimensional reduction. Manuscript Def.~def:c7-component: $O[\infty]=\lim_{\varepsilon\to0}\partial_\delta W(P(\varepsilon,\infty),I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+\delta O(\varepsilon))$, components $[(d_{CE}+Q)O[\infty]](x_1)$ with local representatives $\int\omega\,f_{x_1}$; Lemma lem:c7-image: the arity-one component is $Q$ of the arity-one part of $O[\infty]$.
+
+\begin{definition}[evaluation along $\xi$, \Dl]
+Since $[\xi,\xi]=0$, $\mathbb C\xi$ is an abelian sub-superalgebra; restriction of cochains to it is a chain map $C^\bullet(\mathfrak{psl}(4|4))\to C^\bullet(\mathbb C\xi)$, and $C^\bullet(\mathbb C\xi)$ has zero differential. Write $\mathrm{ev}_\xi F=\sum_k c_kF^{(k)}(\xi,\dots,\xi)$ for the resulting evaluation, the constants $c_k$ fixed by the normalisation of cochain values in which [ESW, Def.~2.17] carries coefficient $1$.
+\end{definition}
+
+Then, whenever the one-loop equivariant quantum master equation holds along $\xi$ and $(\xi,\xi)$ after finite counterterms (Step 2), the twisted quantum differential on observables is $\mathrm{ev}_\xi\circ(d_{CE}+Q)$ \Il, with order-$\hbar$ part
+\[
+\underbrace{Q\,O[\infty]\big|_{\hbar}}_{\text{arity }0}\;+\;c_1\underbrace{[(d_{CE}+Q)O[\infty]](\xi)\big|_\hbar}_{\text{arity one}}\;+\;c_2\underbrace{[(d_{CE}+Q)O[\infty]](\xi,\xi)\big|_\hbar}_{\text{arity two}}\;+\cdots,
+\]
+and the arity-two component on $(\xi,\xi)$ equals $Q$ of the arity-two part of $O[\infty]$, because $d_{CE}$ of the arity-one part evaluated on $(\xi,\xi)$ is the arity-one part on $[\xi,\xi]=0$ \Dl. The twisted $Q_1$ on twisted letters is the order-$\hbar$ part of this differential transported to the twisted letters by the homotopy equivalence of [ESW, Thm.~10.9] (elimination of trivial pairs, [ESW, proof of Thm.~10.1, Props.~1.21, 1.23]); in [BGKWWY] (D.13)--(D.15) form, $\tilde Q=\pi_0(\hbar Q_1+\cdots)\Delta^{-1}\iota_0$ \Il.
+
+\begin{lemma}[arity count, \Dl]\label{lem:arity}
+Let $O=\int\omega\,f$ have Weyl weight $w_O$ and ghost degree $|O|$. The arity-$k$ component on $(\xi,\dots,\xi)$ has local representatives of Weyl weight $w_O+\tfrac k2$ and ghost degree $|O|+1-k$. Hence a twisted pair entry with untwisted representatives of weights and ghost degrees $(w_{\rm in},g_{\rm in})\mapsto(w_{\rm out},g_{\rm out})$ lies in arity
+\[
+k=2(w_{\rm out}-w_{\rm in})=1+g_{\rm in}-g_{\rm out},
+\]
+and the two expressions must agree (a check of the dictionary). For outputs without antifields ($g_{\rm out}\ge0$), $k\le|O|+1$.
+\end{lemma}
+\begin{proof}
+Prop.~prop:c7-select: each value of the conformal Killing spinor carries weight $-\tfrac12$, and each evaluation on a generator (ghost degree $1$) lowers the ghost degree by one; $(d_{CE}+Q)O[\infty]$ has degree $|O|+1$. Apply this $k$ times.
+\end{proof}
+
+\begin{lemma}[where $S^{(2)}$ enters, \Dl]\label{lem:S2}
+$S^{(2)}(\xi,\xi)$ has only $\lambda^*$-legs. $P(\varepsilon,\infty)$ has components in the slots $A\otimes A$, $c\otimes A^*$, $A^*\otimes c$, $\lambda\otimes\lambda$ only (dictionary, Prop.~prop:prop), so a $\lambda^*$-leg is never on a $P(\varepsilon,\infty)$ edge. In the expansion of $(d_{CE}+Q)O[\infty]$ by the UV-boundary identity (ch07 eq:c7-special, eq:c7-defect) every graph has at most one field--antifield pairing (a $K_\varepsilon-K_0$ edge, a $K_\varepsilon$ self-contraction, or the classical bracket $\{I_{\mathfrak{psl}(4|4)},O\}$), the other edges being $P(\varepsilon,\infty)$. A connected graph containing the vertex $S^{(2)}(\xi,\xi)$ therefore joins it through that single pairing, and its second $\lambda^*$-leg is external; for the same reason no one-loop counterterm along $(\xi,\xi)$ comes from a graph with an $S^{(2)}$ vertex. Consequently $S^{(2)}(\xi,\xi)$ contributes at one loop only to outputs containing $\lambda^*$; field-only outputs of the $(\xi,\xi)$ component come from graphs with two $S^{(1)}(\xi)$ vertices. $S^{(2)}$ enters the field-only data through the $(\xi,\xi)$ component of eq:c2-mc (lem:c2-components: $\{S,S^{(2)}(\xi,\xi)\}+(-1)^{|\xi|}\{S^{(1)}(\xi),S^{(1)}(\xi)\}=0$) and through twisted letters represented by antifields (Remark (ii) above).
+\end{lemma}
+
+\subsection{Loop order and coupling}
+
+\Sl\ [BK] (1.3), (2.22): $\hbar$ counts loops, the twisted actions (3.1), (3.53) carry no coupling. [KKLP] (2.13): $\mathcal Q=\mathcal Q_{\rm free}+g_{YM}\mathcal Q_0+g_{YM}^2\mathcal Q_1+O(g_{YM}^3)$, and $\mathcal Q_0+g_{YM}^2\mathcal Q_1$ after $\Phi\to g_{YM}^{-1}\Phi$ (2.2); [KLLS] footnote 2 the same. Project: the coupling sits in $(-,-)$, $(X,Y)=-\tfrac{4\hbar}{g^2}\tr(XY)$ for $\mathfrak{su}(N)$ (dictionary, Cor.~cor:wick), $\unit=-\tfrac{g^2N}{32\pi^2}$ (ch06 rem:c6-konishi). \Dl\ [\texttt{n4\_untwisted} D1]: an $n\to m$ letter term at order $g^k$ (canonical normalisation) has $L=(k-m+n)/2$ loops. The twisted $Q_1$ (two letters to two letters, order $g_{YM}^2$) is one-loop, i.e. order $\hbar$ in the project; the twisted $Q_0$ (one letter to two, order $g_{YM}$ canonically) is classical. In spin-chain language the twisted $Q_1$ has the leg count of [B03]'s order-$g^2$ $Q_2$ (two sites to two), not of [B03]'s order-$g$ $Q_1$ (\texttt{sweep.json}, leg-counting dictionary, \Il).
+
+\section{Target conclusions}
+
+Each target lists (a) source statement, (b) conventions, (c) untwisted translation, (d) scheme status. ``Pair value'' means the representative of $Q_1$ on a pair of letters; ``class'' means the induced map on $H(Q_0)$.
+
+\begin{target}[structure of the loop expansion]\label{t:structure}
+(a) \Sl\ $Q_n\mathcal O=\frac1{(n+1)!}\{\mathcal I,\dots,\mathcal I,\mathcal O\}$ ([BGKWWY] (3.33); [BK] (1.6)); $\mathcal Q\mathcal O=\{I,\mathcal O\}_0+\frac{\hbar}{2!}\{I,I,\mathcal O\}_0+\cdots$ ([BK] (2.22)--(2.24)); $\sum_{n_1+n_2=n}Q_{n_1}Q_{n_2}=0$, $\{Q_0,Q_1\}=0$, $Q_1^2+\{Q_0,Q_2\}=0$ ([BK] (2.25), (2.26), (1.12); [BGKWWY] (3.41)--(3.42)); $Q_1^2\neq0$, hence $Q_2\neq0$ ([BGKWWY] \S3.2.3; (C.8)--(C.9) for $SU(2)$). [GKW] (2.27): $QO=\{O\}+\{I,O\}+\frac12\{I,I,O\}+\cdots$; (3.10): for $H=2,T=0$ the only one-loop graph is the triangle. [KvLM] (5.1)--(5.2): $Q_0^2=0$, $\{Q_0,Q_1\}=0$, $Q_1^2=-\{Q_0,Q_2\}$, so $[Q_1]$ is nilpotent on $H(Q_0)$.
+
+(b) Twisted, $\hbar$ loop counting, regulator: Schwinger time $t\ge\epsilon$ on every propagator, finite without counterterms ([BK] (2.42), footnote 22; [GKW] App.~B; [W18] Thm.~3.4).
+
+(c) \Il\ $Q_0$ $\leftrightarrow$ the order-$\hbar^0$ part of $\mathrm{ev}_\xi\circ(d_{CE}+Q)$: $Q+\{I+S^{(1)}(\xi)+c_2S^{(2)}(\xi,\xi),-\}$ on classical observables. $Q_1$ $\leftrightarrow$ the order-$\hbar$ part: components along $\xi$ (arity one) and $(\xi,\xi)$ (arity two). $\{Q_0,Q_1\}=0$ $\leftrightarrow$ the order-$\hbar$ part of the $(\xi)$ and $(\xi,\xi)$ components of $(d_{CE}+Q)^2O[\infty]=0$. $Q_1^2=-\{Q_0,Q_2\}$ is an order-$\hbar^2$ statement (Step 5); its one-loop content is $[Q_1]^2=0$ on $H(Q_0)$. The untwisted one-loop graphs (at most one field--antifield pairing, the other edges $P(\varepsilon,\infty)$) are not only triangles: bubbles and self-energy insertions on one leg of $O$ also occur; they must reduce to the terms of Section~\ref{sec:freedom}.
+
+(d) Scheme independent: $\{Q_0,Q_1\}=0$; $[Q_1]^2=0$ on $H(Q_0)$. Scheme dependent: ``triangle only'', and the letter count $n+1\to2$ of [BGKWWY] (3.44)--(3.45).
+\end{target}
+
+\begin{target}[action on pairs; single letters]\label{t:pairs}
+(a) \Sl\ [BK] (3.7)--(3.8): $Q_1(f_1\cdots f_n)=\sum_{i<j}(-1)^{\epsilon_{ij}}Q_1(f_if_j)\,f_1\cdots\hat f_i\cdots\hat f_j\cdots f_n$, $\epsilon_{ij}=|f_i|\sum_{k<i}|f_k|+|f_j|\sum_{k<j,k\ne i}|f_k|$. [BGKWWY] (C.1)--(C.2): $Q_1\mathcal O=\frac12\{\mathcal I,\mathcal I,\mathcal O\}$ vanishes on single fields, acts on pairs; (3.43): $Q_nV(N_b,N_c,J_1,J_2)=0$ if $N_b+N_c<n+1$.
+
+(b) [BK] (3.9)--(3.10):
+\[
+\mathcal D^\triangle_{w,z}(f,g)=\sum_{m,n}\frac1{(n+m+2)!}e^{z\cdot\partial}((w-z)\cdot\partial)^n\partial_{\dot\alpha}f\;e^{w\cdot\partial}((z-w)\cdot\partial)^m\partial^{\dot\alpha}g\Big|_{y=0},\qquad \mathcal D^\triangle_{0,0}(f,g)=\tfrac12\partial_{\dot\alpha}f\partial^{\dot\alpha}g .
+\]
+
+(c) \Il\ Pair rule $\leftrightarrow$ one-loop graphs whose loop meets exactly two legs of $O$. Single letters: Step-1 result $O(\varepsilon)=O$ for every letter (DEFINITIONS\_v2); target: the order-$\hbar$ component along $\xi$ on $\int\omega\,(X,A_{ij}w^j)$, $\int\omega\,(X,u'\lambda^i)$, $\int\omega\,(X,\bar\lambda_{\dot\alpha i}w^i)$, $\int\omega\,(X,c)$ and on the $F$-letter is of the form of Section~\ref{sec:freedom} (multiples of the classical component and $[Q_0,\varphi_1]$).
+
+(d) Scheme dependent \Dl: a finite coefficient $y$ in front of $\hbar\,s\big(2\!\int\!(A,A^*)-4\!\int\!(\lambda^*,\lambda)-\!\int\!(c^*,c)\big)$ (the direction of the logarithmic counterterm, thm:c4-log) is a rescaling $N_y$ of the letters by their field type and shifts $Q_1\mapsto Q_1+[Q_0,N_y]$; on $\beta_I$, with $Q_0\beta_I=[c,\beta_I]+\frac12\varepsilon_{IJK}[\gamma^J,\gamma^K]$ ([BK] (3.50)), this is the one-letter-to-two-letter term $\pm\big(y_c[c,\beta_I]+(2y_\gamma-y_\beta)\tfrac12\varepsilon_{IJK}[\gamma^J,\gamma^K]\big)$ ($y_c$, $y_\gamma$, $y_\beta$ the rescaling exponents of $c$, $\gamma$, $\beta$), nonzero for generic $y$. The vanishing on single letters and the pairwise form hold in the counterterm-free twisted scheme ([BK] footnote 22, [W18] Thm.~3.4) and are not scheme-independent statements.
+\end{target}
+
+\begin{target}[vanishing on the $c,\gamma$ letters; chiral primaries]\label{t:cgamma}
+(a) \Sl\ [BK] (3.11): $Q_1(cc)=Q_1(\gamma\gamma)=Q_1(\gamma c)=Q_1(\beta c)=0$. [BK] \S3.4.1, (3.77): $Q_1(\gamma^I\gamma^J)=0$, hence $Q_1$ vanishes on $\Tr\gamma^{(I_1}\gamma^{I_2}\cdots\gamma^{I_n)}$ at any $N$, and by footnote 24 on their $\mathfrak{psl}(3|3)$ descendants; the single-trace$\to$single-trace part does not lift the infinite-$N$ single-trace cohomology; the trace-splitting/joining part is left open.
+
+(b) Propagators pair $c\leftrightarrow b$, $\gamma\leftrightarrow\beta$ ([BK] (2.31)--(2.33), (3.1)); vertices $\Tr b[c,c]$, $\beta[c,\gamma]$, $W[\gamma]=\Tr\gamma^1[\gamma^2,\gamma^3]$ ([BK] (3.48)).
+
+(c) \Dl\ Wick count: in the triangle each field of the pair is contracted into one of the two vertices and the third edge joins the two vertices; for a pair drawn from $\{\partial^kc,\partial^k\gamma\}$ the remaining legs of the two vertices contain no $b$ and no $\beta$, so no third edge exists. Hence $Q_1$ vanishes on every polynomial in the derivatives of $c$ and $\gamma$, in particular on the letters $\{\gamma,\partial_{\dot\alpha}c\}$ that [\texttt{n4\_untwisted} D8] identifies with the content of the su(2$|$3) sector \Il.
+
+\Dl\ Untwisted, $n=2$: for $w_1,w_2\in W^\perp_{\mathbb R}\otimes\mathbb C$ with $w_{a\,ij}w^j=0$ ($a=1,2$; the three-dimensional plane of $w$), $\iota_{w_a}A=\tfrac14w_a^{ij}A_{ij}$ is a combination of the components $A_{ij}w^j$ and $(w_1,w_2)=0$; so $\Tr\gamma^{(I}\gamma^{J)}\leftrightarrow O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ in the traceless part (Step-1 dilatation coefficient $0$). By Cor.~cor:c7-Q, for $(w_1,w_2)=0$ the component along $\xi$ is a multiple, with an $(\xi,w_1,w_2)$-independent coefficient, of
+\[
+\int\omega\,\Big[(\iota_{w_1}A,(\rho(w_2)\xi,\lambda))+(\iota_{w_2}A,(\rho(w_1)\xi,\lambda))\Big],
+\]
+and $(\rho(w_a)\xi,\lambda)=\iota_{w_a}\Gamma(\xi,\lambda)=-\tfrac12w_a^{kl}\varepsilon_{jikl}w^j(u\lambda^i)=0$ for $w_a$ in the plane of $w$. Hence the component along $\xi$ of $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, $w_1,w_2$ in the plane of $w$, vanishes at every order at which the hypotheses of Prop.~prop:c7-select hold: the untwisted reproduction of [BK] (3.77) for $n=2$, exactly and not only in cohomology. Two-component form: $O=\int\omega\,(A_{ij}w^jm_1^i,\,A_{kl}w^lm_2^k)$, $m_1,m_2\in W$ \Dl. For $n\ge3$ ($\int\omega\,$ symmetrised $\tr$ of products of $A_{ij}w^j$) the corresponding statement is a Step-4 target.
+
+(d) Pair values: scheme dependent in general; for the $n=2$ chiral primary the exact vanishing is a consequence of the selection rule and holds in every equivariant scheme. Class level ($[Q_1]$ annihilates $\Tr\gamma^{(I_1}\cdots\gamma^{I_n)}$ and descendants): scheme independent.
+\end{target}
+
+\begin{target}[the $bc$ entry]\label{t:bc}
+(a) \Sl\ [BK] (3.64): $Q_1(b^Ac^B)=\tfrac12f_{ACD}f_{BCE}\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^E$; at nonzero shift $Q_1(b^A(z)c^B(w))=f_{ACD}f_{BCE}\mathcal D^\triangle_{w,z}(c^D,c^E)$ ((3.13), (3.21)); with derivatives (B.5): $Q_1(b^A\partial_1^m\partial_2^nc^B)=f_{ACD}f_{BCE}\frac1{m+n+2}\sum_{k,l}\frac1{k+l+1}\binom mk\binom nl\,\partial_1^k\partial_2^l\partial_{\dot\alpha}c^D\,\partial_1^{m-k}\partial_2^{n-l}\partial^{\dot\alpha}c^E$; footnote 23: the factor $\tfrac12$ at $z=w=0$ corrected in v3. [BGKWWY] (C.4) ($SU(2)$): $Q_1(b_Ac^B)=-(\partial_\alpha c^A\partial^\alpha c^B-\delta^B_A\partial_\alpha c_D\partial^\alpha c^D)$, equal to $f_{ACE}f_{BDE}\partial_\alpha c^C\partial^\alpha c^D$ (\texttt{bgkwwy\_checks} K1/K2).
+
+(b) $[t_A,t_B]=f_{AB}{}^Ct_C$, indices moved with $\delta^{AB}$, Killing normalisation ([BK] (3.12)); $X\cdot Y=\partial_{\dot\alpha}X\partial^{\dot\alpha}Y$; [BK] (3.1) has $+\frac12[c,c]$, [BGKWWY] (3.2) has $-\frac12[c,c]$; [BGKWWY] App.~C has internal factor-2 and sign discrepancies ((C.5) vs (C.6)--(C.7); \texttt{bgkwwy\_checks} CK03, CK04).
+
+(c) \Dl\ Colour: $\tfrac12f_{ACD}f_{BCE}X^AY^BZ^DZ'^E=\tfrac12([X,Z],[Y,Z'])_\delta$ with $(-,-)_\delta$ the $\delta^{AB}$ pairing, $\tr(\mathrm{ad}_Z\mathrm{ad}_{Z'})=-f_{ACD}f_{ACE}Z^DZ'^E$. Untwisted operator (open colour $X,Y\in\mathfrak g$): $O=\int\omega\,\big(X,u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta\big)(Y,c)$, $w_O=2$, $|O|=1$. Output (field-only): $\int\omega\,\big([X,\bar\lambda_{\dot\alpha i}w^i],[Y,\bar\lambda^{\dot\alpha}{}_jw^j]\big)$, weight $3$, ghost $0$. Lemma~\ref{lem:arity}: $k=2(3-2)=2=1+1-0$: the $(\xi,\xi)$ component at order $\hbar$; by Lemma~\ref{lem:S2} its field-only part comes from graphs with two $S^{(1)}(\xi)$ vertices, one $O$ vertex and one $K_\varepsilon$ edge. With $b$ represented by its antifield component ([ESW] Thm.~10.9 collections), the same entry is an arity-one component ($k=2(3-\tfrac52)=1=1+0-0$) \Dl.
+
+(d) Pair value scheme dependent (Section~\ref{sec:freedom}). Class level: see Target~\ref{t:stress}.
+\end{target}
+
+\begin{target}[the $\beta\gamma$ entry: Konishi]\label{t:konishi}
+(a) \Sl\ [BK] (3.66): $Q_1((\beta_I)^A(\gamma^J)^B)=\tfrac12\delta^J_If_{ACD}f_{BCE}\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^E$; general representation (3.16): $Q_1((\beta_I)_i(z)(\gamma^J)^j(w))=-\delta^J_I(T_BT_A)^j{}_i\mathcal D^\triangle_{w,z}(c^A,c^B)$. [CL25] (2.5)--(2.6): $Q_K=\bar A^{ij,kl}\frac{g_{YM}^2}{32\pi^2}(\partial_\psi)_{ij}(\partial_{\bar\Phi})_{kl}$ (SO($N$)), example after (2.6): $Q\Tr\bar\Phi\psi_+=g_{YM}\Tr\bar\Phi\frac{\partial\bar W}{\partial\bar\Phi}+g_{YM}^2\frac{N-2}{16\pi^2}\Tr\bar\lambda_{\dot\alpha}\bar\lambda^{\dot\alpha}$; from the generalised Konishi anomaly (2.1)--(2.2), $\bar D^2\Tr\bar\Phi e^{[V,\cdot]}\Phi|_{\rm anomaly}=g_{YM}^2\frac{C({\rm adj})}{16\pi^2}\Tr W_\alpha W^\alpha$. [KvLM] (5.5): $Q_1(\psi_m)_a(\phi^n)_b=-\kappa_Q\delta^n_m(ff)_{ab}{}^{de}(\lambda_{\dot\alpha})_d(\lambda^{\dot\alpha})_e$, $\kappa_Q$ free. [KKLP] (2.7) ($\frac14\kappa^2$, $\tr(T_AT_B)=\kappa\delta_{AB}$, (2.4)); [KLLS] (2.4) ($\kappa_1^2/16$). Untwisted: [CDSW] (3.3): $\bar D^2J=\frac1{32\pi^2}\tr_{\rm adj}(\mathrm{ad}W_\alpha)(\mathrm{ad}W^\alpha)$; (3.4), (3.14). [BKRS01] (7): $\frac14\bar D^2:\tr(e^{-2gV}\Phi^\dagger_Ie^{2gV}\Phi^I):=\tr(\Phi^I\partial\mathcal W/\partial\Phi^I)+\frac{6g^2N}{32\pi^2}\tr(W^\alpha W_\alpha)$; (9): $(\mathcal K_{\mathbf{10}^*})_{AB}=3\sqrt2g\,t^{ijk}_{AB}\tr(\varphi_i\varphi_j\varphi_k)+\frac{6g^2N}{32\pi^2}\tr(\bar\psi_{\dot\alpha A}\bar\psi^{\dot\alpha}_B)$. [EJSS05] (1): $\bar D^2K=B+\frac{g^2}{32\pi^2}F$; (8) one loop: $\bar D^2K=\frac g6\epsilon_{IJK}\Tr(\Phi^I[\Phi^J,\Phi^K])+\frac{g^2N}{32\pi^2}\Tr(W^\alpha W_\alpha)$; (12): $Z_F=\frac{g^2N}{32\pi^2}$.
+
+(b) [CL25]: $\tau=\frac\theta{2\pi}+\frac{4\pi i}{g_{YM}^2}$, $\Tr T_R^AT_R^B=C(R)\delta^{AB}$; [EJSS05]: $\Tr(T^aT^b)=\delta^{ab}$, $W=\frac g3\epsilon_{IJK}\Tr\Phi^I\Phi^J\Phi^K$ (109)--(113), SSDR; [BKRS01]: $g$ of their refs $=2g$ (footnote 3), $W_\alpha=-\frac1{8g}\bar D^2(e^{-2gV}D_\alpha e^{2gV})$ (8).
+
+(c) \Il\ Untwisted operator (contracted, $|O|=0$, $w_O=\tfrac52$):
+\[
+O=\int\omega\,\big(u'^\alpha\lambda_\alpha{}^i,\;A_{ij}w^j\big),
+\]
+index-free: $\int\omega$ of the $(-,-)$ pairing of the $u$-coefficient of $\lambda|_{S_+\otimes W}$ with the contraction of $A|_{W_{\mathbb R}^\perp}$ with $w$. Classical component along $\xi$: by $\xi.(u'\lambda^i)=\tfrac14[A^{ik},A_{kj}w^j]$ modulo $w^i$ and $\xi.(A_{ij}w^j)=0$, it is $\pm\tfrac14\int\omega\,([A^{ik},A_{kj}w^j],A_{il}w^l)$ (sign fixed by the bracket conventions in code), the image of $3W[\gamma]$ ([\texttt{gkw.tex}] inference I5: $Q_0(\sum_I\Tr\beta_I\gamma^I)\ni3W[\gamma]$). One-loop target: arity one ($k=2(3-\tfrac52)=1=1+0-0$), order $\hbar$, output
+\[
+c_K\;\unit\int\omega\,\big(\bar\lambda_{\dot\alpha i}w^i,\;\bar\lambda^{\dot\alpha}{}_jw^j\big),
+\]
+the image of $\Tr\bar\Psi^4_{\dot\alpha}\bar\Psi^{4\dot\alpha}$. From [BK] (3.66): $\sum_IQ_1(\delta_{AB}(\beta_I)^A(\gamma^I)^B)=\tfrac32f_{ACD}f_{ACE}\partial c^D\cdot\partial c^E=-\tfrac32\tr(\mathrm{ad}\,t_D\,\mathrm{ad}\,t_E)\,\partial c^D\cdot\partial c^E$ \Dl; the number $c_K$ follows only after the normalised field map and the relation of the twisted $\hbar$ to the project's unit are derived (open item~1). Physical cross-checks: [EJSS05] (8), [BKRS01] (9), [CL25] (2.5); the project's conversion $\unit=-\frac{g^2N}{32\pi^2}$ makes the [EJSS05] coefficient $-1\times$unit only if the trace and coupling normalisations agree (\texttt{n4\_untwisted} D7: not checked).
+
+(d) \Dl\ Scheme dependent: under an operator redefinition $\varphi_1$ with $\varphi_1(W[\gamma])=x\Tr\partial c\cdot\partial c$ (allowed: [BKRS01] (9)--(10) and [EJSS05] (17), (99) show that the trilinear $B$ and the bilinear $F$ have the same quantum numbers and mix), $Q_1\mapsto Q_1+[Q_0,\varphi_1]$ changes the coefficient of $\Tr\partial c\cdot\partial c$ in $Q_1(\sum_I\Tr\beta_I\gamma^I)$ by $-3x$ (from $Q_0(\sum_I\Tr\beta_I\gamma^I)\ni3W$), modulo $Q_0$-exact terms. This is the twisted form of [EJSS05] (2) and abstract (classical/quantum split of the Konishi anomaly scheme dependent in $\mathcal N=4$). Scheme independent: the coefficient once the representative of the Konishi descendant is fixed by two-point orthogonality to the protected operator ([EJSS05] (103), \texttt{n4\_untwisted} D6: $K_{\mathbf{10}}=(1-\frac{g^2N}{8\pi^2}+g^2\frac{m_{11}}\epsilon)B+\frac{g^2N}{32\pi^2}F$), i.e. in the project after fixing the finite $B$--$F$ mixing of the weight-3 operators in the $\mathbf{10}$ (Step 4). The relative normalisation of $[CL25]$'s classical and one-loop terms is the quantity compared in the SO(7) lifting (Target~\ref{t:lift}); only its nonvanishing enters there.
+\end{target}
+
+\begin{target}[the remaining $\mathcal N=4$ pair entries]\label{t:others}
+(a) \Sl\ [BK] (3.65): $Q_1(b^Ab^B)=\tfrac12f_{ACD}f_{BCE}[\partial c^D\cdot\partial b^E-\partial b^D\cdot\partial c^E+\partial(\beta_I)^D\cdot\partial(\gamma^I)^E-\partial(\gamma^I)^D\cdot\partial(\beta_I)^E]$; (3.67): $Q_1((\beta_I)^A(\beta_J)^B)=\tfrac12\varepsilon_{IJK}f_{ACD}f_{BCE}[\partial c^D\cdot\partial(\gamma^K)^E-\partial(\gamma^K)^D\cdot\partial c^E]$; (3.68): $Q_1(b^A(\gamma^I)^B)=\tfrac12f_{ACD}f_{BCE}[\partial c^D\cdot\partial(\gamma^I)^E-\partial(\gamma^I)^D\cdot\partial c^E]$; (3.69): $Q_1((\beta_I)^Ab^B)=\tfrac12f_{ACD}f_{BCE}[\partial(\beta_I)^D\cdot\partial c^E+\partial c^D\cdot\partial(\beta_I)^E+\varepsilon_{IJK}\partial(\gamma^J)^D\cdot\partial(\gamma^K)^E]$. Superfield (3.70)$=$(1.10): $Q_1(C^A(\theta)C^B(\theta'))=-\tfrac12f_{ACD}f_{BCE}(\theta_1-\theta_1')(\theta_2-\theta_2')(\theta_3-\theta_3')\,\partial_{\dot\alpha}C^D(\theta)\partial^{\dot\alpha}C^E(\theta')$, $C=c+\theta_I\gamma^I+\frac12\varepsilon^{IJK}\theta_I\theta_J\beta_K+\theta_1\theta_2\theta_3b$ ((3.48)--(3.54)). Derivation from $Q_1(bc)$ by tree-level $\mathfrak{psl}(3|3)$: (3.59)--(3.63), e.g. $Q_1(b\gamma^I)=-Q^I_+Q_1(bc)$, $Q_1(\beta_I\gamma^J)=-\tfrac12S^+_IQ_1(b\gamma^J)$. Derivatives: (B.1) $Q_1(\partial_{\dot\alpha}f\,g)=\partial_{\dot\alpha}Q_1(fg)-Q_1(f\partial_{\dot\alpha}g)$, kernel (B.4), (B.6)--(B.10). Chang--Yin-letter versions: [KKLP] (2.5)--(2.12).
+
+(b) As Target~\ref{t:bc}; (3.70) not re-derived by the readers.
+
+(c) \Dl\ Arity assignments (Lemma~\ref{lem:arity}) with the field representatives of the letter table; every entry is consistent:
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+entry & $(w_{\rm in},g_{\rm in})$ & $(w_{\rm out},g_{\rm out})$ & $k$\\
+\midrule
+$bc$ (3.64) & $(2,1)$ & $(3,0)$ & $2$\\
+$bb$ (3.65) & $(4,0)$ & $(\tfrac92,0)$ & $1$\\
+$\beta\gamma$ (3.66) & $(\tfrac52,0)$ & $(3,0)$ & $1$\\
+$\beta\beta$ (3.67) & $(3,0)$ & $(\tfrac72,0)$ & $1$\\
+$b\gamma$ (3.68) & $(3,0)$ & $(\tfrac72,0)$ & $1$\\
+$\beta b$ (3.69) & $(\tfrac72,0)$ & $(4,0)$ & $1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Untwisted operators: replace $b,c,\gamma,\beta,\partial_{\dot\alpha}c,\partial_{\dot\alpha}$ by the entries of the letter table, e.g. $(\beta_I)^A(\beta_J)^B\leftrightarrow(X,u'\lambda^i)(Y,u'\lambda^j)$ and $\partial c\cdot\partial\gamma\leftrightarrow(\bar\lambda_{\dot\alpha i}w^i)\,(u'^\alpha\sigma^m_\alpha{}^{\dot\alpha}D_m(A_{kj}w^j))$.
+
+(d) Pair values scheme dependent; the relations (3.59)--(3.63), as relations between classes on $H(Q_0)$, follow from $\{Q_1,R_0\}+\{Q_0,R_1\}=0$ (Target~\ref{t:psl33}) and are scheme independent at the class level.
+\end{target}
+
+\begin{target}[no Leibniz rule]\label{t:leibniz}
+(a) \Sl\ [BK] footnote 21: generically no associative scheme in which $\mathcal Q$ obeys the Leibniz rule. [BGKWWY] footnote 28, (3.26): Leibniz holds only for the loop-corrected product, which is not associative; (3.26) fails by a one-loop term reproducing the anomaly. [CL22] (3.4)--(3.5): if $\mathcal Q$ obeys Leibniz, $H^*(\mathcal G_N,\mathfrak{sl}_N;\mathbb C[[g_{YM}]])\cong H^*(\mathcal G_N,\mathfrak{sl}_N;\mathbb C)\otimes\mathbb C[[g_{YM}]]$; footnote 10: a scheme with undeformed $\mathcal Q$ on the BPS superfield via DRED or hep-th/9801062; footnote 11: Konishi anomaly as the only known obstruction (reference [64] misprinted, \texttt{n4\_untwisted} errata).
+
+(c) \Il\ The arity-one component along $\xi$ at order $\hbar$ is not a derivation of the classical product of letters modulo $Q_0$-exact terms; Targets~\ref{t:konishi} and \ref{t:lift} give the explicit obstruction.
+
+(d) \Il\ Scheme independent: the existence of $[Q_1]$-lifted pairs (Target~\ref{t:lift}) excludes a scheme in which $Q_1$ is a derivation plus $aQ_0+[Q_0,\varphi_1]$, since a derivation reproduces the hypothesis of [CL22] (3.5). The DRED scheme of [CL22] footnote 10 is excluded in this project (no dimensional regularisation in any role).
+\end{target}
+
+\begin{target}[lifting statements on $H(Q_0)$]\label{t:lift}
+(a) \Sl\ [CL25] \S3: in SO(7), $Q_KO_f=O_m+Q_0\Lambda$, $O_m\propto M_1-M_2-4M_3$ independent of the 741 $Q_0$-exact operators of the sector ($J_a=0$, $R_i=3$, 8 letters), $M_1+2M_2-10M_3$ $Q_0$-exact (3.3); resolves the SO(7)/Sp(3) mismatch of [arXiv:2510.24008]. [KvLM] (1.2)/(5.3): $[Q_1][F_4]=c[S^4]$, $c\neq0$, $S=\Tr(\lambda_+\lambda_-)$, SO(7); \S6: $[Q_1]$ annihilates every monotone class; every nonzero $[Q_1]$-image has vanishing Cartan restriction; key identity (1.3) $\Delta^kF=Q_0H$ for $Q_0$-closed $F$ with vanishing Cartan restriction. [KKLP] abstract, \S3: $SU(2)$, the lightest fortuitous class and its hairy versions are not lifted, many heavier core fortuitous classes are lifted. [KLLS] abstract, \S2--3: SU(3) brane-fused family not lifted at first quantum order; several black-hole cohomologies lifted; normalisation of $Q_1$ plays no role (after (2.5)). [BK] \S3.4.1 (see Target~\ref{t:cgamma}). [BMV] footnote 5: the first higher-loop correction of [BGKWWY] preserves the $SU(2)$ threshold class $O_0$.
+
+(b) Letters of [CY13] (2.2)--(2.3) ($\phi^n=\Phi^{4n}$, $\psi_n=-i\Psi_{n+}$, $\lambda_{\dot\alpha}=\bar\Psi^4_{\dot\alpha}$, $f=-iF_{++}$, $D_{\dot\alpha}=D_{+\dot\alpha}$); tree cohomology $H^*(\mathcal G_N,\mathfrak{sl}_N;\mathbb C)$ ([CY13] (3.6)).
+
+(c) \Il\ Statements about $\pi_0Q_1\iota_0$ on the classical 1/16-BPS cohomology, i.e. about the order-$\hbar$ part of the transported $\mathrm{ev}_\xi\circ(d_{CE}+Q)$ on $H(Q_0)$. In the untwisted program they follow from Targets~\ref{t:pairs}--\ref{t:others} once the pair entries are reproduced up to the terms of Section~\ref{sec:freedom}; a direct untwisted computation on these multi-letter classes is outside Steps 2--3.
+
+(d) Scheme independent ([BK] p.~5 and footnote 9: the lifting of cohomology classes is scheme independent, assuming non-perturbative effects only reduce the cohomology; Lemma~\ref{lem:inv}).
+\end{target}
+
+\begin{target}[stress tensor and the absent one-loop beta function]\label{t:stress}
+(a) \Sl\ [BK] (2.17)--(2.18): $S^{(0)}_{\dot\alpha}:=S_{+\dot\alpha,+}$, $D_-S_{\dot\alpha}=(\mathcal Q+\bar\partial)S_{\dot\alpha}=0$ for superconformal theories. Contrast, pure $\mathcal N=1$: [BGKWWY] (3.40) $Q_1\Tr b^2\propto\partial_\alpha(\Tr b\partial^\alpha c)$ (holomorphic confinement), (3.24) $(Q+\bar\partial)S_\alpha\sim\partial_\alpha\Tr(\partial_\beta c\partial^\beta c)$, (2.20)--(2.22): for a classically scale-invariant theory with a one-loop beta function $(Q+\bar\partial)S$ is nonzero at one loop. Reader checks (\texttt{bgkwwy\_checks}, CK02, CK05; not source statements): for $SU(2)$, $Q_1\Tr b^2=-4\,\partial_\alpha\Tr(b\partial^\alpha c)$ from (C.3), and the coefficient in (3.24) is $1$ with (C.6) normalised to (C.4).
+
+(c) \Il\ Untwisted: the coupling is not renormalised at one loop in the project (Step 1: coefficient along the coupling direction zero, STORY.md); the twisted image is that $[Q_1]$ annihilates the class of the holomorphic stress tensor and that the $\mathcal N=4$ analogue of [BGKWWY] (3.40) is $Q_0$-exact. The untwisted operator is the component of the stress-tensor multiplet selected by $(u,u',w)$ ([BK] (2.17)); its two-component form is a Step-3/4 item. The pure-$\mathcal N=1$ statements are not reproducible inside this $\mathcal N=4$ program and serve as contrast only.
+
+(d) Scheme independent (class level).
+\end{target}
+
+\begin{target}[compatibility with the tree-level $\mathfrak{psl}(3|3)$]\label{t:psl33}
+(a) \Sl\ [BK] (3.55)--(3.58): tree-level $\mathfrak{psl}(3|3)$ commuting with $Q^4_-$: $Q^I_+\sim\partial_{\theta_I}$, $S^+_I\sim\theta_I(z^{\dot\alpha}\partial_{\dot\alpha}+\theta_J\partial_{\theta_J})$, $\bar Q_{I\dot\alpha}\sim\theta_I\partial_{\dot\alpha}$, $\bar S^{I\dot\alpha}\sim z^{\dot\alpha}\partial_{\theta_I}$; footnote 24: $\{Q_1,R_0\}+\{Q_0,R_1\}=0$ on $Q_0$-cohomology; $R_1$ not computed. [KvLM] \S5: the classical commutant supercharges $\bar Q_{m\dot\alpha}$ anticommute with $Q_1$ in $Q_0$-cohomology (used in (5.4)).
+
+(c) \Dl\ Elements of $\mathfrak{psl}(4|4)$ with vanishing bracket with $\xi=u\otimes w$ (Def.~def:c2-bracket, (B1)--(B2) of the dictionary): all of $S_+\otimes W$; $\bar\xi'\in S_-\otimes W^*$ with $\bar\xi'_{\dot\alpha i}w^i=0$; $\eta\in S_+\otimes W^*$ of the form $\eta^\alpha{}_i=u^\alpha m_i$ with $m_iw^i=0$; all of $S_-\otimes W$. [BK]'s generators are among these (labels as printed). \Il\ The BV form of footnote 24 is the order-$\hbar$ part of the $(\xi,R)$ component of $(d_{CE}+Q)^2O[\infty]=0$; $R_1$ is the arity-one component along $R$ at order $\hbar$, for $R\in\Sigma^*$ a special-supercharge component $S_1$ of directive R4.
+
+(d) The class-level relation is scheme independent; $R_1$ is scheme dependent jointly with $Q_1$ (compare [\texttt{n4\_untwisted} D2]).
+\end{target}
+
+\begin{target}[scheme statements to be reproduced as theorems]\label{t:scheme}
+(a) \Sl\ [BGKWWY] \S3.2.1: $\mathbf Q$ scheme dependent, schemes related by quasi-isomorphisms; App.~E: parametrisation of deformations scheme dependent beyond first order. [BK] \S2.2.2: $Q_n$ scheme dependent beyond first order, a scheme may exist where they vanish at some order, schemes related by quasi-isomorphisms of $L_\infty$-conformal algebras; p.~5, footnote 9: lifting scheme independent. [GKW] \S2 after (2.10), after (2.17), footnote 13, \S6 (6.28), (6.33): $\eta$ scheme dependent, schemes related by $L_\infty$ quasi-isomorphisms; translations not corrected (footnote 13, (2.31)). [BGKWY22] App.~B (B.6): a change $P\to P+d_yH$ of the propagator changes $I_\Gamma$ by boundary terms, ``essentially an infinitesimal operator redefinition''. [W18] Thm.~3.4: holomorphic theories on $\mathbb C^d$ admit a one-loop prequantisation without counterterms. Spin chains: [B03] (3.39)--(3.40), (4.4)--(4.10): similarity $J\mapsto TJT^{-1}$, $J_2\mapsto J_2+[T_2,J_0]$, coupling $g\mapsto f(g)$; [Z05] (3.7), (4.1)--(4.2). Derived [\texttt{n4\_untwisted} D2]: in su(2$|$3), $Q_2=0$ iff $\gamma=\frac{i\alpha_1^2}4(1,1,-1,1)$, then $S_2\neq0$; $Q_2=S_2=0$ is impossible; $\{S,Q\}_2=\frac12\delta\delta H_2$ is invariant.
+
+(c) Project counterpart: $O(\varepsilon)$ has a unique singular part and a free finite part (DEFINITIONS\_v2 item 5); finite counterterms in $C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))$ (ch07, Step 2). Section~\ref{sec:freedom}.
+\end{target}
+
+\section{Renormalisation freedom of $Q_1$ (R3 display)}\label{sec:freedom}
+
+Let $\mathcal Q^{\rm tw}=Q_0+\hbar Q_1+O(\hbar^2)$ be the twisted differential on twisted letters obtained from $\mathrm{ev}_\xi\circ(d_{CE}+Q)$ and transport. The untwisted choices act as follows (each item \Il\ unless marked; all to be established in Step 2/3).
+\begin{enumerate}
+\item[F0.] Arity-zero finite counterterms (DESIGN\_STEP2 Part C): $F_2=\frac{27}{16}\,\unit\int(d^*A|_V,d^*A|_V)$ (forced) $+\beta_1\int(dA|_V,dA|_V)+\beta_2\int(dA|_{W^\perp},dA|_{W^\perp})+\beta_3\int(\lambda,{\not d}\lambda)+\beta_4\int(dc,A^*)$, plus $F_3\in\mathrm{span}\{H_1,\dots,H_6\}$. Two-component: $\beta_1\int(dA|_V,dA|_V)=\frac{\beta_1}2\int(F^0_{mn},F^0_{mn})$, $\beta_2\int(dA|_{W^\perp},dA|_{W^\perp})=\frac{\beta_2}4\int(\partial_mA^{ij},\partial_mA_{ij})$, $\beta_3\int(\lambda,{\not d}\lambda)=2i\beta_3\int(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)$, $\beta_4\int(\partial_mc,A^*_m)$ (dictionary, Def.~def:bases). The $\beta$-directions complete to $s$-closed functionals (DESIGN\_STEP2, ``solution family''): their $s$-exact part is a field-type rescaling $N_\beta$, acting as $Q_1\mapsto Q_1+[Q_0,N_\beta]$; the coupling direction (total action) acts as $Q_1\mapsto Q_1+aQ_0$, since $Q_0$ does not depend on the coupling when the coupling sits in $(-,-)$.
+\item[F1.] Arity-one finite counterterm $F(\xi)$ (ch07 ``The road ahead'': obstruction $\mathrm{Ob}(\xi)=(Q+\{I,-\})F(\xi)+\{S^{(1)}(\xi),F_0\}$): unique up to $s$-closed local functionals depending linearly and equivariantly on $\xi\in S_+\otimes W$; by Schur's lemma for the covariant subalgebra the $s$-closed non-exact choice is $a\,S^{(1)}(\xi)$, a renormalisation of the supercharge, acting as $Q_1\mapsto Q_1+aQ_0$; $s$-exact choices act as $[Q_0,-]$.
+\item[F2.] Arity-two finite counterterm $F(\xi,\xi)$: correlated with F1 by the $(\xi,\xi)$ component of the master equation; \Dl\ the equation $\{S,S^{(2)}(\xi,\xi)\}+(-1)^{|\xi|}\{S^{(1)}(\xi),S^{(1)}(\xi)\}=0$ (lem:c2-components, $[\xi,\xi]=0$) is linear in $S^{(2)}$ and quadratic in $S^{(1)}$, so $S^{(1)}(\xi)\mapsto(1+a\hbar)S^{(1)}(\xi)$ forces $S^{(2)}(\xi,\xi)\mapsto(1+2a\hbar)S^{(2)}(\xi,\xi)+O(\hbar^2)$; by Lemma~\ref{lem:S2} the change affects only outputs with $\lambda^*$-legs at one loop.
+\item[F3.] Finite parts of operators: $O(\varepsilon)\mapsto O(\varepsilon)+\hbar\varphi_1(O)$, $\varphi_1(O)$ local with the Weyl weight, ghost degree and $\mathfrak{so}(V)\oplus\mathfrak{so}(W^\perp_{\mathbb R})$ representation of $O$ (e.g. the $B$--$F$ mixing of Target~\ref{t:konishi}): $Q_1\mapsto Q_1+[Q_0,\varphi_1]$.
+\item[F4.] Choice of representatives and homotopy data in the transport ([BGKWWY] (D.14) $h_0$; [ESW] Thm.~10.9 eliminations; [BGKWY22] (B.6) propagator changes): $Q_1\mapsto Q_1+[Q_0,\varphi_h]$.
+\end{enumerate}
+
+\begin{lemma}[invariance, \Dl]\label{lem:inv}
+If $Q_1'=Q_1+aQ_0+[Q_0,\varphi]$ with $Q_0'=Q_0$, then $\pi_0Q_1'\iota_0=\pi_0Q_1\iota_0$ on $H(Q_0)$, because $\pi_0Q_0=0$ and $Q_0\iota_0=0$. Hence the class map $[Q_1]$ (the leading term $\hbar Q^{(1)}_0$ of [BGKWWY] (D.15)), its kernel, image and rank, and the lifting pattern are independent of F0--F4. Rescalings of the letters at tree level conjugate $[Q_1]$ by an invertible map of $H(Q_0)$ and leave kernel, image and rank unchanged.
+\end{lemma}
+
+\textbf{To be displayed as families (scheme dependent):} every pair value (3.64)--(3.69) and their shifted/derivative versions; the vanishing on single letters and the pairwise form (Target~\ref{t:pairs}); ``triangle only''; the coefficient of the Konishi entry before the orthogonality normalisation (Target~\ref{t:konishi}); the overall size of $Q_1$ relative to $Q_0$ up to tree-level letter rescalings.
+
+\textbf{To be reproduced exactly (scheme independent):} $\{Q_0,Q_1\}=0$ and $[Q_1]^2=0$ on $H(Q_0)$; $[Q_1]$ on $H(Q_0)$, in particular the class-level statements of Targets~\ref{t:cgamma}, \ref{t:lift}, \ref{t:stress}, \ref{t:psl33}; the exact vanishing of the component along $\xi$ on $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ with $w_1,w_2$ in the plane of $w$ (Target~\ref{t:cgamma}, a selection-rule consequence); the Konishi coefficient in the orthogonality normalisation.
+
+\section{What the literature does not have: S, K, dilatation at one loop (R4)}
+
+\begin{longtable}{p{2.6cm}p{6.6cm}p{6.6cm}}
+\toprule
+generator & known (source) & not found (evidence)\\
+\midrule
+$\xi\in S_+\otimes W$ (twisting $Q$) & twisted $Q_1$ complete: [BK] (3.64)--(3.70), App.~B; untwisted classical $Q$ on letters [CY13] (2.5)--(2.8), [GGKM08] (A.1)--(A.2); Konishi entry only [CL25] (2.5) & untwisted one-loop $Q$ along $Q^4_-$ on the full letter set, including two-to-one terms with derivatives (\texttt{n4\_untwisted.json} open issues); $Q_1$ as a component of an untwisted equivariant BV cochain (\texttt{sweep.json} cross-paper ``not found'')\\
+special supercharges $\eta\in\Sigma^*$ ($S_1$) & planar su(2$|$3): [B03] (3.37), Table 1 ($S_1$ at $O(g)$, $S_2$ at $O(g^2)$ with $\gamma_{1..4}$), $S_3$ only counted (Table 2, \S5); psu(1,1$|$2): [Z05] (3.6) $\mathfrak X^-_2=-[\mathfrak X^-_0,\mathfrak x]+[\mathfrak X^-_0,\mathfrak y]$; conjecture [B03c] (5.15) $\delta S(g)\sim g\Tr\Psi\mathcal Q$ & full-theory one-loop $S$ on local operators; twisted $R_1$ for $S^+_I$, $\bar S^{I\dot\alpha}$ ([BK] footnote 24: not computed); $S$ as BV-equivariant component ([BGKWWY] ``absent'' list; \texttt{gkw.json} I6)\\
+special conformal $K$ ($K_1$) & psu(1,1$|$2) only: [Z05] (3.6) $\mathfrak K^{22}$ at $O(g^2)$, homogeneous solutions neither found nor excluded ((3.8)--(3.9)); [B03c] \S6: $K$ corrected, not computed; derived [\texttt{n4\_untwisted} D4]: with $P$ uncorrected ($\mathfrak y=-\mathfrak x$), $\mathfrak K^{22}_2=-2[\mathfrak K^{22}_0,\mathfrak x]\neq0$ & full-theory one-loop $K$ on letters and operators; any twisted-side $K$ (the twisted theory keeps only holomorphic transformations; [BGWW] (3.47)--(3.52) treat anomalies of holomorphic symmetries as failures of an $L$-equivariant QME and list only classical $\mathcal N=4$ currents (4.82)--(4.85))\\
+dilatation $\Delta$ ($D_1$) & complete one-loop $D_2$ on all local operators [B03c] (2.22), (2.24), (4.27)--(4.29) (point splitting, (3.14)); Konishi $\frac{3g_{YM}^2N}{4\pi^2}=-24\times$unit (\texttt{n4\_untwisted} D7, ch06) & $D_1$ as the $\Delta$-component of an equivariant BV cochain with a UV-boundary regulator, and its identification with the scaling route (DESIGN\_STEP2 Part D, D3); gauge-variant letters in a stated gauge\\
+$P$, $M$, $R$ & expected uncorrected: [GKW] footnote 13, (2.31); [B04] (2.31): $L,\dot L,R$ not corrected; [B03c] \S6 lists $P$ among corrected generators in its basis (similarity dependent); project Prop.~prop:c7-cov: can be chosen classical & realisation by an explicit equivariant choice of counterterms (Step 2)\\
+arity two $(\xi,\eta)$, $(\xi,\xi)$ & su(2$|$3): [B03] (3.41)--(3.42), (4.3) $\{S,Q\}=\dots+\delta^b_a\delta^\alpha_\beta(\frac13H+\frac16\delta H)+O(g^4)$; [\texttt{n4\_untwisted} D2] invariance of $\{S,Q\}_2$ & BV form ($(d_{CE}+Q)^2O[\infty]=0$ on $(\xi,\eta)$, cf. rem:c7-KDelta for $(K,P)$): not found\\
+equivariant one-loop QME along all $\mathfrak{psl}(4|4)$ ghosts & twisted analogue for holomorphic symmetries [BGWW] (3.46)--(3.49) & untwisted: not found (\texttt{sweep.json} ``not found in the sweep'')\\
+\bottomrule
+\end{longtable}
+
+Consequence for R4 \Il: $S_1$ and $Q_1$ are scheme dependent jointly (spin-chain analogue [\texttt{n4\_untwisted} D2]: one-loop corrections can be moved between $Q$ and $S$ but not removed from both); the scheme-independent combination is the $(\xi,\eta)$ arity-two relation, whose $\Delta$-part is $\tfrac12(\xi,\eta)$ times the dilatation component (Prop.~prop:c2-special, third item). $K_1$ is tied to $D_1$ by the $(K,P)$ component as in rem:c7-KDelta.
+
+\section{Open items}
+\begin{enumerate}
+\item Normalisation: [BK] (3.64)--(3.69) (Killing-normalised $f$, factor $\frac12$ of footnote 23, propagator (2.31)--(2.32), measure $(2\pi i)^{-2}$) versus [BGKWWY] (C.3)--(C.4) ($SU(2)$, $\varepsilon_{ABC}$, $\frac1{4\pi^2}$) versus the project unit; the relation of the twisted $\hbar$ to $\hbar/(X,Y)$ and the normalised field map (3.51) (including the normalisation of $b\leftrightarrow u'Fu'$ and $\partial c\leftrightarrow\bar\lambda w$) are not given in any source.
+\item The constants $c_k$ of $\mathrm{ev}_\xi$: [ESW] Def.~2.17 prints coefficient $1$ for $S^{(2)}(Q,Q)$; the signs of the project's cochain values (lem:c2-components, parity $k+\sum|x_i|$) must be matched in code before arity-two numbers are compared.
+\item Label identification of $Q^4_-$, $\pm$, $\dot\alpha$ and phases ([CY13] (2.5) $-i$; [GGKM08] (2.6); [KKLP] (2.3); [KLLS] (2.2); [BK] (3.49)--(3.50)) with $(u,u',w)$: \texttt{step2/notation}.
+\item Representative of $b$: field ($u'Fu'$, arity two for (3.64)) or antifield ([ESW] Thm.~10.9, arity one); both must give the same class.
+\item [BGKWWY] App.~C internal factor 2 and sign (CK03, CK04), (5.21) sign versus CK02; stress tensor normalised $\Tr b\partial c$ (3.19) versus $2\Tr b\partial c$ (App.~B.1).
+\item Possible tension (\texttt{sweep.json}): [Z05] (2.6) $[\mathfrak L,\mathfrak T^\pm]=\pm\mathfrak T^\pm$ gives the psu(1$|$1)$^2$ supercharges only odd powers of $g$; if $\overleftarrow{\mathfrak T}^+=\mathfrak Q^1{}_1$ is $Q^4_-$ up to R-relabelling, the twisted $Q_1$ restricted to the su(1,1$|$2) sector must vanish. Neither identification is made in a source.
+\item [CL25] calls $C(R)$ ``dual Coxeter number of $R$''; [EJSS05] uses $\Tr(T^aT^b)=\delta^{ab}$; the claim ``Konishi anomaly coefficient $=-1\times$unit'' is unverified.
+\item Not read: arXiv:2311.04304, 2401.08113, 1906.04221, 2606.05314, 0905.3738, 1111.0083 (abstract only); Konishi 1984, Konishi--Shizuya 1985 (not on arXiv); hep-th/0606087, hep-th/0409009; [BK] (3.70) not re-derived.
+\item Statements of [CL22] footnote 10 and [EJSS05] rest on DRED/SSDR and are quoted as statements only.
+\end{enumerate}
+
+\end{document}

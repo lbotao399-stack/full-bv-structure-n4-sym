@@ -1,0 +1,36 @@
+% n4lines.sty -- extra FeynArts line styles for the N4_Costello_BV diagrams.
+% Loaded after feynarts.sty (unmodified); adds PostScript line procedures to
+% FeynArtsDict.  Each procedure is a single FeynArts line segment, so the
+% propagator is not split.
+%   BandSine, BandScalarDash, BandStraight, BandGhostDash :
+%       edge pinned at t = eps (L_eps or K_eps): light-grey band under the
+%       line style of the field species.
+%   DoubleLine : insertion of O (external source line).
+%   Zigzag     : S^{(1)}(Delta) cochain (external source line).
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{n4lines}[2026/10/27 FeynArts line styles for N4_Costello_BV]
+\RequirePackage{feynarts}
+\special{!% n4lines additions
+FeynArtsDict begin
+/Band { currentpoint stroke moveto /phiband phi def
+  gsave Straight currentlinewidth 8 mul setlinewidth .74 setgray
+  1 setlinecap stroke grestore /phi phiband def } bind def
+/BandSine { Band Sine } bind def
+/BandScalarDash { Band ScalarDash } bind def
+/BandStraight { Band Straight } bind def
+/BandGhostDash { Band GhostDash } bind def
+/DoubleLine { currentpoint stroke moveto /phidl phi def
+  gsave Straight currentlinewidth 4.6 mul setlinewidth 0 setgray
+  0 setlinecap stroke grestore /phi phidl def
+  gsave Straight currentlinewidth 2.2 mul setlinewidth 1 setgray
+  0 setlinecap stroke grestore /phi phidl def
+  Straight currentpoint newpath moveto } bind def
+/Zigzag { /za dphi abs Degree mul rad mul def
+  /znz za .42 div round cvi dup 2 lt { pop 2 } if def
+  0 1 znz { /zk exch def
+    /zang phi zk znz div dphi mul add def
+    /zr rad zk 0 eq zk znz eq or { 0 } { zk 2 mod 0 eq { .3 } { -.3 } ifelse } ifelse sub def
+    zr zang cos mul ctrx add zr zang sin mul ctry add lineto } for
+  /phi phi dphi add def } bind def
+end}
+\endinput

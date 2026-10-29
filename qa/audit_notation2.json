@@ -1,0 +1,831 @@
+{
+ "audit": "notation and style, round 2 (adversarial)",
+ "date": "2026-10-28",
+ "scope": [
+  "manuscript/ch01_classical.tex",
+  "manuscript/ch02_superconformal.tex",
+  "manuscript/ch03_uv_boundary.tex"
+ ],
+ "references": [
+  "manuscript/FORMAT.md",
+  "DEFINITIONS_v2.md item 11",
+  "DESIGN.md rules 2 and 4",
+  "sources/ledger_SYNTHESIS.md",
+  "reader_build/convert.py (dry run in memory, no files written)",
+  "manuscript/build/preview_ch01_03.log",
+  "primary texts: ESW pdf, C07 text (citation checks)"
+ ],
+ "severity_key": {
+  "H": "breaks a DESIGN/DEFINITIONS hard rule, reuses a ledger symbol for a second object in one chapter, or breaks a cross-reference in an output",
+  "M": "new or colliding symbol, explicit index/component, FORMAT violation visible in an output, wrong or missing source at first use",
+  "L": "cosmetic, wording, ordering"
+ },
+ "verdicts": {
+  "symbols_not_in_ledger_or_colliding": "FAIL: H 4 (N1, N2, N3, N4), M 9 (N6-N14), L 9 (N5, N15-N22)",
+  "explicit_indices_or_components": "FAIL: M 3 (I1, I2, I3), L 2 (I4, I5)",
+  "defensive_phrases": "FAIL (minor): 'does not' and 'not a' occur 0 times; 'only' occurs once (ch03 title, D1, M); 13 further negative or contrastive formulations (L)",
+  "audit_script_file_mentions": "script names, file paths, residual counts: 0 (PASS); process and verification narration: FAIL, M 4 (A1, A6, A7, A8), L 7",
+  "katex_compatibility": "macros PASS: all 80 distinct commands are KaTeX-supported; no $$, \\slashed, \\newcommand, \\cite, \\footnote, math inside \\text, or line breaks outside aligned. Reader conversion FAIL: H 1 (K1, two labelled equations inside \\item; unresolved refs; ch02 equation numbers shifted by 2), M 2 (K2 displays inside items in 12 places; K3 double primes mangled in inline math), L 4",
+  "citations_at_first_use": "FAIL: M 3 (C1 psl(4|4), C2 Delta, C3 positivity misattributed to ESW §3.1), L 13",
+  "story_structure": "chapter openings present (2-4 sentences each); overview chapter absent (S1)"
+ },
+ "counts": {
+  "H": 5,
+  "M": 22,
+  "L": 49
+ },
+ "findings": [
+  {
+   "id": "N1",
+   "sev": "H",
+   "category": "symbol-not-allowed",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "3",
+   "found": "\"the propagator $P(\\varepsilon,T)$\"",
+   "rule": "DESIGN rule 4; ledger scope line 9: the symbol T is not used by the program",
+   "replacement": "the propagator $P(\\varepsilon,\\infty)=\\int_\\varepsilon^\\infty(Q^{GF}\\otimes1)K_t\\,dt$ [C07, §6.5]"
+  },
+  {
+   "id": "N2",
+   "sev": "H",
+   "category": "symbol-not-allowed",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "269-272",
+   "found": "$\\alpha-\\lim_{T\\to\\infty}e^{-TH}\\alpha$ ; \"$|e^{-TH}\\alpha|\\le(4\\pi T)^{-2}\\|\\alpha\\|_{L^1}$\"",
+   "rule": "DESIGN rule 4 (no T)",
+   "replacement": "$=\\alpha-\\lim_{t\\to\\infty}e^{-tH}\\alpha$ ; The limit vanishes because $|e^{-tH}\\alpha|\\le(4\\pi t)^{-2}\\int\\mathrm{dvol}\\,|\\alpha|$; this is $K_\\infty=0$."
+  },
+  {
+   "id": "N3",
+   "sev": "H",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "195, 324",
+   "found": "line 195 $\\int_{[\\varepsilon,\\infty)^{E}}f$ ; line 324 \"with $E$ pairs of half-edges\", $\\hbar^{1+E-V+\\sum_v\\deg v}$, $b_1=E-V+1$",
+   "rule": "E = Euler vector field [SW,(3)] (Chapter 2) and bundle [C07]; V = complexified R^4 (Definition c1-spaces); new meanings as edge and vertex counts",
+   "replacement": "Use the [C07, §15.5] sets $E(\\gamma)$, $V(\\gamma)$. Line 195: $\\int_{[\\varepsilon,\\infty)^{E(\\gamma)}}f_\\gamma$, the product over the edge set $E(\\gamma)$ [C07, §15.5]. Line 324: with $|E(\\gamma)|$ pairs of half-edges ... the power $\\hbar^{1+|E(\\gamma)|-|V(\\gamma)|+\\sum_v\\deg v}=\\hbar^{b_1(\\gamma)+\\sum_v\\deg v}$ with $b_1(\\gamma)=|E(\\gamma)|-|V(\\gamma)|+1$ [C07, §15.4]"
+  },
+  {
+   "id": "N4",
+   "sev": "H",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "327, 331, 337, 344, 346, 348, 356",
+   "found": "\"as for $M$ a point in [C07, §6.6, §10.1] ... Define the linear map $M\\colon\\mathscr E\\to\\mathscr E$ by $M(e)=\\dots$\"; later $\\mathrm{STr}(M^n)$, $M^{\\rm ev}$, $M^{\\rm odd}$",
+   "rule": "M = manifold [C07] (ledger §1, §5b), used in the same sentence; new symbol for the operator",
+   "replacement": "Remove the name. In (eq:c3-oneloop) write $-\\frac\\hbar2\\,\\mathrm{STr}\\log\\big(1-(e\\mapsto\\sum\\phi^{\\prime}(-1)^{|\\phi^{\\prime\\prime}|}\\partial_{\\phi^{\\prime\\prime}}\\partial_eJ)\\big)=\\hbar\\sum_{n\\ge1}\\frac1{2n}\\mathrm{STr}\\big((e\\mapsto\\sum\\phi^{\\prime}(-1)^{|\\phi^{\\prime\\prime}|}\\partial_{\\phi^{\\prime\\prime}}\\partial_eJ)^n\\big)$; in prose \"the one-loop operator\"; in the proof \"its even block\", \"its odd block\"."
+  },
+  {
+   "id": "N5",
+   "sev": "L",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "324, 327-358",
+   "found": "bare $P$ ($\\partial_P$, $e^{\\hbar\\partial_P}$, $P=\\sum P'\\otimes P''$) for a general even element of $\\mathrm{Sym}^2\\mathscr E$ and as shorthand for $P(\\varepsilon,\\infty)$",
+   "rule": "ledger §5b: P with its two-slot argument = propagator",
+   "replacement": "Line 324: write $P(\\varepsilon,\\infty)$ in full. Lines 327-358: use $\\phi=\\sum\\phi^{\\prime}\\otimes\\phi^{\\prime\\prime}\\in\\mathrm{Sym}^2\\mathscr E$ as in [C07, §6.4]."
+  },
+  {
+   "id": "N6",
+   "sev": "M",
+   "category": "symbol-not-allowed",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "166",
+   "found": "\"With $u=|x-y|^2/4t$, $dt=-\\frac{|x-y|^2}{4u^2}du$\"",
+   "rule": "DEFINITIONS_v2 item 11: no u (letter of the one-loop unit). [C07, Lemma 15.2.2] uses u, the manuscript rule bans it",
+   "replacement": "Since $\\frac{d}{dt}e^{-|x-y|^2/4t}=\\frac{|x-y|^2}{4t^2}e^{-|x-y|^2/4t}$, \\[\\int_\\varepsilon^\\infty\\frac{e^{-|x-y|^2/4t}}{16\\pi^2t^2}\\,dt=\\frac{1}{4\\pi^2|x-y|^2}\\Big[e^{-|x-y|^2/4t}\\Big]_{t=\\varepsilon}^{t=\\infty}=\\frac{1-e^{-|x-y|^2/4\\varepsilon}}{4\\pi^2|x-y|^2}.\\]"
+  },
+  {
+   "id": "N7",
+   "sev": "M",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "170",
+   "found": "\"the value at $x=y$ from $1-e^{-s}=s+O(s^2)$\"",
+   "rule": "new s; Landau O collides with O(epsilon) (user symbol, DESIGN) and [C07] O(S) (ledger §5b row O)",
+   "replacement": "the value at $x=y$ from $\\lim_{x\\to y}|x-y|^{-2}\\big(1-e^{-|x-y|^2/4\\varepsilon}\\big)=\\frac1{4\\varepsilon}$"
+  },
+  {
+   "id": "N8",
+   "sev": "M",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "275-277, 283-295",
+   "found": "$Q_{(n)}=\\sum_i1^{\\otimes(i-1)}\\otimes Q\\otimes1^{\\otimes(n-i)}$, $h_{(n)}=\\frac1n\\sum_i\\dots$, and $Q_j$, $h_i$ in the proof",
+   "rule": "DESIGN rule 2: new symbols ([C07, §6.2] names the operator \"the usual tensor product differential\" without a symbol)",
+   "replacement": "Write the operators out: $F=\\Big(F\\circ\\tfrac1n\\sum_{i=1}^n1^{\\otimes(i-1)}\\otimes P(0,\\infty)\\star\\otimes1^{\\otimes(n-i)}\\Big)\\circ\\Big(\\sum_{j=1}^n1^{\\otimes(j-1)}\\otimes Q\\otimes1^{\\otimes(n-j)}\\Big)$; in the proof \"Q on the j-th factor\", \"$P(0,\\infty)\\star$ on the i-th factor\". Alternative: add both operators to the ledger as [C07, §6.2] objects before use."
+  },
+  {
+   "id": "N9",
+   "sev": "M",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "279",
+   "found": "\"in $F(e+\\epsilon Qe,\\dots)$ with $e$ even and $\\epsilon$ odd, the parameter $\\epsilon$ passes through $F$\"",
+   "rule": "ledger §5b row varepsilon/epsilon: epsilon = UV cutoff only; X16",
+   "replacement": "in $F(e+rQe,\\dots)$ with $e$ even and $r$ an odd element of an auxiliary nilpotent ring [C07, Lemma 6.4.1, proof], the element $r$ passes through $F$ (same device as Definition c1-vertex)"
+  },
+  {
+   "id": "N10",
+   "sev": "M",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "300",
+   "found": "$O(\\varepsilon)$, $O[\\infty]$ used without definition (first occurrence in Chapters 1-3); \"$Q\\,O[\\infty]=Y[\\infty]$ ... because $Y$ is required to be local\"",
+   "rule": "DESIGN rule 2; Y is absent from ledger and DESIGN; O(epsilon), O[infty] need a definition or source at first use",
+   "replacement": "... so every $Q$-closed functional at scale $\\infty$ defines the zero class. The content of an operator is the local functional $O(\\varepsilon)$ at the UV end (Definition [forward label]) whose flow $O[\\infty]$ to scale $\\infty$ [CG2, Def 8.3.1.3] has an $\\varepsilon\\to0$ limit ... Correspondingly, an equation expressing $Q\\,O[\\infty]$ as the scale-$\\infty$ observable of a second local functional has content because that functional is local, and anomalous dimensions are classes in the cohomology of local functionals."
+  },
+  {
+   "id": "N11",
+   "sev": "M",
+   "category": "symbol-collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "357-359",
+   "found": "\"probability at most $\\sum_j1/|S_j|$, where $S_j$ is the set ...\"; \"With $|S_j|=4$ ...\"",
+   "rule": "S = action, S^{(k)} = cochain components, S_+ and S_- = semi-spin representations (ledger §5b row S)",
+   "replacement": "vanishes with probability at most $\\sum_j\\big(\\text{number of values of each coordinate of the }j\\text{-th argument}\\big)^{-1}$ ... With $4$ values for even and $15$ values for odd arguments, the bound per sampled point is"
+  },
+  {
+   "id": "N12",
+   "sev": "M",
+   "category": "symbol-collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "116",
+   "found": "\"if the subspaces occupy the blocks $(a,b)$ and $(c,d)$ of [SW, (17)], their bracket lies in block $(a,d)$ when $b=c$, plus block $(c,b)$ when $d=a$\"",
+   "rule": "c = gauge ghost [ESW, Def 3.2], d = exterior derivative; new letters",
+   "replacement": "their bracket lies in the block with the row of the first subspace and the column of the second when the column of the first equals the row of the second, plus the block with the row of the second and the column of the first when the column of the second equals the row of the first, and vanishes otherwise."
+  },
+  {
+   "id": "N13",
+   "sev": "M",
+   "category": "symbol-collision",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "109 (also ch01 254, ch03 107)",
+   "found": "$-\\delta(x-y)$ ; $(2\\pi)^4\\delta(\\sum_jp_j)$",
+   "rule": "delta = odd parameter [C07, (12.0.1)] and square-zero parameter of observables [CG2, Def 8.3.1.1] (DESIGN: O(eps) := O - partial_delta I^CT[eps])",
+   "replacement": "At ch01:109: $-\\delta(x-y)$, the delta distribution of the diagonal (always written with its argument; the square-zero parameter $\\delta$ of [CG2, Def 8.3.1.1] carries none). Add a ledger §5b row: delta with argument = delta distribution; delta without argument = square-zero parameter."
+  },
+  {
+   "id": "N14",
+   "sev": "M",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "10-14 (and every W_R^perp, so(W_R^perp) in ch02)",
+   "found": "\"$V_{10}$ is the ten-dimensional complexified Euclidean space of [ESW, (31)] ... $V_{10}=V\\oplus W_{\\mathbb R}^\\perp$\"",
+   "rule": "V_10 is a DESIGN symbol absent from the ledger; [ESW, (31)] is the action, the 10d space is V_R [ESW, §2.2, §2.6]; V is complex while W_R^perp is real, and ESW §2.6 writes so(W^perp) (complex) and Spin(W_R^perp)",
+   "replacement": "$V_{10}=V_{\\mathbb R}\\otimes_{\\mathbb R}\\mathbb C$, with $V_{\\mathbb R}=\\mathbb R^{10}=W_{\\mathbb R}\\oplus W_{\\mathbb R}^\\perp$ as in [ESW, §2.2, §2.6], and $V_{10}=V\\oplus(W_{\\mathbb R}^\\perp\\otimes_{\\mathbb R}\\mathbb C)$; from here on $W_{\\mathbb R}^\\perp$ and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ denote these complexifications. Add $V_{10}$ to ledger §3 with source \"DESIGN, = ESW V_R tensor C\"."
+  },
+  {
+   "id": "N15",
+   "sev": "L",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "163",
+   "found": "\"Let $a$ be the coefficient of $(F_A,F_A)$ ... affine in $a$ ... at $a=-\\tfrac14$\"",
+   "rule": "new letter (a is also an ESW §10.2 scalar and the C07 background in Z(S,hbar,a))",
+   "replacement": "For abelian $\\mathfrak g$ the bracket $\\{S,S^{(1)}(Q_1)\\}$ is affine in the coefficient of $(F_A,F_A)$ ... it vanishes for the coefficient $-\\tfrac14$ and is nonzero for $+\\tfrac14$ and for $-\\tfrac12$"
+  },
+  {
+   "id": "N16",
+   "sev": "L",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "137",
+   "found": "\"The component in the row $X\\otimes Y$ below\"",
+   "rule": "placeholders X, Y; X denotes elements of so(V), so(W_R^perp) in Chapter 2",
+   "replacement": "The component in a row labelled by two slots is the value of $\\partial_{P(\\varepsilon,\\infty)}$ [C07, §6.4] on the product of a coordinate functional of the first slot at $x$ and one of the second slot at $y$, in this order."
+  },
+  {
+   "id": "N17",
+   "sev": "L",
+   "category": "symbol-collision",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "265, 272",
+   "found": "$\\|Q^{GF}e^{-tH}\\alpha\\|_\\infty$ ; \"$L^1$ norms\" ; $\\|\\alpha\\|_{L^1}$",
+   "rule": "subscript infinity = scale infinity (K_infty, Delta_infty, O[infty]); L = Im Q^GF and L_t [C07]",
+   "replacement": "$\\sup_{x\\in\\mathbb R^4}|Q^{GF}e^{-tH}\\alpha|$ is integrable on $(0,\\infty)$ ; bounded by $(4\\pi t)^{-2}$ times $\\int\\mathrm{dvol}\\,|\\alpha|$ and $\\int\\mathrm{dvol}\\,|d\\alpha|$"
+  },
+  {
+   "id": "N18",
+   "sev": "L",
+   "category": "symbol-not-in-ledger",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "346-358",
+   "found": "$\\mathscr E^{\\rm ev},J^{\\rm odd},P^{\\rm ev}$; basis vectors $e,e_1,e_2$; coordinates $\\varphi$ (same letter as the kernel $\\phi$ of $\\partial_\\phi$), $\\vartheta_1,\\vartheta_2$; complex numbers $a,b$",
+   "rule": "DESIGN rule 2 (explicit bases in reported text); varphi versus phi collision",
+   "replacement": "Use the [C07, §6.4] coordinate functional $e^\\vee(e^{\\prime})=\\langle e^{\\prime},e\\rangle$ in place of $\\varphi,\\vartheta_i$ (e.g. $J=\\tfrac12b\\,(e^\\vee)^2$ and $J=b\\,e_1^\\vee e_2^\\vee$, normalised on the chosen vectors); keep \"complex numbers $a,b$\" local to the proof."
+  },
+  {
+   "id": "N19",
+   "sev": "L",
+   "category": "symbol-collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "14, 47-49, 101",
+   "found": "$X$ for an element of $\\mathfrak{so}(V)$ (Definition c2-even, table) and for the element of $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ defined by the odd-odd bracket",
+   "rule": "one letter, two objects in one chapter",
+   "replacement": "Keep \"rotations $x\\mapsto Xx$, $X\\in\\mathfrak{so}(V)$\"; in Definition c2-bracket write \"plus the element of $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ whose matrix elements are $(w,(\\,\\cdot\\,)w^{\\prime})=\\dots$\", or state \"here $X\\in\\mathfrak{so}(W_{\\mathbb R}^\\perp)$\" at each use."
+  },
+  {
+   "id": "N20",
+   "sev": "L",
+   "category": "source-symbol-changed",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "253, 300",
+   "found": "$-\\big(v(c),c^*\\big)$",
+   "rule": "[ESW, (32)] prints $-(v.c)c^*$ (verified in the ESW text)",
+   "replacement": "$-(v.c)\\,c^*$ with \"$v.c=v(c)$, the derivative of $c$ along $v$ [ESW, (32)]\""
+  },
+  {
+   "id": "N21",
+   "sev": "L",
+   "category": "symbol-overload",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "37",
+   "found": "\"let $\\mathrm{dvol}$ also denote the corresponding four-form on $V$\", then $q(\\mathrm{dvol})$",
+   "rule": "dvol is the density of [ESW, (31)]; second meaning as an element of wedge^4 V",
+   "replacement": "Write \"the volume element of $\\wedge^4V$ of this orientation\" at each use, e.g. $\\rho\\big(q(\\text{volume element of }\\wedge^4V)\\big)$; a new symbol such as vol_V would need a ledger entry."
+  },
+  {
+   "id": "N22",
+   "sev": "L",
+   "category": "ledger-amendment",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "141",
+   "found": "\"Here $S$ is always the full action and $I$ the interaction.\"",
+   "rule": "ledger X1 and §5b: unindexed S = [C07] interaction (DESIGN uses the ESW reading; round-1 D4)",
+   "replacement": "No manuscript change; amend ledger X1 and §5b row S to the DESIGN reading."
+  },
+  {
+   "id": "I1",
+   "sev": "M",
+   "category": "explicit-index",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "94-106",
+   "found": "table column \"[SW, (8)] name\": $P_{\\alpha\\dot\\beta}$, $M_{\\alpha\\beta}$, $\\bar M_{\\dot\\alpha\\dot\\beta}$, $\\Delta$, $K^{\\alpha\\dot\\beta}$, $R^i_j$, $Q^i_\\alpha$, $\\bar Q_{\\dot\\alpha i}$, $\\bar S^{\\dot\\alpha i}$, $S^\\alpha_i$",
+   "rule": "DESIGN rule 2; DEFINITIONS_v2 item 11: generator names are index-free subspaces",
+   "replacement": "Replace the column by \"block of [SW, (17)]\": translations (2,1); so(V) acting on S_+ (1,1); so(V) acting on S_- (2,2); dilatation: the diagonal element diag(1,-1|0); special conformal (1,2); so(W_R^perp) (3,3); $S_+\\otimes W$ (3,1); $S_-\\otimes W^*$ (2,3); $S_-\\otimes W$ (3,2); $S_+\\otimes W^*$ (1,3). Caption: rows and columns ordered as in [SW, (17)]."
+  },
+  {
+   "id": "I2",
+   "sev": "M",
+   "category": "explicit-index",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "107",
+   "found": "caption \"in particular the R-symmetry index of $Q^i_\\alpha$ is carried by $W$\"",
+   "rule": "DESIGN rule 2",
+   "replacement": "in particular the block (3,1) of [SW, (17)] is $S_+\\otimes W$."
+  },
+  {
+   "id": "I3",
+   "sev": "M",
+   "category": "explicit-component",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "352",
+   "found": "\"the entries of $X\\in\\mathfrak{so}(V)$ or $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ ... for an odd generator its sixteen components from $\\{a+ib:\\ a\\in\\{-2,\\dots,2\\},\\ b\\in\\{-1,0,1\\}\\}$\"",
+   "rule": "DESIGN rule 2 (component bases in code only); new letters a, b",
+   "replacement": "for an even generator its coordinates in a fixed basis are drawn from $\\{-2,-1,1,2\\}$, and for an odd generator its coordinates in a fixed basis of $\\Sigma$ or $\\Sigma^*$ from the fifteen Gaussian integers with real part in $\\{-2,\\dots,2\\}$ and imaginary part in $\\{-1,0,1\\}$."
+  },
+  {
+   "id": "I4",
+   "sev": "L",
+   "category": "explicit-component",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "163",
+   "found": "\"two sampled $Q_1\\in\\Sigma$ with small Gaussian-integer components\"",
+   "rule": "DESIGN rule 2",
+   "replacement": "at two elements $Q_1\\in\\Sigma$ with Gaussian-integer coordinates in a fixed basis (or drop, see A3)"
+  },
+  {
+   "id": "I5",
+   "sev": "L",
+   "category": "explicit-basis",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "52-56",
+   "found": "\"Let $v_1,\\dots,v_4$ be an oriented orthonormal basis of $V$, so $q(\\mathrm{dvol})=v_1v_2v_3v_4$\"; \"pick a unit vector $w$\"",
+   "rule": "DESIGN rule 2 (explicit bases); tolerable inside a proof, but an index-free proof is available",
+   "replacement": "Index-free: for the volume element of $\\wedge^4V$ and $v\\in V$, $v\\wedge(\\text{volume element})=0$, so $\\rho(v)\\rho(q(\\cdot))=\\rho(q(\\iota_v\\,\\cdot))=-\\rho(q(\\cdot))\\rho(v)$; for $w\\in W_{\\mathbb R}^\\perp$ the contraction vanishes, so $\\rho(w)$ commutes with $\\rho(q(\\cdot))$; and $q(\\cdot)^2$ equals the Hodge norm of the volume element, $1$."
+  },
+  {
+   "id": "D1",
+   "sev": "M",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "1",
+   "found": "\\chapter{Costello's data with a UV boundary only}",
+   "rule": "FORMAT.md: no \"only\"",
+   "replacement": "\\chapter{Costello's data with a UV boundary}"
+  },
+  {
+   "id": "D2",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "3",
+   "found": "\"set the upper limit to $\\infty$, and introduce no infrared scale\"",
+   "rule": "FORMAT.md: affirmative statements",
+   "replacement": "set the upper limit to $\\infty$, so that $\\varepsilon$ is the single scale of the construction"
+  },
+  {
+   "id": "D3",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "95",
+   "found": "\"... use (3) or (5) and are unavailable here: ...\" ; \"and none of (3), (5)\"",
+   "rule": "FORMAT.md",
+   "replacement": "Three statements of [C07] use (3) or (5): [C07, Lemma 6.5.1] (...), the real-slice Gaussian over $(\\operatorname{Im}Q^{GF})_{\\mathbb R}$ of [C07, §6.6], and [C07, Lemma 6.6.2]. ... The arguments below use $Q^2=0$, $H=[Q,Q^{GF}]$, $[Q,H]=0$ and the adjointness relations; Theorem \\ref{thm:c3-acyclic} takes the place of [C07, Lemma 6.5.1]."
+  },
+  {
+   "id": "D4",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "215",
+   "found": "\"This holds with the operator $Q^{GF}$ of Definition \\ref{def:c3-qgf}, for which $(Q^{GF})^2\\neq0$.\"",
+   "rule": "FORMAT.md (contrastive emphasis)",
+   "replacement": "Here $Q^{GF}$ is the operator of Definition \\ref{def:c3-qgf}."
+  },
+  {
+   "id": "D5",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "231",
+   "found": "\"$P(\\varepsilon,\\infty)$ contains no superconformal ghost\"; \"none uses $(Q^{GF})^2$\"",
+   "rule": "FORMAT.md",
+   "replacement": "$P(\\varepsilon,\\infty)$ is a kernel on the fields, independent of the arguments of the cochains, so $[\\partial_{P(\\varepsilon,\\infty)},d_{CE}]=0$. Each step uses $Q^2=0$, \\eqref{eq:c3-QP} and the algebra of the operators $\\partial_\\phi$."
+  },
+  {
+   "id": "D6",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "300",
+   "found": "\"$Q$ alone has trivial cohomology\"; \"produces a class that carries no information\"",
+   "rule": "FORMAT.md",
+   "replacement": "the cohomology of $Q$ on functionals without constant term is zero ; defines the zero class"
+  },
+  {
+   "id": "D7",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "159",
+   "found": "\"With $+\\tfrac14$, or with $-\\tfrac12$ (...), it fails, already for abelian $\\mathfrak g$ on the quadratic part of the action.\"",
+   "rule": "FORMAT.md: state results affirmatively",
+   "replacement": "The identity $\\{S,S^{(1)}(Q_1)\\}=0$ of [ESW, Lemma 3.4] fixes the coefficient of the Hodge pairing $(F_A,F_A)$ to $-\\tfrac14$, already for abelian $\\mathfrak g$ on the quadratic part of the action; $+\\tfrac14$ and $-\\tfrac12$ (the sum over ordered pairs of directions, twice the Hodge pairing) give a nonzero bracket."
+  },
+  {
+   "id": "D8",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "250",
+   "found": "\"The cubic gauge vertex contains no $(A|_{W_{\\mathbb R}^\\perp})^3$ and no $(A|_V)^2A|_{W_{\\mathbb R}^\\perp}$, because $d$ acts along $\\mathbb R^4$.\"",
+   "rule": "FORMAT.md",
+   "replacement": "The cubic gauge vertex has the component types $(A|_V)^3$ and $A|_V(A|_{W_{\\mathbb R}^\\perp})^2$, because $d$ acts along $\\mathbb R^4$."
+  },
+  {
+   "id": "D9",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "293",
+   "found": "\"The Weyl weight $1$ of $A|_V$ and the weight $0$ of $c$ need no extra term.\"",
+   "rule": "FORMAT.md",
+   "replacement": "The Weyl weight $1$ of $A|_V$ is carried by $L_v$ and the weight $0$ of $c$ by $v.c$."
+  },
+  {
+   "id": "D10",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "177",
+   "found": "\"and the variant with $-S^{(1)}(\\Gamma(Q_1,Q_2))$ fails. Moreover [ESW, Lemma 3.6, item 3] holds term by term with this bracket and fails with its negative.\"",
+   "rule": "FORMAT.md (contrast with failing variants)",
+   "replacement": "holds; this fixes the sign of the term $S^{(1)}(\\Gamma(Q_1,Q_2))$. With this bracket, [ESW, Lemma 3.6, item 3] holds term by term."
+  },
+  {
+   "id": "D11",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "170",
+   "found": "\"with $Q^{GF}$ acting on the first factor at $x$ and no Koszul sign\"",
+   "rule": "FORMAT.md",
+   "replacement": "with $Q^{GF}$ acting on the first factor at $x$ (Koszul sign $+1$)"
+  },
+  {
+   "id": "D12",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "336",
+   "found": "\\section{The master equation: what holds}",
+   "rule": "FORMAT.md",
+   "replacement": "\\section{The master equation}"
+  },
+  {
+   "id": "D13",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "364-366",
+   "found": "\\begin{remark}[Variants that fail] Each of the following modifications violates an evaluated component: ...",
+   "rule": "FORMAT.md (defensive contrast; also an audit list)",
+   "replacement": "Fold into Proposition \\ref{prop:c2-coeff} as uniqueness statements (the master equation fixes: the last coefficient of (eq:c2-S1S) at $-1$, the weight $\\tfrac38$, the spin coefficient $\\tfrac14$, the term $\\tfrac14(\\operatorname{div}v)A|_{W_{\\mathbb R}^\\perp}$, the $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ component of $[Q_1,Q_2]$, and the $W_{\\mathbb R}^\\perp$-components of $\\Gamma$ in $S^{(2)}$), or delete the remark."
+  },
+  {
+   "id": "D14",
+   "sev": "L",
+   "category": "defensive-phrase",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "315",
+   "found": "\"\\item No antifield: ...\"",
+   "rule": "FORMAT.md (optional)",
+   "replacement": "\\item Antifield number $0$: ..."
+  },
+  {
+   "id": "A1",
+   "sev": "M",
+   "category": "audit-or-process",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "3",
+   "found": "\"Every number computed in Step 1 is a coefficient ...\"",
+   "rule": "FORMAT.md: no audit/workflow notes (\"Step 1\" is a project-phase label)",
+   "replacement": "Every number computed in the following chapters is a coefficient ..."
+  },
+  {
+   "id": "A2",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "60",
+   "found": "\"This choice is a convention of the program, fixed once and used in Chapter 2 to name the supercharges.\"",
+   "rule": "FORMAT.md",
+   "replacement": "This orientation is fixed once; Chapter 2 uses it to name the supercharges."
+  },
+  {
+   "id": "A3",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "163",
+   "found": "\"The explicit evaluation of this affine function ... For $\\mathfrak g=\\mathfrak{su}(2)$, $a=-\\tfrac14$ and two sampled $Q_1\\in\\Sigma$ ...\"",
+   "rule": "FORMAT.md (machine-provenance wording)",
+   "replacement": "Evaluated as a local functional modulo total derivatives, this affine function vanishes at $-\\tfrac14$ ... For $\\mathfrak g=\\mathfrak{su}(2)$ and the coefficient $-\\tfrac14$, the Euler--Lagrange derivatives of the density of $\\{S,S^{(1)}(Q_1)\\}$ vanish identically at two elements $Q_1\\in\\Sigma$ (Remark \\ref{rem:c2-sz})."
+  },
+  {
+   "id": "A4",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "307",
+   "found": "\"Explicit evaluation. ... with exact rational arithmetic, has identically vanishing ...\"",
+   "rule": "FORMAT.md",
+   "replacement": "For $\\mathfrak g=\\mathfrak{su}(2)$ ... the density of $\\{S,S\\}$, a polynomial in the jets of all six fields with rational coefficients, has identically vanishing Euler--Lagrange derivatives ..."
+  },
+  {
+   "id": "A5",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "3",
+   "found": "\"and states which components of its master equation hold for every gauge algebra and which were evaluated.\"",
+   "rule": "FORMAT.md (story sentence phrased as a status report)",
+   "replacement": "and proves its master equation for every gauge algebra on the Poincaré supersymmetry subalgebra and in arities $0$ and $\\ge3$, and for $\\mathfrak{su}(2)$ on the remaining components."
+  },
+  {
+   "id": "A6",
+   "sev": "M",
+   "category": "audit-or-process",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "124, 184, 297, 343-353",
+   "found": "\"were evaluated in an explicit realisation of $\\Sigma\\oplus\\Sigma^*$ with exact rational arithmetic ... at sampled generators drawn as in ...\"; \"evaluated for $\\mathfrak g=\\mathfrak{su}(2)$ at sampled $Q_1,Q_2$\"; \"computed ... at a sampled generator\"; Proposition [Evaluated components] \"(... exact rational arithmetic, all jets) at the sampled generators\"",
+   "rule": "FORMAT.md: no audit notes; DEFINITIONS_v2 item 9 requires the sampling statement once, with its bound",
+   "replacement": "State the method once (Remark rem:c2-sz: identities for $\\mathfrak g=\\mathfrak{su}(2)$ are identities of polynomial densities with rational coefficients, established at independently drawn generators, with the stated probability bound) and write \"for $\\mathfrak g=\\mathfrak{su}(2)$ (Remark \\ref{rem:c2-sz})\" in the statements; retitle Proposition prop:c2-evaluated \"Components for $\\mathfrak{su}(2)$\"."
+  },
+  {
+   "id": "A7",
+   "sev": "M",
+   "category": "audit-or-process",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "383-386",
+   "found": "\\begin{remark}[Status] ... Open: the uniqueness of $S^{(2)}$ ...; the evaluation for other gauge algebras; an explicit isomorphism with the supermatrices of [SW, (17)].",
+   "rule": "FORMAT.md (status/audit note); user rule against \"not addressed / has not been checked\" disclaimers",
+   "replacement": "Turn the first part into \\begin{corollary}[The action $S+S^{(1)}+S^{(2)}$] ... satisfies: arity $0$ for every $\\mathfrak g$ (Proposition \\ref{prop:c1-cme}); ...; the remaining components of arities $1$, $2$, $3$ for $\\mathfrak g=\\mathfrak{su}(2)$ with the bounds of Remark \\ref{rem:c2-sz}.\\end{corollary} and move the open list out of the manuscript (qa / orchestrator notes)."
+  },
+  {
+   "id": "A8",
+   "sev": "M",
+   "category": "audit-or-process",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "363",
+   "found": "\"Formula \\eqref{eq:c3-oneloop} in that setting was checked by exact expansion to third order in $J$ on super vector spaces of dimensions $(2|2)$ and $(1|2)$ ...; there the variant without the parity operator and the variant with the trace in place of the supertrace both fail.\"",
+   "rule": "FORMAT.md: no audit notes (check report inside the text)",
+   "replacement": "Either prove the odd-coefficient case (as a Lemma with proof) or write: When the background contains odd fields, the coefficients of $J$ lie in an auxiliary supercommutative algebra with odd elements, and \\eqref{eq:c3-oneloop} is applied with these coefficients; the parity operator and the supertrace produce the signs of fermion and ghost loops. Drop the check report."
+  },
+  {
+   "id": "A9",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "114",
+   "found": "\"(84 type triples)\"",
+   "rule": "FORMAT.md (check count)",
+   "replacement": "delete the parenthesis"
+  },
+  {
+   "id": "A10",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "71",
+   "found": "\\begin{proposition}[Status of the gauge-fixing axioms]",
+   "rule": "FORMAT.md (status wording)",
+   "replacement": "\\begin{proposition}[The gauge-fixing axioms of C07, Def 4.3.3]"
+  },
+  {
+   "id": "A11",
+   "sev": "L",
+   "category": "audit-or-process",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "355",
+   "found": "\\begin{remark}[Random-draw bound]",
+   "rule": "FORMAT.md (process wording)",
+   "replacement": "\\begin{remark}[Probability bound for the $\\mathfrak{su}(2)$ components]"
+  },
+  {
+   "id": "K1",
+   "sev": "H",
+   "category": "reader-incompatible",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "36-46 (references at 69, 77)",
+   "found": "\\item even with odd: \\begin{equation} ... \\label{eq:c2-evenodd} \\end{equation} ; \\item odd with odd ... \\begin{equation} ... \\label{eq:c2-oddodd} \\end{equation}",
+   "rule": "reader_build/convert.py turns each \\item into a plain paragraph: the equation environments appear as raw LaTeX, both labels are lost (dry run: unresolved ??eq:c2-evenodd, ??eq:c2-oddodd), and every later Chapter-2 equation number in the reader is 2 lower than in the PDF",
+   "replacement": "Close the itemize before the displays and write ordinary paragraphs: \"On two even elements the bracket is the bracket of vector fields. For an even and an odd element \\begin{equation}...\\label{eq:c2-evenodd}\\end{equation} ... For two odd elements \\begin{equation}...\\label{eq:c2-oddodd}\\end{equation} ...\"; or make convert.py parse item bodies with parse_body."
+  },
+  {
+   "id": "K2",
+   "sev": "M",
+   "category": "reader-incompatible",
+   "file": "manuscript/ch01_classical.tex; manuscript/ch02_superconformal.tex; manuscript/ch03_uv_boundary.tex",
+   "lines": "ch01: 11, 17, 21; ch02: 48, 169, 174, 209, 217, 371, 376; ch03: 78, 83",
+   "found": "\\[ ... \\] display inside an \\item",
+   "rule": "convert.py renders item text with inline() only; the display appears as raw \\[ ... \\] inside the reader paragraph (dry run: 12 paragraphs)",
+   "replacement": "End the list before the display and resume after it, or turn each such item into a paragraph followed by the display (FORMAT allows displays and flat lists; the reader supports displays outside lists)."
+  },
+  {
+   "id": "K3",
+   "sev": "M",
+   "category": "reader-incompatible",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "324, 327, 344",
+   "found": "inline math with double prime: $\\partial_P=\\frac12\\sum\\partial_{P''}\\partial_{P'}$ ; $P=\\sum P'\\otimes P''$ ; $(-1)^{|P''|+|P'|}$",
+   "rule": "convert.py inline() replaces two apostrophes by U+201D also inside $...$ (dry run: $\\partial_{P”}$), which KaTeX renders as a quotation mark or rejects in strict mode",
+   "replacement": "Write $P^{\\prime\\prime}$ and $P^{\\prime}$ (with N5: $\\phi^{\\prime\\prime}$, $\\phi^{\\prime}$) in inline math; displays are unaffected."
+  },
+  {
+   "id": "K4",
+   "sev": "L",
+   "category": "reader-incompatible",
+   "file": "reader_build/convert.py",
+   "lines": "64-71 (affects 51 references in ch01-ch03)",
+   "found": "\"Definition \\ref{def:c1-bracket}\" renders \"Definition [Definition 1.6]\"; \"Definitions \\ref{a}--\\ref{b}\" renders \"Definitions [Definition 1.5]–[Definition 1.7]\"; \"Axiom \\ref{ax:c2-esw}\" renders \"Axiom [External input 2.x]\" while the PDF prints \"Axiom 2.x\"",
+   "rule": "converter ref() returns kind plus number; THM_NAME maps axiom to \"External input\"",
+   "replacement": "Converter fix (manuscript unchanged): ref() returns the number only; use one name for the axiom environment in both outputs."
+  },
+  {
+   "id": "K5",
+   "sev": "L",
+   "category": "typography",
+   "file": "manuscript/ch01_classical.tex; manuscript/ch02_superconformal.tex; manuscript/ch03_uv_boundary.tex",
+   "lines": "ch01: 3; ch02: 273; ch03: 52",
+   "found": "straight double quotes around \"natural $(-1)$-shifted symplectic structure\", \"$\\mathfrak{so}(V)$ action on $\\Sigma$\", \"self adjoint\", \"skew self adjoint\"",
+   "rule": "xelatex prints straight quotes; convert.py maps only `` and '' to curly quotes",
+   "replacement": "``natural $(-1)$-shifted symplectic structure'' and likewise for the other three quotations"
+  },
+  {
+   "id": "K6",
+   "sev": "L",
+   "category": "pdf-layout",
+   "file": "manuscript/ch02_superconformal.tex; manuscript/ch03_uv_boundary.tex",
+   "lines": "ch02: 197-199, 357-360; ch03: 27-28, 87-88, 256-257",
+   "found": "five overfull hboxes (4.4pt to 11.3pt) in manuscript/build/preview_ch01_03.log",
+   "rule": "PDF layout",
+   "replacement": "Move the long inline formulas (ch02:198 master equation of $I_{\\mathfrak{psl}(4|4)}$; ch03:87 isotropy formula; ch03:27 coefficient list) into displays; break the bound line of ch02:359 with aligned; shorten the Theorem title at ch03:254."
+  },
+  {
+   "id": "K7",
+   "sev": "L",
+   "category": "title-notation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "5, 109, 187",
+   "found": "titles \"The algebra psl(4|4) ...\", \"[Identification with psl(4|4)]\", \"[Action of psl(4|4)]\" in plain text",
+   "rule": "DEFINITIONS_v2 item 11 writes the algebra as \\mathfrak{psl}(4|4); plain text prints upright psl(4|4)",
+   "replacement": "\\section{The algebra $\\mathfrak{psl}(4|4)$ in complexified Euclidean form}; [Identification with $\\mathfrak{psl}(4|4)$]; [Action of $\\mathfrak{psl}(4|4)$]"
+  },
+  {
+   "id": "C1",
+   "sev": "M",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "3",
+   "found": "first occurrence of $\\mathfrak{psl}(4|4)$ (\"This chapter realises $\\mathfrak{psl}(4|4)$ on Euclidean $\\mathbb R^4$\") without source; source first given at line 120",
+   "rule": "FORMAT.md: cite the source the first time",
+   "replacement": "realises $\\mathfrak{psl}(4|4)$, the complexification of $\\mathfrak{psu}(2,2|4)$ [SW, (7)], on Euclidean $\\mathbb R^4$"
+  },
+  {
+   "id": "C2",
+   "sev": "M",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "15",
+   "found": "\"the dilatation $\\Delta=2E$\" (first use; [SW, (17)] and its meaning appear at lines 107 and 127-133)",
+   "rule": "DEFINITIONS_v2 item 11: Delta only with the SW meaning stated at first use",
+   "replacement": "the dilatation $\\Delta=2E$, the generator $\\Delta=\\mathrm{diag}(1,-1\\,|\\,0)$ of [SW, (17)], with $\\mathrm{ad}_\\Delta=-2$ on translations (Remark \\ref{rem:c2-dilatation})"
+  },
+  {
+   "id": "C3",
+   "sev": "M",
+   "category": "wrong-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "15",
+   "found": "\"a nondegenerate invariant symmetric pairing $(-,-)$, positive definite on the compact real form [ESW, §3.1]\"",
+   "rule": "ESW §3.1 states \"a Lie algebra equipped with a nondegenerate symmetric bilinear pairing\" (verified in the ESW text); positivity is the program choice tied to the [C07, §6.6] real slice",
+   "replacement": "a nondegenerate invariant symmetric pairing $(-,-)$ [ESW, §3.1], chosen positive definite on the compact real form, so that $\\langle e,Qe\\rangle$ is negative definite on the real slice of [C07, §6.6] (Remark [Real slice])"
+  },
+  {
+   "id": "C4",
+   "sev": "L",
+   "category": "wrong-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "105-111",
+   "found": "\"The kernel $K_0$ of the identity [C07, §10.1]\"; \"$\\Delta_0=-\\partial_{K_0}$ [C07, §10.1]\"",
+   "rule": "[C07, §10.1] defines K_0, Delta_0 and this bracket formula for M a point and calls Delta_0 ill-defined for dim M>0 (verified); the identity kernel on M is [CG2, §7.2.3]",
+   "replacement": "The kernel $K_0$ of the identity [CG2, §7.2.3] ... The bracket of a local $f$ with $g$ is that of [C07, Lemma 4.3.2]; it is given by the formula of [C07, §10.1] for $M$ a point, $\\{f,g\\}=\\Delta_0(fg)-\\Delta_0(f)g-(-1)^{|f|}f\\Delta_0(g)$, $\\Delta_0=-\\partial_{K_0}$, with $f$ local."
+  },
+  {
+   "id": "C5",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "3",
+   "found": "first use of \"the linear differential $Q$\"",
+   "rule": "FORMAT.md",
+   "replacement": "the linear differential $Q$ [C07, §4.3]"
+  },
+  {
+   "id": "C6",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "73-75",
+   "found": "$\\mathscr E$ cited to [ESW, Rem 1.36]; $\\mathscr E_c$ without source",
+   "rule": "the script symbol is [C07, §4.1]; ESW writes calligraphic E and E_c [ESW, §1.1]",
+   "replacement": "The space of BV fields is $\\mathscr E$ [C07, §4.1], $\\mathscr E=F_{\\rm gauge}\\oplus F^!_{\\rm gauge}[-1]$ [ESW, Rem 1.36] ... $\\mathscr E_c$ the compactly supported elements [ESW, §1.1]"
+  },
+  {
+   "id": "C7",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "168",
+   "found": "first use of $e$ in $\\tfrac12\\langle e,Qe\\rangle$",
+   "rule": "FORMAT.md",
+   "replacement": "$\\tfrac12\\langle e,Qe\\rangle$ [C07, §1, §4.3]"
+  },
+  {
+   "id": "C8",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "290-296",
+   "found": "Proposition [Classical master equation]: $\\{S,S\\}=0$ without source for the equation",
+   "rule": "FORMAT.md",
+   "replacement": "$\\{S,S\\}=0$ [ESW, Def 1.16]"
+  },
+  {
+   "id": "C9",
+   "sev": "L",
+   "category": "definition-order",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "178",
+   "found": "\"for fixed $p\\neq0$\" precedes the Fourier convention of line 183",
+   "rule": "first-use rule",
+   "replacement": "Move the Fourier paragraph (line 183) before Remark [Real slice], or write \"for fixed nonzero momentum $p$ (Section The linear differential)\""
+  },
+  {
+   "id": "C10",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "3",
+   "found": "\"$\\mathcal N=4$ super Yang--Mills\"",
+   "rule": "FORMAT.md",
+   "replacement": "$\\mathcal N=4$ super Yang--Mills theory [ESW, Def 2.4, §10.3]"
+  },
+  {
+   "id": "C11",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "7",
+   "found": "\"$L_v$ the Lie derivative\"",
+   "rule": "FORMAT.md",
+   "replacement": "$L_v$ the Lie derivative [ESW, (32)]"
+  },
+  {
+   "id": "C12",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "118",
+   "found": "\"The Killing form $\\mathrm{str}(\\mathrm{ad}_{x_1}\\mathrm{ad}_{x_2})$\"",
+   "rule": "FORMAT.md",
+   "replacement": "with $\\mathrm{str}$ the supertrace [SW, after (17)]"
+  },
+  {
+   "id": "C13",
+   "sev": "L",
+   "category": "imprecise-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "333",
+   "found": "\"[ESW, Assumption 3.1], which holds for $\\Sigma$ the ten-dimensional semi-spin representation [ESW, §3.1]\"",
+   "rule": "ESW: \"Assumption 3.1 is satisfied by Theorem 2.10\" in the list after Assumption 3.1 (verified)",
+   "replacement": "[ESW, Assumption 3.1], which holds for the ten-dimensional $\\Sigma=S_+$ by [ESW, Thm 2.10] (list after [ESW, Assumption 3.1])"
+  },
+  {
+   "id": "C14",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "357",
+   "found": "\"(the Schwartz--Zippel bound, applied one argument at a time)\"",
+   "rule": "external input without statement (no primary source)",
+   "replacement": "State it as an Axiom: a nonzero polynomial of degree at most $1$ in the coordinates of one argument vanishes at a uniform draw from a set of $N$ values per coordinate with probability at most $1/N$; then apply it argument by argument."
+  },
+  {
+   "id": "C15",
+   "sev": "L",
+   "category": "definition-order",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "236",
+   "found": "first use of $W(P(\\varepsilon,\\infty),J)$ in Corollary cor:c3-qme; the [CG2] source is given at Definition def:c3-W (line 309)",
+   "rule": "DEFINITIONS_v2 item 11: state the [CG2] source of W(-,-) and the collision once, at first use",
+   "replacement": "Move Definition \\ref{def:c3-W} before Corollary \\ref{cor:c3-qme}, or add [CG2, §7.2.7] after the formula at line 236."
+  },
+  {
+   "id": "C16",
+   "sev": "L",
+   "category": "missing-citation",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "246",
+   "found": "\\section{The Noether functionals}",
+   "rule": "ESW calls $S_{\\mathfrak g}$ the \"Noether current\" (Rem 1.28, verified)",
+   "replacement": "\\section{The Noether current [ESW, Rem 1.28] in arity one}"
+  },
+  {
+   "id": "S1",
+   "sev": "L",
+   "category": "story-structure",
+   "file": "manuscript/",
+   "lines": "-",
+   "found": "no overview chapter among manuscript/ch0*.tex (ch01-ch03 present)",
+   "rule": "FORMAT.md: the overview chapter tells the whole story",
+   "replacement": "Add manuscript/ch00_overview.tex before assembly (2-4 sentences per chapter; the scale-infinity acyclicity and the local O(epsilon) as the thread, DEFINITIONS_v2 item 5)."
+  }
+ ],
+ "ledger_amendments_no_manuscript_change": [
+  "V_10 (DESIGN) = ESW V_R tensor C [ESW §2.2, §2.6]; manuscript V = ESW W = W_R tensor C [ESW §2.6] (ch01:14 states it)",
+  "S = full action, I = interaction (DESIGN; ledger X1 and §5b say unindexed S = [C07] interaction)",
+  "W(-,-) with two arguments = RG flow [CG2 §7.2.7] (DEFINITIONS_v2 item 11; ledger §5b names the flow [C07] Gamma)",
+  "x_1,...,x_n arguments of cochains, sigma shuffles, p summation index in d_CE: [ESW, Def 1.26] (verified)",
+  "r odd element of an auxiliary nilpotent ring: [C07, Lemma 6.4.1, proof] (verified; distinct from the [SW, (17)] r, unused)",
+  "E(gamma), V(gamma) edge and vertex sets: [C07, §15.5] (verified)",
+  "e^vee coordinate functional: [C07, §6.4]",
+  "J generic functional: [CG2, §7.2.8]; F, G generic functionals: [ESW, Def 1.15]",
+  "delta with an argument = delta distribution; delta without argument = square-zero parameter (new §5b row)"
+ ],
+ "citations_not_in_ledger_checked_against_primary_text": {
+  "verified": [
+   "ESW Def 1.34 (quoted phrase)",
+   "ESW Lemma 3.4",
+   "ESW Lemma 3.6 items 1-3",
+   "ESW Lemma 3.7",
+   "ESW Def 1.55, Prop 1.56",
+   "ESW Rem 1.28",
+   "ESW (32) phrase 'so(V) action on Sigma'",
+   "ESW Def 1.26 printed signs (antisymmetry exponent |x_1||x_2|+1; d_CE exponent without +1)",
+   "ESW §3.1 list after Assumption 3.1 (10d by Thm 2.10)",
+   "C07 Lemma 6.4.1 proof (auxiliary nilpotent ring R, r in R)",
+   "C07 §6.2 (odd parameter; 'usual tensor product differential')",
+   "C07 §10.1 (K_0 and Delta_0 for M a point; Delta_0 ill-defined for dim M>0)",
+   "C07 §15.4-15.5 (1/Aut gamma, degree plus Betti rule, E(gamma), V(gamma))"
+  ],
+  "not_supported": [
+   "ESW §3.1: positivity of (-,-) on the compact real form (finding C3)",
+   "ESW (31) as source of V_10 (finding N14)"
+  ]
+ }
+}

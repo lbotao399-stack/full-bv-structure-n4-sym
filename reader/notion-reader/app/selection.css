@@ -1,0 +1,26 @@
+/* A deliberate whole-block selection never replaces narration highlighting. */
+.block-select-toggle{position:absolute;left:-47px;top:10px;width:21px;height:24px;padding:2px;display:grid;place-items:center;border:0;border-radius:4px;background:transparent;color:#85988b;cursor:pointer;opacity:0;z-index:6;touch-action:manipulation}
+.block-select-toggle svg{display:block;width:17px;height:17px;overflow:visible;pointer-events:none}
+.block-select-toggle rect{fill:#fffefa;stroke:currentColor;stroke-width:1.3}
+.block-select-toggle path{fill:none;stroke:white;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.source-block:hover>.block-select-toggle,.source-block:focus-within>.block-select-toggle,.source-block.block-picked>.block-select-toggle,.block-select-toggle:focus-visible,.block-selection-active .source-block>.block-select-toggle{opacity:1}
+.block-select-toggle:hover{background:#e2ebe4;color:#315c48}
+.block-select-toggle:focus-visible{outline:2px solid #397ba8;outline-offset:2px}
+.block-select-toggle[aria-checked=true]{color:#347aa2}
+.block-select-toggle[aria-checked=true] rect{fill:#347aa2;stroke:#347aa2}
+.block-select-toggle[aria-checked=true] path{opacity:1}
+.source-block.block-picked{outline:2px solid #8bbbd5;outline-offset:0;background:#e9f4fc!important}
+.source-block.block-picked>.block-content{background-color:#e9f4fc!important}
+.source-block.block-child>.block-select-toggle{left:-22px;top:8px}
+/* Keep the progress dot visible beside the explicit selection control. */
+.source-block:hover>.reading-cursor,.source-block.block-picked>.reading-cursor,.block-selection-active .source-block>.reading-cursor{transform:translateY(20px)}
+.block-selection-toolbar{position:fixed;z-index:88;left:50%;transform:translateX(-50%);bottom:calc(var(--player,90px) + 12px);display:flex;align-items:center;gap:5px;max-width:calc(100vw - 24px);padding:6px 8px;border:1px solid #b8cedb;border-radius:8px;background:#f8fcff;color:#294c61;box-shadow:0 5px 20px #243d4e21;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.block-selection-count{white-space:nowrap;padding:0 8px 0 3px;min-width:104px}
+.block-selection-toolbar button{white-space:nowrap;border-radius:4px;padding:5px 8px;font:inherit;cursor:pointer}
+.block-selection-toolbar button:hover{background:#e4eff6}
+.block-selection-toolbar button:focus-visible{outline:2px solid #397ba8;outline-offset:1px}
+.block-selection-toolbar .block-selection-delete{background:#f9ebe5;color:#963e2e}
+.block-selection-toolbar .block-selection-delete:hover{background:#f4dbd2}
+.block-selection-toolbar[hidden]{display:none!important}
+@media(max-width:800px){.block-select-toggle{left:-23px;top:37px}.source-block.block-child>.block-select-toggle{left:-22px;top:8px}.block-selection-toolbar{gap:2px;padding:5px;font-size:11px}.block-selection-count{min-width:0;padding-right:5px}.block-selection-toolbar button{padding:5px 6px}}
+@media print{.block-select-toggle,.block-selection-toolbar{display:none!important}.source-block.block-picked{outline:none;background:transparent!important}.source-block.block-picked>.block-content{background-color:inherit!important}.source-block>.reading-cursor{transform:none!important}}

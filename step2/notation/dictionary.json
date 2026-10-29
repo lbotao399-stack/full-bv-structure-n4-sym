@@ -1,0 +1,570 @@
+{
+ "title": "ESW index-free -> Weinberg-Srednicki two-component dictionary (N=4 Costello-BV, Step 2)",
+ "date": "2026-10-28",
+ "conventions": {
+  "wick": "v^0 = -i v^4, x^4 = i t, partial_0 = i partial_4; e^{i S_L} = e^{S/hbar}",
+  "sigma_E": "sigma_E^m = (sigma^1, sigma^2, sigma^3, i 1), sigmabar_E^m = (-sigma^1, -sigma^2, -sigma^3, i 1)",
+  "orientation": "dx^1 dx^2 dx^3 dx^4; S_+ = undotted = Srednicki (2,1)",
+  "su4": "W upper index i, W^* lower index i; Sigma^I_ij = engine B Sig, Sigmabar^I = engine B Sigb = (Sigma^I)^dagger",
+  "engine_maps": "engine B vector index (m=1,2,3,4) -> (1,2,3,0), I -> 3+I; engine A/classical: m = M+1, I = M-3",
+  "not_used": "STANDARD.md SIG/REP/CONF blocks"
+ },
+ "entries": [
+  {
+   "id": "SPN-eps",
+   "category": "base",
+   "esw_index_free": "symplectic pairings on S_+, S_- [ESW \u00a710]",
+   "weinberg_srednicki": "\\varepsilon^{12}=\\varepsilon^{\\dot1\\dot2}=+1,\\ \\varepsilon_{12}=\\varepsilon_{\\dot1\\dot2}=-1;\\ \\psi^\\alpha=\\varepsilon^{\\alpha\\beta}\\psi_\\beta,\\ \\psi_\\alpha=\\varepsilon_{\\alpha\\beta}\\psi^\\beta;\\ \\chi\\psi=\\chi^\\alpha\\psi_\\alpha,\\ \\bar\\chi\\bar\\psi=\\bar\\chi_{\\dot\\alpha}\\bar\\psi^{\\dot\\alpha}",
+   "source": "Srednicki (35.1),(34.24),(34.25),(35.23)",
+   "standard_entries": "S-SPN-2,S-SPN-3,S-SPN-4",
+   "tag": "EVIDENCED",
+   "checks": [
+    "W1",
+    "G7"
+   ],
+   "max_residual": 9.930136612989092e-16,
+   "all_passed": true
+  },
+  {
+   "id": "SPN-sigmaE",
+   "category": "Wick",
+   "esw_index_free": "Clifford action of V on S_+ (+) S_- (ch01 Def c1-spaces)",
+   "weinberg_srednicki": "v^0=-iv^4\\ (x^4=it,\\ \\partial_0=i\\partial_4);\\ \\sigma_E^m=(\\vec\\sigma,i),\\ \\bar\\sigma_E^m=(-\\vec\\sigma,i);\\ \\sigma^\\mu v_\\mu=\\sigma_E^mv_m,\\ \\bar\\sigma^\\mu v_\\mu=\\bar\\sigma_E^mv_m;\\ \\sigma_E^m\\bar\\sigma_E^n+\\sigma_E^n\\bar\\sigma_E^m=-2\\delta^{mn};\\ \\bar\\sigma_E=-\\sigma_E^\\dagger",
+   "source": "Srednicki (34.28),(35.2),(35.3),(36.8)",
+   "standard_entries": "S-SPN-5,S-MET-1,S-MET-5",
+   "tag": "DERIVED",
+   "checks": [
+    "W2",
+    "W3",
+    "W4"
+   ],
+   "max_residual": 0.0,
+   "all_passed": true
+  },
+  {
+   "id": "SU4-blocks",
+   "category": "base",
+   "esw_index_free": "W, W^*, W_R^perp, rho(w) (ESW \u00a710.3, W = S_+^6)",
+   "weinberg_srednicki": "W\\ni w^i,\\ W^*\\ni w_i;\\ \\Sigma^I_{ij}=(\\eta^a,i\\bar\\eta^a),\\ \\bar\\Sigma^I=(\\Sigma^I)^\\dagger;\\ \\tfrac12\\varepsilon^{ijkl}\\Sigma^I_{kl}=-\\bar\\Sigma^{Iij};\\ \\bar\\Sigma^I\\Sigma^J+\\bar\\Sigma^J\\Sigma^I=2\\delta^{IJ};\\ \\sum_I\\Sigma^I_{ij}\\Sigma^I_{kl}=2\\varepsilon_{ijkl},\\ \\sum_I\\bar\\Sigma^{Iij}\\bar\\Sigma^{Ikl}=2\\varepsilon^{ijkl},\\ \\sum_I\\bar\\Sigma^{Iij}\\Sigma^I_{kl}=-2(\\delta^i_k\\delta^j_l-\\delta^i_l\\delta^j_k)",
+   "source": "engine_b/realization.py thooft, Sig, Sigb",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "W5",
+    "W6",
+    "W7"
+   ],
+   "max_residual": 0.0,
+   "all_passed": true
+  },
+  {
+   "id": "rho",
+   "category": "realisation",
+   "esw_index_free": "rho(v), rho(w) on Sigma, Sigma^* (ch01 Def c1-spaces, Prop c1-chirality)",
+   "weinberg_srednicki": "(\\rho(v)\\xi)^\\alpha{}_i=iv_m\\bar\\xi_{\\dot\\alpha i}\\bar\\sigma^{m\\dot\\alpha\\alpha},\\ (\\rho(v)\\xi)^{\\dot\\alpha i}=-iv_m\\bar\\sigma^{m\\dot\\alpha\\alpha}\\xi_\\alpha{}^i;\\ (\\rho(v)\\eta)_\\alpha{}^i=-iv_m\\sigma^m_{\\alpha\\dot\\alpha}\\bar\\eta^{\\dot\\alpha i},\\ (\\rho(v)\\eta)_{\\dot\\alpha i}=iv_m\\eta^\\alpha{}_i\\sigma^m_{\\alpha\\dot\\alpha};\\ (\\rho(w)\\xi)^\\alpha{}_j=w_{ji}\\xi^{\\alpha i},\\ (\\rho(w)\\xi)^{\\dot\\alpha j}=w^{ji}\\bar\\xi^{\\dot\\alpha}{}_i;\\ (\\rho(w)\\eta)_\\alpha{}^k=-w^{kj}\\eta_{\\alpha j},\\ (\\rho(w)\\eta)_{\\dot\\beta k}=-w_{kj}\\bar\\eta_{\\dot\\beta}{}^j",
+   "source": "ch01 Def c1-spaces; engine_b/realization.py; classical/n4_model.py",
+   "standard_entries": "S-SPN-3,S-SPN-5,S-SPN-8",
+   "tag": "DERIVED",
+   "checks": [
+    "R1",
+    "R5",
+    "B1",
+    "A1",
+    "A2"
+   ],
+   "max_residual": 5.680204527413584e-15,
+   "all_passed": true
+  },
+  {
+   "id": "pairing",
+   "category": "realisation",
+   "esw_index_free": "(-,-): Sigma (x) Sigma^* -> C (ch01 Def c1-spaces, [ESW (28)])",
+   "weinberg_srednicki": "(\\xi,\\eta)=\\xi_\\alpha{}^i\\eta^\\alpha{}_i-\\bar\\xi_{\\dot\\alpha i}\\bar\\eta^{\\dot\\alpha i}=-(\\xi^i\\eta_i)-(\\bar\\xi_i\\bar\\eta^i)",
+   "source": "ch01 Def c1-spaces; engine B pairing (factor 1)",
+   "standard_entries": "S-SPN-4",
+   "tag": "DERIVED",
+   "checks": [
+    "R2",
+    "B2",
+    "A2",
+    "G7",
+    "N1"
+   ],
+   "max_residual": 5.680204527413584e-15,
+   "all_passed": true
+  },
+  {
+   "id": "chirality",
+   "category": "realisation",
+   "esw_index_free": "S_+ (x) W = +1 eigenspace of rho(v1 v2 v3 v4) (ch01 Prop c1-chirality)",
+   "weinberg_srednicki": "\\text{orientation }dx^1\\wedge dx^2\\wedge dx^3\\wedge dx^4;\\ S_+=\\text{undotted}=(2,1);\\ \\rho(v)|_{(\\psi_\\alpha,\\bar\\chi^{\\dot\\alpha})}=-i\\gamma_S^\\mu v_\\mu=\\gamma_W^\\mu v_\\mu;\\ \\gamma_E^1\\gamma_E^2\\gamma_E^3\\gamma_E^4=-\\gamma_{5S}",
+   "source": "ch01 Prop c1-chirality; Srednicki (36.7),(36.44); Weinberg D1,D2",
+   "standard_entries": "S-SPN-7,S-SPN-8",
+   "tag": "DERIVED",
+   "checks": [
+    "R4",
+    "R6",
+    "R7",
+    "A3"
+   ],
+   "max_residual": 2.925482436602201e-15,
+   "all_passed": true
+  },
+  {
+   "id": "Gamma",
+   "category": "realisation",
+   "esw_index_free": "Gamma: Sym^2 Sigma -> V_10, Sym^2 Sigma^* -> V_10 ([ESW (28)])",
+   "weinberg_srednicki": "\\Gamma^m(\\xi_1,\\xi_2)=i(\\bar\\xi_2\\bar\\sigma^m\\xi_1+\\bar\\xi_1\\bar\\sigma^m\\xi_2);\\ \\Gamma_{kl}=-2\\varepsilon_{jikl}(\\xi_1{}^j\\xi_2{}^i)-2(\\bar\\xi_{1k}\\bar\\xi_{2l})+2(\\bar\\xi_{1l}\\bar\\xi_{2k});\\ \\Gamma^m(\\eta_1,\\eta_2)=-i(\\eta_2\\sigma^m\\bar\\eta_1+\\eta_1\\sigma^m\\bar\\eta_2);\\ \\Gamma^{kl}(\\eta_1,\\eta_2)=-2\\varepsilon^{klpj}\\varepsilon_{\\alpha\\beta}\\eta_1{}^\\beta{}_j\\eta_2{}^\\alpha{}_p+2(\\varepsilon_{\\dot\\beta\\dot\\alpha}\\bar\\eta_1^{\\dot\\alpha l}\\bar\\eta_2^{\\dot\\beta k}-(k\\leftrightarrow l))",
+   "source": "ch01 Def c1-spaces, [ESW (28), Assumption 3.1, Prop 2.1]",
+   "standard_entries": "S-CONJ-2 index structure",
+   "tag": "DERIVED",
+   "checks": [
+    "R3",
+    "G1",
+    "G3",
+    "G4",
+    "G5",
+    "G8",
+    "C3"
+   ],
+   "max_residual": 9.395504640331688e-14,
+   "all_passed": true
+  },
+  {
+   "id": "square-zero",
+   "category": "realisation",
+   "esw_index_free": "Gamma(Q,Q)=0, Q in Sigma",
+   "weinberg_srednicki": "\\xi_\\alpha{}^i=u_\\alpha w^i,\\ \\bar\\xi=0\\Rightarrow\\Gamma(\\xi,\\xi)=0",
+   "source": "[ESW Def 2.16]",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "G6"
+   ],
+   "max_residual": 3.941291737419306e-15,
+   "all_passed": true
+  },
+  {
+   "id": "fields",
+   "category": "fields",
+   "esw_index_free": "c, A|_V, iota_w A, lambda, A^*, lambda^*, c^* (ch01 Def c1-fields)",
+   "weinberg_srednicki": "c;\\ A_m;\\ A_{ij}=A_I\\Sigma^I_{ij},\\ A^{ij}=-A_I\\bar\\Sigma^{Iij}=\\tfrac12\\varepsilon^{ijkl}A_{kl},\\ \\iota_wA=\\tfrac14w^{ij}A_{ij};\\ \\lambda_\\alpha{}^i,\\ \\bar\\lambda_{\\dot\\alpha i};\\ A^*_m,\\ A^*_{ij},\\ A^{*ij};\\ \\lambda^{*\\alpha}{}_i,\\ \\bar\\lambda^{*\\dot\\alpha i};\\ c^*;\\ \\text{real slice: c.c.}(A_{ij})=A^{ij}",
+   "source": "ch01 Def c1-fields, rem c1-real",
+   "standard_entries": "S-SPN-1,S-CONJ-1,S-CONJ-7",
+   "tag": "DERIVED",
+   "checks": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ],
+   "max_residual": 1.831026719408895e-15,
+   "all_passed": true
+  },
+  {
+   "id": "parameters",
+   "category": "fields",
+   "esw_index_free": "Q_1 in Sigma, Q_2 in Sigma^* (ch02 Def c2-odd)",
+   "weinberg_srednicki": "Q_1\\leftrightarrow(\\xi_\\alpha{}^i\\ [Q^i_\\alpha,(3,1)],\\ \\bar\\xi_{\\dot\\alpha i}\\ [\\bar Q_{\\dot\\alpha i},(2,3)]);\\ Q_2\\leftrightarrow(\\eta^\\alpha{}_i\\ [S^\\alpha{}_i,(1,3)],\\ \\bar\\eta^{\\dot\\alpha i}\\ [\\bar S^{\\dot\\alpha i},(3,2)])",
+   "source": "ch02 table of named subspaces; [SW (17)]",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "K1",
+    "K2"
+   ],
+   "max_residual": 6.487375805200672e-13,
+   "all_passed": true
+  },
+  {
+   "id": "pairings-fields",
+   "category": "fields",
+   "esw_index_free": "(A,A^*), (lambda,lambda^*), (c^*,c)",
+   "weinberg_srednicki": "(A,A^*)=(A_m,A^*_m)+\\tfrac14(A^{ij},A^*_{ij});\\ (\\lambda,\\lambda^*)=(\\lambda_\\alpha{}^i,\\lambda^{*\\alpha}{}_i)-(\\bar\\lambda_{\\dot\\alpha i},\\bar\\lambda^{*\\dot\\alpha i})",
+   "source": "ch01 Def c1-pairing",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T6",
+    "S2"
+   ],
+   "max_residual": 1.8254389471423238e-13,
+   "all_passed": true
+  },
+  {
+   "id": "action",
+   "category": "action",
+   "esw_index_free": "S (ch01 eq:c1-action)",
+   "weinberg_srednicki": "\\int\\{-\\tfrac18(F_{mn},F_{mn})-\\tfrac1{16}(D_mA^{ij},D_mA_{ij})-\\tfrac1{128}([A^{ij},A^{kl}],[A_{ij},A_{kl}])+\\tfrac i2(\\lambda_\\alpha{}^i,\\bar\\sigma^{m\\dot\\alpha\\alpha}D_m\\bar\\lambda_{\\dot\\alpha i})+\\tfrac i2(\\bar\\lambda_{\\dot\\alpha i},\\bar\\sigma^{m\\dot\\alpha\\alpha}D_m\\lambda_\\alpha{}^i)+\\tfrac12(\\lambda_\\alpha{}^j,\\varepsilon^{\\alpha\\beta}[A_{ji},\\lambda_\\beta{}^i])-\\tfrac12(\\bar\\lambda_{\\dot\\alpha j},\\varepsilon^{\\dot\\alpha\\dot\\beta}[A^{ji},\\bar\\lambda_{\\dot\\beta i}])+(D_mc,A^*_m)+\\tfrac14([A^{ij},c],A^*_{ij})+([c,\\lambda_\\alpha{}^i],\\lambda^{*\\alpha}{}_i)-([c,\\bar\\lambda_{\\dot\\alpha i}],\\bar\\lambda^{*\\dot\\alpha i})+\\tfrac12([c,c],c^*)\\}",
+   "source": "ch01 eq:c1-action",
+   "standard_entries": "S-ACT-9,S-ACT-12",
+   "tag": "DERIVED",
+   "checks": [
+    "L1",
+    "L2",
+    "L4",
+    "L5",
+    "S5"
+   ],
+   "max_residual": 6.19599784289211e-13,
+   "all_passed": true
+  },
+  {
+   "id": "action-integrated",
+   "category": "action",
+   "esw_index_free": "int 1/2 (lambda, dslash_A lambda)",
+   "weinberg_srednicki": "\\int\\{i(\\bar\\lambda_i\\bar\\sigma^mD_m\\lambda^i)-\\tfrac12(\\lambda^j[A_{ji},\\lambda^i])-\\tfrac12(\\bar\\lambda_j[A^{ji},\\bar\\lambda_i])\\}",
+   "source": "ch01 eq:c1-action",
+   "standard_entries": "S-ACT-12 (95.77)",
+   "tag": "DERIVED",
+   "checks": [
+    "L3",
+    "L6",
+    "L7",
+    "N2"
+   ],
+   "max_residual": 1.6743988942768315e-13,
+   "all_passed": true
+  },
+  {
+   "id": "wick-canonical",
+   "category": "action",
+   "esw_index_free": "e^{S/hbar}, su(N), (X,Y)=-(4 hbar/g^2)tr(XY) (ch06 rem c6-konishi)",
+   "weinberg_srednicki": "A_m=-igA^a_mT^a,\\ A_I=-igA^a_IT^a,\\ \\lambda=-\\tfrac{ig}{\\sqrt2}\\lambda^aT^a;\\ (X,Y)=2\\hbar X^aY^a;\\ S/\\hbar\\supset\\int\\{-\\tfrac14F^aF^a-\\tfrac12(D_mA_I)^2+i\\bar\\lambda^a\\bar\\sigma^mD_m\\lambda^a\\}=\\int\\mathcal L_{\\rm Sred}|_{x^0=-ix^4}",
+   "source": "ch06 rem c6-konishi",
+   "standard_entries": "S-ACT-7,S-ACT-9,S-ACT-12,S-GRP-2,S-GRP-5,S-GRP-6; Weinberg D9",
+   "tag": "DERIVED",
+   "checks": [
+    "W8",
+    "C4",
+    "C5"
+   ],
+   "max_residual": 1.7763568394002505e-15,
+   "all_passed": true
+  },
+  {
+   "id": "Q",
+   "category": "BV",
+   "esw_index_free": "Q (ch01 Prop c1-Q)",
+   "weinberg_srednicki": "c\\mapsto-\\partial_mc\\,[A_m];\\ A_m\\mapsto\\tfrac12(\\partial^2A_m-\\partial_m\\partial_nA_n)\\,[A^*_m];\\ A_{ij}\\mapsto\\tfrac12\\partial^2A_{ij}\\,[A^*_{ij}];\\ A^*_m\\mapsto-\\partial_mA^*_m\\,[c^*];\\ \\lambda_\\alpha{}^i\\mapsto-i\\bar\\sigma^{m\\dot\\alpha\\alpha}\\partial_m\\lambda_\\alpha{}^i\\,[\\bar\\lambda^{*\\dot\\alpha i}];\\ \\bar\\lambda_{\\dot\\alpha i}\\mapsto i\\partial_m\\bar\\lambda_{\\dot\\alpha i}\\bar\\sigma^{m\\dot\\alpha\\alpha}\\,[\\lambda^{*\\alpha}{}_i]",
+   "source": "ch01 Prop c1-Q",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "Q1",
+    "Q4"
+   ],
+   "max_residual": 3.7401171107107855e-14,
+   "all_passed": true
+  },
+  {
+   "id": "QGF",
+   "category": "BV",
+   "esw_index_free": "Q^GF (ch03 Def c3-qgf)",
+   "weinberg_srednicki": "A^*\\mapsto-2A^*\\,[A];\\ A_m\\mapsto\\partial_mA_m\\,[c];\\ c^*\\mapsto\\partial_mc^*\\,[A^*_m];\\ \\lambda^{*\\alpha}{}_i\\mapsto-i\\partial_m\\lambda^{*\\alpha}{}_i\\sigma^m_{\\alpha\\dot\\alpha}\\,[\\bar\\lambda_{\\dot\\alpha i}];\\ \\bar\\lambda^{*\\dot\\alpha i}\\mapsto i\\sigma^m_{\\alpha\\dot\\alpha}\\partial_m\\bar\\lambda^{*\\dot\\alpha i}\\,[\\lambda_\\alpha{}^i];\\ H=-\\partial^2",
+   "source": "ch03 Def c3-qgf, Prop c3-H",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "Q2",
+    "Q3",
+    "Q4"
+   ],
+   "max_residual": 3.197442310920451e-14,
+   "all_passed": true
+  },
+  {
+   "id": "propagator",
+   "category": "BV",
+   "esw_index_free": "P(eps,infty) (ch03 Prop c3-P)",
+   "weinberg_srednicki": "\\times e^{-\\varepsilon|p|^2}/|p|^2:\\ \\langle A_mA_n\\rangle=2(-,-)^{-1}\\delta_{mn},\\ \\langle A_{ij}A_{kl}\\rangle=4(-,-)^{-1}\\varepsilon_{ijkl},\\ \\langle A_{ij}A^{kl}\\rangle=4(-,-)^{-1}(\\delta_i^k\\delta_j^l-\\delta_i^l\\delta_j^k),\\ \\langle A^{ij}A^{kl}\\rangle=4(-,-)^{-1}\\varepsilon^{ijkl},\\ \\langle cA^*_m\\rangle=\\langle A^*_mc\\rangle=-(-,-)^{-1}ip_m,\\ \\langle\\lambda_\\alpha{}^i\\bar\\lambda_{\\dot\\beta j}\\rangle=-(-,-)^{-1}p_m\\sigma^m_{\\alpha\\dot\\beta}\\delta^i_j,\\ \\langle\\bar\\lambda_{\\dot\\alpha i}\\lambda_\\beta{}^j\\rangle=-(-,-)^{-1}p_m\\sigma^m_{\\beta\\dot\\alpha}\\delta_i^j",
+   "source": "ch03 Prop c3-P",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "P1",
+    "P2",
+    "P3",
+    "N5"
+   ],
+   "max_residual": 1.0037579537727335e-14,
+   "all_passed": true
+  },
+  {
+   "id": "generators-even",
+   "category": "psl44",
+   "esw_index_free": "even part (ch02 Def c2-even)",
+   "weinberg_srednicki": "(v^m,X_{mn},\\mathrm{div}\\,v,r):\\ P:(b^m,0,0,0);\\ M:(\\omega_{mn}x_n,-2\\omega_{mn},0,0);\\ \\Delta:(2x^m,0,8,0);\\ K:(x^2b^m-2(b\\cdot x)x^m,4(x_mb_n-x_nb_m),-8b\\cdot x,0);\\ R:(0,0,0,\\tfrac14R_{IJ}\\bar\\Sigma^J\\Sigma^I)",
+   "source": "ch02 Def c2-even, rem c2-dilatation",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "E-P",
+    "E-M",
+    "E-D",
+    "E-K",
+    "E-R"
+   ],
+   "max_residual": 3.499017183300205e-14,
+   "all_passed": true
+  },
+  {
+   "id": "killing",
+   "category": "psl44",
+   "esw_index_free": "x -> Q_1 + rho(x) Q_2 (ch02 Def c2-odd)",
+   "weinberg_srednicki": "\\epsilon_\\alpha{}^i=\\xi_\\alpha{}^i-ix_m\\sigma^m_{\\alpha\\dot\\alpha}\\bar\\eta^{\\dot\\alpha i},\\ \\bar\\epsilon_{\\dot\\alpha i}=\\bar\\xi_{\\dot\\alpha i}+ix_m\\eta^\\alpha{}_i\\sigma^m_{\\alpha\\dot\\alpha}",
+   "source": "ch02 Def c2-odd",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "O2",
+    "N3"
+   ],
+   "max_residual": 2.2650998591337197e-14,
+   "all_passed": true
+  },
+  {
+   "id": "brackets",
+   "category": "psl44",
+   "esw_index_free": "brackets (ch02 eq:c2-evenodd, eq:c2-oddodd, Prop c2-special)",
+   "weinberg_srednicki": "[\\epsilon_1,\\epsilon_2]=i(\\bar\\epsilon_1\\bar\\sigma^m\\epsilon_2+\\bar\\epsilon_2\\bar\\sigma^m\\epsilon_1)\\partial_m+r,\\ r^k{}_i=2(\\xi_{1\\alpha}{}^k\\eta_2{}^\\alpha{}_i+\\bar\\xi_{1\\dot\\alpha i}\\bar\\eta_2^{\\dot\\alpha k})+2(1\\leftrightarrow2)-\\mathrm{tr};\\ [v,\\epsilon]_\\alpha{}^i=v\\cdot\\partial\\epsilon-\\tfrac18X_{mn}\\sigma^m\\bar\\sigma^n\\epsilon-\\tfrac18\\mathrm{div}v\\,\\epsilon+r\\epsilon,\\ [v,\\epsilon]_{\\dot\\alpha i}=v\\cdot\\partial\\bar\\epsilon+\\tfrac18X_{mn}\\bar\\epsilon\\bar\\sigma^m\\sigma^n-\\tfrac18\\mathrm{div}v\\,\\bar\\epsilon-\\bar\\epsilon r",
+   "source": "ch02 eq:c2-evenodd, eq:c2-oddodd, Prop c2-special",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "K1",
+    "K2",
+    "K3",
+    "K4-M",
+    "K4-D",
+    "K4-K",
+    "K4-R",
+    "N4"
+   ],
+   "max_residual": 6.487375805200672e-13,
+   "all_passed": true
+  },
+  {
+   "id": "S1-even",
+   "category": "psl44",
+   "esw_index_free": "S^(1)(v) (ch02 eq:c2-S1even, ch07 Def c7-vdot)",
+   "weinberg_srednicki": "\\int\\{(v.A_m,A^*_m)+\\tfrac14(v.A_{ij},A^{*ij})-(v.\\lambda_\\alpha{}^i,\\lambda^{*\\alpha}{}_i)+(v.\\bar\\lambda_{\\dot\\alpha i},\\bar\\lambda^{*\\dot\\alpha i})-(v.c,c^*)\\};\\ v.A_m=v^n\\partial_nA_m+A_n\\partial_mv^n,\\ v.A_{ij}=v\\cdot\\partial A_{ij}+\\tfrac14\\mathrm{div}v\\,A_{ij}-r^k{}_iA_{kj}-r^k{}_jA_{ik},\\ v.\\lambda_\\alpha{}^i=v\\cdot\\partial\\lambda-\\tfrac18X_{mn}\\sigma^m\\bar\\sigma^n\\lambda+\\tfrac38\\mathrm{div}v\\,\\lambda+r\\lambda,\\ v.\\bar\\lambda_{\\dot\\alpha i}=v\\cdot\\partial\\bar\\lambda+\\tfrac18X_{mn}\\bar\\lambda\\bar\\sigma^m\\sigma^n+\\tfrac38\\mathrm{div}v\\,\\bar\\lambda-\\bar\\lambda r,\\ v.c=v\\cdot\\partial c",
+   "source": "ch02 eq:c2-S1even, ex:c2-dil; ch07 Def c7-vdot",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "E-P",
+    "E-M",
+    "E-D",
+    "E-K",
+    "E-R"
+   ],
+   "max_residual": 3.499017183300205e-14,
+   "all_passed": true
+  },
+  {
+   "id": "S1-Q",
+   "category": "psl44",
+   "esw_index_free": "S^(1)(Q_1) (ch02 eq:c2-S1Q)",
+   "weinberg_srednicki": "\\int\\{-(\\Gamma^m(\\xi,\\lambda),A^*_m)-\\tfrac14(\\Gamma_{ij}(\\xi,\\lambda),A^{*ij})+\\tfrac12((\\rho(F_A)\\xi)_\\alpha{}^i,\\lambda^{*\\alpha}{}_i)-\\tfrac12((\\rho(F_A)\\xi)_{\\dot\\alpha i},\\bar\\lambda^{*\\dot\\alpha i})\\};\\ (\\rho(F_A)\\xi)_\\alpha{}^i=-\\tfrac12F_{mn}\\sigma^m\\bar\\sigma^n\\xi-\\tfrac12[A^{ik},A_{kj}]\\xi_\\alpha{}^j-i\\sigma^m_{\\alpha\\dot\\alpha}\\varepsilon^{\\dot\\alpha\\dot\\beta}D_mA^{ij}\\bar\\xi_{\\dot\\beta j},\\ (\\rho(F_A)\\xi)_{\\dot\\alpha i}=\\tfrac12F_{mn}\\bar\\xi\\bar\\sigma^m\\sigma^n-\\tfrac12[A_{ik},A^{kj}]\\bar\\xi_{\\dot\\alpha j}+i\\varepsilon^{\\alpha\\beta}\\sigma^m_{\\alpha\\dot\\alpha}D_mA_{ij}\\xi_\\beta{}^j",
+   "source": "ch02 eq:c2-S1Q",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "O1",
+    "N6",
+    "C2"
+   ],
+   "max_residual": 1.1457653085419002e-12,
+   "all_passed": true
+  },
+  {
+   "id": "S1-S",
+   "category": "psl44",
+   "esw_index_free": "S^(1)(Q_2) (ch02 eq:c2-S1S)",
+   "weinberg_srednicki": "S^{(1)}(\\xi)|_{\\xi\\to\\rho(x)\\eta}+\\int\\{(A^{kj}\\varepsilon_{\\alpha\\beta}\\eta^\\beta{}_j,\\lambda^{*\\alpha}{}_k)-(A_{kj}\\varepsilon_{\\dot\\beta\\dot\\alpha}\\bar\\eta^{\\dot\\alpha j},\\bar\\lambda^{*\\dot\\beta k})\\}",
+   "source": "ch02 eq:c2-S1S",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "O3"
+   ],
+   "max_residual": 1.4397917353478536e-12,
+   "all_passed": true
+  },
+  {
+   "id": "S2",
+   "category": "psl44",
+   "esw_index_free": "S^(2)(Q_1,Q_2) (ch02 eq:c2-S2)",
+   "weinberg_srednicki": "\\int\\{\\tfrac14[-2i\\Gamma^m(\\epsilon_1,\\epsilon_2)(\\lambda^{*\\alpha}{}_i,\\sigma^m_{\\alpha\\dot\\alpha}\\bar\\lambda^{*\\dot\\alpha i})+\\tfrac14\\Gamma_{kl}(\\epsilon_1,\\epsilon_2)\\Gamma^{kl}(\\lambda^*,\\lambda^*)]-\\tfrac12((\\epsilon_1,\\lambda^*),(\\epsilon_2,\\lambda^*))-(\\Gamma^m A_m+\\tfrac14\\Gamma_{ij}A^{ij},c^*)\\}",
+   "source": "ch02 eq:c2-S2",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "O4-QQ",
+    "O4-QS",
+    "O4-SS"
+   ],
+   "max_residual": 2.8694668194429082e-12,
+   "all_passed": true
+  },
+  {
+   "id": "CT-quadratic",
+   "category": "step1",
+   "esw_index_free": "I^CT quadratic (ch04 thm:c4-quadratic)",
+   "weinberg_srednicki": "\\mathrm{unit}\\{\\tfrac94\\varepsilon^{-1}\\int[(A_m,A_m)+\\tfrac14(A^{ij},A_{ij})]+\\log\\varepsilon[-\\tfrac12\\int(F^0_{mn},F^0_{mn})-\\tfrac14\\int(\\partial_mA^{ij},\\partial_mA_{ij})+8i\\int(\\bar\\lambda_{\\dot\\alpha i},\\bar\\sigma^{m\\dot\\alpha\\alpha}\\partial_m\\lambda_\\alpha{}^i)-\\int(\\partial_mc,A^*_m)]\\}",
+   "source": "ch04 thm:c4-quadratic",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T1",
+    "T2",
+    "T4",
+    "L3"
+   ],
+   "max_residual": 1.2820571680383445e-13,
+   "all_passed": true
+  },
+  {
+   "id": "CT-log",
+   "category": "step1",
+   "esw_index_free": "log part (ch04 thm:c4-log); field-counting functional (ch06)",
+   "weinberg_srednicki": "2\\int[(A_m,A^*_m)+\\tfrac14(A^{ij},A^*_{ij})]-4\\int[(\\lambda_\\alpha{}^i,\\lambda^{*\\alpha}{}_i)-(\\bar\\lambda_{\\dot\\alpha i},\\bar\\lambda^{*\\dot\\alpha i})]-\\int(c^*,c)",
+   "source": "ch04 thm:c4-log; ch06 lem:c6-count",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T6"
+   ],
+   "max_residual": 1.8254389471423238e-13,
+   "all_passed": true
+  },
+  {
+   "id": "finite-CT",
+   "category": "step1",
+   "esw_index_free": "obstruction and finite counterterm (ch04 eq:c4-obstruction, eq:c4-finite)",
+   "weinberg_srednicki": "-\\tfrac{27}8\\mathrm{unit}\\int(\\partial^2c,\\partial_mA_m)=\\tfrac{27}{16}\\mathrm{unit}\\,Q\\int(\\partial_mA_m,\\partial_nA_n);\\ I\\mapsto I-\\tfrac{27}{16}\\mathrm{unit}\\int(\\partial_mA_m,\\partial_nA_n);\\ \\text{mass variation }-\\tfrac92\\mathrm{unit}\\,\\varepsilon^{-1}\\int(\\partial_mc,A_m)",
+   "source": "ch04 thm:c4-obstruction, eq:c4-finite, rem:c4-epsinv",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T3",
+    "T5"
+   ],
+   "max_residual": 0.0,
+   "all_passed": true
+  },
+  {
+   "id": "bilinears",
+   "category": "step1",
+   "esw_index_free": "scalar bilinears, 20', Konishi (ch05 def:c5-bilinear, thm:c5-Oeps)",
+   "weinberg_srednicki": "\\int\\omega(\\iota_{w_1}A,\\iota_{w_2}A)=\\tfrac1{16}\\int\\omega(w_1^{ij}A_{ij},w_2^{kl}A_{kl});\\ (w_1,w_2)=\\tfrac14w_1^{ij}w_{2ij};\\ \\mathrm{Konishi}=\\tfrac14\\int\\omega(A^{ij},A_{ij});\\ \\mathbf{20'}=\\tfrac1{16}\\int\\omega(w_1A,w_2A)-\\tfrac1{96}w_1^{ij}w_{2ij}\\int\\omega(A^{kl},A_{kl});\\ \\partial_\\delta I^{CT}=\\mathrm{unit}\\log\\varepsilon[\\tfrac14\\int\\omega(w_1A,w_2A)-\\tfrac18w_1^{ij}w_{2ij}\\int\\omega(A^{kl},A_{kl})]+\\hbar\\dim\\mathfrak g\\,w_1^{ij}w_{2ij}/(32\\pi^2\\varepsilon)\\int\\omega",
+   "source": "ch05 def:c5-bilinear, thm:c5-Oeps",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T7",
+    "T8",
+    "T9",
+    "T10"
+   ],
+   "max_residual": 3.552713678800501e-14,
+   "all_passed": true
+  },
+  {
+   "id": "dilatation",
+   "category": "step1",
+   "esw_index_free": "dilatation coefficients (ch06 thm:c6-dil, cor:c6-dilcomp, rem:c6-konishi)",
+   "weinberg_srednicki": "\\Delta=2E;\\ \\mathbf{20'}:0;\\ \\mathrm{Konishi}:-24;\\ (X,A_{ij}):-4;\\ (X,A_m):-4;\\ (\\zeta,\\lambda)=(\\lambda_\\alpha{}^i,\\zeta^\\alpha{}_i)-(\\bar\\lambda_{\\dot\\alpha i},\\bar\\zeta^{\\dot\\alpha i}):-8;\\ (X,c):-2\\ (\\mathrm{units});\\ \\mathfrak{su}(N):\\ -24\\,\\mathrm{unit}=3g^2N/(4\\pi^2)",
+   "source": "ch06 thm:c6-dil, cor:c6-dilcomp, rem:c6-konishi",
+   "standard_entries": "",
+   "tag": "EVIDENCED",
+   "checks": [
+    "C6"
+   ],
+   "max_residual": 0.0,
+   "all_passed": true
+  },
+  {
+   "id": "G1-G5",
+   "category": "step2",
+   "esw_index_free": "G1..G5 (DESIGN_STEP2.md Part C)",
+   "weinberg_srednicki": "G_1=-\\int([c,A_n],\\partial_mF^0_{mn}),\\ G_2=-\\int([c,A_n],\\partial_n\\partial_mA_m),\\ G_3=-\\tfrac14\\int([c,A^{ij}],\\partial^2A_{ij}),\\ G_4=\\int([c,\\partial_mc],A^*_m),\\ G_5=i\\int\\{([c,\\lambda_\\alpha{}^i],\\bar\\sigma^{m\\dot\\alpha\\alpha}\\partial_m\\bar\\lambda_{\\dot\\alpha i})+([c,\\bar\\lambda_{\\dot\\alpha i}],\\bar\\sigma^{m\\dot\\alpha\\alpha}\\partial_m\\lambda_\\alpha{}^i)\\}",
+   "source": "DESIGN_STEP2.md Part C",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "H-G1",
+    "H-G2",
+    "H-G3",
+    "H-G4",
+    "H-G5"
+   ],
+   "max_residual": 3.2358961836779653e-13,
+   "all_passed": true
+  },
+  {
+   "id": "H1-H6",
+   "category": "step2",
+   "esw_index_free": "H1..H6 (DESIGN_STEP2.md Part C)",
+   "weinberg_srednicki": "H_1=2\\int(\\partial_mA_n,[A_m,A_n]),\\ H_2=\\tfrac14\\int(\\partial_mA^{ij},[A_m,A_{ij}])\\ (\\text{componentwise reading; two-form reading}=2H_2),\\ H_3=\\int([A_m,c],A^*_m),\\ H_4=\\tfrac14\\int([A^{ij},c],A^*_{ij}),\\ H_5=\\int([c,\\lambda_\\alpha{}^i],\\lambda^{*\\alpha}{}_i)-\\int([c,\\bar\\lambda_{\\dot\\alpha i}],\\bar\\lambda^{*\\dot\\alpha i}),\\ H_6=\\int([c,c],c^*)",
+   "source": "DESIGN_STEP2.md Part C",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "H-H1",
+    "H-H2",
+    "H-H4",
+    "H-H5"
+   ],
+   "max_residual": 2.0097183471152322e-14,
+   "all_passed": true
+  },
+  {
+   "id": "beta-directions",
+   "category": "step2",
+   "esw_index_free": "Q-closed quadratic finite counterterms (DESIGN_STEP2.md)",
+   "weinberg_srednicki": "\\beta_1\\int(dA|_V,dA|_V)=\\tfrac{\\beta_1}2\\int(F^0_{mn},F^0_{mn}),\\ \\beta_2\\int(dA|_\\perp,dA|_\\perp)=\\tfrac{\\beta_2}4\\int(\\partial_mA^{ij},\\partial_mA_{ij}),\\ \\beta_3\\int(\\lambda,\\not d\\lambda)=2i\\beta_3\\int(\\bar\\lambda_{\\dot\\alpha i},\\bar\\sigma^{m\\dot\\alpha\\alpha}\\partial_m\\lambda_\\alpha{}^i),\\ \\beta_4\\int(\\partial_mc,A^*_m)",
+   "source": "DESIGN_STEP2.md Part C",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "T2",
+    "L3",
+    "T4"
+   ],
+   "max_residual": 1.2820571680383445e-13,
+   "all_passed": true
+  },
+  {
+   "id": "closure",
+   "category": "component",
+   "esw_index_free": "{S^(1)(Q_1),S^(1)(Q_2)} (ch02 rem physical reading)",
+   "weinberg_srednicki": "\\{\\xi_a.,\\xi_b.\\}A_m=-v^nF_{nm}+v^I\\partial_mA_I,\\ \\{\\xi_a.,\\xi_b.\\}A_{ij}=-v^n\\partial_nA_{ij},\\ v=\\Gamma(\\xi_a,\\xi_b)",
+   "source": "[ESW Prop 2.1]",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "C2",
+    "C3"
+   ],
+   "max_residual": 3.1776437161565096e-14,
+   "all_passed": true
+  },
+  {
+   "id": "weinberg",
+   "category": "Weinberg",
+   "esw_index_free": "Weinberg column",
+   "weinberg_srednicki": "\\rho(v)=\\gamma_W^\\mu v_\\mu|_{\\rm Wick};\\ \\gamma_{5W}=-\\gamma_{5S};\\ e_{ab}=\\varepsilon^{ab};\\ \\mathcal Q_a(W)=Q^{\\dagger\\dot a}(S);\\ t_\\alpha=gT^a",
+   "source": "notation-db/weinberg-qtf-1995.md D1,D2,D7,D9",
+   "standard_entries": "",
+   "tag": "DERIVED",
+   "checks": [
+    "R6",
+    "R7"
+   ],
+   "max_residual": 0.0,
+   "all_passed": true
+  }
+ ]
+}

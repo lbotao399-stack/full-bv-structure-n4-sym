@@ -1,0 +1,372 @@
+\chapter{Superconformal symmetry as an equivariant action}
+
+The dilatation of a composite operator, and every other superconformal transformation, acts on the fields of $\mathcal N=4$ super Yang--Mills theory [ESW, Def 2.4, §10.3] up to gauge transformations and equations of motion. In the BV formalism this structure is a Maurer--Cartan element of a Chevalley--Eilenberg complex, an $L_\infty$ action in the sense of [ESW, Def 1.26--1.27], and it is the classical input of the equivariant observables used later. [ESW, (32)--(34), Thm 3.3] construct it for the Poincaré supersymmetry algebra; the special conformal transformations and the special supercharges require Weyl weights, a compensating term with the six scalars, and an R-symmetry rotation in the odd bracket. This chapter realises $\mathfrak{psl}(4|4)$, the complexification of $\mathfrak{psu}(2,2|4)$ [SW, (7)], on Euclidean $\mathbb R^4$, fixes the sign conventions of the complex, writes the action $S+S^{(1)}+S^{(2)}$, and proves its master equation for every gauge algebra.
+
+\section{The algebra $\mathfrak{psl}(4|4)$ in complexified Euclidean form}
+
+Throughout, $x\in V$ denotes the position on $\mathbb R^4$ and $E$ the Euler vector field $E(x)=x$ of [SW, (3)]; in this chapter $E$ always means this vector field. For a vector field $v$ on $V_{10}$, $(v,-)$ is its metric dual one-form, $L_v$ the Lie derivative [ESW, (32)], $v(-)$ the derivative along $v$, and $\operatorname{div}v$ the divergence, $L_v\,\mathrm{dvol}=(\operatorname{div}v)\,\mathrm{dvol}$.
+
+\begin{definition}[Even part]
+\label{def:c2-even}
+The even part of $\mathfrak{psl}(4|4)$ is the Lie algebra of vector fields on $V_{10}=V\oplus W_{\mathbb R}^\perp$ spanned by
+\begin{itemize}
+\item translations $x\mapsto v_1$, $v_1\in V$;
+\item rotations, the linear vector fields given by elements of $\mathfrak{so}(V)$;
+\item the dilatation $\Delta=2E$, the generator $\Delta=\mathrm{diag}(1,-1\,|\,0)$ of [SW, (17)], with $\mathrm{ad}_\Delta=-2$ on translations (Remark \ref{rem:c2-dilatation});
+\item special conformal fields $x\mapsto(x,x)v_1-2(v_1,x)x$, $v_1\in V$, the special conformal field of [SW, (3)] along $v_1$;
+\item linear vector fields on $W_{\mathbb R}^\perp$ given by elements of $\mathfrak{so}(W_{\mathbb R}^\perp)$,
+\end{itemize}
+with the bracket $[v,v']=v(v')-v'(v)$. The first four kinds are the conformal Killing vector fields of $V$; together with $\mathfrak{so}(W_{\mathbb R}^\perp)$ the even part has dimension $15+15=30$.
+\end{definition}
+
+\begin{definition}[Odd part]
+\label{def:c2-odd}
+The odd part of $\mathfrak{psl}(4|4)$ is $\Pi(\Sigma\oplus\Sigma^*)$. An element $Q_1\in\Sigma$ is realised by the constant spinor $Q_1$, and an element $Q_2\in\Sigma^*$ by the $\Sigma$-valued function $x\mapsto\rho(x)Q_2$. Together these span the conformal Killing spinors
+\[
+x\mapsto Q_1+\rho(x)Q_2,\qquad Q_1\in\Sigma,\ Q_2\in\Sigma^* .
+\]
+Supercharge spinors always carry a subscript, $Q_1,Q_2,\dots$, and each formula states whether they lie in $\Sigma$ or in $\Sigma^*$; the unsubscripted $Q$ is the differential of Chapter 1.
+\end{definition}
+
+\begin{definition}[Bracket]
+\label{def:c2-bracket}
+On two even elements the bracket of $\mathfrak{psl}(4|4)$ is the bracket of vector fields, $[v,v']=v(v')-v'(v)$. For an even element $v$ and an odd element,
+\begin{equation}
+[v,\,Q_1+\rho(x)Q_2]=v(Q_1+\rho(x)Q_2)+\tfrac14\rho(d(v,-))(Q_1+\rho(x)Q_2)-\tfrac18(\operatorname{div}v)(Q_1+\rho(x)Q_2),
+\label{eq:c2-evenodd}
+\end{equation}
+where $\rho$ of the two-form $d(v,-)$ means $\rho\circ q$ [ESW, (29)]; the right-hand side is again a conformal Killing spinor. For two odd elements, with $Q_1,Q_3\in\Sigma$ and $Q_2,Q_4\in\Sigma^*$,
+\begin{equation}
+[Q_1+\rho(x)Q_2,\ Q_3+\rho(x)Q_4]=\Big(x\mapsto\Gamma\big(Q_1+\rho(x)Q_2,\,Q_3+\rho(x)Q_4\big)\big|_V\Big)+\big(\text{rotation of }W_{\mathbb R}^\perp\big),
+\label{eq:c2-oddodd}
+\end{equation}
+where $|_V$ is the orthogonal projection $V_{10}\to V$ and the rotation of $W_{\mathbb R}^\perp$ is the element of $\mathfrak{so}(W_{\mathbb R}^\perp)$ with matrix elements
+\[
+\big(w,(\text{rotation of }W_{\mathbb R}^\perp)\,w'\big)=(\rho(q(w\wedge w'))Q_1,Q_4)+(\rho(q(w\wedge w'))Q_3,Q_2),\qquad w,w'\in W_{\mathbb R}^\perp .
+\]
+\end{definition}
+
+The $W_{\mathbb R}^\perp$-components of $\Gamma$ drop out of the bracket, as in the dimensional reduction of the supertranslation algebra [ESW, §2.6, Prop 2.20]; they reappear in $S^{(2)}$ (Definition \ref{def:c2-S2}). The coefficient $1$ in front of the rotation of $W_{\mathbb R}^\perp$ is fixed by the super-Jacobi identity on triples in $\Sigma\times\Sigma\times\Sigma^*$: each term of the Jacobi sum of three odd elements contains exactly one odd--odd bracket, so the sum is affine in this coefficient; it vanishes at $1$ and is nonzero at $0$ (Remark \ref{rem:c2-method}), so $1$ is its unique zero.
+
+\begin{proposition}[Brackets of the named generators]
+\label{prop:c2-special}
+\begin{itemize}
+\item For $Q_1,Q_2\in\Sigma$: $[Q_1,Q_2]=\Gamma(Q_1,Q_2)|_V$, a translation; this is [ESW, Def 2.5] after reduction.
+\item For $Q_1,Q_2\in\Sigma^*$: $[Q_1,Q_2]=-\big(x\mapsto(x,x)v_1-2(v_1,x)x\big)$ with $v_1=\Gamma(Q_1,Q_2)|_V$, a special conformal field.
+\item For $Q_1\in\Sigma$, $Q_2\in\Sigma^*$: $[Q_1,Q_2]=\big(x\mapsto\Gamma(Q_1,\rho(x)Q_2)|_V\big)+(\text{rotation of }W_{\mathbb R}^\perp)$ as in Definition \ref{def:c2-bracket}; the dilatation part of the first summand is $\tfrac12(Q_1,Q_2)\,\Delta$, and the rest is a rotation of $V$.
+\item For a translation $x\mapsto v_1$: $[v_1,Q_1]=0$ for $Q_1\in\Sigma$ and $[v_1,Q_2]=\rho(v_1)Q_2\in\Sigma$ for $Q_2\in\Sigma^*$.
+\item For a special conformal field $x\mapsto(x,x)v_1-2(v_1,x)x$: its bracket with $Q_1\in\Sigma$ is $\rho(v_1)Q_1\in\Sigma^*$, and with $Q_2\in\Sigma^*$ it is $0$.
+\item $[\Delta,Q_1]=-Q_1$ for $Q_1\in\Sigma$ and $[\Delta,Q_2]=+Q_2$ for $Q_2\in\Sigma^*$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+The first two items follow from \eqref{eq:c2-oddodd}: for $Q_2=Q_4=0$ the rotation of $W_{\mathbb R}^\perp$ vanishes; for $Q_1=Q_3=0$ it vanishes as well, and for $v\in V$
+\[
+(v,\Gamma(\rho(x)Q_1,\rho(x)Q_2))=(\rho(x)\rho(v)\rho(x)Q_1,Q_2)=2(v,x)(x,\Gamma(Q_1,Q_2))-(x,x)(v,\Gamma(Q_1,Q_2)),
+\]
+using $\rho(x)\rho(v)\rho(x)=2(v,x)\rho(x)-(x,x)\rho(v)$ from the Clifford relation and $(\rho(x)Q_1,Q_2)=(Q_1,\rho(x)Q_2)$. Projecting to $V$ gives $-\big((x,x)v_1-2(v_1,x)x\big)$.
+
+For $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ and $v\in V$, $(v,\Gamma(Q_1,\rho(x)Q_2))=(\rho(x)\rho(v)Q_1,Q_2)$; the part symmetric under $x\leftrightarrow v$ is $\tfrac12(\rho(x)\rho(v)+\rho(v)\rho(x))=(x,v)$, so the linear vector field $x\mapsto\Gamma(Q_1,\rho(x)Q_2)|_V$ equals $(Q_1,Q_2)\,E=\tfrac12(Q_1,Q_2)\,\Delta$ plus an antisymmetric linear field, i.e. a rotation.
+
+For the even--odd brackets use \eqref{eq:c2-evenodd}. For $v=2E$: $(v,-)=d(x,x)$ is closed, $\operatorname{div}(2E)=8$, $2E(Q_1)=0$ and $2E(\rho(x)Q_2)=2\rho(x)Q_2$, so $[\Delta,Q_1]=-Q_1$ and $[\Delta,\rho(x)Q_2]=(2-1)\rho(x)Q_2$. For a translation, $(v,-)$ is constant and $\operatorname{div}v=0$, so \eqref{eq:c2-evenodd} reduces to $v_1(\rho(x)Q_2)=\rho(v_1)Q_2$. For $v=(x\mapsto(x,x)v_1-2(v_1,x)x)$,
+\[
+\begin{aligned}
+d(v,-)&=d(x,x)\wedge(v_1,-)-2\,d(v_1,x)\wedge(x,-)=4\,(x,-)\wedge(v_1,-),\\
+\operatorname{div}v&=2(x,v_1)-2(v_1,x)-8(v_1,x)=-8(v_1,x),
+\end{aligned}
+\]
+so $\tfrac14\rho(d(v,-))-\tfrac18\operatorname{div}v=\rho(x)\rho(v_1)-(x,v_1)+(v_1,x)=\rho(x)\rho(v_1)$. On a constant $Q_1\in\Sigma$ this gives $x\mapsto\rho(x)\rho(v_1)Q_1$, the realisation of $\rho(v_1)Q_1\in\Sigma^*$. On $x\mapsto\rho(x)Q_2$ it gives
+\[
+\begin{aligned}
+&\rho\big((x,x)v_1-2(v_1,x)x\big)Q_2+\rho(x)\rho(v_1)\rho(x)Q_2\\
+&\quad=(x,x)\rho(v_1)Q_2-2(v_1,x)\rho(x)Q_2+2(v_1,x)\rho(x)Q_2-(x,x)\rho(v_1)Q_2=0 .
+\end{aligned}
+\]
+\end{proof}
+
+\begin{tabular}{l|l|c|c|c}
+subspace & realisation & block of [SW, (17)] & dimension & $\mathrm{ad}_\Delta$ eigenvalue \\
+\hline
+translations & $x\mapsto v_1$, $v_1\in V$ & $(2,1)$ & $4$ & $-2$ \\
+$\mathfrak{so}(V)$, part acting on $S_+$ & linear vector field of $\mathfrak{so}(V)$ & $(1,1)$ & $3$ & $0$ \\
+$\mathfrak{so}(V)$, part acting on $S_-$ & linear vector field of $\mathfrak{so}(V)$ & $(2,2)$ & $3$ & $0$ \\
+dilatation & $\Delta=2E$ & $\mathrm{diag}(1,-1\,|\,0)$ & $1$ & $0$ \\
+special conformal & $x\mapsto(x,x)v_1-2(v_1,x)x$ & $(1,2)$ & $4$ & $+2$ \\
+$\mathfrak{so}(W_{\mathbb R}^\perp)$ & linear vector fields on $W_{\mathbb R}^\perp$ & $(3,3)$ & $15$ & $0$ \\
+$S_+\otimes W\subset\Sigma$ & constant spinor & $(3,1)$ & $8$ & $-1$ \\
+$S_-\otimes W^*\subset\Sigma$ & constant spinor & $(2,3)$ & $8$ & $-1$ \\
+$S_-\otimes W\subset\Sigma^*$ & $x\mapsto\rho(x)Q_2$ & $(3,2)$ & $8$ & $+1$ \\
+$S_+\otimes W^*\subset\Sigma^*$ & $x\mapsto\rho(x)Q_2$ & $(1,3)$ & $8$ & $+1$ \\
+\end{tabular}
+\tabcaption{The ten named subspaces of $\mathfrak{psl}(4|4)$; rows and columns of the blocks are ordered as in [SW, (17)]. The eigenspaces of Proposition \ref{prop:c1-chirality} fix the names; in particular the block $(3,1)$ of [SW, (17)] is $S_+\otimes W$.}
+
+\begin{proposition}[Identification with $\mathfrak{psl}(4|4)$]
+\label{prop:c2-psl}
+The bracket of Definition \ref{def:c2-bracket} has the following properties.
+\begin{itemize}
+\item The dimension is $30|32$, and the bracket of two elements of the ten named subspaces lies in their span.
+\item The bracket is graded antisymmetric and satisfies the super-Jacobi identity.
+\item The $V$-part of every odd--odd bracket is a conformal Killing vector field of $V$; the rotation of $W_{\mathbb R}^\perp$ is nonzero for $\Sigma\times\Sigma^*$ and vanishes for $\Sigma\times\Sigma$ and $\Sigma^*\times\Sigma^*$.
+\item The block rule of the supermatrix presentation [SW, (17), (19)] holds for every pair of the ten named subspaces: their bracket lies in the block with the row of the first subspace and the column of the second when the column of the first equals the row of the second, plus the block with the row of the second and the column of the first when the column of the second equals the row of the first, and vanishes otherwise.
+\item $\mathrm{ad}_\Delta$ is diagonal on the named subspaces with the eigenvalues of the table above, which are those of $\Delta=\mathrm{diag}(1,-1\,|\,0)$ in [SW, (17)].
+\item The Killing form $\mathrm{str}(\mathrm{ad}_{x_1}\mathrm{ad}_{x_2})$ for $x_1,x_2\in\mathfrak{psl}(4|4)$, with $\mathrm{str}$ the supertrace [SW, after (17)], vanishes identically.
+\item The algebra equals its derived algebra and has trivial centre; its even part is the sum of the two commuting ideals formed by the conformal Killing vector fields of $V$ and by $\mathfrak{so}(W_{\mathbb R}^\perp)$, each of dimension $15$ with nondegenerate Killing form.
+\end{itemize}
+These are the properties by which the algebra is identified with the complexification $\mathfrak{psl}(4|4)$ of $\mathfrak{psu}(2,2|4)$ [SW, (7), (17)].
+\end{proposition}
+
+\begin{proof}
+The dimension count is $4+6+1+4+15=30$ and $16+16=32$. Every other item is a bilinear or trilinear identity in the arguments, or a statement about the structure constants; each is established on all ordered pairs and all ordered triples of elements of a basis adapted to the ten named subspaces (Remark \ref{rem:c2-method}), hence for all arguments.
+\end{proof}
+
+\begin{remark}[Dilatation normalisation]
+\label{rem:c2-dilatation}
+The dilatation is the $\Delta$ of [SW, (17)], the vector field $2E$, with $\mathrm{ad}_\Delta$ eigenvalue $-2$ on translations, $+2$ on special conformal fields, $-1$ on $\Sigma$, $+1$ on $\Sigma^*$ and $0$ on rotations. The generator called $\Delta$ in [SW, (3)] is the vector field $-E$, and the bosonic part of the $\Delta$ of [SW, (12)] is $E$. Every cochain component is linear in its arguments, so a component evaluated on $2E$ is $-2$ times the same component evaluated on $-E$:
+\[
+S^{(1)}(2E)=-2\,S^{(1)}(-E),
+\]
+and a coefficient computed in the normalisation of [SW, (3)] is converted to the normalisation used here by the factor $-2$.
+\end{remark}
+
+\section{The Chevalley--Eilenberg complex and its sign conventions}
+
+\begin{definition}[Cochains]
+\label{def:c2-cochains}
+Following [ESW, Def 1.26] with the Lie algebra of loc. cit. taken to be $\mathfrak{psl}(4|4)$,
+\[
+C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))=\bigoplus_n\mathrm{Hom}(\wedge^n\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))[-n],
+\]
+with $\mathscr O_l(\mathscr E)$ the local functionals [C07, Def 4.2.2] ($\mathcal O_{\rm loc}$ in [ESW, Def 1.26]). The elements of this complex are multilinear maps $f$ of elements $x_1,x_2,\dots$ of $\mathfrak{psl}(4|4)$ (the notation of [ESW, Def 1.26]; the position $x$ carries no subscript) with the antisymmetry
+\[
+f(\dots,x_i,x_{i+1},\dots)=(-1)^{|x_i||x_{i+1}|+1}f(\dots,x_{i+1},x_i,\dots);
+\]
+[ESW, Def 1.26] prints the exponent $|x_1||x_2|+1$ [sic]. Here $|f|$ denotes the degree of $f$ in $C^\bullet$, and an element of degree $0$ has values $f(x_1,\dots,x_k)$ of parity $k+\sum_i|x_i|$.
+\end{definition}
+
+\begin{definition}[Cochain bracket and differential]
+\label{def:c2-dce}
+The cochain bracket is the formula of [ESW, Def 1.26]: $\{f,g\}(x_1,\dots,x_{k+l})$ is the sum over $(k,l)$-shuffles $\sigma$ of
+\[
+\operatorname{sgn}(\sigma)\,\cdot\,(\text{Koszul sign of }\sigma)\,\cdot\,(-1)^{|g|k+\sum_{i=1}^k|x_{\sigma(i)}|(l+|g|)}\ \{f(x_{\sigma(1)},\dots,x_{\sigma(k)}),\,g(x_{\sigma(k+1)},\dots,x_{\sigma(k+l)})\},
+\]
+with $\{-,-\}$ the bracket of Definition \ref{def:c1-bracket} and $|g|$ the degree of $g$ in $C^\bullet$. The Chevalley--Eilenberg differential is
+\begin{equation}
+(d_{CE}f)(x_1,\dots,x_n)=\sum_{i<j}(-1)^{|x_i|\sum_{p<i}|x_p|+|x_j|\sum_{p<j,\,p\neq i}|x_p|+i+j+|f|+1}\,f([x_i,x_j],x_1,\dots,\widehat{x_i},\dots,\widehat{x_j},\dots,x_n),
+\label{eq:c2-dce}
+\end{equation}
+that is, the formula printed in [ESW, Def 1.26] multiplied by $-1$.
+\end{definition}
+
+\begin{lemma}[The sign of the Chevalley--Eilenberg differential]
+\label{lem:c2-dcesign}
+For $Q_1,Q_2\in\Sigma$ and $|f|=0$, the formula printed in [ESW, Def 1.26] gives
+\[
+(d_{CE}S^{(1)})(Q_1,Q_2)=-S^{(1)}([Q_1,Q_2]),
+\]
+and \eqref{eq:c2-dce} gives
+\[
+(d_{CE}S^{(1)})(Q_1,Q_2)=+S^{(1)}([Q_1,Q_2]);
+\]
+the second is [ESW, Lemma 3.6, item 2]. With the bracket of Definition \ref{def:c1-bracket} and the functionals [ESW, (33), (34)], the equation of [ESW, Lemma 3.6]
+\[
+\{S,S^{(2)}(Q_1,Q_2)\}+S^{(1)}(\Gamma(Q_1,Q_2))-\{S^{(1)}(Q_1),S^{(1)}(Q_2)\}=0
+\]
+holds; this fixes the sign of the term $S^{(1)}(\Gamma(Q_1,Q_2))$, and with this bracket [ESW, proof of Lemma 3.6, item 3] holds term by term. The printed formula is the Chevalley--Eilenberg differential of the opposite algebra; the substitution $x_i\mapsto-x_i$ in every argument, $S^{(k)}\mapsto(-1)^kS^{(k)}$, exchanges the two conventions. Hence \eqref{eq:c2-dce} keeps [ESW, (32)--(34)] verbatim. Under the printed convention the arity-one functionals are $-1$ times those of [ESW, (32)--(33)], so the sign of every one-generator component is tied to the choice of $d_{CE}$.
+\end{lemma}
+
+\begin{proof}
+For $n=2$ the pair $(i,j)=(1,2)$ is the single term, both sums over $p$ are empty, and the exponent in \eqref{eq:c2-dce} is $1+2+|f|+1\equiv|f|$; for $|f|=0$ this gives $+f([x_1,x_2])$, and the printed formula gives $-f([x_1,x_2])$. The displayed equation of [ESW, Lemma 3.6] is the arity-two component of the master equation on $\Sigma\times\Sigma$ (Lemma \ref{lem:c2-components} with $|x_1|=1$), which holds for every $\mathfrak g$ by Theorem \ref{thm:c2-master}. With $-S^{(1)}(\Gamma(Q_1,Q_2))$ in place of $+S^{(1)}(\Gamma(Q_1,Q_2))$ the left side becomes $-2S^{(1)}(\Gamma(Q_1,Q_2))$, which contains $-2(L_vA,A^*)$ for the translation $v=\Gamma(Q_1,Q_2)|_V$ and is nonzero when $\Gamma(Q_1,Q_2)|_V\neq0$; with the bracket replaced by its negative the left side becomes $2S^{(1)}(\Gamma(Q_1,Q_2))$, nonzero as well. The expression for $\{S,S^{(2)}(Q_1,Q_2)\}$ in [ESW, proof of Lemma 3.6, item 3] is reproduced term by term with the bracket of Definition \ref{def:c1-bracket} by the exact evaluation of Remark \ref{rem:c2-method}. For the last statement: $d_{CE}$ is linear in the bracket of $\mathfrak{psl}(4|4)$, so the printed formula is \eqref{eq:c2-dce} for the opposite bracket $-[-,-]$; the linear map $x_1\mapsto-x_1$ is an isomorphism from $\mathfrak{psl}(4|4)$ to its opposite, since $-[x_1,x_2]=-[-x_1,-x_2]$, and it transports a cochain of arity $k$ to $(-1)^k$ times itself.
+\end{proof}
+
+\begin{definition}[Action of $\mathfrak{psl}(4|4)$]
+\label{def:c2-action}
+An action of $\mathfrak{psl}(4|4)$ on $(\mathscr E,\langle\,,\rangle,S)$ [ESW, Def 1.27] is an element
+\[
+S_{\mathfrak{psl}(4|4)}=\sum_{k\ge0}S^{(k)}_{\mathfrak{psl}(4|4)}\in C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))
+\]
+of degree $0$, with $S^{(0)}_{\mathfrak{psl}(4|4)}=S$, each $S^{(k\ge1)}_{\mathfrak{psl}(4|4)}(x_1,\dots,x_k)$ at least quadratic in the fields, and
+\begin{equation}
+d_{CE}S_{\mathfrak{psl}(4|4)}+\tfrac12\{S_{\mathfrak{psl}(4|4)},S_{\mathfrak{psl}(4|4)}\}=0 .
+\label{eq:c2-mc}
+\end{equation}
+Equivalently [ESW, Rem 1.29], $I_{\mathfrak{psl}(4|4)}=I+\sum_{k\ge1}S^{(k)}_{\mathfrak{psl}(4|4)}$ satisfies
+\[
+(d_{CE}+Q)I_{\mathfrak{psl}(4|4)}+\tfrac12\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}=0 .
+\]
+We abbreviate $S^{(k)}=S^{(k)}_{\mathfrak{psl}(4|4)}$.
+\end{definition}
+
+\begin{lemma}[Component equations]
+\label{lem:c2-components}
+With the conventions of Definitions \ref{def:c2-cochains}--\ref{def:c2-dce}, the component of \eqref{eq:c2-mc} on $(x_1,\dots,x_n)$ reads as follows. In arity $0$, $\{S,S\}=0$. In arity $1$, $\{S,S^{(1)}(x_1)\}=0$. In arity $2$,
+\[
+\{S,S^{(2)}(x_1,x_2)\}+S^{(1)}([x_1,x_2])+(-1)^{|x_1|}\{S^{(1)}(x_1),S^{(1)}(x_2)\}=0 .
+\]
+In arity $3$, with $x_1$ even and $x_2,x_3$ odd,
+\[
+\begin{aligned}
+&\{S,S^{(3)}(x_1,x_2,x_3)\}+S^{(2)}([x_1,x_2],x_3)+S^{(2)}([x_1,x_3],x_2)+S^{(2)}([x_2,x_3],x_1)\\
+&\quad+\{S^{(1)}(x_1),S^{(2)}(x_2,x_3)\}-\{S^{(1)}(x_2),S^{(2)}(x_1,x_3)\}-\{S^{(1)}(x_3),S^{(2)}(x_1,x_2)\}=0 .
+\end{aligned}
+\]
+In arity $3$ with $x_1,x_2,x_3$ odd the component is the same expression with all seven signs $+$; this is the cyclic form of [ESW, Lemma 3.7]. In arity $4$, with all arguments odd,
+\[
+\begin{aligned}
+&\{S,S^{(4)}(x_1,\dots,x_4)\}+\sum_{i<j}S^{(3)}([x_i,x_j],\dots)-\sum_i\{S^{(1)}(x_i),S^{(3)}(\dots)\}\\
+&\quad+\{S^{(2)}(x_1,x_2),S^{(2)}(x_3,x_4)\}+\{S^{(2)}(x_1,x_3),S^{(2)}(x_2,x_4)\}+\{S^{(2)}(x_1,x_4),S^{(2)}(x_2,x_3)\}=0,
+\end{aligned}
+\]
+where the dots are the remaining arguments in increasing order. For $\mathfrak{psl}(4|4)$ replaced by the supertranslation algebra these are the four equations of [ESW, Thm 3.3].
+\end{lemma}
+
+\begin{proof}
+Every component of $S_{\mathfrak{psl}(4|4)}$ has degree $0$ in $C^\bullet$, so $|f|=|g|=0$ in Definition \ref{def:c2-dce}, the shuffle sign reduces to $\operatorname{sgn}(\sigma)$ times the Koszul sign times $(-1)^{l\sum_{i\le k}|x_{\sigma(i)}|}$, and the value $S^{(k)}(x_1,\dots,x_k)$ has parity $k+\sum|x_i|$.
+
+Arity $1$: $d_{CE}$ of $S^{(0)}$ has no pairs; the shuffles $(0,1)$ and $(1,0)$ give $\{S,S^{(1)}(x_1)\}$ and $\{S^{(1)}(x_1),S\}=\{S,S^{(1)}(x_1)\}$, and $\tfrac12$ of their sum is $\{S,S^{(1)}(x_1)\}$.
+
+Arity $2$: by Lemma \ref{lem:c2-dcesign}, $(d_{CE}S^{(1)})(x_1,x_2)=S^{(1)}([x_1,x_2])$. The shuffles $(0,2)$ and $(2,0)$ give $2\{S,S^{(2)}(x_1,x_2)\}$. The $(1,1)$-shuffle $\sigma=\mathrm{id}$ gives $(-1)^{|x_1|}\{S^{(1)}(x_1),S^{(1)}(x_2)\}$; the transposition gives $-(-1)^{|x_1||x_2|+|x_2|}\{S^{(1)}(x_2),S^{(1)}(x_1)\}$, and graded symmetry with $|S^{(1)}(x_i)|=1+|x_i|$ turns it into
+\[
+-(-1)^{|x_1||x_2|+|x_2|+(1+|x_1|)(1+|x_2|)}\{S^{(1)}(x_1),S^{(1)}(x_2)\}=(-1)^{|x_1|}\{S^{(1)}(x_1),S^{(1)}(x_2)\}.
+\]
+Half the sum is the stated equation.
+
+Arity $3$ with $x_1$ even, $x_2,x_3$ odd. In \eqref{eq:c2-dce} the pairs $(1,2)$, $(1,3)$, $(2,3)$ have exponents $4$, $|x_3||x_2|+5=6$ and $6$, so all three $S^{(2)}([x_i,x_j],x_k)$ enter with $+$. The $(1,2)$-shuffles give
+\[
+\{S^{(1)}(x_1),S^{(2)}(x_2,x_3)\}-\{S^{(1)}(x_2),S^{(2)}(x_1,x_3)\}-\{S^{(1)}(x_3),S^{(2)}(x_1,x_2)\},
+\]
+the second sign from $\operatorname{sgn}=-1$, and the third from the Koszul sign $|x_3||x_2|=1$. The $(2,1)$-shuffles $(12|3)$, $(13|2)$, $(23|1)$ carry the signs $-$, $(-)(-)(-)=-$ and $+$; moving $S^{(1)}$ to the left costs $(-1)^{|S^{(2)}||S^{(1)}|}=+1$ in each case, because $S^{(1)}(x_3)$, $S^{(1)}(x_2)$ are even and $S^{(2)}(x_2,x_3)$ is even. The $(2,1)$-shuffles therefore reproduce the same three terms, and half the total is the stated equation; the $(0,3)$ and $(3,0)$ shuffles give $\{S,S^{(3)}\}$. The remaining patterns follow from the same expansion.
+\end{proof}
+
+\section{The Noether current [ESW, Rem 1.28] in arity one}
+
+\begin{definition}[Arity one]
+\label{def:c2-S1}
+For a conformal Killing vector field $v$ of $V$, or $v$ the linear vector field of an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$, regarded as a vector field on $V_{10}$:
+\begin{equation}
+\begin{aligned}
+S^{(1)}(v)&=\int\mathrm{dvol}\Big(\big(L_vA+\tfrac14(\operatorname{div}v)\,A|_{W_{\mathbb R}^\perp},\,A^*\big)-\big(v.\lambda,\lambda^*\big)-\big(v.c,\,c^*\big)\Big),\\
+v.\lambda&=v(\lambda)+\tfrac14\rho(d(v,-))\lambda+\tfrac38(\operatorname{div}v)\lambda ,
+\end{aligned}
+\label{eq:c2-S1even}
+\end{equation}
+where $v.c=v(c)$ is the derivative of $c$ along $v$ [ESW, (32)]. Here $A$ is a one-form on $V_{10}$ constant along $W_{\mathbb R}^\perp$ [ESW, Def 1.55, Prop 1.56] and $L_v$ is its Lie derivative on $V_{10}$: for $v$ on $V$, $L_v(A|_V)$ is the Lie derivative of the one-form and $L_v(\iota_wA)=v(\iota_wA)$; for $v$ the linear vector field of an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$, $\iota_w(L_vA)=\iota_{v(w)}A$.
+
+For $Q_1\in\Sigma$ [ESW, (33)], reduced:
+\begin{equation}
+S^{(1)}(Q_1)=\int\mathrm{dvol}\Big(-(\Gamma(Q_1,\lambda),A^*)+\tfrac12(\rho(F_A)Q_1,\lambda^*)\Big).
+\label{eq:c2-S1Q}
+\end{equation}
+For $Q_2\in\Sigma^*$, with conformal Killing spinor $x\mapsto\rho(x)Q_2$:
+\begin{equation}
+S^{(1)}(Q_2)=\int\mathrm{dvol}\Big(-(\Gamma(\rho(x)Q_2,\lambda),A^*)+\tfrac12(\rho(F_A)\rho(x)Q_2,\lambda^*)-(\rho(A|_{W_{\mathbb R}^\perp})Q_2,\lambda^*)\Big),
+\label{eq:c2-S1S}
+\end{equation}
+where $\rho(A|_{W_{\mathbb R}^\perp})$ is Clifford multiplication by the $W_{\mathbb R}^\perp$-component of $A$, with its $\mathfrak g$ factor kept.
+\end{definition}
+
+The divergences are $\operatorname{div}v=0$ for translations, rotations and $\mathfrak{so}(W_{\mathbb R}^\perp)$, $\operatorname{div}(2E)=8$, and $\operatorname{div}v=-8(v_1,x)$ for $v=(x\mapsto(x,x)v_1-2(v_1,x)x)$. For $v\in\mathfrak{iso}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)$, \eqref{eq:c2-S1even} is [ESW, (32)], whose ``$\mathfrak{so}(V)$ action on $\Sigma$'' is $\tfrac14\rho(d(v,-))$. Since ${\not d}(\rho(x)Q_2)=(\dim V)\,Q_2=4Q_2$ by the Clifford relation, the last term of \eqref{eq:c2-S1S} equals $-\tfrac14(\rho(A|_{W_{\mathbb R}^\perp}){\not d}(\rho(x)Q_2),\lambda^*)$; in this form one formula covers the whole conformal Killing spinor $x\mapsto Q_1+\rho(x)Q_2$, the term vanishing for constant spinors.
+
+\begin{example}[The dilatation]
+\label{ex:c2-dil}
+For $\Delta=2E$: $(2E,-)=d(x,x)$ is closed, so $\rho(d(v,-))=0$, and $\operatorname{div}(2E)=8$. On the one-form $A|_V$, $L_{2E}A|_V=2E(A|_V)+2A|_V$ with $E(-)$ acting componentwise, and on the scalars $L_{2E}\iota_wA+\tfrac14\cdot8\,\iota_wA=2E(\iota_wA)+2\iota_wA$. Hence
+\[
+S^{(1)}(\Delta)=\int\mathrm{dvol}\Big(\big(2E(A)+2A,A^*\big)-\big(2E(\lambda)+3\lambda,\lambda^*\big)-\big(2E(c),c^*\big)\Big):
+\]
+in the normalisation of Remark \ref{rem:c2-dilatation}, $A$, $\lambda$, $c$ carry the weights $2$, $3$, $0$, i.e. the Weyl weights $1$, $\tfrac32$, $0$ with respect to $E$.
+\end{example}
+
+\begin{proposition}[The coefficients are forced]
+\label{prop:c2-coeff}
+Replace the coefficients $\tfrac14$ (spin), $\tfrac38$ (Weyl weight of $\lambda$) and $\tfrac14$ (Weyl weight of $A|_{W_{\mathbb R}^\perp}$) in \eqref{eq:c2-S1even}, and the coefficient $-1$ of the last term of \eqref{eq:c2-S1S}, by unknowns. For $\mathfrak g=\mathfrak{su}(2)$ the arity-one equation $\{S,S^{(1)}(x_1)\}=0$ at one element $x_1$ of each type determines the unknowns uniquely:
+\begin{itemize}
+\item a rotation in $\mathfrak{so}(V)$, and an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$: spin coefficient $\tfrac14$;
+\item $\Delta$: $(\tfrac38,\tfrac14)$ for the two Weyl weights;
+\item a special conformal field: $(\tfrac14,\tfrac38,\tfrac14)$;
+\item $Q_2\in\Sigma^*$: $-1$.
+\end{itemize}
+With these values the arity-one equation holds for every element of $\mathfrak{psl}(4|4)$ and every $\mathfrak g$ (Theorem \ref{thm:c2-master}). The Weyl weight $1$ of $A|_V$ is carried by $L_v$ and the weight $0$ of $c$ by $v.c$.
+\end{proposition}
+
+\begin{proof}
+For each type the bracket $\{S,S^{(1)}(x_1)\}$ is affine in the unknowns. For $\mathfrak g=\mathfrak{su}(2)$ and one element $x_1$ of each type, its density is a polynomial in the jets of the fields with coefficients affine in the unknowns, and the conditions that all Euler--Lagrange derivatives vanish form a linear system whose unique solution is the one stated (Remark \ref{rem:c2-method}). For translations, rotations, $\mathfrak{so}(W_{\mathbb R}^\perp)$ and $Q_1\in\Sigma$ the equation is [ESW, (32), Lemma 3.4] after reduction.
+\end{proof}
+
+The functionals $S^{(1)}(Q_1)$ and $S^{(1)}(Q_2)$ contain no $c^*$; the $c^*$ terms of $S^{(1)}$ are $-(v.c,c^*)$ for even $v$.
+
+\section{Quadratic-antifield terms and the end of the tower}
+
+\begin{definition}[Arity two]
+\label{def:c2-S2}
+$S^{(2)}(x_1,x_2)=0$ when $x_1$ or $x_2$ is even. For $Q_1,Q_2$ each in $\Sigma$ or in $\Sigma^*$, $S^{(2)}(Q_1,Q_2)$ is [ESW, (34)] evaluated pointwise on the conformal Killing spinors, i.e. every $Q_i\in\Sigma^*$ is replaced by the $\Sigma$-valued function $x\mapsto\rho(x)Q_i$ in
+\begin{equation}
+S^{(2)}(Q_1,Q_2)=\int\mathrm{dvol}\Big(\tfrac14\big(\Gamma(Q_1,Q_2),\Gamma(\lambda^*,\lambda^*)\big)-\tfrac12(Q_1,\lambda^*)(Q_2,\lambda^*)-\big(\iota_{\Gamma(Q_1,Q_2)}A,\,c^*\big)\Big),
+\label{eq:c2-S2}
+\end{equation}
+with $\Gamma(Q_1,Q_2)\in V_{10}$ the full ten-component $\Gamma$-pairing, so that the gauge parameter is $\iota_{\Gamma(Q_1,Q_2)}A=\iota_{\Gamma(Q_1,Q_2)|_V}A|_V+\iota_{\Gamma(Q_1,Q_2)|_{W_{\mathbb R}^\perp}}A$. For $k\ge3$, $S^{(k)}=0$.
+\end{definition}
+
+The field-dependent gauge parameter $\iota_{\Gamma(Q_1,Q_2)}A$ of the $c^*$ term is:
+\begin{itemize}
+\item $Q_1,Q_2\in\Sigma$: $\Gamma(Q_1,Q_2)$ constant, as in [ESW, (34)];
+\item $Q_1\in\Sigma$, $Q_2\in\Sigma^*$: $\Gamma(Q_1,\rho(x)Q_2)$, linear in $x$;
+\item $Q_1,Q_2\in\Sigma^*$: $\Gamma(\rho(x)Q_1,\rho(x)Q_2)$, with $V$-part $-\big((x,x)v_1-2(v_1,x)x\big)$, $v_1=\Gamma(Q_1,Q_2)|_V$, and $W_{\mathbb R}^\perp$-part $-(x,x)\,\Gamma(Q_1,Q_2)|_{W_{\mathbb R}^\perp}$ (proof of Proposition \ref{prop:c2-special}).
+\end{itemize}
+Both parts of $S^{(2)}$ are required by the arity-two equation: with $S^{(2)}=0$ its component on every pair of odd elements of a basis is a nonzero local functional, and with the $W_{\mathbb R}^\perp$-components of $\Gamma$ removed from \eqref{eq:c2-S2} its components on $\Sigma\times\Sigma$ and on $\Sigma\times\Sigma^*$ are nonzero (Remark \ref{rem:c2-method}).
+
+\begin{proposition}[The tower stops at arity two]
+\label{prop:c2-tower}
+For every $\mathfrak g$ and all arguments, with $S^{(k\ge3)}=0$:
+\begin{itemize}
+\item $\{S^{(2)}(x_1,x_2),S^{(2)}(x_3,x_4)\}=0$;
+\item the components of \eqref{eq:c2-mc} of arity $\ge4$ hold;
+\item the arity-three components with at most one odd argument hold;
+\item the arity-three components with three odd arguments hold.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+$S^{(2)}$ contains the fields $A$, $\lambda^*$, $c^*$ and none of their partners $A^*$, $\lambda$, $c$, and the bracket pairs each field with its partner (Definition \ref{def:c1-bracket}); hence the first item. In arity $4$, with $S^{(3)}=S^{(4)}=0$, Lemma \ref{lem:c2-components} leaves the three brackets $\{S^{(2)},S^{(2)}\}$, which vanish; when an argument is even, every surviving term contains $S^{(2)}$ with an even argument and vanishes. In arity $n\ge5$ every term contains $S^{(k)}$ with $k\ge3$ or $\{S^{(k)},S^{(l)}\}$ with $k+l=n$, hence $k\ge3$ or $l\ge3$, and vanishes. In arity $3$ with at most one odd argument, every term contains $S^{(2)}$ with an even entry, because among $[x_i,x_j]$ and $x_k$, and among any two of the arguments, at most one entry is odd; so every term vanishes. In arity $3$ with three odd arguments, every $[x_i,x_j]$ is even, so the equation of Lemma \ref{lem:c2-components} reduces to the cyclic sum $\sum_{\rm cyc}\{S^{(1)}(x_1),S^{(2)}(x_2,x_3)\}$. In this bracket, $S^{(2)}$ supplies $A$ and $\lambda^*$, whose partners $A^*$ and $\lambda$ occur in $S^{(1)}(x_1)$ exclusively through the term $-(\Gamma(Q_1,\lambda),A^*)$, with $Q_1$ replaced by the conformal Killing spinor of $x_1$; the last term of \eqref{eq:c2-S1S} contains $A$ and $\lambda^*$ and has vanishing bracket with $S^{(2)}$. No derivative acts on the spinors, so the cyclic sum is computed pointwise in $x$ exactly as in the proof of [ESW, Lemma 3.7], with $Q_1,Q_2,Q_3$ replaced by the values of the three conformal Killing spinors at $x$; it vanishes by [ESW, Assumption 3.1], which holds for the ten-dimensional $\Sigma=S_+$ by [ESW, Thm 2.10] (list after [ESW, Assumption 3.1]), and the Clifford relation.
+\end{proof}
+
+\section{The master equation}
+
+\begin{axiom}[Poincaré supersymmetry, ten dimensions]
+\label{ax:c2-esw}
+[ESW, Thm 3.3, Lemmas 3.4--3.7, (32)--(34)] and [ESW, Prop 2.20]: for every $\mathfrak g$, the functionals \eqref{eq:c2-S1even} on $\mathfrak{iso}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)$, \eqref{eq:c2-S1Q} and \eqref{eq:c2-S2} on $\Sigma\times\Sigma$ satisfy every component of \eqref{eq:c2-mc} with arguments in the subalgebra generated by translations, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$ and $\Sigma$, with $d_{CE}$ the differential \eqref{eq:c2-dce} used in the proof of [ESW, Lemma 3.6].
+\end{axiom}
+
+\begin{remark}[Exact verification on a basis]
+\label{rem:c2-method}
+The computer-assisted statements of this chapter are exact identities established on a basis. Fix a basis of $\mathfrak{psl}(4|4)$ adapted to the ten named subspaces, with $4+3+3+1+4+15$ even and $8+8+8+8$ odd elements, in which $\rho$, $\Gamma$ and the pairing $\Sigma\otimes\Sigma^*\to\mathbb C$ have Gaussian-rational entries. The bracket of Definition \ref{def:c2-bracket} is computed in exact arithmetic on every ordered pair of basis elements; its values are expanded in the basis, and graded antisymmetry, the super-Jacobi identity on every ordered triple, the Killing form and the block rule on every ordered pair, the eigenvalues of $\mathrm{ad}_\Delta$, the derived algebra, the centre and the Killing forms of the two even ideals are computed from these structure constants. With the coefficient $0$ in place of $1$ in front of the rotation of $W_{\mathbb R}^\perp$ in \eqref{eq:c2-oddodd}, the super-Jacobi identity fails. For $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$, with the data of Remark \ref{rem:c1-method}, every component of \eqref{eq:c2-mc} of arity $1$, $2$ and $3$ is evaluated on every unordered tuple of basis elements, repetitions allowed, with at least two odd elements in arity $3$; each is a local functional whose density is a polynomial in the jets of the fields with Gaussian-rational coefficients, and it vanishes when all its Euler--Lagrange derivatives vanish identically (Remark \ref{rem:c1-method}). All these identities are multilinear in their arguments, and the components of \eqref{eq:c2-mc} are graded antisymmetric under exchange of arguments (Definition \ref{def:c2-cochains}); the identities on basis tuples therefore hold for all arguments.
+\end{remark}
+
+\begin{lemma}[Colour reduction]
+\label{lem:c2-colour}
+Consider local functionals that are finite sums of terms, each the product of a polynomial in the jets of the $V_{10}$-, spinor- and form-components of the fields, independent of $\mathfrak g$, and a tree tensor in the $\mathfrak g$-components of at most five fields: a multilinear form on $\mathfrak g^k$, $k\le5$, obtained from copies of $([-,-],-)$ by contraction with the inverse pairing $(-,-)^{-1}$ along a tree, or the pairing $(-,-)$ itself for $k=2$. If the Euler--Lagrange derivatives of the density of such a functional vanish identically for $\mathfrak g=\mathfrak{su}(2)$, they vanish identically for every Lie algebra $\mathfrak g$ with a nondegenerate invariant symmetric pairing.
+\end{lemma}
+
+\begin{proof}
+By invariance of the pairing, every tree tensor with $k$ legs is a sign times $(b(X_1,\dots,X_{k-1}),X_k)$ for a bracket monomial $b$ of $X_1,\dots,X_{k-1}\in\mathfrak g$, each used once. Hence the tree tensors with $k$ legs are the values of a linear map, natural in $\mathfrak g$ and equivariant under permutations of the legs, from the space of formal trees modulo antisymmetry and the Jacobi identity, which is the multilinear part of the free Lie algebra on $k-1$ letters, of dimension $(k-2)!$. For $\mathfrak g=\mathfrak{su}(2)$ this map has rank $1$, $1$, $2$, $6$ for $k=2,3,4,5$, computed exactly, so it is injective for $k\le5$, and averaging a left inverse over the permutations of the legs gives an equivariant left inverse. A functional of the stated form is therefore the evaluation in $\mathfrak g$ of a formal expression, a sum of jet polynomials times formal trees. Its Euler--Lagrange derivative along a field, paired with a fixed element of $\mathfrak g$ treated as one more leg, is again of this form, because differentiation acts on the jet polynomials and leaves the tree. The equivariant left inverse acts on the trees alone; applied to the vanishing $\mathfrak{su}(2)$ evaluation it shows that the formal Euler--Lagrange derivatives vanish, hence their evaluations vanish for every $\mathfrak g$.
+\end{proof}
+
+\begin{theorem}[Master equation of the equivariant action]
+\label{thm:c2-master}
+For every Lie algebra $\mathfrak g$ with a nondegenerate invariant symmetric pairing, $S_{\mathfrak{psl}(4|4)}=S+S^{(1)}+S^{(2)}$, with $S^{(1)}$, $S^{(2)}$ of Definitions \ref{def:c2-S1}--\ref{def:c2-S2} and $S^{(k\ge3)}=0$, is an action of $\mathfrak{psl}(4|4)$ on $(\mathscr E,\langle\,,\rangle,S)$: it satisfies \eqref{eq:c2-mc}, and $I_{\mathfrak{psl}(4|4)}=I+S^{(1)}+S^{(2)}$ satisfies $(d_{CE}+Q)I_{\mathfrak{psl}(4|4)}+\tfrac12\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}=0$.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lem:c2-components} it suffices to prove the components. Arity $0$ is Proposition \ref{prop:c1-cme}. The components of arity $\ge4$, and of arity $3$ with at most one or with three odd arguments, hold for every $\mathfrak g$ by Proposition \ref{prop:c2-tower}. The remaining components, of arities $1$ and $2$ and of arity $3$ with exactly two odd arguments, vanish for $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$ for all arguments (Remark \ref{rem:c2-method}). Each of them is of the form of Lemma \ref{lem:c2-colour}: every term of $S$, $S^{(1)}$, $S^{(2)}$ is a tree tensor in at most four, three and two $\mathfrak g$-components respectively, built from $(-,-)$ and $[-,-]$; the bracket of Definition \ref{def:c1-bracket} contracts one leg of each factor with the inverse pairing and joins two trees into a tree; so every term has at most $4+3-2=5$ legs. By Lemma \ref{lem:c2-colour} these components vanish for every $\mathfrak g$. The equation for $I_{\mathfrak{psl}(4|4)}$ is [ESW, Rem 1.29]. On the subalgebra of Axiom \ref{ax:c2-esw} the statement is [ESW, Thm 3.3].
+\end{proof}
+
+\begin{remark}[Physical reading]
+For an even $v$ and $Q_1$ odd, $S^{(2)}(v,Q_1)=0$ and the arity-two equation is
+\[
+S^{(1)}([v,Q_1])=-\{S^{(1)}(v),S^{(1)}(Q_1)\}:
+\]
+the conformal and R-symmetry transformations, with the Weyl weights of Example \ref{ex:c2-dil}, commute with the supersymmetry transformations off shell. For two odd elements,
+\[
+\{S^{(1)}(Q_1),S^{(1)}(Q_2)\}=S^{(1)}([Q_1,Q_2])+\{S,S^{(2)}(Q_1,Q_2)\},
+\]
+where $[Q_1,Q_2]$ is a conformal Killing vector field plus an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$; $\{S,S^{(2)}\}$ contains the fermion equation of motion (the $\lambda^*\lambda^*$ terms) and the gauge transformation with field-dependent parameter $\iota_{\Gamma(Q_1,Q_2)}A$ (the $c^*$ term).
+\end{remark}

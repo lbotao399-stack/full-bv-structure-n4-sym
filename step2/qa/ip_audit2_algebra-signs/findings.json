@@ -1,0 +1,140 @@
+{
+ "audit": "ip_audit2, lens: algebra and signs",
+ "date": "2026-10-29",
+ "target": [
+  "step2/theory/inner_product_design.tex",
+  "step2/theory/engine_plan_ip.json",
+  "step2/theory/inner_product_checks.py",
+  "manuscript/ch08_definitions.tex (used parts)",
+  "step2/theory/conjugation.tex (input)",
+  "step2/theory/two_point_design.tex (input)"
+ ],
+ "scripts": {
+  "a1_algebra_conjugation.py": "two-component realisation of Def c8-twocomp; psl(4|4) of Chapter 2 from the printed brackets (62x62 structure constants, exact on the 1/8 lattice); conjugations dagger, dagger_n, Ad(C); B; real form; uniqueness. Output a1_results.json (29 s, 0.21 GB).",
+  "a2_fields_reflection.py": "BV densities of S, S^(1), S^(2) with Grassmann jets; Theta_n (Def c8-Theta) and Theta_I (Prop c8-C) pointwise; controls with wrong signs. Output a2_results.json (<1 s, 0.04 GB).",
+  "a3_twopoint_gram_signs.py": "t-parameter bookkeeping of Def c8-2pt; free radial two-point values of O_zeta and K with Theta_I; coefficient-column Gram algebra; Konishi weight-3 data; radius of the inversion sphere. Output a3_results.json (15 s, 0.10 GB).",
+  "a4_kernels_rescalings.py": "reflection compatibility of P and K_t in position space; rescaling relations of Thm ip-P (ii) against the representation property with D_1 != 0. Output a4_results.json (<1 s, 0.08 GB)."
+ },
+ "process_note": "one process at a time; the first run of a1 peaked at 1.8 GB RSS for about 30 s (dense Kronecker systems) before being rewritten to accumulate normal matrices; all runs reported in the result files are below 0.25 GB. No Wolfram, nothing written outside this folder, no process left running.",
+ "verified": [
+  {
+   "claim": "Def c8-twocomp realises rho, (-,-), Gamma: Clifford relation, symmetry of rho for the pairing, rho(e1e2e3e4) = +1 on S_+(x)W (and the other three chirality blocks), ESW Assumption 3.1 (rho(Gamma(Q,Q))Q = 0), the printed Gamma components and (Gamma,u) = Gamma^m u_m + 1/4 Gamma_ij u^ij; 't Hooft identities sum Sigma Sigma = 2 eps, conj(Sigma^I) = 1/2 eps Sigma^I",
+   "evidence": "a1_results.json 1_realisation (all true)"
+  },
+  {
+   "claim": "Lemma c8-cc: the two-component map (eta = conj xi, etabar = -conj xibar) is involutive, intertwines rho(v) with rho(conj v) for all v in V_10, is positive, Gamma(conj z3, conj z4) = conj Gamma(z3,z4); the space of equivariant antilinear maps Sigma<->Sigma^* is one-dimensional",
+   "evidence": "a1_results.json 2_spinor_conjugation (dim = 1)"
+  },
+  {
+   "claim": "Chapter-2 bracket closes on the ten named subspaces with graded antisymmetry and super-Jacobi (max violation 0 on all 62^3 triples); ad_Delta = -2, 0, +2, 0, -1, +1 on P, rotations, K, so(W), Sigma, Sigma^*; [K_b,P_b'] = (b,b')Delta + rotation; Delta-part of [xi,eta] = 1/2 (xi,eta) Delta",
+   "evidence": "a1_results.json 3_psl44"
+  },
+  {
+   "claim": "Def c8-dag / Thm c8-dag: (X^dag)^dag = X, [X,Y]^dag = [Y^dag,X^dag] on all 62^2 basis pairs (control c = i fails); (Q^i_alpha)^dag = -S^alpha_i, (Qbar_{alphadot i})^dag = Sbar^{alphadot i}, (S^alpha_i)^dag = -Q^i_alpha, (Sbar)^dag = Qbar; P_b^dag = -K_{bbar} (complex b), K_b^dag = -P_{bbar}, Delta^dag = Delta, real rotations -> minus themselves, so(W) acts anti-Hermitian on the W index (matrix adjoint on su(4)); two-component formulas of xi^dag, eta^dag; Delta-part of [X,X^dag] = -1/2 (X, conj X) Delta on all four odd blocks; X -> -X^dag (even), -i X^dag (odd) is an antilinear involutive automorphism whose even fixed points have Killing signature (7 negative, 8 positive) on the conformal ideal and (15 negative) on so(W): psu(2,2|4); the odd maps compatible with the even part form a 2-dimensional space and e^{tB}(+-1)^{|X|} dagger are involutive anti-automorphisms; B is an outer derivation anticommuting with dagger",
+   "evidence": "a1_results.json 4_radial_conjugation"
+  },
+  {
+   "claim": "Def c8-Theta dagger_n: involutive anti-automorphism, Delta^{dag_n} = -Delta, P_n^{dag_n} = P_n, two-component formula of xi^{dag_n}, [Q,Q^{dag_n}] = (Q,conj Q) P_n + translations orthogonal to n, B anticommutes with dagger_n; Prop c8-C: C equals the time -pi/4 flow of P_n - K_n, maps the half space to the ball and the hyperplane to the sphere, C r_n C^{-1} = I, and X^dag = Ad(C)((Ad(C)^{-1}X)^{dag_n}) (max dev 1.6e-15; with C_{pi/4} the factor (-1)^{|X|})",
+   "evidence": "a1_results.json 5_reflection_and_C"
+  },
+  {
+   "claim": "Block assignment P (2,1), K (1,2), Q^i_alpha (3,1), Qbar (2,3), S^alpha_i (1,3), Sbar (3,2): every block rescaling r = s_a - s_b is a derivation; s = (1,-1,0) is ad_Delta and s = (0,0,1) is B (Thm ip-P (ii) block model, C9)",
+   "evidence": "a1_results.json 6_blocks"
+  },
+  {
+   "claim": "Thm c8-fields (i): S^{Theta_n} = S, S^(1)(X)^{Theta_n} = (-1)^{|X|} S^(1)(X^{dag_n}), S^(2)(X,Y)^{Theta_n} = S^(2)(Y^{dag_n},X^{dag_n}) pointwise in the densities for random even/odd X (controls: s_lambda = -1 and the opposite odd sign in dagger_n fail on S^(1)(odd)); Prop c8-C: the same for Theta_I with dagger, pointwise except the scalar kinetic term, whose deviation equals -1/4 sum_I d_mu((x,x)^{-1} d_mu (x,x)^{-1} (phi_I,phi_I)) (difference 7e-12); controls fail",
+   "evidence": "a2_results.json"
+  },
+  {
+   "claim": "Thm c8-fields (ii): the kernel identities sum conj(M_ac M_bd)(-1)^{|c||d|} phi_cd(r_n x,r_n y) = lambda conj(phi_ab(x,y)) hold with lambda = +1 for P (components of ch03 Prop c3-P) and lambda = -1 for K_t (opposite lambda fails); P is graded symmetric",
+   "evidence": "a4_results.json K1_kernel_reflection"
+  },
+  {
+   "claim": "Cor c8-gram in the coefficient-column convention: <Xa,b> = <a,Yb> for <a,b> = conj(a)^T Gram b is equivalent to conj(X)^T Gram = Gram Y; order expansion Y1 = X1^adj + [Y0, Gt^{-1}G1]; the S_1 line along S^alpha_i = -(Q_1 along Q^i_alpha)^adj + hbar[{S^(1)(S),-}, Gt^{-1}G1] from (Q^i_alpha)^dag = -S^alpha_i; the remaining lines (Sbar, K, D) follow with the verified dagger signs; graded relation eq:ip-graded re-derived by hand",
+   "evidence": "a3_results.json G3 (all true); hand derivation in this audit"
+  },
+  {
+   "claim": "Prop ip-desc (2(w+kappa), 32(w+kappa)(w+kappa-1)), Thm ip-origin eq:ip-origin and its x->0 criterion, Prop ip-konishi (q+s = -12, s - conj q = m_zeta - m_K and the G_B / psi' covariance), Prop ip-twenty, Prop ip-weight3 (i)-(iv) with the design's definitions X_{B zeta} = -kappa_B - c_B' unit: re-derived by hand; all consistent",
+   "evidence": "hand derivations in this audit; a3 G3"
+  },
+  {
+   "claim": "Konishi weight-3 data: (rho(1/2[A^A]) xi)_alpha^i = -1/2 [A^{ik},A_{kj}] u_alpha w^j; B_w := -2(rho(1/2[A^A])xi, rho(A_W)zeta) = ([A^{ik},A_{kj}w^j],A_{il}w^l) for xi = u(x)w, zeta = u'(x)w, u' = (-conj u_2, conj u_1)/|u|^2 with u'^alpha u_alpha = 1 and (zeta,conj xi) = 0; the field-strength terms with F_V and F_{VW} and the fermion term (lambda, rho(Gamma(xi,lambda)|_W) zeta) vanish identically, so {S^(1)(xi),O_zeta} = kappa_B B_w exactly with |kappa_B| = 1/4; flavour sum sum|c_[IJK]|^2 = 48 |w|^4; with positive tree norms k = -24 (D_1(O_zeta) = -48 unit)",
+   "evidence": "a3_results.json G4"
+  },
+  {
+   "claim": "Free radial values with Theta_I (s_lambda = -1): hbar d_P(O_zeta(x)^{Theta_I} O_zeta'(0)) = +24 hbar dim g (conj zeta, zeta')/(16 pi^4), independent of x in the unit ball (s_lambda = +1 gives the opposite sign); K: 48 hbar dim g/(16 pi^4); n_zeta/n_K = 1/2 = 2/tau^2 for |tau| = 2",
+   "evidence": "a3_results.json G2"
+  }
+ ],
+ "findings": [
+  {
+   "id": "F1",
+   "severity": "major",
+   "location": "ch08 Def c8-2pt (eq. lines 474-478) with Thm c8-adjoint (Ward-identity hypothesis, line 505) and Def c8-inner; inherited by inner_product_design.tex Rem ip-spin (line 153), Prop ip-tree, Prop ip-konishi, Prop ip-twenty, Prop ip-weight3, Thm ip-logic (i); engine_plan_ip.json conventions_to_fix_in_code.two_point (line 38), signs_recorded[2] (line 43), gate G0.1 (line 96), open_items[0] (line 269); two_point_design.tex def:t-2pt (eq:t-def) with thm:t-ward (eq:t-ward)",
+   "claim": "The two-point function of Def c8-2pt (d_{t2} d_{t1} W with the odd parameters written on the left, 'the coefficient of t1 t2') equals (-1)^{|O1||O2|} times the expectation hbar d_P(O1 O2) with O1 on the left. On fermionic families (O_zeta, the 20 at weight 5/2, Fbar_w) it is therefore negative definite, and for an odd generator Y it satisfies <Lambda(Y)F,G> = -(-1)^{|Y|(|F|+1)} <F,Lambda(Y)G>, which is the opposite of the hypothesis <Lambda(Y)F,G> = -(-1)^{|Y||F|} <F,Lambda(Y)G> of Thm c8-adjoint (the hypothesis is the Ward identity of the expectation form; even generators are unaffected). Cor c8-gram, Thm ip-graded and the test equations T0-T3 hold for the expectation form only. Combining them with the literal Def c8-2pt values gives a contradiction at tree level (T0 would require tau sigma = +2, against the representation property tau sigma = -2) and T3 (iv) would give k = +24. The design and the engine plan treat the fermionic sign as open and 'fix' the tree sign by positivity (G0.1, open_items[0]), but the sign is determined by the definition; an engine that computes the one-loop graphs with the literal definition and flips only the tree sign obtains m_zeta, m_20, m_F with the wrong sign, which corrupts T1 (s' - conj q' = m_20 - m_20'), T2 (s - conj q = m_zeta - m_K) and T3 (i), (ii) (U, V carry n_zeta, n_F). tp eq:t-ward has the expectation-form sign although tp def:t-2pt is the t1 t2 coefficient.",
+   "evidence": "a3_results.json G1: coefficient of t1 t2 O1 O2 in (t1 O1)(t2 O2) is -1 for odd O1, O2; Ward-sign table: for |Y| = 1 the t1t2 form has the sign opposite to the hypothesis of Thm c8-adjoint, the expectation form agrees. G2: the expectation value on O_zeta is +24 hbar dim g (conj zeta, zeta')/(16 pi^4) (positive, x-independent, with the verified Theta_I of a2), so Def c8-2pt gives -24. Prop ip-tree's own derivation (tree adjointness + tau sigma = -2) forces n_zeta/n_K = 2/|tau|^2 > 0, which holds for the expectation form and fails for the literal definition. G4: k = -24 with the positive norm, +24 with the literal one.",
+   "fix": "ch08 Def c8-2pt: replace '\\lim_{\\varepsilon\\to0}\\partial_{t_2}\\partial_{t_1}W\\big(P(\\varepsilon,\\infty),\\,\\cdots\\big)\\Big|_{e=0}, the coefficient of $t_1t_2$ at the zero field' by '\\lim_{\\varepsilon\\to0}\\partial_{t_1}\\partial_{t_2}W\\big(P(\\varepsilon,\\infty),\\,\\cdots\\big)\\Big|_{e=0}, the coefficient of $t_2t_1$ at the zero field, i.e. $(-1)^{|O_1||O_2|}$ times the coefficient of $t_1t_2$; at tree level it is the free expectation $\\hbar\\partial_{P(0,\\infty)}(O_1O_2)$ with $O_1$ on the left, the form for which the Ward identity of Theorem \\ref{thm:c8-adjoint} holds'. Same change in two_point_design.tex eq:t-def. engine_plan_ip.json: conventions_to_fix_in_code.two_point -> 'd_t1 d_t2 W (coefficient of t2 t1) = expectation form'; signs_recorded[2] and open_items[0] -> 'no sign is fixed by hand; the fermion-line sign follows from the definition'; G0.1 -> 'G0 Hermitian positive definite on every family (a genuine gate, computed with the definition above)'. inner_product_design.tex Rem ip-spin: replace 'which fixes the sign left open in [tp, prop:t-census-zeta]' by 'and the two-point function of [ch08, def:c8-2pt] (coefficient of t2t1) gives the sign +'."
+  },
+  {
+   "id": "F2",
+   "severity": "minor",
+   "location": "inner_product_design.tex Thm ip-P (ii) (line 278) and its use in (iii)",
+   "claim": "The odd-generator consequences of (ii) (r_xi + r_eta = 0 for xi in S_+(x)W, eta in S_+(x)W^*, and in the other chirality, r_xi + r_xi' = r_P, 'the two free parameters are the inner direction by Delta and the outer direction B') do not follow under the stated hypothesis 'plus the anomalous D_1': the order-hbar part of [rho(xi),rho(eta)] = rho([xi,eta]) contains -1/2 (xi,eta) D_1 from the dilatation part of [xi,eta], which is not proportional to rho_0([xi,eta]). On the Konishi pair the rescalings of (ii) are exactly q and s of Prop ip-konishi and the representation property gives r_xi + r_{xi^dag} = r_Delta + k/2 = -12 (the design's own T2, q + s = -12), not 0. The even-generator conclusions (r_Delta = r_rot = 0, r_K = -r_P) are unaffected, the D_1 part of [K_b,P_b'] being matched by the anomalous K_1 of Lemma ip-W.",
+   "evidence": "a4_results.json R1: order-u relation r_xi + r_xidag = k/2 + r_Delta, = -12 for r_Delta = 0, k = -24; Prop ip-konishi eq:ip-konishi.",
+   "fix": "In Thm ip-P (ii) restrict the odd-generator statements to families with D_1 = 0 (the 20' multiplet), e.g. insert after 'whenever $[x,y]\\neq0$ on the family': 'for even $x,y$, and for odd $x,y$ on families with $D_1=0$; on a family with $D_1\\neq0$ the odd relations are those of Propositions \\ref{prop:ip-konishi}, \\ref{prop:ip-twenty} (on the Konishi pair $r_\\xi+r_{\\xi^\\dagger}=r_\\Delta-12$)'."
+  },
+  {
+   "id": "F3",
+   "severity": "minor",
+   "location": "inner_product_design.tex proof of Thm ip-P (v) (line 291)",
+   "claim": "'[rho(Delta),rho(P_b)] = rho([Delta,P_b]) = 2 rho(P_b)' has the wrong sign: [Delta,P_b] = -2 P_b (ad_Delta = -2 on translations, ch02 Def c2-even, Rem c2-dilatation), as also used correctly in the proof of (ii) ('[Delta,P_b] = -2P_b') and (iii) (eigenvalue -2 d_x). The conclusion r_Delta = 0 is unaffected.",
+   "evidence": "a1_results.json 3_psl44: ad_Delta on P = -2 (exact).",
+   "fix": "Replace '\\rho([\\Delta,P_b])=2\\rho(P_b)' by '\\rho([\\Delta,P_b])=-2\\rho(P_b)'."
+  },
+  {
+   "id": "F4",
+   "severity": "minor",
+   "location": "inner_product_design.tex Rem ip-radius (line 232)",
+   "claim": "For the inversion R^2 I in the sphere of radius R the radial Gram of an operator of scaling dimension w+kappa is R^{-2(w+kappa)} times that of the unit sphere, not R^{+2(w+kappa)}. Hence a multiplication of the Gram on weight w by 1 + 2c unit w (the normalisation U = 1 + c unit w of Thm ip-P (iii)) corresponds to log R = -c unit, not +c unit; with the normalisation of Thm ip-laws (a) to which the Remark refers (U = 1 + 2c unit w, Gram multiplied by 1 + 4c unit w) it is log R = -2c unit; and the change ell -> lambda ell of (e) (Gram multiplied by lambda^{2 kappa}) corresponds to R = 1/lambda relative to the unit of epsilon.",
+   "evidence": "a3_results.json G5: lim_{x->0} (R^2/|x|^2)^Delta c |R^2 x/|x|^2|^{-2 Delta} = c R^{-2 Delta}.",
+   "fix": "Replace 'is $R^{2(w+\\kappa)}$ times that of the unit sphere. The inner direction of Theorem \\ref{thm:ip-laws} (a) is the classical part $R^{2w}$, $\\log R=c\\,\\unit$, and the change of $\\ell$ in (e) is the one-loop part $R^{2\\kappa}$' by 'is $R^{-2(w+\\kappa)}$ times that of the unit sphere. The basis change $1+c\\,\\unit\\,w$ of Theorem \\ref{thm:ip-P} (iii) is the classical part $R^{-2w}$ with $\\log R=-c\\,\\unit$ (the inner direction of Theorem \\ref{thm:ip-laws} (a), $U=1+2c\\,\\unit\\,w$, has $\\log R=-2c\\,\\unit$), and the change of $\\ell$ in (e) is the one-loop part $R^{-2\\kappa}$ with $R=\\lambda^{-1}$'."
+  },
+  {
+   "id": "F5",
+   "severity": "minor",
+   "location": "inner_product_design.tex Thm ip-laws (a), example (line 209)",
+   "claim": "'+-4a with the sign of [ch01, def:c1-bracket]' leaves open a sign that is fixed by the convention used in the same theorem: {S^(1)(v),O} is the variation delta_v O with delta_v A = L_v A (this gives {S^(1)(Delta),f(0)} = 2w f(0), used in the proof of (a)); hence {int(A_W,A^*_W),(iota_a A,iota_b A)} = +2(iota_a A,iota_b A), U = 1 + 2a hbar and both constants of Example ip-scalars shift by +4a, as in tp.",
+   "evidence": "Def c1-bracket: Delta_0 = -d_{K_0}, K_0 component A^* (x) A equal to -delta times the inverse pairing, no Koszul sign for the even factors in front of A^*; the same computation gives {S^(1)(Delta),(A_W,A_W)(0)} = 4 (A_W,A_W)(0) = 2w with w = 2.",
+   "fix": "Replace '$\\pm4a$ with the sign of [ch01, def:c1-bracket] ($+4a$ in [tp, rem. after cor:t-checks])' by '$+4a$ (the convention $\\{S^{(1)}(\\Delta),f(0)\\}=2w\\,f(0)$ of (a) below; as in [tp, rem. after cor:t-checks])'."
+  },
+  {
+   "id": "F6",
+   "severity": "minor",
+   "location": "step2/theory/inner_product_checks.py C8 (docstring line 21, Urel lines 331-333); cited by Prop ip-weight3",
+   "claim": "C8 codes the order-sqrt(unit) relation as conj(kappa_B) n_B = n_zeta U, i.e. U = +conj(kappa_B) n_B/n_zeta (also in the docstring), opposite to Prop ip-weight3 (i) U = -conj(kappa_B) n_B/n_zeta, which is what the design's own definitions give (X_{B zeta} = -kappa_B - c_B' unit for the matrix of -Lambda^(1)(xi), Y_{zeta B} = U). The value is only stored as a string and is not tested, so [checks, C8] does not cover (i).",
+   "evidence": "inner_product_checks.json C8_weight3.order_sqrt_unit_relation_U = 'kappa_B*n_Bp*u/n_zeta'; hand derivation: entry (O_zeta,B_w) of conj(X)^T Gram = Gram Y gives -conj(kappa_B) n_B = n_zeta U.",
+   "fix": "In C8 use sp.Eq(-sp.conjugate(kB)*u*nBp, nz*U), assert the result equals the design's (i), and change the docstring to 'U = -conj(kappa_B) n_B/n_zeta'."
+  },
+  {
+   "id": "F7",
+   "severity": "minor",
+   "location": "ch08 Thm c8-L (iv) (line 216), Def c8-components (line 233), Thm c8-adjoint (line 505)",
+   "claim": "The symbol |O| is used for two gradings. In Lambda^(1)(x)O = (-1)^{|O|(1+|x|)}{S^(1)(x),O} it must be the ghost number (degree in C^* in arity zero): with |O| the total parity (the reading suggested by ch02 Def c2-cochains, 'an element of degree 0 has values of parity k + sum|x_i|', and by the graded symmetry of Def c1-bracket), on a fermionic operator such as O_zeta and even x,y one gets Lambda^(1)(x) = -{S^(1)(x),-} and [Lambda^(1)(x),Lambda^(1)(y)] = +Lambda^(1)([x,y]), contradicting Cor c8-homotopy (ii). In the Ward identity of Thm c8-adjoint, |F| must instead be the total parity (with the ghost number, 0 for all operators considered, the sign would be wrong for odd F and odd Y). The design uses the consistent readings (T3 (iv): -Lambda^(1)(Delta)O_zeta = -(5 + 2k unit)O_zeta).",
+   "evidence": "Direct computation from Cor c8-homotopy (ii) (mod hbar identity [{S^(1)(x),-},{S^(1)(y),-}] = -{S^(1)([x,y]),-} - ...), for even x, y on an odd O.",
+   "fix": "Thm c8-L (iv): replace '$\\Lambda^{(1)}(x)O=(-1)^{|O|(1+|x|)}\\{S^{(1)}(x),O\\}$' by '$\\Lambda^{(1)}(x)O=(-1)^{\\mathrm{gh}(O)(1+|x|)}\\{S^{(1)}(x),O\\}$ with $\\mathrm{gh}(O)$ the ghost number (on local functionals of ghost number $0$, of either Grassmann parity, $\\Lambda^{(1)}(x)=\\{S^{(1)}(x),-\\}$)', and in Thm c8-adjoint add 'where $|F|$, $|Y|$ denote total parities'."
+  },
+  {
+   "id": "F8",
+   "severity": "minor",
+   "location": "inner_product_design.tex Prop ip-weight3, two-component paragraph (line 369)",
+   "claim": "Sigmabar^{Iij} is not defined in Chapter 8 (no-new-notation rule). The printed A^{ij} = -A_I Sigmabar^{Iij} and c_IJK = -Sigmabar^{Iik} Sigma^J_kj w^j Sigma^K_il w^l are correct only if Sigmabar^I is the conjugate transpose (Sigma^I)^dagger, as in the check C11; with the natural reading Sigmabar = complex conjugate both signs are wrong, since A^{ij} = 1/2 eps^{ijkl} A_kl = +A_I conj(Sigma^I_ij).",
+   "evidence": "a1_results.json thooft_conj_equals_half_eps (conj Sigma^I = 1/2 eps Sigma^I); a3_results.json G4 flavour sum 48 computed with c_IJK = conj(Sigma^I_ik) Sigma^J_kj w^j Sigma^K_il w^l.",
+   "fix": "Replace '$A^{ij}=-A_I\\bar\\Sigma^{Iij}$, $c_{IJK}=-\\bar\\Sigma^{Iik}\\Sigma^J_{kj}w^j\\Sigma^K_{il}w^l$' by '$A^{ij}=\\tfrac12\\varepsilon^{ijkl}A_{kl}=A_I\\,\\overline{\\Sigma^I_{ij}}$, $c_{IJK}=\\overline{\\Sigma^I_{ik}}\\,\\Sigma^J_{kj}w^j\\Sigma^K_{il}w^l$'."
+  }
+ ],
+ "open_issues": [
+  "CH08: def:c8-2pt: the coefficient of t1t2 with left-placed odd parameters is (-1)^{|O1||O2|} times the expectation hbar d_P(O1 O2); it is negative on fermionic operators and violates the Ward-identity hypothesis of thm:c8-adjoint for odd generators, so cor:c8-gram (S_1 lines) and the positivity of Gram_tree fail with the literal definition; evidence: step2/qa/ip_audit2_algebra-signs/a3_results.json G1, G2, G4; proposed fix: replace 'lim_{eps->0} \\partial_{t_2}\\partial_{t_1}W(...)|_{e=0}, the coefficient of $t_1t_2$ at the zero field' by 'lim_{eps->0} \\partial_{t_1}\\partial_{t_2}W(...)|_{e=0}, the coefficient of $t_2t_1$ at the zero field (equal to $(-1)^{|O_1||O_2|}$ times the coefficient of $t_1t_2$; at tree level the free expectation $\\hbar\\partial_{P(0,\\infty)}(O_1O_2)$ with $O_1$ on the left)'.",
+  "CH08: thm:c8-L (iv): |O| in (-1)^{|O|(1+|x|)} must be the ghost number, not the total parity (otherwise -Lambda^(1) is not a representation on fermionic operators for the even subalgebra, against cor:c8-homotopy (ii)); evidence: hand computation from cor:c8-homotopy (ii) on an odd O; proposed fix: '$\\Lambda^{(1)}(x)O=(-1)^{\\mathrm{gh}(O)(1+|x|)}\\{S^{(1)}(x),O\\}$, $\\mathrm{gh}(O)$ the ghost number; in thm:c8-adjoint $|F|$, $|Y|$ are total parities'."
+ ],
+ "not_refuted": "The conjugation on psl(4|4) (involution, anti-automorphism, (Q^i_alpha)^dag = -S^alpha_i, (Qbar)^dag = Sbar, P_b^dag = -K_bbar, Delta^dag = Delta, real form psu(2,2|4), uniqueness up to e^{tB}), the reflection dagger_n and the identity X^dag = Ad(C)((Ad(C)^{-1}X)^{dag_n}), the field realisations Theta_n (exact, pointwise) and Theta_I (pointwise up to the stated total derivative), the kernel compatibility of P and K_t, the Gram relation of Cor c8-gram in the coefficient-column convention and its graded form, and the two-component forms checked here are correct. No wrong claim of exact reflection invariance was found: Theta_n is an exact symmetry of S, S^(1), S^(2), P, K_t; Theta_I is not (scalar kinetic total derivative), as stated."
+}

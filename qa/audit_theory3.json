@@ -1,0 +1,186 @@
+{
+ "audit": "theory audit round 3 (adversarial, lens: theory)",
+ "date": "2026-10-28",
+ "inputs_read": [
+  "DESIGN.md",
+  "DEFINITIONS_v2.md",
+  "STORY.md",
+  "manuscript/FORMAT.md",
+  "sources/ledger_SYNTHESIS.md",
+  "manuscript/ch00_overview.tex",
+  "manuscript/ch01_classical.tex",
+  "manuscript/ch02_superconformal.tex",
+  "manuscript/ch03_uv_boundary.tex",
+  "manuscript/ch04_counterterms.tex",
+  "manuscript/ch05_operators.tex",
+  "manuscript/ch06_dilatation.tex",
+  "manuscript/ch07_selection_roadmap.tex",
+  "qa/audit_theory2.json"
+ ],
+ "independent_checks": [
+  "Numerical check of the three double Schwinger integrals of Lemma c4-integrals (mpmath, eps = 1e-3, 1e-4, 1e-5): I - (a/eps + b log eps) converges.",
+  "Hand re-derivation of every displayed per-graph coefficient in Examples c4-* and c5-*.",
+  "Sign of Lemma c4-count from the finite-dimensional C07 formulas (K_0 * x = x checked).",
+  "Sign of the anomalous dimension from an explicit momentum-space scaling of O + b log p^2 and from the Callan-Symanzik relation gamma_O = 2b + 2 gamma_phi.",
+  "Comparison of the quadratic log counterterms with the standard Feynman-gauge N=4 renormalisation constants (sanity only).",
+  "Structural analysis of (d_CE+Q)O[inf] at hbar^0 via the cochain-map property, giving T3-04.",
+  "Explicit A|_V-slot zero-mode class phi = x_1 dx_2 (T3-02)."
+ ],
+ "verdicts": {
+  "ch00_summary": "PARTLY REFUTED: Ch2 bullet stale (T3-01); acyclicity paragraph overclaims (T3-02); boundary-edge sentence overstated (T3-13); Ch7 bullet overstated (T3-07). All numbers in the Ch3-Ch6 bullets and the table agree with the chapters (9/4, -1, 4, -1; 6,6,10,10,1,1,1,1,8,8,8; -27/8 = 27/16 Q; 4, -2, 2 hbar dim g; 1-4u log eps, 1+8u log eps, -12 hbar dim g; 0, -24, -4, -4, -8, -2; unit = -g^2N/(32 pi^2), -24 unit = 3g^2N/(4 pi^2)).",
+  "ch04_counterterm_definition": "CONFIRMED in the computed sectors; locality/power counting for all other graphs assumed, not proved (T3-03).",
+  "ch04_boundary_method": "CONFIRMED (Prop c4-boundary, Cor c4-sing, Lemma c4-gauss; Lemma c4-integrals re-derived by hand and checked numerically: remainders converge to -0.13550, -0.27036, -0.03117 at eps=1e-5).",
+  "ch04_two_point_examples": "CONFIRMED by hand (gauge bubble: Laplacian 36, coefficients -9/16, 19/24, -1/8; gaugino: 64, -1, -4/3 transverse; ghost: -4, 1/16, 1/24, 1/8; seagull 3/2; c-A^*: -1). The totals reproduce the standard Feynman-gauge N=4 Z-factors with -log eps <-> 1/eps_DR: Z_3 = Z_phi = 1-2g^2N/(16pi^2 eps), Z_lambda = 1-4g^2N/(16pi^2 eps), ghost 1+g^2N/(32pi^2 eps).",
+  "ch04_field_renormalisation_theorem": "CONFIRMED given T3-03: the sign of Lemma c4-count was rederived from K_0=-(x(x)xi+xi(x)x), Delta_0=d_x d_xi and <x,xi>=1; the weights 2,4,1 reproduce all 15 sector multiples; Cor c4-coupling's decomposition is unique and the coupling direction is legitimate, because the theory depends only on hbar(-,-)^{-1}.",
+  "ch04_D_eps_and_defect_flow": "CONFIRMED (Def c4-defect, Prop c4-defectflow, Prop c4-defect1: the sign of Q W = d_delta W(P, J + delta D_eps) was checked; Delta_eps I = 0 by colour).",
+  "ch04_QME_obstruction_and_finite_counterterm": "CONFIRMED: no log eps in special-edge bubbles (integer powers of eps after rescaling to [0,1]x[1,inf)); eps^{-1}: -9/4+1/8-9/2+2+1/8+9/2 = 0; finite -5/8-1/12-5/4-4/3-1/12 = -27/8 = (27/16)(-2); Q int(d^*A,d^*A) = -2 int(d^*dc,d^*A); Rem c4-selfenergy consistent; Thm c4-finite and Prop c4-K (d^*(L_vA) formula, -8 int(d^*A, iota_{v1}A)) verified by hand. The obstruction is established only in the (c,A|_V) sector, as the text says.",
+  "ch05_O_eps_and_O_infty": "CONFIRMED (definitions, uniqueness argument, letters O(eps)=O, graph values (a)-(f) recomputed by hand: 2 hbar dim g (w1,w2)/(16 pi^2 eps); (e) 2O-2(w1,w2)tr; (f) 2O; (c)+(d)=0). Prop c5-thmB is overstated for general O (T3-03). Prop c5-local item 3 refuted (T3-02).",
+  "ch05_theoremB_adaptation": "CONFIRMED for the operators computed (graph-by-graph, one O vertex, finite sums); general existence not proved (T3-03).",
+  "ch05_link_to_acyclicity": "REFUTED as stated: 'finitely many zero-mode classes' and 'decaying sections' (T3-02). The correct statement is moment-free Schwartz acyclicity plus infinitely many polynomial zero-mode classes on E_c, including A|_V-slot classes.",
+  "ch06_scaling_covariance": "CONFIRMED (sigma_lambda Q^GF = lambda^2 Q^GF sigma_lambda; (sigma x sigma)K_t = K_{lambda^2 t}; (sigma x sigma)P(eps,inf) = P(lambda^2 eps,inf); sigma W = W(P(lambda^2 eps), sigma J); Lemma c6-ct matching of eps^{-1}, log eps).",
+  "ch06_Callan_Symanzik_theorem": "CONFIRMED mod hbar^2 (signs checked by an explicit momentum-space scaling of O + b log p^2: the generator gives +2b); depends on the uniqueness of I^CT (T3-03).",
+  "ch06_dilatation_statement_signs_normalisation": "CONFIRMED for the scalar bilinears: [..](Delta) = 2(E+w_O+coef)O[inf] with Delta=2E of [SW,(17)], -(E+w_O+coef) for -E of [SW,(3)]; coef = 2(b_O - u{G,O}) equals gamma_O = 2b + 2 gamma_phi with gamma_phi = -4u (standard Feynman gauge); traceless 0, trace -24u = +3g^2N/(4pi^2) (Konishi, positive); the boundary table -20+4-16+8 = -24 and 4+4-16+8 = 0 checked. Conditional on the Step-2 identification eq c6-step2, as stated; that identification is false at hbar^0 for gauge-variant O (T3-04); cocycle condition missing (T3-05); letter A|_V row ambiguous (T3-11).",
+  "ch07_selection_rules": "CONFIRMED: Lemma c7-image, Lemma c7-weights, Prop c7-cov, Cor c7-equiv, Cor c7-schur, Prop c7-dil ([v.,Q^GF] = -4Q^GF and (v.x1+1xv.)P = 4 eps L_eps checked, consistent with sigma_lambda), Prop c7-susy, Prop c7-select (under its hypotheses), Cor c7-Q and Cor c7-S (field-content and Schur arguments rechecked), Rem c7-KDelta ([K_{v1},P_{v2}] = (v1,v2)Delta + rotation, arity-2 identity). REFUTED: Cor c7-K second bullet for the letters A|_V and lambda (T3-06). Overstated: Rem c7-internal and the intro (T3-04, T3-07).",
+  "ch01_ch03_spot_checks": "No new theory error: Q, Q^GF, H, (Q^GF)^2, adjointness, P components, QP = K_eps, UV identity, one-loop STr formula (checked on the 1-dim Gaussian) and Cor c3-functionals all re-derived. ch02 Thm c2-master and Lemma c2-colour (ranks 1,1,2,6 equal (k-2)! and the su(2) invariant counts 1,1,3,6) are consistent."
+ },
+ "findings": [
+  {
+   "id": "T3-01",
+   "severity": "moderate",
+   "verdict": "REFUTED (summary inaccurate)",
+   "target": "ch00_overview.tex l.57 (Chapter 2 bullet) vs ch02 Thm thm:c2-master, Rem rem:c2-method, Lemma lem:c2-colour",
+   "gap": "ch00 says the components of arities 1-3 'hold for g=su(2) at sampled generators, with the probability bound stated there'. ch02 now proves Thm c2-master for every g: exact evaluation on every (unordered, repetitions allowed) basis tuple for su(2) and su(3), extended to all g by the colour-reduction Lemma c2-colour. ch02 states no probability bound; nothing in ch02 is sampled.",
+   "fix": "Replace the bullet by: 'The equivariant action S+S^(1)+S^(2), S^(k)=0 for k>=3, satisfies its master equation for every g with a nondegenerate invariant pairing: arities 0, >=4 and arity 3 with at most one or three odd arguments by structure; arities 1, 2 and arity 3 with two odd arguments by exact evaluation on a basis for su(2), su(3) and the colour-reduction lemma.'"
+  },
+  {
+   "id": "T3-02",
+   "severity": "moderate",
+   "verdict": "REFUTED as stated",
+   "target": "ch00 l.26-30; ch05 l.3 and Prop prop:c5-local item 3 (l.57); ch07 Rem rem:c7-content (l.31-33)",
+   "gap": "(i) The homotopy identity Q(P(0,inf)*a)+P(0,inf)*(Qa)=a on compactly supported a does not dualise to functionals of E_c: P(0,inf)*a is not compactly supported (decays like |x|^-2). ch03 proves acyclicity only for continuous functionals on moment-free Schwartz sections (Cor c3-functionals). (ii) 'finitely many zero-mode classes' is false: ch03 Thm c3-acyclic gives finitely many per polynomial-degree bound, infinitely many in total, and products of them give nonlinear classes. (iii) The list in Thm c3-acyclic (slots c, A|_Wperp, lambda) is not exhaustive and is not claimed to be; e.g. phi = x_1 dx_2 in the A|_V slot has Q phi = -1/2 d^*d phi = 0, the functional e -> <phi,e> = int (phi, e_{A^*|_V}) is Q-closed, and G o Q can depend on e_{A^*|_V} only through d^*e_{A^*|_V}, i.e. through exact phi; since d phi != 0 this class is nontrivial. (iv) 'functional of decaying sections' (ch05) is undefined.",
+   "fix": "State everywhere what ch03 proves: on moment-free Schwartz sections every Q-closed continuous polynomial functional without constant term is Q-exact (Cor c3-functionals); on E_c, Q has nonzero classes, among them the pairings with polynomial zero modes (finitely many in each degree, infinitely many in all, including A|_V-slot classes modulo exact one-forms). Remove 'finitely many' and 'therefore' in ch00 l.30, ch05 l.3, ch05 Prop c5-local item 3, ch07 Rem c7-content."
+  },
+  {
+   "id": "T3-03",
+   "severity": "moderate",
+   "verdict": "REFUTED as stated (proof gap: locality/power counting assumed, not proved)",
+   "target": "ch04 Lemma lem:c4-weights (l.341), Prop prop:c4-structure (l.366), Rem rem:c4-thmB (l.24), Def def:c4-ict (l.14); ch05 Prop prop:c5-thmB (l.37); ch00 l.17; ch06 Lemma lem:c6-ct (uniqueness of I^CT)",
+   "gap": "Lemma c4-weights proves homogeneity of the singular coefficients and concludes their weights only 'whenever these coefficients are local'. Prop c4-structure then uses it unconditionally to kill the eps^{-1/2}, eps^{-3/2} coefficients and all 1PI graphs with >=5 legs (negative superficial degree). A homogeneous function of negative degree vanishes only if it is a polynomial; for graphs with >=5 legs nothing is computed and nothing is proved. Rem c4-thmB states 'locality is a computed property, established below in every sector' and concludes that (eq c4-ict) 'is the one-loop counterterm of [C07, Thm B]' and that the order-hbar flow has a limit; [C07, Thm B] is for compact M and finite T and is not applicable here. Likewise Prop c5-thmB is stated for every local operator of degree 0 but its existence step rests on 'computed explicitly below for every operator of this chapter'. Uniqueness of I^CT (used in Lemma c6-ct, 'For J=I ... uniqueness') is never stated in ch04.",
+   "fix": "Add a lemma in ch04: for a one-loop graph with numerator homogeneous of degree D_num, after the Gaussian over the loop momentum w_gamma(eps)=int_{[eps,inf)^E} T^{-2-m} N(t/T,p) exp(-T Q(t/T,p)) dt (T = sum t_e); expanding exp(-T Q) in powers of T to order superficial degree/2 leaves an absolutely convergent remainder at eps=0, so the singular part is a polynomial in the leg momenta of degree <= superficial degree, and vanishes for superficial degree < 0. Then Lemma c4-weights applies unconditionally. Add the uniqueness argument of Prop c5-thmB for I^CT. Restrict Prop c5-thmB's existence claim to the operators computed, or rely on the new lemma. Rephrase Rem c4-thmB as 'the analogue on R^4, T=infinity, of the counterterm of [C07, Thm B]'."
+  },
+  {
+   "id": "T3-04",
+   "severity": "moderate",
+   "verdict": "REFUTED for gauge-variant O",
+   "target": "ch06 Prop prop:c6-classical (l.364), the assumption eq:c6-step2 in Cor cor:c6-dilcomp (l.265), the term list after eq:c6-uvobs (l.354-358), Rem rem:c6-step2 ('for every local operator of degree 0'); ch07 Rem rem:c7-internal (l.154-164) displayed identity",
+   "gap": "By the UV-boundary identity, at order hbar^0 (d_CE+Q)O[inf] is the flow of (d_CE+Q+{I_g,-})O. Its arity-one component along x_1 is (a) the tree flow of {S^(1)(x_1),O} and (b) the trees with one vertex (Q+{I,-})O and one vertex S^(1)(x_1). Prop c6-classical and the term list of ch06 l.354ff omit (b). For gauge-invariant O, (b)=0 and the statements hold. For the letters (b)!=0: for O = int omega (X, iota_v A|_V), QO = -int omega (X, iota_v dc) is linear, and its c leg joined to the A^*|_V leg of S^(1)(Delta) (or of S^(1)(P_v)) through the c-A^* component of P(0,inf) gives a nonzero linear functional of A|_V, a longitudinal projection of the classical transform. So at hbar^0 the dilatation component of this letter is not 2((E+w_O)O)[inf], and eq c6-step2 cannot hold at order hbar for it. The same holds for Rem c7-internal's '[(d_CE+Q)O[inf]](x_1) = ({S^(1)(x_1),O})[inf]' for translations and gauge-variant O. For iota_wA, lambda, c the extra trees have at least two legs, so the linear coefficients -4, -8, -2 are unaffected. For the scalar bilinears nothing changes.",
+   "fix": "State Prop c6-classical, eq c6-step2 and the Step-2 task for O with (Q+{I,-})O=0, or add to eq c6-step2 (and to Rem c7-internal) the trees with one vertex (Q+{I,-})O(eps) and one vertex S^(1)(x_1), at order hbar^0 and with their one-loop corrections. Add item (4) to the term list of ch06 l.354ff: graphs with the vertex (Q O(eps)+{I-I^CT,O(eps)}_eps+hbar Delta_eps O(eps)) and one vertex S^(1)(Delta)."
+  },
+  {
+   "id": "T3-05",
+   "severity": "moderate",
+   "verdict": "GAP (missing hypothesis / missing Step-2 item)",
+   "target": "ch05 Def def:c5-Oeps and Rem rem:c5-content; ch06 Thm thm:c6-dil, Cor cor:c6-dilcomp; ch00 l.30 ('anomalous dimensions are classes'); ch07 'Step 2' list",
+   "gap": "Reading the dilatation component as an anomalous dimension of a cohomology class needs O[inf] to be a cocycle at arity zero: Q O[inf] = 0 at order hbar. This is the delta-linear part of the QME of the family I+delta O. It is neither computed nor assumed, and it is not in the Step-2 list. At one loop Q O[inf] is the flow of {I,O}_eps-{I,O} (special edge K_eps-K_0 between I and O), -Q partial_delta I^CT - {I,partial_delta I^CT}_eps, -{I^CT,O}_eps, plus trees of O with the action defect, whose cubic sector is open (Rem c4-cubic). For the weight-2 bilinears the allowed local output of ghost number 1 includes int omega (dc, A|_V)-type terms. If nonzero, these need a finite counterterm of weight 2, e.g. a multiple of int omega (A|_V,A|_V), since Q int omega (A|_V,A|_V) = -2 int omega (dc,A|_V). Such a term is scale covariant and leaves the one-loop coefficients 0 and -24 unchanged, but the cocycle condition must be stated.",
+   "fix": "Add a definition or remark in ch05: the operator QME Q O[inf] = 0 (arity 0, order hbar), with the graphs listed above and the possible finite counterterms of weight w_O. Add it to the Step-2 objects in ch07. In ch06 note that the coefficients are unchanged by finite weight-w_O counterterms."
+  },
+  {
+   "id": "T3-06",
+   "severity": "moderate",
+   "verdict": "REFUTED (second bullet incomplete for the letters A|_V and lambda)",
+   "target": "ch07 Cor cor:c7-K (l.299-308)",
+   "gap": "For the letters, the second bullet says the term linear in the first derivative of v is 1/4 div v(x_0) times a density of weight w_O. For O = int omega (X, iota_{v_2} A|_V), the antisymmetric part a of dv(x_0) gives the equivariant, weight-1 term (X, iota_{a v_2} A|_V). For O = int omega (zeta, lambda) it gives (zeta, rho(q(a)) lambda). Both are present classically, through L_v A and 1/4 rho(d(v,-)) lambda in S^(1)(v), and both are allowed by every selection rule. The bullet excludes the rotation part only for the scalar bilinears.",
+   "fix": "For the letters A|_V and lambda, add 'plus the rotation of the vector, resp. spinor, index by the antisymmetric part of dv(x_0)'. Keep the vanishing statement for the scalar bilinears, the letter iota_wA and c."
+  },
+  {
+   "id": "T3-07",
+   "severity": "minor",
+   "verdict": "OVERSTATED",
+   "target": "ch07 l.3 ('This chapter proves both statements'); ch00 l.113 (Chapter 7 bullet); ch07 table rows 'can be chosen classical'",
+   "gap": "'These components can be chosen with no one-loop correction' appears only in Rem c7-internal, as a statement whose realisation (arity-one counterterms, internal insertions) is deferred to Step 2. It is not proved, and it is false for gauge-variant O (T3-04). The ch00 statement that the traceless bilinear's supercharge component is a multiple of its classical structure omits the hypotheses of Prop c7-select: a local representative Y, and equivariant counterterms.",
+   "fix": "ch07 l.3: 'proves the covariance statements and the selection rules, and explains why the covariant components can be chosen classical (Step 2)'. ch00: add 'can be chosen ... (to be realised in Step 2)' and 'under the hypotheses of Proposition c7-select'."
+  },
+  {
+   "id": "T3-08",
+   "severity": "minor",
+   "verdict": "PROOF GAP (result correct)",
+   "target": "ch05 Lemma lem:c5-log (proof, l.168-183); ch06 Prop prop:c6-Leps (proof, l.303)",
+   "gap": "(i) 'By dominated convergence' does not cover the lower-degree numerator terms: after rescaling they carry eps^{(2E-4-k)/2}, and their q-integral near the merging points -eps^{1/2}p_e grows like a power of eps (log for E=3). The limit is still 0, as eps times log eps, but this needs a separate bound. (ii) The step from lim eps dF/deps = b to 'F = b log eps + (limit)' needs a remainder rate; the proof cites [C07, Def 7.1.1, Thm A], which is for compact M and finite T and is not stated for R^4 at T=infinity.",
+   "fix": "Bound the lower-degree terms explicitly by O(eps log eps). Prove the expansion of one-loop graphs in powers of eps^{1/2} and log eps on R^4 directly from the Schwinger form (same lemma as T3-03), instead of citing Thm A."
+  },
+  {
+   "id": "T3-09",
+   "severity": "minor",
+   "verdict": "CONVENTION GAP",
+   "target": "ch06 Def def:c6-tree (l.84-90), Lemma lem:c6-bvexact (l.156), Cor cor:c6-fieldredef",
+   "gap": "The tree insertion of an odd F into an odd functional, such as F into ((Q+{I,-})O)[inf], depends on the order of the odd parameters (eta zeta versus zeta eta). Def c6-tree gives a formula only for even F. The sign of the last term of eq c6-bvexact is therefore convention dependent. It affects only the 'terms built from (Q+{I,-})O'.",
+   "fix": "Define the tree insertion of odd F into a functional X as the coefficient of eta zeta in W(P, J + eta F + zeta X), or equivalently as partial_zeta partial_eta, and propagate the sign."
+  },
+  {
+   "id": "T3-10",
+   "severity": "minor",
+   "verdict": "INCONSISTENT CONVENTION",
+   "target": "ch03 Rem rem:c3-class (l.213) vs ch05 Thm thm:c5-Oeps (vacuum term) and ch00 l.82, l.88",
+   "gap": "ch03 says the functionals are taken modulo constants. ch05 keeps the field-independent term 2 hbar dim g (w_1,w_2)/(16 pi^2 eps) int omega in partial_delta I^CT and in O(eps), where it is the finite and meaningful subtraction of <O>.",
+   "fix": "In ch03 restrict 'modulo constants' to the interaction and its counterterms, and state that the observables keep their omega-dependent constant terms."
+  },
+  {
+   "id": "T3-11",
+   "severity": "minor",
+   "verdict": "UNVERIFIED CLAIM / ambiguous coefficient",
+   "target": "ch06 Thm thm:c6-dil table row 'transverse part' (l.239), Rem rem:c6-AV (l.251); ch00 table row 'letter A|_V, transverse part'",
+   "gap": "Thm c6-dil assigns the coefficient to O itself. The transverse part of a letter is nonlocal and is not an operator of Def c5-family. Because the 'terms built from (Q+{I,-})O' contain the longitudinal part of O (T3-04), the coefficient of O for this letter is defined only after these terms are specified. Rem c6-AV's 'it cancels the coefficient on that part' gives no computation, and the hbar^0 trees of T3-04 are not included.",
+   "fix": "Either compute the longitudinal cancellation explicitly (normalisation: 4 times the unit times the insertion of 2 int(A,A^*) through the c-A^* edge equals +8 units times the longitudinal projection), or present the A|_V row as 'the coefficient modulo terms built from (Q+{I,-})O'."
+  },
+  {
+   "id": "T3-12",
+   "severity": "minor",
+   "verdict": "PROOF INCOMPLETE (result correct)",
+   "target": "ch05 Prop prop:c5-census proof (l.241)",
+   "gap": "A single external lambda (weight 3/2, superficial degree 1/2 >= 0) is not excluded. It is excluded by parity or Lorentz invariance, but the proof does not say so. 'A cycle that enters ([A,c],A^*) along A|_Wperp continues along c or A^*|_Wperp, and P has no c x A^*|_Wperp component' is imprecise: continuing along c is possible through the c x A^*|_V edge, but then the A^*|_Wperp leg is external, of weight 3, which is excluded.",
+   "fix": "Add both sentences."
+  },
+  {
+   "id": "T3-13",
+   "severity": "minor",
+   "verdict": "OVERSTATED",
+   "target": "ch00 l.38-42 ('Every singular or anomalous coefficient of this manuscript is carried by such boundary edges')",
+   "gap": "The QME obstruction of ch04 is carried by special edges K_eps-K_0, with Schwinger time in [0,eps], and by the counterterm vertex -Q I^CT[eps], which supplies the +9/2 eps^{-1}. The dilatation coefficients also use the scaling of the eps^{-1} counterterms and the removed Q-term of the Step-2 identification.",
+   "fix": "'... is carried by edges pinned at t=eps (L_eps), by special edges K_eps-K_0, and by the counterterm vertices -Q I^CT[eps]-{I,I^CT[eps]}_eps.'"
+  },
+  {
+   "id": "T3-14",
+   "severity": "minor",
+   "verdict": "DOMAIN GAP",
+   "target": "ch05 l.32; ch03 Def def:c3-delta (l.218); ch03 Rem rem:c3-story",
+   "gap": "Delta_inf=0 and {-,-}_inf=0 are established as limits t->inf only on functionals whose contracted Taylor components are integrable kernels. They are then applied to the nonlocal O[inf] and I[inf], whose kernels decay like |x|^{-2} and lie outside that class (the t->inf limit of {F,G}_t is not controlled there).",
+   "fix": "Define the scale-infinity structure by the kernel K_inf := 0, so that Delta_inf = -partial_0 = 0 identically, as is already done in Thm c3-uv (QP(eps,inf) = K_eps exactly), and do not present it as a t->inf limit."
+  },
+  {
+   "id": "T3-15",
+   "severity": "minor",
+   "verdict": "IMPRECISE",
+   "target": "ch07 road ahead (l.365: 'it is a local functional, closed ...'); ch04 l.712 (identification of lim Q W with the obstruction of [C07, Prop 12.0.3])",
+   "gap": "The eps->0 limit of the graphs with one defect vertex includes trees of I attached to the defect, so it is not local in general. The local object is the effective defect vertex, the C07-type obstruction, and lim QW is its flow to scale infinity. In the (c,A|_V) sector at one loop the two coincide, so Thm c4-obstruction is unaffected. Locality and closedness are asserted by citing [C07, Lemma 12.0.4], which is for compact M.",
+   "fix": "'... the one-loop obstruction is a local functional Ob whose flow to scale infinity equals lim Q W; Ob is closed for ...; on R^4 at T=infinity this is to be proved in Step 2.'"
+  }
+ ],
+ "confirmed_statements": [
+  "Lemma c4-integrals expansions (analytic and numeric)",
+  "Examples c4-gauge, c4-gaugino, c4-ghost, c4-seagull, c4-cAstar arithmetic and their totals 9/4, -1, 0 (longitudinal), 4, -1",
+  "Quadratic counterterm agrees with the standard N=4 Feynman-gauge Z_3, Z_phi, Z_lambda, Z_ghost",
+  "Lemma c4-count sign and Thm c4-log multiples 4, 8, -1, 6, 10, 1, 1, 1, 8",
+  "Thm c4-obstruction arithmetic, Thm c4-finite, Prop c4-K",
+  "Ch5 graphs (a)-(f) and Thm c5-Oeps (traceless 1-4u log eps, trace 1+8u log eps - 12 hbar dim g/(16pi^2 eps))",
+  "Scaling covariance, Lemma c6-ct, Thm c6-CS, Lemma c6-bvexact (up to T3-09), Thm c6-dil arithmetic, Konishi conversion",
+  "Physical sign: dimension of the trace bilinear 2 + 3g^2N/(4pi^2), traceless 2",
+  "Prop c7-dil commutators, [K,P] bracket, Cor c7-Q/c7-S representation counting"
+ ],
+ "summary": {
+  "refuted_as_stated": 5,
+  "moderate": 6,
+  "minor": 9,
+  "headline": "No sign or normalisation error in the computed numbers. Counterterms, QME obstruction, O(eps), scaling covariance and dilatation (0 and -24 units; Konishi positive) are confirmed. The refutations concern scope and proof: ch00 summary accuracy (Ch2 stale, acyclicity), the locality/power-counting lemma that ch04/ch05 use but do not prove, gauge-variant operators in the Step-2 identification (Prop c6-classical, Rem c7-internal), the missing operator cocycle condition Q O[inf] = 0, and the rotation terms missing in Cor c7-K for the letters A|_V and lambda.",
+  "gaps_missing_hypothesis": 1
+ }
+}

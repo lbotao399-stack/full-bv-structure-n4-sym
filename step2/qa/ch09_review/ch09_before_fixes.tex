@@ -1,0 +1,678 @@
+\chapter{The cubic obstruction and the dilatation cochain at one loop}
+
+Chapter 4 removed the part of the one-loop obstruction with two legs by the finite counterterm $\tfrac{27}{16}$ units times $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$, and Chapter 6 read the dilatation coefficients off the scaling of the regulator. This chapter computes the part of the obstruction with three legs and solves the equation for the cubic finite counterterm, and then evaluates the equivariant structure of Chapter 8 along the dilatation: the arity-one counterterm, obstruction and finite counterterm along $\Delta$, the component $D_1$ of Definition \ref{def:c8-components} on the scalar bilinears, and the translation component $P_1$. Two features carry the content. The obstruction with three legs has a component outside the image of $Q$ on cubic functionals, and the quadratic counterterm of Chapter 4 matches it exactly, which is the Wess--Zumino condition of this sector; and because $(Q^{GF})^2\neq0$ in Feynman gauge (Proposition \ref{prop:c3-axioms}), $S^{(1)}(\Delta)$ also enters cycles as a composite line from $A|_V$ to $c$, which adds to $D_1$ a multiple of the classical transformation that the two-point equations leave free and the arity-two equation along $(\Delta,P_b)$ fixes.
+
+The unit is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, and every coefficient below is an element of $\mathbb Q+\mathbb Q\log\tfrac32$ times it. The obstruction and the finite counterterm are written with their factor $\hbar$: a one-loop quantisation is a finite counterterm $\hbar F_1$ with $s(\hbar F_1)=\hbar\,\mathrm{Ob}$, $s=d_{CE}+Q+\{I_{\mathfrak{psl}(4|4)},-\}$ (Theorem \ref{thm:c8-obstruction}), and both sides are multiples of the unit. For a cochain $f$, $f^{(0)}$ is its arity-zero part and $f^{(1)}(x)$ its arity-one part evaluated on $x\in\mathfrak{psl}(4|4)$, as in Definition \ref{def:c8-components}. An identity between functionals in a sector, a prescribed list of legs, is the identity between their parts with these legs; for a quadratic functional $X$ the part of $\{I,X\}$ with three legs is the bracket with the cubic part of $I$ in \eqref{eq:c1-I}. Every functional containing $\lambda$ or $\lambda^*$ is also given in the two-component form of Definition \ref{def:c8-twocomp} (Remarks \ref{rem:c9-twocomp3} and \ref{rem:c9-twocompD}); Weinberg's form follows from ${\not d}=\gamma_W^\mu\partial_\mu$ on the Dirac column (Proposition \ref{prop:c8-twocomp}).
+
+\section{The cubic sector of the one-loop obstruction}
+
+With the finite counterterm of Theorem \ref{thm:c4-finite} the obstruction vanishes in the sector $(c,A|_V)$ (Theorem \ref{thm:c4-obstruction}). The sectors with three legs of Remark \ref{rem:c4-cubic} come next: this section fixes a basis, computes the obstruction class of graphs by class of graphs, and solves the equation for the cubic finite counterterm.
+
+\begin{definition}[Bases of the three-leg functionals]
+\label{def:c9-bases}
+With $(-,-)$ the pairing of $\mathfrak g$ tensored with the metric, $d^*d$ and $dd^*$ acting on the one-form $A|_V$, and $d^*d$ acting on each scalar $\iota_wA$, $w\in W_{\mathbb R}^\perp$, the functionals of degree $1$ are
+\[
+\begin{aligned}
+&G_1=\int\mathrm{dvol}\,([c,A|_V],d^*dA|_V),\qquad G_2=\int\mathrm{dvol}\,([c,A|_V],dd^*A|_V),\qquad G_3=\int\mathrm{dvol}\,([c,A|_{W_{\mathbb R}^\perp}],d^*dA|_{W_{\mathbb R}^\perp}),\\
+&G_4=\int\mathrm{dvol}\,([c,dc],A^*),\qquad G_5=\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda),
+\end{aligned}
+\]
+with the pairings of the terms $(dc,A^*)$ and $\tfrac12(\lambda,{\not d}\lambda)$ of the action in $G_4$ and $G_5$, and the functionals of degree $0$ are
+\[
+\begin{aligned}
+&H_1=\int\mathrm{dvol}\,(dA|_V,[A|_V\wedge A|_V]),\qquad H_2=\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},[A|_V,A|_{W_{\mathbb R}^\perp}]),\qquad H_3=\int\mathrm{dvol}\,([A|_V,c],A^*|_V),\\
+&H_4=\int\mathrm{dvol}\,([A|_{W_{\mathbb R}^\perp},c],A^*|_{W_{\mathbb R}^\perp}),\qquad H_5=\int\mathrm{dvol}\,([c,\lambda],\lambda^*),\qquad H_6=\int\mathrm{dvol}\,([c,c],c^*),
+\end{aligned}
+\]
+together with $\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))$ and $\int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))$, whose sum is twice the cubic term $\tfrac12\int\mathrm{dvol}\,(\lambda,({\not d}_A-{\not d})\lambda)$ of $I$. In $H_2$ the one-form $d(A|_{W_{\mathbb R}^\perp})$ and the one-form $[A|_V,A|_{W_{\mathbb R}^\perp}]$ are paired with the metrics of $V$ and of $W_{\mathbb R}^\perp$.
+\end{definition}
+
+\begin{lemma}[Leg sets and colour]
+\label{lem:c9-legs}
+A local functional of degree $1$ with three legs and Weyl weight at most $4$, invariant under translations, $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ and the adjoint action of $\mathfrak g$, has one of the leg sets
+\[
+(c,A|_V,A|_V),\qquad(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}),\qquad(c,\lambda,\lambda),\qquad(c,c,A^*|_V),
+\]
+and its colour factor is a multiple of $(X_0,[X_1,X_2])$, $X_j$ the $\mathfrak g$-factor of leg $j$. Every one-loop colour factor of these sectors reduces to it through
+\[
+\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y\mathrm{ad}_Z)=\tfrac12\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\,(X,[Y,Z]) .
+\]
+\end{lemma}
+
+\begin{proof}
+The functional degrees are $+1$ for $c$, $0$ for $A$ and $\lambda$, $-1$ for $A^*$ and $\lambda^*$, $-2$ for $c^*$, and the Weyl weights are $0,1,\tfrac32,3,\tfrac52,4$ (Definition \ref{def:c6-sigma}). Degree $1$ with three legs means
+\[
+n_c-n_{A^*}-n_{\lambda^*}-2n_{c^*}=1,\qquad n_c+n_A+n_\lambda+n_{A^*}+n_{\lambda^*}+n_{c^*}=3,
+\]
+solved by one $c$ with two legs among $A$, $\lambda$, and by two $c$ with one $A^*$ or one $\lambda^*$. A single spinor leg ($cA\lambda$, $cc\lambda^*$) is odd under $-1\in\mathrm{Spin}(4,\mathbb C)$, and a single vector of $W_{\mathbb R}^\perp$ ($cA|_VA|_{W_{\mathbb R}^\perp}$, $ccA^*|_{W_{\mathbb R}^\perp}$) admits no $\mathrm{Spin}(6,\mathbb C)$-invariant pairing. The remaining leg sets have the weights $2,2,3,3$. A tree contraction of vertices of $I$ gives $([X_0,X_1],X_2)$. A one-loop colour factor is a trace of products of $\mathrm{ad}$'s; the invariance of $(-,-)$ gives $\mathrm{ad}_X^{T}=-\mathrm{ad}_X$, hence $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y\mathrm{ad}_Z)=-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Z\mathrm{ad}_Y)=\tfrac12\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_{[Y,Z]})$, which is the stated identity; a bubble with a quartic vertex gives $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_i}\mathrm{ad}_{[X_j,X_k]})$.
+\end{proof}
+
+\begin{proposition}[Basis of the sectors]
+\label{prop:c9-basis}
+Write $f=([X_0,X_1],X_2)$, $p_j$ for the momentum of leg $j$ (leg $0$ is the first $c$), $a_j\in V$, $w_j\in W_{\mathbb R}^\perp$, $b\in V$ and $\lambda_j\in\Sigma$ for the fibre elements, and take plane-wave values as in Definition \ref{def:c1-vertex}.
+\begin{itemize}
+\item (i) $(c,A|_V,A|_V)$ has dimension $2$, with basis $G_1=f\big[(|p_2|^2-|p_1|^2)(a_1,a_2)-(a_1,p_2)(a_2,p_2)+(a_1,p_1)(a_2,p_1)\big]$ and $G_2=f\big[(a_1,p_2)(a_2,p_2)-(a_1,p_1)(a_2,p_1)\big]$.
+\item (ii) $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ has dimension $1$, with $G_3=f\,(w_1,w_2)(|p_2|^2-|p_1|^2)$.
+\item (iii) $(c,\lambda,\lambda)$ is spanned by $G_5=-if\,(\lambda_1,\rho(p_0)\lambda_2)$ and the parity-odd structure $\int\mathrm{dvol}\,([c,\lambda],{\not d}\rho(v_1v_2v_3v_4)\lambda)$, of value $if\,(\lambda_1,\rho(p_2-p_1)\rho(v_1v_2v_3v_4)\lambda_2)$, $v_1,\dots,v_4$ an oriented orthonormal basis of $V$ (Proposition \ref{prop:c1-chirality}).
+\item (iv) $(c,c,A^*|_V)$ has dimension $1$, with $G_4=-if\,(p_2,b)$.
+\item (v) The functionals $\int\mathrm{dvol}\,([c,A|_V],A|_V)$ and $\int\mathrm{dvol}\,([c,A|_{W_{\mathbb R}^\perp}],A|_{W_{\mathbb R}^\perp})$ of weight $2$ vanish, and weight $3$ carries no invariant.
+\end{itemize}
+The parity-odd structure has coefficient $0$ in every functional built from $S$, $I^{CT}[\varepsilon]$, $P(\varepsilon,\infty)$, $K_\varepsilon$ and $K_0$.
+\end{proposition}
+
+\begin{proof}
+Relabelling two identical legs leaves a functional unchanged: for two legs $A$ its value is symmetric under their exchange, for two odd legs antisymmetric, since $r_ir_j=-r_jr_i$. The colour factor $f$ is antisymmetric under $1\leftrightarrow2$ and under $0\leftrightarrow1$, so the kinematic factor is antisymmetric under $(p_1,a_1)\leftrightarrow(p_2,a_2)$ for $(c,A,A)$ and symmetric for $(c,\lambda,\lambda)$ and $(c,c,A^*|_V)$. In $(c,A|_V,A|_V)$ at weight $4$ it is bilinear in $a_1,a_2$ and quadratic in $p_1,p_2$; the antisymmetric parity-even combinations are $(a_1,a_2)(|p_1|^2-|p_2|^2)$ and $(a_1,p_1)(a_2,p_1)-(a_1,p_2)(a_2,p_2)$, on which $(G_1,G_2)$ has the invertible matrix $\begin{pmatrix}-1&1\\0&-1\end{pmatrix}$, from $d^*d\mapsto|p|^2-p\,(p,-)$ and $dd^*\mapsto p\,(p,-)$ on the second $A|_V$; the parity-odd $\varepsilon(a_1,a_2,p_1,p_2)$ is symmetric. In $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $\mathrm{Spin}(6,\mathbb C)$ admits $(w_1,w_2)$ alone. In $(c,\lambda,\lambda)$ the invariant bilinears of two elements of $\Sigma$ and one vector $q\in V$ are $(\lambda_1,\rho(q)\lambda_2)$, symmetric in $\lambda_1,\lambda_2$, and $(\lambda_1,\rho(q)\rho(v_1v_2v_3v_4)\lambda_2)$, antisymmetric (Proposition \ref{prop:c1-chirality}); the symmetric combinations are $q=p_1+p_2=-p_0$ in the first and $q=p_2-p_1$ in the second. In $(c,c,A^*|_V)$ the symmetric combination is $(b,p_0+p_1)=-(b,p_2)$. At weight $2$ the factor $(a_1,a_2)$, resp. $(w_1,w_2)$, is symmetric, and at weight $3$ the leg sets admit no invariant (Lemma \ref{lem:c4-enumeration}). Let an element of $\mathrm{Spin}(10,\mathbb C)$ lift the product of the reflections in one direction of $V$ and one direction of $W_{\mathbb R}^\perp$. It preserves the action, $Q$, $Q^{GF}$ and $H$, hence every kernel and counterterm, fixes $G_5$ and maps $\rho(v_1v_2v_3v_4)$ to $-\rho(v_1v_2v_3v_4)$, since $v_1$ anticommutes with $v_2,v_3,v_4$ and the direction of $W_{\mathbb R}^\perp$ commutes with all four; so the parity-odd coefficient vanishes.
+\end{proof}
+
+\begin{proposition}[The maps $Q$ and $\{I,-\}$]
+\label{prop:c9-maps}
+\begin{itemize}
+\item (i) $QH_1=-2G_1$, $QH_2=-G_3$, $QH_3=-\tfrac12G_1-G_4$, $QH_4=-\tfrac12G_3$, $QH_5=G_5$, $QH_6=2G_4$, $Q\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))=-2G_5$ and $Q\int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))=0$. The cubic part of $I$ is $-\tfrac14H_1-\tfrac12H_2+\tfrac12\int\mathrm{dvol}\,(\lambda,\rho([A,\lambda]))+H_3+H_4+H_5+\tfrac12H_6$, and its image under $Q$ vanishes.
+\item (ii) $H_1,\dots,H_6$, $\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))$ and $\int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))$ span the parity-even invariant local functionals of degree $0$, Weyl weight $4$ and three legs. On their span $Q$ has rank $4$ and image $\mathrm{span}\{G_1,G_3,G_4,G_5\}$, and its kernel is spanned by
+\[
+H_1-4H_3-2H_6,\qquad H_2-2H_4,\qquad \int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))+2H_5,\qquad \int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda])).
+\]
+Every invariant local functional of degree $-1$ with three legs has Weyl weight at least $\tfrac92$, so these four functionals represent four independent classes of the cohomology of $Q$ on local functionals of weight $4$.
+\item (iii) In the sectors with three legs, with $H=d^*d+dd^*$ the componentwise Laplacian,
+\[
+\begin{aligned}
+&\Big\{I,\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\Big\}=2G_2,\qquad \Big\{I,\int\mathrm{dvol}\,(dA|_V,dA|_V)\Big\}=2G_1,\qquad \Big\{I,\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})\Big\}=2G_3,\\
+&\Big\{I,\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)\Big\}=2G_5,\qquad \Big\{I,\int\mathrm{dvol}\,(dc,A^*)\Big\}=\tfrac12G_1+\tfrac12G_3-G_5,\\
+&\Big\{I,\int\mathrm{dvol}\,(A,A)\Big\}=0,\qquad \Big\{I,\int\mathrm{dvol}\,(A,HA)\Big\}=2(G_1+G_2+G_3).
+\end{aligned}
+\]
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $Q$ acts by $F(e+rQe)=F(e)+r\,(QF)(e)$ with $r$ odd [C07, §6.2], that is by the substitutions $A|_V\mapsto A|_V-r\,dc$, $A^*\mapsto A^*-\tfrac r2d^*dA$, $c^*\mapsto c^*+r\,d^*(A^*|_V)$, $\lambda^*\mapsto\lambda^*+r\,{\not d}\lambda$ (Proposition \ref{prop:c1-Q}), with $r$ moved to the left. For $H_1$ the cubic term gives $-2r[A|_V\wedge dc]$, and with $d[A,c]=[dA,c]-[A\wedge dc]$ and $\int\mathrm{dvol}\,(dA,[dA,c])=0$,
+\[
+QH_1=-2\int\mathrm{dvol}\,(dA|_V,[A|_V\wedge dc])=2\int\mathrm{dvol}\,([A|_V,c],d^*dA|_V)=-2G_1 .
+\]
+For $H_3$ the substitution in $A|_V$ gives $-\int\mathrm{dvol}\,([dc,c],A^*|_V)=-G_4$, since $[dc,c]=[c,dc]$ for the odd $c$, and the substitution in $A^*|_V$ gives $\tfrac12\int\mathrm{dvol}\,([A|_V,c],d^*dA|_V)=-\tfrac12G_1$; $H_4$ receives the second step alone, $H_5$ gives $\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda)$, and $H_6$ gives $\int\mathrm{dvol}\,(d[c,c],A^*)=2G_4$. For the Yukawa-type functionals, $Q$ hits the $A|_V$ slot alone, and with the symmetry of $(\lambda_1,\rho(v)[Y,\lambda_2])$ in $\lambda_1,\lambda_2$,
+\[
+Q\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))=\int\mathrm{dvol}\,(\lambda,\rho([dc,\lambda]))=-2\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda)=-2G_5 .
+\]
+The cubic part of $I$ follows from $(dA,[A\wedge A])=(dA|_V,[A|_V\wedge A|_V])+2(dA|_{W_{\mathbb R}^\perp},[A|_V,A|_{W_{\mathbb R}^\perp}])$, and its image is $(\tfrac12G_1+\tfrac12G_3)-G_5+(-\tfrac12G_1-G_4)-\tfrac12G_3+G_5+G_4=0$, the cubic part of the classical master equation (Proposition \ref{prop:c1-cme}).
+
+(ii) Degree $0$, three legs and weight $4$ leave $(A,A,A)$ with one derivative, and $(A,\lambda,\lambda)$, $(c,A,A^*)$, $(c,\lambda,\lambda^*)$, $(c,c,c^*)$ without derivatives. For $(A|_V)^3$ the parity-even invariant is $H_1$, and the parity-odd one is the cubic part of the total derivative $(F_A\wedge F_A)$; for $A|_V(A|_{W_{\mathbb R}^\perp})^2$ the invariants agree up to integration by parts with $H_2$; three vectors of $W_{\mathbb R}^\perp$ admit no invariant. For $(A,\lambda,\lambda)$ the kinematic factor is symmetric in the two $\lambda$ legs, as in Proposition \ref{prop:c9-basis}: with $a\in V$ this leaves $(\lambda_1,\rho(a)\lambda_2)$, and with $w\in W_{\mathbb R}^\perp$, which commutes with $v_1v_2v_3v_4$, it leaves $(\lambda_1,\rho(w)\lambda_2)$ and the parity-odd $(\lambda_1,\rho(w)\rho(v_1v_2v_3v_4)\lambda_2)$. The remaining leg sets give $H_3$, $H_4$, $H_5$ with a parity-odd partner $\int\mathrm{dvol}\,([c,\lambda],\rho(v_1v_2v_3v_4)\lambda^*)$, and $H_6$. The rank and the kernel follow from (i). Degree $-1$ with three legs requires an antifield, and the invariant leg sets of degree $-1$ have weights at least $\tfrac92$, the lowest being $\lambda^*AA$; the image under $Q$ of the functionals of degree $-1$, weight $4$ and three legs is therefore zero, and the four kernel elements represent independent classes.
+
+(iii) In the cubic part of $I$ the antifields enter linearly, with $\partial_{A^*}=-[A,c]$, $\partial_{\lambda^*}=[c,\lambda]$, $\partial_{c^*}=\tfrac12[c,c]$ (left derivatives; the first sign from moving $A^*$ across $[A,c]$). By Definition \ref{def:c1-bracket}, for $X$ a functional of $A$ alone $\{I,X\}=-\frac{d}{dt}\big|_{t=0}X(A+t[A,c])$ with the odd factor to the left, and for $X$ a functional of $\lambda$ alone $\{I,X\}$ is the derivative of $X$ along $\lambda\mapsto[c,\lambda]$. Integration by parts gives the first three brackets, $\{I,\int(A,A)\}=-2\int\mathrm{dvol}\,([A,c],A)=0$ and $\{I,\int(A,HA)\}=-2\int\mathrm{dvol}\,([A,c],HA)=2(G_1+G_2+G_3)$; for $\lambda$, $\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda)-\int\mathrm{dvol}\,(\lambda,{\not d}[c,\lambda])=2G_5$. For $\int\mathrm{dvol}\,(dc,A^*)$ the bracket consists of the parts of $Q$ applied to the cubic part of $I$ coming from the substitutions in $A|_V$ and in $c^*$: $(\tfrac12G_1+\tfrac12G_3-G_5-G_4)+G_4$.
+\end{proof}
+
+\begin{corollary}[Completions]
+\label{cor:c9-completions}
+In the sectors with three legs, $Q$ of the second entry plus the bracket of $I$ with the first entry vanishes for each of the pairs
+\[
+\begin{aligned}
+&\Big(\int(dA|_V,dA|_V),\,H_1\Big),\quad \Big(\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp}),\,2H_2\Big),\\
+&\Big(\int(\lambda,{\not d}\lambda),\,\int(\lambda,\rho([A,\lambda]))\Big),\quad \Big(\int(dc,A^*),\,H_3+H_4+H_5+\tfrac12H_6\Big),
+\end{aligned}
+\]
+the quadratic and cubic parts of $\int\mathrm{dvol}\,(F_{A|_V},F_{A|_V})$, $\int\mathrm{dvol}\,(d_{A|_V}A|_{W_{\mathbb R}^\perp},d_{A|_V}A|_{W_{\mathbb R}^\perp})$, $\int\mathrm{dvol}\,(\lambda,{\not d}_A\lambda)$ and of the antifield part $\int\mathrm{dvol}\big((d_Ac,A^*)+([c,\lambda],\lambda^*)+\tfrac12([c,c],c^*)\big)$ of $S$. In the third pair $\int(\lambda,\rho([A,\lambda]))$ may be replaced by $-2H_5$; the two choices differ by the $Q$-closed $\int(\lambda,\rho([A,\lambda]))+2H_5$.
+\end{corollary}
+
+\begin{proof}
+By Proposition \ref{prop:c9-maps}: $-2G_1+2G_1=0$, $-2G_3+2G_3=0$, $-2G_5+2G_5=0$ and $(-\tfrac12G_1-G_4)-\tfrac12G_3+G_5+G_4+\tfrac12G_1+\tfrac12G_3-G_5=0$. The functionals are the stated parts by $F_{A|_V}=dA|_V+\tfrac12[A|_V\wedge A|_V]$, $d_{A|_V}A|_{W_{\mathbb R}^\perp}=d(A|_{W_{\mathbb R}^\perp})+[A|_V,A|_{W_{\mathbb R}^\perp}]$, ${\not d}_A\lambda={\not d}\lambda+\rho([A,\lambda])$ and $d_Ac=dc+[A,c]$.
+\end{proof}
+
+\begin{lemma}[The sector $(c,c,A|_V)$]
+\label{lem:c9-QG}
+On the sector $(c,c,A|_V)$ of degree $2$, $QG_1=QG_3=QG_4=QG_5=0$,
+\[
+QG_2=\int\mathrm{dvol}\,([c,dc],dd^*A|_V)+\int\mathrm{dvol}\,([c,A|_V],dd^*dc)\neq0,\qquad \Big\{I,\int\mathrm{dvol}\,(d^*dc,d^*A|_V)\Big\}=QG_2 .
+\]
+\end{lemma}
+
+\begin{proof}
+$[c,dc]=\tfrac12d[c,c]$ and $d^*d^*=0$ give $QG_1=0$ and $QG_4=0$; $Q$ hits no slot of $G_3$ and $G_5$; in $G_2$ the substitution $A|_V\mapsto A|_V-r\,dc$ hits both $A|_V$. The plane-wave value of $QG_2$ is $-if\,r_0r_1\big(|p_0|^2(p_0,b)+|p_1|^2(p_1,b)+|p_2|^2(p_2,b)\big)$, nonzero. For the bracket, $\int\mathrm{dvol}\,(d^*dc,d^*A|_V)=Q\big(-\tfrac12\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\big)$, and by the Jacobi identity and Proposition \ref{prop:c9-maps} (i), $\{I,QF\}=-Q\{I,F\}$ in the sector, so the bracket is $-Q\big(-\tfrac12\cdot2G_2\big)=QG_2$.
+\end{proof}
+
+\begin{proposition}[Graph classes]
+\label{prop:c9-classes}
+By Proposition \ref{prop:c4-defectflow} and \eqref{eq:c4-defect1}, the part with three legs of the order-$\hbar$ term of $Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ is the sum of the following classes of graphs, the special edge carrying $K_\varepsilon-K_0$ between a field and its antifield ($A|_V$--$A^*|_V$, $A|_{W_{\mathbb R}^\perp}$--$A^*|_{W_{\mathbb R}^\perp}$, $\lambda$--$\lambda^*$, $c$--$c^*$) and the other edges $P(\varepsilon,\infty)$:
+\begin{itemize}
+\item (i) cycle graphs: the special edge on the cycle of a triangle of three cubic vertices or of a bubble of one quartic and one cubic vertex;
+\item (ii) bridge graphs: the special edge joins a cubic vertex with two external legs to a one-loop two-point subgraph;
+\item (iii) the counterterm vertex $-Q\,I^{CT}[\varepsilon]$;
+\item (iv) the counterterm bracket $-\{I,I^{CT}[\varepsilon]\}_\varepsilon$, with the cubic part of $I$ and the quadratic part of $I^{CT}[\varepsilon]$, split into its part with $K_0$ and its part with $K_\varepsilon-K_0$;
+\item (v) reducible graphs: a defect subgraph with two legs, one of the bubbles (a)--(e) of Theorem \ref{thm:c4-obstruction} or the vertex $-Q\,I^{CT}[\varepsilon]$ with two legs, joined by an edge $P(\varepsilon,\infty)$ to a cubic vertex with two external legs.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+The vertex $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$ has order $\hbar^0$, so its graphs have one cycle; the other terms of \eqref{eq:c4-defect1} have order $\hbar$, so their graphs are trees, and $\hbar\Delta_\varepsilon I=0$ (proof of Theorem \ref{thm:c4-obstruction}). If the special edge lies on the cycle, a cycle of $n$ vertices of valence at least three carries at least $n$ further half-edges; with three legs, and every tree hanging off the cycle carrying at least two legs, the cycle is a triangle of cubic vertices, a quartic-cubic bubble, or a cubic-cubic bubble with one half-edge joined to a cubic vertex with two legs, which is class (v). If the special edge is a bridge, its tree side has at least two legs: two legs at one cubic vertex and a two-point one-loop side, class (ii), or three legs and a one-point side, which vanishes by Lemma \ref{lem:c4-factor}. The trees are $-Q\,I^{CT}[\varepsilon]$ with three legs, $-Q\,I^{CT}[\varepsilon]$ with two legs joined to a cubic vertex, and $-\{I,I^{CT}[\varepsilon]\}_\varepsilon$; the brackets of the quartic part of $I$ with the quadratic counterterm and of the cubic part of $I$ with the cubic counterterm have four legs.
+\end{proof}
+
+The cycle graphs are listed row by row in the following table. A vertex is named by the component types of its term of $I$ (the table after \eqref{eq:c1-I}), with its external leg in parentheses.
+
+\begin{tabular}{l|l|l|l|c|l}
+sector & vertices on the cycle & special edge & other edges & graphs & value of the row \\
+\hline
+$(c,A|_V,A|_V)$ & $A|_VcA^*|_V$ ($c$), $(A|_V)^3$, $(A|_V)^3$ & $A^*|_V$ at the $c$-vertex -- $A|_V$ & $A|_V$, $A|_V$ & $2$ & $\big(\tfrac{103}{144}+\tfrac23\log\tfrac32\big)G_1+\big(\tfrac{41}{48}+\tfrac14\log\tfrac32\big)G_2$ \\
+ & $A|_VcA^*|_V$ ($c$), $(A|_V)^3$, $A|_VcA^*|_V$ ($A|_V$) & $A|_V$ at $(A|_V)^3$ -- $A^*|_V$ & $A|_V$, $c$--$A^*$ & $2$ & $\big(\tfrac1{12}+\tfrac12\log\tfrac32\big)G_1$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $\big(\tfrac{11}{12}+\log\tfrac32\big)G_1+\tfrac54G_2$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$, $A|_VcA^*|_V$ & $A|_V$ at the $c$-vertex -- $A^*|_V$ & $c$--$A^*$, $c$--$A^*$ & $2$ & $-\big(\tfrac{11}{288}+\tfrac1{24}\log\tfrac32\big)G_1-\big(\tfrac1{32}+\tfrac18\log\tfrac32\big)G_2$ \\
+ & $ccc^*$ ($c$), $A|_VcA^*|_V$, $A|_VcA^*|_V$ & $c^*$ -- $c$ & $c$--$A^*$, $c$--$A^*$ & $2$ & $-\big(\tfrac{11}{288}+\tfrac1{24}\log\tfrac32\big)G_1-\big(\tfrac1{32}+\tfrac18\log\tfrac32\big)G_2$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $\lambda$ & $2$ & $\big(\tfrac{10}9+\tfrac83\log\tfrac32\big)G_1+\tfrac43G_2$ \\
+ & bubble: $A|_VcA^*|_V$ ($c$), $(A|_V)^4$ & $A^*|_V$ -- $A|_V$ & $A|_V$ & $1$ & $0$ \\
+ & bubble: $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ & $1$ & $0$ \\
+ & total & & & $14$ & $\big(\tfrac{11}4+\tfrac{19}4\log\tfrac32\big)G_1+\tfrac{27}8G_2$ \\
+\hline
+$(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $A|_V$ & $2$ & $\big(\tfrac{17}{48}+\tfrac12\log\tfrac32\big)G_3$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_V$ -- $A|_V$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $-\big(\tfrac1{48}+\tfrac14\log\tfrac32\big)G_3$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($A|_{W_{\mathbb R}^\perp}$) & $A|_{W_{\mathbb R}^\perp}$ -- $A^*|_{W_{\mathbb R}^\perp}$ & $A|_V$, $c$--$A^*$ & $2$ & $\big(\tfrac1{12}+\tfrac12\log\tfrac32\big)G_3$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $\lambda$ & $2$ & $\big(\tfrac73+4\log\tfrac32\big)G_3$ \\
+ & bubble: $A|_VcA^*|_V$ ($c$), $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_V$ -- $A|_V$ & $A|_V$ & $1$ & $0$ \\
+ & bubble: $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $(A|_{W_{\mathbb R}^\perp})^4$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ & $1$ & $0$ \\
+ & total & & & $10$ & $\big(\tfrac{11}4+\tfrac{19}4\log\tfrac32\big)G_3$ \\
+\hline
+$(c,\lambda,\lambda)$ & $A|_VcA^*|_V$ ($c$), $c\lambda\lambda^*$ ($\lambda$), $\lambda\lambda A|_V$ ($\lambda$) & $\lambda^*$ -- $\lambda$ & $A|_V$, $c$--$A^*$ & $2$ & $-\log\tfrac32\,G_5$ \\
+ & $A|_VcA^*|_V$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $A^*|_V$ -- $A|_V$ & $A|_V$, $\lambda$ & $2$ & $-\big(\tfrac12+\log\tfrac32\big)G_5$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $\lambda$ & $2$ & $-\big(\tfrac32+3\log\tfrac32\big)G_5$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $A|_V$ & $2$ & $\big(\tfrac12-\log\tfrac32\big)G_5$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $\big(\tfrac32-3\log\tfrac32\big)G_5$ \\
+ & total & & & $10$ & $-9\log\tfrac32\,G_5$ \\
+\hline
+$(c,c,A^*|_V)$ & $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($A^*|_V$) & $A|_V$ at one $c$-vertex -- $A^*|_V$ at the other & $c$--$A^*$, $A|_V$ & $2$ & $\log\tfrac32\,G_4$ \\
+ & $A|_VcA^*|_V$ ($c$), $ccc^*$ ($c$), $A|_VcA^*|_V$ ($A^*|_V$) & $c^*$ -- $c$ at the $A^*$-vertex & $A|_V$, $c$--$A^*$ & $2$ & $-\big(\tfrac14+\tfrac12\log\tfrac32\big)G_4$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($A^*|_V$) & $A^*|_V$ at a $c$-vertex -- $A|_V$ at the $A^*$-vertex & $A|_V$, $c$--$A^*$ & $2$ & $\big(\tfrac14-\tfrac12\log\tfrac32\big)G_4$ \\
+ & total & & & $6$ & $0$ \\
+\end{tabular}
+\tabcaption{The cycle graphs, row by row, with the $\varepsilon\to0$ value of each row in units. The two graphs of a triangle row differ by the exchange of the two identical external legs; every graph has weight $1$, the $\tfrac12$ of $\tfrac12\{I,I\}$ cancelling the two orders of the vertices joined by the special edge. The coefficients of $\varepsilon^{-1}$ and of $\log\varepsilon$ of every row vanish.}
+
+\begin{proposition}[Limits of the bridge and reducible graphs]
+\label{prop:c9-limits}
+\begin{itemize}
+\item (i) The sum of the bridge graphs and of the counterterm bracket with $K_\varepsilon-K_0$ tends to $0$ as $\varepsilon\to0$. Separately, the counterterm bracket with $K_\varepsilon-K_0$ tends to $\tfrac94\{I,\int(A,HA)\}=\tfrac92(G_1+G_2+G_3)$ units and the bridge graphs tend to the opposite.
+\item (ii) The reducible graphs tend to the tree with one vertex given by the quadratic part of $\hbar\,\mathrm{Ob}^{(0)}$, one cubic vertex of $I$ and one edge $P(0,\infty)$, which is the local functional
+\[
+\Big(\tfrac{27}8G_1-\tfrac{27}8G_2+\tfrac{27}8G_3-\tfrac{27}4G_4-\tfrac{27}4G_5\Big)\ \text{units}.
+\]
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Removing the bridge separates a bridge graph into the cubic vertex and a connected one-loop two-point graph of $W(P(\varepsilon,\infty),I)$; summed with their weights, the bridge graphs are the cross terms of $\tfrac12\{W,W\}$ built with $K_\varepsilon-K_0$ between the cubic part of $I$ and the one-loop two-point part of $W(P(\varepsilon,\infty),I)$. In momentum space $K_\varepsilon-K_0=(e^{-\varepsilon|p|^2}-1)K_0$, $p$ the momentum through the bridge, so the bridge graphs and the counterterm bracket with $K_\varepsilon-K_0$ add up to $e^{-\varepsilon|p|^2}-1$ times the bracket of the cubic part of $I$ with the renormalised two-point function at $p$. The latter has a limit at $p\neq0$ (Theorem \ref{thm:c4-quadratic}, Proposition \ref{prop:c4-limit}), which gives the first statement. In the counterterm bracket alone, the $\log\varepsilon$ terms of $I^{CT}[\varepsilon]$ give $(e^{-\varepsilon|p|^2}-1)\log\varepsilon\to0$, and the mass term gives, with $\varepsilon^{-1}(e^{-\varepsilon H}-1)\to-H$ and Proposition \ref{prop:c9-maps} (iii),
+\[
+-\tfrac94\varepsilon^{-1}\Big\{I,\int\mathrm{dvol}\,\big(A,(e^{-\varepsilon H}-1)A\big)\Big\}\longrightarrow\tfrac94\Big\{I,\int\mathrm{dvol}\,(A,HA)\Big\}=\tfrac92(G_1+G_2+G_3).
+\]
+(ii) The reducible graphs form the tree with one vertex given by the defect graphs with two legs and one cubic vertex of $I$, joined by $P(\varepsilon,\infty)$. By Lemma \ref{lem:c4-special} and Theorem \ref{thm:c4-obstruction}, at fixed $p\neq0$ the defect graphs with two legs equal the quadratic part of $\hbar\,\mathrm{Ob}^{(0)}$ at $p$ plus $O(\varepsilon)$, their coefficients of $\varepsilon^{-1}$ cancelling, and the edge carries $e^{-\varepsilon|p|^2}$ times $P(0,\infty)$ at $p$; both factors converge. The quadratic part of $\hbar\,\mathrm{Ob}^{(0)}$ is $-\tfrac{27}8\int\mathrm{dvol}\,(c,d^*dd^*A|_V)$ units: through the $A|_V$ line the factor $|p|^2$ of $d^*d$ on $c$, and through the $c$--$A^*$ line the factor $|p|^2$ of $d^*d$ on $A|_V$, cancels the factor $|p|^{-2}$ of $P(0,\infty)$, so the tree is local, and its evaluation with the components of Proposition \ref{prop:c3-P} gives the stated functional.
+\end{proof}
+
+\begin{theorem}[Singular parts]
+\label{thm:c9-sing}
+\begin{itemize}
+\item (i) Each cycle graph has the value $\varepsilon^{-1}$ times a first coefficient plus a second coefficient plus $O(\varepsilon\log\varepsilon)$, where, in the scaled Schwinger times $\tau_1\in[0,1]$ of the special edge and $\tau_2,\tau_3\in[1,\infty)$, the two coefficients are the integrals of the Taylor coefficients of order $0$ and of order $\omega$ in the external momenta of the Gaussian-integrated integrand, $\omega=2$ for $(c,A,A)$ and $\omega=1$ for $(c,\lambda,\lambda)$ and $(c,c,A^*|_V)$. These integrals converge, the coefficient of $\log\varepsilon$ vanishes, and the coefficient of $\varepsilon^{-1}$ vanishes after the sum over the graphs of a row.
+\item (ii) The counterterm vertex and the counterterm bracket with $K_0$ are multiples of $\log\varepsilon$, with the coefficients of the second table below, and their sum vanishes in every sector: with the unit times the field-counting functional $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ of Chapter 6, the sum is minus $Q$ of the bracket of $I$ with this functional minus the bracket of $I$ with its image under $Q$, which is zero.
+\item (iii) In every sector with three legs the coefficients of $\varepsilon^{-1}$ and of $\log\varepsilon$ of the order-$\hbar$ term of $Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ vanish.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) The special edge carries $-\int_0^\varepsilon|q|^2e^{-t|q|^2}dt$ times the components of $K_0$ (Proposition \ref{prop:c4-defect1}). The superficial degree $\omega$ is the total momentum degree of the vertex functions and of the numerators of the edges $P(\varepsilon,\infty)$ for triangles, and that degree plus $2$ for bubbles, and after the substitution $t_e=\varepsilon\tau_e$ the Taylor coefficient of order $j$ in the external momenta carries $\varepsilon^{(j-\omega)/2}$. For odd $j<\omega$ it is Lorentz-odd and vanishes; for $j=0$, $\omega=2$ it is $\varepsilon^{-1}$ times a functional of weight $2$, which vanishes after the symmetrisation over the identical legs (Proposition \ref{prop:c9-basis} (v)). For a triangle, on $\tau_2,\tau_3\ge R$ the Gaussian integral over the loop momentum gives $(\tau_1+\tau_2+\tau_3)^{-2}$ times monomials of total degree $\omega+2$ in the loop momentum and the external momenta, so the coefficient of order $j$ is bounded by a multiple of $R^{-2-(\omega+2-j)/2}$, and the shell $R\le\tau_2+\tau_3\le2R$ contributes at most a multiple of $R^{-(\omega+2-j)/2}$, summable over dyadic $R$ for $j<\omega+2$; for bubbles the exponent $\tau_1\tau_2|p|^2/(\tau_1+\tau_2)$ is at most $|p|^2$, uniformly in $\tau_2$ (Lemma \ref{lem:c4-special}). The order $\omega+1$ is Lorentz-odd, and the orders $\omega+2$ and beyond contribute $O(\varepsilon\log\varepsilon)$.
+(ii) By Theorem \ref{thm:c4-log}, the cubic part of $I^{CT}[\varepsilon]$ is $\log\varepsilon$ times the bracket of $I$ with the unit times the field-counting functional (the multiples $6,6,10,10,1,1,1,1$ of the cubic vertices), with coefficient $0$ of $\varepsilon^{-1}$, and the quadratic $\log\varepsilon$ part is $\log\varepsilon$ times the image under $Q$ of the same functional. With Proposition \ref{prop:c9-maps} the counterterm vertex gives, vertex by vertex, $-3G_1$ from $(A|_V)^3$ and $+\tfrac12G_1$ from $A|_VcA^*|_V$; $-3G_3$ and $+\tfrac12G_3$ from $A|_V(A|_{W_{\mathbb R}^\perp})^2$ and $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$; $+10G_5$ and $-G_5$ from $\lambda\lambda A|_V$ and $c\lambda\lambda^*$; $+G_4$ and $-G_4$ from $A|_VcA^*|_V$ and $ccc^*$; and the counterterm bracket with $K_0$ gives $+\tfrac12G_1+2G_1$, $+\tfrac12G_3+2G_3$, $-G_5-8G_5$ and $-G_4+G_4$. Their sum is minus $Q$ of the bracket of $I$ with that functional minus the bracket of $I$ with its image under $Q$, which vanishes by the Jacobi identity and the vanishing image under $Q$ of the cubic part of $I$. The mass term contributes $\{I,\int(A,A)\}=0$. (iii) follows from (i), (ii) and Proposition \ref{prop:c9-limits}.
+\end{proof}
+
+\begin{tabular}{l|c|c|c|c}
+contribution & $(c,A|_V,A|_V)$ & $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $(c,\lambda,\lambda)$ & $(c,c,A^*|_V)$ \\
+\hline
+counterterm vertex, coefficient of $\log\varepsilon$ & $-\tfrac52G_1$ & $-\tfrac52G_3$ & $9G_5$ & $0$ \\
+counterterm bracket with $K_0$, coefficient of $\log\varepsilon$ & $\tfrac52G_1$ & $\tfrac52G_3$ & $-9G_5$ & $0$ \\
+bridge graphs, limit & $-\tfrac92(G_1+G_2)$ & $-\tfrac92G_3$ & $0$ & $0$ \\
+counterterm bracket with $K_\varepsilon-K_0$, limit & $\tfrac92(G_1+G_2)$ & $\tfrac92G_3$ & $0$ & $0$ \\
+reducible graphs, limit & $\tfrac{27}8(G_1-G_2)$ & $\tfrac{27}8G_3$ & $-\tfrac{27}4G_5$ & $-\tfrac{27}4G_4$ \\
+\end{tabular}
+\tabcaption{The classes (ii)--(v) of Proposition \ref{prop:c9-classes}, sector by sector, in units.}
+
+\begin{theorem}[The cubic part of the obstruction]
+\label{thm:c9-ob3}
+In the sectors with three legs,
+\begin{equation}
+\hbar\,\mathrm{Ob}^{(0)}=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[\big(\tfrac{11}4+\tfrac{19}4\log\tfrac32\big)(G_1+G_3)+\tfrac{27}8G_2-9\log\tfrac32\,G_5\Big],
+\label{eq:c9-ob3}
+\end{equation}
+the sum of the totals of the table of cycle graphs. The coefficient of $G_4$ and that of the parity-odd structure of $(c,\lambda,\lambda)$ vanish.
+\end{theorem}
+
+\begin{proof}
+By Definition \ref{def:c8-ob} with the finite counterterm set to zero, the part with three legs of the order-$\hbar$ term of $\lim_{\varepsilon\to0}Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ is the part with three legs of the tree-level flow of $\hbar\,\mathrm{Ob}^{(0)}$: the cubic part of $\hbar\,\mathrm{Ob}^{(0)}$ plus the tree of Proposition \ref{prop:c9-limits} (ii). By Proposition \ref{prop:c9-classes} the limit is the sum of the five classes. By Proposition \ref{prop:c9-limits} the bridge graphs cancel against the counterterm bracket with $K_\varepsilon-K_0$, and the reducible graphs give the tree; by Theorem \ref{thm:c9-sing} the counterterm vertex and the counterterm bracket with $K_0$ are multiples of $\log\varepsilon$ that cancel. The cubic part of $\hbar\,\mathrm{Ob}^{(0)}$ is therefore the limit of the cycle graphs, the totals of the table. The parity-odd coefficient vanishes by Proposition \ref{prop:c9-basis}.
+\end{proof}
+
+\begin{theorem}[The cubic finite counterterm]
+\label{thm:c9-F3}
+Write $\hbar\,\mathrm{Ob}^{(0)}$ in the sectors with three legs as $\sum_i\alpha_iG_i$ units and the arity-zero finite counterterm as
+\[
+\begin{aligned}
+\hbar F_1^{(0)}=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[&\tfrac{27}{16}\int(d^*A|_V,d^*A|_V)+\beta_1\int(dA|_V,dA|_V)+\beta_2\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})+\beta_3\int(\lambda,{\not d}\lambda)+\beta_4\int(dc,A^*)\\
+&+\sum_{j=1}^6h_jH_j+y_V\int(\lambda,\rho([A|_V,\lambda]))+y_W\int(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))\Big]+(\text{terms with four or more legs}),
+\end{aligned}
+\]
+with numbers $\beta_k$, $h_j$, $y_V$, $y_W$; its quadratic part is the general solution of the quadratic sector (Theorem \ref{thm:c4-finite}). The part with three legs of $s(\hbar F_1)=\hbar\,\mathrm{Ob}$ at arity zero reads
+\[
+\begin{aligned}
+G_1:&\ \alpha_1=-2h_1-\tfrac12h_3+2\beta_1+\tfrac12\beta_4,&\qquad G_2:&\ \alpha_2=\tfrac{27}8,\\
+G_3:&\ \alpha_3=-h_2-\tfrac12h_4+2\beta_2+\tfrac12\beta_4,&\qquad G_4:&\ \alpha_4=-h_3+2h_6,\\
+G_5:&\ \alpha_5=h_5-2y_V+2\beta_3-\beta_4 .&&
+\end{aligned}
+\]
+It is solvable exactly when $\alpha_2=\tfrac{27}8$, which holds by \eqref{eq:c9-ob3}, and with \eqref{eq:c9-ob3} its solutions are, in units,
+\[
+\begin{aligned}
+\sum_jh_jH_j+y_V\int(\lambda,\rho([A|_V,\lambda]))+y_W\int(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))={}&-\big(\tfrac{11}8+\tfrac{19}8\log\tfrac32\big)H_1-\big(\tfrac{11}2+\tfrac{19}2\log\tfrac32\big)H_4-9\log\tfrac32\,H_5\\
+&+\beta_1H_1+2\beta_2H_2-2\beta_3H_5+\beta_4\big(H_3+H_4+H_5+\tfrac12H_6\big)\\
+&+\kappa_1(H_1-4H_3-2H_6)+\kappa_2(H_2-2H_4)\\
+&+\kappa_3\Big(\int(\lambda,\rho([A|_V,\lambda]))+2H_5\Big)+\kappa_4\int(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda])),
+\end{aligned}
+\]
+with free numbers $\beta_1,\dots,\beta_4$, $\kappa_1,\dots,\kappa_4$. The directions $\beta_k$ are the completions of Corollary \ref{cor:c9-completions}, and the directions $\kappa_k$ are the four $Q$-cohomology classes of Proposition \ref{prop:c9-maps} (ii). The choice $\beta_1=\beta_2=\tfrac12\alpha_1$, $\beta_3=\tfrac12\alpha_5$, $\beta_4=0$, $\kappa_1=\kappa_3=\kappa_4=0$, $\kappa_2=-\alpha_3$ gives a vanishing cubic part, with
+\begin{equation}
+\hbar F_1^{(0)}=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[\tfrac{27}{16}\int(d^*A|_V,d^*A|_V)+\big(\tfrac{11}8+\tfrac{19}8\log\tfrac32\big)\int(dA,dA)-\tfrac92\log\tfrac32\int(\lambda,{\not d}\lambda)\Big]
+\label{eq:c9-F2rep}
+\end{equation}
+up to terms with four or more legs, $\int(dA,dA)=\int(dA|_V,dA|_V)+\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$.
+\end{theorem}
+
+\begin{proof}
+At arity zero $s=Q+\{I,-\}$, and its part with three legs applied to $\hbar F_1^{(0)}$ is $Q$ of the cubic part plus the bracket of $I$ with the quadratic part; Propositions \ref{prop:c9-maps} (i), (iii) give the five equations. $G_2$ is reached by $\tfrac{27}{16}\{I,\int(d^*A|_V,d^*A|_V)\}=\tfrac{27}8G_2$ alone. The other four equations are solved by $h_3=2h_6-\alpha_4$, $h_1=\beta_1+\tfrac14\beta_4-\tfrac12h_6+\tfrac14\alpha_4-\tfrac12\alpha_1$, $h_4=4\beta_2+\beta_4-2h_2-2\alpha_3$, $h_5=\alpha_5+2y_V-2\beta_3+\beta_4$, with $h_2$, $h_6$, $y_V$, $y_W$ free; with $\alpha_1=\alpha_3=\tfrac{11}4+\tfrac{19}4\log\tfrac32$, $\alpha_4=0$, $\alpha_5=-9\log\tfrac32$ this is the displayed family, with $\kappa_1=\tfrac14\beta_4-\tfrac12h_6$, $\kappa_2=h_2-2\beta_2$, $\kappa_3=y_V$, $\kappa_4=y_W$. For the last choice $h_1=-\tfrac12\alpha_1+\tfrac12\alpha_1=0$, $h_2=\alpha_1-\alpha_3=0$, $h_4=-2\alpha_3+2\alpha_3=0$, $h_5=\alpha_5-\alpha_5=0$ and $h_3=h_6=0$.
+\end{proof}
+
+\begin{theorem}[Wess--Zumino condition]
+\label{thm:c9-wz}
+The part with three legs of $s\,\mathrm{Ob}=0$ (Theorem \ref{thm:c8-obstruction} (i)) at arity zero is
+\[
+Q\big(\text{cubic part of }\hbar\,\mathrm{Ob}^{(0)}\big)+\big\{I,\text{quadratic part of }\hbar\,\mathrm{Ob}^{(0)}\big\}=\big(\alpha_2-\tfrac{27}8\big)\,QG_2\ \text{units},
+\]
+with the coefficient $-\tfrac{27}8$ of the quadratic part (Theorem \ref{thm:c4-obstruction}). The coefficients $\alpha_1,\alpha_3,\alpha_4,\alpha_5$ enter it with coefficient $0$, and the computed value $\alpha_2=\tfrac{27}8$ satisfies it. The equation follows from $Q^2=0$, the vanishing image under $Q$ of the cubic part of $I$ and of the quadratic part of $\hbar\,\mathrm{Ob}^{(0)}$, and Proposition \ref{prop:c9-limits}; it is equivalent to the solvability of Theorem \ref{thm:c9-F3}, since the image of the cubic functionals and of the brackets with the $Q$-closed quadratic counterterms is $\mathrm{span}\{G_1,G_3,G_4,G_5\}$.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:c9-QG} gives $Q\sum_i\alpha_iG_i=\alpha_2QG_2$ and $\{I,-\tfrac{27}8\int(d^*dc,d^*A|_V)\}=-\tfrac{27}8QG_2$. For the second statement, $Q$ acts on plane-wave values by polynomial substitutions, so $Q$ applied to the limit of $Q$ of the order-$\hbar$ part of $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ is the limit of $Q^2$ of it, which vanishes. By Theorem \ref{thm:c9-ob3} and Proposition \ref{prop:c9-limits} the part with three legs of that limit is the cubic part of $\hbar\,\mathrm{Ob}^{(0)}$ plus the tree of its quadratic part with the cubic part of $I$. By Theorem \ref{thm:c3-acyclic}, $(Q\otimes1+1\otimes Q)P(0,\infty)=K_0$, so $Q$ applied to that tree is the tree of the images under $Q$ plus the bracket of the two vertices; the quadratic part $-\tfrac{27}8\int(d^*dc,d^*A|_V)$ has the image $\tfrac{27}8\int(d^*dc,d^*dc)=0$ ($c$ is odd and the pairing symmetric), and the cubic part of $I$ has image $0$. What remains is the displayed sum.
+\end{proof}
+
+\begin{remark}[Two-component form]
+\label{rem:c9-twocomp3}
+With the components of Definition \ref{def:c8-twocomp}, the pairing of $\mathfrak g$ written as $(-,-)$ around the components and the factors in the order of the index-free expressions,
+\[
+\begin{aligned}
+&\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)=2i\int d^4x\,\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\big),\\
+&G_5=i\int d^4x\Big\{\big([c,\lambda_\alpha{}^i],\bar\sigma^{m\dot\alpha\alpha}\partial_m\bar\lambda_{\dot\alpha i}\big)+\big([c,\bar\lambda_{\dot\alpha i}],\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\big)\Big\},\\
+&H_5=\int d^4x\Big\{\big([c,\lambda_\alpha{}^i],\lambda^{*\alpha}{}_i\big)-\big([c,\bar\lambda_{\dot\alpha i}],\bar\lambda^{*\dot\alpha i}\big)\Big\},\\
+&\int\mathrm{dvol}\,(\lambda,\rho([A|_V,\lambda]))=i\int d^4x\Big\{\big(\lambda_\alpha{}^i,\bar\sigma^{m\dot\alpha\alpha}[A_m,\bar\lambda_{\dot\alpha i}]\big)+\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}[A_m,\lambda_\alpha{}^i]\big)\Big\},\\
+&\int\mathrm{dvol}\,(\lambda,\rho([A|_{W_{\mathbb R}^\perp},\lambda]))=\int d^4x\Big\{\big(\lambda_\alpha{}^j,\varepsilon^{\alpha\beta}[A_{ji},\lambda_\beta{}^i]\big)-\big(\bar\lambda_{\dot\alpha j},\varepsilon^{\dot\alpha\dot\beta}[A^{ji},\bar\lambda_{\dot\beta i}]\big)\Big\},
+\end{aligned}
+\]
+with $A_{ij}=A_I\Sigma^I_{ij}$ and $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$; they follow from $(\zeta_1,\rho(v)\zeta_2)=i\,v_m\big(\zeta_{1\alpha}{}^i\bar\sigma^{m\dot\alpha\alpha}\bar\zeta_{2\dot\alpha i}+\bar\zeta_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\zeta_{2\alpha}{}^i\big)$ and $(\zeta_1,\rho(w)\zeta_2)=\zeta_{1\alpha}{}^j\varepsilon^{\alpha\beta}w_{ji}\zeta_{2\beta}{}^i-\bar\zeta_{1\dot\alpha j}\varepsilon^{\dot\alpha\dot\beta}w^{ji}\bar\zeta_{2\dot\beta i}$ for $\zeta_1,\zeta_2\in\Sigma$, $v\in V$, $w\in W_{\mathbb R}^\perp$, the first identity after an integration by parts. The plane-wave value of $G_5$ is $f\,p_{0m}\big(\lambda_{1\alpha}{}^i\bar\sigma^{m\dot\alpha\alpha}\bar\lambda_{2\dot\alpha i}+\bar\lambda_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\lambda_{2\alpha}{}^i\big)$, and, with the orientation of Proposition \ref{prop:c8-twocomp}, the parity-odd structure of $(c,\lambda,\lambda)$ is $i\int d^4x\big\{([c,\bar\lambda_{\dot\alpha i}],\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)-([c,\lambda_\alpha{}^i],\bar\sigma^{m\dot\alpha\alpha}\partial_m\bar\lambda_{\dot\alpha i})\big\}$, the difference of the two chiral terms of $G_5$. In particular the fermionic coefficients of \eqref{eq:c9-ob3} and \eqref{eq:c9-F2rep} read $-9\log\tfrac32$ units times the two-component $G_5$ and $-9i\log\tfrac32$ units times $\int d^4x\,(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)$. On the Dirac column $(\lambda_\alpha{}^i,\bar\lambda^{\dot\alpha}{}_i)$, $\rho(v)=\gamma_W^\mu v_\mu$ gives Weinberg's form of each line.
+\end{remark}
+
+\begin{remark}[Method of computation]
+\label{rem:c9-method3}
+The value of each cycle graph is an exact element of $\mathbb Q+\mathbb Q\log\tfrac32$: the coefficient of $\varepsilon^0$ of Theorem \ref{thm:c9-sing} reduces to master integrals over the scaled Schwinger region, evaluated in closed form, and each multilinear form is decomposed on the basis of Proposition \ref{prop:c9-basis} by exact evaluation on integer plane waves in explicit realisations of $V_{10}$, $\Sigma$ over $\mathbb Q(i)$ and $\mathfrak g=\mathfrak{su}(2)$, as in Remark \ref{rem:c4-method}; the colour reduction of Lemma \ref{lem:c9-legs} makes the result valid for every simple $\mathfrak g$. Three independent evaluations agree row by row: two graph expansions organised by the census of Proposition \ref{prop:c9-classes}, and a third that enumerates every assignment of the field types to the half-edges of the multilinear vertices. A direct evaluation of the complete order-$\hbar$ sums at finite $\varepsilon$ in the sectors $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ and $(c,c,A^*|_V)$, followed by the limit $\varepsilon\to0$, reproduces $\alpha_3$, $\alpha_4$ and the reducible tree. The maps of Proposition \ref{prop:c9-maps} and the solutions of Theorem \ref{thm:c9-F3} are confirmed by substitution on plane waves, in the four sectors and in the four sectors of degree $1$ with three legs that carry no invariant.
+\end{remark}
+
+\section{Closed forms along the dilatation}
+
+Along $\Delta$ the generator $S^{(1)}(\Delta)$ is quadratic (Example \ref{ex:c2-dil}), and the regulator moves under it through its two endpoints (Proposition \ref{prop:c7-dil}). The graphs with one vertex $S^{(1)}(\Delta)$ therefore have closed forms at finite $\varepsilon$ and $T$. In this section and the next two, $v=2E$, so that $v.$ is the operator of Lemma \ref{lem:c7-weights} on all slots, and $P(\varepsilon,T)\star=\int_\varepsilon^TQ^{GF}e^{-tH}dt$ is the operator represented by $P(\varepsilon,T)$ (Definition \ref{def:c8-PT}). For an operator $X$ on $\mathscr E$ the kernel $(X\otimes1)K_0$ represents $X$, so $P(\varepsilon,T)=(P(\varepsilon,T)\star\otimes1)K_0$. The operator $\partial_\phi$ is read as in Definition \ref{def:c3-P}: on the product of a coordinate functional of the first factor and one of the second, in this order, it is the corresponding component of $\phi$. A linear operator $X$ on $\mathscr E$ acts on functionals as the derivation induced by $\ell\mapsto\ell\circ X$ on linear functionals $\ell$ [C07, §6.2], as $Q$ does, and $XF$ denotes this derivation applied to $F$. For a functional $F$ and an even $J$, the linearised flow of $F$ at $J$ is $e^{-W(P(\varepsilon,T),J)/\hbar}e^{\hbar\partial_{P(\varepsilon,T)}}\big(F\,e^{J/\hbar}\big)$; for even $F$ it is $\partial_\delta W(P(\varepsilon,T),J+\delta F)$ with $\delta$ a square-zero parameter of degree $0$, as in \eqref{eq:c7-flowcov}.
+
+\begin{lemma}[Operators and kernels]
+\label{lem:c9-ops}
+For a kernel $\phi\in\mathscr E\otimes\mathscr E$ and a linear operator $X$ on $\mathscr E$, of either parity,
+\begin{equation}
+[\partial_\phi,X]=\partial_{(X\otimes1+1\otimes X)\phi}
+\label{eq:c9-commutator}
+\end{equation}
+as a graded commutator of operators on functionals; for $X=Q$ this is [C07, §6.4]. If $X$ is even and preserves $\langle\,,\rangle$, then $(1\otimes X)K_0=-(X\otimes1)K_0$, and $(1\otimes Q^{GF})K_0=(Q^{GF}\otimes1)K_0$; the same holds with any function of $H$ in place of $Q^{GF}$.
+\end{lemma}
+
+\begin{proof}
+Both sides of \eqref{eq:c9-commutator} are second-order operators with constant coefficients, determined by their values on products $\ell_1\ell_2$ of linear functionals. On such a product $\partial_\phi$ gives the constant $(\ell_1\otimes\ell_2)(\phi)$, on which $X$ vanishes, and $X(\ell_1\ell_2)=(\ell_1\circ X)\ell_2+(-1)^{|X||\ell_1|}\ell_1(\ell_2\circ X)$, so the left side gives $(\ell_1\otimes\ell_2)\big((X\otimes1+1\otimes X)\phi\big)$, the sign being the Koszul sign of $X$ passing $\ell_1$. Preservation of the pairing by an even $X$ is $(X\otimes1+1\otimes X)K_0=0$, as in Proposition \ref{prop:c7-cov}; for $Q^{GF}$ the identity is Proposition \ref{prop:c3-adjoint}, and $H$ is symmetric for the pairing.
+\end{proof}
+
+\begin{lemma}[Brackets with $S^{(1)}(\Delta)$]
+\label{lem:c9-SDelta}
+\begin{itemize}
+\item (i) For every functional $F$, $\{S^{(1)}(\Delta),F\}=v.F$: the sign of Definition \ref{def:c7-vdot} is $+1$. For a local functional $\int\mathrm{dvol}\,(\text{density})$ of Weyl weight $k$ (fields plus derivatives) $v.$ multiplies it by $2(k-4)$, and for a local operator $O$ of Weyl weight $w_O$, $v.O=2(E+w_O)O$ (Proposition \ref{prop:c6-classical}).
+\item (ii) For $t>0$, $\{S^{(1)}(\Delta),F\}_t=(e^{-tH}v.)F$.
+\item (iii) $Q\,S^{(1)}(\Delta)=0$, $\{I,S^{(1)}(\Delta)\}=0$ and $\partial_{P(\varepsilon,T)}S^{(1)}(\Delta)=0$.
+\item (iv) For every functional $F$, $\partial_{P(\varepsilon,T)}\big(S^{(1)}(\Delta)F\big)-S^{(1)}(\Delta)\,\partial_{P(\varepsilon,T)}F=\big(P(\varepsilon,T)\star\,v.\big)F$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) By Definition \ref{def:c1-bracket} and the proof of Lemma \ref{lem:c4-count}, the bracket is at each position that of [C07, §10.1] for a point, with $\Delta_0=\sum\partial_{x_i}\partial_{\xi_i}$ over the even members $x_i$ and their odd partners $\xi_i$. For a number $a$,
+\[
+\{a\,x_i\xi_i,x_i\}=\Delta_0(a\,x_i^2\xi_i)-\Delta_0(a\,x_i\xi_i)\,x_i=a\,x_i,\qquad \{a\,x_i\xi_i,\xi_i\}=-a\,\xi_i .
+\]
+The terms of $S^{(1)}(\Delta)$ (Example \ref{ex:c2-dil}) are of this form: $(v.A,A^*)$ with the even member first, and $-(v.\lambda,\lambda^*)$, $-(v.c,c^*)$ with the even members $\lambda^*$, $c^*$ paired against the image of the partner. With the action of $v.$ on the antifields of Definition \ref{def:c7-vdot}, the bracket sends every coordinate functional $\ell$ to $\ell\circ v.$, and it is a derivation [C07, Lemma 4.3.2]. Since $[E,\partial_m]=-\partial_m$, $v.$ multiplies a monomial of Weyl weight $k$ by $2E+2k$, and $\int\mathrm{dvol}\,E(\cdot)=-4\int\mathrm{dvol}\,(\cdot)$. (ii) $\{-,-\}_t$ is built from $K_t=(e^{-tH}\otimes1)K_0$ (Definition \ref{def:c3-delta}), which replaces the contracted leg of $S^{(1)}(\Delta)$ by its image under $e^{-tH}$. (iii) $Q\,S^{(1)}(\Delta)=\{\tfrac12\langle e,Qe\rangle,S^{(1)}(\Delta)\}$ (Proposition \ref{prop:c1-Q}) is, up to sign, $v.$ of $\tfrac12\langle e,Qe\rangle$, which vanishes by $[v.,Q]=0$ and the preservation of the pairing (Proposition \ref{prop:c7-dil}); $\{I,S^{(1)}(\Delta)\}$ is, up to sign, $v.I=0$, every density of $I$ having Weyl weight $4$; and $P(\varepsilon,T)$ has no component in the slot pairs $A\otimes A^*$, $\lambda\otimes\lambda^*$, $c\otimes c^*$ of $S^{(1)}(\Delta)$ (Proposition \ref{prop:c3-P}). (iv) The left side contracts one leg of $S^{(1)}(\Delta)$ with one leg of $F$ through $P(\varepsilon,T)$; it is a derivation of $F$, and on a linear functional $\ell$ it gives $\ell\circ(P(\varepsilon,T)\star v.)$, the antifield leg of $S^{(1)}(\Delta)$ being contracted and its field leg carrying $v.$.
+\end{proof}
+
+\begin{definition}[The composite kernel]
+\label{def:c9-composite}
+For $0<\varepsilon<T\le\infty$ the composite kernel is $\big(P(\varepsilon,T)\star\,v.\otimes1+1\otimes P(\varepsilon,T)\star\,v.\big)P(\varepsilon,T)$: the two legs of $S^{(1)}(\Delta)$ joined, in both orders, to two edges $P(\varepsilon,T)$.
+\end{definition}
+
+\begin{proposition}[The composite kernel]
+\label{prop:c9-composite}
+Write $P=P(\varepsilon,T)$.
+\begin{itemize}
+\item (i) The composite kernel equals $2\big(P\star\,v.\,P\star\otimes1\big)K_0$, the kernel of the even operator $2P\star\,v.\,P\star=v.\,(P\star)^2+(P\star)^2\,v.$, with $(P\star)^2=(Q^{GF})^2\big(\int_\varepsilon^Te^{-tH}dt\big)^2$; it has degree $-1$.
+\item (ii) Its components lie in $c\otimes A|_V$ and $A|_V\otimes c$: in a graph it joins a leg $c$ to a leg $A|_V$. It is nonzero because $(Q^{GF})^2A^*=2\,d^*(A^*|_V)$ and $(Q^{GF})^2c^*=-2\,dc^*$ (Proposition \ref{prop:c3-axioms}).
+\item (iii) $Q\,P\star+P\star\,Q=e^{-\varepsilon H}-e^{-TH}$ and $Q\,(P\star\,v.\,P\star)=(P\star\,v.\,P\star)\,Q$. Hence $(Q\otimes1+1\otimes Q)$ annihilates the composite kernel, and $\partial$ of the composite kernel anticommutes with $Q$.
+\item (iv) At $T=\infty$, in momentum space, $(P\star)^2=(Q^{GF})^2e^{-2\varepsilon|p|^2}|p|^{-4}$; on the slot of $A^*|_V$ it is of order $|p|^{-3}$ as $p\to0$, and so is the composite kernel, $v.$ acting as an Euler operator plus constants. At finite $T$, $(P\star)^2$ is bounded by a multiple of $T^2|p|$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $(P\star v.\otimes1)P=(P\star v.P\star\otimes1)K_0$. For the second term, the Koszul sign of two odd operators on different factors and Lemma \ref{lem:c9-ops} give
+\[
+(1\otimes P\star v.)(P\star\otimes1)K_0=-(P\star\otimes1)(1\otimes Q^{GF})\Big(1\otimes\int_\varepsilon^Te^{-tH}dt\Big)(1\otimes v.)K_0=(P\star\otimes1)(v.\,P\star\otimes1)K_0=(P\star v.P\star\otimes1)K_0 .
+\]
+By Proposition \ref{prop:c7-dil}, $[v.,Q^{GF}]=-4Q^{GF}$ and $[v.,H]=-4H$, so for a function of $H$ the commutator with $v.$ is $-4H$ times its derivative in $H$, and $[v.,P\star]$ is $Q^{GF}$ times a function of $H$. Since $Q^{GF}$ commutes with $H$, $P\star[v.,P\star]-[v.,P\star]P\star$ is $(Q^{GF})^2$ times the commutator of two functions of $H$, which vanishes; this is $2P\star v.P\star-v.(P\star)^2-(P\star)^2v.$. The degree is that of $K_0$ plus $0$. (ii) $(Q^{GF})^2$ vanishes on the slots of $c$, $A$, $\lambda$, $\lambda^*$, and $v.$ preserves the slots; the components of $K_0$ in $A^*\otimes A$ and $c^*\otimes c$ go to $c\otimes A|_V$ and $A|_V\otimes c$. (iii) $QQ^{GF}+Q^{GF}Q=H$ and $H\int_\varepsilon^Te^{-tH}dt=e^{-\varepsilon H}-e^{-TH}$ give the first identity. With $[v.,Q]=0$ it gives
+\[
+Q\,P\star v.P\star-P\star v.P\star\,Q=(e^{-\varepsilon H}-e^{-TH})\,v.\,P\star-P\star\,v.\,(e^{-\varepsilon H}-e^{-TH}),
+\]
+and moving $v.$ to the right by the rule of (i), the right side is $-4Q^{GF}$ times $(e^{-\varepsilon H}-e^{-TH})\frac{d}{dH}\big(H\int_\varepsilon^Te^{-tH}dt\big)-H\int_\varepsilon^Te^{-tH}dt\,\frac{d}{dH}(e^{-\varepsilon H}-e^{-TH})$, which vanishes because $H\int_\varepsilon^Te^{-tH}dt=e^{-\varepsilon H}-e^{-TH}$. For the even operator $P\star v.P\star$, $(Q\otimes1+1\otimes Q)(P\star v.P\star\otimes1)K_0=\big((Q\,P\star v.P\star-P\star v.P\star\,Q)\otimes1\big)K_0=0$, and \eqref{eq:c9-commutator} gives the last statement. (iv) In momentum space $\int_\varepsilon^\infty e^{-t|p|^2}dt=e^{-\varepsilon|p|^2}|p|^{-2}$, and on $A^*|_V$, $(Q^{GF})^2$ is $-2i\,\iota_p$, of order $|p|$; at finite $T$ the integral is bounded by $T$.
+\end{proof}
+
+\begin{proposition}[Graphs with one vertex $S^{(1)}(\Delta)$]
+\label{prop:c9-conj}
+Write $P=P(\varepsilon,T)$, let $J$ be even and at least cubic modulo $\hbar$, and $W=W(P,J)$. As operators on functionals, with $S^{(1)}(\Delta)$ acting by multiplication,
+\begin{equation}
+e^{\hbar\partial_P}\,S^{(1)}(\Delta)=\Big(S^{(1)}(\Delta)+\hbar\,P\star\,v.+\tfrac{\hbar^2}2\,\partial_{2(P\star v.P\star\otimes1)K_0}\Big)\,e^{\hbar\partial_P},
+\label{eq:c9-conj}
+\end{equation}
+and the linearised flow of $S^{(1)}(\Delta)$ at $J$ is
+\begin{equation}
+\begin{aligned}
+e^{-W/\hbar}e^{\hbar\partial_P}\big(S^{(1)}(\Delta)\,e^{J/\hbar}\big)&=e^{-W/\hbar}\Big(S^{(1)}(\Delta)+\hbar\,P\star\,v.+\tfrac{\hbar^2}2\,\partial_{2(P\star v.P\star\otimes1)K_0}\Big)e^{W/\hbar}\\
+&=S^{(1)}(\Delta)+(P\star\,v.)W+\tfrac\hbar2\,\partial_{2(P\star v.P\star\otimes1)K_0}W+\tfrac14\Big(\partial_{2(P\star v.P\star\otimes1)K_0}(W^2)-2W\,\partial_{2(P\star v.P\star\otimes1)K_0}W\Big).
+\end{aligned}
+\label{eq:c9-D1a}
+\end{equation}
+The four terms are the vertex $S^{(1)}(\Delta)$ alone, $S^{(1)}(\Delta)$ joined by one edge $P$ to each leg of $W$ in turn, two legs of $W$ closed by the composite kernel, and two copies of $W$ joined by it.
+\end{proposition}
+
+\begin{proof}
+As operators, $e^{\hbar\partial_P}S^{(1)}(\Delta)e^{-\hbar\partial_P}=\sum_n\frac{\hbar^n}{n!}\mathrm{ad}_{\partial_P}^n\big(S^{(1)}(\Delta)\big)$. By Lemma \ref{lem:c9-SDelta} (iii), (iv), $\mathrm{ad}_{\partial_P}(S^{(1)}(\Delta))=P\star v.$, and by \eqref{eq:c9-commutator} and Proposition \ref{prop:c9-composite} (i), $\mathrm{ad}_{\partial_P}(P\star v.)$ is $\partial$ of the composite kernel, a second-order operator with constant coefficients which commutes with $\partial_P$; the series stops, which is \eqref{eq:c9-conj}. Insert \eqref{eq:c9-conj} with $e^{\hbar\partial_P}e^{J/\hbar}=e^{W/\hbar}$. The derivation gives $\hbar(P\star v.)e^{W/\hbar}=\big((P\star v.)W\big)e^{W/\hbar}$, and the product rule of Definition \ref{def:c3-delta} for the odd second-order operator gives $\partial(e^{W/\hbar})=\big(\hbar^{-1}\partial W+\tfrac12\hbar^{-2}(\partial(W^2)-2W\partial W)\big)e^{W/\hbar}$.
+\end{proof}
+
+\begin{proposition}[The image under $Q$]
+\label{prop:c9-Qconj}
+In the setting of Proposition \ref{prop:c9-conj},
+\begin{equation}
+Q\,(P\star\,v.)+(P\star\,v.)\,Q=\{S^{(1)}(\Delta),-\}_\varepsilon-\{S^{(1)}(\Delta),-\}_T,
+\label{eq:c9-homotopy}
+\end{equation}
+and, with $[-,QW]$ the graded commutator with the multiplication by $QW$,
+\begin{equation}
+Q\Big(e^{-W/\hbar}e^{\hbar\partial_P}\big(S^{(1)}(\Delta)e^{J/\hbar}\big)\Big)=\{S^{(1)}(\Delta),W\}_\varepsilon-\{S^{(1)}(\Delta),W\}_T-\hbar^{-1}e^{-W/\hbar}\Big[S^{(1)}(\Delta)+\hbar\,P\star\,v.+\tfrac{\hbar^2}2\,\partial_{2(P\star v.P\star\otimes1)K_0},\,QW\Big]e^{W/\hbar}.
+\label{eq:c9-D1b}
+\end{equation}
+The last term consists of $(P\star v.)(QW)$, $\tfrac\hbar2\,\partial(QW)$ and $\tfrac12\big(\partial((QW)W)-(\partial\,QW)W+(QW)\,\partial W\big)$, with $\partial$ the operator of the composite kernel: the graphs of \eqref{eq:c9-D1a} with $QW$ in place of one copy of $W$, with the signs reversed.
+\end{proposition}
+
+\begin{proof}
+The graded commutator of the derivations induced by two odd operators is induced by their anticommutator, and $Q\,P\star v.+P\star v.\,Q=(e^{-\varepsilon H}-e^{-TH})v.$ by Proposition \ref{prop:c9-composite} (iii) and $[v.,Q]=0$; Lemma \ref{lem:c9-SDelta} (ii) gives \eqref{eq:c9-homotopy}. The operator $S^{(1)}(\Delta)+\hbar P\star v.+\tfrac{\hbar^2}2\partial$ in the bracket of \eqref{eq:c9-D1b} is odd, and its graded commutator with $Q$ is $\hbar\big(\{S^{(1)}(\Delta),-\}_\varepsilon-\{S^{(1)}(\Delta),-\}_T\big)$, by $Q\,S^{(1)}(\Delta)=0$, \eqref{eq:c9-homotopy} and Proposition \ref{prop:c9-composite} (iii). $Q$ is a derivation and $Qe^{W/\hbar}=\hbar^{-1}(QW)e^{W/\hbar}$, so $Q$ of $e^{-W/\hbar}$ times this operator applied to $e^{W/\hbar}$ consists of $-\hbar^{-1}(QW)$ times the linearised flow, of $e^{-W/\hbar}\hbar\big(\{S^{(1)}(\Delta),-\}_\varepsilon-\{S^{(1)}(\Delta),-\}_T\big)e^{W/\hbar}=\{S^{(1)}(\Delta),W\}_\varepsilon-\{S^{(1)}(\Delta),W\}_T$, and of minus $\hbar^{-1}e^{-W/\hbar}$ times the operator applied to $(QW)e^{W/\hbar}$. Moving the multiplication by $QW$ to the left through the odd operator produces the graded commutator and $-(QW)$ times the linearised flow, which cancels the first term. The expansion of the commutator uses $[S^{(1)}(\Delta),QW]=0$ for two odd functionals and the product rule for $\partial$.
+\end{proof}
+
+\begin{proposition}[Scaling Ward identity]
+\label{prop:c9-ward}
+For $0<\varepsilon<T\le\infty$,
+\begin{equation}
+(v.\otimes1+1\otimes v.)\,P(\varepsilon,T)=-4\Big(\varepsilon\frac{\partial}{\partial\varepsilon}+T\frac{\partial}{\partial T}\Big)P(\varepsilon,T),
+\label{eq:c9-MP}
+\end{equation}
+and for every even $J$, with $\delta$ a square-zero parameter of degree $0$ and the derivatives in $\varepsilon$, $T$ acting on $P(\varepsilon,T)$,
+\begin{equation}
+\{S^{(1)}(\Delta),W(P(\varepsilon,T),J)\}=\partial_\delta W\big(P(\varepsilon,T),J+\delta\{S^{(1)}(\Delta),J\}\big)+4\Big(\varepsilon\frac{\partial}{\partial\varepsilon}+T\frac{\partial}{\partial T}\Big)W\big(P(\varepsilon,T),J\big).
+\label{eq:c9-ward}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c7-dil}, $(v.\otimes1+1\otimes v.)L_t=-4L_t-4t\frac{d}{dt}L_t$; integration over $(\varepsilon,T)$ gives $-4[tL_t]_\varepsilon^T=4\varepsilon L_\varepsilon-4TL_T$, and $\partial_\varepsilon P(\varepsilon,T)=-L_\varepsilon$, $\partial_TP(\varepsilon,T)=L_T$. By \eqref{eq:c9-commutator} with $X=v.$, $v.\,\partial_P=\partial_P\,v.-\partial_{(v.\otimes1+1\otimes v.)P}$, and the operators $\partial_\phi$ commute, so $v.\,e^{\hbar\partial_P}=e^{\hbar\partial_P}v.+4\big(\varepsilon\partial_\varepsilon+T\partial_T\big)e^{\hbar\partial_P}$. Apply this to $e^{J/\hbar}$, use $v.\,e^{J/\hbar}=\hbar^{-1}(v.J)e^{J/\hbar}$ and Lemma \ref{lem:c9-SDelta} (i), and divide by $\hbar^{-1}e^{W/\hbar}$.
+\end{proof}
+
+\begin{corollary}[Callan--Symanzik form at a finite endpoint]
+\label{cor:c9-CS}
+Let $O$ be a homogeneous local operator, $J=I-I^{CT}[\varepsilon]-\hbar F_1^{(0)}+\delta\,O(\varepsilon)$ with $\hbar F_1^{(0)}$ of Weyl weight $4$ and $O(\varepsilon)$ of Definition \ref{def:c8-renorm} with $\psi=0$. Modulo $\hbar^2$,
+\[
+\begin{aligned}
+\{S^{(1)}(\Delta),O[T]\}-4T\frac{\partial}{\partial T}O[T]=\ &\big(\{S^{(1)}(\Delta),O\}\big)[T]+4\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[T]\\
+&+4\big(\text{tree insertion at scale }T\text{ of the coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\text{ into }O[T]\big).
+\end{aligned}
+\]
+At $T=\infty$ this is twice Theorem \ref{thm:c6-CS}.
+\end{corollary}
+
+\begin{proof}
+By \eqref{eq:c9-ward}, $\{S^{(1)}(\Delta),-\}$ minus $4\varepsilon\frac{d}{d\varepsilon}+4T\partial_T$ of the flow, with the total derivative in $\varepsilon$, equals $\partial_\delta W\big(P,J+\delta(v.J-4\varepsilon\frac{dJ}{d\varepsilon})\big)$. Here $v.I=0$ and $v.\hbar F_1^{(0)}=0$ (Lemma \ref{lem:c9-SDelta} (i)). At one loop $I^{CT}[\varepsilon]$ is $\varepsilon^{-1}$ times a functional of weight $2$, multiplied by $-4$ under $v.$, plus $\log\varepsilon$ times a functional of weight $4$, so $(v.-4\varepsilon\frac d{d\varepsilon})I^{CT}[\varepsilon]=-4$ times the coefficient of $\log\varepsilon$; by Lemma \ref{lem:c6-ct} the same computation gives $(v.-4\varepsilon\frac d{d\varepsilon})O(\varepsilon)=(v.O)(\varepsilon)+4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$, up to constants, which drop out of the flow (Remark \ref{rem:c3-class}). The flow has a limit as $\varepsilon\to0$ and $\varepsilon\frac d{d\varepsilon}$ of it tends to $0$, its dependence on $\varepsilon$ at one loop being a sum of terms $\varepsilon^a\log^b\varepsilon$ with $a>0$ (Lemma \ref{lem:c4-local}); take $\partial_\delta$ and the limit. At $T=\infty$, $v.=2s\frac{d}{ds}\big|_{s=1}\sigma_s$ on functionals (Definition \ref{def:c6-sigma}).
+\end{proof}
+
+\section{The arity-one equation along the dilatation}
+
+\begin{definition}[Arity-one data along $\Delta$]
+\label{def:c9-data}
+Let $\hbar F_1^{(0)}$ be an arity-zero finite counterterm containing the finite counterterm of Theorem \ref{thm:c4-finite}, $J=I-I^{CT}[\varepsilon]-\hbar F_1^{(0)}$, and let $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ and $\hbar F_1^{(1)}(\Delta)$ be the arity-one parts along $\Delta$ of the counterterms and of the finite counterterm of Definition \ref{def:c8-quant}, evaluated as in Chapter 2, so that the arity-one part of $I_{\mathfrak{psl}(4|4)}$ along $\Delta$ is $S^{(1)}(\Delta)$. The arity-one part along $\Delta$ of $W\big(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-\hbar F_1\big)$ is the linearised flow at $J$ of the arity-one vertex
+\[
+S^{(1)}(\Delta)-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)-\hbar F_1^{(1)}(\Delta).
+\]
+The arity-one obstruction along $\Delta$, $\hbar\,\mathrm{Ob}^{(1)}(\Delta)$, is the local functional of degree $0$ whose tree-level flow with edges $P(0,\infty)$ is the order-$\hbar$ part of the $\varepsilon\to0$ limit of $Q$ applied to the linearised flow at $J$ of $S^{(1)}(\Delta)-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$, with edges $P(\varepsilon,\infty)$. By Lemma \ref{lem:c8-transfer} this limit is the flow of the arity-one defect vertex
+\[
+\{I,S^{(1)}(\Delta)\}_\varepsilon-\big\{I^{CT}[\varepsilon]+\hbar F_1^{(0)},S^{(1)}(\Delta)\big\}_\varepsilon-Q\,I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)-\big\{I,I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)\big\}_\varepsilon
+\]
+modulo constants and $\hbar^2$, the arity-one part along $\Delta$ of \eqref{eq:c7-defect} with the finite counterterm included.
+\end{definition}
+
+On the line $\mathbb C\Delta$, $d_{CE}=0$, and $\{S^{(1)}(\Delta),\hbar F_1^{(0)}\}=0$ by Lemma \ref{lem:c9-SDelta} (i). By Theorem \ref{thm:c8-obstruction} (ii) and Proposition \ref{prop:c8-Tsafe}, the equivariant quantum master equation holds at arity one along $\Delta$ exactly when
+\begin{equation}
+(Q+\{I,-\})\,\hbar F_1^{(1)}(\Delta)=\hbar\,\mathrm{Ob}^{(1)}(\Delta).
+\label{eq:c9-arity1}
+\end{equation}
+
+\begin{proposition}[Arity-one counterterm and obstruction along $\Delta$]
+\label{prop:c9-structure}
+\begin{itemize}
+\item (i) At one loop, $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ is the singular part of the composite cycles $\tfrac\hbar2\,\partial_{2(P\star v.P\star\otimes1)K_0}W(P(\varepsilon,\infty),I)_{\rm tree}$, $P=P(\varepsilon,\infty)$, in which the composite kernel closes two legs of a tree of $I$. Every other one-loop graph with one vertex $S^{(1)}(\Delta)$ has a limit as $\varepsilon\to0$ at generic momenta.
+\item (ii) Assume that the $\varepsilon\to0$ limit of $Q$ of the composite cycles minus $(Q+\{I,-\})I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ is the tree-level flow of a local functional, the composite part. Then
+\begin{equation}
+\hbar\,\mathrm{Ob}^{(1)}(\Delta)=4\big(\text{coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\big)+(\text{composite part})=(Q+\{I,-\})\Big(4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big)\Big)+(\text{composite part}).
+\label{eq:c9-Ob}
+\end{equation}
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) By \eqref{eq:c9-D1a} at $T=\infty$, the one-loop graphs with one vertex $S^{(1)}(\Delta)$ are $(P\star v.)$ applied to the one-loop part of $W(P,J)$, the composite cycles, and the graphs joining the tree part and the one-loop part of $W(P,J)$ by the composite kernel. The one-loop part of $W(P,J)$ has a limit at generic momenta (Proposition \ref{prop:c4-limit}), and the first and third classes attach to its legs an edge $P$ or the composite kernel at generic momenta, so they have limits; the counterterm, the singular part of the graphs (Definition \ref{def:c8-quant}), is that of the composite cycles. (ii) Apply \eqref{eq:c9-D1b} at $T=\infty$, where $\{-,-\}_\infty=0$. At order $\hbar$: $\{S^{(1)}(\Delta),W\}_\varepsilon$ differs from $\{S^{(1)}(\Delta),W\}$ by a special edge on a leg, carrying $e^{-\varepsilon|p|^2}-1$ at generic momenta, and $\{S^{(1)}(\Delta),W\}=v.W$ tends by \eqref{eq:c9-ward}, as in the proof of Corollary \ref{cor:c9-CS}, to the tree-level flow of $4$ times the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$. $QW$ is the flow of the arity-zero defect (Proposition \ref{prop:c4-defectflow}); its tree part carries a special edge on a tree and tends to $0$, and its one-loop part tends to $0$ by the arity-zero equation, so $(P\star v.)(QW)$ and the graphs joining $QW$ and $W$ tend to $0$, while $-\tfrac\hbar2\partial(QW_{\rm tree})=Q\big(\tfrac\hbar2\partial W_{\rm tree}\big)$ by Proposition \ref{prop:c9-composite} (iii). $Q$ of the linearised flow of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ tends to the tree-level flow of its image under $Q+\{I,-\}$, as in Lemma \ref{lem:c6-bvexact}. The second form is \eqref{eq:c6-fieldren}.
+\end{proof}
+
+\begin{theorem}[The quadratic sector along $\Delta$]
+\label{thm:c9-quadratic}
+In the sectors $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(A|_V,A^*|_V)$, $(\lambda,\lambda^*)$ and $(c,c^*)$, with $x$ the position:
+\begin{itemize}
+\item (i) The quadratic part of the arity-one counterterm is
+\[
+I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big[\int(d(\iota_xA|_V),A^*|_V)-\int(\iota_xdc,c^*)-\int(\rho(x){\not d}\lambda,\lambda^*)\Big]=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\;Q\Big(\int(\iota_xA|_V,c^*)-\tfrac12\int(\rho(x)\lambda^*,\lambda^*)\Big).
+\]
+Its coefficient of $\varepsilon^{-1}$ vanishes, and so does its part in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$.
+\item (ii) The quadratic part of the arity-one obstruction is
+\begin{equation}
+\hbar\,\mathrm{Ob}^{(1)}(\Delta)=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[-\tfrac{11}3\int(dA,dA)+\tfrac{47}3\int(\lambda,{\not d}\lambda)-\tfrac{14}3\int(dc,A^*)\Big],
+\label{eq:c9-ObDelta}
+\end{equation}
+$\int(dA,dA)=\int(dA|_V,dA|_V)+\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$, with vanishing coefficient of $\int(d^*A|_V,d^*A|_V)$ and of every functional with an explicit factor $x$. In \eqref{eq:c9-Ob} the first summand is $\big[-4\int(dA,dA)+16\int(\lambda,{\not d}\lambda)-4\int(dc,A^*)\big]$ units and the composite part is $\big[\tfrac13\int(dA,dA)-\tfrac13\int(\lambda,{\not d}\lambda)-\tfrac23\int(dc,A^*)\big]$ units.
+\item (iii) The quadratic part of \eqref{eq:c9-arity1} has the unique translation-invariant solution
+\[
+\hbar F_1^{(1)}(\Delta)=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[\tfrac{22}3\int(A,A^*)-\tfrac{47}3\int(\lambda^*,\lambda)-\tfrac83\int(c^*,c)\Big],
+\]
+which is $4$ units times $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ plus $\big[-\tfrac23\int(A,A^*)+\tfrac13\int(\lambda^*,\lambda)+\tfrac43\int(c^*,c)\big]$ units. Every solution differs from it by a $Q$-closed quadratic local functional of degree $-1$ and Weyl weight $4$; these include $\int(2E(A|_{W_{\mathbb R}^\perp})+2A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $-\int(2E(\lambda)+3\lambda,\lambda^*)$, $\int(2E(A|_V)+2A|_V,A^*|_V)-\int(2E(c),c^*)$, $Q\int(\iota_xA|_V,c^*)$ and $Q\int(\rho(x)\lambda^*,\lambda^*)$. In the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ the solutions of degree at most one in $x$ are
+\begin{equation}
+\hbar F_1^{(1)}(\Delta)=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[\tfrac{22}3\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})+\theta\int\big(2E(A|_{W_{\mathbb R}^\perp})+2A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big)\Big],\qquad\theta\ \text{a number}.
+\label{eq:c9-Fperp}
+\end{equation}
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) By Proposition \ref{prop:c9-structure} (i), the counterterm is the singular part of the composite cycles with two legs, in which the composite kernel closes two legs of a tree of $I$ with four legs; their exact evaluation gives the stated multiple of $\log\varepsilon$, with vanishing coefficient of $\varepsilon^{-1}$, and the graphs with $S^{(1)}(\Delta)$ joined by an edge to the one-loop two-point subgraphs and to the vertex $-I^{CT}[\varepsilon]$ have opposite singular parts. In the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ the composite cycle has superficial degree $-1$. The second form follows from the substitutions of Proposition \ref{prop:c1-Q}: $Q\int(\iota_xA|_V,c^*)=-\int(\iota_xdc,c^*)+\int(d(\iota_xA|_V),A^*|_V)$, and $-\tfrac12Q\int(\rho(x)\lambda^*,\lambda^*)=-\int(\rho(x){\not d}\lambda,\lambda^*)$ by the symmetry of $(\rho(x)\zeta_1,\zeta_2)$. (ii) By Proposition \ref{prop:c9-structure} (ii), whose hypothesis holds in these sectors: the first summand has the quadratic part of Theorem \ref{thm:c4-quadratic} times $4$, and the composite part is the image under $Q$ of the renormalised composite two-point functional of Remark \ref{rem:c9-Pi}, evaluated exactly sector by sector. The sum agrees with the direct evaluation of the special-edge graphs of Definition \ref{def:c9-data} at the UV boundary. (iii) By Proposition \ref{prop:c1-Q}, $Q\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})=-\tfrac12\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$, $Q\int(A|_V,A^*|_V)=-\tfrac12\int(dA|_V,dA|_V)-\int(dc,A^*)$, $Q\int(\lambda^*,\lambda)=-\int(\lambda,{\not d}\lambda)$ and $Q\int(c^*,c)=-\int(dc,A^*)$. These four functionals span the parity-even translation-invariant local functionals of degree $-1$ and Weyl weight $4$ in the four sectors, and their images are linearly independent, which gives existence and uniqueness. The listed differences are $Q$-closed by Lemma \ref{lem:c9-SDelta} (iii), $Q$ preserving the sectors $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ and $(\lambda,\lambda^*)$ and mixing $(A|_V,A^*|_V)$ with $(c,c^*)$. In the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ the functionals of degree at most one in $x$ are spanned by $\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ and $\int(E(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp})$, and $Q\int(E(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp})=\tfrac12\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$; the equation fixes the difference of the two coefficients to $\tfrac{22}3$.
+\end{proof}
+
+\begin{remark}[The renormalised composite two-point functional]
+\label{rem:c9-Pi}
+The quadratic part of the composite cycles minus the quadratic part of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ has a limit as $\varepsilon\to0$ at nonzero momentum, the renormalised composite two-point functional. In the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ it is the local functional
+\[
+\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[\tfrac53\int\big(2E(A|_{W_{\mathbb R}^\perp})+2A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big)-\tfrac23\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})\Big],
+\]
+and in the sectors $(A|_V,A^*|_V)$, $(\lambda,\lambda^*)$, $(c,c^*)$ it contains $\log|p|^2$ of the momentum, in $(A|_V,A^*|_V)$ together with $(p,a)(p,b)|p|^{-2}$ for polarisations $a,b$. Its image under $Q$ is local in every sector, equal to the composite part of Theorem \ref{thm:c9-quadratic} (ii): the logarithms and the ratios $(p,a)(p,b)|p|^{-2}$ cancel in the image. The translation-invariant local functional with the same image is $\big[-\tfrac23\int(A,A^*)+\tfrac13\int(\lambda^*,\lambda)+\tfrac43\int(c^*,c)\big]$ units, the second summand of the solution of Theorem \ref{thm:c9-quadratic} (iii).
+\end{remark}
+
+\begin{remark}[Two-component forms along $\Delta$]
+\label{rem:c9-twocompD}
+With the components of Definition \ref{def:c8-twocomp}, $(\sigma^n\bar\sigma^m)_\alpha{}^\beta=\sigma^n_{\alpha\dot\alpha}\bar\sigma^{m\dot\alpha\beta}$ and $(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha}=\bar\sigma^{m\dot\beta\alpha}\sigma^n_{\alpha\dot\alpha}$,
+\[
+\begin{aligned}
+&\int(\lambda^*,\lambda)=\int d^4x\Big\{\big(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i\big)-\big(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}\big)\Big\},\qquad -\int(2E(\lambda)+3\lambda,\lambda^*)=-\int d^4x\Big\{\big((2E+3)\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i\big)-\big((2E+3)\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}\big)\Big\},\\
+&\int(\rho(x){\not d}\lambda,\lambda^*)=\int d^4x\Big\{-x_n(\sigma^n\bar\sigma^m)_\alpha{}^\beta\big(\partial_m\lambda_\beta{}^i,\lambda^{*\alpha}{}_i\big)+x_n\big(\partial_m\bar\lambda_{\dot\beta i}(\bar\sigma^m\sigma^n)^{\dot\beta}{}_{\dot\alpha},\bar\lambda^{*\dot\alpha i}\big)\Big\},\qquad \int(\rho(x)\lambda^*,\lambda^*)=-2i\int d^4x\,x_m\big(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i}\big),
+\end{aligned}
+\]
+and $\int(\lambda,{\not d}\lambda)$ as in Remark \ref{rem:c9-twocomp3}. Thus \eqref{eq:c9-ObDelta} contains $\tfrac{94}3\,i$ units times $\int d^4x\,(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i)$, the translation-invariant $\hbar F_1^{(1)}(\Delta)$ contains $-\tfrac{47}3$ units times $\int d^4x\{(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\}$, and Weinberg's forms follow from $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column.
+\end{remark}
+
+\section{The dilatation component of the scalar bilinears}
+
+For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ (Definition \ref{def:c5-bilinear}), $(Q+\{I,-\})O=0$. By Lemma \ref{lem:c8-transfer}, applied to the exponential of the equivariant interaction with the vertex $\delta\,O(\varepsilon)$ added, the arity-one part along $\Delta$ of $d_\infty O[\infty]$ is the $\varepsilon\to0$ limit of the graphs with one vertex given by the part of the defect vertex linear in $\delta$ and in the arity-one vertex of Definition \ref{def:c9-data}, together with the products of $O(\varepsilon)$ with the arity-zero and arity-one defects. The local representative along $\Delta$ is $L(O)^{(1)}(\Delta)=\{S^{(1)}(\Delta),O\}+D_1(O)$ (Definitions \ref{def:c8-rep}, \ref{def:c8-components}), and by Proposition \ref{prop:c8-Tsafe} and Theorem \ref{thm:c8-L} (ii) it is computed at $T=\infty$.
+
+\begin{theorem}[The component along $\Delta$]
+\label{thm:c9-D1}
+Let $\hbar F_1^{(0)}$ contain the finite counterterm of Theorem \ref{thm:c4-finite}, let $\hbar F_1^{(1)}(\Delta)$ solve the quadratic part of \eqref{eq:c9-arity1}, with the part \eqref{eq:c9-Fperp} in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, and let $\psi=0$. For a scalar bilinear $O$ the arity-one counterterm of $O$ along $\Delta$ vanishes, and on the part with two legs $A|_{W_{\mathbb R}^\perp}$ the local representative along $\Delta$ exists, with
+\begin{equation}
+\begin{aligned}
+D_1(O)&=-\big(\tfrac13+\theta\big)\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\{S^{(1)}(\Delta),O\}&&\text{for the traceless part},\\
+D_1(O)&=-48\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,O-\big(\tfrac13+\theta\big)\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\{S^{(1)}(\Delta),O\}&&\text{for the trace},
+\end{aligned}
+\label{eq:c9-D1}
+\end{equation}
+$\{S^{(1)}(\Delta),O\}=2(E+2)O$: twice the coefficient of Theorem \ref{thm:c6-dil} times $O$, plus $-(\tfrac13+\theta)$ units times the classical transformation. The contributions are those of the following table.
+\end{theorem}
+
+\begin{tabular}{l|c|c}
+contribution, part with two legs $A|_{W_{\mathbb R}^\perp}$ & traceless part & trace \\
+\hline
+cycles through $O$ and $S^{(1)}(\Delta)$ with one special edge & $\tfrac{44}3\,O-\tfrac13\{S^{(1)}(\Delta),O\}$ & $-\tfrac{100}3\,O-\tfrac13\{S^{(1)}(\Delta),O\}$ \\
+$-\{\hbar F_1^{(1)}(\Delta),O\}$ & $-\tfrac{44}3\,O-\theta\,\{S^{(1)}(\Delta),O\}$ & $-\tfrac{44}3\,O-\theta\,\{S^{(1)}(\Delta),O\}$ \\
+$-\{I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta),O\}$, arity-one counterterm of $O$ & $0$ & $0$ \\
+\hline
+$D_1(O)$ & $-\big(\tfrac13+\theta\big)\{S^{(1)}(\Delta),O\}$ & $-48\,O-\big(\tfrac13+\theta\big)\{S^{(1)}(\Delta),O\}$ \\
+\end{tabular}
+\tabcaption{The component $D_1(O)$ of a scalar bilinear on the part with two legs $A|_{W_{\mathbb R}^\perp}$, in units; for the trace, $O$ stands for $\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$. The first row is $4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ (Theorem \ref{thm:c5-Oeps}), $16\,O$ and $-32\,O$, plus $-\tfrac43O-\tfrac13\{S^{(1)}(\Delta),O\}$.}
+
+\begin{proof}
+On the part with two legs $A|_{W_{\mathbb R}^\perp}$ the limit consists of the following terms. The vertex $\{S^{(1)}(\Delta),O(\varepsilon)\}_\varepsilon$ is the classical term $\{S^{(1)}(\Delta),O\}$, whose flow belongs to $\big(\{S^{(1)}(\Delta),O\}\big)[\infty]$, plus a special edge between $S^{(1)}(\Delta)$ and $O$; the vertex linear in $\delta$ alone is the special edge between $I$ and $O$ plus counterterm vertices, since $(Q+\{I,-\})O=0$. Joined by the flow \eqref{eq:c9-D1a}, the graphs in which these special edges lie on a tree tend to $0$, and those with $O$, $S^{(1)}(\Delta)$ and one special edge on the cycle, the other edges $P(\varepsilon,\infty)$ or the composite kernel, have the local limit of the first row. The trees with the vertex $-\{I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)+\hbar F_1^{(1)}(\Delta),O\}$ give, by Lemma \ref{lem:c4-count} and Lemma \ref{lem:c9-SDelta} (i), $-\tfrac{22}3\cdot2\,O-\theta\{S^{(1)}(\Delta),O\}$ units from \eqref{eq:c9-Fperp}, and $0$ from the counterterm, whose quadratic part contains no $A^*|_{W_{\mathbb R}^\perp}$ (Theorem \ref{thm:c9-quadratic} (i)). The arity-one counterterm of $O$ along $\Delta$ is a colour-singlet local functional of degree $-1$ and Weyl weight $2$, with terms linear in the position carrying densities of weight $3$ (the weight counting in the proof of Proposition \ref{prop:c7-select}); every colour singlet of degree $-1$ contains an antifield and a second adjoint field and has weight at least $4$, so it vanishes. The defect terms tend to $0$ on this part: the arity-zero defect vanishes in the sector $(c,A|_V)$ (Theorem \ref{thm:c4-finite}) and its trees with $O$ carry a leg $c$ or $A|_V$, and the quadratic part of the arity-one defect vanishes by \eqref{eq:c9-arity1}. The sum is the last row. By Theorem \ref{thm:c5-Oeps} and Lemma \ref{lem:c6-count}, $4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ minus $16\,O$ is twice the coefficient of Theorem \ref{thm:c6-dil} times $O$: $2\cdot0$ for the traceless part and $2\cdot(-24)$ for the trace.
+\end{proof}
+
+\begin{proposition}[The composite triangle]
+\label{prop:c9-triangle}
+Let $O$ be a scalar bilinear, and consider the one-loop graph of the arity-one part of $O[\infty]$ along $\Delta$ whose cycle contains $O$, a cubic vertex of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$, the vertex $([A,c],A^*)$ and the composite kernel from the leg $A|_V$ of the first to the leg $c$ of the second; its external legs are $A|_{W_{\mathbb R}^\perp}$, of momentum $p_1$, and $A^*|_{W_{\mathbb R}^\perp}$, of momentum $p_2$, with $p_1+p_2+k=0$ for the momentum $k$ of $\omega$. In the form $\alpha(p_1)\delta(p_1+p_2+k)+\beta(p_1)^\mu\frac{\partial}{\partial p_2^\mu}\delta(p_1+p_2+k)$, with $p_1$ held fixed and the value of $O$ taken with the polarisation of $A^*|_{W_{\mathbb R}^\perp}$ in place of its second leg, the value of the graph is $\alpha=0$ and
+\[
+\beta(p_1)=8\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,(\text{value of }O)\,\Big(\frac{p_2}{|p_2|^2}+16\pi^2|p_1|^2\int\frac{d^4l}{(2\pi)^4}\,\frac{l}{|l|^4\,|l+p_2|^2\,|l-p_1|^2}\Big).
+\]
+Its image under $Q$, a functional of two legs $A|_{W_{\mathbb R}^\perp}$, is the local functional
+\begin{equation}
+Q\,(\text{composite triangle})=-2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\{S^{(1)}(\Delta),O\}.
+\label{eq:c9-triangle}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The term with $\frac{\partial}{\partial p_2}\delta$ carries the explicit position of the density. Exchanging the two legs turns $(\alpha,\beta)$ into $\big(\alpha(p_2)-\tfrac{\partial\beta^\mu}{\partial p_1^\mu}(p_2),\,\beta(p_2)\big)$, with $p_2=-p_1-k$, by $g(p_2)\,\partial\delta=g(-p_1-k)\,\partial\delta-(\partial g)(-p_1-k)\,\delta$, and a functional of two legs of the same field depends on its value through the sum of the value and its exchange. $Q$ replaces the leg $A^*|_{W_{\mathbb R}^\perp}$ by $-\tfrac12d^*dA|_{W_{\mathbb R}^\perp}$ (Proposition \ref{prop:c1-Q}), which multiplies the value by $-\tfrac12|p_2|^2$ and, by the same rule, turns $(0,\beta)$ into $\big((p_2,\beta),-\tfrac12|p_2|^2\beta\big)$. The vector integral is odd under the exchange of its two momenta, by $l\mapsto-l$, and its divergence in $p_1$ at fixed $k$ is $2|p_1|^{-2}|p_2|^{-2}$, by $\partial_\nu(l^\nu|l|^{-4})=2\pi^2\delta^4(l)$. In the sum over the two orderings the terms containing the integral cancel: the coefficient of $\partial\delta$ is $-4p_2-4p_1=4k$ and that of $\delta$ is $8$, in units times the value of $O$. The classical transformation $\{S^{(1)}(\Delta),O\}=2(E+2)O$ has the value $-4$ and $-2k$ in the same form, by $\int\mathrm{dvol}\,e^{i(k,x)}2\big((x,\partial)+2\big)=2\int\mathrm{dvol}\,\big(-2-i(k,x)\big)e^{i(k,x)}$; the ratio is $-2$.
+\end{proof}
+
+\begin{remark}[Two evaluations]
+\label{rem:c9-twoeval}
+The table of Theorem \ref{thm:c9-D1} comes from the special-edge graphs of Lemma \ref{lem:c8-transfer}. A second evaluation applies $Q$ to the arity-one part of $O[\infty]$ along $\Delta$ (Lemma \ref{lem:c7-image}); its graphs are the tree of $O$ with $S^{(1)}(\Delta)$, the graphs with $S^{(1)}(\Delta)$ on a leg of the one-loop two-point function joined to $O$, the composite triangle, the renormalised composite two-point functional on a leg of $O$, and the trees with the vertices $-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)-\hbar F_1^{(1)}(\Delta)$. With \eqref{eq:c9-triangle} it gives \eqref{eq:c9-D1}. The two evaluations agree in detail on the terms beyond the scaling of Corollary \ref{cor:c9-CS}: in the first, the cycles through $O$ with a special edge give, beyond $4$ times the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$, the terms $-\tfrac43O-\tfrac13\{S^{(1)}(\Delta),O\}$, and the tree insertion into $O$ of the composite part $\tfrac13\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ of Theorem \ref{thm:c9-quadratic} (ii) gives $\tfrac83O$; in the second, the composite triangle gives $-2\{S^{(1)}(\Delta),O\}$, and the composite two-point functional on a leg of $O$ gives, by Lemma \ref{lem:c6-bvexact} and Remark \ref{rem:c9-Pi}, $\tfrac83O+\tfrac53\{S^{(1)}(\Delta),O\}-\tfrac43O$. Both sums are $\tfrac43O-\tfrac13\{S^{(1)}(\Delta),O\}$ units, and this agreement determines both coefficients $8$ in the value of the composite triangle.
+\end{remark}
+
+\begin{theorem}[The multiple of the classical transformation]
+\label{thm:c9-kappa}
+Let the family of scalar bilinears consist of $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ for all compactly supported four-forms $\omega$ and $w_1,w_2\in W_{\mathbb R}^\perp$. Assume:
+\begin{itemize}
+\item (i) a one-loop quantisation through arity two along $\Delta$ and $P_b$: \eqref{eq:c8-qme} modulo $\hbar^2$ in its components of arity at most two along these generators, with $\hbar F_1^{(1)}(\Delta)$ of degree at most one in $x$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$;
+\item (ii) local representatives on the family through arity two along $(\Delta,P_b)$ (Definition \ref{def:c8-rep}), with $\psi=0$.
+\end{itemize}
+Then $\theta=-\tfrac13$: on the part with two legs $A|_{W_{\mathbb R}^\perp}$ the coefficient of $\{S^{(1)}(\Delta),O\}$ in $D_1(O)$ vanishes.
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:c8-L} (iii), (iv), $L\circ L=0$ on the family, and its component along $(\Delta,P_b)$ is Corollary \ref{cor:c8-homotopy} (ii): applied to $O$ in the family, $[\Lambda^{(1)}(\Delta),\Lambda^{(1)}(P_b)]O+\Lambda^{(1)}([\Delta,P_b])O$ is a graded commutator of $\Lambda^{(0)}$ with an operator built from $\Lambda^{(2)}(\Delta,P_b)$, applied to $O$. Here $[\Delta,P_b]=-2P_b$ (Remark \ref{rem:c2-dilatation}), and $S^{(2)}(\Delta,P_b)=0$ (Definition \ref{def:c2-S2}), so that operator has order $\hbar$, and with $sO=0$ the right side at order $\hbar$ is $s$ applied to the local functional obtained from $O$ by its order-$\hbar$ part, the arity-two output of $O$.
+
+Left side. On the part with two legs $A|_{W_{\mathbb R}^\perp}$, by Theorems \ref{thm:c9-D1} and \ref{thm:c9-P1}, the order-$\hbar$ parts are $a\{S^{(1)}(\Delta),-\}+n$ along $\Delta$ and $a_P\{S^{(1)}(P_b),-\}$ along $P_b$, with $a=-(\tfrac13+\theta)$ units, $a_P=-(\tfrac13+\theta_P)$ units and $n$ the multiplication by $0$ or $-48$ units (the part of $\hbar F_1^{(1)}(P_b)$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ has the form of Theorem \ref{thm:c9-P1}, $\int(\partial_b(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp})$ being, up to integration by parts, the invariant local functional of degree $-1$ in that sector with the datum $b$ and density weight $5$); the classical operators $\{S^{(1)}(\Delta),-\}$, $\{S^{(1)}(P_b),-\}$ preserve the field content of a functional, so these parts compose among themselves. With $[\{S^{(1)}(\Delta),-\},\{S^{(1)}(P_b),-\}]=2\{S^{(1)}(P_b),-\}$, the order-$\hbar^0$ part of the same component, and $[n,\{S^{(1)}(P_b),-\}]=0$, the order-$\hbar$ part of the left side is
+\[
+(a+a_P)\cdot2\{S^{(1)}(P_b),O\}-2a_P\{S^{(1)}(P_b),O\}=2a\{S^{(1)}(P_b),O\}=2a\int\omega\,\partial_b(\iota_{w_1}A,\iota_{w_2}A).
+\]
+Right side. The arity-two output of $O$ is a colour-singlet local functional of degree $-1$; by the weight counting in the proof of Proposition \ref{prop:c7-select}, with the data $2x_0$, $2$ of $\Delta$ and $b$ of $P_b$ at a point $x_0$, its density at $x_0$ is a density of Weyl weight $3$ plus $x_0$ times densities of Weyl weight $4$. A colour singlet of degree $-1$ contains an antifield and a second adjoint field, so its density has weight at least $4$: the first part vanishes, and the densities of weight $4$, built from $(A^*,A)$, $(\lambda^*,\lambda)$ and $(c^*,c)$, carry no derivatives. $Q$ substitutes fields by derivatives of fields, and $\{I,-\}$ pairs the antifields of the arity-two output with the fields of $I$ and differentiates the vertices of $I$ alone, so $s$ of the arity-two output is linear in $x_0$. The left side is independent of $x_0$, and nonzero for $a\neq0$. Hence $a=0$.
+\end{proof}
+
+\begin{corollary}[The dilatation coefficients as components]
+\label{cor:c9-ident}
+Under the hypotheses of Theorem \ref{thm:c9-kappa}, on the part with two legs $A|_{W_{\mathbb R}^\perp}$ of the scalar bilinears:
+\begin{itemize}
+\item (i) $\hbar F_1^{(1)}(\Delta)$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$ is $\big[\tfrac{20}3\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})-\tfrac23\int(E(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp})\big]$ units;
+\item (ii) $D_1(O)=0$ for the twenty traceless bilinears and $D_1(O)=-48$ units times $O$ for the trace, twice the coefficients $0$ and $-24$ units of Theorem \ref{thm:c6-dil}, and the identification \eqref{eq:c6-step2} holds on this part;
+\item (iii) the one-loop anomalous dimensions are $0$ for the traceless bilinears and $-24$ units for the trace, $\tfrac{3g^2N}{4\pi^2}$ for $\mathfrak g=\mathfrak{su}(N)$ (Remark \ref{rem:c6-konishi}).
+\end{itemize}
+For every $\theta$, the coefficients of $O$ in $D_1(O)$ for the trace and for the traceless part differ by $-48$ units.
+\end{corollary}
+
+\begin{proof}
+Insert $\theta=-\tfrac13$ into \eqref{eq:c9-Fperp} and \eqref{eq:c9-D1}. Then $L(O)^{(1)}(\Delta)=2(E+2+\text{coefficient})O$ on this part, which is \eqref{eq:c6-dilcomp} there; with Theorem \ref{thm:c6-dil} this is \eqref{eq:c6-step2}. The last statement is \eqref{eq:c9-D1}.
+\end{proof}
+
+\section{Translations}
+
+For a translation $P_b$, $b\in V$, $v.$ is the derivative $\partial_b$ on every slot, and it commutes with $Q$, $Q^{GF}$ and $H$ (Proposition \ref{prop:c7-cov}). Propositions \ref{prop:c9-conj} and \ref{prop:c9-Qconj} hold with $\partial_b$ in place of $v.$ and \eqref{eq:c9-ward} without the scaling term; with $P=P(\varepsilon,\infty)$ the composite kernel is $\big(P\star\,\partial_b\otimes1+1\otimes P\star\,\partial_b\big)P=2\big(\partial_b(P\star)^2\otimes1\big)K_0$, nonzero because $(Q^{GF})^2\neq0$.
+
+\begin{theorem}[The translation component]
+\label{thm:c9-P1}
+Let $\hbar F_1^{(0)}$ contain the finite counterterm of Theorem \ref{thm:c4-finite}, let $\hbar F_1^{(1)}(P_b)$ have the part $\theta_P$ units times $\int(\partial_b(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp})$ in the sector $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $\theta_P$ a number, and let $\psi=0$. For a scalar bilinear $O$, on the part with two legs $A|_{W_{\mathbb R}^\perp}$,
+\begin{equation}
+P_1(O)=-\big(\tfrac13+\theta_P\big)\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\{S^{(1)}(P_b),O\},\qquad \{S^{(1)}(P_b),O\}=\int\omega\,\partial_b(\iota_{w_1}A,\iota_{w_2}A).
+\label{eq:c9-P1}
+\end{equation}
+The term $-\tfrac13$ units is the limit of the cycles through $O$ that contain $S^{(1)}(P_b)$ as the composite kernel and one special edge.
+\end{theorem}
+
+\begin{proof}
+As in Theorem \ref{thm:c9-D1}, with $\partial_b$ in place of $v.$. Every edge $P(\varepsilon,\infty)$, every vertex and every counterterm commutes with $\partial_b$ (Corollary \ref{cor:c7-equiv}), so the graphs with $S^{(1)}(P_b)$ on an edge or on a leg reproduce the flow of the classical term $\{S^{(1)}(P_b),O\}$; the remaining graphs are the cycles through $O$ with the composite kernel and one special edge, whose limit on this part is $-\tfrac13$ units times $\{S^{(1)}(P_b),O\}$, and $-\{\hbar F_1^{(1)}(P_b),O\}$ gives $-\theta_P$ units times it. In the second evaluation of Remark \ref{rem:c9-twoeval} the composite triangle along $P_b$, symmetrised over the two legs $A|_{W_{\mathbb R}^\perp}$, gives $-2$ units and the composite two-point functional along $P_b$ on a leg of $O$ gives $\tfrac53$ units times $\{S^{(1)}(P_b),O\}$, with the same sum.
+\end{proof}
+
+\begin{proposition}[A finite part of the operators along the dilatation]
+\label{prop:c9-scheme}
+Let $a$ be a real multiple of the unit and change the finite part of the operators by $\hbar\psi'=\tfrac a2\{S^{(1)}(\Delta),-\}$ (Definition \ref{def:c8-renorm}) on a family of local functionals stable under $\Lambda$. Then for every eigenvector $x$ of $\mathrm{ad}_\Delta$ with eigenvalue $\lambda_x$ (Remark \ref{rem:c2-dilatation}) the component of the operators along $x$ changes by
+\[
+\tfrac a2\,\lambda_x\,\{S^{(1)}(x),-\}:
+\]
+by $-a$ along translations, by $+a$ along special conformal fields, by $-\tfrac a2$ along $\Sigma$, by $+\tfrac a2$ along $\Sigma^*$, and by $0$ along $\Delta$, $\mathfrak{so}(V)$ and $\mathfrak{so}(W_{\mathbb R}^\perp)$. The arity-zero part $\Lambda^{(0)}$ is unchanged, $\psi'$ is compatible with the reflection of Theorem \ref{thm:c8-fields}, and the spectrum of Theorem \ref{thm:c8-invariants} (iii) is unchanged. With $a=-(\tfrac13+\theta_P)$ units, $\psi'$ gives $P_1=0$ on the scalar bilinears, leaves $D_1$, $M_1$, $R_1$ unchanged and changes the components along $K_b$, $\Sigma$ and $\Sigma^*$ by $-(\tfrac13+\theta_P)$, $\tfrac12(\tfrac13+\theta_P)$ and $-\tfrac12(\tfrac13+\theta_P)$ units times the classical transformation.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c8-laws} (b), $L_1$ changes by $[s,\psi']$. The map $\psi'$ is linear over $C^\bullet(\mathfrak{psl}(4|4))$ and preserves the degree and the Weyl weight, so it commutes with $d_{CE}$; its commutator with $\Lambda^{(0)}=Q+\{I,-\}$ is $\tfrac a2\{(Q+\{I,-\})S^{(1)}(\Delta),-\}=0$ (Lemma \ref{lem:c9-SDelta} (iii)). Along $x$ the change is $\tfrac a2\big[\{S^{(1)}(x),-\},\{S^{(1)}(\Delta),-\}\big]=-\tfrac a2\{S^{(1)}([x,\Delta]),-\}$ by Corollary \ref{cor:c8-homotopy} (ii) at order $\hbar^0$, with $S^{(2)}(x,\Delta)=0$ (Definition \ref{def:c2-S2}), and $[x,\Delta]=-\lambda_x x$. By Theorem \ref{thm:c8-fields}, $S^{(1)}(\Delta)$ is mapped to $-S^{(1)}(\Delta)$ by the reflection, $\Delta^{\dagger_n}=-\Delta$, and the bracket rule gives $\big(\{S^{(1)}(\Delta),F\}\big)^{\Theta_n}=\{S^{(1)}(\Delta),F^{\Theta_n}\}$, so $\psi'$ commutes with the reflection for real $a$. The spectrum is invariant under (b) by Theorem \ref{thm:c8-invariants} (iii). The last statement is Theorem \ref{thm:c9-P1} with $\lambda_x=-2,+2,-1,+1$.
+\end{proof}
+
+\begin{remark}[Endpoint and large distance]
+\label{rem:c9-endpoint}
+Along $\Delta$ and the translations the insertion of $S^{(1)}(x)$ on a cycle decays as $|y|^{-5}$ and $|y|^{-6}$ (Proposition \ref{prop:c8-Tsafe}): for $\Delta$ the factor $2y$ of the vector field meets the $A\otimes A$ edge, of order $|y|^{-2}$, through $(2(y,\partial_y)+2)|y-a|^{-2}=-2|y|^{-2}+O(|y|^{-3})$, and the $c\otimes A^*|_V$ edge, of order $|y|^{-3}$. The composite kernel at $T=\infty$ is of order $|p|^{-3}$ at small momentum, $|x-y|^{-1}$ in position space (Proposition \ref{prop:c9-composite} (iv)), and the one-loop graphs with external legs at generic momenta converge; the components of this chapter are therefore evaluated at $T=\infty$, and by Theorem \ref{thm:c8-L} (ii) the local representatives are the same at every finite $T$. At finite $T$, with $P=P(\varepsilon,T)$ and the operator $(e^{-\varepsilon H}-e^{-TH})^{-1}P\star\,P\star v.P\star$, bounded at finite $T$ and of order $|p|^{-4}$ on $c^*$ at $T=\infty$, the composite insertion is a homotopy:
+\[
+P\star v.P\star=Q\,\big((e^{-\varepsilon H}-e^{-TH})^{-1}P\star\,P\star v.P\star\big)+\big((e^{-\varepsilon H}-e^{-TH})^{-1}P\star\,P\star v.P\star\big)\,Q,
+\]
+by Proposition \ref{prop:c9-composite} (iii). The composite triangle of Proposition \ref{prop:c9-triangle} has a local image under $Q$ at $T=\infty$, so this homotopy enters none of the computed components.
+\end{remark}
+
+\begin{remark}[Method of computation]
+\label{rem:c9-methodD}
+The quadratic data of Theorem \ref{thm:c9-quadratic} are exact: the special-edge graphs of Definition \ref{def:c9-data} reduce to master integrals in closed form, and the composite cycles and the graphs with $S^{(1)}(\Delta)$ on a leg are evaluated directly as $\varepsilon\to0$ limits in a Feynman-parameter representation, with $E$ acting on Fourier components as $-(4+(p,\partial_p))$; $Q$ applied to the second set reproduces the first in every sector. The bilinear data of Theorems \ref{thm:c9-D1} and \ref{thm:c9-P1} come from the special-edge cycles through $O$ and from the second evaluation of Remark \ref{rem:c9-twoeval}, which agree. The colour factors are reduced for a general simple $\mathfrak g$ and checked in the realisations $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{gl}(3)$; the signs of Lemma \ref{lem:c9-SDelta} and of Propositions \ref{prop:c9-composite}--\ref{prop:c9-ward} are confirmed in exact finite-dimensional models of the slots $c$, $A$, $A^*$, $c^*$ with the arrows of $Q$ and $Q^{GF}$ in momentum space, with $[v.,Q]=0$, $[v.,Q^{GF}]=-4Q^{GF}$, $[v.,H]=-4H$, on all monomials of degree at most three.
+\end{remark}
+
+\begin{remark}[The equations that fix the remaining numbers]
+\label{rem:c9-next}
+The numbers left free above enter the next equations of the one-loop structure. The coefficients $\beta_k$, $\kappa_k$ of Theorem \ref{thm:c9-F3} enter the part of $s(\hbar F_1)=\hbar\,\mathrm{Ob}$ with four legs. The number $\theta$ enters the cubic part of \eqref{eq:c9-arity1} through the bracket of the cubic part of $I$ with $\int(2E(A|_{W_{\mathbb R}^\perp})+2A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, which rescales the legs $A|_{W_{\mathbb R}^\perp}$ of the cubic vertices, and the arity-two equation along $(\Delta,P_b)$ fixes it to $-\tfrac13$ (Theorem \ref{thm:c9-kappa}); the number $\theta_P$ enters the arity-two equation along two supercharges whose bracket is a translation, together with the components $Q_1$. The trace bilinear has the further outputs $(A|_V,A|_V)$ and $(c,A^*|_V)$, the rotations of $V$ carry the composite kernel $2\big(v.(P(\varepsilon,\infty)\star)^2\otimes1\big)K_0$ with $v$ a rotation and enter $M_1$, and the letters, with $(Q+\{I,-\})O\neq0$, carry composite loops through the vertex $\{I,O\}$; these are given by the same classes of graphs.
+\end{remark}

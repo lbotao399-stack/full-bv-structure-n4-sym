@@ -1,0 +1,285 @@
+"""Writes step2/literature/ip_targets.json (companion of ip_targets.tex). Run: python3 build_ip_targets_json.py"""
+import json
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+unit = "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))"
+
+sources = {
+    "Mi97": "S. Minwalla, hep-th/9712074v2",
+    "DO02": "F. A. Dolan, H. Osborn, hep-th/0209056v2",
+    "KMMR": "J. Kinney, J. Maldacena, S. Minwalla, S. Raju, hep-th/0510251v4",
+    "SD": "D. Simmons-Duffin, TASI lectures on the conformal bootstrap, 1602.07982v1",
+    "Ry": "S. Rychkov, EPFL lectures on CFT in D>=3, 1601.05000v2",
+    "B03": "N. Beisert, The su(2|3) dynamic spin chain, hep-th/0310252v2",
+    "B04": "N. Beisert, dissertation, hep-th/0407277v4",
+    "BKS": "N. Beisert, C. Kristjansen, M. Staudacher, hep-th/0303060v4",
+    "Zw11": "B. I. Zwiebel, From scattering amplitudes to the dilatation generator, 1111.0083v2",
+    "DFS": "E. D'Hoker, D. Z. Freedman, W. Skiba, hep-th/9807098v1",
+    "PSZ": "S. Penati, A. Santambrogio, D. Zanon, hep-th/9910197v1",
+    "EHW": "B. Eden, P. S. Howe, P. C. West, hep-th/9905085v1",
+    "HSW": "P. S. Howe, E. Sokatchev, P. C. West, hep-th/9808162v3 (abstract and introduction only)",
+    "AFGJ": "D. Anselmi, D. Z. Freedman, M. T. Grisaru, A. A. Johansen, hep-th/9708042v1",
+    "BRvR": "C. Beem, L. Rastelli, B. C. van Rees, 1304.1803v2",
+    "BKRS": "M. Bianchi, S. Kovacs, G. Rossi, Y. S. Stanev, hep-th/0104016v1",
+    "EJSS": "B. Eden, C. Jarczak, E. Sokatchev, Ya. S. Stanev, hep-th/0501077v2",
+    "BERS": "M. Bianchi, B. Eden, G. Rossi, Y. S. Stanev, hep-th/0205321v1",
+    "Ryz": "A. V. Ryzhov, Quarter BPS operators in N=4 SYM, hep-th/0109064v2",
+    "DHHR": "E. D'Hoker, P. Heslop, P. Howe, A. V. Ryzhov, hep-th/0301104v2",
+    "BKPSS": "N. Beisert, C. Kristjansen, J. Plefka, G. W. Semenoff, M. Staudacher, hep-th/0208178v2",
+    "BMV": "K. Budzik, H. Murali, P. Vieira, 2306.04693v2",
+    "GGKM": "L. Grant, P. A. Grassi, S. Kim, S. Minwalla, 0803.4183v1",
+    "CY": "C.-M. Chang, X. Yin, 1305.6314v2",
+    "CL22": "C.-M. Chang, Y.-H. Lin, 2209.06728v4",
+    "BK": "K. Budzik, J. Kulp, 2512.07771v3",
+    "BGKWWY": "K. Budzik, D. Gaiotto, J. Kulp, B. R. Williams, J. Wu, M. Yu, 2306.01039v2",
+    "KKLP": "S. Kim, S. Kim, S. Lee, J. Park, 2606.27955v2",
+    "KLLS": "S. Kim, J. Lee, S. Lee, J. Song, 2610.20340v1",
+    "Z05": "B. I. Zwiebel, hep-th/0511109v3 (through n4_untwisted.json)",
+}
+
+T = []
+
+
+def add(**kw):
+    T.append(kw)
+
+
+add(id="IP1", tex_target=1, label="S", title="Euclidean generators, radial hermiticity",
+    source="Mi97", eq="(2.20)-(2.27), (2.32)-(2.33)",
+    statement="M'_pq=S_pq, D'=i S_{-1,0}, P'_p=S_{p,-1}+i S_{p0}, K'_p=S_{p,-1}-i S_{p0}; radial quantisation: M'^dag=M', D'^dag=-D', P'^dag=K', K'^dag=P'; [D',O']=(-i)(-i eps0 O'); level-one unitarity <s|K'_mu P'_nu|t> = 2<s|eps0+(-i)M'_munu|t> >= 0.",
+    regulator="none (representation theory)", scheme_independent="yes",
+    project_object="restriction of the conjugation X->X^dagger of psl(4|4) to the conformal Killing fields (IP6); positivity of the tree inner product on level-one descendants and its one-loop correction (IP22).",
+    two_component="P_{alpha alphadot}=sigma^m_{alpha alphadot}P_m, K^{alphadot alpha}=sigmabar^{m alphadot alpha}K_m (Euclidean sigma); with IP6: (P_{alpha alphadot})^dagger = K^{alphadot alpha}.")
+
+add(id="IP2", tex_target=2, label="S", title="Euclidean supercharges", source="Mi97", eq="(3.2)-(3.3), (3.28)-(3.29), Sec. 5.2",
+    statement="Q'=(Q-i sigma0 S)/sqrt2, S'=(Q+i sigma0 S)/sqrt2 (Majorana basis, Lorentzian Q^dag=Q, S^dag=S); radially Q'^dag=S', S'^dag=Q'. Sec 5.2: Tr of p scalars, eps0=p, SU(4) (0,p,0), special short representation at the threshold.",
+    regulator="none", scheme_independent="yes",
+    project_object="odd part of X->X^dagger: blocks (3,1)<->(1,3), (2,3)<->(3,2) of SW (17) (IP7).",
+    two_component="(Q^i_alpha)^dagger=S^alpha_i, (Qbar_{alphadot i})^dagger=Sbar^{alphadot i}; on parameters see IP7.")
+
+add(id="IP3", tex_target=3, label="S", title="Bras by inversion; 2{S,Q}", source="KMMR", eq="text before (2.2), (2.2), (2.9)-(2.10), (3.1)-(3.2), Sec. 5",
+    statement="bras = kets acted on by the inversion x->x/x^2 (M->M, H->-H, P->K); M^dag=M, P=K^dag, (Q)^dag=S, (Qbar)^dag=Sbar; 2{S,Q} = H - 2J_1 - 2 sum_{k=1}^{m-1} ((m-k)/m) R_k - (4-m) r/(2m) = Delta^[KMMR] >= 0; |psi> = Q (S/Delta0)|psi> + S (Q/Delta0)|psi>; Q~d, S~d*, harmonic states <-> Q-cohomology.",
+    regulator="none", scheme_independent="yes",
+    project_object="dilatation part of [x1, x1^dagger] has one sign on all odd blocks (IP7); Hodge decomposition with tree + one-loop inner product (IP27).",
+    two_component="m=4, Q=Q^4_-: 2{Q,Q^dag}=E-2J-H1-H2-H3 (Cartan basis of [CY] (2.1)).")
+
+add(id="IP4", tex_target=4, label="S", title="Lorentzian hermiticity and the conformal map to the radial frame", source="DO02",
+    eq="(2.11)-(2.17), (3.12)-(3.16), (A.8)-(A.11)",
+    statement="M_AB^dag=M_AB, (Q^i_alpha)^dag=Qbar_{i alphadot}, (S_i^alpha)^dag=Sbar^{i alphadot}; e^{-pi/2 M_0d}(.)e^{pi/2 M_0d}: iD->-H, P->E^+, K->E^-, E^{-r}=(E^{+r})^dag; Q^{+i}_alpha=(Q^i_alpha+sigma0 Sbar^i)/sqrt2, Q^{-alpha}_i=(S_i^alpha+Qbar_i sigmabar0)/sqrt2, (Q^{+i}_alpha)^dag=Q^{-beta}_i sigma0_{beta alphadot}; {Q^+,Q^-}=2 delta delta H+4 delta Mtilde-4 delta R; norm N positive definite (2.17); <0|Obar(0)O(x)|0> = I(x)/(x^2)^Delta, spinor I(x)=-i sigma^a x_a/(x^2)^{1/2} with N=sigma0, vector I=eta-2xx/x^2.",
+    regulator="none", scheme_independent="yes",
+    project_object="conformal map generated by P and K relating a reflection-type real structure to the radial one (R5(a)); spinor inversion matrix in the field realisation of X->X^dagger on lambda (IP5).",
+    two_component="Euclidean spinor inversion matrix x_m sigma^m_{alpha alphadot}/|x|, inverse -x_m sigmabar^{m alphadot alpha}/|x| ((x.sigma)(x.sigmabar) = -x^2).")
+
+add(id="IP5", tex_target=5, label="S", title="Field conjugation; reflection and inversion", source="SD; Ry",
+    eq="[SD] (97), (99), (106), (108)-(117); [Ry] (3.34)-(3.45)",
+    statement="O_E(t_E,x)^dag = Theta.O_E(-t_E,x); O(x)^dag = x^{-2 Delta} I(x)...I(x) O(x/x^2), I^mu_nu = delta - 2 x^mu x_nu/x^2; Q^dag = -Q^{II}; M^dag=-M, D^dag=D, P^dag=K ([SD] generators without i); <O|K_mu P_nu|O> = 2 Delta delta_munu <O|O>. [Ry]: N-S quantisation with K1+P1 (conjugate to D by a pi/2 rotation in SO(D+1,1)); SCT (3.35) + translation map N-S to radial foliation; reflection Theta: x1->-x1, [phi(x)]^dag=phi(Theta x) (3.37), Theta -> inversion R (3.40), [phi(x)]^dag = r^{-2 Delta} phi(Rx) (3.41), K=RPR, P=K^dag (3.43)-(3.45).",
+    regulator="none", scheme_independent="yes",
+    project_object="R5(a) [I]: the hyperplane reflection is a linear isometry (commutes with H, K_t, P(eps,infty)); it exchanges S_+, S_-; composed with the antilinear real-slice conjugation (W<->W^*) it preserves S_+ (x) W + S_- (x) W^*, the action and the rotation-covariant I^CT[eps]; the radial conjugation is its conjugate by the conformal map [Ry] (3.35); its one-loop realisation is fixed by the reflection with P_1, K_1, D_1.",
+    two_component="[I] A_ij(x) -> |x|^{-2} A^ij(x/x^2); A_m(x) -> |x|^{-2}(delta_m^n - 2 x_m x^n/x^2) conj(A_n)(x/x^2); lambda_alpha^i(x) -> |x|^{-4} x_n sigma^n_{alpha alphadot} (conjugate dotted field)^{alphadot i}(x/x^2) up to a phase fixed by the real slice.")
+
+add(id="IP6", tex_target=6, label="D", title="Inversion on the conformal Killing fields of the realisation", source="derived; consistent with SD (112), Ry (3.43)-(3.45), Mi97 (2.24)-(2.27)",
+    eq="check C6", statement="R(x)=x/(x,x): R_*(x->b) = (x,x)b-2(b,x)x; R_*((x,x)b-2(b,x)x)=b; R_*(E)=-E; R_*(rotation)=rotation. v -> -R_*(conj v) is an antilinear anti-automorphism of [v,v']=v(v')-v'(v), fixes Delta=2E, maps translation along b to special conformal along -conj b, rotation X_mn -> -conj X_mn. [x->v, (x,x)b-2(b,x)x] = -(b,v) Delta + rotation, so [P,P^dag] has dilatation part +|b|^2 Delta.",
+    regulator="none", scheme_independent="yes",
+    project_object="even part of X->X^dagger on psl(4|4) of Chapter 2.",
+    two_component="b_{alpha alphadot}=sigma^m_{alpha alphadot} b_m; image parameter -conj(b_m) has sigmabar^{m alphadot alpha}(-conj b_m) = conj(b_{alpha alphadot}) (conj sigma^m_{alpha alphadot} = -sigmabar^{m alphadot alpha}); (P_{alpha alphadot})^dagger = K^{alphadot alpha}.",
+    check="check_ip_targets.py C6")
+
+add(id="IP7", tex_target=7, label="D", title="The conjugation on psl(4|4)", source="derived from B04 (D.16)-(D.19), KMMR (3.1), DO02 (3.14), SD (112), manuscript prop:c2-special",
+    eq="checks C5, C8",
+    statement="In SW (17) blocks with a basis unitary for the compact Spin(4)xSU(4) Hermitian forms: X^dagger = diag(-1_2,1_2|1_4) conj(X)^T diag(-1_2,1_2|1_4). (a) antilinear, [X,Y}^dag=[Y^dag,X^dag}; (b) (2,1)<->(1,2), (3,1)<->(1,3), (2,3)<->(3,2), Delta^dag=Delta; (c) Delta-coefficient of [X,X^dag} for unit elements: -1/4 on the four odd blocks, +1/2 on (2,1), -1/2 on (1,2); (d) equals the supertranspose transport of the Beisert oscillator conjugation (A=(a,b^dag|c), A^dag=(a^dag,-b|c^dag)), st(D_B)=Delta/2; (e) diag(1_2,-1_2|1_4) and the identity violate the *-representation sign pattern; any block-diagonal Hermitian matrix with signature pattern (-|+|+) gives the same.",
+    regulator="none", scheme_independent="yes",
+    project_object="the antilinear anti-automorphism of R5(a) in the realisation of Chapter 2 (with IP6 on the even part).",
+    two_component="xi -> xi^dagger in Sigma^*: eta^alpha_i = -conj(xi_alpha^i), etabar^{alphadot i} = conj(xibar_{alphadot i}), up to the outer automorphism (positive factor on S_+(x)W, S_-(x)W, inverse on S_-(x)W^*, S_+(x)W^*); fixed by Gamma(xi2^dag,xi1^dag)|_V = conj Gamma(xi1,xi2)|_V (product of factors = 1); (xi,xi^dag) = -sum|xi_alpha^i|^2 - sum|xibar_{alphadot i}|^2 < 0; labels (Q^i_alpha)^dag=S^alpha_i, (Qbar_{alphadot i})^dag=Sbar^{alphadot i}, (P_{alpha alphadot})^dag=K^{alphadot alpha}, Delta^dag=Delta, (r^k_i)^dag = conj(r^i_k).",
+    check="check_ip_targets.py C5, C8")
+
+add(id="IP8", tex_target=8, label="S", title="Form of the one-loop two-point function; 20' and Konishi", source="B04", eq="(2.1)-(2.2), (2.14), (2.17)-(2.20)",
+    statement="mu^{-2 deltaD}<O(x1)O(x2)> = M0/|x12|^{2D0} + g^2 (M2 + M0 D2 log|mu x12|^{-2})/|x12|^{2D0}; 20': <Q_mn Q_pq> = 2(1-N^-2) eta eta (Delta12^2 + g^2 Htilde/4) + O(g^3), one-loop correction vanishes identically at eps->0 (related to vanishing beta); Konishi: ZK=(1+g^2 gamma xi0/(2 eps))K, <ZK ZK> = 12(1-N^-2)/|x|^4 (1 + 6 g^2 log|mu x|^-2), D = 2 + 6 g^2 = 2 + 3 g_YM^2 N/(4 pi^2), g^2=g_YM^2 N/(8 pi^2).",
+    regulator="DR/DRED (statement only); normal-ordered operators",
+    scheme_independent="partial: D2 independent; M2 dependent (xi0 choice); vanishing of the 20' correction is a statement of this scheme (scheme-independent form IP13)",
+    project_object="tree inner product (M0), one-loop inner product (M2), separation dependence |x|^{-2(w_O+coefficient)} fixed by D_1 (ch06 cor:c6-dilcomp); M2 moves under finite parts of O(eps) (ch05 thm:c5-Oeps).",
+    two_component="20' = 1/16 int omega (w1^ij A_ij, w2^kl A_kl) - 1/96 w1^ij w2_ij int omega (A^kl, A_kl); Konishi = 1/4 int omega (A^ij, A_ij); 6 g^2 = 3 g_YM^2 N/(4 pi^2) = -24 x unit.",
+    existing_ids=["n4_untwisted:B03c", "n4_untwisted:D7"])
+
+add(id="IP9", tex_target=9, label="S", title="Pairwise structure of the order-g^2 correction", source="DFS", eq="(2.1)-(2.7)",
+    statement="<Tr(z1)^k(x) Tr(zbar1)^k(y)> = G^k P_{k,k,0}(N), G=1/(4 pi^2 (x-y)^2); two-particle interaction (f f + f f) B G^2, B=b0+b1 ln(x-y)^2 mu^2; self-energy delta N A G, A=a0+a1 ln; a_i, b_i gauge dependent; order g^2 total = (1/2) k N (B+2A) sum_perms Tr Tr; B+2A=0 by the k=2 theorem; sum_p [[T^a,T^p],T^p] = N T^a.",
+    regulator="unspecified (any regulator with the k=2 statement)",
+    scheme_independent="partial: ratio (order g^2)/(tree) for Tr X^k = (k/2) x (k=2 value) in every scheme with pairwise structure; vanishing needs IP13",
+    project_object="[I] for O = int omega tr((iota_w A)^k), (w,w)=0: one-loop/tree inner-product ratio = (k/2) x (k=2 ratio) when finite parts of O(eps) are pairwise (one-loop graphs with one O vertex meet two legs, ch05 lem:c5-cycle); gauge dependence cancels in B+2A.",
+    two_component="z1 <-> iota_w A = 1/4 w^ij A_ij, w^ij w_ij = 0; tr(iota_w A)^k = (-ig)^k (iota_w A^a)... tr(T^a1...T^ak).",
+    check="check_ip_targets.py C7 (colour identity)")
+
+add(id="IP10", tex_target=10, label="S", title="A position-space scheme: propagator smoothing", source="Ryz", eq="(13), (29)-(34), text after (34)",
+    statement="Btilde(x,0) = -(1/4) Y^2 int d^4z (4 pi^2 x^2)^2/([4 pi^2((z-x)^2+eps^2)]^2 [4 pi^2(z^2+eps^2)]^2) = -Y^2 (log(x^2/eps^2)-1)/(32 pi^2), Y^2=2g^2, via 1/x^2 -> 1/(x^2+eps^2) (equivalent to differential regularisation; same in DR); A gauge dependent (xi-dependent, DR), B=-2A, gauge-dependent part prop. to 2A+B=0; <O_i Obar_j> = G^{2p+q}(F_ij + Btilde N G_ij); <Y_i Ybar_j> = C_i delta_ij (1+beta_i - Delta_1i log mu^2 x^2)/x^{2 Delta0}; beta_j depends on the renormalisation scale; diagonalise symmetric G w.r.t. symmetric positive definite F (eigenvalues of F^-1 G).",
+    regulator="position-space cutoff length eps on propagators (no DR in (13)); gauge dependence (31) in DR",
+    scheme_independent="partial: Delta_1i independent; beta_i dependent",
+    project_object="closest literature scheme to the UV boundary (one length, position space): constant and log of every order-g^2 entry in the fixed ratio of (13), so the one-loop inner product is a multiple of the matrix whose log coefficient gives D_1; the analogue for P(eps,infty) is a target [I].",
+    two_component="z_i <-> iota_{w_i} A with null w_i; couplings from eq:c1-action with (X,Y)=2 hbar X^a Y^a.")
+
+add(id="IP11", tex_target=11, label="S", title="Konishi normalisation is free; point splitting", source="BKRS", eq="(17)-(19), (23)-(24), (27), (45), text after (17)",
+    statement="K1|reg = a(g^2) sum_I :tr(e^{-2gc} phi_I^dag(x+eps/2) e^{2gc} phi^I(x-eps/2)):, a=1+g^2 a1+...; Konishi 'has no intrinsic normalization' unlike R-currents and stress tensor; Z=(mu^2 eps^2)^{-gamma/2}; a1=3N/(8 pi^2) gives <K1 K1> = 3(N^2-1)/((4 pi^2)^2 (x^2)^{2+gamma}), gamma1 = 3N/(4 pi^2); printed (27) log coefficient = 1/4 of the expansion of (24) (g convention); (45) tree orthogonality with N_i>0.",
+    regulator="point splitting of the composite operator, Fermi-Feynman gauge (position space)",
+    scheme_independent="partial: gamma1 independent; a1 dependent ((18))",
+    project_object="finite part of the Konishi O(eps) (ch05 thm:c5-Oeps trace part) can set the one-loop Konishi norm to 0; not available for 20' (IP13).",
+    two_component="Konishi = 1/4 int omega (A^ij, A_ij); gamma1 g^2 = -24 x unit.",
+    check="check_ip_targets.py C7 (factor 4)", existing_ids=["n4_untwisted:BKRS01"])
+
+add(id="IP12", tex_target=12, label="S", title="Orthogonality of the Konishi and 20' descendants", source="BKRS; EJSS",
+    eq="[BKRS] (9)-(11) + text; [EJSS] (13), (15), (17)-(21), fn 13",
+    statement="(K_10*)_AB = 3 sqrt2 g t^{ijk}_AB tr(phi phi phi) + (6 g^2 N/(32 pi^2)) tr(psibar psibar) orthogonal to (E_10*)_AB = -tr(psibar psibar) + sqrt2 g t tr(phi phi phi): <delta^2 K1 delta^2 Q20'> = 0 requires the anomalous term; [EJSS]: <Obar20' O20'> = 1/(x^2)^2 + theta terms; D^2 O20'/6 = -(F6 - 4 B6)/2 unrenormalised in SSDR (g^2 w.r.t. F, D^2 O; g^4 w.r.t. B); <Obar_10/6 K_10/6> = 0; fn 13: whether classical field equations receive corrections 'may be a scheme-dependent property'.",
+    regulator="[BKRS] N=1 superfields, point splitting; [EJSS] SSDR (statement only)",
+    scheme_independent="partial: orthogonality of eigen-operators of different dimension at separated points independent; bare form of the protected descendant dependent",
+    project_object="through one loop the inner product of the double xi-images of Konishi and of 20' vanishes (images from classical components and Q_1); bilinear coefficient = Konishi entry q1_targets T5; pairs a length-two with a length-three word (IP18).",
+    two_component="[I] tr psibar psibar <-> (lambdabar_{alphadot i}, eps^{alphadot betadot} lambdabar_{betadot j}) symmetrised in (ij) (10 of SU(4)); tr phi phi phi <-> (A_ik,[A^kl,A_lj]) projected to the 10.",
+    existing_ids=["n4_untwisted:BKRS01", "n4_untwisted:EJSS05", "n4_untwisted:D6", "n4_untwisted:D7", "q1_targets:T5"])
+
+add(id="IP13", tex_target=13, label="S", title="Normalisation of protected operators fixed by symmetry", source="AFGJ; BRvR; DFS; EHW; HSW",
+    eq="[AFGJ] (2.6)-(2.7), after (2.37), (4.15), intro; [BRvR] crossing relation p.2; [DFS] intro; [EHW] (45)-(48), conclusion; [HSW] abstract",
+    statement="<J_mu J_nu> = (1/(16 pi^4))(d d - delta d^2) b(g(1/x))/x^4; on the N=4 fixed line b is determined by the free-field content; primary central functions marginally constant; crossing v^2 G(u,v) - u^2 G(v,u) + 4(u^2-v^2) + 4(u-v)/a = 0, a = dim G/4; 2- and 3-point correlators of the stress-tensor/R-current multiplet satisfy nonrenormalisation theorems; [EHW]: A^q = g^-q A_q, d_tau<A...A> ~ int dmu <T A...A>, 2- and 3-point functions of analytic operators coupling-independent (assuming analyticity, no nilpotent invariants n<=4); [HSW]: energy-momentum multiplet coefficient fixed by anomaly considerations.",
+    regulator="non-perturbative (anomaly matching; harmonic-superspace Ward identities with assumptions; crossing)",
+    scheme_independent="yes",
+    project_object="[I] R-current and T are Noether currents of S^(1)(x1) (x1 in so(W^perp), conformal Killing fields); their two-point coefficients are free; the 20' is joined to them by xi- and eta-components, so the one-loop 20' norm is fixed by Q_1, S_1 (and classical components) on the 20' multiplet; the field-counting functional of ch06 implements the [EHW] cancellation of explicit coupling powers.",
+    two_component="R-current from S^(1) with r = 1/4 R_IJ Sigmabar^J Sigma^I (dictionary generators-even); A^q with q letters iota_w A, each carrying -ig in A_I = -ig A^a_I T^a.")
+
+add(id="IP14", tex_target=14, label="S", title="Separated points versus contact terms", source="PSZ", eq="(2.3)-(2.5), abstract",
+    statement="W[J,Jbar] -> int d^4x1 d^4x2 d^4theta J F(g^2,N)/(x1-x2)^6 Jbar; 1/(x^2)^3 = (pi^{-2+eps}/64)(Gamma(-1-eps)/Gamma(3)) int d^np e^{-ipx}/(p^2)^{-1-eps}: F fixed by 1/eps poles, finite momentum terms are contact terms; order-g^4 corrections to <Tr Phi^3 Tr Phibar^3> vanish for all N; order g^2 by the stress-tensor-multiplet theorem.",
+    regulator="N=1 superspace, DR + MS (statement only)",
+    scheme_independent="partial: separated-point coefficient independent; contact terms dependent",
+    project_object="[I] the inner product is a separated-point quantity; terms polynomial in external momentum in the two-point function of O_1[infty], O_2[infty] are contact terms changed by finite counterterms of the pair of insertions; only the non-polynomial part enters R5(b),(c).",
+    two_component="Tr Phi^3 <-> int omega tr(iota_w A)^3, w null.")
+
+add(id="IP15", tex_target=15, label="S", title="Quarter-BPS operators by tree-level orthogonality", source="DHHR", eq="abstract, intro, (3.1)",
+    statement="1/4-BPS operators defined to be orthogonal to all descendants with the same classical quantum numbers; Otilde = O - <O L_i^dag>_Born <L L^dag>^-1_Born,ij L_j; <Otilde L^dag>_Born = 0, <Otilde L^dag>_{g^2} = <Otilde' Otilde^dag>_{g^2} = 0.",
+    regulator="that of [Ryz] (position space)", scheme_independent="partial: protection independent; absence of O(g^2) admixture is a statement in this scheme",
+    project_object="tree-orthogonal complement of the image of the classical xi-component in classical BPS words = kernel of D_1 there (IP27).",
+    two_component="L_i contain Tr[z1,z2]..., z <-> iota_w A.")
+
+add(id="IP16", tex_target=16, label="S", title="Mixing of dimension-four 20' operators; point splitting", source="BERS", eq="(26)-(29), (36)-(41) + text",
+    statement="tetrahedral point splitting (size eps); O_ren = lim a_l(g^2)/(eps^2)^{gamma/2} O_reg; a_l depends on the regularisation prescription; <O_i O_j> = 0 (i != j) at tree level and g^2; gamma1 = -<O_i O_i>|_{g^2, ln(x-y)^2}/<O_i O_i>|_0; finite corrections cancelled by choice of a_l1; one real solution.",
+    regulator="point splitting (position space)", scheme_independent="partial: gamma1 independent; a_l dependent",
+    project_object="diagonal one-loop inner product removable by finite parts of O(eps); off-diagonal orthogonality at tree and one loop fixes mixing; gamma1 = -(log coefficient)/(tree norm) (ch06).",
+    two_component="four-scalar words in iota_w A projected to the 20'.")
+
+add(id="IP17", tex_target=17, label="S", title="Classical non-orthogonality and completeness of the basis", source="BKPSS", eq="(3.6)-(3.8), (C.7)",
+    statement="<O^J_{ij,m} Obar^J_{ij,n}> = delta_mn (1 + deltaDelta_n L)/|x|^{2J+4}, L = log(x Lambda)^-2, log Lambda^2 scheme-dependent constant (DRED: 1/eps + gamma + log pi + 2); torus: classical part M^1_mn non-diagonal; orthonormalising the classical part then diagonalising the quantum part orthogonally is incorrect unless double traces (overlap O(g2)) are included.",
+    regulator="DRED (statement only)", scheme_independent="partial: deltaDelta independent; Lambda dependent",
+    project_object="the basis for tree orthonormalisation must be complete in all trace structures (general g in the project).",
+    two_component="Tr phi_i Z^p phi_j Z^{J-p}, Z, phi_i <-> iota_w A for mutually orthogonal w.")
+
+add(id="IP18", tex_target=18, label="D", title="Order-g tree entries; the su(2|3) pair", source="derived from B03 Sec. 2.1, (4.11)-(4.13); n4_untwisted D5",
+    eq="check C2",
+    statement="(i) a tree graph with one cubic vertex joining operators of L and L+1 letters sends one leg of the shorter and two of the longer operator into the vertex; (ii) for O1 = eps^{ab} Tr psi_a psi_b, O2 = eps^{abc} Tr phi_a phi_b phi_c: <O1|O2> = 0 at orders g^0 and g (remaining legs fermion vs scalar); (iii) B03 scalar product: <O1|O1>=4, <O2|O2>=18; B03 (4.13) with entry -9 sqrt2 e^{-i beta2} alpha1^3 g^3 is self-adjoint for these norms (real alpha1, beta2), printed entry not for beta2 notin pi Z; eigen-operators O1 + (sqrt2/3) e^{i beta2} alpha1 g O2 and O2 - (3/sqrt2) e^{-i beta2} alpha1 g O1 orthogonal at order g.",
+    regulator="none (tree level; algebraic)", scheme_independent="yes within the B03 frames with real beta2",
+    project_object="in su(2|3) the order-g length-changing terms are in the classical xi-, eta-components (cubic term of S^(1)(xi), prop:c7-susy) and in D_1, not in the tree inner product; independent confirmation of erratum D5.",
+    two_component="[I] su(2|3) letters phi_a, psi_alpha <-> scalar letters A_{a4} and undotted fermion letters for w = e_4 (q1_targets dictionary letters).",
+    check="check_ip_targets.py C2", existing_ids=["n4_untwisted:D5"])
+
+add(id="IP19", tex_target=19, label="S", title="Self-adjoint one-loop vertex; symmetric renormalisation", source="BKS", eq="(2.3)-(2.13), (8.11), (C.17)-(C.18) + comments",
+    statement="V2(x) = :W2(x, I^-1 Phi, Phicheck):, 'V2 is self-adjoint with respect to the tree-level scalar product'; Otilde = (1 - g^2 V2(x0)/2) O; V2(x) = Gamma(1-eps)/((mu^2 x^2/2)^{-eps}) V2, D2 = -lim eps V2; <Otilde Otilde> = exp(W0) exp(log(x0^2/x^2) g^2 D2) O O; 'the coefficient of the correlator is given by its tree-level value as D2 multiplies the logarithm only'; four loops: D' = (1+beta' g^6 [D2,D4])^-1 D (1+beta' g^6 [D2,D4]) orthogonal, eigenvalues unchanged; V_2l symmetric w.r.t. free-contraction scalar product, same for D (real eigenvalues).",
+    regulator="DR (statement only)", scheme_independent="partial: eigenvalues independent; vanishing one-loop coefficient is the scheme choice Otilde",
+    project_object="a scheme with vanishing one-loop inner product; in it Proposition 1 reads <(x1-component)_1 a|b>_tree = <a|(x1^dag-component)_1 b>_tree: D_1, (Q_1,S_1), (P_1,K_1) adjoint pairs for the tree inner product.",
+    two_component="g^2_[BKS] = g_YM^2/(16 pi^2); D2 on 20' and Konishi: 0 and -24 x unit (ch06 normalisation).")
+
+add(id="IP20", tex_target=20, label="S", title="All orders: the classical scalar product can be kept", source="B04", eq="(2.25), (2.39)-(2.43), (2.117), (2.121)-(2.136), Sec. 2.6.5 (2.156)-(2.158)",
+    statement="D_ren = Z^-1 D_bare Z; pre-diagonalisation J -> T J T^-1, T = 1 + sum (1/d) deltaD_d; V_2l^T = Vdot_2l (self-adjoint); Z = exp(-1/2 sum g^{2l} V_2l(1/mu) + g^6 [V2,V4]/24 + ...); <ZO Zdot Odot> = exp(W0) exp(log|mu x|^-2 sum g^{2l} D_2l) O Odot, D_2l = -l lim eps V_2l; 'the programme ensures that the coefficient of the two-point function is given by free contractions of the unrenormalised operators'; 'states can be renormalised in such a way as to preserve the classical scalar product'; planar scalar product (2.156), norm ~ sqrt n, adjoint reverses rows (2.158); self-adjoint interaction is Hermitian only on normalised states (2.117).",
+    regulator="DR (statement only)", scheme_independent="partial: spectrum independent; existence of the frame is a scheme statement",
+    project_object="frame of IP19 to all orders; the commutator in Z is the four-loop analogue.",
+    two_component="as IP19.")
+
+add(id="IP21", tex_target=21, label="S+D", title="su(2|3): hermiticity of Q_2^[B03], S_2^[B03] and the similarity parameters", source="B03",
+    eq="Sec. 2.1 'Adjoint', (3.9), (3.10)-(3.13), (3.36)-(3.40) + paragraph, Table 1, (4.4)-(4.7); check C1",
+    statement="[S] 'We work with a complex algebra and will not require an adjoint operation here'; adjoint swaps rows (3.9); Q0 = e^{i beta1}{a->alpha}, S0 = e^{-i beta1}{alpha->a}; c9 = alpha1 e^{i beta1 + i beta2}/sqrt2, c10 = alpha1 e^{-i beta1 - i beta2}/sqrt2; real form: alpha1, beta1, beta2 real, alpha1^2 > 0; T = 1 + g^2 T2 with gamma_1..4. [D] with adjoint mapping structure k of Q_2^[B03] to s_k x structure k of S_2^[B03]: gamma-independent sums alpha1^2/2 (1,0,-1,1) force s1=s3=s4=+1 and gamma1, gamma2, gamma3-gamma4 real; (3.9) (s2=+1) gives all gamma real; frames Q_2^[B03]=0 (gamma = i alpha1^2/4 (1,1,-1,1)) and S_2^[B03]=0 are not hermitian for the tree adjoint.",
+    regulator="none (algebraic)", scheme_independent="partial: gammas are similarity (scheme) parameters; hermiticity selects real gamma for the tree adjoint",
+    project_object="one-loop Q_1, S_1 (B03 counting Q_2 = project one-loop order) can be moved between xi and eta by finite parts of O(eps) only at the price of a nonzero one-loop inner product.",
+    two_component="[I] a <-> scalar letters A_{a4}, alpha <-> fermion letters; B03 eps signs absorbed by beta2 -> beta2 + pi (n4_untwisted D3).",
+    check="check_ip_targets.py C1", existing_ids=["n4_untwisted:B03", "n4_untwisted:D2", "n4_untwisted:D3"])
+
+add(id="IP-P1", tex_target="Proposition 1", label="D", title="One-loop hermiticity identity", source="derived",
+    eq="check C3",
+    statement="code names: G0 = tree Gram, G1 = one-loop Gram, M = G0^-1 G1, Y^adj = G0^-1 conj(Y)^T G0. Hermiticity <Xa|b> = <a|X^dag b> through order hbar <=> (X^dag)_0 = (X_0)^adj and (X^dag)_1 = (X_1)^adj + [(X^dag)_0, M]. Under a -> (1 + hbar Z) a: X_1 -> X_1 + [Z, X_0], M -> M - Z - Z^adj; identity covariant. S_1 = Q_1^adj + [S_0, M]; K_1 = P_1^adj + [K_0, M]; D_1 = D_1^adj + [D_0, M]; D_1 tree-self-adjoint iff [D_0, M] = 0.",
+    regulator="none", scheme_independent="yes (identity covariant under every change of operator basis)",
+    project_object="R5(c): <Q_1(a)|b>_tree - <a|S_1(b)>_tree = <a|{S^(1)(xi^dag), b}>_oneloop - <{S^(1)(xi), a}|b>_oneloop for all a, b, with xi^dag of IP7, one-loop inner product from two-point graphs (G1), Q_1, S_1 from the equivariant cochain; likewise (P_1,K_1), (D_1,D_1), (M_1,M_1), (R_1,R_1); finite parts of O(eps) act as Z; arity-0/1/2 finite counterterms and Q^GF choice act through the same covariance when they change O[infty] by local terms [I].",
+    two_component="xi = (xi_alpha^i, xibar_{alphadot i}), xi^dag = (-conj xi_alpha^i, conj xibar_{alphadot i}) in Sigma^*.",
+    check="check_ip_targets.py C3")
+
+add(id="IP22", tex_target=22, label="D+S", title="Frame with uncorrected translations", source="derived; Z05 (3.6)-(3.7), (2.19); SD (116)",
+    eq="check C4",
+    statement="[D] P_1 = 0 => K_1 = [K_0, M] and 2 D_1 = [[K_0, M], P_0] (order hbar of [K,P] = 2D + rotation) on a lowest-weight module; sl(2) toy with lowest weight w_O + hbar c: Gram_m = m! (2 w_O + 2 hbar c)_m, M_m = sum_{j<m} 2c/(2 w_O + j), M_1 - M_0 = c/w_O (4d: from <O|K_mu P_nu|O> = 2 Delta^[SD] delta <O|O>). [S] Z05: X^pm_2 = pm [X^pm_0, x] + [X^pm_0, y]; y = -x: raising generators uncorrected, K^22_2 != 0, hermiticity X^+ = (X^-)^dag lost; T^-_1 from T^+_1 by hermitian conjugation.",
+    regulator="none (algebraic)", scheme_independent="partial: M_1 - M_0 independent within frames with P_1 = 0",
+    project_object="with P_1 = 0 (ch07 translations covariant), K_1 is fixed by the one-loop Gram on P-descendants; cross-check of odd_components_design thm:o-KD (under audit) and ch07 rem:c7-KDelta.",
+    two_component="[P_{alpha alphadot}, K^{betadot beta}] via [x->v, (x,x)b-2(b,x)x] = -(b,v) Delta + rotation (IP6).",
+    check="check_ip_targets.py C4", existing_ids=["n4_untwisted:Z05", "n4_untwisted:D4"])
+
+add(id="IP23", tex_target=23, label="S", title="Hermitian conjugation of oscillators; non-unitary length similarity", source="Zw11", eq="intro, (2.5), end of Sec. 2.1, (2.12)-(2.15)",
+    statement="inner product <n1..nL'|m1..mL> = delta_LL' prod delta(n_i - m_i) (no cyclic sum); radial 'Hermitian conjugation simply interchanges creation and annihilation oscillators. For example, Q^dag = S, and D^dag = D'; D Hermitian => D_{2->L} = (D_{L->2})^dag; J_{L->L'}(g) = sum g^{L+L'+2l-2} J^(l); similarity J -> g^L J g^-L (same eigenvalues) gives J_{L->L'} = g^{2L'-2} J; scheme [D0, J(g)] = dim(J) J(g); L, Ldot, R uncorrected.",
+    regulator="none (algebraic; tree amplitudes)", scheme_independent="partial: eigenvalues independent; hermiticity frame dependent",
+    project_object="the coupling sits in (-,-) (rem:c1-real): letters rescaled by powers of the coupling relative to canonical fields; tree inner product and generator matrices of Proposition 1 must be in the same frame.",
+    two_component="(X,Y) = 2 hbar X^a Y^a, A_I = -ig A^a_I T^a: one power of g per letter.",
+    existing_ids=["sweep:1111.0083"])
+
+add(id="IP24", tex_target=24, label="S", title="Wick matrix and self-adjoint one-loop Hamiltonian", source="BMV", eq="(3), (6)-(7), text around (9)",
+    statement="H = sum C^{BD}_{AC} (-)^{BC} (-)^{BD} :tr[W_A, Wcheck^B}[W_C, Wcheck^D}:; W_ij = <v_i(0)^dag v_j(1)>; dilatation operator self-adjoint w.r.t. (6): <v_i^dag H v_j> = <(H v_i)^dag v_j>, WH = (WH)^dag; H = {Q, Q^dag} positive; non-integer N: non-Hermitian H, complex dimensions, negative norms; null space of W = trace relations.",
+    regulator="none (one-loop Hamiltonian of B03c)", scheme_independent="yes (spectrum)",
+    project_object="tree inner product for general g includes trace relations (degenerate Gram); D_1 self-adjoint for it (Proposition 1 with commuting one-loop Gram).",
+    two_component="letters W_A <-> jets of A_m, A_ij, lambda_alpha^i, lambdabar_{alphadot i}.",
+    existing_ids=["sweep:2306.04693"])
+
+add(id="IP25", tex_target=25, label="S", title="S = Q^dagger; Hodge correspondence; one-loop Hamiltonian", source="GGKM; CY; CL22",
+    eq="[GGKM] (2.1), Sec. 2, intro; [CY] (2.1), (5.3)-(5.6); [CL22] (2.1), fn 2, (3.1)-(3.3), fn 8-10, Sec. 4.3",
+    statement="S_{i alpha} = (Q^i_alpha)^dag, Sbar^{i alphadot} = (Qbar_{i alphadot})^dag, Qbar = (Q)^*, Sbar = (S)^*; 2{Q,Q^dag} = Delta^[CY] = E - 2J - H1 - H2 - H3; {Q4-, S4-}|Psi> = 0 <-> Q4- cohomology; conjecture: susy spectrum = 1/16-BPS states of the finite-N one-loop Beisert Hamiltonian; [CY]: Q^ad = Tr Psi d_Psi d_Psi for the Fock inner product, H_Q(V_N) = ker{Q, Q^ad}, Q^ad does not commute with pi; [CL22]: 1/16-BPS operator must be annihilated by Q^dag, 'which receives quantum corrections'; Q-exact orthogonal to 1/16-BPS; D = D0 + g_YM^2 N H/(8 pi^2), H prop. {Q,Q^dag} on BPS words, Q = Tr Psi Psi d_Psi, Q^dag = Tr Psi d_Psi d_Psi at leading order; annihilation by the one-loop Q^dag gives the weak-coupling 1/16-BPS operator.",
+    regulator="none (algebraic; free inner product)", scheme_independent="partial: cohomology independent; BPS representative scheme and frame dependent",
+    project_object="classical xi-component on BPS words for rank-one xi = u (x) w and its tree adjoint (eta-component along xi^dag, IP7); one-loop representative from Proposition 1 with x1 = xi^dag.",
+    two_component="Q = Q^4_- <-> xi_alpha^i = u_alpha w^i, xibar = 0; S = Q^dag <-> eta^alpha_i = -conj(u_alpha) conj(w^i), etabar = 0.",
+    existing_ids=["n4_untwisted:GGKM08", "n4_untwisted:CY13", "n4_untwisted:CL22", "q1_targets:T7"])
+
+add(id="IP26", tex_target=26, label="S", title="Unique S-closed representative; su(1|1), su(2|1); coupling counting", source="BK; BGKWWY; KKLP; KLLS",
+    eq="[BK] fn 4; [BGKWWY] (2.4)-(2.5); [KKLP] (2.13) + text; [KLLS] p. 5",
+    statement="'1/4N-BPS operators are by definition annihilated by one Q and S = Q^dag. In each Q-cohomology class there is a unique representative that is also annihilated by S'; {Q_dot-, S_dot+} = Delta + 3R/2 - M_{dot+ dot-}, {Q_alphadot, S_betadot} = (Delta + 3R/2) eps - M; Q = Q_free + g_YM Q_0 + g_YM^2 Q_1 + O(g^3), H = {Q,Q^dag} ~ g_YM^2 one-loop, field redefinition Phi -> g_YM^-1 Phi; [KLLS]: classical Q at half-loop level.",
+    regulator="[BK], [BGKWWY]: Schwinger-time cutoff (twisted); [KKLP], [KLLS]: algebraic", scheme_independent="yes (as stated)",
+    project_object="[KKLP] rescaling = frame change of IP23; twisted Q_1 of [BK] = one-loop order of the project (q1_targets T1).",
+    two_component="Q_dot- of [BGKWWY] is an N=1 label; for N=4 see IP25.",
+    existing_ids=["q1_targets:T1", "sweep:2512.07771", "sweep:2306.01039"])
+
+add(id="IP27", tex_target=27, label="D", title="One-loop dilatation on BPS words from the classical supercharge", source="derived from KMMR (3.1), CY (2.1), B03 (4.3), Proposition 1",
+    eq="proof in ip_targets.tex",
+    statement="Pi = tree-orthogonal projector onto classical BPS words; Q = Q|_0 + g Q|_1 + g^2 Q|_2 (B03 counting). In every frame: Pi deltaD|_{g^2} Pi = 2 {Pi Q|_1 Pi, (Pi Q|_1 Pi)^adj}; kernel = ker(Pi Q|_1 Pi) cap ker((Pi Q|_1 Pi)^adj) = tree-orthogonal complement of the image (IP15).",
+    regulator="none", scheme_independent="yes at this order",
+    project_object="[I] Q|_1 (canonical normalisation) = classical nonlinear part of the xi-component from the cubic term (1/2)(rho([A^A]/2) xi, lambda*) of S^(1)(xi) (prop:c7-susy); deltaD|_{g^2} on BPS words = half of D_1 there (ch06): a test of D_1 by classical data and the tree inner product only.",
+    two_component="[I] [CL22] (3.2) Q = Tr Psi Psi d_Psi with Psi the BPS superfield of [CY] (2.9) <-> letters for xi = u (x) w (q1_targets dictionary letters).")
+
+doc = {
+    "file": "step2/literature/ip_targets.json",
+    "companion_tex": "step2/literature/ip_targets.tex",
+    "date": "2026-10-28",
+    "role": "literature targets for R5: radial-quantisation conjugation of psu(2,2|4) (Q^dagger = S), one-loop two-point functions / inner product of gauge-invariant operators, hermiticity of the one-loop dilatation operator, inner product beyond tree level, 1/16-BPS literature",
+    "labels": {"S": "transcribed from the source at the cited equation (arXiv PDF of the stated version)",
+               "D": "derived in ip_targets.tex, checked by check_ip_targets.py (output check_ip_targets_output.txt)",
+               "I": "identification or inference stated in no source"},
+    "name_clash": "Q_1,S_1,D_1,K_1,P_1,M_1,R_1 = one-loop components (odd_components_design def:o-comp); manuscript spinor parameters Q_1 in Sigma, Q_2 in Sigma^* never used (xi, eta of the dictionary); spin-chain generators carry their source key, e.g. Q_2^[B03]. In the tex no new symbols: inner product = bra-ket of [SD] (113)-(114); code names G0 (tree Gram), G1 (one-loop Gram), M = G0^-1 G1 appear in this json only.",
+    "unit": unit,
+    "unit_su_N": "-g^2 N/(32 pi^2) for (X,Y) = -(4 hbar/g^2) tr(XY)",
+    "local_copies": "step2/literature/ip_sources/<arXiv id>/paper.pdf, paper.txt (pdftotext -layout)",
+    "sources": sources,
+    "targets": T,
+    "check_script": {"file": "step2/literature/check_ip_targets.py", "output": "step2/literature/check_ip_targets_output.txt",
+                     "items": {"C1": "B03 Table 1 hermiticity sign analysis", "C2": "B03 (4.13) self-adjointness, tree norms 4 and 18",
+                               "C3": "one-loop hermiticity identity and frame covariance (random matrices)",
+                               "C4": "conformal sl(2) toy with P uncorrected", "C5": "conjugations on gl(4|4), positivity pattern, Beisert transport",
+                               "C6": "inversion pushforward and anti-automorphism on conformal Killing fields",
+                               "C7": "DFS colour identity, unit conversions, BKRS factor 4",
+                               "C8": "odd-parameter conjugation from Gamma and prop:c2-special"},
+                     "runtime": "about 1.6 s, peak RSS about 85 MB"},
+    "not_found": ["'Gaiotto-Lee-Wu' (task item iv): no paper with these authors on the inner product in the holomorphic twist was identified (one web search); closest: GKW 2403.13049 (gkw.json), which has no inner-product statement in the project's reading"],
+    "open_items": [
+        "phase of the field realisation of X^dagger on lambda (IP5, R5(a)): needs the fermion real slice, not fixed in the manuscript",
+        "ratio of the undotted/dotted factors in xi^dagger (IP7) = outer-automorphism freedom; fixed by the field realisation",
+        "transcription of the Hilbert-space hermiticity identity (Proposition 1) into cochain-evaluation signs (def:o-comp, lem:c7-image) for odd operators",
+        "whether the constant and log of the one-loop UV-boundary two-point matrix come in a fixed ratio as in [Ryz] (13) (IP10)",
+        "two-component forms marked [I] for the 10 of SU(4) operators (IP12) and the su(2|3) letters (IP18, IP21)",
+        "DR/DRED/SSDR-based statements (IP8, IP14, IP17, IP19, IP20, part of IP10, IP12) are statements only"],
+}
+
+with open(os.path.join(HERE, "ip_targets.json"), "w") as f:
+    json.dump(doc, f, indent=1, ensure_ascii=False)
+print("targets:", len(T))

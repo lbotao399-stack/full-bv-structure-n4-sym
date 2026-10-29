@@ -1,0 +1,282 @@
+{
+ "title": "Two-point functions at one loop: operators, graph classes, integrals (two_point_design.tex)",
+ "conventions": {
+  "unit": "unit = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+  "propagator_scalar_factor": "D_eps(r) = (1-exp(-r^2/4eps))/(4 pi^2 r^2) = int_eps^inf (4 pi t)^-2 exp(-r^2/4t) dt ; momentum exp(-eps p^2)/p^2",
+  "definition": "two-point(O1,O2) = lim_{eps->0} d_t1 d_t2 W(P(eps,inf), I - F_0 - I^CT[eps] + t1 O1(eps) + t2 O2(eps))|_{e=0}, the coefficient of t2 t1 = (-1)^{p(O1)p(O2)} x (coefficient of t1 t2); at tree level the free expectation hbar d_P(O1 O2) with O1 on the left (the form in which the Ward identity eq:t-ward holds); supp omega1 and supp omega2 disjoint",
+  "code_names": {
+   "G0": "tree part",
+   "G1": "one-loop part (relative order unit)"
+  },
+  "edge_components": "[ch03 prop:c3-P] A(x)A: 2(-,-)^-1 metric; c(x)A*_V: -(-,-)^-1 d; lambda(x)lambda: (-,-)^-1 dslash; two-component <A_m A_n>=2 delta_mn, <A_ij A_kl>=4 eps_ijkl, <lambda_a^i lambdabar_bdot j> = -p_m sigma^m delta^i_j, all times (-,-)^-1 exp(-eps p^2)/p^2",
+  "Aut": "automorphisms fixing O1, O2; weight 1/|Aut| [ch03 prop:c3-graphs]"
+ },
+ "operators": [
+  {
+   "name": "scalar bilinear",
+   "index_free": "int omega (iota_a A, iota_b A)",
+   "two_component": "(1/16) int omega (a^ij A_ij, b^kl A_kl)",
+   "weight": 2,
+   "length": 2,
+   "central_Spin6_eigenvalue": 1,
+   "D_1": "-8 unit (a,b) int omega (A_Wperp,A_Wperp)",
+   "Z_log_eps": "unit [4 O - 2 (a,b) trace]"
+  },
+  {
+   "name": "20prime (traceless)",
+   "index_free": "traceless part, eq:c5-decomp",
+   "two_component": "(1/16) int omega (w1A,w2A) - (1/96) w1^ij w2_ij int omega (A^kl,A_kl)",
+   "weight": 2,
+   "D_1": "0"
+  },
+  {
+   "name": "Konishi primary K",
+   "index_free": "int omega (A_Wperp, A_Wperp)",
+   "two_component": "(1/4) int omega (A^ij, A_ij)",
+   "weight": 2,
+   "D_1": "-48 unit K"
+  },
+  {
+   "name": "O_zeta",
+   "index_free": "int omega (lambda, rho(A_Wperp) zeta), zeta in S_+ (x) W",
+   "two_component": "int omega (lambda_a^j, A_ji) zeta^{a i}",
+   "weight": 2.5,
+   "length": 2,
+   "central_Spin6_eigenvalue": "-i",
+   "multiplet": "Konishi descendant (projection W (x) wedge^2 W^* -> W^*)",
+   "D_1": "-48 unit O_zeta (as Konishi descendant)"
+  },
+  {
+   "name": "O_zetabar",
+   "index_free": "int omega (lambda, rho(A_Wperp) zetabar), zetabar in S_- (x) W^*",
+   "two_component": "- int omega (lambdabar_adot j, A^ji) zetabar^adot_i",
+   "weight": 2.5,
+   "central_Spin6_eigenvalue": "i"
+  },
+  {
+   "name": "B_w",
+   "index_free": "-2 int omega (rho(1/2[A_Wperp ^ A_Wperp]) xi, rho(A_Wperp) zeta) at xi=u(x)w, zeta=u'(x)w",
+   "two_component": "int omega ([A^ik, A_kj w^j], A_il w^l)",
+   "weight": 3,
+   "length": 3,
+   "central_Spin6_eigenvalue": -1
+  },
+  {
+   "name": "Fbar_w",
+   "index_free": "(1/2) int omega (Gamma(xi,lambda)|_V, Gamma(zeta,lambda)|_V)",
+   "two_component": "int omega (lambdabar_adot i w^i, lambdabar^adot_j w^j)",
+   "weight": 3,
+   "length": 2,
+   "central_Spin6_eigenvalue": -1
+  },
+  {
+   "name": "F_n, Bbar_n (partners)",
+   "two_component": "int omega (lambda^{a i} n_i, lambda_a^j n_j); int omega ([A_ik, A^kj n_j], A^il n_l)",
+   "weight": 3,
+   "central_Spin6_eigenvalue": -1
+  }
+ ],
+ "sectors": [
+  {
+   "sector": "scalar bilinears (O1,O2)",
+   "status": "evaluated exactly (Theorem thm:t-scalar)",
+   "tree": {
+    "graph": "cycle of two A_Wperp edges",
+    "Aut": 2,
+    "value": "4 hbar dim(g) S12 D_0(|x|)^2, S12 = (a1,a2)(b1,b2)+(a1,b2)(b1,a2)"
+   },
+   "classes": [
+    {
+     "class": "SE",
+     "graphs": [
+      "seagull A_V loop (1/2)",
+      "seagull A_Wperp loop (1/2)",
+      "bubble A_V + A_Wperp (1)",
+      "gaugino loop (1/2)",
+      "-I^CT quadratic"
+     ],
+     "integral": "line factor 1 + 2 unit (43/8 - 2(log|p|^2 + gamma_E + log 2)); bubble Schwinger iint_[eps,inf)^2 exp(-t1 t2 p^2/s) s^-2 [p^2 g(t1/s) + c/s]",
+     "per_graph_plane_wave": {
+      "bubble": "2*L2e*p2 - 13*p2/8 - 1/(2*epsilon)",
+      "gaugino": "-4*L2e*p2 + 7*p2 - 4/epsilon",
+      "seagulls": "9/eps",
+      "L2e": "log(eps p^2)+gamma_E+log 2"
+     },
+     "value_relative_to_tree": "8*gamma_E - 24*log2 + 8*logx2 + 43/2"
+    },
+    {
+     "class": "EX",
+     "graphs": [
+      "A_V exchange: cubic vertices z1, z2; edges O1z1,O1z2,O2z1,O2z2 (A_Wperp), z1z2 (A_V)"
+     ],
+     "Aut": 2,
+     "colour": "-tr(ad ad): unit with dim g",
+     "numerator": "-(1/2)(k+k').(2q-k-k') x 2^2 (-tr ad ad) x tree flavour",
+     "integral": "32 pi^2 unit 4hbar dim(g) S12 int int (k+k').(2q-k-k') Dhat(k)Dhat(q-k)Dhat(k')Dhat(q-k')Dhat(k-k')",
+     "reduction": "(k+k').(2q-k-k') = 2q^2 - k^2 - (q-k)^2 - k'^2 - (q-k')^2 + (k-k')^2 ; p^2 Dhat(p) = exp(-eps p^2) (K_eps contact)",
+     "masters": {
+      "J": "int dz D(x-z)^2 D(z)^2 = D0^2/(8pi^2) [log(x^2/eps) + gamma_E - 3 log 2]",
+      "R": "int dz D(x-z)^2 D(z) = D0/(16pi^2) [log(x^2/eps) + 1 + gamma_E - 3 log 2]",
+      "Xtilde (smeared quartic point)": "J + D0^2/(8pi^2) log(2/3)",
+      "T (one O-line -> K_eps)": "D0 R + D0^2/(16pi^2) log(2/3)",
+      "kite x 2q^2": "finite function of eps q^2: contact term at x != 0"
+     },
+     "subdivergences": "triangle (f) at O1 and at O2, log eps coefficient +2 unit each [ch05 ex:c5-f]",
+     "value_relative_to_tree": "-4*gamma_E + 8*log2 + 4*log3 + 4*logeps - 4*logx2 - 8"
+    },
+    {
+     "class": "QU",
+     "graphs": [
+      "(A_Wperp)^4 vertex joined to each O_a by two edges"
+     ],
+     "Aut": 4,
+     "integral": "2 unit 16 pi^2 4hbar dim(g) (2 T12 - S12) int dz D(x-z)^2 D(z)^2, T12 = (a1,b1)(a2,b2)",
+     "subdivergences": "bubble (e) at O1 and O2 [ch05 ex:c5-e]",
+     "value_relative_to_tree": "8*gamma_E*tau - 4*gamma_E - 24*log2*tau + 12*log2 - 8*logeps*tau + 4*logeps + 8*logx2*tau - 4*logx2"
+    },
+    {
+     "class": "OC",
+     "graphs": [
+      "tree with -partial_delta I^CT[eps](O_a)"
+     ],
+     "value_relative_to_tree": "8*logeps*tau - 8*logeps"
+    },
+    {
+     "class": "F",
+     "graphs": [
+      "tree with hbar phi(O_a)"
+     ],
+     "value_relative_to_tree": "2 x (coefficient of O in hbar phi(O))/unit; 0 in the minimal scheme"
+    },
+    {
+     "class": "vanishing",
+     "graphs": [
+      "cubic self-contraction",
+      "O_a with both legs at one cubic vertex",
+      "Yukawa/ghost vertices on different lines",
+      "27/16 finite term"
+     ],
+     "reason": "colour [ch05 lem:c5-colour]; propagator components; no A_V line"
+    }
+   ],
+   "result": {
+    "general": "G = G0 [1 + unit (27/2 + 4 log(3/2) + 8 tau (log|x|^2 + gamma_E - 3 log 2))], tau = T/S",
+    "traceless (tau=0)": "G = G0 [1 + unit (27/2 + 4 log(3/2))]",
+    "trace (tau=3)": "G = G0 [1 + unit (27/2 + 4 log(3/2) + 24 (log|x|^2 + gamma_E - 3 log 2))]",
+    "log|x|^2 coefficient": "8 tau unit; = -(1/4)(D_1 G0 + G0 D_1^T)/G0 with D_1 = 4(Z - unit {N,O}): 0 and 24",
+    "tree": "G0(x) = 4 hbar dim(g) [(a1,a2)(b1,b2) + (a1,b2)(b1,a2)] / (16 pi^4 |x|^4)"
+   }
+  },
+  {
+   "sector": "(O_zeta, O_zetabar), weight 5/2",
+   "status": "census; evaluation strategy fixed, not evaluated",
+   "tree": {
+    "graph": "cycle of one lambda and one A_Wperp edge",
+    "Aut": 1,
+    "value": "+24 hbar dim(g) (zeta, rho(x) zetabar)/(16 pi^4 |x|^6) in the convention of def:t-2pt (coefficient of t2 t1), lambda propagator of ch03 prop:c3-P read as in conj prop:RP; radial value +24 hbar dim(g) (zeta', conj zeta)/(16 pi^4) with Theta_I (spinor factor -rho(x)/|x|) [inner_product_checks.py C12]",
+    "spinor_identity": "sum_w rho(w) rho(x) rho(w) = -6 rho(x)"
+   },
+   "classes": [
+    {
+     "class": "SE_lambda",
+     "graphs": [
+      "lambda self-energy with A_V line (1)",
+      "with A_Wperp line (1)",
+      "-4 unit log eps int(lambda, dslash lambda)"
+     ],
+     "integral": "bubble masters of Step 1 with numerators linear in rho(l)"
+    },
+    {
+     "class": "SE_A",
+     "graphs": [
+      "as scalar sector"
+     ]
+    },
+    {
+     "class": "EX_V",
+     "graphs": [
+      "A_V between lambda line (lambda lambda A_V) and A_Wperp line (A_V A A)"
+     ],
+     "integral": "five-edge topology with one fermion line; reduction by Lemma lem:t-reduce after the Clifford algebra"
+    },
+    {
+     "class": "EX_Y",
+     "graphs": [
+      "crossed Yukawa: z1 (lambda from O1, A to O2), z2 (A from O1, lambdabar to O2), lambda edge z1 z2"
+     ],
+     "Aut": 1
+    },
+    {
+     "class": "OC",
+     "graphs": [
+      "-partial_delta I^CT[eps](O_zeta), legs (lambda, A_Wperp); log coefficient Z(O_zeta) from one-loop graphs with O_zeta on the cycle (to compute)"
+     ]
+    },
+    {
+     "class": "F",
+     "graphs": [
+      "hbar phi(O_zeta)"
+     ]
+    }
+   ],
+   "checks": [
+    "log|x|^2 coefficient 24 unit (Theorem thm:t-scaling with D_1 = -48 unit)",
+    "Ward identity (a): a_zeta - a_K = -12 + Q_1 coefficients (Prop prop:t-konishiward)"
+   ]
+  },
+  {
+   "sector": "weight 3: (Fbar_w, F_n), (B_w, Bbar_n), (B_w, F_n)",
+   "status": "census; order-g entries among the listed operators proved zero; length-changing entries listed",
+   "tree": {
+    "(Fbar_w,F_n)": "cycle of two lambda edges, Aut 2, proportional to hbar dim(g) (n.w)^2 |x|^-6",
+    "(B_w,Bbar_n)": "three A_Wperp edges, relative order unit with respect to (Fbar,F) (one bracket per operator); colour f f = tr(ad ad)"
+   },
+   "order_g": {
+    "(B_w,F_n)": 0,
+    "(Fbar_w,Bbar_n)": 0,
+    "reason": "Yukawa vertex has one scalar leg: two legs of the trilinear self-contract, colour 0; cubic vertices with two scalar legs have an A_V leg, absent in the bilinears"
+   },
+   "classes": [
+    {
+     "class": "(Fbar,F) one loop",
+     "graphs": [
+      "lambda self-energies",
+      "A_V exchange between lambda lines",
+      "A_Wperp (Yukawa) exchange between lambda lines",
+      "OC: -partial_delta I^CT[eps](Fbar_w) with legs (lambdabar, lambdabar)",
+      "F"
+     ]
+    },
+    {
+     "class": "length-changing entries",
+     "graphs": [
+      "(B_w,F_n), (Fbar_w,Bbar_n): the one-cubic-vertex graphs (3+2+3 = 8 half-edges, four edges, relative order unit with respect to tree(Fbar_w,F_n)) vanish: either the cubic vertex is the Yukawa vertex with both fermion legs and one leg of B (colour delta_ab f_abc = 0, the two remaining legs of B joined: ([e_a,e_b],e_c) delta_bc = 0), or it would need the field content (A_Wperp, A_Wperp, lambda), which no cubic vertex has [prop:t-orderg]; 3+2+3+3 and 3+2+4 are odd (no graph); first nonvanishing classes b1=3 (one cubic + one quartic, or three cubic vertices), relative order unit^2 [inner_product_checks.py C14]",
+      "(O_zeta, trilinear of {S^(1)(xi),F_n}): one Yukawa vertex; T=(A^a A^b lambda^c) f_abc, Y=f lambda lambda A, colour f_abc f_cba = -tr(ad ad) dim g != 0; with the length-changing counterterm of the trilinear (legs lambda, A_Wperp, superficial degree 1)"
+     ]
+    }
+   ],
+   "use": "Konishi-anomaly Ward identity (b): c_K unit two-point_tree(Fbar_w,F_n) = - two-point(O_zeta, {S^(1)(xi),F_n} + Q_1(F_n)) at relative order unit (the B_w term is of relative order unit^2)"
+  }
+ ],
+ "evaluation_strategy": [
+  "dimensional analysis: every subtracted graph is |x|^{-w1-w2} times a function of |x|^2/eps plus log eps from counterterms",
+  "Lemma lem:t-ft: only the log^2 and log coefficients of the momentum-space small-eps|q|^2 expansion survive at x != 0; constants (e.g. 6 zeta(3) of the kite) are contact terms",
+  "Lemma lem:t-reduce: numerators reduced exactly by p^2 Dhat(p) = exp(-eps p^2)",
+  "Lemma lem:t-local: replacing a subgraph by a smeared one changes the result by a one-dimensional Gaussian integral (log(2/3)/(16 pi^2) for the bubble)",
+  "bubble masters: Step 1 closed forms with gamma_E and log 2",
+  "expected constants: rationals, gamma_E, log 2, log 3; zeta(3) only in contact terms"
+ ],
+ "large_distance": "Lemma lem:t-ir: integrand ~ R^{-4|S| - sigma}, sigma = sum of Weyl weights of far ends of edges leaving S; sigma > 0 unless all leave to ghosts c; holds for every graph listed",
+ "literature_targets_statements_only": [
+  {
+   "statement": "Konishi one-loop anomalous dimension 3 g^2 N/(4 pi^2)",
+   "regulator_in_literature": "various (DR/DRED and position-space); here reproduced from D_1 without DR",
+   "here": "24 unit log|x|^2 coefficient, unit = -g^2N/(32pi^2)"
+  },
+  {
+   "statement": "two-point function of the 20prime has no order-g^2 correction with the normalisation fixed by the stress-tensor multiplet",
+   "regulator_in_literature": "regulator-dependent intermediate steps; statement only",
+   "here": "minimal UV-boundary scheme constant 27/2 + 4 log(3/2); removable by an equivariant finite part phi on the 20prime multiplet"
+  }
+ ]
+}

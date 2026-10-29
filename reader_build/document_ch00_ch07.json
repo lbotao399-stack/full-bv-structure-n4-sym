@@ -1,0 +1,1347 @@
+{
+ "id": "n4-costello-bv-step1",
+ "title": "N=4 super Yang–Mills in Costello’s formalism — Step 1",
+ "blocks": [
+  {
+   "id": "b-00001",
+   "type": "heading",
+   "source": "1. Overview",
+   "level": 1
+  },
+  {
+   "id": "b-00002",
+   "type": "paragraph",
+   "source": "This manuscript constructs the one-loop quantum Batalin–Vilkovisky theory of four-dimensional $\\mathcal N=4$ super Yang–Mills theory on Euclidean $\\mathbb R^4$, together with the transformations of its local operators under the whole superconformal algebra, in the renormalisation formalism of Costello [C07] and Costello–Gwilliam [CG2]. The single regulator is a lower cutoff $\\varepsilon>0$ on Schwinger time; the upper end of every Schwinger integral is $\\infty$, and no infrared scale and no dimensional continuation enter. This overview states what is constructed, where the construction needs care, how the chapters are organised, and the results of this first step."
+  },
+  {
+   "id": "b-00003",
+   "type": "heading",
+   "source": "1.1 What is constructed",
+   "level": 2
+  },
+  {
+   "id": "b-00004",
+   "type": "paragraph",
+   "source": "The fields are those of ten-dimensional super Yang–Mills theory reduced to $\\mathbb R^4$ [ESW, Prop 2.20, §10.3], complexified. Write $V$ for the complexification of $\\mathbb R^4$ and $W_{\\mathbb R}^\\perp$ for the six transverse directions, and $\\mathfrak g$ for the complexified gauge Lie algebra with its invariant pairing $(-,-)$, which carries the coupling. The gauge field $A$ is a ten-component one-form with values in $\\mathfrak g$: its components along $V$ form the connection $A|_V$, and its components $\\iota_wA$, $w\\in W_{\\mathbb R}^\\perp$, are the six scalars. The gaugino $\\lambda$ takes values in the ten-dimensional semi-spin representation $\\Sigma$, which in four dimensions is $S_+\\otimes W\\oplus S_-\\otimes W^*$, with $S_\\pm$ the two Weyl spinor representations and $W$ the four-dimensional R-symmetry space [ESW, §10]; spinors stay index free throughout. The ghost $c$ and the antifields $A^*$, $\\lambda^*$, $c^*$ complete the fields [ESW, Def 3.2, Rem 1.36]. The action $S$ is [ESW, (31)] reduced to four dimensions; its quadratic part defines the linear differential $Q$, the rest is the interaction $I$, and $\\{-,-\\}$ is the odd Poisson bracket [C07, Lemma 4.3.2]."
+  },
+  {
+   "id": "b-00005",
+   "type": "paragraph",
+   "source": "Costello's construction needs three more objects. A gauge-fixing operator $Q^{GF}$, here of Feynman type, makes $H=[Q,Q^{GF}]$ the Laplacian on every field. The heat kernel $K_t$ of $H$ at Schwinger time $t$ [C07, §6.5] gives the propagator"
+  },
+  {
+   "id": "b-00006",
+   "type": "equation",
+   "source": "P(\\varepsilon,\\infty)=\\int_\\varepsilon^\\infty(Q^{GF}\\otimes1)K_t\\,dt ,"
+  },
+  {
+   "id": "b-00007",
+   "type": "paragraph",
+   "source": "and Feynman graphs with these edges assemble into the renormalisation group flow of an even functional $J$,"
+  },
+  {
+   "id": "b-00008",
+   "type": "equation",
+   "source": "W\\big(P(\\varepsilon,\\infty),J\\big)=\\hbar\\log\\Big(e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}e^{J/\\hbar}\\Big)\\qquad[\\text{CG2, §7.2.7}],"
+  },
+  {
+   "id": "b-00009",
+   "type": "paragraph",
+   "source": "with $\\partial_{P(\\varepsilon,\\infty)}$ the second-order operator contracting two fields with the kernel $P(\\varepsilon,\\infty)$ [C07, §6.4]; this is the functional called $\\Gamma$ in [C07, Def 6.6.1]. As in Theorem B of [C07], the counterterm $I^{CT}[\\varepsilon]$ is the singular part of the graph expansion, extracted graph by graph, with coefficients in the span of $\\varepsilon^{-1}$ and $\\log\\varepsilon$ at one loop; it is local, and $W\\big(P(\\varepsilon,\\infty),I-I^{CT}[\\varepsilon]\\big)$ has a limit as $\\varepsilon\\to0$. A local operator $O$, for instance $\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$ with $\\omega$ a compactly supported four-form [CG2, Lemma 10.1.1.3], enters through a square-zero parameter $\\delta$ [CG2, Def 8.3.1.1]: the counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$ of the family $I+\\delta O$ defines the local operator at the UV end, $O(\\varepsilon)=O-\\partial_\\delta I^{CT}[\\varepsilon]$, and its quantum observable is"
+  },
+  {
+   "id": "b-00010",
+   "type": "equation",
+   "source": "O[\\infty]=\\lim_{\\varepsilon\\to0}\\partial_\\delta W\\big(P(\\varepsilon,\\infty),\\,I-I^{CT}[\\varepsilon]+\\delta\\,O(\\varepsilon)\\big)\\qquad[\\text{CG2, Def 8.3.1.3}]."
+  },
+  {
+   "id": "b-00011",
+   "type": "paragraph",
+   "source": "The superconformal algebra $\\mathfrak{psl}(4|4)$ [SW, (7), (17)] acts through an equivariant action $S+S^{(1)}+S^{(2)}$, a Maurer–Cartan element of the Chevalley–Eilenberg complex of [ESW, Def 1.26–1.27] with differential $d_{CE}$. Building $O[\\infty]$ from the equivariant interaction, the transformation of $O$ along a generator $x_1\\in\\mathfrak{psl}(4|4)$ is the component $[(d_{CE}+Q)O[\\infty]](x_1)$. Along the dilatation $\\Delta$, the generator $2E$ of [SW, (17)] with $E$ the Euler vector field [SW, (3)], it is the anomalous dimension; along the supercharges $Q^i_\\alpha$, $\\bar Q_{\\dot\\alpha i}$ and the special supercharges $S^\\alpha_i$, $\\bar S^{\\dot\\alpha i}$ (the names of [SW, (8)]) it is the quantum-corrected supersymmetry; along the special conformal generators it is the primary condition. The program therefore has two outputs: the quantised interaction, with its counterterms and its quantum master equation, and, for every local operator, its observable and its transformations along all of $\\mathfrak{psl}(4|4)$."
+  },
+  {
+   "id": "b-00012",
+   "type": "heading",
+   "source": "1.2 Three points that need care",
+   "level": 2
+  },
+  {
+   "id": "b-00013",
+   "type": "paragraph",
+   "source": "Operators. Inserting a composite operator produces divergences, and the limit defining $O[\\infty]$ exists for many choices of the functional $O(\\varepsilon)$. At scale $\\infty$, however, $K_\\infty=\\lim_{t\\to\\infty}K_t=0$ on $\\mathbb R^4$, and $P(0,\\infty)$ is a contracting homotopy for $Q$: for compactly supported $\\alpha$,"
+  },
+  {
+   "id": "b-00014",
+   "type": "equation",
+   "source": "Q\\big(P(0,\\infty)\\star\\alpha\\big)+P(0,\\infty)\\star(Q\\alpha)=\\alpha ,"
+  },
+  {
+   "id": "b-00015",
+   "type": "paragraph",
+   "source": "where $P(0,\\infty)\\star$ is the operator with kernel $P(0,\\infty)$ [C07, §6.3]. Away from finitely many zero-mode classes, every $Q$-closed functional at scale $\\infty$ without constant term is therefore $Q$-exact, and an arbitrary $O(\\varepsilon)$ carries no cohomological information. The content of an operator is the locality of $O(\\varepsilon)$: $O(\\varepsilon)=O-\\partial_\\delta I^{CT}[\\varepsilon]$ with local coefficients in the span of $\\varepsilon^{-1}$ and $\\log\\varepsilon$. Locality and the existence of the limit fix the singular part uniquely, and the finite part is the scheme. An equation $[(d_{CE}+Q)O[\\infty]](x_1)=Y[\\infty]$ has content because $Y$ is required to be local, and anomalous dimensions are classes in the cohomology of local functionals."
+  },
+  {
+   "id": "b-00016",
+   "type": "paragraph",
+   "source": "Counterterms. Theorem B fixes the singular part $I^{CT}[\\varepsilon]$ uniquely. The cutoff on every edge breaks gauge invariance and superconformal symmetry, and $I^{CT}[\\varepsilon]$ contains $\\varepsilon^{-1}$ mass terms with nonzero image under $Q$. The quantum master equation, transported to the UV boundary, then forces finite local counterterms. They are constrained by the master equation and fixed up to a choice; this choice is the renormalisation condition, part of the definition of the quantum theory and of every operator."
+  },
+  {
+   "id": "b-00017",
+   "type": "paragraph",
+   "source": "The UV boundary. The lower end $t=\\varepsilon$ of the Schwinger integral carries two kernels,"
+  },
+  {
+   "id": "b-00018",
+   "type": "equation",
+   "source": "\\varepsilon\\frac{d}{d\\varepsilon}P(\\varepsilon,\\infty)=-\\varepsilon L_\\varepsilon,\\qquad (Q\\otimes1+1\\otimes Q)P(\\varepsilon,\\infty)=K_\\varepsilon,\\qquad L_\\varepsilon=(Q^{GF}\\otimes1)K_\\varepsilon ,"
+  },
+  {
+   "id": "b-00019",
+   "type": "paragraph",
+   "source": "the second being [C07, Lemma 10.2.1] with $K_\\infty=0$. Edges pinned at $t=\\varepsilon$ and carrying $L_\\varepsilon$ produce the singular coefficients and the scaling behaviour. Edges carrying $K_\\varepsilon$ produce the defects of the quantum master equation and the transformations of observables, through"
+  },
+  {
+   "id": "b-00020",
+   "type": "equation",
+   "source": "(d_{CE}+Q)\\,e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}=e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}\\big(d_{CE}+Q+\\hbar\\Delta_\\varepsilon\\big),\\qquad \\Delta_\\varepsilon=-\\partial_{K_\\varepsilon}\\quad[\\text{C07, §10.1}]."
+  },
+  {
+   "id": "b-00021",
+   "type": "paragraph",
+   "source": "Every singular or anomalous coefficient of this manuscript is carried by such boundary edges."
+  },
+  {
+   "id": "b-00022",
+   "type": "heading",
+   "source": "1.3 Plan of the chapters",
+   "level": 2
+  },
+  {
+   "id": "b-00023",
+   "type": "paragraph",
+   "source": "Chapter 1 fixes the fields, the odd pairing, the reduced action with its linear differential and vertices, and the classical master equation. Chapter 2 realises $\\mathfrak{psl}(4|4)$ on Euclidean $\\mathbb R^4$ and constructs the equivariant action $S+S^{(1)}+S^{(2)}$ in the Chevalley–Eilenberg complex. Chapter 3 constructs the Feynman-gauge $Q^{GF}$, records which axioms of [C07, Def 4.3.3] it satisfies, and proves the UV-boundary identity, the acyclicity at scale $\\infty$ and the one-loop formula. Chapter 4 computes the one-loop counterterms of the action in the two-, three- and four-point sectors and the quantum master equation at the UV boundary. Chapter 5 computes $O(\\varepsilon)$ for the single letters and the scalar bilinears, Chapter 6 their dilatation through the scaling covariance of the regulator, and Chapter 7 the selection rules for the other superconformal components and the program of Steps 2–5."
+  },
+  {
+   "id": "b-00024",
+   "type": "heading",
+   "source": "1.4 Results of Step 1",
+   "level": 2
+  },
+  {
+   "id": "b-00025",
+   "type": "paragraph",
+   "source": "All one-loop coefficients are rational multiples of"
+  },
+  {
+   "id": "b-00026",
+   "type": "equation",
+   "source": "\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2\\,(X,Y)},"
+  },
+  {
+   "id": "b-00027",
+   "type": "paragraph",
+   "source": "which is independent of $X,Y\\in\\mathfrak g$ for simple $\\mathfrak g$; below it is called the unit and written out in every formula."
+  },
+  {
+   "id": "b-00028",
+   "type": "paragraph",
+   "source": "• Chapter 2. The equivariant action $S+S^{(1)}+S^{(2)}$, with $S^{(k)}=0$ for $k\\ge3$, satisfies its master equation for every $\\mathfrak g$ on the Poincaré supersymmetry subalgebra, in arity $0$, in arity $3$ with at most one or with three odd arguments, and in every arity $\\ge4$; the remaining components, of arities $1$ to $3$, hold for $\\mathfrak g=\\mathfrak{su}(2)$ at sampled generators, with the probability bound stated there."
+  },
+  {
+   "id": "b-00029",
+   "type": "paragraph",
+   "source": "• Chapter 3. With the Feynman-gauge operator, $d^*d$ being the positive Laplacian,"
+  },
+  {
+   "id": "b-00030",
+   "type": "equation",
+   "source": "H=[Q,Q^{GF}]=d^*d\\otimes\\mathrm{id},\\qquad (Q\\otimes1+1\\otimes Q)P(\\varepsilon,\\infty)=K_\\varepsilon,\\qquad (Q^{GF})^2\\neq0 ;"
+  },
+  {
+   "id": "b-00031",
+   "type": "paragraph",
+   "source": "conditions (1), (2), (4) of [C07, Def 4.3.3] hold and (3), (5) fail, and every identity used later rests on the conditions that hold."
+  },
+  {
+   "id": "b-00032",
+   "type": "paragraph",
+   "source": "• Chapter 4. The part of $I^{CT}[\\varepsilon]$ quadratic in the fields is, with $\\mathrm{dvol}$ the Euclidean volume form and ${\\not d}$ the Dirac operator [ESW, §2.1],"
+  },
+  {
+   "id": "b-00033",
+   "type": "equation",
+   "source": "\\begin{aligned}\n\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\int\\mathrm{dvol}\\Big\\{&\\frac{9}{4\\varepsilon}\\Big[(A|_V,A|_V)+(A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})\\Big]\\\\\n&+\\log\\varepsilon\\Big[-(dA|_V,dA|_V)-(dA|_{W_{\\mathbb R}^\\perp},dA|_{W_{\\mathbb R}^\\perp})+4(\\lambda,{\\not d}\\lambda)-(dc,A^*)\\Big]\\Big\\}.\n\\end{aligned}"
+  },
+  {
+   "id": "b-00034",
+   "type": "paragraph",
+   "source": "• Chapter 4. Through the cubic and quartic sectors the $\\log\\varepsilon$ part of $I^{CT}[\\varepsilon]$ is"
+  },
+  {
+   "id": "b-00035",
+   "type": "equation",
+   "source": "\\log\\varepsilon\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\,\\big(Q+\\{I,-\\}\\big)\\int\\mathrm{dvol}\\Big(2(A,A^*)-4(\\lambda^*,\\lambda)-(c^*,c)\\Big),"
+  },
+  {
+   "id": "b-00036",
+   "type": "paragraph",
+   "source": "which multiplies the tree vertices $(A|_V)^3$, $A|_V(A|_{W_{\\mathbb R}^\\perp})^2$, $\\lambda\\lambda A|_V$, $\\lambda\\lambda A|_{W_{\\mathbb R}^\\perp}$, $cA|_VA^*|_V$, $cA|_{W_{\\mathbb R}^\\perp}A^*|_{W_{\\mathbb R}^\\perp}$, $c\\lambda\\lambda^*$, $ccc^*$, $(A|_V)^4$, $(A|_V)^2(A|_{W_{\\mathbb R}^\\perp})^2$, $(A|_{W_{\\mathbb R}^\\perp})^4$ by $6,6,10,10,1,1,1,1,8,8,8$ units; its component along the coupling vanishes, so the coupling is unrenormalised at one loop, and the $\\varepsilon^{-1}$ terms lie in the quadratic sector."
+  },
+  {
+   "id": "b-00037",
+   "type": "paragraph",
+   "source": "• Chapter 4. In the sector $(c,A|_V)$ of the quantum master equation the $\\varepsilon^{-1}$ parts cancel against $-Q$ of the mass counterterm, no $\\log\\varepsilon$ appears, and the finite obstruction is"
+  },
+  {
+   "id": "b-00038",
+   "type": "equation",
+   "source": "-\\frac{27}{8}\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\int\\mathrm{dvol}\\,(d^*dc,d^*A|_V)=\\frac{27}{16}\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\,Q\\!\\int\\mathrm{dvol}\\,(d^*A|_V,d^*A|_V),"
+  },
+  {
+   "id": "b-00039",
+   "type": "paragraph",
+   "source": "removed by the finite change $I\\mapsto I-\\frac{27}{16}\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\int\\mathrm{dvol}\\,(d^*A|_V,d^*A|_V)$."
+  },
+  {
+   "id": "b-00040",
+   "type": "paragraph",
+   "source": "• Chapter 5. The single letters $\\int\\omega\\,(X,\\iota_wA)$, $\\int\\omega\\,(X,\\iota_v(A|_V))$, $\\int\\omega\\,(\\zeta,\\lambda)$, $\\int\\omega\\,(X,c)$, with fixed $X\\in\\mathfrak g$, $v\\in V$, $\\zeta\\in\\Sigma^*\\otimes\\mathfrak g$, have $O(\\varepsilon)=O$. For $O=\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$, with $w$ running over an orthonormal basis of $W_{\\mathbb R}^\\perp$,"
+  },
+  {
+   "id": "b-00041",
+   "type": "equation",
+   "source": "\\partial_\\delta I^{CT}[\\varepsilon]=\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\log\\varepsilon\\Big[4\\,O-2(w_1,w_2)\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)\\Big]+\\frac{2\\hbar\\dim\\mathfrak g\\,(w_1,w_2)}{16\\pi^2\\varepsilon}\\int\\omega ;"
+  },
+  {
+   "id": "b-00042",
+   "type": "paragraph",
+   "source": "for $(w_1,w_2)=0$, where $O$ lies in the traceless part, and for the trace $\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)$ this gives"
+  },
+  {
+   "id": "b-00043",
+   "type": "equation",
+   "source": "\\begin{aligned}\n\\text{traceless:}\\quad O(\\varepsilon)&=\\Big(1-4\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\log\\varepsilon\\Big)O,\\\\\n\\text{trace:}\\quad O(\\varepsilon)&=\\Big(1+8\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\log\\varepsilon\\Big)O-\\frac{12\\hbar\\dim\\mathfrak g}{16\\pi^2\\varepsilon}\\int\\omega .\n\\end{aligned}"
+  },
+  {
+   "id": "b-00044",
+   "type": "paragraph",
+   "source": "• Chapter 6. Let $O$ have Weyl weight $w_O$ (the sum of the weights $1$ of $A$, $\\tfrac32$ of $\\lambda$, $0$ of $c$, plus the number of derivatives), so that $\\Delta=2E$ acts on it classically by $2(E+w_O)$, $E$ acting on its density. The scaling covariance of the regulator, together with the identification of the Weyl scaling with the dilatation cochain that Chapter 6 states as the task of Step 2, gives"
+  },
+  {
+   "id": "b-00045",
+   "type": "equation",
+   "source": "[(d_{CE}+Q)O[\\infty]](\\Delta)=2\\Big(E+w_O+\\text{coefficient}\\cdot\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\Big)O[\\infty]+\\cdots,"
+  },
+  {
+   "id": "b-00046",
+   "type": "paragraph",
+   "source": "the dots being terms built from $(Q+\\{I,-\\})O$, and the coefficient given in the table. In the normalisation $\\Delta=-E$ of [SW, (3)] the same statement reads $-\\big(E+w_O+\\text{coefficient}\\cdot\\text{unit}\\big)O[\\infty]+\\cdots$."
+  },
+  {
+   "id": "b-00047",
+   "type": "table",
+   "source": "<table>\n<tr><th>operator</th><th>$w_O$</th><th>coefficient</th></tr>\n<tr><td>$\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$, $(w_1,w_2)=0$</td><td>$2$</td><td>$0$</td></tr>\n<tr><td>$\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)$</td><td>$2$</td><td>$-24$</td></tr>\n<tr><td>letter $\\iota_wA$</td><td>$1$</td><td>$-4$</td></tr>\n<tr><td>letter $A|_V$, transverse part</td><td>$1$</td><td>$-4$</td></tr>\n<tr><td>letter $\\lambda$</td><td>$\\tfrac32$</td><td>$-8$</td></tr>\n<tr><td>letter $c$</td><td>$0$</td><td>$-2$</td></tr>\n</table>"
+  },
+  {
+   "id": "b-00048",
+   "type": "paragraph",
+   "source": "<strong>Table 1.1.</strong> The coefficient multiplying the unit in the dilatation component (Chapter 6). The entries for the letters are those of the Feynman gauge used throughout."
+  },
+  {
+   "id": "b-00049",
+   "type": "paragraph",
+   "source": "For $\\mathfrak g=\\mathfrak{su}(N)$ with $(X,Y)=-\\frac{4\\hbar}{g^2}\\operatorname{tr}(XY)$, $\\operatorname{tr}$ the trace in the defining representation and $g$ the Yang–Mills coupling (Chapter 6), the unit equals $-g^2N/(32\\pi^2)$, and $-24$ units equal $3g^2N/(4\\pi^2)$, the one-loop anomalous dimension of the Konishi operator; this serves as a consistency check."
+  },
+  {
+   "id": "b-00050",
+   "type": "paragraph",
+   "source": "• Chapter 7. Translations, rotations and the R-symmetry commute with $Q^{GF}$ and $H$; their components can be chosen with no one-loop correction, and the counterterms of the traceless and the trace scalar bilinears stay in their own representations. Along the supercharges, the special supercharges and the special conformal generators the regulator moves, and the one-loop output lies in an explicit list of local structures; for the traceless scalar bilinear the supercharge component is a multiple of its classical structure."
+  },
+  {
+   "id": "b-00051",
+   "type": "heading",
+   "source": "2. Other superconformal components and the road ahead",
+   "level": 1
+  },
+  {
+   "id": "b-00052",
+   "type": "paragraph",
+   "source": "The dilatation component of Chapter 6 is one of the components $[(d_{CE}+Q)O[\\infty]](x_1)$, one for each generator $x_1$ of $\\mathfrak{psl}(4|4)$. How a generator acts on the regulator decides what a one-loop computation along it can produce. Translations, rotations and the R-symmetry commute with $Q^{GF}$ and with $H=[Q,Q^{GF}]$; every regulated kernel, every counterterm and the maps $O\\mapsto O(\\varepsilon)$, $O\\mapsto O[\\infty]$ are then covariant, and these components can be chosen with no one-loop correction. The dilatation, the special conformal transformations, the supercharges and the special supercharges move $Q^{GF}$; along them the one-loop output is confined by weight, Lorentz and R-representation, ghost degree and colour to a short list of local structures. This chapter proves both statements, states exactly what relates the special conformal component to the dilatation component, and lists the objects and graphs of Steps 2–5."
+  },
+  {
+   "id": "b-00053",
+   "type": "heading",
+   "source": "2.1 Components along a generator",
+   "level": 2
+  },
+  {
+   "id": "b-00054",
+   "type": "callout",
+   "source": "<strong>Definition 2.1</strong> (Observables and their components).",
+   "calloutKind": "definition"
+  },
+  {
+   "id": "b-00055",
+   "type": "paragraph",
+   "source": "Let $O$ be a local functional of degree $|O|$ and $\\delta$ a square-zero parameter of degree $-|O|$ [CG2, Def 8.3.1.1]. Let $I_{\\mathfrak{psl}(4|4)}=I+S^{(1)}+S^{(2)}$ be the equivariant interaction of Chapter 2 [ESW, Rem 1.29] and $I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]$ its one-loop counterterms, the singular parts, graph by graph, of the flow of $I_{\\mathfrak{psl}(4|4)}$ with values in $C^\\bullet(\\mathfrak{psl}(4|4))$. Then",
+   "parentId": "b-00054"
+  },
+  {
+   "id": "b-00056",
+   "type": "equation",
+   "source": "O(\\varepsilon)=O-\\partial_\\delta I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon],\\qquad O[\\infty]=\\lim_{\\varepsilon\\to0}\\partial_\\delta W\\big(P(\\varepsilon,\\infty),\\,I_{\\mathfrak{psl}(4|4)}-I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]+\\delta\\,O(\\varepsilon)\\big)",
+   "parentId": "b-00054"
+  },
+  {
+   "id": "b-00057",
+   "type": "paragraph",
+   "source": "[CG2, Def 8.3.1.3, Prop 13.4.0.1]. The component of $O$ along $x_1\\in\\mathfrak{psl}(4|4)$ is the arity-one part of the cochain $(d_{CE}+Q)O[\\infty]$ evaluated on $x_1$ [ESW, Def 1.26–1.27], written $[(d_{CE}+Q)O[\\infty]](x_1)$; as in Chapter 2, generators carry a subscript and $x$ alone is the position. The component is represented by a local functional $Y$ if",
+   "parentId": "b-00054"
+  },
+  {
+   "id": "b-00058",
+   "type": "equation",
+   "source": "[(d_{CE}+Q)O[\\infty]](x_1)=Y[\\infty].",
+   "parentId": "b-00054"
+  },
+  {
+   "id": "b-00059",
+   "type": "paragraph",
+   "source": "The counterterms computed in Step 1 are the arity-zero part of $I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]$, i.e. $I^{CT}[\\varepsilon]$ and $\\partial_\\delta I^{CT}[\\varepsilon]$ of Chapters 4 and 5; the arity-one counterterms are part of Step 2 (last section of this chapter)."
+  },
+  {
+   "id": "b-00060",
+   "type": "callout",
+   "source": "<strong>Lemma 2.2</strong> (Components lie in the image of $Q$).",
+   "calloutKind": "lemma"
+  },
+  {
+   "id": "b-00061",
+   "type": "paragraph",
+   "source": "For every $x_1\\in\\mathfrak{psl}(4|4)$, $[(d_{CE}+Q)O[\\infty]](x_1)$ equals $Q$ applied to the arity-one part of $O[\\infty]$ evaluated on $x_1$, up to the Koszul sign of the evaluation. In particular it lies in the image of $Q$.",
+   "parentId": "b-00060"
+  },
+  {
+   "id": "b-00062",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00063",
+   "type": "paragraph",
+   "source": "The Chevalley–Eilenberg differential of Chapter 2 [ESW, Def 1.26] is a sum over pairs $i<j$ of arguments of terms $f([x_i,x_j],\\dots)$; it maps cochains of arity $k$ to arity $k+1$ and vanishes on cochains of arity zero, which have no pair of arguments. The arity-one part of $(d_{CE}+Q)O[\\infty]$ is therefore $d_{CE}$ of the arity-zero part, which is $0$, plus $Q$ of the arity-one part, $Q$ acting on the values of the cochain. ∎",
+   "parentId": "b-00062"
+  },
+  {
+   "id": "b-00064",
+   "type": "callout",
+   "source": "<strong>Remark 2.3</strong> (Where the content of a component lies).",
+   "calloutKind": "remark"
+  },
+  {
+   "id": "b-00065",
+   "type": "paragraph",
+   "source": "At scale $\\infty$, $Q$ is acyclic on functionals without constant term, away from finitely many zero-mode classes (Chapter 3), and Lemma [2.2](#b-00060) places every component in the image of $Q$. The content of a component is therefore its local representative $Y$. The selection rules below are statements about $Y$.",
+   "parentId": "b-00064"
+  },
+  {
+   "id": "b-00066",
+   "type": "heading",
+   "source": "2.2 Translations, rotations and R-symmetry",
+   "level": 2
+  },
+  {
+   "id": "b-00067",
+   "type": "callout",
+   "source": "<strong>Definition 2.4</strong> (Action of an even generator on all slots).",
+   "calloutKind": "definition"
+  },
+  {
+   "id": "b-00068",
+   "type": "paragraph",
+   "source": "Let $x_1$ be an even generator of $\\mathfrak{psl}(4|4)$ with vector field $v$ (Chapter 2). The linear operator $e\\mapsto v.e$ on $\\mathscr E$ is given on the slots of the fields by the transformations in $S^{(1)}(x_1)$ (Chapter 2, arity one):",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00069",
+   "type": "equation",
+   "source": "v.A=L_vA+\\tfrac14(\\operatorname{div}v)A|_{W_{\\mathbb R}^\\perp},\\qquad v.\\lambda=v(\\lambda)+\\tfrac14\\rho(d(v,-))\\lambda+\\tfrac38(\\operatorname{div}v)\\lambda,\\qquad v.c=v(c),",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00070",
+   "type": "paragraph",
+   "source": "and on the slots of the antifields by the condition",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00071",
+   "type": "equation",
+   "source": "\\langle v.e_0,e_1\\rangle+\\langle e_0,v.e_1\\rangle=0\\qquad\\text{for all }e_0,e_1\\in\\mathscr E_c .",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00072",
+   "type": "paragraph",
+   "source": "This extends the notation $v.\\lambda$, $v.c$ of [ESW, (32)]. With it,",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00073",
+   "type": "equation",
+   "source": "S^{(1)}(x_1)=\\int\\mathrm{dvol}\\Big((v.A,A^*)-(v.\\lambda,\\lambda^*)-(v.c,c^*)\\Big),",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00074",
+   "type": "paragraph",
+   "source": "a functional linear in the fields and linear in the antifields, and the derivation $\\{S^{(1)}(x_1),-\\}$ of functionals is induced, as in [C07, §6.2], by $e\\mapsto v.e$ times one sign fixed by the conventions of the bracket (Chapter 1). Every statement below about commutators of $v.$ is insensitive to this sign.",
+   "parentId": "b-00067"
+  },
+  {
+   "id": "b-00075",
+   "type": "callout",
+   "source": "<strong>Lemma 2.5</strong> (Weights on the antifields).",
+   "calloutKind": "lemma"
+  },
+  {
+   "id": "b-00076",
+   "type": "paragraph",
+   "source": "For a conformal Killing vector field $v$ of $V$ and $e_1$ a section in the slot of $A^*|_{W_{\\mathbb R}^\\perp}$,",
+   "parentId": "b-00075"
+  },
+  {
+   "id": "b-00077",
+   "type": "equation",
+   "source": "v.e_1=v(e_1)+\\tfrac34(\\operatorname{div}v)\\,e_1 .",
+   "parentId": "b-00075"
+  },
+  {
+   "id": "b-00078",
+   "type": "paragraph",
+   "source": "For the dilatation $\\Delta$, $v=2E$, on every component,",
+   "parentId": "b-00075"
+  },
+  {
+   "id": "b-00079",
+   "type": "equation",
+   "source": "\\begin{aligned}\nv.A&=2E(A)+2A,&\\qquad v.\\lambda&=2E(\\lambda)+3\\lambda,&\\qquad v.c&=2E(c),\\\\\nv.A^*&=2E(A^*)+6A^*,&\\qquad v.\\lambda^*&=2E(\\lambda^*)+5\\lambda^*,&\\qquad v.c^*&=2E(c^*)+8c^*,\n\\end{aligned}",
+   "parentId": "b-00075"
+  },
+  {
+   "id": "b-00080",
+   "type": "paragraph",
+   "source": "with $E(-)$ acting componentwise. Thus $v.$ is $2E(-)$ plus twice the Weyl weight, the weights of $A,\\lambda,c,A^*,\\lambda^*,c^*$ being $1,\\tfrac32,0,3,\\tfrac52,4$.",
+   "parentId": "b-00075"
+  },
+  {
+   "id": "b-00081",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00082",
+   "type": "paragraph",
+   "source": "For compactly supported $f_1,f_2$, integration by parts gives",
+   "parentId": "b-00081"
+  },
+  {
+   "id": "b-00083",
+   "type": "equation",
+   "source": "\\int\\mathrm{dvol}\\,v(f_1)\\,f_2=-\\int\\mathrm{dvol}\\,f_1\\,\\big(v(f_2)+(\\operatorname{div}v)\\,f_2\\big).",
+   "parentId": "b-00081"
+  },
+  {
+   "id": "b-00084",
+   "type": "paragraph",
+   "source": "For each pair, the condition of Definition [2.4](#b-00067) reads $\\int\\mathrm{dvol}\\,\\big((v.\\phi,\\phi^*)+(\\phi,v.\\phi^*)\\big)=0$, with $\\phi\\in\\{A,\\lambda,c\\}$ and the fibre pairing of Chapter 1. On $A|_{W_{\\mathbb R}^\\perp}$, $v.f_1=v(f_1)+\\tfrac14(\\operatorname{div}v)f_1$, so $\\int\\mathrm{dvol}\\,(v.f_1,f_2)=-\\int\\mathrm{dvol}\\,\\big(f_1,\\,v(f_2)+(1-\\tfrac14)(\\operatorname{div}v)f_2\\big)$, which gives the first formula. For $v=2E$, $\\operatorname{div}(2E)=8$ and $v.A=2E(A)+2A$, $v.\\lambda=2E(\\lambda)+3\\lambda$, $v.c=2E(c)$ (Chapter 2, the dilatation example); the same computation gives $2E(A^*)+(8-2)A^*$, $2E(\\lambda^*)+(8-3)\\lambda^*$ and $2E(c^*)+8c^*$. ∎",
+   "parentId": "b-00081"
+  },
+  {
+   "id": "b-00085",
+   "type": "callout",
+   "source": "<strong>Proposition 2.6</strong> (Covariance of the regulator).",
+   "calloutKind": "proposition"
+  },
+  {
+   "id": "b-00086",
+   "type": "paragraph",
+   "source": "Let $x_1$ be a translation, an element of $\\mathfrak{so}(V)$ or an element of $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, with vector field $v$. Then:",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00087",
+   "type": "paragraph",
+   "source": "• $\\operatorname{div}v=0$, and $v.$ is the infinitesimal action of the translation or rotation on every slot, through the spin representation $\\tfrac14\\rho\\circ q$ on $\\Sigma$ and $\\Sigma^*$ [ESW, (29), (32)];",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00088",
+   "type": "paragraph",
+   "source": "• $[v.,Q]=0$, $[v.,Q^{GF}]=0$, $[v.,H]=0$, and $v.$ preserves $\\langle\\,,\\rangle$;",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00089",
+   "type": "paragraph",
+   "source": "• for every $t>0$,",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00090",
+   "type": "equation",
+   "source": "(v.\\otimes1+1\\otimes v.)K_t=0,\\qquad (v.\\otimes1+1\\otimes v.)L_t=0,\\qquad (v.\\otimes1+1\\otimes v.)P(\\varepsilon,\\infty)=0;",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00091",
+   "type": "paragraph",
+   "source": "• the derivation $\\{S^{(1)}(x_1),-\\}$ commutes with $\\partial_{P(\\varepsilon,\\infty)}$ and with $\\Delta_\\varepsilon$, and for every even functional $J$, at least cubic modulo $\\hbar$,",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00092",
+   "type": "equation",
+   "source": "\\{S^{(1)}(x_1),W(P(\\varepsilon,\\infty),J)\\}=\\frac{d}{d\\tau}\\Big|_{\\tau=0}W\\big(P(\\varepsilon,\\infty),\\,J+\\tau\\{S^{(1)}(x_1),J\\}\\big). \\tag{2.1}",
+   "parentId": "b-00085"
+  },
+  {
+   "id": "b-00093",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00094",
+   "type": "paragraph",
+   "source": "First item: a translation is constant, a rotation of $V$ is $x\\mapsto Xx$ with $X$ antisymmetric, and an element of $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ is linear and antisymmetric on $W_{\\mathbb R}^\\perp$; each is divergence free, so the Weyl-weight terms of Definition [2.4](#b-00067) vanish, and the remaining terms are the Lie derivative of the components of $A$ (for $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ the rotation of the index $w$ of $\\iota_wA$) and the spin-lifted Lie derivative $v(\\lambda)+\\tfrac14\\rho(d(v,-))\\lambda$. These actions preserve $\\mathrm{dvol}$ and the fibre pairings, so on the antifields the condition of Definition [2.4](#b-00067) returns the same natural actions.",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00095",
+   "type": "paragraph",
+   "source": "Second item: for a translation, $v.e$ is the constant-coefficient derivative $v_1(e)$ on every slot, which commutes with every constant-coefficient operator. For a rotation of $V$ or of $W_{\\mathbb R}^\\perp$, the exterior derivative $d$, its adjoint $d^*$, the Clifford multiplication $\\rho$ (equivariant for the spin representation, [ESW, §2.1]) and the metric of $V_{10}$ are invariant. The operator $Q$ is built from $d$, $d^*$ and ${\\not d}=\\rho\\circ d$ (Chapter 1), and $Q^{GF}$ from $d$, $d^*$, ${\\not d}|_{\\Sigma^*}$ and the identification $A^*\\mapsto-2A^*$ through the metric of $V_{10}$ (Chapter 3); both commute with $v.$, hence so does $H=QQ^{GF}+Q^{GF}Q$. The pairing is preserved by construction.",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00096",
+   "type": "paragraph",
+   "source": "Third item: as for $Q$ in Chapter 3, preservation of the pairing by the even operator $v.$ is $(v.\\otimes1+1\\otimes v.)K_0=0$, and $K_t=(e^{-tH}\\otimes1)K_0$ with $[v.,H]=0$ gives the first identity. Then",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00097",
+   "type": "equation",
+   "source": "(v.\\otimes1+1\\otimes v.)(Q^{GF}\\otimes1)K_t=([v.,Q^{GF}]\\otimes1)K_t+(Q^{GF}\\otimes1)(v.\\otimes1+1\\otimes v.)K_t=0,",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00098",
+   "type": "paragraph",
+   "source": "and integration over $t\\in(\\varepsilon,\\infty)$ gives the third.",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00099",
+   "type": "paragraph",
+   "source": "Fourth item: by the computation of $[\\partial_\\phi,Q]=\\partial_{Q\\phi}$ in [C07, §6.4], with the even operator $v.$ in place of $Q$, the commutator of $\\partial_\\phi$ with the derivation induced by $v.$ is the operator $\\partial$ of the kernel $(v.\\otimes1+1\\otimes v.)\\phi$; for $\\phi=P(\\varepsilon,\\infty)$ and $\\phi=K_\\varepsilon$ this vanishes by the third item. Hence $\\{S^{(1)}(x_1),-\\}$ commutes with $e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}$, and, being a derivation of the product [C07, Lemma 4.3.2] of even degree ($S^{(1)}(x_1)$ is odd and the bracket is odd),",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00100",
+   "type": "equation",
+   "source": "\\{S^{(1)}(x_1),e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}e^{J/\\hbar}\\}=e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}\\Big(\\hbar^{-1}\\{S^{(1)}(x_1),J\\}\\,e^{J/\\hbar}\\Big).",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00101",
+   "type": "paragraph",
+   "source": "Dividing by $\\hbar^{-1}e^{W(P(\\varepsilon,\\infty),J)/\\hbar}$ gives [(2.1)](#b-00092), whose right side is $e^{-W(P(\\varepsilon,\\infty),J)/\\hbar}e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}\\big(\\{S^{(1)}(x_1),J\\}e^{J/\\hbar}\\big)$. ∎",
+   "parentId": "b-00093"
+  },
+  {
+   "id": "b-00102",
+   "type": "callout",
+   "source": "<strong>Corollary 2.7</strong> (Invariant counterterms, equivariant operators).",
+   "calloutKind": "corollary"
+  },
+  {
+   "id": "b-00103",
+   "type": "paragraph",
+   "source": "For $x_1$ as in Proposition [2.6](#b-00085):",
+   "parentId": "b-00102"
+  },
+  {
+   "id": "b-00104",
+   "type": "paragraph",
+   "source": "• $\\{S^{(1)}(x_1),I\\}=0$ and $\\{S^{(1)}(x_1),I^{CT}[\\varepsilon]\\}=0$;",
+   "parentId": "b-00102"
+  },
+  {
+   "id": "b-00105",
+   "type": "paragraph",
+   "source": "• for every local functional $O$, the counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$ of the family $I+\\delta\\{S^{(1)}(x_1),O\\}$ equals $\\{S^{(1)}(x_1),-\\}$ applied to the counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$ of the family $I+\\delta O$;",
+   "parentId": "b-00102"
+  },
+  {
+   "id": "b-00106",
+   "type": "paragraph",
+   "source": "• consequently the arity-zero parts satisfy",
+   "parentId": "b-00102"
+  },
+  {
+   "id": "b-00107",
+   "type": "equation",
+   "source": "\\big(\\{S^{(1)}(x_1),O\\}\\big)(\\varepsilon)=\\{S^{(1)}(x_1),O(\\varepsilon)\\},\\qquad \\big(\\{S^{(1)}(x_1),O\\}\\big)[\\infty]=\\{S^{(1)}(x_1),O[\\infty]\\}.",
+   "parentId": "b-00102"
+  },
+  {
+   "id": "b-00108",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00109",
+   "type": "paragraph",
+   "source": "The arity-one equation $\\{S,S^{(1)}(x_1)\\}=0$ holds for these generators and every $\\mathfrak g$ (Chapter 2). Its part of polynomial degree two is $\\{\\tfrac12\\langle e,Qe\\rangle,S^{(1)}(x_1)\\}=0$, since $S^{(1)}(x_1)$ is quadratic and $\\{I,S^{(1)}(x_1)\\}$ has degree at least three; the remaining part is $\\{I,S^{(1)}(x_1)\\}=0$, which by graded symmetry is the first identity. The counterterms are the singular parts, order by order and graph by graph, of $W(P(\\varepsilon,\\infty),J)$, for $J$ equal to $I$ minus the counterterms of lower order and for $J=I-I^{CT}[\\varepsilon]+\\delta O$ (Chapters 4 and 5). By [(2.1)](#b-00092), $\\{S^{(1)}(x_1),-\\}$ maps $W(P(\\varepsilon,\\infty),J)$ to the linearised flow of $\\{S^{(1)}(x_1),J\\}$, and it acts on the fields and leaves the coefficient functions of $\\varepsilon$ untouched, so it commutes with taking the singular part. Induction on the order gives $\\{S^{(1)}(x_1),I^{CT}[\\varepsilon]\\}=0$, and the same argument at first order in $\\delta$, with $\\{S^{(1)}(x_1),\\delta O\\}=\\delta\\{S^{(1)}(x_1),O\\}$ (the bracket with the odd functional $S^{(1)}(x_1)$ has even degree), gives the second item. The third follows from the definitions of $O(\\varepsilon)$ and $O[\\infty]$ and from [(2.1)](#b-00092) once more; the limit $\\varepsilon\\to0$ commutes with the $\\varepsilon$-independent derivation. ∎",
+   "parentId": "b-00108"
+  },
+  {
+   "id": "b-00110",
+   "type": "callout",
+   "source": "<strong>Corollary 2.8</strong> (No mixing between representations).",
+   "calloutKind": "corollary"
+  },
+  {
+   "id": "b-00111",
+   "type": "paragraph",
+   "source": "Let $O=\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$ with $w_1,w_2\\in W_{\\mathbb R}^\\perp$, and let $w$ run over an orthonormal basis of $W_{\\mathbb R}^\\perp$. The one-loop counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$ of the family $I+\\delta O$ is a linear combination of the four functionals",
+   "parentId": "b-00110"
+  },
+  {
+   "id": "b-00112",
+   "type": "equation",
+   "source": "\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A),\\qquad (w_1,w_2)\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA),\\qquad (w_1,w_2)\\int\\omega\\,(A|_V,A|_V),\\qquad (w_1,w_2)\\int\\omega ,",
+   "parentId": "b-00110"
+  },
+  {
+   "id": "b-00113",
+   "type": "paragraph",
+   "source": "with coefficients independent of $w_1,w_2$, the first three multiples of $\\log\\varepsilon$ and the fourth a multiple of $\\varepsilon^{-1}$. In particular the traceless part of $O$ is renormalised into itself, and the trace part into the span of $\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)$, $\\int\\omega\\,(A|_V,A|_V)$ and $\\int\\omega$. The component of the quadratic counterterm $I^{CT}[\\varepsilon]$ pairing $A|_V$ with $A|_{W_{\\mathbb R}^\\perp}$ vanishes.",
+   "parentId": "b-00110"
+  },
+  {
+   "id": "b-00114",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00115",
+   "type": "paragraph",
+   "source": "By Corollary [2.7](#b-00102) the map $O\\mapsto\\partial_\\delta I^{CT}[\\varepsilon]$ is equivariant for translations, $\\mathfrak{so}(V)$ and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$; it is also equivariant for the adjoint action of $\\mathfrak g$, which commutes with $Q$, $Q^{GF}$, $H$ and preserves $\\langle\\,,\\rangle$ and $I$, by the same argument. At one loop the coefficients lie in the span of $\\varepsilon^{-1}$ and $\\log\\varepsilon$, and under the scaling of Chapter 6, which multiplies $\\varepsilon$ in $P(\\varepsilon,\\infty)$ by the square of the scale factor, $\\varepsilon^{-1}$ multiplies a density of Weyl weight $0$ and $\\log\\varepsilon$ a density of Weyl weight $2$, the weight of $(\\iota_{w_1}A,\\iota_{w_2}A)$. The densities of weight $0$ and $2$, of ghost degree $0$, invariant under $\\mathfrak g$, $\\mathfrak{so}(V)$ and translations, are the constant $1$ (weight $0$) and $(A|_V,A|_V)$, $(\\iota_uA,\\iota_{u'}A)$ with $u,u'\\in W_{\\mathbb R}^\\perp$ (weight $2$): a $\\mathfrak g$-invariant needs two adjoint fields, a ghost $c$ of degree $-1$ needs an antifield of weight at least $\\tfrac52$, and a derivative on a single field leaves it in the adjoint. As a representation of $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$ is the sum of the irreducible traceless part and the trace line spanned by $\\sum_w w\\otimes w$; the span of the densities $(\\iota_uA,\\iota_{u'}A)$ is a copy of $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$, and $(A|_V,A|_V)$ and $1$ are invariant. By Schur's lemma an equivariant linear map out of $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$ is a multiple of the identity on the traceless part and maps the trace line into the invariants, which gives the four functionals. For $I^{CT}[\\varepsilon]$, a bilinear invariant of a vector of $V$ and a vector of $W_{\\mathbb R}^\\perp$ is $0$. ∎",
+   "parentId": "b-00114"
+  },
+  {
+   "id": "b-00116",
+   "type": "paragraph",
+   "source": "The coefficients computed in Chapter 5 are"
+  },
+  {
+   "id": "b-00117",
+   "type": "equation",
+   "source": "\\begin{aligned}\n\\partial_\\delta I^{CT}[\\varepsilon]={}&\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\log\\varepsilon\\Big[4\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)-2(w_1,w_2)\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)\\Big]\\\\\n&+\\frac{2\\hbar\\dim\\mathfrak g\\,(w_1,w_2)}{16\\pi^2\\varepsilon}\\int\\omega ,\n\\end{aligned}"
+  },
+  {
+   "id": "b-00118",
+   "type": "paragraph",
+   "source": "with coefficient $0$ for $(w_1,w_2)\\int\\omega\\,(A|_V,A|_V)$, and the quadratic $I^{CT}[\\varepsilon]$ of Chapter 4 has vanishing $A|_V$–$A|_{W_{\\mathbb R}^\\perp}$ component, as Corollary [2.8](#b-00110) requires. Here $\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)/(X,Y)$ is independent of $X,Y\\in\\mathfrak g$ for simple $\\mathfrak g$."
+  },
+  {
+   "id": "b-00119",
+   "type": "callout",
+   "source": "<strong>Remark 2.9</strong> (Internal insertions and the status of these components).",
+   "calloutKind": "remark"
+  },
+  {
+   "id": "b-00120",
+   "type": "paragraph",
+   "source": "For $x_1$ as in Proposition [2.6](#b-00085), the arity-one part of $O[\\infty]$ along $x_1$ consists of the classical tree with the vertex $S^{(1)}(x_1)$ joined to $O$, the graphs in which $S^{(1)}(x_1)$ sits on an internal line, and the arity-one counterterms along $x_1$. On an internal line, $(v.A,A^*)$ is the term of $S^{(1)}(x_1)$ with both legs joined by $P(\\varepsilon,\\infty)$ (every component of the propagator lies in the slots of $A$, $A^*$, $c$ and $\\lambda$), its $A$ leg to an $A\\otimes A$ component and its $A^*$ leg to an $A^*\\otimes c$ component. The resulting kernel is that of $P(\\varepsilon,\\infty)\\star\\circ\\,v.\\circ P(\\varepsilon,\\infty)\\star=v.\\circ\\big(P(\\varepsilon,\\infty)\\star\\big)^2$, and since $[Q^{GF},H]=0$,",
+   "parentId": "b-00119"
+  },
+  {
+   "id": "b-00121",
+   "type": "equation",
+   "source": "\\big(P(\\varepsilon,\\infty)\\star\\big)^2=(Q^{GF})^2\\Big(\\int_\\varepsilon^\\infty e^{-tH}dt\\Big)^2,\\qquad (Q^{GF})^2A^*=2\\,d^*(A^*|_V)\\ \\ (\\text{in the slot of }c),",
+   "parentId": "b-00119"
+  },
+  {
+   "id": "b-00122",
+   "type": "paragraph",
+   "source": "which is nonzero (Chapter 3). These graphs exist because $(Q^{GF})^2\\neq0$. By Proposition [2.6](#b-00085) every kernel, vertex and counterterm entering them is $x_1$-covariant; this is the reason these components can be chosen with no one-loop correction,",
+   "parentId": "b-00119"
+  },
+  {
+   "id": "b-00123",
+   "type": "equation",
+   "source": "[(d_{CE}+Q)O[\\infty]](x_1)=\\big(\\{S^{(1)}(x_1),O\\}\\big)[\\infty],",
+   "parentId": "b-00119"
+  },
+  {
+   "id": "b-00124",
+   "type": "paragraph",
+   "source": "the classical transformation of $O$ carried to scale $\\infty$. The arity-one counterterms along $x_1$ and the internal-insertion graphs, which realise this choice, are evaluated in Step 2.",
+   "parentId": "b-00119"
+  },
+  {
+   "id": "b-00125",
+   "type": "heading",
+   "source": "2.3 The generators that move the regulator",
+   "level": 2
+  },
+  {
+   "id": "b-00126",
+   "type": "callout",
+   "source": "<strong>Proposition 2.10</strong> (Dilatation and special conformal transformations).",
+   "calloutKind": "proposition"
+  },
+  {
+   "id": "b-00127",
+   "type": "paragraph",
+   "source": "Let $x_1$ be the dilatation or a special conformal generator, with vector field $v$. Then $[v.,Q]=0$, and on the slot of $A^*|_{W_{\\mathbb R}^\\perp}$",
+   "parentId": "b-00126"
+  },
+  {
+   "id": "b-00128",
+   "type": "equation",
+   "source": "[v.,Q^{GF}]\\,e_1=(\\operatorname{div}v)\\,e_1\\ \\ (\\text{in the slot of }A|_{W_{\\mathbb R}^\\perp}), \\tag{2.2}",
+   "parentId": "b-00126"
+  },
+  {
+   "id": "b-00129",
+   "type": "paragraph",
+   "source": "with $\\operatorname{div}(2E)=8$ and $\\operatorname{div}v=-8(v_1,x)$ for $v=\\big(x\\mapsto(x,x)v_1-2(v_1,x)x\\big)$. For the dilatation, $v=2E$, on every slot",
+   "parentId": "b-00126"
+  },
+  {
+   "id": "b-00130",
+   "type": "equation",
+   "source": "[v.,Q^{GF}]=-4\\,Q^{GF},\\qquad [v.,H]=-4\\,H,\\qquad (v.\\otimes1+1\\otimes v.)P(\\varepsilon,\\infty)=4\\varepsilon L_\\varepsilon=-4\\varepsilon\\frac{d}{d\\varepsilon}P(\\varepsilon,\\infty).",
+   "parentId": "b-00126"
+  },
+  {
+   "id": "b-00131",
+   "type": "paragraph",
+   "source": "Among the even generators, [(2.2)](#b-00128) vanishes exactly for those with $\\operatorname{div}v=0$: translations, rotations and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$.",
+   "parentId": "b-00126"
+  },
+  {
+   "id": "b-00132",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00133",
+   "type": "paragraph",
+   "source": "$[v.,Q]=0$ is the part of polynomial degree two of the arity-one equation $\\{S,S^{(1)}(x_1)\\}=0$ (Chapter 2). On the slot of $A^*|_{W_{\\mathbb R}^\\perp}$, $Q^{GF}e_1=-2e_1$ in the slot of $A|_{W_{\\mathbb R}^\\perp}$ (Chapter 3); by Definition [2.4](#b-00067) and Lemma [2.5](#b-00075), $v.$ acts there by $v(-)+\\tfrac14\\operatorname{div}v$ and $v(-)+\\tfrac34\\operatorname{div}v$ respectively, plus the same rotation of the index for both. Hence",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00134",
+   "type": "equation",
+   "source": "[v.,Q^{GF}]e_1=-2\\big(v(e_1)+\\tfrac14(\\operatorname{div}v)e_1\\big)+2\\big(v(e_1)+\\tfrac34(\\operatorname{div}v)e_1\\big)=(\\operatorname{div}v)\\,e_1 .",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00135",
+   "type": "paragraph",
+   "source": "The divergences are those of Chapter 2. For $v=2E$ use Lemma [2.5](#b-00075) on each arrow of $Q^{GF}$, together with the homogeneity relations $[E,d]=-d$, $[E,d^*]=-d^*$ and $[E,{\\not d}]=-{\\not d}$ on componentwise $E$ (each lowers the degree of homogeneity in $x$ by one):",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00136",
+   "type": "equation",
+   "source": "\\begin{aligned}\nA^*\\mapsto-2A^*:&\\quad (2E+2)(-2A^*)+2(2E+6)A^*=8A^*=-4(-2A^*),\\\\\nA\\mapsto-d^*(A|_V):&\\quad -2E\\,d^*A+d^*(2E+2)A=2d^*A+2d^*A=-4\\big(-d^*A\\big),\\\\\nc^*\\mapsto dc^*:&\\quad (2E+6)dc^*-d(2E+8)c^*=2[E,d]c^*+6dc^*-8dc^*=-4\\,dc^*,\\\\\n\\lambda^*\\mapsto-{\\not d}|_{\\Sigma^*}\\lambda^*:&\\quad -(2E+3){\\not d}\\lambda^*+{\\not d}(2E+5)\\lambda^*=2{\\not d}\\lambda^*-3{\\not d}\\lambda^*+5{\\not d}\\lambda^*=-4\\big(-{\\not d}\\lambda^*\\big),\n\\end{aligned}",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00137",
+   "type": "paragraph",
+   "source": "where in each line $A|_V$, $A^*|_V$ are handled componentwise (Lemma [2.5](#b-00075)). Similarly $[2E,d^*d]=-4\\,d^*d$ and the weight terms are constants, so $[v.,H]=-4H$. Consequently $[v.,e^{-tH}]=4tHe^{-tH}=-4t\\frac{d}{dt}e^{-tH}$; since $v.$ preserves the pairing, $(v.\\otimes1+1\\otimes v.)K_t=([v.,e^{-tH}]\\otimes1)K_0=-4t\\frac{d}{dt}K_t$, and",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00138",
+   "type": "equation",
+   "source": "(v.\\otimes1+1\\otimes v.)L_t=-4L_t-4t\\frac{d}{dt}L_t .",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00139",
+   "type": "paragraph",
+   "source": "Integrating over $t\\in(\\varepsilon,\\infty)$, with $tL_t\\to0$ as $t\\to\\infty$ for $p\\neq0$,",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00140",
+   "type": "equation",
+   "source": "(v.\\otimes1+1\\otimes v.)P(\\varepsilon,\\infty)=-4\\int_\\varepsilon^\\infty L_t\\,dt-4\\big[tL_t\\big]_\\varepsilon^\\infty+4\\int_\\varepsilon^\\infty L_t\\,dt=4\\varepsilon L_\\varepsilon,",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00141",
+   "type": "paragraph",
+   "source": "which equals $-4\\varepsilon\\frac{d}{d\\varepsilon}P(\\varepsilon,\\infty)$ by Chapter 3. The last statement holds because the even generators are the conformal Killing fields and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, and among the conformal Killing fields of Chapter 2 the divergence vanishes exactly on translations and rotations. ∎",
+   "parentId": "b-00132"
+  },
+  {
+   "id": "b-00142",
+   "type": "paragraph",
+   "source": "The identity $(v.\\otimes1+1\\otimes v.)P(\\varepsilon,\\infty)=-4\\varepsilon\\frac{d}{d\\varepsilon}P(\\varepsilon,\\infty)$ is the infinitesimal form of the scaling covariance used in Chapter 6: the dilatation moves the regulator along its own scale."
+  },
+  {
+   "id": "b-00143",
+   "type": "callout",
+   "source": "<strong>Proposition 2.11</strong> (Supercharges and special supercharges).",
+   "calloutKind": "proposition"
+  },
+  {
+   "id": "b-00144",
+   "type": "paragraph",
+   "source": "Let $Q_1\\in\\Sigma$ be nonzero and write $Q_1.$, in the notation $v.$ of [ESW, (32)], for the odd linear operator on $\\mathscr E$ that induces, as in [C07, §6.2], the derivation given by the bracket with the quadratic part",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00145",
+   "type": "equation",
+   "source": "\\int\\mathrm{dvol}\\Big(-(\\Gamma(Q_1,\\lambda),A^*)+\\tfrac12(\\rho(dA)Q_1,\\lambda^*)\\Big)",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00146",
+   "type": "paragraph",
+   "source": "of $S^{(1)}(Q_1)$. Then:",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00147",
+   "type": "paragraph",
+   "source": "• $[Q_1.,Q]=0$, $[Q_1.,H]=0$, and $Q_1.$ preserves $\\langle\\,,\\rangle$;",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00148",
+   "type": "paragraph",
+   "source": "• the graded commutator $[Q_1.,Q^{GF}]$ is nonzero; its component from the slot of $A^*$ to the slot of $\\lambda$ is nonzero;",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00149",
+   "type": "paragraph",
+   "source": "• consequently",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00150",
+   "type": "equation",
+   "source": "(Q_1.\\otimes1+1\\otimes Q_1.)P(\\varepsilon,\\infty)=\\int_\\varepsilon^\\infty\\big([Q_1.,Q^{GF}]\\otimes1\\big)K_t\\,dt\\neq0 ;",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00151",
+   "type": "paragraph",
+   "source": "• $S^{(1)}(Q_1)$ contains the cubic term $\\tfrac12\\big(\\rho(\\tfrac12[A\\wedge A])Q_1,\\lambda^*\\big)$.",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00152",
+   "type": "paragraph",
+   "source": "For $Q_2\\in\\Sigma^*$, the corresponding operator contains multiplication by the function $x\\mapsto\\Gamma(\\rho(x)Q_2,-)$, linear in $x$, and fails to commute with $H$.",
+   "parentId": "b-00143"
+  },
+  {
+   "id": "b-00153",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00154",
+   "type": "paragraph",
+   "source": "First item: $[Q_1.,Q]=0$ is the part of polynomial degree two of $\\{S,S^{(1)}(Q_1)\\}=0$ (Chapter 2); $Q_1.$ is a differential operator of order at most one with constant coefficients, and $H$ is the scalar Laplacian $d^*d$ on every component (Chapter 3), so they commute; the derivation of a quadratic functional preserves the constant pairing.",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00155",
+   "type": "paragraph",
+   "source": "Second item. The term $-(\\Gamma(Q_1,\\lambda),A^*)=-(\\rho(A^*)Q_1,\\lambda)$ [ESW, (28)] pairs the slots of $\\lambda$ and $A^*$; it contributes to $Q_1.$ an arrow from $\\lambda$ to $A$ and an arrow from $A^*$ to $\\lambda^*$, the latter a nonzero multiple of $A^*\\mapsto\\rho(A^*)Q_1$. The term $\\tfrac12(\\rho(dA)Q_1,\\lambda^*)$ contributes an arrow from $A$ to $\\lambda$, a nonzero multiple of $A\\mapsto\\rho(dA)Q_1$, and an arrow from $\\lambda^*$ to $A^*$. The operator $Q^{GF}$ maps $A^*\\mapsto-2A^*$ into the slot of $A$ and $\\lambda^*\\mapsto-{\\not d}|_{\\Sigma^*}\\lambda^*$ into the slot of $\\lambda$ (Chapter 3). Hence the component of $[Q_1.,Q^{GF}]$ from $A^*$ to $\\lambda$ is the sum of the two compositions $A^*\\to A\\to\\lambda$ and $A^*\\to\\lambda^*\\to\\lambda$. On a plane wave $A^*=a\\,e^{i(p,x)}$ with $p,a\\in V$ real and nonzero, and with $\\rho(q(p\\wedge a))=\\rho(p)\\rho(a)-(p,a)$ [ESW, (29)], these are nonzero multiples, fixed by the conventions, of",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00156",
+   "type": "equation",
+   "source": "\\big(\\rho(p)\\rho(a)-(p,a)\\big)Q_1\\,e^{i(p,x)}\\qquad\\text{and}\\qquad \\rho(p)\\rho(a)Q_1\\,e^{i(p,x)} .",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00157",
+   "type": "paragraph",
+   "source": "Suppose their sum, with the sign of the graded commutator, vanished for all such $p,a$. At $(p,a)=0$, where $\\rho(p)\\rho(a)$ is invertible ($\\rho(a)\\rho(p)\\rho(p)\\rho(a)=|p|^2|a|^2$), the two multiples would be opposite; at $a=p$ the sum would then reduce to the first multiple times $-|p|^2Q_1$, which is nonzero. Hence the component is nonzero.",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00158",
+   "type": "paragraph",
+   "source": "Third item: as in Proposition [2.6](#b-00085), with $Q_1.$ odd, $(1\\otimes Q_1.)(Q^{GF}\\otimes1)=-(Q^{GF}\\otimes1)(1\\otimes Q_1.)$ and $(1\\otimes Q_1.)K_t=-(Q_1.\\otimes1)K_t$ by the first item, so $(Q_1.\\otimes1+1\\otimes Q_1.)L_t=\\big((Q_1.Q^{GF}+Q^{GF}Q_1.)\\otimes1\\big)K_t$. The integral is nonzero because $\\int_\\varepsilon^\\infty e^{-tH}dt$ is $e^{-\\varepsilon|p|^2}/|p|^2\\neq0$ in momentum space and commutes with $[Q_1.,Q^{GF}]$.",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00159",
+   "type": "paragraph",
+   "source": "Fourth item: $F_A=dA+\\tfrac12[A\\wedge A]$ in $\\tfrac12(\\rho(F_A)Q_1,\\lambda^*)$. For $Q_2$: the term $-(\\Gamma(\\rho(x)Q_2,\\lambda),A^*)$ of $S^{(1)}(Q_2)$ (Chapter 2) gives the stated multiplication operator, and for a function $f_1$ linear in $x$, $d^*d(f_1f_2)-f_1\\,d^*df_2=-2(df_1,df_2)$, which is nonzero for nonconstant $f_1$. ∎",
+   "parentId": "b-00153"
+  },
+  {
+   "id": "b-00160",
+   "type": "callout",
+   "source": "<strong>Remark 2.12</strong> (Large-distance behaviour of internal insertions).",
+   "calloutKind": "remark"
+  },
+  {
+   "id": "b-00161",
+   "type": "paragraph",
+   "source": "The coefficients of $S^{(1)}(x_1)$ grow polynomially in the position $x$ for the moving generators: linearly for $\\Delta$ and for $Q_2\\in\\Sigma^*$, quadratically for the special conformal fields. On an internal line, an insertion of $(v.A,A^*)$ at a point $y$ is joined to the rest of the graph by an $A\\otimes A$ component of $P(\\varepsilon,\\infty)$, of order $|y|^{-2}$ at large $|y|$, differentiated once by $v.$, and by an $A^*\\otimes c$ component, of order $|y|^{-3}$ (Chapter 3). For the special conformal field the integrand is of order $|y|^2\\cdot|y|^{-3}\\cdot|y|^{-3}=|y|^{-4}$, the borderline of integrability over $\\mathbb R^4$; for $\\Delta$, and for $Q_2$ with its $\\lambda$ and $A^*$ legs, it is of order $|y|^{-5}$. The convergence at large $|y|$ of the special conformal internal insertions, with no infrared scale available, is part of Step 2.",
+   "parentId": "b-00160"
+  },
+  {
+   "id": "b-00162",
+   "type": "heading",
+   "source": "2.4 Allowed output structures",
+   "level": 2
+  },
+  {
+   "id": "b-00163",
+   "type": "paragraph",
+   "source": "Throughout this section $O=\\int\\omega\\,f$ with $\\omega$ a compactly supported four-form [CG2, Lemma 10.1.1.3] and $f$ a polynomial in the jets of the fields at a point. The Weyl weight of a monomial is the sum of the weights of its fields ($A$: $1$, $\\lambda$: $\\tfrac32$, $c$: $0$, $A^*$: $3$, $\\lambda^*$: $\\tfrac52$, $c^*$: $4$, Lemma [2.5](#b-00075)) plus the number of derivatives; its ghost degree is the sum of the degrees ($c$: $-1$; $A$, $\\lambda$: $0$; $A^*$, $\\lambda^*$: $+1$; $c^*$: $+2$, Chapter 1); it is a colour singlet if it is invariant under the adjoint action of $\\mathfrak g$ on all fields. $O$ has Weyl weight $w_O$ if $f$ is homogeneous of that weight."
+  },
+  {
+   "id": "b-00164",
+   "type": "callout",
+   "source": "<strong>Proposition 2.13</strong> (Selection rules).",
+   "calloutKind": "proposition"
+  },
+  {
+   "id": "b-00165",
+   "type": "paragraph",
+   "source": "Let $O=\\int\\omega\\,f$ be a colour singlet of Weyl weight $w_O$ and ghost degree $|O|$, and let $x_1$ be an odd generator, realised by the conformal Killing spinor $x\\mapsto Q_1+\\rho(x)Q_2$ with $Q_1\\in\\Sigma$, $Q_2\\in\\Sigma^*$ (Chapter 2), or a special conformal generator, with vector field $v=\\big(x\\mapsto(x,x)v_1-2(v_1,x)x\\big)$. Assume that the counterterms of Step 2 are chosen equivariantly for translations, $\\mathfrak{so}(V)$, $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ and $\\mathfrak g$, which Proposition [2.6](#b-00085) permits, and that the component along $x_1$ is represented by a local functional $Y=\\int\\omega\\,f_{x_1}$. Then $f_{x_1}$ can be chosen with the following properties.",
+   "parentId": "b-00164"
+  },
+  {
+   "id": "b-00166",
+   "type": "paragraph",
+   "source": "• Ghost degree $|O|$, colour singlet.",
+   "parentId": "b-00164"
+  },
+  {
+   "id": "b-00167",
+   "type": "paragraph",
+   "source": "• At a point $x_0\\in V$, $f_{x_1}$ depends on $x_1$ through its conformal Killing data at $x_0$: for an odd generator, $f_{x_1}$ is the sum of a term linear in the value $Q_1+\\rho(x_0)Q_2$, of Weyl weight $w_O+\\tfrac12$, and a term linear in the Dirac derivative ${\\not d}(Q_1+\\rho(x)Q_2)=4Q_2$, of weight $w_O-\\tfrac12$; for a special conformal generator, $f_{x_1}$ is the sum of terms linear in $v(x_0)$, in the first derivative of $v$ at $x_0$ and in its second derivatives, of weights $w_O+1$, $w_O$ and $w_O-1$.",
+   "parentId": "b-00164"
+  },
+  {
+   "id": "b-00168",
+   "type": "paragraph",
+   "source": "• The map $(x_1,O)\\mapsto f_{x_1}$ is equivariant for translations, $\\mathfrak{so}(V)$ and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, with $x_1$ transforming by the bracket of $\\mathfrak{psl}(4|4)$.",
+   "parentId": "b-00164"
+  },
+  {
+   "id": "b-00169",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00170",
+   "type": "paragraph",
+   "source": "Ghost degree: $(d_{CE}+Q)O[\\infty]$ has degree $|O|+1$, and evaluating an arity-one cochain on a generator, whose ghost coordinate has degree $1$, lowers the ghost degree by one. Colour and equivariance: the adjoint action of $\\mathfrak g$ and the action of the covariant subalgebra commute with $Q$, $Q^{GF}$, $H$ and preserve the pairing (Proposition [2.6](#b-00085)); the classical action $S+S^{(1)}+S^{(2)}$ is invariant under the simultaneous action on fields and on the arguments of the cochains, by the arity-two components of its master equation with one argument in the covariant subalgebra (Chapter 2); with equivariant counterterms every graph sum is equivariant, as in Corollary [2.7](#b-00102). Dependence on $x_1$: the vertices $S^{(1)}(x_1)$ and $S^{(2)}(x_1,-)$ depend on $x_1$ through the spinor $Q_1+\\rho(x)Q_2$ and its Dirac derivative $4Q_2$ (the last term of $S^{(1)}(Q_2)$ equals $-\\tfrac14(\\rho(A|_{W_{\\mathbb R}^\\perp}){\\not d}(\\rho(x)Q_2),\\lambda^*)$, Chapter 2), resp. through $v$, $dv$ and $\\operatorname{div}v$; the spinor has vanishing second derivatives and derivative $\\rho(u)Q_2=\\tfrac14\\rho(u){\\not d}(Q_1+\\rho(x)Q_2)$ along $u\\in V$, and a conformal Killing field of $V$ is a polynomial of degree two, so the data at a vertex point $y$ are polynomials in $y-x_0$ with coefficients the data at $x_0$ listed in the statement. Weights: give the conformal Killing data the weights that make each vertex $S^{(1)}(x_1)$, $S^{(2)}(x_1,-)$ homogeneous of the weight $4$ of the densities of the action: $-\\tfrac12$ to the value of the conformal Killing spinor and $+\\tfrac12$ to its Dirac derivative (in $(\\Gamma(Q_1,\\lambda),A^*)$ the fields have weights $\\tfrac32+3$), and $-1$, $0$, $+1$ to the value, the first and the second derivatives of a conformal Killing field (in $(L_vA,A^*)$ the derivative and the fields have weights $1+1+3$). Under the scaling of Chapter 6, which multiplies each field by the power of the scale factor given by its Weyl weight and $\\varepsilon$ in $P(\\varepsilon,\\infty)$ by the square of the scale factor, every vertex is then homogeneous, and the output has the weight of $O$; each datum therefore multiplies a density whose weight is $w_O$ minus the weight of the datum, which gives the weights listed. A local term whose weight differs from the stated one by $2k$ carries a coefficient $\\varepsilon^{k}$, possibly times powers of $\\log\\varepsilon$; for $k>0$ it vanishes as $\\varepsilon\\to0$, and singular coefficients are excluded by the existence of the limit defining $Y[\\infty]$. ∎",
+   "parentId": "b-00169"
+  },
+  {
+   "id": "b-00171",
+   "type": "callout",
+   "source": "<strong>Corollary 2.14</strong> (Supercharges on the scalar bilinears).",
+   "calloutKind": "corollary"
+  },
+  {
+   "id": "b-00172",
+   "type": "paragraph",
+   "source": "Let $O=\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$ ($|O|=0$, $w_O=2$) and $Q_1\\in S_+\\otimes W$ (the generators $Q^i_\\alpha$ of [SW, (8)]) or $Q_1\\in S_-\\otimes W^*$ (the generators $\\bar Q_{\\dot\\alpha i}$). Under the hypotheses of Proposition [2.13](#b-00164), $f_{Q_1}$ is a colour-singlet density of Weyl weight $\\tfrac52$ and ghost degree $0$, odd in the fields, linear in $Q_1$, symmetric in $(w_1,w_2)$, without derivatives, and $Y$ lies in the span of the following four functionals, grouped in three types:",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00173",
+   "type": "paragraph",
+   "source": "• type $(A|_{W_{\\mathbb R}^\\perp},\\lambda)$ (classical type):",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00174",
+   "type": "equation",
+   "source": "\\int\\omega\\,\\Big[(\\iota_{w_1}A,(\\rho(w_2)Q_1,\\lambda))+(\\iota_{w_2}A,(\\rho(w_1)Q_1,\\lambda))\\Big],\\qquad (w_1,w_2)\\int\\omega\\,(\\rho(A|_{W_{\\mathbb R}^\\perp})Q_1,\\lambda);",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00175",
+   "type": "paragraph",
+   "source": "• type $(A|_V,\\lambda)$ (gauge-variant type): $(w_1,w_2)\\int\\omega\\,(\\rho(A|_V)Q_1,\\lambda)$;",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00176",
+   "type": "paragraph",
+   "source": "• type $(c,\\lambda^*)$ (BRST type): $(w_1,w_2)\\int\\omega\\,(c,(Q_1,\\lambda^*))$.",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00177",
+   "type": "paragraph",
+   "source": "Here $(\\rho(w)Q_1,\\lambda)$, $(Q_1,\\lambda^*)$ use the pairing $\\Sigma^*\\otimes\\Sigma\\to\\mathbb C$ and are $\\mathfrak g$-valued, paired with the remaining $\\mathfrak g$-valued field through $(-,-)$, and $\\rho(A|_V)$, $\\rho(A|_{W_{\\mathbb R}^\\perp})$ are Clifford multiplication by the components of $A$ with their $\\mathfrak g$ factor kept. In particular, for $(w_1,w_2)=0$, where $O$ lies in the traceless part, $Y$ is a multiple of the first functional, which is the type of the classical component $\\{S^{(1)}(Q_1),O\\}$; the gauge-variant and BRST types occur in the trace part $\\sum_w\\int\\omega\\,(\\iota_wA,\\iota_wA)$.",
+   "parentId": "b-00171"
+  },
+  {
+   "id": "b-00178",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00179",
+   "type": "paragraph",
+   "source": "By Proposition [2.13](#b-00164), ${\\not d}Q_1=0$ and $f_{Q_1}$ has weight $\\tfrac52$ and ghost degree $0$. Field content: a half-integral weight requires an odd number of fields among $\\lambda,\\lambda^*$, the fields of half-integral weight. With one $\\lambda^*$ (weight $\\tfrac52$, degree $1$) the rest has weight $0$ and degree $-1$: one $c$. With one $\\lambda$ the rest has weight $1$ and degree $0$: one $A$, or one derivative; a single $\\lambda$ with a derivative is in the adjoint of $\\mathfrak g$, and a colour singlet needs two adjoint fields joined by $(-,-)$, the invariant symmetric form of the simple $\\mathfrak g$. Three spinor fields have weight at least $\\tfrac92$. Hence the types $(c,\\lambda^*)$, $(A|_V,\\lambda)$, $(A|_{W_{\\mathbb R}^\\perp},\\lambda)$, without derivatives.",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00180",
+   "type": "paragraph",
+   "source": "Representations, for $Q_1\\in S_+\\otimes W$ (the case $S_-\\otimes W^*$ is the same with $S_\\pm$ and $W$, $W^*$ exchanged). Under $\\mathfrak{so}(W_{\\mathbb R}^\\perp)\\cong\\mathfrak{sl}(W)$ [ESW, §10.3], $\\mathrm{End}(W)=W\\otimes W^*\\cong\\mathbb C\\oplus\\wedge^2W_{\\mathbb R}^\\perp$ (dimensions $1+15$), and $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$ is the sum of its irreducible traceless part, of dimension $20$, and the trace line.",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00181",
+   "type": "paragraph",
+   "source": "• Type $(c,\\lambda^*)$: $c$ is a Lorentz and R-singlet, so the structure is $(c,(B\\,Q_1,\\lambda^*))$ with $B$ an endomorphism of $\\Sigma$ depending bilinearly and equivariantly on $(w_1,w_2)$. Lorentz invariance pairs $Q_1$ with the $S_+\\otimes W^*$ component of $\\lambda^*$, so $B$ restricts to an element of $\\mathrm{End}(W)$; by Schur's lemma the traceless part of $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$, of dimension $20$, has no image in $\\mathbb C\\oplus\\wedge^2W_{\\mathbb R}^\\perp$, and the trace line maps to the identity: $B=(w_1,w_2)$ times a constant.",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00182",
+   "type": "paragraph",
+   "source": "• Type $(A|_V,\\lambda)$: $A|_V$ is an R-singlet and a vector of $V\\cong S_+\\otimes S_-$; Lorentz invariance pairs $\\rho(A|_V)Q_1\\in S_-\\otimes W$ with the $S_-\\otimes W^*$ component of $\\lambda$, and the R-dependence is again an equivariant map from $\\mathrm{Sym}^2W_{\\mathbb R}^\\perp$ to $\\mathrm{End}(W)$: a multiple of $(w_1,w_2)$.",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00183",
+   "type": "paragraph",
+   "source": "• Type $(A|_{W_{\\mathbb R}^\\perp},\\lambda)$: Lorentz invariance pairs $Q_1$ with the $S_+\\otimes W$ component of $\\lambda$ through an odd element of the Clifford algebra of $W_{\\mathbb R}^\\perp$ built from the index $u$ of $\\iota_uA$ and from $w_1,w_2$. Equivariant multilinear expressions in $u,w_1,w_2$ with values in this Clifford algebra are combinations of products of $\\rho(u),\\rho(w_1),\\rho(w_2)$, of the metric and of the volume element of $W_{\\mathbb R}^\\perp$, and the volume element acts on each of $S_+\\otimes W$, $S_-\\otimes W^*$ by a scalar (Chapter 1: $\\Sigma$ is a semi-spin representation and the four-dimensional chirality is fixed on each summand); the odd ones symmetric in $(w_1,w_2)$ reduce, by $\\rho(w_1)\\rho(w_2)+\\rho(w_2)\\rho(w_1)=2(w_1,w_2)$ and $\\rho(u)\\rho(w_i)+\\rho(w_i)\\rho(u)=2(u,w_i)$, to the span of $(u,w_1)\\rho(w_2)+(u,w_2)\\rho(w_1)$ and $(w_1,w_2)\\rho(u)$; contracting $u$ with $\\iota_uA$ gives the two functionals listed, using $\\sum_u\\iota_uA\\,\\rho(u)=\\rho(A|_{W_{\\mathbb R}^\\perp})$. The term $\\rho(q(u\\wedge w_1\\wedge w_2))$ is antisymmetric in $(w_1,w_2)$.",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00184",
+   "type": "paragraph",
+   "source": "For $(w_1,w_2)=0$ every functional with the factor $(w_1,w_2)$ vanishes. The classical component replaces $A$ by its transformation $\\Gamma(Q_1,\\lambda)$ in $O$ (Chapter 2), and $\\iota_w\\Gamma(Q_1,\\lambda)=(w,\\Gamma(Q_1,\\lambda))=(\\rho(w)Q_1,\\lambda)$ by [ESW, (28)], which gives the first functional. ∎",
+   "parentId": "b-00178"
+  },
+  {
+   "id": "b-00185",
+   "type": "callout",
+   "source": "<strong>Corollary 2.15</strong> (Special supercharges on the scalar bilinears).",
+   "calloutKind": "corollary"
+  },
+  {
+   "id": "b-00186",
+   "type": "paragraph",
+   "source": "Let $O$ be as in Corollary [2.14](#b-00171) and $Q_2\\in S_+\\otimes W^*$ (the generators $S^\\alpha_i$) or $Q_2\\in S_-\\otimes W$ (the generators $\\bar S^{\\dot\\alpha i}$). Under the hypotheses of Proposition [2.13](#b-00164), $Y$ lies in the span of the four functionals of Corollary [2.14](#b-00171) with $Q_1$ replaced by the value $\\rho(x)Q_2$ of the conformal Killing spinor, which lies in $S_-\\otimes W^*$, resp. $S_+\\otimes W$. The term linear in ${\\not d}(\\rho(x)Q_2)=4Q_2$ is absent: it would require a colour-singlet density of Weyl weight $\\tfrac32$ and ghost degree $0$, and the one field of weight $\\tfrac32$, $\\lambda$, is in the adjoint of $\\mathfrak g$ while every field of weight $0$ has ghost degree $-1$.",
+   "parentId": "b-00185"
+  },
+  {
+   "id": "b-00187",
+   "type": "paragraph",
+   "source": "The coefficients of the four functionals along $Q_2$ are independent data; they are computed in Step 3 together with those along $Q_1$."
+  },
+  {
+   "id": "b-00188",
+   "type": "callout",
+   "source": "<strong>Corollary 2.16</strong> (Special conformal components).",
+   "calloutKind": "corollary"
+  },
+  {
+   "id": "b-00189",
+   "type": "paragraph",
+   "source": "Let $v(x)=(x,x)v_1-2(v_1,x)x$. Its first derivative at $x_0$ is $\\tfrac14\\operatorname{div}v(x_0)\\cdot\\mathrm{id}$ plus an antisymmetric endomorphism of $V$, with $\\tfrac14\\operatorname{div}v(x_0)=-2(v_1,x_0)$, and its second derivatives are constant and linear in $v_1$. Under the hypotheses of Proposition [2.13](#b-00164), for $O$ a scalar bilinear or a single letter $\\iota_wA$, $A|_V$, $\\lambda$, $c$ (with its colour index fixed by an element of $\\mathfrak g$):",
+   "parentId": "b-00188"
+  },
+  {
+   "id": "b-00190",
+   "type": "paragraph",
+   "source": "• the term linear in the second derivatives of $v$ is absent: it would require a vector density of weight $w_O-1$, ghost degree $|O|$ and the colour of $O$; for a scalar bilinear this is a colour-singlet vector of weight $1$, and the field of weight $1$ with a vector index, $A|_V$, is in the adjoint; for the letters the weight $w_O-1\\in\\{0,0,\\tfrac12,-1\\}$ with ghost degree $|O|\\in\\{0,0,0,-1\\}$ admits no monomial;",
+   "parentId": "b-00188"
+  },
+  {
+   "id": "b-00191",
+   "type": "paragraph",
+   "source": "• the term linear in the first derivative is $\\tfrac14\\operatorname{div}v(x_0)$ times a density of weight $w_O$ with the R-representation of $O$, plus, for a scalar bilinear, a density in $\\wedge^2V$ of weight $2$ contracted with the antisymmetric part of $dv(x_0)$, which vanishes since the one candidate $(A|_V\\wedge A|_V)$ vanishes by the symmetry of $(-,-)$;",
+   "parentId": "b-00188"
+  },
+  {
+   "id": "b-00192",
+   "type": "paragraph",
+   "source": "• for a scalar bilinear with $(w_1,w_2)=0$, the density of weight $2$ in the first-derivative term is a multiple of $(\\iota_{w_1}A,\\iota_{w_2}A)$; for the trace it lies in the span of $\\sum_w(\\iota_wA,\\iota_wA)$ and $(A|_V,A|_V)$;",
+   "parentId": "b-00188"
+  },
+  {
+   "id": "b-00193",
+   "type": "paragraph",
+   "source": "• the term linear in $v(x_0)$ contracts $v(x_0)$, of degree two in $x_0$, with a vector density of weight $w_O+1$.",
+   "parentId": "b-00188"
+  },
+  {
+   "id": "b-00194",
+   "type": "callout",
+   "source": "<strong>Proof.</strong>",
+   "calloutKind": "proof"
+  },
+  {
+   "id": "b-00195",
+   "type": "paragraph",
+   "source": "The derivative of $v$ is $dv(x_0)u=2(x_0,u)v_1-2(v_1,u)x_0-2(v_1,x_0)u$; its trace is $\\operatorname{div}v(x_0)=-8(v_1,x_0)$ and its symmetric traceless part vanishes, which is the conformal Killing equation. The remaining statements are the weight count of Proposition [2.13](#b-00164) with the field weights and degrees listed above, and the enumeration in the proof of Corollary [2.8](#b-00110). ∎",
+   "parentId": "b-00194"
+  },
+  {
+   "id": "b-00196",
+   "type": "callout",
+   "source": "<strong>Remark 2.17</strong> (The special conformal component and the dilatation).",
+   "calloutKind": "remark"
+  },
+  {
+   "id": "b-00197",
+   "type": "paragraph",
+   "source": "The relation between the two components has three parts.",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00198",
+   "type": "paragraph",
+   "source": "• Classical. At $x_0$ the one-jet of $v$ is that of the translation by $v(x_0)$, plus a rotation, plus $\\tfrac18\\operatorname{div}v(x_0)$ times the dilatation $2(x-x_0)$ centred at $x_0$; correspondingly the Weyl-weight terms of $S^{(1)}(v)$ at $x_0$, $\\tfrac14\\operatorname{div}v(x_0)$ times the weight, are $\\tfrac18\\operatorname{div}v(x_0)$ times those of $S^{(1)}(\\Delta)$, twice the weight (Lemma [2.5](#b-00075)).",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00199",
+   "type": "paragraph",
+   "source": "• What the complex gives. Let $\\Theta=(d_{CE}+Q)O[\\infty]$, of degree $|O|+1$; then $(d_{CE}+Q)\\Theta=0$. For even $x_1,x_2$ the differential of Chapter 2 gives $(d_{CE}\\Theta)(x_1,x_2)=(-1)^{|O|+1}\\Theta([x_1,x_2])$, and for a special conformal $K_{v_1}$ and a translation $P_{v_2}$ by $v_2\\in V$, with the bracket of vector fields of Chapter 2,",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00200",
+   "type": "equation",
+   "source": "[K_{v_1},P_{v_2}]=(v_1,v_2)\\,\\Delta+\\big(x\\mapsto2(v_1,x)v_2-2(v_2,x)v_1\\big),",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00201",
+   "type": "paragraph",
+   "source": "the second summand a rotation. The arity-two component of $(d_{CE}+Q)\\Theta=0$ on $(K_{v_1},P_{v_2})$ therefore reads",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00202",
+   "type": "equation",
+   "source": "(-1)^{|O|+1}\\Big((v_1,v_2)\\,\\Theta(\\Delta)+\\Theta\\big(x\\mapsto2(v_1,x)v_2-2(v_2,x)v_1\\big)\\Big)=-(Q\\Theta)(K_{v_1},P_{v_2}),",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00203",
+   "type": "paragraph",
+   "source": "which expresses the dilatation component, together with a rotation component, through $Q$ of the arity-two part of $\\Theta$. The special conformal component $\\Theta(K_{v_1})$ enters through no term.",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00204",
+   "type": "paragraph",
+   "source": "• The conformal expectation. For $O$ localised at $x_0$, the conformal algebra suggests that the anomalous part of the special conformal component is $\\tfrac14\\operatorname{div}v(x_0)=-2(v_1,x_0)$ times the anomalous coefficient of the dilatation component (Chapter 6) times $O$, i.e. the first-derivative term of Corollary [2.16](#b-00188) with the weight $w_O$ shifted by that coefficient. Its derivation requires the composition of components as a module structure on observables up to homotopy, the translation of $O$ to $x_0$ by the components of Remark [2.9](#b-00119), and control of the second derivatives of $v$ and of the large-distance behaviour of Remark [2.12](#b-00160) in the $K_\\varepsilon$ graphs. These are tasks of Steps 2 and 3.",
+   "parentId": "b-00196"
+  },
+  {
+   "id": "b-00205",
+   "type": "table",
+   "source": "<table>\n<tr><th>generator</th><th>subspace</th><th>$\\mathrm{ad}_\\Delta$</th><th>weight of output</th><th>regulator</th><th>one-loop output for $\\int\\omega\\,(\\iota_{w_1}A,\\iota_{w_2}A)$</th></tr>\n<tr><td>translation $P_{\\alpha\\dot\\beta}$</td><td>$V$</td><td>$-2$</td><td>$w_O+1$</td><td>covariant</td><td>can be chosen classical</td></tr>\n<tr><td>rotation $M_{\\alpha\\beta}$, $\\bar M_{\\dot\\alpha\\dot\\beta}$</td><td>$\\mathfrak{so}(V)$</td><td>$0$</td><td>$w_O$</td><td>covariant</td><td>can be chosen classical</td></tr>\n<tr><td>R-symmetry $R^i_j$</td><td>$\\mathfrak{so}(W_{\\mathbb R}^\\perp)$</td><td>$0$</td><td>$w_O$</td><td>covariant</td><td>can be chosen classical</td></tr>\n<tr><td>dilatation $\\Delta$</td><td>$2E$</td><td>$0$</td><td>$w_O$</td><td>$-4\\varepsilon\\frac{d}{d\\varepsilon}$</td><td>Chapter 6</td></tr>\n<tr><td>$Q^i_\\alpha$</td><td>$S_+\\otimes W$</td><td>$-1$</td><td>$w_O+\\frac12$</td><td>moved</td><td>Corollary [2.14](#b-00171)</td></tr>\n<tr><td>$\\bar Q_{\\dot\\alpha i}$</td><td>$S_-\\otimes W^*$</td><td>$-1$</td><td>$w_O+\\frac12$</td><td>moved</td><td>Corollary [2.14](#b-00171)</td></tr>\n<tr><td>$S^\\alpha_i$</td><td>$S_+\\otimes W^*$</td><td>$+1$</td><td>$w_O+\\frac12$ at $\\rho(x)Q_2$</td><td>moved</td><td>Corollary [2.15](#b-00185)</td></tr>\n<tr><td>$\\bar S^{\\dot\\alpha i}$</td><td>$S_-\\otimes W$</td><td>$+1$</td><td>$w_O+\\frac12$ at $\\rho(x)Q_2$</td><td>moved</td><td>Corollary [2.15](#b-00185)</td></tr>\n<tr><td>$K^{\\alpha\\dot\\beta}$</td><td>special conformal</td><td>$+2$</td><td>$w_O+1,\\ w_O,\\ w_O-1$</td><td>moved</td><td>Corollary [2.16](#b-00188)</td></tr>\n</table>"
+  },
+  {
+   "id": "b-00206",
+   "type": "paragraph",
+   "source": "<strong>Table 2.1.</strong> Components along the ten named subspaces of $\\mathfrak{psl}(4|4)$ (names of [SW, (8)], $\\mathrm{ad}_\\Delta$ eigenvalues of [SW, (17)]). The column \"regulator\" records the action on $P(\\varepsilon,\\infty)$: covariant (Proposition [2.6](#b-00085)), the infinitesimal change of scale (Proposition [2.10](#b-00126)), or moved (Propositions [2.10](#b-00126) and [2.11](#b-00143)). For the moving generators the output is a local functional of the listed weight and of ghost degree $|O|$, colour singlet, equivariant in $(x_1,O)$."
+  },
+  {
+   "id": "b-00207",
+   "type": "heading",
+   "source": "2.5 The road ahead",
+   "level": 2
+  },
+  {
+   "id": "b-00208",
+   "type": "paragraph",
+   "source": "Step 1 has produced the arity-zero part of the one-loop theory: $I^{CT}[\\varepsilon]$ through quartic order, the quantum master equation in the sector $(c,A|_V)$ with the finite counterterm"
+  },
+  {
+   "id": "b-00209",
+   "type": "equation",
+   "source": "\\frac{27}{16}\\,\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\int\\mathrm{dvol}\\,(d^*A|_V,d^*A|_V)"
+  },
+  {
+   "id": "b-00210",
+   "type": "paragraph",
+   "source": "of Chapter 4, the local $O(\\varepsilon)$ of the letters and scalar bilinears, and their dilatation through the scaling covariance. The next steps are organised by one identity. For an even functional $J$ with values in $C^\\bullet(\\mathfrak{psl}(4|4))$, the UV-boundary identity of Chapter 3, applied to $e^{J/\\hbar}$, shows that $(d_{CE}+Q)W(P(\\varepsilon,\\infty),J)$ is the sum of the connected graphs with edges $P(\\varepsilon,\\infty)$, one vertex labelled by"
+  },
+  {
+   "id": "b-00211",
+   "type": "equation",
+   "source": "(d_{CE}+Q)J+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J, \\tag{2.3}"
+  },
+  {
+   "id": "b-00212",
+   "type": "paragraph",
+   "source": "and every other vertex labelled by $J$. For $J=I_{\\mathfrak{psl}(4|4)}-I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]$, the classical equation $(d_{CE}+Q)I_{\\mathfrak{psl}(4|4)}+\\tfrac12\\{I_{\\mathfrak{psl}(4|4)},I_{\\mathfrak{psl}(4|4)}\\}=0$ [ESW, Rem 1.29] turns [(2.3)](#b-00211) at one loop into"
+  },
+  {
+   "id": "b-00213",
+   "type": "equation",
+   "source": "\\begin{aligned}\n&\\tfrac12\\Big(\\{I_{\\mathfrak{psl}(4|4)},I_{\\mathfrak{psl}(4|4)}\\}_\\varepsilon-\\{I_{\\mathfrak{psl}(4|4)},I_{\\mathfrak{psl}(4|4)}\\}\\Big)+\\hbar\\Delta_\\varepsilon I_{\\mathfrak{psl}(4|4)}\\\\\n&\\quad-(d_{CE}+Q)I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]-\\{I_{\\mathfrak{psl}(4|4)},I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]\\}_\\varepsilon ,\n\\end{aligned} \\tag{2.4}"
+  },
+  {
+   "id": "b-00214",
+   "type": "paragraph",
+   "source": "whose first term joins two vertices by a special edge carrying $K_\\varepsilon-K_0$ and whose second is a $K_\\varepsilon$ self-contraction. The one-loop obstruction to the quantum master equation is the $\\varepsilon\\to0$ limit of the graphs with one vertex [(2.4)](#b-00213); it is a local functional, closed for $d_{CE}+Q+\\{I_{\\mathfrak{psl}(4|4)},-\\}$, and a finite local counterterm removes it exactly when it is exact [C07, Prop 12.0.3, Lemma 12.0.4; CG2, §13.3.1]."
+  },
+  {
+   "id": "b-00215",
+   "type": "heading",
+   "source": "2.5.1 Step 2: equivariant counterterms and the full one-loop master equation",
+   "level": 3
+  },
+  {
+   "id": "b-00216",
+   "type": "paragraph",
+   "source": "Objects."
+  },
+  {
+   "id": "b-00217",
+   "type": "paragraph",
+   "source": "• The cubic sector of the arity-zero obstruction, with external legs $(c,A|_V,A|_V)$, $(c,A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})$, $(c,\\lambda,\\lambda)$ and $(c,c,A^*|_V)$, for the interaction $I-I^{CT}[\\varepsilon]$ minus the finite counterterm above; then a local functional cubic in the fields whose image under $Q$ equals it, or the class it defines; then the sectors with more legs."
+  },
+  {
+   "id": "b-00218",
+   "type": "paragraph",
+   "source": "• For each generator $x_1$ (translations, $\\mathfrak{so}(V)$, $\\Delta$, special conformal, $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, $\\Sigma$, $\\Sigma^*$): the arity-one counterterm along $x_1$, the singular part of the one-loop graphs with one vertex $S^{(1)}(x_1)$; and the arity-one obstruction along $x_1$, the limit of the graphs with one vertex given by the arity-one part of [(2.4)](#b-00213),"
+  },
+  {
+   "id": "b-00219",
+   "type": "equation",
+   "source": "\\begin{aligned}\n&\\{I,S^{(1)}(x_1)\\}_\\varepsilon-\\{I,S^{(1)}(x_1)\\}+\\hbar\\Delta_\\varepsilon S^{(1)}(x_1)\\\\\n&\\quad-Q\\,I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon](x_1)-\\{I,I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon](x_1)\\}_\\varepsilon-\\{S^{(1)}(x_1),I^{CT}[\\varepsilon]\\}_\\varepsilon .\n\\end{aligned}"
+  },
+  {
+   "id": "b-00220",
+   "type": "paragraph",
+   "source": "For translations, rotations and $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ all these graphs are covariant (Proposition [2.6](#b-00085)), and their evaluation realises the choice of Remark [2.9](#b-00119); for the special conformal fields the large-distance convergence of Remark [2.12](#b-00160) is part of the computation."
+  },
+  {
+   "id": "b-00221",
+   "type": "paragraph",
+   "source": "• The dilatation component $[(d_{CE}+Q)O[\\infty]](\\Delta)$ computed directly at the UV boundary, for the scalar bilinears, and its identification with the result of the scaling covariance of Chapter 6."
+  },
+  {
+   "id": "b-00222",
+   "type": "paragraph",
+   "source": "• Finite counterterms in $C^\\bullet(\\mathfrak{psl}(4|4),\\mathcal O_{\\rm loc})$ removing the whole one-loop obstruction, or the precise class that obstructs them."
+  },
+  {
+   "id": "b-00223",
+   "type": "paragraph",
+   "source": "Graphs. In the sector $(c,A|_V)$ the five one-loop graphs with one special edge $K_\\varepsilon-K_0$ drawn in Chapter 4 (a bubble with an $A|_V$, an $A|_{W_{\\mathbb R}^\\perp}$, a $\\lambda$ and two $c$–$A^*$ lines), together with the vertex $-QI^{CT}[\\varepsilon]$, give the obstruction of Chapter 4. The cubic sector uses the same vertices with one more external leg: one-loop graphs with three external legs, one special edge $K_\\varepsilon-K_0$ from the first term of [(2.4)](#b-00213) and the other edges $P(\\varepsilon,\\infty)$ (triangles with three cubic vertices, bubbles with one quartic vertex); the trees of $-\\{I,I^{CT}[\\varepsilon]\\}_\\varepsilon$ and of minus the bracket of $I$ with the finite counterterm, with one $K_\\varepsilon$ edge joining a cubic vertex of $I$ to the quadratic counterterm; and the vertex $-QI^{CT}[\\varepsilon]$ restricted to the sector. The direct dilatation component of a scalar bilinear uses the twenty-five graphs (a)–(y) drawn in Chapter 6, with one $O$ vertex, one $S^{(1)}(\\Delta)$ vertex and one $K_\\varepsilon$ edge: twenty-one one-loop graphs (a)–(u), with the $K_\\varepsilon$ edge on the cycle and the other edges $P(\\varepsilon,\\infty)$ through cubic and quartic vertices of $I$ (two of them, (t) and (u), with a $c$–$A^*$ line ending at $S^{(1)}(\\Delta)$), and four trees (v)–(y) with the vertex $\\partial_\\delta I^{CT}[\\varepsilon]$; to them are added the graphs with the component of $I^{CT}_{\\mathfrak{psl}(4|4)}[\\varepsilon]$ along $\\Delta$ and the insertion of the defect [(2.4)](#b-00213) along $\\Delta$."
+  },
+  {
+   "id": "b-00224",
+   "type": "heading",
+   "source": "2.5.2 Step 3: supersymmetry and special supersymmetry of letters and scalar bilinears",
+   "level": 3
+  },
+  {
+   "id": "b-00225",
+   "type": "paragraph",
+   "source": "Objects."
+  },
+  {
+   "id": "b-00226",
+   "type": "paragraph",
+   "source": "• For $O$ a letter or a scalar bilinear and $x_1=Q_1\\in\\Sigma$ or $x_1=Q_2\\in\\Sigma^*$: the local functional representing $[(d_{CE}+Q)O[\\infty]](x_1)$. By Corollaries [2.14](#b-00171) and [2.15](#b-00185) this is one number for the traceless bilinear (the multiple of the classical structure) and three numbers for the trace bilinear (on the trace the two classical-type functionals are multiples of $\\int\\omega\\,(\\rho(A|_{W_{\\mathbb R}^\\perp})Q_1,\\lambda)$, and the gauge-variant and BRST-type functionals are added), for each of $Q^i_\\alpha$, $\\bar Q_{\\dot\\alpha i}$, $S^\\alpha_i$, $\\bar S^{\\dot\\alpha i}$."
+  },
+  {
+   "id": "b-00227",
+   "type": "paragraph",
+   "source": "• The arity-two components on pairs of odd generators, which contain $S^{(2)}$ [ESW, (34)] and express the closure of the quantum supersymmetry on $O$ through $(d_{CE}+Q)\\Theta=0$, as in Remark [2.17](#b-00196)."
+  },
+  {
+   "id": "b-00228",
+   "type": "paragraph",
+   "source": "• The Konishi multiplet: the components of the trace bilinear along $\\Sigma$ and $\\Sigma^*$ and the coefficients of its gauge-variant and BRST-type structures."
+  },
+  {
+   "id": "b-00229",
+   "type": "paragraph",
+   "source": "Graphs. One-loop graphs with one $O(\\varepsilon)$ vertex, one vertex of $S^{(1)}(x_1)$ and one $K_\\varepsilon$ edge, the other edges $P(\\varepsilon,\\infty)$. The vertices of $S^{(1)}(Q_1)$ are the bilinear vertices $-(\\Gamma(Q_1,\\lambda),A^*)$ and $\\tfrac12(\\rho(dA)Q_1,\\lambda^*)$ and the cubic vertex $\\tfrac12(\\rho(\\tfrac12[A\\wedge A])Q_1,\\lambda^*)$; for $Q_2$ the spinor is $\\rho(x)Q_2$ and the vertex $-(\\rho(A|_{W_{\\mathbb R}^\\perp})Q_2,\\lambda^*)$ is added. Trees with the vertex $\\partial_\\delta I^{CT}[\\varepsilon]$ and with the arity-one counterterm along $x_1$ of Step 2 complete the list. For a scalar bilinear the external legs are those of Corollary [2.14](#b-00171): $(A,\\lambda)$ and $(c,\\lambda^*)$."
+  },
+  {
+   "id": "b-00230",
+   "type": "heading",
+   "source": "2.5.3 Step 4: all bilinears and covariant jets",
+   "level": 3
+  },
+  {
+   "id": "b-00231",
+   "type": "paragraph",
+   "source": "Objects. For every gauge-invariant local functional bilinear in the letters $\\iota_wA$, $F_A$, $\\lambda$ and their covariant derivatives $d_A$ applied repeatedly: $\\partial_\\delta I^{CT}[\\varepsilon]$ and $O(\\varepsilon)$, a mixing matrix among operators of equal Weyl weight, ghost degree and representation of $\\mathfrak{so}(V)\\oplus\\mathfrak{so}(W_{\\mathbb R}^\\perp)$ (Corollary [2.7](#b-00102)); the dilatation component by the scaling covariance of Chapter 6; the other components with the selection rules of this chapter."
+  },
+  {
+   "id": "b-00232",
+   "type": "paragraph",
+   "source": "Graphs. One-loop one-particle-irreducible graphs with one $O$ vertex whose superficial degree"
+  },
+  {
+   "id": "b-00233",
+   "type": "equation",
+   "source": "w_O-\\sum_{\\text{external legs}}(\\text{Weyl weight of the leg})"
+  },
+  {
+   "id": "b-00234",
+   "type": "paragraph",
+   "source": "is non-negative, the external legs ranging over $A$, $\\lambda$, $c$ and the antifields $A^*$, $\\lambda^*$, $c^*$ with the weights of Lemma [2.5](#b-00075)."
+  },
+  {
+   "id": "b-00235",
+   "type": "heading",
+   "source": "2.5.4 Step 5: two loops",
+   "level": 3
+  },
+  {
+   "id": "b-00236",
+   "type": "paragraph",
+   "source": "Objects. The counterterms at order $\\hbar^2$, the singular parts of the order-$\\hbar^2$ terms of $W\\big(P(\\varepsilon,\\infty),J\\big)$, with $J$ equal to $I-I^{CT}[\\varepsilon]$ minus the finite counterterms of Step 2, in the order of [C07, Thm B]; $\\partial_\\delta I^{CT}[\\varepsilon]$ and $O(\\varepsilon)$ at order $\\hbar^2$; the two-loop obstruction, the order-$\\hbar^2$ part of the graphs with one vertex [(2.3)](#b-00211), the UV-boundary identity behind [(2.3)](#b-00211) holding to all orders in $\\hbar$; the dilatation at order $\\hbar^2$, read from the $\\log\\varepsilon$ coefficients through the scaling covariance of Chapter 6. The singular $\\varepsilon$-functions now include $(\\log\\varepsilon)^2=\\int_\\varepsilon^1\\int_\\varepsilon^1(t_1t_2)^{-1}dt_1dt_2$, an element of the space of [C07, Def 7.1.1]."
+  },
+  {
+   "id": "b-00237",
+   "type": "paragraph",
+   "source": "Graphs. Two-loop graphs with vertices of $I$ and edges $P(\\varepsilon,\\infty)$; one-loop graphs with one vertex of $I^{CT}[\\varepsilon]$ or of a finite counterterm, both of order $\\hbar$, which subtract the subdivergences; trees with one vertex of order $\\hbar^2$; and, for the obstruction, the same graphs with one vertex [(2.3)](#b-00211)."
+  }
+ ]
+}

@@ -1,0 +1,248 @@
+{
+ "file": "step2/qa/ch08_corrections_from_design.json",
+ "date": "2026-10-29",
+ "source": "round-2 revision of step2/theory/odd_components_design.tex (dispositions: step2/qa/design_revision_disposition.json, key round_2)",
+ "manuscript_edited": false,
+ "format": "each proposed_fix item replaces the exact text \"current\" (asserted to occur exactly once in manuscript/ch08_definitions.tex at build time) by \"replacement\"",
+ "outside_chapter_8": [
+  {
+   "label": "ch07 rem:c7-internal (and the expectation in prop:c7-cov context)",
+   "problem": "states that the translation and rotation components \"can be chosen with no one-loop correction\" because the regulator is covariant; on the scalar bilinears the composite lines give P_1 = -(1/3+f_P) unit ad_{S1(P_b)}, a local rescaling, so the statement holds only after a finite part (def:c8-radial entry)",
+   "evidence": "step2/qa/compare_delta.json comparisons_part2_bilinear_component[9]; engine_b delta_results.json part2"
+  },
+  {
+   "label": "ch02 def:c2-dce",
+   "problem": "the exponent |g| must be read as the total parity for cochains with fermionic values (thm:c8-L entry)",
+   "evidence": "odd_rev_audit_algebra a1b, a1c"
+  },
+  {
+   "label": "step2/theory/cubic_structure.tex thm:s2c-solve (solution family) and DESIGN_STEP2 Part C",
+   "problem": "the ansatz F_3 in span{H1..H6} omits H7, H8+, H8- (degree 0, weight 4); the homogeneous freedom is 9-dimensional, not 6 (design prop:o-arity0)",
+   "evidence": "step2/qa/design_revision_round2/cubic_quotient.json"
+  },
+  {
+   "label": "step2/theory/k_transfer.tex prop:ktr-rescale (ii), step2/qa/k_judgement.tex cor:kj-gram and open issue 2",
+   "problem": "the finite part (a/2) ad_{S1(Delta)} is reflection compatible for real a, not for abar = -a; a real rescaling p is removable by a reflection-compatible finite part",
+   "evidence": "def:c8-radial entry; odd_rev_audit_algebra a5, a6"
+  }
+ ],
+ "entries": [
+  {
+   "label": "def:c8-radial",
+   "problem": "P_1 = 0 is presented as a consequence of the covariance of the regulator (Proposition c7-cov). The insertion of S^(1)(P_b) on a cycle is the composite A|_V--c line with kernel v.(P*)^2, present because (Q^GF)^2 != 0, and gives P_1(O) = -(1/3+f_P) unit ad_{S1(P_b)} O on the scalar bilinears and -f_P on the letters (f_P = S^(1)(P_b)-coefficient of F^(1)(P_b)); the definition of delta^hbar from the full Lambda^(1)(P_n), Lambda^(1)(K_n) does not need P_1 = 0.",
+   "evidence": "step2/engine_b/delta_results.json part2 (translation component (1 - unit/3) D_P O, closed-form subset 844 = full, complement 0); step2/qa/compare_delta.json comparisons_part2_bilinear_component[9] (three routes agree on -(1/3+f_P) D_P O, local); design prop:o-P1; step2/qa/design_revision_round2/scheme_shift_round2.json (kappa ad_{S1(Delta)} shifts P_1, K_1 by -2 kappa, +2 kappa; c x (density weight) is not a map of local functionals); reflection: ad_{S1(Delta)} acts on densities as 2(x.d + w), real, commuting with the linear isometry r_n, so (kappa ad_{S1(Delta)} O)^{Theta_n} = conj(kappa) ad_{S1(Delta)} O^{Theta_n} (odd_rev_audit_algebra a5, a6: ad_Delta commutes with dagger_n); the condition abar = -a stated in k_transfer prop:ktr-rescale (ii) and k_judgement cor:kj-gram omits the exchange sign {g,f} = (-1)^{|f||g|}{f,g} of the ch01 bracket (a2_bv_signs.json, 60/60)",
+   "proposed_fix": [
+    {
+     "current": "Assume the local representatives along $P_n$ and $K_n$ exist, with $P_1=0$ (Proposition \\ref{prop:c7-cov}), and put",
+     "replacement": "Assume the local representatives along $P_n$ and $K_n$ exist, and put"
+    },
+    {
+     "current": "modulo $\\Lambda^{(0)}$-exact terms and $O(\\hbar^2)$. At order $\\hbar^0$ this is $O^{\\Theta_I}$ (Proposition \\ref{prop:c8-C}); at order $\\hbar$ it depends on $K_1$ through $\\Lambda^{(1)}(K_n)$.",
+     "replacement": "modulo $\\Lambda^{(0)}$-exact terms and $O(\\hbar^2)$. At order $\\hbar^0$ this is $O^{\\Theta_I}$ (Proposition \\ref{prop:c8-C}); at order $\\hbar$ it depends on $P_1$ and $K_1$ through $\\Lambda^{(1)}(P_n)$ and $\\Lambda^{(1)}(K_n)$. The condition $P_1=0$ is a renormalisation condition and does not follow from Proposition \\ref{prop:c7-cov}: the insertion of $S^{(1)}(P_b)$ on a cycle is a composite $A|_V$--$c$ line with kernel $v.\\,(P(\\varepsilon,T)\\star)^2$, present because $(Q^{GF})^2\\neq0$ (Remark \\ref{rem:c7-internal}), and in the translation-covariant scheme ($F^{(1)}_{\\mathfrak{psl}(4|4)}(P_b)=0$, $\\psi$ translation covariant) it gives $P_1(O)=-\\tfrac13\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\{S^{(1)}(P_b),O\\}$ for the scalar bilinears and $P_1=0$ for the letters. On a family $\\mathcal F$ of local operators, stable under $\\{S^{(1)}(\\Delta),-\\}$ and $\\{S^{(1)}(P_b),-\\}$, on which $P_1=p\\,\\{S^{(1)}(P_b),-\\}$ modulo $\\Lambda^{(0)}$-exact terms, the finite part $\\psi^{\\prime}=\\tfrac p2\\{S^{(1)}(\\Delta),-\\}\\circ\\pi_{\\mathcal F}$, with $\\pi_{\\mathcal F}$ a projection onto $\\mathcal F$ commuting with both maps, gives $P_1=0$ on $\\mathcal F$ and changes the components along $K_b$, $\\xi$, $\\eta$ of the operators of $\\mathcal F$ by $p$, $-\\tfrac p2$, $\\tfrac p2$ times the classical transformation, along $\\xi$, $\\eta$ in addition by $\\tfrac p2\\{S^{(1)}(\\Delta),(1-\\pi_{\\mathcal F})\\{S^{(1)}(x),O\\}\\}$ (Proposition \\ref{prop:c8-laws} (b)); it commutes with $\\Theta_n$ for real $p$, since $\\{S^{(1)}(\\Delta),-\\}$ acts on a density of weight $w$ as $2(x\\cdot\\partial+w)$. The exact field redefinition generated by $\\kappa S^{(1)}(\\Delta)$ changes the components along $P_b$, $K_b$, $\\xi$, $\\eta$ of every operator by $-2\\kappa\\hbar$, $2\\kappa\\hbar$, $-\\kappa\\hbar$, $\\kappa\\hbar$ times the classical transformation, and therefore leaves the difference between the bilinears and the letters."
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (third finding)",
+    "odd_rev_audit_graphs (sixth finding)",
+    "k_judgement open_issues (def:c8-radial)"
+   ]
+  },
+  {
+   "label": "thm:c8-adjoint",
+   "problem": "The hypothesis \"with P_1 = M_1 = R_1 = 0\" is not used by the proof: the reflection step needs reflection compatibility of the scheme, and the radial step is Corollary c8-homotopy for the full Lambda^(1) (exponentiation of a representation on cohomology), valid for any P_1, M_1, R_1. Read as automatic it is also false for P_1 (def:c8-radial entry).",
+   "evidence": "proof of thm:c8-adjoint (ch08); k_transfer.tex Cor cor:ktr-gram; k_judgement.tex Cor cor:kj-gram; design prop:o-P1 (iv): R_1 = 0 in every so(W_R^perp)-covariant scheme (no insertion on a cycle), M_1 sits on the composite line",
+   "proposed_fix": [
+    {
+     "current": "the local representatives exist on the operators considered, with $P_1=M_1=R_1=0$;",
+     "replacement": "the local representatives exist on the operators considered;"
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (fourth finding, modified)",
+    "k_judgement open_issues (thm:c8-adjoint)"
+   ]
+  },
+  {
+   "label": "prop:c8-primary",
+   "problem": "With P_1 = 0 removed from def:c8-radial and thm:c8-adjoint, the radial conjugation of a scalar primary acts as the classical action on a density of weight w_O + kappa only if P_1(O) = 0; by the (K_b,P_c) component of L o L = 0 the hypothesis on K_1 is equivalent on the family to P_1 = 0 (for P_1 = p ad the relation forces K_1 = (1/4) div v kappa O - p ad_{S1(K_b)} O).",
+   "evidence": "k_transfer.tex Thm thm:ktr-KD; step2/theory/ktr_out/k_tr_relations.json (unique solution alpha = -p, kappa = gamma - p w, d = m = 0; rerun identical in k_judgement); design thm:o-KD",
+   "proposed_fix": [
+    {
+     "current": "Assume moreover $M_1(O)=R_1(O)=0$.",
+     "replacement": "Assume moreover $P_1(O)=M_1(O)=R_1(O)=0$, in a scheme with $P_1=0$ on the operators considered (Definition \\ref{def:c8-radial})."
+    }
+   ],
+   "raised_by": [
+    "k_judgement open_issues (prop:c8-primary)"
+   ]
+  },
+  {
+   "label": "cor:c8-gram",
+   "problem": "The third relation is given only for P_1 = 0; in the translation-covariant scheme P_1 = p ad_{S1(P_b)} with p = -1/3 units on the scalar bilinears, and the relation acquires an explicit rescaling term.",
+   "evidence": "k_transfer.tex Cor cor:ktr-gram; Thm c8-dag (i): P_b^dagger = -K_bbar, so (ad_{S1(P_b)})^adj = -ad_{S1(K_bbar)} from Y_0 = X_0^adj; reflection compatibility for real p: def:c8-radial entry",
+   "proposed_fix": [
+    {
+     "current": "With $P_1=0$ the third relation is the statement $K=P^\\dagger$: $K_1$ along $K_{\\bar b}$ equals $\\hbar\\big[\\{S^{(1)}(K_{\\bar b}),-\\},\\mathrm{Gram}_{\\rm tree}^{-1}\\mathrm{Gram}_{\\rm 1}\\big]$.",
+     "replacement": "With $P_1=0$ the third relation is the statement $K=P^\\dagger$: $K_1$ along $K_{\\bar b}$ equals $\\hbar\\big[\\{S^{(1)}(K_{\\bar b}),-\\},\\mathrm{Gram}_{\\rm tree}^{-1}\\mathrm{Gram}_{\\rm 1}\\big]$. For $P_1=p\\,\\{S^{(1)}(P_b),-\\}$ on the family, for instance in the translation-covariant scheme, it reads $K_1$ along $K_{\\bar b}=\\bar p\\,\\{S^{(1)}(K_{\\bar b}),-\\}+\\hbar\\big[\\{S^{(1)}(K_{\\bar b}),-\\},\\mathrm{Gram}_{\\rm tree}^{-1}\\mathrm{Gram}_{\\rm 1}\\big]$, since $(\\{S^{(1)}(P_b),-\\})^{\\rm adj}=-\\{S^{(1)}(K_{\\bar b}),-\\}$; the finite part $\\tfrac p2\\{S^{(1)}(\\Delta),-\\}\\circ\\pi_{\\mathcal F}$ of Definition \\ref{def:c8-radial}, reflection compatible for real $p$, relates the two forms by the covariance stated below."
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (fifth finding)",
+    "k_judgement open_issues (cor:c8-gram)"
+   ]
+  },
+  {
+   "label": "prop:c8-B",
+   "problem": "Proof of independence incomplete: the compact-group averaging does not reduce phi^(0) to the field countings, since position-dependent invariant functionals of degree -1 and weight 4 exist (S^(1)(Delta)); phi^(0) = c S^(1)(Delta) + sum a_f N_f solves the S_+ (x) W system with c = 1, all a_f equal, because {S^(1)(xi),S^(1)(Delta)} = S^(1)(xi) for all xi in Sigma; degree -2, weight 9/2 contents with explicit position exist. The conclusion survives through the translation component G_B^(1)(P_b) = 0.",
+   "evidence": "odd_rev_audit_algebra a3 part 2 (S+W block alone: solution c = 1; both blocks: none; translation step forces c = 0) and a7 (x-dependent contents (lambda,c*)x, (A*,lambda*)x at degree -2, weight 9/2); rerun identical (design_revision_round2/rerun); design prop:o-GB (ii) proof",
+   "proposed_fix": [
+    {
+     "current": "Independence: if $G_B=a(S-S^{(2)})+s\\phi$, the arity-one component along $\\xi\\in S_+\\otimes W$ reads $S^{(1)}(\\xi)=\\pm\\{S^{(1)}(\\xi),\\phi^{(0)}\\}$, since the space of local functionals of degree $-2$ and Weyl weight $\\tfrac92$ is zero;",
+     "replacement": "Independence: suppose $G_B=a(S-S^{(2)})+s\\phi$ with $\\phi$ local of degree $-1$. Along a translation, $0=G_B^{(1)}(P_b)=(s\\phi)^{(1)}(P_b)$, so $\\{S^{(1)}(P_b),\\phi^{(0)}\\}$ is $(Q+\\{I,-\\})$-exact; since $\\{S^{(1)}(P_b),-\\}$ acts on the explicit polynomial dependence on the position as $-\\partial_b$ and $Q+\\{I,-\\}$ preserves the degree in the position, induction on that degree replaces $\\phi$ by $\\phi-s\\chi$, with $\\chi$ local of degree $-2$ and $\\phi^{(0)}$ translation invariant, and $s\\phi$ is unchanged (this step is needed: $\\phi^{(0)}=S^{(1)}(\\Delta)$ is invariant under the compact groups and $\\{S^{(1)}(\\xi),S^{(1)}(\\Delta)\\}=S^{(1)}(\\xi)$ for all $\\xi\\in\\Sigma$, while $\\{S^{(1)}(P_b),S^{(1)}(\\Delta)\\}=-2S^{(1)}(P_b)$ is not exact). The part of degree zero in the position of the arity-one component along $\\xi\\in S_+\\otimes W$ then reads $S^{(1)}(\\xi)=\\pm\\{S^{(1)}(\\xi),\\phi^{(0)}\\}$, since the space of translation-invariant local functionals of degree $-2$ and Weyl weight $\\tfrac92$ is zero;"
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (sixth finding)",
+    "odd_rev_audit_graphs (seventh finding: same defect; its two-block repair needs an unproved lemma on position-dependent invariants and is not adopted)"
+   ]
+  },
+  {
+   "label": "thm:c8-obstruction",
+   "problem": "Proof of (iv): \"phi^(0) of degree -1 and Weyl weight 4 a combination of the field-counting functionals\" omits the position-dependent invariant functionals (S^(1)(Delta)); the conclusion holds because {S,-} preserves the degree in the position.",
+   "evidence": "odd_rev_audit_algebra a3, a7; design prop:o-arity0 (iv) proof",
+   "proposed_fix": [
+    {
+     "current": "in arity zero $(s\\phi)^{(0)}=\\{S,\\phi^{(0)}\\}$, with $\\phi^{(0)}$ of degree $-1$ and Weyl weight $4$ a combination of the field-counting functionals (Lemma \\ref{lem:c4-enumeration}), and $\\{S,\\phi^{(0)}\\}=S$ is excluded by the computation of Corollary \\ref{cor:c4-coupling}.",
+     "replacement": "in arity zero $(s\\phi)^{(0)}=\\{S,\\phi^{(0)}\\}$; $\\{S,-\\}$ preserves the degree in the explicit position, so $\\{S,\\phi^{(0)}\\}=S$ requires the same identity for the part of $\\phi^{(0)}$ of degree zero in the position, which is translation invariant of degree $-1$ and Weyl weight $4$, a combination of the field-counting functionals (Lemma \\ref{lem:c4-enumeration}), and that identity is excluded by the computation of Corollary \\ref{cor:c4-coupling}."
+    }
+   ],
+   "raised_by": [
+    "design round 2 (consequence of the sixth algebra finding)"
+   ]
+  },
+  {
+   "label": "thm:c8-L",
+   "problem": "Item (iv): the product of functional-valued cochains (needed for e^{J/hbar} in eq:c8-IT) is undefined, and the sign rule is read with C^bullet degrees; with the degree the product is associative and r_xi-multiplicative but graded commutative in 5/10 samples, and the cochain bracket violates graded symmetry and Jacobi on cochains with fermionic values (3/8); with total parities all checks pass (10/10, 8/8) and d_CE is a derivation.",
+   "evidence": "odd_rev_audit_algebra a1_cochain_decalage.json, a1b_product_rule.json (V1 = total parity: 10/10 commutative, associative, multiplicative), a1c_bracket_rule.json (V1: 8/8); rerun identical",
+   "proposed_fix": [
+    {
+     "current": "the sign rule of Definition \\ref{def:c2-dce}; the same rule defines the products of field-independent cochains with local cochains.",
+     "replacement": "the sign rule of Definition \\ref{def:c2-dce}, in which $|\\Lambda^{\\prime}|$, and $|O|$ below, are total parities (degree plus fermion number modulo $2$); the same rule, with the composition replaced by the product of values, defines the product of any two functional-valued cochains, in particular $e^{J/\\hbar}$ in \\eqref{eq:c8-IT}; it is associative and graded commutative."
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (seventh finding)"
+   ]
+  },
+  {
+   "label": "lem:c8-ev",
+   "problem": "The intertwining statement covers the products of operator-valued cochains only; the flow W(P,J) needs the products of functional-valued cochains (thm:c8-L entry).",
+   "evidence": "odd_rev_audit_algebra a1 (T2, T3: r_xi intertwines bracket and product on random cochains, 6/6 each), a1b",
+   "proposed_fix": [
+    {
+     "current": "and the product of operator-valued cochains of Theorem \\ref{thm:c8-L} (iv) with the composition of their values.",
+     "replacement": "and the products of operator-valued and of functional-valued cochains of Theorem \\ref{thm:c8-L} (iv) with the composition, resp. the product, of their values; hence $r_\\xi W(P(\\varepsilon,T),J)=W(P(\\varepsilon,T),r_\\xi J)$."
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (seventh finding)"
+   ]
+  },
+  {
+   "label": "def:c8-quant",
+   "problem": "The finite counterterm carries no Weyl-weight condition, but prop:c8-2pt (iii) and thm:c8-invariants (iii) use one: phi = S^(1)(P_b) (weight 5) gives (s phi)^(1)(Delta) = -2 S^(1)(P_b) and shifts D_1 by 2 hbar ad_{S1(P_b)}. The weight of position-dependent functionals and of cochain values must be fixed (needed for psi = (c/2) ad_{S1(Delta)}, which preserves the weight only with the position of weight -1).",
+   "evidence": "design thm:o-invariants (ii) proof; odd_rev_audit_algebra (eighth finding, F7); ch07 Prop c7-select (weights w_O + 1, w_O, w_O - 1 of the terms in v, dv, d^2 v)",
+   "proposed_fix": [
+    {
+     "current": "A finite counterterm is a local cochain $F_{\\mathfrak{psl}(4|4)}=\\hbar F_1+\\hbar^2F_2+\\cdots$ of degree $0$, independent of $\\varepsilon$.",
+     "replacement": "A finite counterterm is a local cochain $F_{\\mathfrak{psl}(4|4)}=\\hbar F_1+\\hbar^2F_2+\\cdots$ of degree $0$ and Weyl weight $4$, independent of $\\varepsilon$; here the explicit position has weight $-1$ and an argument $x$ has weight one half of its $\\mathrm{ad}_\\Delta$-eigenvalue, so that a value on $x_1,\\dots,x_k$ has weight $4$ minus the weights of the arguments (Proposition \\ref{prop:c7-select})."
+    },
+    {
+     "current": "A scheme for local operators is a linear map $\\psi$ of local cochains, preserving the degree and the Weyl weight,",
+     "replacement": "A scheme for local operators is a linear map $\\psi$ of local cochains, preserving the degree and the Weyl weight (counted as in Definition \\ref{def:c8-quant}),"
+    },
+    {
+     "current": "\\item (a) Field redefinition: $F_{\\mathfrak{psl}(4|4)}\\mapsto F_{\\mathfrak{psl}(4|4)}+\\hbar\\,s\\phi$, $\\phi$ local of degree $-1$:",
+     "replacement": "\\item (a) Field redefinition: $F_{\\mathfrak{psl}(4|4)}\\mapsto F_{\\mathfrak{psl}(4|4)}+\\hbar\\,s\\phi$, $\\phi$ local of degree $-1$ and Weyl weight $4$:"
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (eighth finding)",
+    "design round 2 (def:c8-renorm, prop:c8-laws (a) consequences)"
+   ]
+  },
+  {
+   "label": "Remark (Comparison with the holomorphic twist), after thm:c8-twist",
+   "problem": "The condition lists C {S^(1)(R_xi),S^xi} separately, but {psi,f} = {f,psi} for odd psi and even f with the ch01 bracket, so {S^(1)(R_xi),S^xi} = Q^xi_0 S^(1)(R_xi) lies in Im Q^xi_0, and r_xi(G_B)|_{q=1} = -Q^xi_0 S^(1)(R_xi).",
+   "evidence": "odd_rev_audit_algebra a2_bv_signs.json ({psi,Sxi} = {Sxi,psi}: 20/20); design thm:o-twist (iv)",
+   "proposed_fix": [
+    {
+     "current": "provided the two quantisations differ by an element of $\\mathbb C\\,S^\\xi+\\mathbb C\\,\\{S^{(1)}(R_\\xi),S^\\xi\\}+\\operatorname{Im}Q^\\xi_0$",
+     "replacement": "provided the two quantisations differ by an element of $\\mathbb C\\,S^\\xi+\\operatorname{Im}Q^\\xi_0$, which contains $\\{S^{(1)}(R_\\xi),S^\\xi\\}=Q^\\xi_0S^{(1)}(R_\\xi)$ and $r_\\xi(G_B)|_{q=1}=-Q^\\xi_0S^{(1)}(R_\\xi)$"
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (ninth finding)"
+   ]
+  },
+  {
+   "label": "prop:c8-Tsafe",
+   "problem": "Silent on arity two along pairs of even generators (floating even insertions are adjacent through A|_V (x) A|_V), on (eta1,eta2) with Gamma|_V = 0, on the coefficient of log T along K_b, and on the composite lines along Delta, P_b, so(V), for which only complete composite sums are local.",
+   "evidence": "step2/qa/odd_rev_audit_graphs/census_ir.json, koszul_orientation.json (relative orientation sign -1 for even-even chains, leading term 0); k_judgement.tex Lemma lem:kj-composite, Prop prop:kj-composite (fibre factors 2, -1; T d/dT of the scalar integral -> -3b/(16 pi^2), closed form at coincident ends checked by 4-d quadrature to 1.3e-15, separated ends by exact Gaussian moments to 1.5e-8 at T = 1e8); delta_theory.tex Prop prop:d-T (ii), (iii)",
+   "proposed_fix": [
+    {
+     "current": "whose bracket is a special conformal field.\n\\end{proposition}",
+     "replacement": "whose bracket is a special conformal field. Two floating insertions of even generators are adjacent through an $A|_V\\otimes A|_V$ edge; the chain has both ends on ghost legs, its degree at large distance in $\\mathbb R^8$ is $d_1+d_2-2$ for one orientation ($d=0,1,1,2$ for translations, $\\mathfrak{so}(V)$, $\\Delta$ and the special conformal fields) and one less after the sum over the two orientations. The arity-two graphs along pairs of translations, rotations of $V$ and $\\Delta$ converge after this sum, and so do those along $(\\eta_1,\\eta_2)$ with $\\Gamma(\\eta_1,\\eta_2)|_V=0$; those containing a special conformal field are defined at finite $T$. The coefficient of $\\log T$ of a graph with $S^{(1)}(K_b)$ floating on its cycle is $\\tfrac{3}{8\\pi^2}\\hbar$ times the tree obtained by cutting the insertion out of the cycle and evaluating the freed legs on the constant modes $A|_V=b\\otimes X_a$ and $c=X^a$, summed over a basis $\\{X_a\\}$ of $\\mathfrak g$ with dual basis $\\{X^a\\}$ for $(-,-)$; $\\tfrac{3}{8\\pi^2}$ is the product of the fibre factors $2(-,-)^{-1}$ of $A\\otimes A$ and $-(-,-)^{-1}$ of $A^*|_V\\otimes c$ with the limit $-\\tfrac{3}{16\\pi^2}\\,b$ of $T\\partial_T$ of the scalar integral of the composite line. Along $\\Delta$, the translations and $\\mathfrak{so}(V)$ the insertions on a cycle are composite $A|_V$--$c$ lines as well; their graphs converge at $T=\\infty$, single composite graphs have nonlocal $Q$-images, and the components are read off from the complete sets of composite graphs.\n\\end{proposition}"
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_graphs (eighth finding)",
+    "k_judgement open_issues (prop:c8-Tsafe)",
+    "design round 2 (composite sums)"
+   ]
+  },
+  {
+   "label": "def:c8-K",
+   "problem": "The order of the limits is implicit (through Definition c8-renorm) although the two limits do not commute.",
+   "evidence": "k_judgement.tex Prop prop:kj-defectlog (iii), (iv); k_transfer.tex Thm thm:ktr-defectlog (ii) (bilinears: O(eps) nonzero log T at fixed eps); k_transfer_numeric/results.json c_eta_eta (arity two: c_eta eps e^{-eps|p|^2} log T at fixed eps)",
+   "proposed_fix": [
+    {
+     "current": "the arity-two components along $(\\eta_1,\\eta_2)$ and $(K_b,P_{b'})$ are defined in the same way at finite $T$.\n\\end{definition}",
+     "replacement": "the arity-two components along $(\\eta_1,\\eta_2)$ and $(K_b,P_{b'})$ are defined in the same way at finite $T$. The limit $\\varepsilon\\to0$ is taken at fixed $T$; at a fixed $\\varepsilon$ the graphs of the defect carry a term of order $\\varepsilon\\log T$ for the scalar bilinears and along $(\\eta_1,\\eta_2)$ with $\\Gamma(\\eta_1,\\eta_2)|_V\\neq0$, so the defect graphs at $T=\\infty$ and fixed $\\varepsilon$ are not used.\n\\end{definition}"
+    }
+   ],
+   "raised_by": [
+    "k_judgement open_issues (def:c8-K)"
+   ]
+  },
+  {
+   "label": "thm:c8-K",
+   "problem": "The second sentence (\"may keep a term in log T\") can be stated exactly: coefficient, nonvanishing, Q-closedness.",
+   "evidence": "k_transfer.tex Thm thm:ktr-flowlog, Prop prop:ktr-values, Prop prop:ktr-consistency; k_transfer_numeric/results.json b_flow_K; k_judgement.tex Cor cor:kj-flowlog, Prop prop:kj-trees (four sectors agree; third realisation in three)",
+   "proposed_fix": [
+    {
+     "current": "The observables $O[T]$ themselves may keep a term in $\\log T$ in their component along $K_b$; such a term is part of the flow of Lemma \\ref{lem:c8-flow}, and the local representative is independent of $T$.",
+     "replacement": "The observables keep, in their component along $K_b$, the term $\\tfrac{3}{8\\pi^2}\\hbar\\log T$ times $\\sum_a\\partial_{A|_V=b\\otimes X_a}\\partial_{c=X^a}$ of the order-$\\hbar^0$ part of $O[\\infty]$, with $\\{X_a\\}$ a basis of $\\mathfrak g$ and $\\{X^a\\}$ the dual basis for $(-,-)$; this tree is nonzero for the scalar bilinears, the term is generated by the flow of Lemma \\ref{lem:c8-flow}, its image under $Q$ vanishes for gauge-invariant $O$, and the local representative is independent of $T$. The effective interaction $I_{\\mathfrak{psl}(4|4)}[T]$ keeps the same term with the tree of $W(P(0,\\infty),I)$, which is nonzero in every two-point sector."
+    }
+   ],
+   "raised_by": [
+    "k_judgement open_issues (thm:c8-K)"
+   ]
+  },
+  {
+   "label": "Remark (The existence along K), after thm:c8-K",
+   "problem": "(a) The first sentence is a per-graph statement; summed over the graphs the coefficient of log T at fixed eps is (3/(8 pi^2)) hbar Q of the zero-mode tree at eps, identically 0 in the two-point sectors of the action and O(eps), nonzero, for the scalar bilinears; along (eta1,eta2) with Gamma|_V != 0 it carries eps e^{-eps|p|^2}. (b) Existence and T-independence follow from the O(eps) bound on T d/dT of every special-edge cycle at fixed T. (c) Every floating S^(1)(K_b) is a composite A|_V--c line; single composite graphs have nonlocal Q-images (as along Delta and P_b). (d) The (K_b,P_b') relation also involves P_1 and M_1.",
+   "evidence": "k_transfer.tex Thm thm:ktr-defect (ii), Thm thm:ktr-defectlog, Thm thm:ktr-relations; k_transfer_numeric/results.json a_defect_K (per composite graph c_g (e^{-eps|p|^2}-1), c_g = +-9i, +-147/2 i, +-3, +-18 units, total 0) and c_eta_eta (c_eta = -48i, 288i, 0, 48i units); k_judgement.tex Prop prop:kj-defectlog, Prop prop:kj-compare, Thm thm:kj-Tindep; delta_theory.tex Rem rem:d-Y1a, Prop prop:d-T (iii)",
+   "proposed_fix": [
+    {
+     "current": "In the graphs of the defect along $K_b$ the logarithm in $T$ multiplies a tree that contains the special edge $K_\\varepsilon-K_0$ at a generic momentum $p$, and therefore carries the factor $e^{-\\varepsilon|p|^2}-1$; it vanishes as $\\varepsilon\\to0$ at fixed $T$. The existence of the local representative at fixed $T$ is thus the locality of the $\\varepsilon\\to0$ limit of these graphs, the same statement as along the other generators. Two consistency relations constrain $K_1$: the component of $L\\circ L=0$ at $(K_b,P_{b'})$, which ties $K_1$ to $D_1$ through $[K_b,P_{b'}]=(b,b')\\Delta+(\\text{rotation})$ (Remark \\ref{rem:c7-KDelta}), and the relation $K=P^\\dagger$ of Corollary \\ref{cor:c8-gram}.",
+     "replacement": "In a graph of the defect along $K_b$ with $S^{(1)}(K_b)$ floating on its cycle, the coefficient of $\\log T$ at a fixed $\\varepsilon$ is $\\tfrac{3}{8\\pi^2}\\hbar$ times the tree obtained by cutting the insertion out of the cycle and evaluating the freed legs on the constant modes $A|_V=b\\otimes X_a$, $c=X^a$, summed over $a$; this tree contains the special edge $K_\\varepsilon-K_0$ at a generic momentum $p$ and carries the factor $e^{-\\varepsilon|p|^2}-1$. Summed over the graphs, the coefficient is $\\tfrac{3}{8\\pi^2}\\hbar$ times $Q$ of $\\sum_a\\partial_{A|_V=b\\otimes X_a}\\partial_{c=X^a}$ of the order-$\\hbar^0$ part of $\\partial_\\delta W(P(\\varepsilon,\\infty),I+\\delta O)$: it vanishes identically in the two-point sectors of the action and is of order $\\varepsilon$, and nonzero, for the scalar bilinears. Along $(\\eta_1,\\eta_2)\\in\\Sigma^*\\times\\Sigma^*$ with $\\Gamma(\\eta_1,\\eta_2)|_V\\neq0$ the coefficient multiplies the first moment of the cut tree and carries the gradient $-2\\varepsilon p\\,e^{-\\varepsilon|p|^2}$ of the special-edge factor. In every case it vanishes as $\\varepsilon\\to0$ at fixed $T$. At a fixed $T$, the derivative $T\\partial_T$ of every graph with the special edge on its cycle is of order $\\varepsilon$, because the edge pinned at $T$ confines the loop momentum and the special edge carries $e^{-\\varepsilon|q|^2}-1$; the limit $\\varepsilon\\to0$ is therefore local and the same at every $T$, which is the existence of the local representative. Every insertion of $S^{(1)}(K_b)$ on a cycle is a composite $A|_V$--$c$ line with kernel $P(\\varepsilon,T)\\star K_b.\\,P(\\varepsilon,T)\\star=K_b.\\,(P\\star)^2+[P\\star,K_b.]\\,P\\star$; the first term exists because $(Q^{GF})^2\\neq0$, as along $\\Delta$ and $P_b$, where single composite graphs have nonlocal $Q$-images and the complete set of composite graphs has a local limit; the existence of $L(O)$ along $K_b$ is a statement about that complete set. Three relations constrain $K_1$ on the cohomology of $\\Lambda^{(0)}$: the component of $L\\circ L=0$ at $(K_b,P_{b'})$, which ties $K_1$ to $D_1$, $P_1$ and $M_1$ through $[K_b,P_{b'}]=(b,b')\\Delta+(\\text{rotation})$ (Remark \\ref{rem:c7-KDelta}); the component at $(\\eta_1,\\eta_2)$, which expresses $K_1$ along $K_{\\Gamma(\\eta_1,\\eta_2)|_V}$ through $S_1$ and the classical transformations along $\\eta_1$, $\\eta_2$; and the relation $K=P^\\dagger$ of Corollary \\ref{cor:c8-gram}."
+    }
+   ],
+   "raised_by": [
+    "odd_rev_audit_algebra (tenth finding)",
+    "k_judgement open_issues (remark after thm:c8-K)"
+   ]
+  }
+ ]
+}

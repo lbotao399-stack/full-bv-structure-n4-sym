@@ -1,0 +1,47 @@
+Audit #1 of step2/theory/delta_theory.tex, Part D1 (a),(b),(c).  Derivation chains behind the scripts.
+
+Files: sp.py (exact graded polynomial algebra), model.py (fibre c,AL,AT,l1,l2,ALs,ATs,ls1,ls2,cs (x) R[s]/(s^5),
+Feynman arrow ALs->AL, M = 2w - 2a + N - 4), conventions.py, d1_checks.py, translation_phi.py, uniform_c07.py,
+wlevel_second_hbar.py, remark_gf_H.py, diag_theory_toy.py (diagnostic of the theory toy only), audit_summary.json.
+
+Convention-free objects:  Cop := [d_P, m_S] - m_{d_P S},  Dop := [d_P, Cop],  S := S^(1)(Delta) (degree -1, odd).
+
+1. Parities.  |P| = 0, |S| = -1, Cop odd (degree -1), Psi := kernel(Dop) in c(x)A|_V + A|_V(x)c has degree -1:
+   Dop is ODD.  The note calls Psi 'the kernel of the even operator P*MP*' and treats d_Psi as even.
+
+2. [Q, Cop] (graded):  [Q,Cop] = [[Q,d_P], m_S] + [d_P, [Q,m_S]] = -[dK, m_S] + 0,  dK := d_{K_eps} - d_{K_T}
+     = -m_{dK S} + {S,-}_eps - {S,-}_T ;   dK S = (Delta_T - Delta_eps) S = 0  (model: exact 0).        -> eq:d-homotopy holds.
+
+3. [Q, Dop] (graded = Q Dop + Dop Q):
+     [Q,Dop] = [[Q,d_P],Cop] + [d_P,[Q,Cop]] = -[dK,Cop] - [d_P,[dK,m_S]] = -2[dK, Cop] = -2[d_P, C_{dK}(S,-)]
+             = 2[d_P, {S,-}_eps - {S,-}_T] = 2 d_{(kM x 1 + 1 x kM)P} = 2 d_{((kMP* - P*Mk) x 1)K_0} = 0,
+   k = e^{-eps H} - e^{-T H};  kMP* - P*Mk = QGF( k(M-4)f - fMk ) = -4 QGF( k(Hf)' - fHk' ) = 0  (Hf = k).
+   Hence Q d_Psi = - d_Psi Q  (model: anticommutator 0, commutator 578/9).
+   Q( (hb/2) d_Psi W ) = -(hb/2) d_Psi(QW);   Q C_Psi(W,W) = -2 C_Psi(QW,W)   (from C_Psi(W,W) = d_Psi(W^2) - 2W d_Psi W).
+   => Q I_Delta = {S,W}_eps - {S,W}_T - D_{P*M}(QW) - (hb/2) d_Psi(QW) - (1/2) C_Psi(QW,W).
+   (model, lam^2, three values of hbar: note signs 36125/1728, 1156/27, 614125/864; corrected 0, 0, 0)
+
+4. Normalisation of Psi.  Minimal example: basis c, A, As, cs; K0^{A,As} = K0^{c,cs} = 1; P* : As -> gA, A -> hc,
+   cs -> -h As; M = diag(mu_c, mu_A, -mu_A, -mu_c).  d_phi(x^i x^j) = phi^{ij}.
+     S = -mu_A x^A x^As + mu_c x^c x^cs,   Cop(x^A) = -mu_A g x^As = D_{P*M} x^A,  Cop(x^c) = mu_A h x^A = D_{P*M} x^c,
+     Dop(x^c x^A) = d_P( mu_A h (x^A)^2 + mu_A g x^c x^As ) = mu_A g h + mu_A g h = 2 mu_A g h,
+     ((P*MP*) x 1)K_0 has components (c,A), (A,c) equal to mu_A g h.
+   => Psi = (P*M x 1 + 1 x P*M)P = 2 (P*MP* x 1)K_0 = kernel of M(P*)^2 + (P*)^2 M   (model: residual 0 for factor 2,
+      7225/432 for factor 1).  The two terms are the two attachments of the two legs of S.
+
+5. Q-primitive at the functional level (invertible-H model).  (Phi x 1)K_0 is even;  [d_phi, Q] = d_{Q phi} gives
+     d_{(P*MP* x 1)K_0} = d_{(Phi x 1)K_0} Q - Q d_{(Phi x 1)K_0},   d_Psi = 2( d_{(Phi x1)K0} Q - Q d_{(Phi x1)K0} ).
+   The note's d_Psi = d_Phi Q + Q d_Phi fails for every factor and for the twisted kernel (Pi Phi x 1)K_0.
+
+6. Ward identity.  (M x 1 + 1 x M)L_t = -4 d(t L_t)/dt  =>  (M x 1 + 1 x M)P(eps,T) = 4 eps L_eps - 4 T L_T
+     = -4(eps d_eps + T d_T)P;  [D_M, d_P] = -d_{(Mx1+1xM)P}  =>  D_M W = W'_J(D_M J) + 4(eps d_eps + T d_T)|_J W.
+   (model: +4 exact 0, -4 residual 85/6.)  With D_M = 2 s d/ds sigma_s (ch06: (sigma_s F)(e) = F(sigma_s^{-1} e)),
+   T = infinity gives twice thm:c6-CS.
+
+7. Sign of {S^(1)(Delta),-} (A sector, by hand).  K_0^{A,A*} = K_0^{A*,A} = -(-,-)^{-1} (prop:c3-P proof), Delta = -d_{K_0}:
+     Delta = sum_i d_{a_i} d_{b_i};  S = sum X_{ij} a^j b_i = int (XA, A*);  l = sum u_i a^i:
+     {S,l} = Delta(S l) - (Delta S) l = sum_{m,j} X_{mj} u_m a^j = l o X = +D_X l.   Agrees with both engines.
+
+8. Remark d-gf.  Deleting the whole arrow A*|_V -> A|_V: H A|_V = Q QGF A = dd^* A, H A*|_V = QGF Q A* = dd^* A*;
+   H = 0 on the transverse parts (model: AT, ATs coefficient 0).  Deleting only the longitudinal part keeps H = s^2,
+   (QGF)^2 = 0; in the field theory that operator is A* -> -2(1 - d d^* Delta^{-1})A*, nonlocal (axiom (2) of C07 Def 4.3.3).

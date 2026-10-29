@@ -1,0 +1,330 @@
+{
+ "title": "Engine plan: the one-loop radial inner product of N=4 SYM and the test Q^dagger = S (UV boundary, Feynman-gauge Q^GF, no dimensional regularisation)",
+ "date": "2026-10-28; revised 2026-10-29 (second audit round, dispositions in step2/qa/ip_findings_disposition.json)",
+ "design_document": "step2/theory/inner_product_design.tex (labels ip-...; PDF step2/theory/_build_ip/inner_product_design.pdf); checks step2/theory/inner_product_checks.py (C1-C17)",
+ "binding_inputs": [
+  "DESIGN.md (rule 4 amended 2026-10-28: transfer endpoint T allowed, core quantities T-independent, T -> infinity where safe), DEFINITIONS_v2.md, STORY.md",
+  "DESIGN_STEP2.md (R0-R9; R5 = this plan; R8 = two-letter kernels; R9 = physics-notation supplement in every report)",
+  "manuscript/ch08_definitions.tex (def:c8-2pt, def:c8-inner, def:c8-radial, prop:c8-primary, thm:c8-adjoint, cor:c8-gram); proposed corrections in step2/qa/ch08_corrections_from_ip.json (two-point convention = coefficient of t2 t1, gradings, mixed lengths, real part of the outer direction, P_1 = 0 qualification)",
+  "step2/theory/two_point_design.tex + two_point_census.json (graph census, masters, lemmas; revised 2026-10-29: coefficient of t2 t1, computed fermion tree sign, order-g entries by colour and field content, gauge-fixing law a hypothesis, finite-T K identity)",
+  "step2/theory/conjugation.tex + conjugation_checks.json (Theta_n, Theta_I, dagger, positivity; the contraction rule of prop:RP)",
+  "step2/theory/odd_components_design.tex + engine_plan.json (computations E0-E12 for Q_1, S_1, K_1, P_1)",
+  "step2/theory/delta_theory.tex (prop:d-P composite translation remainder, ex:d-quadratic sector coefficients, prop:d-z, rem:d-gf, thm:d-inv)",
+  "step2/theory/k_transfer.tex + k_transfer.json (finite-T K_1 and L_1^(2)(eta1,eta2): T-independent; arity-two flows log T)",
+  "step2/literature/ip_targets.tex/.json (targets, regulators; revised 2026-10-29)",
+  "step2/notation/esw_to_weinberg_srednicki.tex + dictionary.json (two-component forms)",
+  "step2/qa/compare_delta.json (engine findings on the translation and dilatation rescalings)"
+ ],
+ "constraints": {
+  "machine": "24 GB shared Mac: at most one computational process per agent at a time, each < 1.5 GB RSS (target < 1 GB); never /tmp (work under step2/engine_a/ip/, step2/engine_b/ip/); kill what you start; no Wolfram",
+  "rules": "Euclidean; UV boundary eps only; NO dimensional regularisation in any role (DR literature = statements only); two-point functions at T = infinity (safe, ch08 prop:c8-2pt (ii)); K-route data at finite T; exact results, no fitting (integer relations only on an explicit basis, confirmed at a second precision); no new notation in reported text (code names allowed in json/py only)",
+  "independence": "engines A and B are independent in code AND method: each imports only its own code (engine A: engine_a/ and step2/engine_a/; engine B: engine_b/ and step2/engine_b/), generates its own graph census from its own vertex tables, re-derives the lemmas it uses (numerator reduction, localisation constants, Fourier lemma, contact property of the five-line graph), and does not read the other's ip outputs before the comparison phase",
+  "reporting": "every reported formula index-free AND in Weinberg-Srednicki two-component form (Def c8-twocomp) AND with the physics-notation supplement of R9; xi in Sigma, eta in Sigma^* are spinor parameters; Q_1, S_1, D_1, K_1, P_1 are one-loop components; test equations are stated with Chapter-8 objects (inner_product_design.tex), the code names below are for json/py only",
+  "cluster_portability": "pure Python 3 (numpy, sympy, mpmath, fractions) with optional C kernels for quadrature; deterministic (fixed seeds); one process per job; JSON in, JSON out; command line 'python3 ip_<task>.py --sector <s> --out <file>'; no interactive state; FILE-RELATIVE paths only (os.path.dirname(__file__)), an explicit module bundle per engine, and a gate that every job runs unchanged from a copied directory; known defect: 11 files in step2/engine_a hard-code the absolute path /Users/libotao/Desktop/N4_Costello_BV_2026-10-27/engine_a (d4_cycles, d4_pi_sectors, d4_signs, d4_se_sectors, d4_two_point, d4_y1a, s2_core, s2_ga, s2_trees (2), s2_make_results, s2_verify0d) and must be made file-relative before any IP job is moved to the cluster"
+ },
+ "code_names": {
+  "G0": "Gram_tree (radial, at the origin, frame P_1 = 0 of Prop ip-frames (a) = two-point coefficient at unit separation)",
+  "G1": "Gram_1 (relative order one unit), same frame",
+  "Gh": "order-sqrt(unit) part of Gram between lengths L and L+1",
+  "M": "G0^{-1} G1",
+  "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+  "m_K, m_20p, m_zeta, m_20, m_F": "one-loop radial constants: Gram = n (1 + m unit) on the trace bilinear, the 20', O_zeta, the 20 (weight 5/2), Fbar_z",
+  "n_K, n_zeta, n_F, n_B, n_E": "tree radial norms (n_E: protected weight-3 descendant)",
+  "tau, sigma": "{S1(xi),K} = tau O_xi ; {S1(conj xi),O_zeta}(0) = sigma (zeta,conj xi) K(0) (K = trace bilinear); Prop ip-tree (a) is tau sigma = -2",
+  "q, s": "Q_1(a) = q unit b and S_1(b)|_{eta = conj xi} = s unit {S1(conj xi),b} on the Konishi pair (a, b) of Prop ip-konishi; gate q + s = -12, radial line s - conj(q) = m_zeta - m_K",
+  "q', s'": "the same on the 20' pair (Prop ip-twenty); gate q' + s' = 0, radial line s' - conj(q') = m_20 - m_20p",
+  "qbar_n, qbar_n'": "one-loop classical-type coefficients of Q_1 along xi^{dagger_n} = rho(n) conj(xi) in S_- (x) W^* on O_zeta and on the 20 (reflection lines, Prop ip-reflline)",
+  "kappa_B, c_B', c_K, b_F, b_B, U, V": "weight-3 data of Prop ip-weight3: {S1(xi),O_zeta} = kappa_B B_z (|kappa_B| = 1/4), Q_1(O_zeta) = unit (c_B' B_z + c_K Fbar_z), protected descendant b_F Fbar_z + b_B B_z = classical image of rho0(xi) rho0(zeta) on the 20', U and V the O_zeta coefficients of S_1|_{eta = conj xi} on B_z and Fbar_z; (i) U = -conj(kappa_B) n_B/n_zeta, (ii) V = -conj(c_K) unit n_F/n_zeta, (iii) c_K unit = -kappa_B conj(b_B) n_B/(conj(b_F) n_F)",
+  "k": "D_1(O_zeta) = 2 k unit O_zeta; T3 (iv) gives k = -24 in modulus",
+  "c_F": "translation rescaling of family F: P_1 = c_F unit {S1(P_b),-} on F (engines' frame: c_F = -(1/3 + f_P) on the scalar bilinears, f_P = coefficient of S1(P_b) in hbar F_1^(1)(P_b) in units); frame conversion U = 1 + c_F unit w",
+  "f_S, z": "f_S = coefficient of S1(Delta)|_{W_R^perp} in hbar F_1^(1)(Delta) (units); z = coefficient of the whole S1(Delta); f_S = z + offset fixed by the cubic arity-one equation along Delta; prediction f_S = -1/3",
+  "r_x, s_a": "rescaling of generator x and the three block numbers of Thm ip-P (ii) (r = s_a - s_b)"
+ },
+ "conventions_to_fix_in_code": {
+  "two_point": "coefficient of t2 t1: lim_{eps->0} d_t1 d_t2 W(P(eps,infty), I - F^(0) - I^CT[eps] + t1 O1(eps) + t2 O2(eps))|_{e=0} = (-1)^{|O1||O2|} x (coefficient of t1 t2); at tree level the free expectation of O1 O2 with O1 on the left (Lemma ip-ward; the Ward identity of ch08 thm:c8-adjoint holds in this form, the printed t1 t2 form has the opposite sign for odd generators); minimal scheme psi = 0, F^(0) = (27/16) unit int(d*A|_V,d*A|_V)",
+  "lambda_contraction": "hbar d_P((lambda(y),g)(lambda(x),f)) = hbar (rho(d_y) 1/(4 pi^2 |y-x|^2) g, f) x inverse pairing of g (conj prop:RP, ch03 prop:c3-P); gives <O_chi1(x),O_chi2(0)>_tree = 24 hbar dim g (rho(x) chi1, chi2)/(16 pi^4 |x|^6) (checks C12)",
+  "conjugation": "Theta_I of ch08 prop:c8-C (spinor factor -rho(x)/|x| on lambda, s_c = 1); radial Gram <a,b>_rad = <a^{Theta_I}, b> antilinear in a; xi^dagger = -conj(xi), conj(xi) = (eta^a_i = conj(xi_a^i), etabar^{adot i} = -conj(xibar_{adot i})); (O_zeta(x))^{Theta_I} = (x,x)^{-3} O_{rho(x) conj zeta}(I(x))",
+  "representation": "rho(x) = -Lambda^(1)(x) (ch08 cor:c8-homotopy); Lambda^(1)(x) = {S^(1)(x),-} on degree-0 functionals of either parity (|O| in thm:c8-L (iv) = degree); matrices act on coefficient columns, Y O_l = sum_k Y_kl O_k; X = matrix of -Lambda^(1)(X), Y = matrix of -Lambda^(1)(X^dagger)",
+  "frame": "all assembled data in the frame P_1 = 0 reached by the inner direction (route (a), Prop ip-frames): convert generator matrices X -> U^{-1} X U, U = 1 + c_F unit w, and keep G0, G1 equal to the two-point coefficients; equivalently keep the engines' matrices and use (1 - 2 c_F unit w) x two-point coefficients; NEVER multiply the two-point G1 by (1 + 2 c unit w) in the frame P_1 = 0 (checks C15: residual proportional to c K_0)",
+  "normalisations": "propagators <A_m A_n> = 2 delta_mn, <A_ij A_kl> = 4 eps_ijkl, <c A*_m> = -i p_m, <lambda_a^i lambdabar_bdot j> = -p_m sigma^m delta^i_j, all times (-,-)^{-1} (e^{-eps p^2} - e^{-T p^2})/p^2 (ch08 prop:c8-twocomp); tree two-point of length L at order hbar^{L-1}, sum over distinct complete pairings",
+  "signs_recorded": [
+   "bracket sign of ch01 def:c1-bracket (convention {S^(1)(Delta), f(0)} = 2 w f(0))",
+   "tau, sigma, kappa_B in the code conventions (only the products/moduli enter T0 (b), T3 (iv); tau sigma enters T0 (a))",
+   "fermion tree sign: computed, not chosen: with the coefficient of t2 t1 and Theta_I the radial form on O_zeta is +24 hbar dim g (zeta',conj zeta)/(16 pi^4); gate G0.1"
+  ]
+ },
+ "already_established": [
+  {
+   "id": "C12",
+   "statement": "coefficient of t1 t2 = -(coefficient of t2 t1) for odd O1, O2; Ward sign table; radial O_zeta value +24 (t2 t1 form), -24 (t1 t2 form or s_lambda = +1); separated value 24 (rho(x) xi, chi)/(16 pi^4 |x|^6)",
+   "files": [
+    "step2/theory/inner_product_checks.json (C12)"
+   ]
+  },
+  {
+   "id": "T0(b)",
+   "statement": "|tau|^2 n_zeta = 2 n_K in modulus with |tau| = 2, tree values 24 and 48 (sign of tau sigma: T0 (a), a gate for IP0)",
+   "files": [
+    "step2/theory/inner_product_checks.json (C6)"
+   ]
+  },
+  {
+   "id": "T3(iv)",
+   "statement": "||{S1(xi),O_zeta}||^2_tree = (1/2)(xi,conj xi) <O_zeta, D_1 O_zeta>_tree with |kappa_B| = 1/4, ||B_z||^2 flavour sum 48 (sum|z|^2)^2, n_zeta = 24 hbar dim g (zeta,conj zeta)/(16 pi^4): D_1(O_zeta) = -48 unit O_zeta in modulus, from classical and tree data only",
+   "files": [
+    "step2/theory/inner_product_checks.json (C11)"
+   ]
+  },
+  {
+   "id": "algebra",
+   "statement": "graded Gram relation (C1), covariance (C2), origin limit (C3), Shapovalov form (C4), sl(2) frames (C5, C15), Konishi pair (C6), weight-3 relations with U = -conj(kappa_B) n_B/n_zeta (C8), rescaling solutions (C9), lemmas (C10), radius R^{-2 Delta} (C13), order-one-half census (C14), reflection compatibility of rescalings r_Q = r_P/2 (C16), T5 = T3 (iii) at weight 3 (C17)",
+   "files": [
+    "step2/theory/inner_product_checks.py"
+   ]
+  }
+ ],
+ "prerequisites_from_other_plans": {
+  "E0 (engine_plan.json)": "kappa_B sign; tau, sigma signs; vertex tables of S^(1)(xi), S^(1)(eta), S^(1)(xi') for xi' in S_- (x) W^*",
+  "E1": "c_K, c_B' (Q_1 on O_zeta)",
+  "E3": "arity-one finite counterterm along xi with its free multiple of S^(1)(xi); option (TP1): define the counterterm along S_- (x) W^* as the Theta_n-image of the one along S_+ (x) W (then T1n/T2n hold by construction and the arity-two equation at (xi, xi^{dagger_n}) must be checked against F_1^(1)(P_b))",
+  "E4": "q' (Q_1 on the 20' along xi, classical-type coefficient)",
+  "E5": "q (Q_1 on the Konishi primary, classical type; gauge-variant and BRST types reduced by full s-exact cochains)",
+  "E4n, E5n (new, with the E12 machinery)": "Q_1 along one generator of S_- (x) W^* on O_zeta and on the 20 (qbar_n, qbar_n') for the reflection lines T1n, T2n",
+  "E8": "s, s', U (S_1 on B_z), V (S_1 on Fbar_z): the one-loop components along eta = conj(xi)",
+  "E9": "arity-two (xi, eta) component: the master-equation gates q + s = -12, q' + s' = 0 (gates, not Q^dagger = S tests)",
+  "E10": "K_1 on the bilinears at finite T (K-route), T-independence",
+  "E11": "P_1, M_1, R_1 (internal insertions; reported rescaling -(1/3 + f_P) unit on the bilinears) EXTENDED to the composite A|_V--c translation components on O_zeta, the 20, Fbar_z, B_z (gate: equal to the bilinear value, Prop ip-universal)",
+  "E12": "machinery for S_- (x) W^* generators and the arity-two (xi, xi') components",
+  "Part D / delta_theory": "D_1 on all test families; the cubic arity-one equation along Delta (fixes the offset between f_S and z); the composite remainders R_O on O_zeta, Fbar_z, B_z; the arity-two equations along (K_b, P_b') (fixes z, delta_theory prop:d-z) and along (Delta, P_b) (predicts f_S = -1/3)"
+ },
+ "computations": [
+  {
+   "id": "IP0",
+   "order": 0,
+   "title": "conventions, classical data and tree radial Grams",
+   "tasks": [
+    "implement Theta_I on operators (index-free in engine A, two-component in engine B) and the radial Gram at the origin (Thm ip-origin) with the two-point function = coefficient of t2 t1 (expectation form): G0 = |y|^{2w} <conj f_k, f_l>(y) at |y| = 1",
+    "tree two-point functions and radial G0 for the trace bilinear, 20', O_zeta, the 20 at weight 5/2, Fbar_z, F_n, B_z, Bbar_n, and the protected weight-3 descendant (classical image rho0(xi) rho0(zeta) a', a' in the 20')",
+    "classical numbers: tau, sigma (Prop ip-tree), kappa_B, b_F, b_B, the classical images {S1(xi), O_ab}",
+    "order-sqrt(unit) entries between lengths 2 and 3 at weight 3: enumerate the one-cubic-vertex trees (3+2+3 = 8 half-edges) graph by graph and show each is zero (colour delta_ac f_abc = 0 with the B self-contraction ([e_a,e_b],e_c) delta_bc = 0, or no cubic vertex with field content (A_perp, A_perp, lambda)); two cubic vertices or one quartic vertex: no graphs (odd half-edge counts 11, 9)"
+   ],
+   "graph_classes": [
+    "tree: two operator vertices joined by L edges (L = 2, 3)",
+    "order-sqrt(unit) class: one cubic vertex (must vanish)"
+   ],
+   "integrals": "none (products of propagator tails at unit separation; spinor lift rho(x)/|x| for lambda)",
+   "method": "exact (fractions/sympy), colour su(2) and su(3) (and gl(3) -> sl(3)): results must be the same multiple of dim g and of tr_g(ad ad)/(X,Y)",
+   "gates": [
+    "G0.1 (genuine) G0 Hermitian positive definite on every family, computed with the coefficient of t2 t1; on O_zeta the value must be +24 hbar dim g (zeta',conj zeta)/(16 pi^4) (the t1 t2 reading gives -24); a negative value is a convention error, not a choice",
+    "G0.2 tau sigma = -2 (classical master equation at (xi, xi^dagger), Prop ip-tree (a))",
+    "G0.3 |tau|^2 n_zeta = 2 n_K (Prop ip-tree (b), modulus)",
+    "G0.4 T3(iv): |kappa_B|^2 n_B = (1/2)(xi,conj xi) x (D_1 eigenvalue) x n_zeta with D_1 = -48 unit (modulus)",
+    "G0.5 conjugation maps each family into itself or its partner family; Schur structure (zeta', conj zeta) on O_zeta",
+    "G0.6 two-component and index-free values agree through dictionary.json",
+    "G0.7 every one-cubic-vertex tree between B_z and Fbar_z / F_n vanishes identically"
+   ],
+   "resources": "seconds; < 0.3 GB"
+  },
+  {
+   "id": "IP1",
+   "order": 1,
+   "title": "scalar bilinears: one-loop two-point coefficients (independent re-derivation of tp thm:t-scalar by both engines, by different methods)",
+   "sector": "O_k = int omega (iota_ak A, iota_bk A): 20' (traceless) and the trace bilinear",
+   "graph_classes": {
+    "SE": "one line carries the 1PI one-loop A_perp self-energy: seagulls (A_V loop, A_perp loop), bubble (A_V + A_perp), gaugino loop, and -I^CT[eps] (quadratic part)",
+    "EX": "A_V exchange between the two A_perp lines (cubic vertices A_V A_perp A_perp at z1, z2); contains triangle (f) of ch05 at each operator",
+    "QU": "(A_perp)^4 vertex joined to each operator by two edges; contains bubble (e) of ch05 at each operator",
+    "OC": "trees with -partial_delta I^CT[eps](O_a)",
+    "F": "trees with hbar psi(O_a) (minimal scheme: none)",
+    "vanishing": "cubic self-contraction; O_a with both legs at one cubic vertex; Yukawa or ghost vertices on different lines; the 27/16 term (no A_V line)"
+   },
+   "census": "each engine generates the census from its own vertex tables (no shared census file) and compares with two_point_census.json only in the comparison phase",
+   "integrals": "bubble masters iint_{[eps,inf)^2} e^{-t1 t2 p^2/s} s^{-n} g(t1/s); position-space masters J = int D_eps(x-z)^2 D_eps(z)^2, R = int D_eps(x-z)^2 D_eps(z); localisation constants log(2/3)/(16 pi^2); Fourier lemma (only log and log^2 of eps|q|^2 survive at x != 0)",
+   "method": {
+    "engine_A": "position space: Schwinger parametrisation t_e = eps tau_e, Gaussian loop integration in closed form, eps-expansion by exact Beta/Dirichlet integrals with Feynman polynomials homogenised before integration (d4_integrals.py-type expansion), numerator reduction p^2 Dhat(p) = e^{-eps p^2}",
+    "engine_B": "momentum space: Schwinger-Gaussian evaluation of each WHOLE graph with the closed-form masters of engine_b/masters.py (J3, J2) and the Fourier lemma; alternative: position-space evaluation at several eps with exact extrapolation in eps^n log^k eps; engine B re-derives the numerator reduction, the localisation constants, the Fourier lemma and the contact property of the five-line graph by its own route",
+    "numeric_confirmation": "direct quadrature of each master at eps = 1e-4, 1e-5 (mpmath, 30 digits): confirms the eps -> 0 constants only to O(eps log eps) (two_point_example_run.txt: J_numeric/J_pred = 0.999912 at eps = 1e-4); the exact constants rest on the analytic evaluations, compared between the two methods",
+    "constants_basis": "{1, gamma_E, log 2, log 3}"
+   },
+   "outputs": [
+    "m_20p",
+    "m_K",
+    "log|x|^2 coefficients",
+    "per-class values relative to the tree"
+   ],
+   "targets": {
+    "m_20p": "27/2 + 4 log(3/2)",
+    "m_K": "27/2 + 4 log(3/2) + 24 (gamma_E - 3 log 2)",
+    "log|x|^2 coefficient of G0^{-1}G1": "-(1/2) D_1: 0 (20'), +24 (trace) in units"
+   },
+   "gates": [
+    "log eps cancels exactly",
+    "gamma_E cancels on the 20'",
+    "log|x|^2 coefficient = -(1/2) D_1 with D_1 of ch06",
+    "engine A = engine B exactly, per class"
+   ],
+   "resources": "minutes; < 0.5 GB"
+  },
+  {
+   "id": "IP2",
+   "order": 2,
+   "title": "weight 5/2: one-loop two-point coefficients of O_zeta and of the 20",
+   "sector": "O_zeta = int omega (lambda, rho(A_perp) zeta), zeta in S_+ (x) W (two-component int omega (lambda_a^j, A_ji) zeta^{a i}); the 20: {S1(xi), O_ab}; separated-point functions with O_chi, chi in S_- (x) W^*, for the reflection lines",
+   "graph_classes": {
+    "SE_lambda": "lambda self-energy with an A_V line and with an A_perp line; -4 unit log eps int(lambda, dslash lambda)",
+    "SE_A": "as IP1 on the A_perp line",
+    "EX_V": "A_V exchanged between the lambda line (vertex lambda lambda A_V) and the A_perp line (vertex A_V A_perp A_perp)",
+    "EX_Y": "crossed Yukawa: z1 (lambda of O1, A of O2), z2 (A of O1, lambdabar of O2), lambda edge z1 z2",
+    "OC": "-partial_delta I^CT[eps](O) with legs (lambda, A_perp): Z(O_zeta), Z(20) from one-loop graphs with the operator on the cycle",
+    "F": "finite parts (minimal: none)"
+   },
+   "integrals": "IP1 masters with numerators linear in rho(l); five-edge topology with one fermion line reduced by p^2 Dhat = e^{-eps p^2}; two-component Clifford algebra (sigma, sigmabar, 't Hooft blocks)",
+   "method": "as IP1, with the engine-specific routes; Schur reduction: the radial Gram is n (zeta', conj zeta)(1 + m unit), one number m per family",
+   "outputs": [
+    "m_zeta",
+    "m_20",
+    "Z(O_zeta)",
+    "Z(20)",
+    "separated-point functions <O_chi(x), O_zeta(0)> and their x-derivatives for T1n/T2n"
+   ],
+   "gates": [
+    "log|x|^2 coefficient of G0^{-1}G1 = -(1/2) D_1: +24 (O_zeta), 0 (20)",
+    "log eps cancels",
+    "only the structure (zeta', rho(x) conj zeta) appears",
+    "tree sign +24 (G0.1)",
+    "A = B per class"
+   ],
+   "resources": "tens of minutes; < 1 GB"
+  },
+  {
+   "id": "IP3",
+   "order": 3,
+   "title": "weight 3: tree norms and the Fbar_z block",
+   "sector": "Fbar_z, F_n (two lambda edges), B_z, Bbar_n (three A_perp edges, relative order unit), the protected descendant",
+   "graph_classes": {
+    "tree": "two lambda edges (Fbar, F); three A_perp edges (B, Bbar)",
+    "one loop (Fbar,F)": "lambda self-energies; A_V and A_perp (Yukawa) exchanges between the two lambda lines; OC with partial_delta I^CT[eps](Fbar_z) (legs lambdabar, lambdabar); F",
+    "order sqrt(unit)": "(B_z, F_n), (Fbar_z, Bbar_n): one-cubic-vertex graphs (8 half-edges) vanish by colour or field content (gate G0.7); two cubic vertices / one quartic vertex: no graphs (odd counts); first nonvanishing classes b1 = 3, relative order unit^2",
+    "not needed": "one-loop correction of (B,Bbar) (relative order unit^2, Prop ip-orders)"
+   },
+   "outputs": [
+    "n_F",
+    "n_B",
+    "n_E",
+    "log|x|^2 coefficient of the Fbar block",
+    "m_F (by-product: it enters no relation of the test set at relative order unit)"
+   ],
+   "gates": [
+    "n_B flavour sum 48 (sum|z|^2)^2 (C11)",
+    "log|x|^2 coefficient of the Fbar block at relative order unit = 0 (the Fbar-Fbar entry of D_1 vanishes at this order)",
+    "order-sqrt(unit) entries zero graph by graph",
+    "A = B"
+   ],
+   "resources": "tens of minutes; < 1 GB"
+  },
+  {
+   "id": "IP4",
+   "order": 4,
+   "title": "descendants: transported kernels and the one-loop Shapovalov form (gates)",
+   "tasks": [
+    "evaluate lim d_x^beta d_y^beta' [(x,x)^{-w-kappa} <conj f, f'>(I(x)-y)] from the IP1, IP2 two-point functions at levels 1, 2",
+    "compare with 2(w+kappa)(conj b, b') and 32 (w+kappa)(w+kappa-1) (Prop ip-desc); spinor family at level 1 with the rotation term"
+   ],
+   "gates": [
+    "Shapovalov form at Delta = w + kappa through relative order unit (kinematic identity, C4)",
+    "G0^{-1}G1 (level 1) - G0^{-1}G1 (level 0) = kappa/w"
+   ],
+   "resources": "seconds-minutes; < 0.5 GB"
+  },
+  {
+   "id": "IP6",
+   "order": 5,
+   "title": "frames: translation and dilatation composite remainders on every test family; conversion to the frame P_1 = 0 (runs BEFORE the assembly IP5)",
+   "tasks": [
+    "from E11 extended: the composite A|_V--c translation component R_{O,v} (delta_theory prop:d-P) on the trace bilinear, the 20', O_zeta, the 20, Fbar_z, B_z (both engines); check that each is a multiple of the classical component and record c_F per family; letters: composite part 0",
+    "from Part D extended: the dilatation composite remainders R_O on O_zeta, Fbar_z, B_z, and the sector coefficients of S^(1)(Delta)|_perp (f_S), S^(1)(Delta)|_lambda, S^(1)(Delta)|_V + S^(1)(Delta)|_c in hbar F_1^(1)(Delta) after the cubic arity-one equation along Delta",
+    "convert the E-plan matrices family by family: X -> U^{-1} X U, U = 1 + c_F unit w (route (a), the inner direction); keep G0, G1 equal to the two-point coefficients of IP1-IP3 (do NOT rescale G1); record the engines'-frame Gram (1 - 2 c_F unit w) x two-point for the cross-check",
+    "rotations: zero rescaling prediction (E11 internal insertions along so(V), so(W_R^perp))",
+    "the arity-two equations along (K_b, P_b') (z) and along (Delta, P_b) (f_S) when E-plan data are available"
+   ],
+   "gates": [
+    "universality (prediction of the master equation at (P_b, xi), Prop ip-universal (iii)): c_F equal on families joined by a nonzero classical xi-map (trace bilinear -> O_xi, 20' -> 20, O_zeta -> B_z) and equal to the scalar-bilinear value -1/3 - f_P",
+    "f_S = -1/3 units; total coefficient of {S^(1)(Delta),-} in D_1 zero on O_zeta, the 20, Fbar_z, B_z (vanishing rescaling of Delta)",
+    "K line in the frame P_1 = 0 with G1 = two-point coefficients (checks C15 model)",
+    "agreement of the K-route K_1 at two values of T"
+   ],
+   "resources": "minutes to tens of minutes; < 1 GB"
+  },
+  {
+   "id": "IP5",
+   "order": 6,
+   "title": "assembly in the frame P_1 = 0: the test set T0-T4 (T5 in IP7)",
+   "tasks": [
+    "build X0, X1 (matrix of -Lambda^(1)(xi)) and Y0, Y1 (matrix of -Lambda^(1)(xi^dagger) = +Lambda^(1)(conj xi)) on (trace bilinear, O_xi), (20', 20), (O_zeta; Fbar_z, B_z) from E1, E4, E5, E8 converted by IP6",
+    "T1: gate q' + s' = 0 (master-equation gate, E9); radial line s' - conj(q') = m_20 - m_20p (eq:ip-radline)",
+    "T2: gate q + s = -12 (master-equation gate, E9); radial line s - conj(q) = m_zeta - m_K (eq:ip-konishi)",
+    "T1n, T2n: reflection lines eq:ip-reflline along xi^{dagger_n} = rho(n) conj(xi) with E4n, E5n and the separated-point functions of IP1, IP2; if E4n/E5n are not available, use the Theta_n-image construction of E3 and check the arity-two equation at (xi, xi^{dagger_n}) against F_1^(1)(P_b) (Re of the classical-type coefficient along Sigma = half the translation rescaling, C16); if neither, report that the T2 radial line fixes the real part and that only T1 - T2 and T3 test",
+    "T3: U = -conj(kappa_B) n_B/n_zeta; V = -conj(c_K) unit n_F/n_zeta; c_K unit = -kappa_B conj(b_B) n_B/(conj(b_F) n_F); b_F V + b_B U = 0; |kappa_B|^2 n_B = (1/2)(xi,conj xi)(-48 unit) n_zeta",
+    "T4 (gate): level-one Gram; K line with K_1 from E10 and P_1 from IP6",
+    "covariance runs: (a) bookkeeping runs applying the proved transformation laws (finite part psi' real, field rescaling, G_B with imaginary a, inner direction): these confirm the code, they cannot fail; (b) at least one GENUINE run: insert a finite part hbar psi(O) = x unit O into O(eps) in the IP1/IP2 graphs AND in the E5/E8 graphs, recompute, and check that T1, T2, T3 residuals stay zero; (c) a real G_B coefficient must shift the T1, T2 radial lines by 2 Re a and leave T3 and T1 - T2 unchanged"
+   ],
+   "gates": [
+    "decisive residuals (T1, T2 radial with the real part fixed, T1n, T2n, T3 (i)-(iii)) exactly zero in the constants basis",
+    "master-equation gates (T1, T2 gates, T4) zero",
+    "Im q + Im s = 0 and Im q' + Im s' = 0",
+    "invariance under the scheme changes of Thm ip-laws (genuine run (b))"
+   ],
+   "resources": "seconds; < 0.3 GB"
+  },
+  {
+   "id": "IP7",
+   "order": 7,
+   "title": "two-letter kernels (directive R8), the self-adjointness test T5 on a mixing family, and the inner product on all local operators",
+   "tasks": [
+    "one-letter and two-letter kernels of G0^{-1}G1 for all pairs of letters with derivatives (generating functions in the letter momenta), with their colour factors",
+    "T5: D_1 = D_1^adj on the dimension-four 20' operators of [BERS] (single-trace length-four scalars, double traces, Konishi descendant in the same representation) and on the weight-four colour-singlet scalars, with D_1 from the counterterm kernels and G0 from the tree two-point functions",
+    "check: the log|x|^2 part of the two-letter kernel is -(1/2) times the two-body part of D_1; target: the spectrum of the complete one-loop dilatation operator [B03c] hep-th/0307015v5 (fixed by classical psl(4|4) invariance, C_j = h(j) fixed in the sl(2) subsector, point splitting Sec. 3 and App. B as corrected in v5; statement only, n4_untwisted B03c)",
+    "the lines of cor:c8-gram as identities between the one- and two-letter kernels of Q_1, S_1 and G0^{-1}G1 on families with Gh = 0; on families with Gh != 0 (O_zeta with the weight-7/2 trilinears) include the three- and four-letter components of eq:ip-graded (products of two order-one-half structures on disjoint pairs)"
+   ],
+   "integrals": "the IP1-IP3 integrals with arbitrary polynomial numerators (Gaussian moments in closed form)",
+   "truncation_and_memory": "one job per pair of letter types and per total derivative order of the pair (derivative order <= 4 in the first pass); pilot job (pair (A_perp, A_perp), derivative order 2) to measure RSS and time before submission; every job < 1.5 GB RSS measured on the pilot, deterministic, file-relative paths, runs from a copied directory",
+   "gates": [
+    "reduces to IP1-IP3 on the test families",
+    "kernel identities exact",
+    "T5 residual zero",
+    "pilot RSS < 1.5 GB"
+   ],
+   "resources": "hours on the cluster; < 1.5 GB per job; one job per pair of letter types and derivative order"
+  },
+  {
+   "id": "IP8",
+   "order": 8,
+   "title": "gauge-fixing check (Thm ip-laws (f) is a hypothesis)",
+   "tasks": [
+    "compute the composite translation and dilatation components on the test families in a nilpotent gauge fixing of the enlarged complex (a trivial pair added to the minimal complex, H a Laplacian, (Q^GF)^2 = 0; delta_theory rem:d-gf), where they vanish identically, and compare the test relations; OR prove that the Feynman-gauge composite effects are changes of types (a)-(c) of Thm ip-laws (the hypothesis of delta_theory thm:d-inv)"
+   ],
+   "gates": [
+    "the scheme-independent outputs of the test (T3, the spectrum of D_1, the decisive residuals) agree between the two gauge fixings"
+   ],
+   "resources": "design and tens of minutes; < 1 GB"
+  }
+ ],
+ "comparison_protocol": {
+  "outputs": "each engine writes step2/engine_{a,b}/ip_results.json: {quantity_id: {exact: canonical sympy string in the basis {1, gamma_E, log 2, log 3} (times unit, dim g, pi powers stated), numeric: 30-digit string, method: route used, conventions: {...}, checks: {...}}}",
+  "phase_1": "conventions table (bracket sign, tau, sigma, kappa_B, conjugation phases, the coefficient-of-t2t1 convention and the computed fermion tree sign, frame of each datum) compared before any number",
+  "phase_2": "step2/qa/compare_ip.py compares exact expressions (sympy equality of canonical forms) and numerics to 1e-25; per-class values compared, not only totals; the two engines' censuses compared graph by graph",
+  "phase_3": "every disagreement triggers a third evaluation (direct position-space quadrature at several eps with the stated O(eps log eps) accuracy, or the other routing of the same graph) before any correction; the corrected value is recorded with the reason",
+  "independence": "neither engine reads the other's ip outputs before phase 1 is complete; the methods of IP1-IP3 differ (engine A position-space Beta/Dirichlet, engine B momentum-space whole-graph or several-eps extrapolation)"
+ },
+ "open_items": [
+  "E4n/E5n (Q_1 along S_- (x) W^* on the weight-5/2 operators, E12 machinery) or the Theta_n-image construction in E3: needed to make the T1/T2 radial lines decisive (Prop ip-realpart)",
+  "composite translation components on O_zeta, the 20, Fbar_z, B_z (E11 extended) and composite dilatation remainders on O_zeta, Fbar_z, B_z with the cubic arity-one equation along Delta (Part D extended): universality and f_S predictions",
+  "gauge-fixing hypothesis (IP8)",
+  "absolute paths in 11 step2/engine_a files must be made file-relative before cluster runs",
+  "b_F, b_B of the protected weight-3 descendant (classical, IP0)",
+  "normalisation map to the [BKRS]/[EJSS] Konishi anomaly coefficient (q1_targets T5) for a numerical comparison of c_K (statements only)",
+  "extension: the R-current two-point coefficient (free value, [AFGJ]) to fix m_20p by symmetry",
+  "coupling-direction sign: tp prop:t-laws (F0) states edges x (1 - a); with J = I - I^CT - F the edges scale by 1 + hbar a (Thm ip-laws (c))",
+  "Chapter 8 corrections proposed in step2/qa/ch08_corrections_from_ip.json (not applied to manuscript/)"
+ ]
+}

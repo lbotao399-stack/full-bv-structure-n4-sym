@@ -1,0 +1,89 @@
+% ANCHOR: after_label def:c3-qgf
+\begin{remark}[Physics notation: $Q$ and $Q^{GF}$ in components]
+$Q$ is the free BRST--BV differential and $Q^{GF}$ the gauge-fixing operator. On the components of the physics notation key after Section 1.2, with the slot of the image in square brackets:
+\[
+\begin{aligned}
+Q:&\quad c\mapsto-\partial_mc\ [A_m],\quad A_m\mapsto\tfrac12(\partial^2A_m-\partial_m\partial_nA_n)\ [A^*_m],\quad A_{ij}\mapsto\tfrac12\partial^2A_{ij}\ [A^*_{ij}],\quad A^*_m\mapsto-\partial_mA^*_m\ [c^*],\\
+&\quad \lambda_\alpha{}^i\mapsto-i\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\ [\bar\lambda^{*\dot\alpha i}],\quad \bar\lambda_{\dot\alpha i}\mapsto i\,\partial_m\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\ [\lambda^{*\alpha}{}_i],\\
+Q^{GF}:&\quad A^*_m\mapsto-2A^*_m\ [A_m],\quad A^*_{ij}\mapsto-2A^*_{ij}\ [A_{ij}],\quad A_m\mapsto\partial_mA_m\ [c],\quad c^*\mapsto\partial_mc^*\ [A^*_m],\\
+&\quad \lambda^{*\alpha}{}_i\mapsto-i\,\partial_m\lambda^{*\alpha}{}_i\sigma^m_{\alpha\dot\alpha}\ [\bar\lambda_{\dot\alpha i}],\quad \bar\lambda^{*\dot\alpha i}\mapsto i\,\sigma^m_{\alpha\dot\alpha}\partial_m\bar\lambda^{*\dot\alpha i}\ [\lambda_\alpha{}^i].
+\end{aligned}
+\]
+The arrow $c\mapsto-\partial_mc$ of $Q$ is the linearised gauge transformation, its arrows from $A_m$, $A_{ij}$, $\lambda$ into the antifield slots are the free Maxwell, massless Klein--Gordon and Weyl operators, and in momentum space $\partial_m\mapsto ip_m$. $Q^{GF}$ uses no antighost and no Nakanishi--Lautrup field: the Feynman-gauge condition is the arrow $A_m\mapsto\partial_mA_m$ into the ghost slot.
+\end{remark}
+
+% ANCHOR: end_of_section 3.1
+\begin{remark}[Physics notation: Laplacian, failed axioms, Feynman gauge]
+$H=[Q,Q^{GF}]=-\partial^2$ on every component, $|p|^2$ in momentum space. The two failed axioms in components:
+\[
+(Q^{GF})^2A^*_m=-2\,\partial_mA^*_m\ [c],\qquad (Q^{GF})^2c^*=-2\,\partial_mc^*\ [A_m],\qquad Qc=-\partial_mc=Q^{GF}\big(\tfrac12\partial_mc\ [A^*_m]\big).
+\]
+Remark \ref{rem:c3-feynman}: with $d^*A|_V=-\partial_mA_m$, the propagator is the covariance of $e^{S/\hbar}$ for $S$ completed by $-\tfrac14\int(\partial_mA_m,\partial_nA_n)$; for $\mathfrak{su}(N)$, in the components of the key,
+\[
+\frac S\hbar-\frac1{4\hbar}\int(\partial_mA_m,\partial_nA_n)\supset\int d^4x\Big\{-\tfrac14F^a_{mn}F^a_{mn}-\tfrac12(\partial_mA^a_m)^2\Big\},
+\]
+the Wick image of the Feynman-gauge ($\xi=1$) term $-\tfrac12(\partial^\mu A^a_\mu)^2$, since $\partial^\mu A_\mu=\partial_mA_m$ for $A_0=iA_4$, $\partial_0=i\partial_4$.
+\end{remark}
+
+% ANCHOR: after_label def:c3-K
+\begin{remark}[Physics notation: heat kernel]
+$K_t$ is the Schwinger proper-time (heat) kernel. Its components are those of the BV kernel $K_0$, i.e. $-\delta(x-y)$ times the inverse of the field--antifield pairings $(A,A^*)=(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})$, $(\lambda,\lambda^*)=(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})$, $(c^*,c)$, with
+\[
+\delta(x-y)\ \longrightarrow\ \frac{e^{-|x-y|^2/4t}}{(4\pi t)^2}=\int\frac{d^4p}{(2\pi)^4}\,e^{i(p,x-y)}\,e^{-t|p|^2}.
+\]
+$L_t=(Q^{GF}\otimes1)K_t$ has the components of the propagator of Proposition \ref{prop:c3-P} with $e^{-\varepsilon|p|^2}/|p|^2$ replaced by $e^{-t|p|^2}$, and $K_\infty=0$ because $e^{-t|p|^2}\to0$ for $p\neq0$.
+\end{remark}
+
+% ANCHOR: after_label prop:c3-P
+\begin{remark}[Physics notation: regulated propagators]
+$P(\varepsilon,\infty)$ is the Feynman-gauge propagator with the heat-kernel (Schwinger proper-time) regulator, $\frac{e^{-\varepsilon|p|^2}}{|p|^2}=\int_\varepsilon^\infty e^{-t|p|^2}dt$. Each entry below is multiplied by $e^{-\varepsilon|p|^2}/|p|^2$, the kernel being $\int\frac{d^4p}{(2\pi)^4}e^{i(p,x-y)}(\cdots)$:
+\[
+\begin{gathered}
+\langle A_mA_n\rangle:\ 2(-,-)^{-1}\delta_{mn},\qquad \langle A_{ij}A_{kl}\rangle:\ 4(-,-)^{-1}\varepsilon_{ijkl},\qquad \langle A_{ij}A^{kl}\rangle:\ 4(-,-)^{-1}(\delta_i^k\delta_j^l-\delta_i^l\delta_j^k),\\
+\langle c\,A^*_m\rangle=\langle A^*_m\,c\rangle:\ -(-,-)^{-1}ip_m,\qquad \langle\lambda_\alpha{}^i\,\bar\lambda_{\dot\beta j}\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j,\qquad \langle\bar\lambda_{\dot\alpha i}\,\lambda_\beta{}^j\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\beta\dot\alpha}\delta_i^j,
+\end{gathered}
+\]
+and $\langle\lambda\lambda\rangle=\langle\bar\lambda\bar\lambda\rangle=0$. Every edge carries $\hbar P(\varepsilon,\infty)$ (Proposition \ref{prop:c3-graphs}). For $\mathfrak{su}(N)$, $\hbar(-,-)^{-1}=\tfrac12\sum_a(-igT^a)\otimes(-igT^a)$, and in the components $A_m=-igA^a_mT^a$, $A_I=-igA^a_IT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$ of the key the edges are the canonical Euclidean propagators
+\[
+\hbar\langle A^a_mA^b_n\rangle=\delta^{ab}\delta_{mn}\frac{e^{-\varepsilon|p|^2}}{|p|^2},\qquad \hbar\langle A^a_IA^b_J\rangle=\delta^{ab}\delta_{IJ}\frac{e^{-\varepsilon|p|^2}}{|p|^2},\qquad \hbar\langle\lambda^a_\alpha{}^i\,\bar\lambda^b_{\dot\beta j}\rangle=-\delta^{ab}\delta^i_j\,p_m\sigma^m_{\alpha\dot\beta}\frac{e^{-\varepsilon|p|^2}}{|p|^2}.
+\]
+In position space the scalar factor is the massless propagator $\frac1{4\pi^2|x-y|^2}$ times $1-e^{-|x-y|^2/4\varepsilon}$, with value $\frac1{16\pi^2\varepsilon}$ at $x=y$.
+\end{remark}
+
+% ANCHOR: end_of_section 3.2
+\begin{remark}[Physics notation: the two kernels at $t=\varepsilon$]
+In momentum space $P(\varepsilon,\infty)\star$ is multiplication by $Q^{GF}(p)\,e^{-\varepsilon|p|^2}/|p|^2$, and Proposition \ref{prop:c3-QP} reads, on each component,
+\[
+(QQ^{GF}+Q^{GF}Q)\,\frac{e^{-\varepsilon|p|^2}}{|p|^2}=e^{-\varepsilon|p|^2},\qquad -\partial^2\,\frac{1-e^{-|x-y|^2/4\varepsilon}}{4\pi^2|x-y|^2}=\frac{e^{-|x-y|^2/4\varepsilon}}{(4\pi\varepsilon)^2},\qquad \varepsilon\frac{d}{d\varepsilon}\frac{e^{-\varepsilon|p|^2}}{|p|^2}=-\varepsilon\,e^{-\varepsilon|p|^2}:
+\]
+the regulated propagator inverts the kinetic operator up to the smeared delta function $K_\varepsilon$, and the scale derivative of a graph replaces one propagator $\frac{e^{-\varepsilon|p|^2}}{|p|^2}$ by $-\varepsilon\,e^{-\varepsilon|p|^2}$ with the same numerator (one Schwinger time pinned at $t=\varepsilon$, the edge $-\varepsilon L_\varepsilon$).
+\end{remark}
+
+% ANCHOR: end_of_section 3.3
+\begin{remark}[Physics notation: BV Laplacian, effective interaction, master equation]
+\begin{itemize}
+\item $\Delta_\varepsilon=-\partial_{K_\varepsilon}$ is the BV Laplacian regularised by the heat kernel: it contracts a field with its own antifield ($A_m$ with $A^*_m$, $A_{ij}$ with $A^*_{kl}$, $\lambda_\alpha{}^i$ with $\lambda^{*\beta}{}_j$, $\bar\lambda_{\dot\alpha i}$ with $\bar\lambda^{*\dot\beta j}$, $c$ with $c^*$) through $(4\pi\varepsilon)^{-2}e^{-|x-y|^2/4\varepsilon}$ in place of $\delta(x-y)$; $\{-,-\}_\varepsilon$ is the regularised antibracket, and $\{-,-\}$ of Definition \ref{def:c1-bracket} the BV antibracket.
+\item $W(P(\varepsilon,\infty),J)$ is the sum of the connected Feynman graphs with vertices from $J/\hbar$, internal lines $\hbar P(\varepsilon,\infty)$ and the background fields on the external legs: the effective interaction with all proper times $t\in[\varepsilon,\infty)$ integrated out, one-particle-reducible graphs included.
+\item $d_{CE}$ is the BRST differential of the constant ghosts of $\mathfrak{psl}(4|4)$. Corollary \ref{cor:c3-qme}: the regularised quantum master equation $(d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J=0$ at scale $\varepsilon$ is equivalent to $(d_{CE}+Q)\,W(P(\varepsilon,\infty),J)=0$, invariance of the effective interaction at scale $\infty$ under the free BRST differential and the global superconformal symmetry.
+\end{itemize}
+\end{remark}
+
+% ANCHOR: end_of_section 3.4
+\begin{remark}[Physics notation: zero modes at scale $\infty$]
+$P(0,\infty)\star$ is multiplication by $Q^{GF}(p)/|p|^2$, the massless Feynman-gauge propagator, and $(QQ^{GF}+Q^{GF}Q)\,|p|^{-2}=1$ for $p\neq0$. Moment-free sections have Fourier transforms vanishing to all orders at $p=0$. The classes on compactly supported sections sit at $p=0$:
+\begin{itemize}
+\item a constant ghost $c=X$, a global gauge rotation, with functional $-\int d^4x\,(c^*,X)$;
+\item harmonic polynomial scalars, $\partial^2A_{ij}=0$;
+\item polynomial solutions of the Weyl equations $\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i=0$, $\partial_m\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}=0$;
+\item in the gauge field (Remark \ref{rem:c3-story}), $A_m=(a_nx_n)\,b_m$ with $a_mb_m=0$: $\partial_mA_m=0$, $\partial^2A_m=0$, and the constant field strength $F^0_{mn}=a_mb_n-a_nb_m$.
+\end{itemize}
+\end{remark}
+
+% ANCHOR: end_of_section 3.5
+\begin{remark}[Physics notation: loop expansion and one-loop superdeterminant]
+In Proposition \ref{prop:c3-graphs}, $b_1(\gamma)$ is the number of loops, $1/|\operatorname{Aut}\gamma|$ the symmetry factor, the Taylor components of $J$ are the vertices of the Feynman rules and $P(\varepsilon,\infty)$ is the propagator. Proposition \ref{prop:c3-oneloop} is the one-loop superdeterminant expanded in ring graphs with $n$ insertions and symmetry factor $\frac1{2n}$:
+\[
+\big(e^{\hbar\partial_\phi}e^{J/\hbar}\big)\big|_{e=0}=\exp\Big(-\tfrac12\mathrm{STr}\log\big(1-\text{one-loop operator}\big)\Big)=\mathrm{SDet}\big(1-\text{one-loop operator}\big)^{-1/2}.
+\]
+In the field theory the one-loop operator is the propagator composed with the parity operator and the second variation of the interaction at the background (the fluctuation operator), and $\mathrm{STr}$ is $\int d^4x$ times the trace over colour, Lorentz and $SU(4)$ indices, with the sign $-1$ for loops of the odd fields $\lambda$ and $c$--$A^*$.
+\end{remark}

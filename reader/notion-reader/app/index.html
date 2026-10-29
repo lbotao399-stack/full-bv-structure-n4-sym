@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%227%22 y=%225%22 width=%2218%22 height=%2222%22 rx=%223%22 fill=%22%232d4f7c%22/%3E%3C/svg%3E">
+  <meta name="color-scheme" content="light"><meta name="theme-color" content="#f3f0e9"><title>Notion manuscript · Read and edit</title>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css"><link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/katex/katex.min.js"></script>
+  <script defer src="vendor/markdown-it.min.js"></script><script defer src="vendor/purify.min.js"></script>
+  <script defer src="speech-text.js"></script>
+  <script defer src="speech-references.js"></script>
+  <link rel="stylesheet" href="dictionary.css"><script defer src="dictionary.js"></script>
+  <link rel="stylesheet" href="formatting.css"><script defer src="formatting.js"></script>
+  <link rel="stylesheet" href="direct-edit.css"><script defer src="direct-edit.js"></script>
+  <link rel="stylesheet" href="blocks.css"><script defer src="blocks.js"></script>
+  <link rel="stylesheet" href="images.css"><script defer src="images.js"></script>
+  <link rel="stylesheet" href="narration.css"><script defer src="narration.js"></script>
+  <link rel="stylesheet" href="insertion.css"><script defer src="insertion.js"></script>
+  <link rel="stylesheet" href="selection.css"><script defer src="selection.js"></script>
+  <script defer src="sentence-migration-recovery.js"></script>
+  <script defer src="shared-preparation.js"></script>
+  <script defer src="nearby-narration.js"></script>
+  <link rel="stylesheet" href="semantic-narration.css"><script defer src="semantic-narration.js"></script>
+  <script defer src="voice-transport.js"></script>
+<link rel="stylesheet" href="pagination.css"><script defer src="pagination.js"></script>
+<script defer src="app.js"></script>
+<link rel="stylesheet" href="theme.css"><script defer src="paragraph-flow.js"></script>
+<link rel="stylesheet" href="reader-accessibility.css"><script defer src="reader-accessibility.js"></script>
+</head>
+<body>
+  <a class="skip" href="#manuscript">Skip to manuscript</a>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">∎</span><span>Manuscript<span class="brand-sub">READ · EDIT · LISTEN</span></span></div>
+    <button id="outline-toggle" class="quiet full-only" aria-expanded="false" aria-controls="outline">Outline</button>
+    <div class="document-name" id="document-name">Loading source…</div>
+    <div class="top-actions" hidden>
+      <span id="save-status" class="save-status full-only" role="status">Local draft</span>
+      <a id="source-link" class="quiet" target="_blank" rel="noopener">Notion ↗</a>
+      <a id="full-editor-link" class="quiet floating-only" target="_blank" rel="noopener">Full editor ↗</a>
+      <button id="export-menu-toggle" class="quiet full-only" aria-expanded="false" aria-controls="export-menu">Export</button>
+      <div id="export-menu" class="export-menu" hidden><button id="export-json">Editable document + colors</button><button id="export-markdown">Source Markdown</button><button id="print-document">Print / Save PDF</button><button id="reload-saved">Reload saved copy</button></div>
+    </div>
+  </header>
+  <aside id="outline" class="outline full-only" aria-label="Document outline" hidden>
+    <label for="outline-search">Find a passage</label><input id="outline-search" placeholder="Search this manuscript" type="search">
+    <nav id="outline-items"></nav>
+    <div class="outline-footer">A local editable copy.<br>Changes stay in this document.</div>
+  </aside>
+  <main id="workspace">
+    <div class="document-toolbar full-only" hidden>
+      <span class="document-label">SOURCE MANUSCRIPT</span>
+      <div class="toolbar-actions"><button id="undo" class="quiet" disabled title="Undo · ⌘/Ctrl Z">Undo</button><button id="redo" class="quiet" disabled title="Redo · ⌘/Ctrl Shift Z">Redo</button><span class="divider"></span><button id="add-text" class="quiet">+ Text</button><button id="add-equation" class="quiet">+ Equation</button></div>
+    </div>
+    <nav class="reader-pagination page-navigation page-navigation-top full-only" aria-label="Chapter navigation (top)">
+      <button type="button" class="quiet page-step" data-page-prev aria-label="Previous chapter">← Previous</button>
+      <select data-page-select aria-label="Choose chapter"><option>Chapters</option></select>
+      <button type="button" class="quiet page-step" data-page-next aria-label="Next chapter">Next →</button>
+      <span class="page-status" data-page-status role="status" aria-live="polite"></span>
+    </nav>
+    <div id="loading" class="loading">Opening the Notion manuscript…</div>
+    <article class="paper" id="manuscript" tabindex="-1" aria-label="Editable manuscript">
+      <header class="paper-heading"><p class="eyebrow">SOURCE READING</p><h1 id="document-title"></h1><p class="paper-subtitle">↑/↓ moves across blocks · click between blocks to insert · /math for equations · /callout or /quote to group · Tab moves a block inside, Shift+Tab moves it out.</p></header>
+      <div id="blocks"></div>
+      <nav class="reader-pagination page-navigation page-navigation-bottom full-only" aria-label="Chapter navigation (bottom)">
+      <button type="button" class="quiet page-step" data-page-prev aria-label="Previous chapter">← Previous</button>
+      <select data-page-select aria-label="Choose chapter"><option>Chapters</option></select>
+      <button type="button" class="quiet page-step" data-page-next aria-label="Next chapter">Next →</button>
+      <span class="page-status" data-page-status role="status" aria-live="polite"></span>
+    </nav>
+      <footer class="paper-footer full-only">Source order and notation preserved · Local editable copy</footer>
+    </article>
+  </main>
+  <aside id="editor" class="editor full-only" aria-label="Block editor" hidden>
+    <header><div><span class="eyebrow">LIVE EDITOR</span><h2 id="editor-title">Edit passage</h2></div><button id="editor-close" class="icon" aria-label="Close editor">×</button></header>
+    <div class="editor-scroll">
+      <label for="block-type">Block type</label><select id="block-type"><option value="paragraph">Text</option><option value="heading">Heading</option><option value="equation">Display equation</option><option value="callout">Callout</option><option value="table">Table</option><option value="image">Image</option></select>
+      <div id="heading-level-row" hidden><label for="heading-level">Heading level</label><select id="heading-level"><option value="1">Heading 1</option><option value="2">Heading 2</option><option value="3">Heading 3</option></select></div>
+      <div id="source-tools" class="source-tools" role="toolbar" aria-label="Text formatting"><button type="button" data-source-tool="bold" aria-label="Bold selected source text" title="Bold · ⌘/Ctrl B"><b>B</b></button><button type="button" data-source-tool="italic" aria-label="Italic selected source text" title="Italic · ⌘/Ctrl I"><i>I</i></button><button type="button" data-source-tool="underline" aria-label="Underline selected source text" title="Underline · ⌘/Ctrl U"><u>U</u></button><span></span><button type="button" data-source-tool="math" title="Wrap selection as inline math">$x$</button><button type="button" data-source-tool="equation" title="Wrap selection as a display equation">Equation</button><button type="button" data-source-tool="link" title="Insert link">Link</button></div>
+      <label id="source-label" for="block-source">Markdown and formulas</label><textarea id="block-source" spellcheck="false" aria-describedby="editing-help"></textarea>
+      <p id="editing-help" class="help">Use $…$ for inline math and $$…$$ for a displayed equation. The page updates as you type.</p>
+      <div id="image-caption-row" hidden><label for="image-caption">Image caption</label><textarea id="image-caption" spellcheck="false"></textarea></div>
+      <details class="speech-settings" open><summary>Spoken reading</summary><label for="speech-override">Optional custom wording</label><textarea id="speech-override" placeholder="Leave empty for formula-aware reading." spellcheck="true"></textarea><p class="help">Change how this passage is pronounced while keeping its displayed formulas.</p><div id="generated-speech" class="generated-speech" hidden></div></details>
+      <div class="editor-actions"><button id="read-edited" class="primary">Read this passage</button><a id="block-source-link" class="quiet" target="_blank" rel="noopener">Open in Notion ↗</a></div>
+      <div class="block-structure"><button id="move-up" class="quiet">Move up</button><button id="move-down" class="quiet">Move down</button><button id="duplicate-block" class="quiet">Duplicate</button><button id="delete-block" class="quiet danger">Delete</button></div>
+      <p class="help editor-note">Edits save locally. Colors keep audio unchanged. Wording changes are used on the next reading.</p>
+    </div>
+  </aside>
+  <footer class="player" aria-label="Narration controls">
+    <audio id="audio" preload="metadata"></audio>
+    <div class="controls-hint"><span>Copy a passage in Codex Notion, then Read copied selection.</span><button id="paste-selection-toggle" class="quiet" aria-expanded="false" aria-controls="paste-selection-panel">Paste passage</button></div>
+    <section id="paste-selection-panel" class="paste-selection-panel" aria-label="Paste a passage to read" hidden>
+      <header><label for="paste-selection-text">Paste a passage</label><button id="paste-selection-close" class="icon" aria-label="Close pasted passage">×</button></header>
+      <textarea id="paste-selection-text" placeholder="Paste copied text or formulas here." spellcheck="false"></textarea>
+      <div class="paste-selection-actions"><span>Reads this selection, then stops.</span><button id="read-pasted-selection" class="primary">Read pasted passage</button></div>
+    </section>
+    <div class="caption-row"><span class="caption-badge">READING</span><p id="caption" aria-live="off">Choose a passage and press Play.</p></div>
+    <div class="player-row">
+      <div class="transport"><button id="previous" class="icon" aria-label="Previous passage">‹</button><button id="play" class="play" aria-label="Play narration">▶</button><button id="next" class="icon" aria-label="Next passage">›</button></div>
+      <button id="position" class="position" title="Show reading position" aria-label="Show reading position">—</button>
+      <span id="time" class="time">0:00 / 0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Narration position" disabled>
+      <select id="speed" aria-label="Playback speed" title="Playback speed · saved automatically"><option value="0.5">0.5×</option><option value="0.6">0.6×</option><option value="0.7">0.7×</option><option value="0.75">0.75×</option><option value="0.8">0.8×</option><option value="0.85">0.85×</option><option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.1">1.1×</option><option value="1.15">1.15×</option><option value="1.2">1.2×</option><option value="1.25">1.25×</option><option value="1.3">1.3×</option><option value="1.4">1.4×</option><option value="1.5">1.5×</option><option value="1.6">1.6×</option><option value="1.75">1.75×</option><option value="2">2×</option><option value="2.25">2.25×</option><option value="2.5">2.5×</option><option value="2.75">2.75×</option><option value="3">3×</option></select>
+      <button id="follow" class="quiet full-only" aria-pressed="false">Follow off</button><button id="edit-selected" class="quiet full-only">Edit passage</button>
+    </div>
+    <div class="player-status"><span id="play-status" role="status">Original language · Formula-aware narration</span><span class="keyboard-help full-only">Click to write · /math equation · ⌘⇧E inline math · ⌘⇧H highlight</span></div>
+  </footer>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>

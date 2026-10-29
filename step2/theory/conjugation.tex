@@ -1,0 +1,490 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array,booktabs,longtable}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\allowdisplaybreaks
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.2}
+
+\title{The radial conjugation of $\mathfrak{psl}(4|4)$, the Osterwalder--Schrader reflection\\ and the conformal map between them\\[3pt]
+\large Step 2, directive R5(a): derivation in the realisation of Chapter 2}
+\author{}
+\date{2026-10-28}
+
+\begin{document}
+\maketitle
+
+\noindent Checks: \texttt{step2/theory/conjugation\_checks.py}, results \texttt{conjugation\_checks.json} (198 checks, all passed); check labels S1--S11 refer to its sections. Sources: [ESW], [SW], [C07], [CG2] and the manuscript chapters; two-component forms through \texttt{step2/notation/dictionary.json} (Euclidean $\sigma^m=(\vec\sigma,i)$, $\bar\sigma^m=(-\vec\sigma,i)$, $\varepsilon^{12}=+1$, components $\xi_\alpha{}^i,\bar\xi_{\dot\alpha i}$ of an element of $\Sigma$ and $\eta^\alpha{}_i,\bar\eta^{\dot\alpha i}$ of an element of $\Sigma^*$, formulas (R1)--(R4), (P1), (K1) of the dictionary).
+
+\textbf{Names.} $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ are spinor parameters as in [ch02, def:c2-odd]; $Q$ without subscript is the linear BV differential. The one-loop components $Q_1,S_1,D_1,K_1,P_1$ of directive R3/R4 appear only in Section \ref{sec:oneloop}, always called ``the one-loop component along \dots''. $E$ is the Euler field, $\Delta=2E$ the dilatation of [ch02, rem:c2-dilatation], $P_{v_1}$ the translation $x\mapsto v_1$, $K_{v_1}$ the special conformal field $x\mapsto(x,x)v_1-2(v_1,x)x$, $I(x)=x/(x,x)$ the inversion, $r_n(x)=x-2(n,x)n$ the reflection in the hyperplane orthogonal to a unit vector $n\in V_{\mathbb R}$. For a complex vector, vector field, spinor, element of $\mathfrak g$ or of $\mathfrak{psl}(4|4)$, an overline denotes complex conjugation with respect to $V_{\mathbb R}\oplus W_{\mathbb R}^\perp$, the compact real form of $\mathfrak g$, and (for spinors) the map of Lemma \ref{lem:cc}; in two-component formulas the overline is placed over a component, e.g. $\overline{\xi_\alpha{}^i}$, and $\bar\xi_{\dot\alpha i}$ remains the name of a dotted component.
+
+%==========================================================================================
+\section{Complex conjugation of spinors}
+
+\begin{lemma}[The conjugation of $\Sigma\oplus\Sigma^*$]
+\label{lem:cc}
+There is a unique antilinear map $Q\mapsto\overline Q$ of $\Sigma\oplus\Sigma^*$ with
+\begin{itemize}
+\item[(i)] $\overline{\Sigma}=\Sigma^*$, $\overline{\Sigma^*}=\Sigma$, $\overline{\overline Q}=Q$;
+\item[(ii)] $\overline{\rho(v)Q}=\rho(\bar v)\overline Q$ for every $v\in V_{10}$;
+\item[(iii)] $(Q,\overline Q)>0$ for every nonzero $Q\in\Sigma$.
+\end{itemize}
+It satisfies, for $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ and $Q_3,Q_4$ both in $\Sigma$ or both in $\Sigma^*$,
+\[
+(\overline{Q_2},\overline{Q_1})=\overline{(Q_1,Q_2)},\qquad \Gamma(\overline{Q_3},\overline{Q_4})=\overline{\Gamma(Q_3,Q_4)},\qquad (\overline{Q_2},Q_2)>0\ \ (Q_2\neq0),
+\]
+$\overline{\rho(q(\omega))Q}=\rho(q(\bar\omega))\overline Q$ for every two-form $\omega$, and
+\[
+\overline{S_+\otimes W}=S_+\otimes W^*,\qquad \overline{S_-\otimes W^*}=S_-\otimes W .
+\]
+In the realisation of Chapter 2 ($\rho(e_M)|_\Sigma$, $\rho(e_M)|_{\Sigma^*}$ real symmetric for $M\le8$, $\pm i$ for $M=9$, pairing $s^Tt$) the map is componentwise complex conjugation.
+\end{lemma}
+
+\begin{proof}
+Existence: in the realisation, $\rho(e_M)|_{\Sigma^*}=\overline{\rho(e_M)|_\Sigma}$ for all ten $M$ (equal real matrices for $M\le8$, $\overline{i}=-i$ for $M=9$), so componentwise conjugation satisfies (ii) on the real basis $e_M$ and, by antilinearity, for all $v$; (i) is clear and $(Q,\overline Q)=\sum_a|Q_a|^2$. Uniqueness: two such maps differ by a linear $\mathrm{Spin}(10)$-equivariant automorphism of the irreducible module $\Sigma$ (and of $\Sigma^*$), i.e. by scalars $a$ on $\Sigma$ and $b$ on $\Sigma^*$; (i) forces $a\bar b=1$ and (iii) forces $a>0$, and then $(\overline{Q_2},Q_2)>0$ forces $b>0$, so $a=b=1$ (S11, N3: the equivariant antilinear maps $\Sigma\leftrightarrow\Sigma^*$ form a one-dimensional space). The pairing identity is $\overline{Q_2}^T\overline{Q_1}=\overline{Q_1^TQ_2}$; with (ii) it gives $(v,\Gamma(\overline{Q_3},\overline{Q_4}))=(\rho(v)\overline{Q_3},\overline{Q_4})=\overline{(\rho(\bar v)Q_3,Q_4)}=\overline{(\bar v,\Gamma(Q_3,Q_4))}$. The two-form statement follows from (ii) and $q(v_1\wedge v_2)=v_1v_2-(v_1,v_2)$. For the chiralities: $\rho(v_1v_2v_3v_4)$ with a real oriented orthonormal basis commutes with the conjugation by (ii), so it maps the $+1$ eigenspace on $\Sigma$, $S_+\otimes W$, to the $+1$ eigenspace on $\Sigma^*$, $S_+\otimes W^*$ [ch01, prop:c1-chirality].
+\end{proof}
+
+\begin{proposition}[Two-component form]
+\label{prop:cc2}
+For $\xi=(\xi_\alpha{}^i,\bar\xi_{\dot\alpha i})\in\Sigma$ and $\eta=(\eta^\alpha{}_i,\bar\eta^{\dot\alpha i})\in\Sigma^*$,
+\[
+\overline\xi=\big(\eta^\alpha{}_i=\overline{\xi_\alpha{}^i},\ \ \bar\eta^{\dot\alpha i}=-\overline{\bar\xi_{\dot\alpha i}}\big)\in\Sigma^*,\qquad
+\overline\eta=\big(\xi_\alpha{}^i=\overline{\eta^\alpha{}_i},\ \ \bar\xi_{\dot\alpha i}=-\overline{\bar\eta^{\dot\alpha i}}\big)\in\Sigma,
+\]
+and $(\xi,\overline\xi)=\sum|\xi_\alpha{}^i|^2+\sum|\bar\xi_{\dot\alpha i}|^2$ by (P1). The minus sign on the dotted components is the minus sign of (P1). The map intertwines the dictionary realisation with the classical one through the intertwiner of [dictionary, prop:engines] (S11, N1--N4).
+\end{proposition}
+
+\begin{proof}
+(ii) of Lemma \ref{lem:cc} is checked with (R1)--(R4) on the ten real basis vectors (in the dictionary realisation $\sigma^4=i$ and the 't~Hooft blocks are complex, so this is not componentwise conjugation of all components); (i) and (iii) are immediate. By uniqueness this is the map of Lemma \ref{lem:cc}.
+\end{proof}
+
+%==========================================================================================
+\section{The radial conjugation of $\mathfrak{psl}(4|4)$}
+
+\begin{definition}[Radial conjugation]
+\label{def:dag}
+For an even element $v$ (a conformal Killing field of $V$ plus an element of $\mathfrak{so}(W_{\mathbb R}^\perp)$, [ch02, def:c2-even]) and an odd element, realised as the conformal Killing spinor $\epsilon(x)=Q_1+\rho(x)Q_2$ [ch02, def:c2-odd], put
+\[
+v^\dagger:=-I_*\bar v,\qquad \epsilon^\dagger(x):=-\rho(x)\,\overline{\epsilon(I(x))},\quad\text{i.e.}\quad (Q_1+\rho(x)Q_2)^\dagger=-\overline{Q_2}-\rho(x)\overline{Q_1},
+\]
+where $I_*$ is the pushforward by $I$ (acting on the $V$-part; $I$ is the identity on $W^\perp_{\mathbb R}$) and $\bar v$ has complex conjugated coefficients.
+\end{definition}
+
+The second form follows from $\rho(x)\rho(I(x))=1$ and $\overline{\rho(I(x))Q_2}=\rho(I(x))\overline{Q_2}$ for real $x$.
+
+\begin{proposition}[Named generators]
+\label{prop:named}
+For $v_1\in V$, $\omega$ a rotation of $V$, $r\in\mathfrak{so}(W_{\mathbb R}^\perp)$, $Q_1\in\Sigma$, $Q_2\in\Sigma^*$:
+\[
+P_{v_1}^\dagger=-K_{\bar v_1},\quad K_{v_1}^\dagger=-P_{\bar v_1},\quad \Delta^\dagger=\Delta,\quad \omega^\dagger=-\bar\omega,\quad r^\dagger=-\bar r,\quad Q_1^\dagger=-\overline{Q_1}\in\Sigma^*,\quad Q_2^\dagger=-\overline{Q_2}\in\Sigma .
+\]
+Hence $(S_+\otimes W)^\dagger=S_+\otimes W^*$, $(S_-\otimes W^*)^\dagger=S_-\otimes W$, translations and special conformal fields are exchanged, and the dilatation, $\mathfrak{so}(V)$ and $\mathfrak{so}(W_{\mathbb R}^\perp)$ are preserved: in the names of [SW, (8)], $Q^\dagger\in S$, $\bar Q^\dagger\in\bar S$, $P^\dagger\in K$ (S1, A6, A8).
+\end{proposition}
+
+\begin{proof}
+\[
+(I_*u)(x)=dI_{I(x)}u(I(x))=(x,x)\,u(I(x))-2(u(I(x)),x)\,x,\qquad dI_y=(y,y)^{-1}\big(1-2y(y,-)/(y,y)\big).
+\] For $u=v_1$ constant this is $(x,x)v_1-2(v_1,x)x$, so $I_*P_{v_1}=K_{v_1}$ and, $I$ being an involution, $I_*K_{v_1}=P_{v_1}$. For a linear field $u(x)=\omega x$ with $\omega$ antisymmetric, $(I_*u)(x)=\omega x-2(\omega x,x)x/(x,x)=\omega x$; for $u=2E$, $(I_*u)(x)=2x-4x=-2x$. The odd statements are Definition \ref{def:dag} at $Q_2=0$ or $Q_1=0$, and the chiralities are Lemma \ref{lem:cc}.
+\end{proof}
+
+\begin{theorem}[Anti-automorphism and involution]
+\label{thm:anti}
+For all $X,Y\in\mathfrak{psl}(4|4)$,
+\[
+(X^\dagger)^\dagger=X,\qquad [X,Y]^\dagger=[Y^\dagger,X^\dagger].
+\]
+Equivalently, $X^\ddagger:=X^\dagger$ for even $X$ and $X^\ddagger:=iX^\dagger$ for odd $X$ satisfies $(X^\ddagger)^\ddagger=X$ and $[X,Y]^\ddagger=(-1)^{|X||Y|}[Y^\ddagger,X^\ddagger]$; the antilinear automorphism $X\mapsto-X^\ddagger$ has as fixed points the real form whose even part is spanned by the real rotations, $i\Delta$, $P_{v_1}+K_{v_1}$, $i(P_{v_1}-K_{v_1})$ ($v_1$ real), the compact $\mathfrak{so}(W_{\mathbb R}^\perp)$, and whose odd part is $\{\epsilon:\epsilon=-i\epsilon^\dagger\}$; its maximal compact even subalgebra is $\mathfrak{so}(4)\oplus\mathbb R\,i\Delta\oplus\mathfrak{so}(6)$, i.e. the real form $\mathfrak{psu}(2,2|4)$ [SW, (7)].
+\end{theorem}
+
+\begin{proof}
+Write $T(\epsilon)(x):=\rho(x)\overline{\epsilon(I(x))}$ for $\Sigma$-valued functions; $T^2=1$ since $\rho(x)\rho(I(x))=1$, and $\epsilon^\dagger=-T\epsilon$.
+
+\emph{Involution.} $(v^\dagger)^\dagger=I_*I_*v=v$; $(\epsilon^\dagger)^\dagger=T^2\epsilon=\epsilon$.
+
+\emph{Even--even.} $I_*$ and complex conjugation are Lie algebra automorphisms of vector fields, so $[v,w]^\dagger=-[I_*\bar v,I_*\bar w]=-[v^\dagger,w^\dagger]=[w^\dagger,v^\dagger]$.
+
+\emph{Even--odd.} Write $[v,\epsilon]=\mathcal L_v\epsilon:=v(\epsilon)+\frac14\rho(d(v,-))\epsilon-\frac18(\operatorname{div}v)\epsilon$ [ch02, eq:c2-evenodd]. Claim: $T\mathcal L_v=\mathcal L_{I_*\bar v}T$. For a translation $a$ and $\psi:=\overline{\epsilon}$: $T(\mathcal L_a\epsilon)(x)=\rho(x)(\bar a\cdot\partial\psi)(I(x))$. On the other side, by the proof of [ch02, prop:c2-special], $\frac14\rho(d(K_b,-))-\frac18\operatorname{div}K_b=\rho(x)\rho(b)$, and $K_b(\rho(x)\psi(I(x)))=\rho(K_b(x))\psi(I(x))+\rho(x)(b\cdot\partial\psi)(I(x))$ because $dI_x(K_b(x))=(I_*K_b)(I(x))=b$; with $\rho(x)\rho(b)\rho(x)=2(b,x)\rho(x)-(x,x)\rho(b)=-\rho(K_b(x))$,
+\[
+\mathcal L_{K_b}(T\epsilon)(x)=\rho(x)(b\cdot\partial\psi)(I(x)),
+\]
+which equals $T(\mathcal L_a\epsilon)$ for $b=\bar a$, i.e. $T\mathcal L_{P_a}=\mathcal L_{K_{\bar a}}T=\mathcal L_{I_*\bar P_a}T$. Conjugating by $T$ ($T^2=1$) gives $T\mathcal L_{K_a}=\mathcal L_{P_{\bar a}}T=\mathcal L_{I_*\bar K_a}T$. For $v=2E$: $\mathcal L_{2E}=2E-1$ on $\Sigma$-valued functions, $E(\psi\circ I)=-(E\psi)\circ I$, and $\mathcal L_{-2E}(\rho(x)\psi(I(x)))=-2\rho(x)\psi(I(x))+2\rho(x)(E\psi)(I(x))+\rho(x)\psi(I(x))=\rho(x)\big((2E-1)\psi\big)(I(x))$. For a real rotation $\omega$: $I$ commutes with $\omega$, the spin part $\frac14\rho(d(\omega x,-))$ is real, and $[\frac14\rho(d(\omega x,-)),\rho(x)]=-\rho(\omega x)$ (from $\frac14\rho(d(\omega x,-))=-\frac14\sum_{\mu\nu}\omega_{\mu\nu}\rho(e_\mu)\rho(e_\nu)$ and the Clifford relation), which cancels the term $\rho(\omega x)\psi(I(x))$ from differentiating $\rho(x)$, so $T$ commutes with $\mathcal L_\omega$; for $r\in\mathfrak{so}(W_{\mathbb R}^\perp)$ real, $\frac14\rho(d(v,-))$ is a combination of $\rho(w)\rho(w')$ with $w,w'\perp V$, which commute with $\rho(x)$, and $I$ does not act on $W_{\mathbb R}^\perp$. Antilinearity extends the claim to complex coefficients. Hence $[v,\epsilon]^\dagger=-T\mathcal L_v\epsilon=\mathcal L_{I_*\bar v}(-T\epsilon)=-\mathcal L_{v^\dagger}\epsilon^\dagger=-[v^\dagger,\epsilon^\dagger]=[\epsilon^\dagger,v^\dagger]$.
+
+\emph{Odd--odd.} For $s_1,s_2\in\Sigma^*$ and $u\in V_{10}$, $(u,\Gamma(\rho(x)s_1,\rho(x)s_2))=(\rho(x)\rho(u)\rho(x)s_1,s_2)$ and $\rho(x)\rho(u)\rho(x)=2(u,x)\rho(x)-(x,x)\rho(u)$, so
+\[
+\Gamma(\rho(x)s_1,\rho(x)s_2)=-(x,x)\,(r_{x/|x|}\oplus1)\,\Gamma(s_1,s_2),
+\]
+with $r_{x/|x|}$ the reflection of $V$ orthogonal to $x$. Since $(I_*u)(x)=(x,x)\,r_{x/|x|}\,u(I(x))$ for a vector field $u$ on $V$, Lemma \ref{lem:cc} gives
+\[
+\Gamma\big(\epsilon_2^\dagger(x),\epsilon_1^\dagger(x)\big)\big|_V=-(x,x)\,r_{x/|x|}\,\overline{\Gamma(\epsilon_2,\epsilon_1)(I(x))}\big|_V=-\big(I_*\overline{\Gamma(\epsilon_1,\epsilon_2)|_V}\big)(x)=\big(\Gamma(\epsilon_1,\epsilon_2)|_V\big)^\dagger .
+\]
+For the rotation of $W_{\mathbb R}^\perp$ [ch02, def:c2-bracket] of $[\epsilon_2^\dagger,\epsilon_1^\dagger]$, with $\epsilon_1=Q_1+\rho(x)Q_2$, $\epsilon_2=Q_3+\rho(x)Q_4$, $\epsilon_2^\dagger=-\overline{Q_4}-\rho(x)\overline{Q_3}$, $\epsilon_1^\dagger=-\overline{Q_2}-\rho(x)\overline{Q_1}$ and real $w,w'$,
+\[
+\begin{aligned}
+(w,r'w')&=(\rho(q(w\wedge w'))\overline{Q_4},\overline{Q_1})+(\rho(q(w\wedge w'))\overline{Q_2},\overline{Q_3})\\
+&=-\overline{(\rho(q(w\wedge w'))Q_1,Q_4)}-\overline{(\rho(q(w\wedge w'))Q_3,Q_2)}=-\overline{(w,rw')},
+\end{aligned}
+\]
+using $(\overline{a},\overline{b})=\overline{(b,a)}$ and $(\rho(w)\rho(w')a,b)=(a,\rho(w')\rho(w)b)=-(a,\rho(q(w\wedge w'))b)$ for $w\perp w'$; so $r'=-\bar r=r^\dagger$. Both parts together give $[\epsilon_1,\epsilon_2]^\dagger=[\epsilon_2^\dagger,\epsilon_1^\dagger]$; the two factors $-1$ of $\epsilon_1^\dagger,\epsilon_2^\dagger$ enter as their product, so the identity holds for every odd phase $c$ with $c^2=1$ in place of $-1$, and fails for $c=i$.
+
+\emph{Graded form and real form.} For odd $X,Y$: $[X,Y]^\ddagger=[Y^\dagger,X^\dagger]=-[iY^\dagger,iX^\dagger]=(-1)^{|X||Y|}[Y^\ddagger,X^\ddagger]$; for $X$ even, $Y$ odd: $[X,Y]^\ddagger=i[Y^\dagger,X^\dagger]=[Y^\ddagger,X^\ddagger]$; $(iX^\dagger)^\ddagger=i\cdot\overline{i}\,X=X$. Then $X\mapsto-X^\ddagger$ is an antilinear involutive automorphism. On the even part its fixed points satisfy $X^\dagger=-X$: real $\omega$, $i\Delta$, $P_{v_1}+K_{v_1}$ and $i(P_{v_1}-K_{v_1})$ for real $v_1$ (by Proposition \ref{prop:named}), and real $r$. $\mathrm{ad}_{i\Delta}$ has eigenvalues $\pm2i$, $\pm i$, $0$, rotations are compact, $P_{v_1}+K_{v_1}$ generates the flow $\dot s=1-s^2$ along $v_1$ (hyperbolic) and $P_{v_1}-K_{v_1}$ the flow $\dot s=1+s^2$ (elliptic, Section \ref{sec:C}), so $i(P_{v_1}-K_{v_1})$ is noncompact: maximal compact part $\mathfrak{so}(4)\oplus\mathbb R\oplus\mathfrak{so}(6)$, dimension $7+15$, as for $\mathfrak{su}(2,2)\oplus\mathfrak{su}(4)$. Exact verification on all $62^2$ ordered basis pairs, with the controls $c=i$ and $v\mapsto+I_*\bar v$ failing: S1, A1--A5.
+\end{proof}
+
+\begin{proposition}[Uniqueness and the sign]
+\label{prop:sign}
+\begin{itemize}
+\item[(i)] The antilinear involutive anti-automorphisms of $\mathfrak{psl}(4|4)$ that coincide with $v\mapsto-I_*\bar v$ on the even part are exactly $X\mapsto e^{tB}\big((\pm1)^{|X|}X^\dagger\big)$, $t\in\mathbb R$, where $B$ is the derivation equal to $+1$ on $S_+\otimes W$ and $S_-\otimes W$, $-1$ on $S_-\otimes W^*$ and $S_+\otimes W^*$, $0$ on the even part (S3, C5, C6).
+\item[(ii)] For $Q_1\in\Sigma$ and $Q_2\in\Sigma^*$ the dilatation part of $[Q_1,Q_1^\dagger]$ and of $[Q_2,Q_2^\dagger]$ is $-\tfrac12(Q_1,\overline{Q_1})\,\Delta$, resp. $-\tfrac12(\overline{Q_2},Q_2)\,\Delta$ (S1, A9).
+\item[(iii)] Let a representation of $\mathfrak{psl}(4|4)$ by operators on an inner product space satisfy $\rho(X^\natural)=\rho(X)^{\rm adj}$ for one of the maps of (i), $X^\natural$, and let $\rho(\Delta)=-2D$ with $D$ a self-adjoint operator. If a nonzero vector $u$ annihilated by $\rho(\Sigma^*)$ and invariant under $\mathfrak{so}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)$ satisfies $Du=d\,u$ with $d>0$, then the sign in (i) is $+$, i.e. $X^\natural=e^{tB}X^\dagger$. The parameter $t$ is not fixed by positivity; $t=0$ is fixed by the realisation on fields (Theorem \ref{thm:fields}).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) The composite of two such maps is a linear automorphism equal to the identity on the even part, hence an endomorphism of the even-module $\mathfrak g_{\bar1}$. In the supermatrix form [SW, (17)] the odd part is the sum of two inequivalent irreducible even-modules, the blocks $(1,3),(2,3)$ (that is $S_+\otimes W^*\oplus S_-\otimes W^*$) and $(3,1),(3,2)$ ($S_+\otimes W\oplus S_-\otimes W$), with vanishing brackets inside each; the automorphism is $a$ on the first and $b$ on the second, and compatibility with the brackets between them gives $ab=1$. If $\dagger'=\alpha\circ\dagger$ with $\alpha=a$ on the first summand and $a^{-1}$ on the second, then, $\dagger$ exchanging the two summands antilinearly, $\dagger'\circ\dagger'=\alpha\circ(\dagger\alpha\dagger)$ is $a/\bar a$ on the first summand, so the involution property gives $a\in\mathbb R^\times$; $a=\pm e^{-t}$ is $e^{tB}(\pm1)^{|X|}$ ($B=-1$ on the first summand).
+(ii) [ch02, prop:c2-special]: the dilatation part of $[Q_1,Q_2]$ is $\frac12(Q_1,Q_2)\Delta$ for $Q_1\in\Sigma$, $Q_2\in\Sigma^*$; insert $Q_2=Q_1^\dagger=-\overline{Q_1}$. The odd bracket is symmetric, which gives the second statement.
+(iii) With $X^\natural=\pm e^{tB}X^\dagger$ and $Q\in S_+\otimes W$ (the other summands are analogous), $Q^\natural=\mp e^{-t}\overline Q\in\Sigma^*$, so $\rho(Q^\natural)u=0$ and
+\[
+\|\rho(Q)u\|^2=\langle u,\rho(Q^\natural)\rho(Q)u\rangle=\langle u,\rho([Q^\natural,Q])u\rangle=\pm e^{-t}\big(-\tfrac12(Q,\overline Q)\big)(-2d)\|u\|^2=\pm e^{-t}(Q,\overline Q)\,d\,\|u\|^2,
+\]
+the rotation parts acting trivially on $u$. A nonzero vector with $\pm<0$ would have negative norm unless $\rho(Q)u=0$ for all $Q$; since $[Q,Q^\natural]$ has nonzero $\Delta$-part, $\rho(Q)u=0$ for all $Q\in\Sigma$ would force $d=0$. Hence the sign $+$.
+\end{proof}
+
+\begin{remark}[Why $\rho(\Delta)=-2D$]
+With the vector-field bracket of [ch02, def:c2-even], the derivations $\{S^{(1)}(x),-\}$ of observables satisfy, for all parities,
+\[
+\big[\{S^{(1)}(x),-\},\{S^{(1)}(y),-\}\big]=-\{S^{(1)}([x,y]),-\}-\big\{\{S,S^{(2)}(x,y)\},-\big\}:
+\] this is the arity-two component [ch02, lem:c2-components] combined with the Jacobi identity of the bracket of [ch01, def:c1-bracket] in the form $\{f,\{g,h\}\}+\{g,\{f,h\}\}=-\{\{f,g\},h\}$ for even $f,g$ (S10, E5, exact). So $\rho(x):=-\{S^{(1)}(x),-\}$ is a representation. On observables supported in the open unit ball, $\{S^{(1)}(\Delta),-\}$, which moves an observable towards the unit sphere with its Weyl weight, acts as twice the radial Hamiltonian $D\ge0$ of the reflection-positive form of Section \ref{sec:fields} (S8, R5), so $\rho(\Delta)=-2D$. The vacuum-like vectors $u$ of (iii) are the primary scalar singlets, e.g. the free scalar bilinear $\int\omega(A|_{W^\perp_{\mathbb R}},A|_{W^\perp_{\mathbb R}})$ with $d=2$.
+\end{remark}
+
+\begin{proposition}[Two-component form of the radial conjugation]
+\label{prop:dag2}
+With the parameters of the dictionary,
+\[
+(\xi^\dagger)^\alpha{}_i=-\overline{\xi_\alpha{}^i},\quad (\xi^\dagger)^{\dot\alpha i}=\overline{\bar\xi_{\dot\alpha i}},\qquad (\eta^\dagger)_\alpha{}^i=-\overline{\eta^\alpha{}_i},\quad (\eta^\dagger)_{\dot\alpha i}=\overline{\bar\eta^{\dot\alpha i}},
+\]
+i.e. for the basis elements with one unit component (the generators of [SW, (8)] in the blocks of [dictionary, parameters])
+\[
+(Q^i_\alpha)^\dagger=-S^\alpha{}_i,\qquad (\bar Q_{\dot\alpha i})^\dagger=\bar S^{\dot\alpha i},\qquad (S^\alpha{}_i)^\dagger=-Q^i_\alpha,\qquad (\bar S^{\dot\alpha i})^\dagger=\bar Q_{\dot\alpha i}.
+\]
+On the conformal Killing spinor (K1), $\epsilon_\alpha{}^i(x)=\xi_\alpha{}^i-ix_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}$, $\bar\epsilon_{\dot\alpha i}(x)=\bar\xi_{\dot\alpha i}+ix_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}$, the conjugate has parameters $\xi'_\alpha{}^i=-\overline{\eta^\alpha{}_i}$, $\bar\xi'_{\dot\alpha i}=\overline{\bar\eta^{\dot\alpha i}}$, $\eta'^\alpha{}_i=-\overline{\xi_\alpha{}^i}$, $\bar\eta'^{\dot\alpha i}=\overline{\bar\xi_{\dot\alpha i}}$. For the even generators of [dictionary, def:gen]: $P_b^\dagger=-K_{\bar b}$ ($b^m$ the components, $K_b$: $v^m=x^2b^m-2(b\cdot x)x^m$), $\Delta^\dagger=\Delta$, $\omega_{mn}^\dagger=-\overline{\omega_{mn}}$, and on $r^i{}_j=\tfrac14R_{IJ}(\bar\Sigma^J\Sigma^I)^i{}_j$ the conjugation is the matrix adjoint, $(r^\dagger)^i{}_j=\overline{r^j{}_i}$, which is $-r$ exactly on $\mathfrak{su}(4)$ (S11, N7).
+
+Weinberg form: on the Dirac column $(\psi_\alpha,\bar\chi^{\dot\alpha})$ of the dictionary, $\rho(v)=\gamma_W^\mu v_\mu$ after the Wick map, so $\epsilon^\dagger(x)=-\gamma_W^\mu x_\mu\,\overline{\epsilon(I(x))}$ on that column; the Weinberg supercharges are related to the labels used here by [dictionary, Weinberg column, D7] ($\mathcal Q_a(W)=Q^{\dagger\dot a}(S)$), so the four relations above hold with that relabelling.
+\end{proposition}
+
+\begin{proof}
+Proposition \ref{prop:named} with Proposition \ref{prop:cc2}. For $r$: $\bar\Sigma^I=(\Sigma^I)^\dagger$ gives $r(-\bar R)=-\frac14\bar R_{IJ}\bar\Sigma^J\Sigma^I=\frac14\bar R_{IJ}\bar\Sigma^I\Sigma^J=r(R)^{\rm adj}$ by antisymmetry of $R$.
+\end{proof}
+
+%==========================================================================================
+\section{The Osterwalder--Schrader conjugation}
+
+\begin{definition}[Reflection conjugation]
+\label{def:dagn}
+For a unit vector $n\in V_{\mathbb R}$ put $v^{\dagger_n}:=-(r_n)_*\bar v$ and $\epsilon^{\dagger_n}(x):=\rho(n)\,\overline{\epsilon(r_n(x))}$, i.e.
+\[
+(Q_1+\rho(x)Q_2)^{\dagger_n}=\rho(n)\overline{Q_1}-\rho(x)\rho(n)\overline{Q_2}.
+\]
+\end{definition}
+
+The second form uses $\rho(n)\rho(r_n(x))=-\rho(x)\rho(n)$.
+
+\begin{proposition}[Properties]
+\label{prop:dagn}
+$X\mapsto X^{\dagger_n}$ is an antilinear involution with $[X,Y]^{\dagger_n}=[Y^{\dagger_n},X^{\dagger_n}]$. On generators: $P_{v_1}^{\dagger_n}=-P_{r_n\bar v_1}$ (so $P_n^{\dagger_n}=P_n$ and $P_{v_1}^{\dagger_n}=-P_{v_1}$ for real $v_1\perp n$), $K_{v_1}^{\dagger_n}=-K_{r_n\bar v_1}$, $\Delta^{\dagger_n}=-\Delta$, $\omega^{\dagger_n}=-r_n\bar\omega r_n$ (the two $\mathfrak{sl}(2)$ factors of $\mathfrak{so}(V)$ are exchanged), $r^{\dagger_n}=-\bar r$, $Q_1^{\dagger_n}=\rho(n)\overline{Q_1}\in\Sigma$ with $(S_+\otimes W)^{\dagger_n}=S_-\otimes W^*$, and $Q_2^{\dagger_n}=-\rho(n)\overline{Q_2}\in\Sigma^*$ (S1, A1, A2, A7). For $Q_1\in\Sigma$,
+\[
+[Q_1,Q_1^{\dagger_n}]=(Q_1,\overline{Q_1})\,P_n+(\text{translation orthogonal to }n)
+\]
+(S1, A10). Two-component: $(\xi^{\dagger_n})_\alpha{}^i=i\,n_m\sigma^m_{\alpha\dot\alpha}\overline{\bar\xi_{\dot\alpha i}}$, $(\xi^{\dagger_n})_{\dot\alpha i}=i\,n_m\overline{\xi_\alpha{}^i}\sigma^m_{\alpha\dot\alpha}$, $(\eta^{\dagger_n})^\alpha{}_i=i\,n_m\overline{\bar\eta^{\dot\alpha i}}\bar\sigma^{m\dot\alpha\alpha}$, $(\eta^{\dagger_n})^{\dot\alpha i}=i\,n_m\bar\sigma^{m\dot\alpha\alpha}\overline{\eta^\alpha{}_i}$ (S11, N5, N6); in particular $(Q^i_\alpha)^{\dagger_n}$ is a combination of the $\bar Q_{\dot\alpha i}$.
+\end{proposition}
+
+\begin{proof}
+As for Theorem \ref{thm:anti} with $T_n(\epsilon)(x)=\rho(n)\overline{\epsilon(r_n(x))}$, $T_n^2=1$: $r_n$ is a linear isometry, $T_n\mathcal L_v=\mathcal L_{(r_n)_*\bar v}T_n$ (the spinor lift of $r_n$ is $\rho(n)$, and $\rho(n)\rho(u)\rho(n)=-\rho(R_nu)$ with $R_n=r_n\oplus1$ the reflection of $V_{10}$), $\Gamma(\rho(n)s_1,\rho(n)s_2)=-R_n\Gamma(s_1,s_2)$, and the rotation of $W_{\mathbb R}^\perp$ transforms as before because $\rho(n)$ commutes with $\rho(q(w\wedge w'))$. For the bracket: $(n,\Gamma(Q_1,\rho(n)\overline{Q_1}))=(\rho(n)Q_1,\rho(n)\overline{Q_1})=(Q_1,\overline{Q_1})$. The two-component formulas are (R1), (R2) composed with Proposition \ref{prop:cc2}.
+\end{proof}
+
+The positivity argument of Proposition \ref{prop:sign}(iii) applies to $\dagger_n$ with $\rho(P_n)=+H$, $H\ge0$, on observables supported in $\{(n,x)>0\}$ (S8, R6: $\{S^{(1)}(P_n),-\}$ moves such observables away from the hyperplane and acts as $-H$): $\|\rho(Q_1)u\|^2+\|\rho(Q_1)^{\rm adj}u\|^2=\langle u,\rho([Q_1,Q_1^{\dagger_n}])u\rangle$, whose average over the rotations fixing $n$ is $(Q_1,\overline{Q_1})\langle u,Hu\rangle$ for rotation-invariant $u$, and this selects the sign of Definition \ref{def:dagn}. For observables supported in $\{(n,x)<0\}$ the opposite sign is selected.
+
+%==========================================================================================
+\section{The conformal map from the hyperplane to the sphere}
+\label{sec:C}
+
+\begin{proposition}[The flow of $P_n-K_n$]
+\label{prop:C}
+Let $X_0=\frac{1-(x,x)}{1+(x,x)}$ and $X_v=\frac{2x}{1+(x,x)}$ be the coordinates of $S^4\subset\mathbb R\oplus V_{\mathbb R}$ under inverse stereographic projection. The time-$t$ flow $C_t$ of the vector field $P_n-K_n$, $x\mapsto n(1-(x,x))+2(n,x)x$, is the rotation of $S^4$ by the angle $2t$ in the plane spanned by $n$ and the $X_0$ axis:
+\[
+(n,X_v)\mapsto\cos2t\,(n,X_v)+\sin2t\,X_0,\qquad X_0\mapsto-\sin2t\,(n,X_v)+\cos2t\,X_0,
+\]
+the components of $X_v$ orthogonal to $n$ being fixed. Put
+\[
+C:=C_{-\pi/4},\qquad C(x)=\frac{2x+((x,x)-1-2(n,x))\,n}{|x+n|^2},\]\[C^{-1}(x)=C_{\pi/4}(x)=\frac{2x+(1-(x,x)-2(n,x))\,n}{|x-n|^2}.
+\]
+Then: $C$ maps the hyperplane $\{(n,x)=0\}$ onto the unit sphere, the half space $\{(n,x)>0\}$ onto the open unit ball ($|C(sn)|=\frac{1-s}{1+s}$, $C(n)=0$), and the half space $\{(n,x)<0\}$ onto the exterior ($C(-n)=\infty$);
+\[
+C\circ r_n\circ C^{-1}=I=C_{\pi/4}\circ r_n\circ C_{\pi/4}^{-1};
+\]
+$C_{\pi/4}$ maps $\{(n,x)>0\}$ onto the exterior. The flow of $P_n-K_n$ is complete on $S^4$ and periodic with period $\pi$; $\mathrm{ad}_{P_n-K_n}$ has spectrum $\{0,\pm i,\pm2i\}$ on $\mathfrak{psl}(4|4)$ (S2, G1--G6; S3, C1). Moreover $C=J\circ r_n$ with $J(x)=n+2\frac{x-n}{|x-n|^2}$ the inversion in the sphere of radius $\sqrt2$ about $n$, so $dC_x=\frac{2}{|x+n|^2}\,r_u\,r_n$ with $u=\frac{r_nx-n}{|r_nx-n|}$. Two-component: the same formulas with $x^m$, $n^m$, $(x,x)=x^2$.
+\end{proposition}
+
+\begin{proof}
+With $s=(n,x)$ on the $n$-axis, $\dot s=1+s^2$ and $s=\tan(\alpha/2)$ give $\dot\alpha=2$. In general, $\frac{d}{d\phi}$ of $x'=X'_v/(1+X'_0)$ at $\phi=0$ under the rotation by $\phi$ is $\frac12\big(n(1-(x,x))+2(n,x)x\big)$, so $\phi=2t$. The closed forms are $\phi=\mp\pi/2$; $C\circ r_n\circ C^{-1}$ is the reflection of $S^4$ in the image of the great sphere $\{(n,X_v)=0\}$, which is $\{X_0=0\}$, i.e. $X_0\mapsto-X_0$, which is $I$. Exact symbolic verification: S2.
+\end{proof}
+
+\begin{theorem}[Radial conjugation from the reflection]
+\label{thm:CdagC}
+Let $\mathrm{Ad}(C):=C_*=\exp\big(\tfrac\pi4\,\mathrm{ad}_{P_n-K_n}\big)$ be the automorphism of $\mathfrak{psl}(4|4)$ given by the pushforward along $C$ (the pushforward along the time-$t$ flow of a field $Y$ is $\exp(-t\,\mathrm{ad}_Y)$). Then
+\[
+X^\dagger=\mathrm{Ad}(C)\Big(\big(\mathrm{Ad}(C)^{-1}X\big)^{\dagger_n}\Big)\qquad\text{for all }X\in\mathfrak{psl}(4|4).
+\]
+With $C_{\pi/4}$ in place of $C$ the right-hand side is $(-1)^{|X|}X^\dagger$: the radial conjugation of Definition \ref{def:dag} is the reflection conjugation transported from the half space $\{(n,x)>0\}$ to the unit ball.
+\end{theorem}
+
+\begin{proof}
+On the even part: $C_*\circ(-(r_n)_*\circ\overline{\,\cdot\,})\circ C_*^{-1}=-(C\circ r_n\circ C^{-1})_*\circ\overline{\,\cdot\,}=-I_*\circ\overline{\,\cdot\,}$, since $C$ is real. The right-hand side is an antilinear involutive anti-automorphism with this even part, so by Proposition \ref{prop:sign}(i) it is $e^{tB}(\pm1)^{|X|}X^\dagger$; $B$ commutes with $\mathrm{Ad}(C)$ (it commutes with the even part) and both $\dagger$ and $\dagger_n$ reverse the sign of $B$, so the composite of the right-hand side with $\dagger$ commutes with $B$ and the remaining factor is computed on one odd element. In the realisation: $\mathrm{Ad}(C)$ is the exponential of the $62\times62$ matrix $\frac\pi4\mathrm{ad}_{P_n-K_n}$; it agrees with the geometric pushforward on all conformal basis fields (S3, C3), and the identity holds with factor $+1$ for $C$ and $(-1)^{|X|}$ for $C_{\pi/4}$ (S3, C2, residual $3\times10^{-16}$).
+\end{proof}
+
+%==========================================================================================
+\section{Realisation on the BV fields}
+\label{sec:fields}
+
+\begin{definition}[Conjugate of a functional]
+\label{def:Fconj}
+Let odd field values be written $\sum_jr_je_j$ with $e_j$ commuting sections and $r_j$ odd generators of an auxiliary Grassmann algebra [ch01, def:c1-vertex], with the antilinear map $r_{j_1}\cdots r_{j_k}\mapsto r_{j_k}\cdots r_{j_1}$ (complex conjugation of coefficients and reversal of order), written $f\mapsto f^{\rm c}$. For an antilinear map $\Theta$ of sections (extended by $\Theta(\sum_jr_je_j)=\sum_jr_j\Theta(e_j)$) and a functional $F$, put $F^\Theta(e):=F(\Theta e)^{\rm c}$. Then $F\mapsto F^\Theta$ is antilinear, $(FG)^\Theta=G^\Theta F^\Theta$, and $F^\Theta=F$ means $F(\Theta e)=F(e)^{\rm c}$.
+\end{definition}
+
+\begin{definition}[The two reflections on fields]
+\label{def:Theta}
+\begin{itemize}
+\item The reflection $\Theta_n$ in the hyperplane $n^\perp$:
+\[
+\begin{aligned}
+&(\Theta_nA)(x)=R_n\overline{A(r_nx)},\quad (\Theta_nc)(x)=\overline{c(r_nx)},\quad (\Theta_n\lambda)(x)=\rho(n)\overline{\lambda(r_nx)},\\
+&(\Theta_nA^*)(x)=-R_n\overline{A^*(r_nx)},\quad (\Theta_n\lambda^*)(x)=-\rho(n)\overline{\lambda^*(r_nx)},\quad (\Theta_nc^*)(x)=-\overline{c^*(r_nx)},
+\end{aligned}
+\]
+with $R_n=r_n\oplus1$ on $V_{10}$ (on $A$ as a one-form constant along $W^\perp_{\mathbb R}$), and $\overline{\,\cdot\,}$ the conjugation of Lemma \ref{lem:cc} together with that of the compact real form of $\mathfrak g$.
+\item The radial reflection $\Theta_I$ (inversion with the Weyl weights $1,0,\tfrac32,3,\tfrac52,4$ of $A,c,\lambda,A^*,\lambda^*,c^*$ [ch02, ex:c2-dil], the conformal factor of $I$ being $(x,x)^{-1}$ and the spinor lift of $dI_x$ being $\rho(x)/|x|$):
+\[
+\begin{aligned}
+&(\Theta_IA)(x)=(x,x)^{-1}\big(r_{x/|x|}\oplus1\big)\overline{A(Ix)},\qquad (\Theta_Ic)(x)=\overline{c(Ix)},\\
+&(\Theta_I\lambda)(x)=-(x,x)^{-2}\rho(x)\overline{\lambda(Ix)},\qquad (\Theta_I\lambda^*)(x)=(x,x)^{-3}\rho(x)\overline{\lambda^*(Ix)},\\
+&(\Theta_IA^*)(x)=-(x,x)^{-3}\big(r_{x/|x|}\oplus1\big)\overline{A^*(Ix)},\qquad (\Theta_Ic^*)(x)=-(x,x)^{-4}\overline{c^*(Ix)};
+\end{aligned}
+\]
+on the connection, $\Theta_IA|_V$ is the pullback of the one-form $\overline{A|_V}$ along $I$, and $\Theta_I\iota_wA=(x,x)^{-1}\overline{\iota_{\bar w}A(Ix)}$.
+\end{itemize}
+Two-component ($\overline{\,\cdot\,}$ on $\mathfrak g$-valued components: conjugation of the compact real form):
+\[
+\begin{aligned}
+(\Theta_nA)_m&=(r_n)_{mk}\overline{A_k(r_nx)},\qquad (\Theta_nA)_{ij}=\overline{A^{ij}(r_nx)},\qquad \Theta_nc=\overline{c(r_nx)},\\
+(\Theta_n\lambda)_\alpha{}^i&=i\,n_m\sigma^m_{\alpha\dot\alpha}\overline{\bar\lambda_{\dot\alpha i}(r_nx)},\qquad (\Theta_n\bar\lambda)_{\dot\alpha i}=i\,n_m\overline{\lambda_\alpha{}^i(r_nx)}\,\sigma^m_{\alpha\dot\alpha},\\
+(\Theta_nA^*)_m&=-(r_n)_{mk}\overline{A^*_k(r_nx)},\qquad (\Theta_nA^*)_{ij}=-\overline{A^{*ij}(r_nx)},\qquad \Theta_nc^*=-\overline{c^*(r_nx)},\\
+(\Theta_n\lambda^*)^\alpha{}_i&=i\,n_m\overline{\bar\lambda^{*\dot\alpha i}(r_nx)}\,\bar\sigma^{m\dot\alpha\alpha},\qquad (\Theta_n\bar\lambda^*)^{\dot\alpha i}=i\,n_m\bar\sigma^{m\dot\alpha\alpha}\overline{\lambda^{*\alpha}{}_i(r_nx)},
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+(\Theta_IA)_m&=\frac{\delta_{mk}-2x_mx_k/x^2}{x^2}\overline{A_k(Ix)},\qquad (\Theta_IA)_{ij}=\frac{\overline{A^{ij}(Ix)}}{x^2},\qquad \Theta_Ic=\overline{c(Ix)},\\
+(\Theta_I\lambda)_\alpha{}^i&=-\frac{i}{x^4}\,x_m\sigma^m_{\alpha\dot\alpha}\overline{\bar\lambda_{\dot\alpha i}(Ix)},\qquad (\Theta_I\bar\lambda)_{\dot\alpha i}=-\frac{i}{x^4}\,x_m\overline{\lambda_\alpha{}^i(Ix)}\,\sigma^m_{\alpha\dot\alpha},\\
+(\Theta_IA^*)_m&=-\frac{\delta_{mk}-2x_mx_k/x^2}{x^6}\overline{A^*_k(Ix)},\qquad (\Theta_IA^*)_{ij}=-\frac{\overline{A^{*ij}(Ix)}}{x^6},\qquad \Theta_Ic^*=-\frac{\overline{c^*(Ix)}}{x^8},\\
+(\Theta_I\lambda^*)^\alpha{}_i&=-\frac{i}{x^6}\,x_m\overline{\bar\lambda^{*\dot\alpha i}(Ix)}\,\bar\sigma^{m\dot\alpha\alpha},\qquad (\Theta_I\bar\lambda^*)^{\dot\alpha i}=-\frac{i}{x^6}\,x_m\bar\sigma^{m\dot\alpha\alpha}\overline{\lambda^{*\alpha}{}_i(Ix)},
+\end{aligned}
+\]
+with $x^2=(x,x)$; $\overline{A_{ij}}=A^{ij}$ on the real slice of the scalars [dictionary].
+\end{definition}
+
+\begin{lemma}[The phases]
+\label{lem:phases}
+Let $\Theta_n$ be as in Definition \ref{def:Theta} with the factors $1,s_c,s_\lambda,s_{A^*},s_{\lambda^*},s_{c^*}$ on $A,c,\lambda,A^*,\lambda^*,c^*$. Then $S^{\Theta_n}=S$ if and only if
+\[
+s_\lambda^2=1,\qquad s_cs_{A^*}=-1,\qquad s_c^2s_{c^*}=-1,\qquad s_cs_\lambda s_{\lambda^*}=-1,
+\]
+and under these conditions every term of $S$ is separately invariant. The phase $s_c$ is changed by $e^{2i\alpha}$ under conjugation of $\Theta_n$ by the ghost-number rotation $c\mapsto e^{i\alpha}c$, $A^*\mapsto e^{-i\alpha}A^*$, $\lambda^*\mapsto e^{-i\alpha}\lambda^*$, $c^*\mapsto e^{-2i\alpha}c^*$, a symmetry of $S$; it multiplies the arity-one relation of Theorem \ref{thm:fields} by $\overline{s_c}$, and $s_c=1$ makes that relation real. The sign $s_\lambda$ is fixed by reflection positivity (Proposition \ref{prop:RP}): $s_\lambda=+1$ for $\Theta_n$ and the half space $\{(n,x)>0\}$, $s_\lambda=-1$ for $\Theta_I$ and the unit ball.
+\end{lemma}
+
+\begin{proof}
+Bosonic terms: $R_n$ and the conjugation of $\mathfrak g$ preserve $(-,-)$, $[-,-]$ and the Hodge pairing, and $r_n$ is an isometry. $\int(dc,A^*)$ with $c=r_1c_1$, $A^*=r_2a_2$: $F(\Theta_ne)=s_cs_{A^*}\,r_1r_2\,\overline{\int(dc_1,a_2)}$, and $(r_1r_2)^{\rm c}=r_2r_1=-r_1r_2$, so $F^{\Theta_n}=-\overline{s_cs_{A^*}}F$. The same argument gives $-\overline{s_c^2s_{c^*}}$ for $\frac12\int([c,c],c^*)$ and $-\overline{s_cs_\lambda s_{\lambda^*}}$ for $\int([c,\lambda],\lambda^*)$, using $(\rho(n)\overline u,\rho(n)\overline w)=(\overline u,\overline w)=\overline{(w,u)}$. For $\frac12\int(\lambda,{\not d}_A\lambda)$: ${\not d}(\rho(n)\overline{\ell(r_n\cdot)})=-\rho(n)\overline{({\not d}\ell)(r_n\cdot)}$ by $\rho(R_nu)\rho(n)=-\rho(n)\rho(u)$, and the same for $\rho([A,\lambda])$; with the order reversal the factor is $\overline{s_\lambda}^2$. Exact verification with the project's engine (S10, E1) and numerically per term (S5).
+\end{proof}
+
+\begin{theorem}[The classical equivariant action]
+\label{thm:fields}
+With $s_c=1$, $s_\lambda=+1$ for $\Theta_n$ and $s_\lambda=-1$ for $\Theta_I$:
+\[
+\begin{aligned}
+&S^{\Theta_n}=S,\qquad S^{(1)}(X)^{\Theta_n}=(-1)^{|X|}S^{(1)}(X^{\dagger_n}),\qquad S^{(2)}(X,Y)^{\Theta_n}=S^{(2)}(Y^{\dagger_n},X^{\dagger_n}),\\
+&S^{\Theta_I}=S,\qquad S^{(1)}(X)^{\Theta_I}=(-1)^{|X|}S^{(1)}(X^{\dagger}),\qquad S^{(2)}(X,Y)^{\Theta_I}=S^{(2)}(Y^{\dagger},X^{\dagger}),
+\end{aligned}
+\]
+for all $X,Y\in\mathfrak{psl}(4|4)$; no compensating gauge transformation and no antifield term occur. The density identities are pointwise for $\Theta_n$; for $\Theta_I$ they are pointwise except for the scalar kinetic term, whose density changes by the total derivative
+\[
+-\tfrac14\sum_{w}\partial_\mu\Big((x,x)^{-1}\partial_\mu(x,x)^{-1}\,\big(\overline{\iota_wA(Ix)},\overline{\iota_wA(Ix)}\big)\Big)
+\]
+(sum over an orthonormal basis $w$ of $W_{\mathbb R}^\perp$; two-component: $-\frac1{16}\partial_m\big(x^{-2}\partial_mx^{-2}\,(\overline{A^{ij}(Ix)},\overline{A_{ij}(Ix)})\big)$), which uses $\Delta(x,x)^{-1}=0$ on $\mathbb R^4\setminus\{0\}$. In compact form: the antilinear map $F\mapsto\widehat F$, $\widehat F(X_1,\dots,X_k):=(-1)^{\sum|X_i|}F(X_k^\dagger,\dots,X_1^\dagger)^{\Theta_I}$, fixes $S+S^{(1)}+S^{(2)}$, and likewise with $\Theta_n,\dagger_n$.
+\end{theorem}
+
+\begin{proof}
+$S$: Lemma \ref{lem:phases} for $\Theta_n$. For $\Theta_I$, write $\Theta_I=(C^{-1})^*\circ\Theta_n\circ C^*$ (Proposition \ref{prop:composite}); $C$ is in the identity component of the conformal group, and the classical action is invariant under the flow of every even element by $\{S,S^{(1)}(v)\}=0$ [ch02, thm:c2-master] up to total derivatives; hence invariance modulo total derivatives. The explicit total derivative: with $\Omega=(x,x)^{-1}$ and $\phi''=\overline{\iota_wA\circ I}$, $D_\mu(\Omega\phi'')=\Omega D_\mu\phi''+(\partial_\mu\Omega)\phi''$, $(D\phi'',D\phi'')=\Omega^2\,\overline{(D\iota_wA,D\iota_wA)}\circ I$, and the cross terms give $\partial_\mu(\Omega\partial_\mu\Omega(\phi'',\phi''))-\Omega(\Delta\Omega)(\phi'',\phi'')$. All other terms are pointwise conformally covariant (Hodge pairing in four dimensions, conformal covariance of ${\not d}_A$ with weights $\frac32,\frac52$, and the pairings of fields with antifields, which are densities of weight $4$).
+
+$S^{(1)}$, even $X=v$: the field transformations $A\mapsto L_vA+\frac14(\operatorname{div}v)A|_{W^\perp_{\mathbb R}}$, $\lambda\mapsto v.\lambda$, $c\mapsto v(c)$ of [ch02, eq:c2-S1even] are the infinitesimal action of the conformal group on weighted fields, so $\delta_v(\Theta e)=\Theta(\delta_{I_*\bar v}e)$ (resp. $(r_n)_*$), pointwise; with the antifield factors $s_{A^*}=-1$, $s_{\lambda^*}s_\lambda=-1$, $s_{c^*}=-1$ and the order reversal of one odd factor, $S^{(1)}(v)^{\Theta}=S^{(1)}(-I_*\bar v)=S^{(1)}(v^\dagger)$. Odd $X$: the sign is the product of the factors of $A^*$ and $\lambda$ in $-(\Gamma(\epsilon,\lambda),A^*)$ (order reversal included) and of $\lambda^*$ in $\frac12(\rho(F_A)\epsilon,\lambda^*)-(\rho(A|_{W^\perp_{\mathbb R}})Q_2,\lambda^*)$, together with $T\epsilon$ in place of $\epsilon$; it is fixed by evaluation. Verification: exact with the engine on all $32$ odd basis directions for $\Theta_{e_0}$ (S10, E2; the same identity with the opposite odd sign in Definition \ref{def:dagn} fails, E2c), and numerically on random Grassmann jets for $\Theta_n$ and $\Theta_I$, every type of generator (S5). $S^{(2)}$ [ch02, eq:c2-S2]: each term contains either two factors $\lambda^*$ (sign $s_{\lambda^*}^2=1$) or the pair $(\iota_{\Gamma(\epsilon_1,\epsilon_2)}A,c^*)$; in the latter the factor $-1$ of $c^*$ cancels the $-1$ in $\Gamma(\epsilon_2^\dagger(x),\epsilon_1^\dagger(x))=-(x,x)(r_{x/|x|}\oplus1)\overline{\Gamma(\epsilon_1,\epsilon_2)(I(x))}$ (proof of Theorem \ref{thm:anti}; $-R_n\overline{\Gamma(\epsilon_1,\epsilon_2)(r_nx)}$ for $\Theta_n$), and $\Gamma(\Theta\lambda^*,\Theta\lambda^*)$ carries the same $-1$ as $\Gamma(\epsilon_2^\dagger,\epsilon_1^\dagger)$; verified in S5. The compact form is the collection of these statements, $S^{(k\ge3)}=0$.
+\end{proof}
+
+\begin{proposition}[The reflections and the composite]
+\label{prop:composite}
+On every field,
+\[
+\Theta_I=(C^{-1})^*\circ\Theta_n\circ C^*,
+\]
+where $\Theta_n$ has $s_\lambda=+1$, $\Theta_I$ has $s_\lambda=-1$, and $g^*$ is the pullback along a conformal map $g$ with the Weyl weights and the spinor lift: for $dC_x=\frac{2}{|x+n|^2}r_ur_n$ (Proposition \ref{prop:C}) the pullback of $\lambda$ is $\frac{2^{3/2}}{|x+n|^3}\rho(n)\rho(u)\lambda(C(x))$, a product of Clifford multiplications by unit vectors lifting $(r_ur_n)^T=r_nr_u$, and similarly for $C^{-1}$; the sign of the lift of $C$ cancels against that of $C^{-1}$. With $C_{\pi/4}$ in place of $C$ the composite differs from $\Theta_I$ by the sign of $\lambda$ and $\lambda^*$ (it is the reflection-positive conjugation for the exterior of the unit ball), matching Theorem \ref{thm:CdagC} (S4). Two-component: Definition \ref{def:Theta}.
+\end{proposition}
+
+\begin{proof}
+For tensors and densities, $(C^{-1})^*\circ r_n^*\circ C^*=(C\circ r_n\circ C^{-1})^*=I^*$ with the conformal factors multiplying by the chain rule. For spinors, the pullback along $g$ with $dg_x=\Omega_g(x)R_g(x)$ is $\Omega_g(x)^{3/2}S_g(x)\lambda(g(x))$ with $S_g(x)$ a lift of $R_g(x)^T$; the lifts are chosen with $S_{C^{-1}}(Cx)S_C(x)=1$ (group action), so the composite is independent of the overall sign, and the remaining sign is computed in the realisation: $+1$ for $C$, $-1$ for $C_{\pi/4}$, at random points and normals (S4, F0, F1).
+\end{proof}
+
+\begin{proposition}[Reflection positivity of the free forms]
+\label{prop:RP}
+For linear observables $a,b$ (letters at points) put $\langle a,b\rangle_n:=\hbar\,\partial_{P(0,\infty)}(a^{\Theta_n}b)$ and $\langle a,b\rangle_I:=\hbar\,\partial_{P(0,\infty)}(a^{\Theta_I}b)$ (free contraction [ch03, prop:c3-P], weight $e^{+S/\hbar}$). On scalar letters $\iota_wA$ both forms are positive on either side. On gaugino letters $\langle\,,\rangle_n$ is positive definite on letters supported in $\{(n,x)>0\}$ exactly for $s_\lambda=+1$, and negative definite there for $s_\lambda=-1$; $\langle\,,\rangle_I$ is positive definite on letters supported in the open unit ball exactly for $s_\lambda=-1$ (S8, R1--R4: $80\times80$ Hermitian matrices of five points, all eigenvalues of one sign). For one letter $a=(\lambda(x),f)$, $f\in\Sigma^*$, $x=sn$, $s>0$:
+\[
+\langle a,a\rangle_n=s_\lambda\,\frac{\hbar\,(\overline f,f)}{16\pi^2s^3},\qquad
+\langle a,a\rangle_I=-s_\lambda\,\frac{\hbar\,(\overline f,f)}{2\pi^2\,(1-(x,x))^{3}}\quad(0<|x|<1,\ \text{$\Theta_I$ with factor }s_\lambda\text{ on }\lambda),
+\]
+with the inverse pairing of $\mathfrak g$ contracting the $\mathfrak g$ factors of $\overline f$ and $f$. Two-component: $(\overline f,f)=\sum|f^\alpha{}_i|^2+\sum|\bar f^{\dot\alpha i}|^2$ (Proposition \ref{prop:cc2}). The Feynman-gauge connection $A|_V$ is not reflection positive (the component along $n$ has negative norm under $R_n$); the positive forms are those on gauge-invariant observables.
+\end{proposition}
+
+\begin{proof}
+$a^{\Theta_n}=s_\lambda(\lambda(r_nx),\rho(n)\overline f)$ by Definition \ref{def:Fconj}; $\partial_{P(0,\infty)}((\lambda(y),g)(\lambda(x),f))=(\rho(\partial_y)\frac1{4\pi^2|y-x|^2}g,f)$ times the inverse pairing of $\mathfrak g$ [ch03, prop:c3-P]; at $y=r_nx=-sn$, $\rho(\partial_y)\frac1{4\pi^2|y-x|^2}=\frac{\rho(n)}{16\pi^2s^3}$, and $(\rho(n)\rho(n)\overline f,f)=(\overline f,f)$. The radial case: $a^{\Theta_I}=s_\lambda(x,x)^{-2}(\lambda(I(x)),\rho(x)\overline f)$, $I(x)-x=\frac{1-(x,x)}{(x,x)}x$, and $\rho(\partial_y)\frac1{4\pi^2|y-x|^2}\big|_{y=I(x)}=-\frac{2(x,x)}{4\pi^2(1-(x,x))^3}\rho(x)$. The matrices of S8 extend this to several points.
+\end{proof}
+
+\begin{proposition}[Brackets, Laplacian, $Q$, $Q^{GF}$, kernels]
+\label{prop:ops}
+Let $\Theta=\Theta_n$ (any $s_\lambda$). On sections, with $(-1)^F$ the parity operator,
+\[
+\Theta Q\Theta^{-1}=(-1)^FQ,\quad \Theta Q^{GF}\Theta^{-1}=-(-1)^FQ^{GF},\quad \Theta H\Theta^{-1}=H,\quad \Theta^2=1,\quad \langle\Theta e_0,\Theta e_1\rangle=-\overline{\langle e_0,e_1\rangle}.
+\]
+On functionals, for $t>0$, $0<\varepsilon<T\le\infty$,
+\[
+(\partial_{K_t}F)^\Theta=(-1)^{|F|}\partial_{K_t}(F^\Theta),\qquad (\partial_{L_t}F)^\Theta=\partial_{L_t}(F^\Theta),\qquad (\partial_{P(\varepsilon,T)}F)^\Theta=\partial_{P(\varepsilon,T)}(F^\Theta),
+\]
+hence $(\Delta_tF)^\Theta=(-1)^{|F|}\Delta_t(F^\Theta)$, $\{f,g\}_t^\Theta=(-1)^{|f|+|g|}\{g^\Theta,f^\Theta\}_t$ for $t\in[0,\infty]$, $(QF)^\Theta=(-1)^{|F|}Q(F^\Theta)$, and $W(P(\varepsilon,T),J)^\Theta=W(P(\varepsilon,T),J^\Theta)$ for even $J$. Two-component: the same statements with the tables of [dictionary, prop:Q, prop:prop].
+\end{proposition}
+
+\begin{proof}
+Momentum space: $(\Theta e)(p)=M\overline{e(-r_np)}$ with $M$ the block matrix of Definition \ref{def:Theta}; the operator statements are the matrix identities $M\overline{Q(-r_np)}M^{-1}=(-1)^FQ(p)$ etc., and $M^TWM=-W$ for the matrix $W$ of the odd pairing (S6). For a kernel $\phi$ (components $\phi_{ab}(x,y)$, the value of $\partial_\phi$ on the product of coordinate functionals of slots $a$ at $x$ and $b$ at $y$ in this order [ch03, def:c3-P]), $(e^a(x))^\Theta=\sum_b\overline{M_{ab}}e^b(r_nx)$ and the order reversal give
+\[
+\partial_\phi\big((e^a(x)e^b(y))^\Theta\big)=\sum_{c,d}\overline{M_{ac}M_{bd}}(-1)^{|c||d|}\phi_{cd}(r_nx,r_ny),
+\]
+and the kernel identity $\overline M\big[(-1)^{|c||d|}\phi_{cd}(r_np)\big]\overline M^T=\lambda_\phi\overline{\phi(-p)}$ holds with $\lambda=-1$ for $K_t$ (odd kernel, pairing fields with antifields) and $\lambda=+1$ for $L_t$, $P(\varepsilon,T)$, $P(\varepsilon,\infty)$ (S6). For a monomial with spectator factors $h$, moving the contracted pair (total parity $1$ for $K_t$, $0$ for $P$) past $h$ in the reversed word gives $(-1)^{|h|}$ for $K_t$ and $1$ for $P$; with $|F|=|h|+1$ this is the stated rule. The bracket rule follows from $\{f,g\}=\Delta(fg)-\Delta(f)g-(-1)^{|f|}f\Delta(g)$ [ch01, def:c1-bracket] and the anti-multiplicativity; it is verified with the engine's bracket (S10, E4). $(QF)^\Theta$: $QF=\{\frac12\langle e,Qe\rangle,F\}$ with $\frac12\langle e,Qe\rangle$ invariant. The flow: $\partial_P$ commutes with the conjugation on even elements, which commute, so $e^{\hbar\partial_P}e^{J/\hbar}$ and $\hbar\log$ are mapped to the same expressions in $J^\Theta$ ($\hbar$ real).
+\end{proof}
+
+\begin{theorem}[Adjointness of the symmetry action]
+\label{thm:adjoint}
+Let $\rho(X):=-\{S^{(1)}(X),-\}$ (a representation, Remark after Proposition \ref{prop:sign}). For observables $a$ of parity $|a|$,
+\[
+(\rho(X)a)^{\Theta_I}=-(-1)^{|a||X|}\rho(X^\dagger)\,(a^{\Theta_I}),\qquad (\rho(X)a)^{\Theta_n}=-(-1)^{|a||X|}\rho(X^{\dagger_n})\,(a^{\Theta_n}).
+\]
+Write $\langle F\rangle$ for the expectation $\hbar\partial_{P(0,\infty)}F$ of the free theory (more generally the BV expectation at scale $\infty$). If $\langle\{S^{(1)}(Y),F\}\rangle=0$ on the products considered (free theory: $F$ built from $Q$-closed letters, without antifields), then
+\[
+\langle(\rho(X)a)^{\Theta_I}\,b\rangle=\langle a^{\Theta_I}\,\rho(X^\dagger)b\rangle\qquad\text{for all }a,b\text{ and all }X,
+\]
+i.e. $\rho(X^\dagger)$ is the adjoint of $\rho(X)$ for the reflection-positive form of Proposition \ref{prop:RP}; likewise for $\Theta_n,\dagger_n$. Two-component: the same, with Proposition \ref{prop:dag2} (resp. \ref{prop:dagn}) for $X^\dagger$.
+\end{theorem}
+
+\begin{proof}
+By Proposition \ref{prop:ops} and Theorem \ref{thm:fields}, with $|S^{(1)}(X)|=1+|X|$,
+\[
+\{S^{(1)}(X),a\}^{\Theta}=(-1)^{1+|X|+|a|}\{a^\Theta,(-1)^{|X|}S^{(1)}(X^\dagger)\}=(-1)^{1+|a||X|}\{S^{(1)}(X^\dagger),a^\Theta\},
+\]
+using $\{g,f\}=(-1)^{|f||g|}\{f,g\}$; multiplying by $-1$ gives the first display. The Ward identity for the derivation $\{S^{(1)}(Y),-\}$ of parity $|Y|$ gives $\langle\{S^{(1)}(Y),F\}G\rangle=-(-1)^{|Y||F|}\langle F\{S^{(1)}(Y),G\}\rangle$; with $F=a^\Theta$, $Y=X^\dagger$: $\langle(\rho(X)a)^\Theta b\rangle=(-1)^{|a||X|}\langle\{S^{(1)}(X^\dagger),a^\Theta\}b\rangle=-\langle a^\Theta\{S^{(1)}(X^\dagger),b\}\rangle=\langle a^\Theta\rho(X^\dagger)b\rangle$. Free-field verification on letters (gaugino against scalar, for $X\in\Sigma$ and $X\in\Sigma^*$, radial and reflection; scalars for $P,K,\Delta$), with the opposite odd sign failing: S9, W1--W3.
+\end{proof}
+
+%==========================================================================================
+\section{Reflection invariance of the regularised theory and of the counterterms}
+
+\begin{theorem}[$\Theta_n$ is a symmetry of the UV-boundary construction]
+\label{thm:inv}
+\begin{itemize}
+\item[(i)] $\Theta_n$ is compatible with $K_t$, $L_t$, $P(\varepsilon,\infty)$, $P(\varepsilon,T)$, $Q$, $Q^{GF}$, $H$, $\Delta_t$, $\{-,-\}_t$ and the flow in the sense of Proposition \ref{prop:ops}, and $I^{\Theta_n}=I$, $S^{\Theta_n}=S$.
+\item[(ii)] At every loop order, the counterterm defined as the singular part [ch04, def:c4-ict; C07, Thm B] satisfies $I^{CT}[\varepsilon]^{\Theta_n}=I^{CT}[\varepsilon]$; the defect vertex $QJ+\frac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ of a $\Theta_n$-invariant even $J$ is $\Theta_n$-invariant, and so is the obstruction.
+\item[(iii)] Term by term (S7, both $s_\lambda$): $\int(A,A)$, $\int(dA|_V,dA|_V)$, $\int(dA|_{W^\perp_{\mathbb R}},dA|_{W^\perp_{\mathbb R}})$, $\int(\lambda,{\not d}\lambda)$, $\int(dc,A^*)$ [ch04, thm:c4-quadratic], the finite counterterm $\int(d^*A|_V,d^*A|_V)$ [ch04, thm:c4-finite], the cubic bases $H_1,\dots,H_6$ and the obstruction basis $G_1,\dots,G_5$ of DESIGN\_STEP2 Part C are invariant; the field-counting functional $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ is anti-invariant, and its image $(Q+\{I,-\})(\cdots)$, the $\log\varepsilon$ part of $I^{CT}[\varepsilon]$ [ch04, thm:c4-log], is invariant. Every one of these enters with a real coefficient (rational multiples of $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, of $\varepsilon^{-1}$ and of $\log\varepsilon$), so $I^{CT}[\varepsilon]$ and the finite counterterms $F_2$, $F_3$ with real $\beta_i$, $h_i$ are invariant.
+\item[(iv)] The cubic obstruction computed by engine B, $\mathrm{unit}\cdot[(\frac{11}4+\frac{19}4\log\frac32)(G_1+G_3)+\frac{27}8G_2-9\log\frac32\,G_5]$ (\texttt{step2/engine\_b/cubic\_results.json}, under comparison), has real coefficients, as (ii) requires.
+\item[(v)] A parity-odd term $a\int\epsilon^{mnrs}(\partial_mA_n,\partial_rA_s)$ is invariant exactly when $a$ is imaginary (S7): the Euclidean $\theta$-term $i\theta\int(F_A\wedge F_A)$ is reflection invariant for real $\theta$; the action of [ch01, eq:c1-action] has no such term ($\theta=0$) and none is generated at one loop.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Proposition \ref{prop:ops}, Lemma \ref{lem:phases}. (ii) By (i), the graph sum $W(P(\varepsilon,\infty),I-I^{CT}_{<k}[\varepsilon])$ at order $\hbar^k$ is mapped by $\Theta_n$ to the same sum with $I^{CT}_{<k}[\varepsilon]^{\Theta_n}$, equal to $I^{CT}_{<k}[\varepsilon]$ by induction; $\varepsilon$ is real, the singular part is the unique local functional with coefficients in the span of the real functions $\varepsilon^{-m}$, $\log\varepsilon$ [ch04, prop:c4-unique], and the conjugation maps this span to itself, so $I^{CT}_k[\varepsilon]^{\Theta_n}=I^{CT}_k[\varepsilon]$. The defect: $(QJ)^\Theta=QJ^\Theta$, $(\{J,J\}_\varepsilon)^\Theta=\{J^\Theta,J^\Theta\}_\varepsilon$, $(\Delta_\varepsilon J)^\Theta=\Delta_\varepsilon J^\Theta$ for even $J$ by Proposition \ref{prop:ops}. (iii) Pointwise evaluation on random Grassmann jets with second derivatives (S7). The log part: $\{S,N\}^\Theta=(-1)^{1}\{N^\Theta,S\}=\{N,S\}=\{S,N\}$ for the odd $N$ with $N^\Theta=-N$. (v) $\epsilon^{mnrs}$ changes sign under the orientation-reversing $r_n$, and the conjugation conjugates the coefficient.
+\end{proof}
+
+\begin{corollary}[Reflection-compatible schemes]
+\label{cor:scheme}
+The equations for the finite counterterms (arity zero: $\mathrm{Ob}=QF+\{I,F\}$ in each sector) are mapped to themselves by $\Theta_n$; if $F$ solves them, so does $F^{\Theta_n}$, and $\frac12(F+F^{\Theta_n})$ is a $\Theta_n$-invariant solution. In the solution family of Part C the invariant solutions are those with real $\beta_1,\dots,\beta_4$ and real free parameters $h_2,h_6$. For the equivariant counterterms the same holds with the map $F\mapsto\widehat F$ of Theorem \ref{thm:fields} in place of $F\mapsto F^{\Theta_n}$, provided the equivariant flow is compatible with $\widehat{\ }$ (this is the hypothesis (H1b) below; it holds at arity zero by (ii) and for the classical cochain by Theorem \ref{thm:fields}). The radial reflection $\Theta_I$ is not a symmetry of the regulated theory: $\int(A,A)$ has Weyl weight $2$, and the cutoff $\varepsilon$ is not inversion covariant.
+\end{corollary}
+
+%==========================================================================================
+\section{The radial conjugation at one loop}
+\label{sec:oneloop}
+
+Let $L(O)=s_{\mathfrak{psl}(4|4)}O+\hbar L_1(O)$ be the local representative of $(d_{CE}+Q)O[\infty]$ [odd\_components\_design, def:o-comp], and write $\rho_\hbar(X)O:=-L(O)^{(1)}(X)$, so that $\rho_\hbar(X)=\rho(X)-\hbar L_1(-)^{(1)}(X)$ with $\rho$ of Theorem \ref{thm:adjoint}; the one-loop components along $P_{v_1}$, $K_{v_1}$, $\Delta$ are $\hbar L_1(O)^{(1)}(P_{v_1})$, $\hbar L_1(O)^{(1)}(K_{v_1})$, $\hbar L_1(O)^{(1)}(\Delta)$.
+
+\begin{theorem}[One-loop radial conjugation]
+\label{thm:oneloop}
+Assume:
+\begin{itemize}
+\item[(H1)] (a) the arity-zero data are $\Theta_n$-invariant (proved: Theorem \ref{thm:inv}); (b) the equivariant counterterms $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ and finite counterterms $F_{\mathfrak{psl}(4|4)}$ are fixed by $F\mapsto\widehat F$ (with $\Theta_n,\dagger_n$); (c) the families $O(\varepsilon)$ are chosen with $O(\varepsilon)^{\Theta_n}=(O^{\Theta_n})(\varepsilon)$;
+\item[(H2)] local representatives exist along translations and along $K_{v_1}$, with vanishing one-loop components along translations (the covariant choice [ch07, prop:c7-cov]);
+\item[(H3)] the one-loop components satisfy the arity-two cochain identity [odd\_components\_design, thm:o-cocycle] on the observables considered, so that $X\mapsto\rho_\hbar(X)$ is a representation modulo $s$-exact local functionals and $O(\hbar^2)$.
+\end{itemize}
+Define, on renormalised local observables modulo $s$-exact ones and $O(\hbar^2)$,
+\[
+O^{\Theta_I,\hbar}:=\exp\!\big(-\tfrac\pi4\,\delta^\hbar\big)\Big[\big(\exp(\tfrac\pi4\,\delta^\hbar)O\big)^{\Theta_n}\Big],\qquad \delta^\hbar:=L(-)^{(1)}(P_n-K_n)=L(-)^{(1)}(P_n)-L(-)^{(1)}(K_n).
+\]
+Then:
+\begin{itemize}
+\item[(i)] at order $\hbar^0$, $O^{\Theta_I,\hbar}=O^{\Theta_I}$ (the classical map of Definition \ref{def:Fconj} with $\Theta_I$);
+\item[(ii)] $(\rho_\hbar(X)O)^{\Theta_I,\hbar}=-\rho_\hbar(X^\dagger)O^{\Theta_I,\hbar}$ for even $O$ and all $X$;
+\item[(iii)] at order $\hbar$, $O^{\Theta_I,\hbar}-O^{\Theta_I}$ is determined by $\Theta_n$ and by the one-loop component along $K_n$ alone (the one along $P_n$ vanishes by (H2)):
+\[
+O^{\Theta_I,\hbar}-O^{\Theta_I}=\hbar\,\tfrac\pi4\int_0^1\Big(e^{-\frac\pi4(1-s)\delta}\,\mathcal K\,e^{-\frac\pi4s\delta}\big[(e^{\frac\pi4\delta}O)^{\Theta_n}\big]-e^{-\frac\pi4\delta}\Big[\big(e^{\frac\pi4(1-s)\delta}\,\mathcal K\,e^{\frac\pi4s\delta}O\big)^{\Theta_n}\Big]\Big)ds,
+\]
+with $\delta=\{S^{(1)}(P_n-K_n),-\}$ and $\mathcal K:=L_1(-)^{(1)}(K_n)$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Classically $\exp(t\{S^{(1)}(Y),-\})F=F\circ\phi_t^*$ for the flow $\phi_t$ of an even $Y$ acting on fields with the Weyl weights (the field transformations of [ch02, eq:c2-S1even] are the infinitesimal pullbacks); hence the right-hand side at $\hbar^0$ is $F\mapsto\big((F\circ C^{-1*})\circ\Theta_n\big)^{\rm c}\circ C^*$, which is $F^{(C^{-1})^*\Theta_nC^*}=F^{\Theta_I}$ by Proposition \ref{prop:composite}. (ii) By (H1), $\Theta_n$ maps the renormalised equivariant theory to itself, so $(L(O)^{(1)}(X))^{\Theta_n}=-L(O^{\Theta_n})^{(1)}(X^{\dagger_n})$ for even $O$, the classical identity of Theorem \ref{thm:adjoint} being the order-$\hbar^0$ case; by (H3), $\exp(t\delta^\hbar)\rho_\hbar(X)\exp(-t\delta^\hbar)=\rho_\hbar(\exp(t\,\mathrm{ad}_{P_n-K_n})X)$; combining with Theorem \ref{thm:CdagC}, $\mathrm{Ad}(C)=\exp(\frac\pi4\mathrm{ad}_{P_n-K_n})$, gives (ii). (iii) Duhamel's formula for $\exp(t(\delta-\hbar\mathcal K))$, the sign of $\mathcal K$ coming from $P_n-K_n$.
+\end{proof}
+
+\begin{corollary}[Operators with a one-loop weight]
+\label{cor:weight}
+Let $O_x$ be the density at $x$ of a scalar primary $O=\int\omega f$ of Weyl weight $w_O$, with one-loop component along $\Delta$ equal to $2\gamma_O\,O$ and along $K_{v_1}$ equal to $\frac14(\operatorname{div}K_{v_1})\gamma_O\,O=-2(v_1,x)\gamma_O\,O$ modulo $s$-exact terms [odd\_components\_design, thm:o-KD], vanishing along translations and rotations. Under (H1)--(H3),
+\[
+(O_x)^{\Theta_I,\hbar}=(x,x)^{-(w_O+\gamma_O)}\,\overline{f}(I(x))\qquad\text{modulo }s\text{-exact terms and }O(\hbar^2),
+\]
+where $\overline f$ is the density $f$ with all components conjugated as in Definition \ref{def:Theta}; two-component, for the trace $f=\frac14(A^{ij},A_{ij})$: $(x^2)^{-(2+\gamma_O)}\frac14\big(\overline{A^{ij}(Ix)},\overline{A_{ij}(Ix)}\big)$, and for the traceless bilinear $\frac1{16}(w_1^{ij}A_{ij},w_2^{kl}A_{kl})-\frac1{96}w_1^{ij}w_{2ij}(A^{kl},A_{kl})$ the same with $\overline{w_a}$ and $w_O=2$. With the coefficients of [ch06, thm:c6-dil] (scalar bilinears, $w_O=2$): $\gamma_O=0$ for the traceless bilinear and $\gamma_O=-24\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ for the trace, which is $\frac{3g^2N}{4\pi^2}$ for $\mathfrak{su}(N)$ in the normalisation of [ch06, rem:c6-konishi].
+\end{corollary}
+
+\begin{proof}
+The hypotheses say that $\rho_\hbar(v)$ acts on $O_x$ as the classical action of the conformal Killing field $v$ on a density of weight $w_O+\gamma_O$ (the cocycle $v\mapsto\frac14\operatorname{div}v$ of [odd\_components\_design, proof of thm:o-KD]). The finite action of $C^{\pm1}$ is then the pullback with the factor $\Omega^{w_O+\gamma_O}$; $\Theta_n$ has conformal factor $1$, and the conformal factors of $C^{-1}$, $r_n$, $C$ multiply to that of $I$, $(x,x)^{-1}$ (chain rule).
+\end{proof}
+
+\begin{remark}[The test of directive R5(c)]
+Theorem \ref{thm:adjoint} at one loop reads: for the two-point functions of renormalised observables with one argument conjugated by $O\mapsto O^{\Theta_I,\hbar}$, $\rho_\hbar(X)$ and $\rho_\hbar(X^\dagger)$ are adjoint, provided the BV Ward identity of equivariant observables at scale $\infty$ holds for these products. Expanding in $\hbar$, the relation between the one-loop components along $X$ and $X^\dagger$ (e.g. along $\Delta$: the one-loop component along $\Delta$ is symmetric for the tree form up to the antisymmetric part of the one-loop form under $\rho(\Delta)$) is the content of the test; Corollary \ref{cor:weight} fixes the separation dependence through $\gamma_O$. Scheme changes compatible with (H1) preserve the statement; finite parts of $O(\varepsilon)$ must satisfy (H1c).
+\end{remark}
+
+%==========================================================================================
+\section{Status}
+
+\begin{itemize}
+\item Proved: Lemma \ref{lem:cc}, Propositions \ref{prop:cc2}, \ref{prop:named}, Theorem \ref{thm:anti}, Proposition \ref{prop:sign} (with the factor of Theorem \ref{thm:CdagC} computed), Propositions \ref{prop:dagn}, \ref{prop:C}, Theorem \ref{thm:CdagC}, Lemma \ref{lem:phases}, Theorem \ref{thm:fields}, Propositions \ref{prop:composite}, \ref{prop:RP}, \ref{prop:ops}, Theorems \ref{thm:adjoint} (classical), \ref{thm:inv}. Signs fixed by evaluation are marked with their check.
+\item Conditional: Theorem \ref{thm:oneloop} and Corollary \ref{cor:weight} under (H1b), (H2), (H3); (H1b) needs the equivariant counterterms along odd generators and along $K_{v_1}$ (Step-2 engines), (H2) the definition of the component along $K_{v_1}$ (directives R6, R7), and Corollary \ref{cor:weight} also the hypotheses of [odd\_components\_design, thm:o-KD], which its audit notice classifies as a conditional algebraic consequence.
+\item Remarks on the inputs: [ch01, rem:c1-real] fixes the real slice of $A$ only; the conjugations of $\lambda$, $c$ and the antifields are fixed here (Lemma \ref{lem:phases}), $s_\lambda$ by positivity and depending on the side. The representation on observables is $\rho(X)=-\{S^{(1)}(X),-\}$ for both parities (Remark after Proposition \ref{prop:sign}); in R5(c) the relation $G(Xa,b)=G(a,X^\dagger b)$ is to be read with this $\rho$, equivalently with $\{S^{(1)}(X),-\}$ itself since the factor $-1$ is real. [odd\_components\_design]: nothing used here was found wrong; its outer derivation $B$ (audit correction (2)) is the derivation of Proposition \ref{prop:sign}(i), which also parametrises the conjugations with given even part.
+\end{itemize}
+
+\end{document}

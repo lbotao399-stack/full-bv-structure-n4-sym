@@ -1,0 +1,996 @@
+{
+ "file": "step2/qa/design_revision_disposition.json",
+ "date": "2026-10-28",
+ "input": "step2/qa/design_audit_corrections.json (36 flagged items, 42 corrections)",
+ "user_rule": "DESIGN.md rule 4 as amended 2026-10-28 and DESIGN_STEP2 R7: transfer endpoint T allowed, core quantities T-independent, T -> infinity where safe; K_1 by the K-route graphs at finite T; K = P^dagger as cross-check",
+ "files_changed": [
+  "step2/theory/odd_components_design.tex",
+  "step2/theory/engine_plan.json",
+  "step2/literature/q1_targets.tex",
+  "step2/literature/build_q1_targets.py",
+  "step2/literature/q1_targets.json",
+  "step2/theory/_build_odd/odd_design.pdf",
+  "step2/literature/build_q1targets/q1_targets.pdf"
+ ],
+ "new_checks": [
+  "step2/qa/design_revision/outer_derivation_check.py/.json",
+  "step2/qa/design_revision/truncation_and_orientation_check.py/.json",
+  "step2/qa/design_revision/sources/ (arXiv copies of 2310.20086, 2403.13049, 2509.16737, hep-th/0211170)"
+ ],
+ "backups": "step2/qa/design_revision/backup/ (pre-revision copies)",
+ "counts": {
+  "flagged": 36,
+  "corrections": 42,
+  "flagged_verdicts": {
+   "accepted": 33,
+   "partly": 3,
+   "rejected": 0
+  }
+ },
+ "flagged": [
+  {
+   "id": "DA1-F1",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Def def:o-twisted: truncated sum identified with r_xi(hbar L_1)|_{q=1}",
+   "verdict": "accepted (partly: one example of the audit is wrong)",
+   "action": "step2/theory/odd_components_design.tex: def:o-twisted now the full sum over k; new prop:o-trunc (truncation for every target, by weight, colour and W-index count) and lem:o-actiontrunc (minimal weight m(n) of degree -n: 2n for n even, 2n+1/2 for n odd; action side empty at arity >= 3 along Sigma); step2/theory/engine_plan.json: conventions.evaluation_along_xi, E0, E7",
+   "evidence": "Recomputed: arity-k value has weight w_O+k/2, degree |O|+1-k; necessary condition w_O+k/2 >= m(k-1-|O|), implying the audit's bound k <= (2w_O+4+4|O|)/3. The audit's example 'k=4 at w_O=4 with output (c*,lambda)' is wrong: (c*,lambda) has degree -2, i.e. k=3; k=4 at w_O=4 needs weight 6 at degree -3, below m(3)=13/2. Census by enumeration of all field contents with <= 6 factors: step2/qa/design_revision/truncation_and_orientation_check.py/.json (O_zeta k=3: c* only; bc entry k=3: (A lam*), (lam* d), k=4: c*; B_w, Fbar_w k=3: no content; letters and bilinears: none)."
+  },
+  {
+   "id": "DA1-F2",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Thm thm:o-twist (i),(ii) follow from r_xi of eq:o-rep and eq:o-cocycle",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: thm:o-twist now has hypotheses (H1) decalage signs of products and of the C^bullet-linear extension of L_1 (fixed in E0 before -1/2 is quoted for L_1^(2)), (H2) QME in arities 0,1,2 along xi (arity >= 3 empty by lem:o-actiontrunc), (H3) existence of local representatives (on all of O_l for (ii),(iii)); step2/theory/engine_plan.json: E0 task",
+   "evidence": "(Q_0^xi)^2 = 0 re-derived (lem:o-ev). The decalage identity a_k a_l = a_{k+l} binom(k+l,k)(-1)^{kl} covers the cochain bracket (bv_sign_toy B7 true), not the products in W(P,J) nor the C^bullet-linear extension of L_1: hypothesis needed. Action-side arity >= 3 along Sigma: degree -k needs weight m(k) > 4+k/2 for k >= 3 (13/2 > 11/2 at k=3)."
+  },
+  {
+   "id": "DA1-F3",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Thm thm:o-twist (iii) / thm:o-invariants (i): [Q_1^xi] independent of every scheme choice",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: thm:o-twist (iii) restricted to (a), (b), (d) coupling direction, (e) G_B; general closed G only under (H4) (every s-closed degree-0 weight-4 local cochain in C(S-S^(2)) + C G_B + Im s, engine E3b); (c) marked as proof plan entering no statement; thm:o-invariants (i) idem",
+   "evidence": "For a closed G the twisted shift is -a{r_xi G,-}; it induces 0 on H(Q_0^xi) when r_xi G lies in C S^xi + C N_R S^xi + Im Q_0^xi; this needs (H4). r_xi(s chi) = Q_0^xi r_xi(chi) (given (H1))."
+  },
+  {
+   "id": "DA1-F4",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Renormalisation freedom: only closed non-exact direction is the coupling; arity-one counterterms act by s-exact choices",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: new def:o-B, lem:o-Bouter (B even outer derivation), prop:o-GB (G_B closed, not in C(S-S^(2)) + Im s, effects incl. two-component), prop:o-laws item (e), eq:o-twistlaws, rem:o-alpha, rem:o-GBdagger, both freedom tables, prop:o-arity0 hypothesis restated; step2/theory/engine_plan.json: conventions.outer_derivation_B, E0, E2, E3, E3b, E4, E5; step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): F5",
+   "evidence": "B checked to be an even derivation in the exact realisation of Chapter 2: four chirality blocks of dimension 8; all brackets within the B-eigenspaces {Sigma_+ = S_+ (x) W, Sigma^* block commuting with it (= S_- (x) W)} and {S_- (x) W^*, S_+ (x) W^*} vanish; P, K, Delta, so(V), so(W) preserve them (step2/qa/design_revision/outer_derivation_check.py/.json). Outer: B = ad_y forces y to centralise the semisimple even part, and Sigma + Sigma^* has no invariant vector. Non-exactness proved independently: the weight-9/2 degree -2 component phi^(1)(xi) cannot exist, the equation S^(1)(xi) = +-{S^(1)(xi),phi^(0)} is equivariant so phi^(0) may be averaged to an invariant combination of the five field-type functionals, and the four linear terms of S^(1)(xi) give rescaling-weight differences whose cyclic sum is 0, contradicting their common value +-1 (sympy: unique solution kappa = 0). Effects: L_1 -> L_1 - a{G_B,-}; arity one -a b_x delta_x; D_1, K_1, P_1, M_1, R_1, L_1^(0) unchanged (B = 0 on the even part, G_B^(0) = 0); twisted r_xi G_B = S^(1)(xi) - S^(2)(xi,xi) = -N_R S^xi => Q_1^xi -> Q_1^xi + a[N_R,Q_0^xi]. Added consequence (rem:o-GBdagger): Q^dagger = S compatibility expected to fix Re a."
+  },
+  {
+   "id": "DA1-F5",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Thm thm:o-invariants (iii): pair values such as c_K represent invariant classes",
+   "verdict": "accepted (refuted claim removed); the audit's replacement \"invariant after the orthogonality normalisation\" rejected (see LR2-F1)",
+   "action": "step2/theory/odd_components_design.tex: thm:o-invariants (iii) rewritten (joint changes of Q_1, S_1; pair values scheme dependent; c_K -> c_K - kappa_B x; Q_0^xi O_zeta = kappa_B B_w); prop:o-konishi adds the scheme statement; step2/theory/engine_plan.json: E1 check, E2 rewritten",
+   "evidence": "Q_0^xi O_zeta: (Q+{I,-})O_zeta = 0 (gauge invariant), {S^(2)(xi,xi),O_zeta} proportional to u'.u A_ij w^i w^j = 0, {S^(1)(xi),O_zeta} = kappa_B B_w != 0. EJSS05 (99)-(106): orthogonality leaves B -> B + y g^2 (F-4B), which shifts the F coefficient by -y (recomputed from (101), (106): F coefficient -1/2 g^2 n10 = g^2 M/8 = g^2 N/(32 pi^2))."
+  },
+  {
+   "id": "DA1-F6",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "Thm thm:o-twist (iv): ESW Thm 10.9 transports [Q_1^xi]; on letters Phi = targets table",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: item removed from thm:o-twist; new rem:o-transport (identification, Phi to be derived from the U(2)-equivariant collections of ESW Thm 10.9 in ESW symbols with explicit regrading to BK letters before numerical comparison); step2/theory/engine_plan.json: open item 1",
+   "evidence": "ESW Thm 10.9 statement checked in the local ESW text (line 4585); the proof uses ESW's own symbols; the targets letter table is labelled [I] in q1_targets.tex section 2.3."
+  },
+  {
+   "id": "DA1-F7",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "item": "EOM / BV-exact terms in the twisted recovery",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: new rem:o-exact (only full s-exact cochains with chi^(0), chi^(1)(xi), chi^(2)(xi,xi) are discarded); engine list header; step2/theory/engine_plan.json: constraints.reduction_rule, E4, E5, E6, E7",
+   "evidence": "r_xi(s chi) = Q_0^xi r_xi(chi); dropping (Q+{I,-})chi^(1)(xi) alone misses {S^(1)(xi),chi^(1)(xi)} and S^(2) terms."
+  },
+  {
+   "id": "DA2-F1",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "Prop o-laws (c): gauge-fixing change reduces to (a),(b),(d)",
+   "verdict": "accepted (no claim to verify)",
+   "action": "step2/theory/odd_components_design.tex: prop:o-laws (c) stated as a proof plan in the statement itself (with the finite-T endpoint kernel in the Duhamel splitting); excluded from the hypotheses and conclusions of thm:o-twist and thm:o-invariants; tables read \"proof plan\"",
+   "evidence": "Q^GF is unique in the program (ch03 prop:c3-H); nothing computed."
+  },
+  {
+   "id": "DA2-F2",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "Prop o-arity0: equivariance cuts the Part C free directions down",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: prop:o-arity0 restated: hypothesis = image in arity zero of the degree-0 weight-4 cohomology is C S (compatible with G_B, G_B^(0) = 0); content = the projection of the five s phi and the coupling direction to arity zero has rank six with image the six Part-C directions (E3b); step2/theory/engine_plan.json: E3b",
+   "evidence": "Counts re-derived: weight-4 degree -1 local functionals = five two-leg field-type functionals (three legs need weight >= 5); Part C: four beta + two kernel directions = 6 = 5 + 1."
+  },
+  {
+   "id": "DA2-F3",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "Thm o-ir (ii): K-route classes C, D diverge logarithmically for every eps > 0",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: thm:o-ir (ii) rewritten at finite T: log T term with coefficient 3/(8 pi^2) (half of the log R coefficient 3/(4 pi^2)) times the O(eps) cut tree; divergence as T -> infinity only when the tree is nonzero; nonvanishing not established; step2/theory/engine_plan.json: E10a",
+   "evidence": "log R coefficient 6*2pi^2*(4pi^2)^-2 = 3/(4pi^2) (k_tail_and_calibration.json); for a Gaussian profile int |y|^-4 phi(|y|^2/T) d^4y = pi^2 log T + O(1)."
+  },
+  {
+   "id": "DA2-F4",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "Thm o-ir (iv): arity-two graphs along (eta1,eta2) converge",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: thm:o-ir (iv) replaced (P-edge pairs: degree g1+g2-1, lowered by the orientation sum; eta-eta logarithmic with S^3 average 6i v1.(f0 g1 - f1 g0), O(eps) in defect graphs, O(1) in O[T]^(2), W^(2); zero pointwise for v1 = 0; (xi,xi2), (xi,eta) converge); lem:o-legs adds the adjacency statement; prop:o-ir adds the P-edge degree; eq:o-pair; step2/theory/engine_plan.json: large_distance_decay_of_floating_insertions, T_infinity_safe, E10b",
+   "evidence": "Re-derived the two signs: exchanging the two A*|_V--c contractions exchanges the odd ghost ends (Koszul -1, ch03 prop:c3-P), giving C[z,z'] - C[z',z]; the chirality swap is the relabelling 1<->2 fixed by the graded symmetry of the arity-two cochain in odd arguments (result proportional to the symmetric v1). The audit control 'control_xi_eta' is vacuous (it subtracts an expression from itself); replaced by an explicit computation of both (xi,eta) orientations with the lambda-lambda edge traversed in opposite directions: O1 = O2 pointwise (max deviation 3e-14), total O1 - O2 = 0, single orientation S^3 average 2 eta.xi != 0, and with the opposite orientation sign the log would survive (step2/qa/design_revision/truncation_and_orientation_check.py/.json). eta_pair_ir.json numbers (degree -5 cancellation, 6i v1, shells -> 2pi^2 log2 6i v1.(f0g1-f1g0) to 5e-8, v1 = 0 vanishing) re-read and consistent."
+  },
+  {
+   "id": "DA2-F5",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "'Decision' paragraph and Def o-K via Sigma* x Sigma*",
+   "verdict": "accepted (rationale refuted; the identity itself correct)",
+   "action": "step2/theory/odd_components_design.tex: Decision paragraph removed; def:o-K now defines K_1 by the K-route graphs at finite T (user rule 4 amended, R7); placeholder prop:o-Kclaim (existence and T-independence, to be proved or refuted by another agent) with a remark on what it requires; prop:o-Tindep (proved: existence at one finite T + QME gives the same local representative at every T); the Sigma* x Sigma* relation kept as cross-check in prop:o-Kconsistent (i); K = P^dagger as cross-check (iii), the definition only if the claim fails",
+   "evidence": "The audit's two options (prove the total log R coefficient vanishes, or eps -> 0 before R -> infinity) are superseded by the user's amendment: the transfer endpoint T removes the IR divergence at fixed T, eps -> 0 is taken at fixed T, no R enters any definition. Identity C^(1)(K) + Q C^(2)(eta1,eta2) = 0 at T = infinity re-derived from eq:c2-dce with [eta1,eta2] = -K_{v1}."
+  },
+  {
+   "id": "DA2-F6",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "item": "Thm o-KD premise: (eta1,eta2,P) graphs converge; V == 0",
+   "verdict": "accepted",
+   "action": "step2/theory/odd_components_design.tex: thm:o-KD hypotheses now: P_1 = M_1 = R_1 = 0, cocycle at (K,P), existence of local representatives along K and at (K,P) (prop:o-Kclaim); stated as a conditional algebraic consequence; V == 0 modulo s-exact local functionals (which may depend on x)",
+   "evidence": "Cocycle property of 1/4 div, [K_b,P_c] = (b,c)2E + rotation, values (0,48,8,8,16,4) re-read from misc_checks.json (M2-M4 true)."
+  },
+  {
+   "id": "LR1-F1",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T4 bc entry sources",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T4 (a) footnote-23 paraphrase replaced by the source text; [D] factor-2 statement (C.4) = 2 x (3.35)/(3.64), (C.3) = 2 x (3.36); T9 (a) CK02 marked BGKWWY-normalised",
+   "evidence": "Local BK text (2512.07771): (3.35) = (3.64) = 1/2 f_ACD f_BCE dc^D.dc^E, (3.36) = 1/2 ff (dc.db - db.dc); fn 23: 'We thank Jiyoo Park for pointing out a missing factor of 1/2 in formulas for z = w = 0 in Sections 3.2, 3.3, 3.4.' (no 'v3'). BGKWWY (C.3), (C.4) from 2306.01039. With f = eps: eps_ACE eps_BDE dc^C.dc^D = delta_AB dc.dc - dc^A.dc^B (dc^C.dc^D symmetric for odd c) = (C.4); and 1/2 ff(dc.db - db.dc) = 1/2 (C.3) using dc.db = -db.dc."
+  },
+  {
+   "id": "LR1-F2",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T5(a)-(c) Konishi entry sources",
+   "verdict": "partly",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (a) KvLM (5.5) rewritten from the PDF; kappa_Q described as a nonzero normalisation whose value is not needed; (5.21) added",
+   "evidence": "KvLM PDF p. 21 rendered: (5.5) reads Q_1((psi_m)^a(phi^n)^b) = -kappa_Q delta^n_m f^a_{cd} f^{bc}_e (lambda_alphadot)^d (lambda^alphadot)^e; neither refuter's index placement (LR1: f^{cd}_a f_{bc}^e; LR2: f_a^{cd} f^{bc}_e) matches; text after (5.5) confirms kappa_Q wording; (5.21) [Q1][F4] = -12 kappa_Q [S^4]. Other confirmations of the refuter not re-opened."
+  },
+  {
+   "id": "LR1-F3",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T5(d): -3x shift; relative normalisation of CL25 compared in SO(7) lifting",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (d) sentence replaced: CL25 Sec 3 applies Q_K to the Q_0-closed O_f; only the nonvanishing of the overall normalisation of Q_K enters",
+   "evidence": "CL25 2511.09519 Sec 3/Sec 4 text; -3x shift re-derived from Q_0(sum Tr beta gamma) containing 3W (BK (3.50))."
+  },
+  {
+   "id": "LR1-F4",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T7(a) no-Leibniz sources",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T7 (a) CL22 p. 9 main-text quote, fn 10 ([61] DRED, [62]), fn 11 acknowledgement; [I] tension with BK (3.66), CL25 (2.5); json T7 tension_I",
+   "evidence": "Local CL22 text (2209.06728) lines 416-445: main text 'the only known obstruction, the Konishi anomaly [63], is absent in N = 4 SYM [64].11'; fn 11 'We thank Davide Gaiotto and Justin Kulp for pointing this subtlety out to us.'"
+  },
+  {
+   "id": "LR1-F5",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T7(d): lifted pairs exclude Q_1 = derivation + aQ_0 + [Q_0,phi_1]",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T7 (d) replaced (excludes aQ_0 + [Q_0,phi] and a scheme with both CL22 hypotheses; a nonzero derivation not excluded, e.g. BK (3.55) Q^I_+)",
+   "evidence": "CL22 p. 9: undeformed Q on the BPS superfield (fn 10) and Leibniz are two separate hypotheses; BK (3.55) Q^I_+ ~ d_theta_I is a derivation commuting with Q_0."
+  },
+  {
+   "id": "LR1-F6",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T9 (a) BK (2.17)-(2.18) etc.; (c) N=4 analogue of BGKWWY (3.40) Q_0-exact",
+   "verdict": "accepted ((a) confirmed, (c) refuted)",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T9 (c) claim deleted; [D] Q_0 Tr b^2 = -2 Tr b[gamma^I,beta_I] != 0 (BK (3.49)), Q_1 Tr b^2 proportional to d^alphadot(Tr b d_alphadot c + Tr gamma^I d_alphadot beta_I) (BK (3.65)) recorded as a compatibility check with BK (2.18)",
+   "evidence": "BK (3.49) Q_0 b = [c,b] - [gamma^I,beta_I] read in the local text; Tr b[c,b] = 0 by cyclicity; the (3.65) contraction with delta_AB gives 2 dc.db + 2 dbeta.dgamma, a total derivative since d_alphadot d^alphadot = 0."
+  },
+  {
+   "id": "LR1-F7",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T10: BK fn 24 'R_1 not computed'; KvLM commutant used in (5.4)",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T10 (a) quotes fn 24; R_1 not written out marked [I]; KvLM attribution to the paragraph after (5.4) citing [12] = BK; (5.4) = classical action of six Sbar commutant charges on S^4 proportional to M1 - 3M2; R4 table S row",
+   "evidence": "BK line 1262 fn 24 text; KvLM PDF p. 21 rendered; KvLM ref [12] = Budzik-Kulp (line 3149)."
+  },
+  {
+   "id": "LR1-F8",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "T11 scheme statements",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T11 (a) GKW (6.28), (6.33) dropped as scheme statements (described as what they are)",
+   "evidence": "GKW 2403.13049v1 fetched from arXiv: (6.28) Q(I,...,I)_{gamma_n^infty} = -(I,...,I)_{d gamma_n^infty} is the BRST anomaly of the regularised interaction; (6.33) {I_1..I_n} = [I_1..I_n]_{gamma_n} identifies brackets with contour brackets."
+  },
+  {
+   "id": "LR1-F9",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "Sec 4 F1: a S^(1)(xi) acts as Q_1 -> Q_1 + aQ_0",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): F1 rewritten (conjugation by the R-rotation alpha of ESW Def 2.18: Q_1 -> Q_1 + a[N_alpha,Q_0] = Q_1 + aQ_0 - a[N_gh,Q_0]); F0 coupling direction corrected to -aQ_0 - a[N_R,Q_0]; step2/theory/odd_components_design.tex: rem:o-alpha, eq:o-twistlaws",
+   "evidence": "ESW Def 2.18 read in the local ESW text: S^(k)(Q,...,Q) has alpha-weight k and degree -k. Derived: N_R S^xi = -S^(1)(xi) + S^(2)(xi,xi) = N_gh S^xi; since the bracket has degree +1, [N_gh, ad_f] = ad_{N_gh f} + ad_f, hence [N_R,Q_0^xi] = [N_gh,Q_0^xi] - Q_0^xi and, with N_alpha = -N_R, a[N_alpha,Q_0] = aQ_0 - a[N_gh,Q_0]. On untwisted letters [N_R,Q_0^xi] = -delta_xi + {S^(2)(xi,xi),-}: 0 on c and A_ij w^j, -1/4[A^ik,A_kj w^j] on (u' lambda^i) mod w (image of 1/2 eps[gamma,gamma] on beta)."
+  },
+  {
+   "id": "LR1-F10",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "R4 table: twisted-side evidence for 'not found'",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): R4 table: BGKWWY absent list cited as the reader file bgkwwy.json entry absent_from_paper; BGWW Sec 4.3 (4.73)-(4.77) added to the equivariant-QME row",
+   "evidence": "BGWW 2509.16737v1 fetched from arXiv: Sec 4.3 ternary lambda-brackets (4.73)-(4.77) of the twisted N=4 superconformal currents, a = c enforced, 'we leave the determination of a representative of the 3-cocycle reproducing these brackets for future work'."
+  },
+  {
+   "id": "LR1-F11",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "item": "Completeness of twisted-side sources (CLW unused; BW, SW unread)",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): new Target T12 (t:ht) with CLW (3.1), Sec 3.1, fn 5, (3.17)-(3.19), BK fn 6 (1.11); open item 6 updated; open item 8 lists 2311.04304 and 1910.04120 as unread twisted-side sources; step2/theory/odd_components_design.tex: lem:o-ev extended to x = xi + xibar', target table T12, engine E12; step2/theory/engine_plan.json: E12",
+   "evidence": "CLW 2310.20086v2 fetched from arXiv: (3.1) Q_HT = Q^4_- + Q_{-dot 3}; Sec 3.1 'all the loop diagrams naively contributing to the BRST differential vanish identically' (H=1, T=2, 3-Laman); fn 5 'The leading loop correction ... was computed in [32]. It was shown that Q1 takes the form [Q0,-]', [32] = Zwiebel hep-th/0511109; (3.17)-(3.19) nonzero Q_1^{2d}. BK refs [27] = 1910.04120, [28] = 2311.04304, BK fn 6 (1.11) read locally. In the project Q_HT = xi + xibar' with xibar'_{alphadot i} w^i = 0: Gamma(x,x)|_V proportional to xibar'.w = 0."
+  },
+  {
+   "id": "LR2-F1",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "T5(d): Konishi coefficient scheme independent after orthogonality normalisation",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (d) scheme-independence claim removed and replaced by the EJSS (99)-(106) argument; Sec 4 lists (\"to be displayed as families\": c_K in every normalisation; \"to be reproduced exactly\": Konishi entry removed); step2/theory/odd_components_design.tex: prop:o-konishi, thm:o-invariants (iii); step2/theory/engine_plan.json: E2",
+   "evidence": "EJSS hep-th/0501077v2 local text: (101) K10 = Z_K B + Z_O D^2 O, (102) Z_K minimal subtraction 'we take', (103) orthogonality, (106) n10 = -M/4, (99) -2D^2 O = F - 4B, fn 13 'This may be a scheme-dependent property.', (2) and abstract. Recomputed F coefficient -1/2 Z_O = g^2 N/(32 pi^2) and its shift -y g^2 under B' = B + y g^2 (F - 4B)."
+  },
+  {
+   "id": "LR2-F2",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "EJSS (1), (8), (12) transcriptions and conventions",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (b) conventions extended ((5) K = -1/3 Tr, (1) K without -1/3, fn 8 Dbar^2 = -1/4 DbarDbar, Z_B = 1 and Z_F after (12), (109) action, (110), (112) propagators); json T5 b_conventions",
+   "evidence": "EJSS local text lines 65, 311, 345, 407-413, 506, 1311-1340 read."
+  },
+  {
+   "id": "LR2-F3",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "D7 / T5(c): EJSS coefficient = -1 x unit",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): identification withdrawn in T5 (c), open item 7 and json cross_checks",
+   "evidence": "dictionary Cor cor:wick tr(T^aT^b) = 1/2 delta^ab vs EJSS Tr = delta^ab (after (109)), K = -1/3 Tr (5), fn 8; the EJSS number is a coefficient of a superfield relation."
+  },
+  {
+   "id": "LR2-F4",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "CL25 (2.1), (2.5), example, C(R), Sec 3",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (a) CL25 entry: lower indices Abar_{ij,kl}, A defined in (2.6), unnumbered example after (2.6), Q_K inferred, other corrections possible (after (2.6), Sec 4)",
+   "evidence": "CL25 2511.09519 local text lines 236-270, 366-378."
+  },
+  {
+   "id": "LR2-F5",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "KvLM (5.5): kappa_Q free",
+   "verdict": "partly",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): kappa_Q wording corrected; index structure taken from the PDF",
+   "evidence": "Wording accepted (text after (5.5)); the refuter's index form f_a^{cd} f^{bc}_e differs from the PDF f^a_{cd} f^{bc}_e with upper colour indices on the letters (rendered page 21)."
+  },
+  {
+   "id": "LR2-F6",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "KvLM Sec 5 commutant attribution '(used in (5.4))'",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T10 (a) attribution fixed (paragraph after (5.4), citing [12] = BK; (5.4) Sbar charges)",
+   "evidence": "KvLM PDF p. 21 rendered."
+  },
+  {
+   "id": "LR2-F7",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "R4 table: K known for psu(1,1|2) only",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): R4 table K row rewritten with Zwiebel 1111.0083 (2.34) (K_{2->1} one loop, K_{3->1} two loops by D1); new source key [Z11]; open part restated; json R4_novelty",
+   "evidence": "Zwiebel 1111.0083v2 local text: Sec 2.3 (2.33) S_{2->1}, Sdot_{2->1} via H^(1/2,1/2), (2.34) K_{2->1}, K_{3->1}, 'fixed (up to normalization) by superconformal symmetry [24]'; introduction: nonstandard normalisation in which interactions with one final site are O(g^0) (rendered page 2), corresponding to O(g) in the standard normalisation, one loop by L = (k-m+n)/2 = 1 for 2->1; K_{3->1} = {S_{2->1},Sdot_{2->1}} is of order hbar^2."
+  },
+  {
+   "id": "LR2-F8",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "R4 table: full-theory one-loop S not found beyond su(2|3), psu(1,1|2)",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): R4 table S row: Zwiebel (2.33) planar 2->1 parts added; open part = 2->2 outside su(2|3)/psu(1,1|2), non-planar, gauge-variant letters, BV-equivariant form",
+   "evidence": "as LR2-F7."
+  },
+  {
+   "id": "LR2-F9",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "T8: BMV used for footnote 5 only",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T8 (a) BMV main result and BK p. 5 credit added; source key updated",
+   "evidence": "BMV 2306.04693v2 local text (abstract: Delta = 19/2 at N = 2, triple trace with Delta = 19/2 + 12 lambda at infinite N); BK line 227 'directly computing the one-loop action [37]', [37] = BMV (line 1678)."
+  },
+  {
+   "id": "LR2-F10",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "F1: a S^(1)(xi) acts as Q_1 -> Q_1 + aQ_0",
+   "verdict": "accepted",
+   "action": "as LR1-F9",
+   "evidence": "as LR1-F9; target T1 (c) Q_0 = Q + {I + S^(1)(xi) + c_2 S^(2)(xi,xi),-} with c_2 = -1/2 (design lem:o-ev)."
+  },
+  {
+   "id": "LR2-F11",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "T5(d): twisted form of EJSS (2) and abstract",
+   "verdict": "accepted",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): T5 (d) now quotes (2), the abstract (\"is not possible\" in a superconformal scheme) and (3) (no [F]_R term)",
+   "evidence": "EJSS abstract and (3) read locally."
+  },
+  {
+   "id": "LR2-F12",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "item": "statements outside the checker's focus (default refuted)",
+   "verdict": "partly (no claim; re-checked a subset)",
+   "action": "step2/literature/q1_targets.tex (+ build_q1_targets.py -> q1_targets.json): open item listing the statements not re-verified in this revision",
+   "evidence": "Re-checked in this revision: GKW (3.10), (6.28), (6.33); BGWW Sec 4.3; CL22 (3.4)-(3.5), fn 10-11; BGKWWY (C.3)-(C.4); ESW Defs 2.17-2.18 (and Thm 10.9 quote, DA1-F6); BK (3.35), (3.36), (3.49), (3.64)-(3.66), fn 6, 23, 24, p. 5, after (2.43), Sec 3.4.1. Not re-opened: BGKWWY (3.24),(3.26),(3.33),(3.40)-(3.45),(C.1)-(C.2),(C.5)-(C.9),(D.13)-(D.15), App E, fn 28; GKW (2.27),(2.31), fn 13; W18 Thm 3.4; BGKWY22 (B.6); BGWW (3.46)-(3.52),(4.82)-(4.85); ESW Prop 2.21, Rem 1.29, Sec 10.3; BK App B; B03 Table 2."
+  }
+ ],
+ "corrections": [
+  {
+   "id": "DA1-C1",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Def def:o-twisted: define Q_1^xi := sum_{k>=0} (-1)^{k(k-1)/2}/k! hbar L_1(O)^(k)(xi,...,xi) and drop the 'i.e.' identification with the truncated sum. State the truncation k <= 2 as a separate proposition with the weight/colour/R argument: letters and scalar bilinears by weight; O_zeta because the k=3 output would be c* alone, not a colour singlet; bc entry because A_ij w^i w^j = 0 kills (lambda*, A) at k=3 and c* has no W index at k=4. For higher-weight multi-letter operators, which the class-level lifting statements need, include k >= 3 in the census (allowed up to k = floor((2w_O+4+4|O|)/3)).",
+   "verdict": "accepted (refined bound; see DA1-F1)",
+   "action": "def:o-twisted full sum; prop:o-trunc; lem:o-actiontrunc"
+  },
+  {
+   "id": "DA1-C2",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Thm thm:o-twist: add as hypotheses (1) that the products in W(P,J) and the C^bullet-linear extension of L_1 use the decalage signs, fixed in E0 before the -1/2 in front of L_1^(2)(xi,xi) is quoted; (2) that local representatives exist on all of O_l. Note that the action side has no arity >= 3 counterterms: degree -k needs weight >= 2k, while the available weight is 4+k/2.",
+   "verdict": "accepted",
+   "action": "thm:o-twist (H1)-(H3); lem:o-actiontrunc"
+  },
+  {
+   "id": "DA1-C3",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Thm thm:o-twist (iii) and thm:o-invariants (i): restrict the invariance to (a), (b), the coupling direction and G_B, and add the E3b hypothesis that every s-closed degree-0 local cochain lies in span{S - S^(2), G_B} + Im s. Mark (c) (gauge fixing) as a proof plan.",
+   "verdict": "accepted",
+   "action": "thm:o-twist (iii) with (H4); thm:o-invariants (i); (c) proof plan"
+  },
+  {
+   "id": "DA1-C4",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Add the outer-derivation freedom of psl(4|4) to Prop prop:o-laws and to the freedom table. B = +1 on S_+(x)W and S_-(x)W, -1 on S_-(x)W^* and S_+(x)W^*. G_B = d/dt S_psl o e^{tB} with G_B^(1)(x) = S^(1)(Bx) and G_B^(2)(x1,x2) = S^(2)(Bx1,x2) + S^(2)(x1,Bx2). Effects: Q_1 -> Q_1 - a delta_xi (xi in S_+(x)W) and + a delta_xibar (S_-(x)W^*); S_1 -> S_1 + a delta_eta (eta in S_+(x)W^*) and - a (S_-(x)W); D_1, K_1, P_1, M_1, R_1 unchanged; arity (xi,xi): -2a{S^(2)(xi,xi),-}; twisted: Q_1^xi -> Q_1^xi + a[N_{R_xi},Q_0^xi]. Restate the hypothesis of prop:o-arity0 (a two-dimensional H^0, or a one-dimensional image of H^0 in arity zero). Report the classical-type coefficients of E4 and E5 as scheme families.",
+   "verdict": "accepted",
+   "action": "def:o-B, lem:o-Bouter, prop:o-GB, prop:o-laws (e), eq:o-twistlaws, freedom tables, prop:o-arity0 restated, E4/E5 families"
+  },
+  {
+   "id": "DA1-C5",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Thm thm:o-invariants (iii): remove 'pair values (e.g. c_K) are representatives of invariant classes'. State that c_K -> c_K - kappa_B x under the B-F finite part. O_zeta is not Q_0^xi-closed (Q_0^xi O_zeta = kappa_B B_w), so c_K is a scheme-dependent pair value, invariant only after x is fixed by the orthogonality normalisation (targets T5 (d)).",
+   "verdict": "partly",
+   "action": "c_K scheme dependence stated (thm:o-invariants (iii), prop:o-konishi); \"invariant after the orthogonality normalisation\" rejected by LR2-F1"
+  },
+  {
+   "id": "DA1-C6",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Thm thm:o-twist (iv): move the letter-level identification 'Phi on letters = targets table' out of the theorem and label it as an identification. Derive Phi explicitly from the collections of ESW Thm 10.9 (U(2)-equivariant, ESW's own symbols) and the regrading to BK's c, gamma^I, beta_I, b before any numerical comparison.",
+   "verdict": "accepted",
+   "action": "rem:o-transport"
+  },
+  {
+   "id": "DA1-C7",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Engine guidance (E4, E6, E7): reduce outputs only by full s-exact cochains, carrying their arity-0, 1, 2 partners, before applying r_xi. Do not drop (Q+{I,-})-exact terms at a single arity.",
+   "verdict": "accepted",
+   "action": "rem:o-exact; engine_plan constraints.reduction_rule, E4-E7"
+  },
+  {
+   "id": "DA1-C8",
+   "source_refuter": "design_audits[0] (design audit 1)",
+   "correction": "Prop prop:o-arity2: delete the case 'arity-zero marked vertices with one vertex S^(2)(xi,xi)'. S^(2) has only lambda* legs and cannot be joined to the graph except through the marked pairing.",
+   "verdict": "accepted",
+   "action": "prop:o-arity2: case deleted; proof states that a separate S^(2)(xi,xi) next to an arity-zero marked vertex is disconnected"
+  },
+  {
+   "id": "DA2-C1",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Thm o-ir (iv) is false as stated. Replace with: arity-two graphs along (eta1,eta2) that contain two floating S^(1)(eta_a) joined by a lambda-lambda edge P(eps,inf) have, after summing both orientations, a log R term with coefficient proportional to v1 = Gamma(eta1,eta2)|_V times the first moment of the rest of the cycle. Normalised momentum symbol: S^3 average 6i v1.(f0 grad g(0) - grad f(0) g0). This coefficient is O(eps) for defect graphs (special edge in the rest) and O(1) in O[inf]^(2)(eta1,eta2) and W^(2)(eta1,eta2). It vanishes exactly when v1 = 0. Evidence: step2/qa/design_audit_2/eta_pair_ir.py and eta_pair_ir.json.",
+   "verdict": "accepted",
+   "action": "thm:o-ir (iv) replaced, with log T at finite T"
+  },
+  {
+   "id": "DA2-C2",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Withdraw the 'Decision' paragraph. The Sigma* x Sigma* route has the same IR status as the arity-one K route (log R times O(eps) in defect graphs; possible O(1) obstruction in the flow at arity two, like the tree Y). Def o-K is legitimate only after one of two fixes: (i) prove that the total log R coefficient of each defect sum vanishes; or (ii) adopt an explicit eps -> 0 before R -> infinity prescription, which conflicts with DESIGN.md hard rule 4 and must be flagged to the user.",
+   "verdict": "partly",
+   "action": "Decision paragraph withdrawn; options (i)/(ii) superseded by the amended rule 4 / R7: def:o-K at finite T, placeholder prop:o-Kclaim, prop:o-Tindep; no eps -> 0 before R -> infinity prescription, no R in definitions"
+  },
+  {
+   "id": "DA2-C3",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Add the P-edge pair to Prop o-ir and to engine_plan.json 'large_distance_decay_of_floating_insertions'. For two floating odd insertions joined by lambda-lambda, the IR degree in R^8 is g1+g2-1 (g = 0 for Sigma, 1 for Sigma*), and the orientation sum lowers it by 1. Sigma* x Sigma* is therefore logarithmic (coefficient proportional to v1), while Sigma x Sigma* and Sigma x Sigma converge. Extend E10b: compute the arity-two analogue of Y, a tree with one constant and one linear c-stub, proportional to v1.",
+   "verdict": "accepted",
+   "action": "prop:o-ir P-edge degree; lem:o-legs adjacency; engine_plan large_distance_decay entries; E10b arity-two analogue of Y"
+  },
+  {
+   "id": "DA2-C4",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Prop o-Kconsistent: keep the statement but justify convergence for v1 = 0 pairs by the pointwise vanishing of the degree -4 part of the P-edge eta-eta chain when v1 = 0 (verified), not by Prop o-ir.",
+   "verdict": "accepted",
+   "action": "prop:o-Kconsistent (ii) justified by the pointwise vanishing of the degree-0 symbol for v1 = 0"
+  },
+  {
+   "id": "DA2-C5",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Thm o-KD: remove 'whose graphs ... converge (Prop o-ir)' from the hypotheses. Keep K_1 = 1/4 div v gamma_O O = -2(b.x) gamma_O O as a conditional algebraic consequence (cocycle and values verified). State that V == 0 holds only modulo s-exact local functionals.",
+   "verdict": "accepted",
+   "action": "thm:o-KD hypotheses and V == 0 modulo s-exact"
+  },
+  {
+   "id": "DA2-C6",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Thm o-ir (ii): replace 'diverges logarithmically ... for every eps > 0' with 'has a log R term whose coefficient is O(eps) times the cut tree; it diverges for eps > 0 when that tree is nonzero'. Nonvanishing of the tree is not shown.",
+   "verdict": "accepted",
+   "action": "thm:o-ir (ii) wording"
+  },
+  {
+   "id": "DA2-C7",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Freedom table and Prop o-laws (d): the coupling direction also changes L_1^(0) by -a{S,-} = -a(Q+{I,-}), which vanishes only on gauge-invariant O. Change 'arity two only' to 'arity zero (-a(Q+{I,-})) and arity two'; the twisted formula -aQ_0^xi + [Q_0^xi, aN_R] already contains this.",
+   "verdict": "accepted",
+   "action": "prop:o-laws (d): arity zero -a(Q+{I,-}), arity one none, arity two +a{S^(2),-}; freedom table"
+  },
+  {
+   "id": "DA2-C8",
+   "source_refuter": "design_audits[1] (design audit 2)",
+   "correction": "Prop o-laws (a) and the table: note that [s, ad_phi] = -ad_{s phi} (verified in a finite-dimensional model with the ch01 bracket), so (a) is (d) at G = s phi. The arity-one change is exactly -{{S^(1)(x1),phi^(0)} + (Q+{I,-})phi^(1)(x1), -}. The entries '+[Q_0, ad_phi]', '+[S_0, ad_phi]', '+[K_0, ad_phi]' omit the (Q+{I,-})-exact part from phi^(1).",
+   "verdict": "accepted",
+   "action": "prop:o-laws (a): [s,ad_phi] = -ad_{s phi}; arity-one change -{{S^(1)(x1),phi^(0)} + (Q+{I,-})phi^(1)(x1),-}; table entries"
+  },
+  {
+   "id": "LR1-C1",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T4: state explicitly that, at face value with f=eps, BGKWWY (C.4) = 2 x BK (3.35)/(3.64) and (C.3) = 2 x BK (3.36): the 1/2 of BK fn 23. Mark the reader check CK02 (Q_1 Tr b^2 = -4 d Tr(b dc)) as BGKWWY-normalised. Remove 'corrected in v3' from the fn-23 paraphrase.",
+   "verdict": "accepted",
+   "action": "T4 (a), T9 (a)"
+  },
+  {
+   "id": "LR1-C2",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T5(a): KvLM (5.5) reads Q_1 (psi_m)_a (phi^n)_b = -kappa_Q delta^n_m f^{cd}_a f_{bc}^e (lambda_alphadot)_d (lambda^alphadot)_e. kappa_Q is 'non-zero ... precise value will not be needed', not 'free'.",
+   "verdict": "partly (index structure from the PDF)",
+   "action": "T5 (a)"
+  },
+  {
+   "id": "LR1-C3",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T5(d): replace 'relative normalisation of CL25's classical and one-loop terms' with 'the nonvanishing of the overall normalisation of Q_K'. CL25 Sec 3 applies Q_K only to the Q_0-closed O_f.",
+   "verdict": "accepted",
+   "action": "T5 (d)"
+  },
+  {
+   "id": "LR1-C4",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T7(a): the 'only known obstruction' sentence is CL22 main text p.9, not fn 11 (an acknowledgement). Add its continuation, that the Konishi anomaly 'is absent in N = 4 SYM [64]', which is contradicted by BK (3.66) and CL25.",
+   "verdict": "accepted",
+   "action": "T7 (a)"
+  },
+  {
+   "id": "LR1-C5",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T7(d): replace with: lifted pairs exclude Q_1 = aQ_0 + [Q_0,phi] (Lemma inv), and exclude a scheme with Q undeformed on the BPS superfield plus Leibniz (both CL22 hypotheses). A nonzero derivation is not excluded by this argument; e.g. BK (3.55) Q^I_+ is a derivation commuting with Q_0.",
+   "verdict": "accepted",
+   "action": "T7 (d)"
+  },
+  {
+   "id": "LR1-C6",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T9(c): delete 'the N=4 analogue of BGKWWY (3.40) is Q_0-exact'. In N=4, Tr b^2 is not Q_0-closed (BK (3.49)), and BK (3.65) gives Q_1 Tr b^2 proportional to d^adot(Tr b d_adot c + Tr gamma^I d_adot beta_I). Record this instead as a [D] check of compatibility with BK (2.18).",
+   "verdict": "accepted",
+   "action": "T9 (c)"
+  },
+  {
+   "id": "LR1-C7",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T10(a) and R4 table: relabel 'R_1 not computed' as [I]. BK fn 24 says only that the tree-level psl(3|3) 'might also receive loop corrections'. In the KvLM item, the Qbar-anticommutation is cited from BK and used after (5.4); (5.4) uses Sbar charges.",
+   "verdict": "accepted",
+   "action": "T10 (a), R4 table S row"
+  },
+  {
+   "id": "LR1-C8",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T1(a): cite the triangle-only statement to BK text after (2.43) ('at one-loop there is only the triangle diagram'). GKW (3.10) is only the global Laman constraint.",
+   "verdict": "accepted",
+   "action": "T1 (a)"
+  },
+  {
+   "id": "LR1-C9",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "T11(a): drop GKW (6.28) and (6.33) as scheme-dependence sources.",
+   "verdict": "accepted",
+   "action": "T11 (a)"
+  },
+  {
+   "id": "LR1-C10",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "Sec 4 F1: replace 'Q_1 -> Q_1 + aQ_0' with: with the correlated F2 rescaling, F1 is conjugation by the R-rotation alpha(1 + a hbar) of ESW Def 2.18, giving Q_1 -> Q_1 + a[N_alpha, Q_0] = Q_1 + aQ_0 - a[N_gh, Q_0], a [Q_0,phi]-type shift (e.g. a * 1/2 eps[gamma,gamma] on beta). Lemma inv still applies.",
+   "verdict": "accepted",
+   "action": "Sec 4 F1 (and F0)"
+  },
+  {
+   "id": "LR1-C11",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "R4 table: replace '[BGKWWY] absent list' with a reference to the reader file. Add BGWW Sec 4.3 (4.73)-(4.77) (one-loop ternary brackets of the twisted N=4 superconformal currents, a=c; cocycle representative left open) as the nearest twisted one-loop data along superconformal generators.",
+   "verdict": "accepted",
+   "action": "R4 table equivariant row"
+  },
+  {
+   "id": "LR1-C12",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "Add a target from CLW 2310.20086 Sec 3.1: for the rank-(1,1) supercharge Q_HT = Q^4_- + Q_{-dot 3} ((3.1); in the project xi + xibar', with xibar' in the commutant of T10(c)), all loop corrections vanish, Q_int = Q_0 to all orders. Its fn 5 says Zwiebel's leading Q_1 is [Q_0,-]-form. Use this to address open item 6 (Zwiebel tension) and as a further R3 reproduction check. Also note BK (1.11)/CLW (3.19) Q_1^{2d}.",
+   "verdict": "accepted",
+   "action": "Target T12; design E12"
+  },
+  {
+   "id": "LR1-C13",
+   "source_refuter": "literature_refuters[0] (literature refuter 1)",
+   "correction": "Open item 8: add Bomans-Wu 2311.04304 (BK [28]) and Saberi-Williams 1910.04120 (BK [27], source of (3.55)-(3.56)) as unread twisted-side sources.",
+   "verdict": "accepted",
+   "action": "open item 8"
+  },
+  {
+   "id": "LR2-C1",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T5(d) and Sec. 4 'to be reproduced exactly': remove the claim that the Konishi coefficient is scheme independent in the orthogonality normalisation. Replace with: c_K is scheme dependent even after orthogonality (EJSS (103)). The F3 shift B -> B + y hbar (F - 4B) keeps (99) and changes the F coefficient by -y. EJSS fix it only by convention (SSDR with Z_K minimal, (102)). c_K is not part of pi_0 Q_1 iota_0, because sum Tr beta_I gamma^I is not Q_0-closed.",
+   "verdict": "accepted",
+   "action": "T5 (d), Sec 4 lists"
+  },
+  {
+   "id": "LR2-C2",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T5(a): replace 'kappa_Q free' by 'kappa_Q a non-zero normalisation whose precise value is not needed (KvLM after (5.5))'. Write the index structure as f_a^{cd} f^{bc}_e (lambda_alphadot)^d (lambda^alphadot)^e, and add KvLM (5.21) [Q1][F4] = -12 kappa_Q [S^4].",
+   "verdict": "partly (index structure from the PDF)",
+   "action": "T5 (a)"
+  },
+  {
+   "id": "LR2-C3",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T5(b): add the EJSS conventions. (5) K = -1/3 Tr(e^{gV} Phibar_I e^{-gV} Phi^I) is the K of (7)-(8), whereas (1) uses K = Tr(Phibar e^{gV} Phi) without N. fn 8: Dbar^2 = -1/4 Dbar_alphadot Dbar^alphadot. Z_B = 1, Z_F = g^2N/32pi^2 are in the text after (12), with C_F of (10). Add the (109) action normalisation and the (110)/(112) propagators.",
+   "verdict": "accepted",
+   "action": "T5 (b)"
+  },
+  {
+   "id": "LR2-C4",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "Drop the 'EJSS coefficient = -1 x unit' identification (D7 and T5(c)). The project dictionary uses tr(T^aT^b) = 1/2 delta^ab while EJSS uses delta^ab, EJSS K carries -1/3 and Dbar^2 = -1/4 DbarDbar, and the EJSS number is not an arity-one component.",
+   "verdict": "accepted",
+   "action": "T5 (c), open item 7"
+  },
+  {
+   "id": "LR2-C5",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "F1: replace 'acting as Q_1 -> Q_1 + a Q_0' by 'acting as Q_1 -> Q_1 + a[N_alpha, Q_0]', with N_alpha the alpha-weight derivation (ESW Def 2.18). Keep a Q_0 only for the coupling (total-action) direction of F0.",
+   "verdict": "accepted",
+   "action": "Sec 4 F1, F0"
+  },
+  {
+   "id": "LR2-C6",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "R4 novelty table: add Zwiebel arXiv:1111.0083 Sec. 2.3 (2.33)-(2.34) and Zwiebel's thesis (its ref. [24]). These give S_{2->1}, Sdot_{2->1}, K_{2->1}, K_{3->1} for the full planar psu(2,2|4) chain, and S_{2->1}, K_{2->1} are one loop by D1. Delete 'psu(1,1|2) only' in the K row. Restate the open part as: 2->2 one-loop S and K beyond su(2|3)/psu(1,1|2), non-planar, gauge-variant letters, and the BV-equivariant form.",
+   "verdict": "accepted",
+   "action": "R4 table K and S rows, source key Z11"
+  },
+  {
+   "id": "LR2-C7",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T8: add BMV arXiv:2306.04693 as the direct untwisted one-loop computation that the lowest SU(2) fortuitous class survives (credited in BK v3 p.5, ref. [37]), not only its footnote 5.",
+   "verdict": "accepted",
+   "action": "T8 (a)"
+  },
+  {
+   "id": "LR2-C8",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T10: the Qbar_{m alphadot}–Q_1 anticommutation in KvLM is in the paragraph after (5.4), citing [12] = BK. (5.4) itself is the classical action of six Sbar commutant charges on S^4.",
+   "verdict": "accepted",
+   "action": "T10 (a)"
+  },
+  {
+   "id": "LR2-C9",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T5(a): CL25 (2.5) has Abar_{ij,kl} with lower indices; the example is unnumbered, after (2.6). Note that CL25's Q_K is only the part inferred from the generalized Konishi anomaly and that other one-loop terms are possible.",
+   "verdict": "accepted",
+   "action": "T5 (a) CL25"
+  },
+  {
+   "id": "LR2-C10",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "Konishi value: cite B03c (4.49) (E = 6, delta Delta = 3g_YM^2N/(4pi^2)) with the normalisation (1.2), in addition to ch06 rem:c6-konishi.",
+   "verdict": "accepted",
+   "action": "R4 table dilatation row (B03c (4.49), (1.2) verified in the local text)"
+  },
+  {
+   "id": "LR2-C11",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T3/T10 and the JSON summary: BK Sec. 3.4.1 says the psl(3|3) descendants of (3.77) are 'Q_1-closed' on Q_0-cohomology, not that Q_1 'vanishes on' them. BK fn 24 says the tree-level psl(3|3) 'might also receive loop corrections'; 'R_1 not computed' is an inference.",
+   "verdict": "accepted",
+   "action": "T3 (a): psl(3|3) descendants Q_1-closed (BK Sec 3.4.1 verified); T10: R_1 [I]"
+  },
+  {
+   "id": "LR2-C12",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T5(d): the EJSS abstract says the classical/quantum split is 'not possible' in a superconformal scheme, and (3) has no [F]_R term. Quote it that way rather than as merely 'scheme dependent'.",
+   "verdict": "accepted",
+   "action": "T5 (d)"
+  },
+  {
+   "id": "LR2-C13",
+   "source_refuter": "literature_refuters[1] (literature refuter 2)",
+   "correction": "T11: add CDSW Sec. 3 (after (3.4)): higher-loop contributions to the Konishi anomaly are 'renormalization scheme dependent'.",
+   "verdict": "accepted (with the source nuance)",
+   "action": "T5 (d), T11 (a): CDSW after (3.4) quoted; the scheme-dependent higher-loop terms are non-chiral and (3.4) is exact in the chiral ring (CDSW, fetched from arXiv)"
+  }
+ ],
+ "open_after_revision": [
+  "placeholder prop:o-Kclaim (existence of the K-route local representative at fixed finite T; T-independence follows by prop:o-Tindep)",
+  "nonvanishing of the O(eps) cut tree (thm:o-ir (ii)) and of Y (thm:o-ir (iii))",
+  "hypotheses (H1) (decalage signs) and (H4) (E3b)",
+  "transport Phi from ESW Thm 10.9 (rem:o-transport)",
+  "gauge-fixing law (c): proof plan"
+ ],
+ "round_2": {
+  "date": "2026-10-29",
+  "input": "auditor findings (lenses algebra-scheme: 21, graphs-T: 11) on the revised design, the K judgement (step2/qa/k_judgement.json), alignment with manuscript/ch08_definitions.tex",
+  "files_changed": [
+   "step2/theory/odd_components_design.tex",
+   "step2/theory/_build_odd/odd_design.pdf",
+   "step2/theory/engine_plan.json",
+   "step2/literature/q1_targets.tex",
+   "step2/literature/build_q1_targets.py",
+   "step2/literature/q1_targets.json",
+   "step2/literature/build_q1targets/q1_targets.pdf",
+   "step2/qa/ch08_corrections_from_design.json",
+   "step2/qa/design_revision_disposition.json (this key)"
+  ],
+  "new_checks": [
+   "step2/qa/design_revision_round2/cubic_quotient.py/.json",
+   "step2/qa/design_revision_round2/scheme_shift_round2.py/.json",
+   "step2/qa/design_revision_round2/rerun/ (audit scripts a1-a7, census_ir, koszul_orientation, scheme_shift_check rerun: outputs byte-identical)",
+   "step2/qa/design_revision_round2/build_ch08_corrections.py (asserts every quoted ch08 text occurs exactly once)",
+   "step2/qa/design_revision_round2/update_engine_plan.py"
+  ],
+  "backups": "step2/qa/design_revision_round2/backup/ (pre-round-2 copies of the design, plan, targets, disposition)",
+  "counts": {
+   "findings": 32,
+   "accepted": 26,
+   "accepted_with_correction_or_partly": 6,
+   "rejected": 0,
+   "K_judgement_items": 5,
+   "ch08_corrections": 14
+  },
+  "items": [
+   {
+    "id": "R2-A1",
+    "lens": "algebra-scheme",
+    "severity": "major",
+    "location": "thm:o-KD, thm:o-invariants (iv), prop:o-S (ii), prop:o-Kconsistent (iii), freedom tables; E8, E10c, E10e, E11",
+    "verdict": "accepted (refined)",
+    "action": "step2/theory/odd_components_design.tex: new prop:o-P1 (translation component, P_1 = 0 as a renormalisation condition, values -(1/3+f_P) on bilinears, -f_P on letters, R_1 = 0 in every so(W)-covariant scheme, M_1 on the composite line); prop:o-laws (a) exact direction kappa S^(1)(Delta), (b) family finite parts (c/2) ad_{S1(Delta)} pi_F; thm:o-KD with general P_1 = p ad (K_1 == 1/4 div v gamma O - p ad_{S1(K_b)} O) and values in the P_1 = 0 and translation-covariant schemes; prop:o-S (ii) with -p ad_{S1(eta)}; thm:o-invariants (iv) invariant combination; both tables gain the rows exact direction, f_P, z, composite remainders, family finite parts. step2/theory/engine_plan.json: E11 moved before E8/E10 with the three-letter test, E8/E10c targets in both schemes, E10e with pbar. Refinement: the projection pi_n on n-letter functionals of the fix is replaced by a family projection pi_F commuting with ad_{S1(Delta)}, ad_{S1(P_b)}; with c_n != c_{n+1} the polynomial-degree projection does not commute with Q+{I,-} on gauge-invariant operators with covariant derivatives and would give them L_1(O)^(0) != 0; c_n = -(n-1)/3 is kept as the E11 test.",
+    "evidence": "engine_b/delta_results.json part2 (coefficient.normalisation_of_the_classical_part, translation_part_check subset 844 = full); qa/compare_delta.json [9] (three routes); step2/qa/design_revision_round2/scheme_shift_round2.json (kappa ad_{S1(Delta)}: P -2 kappa, K +2 kappa, so(V) 0, Delta 0; exact); odd_rev_audit_algebra a3 part 4, a5 (rerun identical)"
+   },
+   {
+    "id": "R2-A2",
+    "lens": "algebra-scheme",
+    "severity": "major",
+    "location": "prop:o-arity0; E3b; targets F0",
+    "verdict": "accepted with correction",
+    "action": "step2/theory/odd_components_design.tex: prop:o-arity0 restated (three-leg part in span{H1..H6,H7,H8+,H8-}; closed space dim 9, 8 even; ker Q dim 5; span of the six dim 6 (5 even, 1 odd); quotient dim 3, all even, representatives (b1,H1)=(1,1), (b2,H4)=(1/4,1), (b3,H5)=(-1/2,1); Yukawa and H5+H7 expressed in them); two-component H7, H8+-; E3b rewritten; targets F0 corrected. Correction to the finding: the parity-even quotient is 3-dimensional, not 2 (the audit subtracted the full rank 6 of the six from the parity-even dimension 8, but one of the six, s(N_lp) - s(N_lm) = -2(H8+ - H8-), is parity odd); the Yukawa direction and H5+H7 are not two extra directions beyond the Part-C family: modulo the span of the six every closed direction is a Part-C direction (C = V + Part-C).",
+    "evidence": "step2/qa/design_revision_round2/cubic_quotient.py/.json (exact rationals, inputs transcribed from cubic_structure.tex prop:s2c-QH, cor:s2c-QI3, prop:s2c-br as in audit a4); odd_rev_audit_algebra a4 rerun identical"
+   },
+   {
+    "id": "R2-A3",
+    "lens": "algebra-scheme",
+    "severity": "major",
+    "location": "CH08 def:c8-radial",
+    "verdict": "accepted (merged with R2-G6 and the K-judgement proposal; reflection condition corrected)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry def:c8-radial: drop \"with P_1 = 0 (Prop c7-cov)\", append the scheme-condition paragraph with the family finite part (p/2) ad_{S1(Delta)} pi_F, its effect (K_1 +p, Q_1 -p/2, S_1 +p/2), reflection compatibility for real p, and the exact direction kappa S^(1)(Delta) (-2kappa, 2kappa, -kappa, kappa)",
+    "evidence": "engine B, compare_delta, scheme_shift_round2.json; reflection: ad_{S1(Delta)} = 2(x.d + w) on densities, real and r_n-invariant"
+   },
+   {
+    "id": "R2-A4",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 thm:c8-adjoint",
+    "verdict": "accepted in modified form",
+    "action": "step2/qa/ch08_corrections_from_design.json entry thm:c8-adjoint: the hypothesis P_1 = M_1 = R_1 = 0 is dropped (the proof uses only reflection compatibility and Cor c8-homotopy for the full Lambda^(1)); the R_1 statement of the finding is in design prop:o-P1 (iv); prop:c8-primary gets P_1 = M_1 = R_1 = 0 instead",
+    "evidence": "proof of thm:c8-adjoint; k_transfer cor:ktr-gram; k_judgement cor:kj-gram"
+   },
+   {
+    "id": "R2-A5",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 cor:c8-gram",
+    "verdict": "accepted (merged with the K-judgement formula)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry cor:c8-gram: K_1 along K_bbar = pbar ad_{S1(K_bbar)} + hbar[ad_{S1(K_bbar)}, Gram_tree^{-1} Gram_1] for P_1 = p ad; design prop:o-Kconsistent (iii)",
+    "evidence": "k_transfer cor:ktr-gram; ch08 thm:c8-dag (i)"
+   },
+   {
+    "id": "R2-A6",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "prop:o-GB (ii) proof; CH08 prop:c8-B proof",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: prop:o-GB (ii) proof rewritten via G_B^(1)(P_b) = 0 (induction on the degree in the position, translation-invariant phi^(0), then the four-term contradiction along S_+ (x) W); step2/qa/ch08_corrections_from_design.json entry prop:c8-B",
+    "evidence": "odd_rev_audit_algebra a3 part 2 (S+W alone: c = 1, all a_f equal; both blocks: none; translation: c = 0), a7 (x-dependent degree -2 weight 9/2 contents); rerun identical"
+   },
+   {
+    "id": "R2-A7",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 thm:c8-L (iv), lem:c8-ev",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: lem:o-ev states the total-parity rule and the product intertwining; thm:o-twist (H1) removed; step2/qa/ch08_corrections_from_design.json entries thm:c8-L, lem:c8-ev; ch02 def:c2-dce noted (outside chapter 8)",
+    "evidence": "odd_rev_audit_algebra a1 (T1-T4, T6), a1b (V1 total parity 10/10), a1c (V1 8/8); rerun identical"
+   },
+   {
+    "id": "R2-A8",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 def:c8-quant",
+    "verdict": "accepted (extended)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry def:c8-quant: Weyl weight 4 with the weight convention for the position (-1) and the arguments (half the ad_Delta eigenvalue); the same convention in def:c8-renorm and Weyl weight 4 for phi in prop:c8-laws (a); design def:o-names (weights), prop:o-laws (a)",
+    "evidence": "design thm:o-invariants (ii) proof (S^(1)(P_b) shifts D_1 by 2 hbar ad_{S1(P_b)})"
+   },
+   {
+    "id": "R2-A9",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 remark after thm:c8-twist; design thm:o-twist (iv)",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: thm:o-twist (iv) with C S^xi + Im Q^xi_0 (N S^xi = Q^xi_0 S^(1)(R_xi), r_xi(G_B) = -Q^xi_0 S^(1)(R_xi)), comparison remark updated; step2/qa/ch08_corrections_from_design.json",
+    "evidence": "odd_rev_audit_algebra a2 ({psi,f} = {f,psi}: 20/20)"
+   },
+   {
+    "id": "R2-A10",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "CH08 remark (existence along K); design def:o-K, prop:o-Kclaim, E10",
+    "verdict": "accepted (merged)",
+    "action": "step2/theory/odd_components_design.tex: rem:o-Kcomposite (composite line K.(P*)^2 + [P*,K.]P*, complete composite sums, R_{O,K}); E10c requires complete composite sums; step2/qa/ch08_corrections_from_design.json entry for the remark (merged with the K-judgement text)",
+    "evidence": "delta_theory rem:d-Y1a, prop:d-T (iii); k_judgement lem:kj-composite"
+   },
+   {
+    "id": "R2-A11",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "def:o-B; targets F5",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex def:o-B: bracket with diag(0_4,1_4), equivalently minus the bracket with diag(1_4,0_4) (as ch08 def:c8-B); step2/literature/q1_targets.tex F5 and build_q1_targets.py F5 (json regenerated)",
+    "evidence": "odd_rev_audit_algebra a3 part 1 (block table: B = ad diag(0_4,1_4) = -ad diag(1_4,0_4); ad Delta eigenvalues reproduced)"
+   },
+   {
+    "id": "R2-A12",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "prop:o-GB (iii), eq:o-twistlaws, thm:o-invariants (iii), tables, rem:o-alpha; prop:o-laws (a)",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: hbar inserted in every law (L_1 changes multiplied by hbar in the components); prop:o-laws (a) with (-1)^{1+|x_1|}",
+    "evidence": "ch08 prop:c8-laws (\"-a hbar\"); shuffle sign of ch02 def:c2-dce for the (1,0) shuffle; odd_rev_audit_algebra a3 part 4"
+   },
+   {
+    "id": "R2-A13",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "caption of the D_1..R_1 table; arity-one counterterm row",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: caption: int(c*, iota_v A_V) exists for every even generator with a vector field on V (translations, rotations, Delta, K); none for so(W_R^perp); row entries \"s-exact on gauge-invariant O\"",
+    "evidence": "odd_rev_audit_algebra a7 (content (A,c*) degree -2 weight 5 along P_b)"
+   },
+   {
+    "id": "R2-A14",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "thm:o-invariants (ii); D_1 column",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: weight 4 imposed on the finite counterterms (def:o-names, prop:o-laws (a)); thm:o-invariants (ii) proved for every weight-4 phi^(0), position-dependent or not ({S^(1)(Delta),-} = 2(x.d + 4) on a weight-4 density, a total derivative), with the counterexample S^(1)(P_b); D_1 column gains the z row (fixed at arity two, delta_theory prop:d-z) and the composite remainder R_O",
+    "evidence": "delta_theory thm:d-D3, prop:d-z; engine A z_2, engine B b (part2.coefficient)"
+   },
+   {
+    "id": "R2-A15",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "thm:o-twist (H1); engine_plan open_items, E0",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: (H1) replaced by the statement of the sign rule with citation of ch08 lem:c8-ev and thm:c8-L (iv) (CH08 correction); step2/theory/engine_plan.json: E0 task and conventions.evaluation_along_xi updated, open item removed",
+    "evidence": "odd_rev_audit_algebra a1, a1b"
+   },
+   {
+    "id": "R2-A16",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "thm:o-twist (ii) proof",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: (Q^xi_0)^2 = -1/2 {{S^xi,S^xi},-}",
+    "evidence": "odd_rev_audit_algebra a2 (ad_f ad_f = -1/2 ad_{f,f}: 8/8)"
+   },
+   {
+    "id": "R2-A17",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "remark (comparison with the twisted computation)",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: \"the twisted BV action [BK, (3.53)] has no coupling constant; loops are counted by hbar [BK, (1.3)]\"",
+    "evidence": "odd_rev_audit_algebra/lit_check/bk_pdf/bk_v3.txt: no occurrence of \"coupling\"; (1.3) is the hbar expansion of Q, (3.53) the Chern-Simons-type action on C^{2|3} (checked in this round)"
+   },
+   {
+    "id": "R2-A18",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "lem:o-Tflow (iv)",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: T in (0,infinity), and T = infinity in the components of prop:o-Tsafe (i)",
+    "evidence": "ch08 prop:c8-Tindep (i)"
+   },
+   {
+    "id": "R2-A19",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "lem:o-actiontrunc, prop:o-trunc",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: hypothesis that the Sigma-components carry no explicit position dependence, with its justification (I^CT by prop:c7-cov; the schemes used); x-dependent contents at k = 3, 4 recorded in the proof",
+    "evidence": "odd_rev_audit_algebra a7 (x-dependent contents (lam*,c*)x at degree -3, (c*,c*)x^2 at degree -4)"
+   },
+   {
+    "id": "R2-A20",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "def:o-scale, targets F0 notation",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: F^(k)_psl for arities, F_psl = hbar F_1 + ... (ch08); targets F0/F1 now use F^(0)_psl, two-leg / three-leg part in words",
+    "evidence": "ch08 def:c8-quant, def:c8-2pt"
+   },
+   {
+    "id": "R2-A21",
+    "lens": "algebra-scheme",
+    "severity": "minor",
+    "location": "rem:o-alpha; targets F1",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex rem:o-alpha and targets F1: the a of F1 (added to the action) is minus the a of prop:o-laws (e)",
+    "evidence": "J = I_psl - F_psl - I^CT: F -> F + hbar a G_B changes the twisted action by -a hbar (S^(1)(xi) - S^(2)(xi,xi))"
+   },
+   {
+    "id": "R2-G1",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "thm:o-KD, prop:o-S (ii), freedom table; E8, E10c, E10e, E11",
+    "verdict": "accepted (merged with R2-A1; one formula corrected)",
+    "action": "as R2-A1; the relations K_1 == 1/4 div v gamma O - c ad_{S1(K_b)}, S_1(eta) == Q_1(rho(x)eta) - c ad_{S1(eta)} + U_eta and the E10c targets adopted, with two-component forms. Not adopted: the finite part \"psi' = c x (Weyl weight)\": multiplication by c times the weight of the density does not commute with integration by parts in omega and is not a map of local functionals; the design uses (c/2) ad_{S1(Delta)} pi_F, which has the same component shifts",
+    "evidence": "step2/qa/design_revision_round2/scheme_shift_round2.json (check (4): c x density weight does not commute with derivatives; ad_{S1(Delta)} does); odd_rev_audit_graphs scheme_shift_check.json (rerun identical)"
+   },
+   {
+    "id": "R2-G2",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "lem:o-legs, prop:o-ir, thm:o-ir, prop:o-Tsafe; engine_plan placement, large_distance, T_infinity_safe",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: lem:o-legs (even-even adjacency through A_V (x) A_V, two ghost ends; odd pairs of opposite chirality; two-component chain); prop:o-ir (degree d1+d2-2); thm:o-ir (v) (orientation sum, which pairs converge, (K_b,x) at finite T); prop:o-Tsafe (i), (iii); step2/theory/engine_plan.json",
+    "evidence": "odd_rev_audit_graphs census_ir.json, koszul_orientation.json (relative sign -1, leading term 0, first moment = prediction); rerun identical"
+   },
+   {
+    "id": "R2-G3",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "thm:o-classes, eq:o-L1graphs; engine_plan formula, E6, E12",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: class (T0) added; eq:o-L1graphs now subtracts the trees of hbar L_1(O)^(0) with one S^(1)(x1) and adds the arity-one tree flow of the counterterm of the cochain sO; reduces to the former formula for gauge-invariant O with L_1^(0) = 0; step2/theory/engine_plan.json graph_class_reference.T0/formula, E6",
+    "evidence": "Lemma c8-rep, thm:c8-L (iv): L(O)[T] at arity one = (sO)[T]^(1) + hbar L_1(O)^(1)[T]_tree + trees of hbar L_1(O)^(0) with S^(1)(x1); letter int omega (X, iota_v A_V): L_1^(0) a multiple of int omega (X, iota_v dc), tree with one lambda leg (same leg count as L_1^(1)(xi)); delta_theory thm:d-D3 subtracts the same tree"
+   },
+   {
+    "id": "R2-G4",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "prop:o-laws (a), tables, caption, prop:o-arity0, prop:o-GB (ii), thm:o-invariants, actiontrunc; E2, E3b, E4, E5",
+    "verdict": "accepted except the sign of the exact direction",
+    "action": "step2/theory/odd_components_design.tex: exact direction kappa S^(1)(Delta) in prop:o-laws (a), both tables, thm:o-invariants (iii), (iv), with the shifts (P, K, xi, eta) = (-2kappa, +2kappa, -kappa, +kappa) hbar x classical; caption corrected; prop:o-GB (ii) repaired through the translation component (the two-block repair of the finding needs an unproved lemma on position-dependent invariants and is not adopted); lem:o-actiontrunc and prop:o-trunc restricted to x-independent Sigma-components; E3b stated for translation-covariant cochains. Rejected: the shift pattern (2a, -2a, a, -a) of the finding has the wrong overall sign (it is the sign of -(s phi)^(1)(x) with the shuffle sign dropped)",
+    "evidence": "step2/qa/design_revision_round2/scheme_shift_round2.json (exact: -2 kappa along P, +2 kappa along K); odd_rev_audit_algebra a3 part 4 (same); k_transfer prop:ktr-rescale (i) (psi' = (a/2) ad_{S1(Delta)}: P_1 -a, K_1 +a, Q_1 -a/2, S_1 +a/2) and delta_theory prop:d-P (ii) agree"
+   },
+   {
+    "id": "R2-G5",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "engine_plan E10c, E10d, E0, E9",
+    "verdict": "accepted",
+    "action": "step2/theory/engine_plan.json: E10c exact procedure (eps -> 0 at fixed T = eps^0 coefficient of the integrand with the P-edge upper limit extended, per-graph proof of the needed Taylor order, exact or >= 40 digits + PSLQ, cross-check at T|p|^2 = 1, 4, 16); E0 canonical form with gamma^{mn} d_m d_n delta (test on {S^(1)(K_b), int(A,A)}); E9 both orientations in one integrand; finite-T propagator in every K job",
+    "evidence": "k_judgement thm:kj-Tindep (bound O(eps) at fixed T); census_ir.py (S^3 average 2 eta.xi per orientation); engine conventions alpha delta + beta d delta only (engine_a/engine_b delta_results conventions)"
+   },
+   {
+    "id": "R2-G6",
+    "lens": "graphs-T",
+    "severity": "major",
+    "location": "CH08 def:c8-radial",
+    "verdict": "accepted (merged; see R2-A3)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry def:c8-radial (family finite part (p/2) ad_{S1(Delta)} pi_F instead of c x Weyl weight)",
+    "evidence": "as R2-A3, R2-G1"
+   },
+   {
+    "id": "R2-G7",
+    "lens": "graphs-T",
+    "severity": "minor",
+    "location": "CH08 prop:c8-B",
+    "verdict": "accepted in substance (repair by the translation route)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry prop:c8-B",
+    "evidence": "as R2-A6"
+   },
+   {
+    "id": "R2-G8",
+    "lens": "graphs-T",
+    "severity": "minor",
+    "location": "CH08 prop:c8-Tsafe",
+    "verdict": "accepted (merged with the K-judgement coefficient and the composite-sum sentence)",
+    "action": "step2/qa/ch08_corrections_from_design.json entry prop:c8-Tsafe",
+    "evidence": "census_ir, koszul_orientation; k_judgement prop:kj-composite"
+   },
+   {
+    "id": "R2-G9",
+    "lens": "graphs-T",
+    "severity": "minor",
+    "location": "lem:o-Tflow (iv), def:o-scale, prop:o-unique",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: T ranges (0,infinity), T = infinity in the convergent components (prop:o-Tsafe (i))",
+    "evidence": "ch08 prop:c8-Tindep; thm:o-ir (ii)-(v)"
+   },
+   {
+    "id": "R2-G10",
+    "lens": "graphs-T",
+    "severity": "minor",
+    "location": "prop:o-uv, eq:o-defect, thm:o-classes (E1)",
+    "verdict": "accepted",
+    "action": "step2/theory/odd_components_design.tex: defect vertex and classes stated at psi = 0, the extra vertex delta hbar((d_CE+Q)psi(O) + {I_psl,psi(O)}_eps) displayed, its effect is the law (b)",
+    "evidence": "ch08 def:c8-renorm"
+   },
+   {
+    "id": "R2-G11",
+    "lens": "graphs-T",
+    "severity": "minor",
+    "location": "def:o-B",
+    "verdict": "accepted (= R2-A11)",
+    "action": "step2/theory/odd_components_design.tex def:o-B",
+    "evidence": "odd_rev_audit_algebra a3 part 1"
+   },
+   {
+    "id": "KJ-1",
+    "lens": "K judgement",
+    "severity": "decision",
+    "location": "prop:o-Kclaim (placeholder), def:o-K, thm:o-ir (ii)-(iv), prop:o-Tsafe, E10",
+    "verdict": "integrated",
+    "action": "step2/theory/odd_components_design.tex: the placeholder replaced by Proposition \"Existence and independence of the endpoint along K\" (route (A); proof from k_transfer thm:ktr-defect and k_judgement thm:kj-Tindep, numbers from the validated engine kn), def:o-K with the order of limits, thm:o-ir (ii)-(iv) with the established coefficients and trees, rem:o-Kcomposite, prop:o-Tsafe (ii)-(iii); step2/theory/engine_plan.json E10a-E10g",
+    "evidence": "step2/qa/k_judgement.json/.tex; step2/theory/k_transfer.tex"
+   },
+   {
+    "id": "KJ-2",
+    "lens": "K judgement",
+    "severity": "decision",
+    "location": "thm:o-KD, prop:o-Kconsistent",
+    "verdict": "integrated",
+    "action": "step2/theory/odd_components_design.tex: thm:o-KD general P_1 = p (d = 0, m = 0, alpha = -p, kappa = gamma - p w), predicted f_S = -1/3 noted for the dilatation workflow; prop:o-Kconsistent (i) (K_b,P_b') and (P_b',Delta), (ii) (eta1,eta2), (iii) Cor c8-gram with pbar",
+    "evidence": "k_transfer thm:ktr-relations, thm:ktr-KD, cor:ktr-gram; k_tr_relations.json rerun identical in k_judgement"
+   },
+   {
+    "id": "KJ-3",
+    "lens": "K judgement",
+    "severity": "dispute",
+    "location": "k_transfer prop:ktr-rescale (ii); k_judgement cor:kj-gram, open issue 2, CH08 proposal for def:c8-radial",
+    "verdict": "rejected (reflection condition)",
+    "action": "the design and step2/qa/ch08_corrections_from_design.json state reflection compatibility of the finite part (a/2) ad_{S1(Delta)} for real a; consequently a real rescaling p is removable in a reflection-compatible scheme",
+    "evidence": "ad_{S1(Delta)} acts on densities of weight w as 2(x.d + w), real coefficients, commuting with the linear isometry r_n and preserving weights; Theta_n antilinear => (kappa ad_{S1(Delta)} O)^Theta = conj(kappa) ad_{S1(Delta)} O^Theta; in the bracket computation of ktr, S^(1)(Delta)^Theta = -S^(1)(Delta) is compensated by the exchange sign {g,f} = (-1)^{|f||g|}{f,g} of the ch01 bracket (odd_rev_audit_algebra a2: 60/60), which ktr omitted; a6: ad_Delta commutes with dagger_n; a5 agrees"
+   },
+   {
+    "id": "KJ-4",
+    "lens": "K judgement",
+    "severity": "evidence",
+    "location": "citations of k_transfer prop:ktr-values (ii), prop:ktr-Tsafe rows 5-6",
+    "verdict": "noted",
+    "action": "step2/theory/odd_components_design.tex cites the K-judgement values (validated engine kn, third realisation) for every number; the partial files k_tr_etaeta.py, k_tr_kernel.py, k_tr_zeromode.py, ktr_out/, qa/k_transfer_numeric/ were reused only through the K judgement, which reran them (theory scripts bit for bit, numerics on subsets)",
+    "evidence": "step2/qa/k_transfer_numeric/PARTIAL_FILES_NOTE.txt; k_judgement.json argument item 1"
+   },
+   {
+    "id": "KJ-5",
+    "lens": "K judgement",
+    "severity": "decision",
+    "location": "CH08 proposals of the K judgement",
+    "verdict": "adopted (merged)",
+    "action": "step2/qa/ch08_corrections_from_design.json entries def:c8-K, thm:c8-K, prop:c8-Tsafe, remark after thm:c8-K, def:c8-radial (reflection condition corrected, KJ-3), thm:c8-adjoint, prop:c8-primary, cor:c8-gram",
+    "evidence": "k_judgement.json open_issues"
+   }
+  ],
+  "open_after_round_2": [
+   "E11: composite remainders along P_b and so(V) on a three-letter operator; M_1 rescaling; scheme record (translation covariant / P_1 = 0) before E8, E10",
+   "E10c, E10f: K_1 on letters and bilinears from the K-route graphs at finite T; completion of the arity-one obstruction along K_b",
+   "E3b: the three directions of C/V admit no s-closed psl(4|4)-completion (hypothesis (H4))",
+   "f_S = -1/3 predicted by d = 0 (dilatation workflow)",
+   "transport Phi from ESW Thm 10.9 (rem:o-transport); gauge-fixing law (c): proof plan"
+  ]
+ }
+}

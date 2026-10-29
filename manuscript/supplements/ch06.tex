@@ -1,0 +1,79 @@
+% ANCHOR: after_label def:c6-sigma
+\begin{remark}[Physics notation: canonical dimensions and the Weyl rescaling]
+The Weyl weight of a slot is the canonical mass dimension of its components in the physics notation key after Section 1.2:
+\[
+[A_m]=[A_{ij}]=1,\quad [\lambda_\alpha{}^i]=[\bar\lambda_{\dot\alpha i}]=\tfrac32,\quad [c]=0,\qquad [A^*_m]=[A^*_{ij}]=3,\quad [\lambda^{*\alpha}{}_i]=[\bar\lambda^{*\dot\alpha i}]=\tfrac52,\quad [c^*]=4 .
+\]
+$\sigma_s$ is the finite dilatation $x\mapsto sx$ acting on fields of these dimensions, for example
+\[
+(\sigma_sA_m)(x)=s^{-1}A_m(s^{-1}x),\qquad (\sigma_s\lambda_\alpha{}^i)(x)=s^{-3/2}\lambda_\alpha{}^i(s^{-1}x),\qquad (\sigma_s\bar\lambda^{*\dot\alpha i})(x)=s^{-5/2}\bar\lambda^{*\dot\alpha i}(s^{-1}x).
+\]
+With $\omega=\omega(x)\,d^4x$, a local operator is $O=\int d^4x\,\omega(x)f(x)$, the smearing of the composite operator $f(x)$ (a polynomial in the fields and their derivatives at $x$) of canonical dimension $w_O$; $E=x^m\partial_m$, and $(E+w_O)O=\int d^4x\,\omega(x)\,(x^m\partial_m+w_O)f(x)$ is the classical scale transformation of $f$.
+\end{remark}
+
+% ANCHOR: end_of_section 6.1
+\begin{remark}[Physics notation: the proper-time cutoff under scaling]
+$K_t$ is the heat kernel of $H=-\partial^2$, $\varepsilon$ is the Schwinger proper-time cutoff, of dimension length$^2$, and $\varepsilon^{-1/2}$ the corresponding momentum cutoff: every component of $P(\varepsilon,\infty)$ carries $\int_\varepsilon^\infty e^{-t|p|^2}dt=e^{-\varepsilon|p|^2}/|p|^2$ (Proposition \ref{prop:c3-P}). Proposition \ref{prop:c6-scaling} states that the rescaling $x\mapsto sx$ of lengths is the rescaling $\varepsilon\mapsto s^2\varepsilon$ of the cutoff. In Lemma \ref{lem:c6-ct} the coefficients of $\varepsilon^{-1}$ are power (quadratic) divergences, multiplied by $s^{-2}$, the one of $I^{CT}[\varepsilon]$ being a multiple of the mass-type term $\int\big[(A_m,A_m)+\tfrac14(A^{ij},A_{ij})\big]$; the coefficients of $\log\varepsilon$ are logarithmic divergences, and $\log(s^2\varepsilon)=\log\varepsilon+2\log s$ produces the term $2\log s$ that carries the anomalous scaling.
+\end{remark}
+
+% ANCHOR: end_of_section 6.2
+\begin{remark}[Physics notation: the Callan--Symanzik equation]
+A tree insertion (Definition \ref{def:c6-tree}) is the sum of the connected tree Feynman graphs with one insertion of $F$, one of $X$, any number of vertices of $I$, and internal lines $\hbar P(0,\infty)$, the unregulated Feynman-gauge propagators proportional to $1/|p|^2$. Theorem \ref{thm:c6-CS} is the one-loop Callan--Symanzik equation of the renormalised operator $O[\infty]$: $s\frac{d}{ds}\big|_{s=1}\sigma_s$ generates $x\mapsto sx$, $\big((E+w_O)O\big)[\infty]$ is its canonical part $x^m\partial_m+w_O$, and the two $\log\varepsilon$ terms are its anomalous part, the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ being the one-loop operator counterterm of $O$ and the one in $I^{CT}[\varepsilon]$ the counterterm of the action inserted into $O[\infty]$. The factor $2$ is that of $2\varepsilon\frac{d}{d\varepsilon}=-\frac{d}{d\log\varepsilon^{-1/2}}$, minus the logarithmic derivative with respect to the momentum cutoff; the power divergences $\varepsilon^{-1}$ drop out.
+\end{remark}
+
+% ANCHOR: after_label lem:c6-count
+\begin{remark}[Physics notation: field-strength renormalisation of an operator]
+The field-counting functional generates the one-loop wave-function renormalisation of Theorem \ref{thm:c4-log}, a rescaling of $A_m$, $A_I$ (weight $2$), $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ (weight $4$) and $c$ (weight $1$) at fixed coupling (Corollary \ref{cor:c4-coupling}). Relative to the kinetic terms $-\tfrac18(F_{mn},F_{mn})$, $-\tfrac1{16}(D_mA^{ij},D_mA_{ij})$, $i(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}D_m\lambda_\alpha{}^i)$, $(D_mc,A^*_m)$ of Proposition \ref{prop:c8-twocomp}, the quadratic part of \eqref{eq:c6-fieldren} has the factors $4$, $4$, $8$, $-1$ in units, the sums $2+2$, $2+2$, $4+4$, $1-2$ of the weights. On a composite operator without antifields the bracket counts its fields with these weights: $4$ for $\operatorname{tr}(\phi_I\phi_J)$ (two scalars, $\phi_I=A^a_IT^a$), $2$ for the letters $A_I$ and $A_m$, $4$ for $\lambda$, $\bar\lambda$, $1$ for $c$; it is the part of the renormalisation of $O$ that comes from the wave-function renormalisation of its constituent fields.
+\end{remark}
+
+% ANCHOR: end_of_section 6.3
+\begin{remark}[Physics notation: BRST variation and field redefinition]
+$Q+\{I,-\}=\{S,-\}$ is the classical BV differential; on functionals of the fields alone it is the BRST variation, and $(Q+\{I,-\})O=0$ is the BRST invariance of $O$, which holds for gauge-invariant composite operators built from $F_{mn}$, $A_I$, $\lambda$, $\bar\lambda$ and covariant derivatives; for them the terms built from $(Q+\{I,-\})O$ vanish. The bracket $\{\text{field-counting functional},O\}$ is the change of $O$ under the field rescaling of Lemma \ref{lem:c6-count}. Corollary \ref{cor:c6-fieldredef} splits the effect of the field-strength renormalisation on $O[\infty]$ into this rescaling of the fields in $O$, a BRST-exact ($Q$-exact) term, and terms proportional to the BRST variation of $O$.
+\end{remark}
+
+% ANCHOR: after_label thm:c6-dil
+\begin{remark}[Physics notation: dilatation operator and anomalous dimensions]
+The physics dilatation $D=-E=-\tfrac12\Delta$ (the generator $-E$ of [SW, (3)]) is normalised by $[D,P_m]=P_m$. Acting through the representation $x\mapsto-\Lambda^{(1)}(x)$ of Corollary \ref{cor:c8-homotopy}, under the identification \eqref{eq:c6-step2} (established on the part of the scalar bilinears with two external scalars in Corollary \ref{cor:c9-ident}, under the hypotheses of Theorem \ref{thm:c9-kappa}), it sends an operator of ghost number $|O|=0$ to $(E+w_O+\text{coefficient})O$, modulo the terms built from $(Q+\{I,-\})O$: this is the physics form $[D,O(x)]=(x^m\partial_m+w_O+\gamma_O)O(x)$, with scaling dimension $w_O+\gamma_O$ and anomalous dimension $\gamma_O$ equal to the coefficient of the table times the unit. The $\Delta$-component $2(E+w_O+\gamma_O)O[\infty]$ multiplies an operator at the origin by $2(w_O+\gamma_O)$. The rule ``coefficient $=2\,(\text{third column}-\text{fourth column})$'' is the decomposition of the anomalous dimension of a composite operator into its vertex part, twice the coefficient of $\log\varepsilon$ in its operator counterterm $\partial_\delta I^{CT}[\varepsilon]$, plus the anomalous dimensions $-4$, $-4$, $-8$, $-2$ (in units) of its constituent fields $A_I$, $A_m$, $\lambda$, $c$. With the unit $-\frac{g^2N}{32\pi^2}$ of Remark \ref{rem:c6-konishi},
+\[
+\begin{aligned}&\gamma=2\cdot4-4-4=0\quad(\text{traceless part, the }\mathbf{20'}),\\ &\gamma=2\cdot(-8)-4-4=-24\ \text{units}=\frac{3g^2N}{4\pi^2}\quad(\text{trace, the Konishi operator}).\end{aligned}
+\]
+\end{remark}
+
+% ANCHOR: after_label rem:c6-konishi
+\begin{remark}[Physics notation: the Konishi operator and the $\mathbf{20'}$ as a mixing matrix]
+In the components written out after Definition \ref{def:c5-bilinear}, with $\phi_I=A^a_IT^a$, the trace bilinear is the Konishi operator, the superconformal primary of the long Konishi multiplet, and the traceless part is the half-BPS $\mathbf{20'}$. By linearity the coefficient row of the table of Example \ref{ex:c6-bilinear}, $-4(w_1,w_2)$ times the trace, is on the twenty-one bilinears $\operatorname{tr}(\phi_I\phi_J)$ the one-loop dilatation operator
+\[
+\operatorname{tr}(\phi_I\phi_J)\longmapsto\frac{g^2N}{8\pi^2}\,\delta_{IJ}\operatorname{tr}(\phi_K\phi_K),
+\]
+with eigenvalue $0$ on the $\mathbf{20'}$ and $6\cdot\frac{g^2N}{8\pi^2}=\frac{3g^2N}{4\pi^2}$ on the Konishi operator.
+\end{remark}
+
+% ANCHOR: end_of_section 6.4
+\begin{remark}[Physics notation: the letters]
+The letters are the elementary fields smeared with $\omega$, in the components written out at the end of Section 5.3. Their coefficients, with the unit $-\frac{g^2N}{32\pi^2}$, are the one-loop anomalous dimensions of the elementary fields in Feynman gauge, gauge-dependent quantities:
+\[
+\gamma_{A_I}=\frac{g^2N}{8\pi^2},\qquad \gamma_{A_m}=\frac{g^2N}{8\pi^2},\qquad \gamma_{\lambda}=\gamma_{\bar\lambda}=\frac{g^2N}{4\pi^2},\qquad \gamma_c=\frac{g^2N}{16\pi^2},
+\]
+$\gamma_{A_m}$ modulo the terms built from $(Q+\{I,-\})O$ (Remark \ref{rem:c6-AV}). Each is $-2$ times the weight $2$, $2$, $4$, $1$ of the field in Lemma \ref{lem:c6-count}, in units: the field-strength renormalisation of that field.
+\end{remark}
+
+% ANCHOR: end_of_section 6.5
+\begin{remark}[Physics notation: the boundary graphs]
+In momentum space $L_\varepsilon$ has the components of $P(\varepsilon,\infty)$ with $e^{-\varepsilon|p|^2}/|p|^2$ replaced by $e^{-\varepsilon|p|^2}$, and
+\[
+s\frac{d}{ds}\Big|_{s=1}\frac{e^{-s^2\varepsilon|p|^2}}{|p|^2}=2\varepsilon\frac{d}{d\varepsilon}\frac{e^{-\varepsilon|p|^2}}{|p|^2}=-2\varepsilon\,e^{-\varepsilon|p|^2}:
+\]
+an edge carrying $-2\varepsilon L_\varepsilon$ is the cutoff derivative of the regulated propagator, the kernel of the exact (Wilson--Polchinski) renormalisation-group equation. In Feynman-graph language, with two external scalars: graph (e) is the bubble through the scalar potential, graph (f) the triangle with a gluon $A_m$ exchanged between the two scalar lines, graphs (c), (d) the mixing of the bilinear into $(A|_V,A|_V)=2\hbar A^a_mA^a_m$, graph (a) the self-contraction of $O$, its mixing with the identity operator; the legs are the one-loop self-energies of the external scalars, the vertex function $2|p|^2(w,w^{\prime})(Z,Z^{\prime})$ being the scalar kinetic term in momentum space.
+\end{remark}
+
+% ANCHOR: end_of_section 6.6
+\begin{remark}[Physics notation: the dilatation Ward identity]
+$C^\bullet(\mathfrak{psl}(4|4))$ adds constant ghosts for the superconformal generators, $d_{CE}$ is their BRST differential, and $[(d_{CE}+Q)O[\infty]](\Delta)$ is the quantum dilatation transformation of the renormalised operator, the content of its dilatation Ward identity. In the components of the key the vertex $S^{(1)}(\Delta)$ is the antifield coupling of the classical scale transformation $2x\cdot\partial+2w$ of the fields of canonical dimension $w$:
+\[
+\begin{aligned}
+S^{(1)}(\Delta)=\int\big\{&(2x\cdot\partial A_m+2A_m,A^*_m)+\tfrac14(2x\cdot\partial A_{ij}+2A_{ij},A^{*ij})-(2x\cdot\partial\lambda_\alpha{}^i+3\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)\\
+&+(2x\cdot\partial\bar\lambda_{\dot\alpha i}+3\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})-(2x\cdot\partial c,c^*)\big\}.
+\end{aligned}
+\]
+The graphs (a)--(u) are the one-loop graphs with one insertion of this vertex, joined to the rest through the heat-kernel edge $K_\varepsilon$, and (v)--(y) the trees with the same insertion and the operator counterterm $\partial_\delta I^{CT}[\varepsilon]$; the equivariant master-equation defect along $\Delta$ is the breaking of the dilatation Ward identity by the regulator; Proposition \ref{prop:c6-classical} is the tree-level dilatation Ward identity.
+\end{remark}

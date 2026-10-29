@@ -1,0 +1,23 @@
+{
+ "role": "adversarial auditor #3 of step2/theory/delta_theory.tex (Part D theory), focus D3",
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+ "refuted": true,
+ "headline": [
+  "Q(Y1a) is LOCAL as a functional: Q(Y1a) = -2 unit {S^(1)(Delta),O}. Engine A's nonlocal term is the exchange-antisymmetric part of its kernel (That(b,a) = -That(a,b); div_q That(q,-q-k) = 2/(|p1|^2|p2|^2)); vertex value (8, 4k) unit T_O = -2 x VV[{S^(1)(Delta),O}] at all points, fit-free with engine A's own graph code for the beta part.",
+  "With it engines A and B agree exactly: [(d_CE+Q)O[infty]](Delta) - RHS(eq:c6-step2) = -(1/3 + f) unit {S^(1)(Delta),O} on the (A_perp,A_perp) output, f = coefficient of S^(1)(Delta)|_perp in F_1(Delta).",
+  "The (Delta,P_b) component of L o L = 0 forces that multiple to vanish on cohomology (no local functional of degree -1, Weyl weight 3); so eq:c6-step2 holds exactly on the scalar bilinears for every quantisation solving the QME through arity two, f = -1/3 unit, D_1 = 0 (traceless), -48 unit O (trace, A_perp output), with no gauge-fixing hypothesis.",
+  "Ch.8 definitions (def:c8-rep, thm:c8-L) need no change; remarks/hypotheses on D_1 and P_1 = 0 do.",
+  "eq:d-Ob independently confirmed in the (A_V,A_V) and (c,A^*_V) sectors from engine A's Pi_int against engine B's Ob(Delta); Pi_Psi itself is nonlocal there.",
+  "prop:d-P (ii): the scheme must be (c/2){S^(1)(Delta),-} = c(E+w), not c x Weyl weight (which changes D_1, M_1, K_1 by non-multiples).",
+  "The theory's CH08 items on prop:c8-Tsafe (|y|^-4 for Delta: false, it is |y|^-5) and thm:c8-L (ii) are not needed; prop:d-psi (ii) proof has two compensating errors."
+ ],
+ "checks": {
+  "check_y1a_symmetry.py / .json": "VV[Q(Y1a)] = (8,4k) unit T_O to 5e-16 at 3 points; antisymmetric part -12.20, -10.03, -6.24 (nonlocal); divJ x |p1|^2|p2|^2 = 2.000000000; formula reproduces engine A's raw alpha_Q/T_O = -2.10031347566; translation analogue VV = 4ik.v",
+  "check_y1a_raw_swap.py / .json": "engine A's d4_y1a.y1a at p1 and at the exchanged point: beta part of VV = 4k exactly (max dev 0.0)",
+  "check_scheme_P1.py / .json": "jet model: [ad_Delta,ad_P] = 2 ad_P, [ad_Delta,ad_K] = -2 ad_K; psi_w changes Delta, rotation, K by non-multiples; psi_D = (c/2)ad_Delta gives P:-c, Delta:0, rot:0, K:+c; (Delta,P) MC at order hbar = 2 kappa_Delta ad_P",
+  "check_tsafe_decay.py / .json": "A_V insertion: Delta |y|^-5 (odd), K_b |y|^-4 (even), translation |y|^-6",
+  "check_eqdOb_AV.py / .json": "calibration A_perp (2/3)|p|^2 = (1/3) int(dA,dA); A_V: (1/3) int(dA_V,dA_V) + 0 int(d*A_V,d*A_V) exact; (c,A*_V): -(2/3) int(dc,A*) (s_c = +1, the only local choice)",
+  "check_psi_proof_steps.py / .json": "displayed equalities of prop:d-psi (ii) proof off by 106.4 and 82.7 (exact toy), corrected ones 0"
+ },
+ "derivations": "derivation_notes.txt"
+}

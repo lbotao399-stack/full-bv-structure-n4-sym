@@ -1,0 +1,65 @@
+Step 2, Part D4, engine A: dilatation sector.  Derivation chain used by the code (d4_*.py).  unit := hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)).
+
+0. Conventions.  S_M := S^(1)(Delta) = int((2E(A)+2A,A^*) - (2E(lambda)+3 lambda,lambda^*) - (2E(c),c^*)), M := v. (v = 2E).
+   D_X := derivation of functionals F(e) -> d/ds F(e + s X e).  For M: D_M F = 2 s d/ds|_{s=1} sigma_s F.
+   Measured exactly in the mode model (d4_signs.py, constant pairing-preserving test operator X, su(2) and the bracket of ch01):
+     {S_X, F} = + D_X F  on int(A,A), int(dA,dA), int(lambda,dslash lambda), int(dc,A^*)      =>  {S_M, -} = + D_M  (sigma = +1).
+   [D_M, d_phi] = -d_{(M(x)1+1(x)M)phi},  (M(x)1+1(x)M)P(eps,infty) = -4 eps dP/deps  =>
+     D_M W(P,J) = W'_J(D_M J) + 4 eps d/deps|_J W(P,J)   (sign +; checked on the computed two-point functions, item 5).
+   Momentum space: E -> -(4 + p.d/dp) on Fourier components; on a two-point kernel with legs of weights w1, w2 written as
+   alpha(p) delta(Sigma) + beta^mu(p) d_mu delta(Sigma) (first leg momentum p fixed):
+     D_M: alpha -> 2(w1+w2-4+p.d_p) alpha,  beta -> 2(w1+w2-5+p.d_p) beta.
+
+1. S_M in graphs (d4_cycles.py).  S_M = sum_mu int x^mu s_mu + int s_0, s_0 = (2A,A^*) - (3lambda,lambda^*),
+   s_mu = (2 d_mu A,A^*) - (2 d_mu lambda,lambda^*) - (2 d_mu c,c^*); int x^mu s_mu = -i d/dr^mu|_0 int e^{i(r,x)} s_mu.
+   Canonical form of a graph with one S_M: alpha = G_0 - i sum_mu dG_mu/dr^mu|_0, beta^mu = -i G_mu(0)
+   (G_0: vertex s_0; G_mu(r): vertex int e^{i(r,x)} s_mu, the dependent leg absorbs -r).  Hessian of xi S_M = -xi Hess(S_M)
+   (all monomials of S_M odd; derived in 0-dim Grassmann form).  One-loop cycle formula as engine_a (validated in 0 dim).
+   Internal check: Pi_int(A^*_P,A_P) computed with the antifield leg dependent and with the field leg dependent:
+   (8/3, 10/3 p) and (-32/3, -10/3 p'), related exactly by the swap formula alpha'(p') = alpha(-p') - (d.beta)(-p'), beta' = beta(-p').
+
+2. Exact Schwinger expansion (d4_integrals.py).  t_i = T u_i; the T-integral I_a(eps/m(u), q(u)) expanded in eps/m;
+   Feynman-parameter polynomials HOMOGENISED in all n variables before the Dirichlet/Beta integration: after elimination of
+   u_1 a manifest zero (e.g. d_t q = 2 u_1 u_3 p_mu) is hidden and single monomials are spuriously IR divergent; in homogeneous
+   form every monomial converges when the sum does.  Piecewise integrals of u^beta log min(u), u^beta min(u)^j exact (sympy).
+   Basis of the results: eps^{-1}, log eps, 1, gamma_E, log 2, log 3, log |p|^2.  Regression: A|_Wperp self-energy
+   eps^{-1} coefficient 9/2 (a,b) = (9/4) x plane wave of int(A,A), log eps coefficient -2|p|^2 (a,b) (Step-1 I^CT).
+
+3. Closed forms of the one-particle-reducible pieces.  C_P(S_M, W) for W a two-point function of the fields:
+   by the conjugation formula e^{hbar d_P} S_M e^{-hbar d_P} = S_M + hbar d_P S_M + hbar C_P(S_M,-) + (hbar^2/2)[d_P, C_P(S_M,-)],
+     d/dxi W(P, J + xi S_M) = S_M + hbar d_P S_M + C_P(S_M, W) + (hbar/2) d_Psi W + (1/4) C_Psi(W,W),
+   Psi the kernel of P* M P* = (1/2){M, (P*)^2}  ([P*, L_eps*] = 0 since both are Q^GF times functions of H).
+   (P*)^2 = (Q^GF)^2 (int_eps^infty e^{-tH})^2 is nonzero only from A^*|_V to c: every internal insertion of S_M exists
+   ONLY because (Q^GF)^2 != 0 (prop:c3-axioms).  [Q, P* M P*] = 0 exactly (QP* + P*Q = e^{-eps H}, [M,P*] = 4 eps L_eps*).
+   C_P(S_M, W) = (constant) int( M(g phi), phi^* ): M acts on the DRESSED field (g = dressing by P* and W); constants
+   measured for constant X (c2 = 4 for A, 2 for lambda, 1 for c; -(p.a)(p.b)/|p|^2 for the A|_V output through the ghost line).
+   Q on the A^*|_P leg: s = +1 (Q int(YA,A^*) = int(YA, -(1/2) d^*d A)).
+   IMPORTANT: Q C_P(S_X, F) = -D_X F for constant X, but Q C_P(S_M, F) = +D_M F: the composition is P* M_{A^*} Q,
+   and |p|^{-2} M_{A^*} |p|^2 = M_A for M (2E+6 -> 2E+2 through [E, d^*d] = -2 d^*d), while X_{A^*} = -X_A for constants.
+   Checked on the canonical forms: Q C_P(S_M, W_1^ren)_sym = + D_M W_1^ren = -4 unit int(dA|_P,dA|_P).
+
+4. Arity-one part of O[infty] along Delta, legs (A|_Wperp, A^*|_Wperp), O = int omega (iota_w1 A, iota_w2 A):
+   complete list of one-loop classes (Euler count + component flow of P: A--A, c--A^*|_V, lambda--lambda):
+     B0   O--P--S_M (tree);  B-S  S_M--P--(one-loop O-flow) [O loops, dressed legs, d_delta I^CT trees];
+     Y1a  1PI triangle: Y = ([A,c],A^*) (external A^*), O, X = A|_V (A|_Wperp)^2 (external A), composite S_M line;
+     Y1b  O--P--Pi_int;  counterterm trees O--P--(I^CT_Delta + F_Delta).
+   No d_delta I^CT_Delta and no d_delta F_Delta: no local functional of weight w_O = 2 and degree -1 exists.
+   Component (normalised so that the classical part is +D_M O = 2(E+w_O)O, prop:c6-classical):
+     C := Q(arity-one part) = Q(B0 + B-S) + Q(Y1b + CT) + Q(Y1a)
+     Q(B0 + B-S) = D_M O[infty]_0  (= 2 s d/ds sigma_s O[infty]),  exact as eps -> 0 (Q C_P(S_M,X) = D_{e^{-eps H}M-type} X).
+     Y1b + CT = C_P(Z, O), Z := Pi_int - F_Delta; arity-one master equation (A_P two-point sector):
+       Q(S_M + C_P(S_M, W_1^ren) + Pi_int - F_Delta)_sym = 0, Q(S_M)_sym = 0,
+       => Z = z_1 int(A_P,A^*_P) + z_2 S_M|_P, z_1 = -8 unit (exact), z_2 = free (rescaling of the Delta-generator at order hbar).
+     Q C_P(Z,O) = -2 z_1 O + z_2 D_M O = 16 unit O + z_2 D_M O    [= -Q(4 unit tree(field-counting -> O)) + z_2 D_M O].
+     D_M O[infty] - 2(E+w_O)O[infty] = 4 (log eps coefficient of d_delta I^CT) O + 4 tree(log I^CT -> O)
+                                     = (16 - 32) unit O (traceless),  (-32 - 32) unit O (trace)   [thm:c6-CS, Step-1 inputs].
+   Hence  C = 2(E+w_O)O[infty] + {0, -48} unit O + z_2 D_M O + Q(Y1a).
+
+5. Y1a (d4_y1a.py, d4_y1a_ward.py): UV convergent (degree -2 / -1), eps -> 0 = eps = 0 integral (all Schwinger exponents >= 0);
+   alpha(Y1a) = 0 (to 1e-14) and beta(Y1a) = unit T_O [ 8 p2/|p2|^2 + 8 |p1|^2 That(p1,p2) ],
+   That_nu = 16 pi^2 int d^4l/(2pi)^4 l_nu/(l^4 (l+p2)^2 (l-p1)^2) = - int_{x+y+z=1} x (y p2 - z p1)_nu / Delta^2,
+   Delta = y|p2|^2 + z|p1|^2 - |y p2 - z p1|^2, exact fit (lambda = -8.000000000000, 8.000000000000) at three kinematic points,
+   su(2) and gl(3), traceless and diagonal flavour.  Origin: the composite line is longitudinal, the A|_V(A|_P)^2 vertex
+   contracted with it is (l-p1)^2 - |p1|^2 (Ward identity): bubble (local after Q) + |p1|^2 x triangle.
+   Q(Y1a): alpha_Q = p2.beta, beta_Q = -(1/2)|p2|^2 beta.  Not of the form (local functional)[infty]: That has a 1/|p1|^2
+   (collinear) singularity, so the |p1|^2-proportional part is not a pure equation-of-motion term.

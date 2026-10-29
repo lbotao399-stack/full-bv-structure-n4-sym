@@ -1,0 +1,53 @@
+Step 2, engine A, Part C (cubic sector of the one-loop obstruction): derivation chain used by the code.
+unit := hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)).  K' := K_eps - K_0, K'(p) = (e^{-eps|p|^2} - 1) Khat = -int_0^eps dtau |p|^2 e^{-tau|p|^2} Khat.
+C_X(f,g) := d_X(fg) - d_X(f) g - (-1)^{|f| |d_X|} f d_X(g),  d_X = (1/2) sum X_uv d_v d_u  [C07 S6.4],  {f,g}_X = -C_X(f,g)
+(product rule of [CG2 S7.2.8] with Delta_X = -d_X).
+
+1. Splitting of the defect.  J = I - I^CT[eps], D(eps) = (1/2)({I,I}_eps - {I,I}) + hbar Delta_eps I - Q I^CT - {I,I^CT}_eps
+   (prop:c4-defect1), Delta_eps I = 0.  With D_0 := (1/2){I,I}_{K'} = -(1/2) C_{K'}(I,I) and d_{K'} I = 0:
+     d_{K'} e^{I/hbar} = e^{I/hbar}(hbar^{-1} d_{K'} I + (1/2) hbar^{-2} C_{K'}(I,I)) = -hbar^{-2} D_0 e^{I/hbar},
+     [d_{K'}, d_P] = 0  =>  e^{hbar d_P}(D_0 e^{I/hbar}) = -hbar^2 d_{K'} e^{W/hbar},
+     e^{-W/hbar} e^{hbar d_P}(D_0 e^{I/hbar}) = -hbar d_{K'} W - (1/2) C_{K'}(W,W) = hbar Delta_{K'} W + (1/2){W,W}_{K'}.
+   Order hbar, three legs (W = W_0 + hbar W_1):  hbar Delta_{K'} W_0 + {W_0, W_1}_{K'}.
+     hbar Delta_{K'} W_0 |_3 = I-a (K' on a cycle with three legs) + I-d (K' on a cycle with two legs, joined by P to I_3);
+     {W_0, W_1}_{K'} |_3 = {I_3, W_1^(2)}_{K'} = I-b  (W_1^(1) = 0: tr ad = 0).
+   Order hbar part of D_1 dressed by trees:  -Q I^CT_3 (II-a),  C_P(-Q I^CT_2, I_3) (II-b),  -{I_3, I^CT_2}_eps (III = III(K_0) + III(K')).
+   No other three-leg graph (a cycle with one leg is a tadpole, 0 by tr ad = 0; a K' bridge has the cycle on the side with one leg).
+
+2. I-a formula.  1PI part of hbar Delta_{K'} W_0 at one loop = hbar (1/2) str[K' S H (P S H)^{n-1}] (H Hessian of I at the background,
+   S parity operator); and the I-d part = C_P((1/2) str[K' S H_3 P S H_3], I_3).  Verified as polynomial identities in a 0-dim model with
+   cubic + quartic I, mixed parities, d_K I = 0 (s2_verify0d.py: 0 mismatches, three random models; wrong sign of I-a fails).
+   Regression: the two-leg sector (c, A|_V) reproduces the Step-1 special bubbles exactly (-9/4,1/8,-9/2,2,1/8 | -5/8,-1/12,-5/4,-4/3,-1/12).
+
+3. Gaussian integral and eps-expansion (n edges, special edge = edge 1).  k_1 = k, k_{i+1} = k_i - P_{s_i}, q_i = k_i - k,
+     N(k) = -|k_1|^2 str[Khat S h_1 Pnum(k_2) S h_2 ... Pnum(k_n) S h_n],
+     int d^4k/(2pi)^4 N e^{-sum t_i |k_i|^2} = (16pi^2)^{-1} T^{-2} sum_j (Delta^j N)(-K(u)) /(4^j j! T^j) e^{-T q(u)},
+     K(u) = sum u_i q_i,  q(u) = sum u_i |q_i|^2 - |K(u)|^2 >= 0,  u_i = t_i/T.
+   t_i = eps tau_i (tau_1 in [0,1], tau_{i>=2} in [1,infty)), F_j(u) := (Delta^j N)(-K(u)):
+     value = (16pi^2)^{-1} sum_j eps^{n-2-j}/(4^j j!) int dtau T^{-2-j} F_j(u) e^{-eps T q(u)}.
+   F_j is homogeneous of degree d - 2j in the leg momenta (d = 2n - sum of leg weights: 4 for (c,A,A) triangles, 2 for the quartic
+   bubbles, 3 for (c,lambda,lambda), (c,c,A^*)).  Expanding e^{-x} = sum_{i<=I} (-x)^i/i! + R_I, |R_I| <= min(x^I/I!, 2 x^{I+1}/(I+1)!):
+     eps^e coefficient = (16pi^2)^{-1} sum_{j - i = n-2-e} (4^j j! i!)^{-1} int dtau T^{-2-j+i} F_j(u) (-q(u))^i.
+   Convergence: |integrand| <= C T^{-2-j+i} (u_i <= 1), region dimension n-1 at large tau, T >= n - 1 >= 1 (no small-T singularity):
+     int_{[1,infty)^{n-1}} T^{-2-j+i} < infty  <=>  j - i > n - 3  <=>  e < 1.   (e = -1, 0 used.)
+   Remainder: the terms with n-2-j+i >= 1 are eps^{n-2-j+i} times integrals cut off at T ~ 1/(eps q): at most a log, hence
+   O(eps log eps); the Taylor remainders are bounded the same way (min-bound above).  Therefore every I-a graph has the form
+     a eps^{-1} + b + O(eps log eps):  NO log eps term.  (Finite-eps numerics confirm the eps log eps approach, s2_numeric.py.)
+   Integrals: J(n;beta;N) = int_0^1 dtau_1 int_{[1,infty)^{n-1}} tau^beta T^{-N}, exact in Q + Q log 2 + Q log 3 (s2_integrals.py),
+   each confirmed by an independent (T,u)-variable evaluation at 50 digits and PSLQ on {1, log 2, log 3}.
+
+4. The other contributions (s2_trees.py, exact in the mode model s2_ga.py):
+   II-a + III(K_0), log eps:  -(Q Y_3 + {I_3, Y_2}) = 0,  Y_3 = {I_3, Y}, Y_2 = Q Y, Y = 2 int(A,A^*) - 4 int(lambda^*,lambda) - int(c^*,c):
+     Q{I_3,Y} = {Q I_3, Y} - {I_3, Q Y} and Q I_3 = 0 (cubic part of the CME).  Checked exactly (and Y_3 = {I_3,Y} with the Step-1 multiples).
+   III(K_0), eps^{-1}: (9/4){I_3, int(A,A)} = 0 (([A,c],A) symmetric contraction of the antisymmetric bracket).
+   I-b + III(K') = -C_{K'}(I_3, W_1^(2)(eps) - I^CT_2) = (e^{-eps|p|^2} - 1) x (renormalised self-energy) = O(eps):
+     eps^0: I-b = C_{|p|^2 Khat}(I_3, w_{-1}), III(K') = -C_{|p|^2 Khat}(I_3, w_{-1}) (w_{-1} = 9/4 int(A,A) recomputed from the graphs);
+     no eps^{-1}; the eps log eps terms cancel as well (same factor e^{-eps p^2} - 1 multiplies the log coefficient in both).
+   I-d + II-b = C_P(sb(eps) - Q I^CT_2, I_3), sb(eps) = -(9/2) eps^{-1} int(dc,A|_V) - (27/8) int(d^*dc,d^*A|_V) + O(eps),
+     -Q I^CT_2 = (9/2) eps^{-1} int(dc,A|_V),  P(eps)(p) = (|p|^{-2} - eps + O(eps^2)) Pnum(p):
+     eps^{-1} (nonlocal) parts cancel; eps^0 = C_{Pnum/|p|^2}(-(27/8) int(d^*dc,d^*A|_V), I_3) = tree of Ob_2 with I_3; the local pieces
+     -/+ C_{Pnum}(sb_{-1}, I_3) cancel; no extra local remainder.
+
+5. Result: Ob_3 := lim (I-a + II-a + III(K_0)) = eps^0 part of I-a (all other singular parts cancel), in units of unit:
+     Ob_3 = (11/4 + (19/4) log(3/2)) (G1 + G3) + (27/8) G2 + 0 G4 - 9 log(3/2) G5.
+   Full one-loop cubic part of lim Q W = Ob_3 + tree(Ob_2, I_3), tree(Ob_2, I_3) = (27/8)(G1 - G2) + (27/8) G3 - (27/4) G4 - (27/4) G5.

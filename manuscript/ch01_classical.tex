@@ -1,0 +1,353 @@
+\chapter{The classical theory}
+
+Every number computed in the following chapters is a coefficient in front of a local functional, and its sign and normalisation are inherited from three classical data: the odd pairing on the fields, the BV action and the linear differential $Q$ [C07, §4.3]. The sources supply the ten-dimensional action [ESW, (31)] and its dimensional reduction [ESW, Prop 2.20, §10.3], while the pairing on the antifields stays implicit in the phrase ``natural $(-1)$-shifted symplectic structure'' [ESW, Def 1.34]. This chapter fixes all three data for the reduction to Euclidean $\mathbb R^4$, writes the interaction vertex by vertex, and shows that the classical master equation determines the relative signs of the pairing.
+
+\section{Spaces and the dimensional reduction}
+
+\begin{definition}[Spaces]
+\label{def:c1-spaces}
+The ten-dimensional space is $V_{10}=V_{\mathbb R}\otimes_{\mathbb R}\mathbb C$, where $V_{\mathbb R}=\mathbb R^{10}$ carries its Euclidean form and the orthogonal decomposition $V_{\mathbb R}=W_{\mathbb R}\oplus W_{\mathbb R}^\perp$ of [ESW, §2.2, §2.6]: $W_{\mathbb R}=\mathbb R^4$ is spacetime and $W_{\mathbb R}^\perp$ consists of the six transverse directions. With $V=W_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ the complexification of $\mathbb R^4$,
+\[
+V_{10}=V\oplus\big(W_{\mathbb R}^\perp\otimes_{\mathbb R}\mathbb C\big),
+\]
+and from here on $W_{\mathbb R}^\perp$ and $\mathfrak{so}(W_{\mathbb R}^\perp)$ denote these complexifications. The nondegenerate symmetric form $(-,-)$ of $V_{10}$ is the complex-bilinear extension of the Euclidean form. The letter $W$ alone denotes the multiplicity space of [ESW, §10].
+
+The gauge Lie algebra $\mathfrak g$ is complex, with bracket $[-,-]$ and a nondegenerate invariant symmetric pairing $(-,-)$ [ESW, §3.1], chosen positive definite on the compact real form, so that $\langle e,Qe\rangle$ is negative definite on the real slice of [C07, §6.6] (Remark \ref{rem:c1-real}). The coupling constant sits in $(-,-)$. The inverse pairing is the element $(-,-)^{-1}\in\mathfrak g\otimes\mathfrak g$.
+
+The two sixteen-dimensional semi-spin representations $\Sigma$ and $\Sigma^*$ of $\mathfrak{so}(V_{10})$ form the $\mathbb Z/2$-graded Clifford module $\Sigma\oplus\Sigma^*$ with Clifford action $\rho$ and pairing $(-,-)\colon\Sigma\otimes\Sigma^*\to\mathbb C$ [ESW, §2.1]:
+\[
+\rho(v_1)\rho(v_2)+\rho(v_2)\rho(v_1)=2(v_1,v_2),\qquad (\rho(v)Q_1,Q_2)=(Q_1,\rho(v)Q_2),\qquad v,v_1,v_2\in V_{10}.
+\]
+The $\Gamma$-pairing $\Gamma\colon\mathrm{Sym}^2(\Sigma)\to V_{10}$, $\Gamma\colon\mathrm{Sym}^2(\Sigma^*)\to V_{10}$ is defined by [ESW, (28)]
+\[
+(\rho(v)Q_1,Q_2)=(v,\Gamma(Q_1,Q_2)).
+\]
+The map $q\colon\wedge^\bullet V_{10}\to\mathrm{Cl}(V_{10})$ is antisymmetrisation, $q(v_1\wedge v_2)=v_1v_2-(v_1,v_2)$ [ESW, (29)]. Applied to a two-form, such as $F_A$, the symbol $\rho$ means $\rho\circ q$, as in $\rho(F_A)$ [ESW, (33)].
+
+The exterior derivative $d$ acts along $\mathbb R^4$, and every field is constant along $W_{\mathbb R}^\perp$. The operator $d^*$ is the formal adjoint of $d$ for the Euclidean metric, $\mathrm{dvol}$ is the Euclidean volume density of $\mathbb R^4$, and ${\not d}=\rho\circ d$ is the Dirac operator from $\Sigma$-valued to $\Sigma^*$-valued functions [ESW, §2.1]; the same formula on $\Sigma^*$-valued functions is written ${\not d}|_{\Sigma^*}$.
+\end{definition}
+
+The four-dimensional content of $\Sigma$ is [ESW, §10, §10.3]
+\[
+\Sigma\cong S_+\otimes W\oplus S_-\otimes W^*,\qquad \dim W=4,\qquad W\cong S_+^6\ \text{as a representation of}\ \mathrm{Spin}(6;\mathbb C)\cong SL(4,\mathbb C),
+\]
+with $S_\pm$ the two-dimensional semi-spin representations of $\mathrm{Spin}(4,\mathbb C)$.
+
+\begin{proposition}[Four-dimensional chirality]
+\label{prop:c1-chirality}
+Fix an orientation of $V$. For an oriented orthonormal basis $v_1,\dots,v_4$ of $V$ the element $q(v_1\wedge v_2\wedge v_3\wedge v_4)=v_1v_2v_3v_4$ of $\mathrm{Cl}(V_{10})$ depends on the orientation alone. The operator $\rho(v_1v_2v_3v_4)$ squares to $1$ on $\Sigma$ and on $\Sigma^*$, with eigenvalues $+1$ and $-1$ each of multiplicity $8$. Writing
+\[
+\begin{aligned}
+S_+\otimes W&=\{+1\text{ eigenspace on }\Sigma\},&\qquad S_-\otimes W^*&=\{-1\text{ eigenspace on }\Sigma\},\\
+S_-\otimes W&=\{-1\text{ eigenspace on }\Sigma^*\},&\qquad S_+\otimes W^*&=\{+1\text{ eigenspace on }\Sigma^*\},
+\end{aligned}
+\]
+one has, for $v\in V$ and $w\in W_{\mathbb R}^\perp$,
+\[
+\rho(v)\colon S_+\otimes W\to S_-\otimes W,\qquad \rho(w)\colon S_+\otimes W\to S_+\otimes W^*,
+\]
+and correspondingly on the other summands: $\rho(v)$ exchanges the four-dimensional chiralities and $\rho(w)$ preserves them.
+\end{proposition}
+
+\begin{proof}
+The element $v_1v_2v_3v_4$ is the antisymmetrisation $q$ of the oriented unit element of $\wedge^4V$, hence depends on the orientation alone. By the Clifford relation the $v_i$ anticommute pairwise and square to $1$, hence
+\[
+(v_1v_2v_3v_4)^2=(-1)^{3+2+1}\,v_1^2v_2^2v_3^2v_4^2=1 .
+\]
+Moving $v_1$ through $v_1v_2v_3v_4$ meets $v_2,v_3,v_4$ once each, so $v_1\,(v_1v_2v_3v_4)=-(v_1v_2v_3v_4)\,v_1$; the same holds for each $v_i$, hence for every $v\in V$ by linearity. For $w\in W_{\mathbb R}^\perp$, $w$ anticommutes with all four $v_i$, so $w\,(v_1v_2v_3v_4)=(+1)(v_1v_2v_3v_4)\,w$. Since $\rho(v)$ maps $\Sigma\to\Sigma^*$, the first relation reads $\rho(v)\rho(v_1v_2v_3v_4)|_{\Sigma}=-\rho(v_1v_2v_3v_4)|_{\Sigma^*}\rho(v)$, so $\rho(v)$ maps the $+1$ eigenspace on $\Sigma$ to the $-1$ eigenspace on $\Sigma^*$; the second relation gives $\rho(w)$ mapping the $+1$ eigenspace on $\Sigma$ to the $+1$ eigenspace on $\Sigma^*$. For the multiplicities, take a unit vector $w\in W_{\mathbb R}^\perp$. The even element $v_1w$ satisfies $(v_1w)^2=-v_1^2w^2=-1$ and $v_1w\,(v_1v_2v_3v_4)=-(v_1v_2v_3v_4)\,v_1w$, so $\rho(v_1w)$ is an invertible endomorphism of $\Sigma$ (and of $\Sigma^*$) exchanging the two eigenspaces of $\rho(v_1v_2v_3v_4)$; hence each eigenspace has dimension $16/2=8$.
+\end{proof}
+
+\begin{remark}
+The names of the eigenspaces depend on the orientation of $V$; the opposite orientation exchanges $S_+\leftrightarrow S_-$ in all four of them. This orientation is fixed once; Chapter 2 uses it to name the supercharges.
+\end{remark}
+
+\section{Fields, degrees and parities}
+
+\begin{definition}[Fields]
+\label{def:c1-fields}
+The BRST fields of [ESW, Def 3.2], reduced along $W_{\mathbb R}^\perp$ [ESW, Def 1.55, Prop 1.56, Prop 2.20], form
+\[
+F_{\rm gauge}=\Omega^0(\mathbb R^4;\mathfrak g[1])\oplus\Omega^0(\mathbb R^4;V_{10}^\vee\otimes\mathfrak g)\oplus\Omega^0(\mathbb R^4;\Pi\Sigma\otimes\mathfrak g),
+\]
+with sections $(c,A,\lambda)$. The space of BV fields is $\mathscr E$ [C07, §4.1],
+\[
+\mathscr E=F_{\rm gauge}\oplus F_{\rm gauge}^![-1]\qquad[\text{ESW, Rem 1.36}],
+\]
+with antifields $(c^*,A^*,\lambda^*)$; duals are identified through $(-,-)$ on $\mathfrak g$, the metric of $V_{10}$, the pairing $\Sigma\otimes\Sigma^*\to\mathbb C$ and $\mathrm{dvol}$. The component of $A$ along $V$ is the connection $A|_V$, the component along $W_{\mathbb R}^\perp$ is $A|_{W_{\mathbb R}^\perp}$, and $\iota_wA=A(w)$ for $w\in W_{\mathbb R}^\perp$ are the six scalars. The compactly supported elements of $\mathscr E$ form $\mathscr E_c$ ($\mathcal E_c$ in [ESW, §1.1]).
+\end{definition}
+
+The degrees are those of [ESW, Rem 1.33]: the ghost $c$ is a section in degree $-1$, which forces $A^*$ in degree $+1$ and $c^*$ in degree $+2$. Signs follow the Koszul rule for the total parity, the sum of the $\mathbb Z$-degree and the $\mathbb Z/2$-degree modulo $2$ [ESW, §1.1].
+
+\begin{tabular}{l|c|c|c|c|c}
+field & fibre & $\mathbb Z$-degree & $\mathbb Z/2$-degree & total parity & $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$ content \\
+\hline
+$c$ & $\mathfrak g$ & $-1$ & even & odd & scalar \\
+$A$ & $V_{10}^\vee\otimes\mathfrak g$ & $0$ & even & even & $A|_V$ vector of $\mathrm{Spin}(4)$, $A|_{W_{\mathbb R}^\perp}$ vector of $\mathrm{Spin}(6)$ \\
+$\lambda$ & $\Pi\Sigma\otimes\mathfrak g$ & $0$ & odd & odd & $S_+\otimes W\oplus S_-\otimes W^*$ \\
+$A^*$ & $V_{10}\otimes\mathfrak g$ & $+1$ & even & odd & as $A$ \\
+$\lambda^*$ & $\Pi\Sigma^*\otimes\mathfrak g$ & $+1$ & odd & even & $S_-\otimes W\oplus S_+\otimes W^*$ \\
+$c^*$ & $\mathfrak g$ & $+2$ & even & even & scalar \\
+\end{tabular}
+\tabcaption{The BV fields of the reduced theory. Coordinate functionals on $\mathscr E$ carry the opposite $\mathbb Z$-degree.}
+
+\section{Pairing and bracket}
+
+\begin{definition}[Odd pairing]
+\label{def:c1-pairing}
+The odd pairing $\langle\,,\rangle$ on $\mathscr E$ [C07, Def 4.3.1; ESW, Def 1.13, Def 1.16] is nonzero exactly between a field and its antifield. For each of the three pairs, call the member of even total parity the even member: $A$, $\lambda^*$, $c^*$; their partners $A^*$, $\lambda$, $c$ are odd. For a section $e_0$ in the slot of an even member and a section $e_1$ in the slot of its partner,
+\[
+\langle e_0,e_1\rangle=\int\mathrm{dvol}\,(e_0,e_1),\qquad \langle e_1,e_0\rangle=-\langle e_0,e_1\rangle ,
+\]
+where $(e_0,e_1)$ is the fibre pairing of Definition \ref{def:c1-fields}; for the pair $(\lambda^*,\lambda)$ it is $(e_1,e_0)$ with $(-,-)\colon\Sigma\otimes\Sigma^*\to\mathbb C$ tensored with $(-,-)$ on $\mathfrak g$.
+\end{definition}
+
+\begin{definition}[Bracket and the kernel of the identity]
+\label{def:c1-bracket}
+The kernel $K_0$ of the identity [CG2, §7.2.3] has nonzero components exactly in the slot pairs
+\[
+A\otimes A^*,\quad A^*\otimes A,\quad \lambda^*\otimes\lambda,\quad \lambda\otimes\lambda^*,\quad c^*\otimes c,\quad c\otimes c^*,
+\]
+each equal to $-\delta(x-y)$ times the inverse of the fibre pairing: $(-,-)^{-1}$ tensored with the inverse metric of $V_{10}$ for $A$, $A^*$, with the canonical element of $\Sigma\otimes\Sigma^*$ for $\lambda$, $\lambda^*$, and with $1$ for $c$, $c^*$; here $x,y\in\mathbb R^4$ are the two positions and $\delta(x-y)$ is the delta distribution of the diagonal, always written with its argument. The bracket is the odd Poisson bracket of [C07, Lemma 4.3.2], defined for $f$ local and $g$ arbitrary; it is given by the formula of [C07, §10.1] for the manifold a point,
+\[
+\{f,g\}=\Delta_0(fg)-\Delta_0(f)g-(-1)^{|f|}f\Delta_0(g),\qquad \Delta_0=-\partial_{K_0},
+\]
+with $\partial_\phi$ the order-two operator of [C07, §6.4] and $f$ local. It satisfies
+\[
+\{g,f\}=(-1)^{|f||g|}\{f,g\},
+\]
+the graded symmetry of [ESW, Def 1.15].
+\end{definition}
+
+\begin{remark}
+The overall sign of $\langle\,,\rangle$ is a convention: reversing it reverses $K_0$ and the bracket, and leaves the master equation $\{S,S\}=0$ invariant. The relative signs of the three pairs are fixed by the master equation (Proposition \ref{prop:c1-cme}).
+\end{remark}
+
+\section{The action}
+
+\begin{definition}[Action]
+\label{def:c1-action}
+The action is the dimensional reduction of [ESW, (31)]:
+\begin{equation}
+S=\int_{\mathbb R^4}\mathrm{dvol}\Big(-\tfrac14(F_A,F_A)+\tfrac12(\lambda,{\not d}_A\lambda)+(d_Ac,A^*)+([c,\lambda],\lambda^*)+\tfrac12([c,c],c^*)\Big),
+\label{eq:c1-action}
+\end{equation}
+with
+\[
+F_A=dA+\tfrac12[A\wedge A],\qquad d_A=d+[A,-],\qquad {\not d}_A=\rho\circ d_A .
+\]
+Here $A$ is regarded as a one-form on $V_{10}$ constant along $W_{\mathbb R}^\perp$; $d$ acts along $\mathbb R^4$, and $d_A$, ${\not d}_A$ use all ten components of $A$. The pairing $(F_A,F_A)$ is the Hodge pairing on $\wedge^2V_{10}^\vee$ tensored with $(-,-)$ on $\mathfrak g$, normalised by
+\[
+\big((v_1,-)\wedge(v_2,-),\,(v_1,-)\wedge(v_2,-)\big)=(v_1,v_1)(v_2,v_2)-(v_1,v_2)^2,\qquad v_1,v_2\in V_{10}.
+\]
+Every pairing in \eqref{eq:c1-action} is read with its left entry first, as printed in [ESW, (31)]. In [ESW] the full action is $S$ and the interaction is $I$; in [C07] the letter $S$ denotes the interaction. Here $S$ is always the full action and $I$ the interaction.
+\end{definition}
+
+Splitting $A=A|_V+A|_{W_{\mathbb R}^\perp}$,
+\[
+(F_A,F_A)=(F_{A|_V},F_{A|_V})+\big(d_{A|_V}A|_{W_{\mathbb R}^\perp},\,d_{A|_V}A|_{W_{\mathbb R}^\perp}\big)+\big(\tfrac12[A|_{W_{\mathbb R}^\perp}\wedge A|_{W_{\mathbb R}^\perp}],\,\tfrac12[A|_{W_{\mathbb R}^\perp}\wedge A|_{W_{\mathbb R}^\perp}]\big),
+\]
+\[
+{\not d}_A\lambda={\not d}\lambda+\rho([A|_V,\lambda])+\rho([A|_{W_{\mathbb R}^\perp},\lambda]),\qquad (d_Ac,A^*)=(dc,A^*|_V)+([A,c],A^*),
+\]
+where $\rho([A,\lambda])$ is Clifford multiplication by the $V_{10}^\vee$ factor of $A$ (through the metric) together with $[-,-]$ on the $\mathfrak g$ factors, i.e. $({\not d}_A-{\not d})\lambda$.
+
+\begin{proposition}[Normalisation of the gauge kinetic term]
+\label{prop:c1-norm}
+For $Q_1\in\Sigma$ put
+\[
+S^{(1)}(Q_1)=\int\mathrm{dvol}\Big(-(\Gamma(Q_1,\lambda),A^*)+\tfrac12(\rho(F_A)Q_1,\lambda^*)\Big)\qquad[\text{ESW, (33)}].
+\]
+For abelian $\mathfrak g$ the bracket $\{S,S^{(1)}(Q_1)\}$ is an affine function of the coefficient of the Hodge pairing $(F_A,F_A)$ in \eqref{eq:c1-action}, and the identity $\{S,S^{(1)}(Q_1)\}=0$ of [ESW, Lemma 3.4] fixes this coefficient to $-\tfrac14$. The coefficients $+\tfrac14$ and $-\tfrac12$ (the reading of $(F_A,F_A)$ as a sum over ordered pairs of directions, twice the Hodge pairing) give a nonzero bracket.
+\end{proposition}
+
+\begin{proof}
+For abelian $\mathfrak g$ the bracket is affine in the coefficient of $(F_A,F_A)$: this coefficient times $(dA,dA)$ meets $-(\Gamma(Q_1,\lambda),A^*)$ through the $(A,A^*)$ pair, $\tfrac12(\lambda,{\not d}\lambda)$ meets $\tfrac12(\rho(dA)Q_1,\lambda^*)$ through the $(\lambda^*,\lambda)$ pair, and $(dc,A^*)$ meets $\tfrac12(\rho(dA)Q_1,\lambda^*)$ in $(\rho(d\,dc)Q_1,\lambda^*)=0$. With the coefficient $-\tfrac14$ the bracket vanishes for every $Q_1\in\Sigma$ and every $\mathfrak g$: this is [ESW, Lemma 3.4] in ten dimensions, pulled back along the reduction [ESW, Prop 2.20], and for $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$ it holds on every element of a basis of $\Sigma$ (Remark \ref{rem:c1-method}); the part of this bracket quadratic in the fields is the abelian bracket. With the coefficient $+\tfrac14$ the abelian bracket is a nonzero local functional at an element $Q_1\in\Sigma$ (Remark \ref{rem:c1-method}). An affine function that vanishes at $-\tfrac14$ and is nonzero at $+\tfrac14$ has $-\tfrac14$ as its unique zero; in particular it is nonzero at $-\tfrac12$.
+\end{proof}
+
+The free part of $S$ is
+\begin{equation}
+\tfrac12\langle e,Qe\rangle=\int\mathrm{dvol}\Big(-\tfrac14(dA,dA)+\tfrac12(\lambda,{\not d}\lambda)+(dc,A^*)\Big)\qquad[\text{C07, §1, §4.3}],
+\label{eq:c1-free}
+\end{equation}
+and $I=S-\tfrac12\langle e,Qe\rangle$ is the interaction.
+
+Fields and kernels on $\mathbb R^4\times\mathbb R^4$ are Fourier transformed as
+\[
+\int\frac{d^4p}{(2\pi)^4}e^{i(p,x)}(\cdots)(p),\qquad \int\frac{d^4p}{(2\pi)^4}e^{i(p,x-y)}(\cdots)(p),
+\]
+with $p\in V$ and $|p|^2=(p,p)$; thus $d$ becomes $i(p,-)$.
+
+\begin{remark}[Real slice]
+\label{rem:c1-real}
+The weight is $e^{+S/\hbar}$, with $\langle e,Qe\rangle$ negative definite on the real slice [C07, §6.6]. For $A$ real with respect to the compact real form of $\mathfrak g$,
+\[
+\langle A,QA\rangle=-\tfrac12\int\mathrm{dvol}\,(dA,dA)\le0,
+\]
+and for a fixed nonzero momentum $p$ the quadratic form on the fibre $V_{10}^\vee$ has eigenvalues, in units of $(-,-)$, equal to $-\tfrac12|p|^2$ with multiplicity $9$ and $0$ with multiplicity $1$; the zero eigenvector is the longitudinal part of $A|_V$, which lies in $\operatorname{Im}Q$.
+\end{remark}
+
+\section{The linear differential}
+
+\begin{proposition}[The differential $Q$]
+\label{prop:c1-Q}
+The linear part of $\{S,-\}$ is the derivation $\{\tfrac12\langle e,Qe\rangle,-\}$ of functionals, induced as in [C07, §6.2] by the operator $Q\colon\mathscr E\to\mathscr E$ given in the following table, and \eqref{eq:c1-free} holds.
+
+\begin{tabular}{l|c|c|c}
+on the slot of & $Q$ & lands in the slot of & momentum space \\
+\hline
+$c$ & $c\mapsto-dc$ & $A|_V$ & $-i(p,-)\,c$ \\
+$A$ & $A\mapsto-\tfrac12\,d^*dA$ & $A^*$ & $-\tfrac12\big(|p|^2A|_V-(p,-)\,\iota_pA\big)$ and $-\tfrac12|p|^2A|_{W_{\mathbb R}^\perp}$ \\
+$A^*$ & $A^*\mapsto d^*(A^*|_V)$ & $c^*$ & $-i\,(p,A^*|_V)$ \\
+$\lambda$ & $\lambda\mapsto{\not d}\lambda$ & $\lambda^*$ & $i\rho(p)\lambda$ \\
+$\lambda^*$, $c^*$ & $0$ & & \\
+\end{tabular}
+\tabcaption{The operator $Q$. On $A|_{W_{\mathbb R}^\perp}$, $d^*d$ is the positive Laplacian of each scalar $\iota_wA$; on $A|_V$ it is $d^*d$ on one-forms.}
+
+Moreover:
+\begin{itemize}
+\item $Q^2=0$;
+\item $Q$ preserves the pairing: $\langle Qe_0,e_1\rangle+(-1)^{|e_0|}\langle e_0,Qe_1\rangle=0$ for all $e_0,e_1\in\mathscr E_c$; equivalently $(Q\otimes1+1\otimes Q)K_0=0$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+$Q^2=0$: the composable pairs of arrows of $Q$ are $c\to A|_V\to A^*$ and $A\to A^*\to c^*$. On the first,
+\[
+Q^2c=-\tfrac12\,d^*d(-dc)=\tfrac12\,d^*(d\,dc)=0 ;
+\]
+on the second, $d^*(A^*|_V)$ applied to $-\tfrac12d^*dA$ gives $-\tfrac12\,d^*d^*(dA)=0$, since $d^*d^*=0$.
+
+Preservation of the pairing is checked on the three pairs; all other pairings vanish. For $e_0,e_1$ in the $A$ slot (even),
+\[
+\langle Qe_0,e_1\rangle=-\langle e_1,-\tfrac12d^*de_0\rangle=\tfrac12\int\mathrm{dvol}\,(de_1,de_0),\qquad \langle e_0,Qe_1\rangle=-\tfrac12\int\mathrm{dvol}\,(de_0,de_1),
+\]
+and the sum vanishes. For $e_0$ in the $A^*$ slot (odd) and $e_1$ in the $c$ slot,
+\[
+\langle Qe_0,e_1\rangle=\int\mathrm{dvol}\,(d^*(e_0|_V),e_1)=\int\mathrm{dvol}\,(e_0,de_1),\qquad \langle e_0,Qe_1\rangle=-\langle -de_1,e_0\rangle=\int\mathrm{dvol}\,(de_1,e_0),
+\]
+so $\langle Qe_0,e_1\rangle-\langle e_0,Qe_1\rangle=0$. For $e_0,e_1$ in the $\lambda$ slot (odd), with ${\not d}=\rho\circ d$ and the symmetry $(\rho(v)Q_1,Q_2)=(Q_1,\rho(v)Q_2)$,
+\[
+\langle Qe_0,e_1\rangle-\langle e_0,Qe_1\rangle=\int\mathrm{dvol}\big((e_1,{\not d}e_0)+(e_0,{\not d}e_1)\big)=0,
+\]
+by integration by parts. The kernel form is the same statement for the kernel of the identity.
+\end{proof}
+
+\begin{remark}[A sign conflict in the sources]
+\label{rem:c1-adjoint}
+[ESW, Def 1.16] prints the adjointness of the BV differential as $\int\omega(e_0,Q_{BV}e_1)=(-1)^{|e_0|}\int\omega(Q_{BV}e_0,e_1)$, where $\omega$ and $Q_{BV}$ are the [ESW] names of $\langle\,,\rangle$ and $Q$. Combined with the graded antisymmetry $\langle e_1,e_0\rangle=-\langle e_0,e_1\rangle$ of Definition \ref{def:c1-pairing} for $e_0$ even and $e_1$ odd, the printed relation gives, for $e_0=e_1=A$ in the $A$ slot,
+\[
+\langle A,QA\rangle=\langle QA,A\rangle=-\langle A,QA\rangle,
+\]
+hence $\langle A,QA\rangle=0$, which contradicts the kinetic term $\tfrac12\langle A,QA\rangle=-\tfrac14\int\mathrm{dvol}\,(dA,dA)$ of \eqref{eq:c1-free}. The relation of Proposition \ref{prop:c1-Q}, $\langle Qe_0,e_1\rangle+(-1)^{|e_0|}\langle e_0,Qe_1\rangle=0$, is the one satisfied by the action, and it is used throughout.
+\end{remark}
+
+\section{The interaction, vertex by vertex}
+
+Expanding \eqref{eq:c1-action} around \eqref{eq:c1-free},
+\begin{equation}
+\begin{aligned}
+I&=\underbrace{\int\mathrm{dvol}\Big(-\tfrac12\big(dA,\tfrac12[A\wedge A]\big)+\tfrac12\big(\lambda,({\not d}_A-{\not d})\lambda\big)+([A,c],A^*)+([c,\lambda],\lambda^*)+\tfrac12([c,c],c^*)\Big)}_{\text{cubic part of }I}\\
+&\quad+\underbrace{\int\mathrm{dvol}\Big(-\tfrac14\big(\tfrac12[A\wedge A],\tfrac12[A\wedge A]\big)\Big)}_{\text{quartic part of }I}.
+\end{aligned}
+\label{eq:c1-I}
+\end{equation}
+
+\begin{tabular}{l|l}
+term & component types \\
+\hline
+$-\frac12(dA,\frac12[A\wedge A])$ & $(A|_V)^3$; $\ A|_V\,(A|_{W_{\mathbb R}^\perp})^2$ \\
+$-\frac14(\frac12[A\wedge A],\frac12[A\wedge A])$ & $(A|_V)^4$; $\ (A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$; $\ (A|_{W_{\mathbb R}^\perp})^4$ \\
+$\frac12(\lambda,({\not d}_A-{\not d})\lambda)$ & $\lambda\lambda\,A|_V$ (gauge); $\ \lambda\lambda\,\iota_wA$ (Yukawa) \\
+$([A,c],A^*)$ & $A|_V\,c\,A^*|_V$; $\ A|_{W_{\mathbb R}^\perp}\,c\,A^*|_{W_{\mathbb R}^\perp}$ \\
+$([c,\lambda],\lambda^*)$ & $c\,\lambda\,\lambda^*$ \\
+$\frac12([c,c],c^*)$ & $c\,c\,c^*$ \\
+\end{tabular}
+\tabcaption{Component types of the vertices. The cubic gauge vertex has the component types $(A|_V)^3$ and $A|_V(A|_{W_{\mathbb R}^\perp})^2$, because $d$ acts along $\mathbb R^4$.}
+
+\begin{definition}[Vertex functions]
+\label{def:c1-vertex}
+Number the legs of a vertex $1,\dots,n$, give leg $j$ an incoming momentum $p_j\in V$ and a fibre element written $A(p_j)$, $\lambda(p_j)$, $c(p_j)$, $A^*(p_j)$, $\lambda^*(p_j)$ or $c^*(p_j)$ according to its field. Evaluate the corresponding term of $I$ on $\sum_j r_j\,(\text{fibre element of leg }j)\,e^{i(p_j,x)}$, where $r_j=1$ for even legs and $r_j$ is an odd element of an auxiliary nilpotent supercommutative ring for odd legs [C07, Lemma 6.4.1, proof]. The vertex function is the coefficient of the product of the $r_j$ of the odd legs, in leg order, in the part multilinear in the legs, with the factor $(2\pi)^4\delta(\sum_jp_j)$ removed.
+\end{definition}
+
+In the following formulas, $\iota_pA(p_j)\in\mathfrak g$ is the contraction of the $V_{10}^\vee$ factor with $p\in V$; $[A(p_1),A(p_2)]\in\mathfrak g$ contracts the $V_{10}^\vee$ factors with the metric and brackets the $\mathfrak g$ factors; $[A(p_1)\wedge A(p_2)]$ is the $\mathfrak g$-valued two-form $(v_1,v_2)\mapsto[A(p_1)(v_1),A(p_2)(v_2)]-[A(p_1)(v_2),A(p_2)(v_1)]$, paired by the Hodge pairing.
+
+The gauge vertices, with legs $1,2,3$ (resp. $1,\dots,4$) all of type $A$:
+\begin{equation}
+\begin{aligned}
+A\,A\,A:\qquad -\frac i2\Big[&\big(\iota_{p_2-p_1}A(p_3),[A(p_1),A(p_2)]\big)+\big(\iota_{p_3-p_2}A(p_1),[A(p_2),A(p_3)]\big)\\
+&+\big(\iota_{p_1-p_3}A(p_2),[A(p_3),A(p_1)]\big)\Big],
+\end{aligned}
+\label{eq:c1-AAA}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+A\,A\,A\,A:\qquad -\frac12\Big[&\big([A(p_1)\wedge A(p_2)],[A(p_3)\wedge A(p_4)]\big)+\big([A(p_1)\wedge A(p_3)],[A(p_2)\wedge A(p_4)]\big)\\
+&+\big([A(p_1)\wedge A(p_4)],[A(p_2)\wedge A(p_3)]\big)\Big].
+\end{aligned}
+\label{eq:c1-AAAA}
+\end{equation}
+The vertices with fermions, ghosts and antifields:
+
+\begin{tabular}{l|l}
+vertex (legs in order) & vertex function \\
+\hline
+$\lambda\,\lambda\,A$ & $r_1r_2\,(\lambda(p_1),\rho([A(p_3),\lambda(p_2)]))$ \\
+$A\,c\,A^*$ & $r_2r_3\,([A(p_1),c(p_2)],A^*(p_3))$ \\
+$c\,\lambda\,\lambda^*$ & $r_1r_2\,([c(p_1),\lambda(p_2)],\lambda^*(p_3))$ \\
+$c\,c\,c^*$ & $r_1r_2\,([c(p_1),c(p_2)],c^*(p_3))$ \\
+\end{tabular}
+\tabcaption{Momentum-space vertex functions of $I$ with odd legs (all momenta incoming); these four are independent of the momenta.}
+
+Each entry is the multilinear part of the corresponding term of \eqref{eq:c1-I} on plane waves, including all permutations of identical legs; these are the vertex labels of every graph in the later chapters.
+
+\section{The classical master equation}
+
+\begin{proposition}[Classical master equation]
+\label{prop:c1-cme}
+For every $\mathfrak g$ as in Definition \ref{def:c1-spaces}:
+\begin{itemize}
+\item $\{S,S\}=0$ [ESW, Def 1.16];
+\item equivalently, $\{\tfrac12\langle e,Qe\rangle,\tfrac12\langle e,Qe\rangle\}=0$ (that is, $Q^2=0$) and $QI+\tfrac12\{I,I\}=0$.
+\end{itemize}
+If moreover $[\mathfrak g,\mathfrak g]\neq0$, the master equation fixes the relative signs of the pairing and the sign of the ghost term:
+\begin{itemize}
+\item if the sign of the $(\lambda^*,\lambda)$ pairing, or of the $(c^*,c)$ pairing, or of both, is reversed relative to the $(A,A^*)$ pairing in Definition \ref{def:c1-pairing}, then $\{S,S\}\neq0$;
+\item with the pairing of Definition \ref{def:c1-pairing} and the sign of the term $\tfrac12([c,c],c^*)$ reversed, $\{S,S\}\neq0$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Equivalence. Write $S=\tfrac12\langle e,Qe\rangle+I$. Both summands are even, so by graded symmetry $\{I,\tfrac12\langle e,Qe\rangle\}=\{\tfrac12\langle e,Qe\rangle,I\}=QI$ (Proposition \ref{prop:c1-Q}), and
+\[
+\{S,S\}=\{\tfrac12\langle e,Qe\rangle,\tfrac12\langle e,Qe\rangle\}+2\,QI+\{I,I\}.
+\]
+The first term is $Q$ applied to $\tfrac12\langle e,Qe\rangle$; by the preservation of the pairing in Proposition \ref{prop:c1-Q}, $\langle Qe,Qe\rangle=-(-1)^{|e|}\langle e,Q^2e\rangle$, so this term is a multiple of $\langle e,Q^2e\rangle$ and vanishes by $Q^2=0$. This gives the equivalence of the first two items.
+
+$\{S,S\}=0$ for every $\mathfrak g$. The action \eqref{eq:c1-action} is the BV action of the BRST theory of [ESW, Def 3.2], built as in [ESW, Def 1.34] with the natural pairing of the shifted cotangent bundle; it satisfies $\{S,S\}=0$ for every $\mathfrak g$, and the dimensional reduction preserves it [ESW, Def 1.55, Prop 1.56]. The natural pairing differs from Definition \ref{def:c1-pairing} at most by a sign on each of the three pairs, and these signs are independent of $\mathfrak g$. An overall sign leaves $\{S,S\}=0$ invariant. For $\mathfrak g=\mathfrak{su}(2)$ the density of $\{S,S\}$ computed with the pairing of Definition \ref{def:c1-pairing} vanishes as a local functional, together with $2QI+\{I,I\}$, while $QI\neq0$; for each of the three other relative sign patterns it is nonzero (Remark \ref{rem:c1-method}). Hence the natural pairing coincides with Definition \ref{def:c1-pairing} up to an overall sign, and $\{S,S\}=0$ holds for every $\mathfrak g$. The same exact computation gives $\{S,S\}=0$ for $\mathfrak g=\mathfrak{su}(3)$.
+
+The relative signs. The action is linear in the antifields, so $\{S,S\}$ has antifield number $0$ and $1$. Each term of $\{S,S\}$ pairs a derivative along a field with a derivative along its partner and carries the sign of that pair. The derivatives of $S$ along the antifields are the gauge transformations $A\mapsto d_Ac$, $\lambda\mapsto[c,\lambda]$, $c\mapsto\tfrac12[c,c]$.
+\begin{itemize}
+\item Antifield number $0$: the gauge variation of $\int\mathrm{dvol}\big(-\tfrac14(F_A,F_A)+\tfrac12(\lambda,{\not d}_A\lambda)\big)$. The $A$-variation enters through the $(A,A^*)$ pair and the $\lambda$-variation through the $(\lambda^*,\lambda)$ pair.
+\item Linear in $A^*$: $[d_Ac,c]$ through the $(A,A^*)$ pair against $d_A(\tfrac12[c,c])$ through the $(c^*,c)$ pair, related by the Leibniz rule $d_A[c,c]=2[d_Ac,c]$.
+\item Linear in $\lambda^*$: $[c,[c,\lambda]]$ through the $(\lambda^*,\lambda)$ pair against $\tfrac12[[c,c],\lambda]$ through the $(c^*,c)$ pair, related by the Jacobi identity $2[c,[c,\lambda]]=[[c,c],\lambda]$.
+\item Linear in $c^*$: $[c,[c,c]]=0$.
+\end{itemize}
+Consider the part of $\{S,S\}$ with field content $(c,\lambda,\lambda)$, no $A$ and no antifield. The $(c^*,c)$ pair contributes nothing to it, since $\tfrac12[c,c]$ contains two ghosts. The $(\lambda^*,\lambda)$ pair contributes the variation of $\tfrac12\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$ along $\lambda\mapsto[c,\lambda]$, and the $(A,A^*)$ pair contributes, up to the sign of that pair, a nonzero multiple of the variation of $\tfrac12\int\mathrm{dvol}\,(\lambda,\rho([A,\lambda]))$ along $A\mapsto dc$, which is a nonzero multiple of
+\[
+\int\mathrm{dvol}\,\big(\lambda,\rho([dc,\lambda])\big).
+\]
+With the pairing of Definition \ref{def:c1-pairing} these two contributions cancel, because $\{S,S\}=0$; reversing the sign of the $(\lambda^*,\lambda)$ pair relative to the $(A,A^*)$ pair therefore turns this part of $\{S,S\}$ into twice the $(A,A^*)$ contribution. This functional is nonzero when $[\mathfrak g,\mathfrak g]\neq0$: choose $X,Y,Z\in\mathfrak g$ with $(X,[Z,Y])\neq0$, compactly supported $\Sigma$-valued functions $s_1,s_2$ and a compactly supported function $f$ with $\int\mathrm{dvol}\,(df,\Gamma(s_1,s_2))\neq0$, and put $\lambda=r_1s_1X+r_2s_2Y$, $c=r_3fZ$ with $r_1,r_2,r_3$ odd as in Definition \ref{def:c1-vertex}. Using $r_2r_3r_1=-r_1r_3r_2$, $(Y,[Z,X])=-(X,[Z,Y])$ and the symmetry of $\Gamma$,
+\[
+\int\mathrm{dvol}\,\big(\lambda,\rho([dc,\lambda])\big)=2\,r_1r_3r_2\,(X,[Z,Y])\int\mathrm{dvol}\,(df,\Gamma(s_1,s_2))\neq0 .
+\]
+This proves the first of the last two items when the $(\lambda^*,\lambda)$ sign is reversed, alone or together with the $(c^*,c)$ sign. Next consider the part with field content $(c,c,A^*)$ and no $A$. The $(\lambda^*,\lambda)$ pair contributes nothing to it. The $(A,A^*)$ pair contributes the variation of $\int\mathrm{dvol}\,([A,c],A^*)$ along $A\mapsto dc$, which is $\int\mathrm{dvol}\,([dc,c],A^*)$ up to the sign of the pair, and the $(c^*,c)$ pair contributes the variation of $\int\mathrm{dvol}\,(dc,A^*)$ along $c\mapsto\tfrac12[c,c]$, which is $\int\mathrm{dvol}\,([dc,c],A^*)$ up to the product of the sign of the pair and the sign of the term $\tfrac12([c,c],c^*)$. They cancel with the data of Definitions \ref{def:c1-pairing} and \ref{def:c1-action}, so reversing the $(c^*,c)$ sign alone, or the sign of $\tfrac12([c,c],c^*)$ alone, turns this part into twice $\pm\int\mathrm{dvol}\,([dc,c],A^*)$. On $c=r_1f_1X+r_2f_2Y$ with $[X,Y]\neq0$,
+\[
+\int\mathrm{dvol}\,([dc,c],A^*)=r_1r_2\int\mathrm{dvol}\,\big([X,Y],\,(d(f_1f_2),A^*|_V)\big),
+\]
+which is nonzero for a suitable compactly supported $A^*|_V$.
+\end{proof}
+
+\begin{remark}[Exact verification of identities of local functionals]
+\label{rem:c1-method}
+Propositions \ref{prop:c1-norm} and \ref{prop:c1-cme} use the following exact computation. For $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$ fix bases of $\mathfrak g$, of $V_{10}$ and of $\Sigma\oplus\Sigma^*$ in which the bracket, the pairings, $\rho$ and $\Gamma$ have Gaussian-rational entries. The density of each local functional of this chapter, and of each bracket of two of them, is then a polynomial in the jets of the components of the six fields with Gaussian-rational coefficients, computed in exact arithmetic. A local functional $\int\mathrm{dvol}\,D$ without constant term vanishes on $\mathscr E_c$ when all Euler--Lagrange derivatives of $D$ vanish identically: for $e\in\mathscr E_c$, after integration by parts with compact support, $\frac{d}{ds}\int\mathrm{dvol}\,D(se)$ is the integral of the Euler--Lagrange derivatives of $D$ at $se$ paired with $e$ (odd components multiplied by odd elements of an auxiliary nilpotent ring, as in Definition \ref{def:c1-vertex}), so $\int\mathrm{dvol}\,D(se)$ is independent of $s$ and equals its value $0$ at $s=0$. Conversely, a nonzero Euler--Lagrange derivative shows that the functional is nonzero. Statements that a bracket vanishes for every element of $\Sigma$ are established on every element of a basis of $\Sigma$; this suffices, because the bracket is linear in that element.
+\end{remark}

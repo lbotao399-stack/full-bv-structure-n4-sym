@@ -1,0 +1,32 @@
+(*
+	N4Draw.gen
+		Drawing-only generic model for the N4_Costello_BV project.
+		Every line species is a generic scalar S; the kinematic vectors
+		are trivial ({1}).  Only the graph combinatorics (topology,
+		field insertion, symmetry factor) and the line styles are used.
+		No amplitude is ever built from this file.
+*)
+
+KinematicIndices[ S ] = {};
+
+M$GenericPropagators = {
+  AnalyticalPropagator[External][ s1 S[j1, mom] ] == 1,
+  AnalyticalPropagator[Internal][ s1 S[j1, mom] ] ==
+    I FAPropagatorDenominator[mom, Mass[S[j1]]]
+}
+
+M$GenericCouplings = {
+  AnalyticalCoupling[ s1 S[j1, mom1], s2 S[j2, mom2] ] ==
+    G[1][s1 S[j1], s2 S[j2]] . { 1 },
+  AnalyticalCoupling[ s1 S[j1, mom1], s2 S[j2, mom2], s3 S[j3, mom3] ] ==
+    G[1][s1 S[j1], s2 S[j2], s3 S[j3]] . { 1 },
+  AnalyticalCoupling[ s1 S[j1, mom1], s2 S[j2, mom2],
+      s3 S[j3, mom3], s4 S[j4, mom4] ] ==
+    G[1][s1 S[j1], s2 S[j2], s3 S[j3], s4 S[j4]] . { 1 }
+}
+
+M$FlippingRules = {}
+
+M$TruncationRules = {}
+
+M$LastGenericRules = {}

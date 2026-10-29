@@ -1,0 +1,1748 @@
+{
+ "engine": "A",
+ "part": "C (cubic sector of the arity-zero one-loop obstruction)",
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))  (code name: unit)",
+ "G_basis": {
+  "G1": "int dvol ([c, A|_V], d^*d A|_V)",
+  "G2": "int dvol ([c, A|_V], d d^* A|_V)",
+  "G3": "int dvol ([c, A|_Wperp], d^*d A|_Wperp)",
+  "G4": "int dvol ([c, dc], A^*)",
+  "G5": "int dvol ([c, lambda], dslash lambda)"
+ },
+ "definition": "Ob_3 = lim_{eps->0} [I-a + II-a + III(K_0)] (three-leg part of the order-hbar Q W(P(eps,infty), I - I^CT[eps]) minus the limit of I-d + II-b, which is the tree of Ob_2 with I_3, and minus I-b + III(K'), which tends to 0)",
+ "sectors": {
+  "(c, A|_V, A|_V)": {
+   "legs": "(c, A|_V, A|_V)",
+   "structure_basis": {
+    "-1": [
+     "tr T"
+    ],
+    "0": [
+     "trT p1^2",
+     "trT p2^2",
+     "trT p1.p2",
+     "p1.T.p1",
+     "p1.T.p2",
+     "p2.T.p1",
+     "p2.T.p2",
+     "eps(T,p1,p2)"
+    ]
+   },
+   "G_in_structure_basis": {
+    "G1": {
+     "trT p1^2": "-1",
+     "trT p2^2": "1",
+     "p1.T.p1": "1",
+     "p2.T.p2": "-1"
+    },
+    "G2": {
+     "p1.T.p1": "-1",
+     "p2.T.p2": "1"
+    }
+   },
+   "graph_classes_I-a": [
+    {
+     "class": "((('AP', ('A', 'A')), ('A|_V', 'A|_V')), (('sAP', ('A', 'As')), ('c',)))",
+     "topology": "bubble (one quartic vertex)",
+     "vertices": [
+      "{(A),(A),A|_V,A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A^*),c} and A at {(A),(A),A|_V,A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A at {(A),(A),A|_V,A|_V} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "1 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "0",
+       "G2": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AP', ('A', 'A')), ('A|_V',)), (('AP', ('A', 'A')), ('A|_V',)), (('sAP', ('A', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_V}",
+      "{(A),(A),A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A^*),c} and A at {(A),(A),A|_V}",
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A),A|_V} and A at {(A),(A),A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A at {(A),(A),A|_V} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-log(2) + 11/12 + log(3)",
+       "G2": "5/4"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A|_V', 'A|_V')), (('sAV', ('A', 'As')), ('c',)))",
+     "topology": "bubble (one quartic vertex)",
+     "vertices": [
+      "{(A),(A),A|_V,A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A),A|_V,A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(A),A|_V,A|_V} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "1 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "0",
+       "G2": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A|_V',)), (('AV', ('A', 'A')), ('A|_V',)), (('sAV', ('A', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_V}",
+      "{(A),(A),A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A),A|_V}",
+      "A|_V--A|_V, slots A at {(A),(A),A|_V} and A at {(A),(A),A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(A),A|_V} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-2*log(2)/3 + 103/144 + 2*log(3)/3",
+       "G2": "-log(2)/4 + log(3)/4 + 41/48"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A|_V',)), (('sAV', ('A', 'As')), ('A|_V',)), (('gh', ('c', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_V}",
+      "{(A^*),(c),A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A),A|_V}",
+      "c--A^*|_V, slots c at {(A^*),(c),A|_V} and A^* at {(A),(A^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(A),A|_V} and A^* at {(A^*),(c),A|_V}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-log(2)/2 + 1/12 + log(3)/2",
+       "G2": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('gh', ('As', 'c')), ('A|_V',)), (('gh', ('As', 'c')), ('A|_V',)), (('sAV', ('As', 'A')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A^*),(c),A|_V}",
+      "{(A^*),(c),A|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "c--A^*|_V, slots A^* at {(A),(A^*),c} and c at {(A^*),(c),A|_V}",
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_V} and c at {(A^*),(c),A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A^* at {(A^*),(c),A|_V} and A at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-log(3)/24 - 11/288 + log(2)/24",
+       "G2": "-log(3)/8 - 1/32 + log(2)/8"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('gh', ('As', 'c')), ('A|_V',)), (('gh', ('As', 'c')), ('c',)), (('sc', ('cs', 'c')), ('A|_V',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A^*),(c),A|_V}",
+      "{(c),(c^*),c}",
+      "{(A^*),(c),A|_V}"
+     ],
+     "lines": [
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_V} and c at {(A^*),(c),A|_V}",
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_V} and c at {(c),(c^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (c^*--c), slots c^* at {(c),(c^*),c} and c at {(A^*),(c),A|_V}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-log(3)/24 - 11/288 + log(2)/24",
+       "G2": "-log(3)/8 - 1/32 + log(2)/8"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('l', ('l', 'l')), ('A|_V',)), (('l', ('l', 'l')), ('A|_V',)), (('sl', ('l', 'ls')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(lambda),(lambda),A|_V}",
+      "{(lambda),(lambda),A|_V}",
+      "{(lambda),(lambda^*),c}"
+     ],
+     "lines": [
+      "lambda--lambda, slots lambda at {(lambda),(lambda^*),c} and lambda at {(lambda),(lambda),A|_V}",
+      "lambda--lambda, slots lambda at {(lambda),(lambda),A|_V} and lambda at {(lambda),(lambda),A|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda at {(lambda),(lambda),A|_V} and lambda^* at {(lambda),(lambda^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "log": {
+       "G1": "0",
+       "G2": "0"
+      },
+      "eps^0": {
+       "G1": "-8*log(2)/3 + 10/9 + 8*log(3)/3",
+       "G2": "4/3"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    }
+   ],
+   "I-a_total": {
+    "eps^-1": "zero",
+    "log": "0 (every graph separately)",
+    "eps^0": {
+     "G1": "-19*log(2)/4 + 11/4 + 19*log(3)/4",
+     "G2": "27/8"
+    },
+    "eps^0_in_span_G_zero_residual": true,
+    "all_class_fits_zero_residual": true,
+    "structure_matrix_full_column_rank": true,
+    "same_total_in_all_runs": true,
+    "samples_per_run": {
+     "su2_seed2028": 11,
+     "su2_seed31": 11,
+     "gl3(sl3)_seed7": 11
+    }
+   },
+   "II-a_and_III(K_0)": {
+    "II-a = -Q I^CT_3": {
+     "log": {
+      "G1": "-5/2",
+      "G2": "0"
+     },
+     "eps^-1": "0",
+     "eps^0": "0"
+    },
+    "III(K_0) = -{I_3, I^CT_2}_0": {
+     "log": {
+      "G1": "5/2",
+      "G2": "0"
+     },
+     "eps^-1": "0 (identically)",
+     "eps^0": "0"
+    },
+    "sum_log_exactly_zero": true,
+    "Y_3 = {I_3, Y} with Step-1 multiples": true,
+    "note": "log eps (Q Y_3 + {I_3, Y_2}) = 0: Q{I_3,Y} = -{I_3,QY}, Q I_3 = 0"
+   },
+   "I-b_and_III(K_eps-K_0)": {
+    "I-b eps^0": {
+     "G1": "-9/2",
+     "G2": "-9/2"
+    },
+    "III(K') eps^0": {
+     "G1": "9/2",
+     "G2": "9/2"
+    },
+    "sum eps^0 exactly zero": true,
+    "eps^-1": "0 (each)",
+    "log": "0 (each, through eps^0)",
+    "expansion": "I-b + III(K') = (e^{-eps|p_l|^2}-1) x (renormalised self-energy at p_l) contracted with I_3 by Khat = -eps |p_l|^2 x (finite part) + O(eps^2 log eps): eps^0 parts +X and -X, eps log eps parts cancel",
+    "self-energy eps^-1 coefficient from graphs (multiple of int(A,A))": {
+     "V": "9/4",
+     "P": "9/4"
+    }
+   },
+   "I-d_and_II-b": {
+    "eps^-1 (nonlocal, 1/|p_l|^2)": "cancel exactly",
+    "I-d eps^0 local part (-C_Pnum(sb_-1, I_3))": {
+     "G1": "-9/2",
+     "G2": "9/2"
+    },
+    "II-b eps^0 local part (+C_Pnum(sb_-1, I_3))": {
+     "G1": "9/2",
+     "G2": "-9/2"
+    },
+    "tree of Ob_2 with I_3 (limit)": {
+     "G1": "27/8",
+     "G2": "-27/8"
+    },
+    "I-d + II-b - tree at eps^0 exactly zero": true,
+    "note": "the tree C_{Pnum/|p|^2}(-(27/8) int(d^*dc,d^*A|_V), I_3) is local because Ob_2 carries |p|^2; it is the flow of Ob_2, not part of Ob_3"
+   },
+   "tree_checks_same_in_sl3": true,
+   "mode_model_checks": {
+    "-Q(9/4 int(A,A)) - (9/2) int(dc,A|_V)": true,
+    "tree_vertex_mode_model_minus_canonical": true,
+    "IIa+IIIK0_log": true,
+    "Ib+IIIKp_eps0": true,
+    "Id+IIb_epsinv": true,
+    "Id+IIb_eps0_minus_tree": true,
+    "Y3_minus_bracket_I3_Y": true,
+    "G_mode_model_minus_formula_G1": true,
+    "G_mode_model_minus_formula_G2": true
+   },
+   "totals": {
+    "eps^-1": "0",
+    "log": "0",
+    "Ob_3 (eps^0, local)": {
+     "G1": "-19*log(2)/4 + 11/4 + 19*log(3)/4",
+     "G2": "27/8"
+    },
+    "cubic part of lim Q W (Ob_3 + tree(Ob_2,I_3))": {
+     "G1": "-19*log(2)/4 + 19*log(3)/4 + 49/8",
+     "G2": "0"
+    }
+   },
+   "numerical_check_finite_eps": {
+    "configuration_momenta": [
+     [
+      -1,
+      -2,
+      1,
+      -1
+     ],
+     [
+      1,
+      2,
+      -2,
+      2
+     ],
+     [
+      0,
+      0,
+      1,
+      -1
+     ]
+    ],
+    "predicted_limit": {
+     "alpha.G": "(-216.8480223243307+0j)",
+     "tree_Ob2_I3": "(23.625+0j)"
+    },
+    "by_eps": {
+     "0.0001": {
+      "total - predicted limit": "(-0.0202819978822788+0j)",
+      "I-a - alpha.G": "(0.07860261906830601-0j)",
+      "I-d+II-b - tree": "(-0.10486945082254095+0j)",
+      "I-b+III(K')": "(0.0059848338719639075+0j)",
+      "eps*log(eps)": -0.0009210340371976182,
+      "seconds": 120.6
+     },
+     "1e-05": {
+      "total - predicted limit": "(-0.0038913003450602446+0j)",
+      "I-a - alpha.G": "(0.006003330410067065-0j)",
+      "I-d+II-b - tree": "(-0.010498694128333597+0j)",
+      "I-b+III(K')": "(0.0006040633731990678+0j)",
+      "eps*log(eps)": -0.0001151292546497023,
+      "seconds": 169.7
+     },
+     "1e-06": {
+      "total - predicted limit": "(-0.0005756130913141533+0j)",
+      "I-a - alpha.G": "(0.0004139154400490952-0j)",
+      "I-d+II-b - tree": "(-0.0010499907289549526+0j)",
+      "I-b+III(K')": "(6.046219756718118e-05+0j)",
+      "eps*log(eps)": -1.3815510557964273e-05,
+      "seconds": 227.1
+     }
+    },
+    "conclusion": "total - predicted limit -> 0 like eps log eps (no constant, no log eps, no nonlocal remainder)",
+    "AV_selfenergy_two_structure_fit_residual": {
+     "eps=0.0001,l=1": 8.019766412887667e-17,
+     "eps=0.0001,l=2": 1.6151571962323137e-16,
+     "eps=1e-05,l=1": 3.2303293469223884e-16,
+     "eps=1e-05,l=2": 1.2933325768831308e-16,
+     "eps=1e-06,l=1": 2.0693330820512972e-16,
+     "eps=1e-06,l=2": 2.069573063502529e-16
+    }
+   }
+  },
+  "(c, A|_Wperp, A|_Wperp)": {
+   "legs": "(c, A|_Wperp, A|_Wperp)",
+   "structure_basis": {
+    "-1": [
+     "s"
+    ],
+    "0": [
+     "s p1^2",
+     "s p2^2",
+     "s p1.p2"
+    ]
+   },
+   "G_in_structure_basis": {
+    "G3": {
+     "s p1^2": "-1",
+     "s p2^2": "1"
+    }
+   },
+   "graph_classes_I-a": [
+    {
+     "class": "((('AP', ('A', 'A')), ('A|_Wperp', 'A|_Wperp')), (('sAP', ('A', 'As')), ('c',)))",
+     "topology": "bubble (one quartic vertex)",
+     "vertices": [
+      "{(A),(A),A|_Wperp,A|_Wperp}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A^*),c} and A at {(A),(A),A|_Wperp,A|_Wperp}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A at {(A),(A),A|_Wperp,A|_Wperp} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "1 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AP', ('A', 'A')), ('A|_Wperp',)), (('AV', ('A', 'A')), ('A|_Wperp',)), (('sAP', ('A', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_Wperp}",
+      "{(A),(A),A|_Wperp}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A^*),c} and A at {(A),(A),A|_Wperp}",
+      "A|_V--A|_V, slots A at {(A),(A),A|_Wperp} and A at {(A),(A),A|_Wperp}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A at {(A),(A),A|_Wperp} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "-log(2)/2 + 17/48 + log(3)/2"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AP', ('A', 'A')), ('A|_Wperp',)), (('AV', ('A', 'A')), ('c',)), (('sAV', ('As', 'A')), ('A|_Wperp',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_Wperp}",
+      "{(A),(A^*),c}",
+      "{(A),(A),A|_Wperp}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(A),A|_Wperp} and A at {(A),(A),A|_Wperp}",
+      "A|_V--A|_V, slots A at {(A),(A),A|_Wperp} and A at {(A),(A^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A^* at {(A),(A^*),c} and A at {(A),(A),A|_Wperp}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "-log(3)/4 - 1/48 + log(2)/4"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A|_Wperp', 'A|_Wperp')), (('sAV', ('A', 'As')), ('c',)))",
+     "topology": "bubble (one quartic vertex)",
+     "vertices": [
+      "{(A),(A),A|_Wperp,A|_Wperp}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A),A|_Wperp,A|_Wperp}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(A),A|_Wperp,A|_Wperp} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "1 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A|_Wperp',)), (('sAP', ('A', 'As')), ('A|_Wperp',)), (('gh', ('c', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A),A|_Wperp}",
+      "{(A^*),(c),A|_Wperp}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A),A|_Wperp}",
+      "c--A^*|_V, slots c at {(A^*),(c),A|_Wperp} and A^* at {(A),(A^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A at {(A),(A),A|_Wperp} and A^* at {(A^*),(c),A|_Wperp}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "-log(2)/2 + 1/12 + log(3)/2"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('gh', ('As', 'c')), ('A|_Wperp',)), (('gh', ('As', 'c')), ('A|_Wperp',)), (('sAP', ('As', 'A')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A^*),(c),A|_Wperp}",
+      "{(A^*),(c),A|_Wperp}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "c--A^*|_V, slots A^* at {(A),(A^*),c} and c at {(A^*),(c),A|_Wperp}",
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_Wperp} and c at {(A^*),(c),A|_Wperp}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A^* at {(A^*),(c),A|_Wperp} and A at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('gh', ('As', 'c')), ('A|_Wperp',)), (('gh', ('As', 'c')), ('c',)), (('sc', ('cs', 'c')), ('A|_Wperp',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A^*),(c),A|_Wperp}",
+      "{(c),(c^*),c}",
+      "{(A^*),(c),A|_Wperp}"
+     ],
+     "lines": [
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_Wperp} and c at {(A^*),(c),A|_Wperp}",
+      "c--A^*|_V, slots A^* at {(A^*),(c),A|_Wperp} and c at {(c),(c^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (c^*--c), slots c^* at {(c),(c^*),c} and c at {(A^*),(c),A|_Wperp}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('l', ('l', 'l')), ('A|_Wperp',)), (('l', ('l', 'l')), ('A|_Wperp',)), (('sl', ('l', 'ls')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(lambda),(lambda),A|_Wperp}",
+      "{(lambda),(lambda),A|_Wperp}",
+      "{(lambda),(lambda^*),c}"
+     ],
+     "lines": [
+      "lambda--lambda, slots lambda at {(lambda),(lambda^*),c} and lambda at {(lambda),(lambda),A|_Wperp}",
+      "lambda--lambda, slots lambda at {(lambda),(lambda),A|_Wperp} and lambda at {(lambda),(lambda),A|_Wperp}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda at {(lambda),(lambda),A|_Wperp} and lambda^* at {(lambda),(lambda^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G3": "0"
+      },
+      "log": {
+       "G3": "0"
+      },
+      "eps^0": {
+       "G3": "-4*log(2) + 7/3 + 4*log(3)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    }
+   ],
+   "I-a_total": {
+    "eps^-1": "zero",
+    "log": "0 (every graph separately)",
+    "eps^0": {
+     "G3": "-19*log(2)/4 + 11/4 + 19*log(3)/4"
+    },
+    "eps^0_in_span_G_zero_residual": true,
+    "all_class_fits_zero_residual": true,
+    "structure_matrix_full_column_rank": true,
+    "same_total_in_all_runs": true,
+    "samples_per_run": {
+     "su2_seed2028": 6,
+     "su2_seed31": 6,
+     "gl3(sl3)_seed7": 6
+    }
+   },
+   "II-a_and_III(K_0)": {
+    "II-a = -Q I^CT_3": {
+     "log": {
+      "G3": "-5/2"
+     },
+     "eps^-1": "0",
+     "eps^0": "0"
+    },
+    "III(K_0) = -{I_3, I^CT_2}_0": {
+     "log": {
+      "G3": "5/2"
+     },
+     "eps^-1": "0 (identically)",
+     "eps^0": "0"
+    },
+    "sum_log_exactly_zero": true,
+    "Y_3 = {I_3, Y} with Step-1 multiples": true,
+    "note": "log eps (Q Y_3 + {I_3, Y_2}) = 0: Q{I_3,Y} = -{I_3,QY}, Q I_3 = 0"
+   },
+   "I-b_and_III(K_eps-K_0)": {
+    "I-b eps^0": {
+     "G3": "-9/2"
+    },
+    "III(K') eps^0": {
+     "G3": "9/2"
+    },
+    "sum eps^0 exactly zero": true,
+    "eps^-1": "0 (each)",
+    "log": "0 (each, through eps^0)",
+    "expansion": "I-b + III(K') = (e^{-eps|p_l|^2}-1) x (renormalised self-energy at p_l) contracted with I_3 by Khat = -eps |p_l|^2 x (finite part) + O(eps^2 log eps): eps^0 parts +X and -X, eps log eps parts cancel",
+    "self-energy eps^-1 coefficient from graphs (multiple of int(A,A))": {
+     "V": "9/4",
+     "P": "9/4"
+    }
+   },
+   "I-d_and_II-b": {
+    "eps^-1 (nonlocal, 1/|p_l|^2)": "cancel exactly",
+    "I-d eps^0 local part (-C_Pnum(sb_-1, I_3))": {
+     "G3": "-9/2"
+    },
+    "II-b eps^0 local part (+C_Pnum(sb_-1, I_3))": {
+     "G3": "9/2"
+    },
+    "tree of Ob_2 with I_3 (limit)": {
+     "G3": "27/8"
+    },
+    "I-d + II-b - tree at eps^0 exactly zero": true,
+    "note": "the tree C_{Pnum/|p|^2}(-(27/8) int(d^*dc,d^*A|_V), I_3) is local because Ob_2 carries |p|^2; it is the flow of Ob_2, not part of Ob_3"
+   },
+   "tree_checks_same_in_sl3": true,
+   "mode_model_checks": {
+    "-Q(9/4 int(A,A)) - (9/2) int(dc,A|_V)": true,
+    "tree_vertex_mode_model_minus_canonical": true,
+    "IIa+IIIK0_log": true,
+    "Ib+IIIKp_eps0": true,
+    "Id+IIb_epsinv": true,
+    "Id+IIb_eps0_minus_tree": true,
+    "Y3_minus_bracket_I3_Y": true,
+    "G_mode_model_minus_formula_G3": true
+   },
+   "totals": {
+    "eps^-1": "0",
+    "log": "0",
+    "Ob_3 (eps^0, local)": {
+     "G3": "-19*log(2)/4 + 11/4 + 19*log(3)/4"
+    },
+    "cubic part of lim Q W (Ob_3 + tree(Ob_2,I_3))": {
+     "G3": "-19*log(2)/4 + 19*log(3)/4 + 49/8"
+    }
+   },
+   "numerical_check_finite_eps": {
+    "configuration_momenta": [
+     [
+      -1,
+      -2,
+      1,
+      -1
+     ],
+     [
+      1,
+      2,
+      -2,
+      2
+     ],
+     [
+      0,
+      0,
+      1,
+      -1
+     ]
+    ],
+    "predicted_limit": {
+     "alpha.G": "(-102.87110379730316+0j)",
+     "tree_Ob2_I3": "(-74.25+0j)"
+    },
+    "by_eps": {
+     "0.0001": {
+      "total - predicted limit": "(0.12864965380845206+0j)",
+      "I-a - alpha.G": "(0.15224531451409007-0j)",
+      "I-d+II-b - tree": "(0.07215138256363218+0j)",
+      "I-b+III(K')": "(-0.09574704326926631+0j)",
+      "eps*log(eps)": -0.0009210340371976182,
+      "seconds": 123.3
+     },
+     "1e-05": {
+      "total - predicted limit": "(0.0159020529211773+0j)",
+      "I-a - alpha.G": "(0.01826455580035713-0j)",
+      "I-d+II-b - tree": "(0.007218388493186012+0j)",
+      "I-b+III(K')": "(-0.009580891372344587+0j)",
+      "eps*log(eps)": -0.0001151292546497023,
+      "seconds": 189.2
+     },
+     "1e-06": {
+      "total - predicted limit": "(0.0018941173988480386+0j)",
+      "I-a - alpha.G": "(0.0021303996533390546-0j)",
+      "I-d+II-b - tree": "(0.0007218687773757893+0j)",
+      "I-b+III(K')": "(-0.0009581510318719925+0j)",
+      "eps*log(eps)": -1.3815510557964273e-05,
+      "seconds": 203.1
+     }
+    },
+    "conclusion": "total - predicted limit -> 0 like eps log eps (no constant, no log eps, no nonlocal remainder)",
+    "Wperp_selfenergy_ratio_polarisation_independent": {
+     "eps=0.0001,l=1": 3.637978807091713e-12,
+     "eps=0.0001,l=2": 7.275957614183426e-12,
+     "eps=1e-05,l=1": 1.4551915228366852e-10,
+     "eps=1e-05,l=2": 8.731149137020111e-11,
+     "eps=1e-06,l=1": 4.656612873077393e-10,
+     "eps=1e-06,l=2": 9.313225746154785e-10
+    }
+   }
+  },
+  "(c, lambda, lambda)": {
+   "legs": "(c, lambda, lambda)",
+   "structure_basis": {
+    "-1": [],
+    "0": [
+     "B(p1)",
+     "B(p2)",
+     "Bchi(p1)",
+     "Bchi(p2)"
+    ]
+   },
+   "G_in_structure_basis": {
+    "G5": {
+     "B(p1)": "I",
+     "B(p2)": "I"
+    }
+   },
+   "graph_classes_I-a": [
+    {
+     "class": "((('AP', ('A', 'A')), ('c',)), (('gh', ('As', 'c')), ('lambda',)), (('sl', ('ls', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A^*),c}",
+      "{(c),(lambda^*),lambda}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(lambda),lambda} and A at {(A),(A^*),c}",
+      "c--A^*|_V, slots A^* at {(A),(A^*),c} and c at {(c),(lambda^*),lambda}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda^* at {(c),(lambda^*),lambda} and lambda at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "0"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AP', ('A', 'A')), ('c',)), (('sAP', ('As', 'A')), ('lambda',)), (('l', ('l', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A^*),c}",
+      "{(A),(lambda),lambda}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(lambda),lambda} and A at {(A),(A^*),c}",
+      "lambda--lambda, slots lambda at {(A),(lambda),lambda} and lambda at {(A),(lambda),lambda}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_Wperp--A^*|_Wperp), slots A^* at {(A),(A^*),c} and A at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "-3*log(3) - 3/2 + 3*log(2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AP', ('A', 'A')), ('lambda',)), (('l', ('l', 'l')), ('c',)), (('sl', ('ls', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(lambda),lambda}",
+      "{(lambda),(lambda^*),c}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_Wperp--A|_Wperp, slots A at {(A),(lambda),lambda} and A at {(A),(lambda),lambda}",
+      "lambda--lambda, slots lambda at {(A),(lambda),lambda} and lambda at {(lambda),(lambda^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda^* at {(lambda),(lambda^*),c} and lambda at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "-3*log(3) + 3/2 + 3*log(2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('c',)), (('gh', ('As', 'c')), ('lambda',)), (('sl', ('ls', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A^*),c}",
+      "{(c),(lambda^*),lambda}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(lambda),lambda} and A at {(A),(A^*),c}",
+      "c--A^*|_V, slots A^* at {(A),(A^*),c} and c at {(c),(lambda^*),lambda}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda^* at {(c),(lambda^*),lambda} and lambda at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "-log(3/2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('c',)), (('sAV', ('As', 'A')), ('lambda',)), (('l', ('l', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A^*),c}",
+      "{(A),(lambda),lambda}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(lambda),lambda} and A at {(A),(A^*),c}",
+      "lambda--lambda, slots lambda at {(A),(lambda),lambda} and lambda at {(A),(lambda),lambda}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A^* at {(A),(A^*),c} and A at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "-log(3) - 1/2 + log(2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('lambda',)), (('l', ('l', 'l')), ('c',)), (('sl', ('ls', 'l')), ('lambda',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(lambda),lambda}",
+      "{(lambda),(lambda^*),c}",
+      "{(A),(lambda),lambda}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(lambda),lambda} and A at {(A),(lambda),lambda}",
+      "lambda--lambda, slots lambda at {(A),(lambda),lambda} and lambda at {(lambda),(lambda^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (lambda^*--lambda), slots lambda^* at {(lambda),(lambda^*),c} and lambda at {(A),(lambda),lambda}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G5": "0"
+      },
+      "log": {
+       "G5": "0"
+      },
+      "eps^0": {
+       "G5": "-log(3) + 1/2 + log(2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    }
+   ],
+   "I-a_total": {
+    "eps^-1": "zero",
+    "log": "0 (every graph separately)",
+    "eps^0": {
+     "G5": "-9*log(3) + 9*log(2)"
+    },
+    "eps^0_in_span_G_zero_residual": true,
+    "all_class_fits_zero_residual": true,
+    "structure_matrix_full_column_rank": true,
+    "same_total_in_all_runs": true,
+    "samples_per_run": {
+     "su2_seed2028": 7,
+     "su2_seed31": 7,
+     "gl3(sl3)_seed7": 7
+    }
+   },
+   "II-a_and_III(K_0)": {
+    "II-a = -Q I^CT_3": {
+     "log": {
+      "G5": "9"
+     },
+     "eps^-1": "0",
+     "eps^0": "0"
+    },
+    "III(K_0) = -{I_3, I^CT_2}_0": {
+     "log": {
+      "G5": "-9"
+     },
+     "eps^-1": "0 (identically)",
+     "eps^0": "0"
+    },
+    "sum_log_exactly_zero": true,
+    "Y_3 = {I_3, Y} with Step-1 multiples": true,
+    "note": "log eps (Q Y_3 + {I_3, Y_2}) = 0: Q{I_3,Y} = -{I_3,QY}, Q I_3 = 0"
+   },
+   "I-b_and_III(K_eps-K_0)": {
+    "I-b eps^0": {
+     "G5": "0"
+    },
+    "III(K') eps^0": {
+     "G5": "0"
+    },
+    "sum eps^0 exactly zero": true,
+    "eps^-1": "0 (each)",
+    "log": "0 (each, through eps^0)",
+    "expansion": "I-b + III(K') = (e^{-eps|p_l|^2}-1) x (renormalised self-energy at p_l) contracted with I_3 by Khat = -eps |p_l|^2 x (finite part) + O(eps^2 log eps): eps^0 parts +X and -X, eps log eps parts cancel",
+    "self-energy eps^-1 coefficient from graphs (multiple of int(A,A))": {
+     "V": "9/4",
+     "P": "9/4"
+    }
+   },
+   "I-d_and_II-b": {
+    "eps^-1 (nonlocal, 1/|p_l|^2)": "cancel exactly",
+    "I-d eps^0 local part (-C_Pnum(sb_-1, I_3))": {
+     "G5": "9"
+    },
+    "II-b eps^0 local part (+C_Pnum(sb_-1, I_3))": {
+     "G5": "-9"
+    },
+    "tree of Ob_2 with I_3 (limit)": {
+     "G5": "-27/4"
+    },
+    "I-d + II-b - tree at eps^0 exactly zero": true,
+    "note": "the tree C_{Pnum/|p|^2}(-(27/8) int(d^*dc,d^*A|_V), I_3) is local because Ob_2 carries |p|^2; it is the flow of Ob_2, not part of Ob_3"
+   },
+   "tree_checks_same_in_sl3": true,
+   "mode_model_checks": {
+    "-Q(9/4 int(A,A)) - (9/2) int(dc,A|_V)": true,
+    "tree_vertex_mode_model_minus_canonical": true,
+    "IIa+IIIK0_log": true,
+    "Ib+IIIKp_eps0": true,
+    "Id+IIb_epsinv": true,
+    "Id+IIb_eps0_minus_tree": true,
+    "Y3_minus_bracket_I3_Y": true,
+    "G_mode_model_minus_formula_G5": true
+   },
+   "totals": {
+    "eps^-1": "0",
+    "log": "0",
+    "Ob_3 (eps^0, local)": {
+     "G5": "-9*log(3) + 9*log(2)"
+    },
+    "cubic part of lim Q W (Ob_3 + tree(Ob_2,I_3))": {
+     "G5": "-9*log(3) - 27/4 + 9*log(2)"
+    }
+   },
+   "numerical_check_finite_eps": {
+    "configuration_momenta": [
+     [
+      -1,
+      -2,
+      1,
+      -1
+     ],
+     [
+      1,
+      2,
+      -2,
+      2
+     ],
+     [
+      0,
+      0,
+      1,
+      -1
+     ]
+    ],
+    "predicted_limit": {
+     "alpha.G": "-3.6491859729734797j",
+     "tree_Ob2_I3": "-6.75j"
+    },
+    "by_eps": {
+     "0.0001": {
+      "total - predicted limit": "0.10770407421837369j",
+      "I-a - alpha.G": "(-0+0.21590350337265285j)",
+      "I-d+II-b - tree": "0.006559216596693673j",
+      "I-b+III(K')": "-0.11475864575097311j",
+      "eps*log(eps)": -0.0009210340371976182,
+      "seconds": 68.7
+     },
+     "1e-05": {
+      "total - predicted limit": "0.01712093527547509j",
+      "I-a - alpha.G": "(-0+0.02795110172258486j)",
+      "I-d+II-b - tree": "0.0006562171357442637j",
+      "I-b+III(K')": "-0.011486383582855602j",
+      "eps*log(eps)": -0.0001151292546497023,
+      "seconds": 87.3
+     },
+     "1e-06": {
+      "total - predicted limit": "0.0023475796229028845j",
+      "I-a - alpha.G": "(-0+0.0034306987993080185j)",
+      "I-d+II-b - tree": "6.562443430713216e-05j",
+      "I-b+III(K')": "-0.0011487436107141726j",
+      "eps*log(eps)": -1.3815510557964273e-05,
+      "seconds": 111.1
+     }
+    },
+    "conclusion": "total - predicted limit -> 0 like eps log eps (no constant, no log eps, no nonlocal remainder)",
+    "lambda_selfenergy_ratio_polarisation_independent": {
+     "eps=0.0001,l=1": 0.0,
+     "eps=0.0001,l=2": 7.105427357601002e-15,
+     "eps=1e-05,l=1": 7.105427357601002e-15,
+     "eps=1e-05,l=2": 0.0,
+     "eps=1e-06,l=1": 7.105427357601002e-15,
+     "eps=1e-06,l=2": 0.0
+    }
+   }
+  },
+  "(c, c, A^*|_V)": {
+   "legs": "(c, c, A^*|_V)",
+   "structure_basis": {
+    "-1": [],
+    "0": [
+     "p0.([g0,g1],alpha)",
+     "p1.([g0,g1],alpha)"
+    ]
+   },
+   "G_in_structure_basis": {
+    "G4": {
+     "p0.([g0,g1],alpha)": "I",
+     "p1.([g0,g1],alpha)": "I"
+    }
+   },
+   "graph_classes_I-a": [
+    {
+     "class": "((('AV', ('A', 'A')), ('A^*|_V',)), (('gh', ('c', 'As')), ('c',)), (('sAV', ('A', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(c),A^*|_V}",
+      "{(A),(A^*),c}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(c),A^*|_V}",
+      "c--A^*|_V, slots c at {(A),(c),A^*|_V} and A^* at {(A),(A^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(A^*),c} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G4": "0"
+      },
+      "log": {
+       "G4": "0"
+      },
+      "eps^0": {
+       "G4": "log(3/2)"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('A^*|_V',)), (('sc', ('c', 'cs')), ('c',)), (('gh', ('c', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(c),A^*|_V}",
+      "{(c),(c^*),c}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(c),A^*|_V}",
+      "c--A^*|_V, slots c at {(c),(c^*),c} and A^* at {(A),(A^*),c}"
+     ],
+     "special_edge": "K_eps-K_0 (c^*--c), slots c at {(A),(c),A^*|_V} and c^* at {(c),(c^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G4": "0"
+      },
+      "log": {
+       "G4": "0"
+      },
+      "eps^0": {
+       "G4": "-log(3)/2 - 1/4 + log(2)/2"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    },
+    {
+     "class": "((('AV', ('A', 'A')), ('c',)), (('gh', ('As', 'c')), ('A^*|_V',)), (('sAV', ('A', 'As')), ('c',)))",
+     "topology": "triangle",
+     "vertices": [
+      "{(A),(A^*),c}",
+      "{(A),(c),A^*|_V}",
+      "{(A),(A^*),c}"
+     ],
+     "lines": [
+      "A|_V--A|_V, slots A at {(A),(A^*),c} and A at {(A),(A^*),c}",
+      "c--A^*|_V, slots A^* at {(A),(A^*),c} and c at {(A),(c),A^*|_V}"
+     ],
+     "special_edge": "K_eps-K_0 (A|_V--A^*|_V), slots A at {(A),(c),A^*|_V} and A^* at {(A),(A^*),c}",
+     "multiplicity_and_weight": "2 labelled graphs (sum over legs permutations of identical legs), each with weight 1/|Aut| = 1 [(1/2) str(K'SH(PSH)^{n-1}) x 2 directions]",
+     "coeffs": {
+      "eps^-1": {
+       "G4": "0"
+      },
+      "log": {
+       "G4": "0"
+      },
+      "eps^0": {
+       "G4": "-log(3)/2 + 1/4 + log(2)/2"
+      }
+     },
+     "eps^0_in_span_G_zero_residual": true,
+     "same_in_su2(2 seeds)_and_sl3": true
+    }
+   ],
+   "I-a_total": {
+    "eps^-1": "zero",
+    "log": "0 (every graph separately)",
+    "eps^0": {
+     "G4": "0"
+    },
+    "eps^0_in_span_G_zero_residual": true,
+    "all_class_fits_zero_residual": true,
+    "structure_matrix_full_column_rank": true,
+    "same_total_in_all_runs": true,
+    "samples_per_run": {
+     "su2_seed2028": 5,
+     "su2_seed31": 5,
+     "gl3(sl3)_seed7": 5
+    }
+   },
+   "II-a_and_III(K_0)": {
+    "II-a = -Q I^CT_3": {
+     "log": {
+      "G4": "0"
+     },
+     "eps^-1": "0",
+     "eps^0": "0"
+    },
+    "III(K_0) = -{I_3, I^CT_2}_0": {
+     "log": {
+      "G4": "0"
+     },
+     "eps^-1": "0 (identically)",
+     "eps^0": "0"
+    },
+    "sum_log_exactly_zero": true,
+    "Y_3 = {I_3, Y} with Step-1 multiples": true,
+    "note": "log eps (Q Y_3 + {I_3, Y_2}) = 0: Q{I_3,Y} = -{I_3,QY}, Q I_3 = 0"
+   },
+   "I-b_and_III(K_eps-K_0)": {
+    "I-b eps^0": {
+     "G4": "0"
+    },
+    "III(K') eps^0": {
+     "G4": "0"
+    },
+    "sum eps^0 exactly zero": true,
+    "eps^-1": "0 (each)",
+    "log": "0 (each, through eps^0)",
+    "expansion": "I-b + III(K') = (e^{-eps|p_l|^2}-1) x (renormalised self-energy at p_l) contracted with I_3 by Khat = -eps |p_l|^2 x (finite part) + O(eps^2 log eps): eps^0 parts +X and -X, eps log eps parts cancel",
+    "self-energy eps^-1 coefficient from graphs (multiple of int(A,A))": {
+     "V": "9/4",
+     "P": "9/4"
+    }
+   },
+   "I-d_and_II-b": {
+    "eps^-1 (nonlocal, 1/|p_l|^2)": "cancel exactly",
+    "I-d eps^0 local part (-C_Pnum(sb_-1, I_3))": {
+     "G4": "9"
+    },
+    "II-b eps^0 local part (+C_Pnum(sb_-1, I_3))": {
+     "G4": "-9"
+    },
+    "tree of Ob_2 with I_3 (limit)": {
+     "G4": "-27/4"
+    },
+    "I-d + II-b - tree at eps^0 exactly zero": true,
+    "note": "the tree C_{Pnum/|p|^2}(-(27/8) int(d^*dc,d^*A|_V), I_3) is local because Ob_2 carries |p|^2; it is the flow of Ob_2, not part of Ob_3"
+   },
+   "tree_checks_same_in_sl3": true,
+   "mode_model_checks": {
+    "-Q(9/4 int(A,A)) - (9/2) int(dc,A|_V)": true,
+    "tree_vertex_mode_model_minus_canonical": true,
+    "IIa+IIIK0_log": true,
+    "Ib+IIIKp_eps0": true,
+    "Id+IIb_epsinv": true,
+    "Id+IIb_eps0_minus_tree": true,
+    "Y3_minus_bracket_I3_Y": true,
+    "G_mode_model_minus_formula_G4": true
+   },
+   "totals": {
+    "eps^-1": "0",
+    "log": "0",
+    "Ob_3 (eps^0, local)": {
+     "G4": "0"
+    },
+    "cubic part of lim Q W (Ob_3 + tree(Ob_2,I_3))": {
+     "G4": "-27/4"
+    }
+   },
+   "numerical_check_finite_eps": {
+    "configuration_momenta": [
+     [
+      2,
+      -3,
+      4,
+      0
+     ],
+     [
+      -1,
+      2,
+      -2,
+      -2
+     ],
+     [
+      -1,
+      1,
+      -2,
+      2
+     ]
+    ],
+    "predicted_limit": {
+     "alpha.G": "0j",
+     "tree_Ob2_I3": "-54j"
+    },
+    "by_eps": {
+     "0.0001": {
+      "total - predicted limit": "0.33566129838861514j",
+      "I-a - alpha.G": "(-0+0.1541748816899695j)",
+      "I-d+II-b - tree": "0.3067798211923076j",
+      "I-b+III(K')": "-0.1252934044936631j",
+      "eps*log(eps)": -0.0009210340371976182,
+      "seconds": 55.1
+     },
+     "1e-05": {
+      "total - predicted limit": "0.03932108560102421j",
+      "I-a - alpha.G": "(-0+0.02113284339364374j)",
+      "I-d+II-b - tree": "0.030742788543804522j",
+      "I-b+III(K')": "-0.012554546336420912j",
+      "eps*log(eps)": -0.0001151292546497023,
+      "seconds": 73.4
+     },
+     "1e-06": {
+      "total - predicted limit": "0.004503626202108535j",
+      "I-a - alpha.G": "(-0+0.0026844052914583028j)",
+      "I-d+II-b - tree": "0.0030749279340298585j",
+      "I-b+III(K')": "-0.0012557070233822863j",
+      "eps*log(eps)": -1.3815510557964273e-05,
+      "seconds": 87.8
+     }
+    },
+    "conclusion": "total - predicted limit -> 0 like eps log eps (no constant, no log eps, no nonlocal remainder)"
+   }
+  }
+ },
+ "alpha": {
+  "alpha_1": "-19*log(2)/4 + 11/4 + 19*log(3)/4",
+  "alpha_2": "27/8",
+  "alpha_3": "-19*log(2)/4 + 11/4 + 19*log(3)/4",
+  "alpha_4": "0",
+  "alpha_5": "-9*log(3) + 9*log(2)"
+ },
+ "alpha_simplified": {
+  "alpha_1": "11/4 + (19/4) log(3/2)",
+  "alpha_2": "27/8",
+  "alpha_3": "11/4 + (19/4) log(3/2)",
+  "alpha_4": "0",
+  "alpha_5": "-9 log(3/2)"
+ },
+ "Ob_3": "unit * [ (11/4 + (19/4) log(3/2)) (G1 + G3) + (27/8) G2 + 0 G4 - 9 log(3/2) G5 ]",
+ "alpha_numeric_20digits": {
+  "alpha_1": "4.6759592635137808144",
+  "alpha_2": "3.3750000000000000000",
+  "alpha_3": "4.6759592635137808144",
+  "alpha_4": "0",
+  "alpha_5": "-3.6491859729734794378"
+ },
+ "tree_Ob2_I3_total": "unit * [ (27/8)(G1 - G2) + (27/8) G3 - (27/4) G4 - (27/4) G5 ]",
+ "validation": {
+  "0d_identity (s2_verify0d)": {
+   "runs": [
+    "{'seed': 1, 'P_tadpole_free_I3': False, 'terms_LHS3': 85, 'mismatch_deg3': (0, 85), 'mismatch_deg2_DeltaK_W0': (0, 25), 'mismatch_deg2_dP_bracket': (10, 25), 'terms_triangle': 80, 'terms_quartic_bubble': 80, 'terms_Id': 85, 'control_wrong_sign_mismatch': (80, 85)}",
+    "{'seed': 2, 'P_tadpole_free_I3': False, 'terms_LHS3': 35, 'mismatch_deg3': (0, 35), 'mismatch_deg2_DeltaK_W0': (0, 10), 'mismatch_deg2_dP_bracket': (4, 10), 'terms_triangle': 30, 'terms_quartic_bubble': 35, 'terms_Id': 30, 'control_wrong_sign_mismatch': (30, 35)}",
+    "{'seed': 3, 'P_tadpole_free_I3': False, 'terms_LHS3': 53, 'mismatch_deg3': (0, 53), 'mismatch_deg2_DeltaK_W0': (0, 15), 'mismatch_deg2_dP_bracket': (5, 15), 'terms_triangle': 45, 'terms_quartic_bubble': 51, 'terms_Id': 45, 'control_wrong_sign_mismatch': (45, 53)}",
+    "{'seed': 4, 'P_tadpole_free_I3': True, 'terms_LHS3': 83, 'mismatch_deg3': (0, 83), 'mismatch_deg2_DeltaK_W0': (0, 21), 'mismatch_deg2_dP_bracket': (0, 21), 'terms_triangle': 75, 'terms_quartic_bubble': 77, 'terms_Id': 70, 'control_wrong_sign_mismatch': (75, 85)}",
+    "{'seed': 5, 'P_tadpole_free_I3': True, 'terms_LHS3': 68, 'mismatch_deg3': (0, 68), 'mismatch_deg2_DeltaK_W0': (0, 13), 'mismatch_deg2_dP_bracket': (0, 13), 'terms_triangle': 41, 'terms_quartic_bubble': 59, 'terms_Id': 45, 'control_wrong_sign_mismatch': (41, 69)}"
+   ],
+   "note": "mismatch_deg3 = 0: Delta_K W_0|_3 = (1/2)str[KSH3PSH3PSH3] + (1/2)(str[KSH3PSH4]+str[KSH4PSH3]) + C_P((1/2)str[KSH3PSH3], I_3) (I-a + I-d); the deg-2 d_P((1/2){I,I}_K) comparison differs only by P-tadpoles when d_P I_3 != 0 (absent in the field theory, tr ad = 0) and matches for P-tadpole-free I_3 (seeds 4, 5); the wrong sign of I-a fails (control)."
+  },
+  "two-leg regression vs Step 1 (s2_regress2pt)": {
+   "su2": {
+    "TOTAL": {
+     "eps^-1": "-9/2 + (0) log2 + (0) log3",
+     "eps^0": "-27/8 + (0) log2 + (0) log3"
+    },
+    "per_graph": {
+     "sAV|AV": {
+      "eps^-1": "-9/4 + (0) log2 + (0) log3",
+      "eps^0": "-5/8 + (0) log2 + (0) log3"
+     },
+     "sAV|gh": {
+      "eps^-1": "1/8 + (0) log2 + (0) log3",
+      "eps^0": "-1/12 + (0) log2 + (0) log3"
+     },
+     "sAP|AP": {
+      "eps^-1": "-9/2 + (0) log2 + (0) log3",
+      "eps^0": "-5/4 + (0) log2 + (0) log3"
+     },
+     "sl|l": {
+      "eps^-1": "2 + (0) log2 + (0) log3",
+      "eps^0": "-4/3 + (0) log2 + (0) log3"
+     },
+     "sc|gh": {
+      "eps^-1": "1/8 + (0) log2 + (0) log3",
+      "eps^0": "-1/12 + (0) log2 + (0) log3"
+     }
+    }
+   },
+   "gl3": {
+    "TOTAL": {
+     "eps^-1": "-9/2 + (0) log2 + (0) log3",
+     "eps^0": "-27/8 + (0) log2 + (0) log3"
+    },
+    "per_graph": {
+     "sAV|AV": {
+      "eps^-1": "-9/4 + (0) log2 + (0) log3",
+      "eps^0": "-5/8 + (0) log2 + (0) log3"
+     },
+     "sAV|gh": {
+      "eps^-1": "1/8 + (0) log2 + (0) log3",
+      "eps^0": "-1/12 + (0) log2 + (0) log3"
+     },
+     "sAP|AP": {
+      "eps^-1": "-9/2 + (0) log2 + (0) log3",
+      "eps^0": "-5/4 + (0) log2 + (0) log3"
+     },
+     "sl|l": {
+      "eps^-1": "2 + (0) log2 + (0) log3",
+      "eps^0": "-4/3 + (0) log2 + (0) log3"
+     },
+     "sc|gh": {
+      "eps^-1": "1/8 + (0) log2 + (0) log3",
+      "eps^0": "-1/12 + (0) log2 + (0) log3"
+     }
+    }
+   }
+  },
+  "mode model tests (s2_ga_tests)": {
+   "su2": {
+    "algebra": "su2",
+    "Q_restricted_vs_full_bracket_mismatches": "0 / 60",
+    "Q^2_nonzero_on_variables": "0 / 324",
+    "QP=p^2 K mismatches": "0 / 8748 pairs (54 with nonzero K)",
+    "Q_derivation_vs_bracket_on_cubic_terms_mismatch": 0,
+    "Q_derivation_terms": 76
+   },
+   "gl3": {
+    "algebra": "gl3",
+    "Q_restricted_vs_full_bracket_mismatches": "0 / 60",
+    "Q^2_nonzero_on_variables": "0 / 972",
+    "QP=p^2 K mismatches": "0 / 78732 pairs (162 with nonzero K)",
+    "Q_derivation_vs_bracket_on_cubic_terms_mismatch": 0,
+    "Q_derivation_terms": 76
+   }
+  },
+  "exact integrals (s2_integrals)": {
+   "2|0|2": {
+    "exact [1, log2, log3]": [
+     "0",
+     "1",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.693147180559945309417232121458176568075500134",
+    "abs_diff": "0.0",
+    "pslq [val,1,log2,log3]": [
+     1,
+     0,
+     -1,
+     0
+    ]
+   },
+   "2|0|3": {
+    "exact [1, log2, log3]": [
+     "1/4",
+     "0",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.25",
+    "abs_diff": "0.0",
+    "pslq [val,1,log2,log3]": [
+     -4,
+     1,
+     0,
+     0
+    ]
+   },
+   "2|1|3": {
+    "exact [1, log2, log3]": [
+     "1/4",
+     "1/2",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.596573590279972654708616060729088284037750067",
+    "abs_diff": "1.34e-51",
+    "pslq [val,1,log2,log3]": [
+     4,
+     -1,
+     -2,
+     0
+    ]
+   },
+   "2|3|5": {
+    "exact [1, log2, log3]": [
+     "7/24",
+     "1/4",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.4649534618066529940209746970312108086855417",
+    "abs_diff": "6.68e-52",
+    "pslq [val,1,log2,log3]": [
+     24,
+     -7,
+     -6,
+     0
+    ]
+   },
+   "3|0,0|3": {
+    "exact [1, log2, log3]": [
+     "0",
+     "-1/2",
+     "1/2"
+    ],
+    "independent 50-digit evaluation": "0.202732554054082190989006557732174568285995212",
+    "abs_diff": "3.34e-52",
+    "pslq [val,1,log2,log3]": [
+     2,
+     0,
+     1,
+     -1
+    ]
+   },
+   "3|0,0|4": {
+    "exact [1, log2, log3]": [
+     "1/36",
+     "0",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.0277777777777777777777777777777777777777777778",
+    "abs_diff": "0.0",
+    "pslq [val,1,log2,log3]": [
+     36,
+     -1,
+     0,
+     0
+    ]
+   },
+   "3|1,0|4": {
+    "exact [1, log2, log3]": [
+     "1/36",
+     "-1/6",
+     "1/6"
+    ],
+    "independent 50-digit evaluation": "0.0953552957958051747741132970218359672064428484",
+    "abs_diff": "1.67e-52",
+    "pslq [val,1,log2,log3]": [
+     36,
+     -1,
+     6,
+     -6
+    ]
+   },
+   "3|2,0|5": {
+    "exact [1, log2, log3]": [
+     "17/864",
+     "-1/12",
+     "1/12"
+    ],
+    "independent 50-digit evaluation": "0.0534646849349396244240936855479550206402584612",
+    "abs_diff": "8.35e-53",
+    "pslq [val,1,log2,log3]": [
+     -864,
+     17,
+     -72,
+     72
+    ]
+   },
+   "3|1,1|5": {
+    "exact [1, log2, log3]": [
+     "17/864",
+     "-1/24",
+     "1/24"
+    ],
+    "independent 50-digit evaluation": "0.0365703054304327751750098057369404732830921936",
+    "abs_diff": "8.35e-53",
+    "pslq [val,1,log2,log3]": [
+     864,
+     -17,
+     36,
+     -36
+    ]
+   },
+   "3|0,2|5": {
+    "exact [1, log2, log3]": [
+     "17/864",
+     "-1/12",
+     "1/12"
+    ],
+    "independent 50-digit evaluation": "0.0534646849349396244240936855479550206402584612",
+    "abs_diff": "8.35e-53",
+    "pslq [val,1,log2,log3]": [
+     -864,
+     17,
+     -72,
+     72
+    ]
+   },
+   "2|1|4": {
+    "exact [1, log2, log3]": [
+     "5/24",
+     "0",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.208333333333333333333333333333333333333333333",
+    "abs_diff": "0.0",
+    "pslq [val,1,log2,log3]": [
+     24,
+     -5,
+     0,
+     0
+    ]
+   },
+   "2|2|4": {
+    "exact [1, log2, log3]": [
+     "7/24",
+     "1/3",
+     "0"
+    ],
+    "independent 50-digit evaluation": "0.522715726853315103139077373819392189358500045",
+    "abs_diff": "0.0",
+    "pslq [val,1,log2,log3]": [
+     24,
+     -7,
+     -8,
+     0
+    ]
+   },
+   "3|0,1|4": {
+    "exact [1, log2, log3]": [
+     "1/36",
+     "-1/6",
+     "1/6"
+    ],
+    "independent 50-digit evaluation": "0.0953552957958051747741132970218359672064428484",
+    "abs_diff": "1.67e-52",
+    "pslq [val,1,log2,log3]": [
+     36,
+     -1,
+     6,
+     -6
+    ]
+   }
+  }
+ },
+ "method_notes": [
+  "D_0 part of Q W at order hbar = hbar Delta_{K'} W_0 + {W_0, W_1}_{K'} (exact identity, s2_notes.txt S1); I-a = 1PI part = hbar (1/2) str[K' S H (P S H)^{n-1}], validated as a polynomial identity in a 0-dim super model (s2_verify0d.py) and by the exact reproduction of the Step-1 two-leg special bubbles (s2_regress2pt.py).",
+  "Each oriented graph: numerator N(k) reconstructed exactly as a polynomial (Newton forward differences on the simplex lattice, checked at extra points), Gaussian loop integral with moments (Delta^j N)(-K(u))/(4^j j! T^j), Schwinger variables scaled by eps (special tau_1 in [0,1], others in [1,infty)); eps^e coefficient = sum_{j-i=n-2-e} (4^j j! i!)^{-1} int T^{-2-j+i} F_j (-q)^i.",
+  "Convergence: integrand <= C T^{-2-j+i}, large-tau region of dimension n-1, T >= n-1 >= 1; converges iff j - i > n - 3, i.e. e < 1. Remainder O(eps log eps); no log eps term in any I-a graph.",
+  "Exact integrals J(n;beta;N) in Q + Q log2 + Q log3 (sympy iterated rational integration), each confirmed by an independent evaluation in (T,u) variables at 50 digits and PSLQ on {1, log2, log3}.",
+  "Projection: each class fitted exactly (sympy over Q(i)) on a complete basis of Spin(4) x Spin(6) x colour-f invariant forms of the legs (parity-odd and chirality-weighted ones included) with extra samples; full column rank checked; then expressed in G1..G5 with zero residual.",
+  "Colour: every I-a colour factor is a cyclic contraction of three structure constants with (-,-)^{-1}: tr_g(ad_X ad_Y ad_Z) = (1/2) tr_g(ad_{[X,Y]} ad_Z) = (1/2) [tr_g(ad ad)/(-,-)] ([X,Y],Z) for every simple g (ad_X antisymmetric for (-,-)); confirmed: identical per-class coefficients for su(2) (orthonormal) and sl(3) = complexified su(3) (embedded in gl(3) with the unimodular trace form; the centre has zero brackets and decouples), fits with the f-structure only and zero residual.",
+  "Tree-level pieces (II-a, III, I-b, I-d, II-b) evaluated exactly in a plane-wave mode model with the BV bracket, Q as the derivation {S_free,-}, kernels Khat and Pnum (tests: Q^2 = 0, Q Pnum = |p|^2 Khat, derivation = bracket, mode-model vertices = canonical vertex functions, G_i formulas).",
+  "Independent internal check: in all four sectors the full regulated sum (I-a at finite eps without expansion, I-b + III(K') with the finite-eps self-energies, I-d + II-b with the finite-eps special bubbles; II-a + III(K_0) = 0 exactly) at eps = 1e-4, 1e-5, 1e-6 and generic momenta approaches alpha.G + tree(Ob_2, I_3) like eps log eps.",
+  "No dimensional regularisation; no IR scale; Euclidean; upper Schwinger limit infinity."
+ ],
+ "runtime_seconds_total": 1852.6,
+ "files": [
+  "s2_Ia.py",
+  "s2_core.py",
+  "s2_ga.py",
+  "s2_ga_tests.py",
+  "s2_graphs.py",
+  "s2_integrals.py",
+  "s2_make_results.py",
+  "s2_numeric.py",
+  "s2_regress2pt.py",
+  "s2_regress2pt_oriented.py",
+  "s2_trees.py",
+  "s2_verify0d.py",
+  "s2_notes.txt"
+ ]
+}

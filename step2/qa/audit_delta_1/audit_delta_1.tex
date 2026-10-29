@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=2cm]{geometry}
+\title{Part D, D1 (a),(b),(c): independent rederivation (auditor 1)}
+\date{2026-10-28}
+\begin{document}
+\maketitle
+
+\noindent Inputs: Def c1-pairing, Def c1-bracket, Prop c1-Q, Def c3-delta, Def c3-W, Prop c3-QP, Def c7-vdot, Lemma c7-weights, Prop c7-dil; [C07, §6.2--6.4].
+Checks: \texttt{bv\_toy.py} (exact, finite-dimensional, $\mathbb Z/2$-graded, odd pairing, Koszul signs; 79 checks, 0 failures),
+\texttt{n4\_scaling\_check.py} (sympy, $\mathbb R^4$ kernels; 9 checks, 0 failures).
+$S_M:=S^{(1)}(\Delta)$, $M:=v.$ for $v=2E$, $D_M$ the derivation induced by $M$ [C07, §6.2],
+$W'_J(X):=e^{-W(P,J)/\hbar}e^{\hbar\partial_P}(Xe^{J/\hbar})$, $P=P(\varepsilon,\infty)$, $K_\varepsilon=(Q\otimes1+1\otimes Q)P$.
+
+\section*{0. Sign of the bracket with $S_M$}
+\[
+\{\tfrac12\langle e,Qe\rangle,-\}=D_Q\ \text{with }Q\text{ of Prop c1-Q}
+\;\Longleftrightarrow\;
+\Delta_0=-\partial_{K_0}=\sum_{\rm pairs}\frac{\partial}{\partial(\text{even member})}\frac{\partial}{\partial(\text{odd member})}\ \text{(left derivatives)}
+\]
+\[
+S_M=\int\mathrm{dvol}\Big((MA,A^*)-(M\lambda,\lambda^*)-(Mc,c^*)\Big)\ \Longrightarrow\ \{S_M,F\}=+D_MF ,\qquad \{S_M,F\}_\varepsilon=D_{e^{-\varepsilon H}M}F .
+\]
+
+\section*{1. D1(a)}
+\[
+e^{\hbar\partial_P}S_Me^{-\hbar\partial_P}=S_M+\hbar\,(\partial_PS_M)+\hbar\,D_{P\star M}+\tfrac{\hbar^2}2\,\partial_{(P\star M\otimes1+1\otimes P\star M)P},\qquad
+\big[\partial_P,\partial_{(P\star M\otimes1+1\otimes P\star M)P}\big]=0,
+\]
+\[
+\partial_PS_M=0\quad(\text{$P$ even, $S_M$ odd and quadratic: every monomial of $S_M$ pairs opposite parities}),
+\]
+\[
+\big((P\star M\otimes1+1\otimes P\star M)P\big)\star=2\,P\star\circ M\circ P\star .
+\]
+With $\kappa$ the kernel of $P\star\circ M\circ P\star$ (graded symmetric, odd), $W=W(P,J)$, $\xi$ odd, left derivative:
+\[
+\frac{\partial}{\partial\xi}W(P,J+\xi S_M)=W'_J(S_M)
+=S_M+D_{P\star M}W+\hbar^2e^{-W/\hbar}\partial_\kappa e^{W/\hbar}
+=S_M+D_{P\star M}W+\hbar\,\partial_\kappa W+\tfrac12\{W,W\}_\kappa ,
+\]
+\[
+\{F,G\}_\kappa:=\partial_\kappa(FG)-(\partial_\kappa F)G-(-1)^{|F|}F\,\partial_\kappa G .
+\]
+Right $\xi$-derivative: $-W'_J(S_M)$.
+N=4 slots: $P\star\circ M\circ P\star$ maps $A^*|_V\to c$ and $c^*\to A|_V$ only, so $\kappa\in c\otimes A|_V\oplus A|_V\otimes c$; with $[M,P\star]=4\varepsilon L_\varepsilon\star=4\varepsilon\,Q^{GF}e^{-\varepsilon H}$,
+\[
+P\star\circ M\circ P\star=(Q^{GF})^2\Big(\textstyle\int_\varepsilon^\infty e^{-tH}dt\Big)^2M+4\varepsilon\,(Q^{GF})^2\Big(\textstyle\int_\varepsilon^\infty e^{-tH}dt\Big)e^{-\varepsilon H},
+\qquad (Q^{GF})^2A^*=2d^*(A^*|_V),\ (Q^{GF})^2c^*=-2dc^*.
+\]
+
+\section*{2. D1(b)}
+$[Q,M]=0\Rightarrow QS_M=0$; $QP\star+P\star Q=K_\varepsilon\star=e^{-\varepsilon H}$;
+\[
+[Q,P\star M]=e^{-\varepsilon H}M,\qquad
+(Q\otimes1+1\otimes Q)\kappa=\tfrac12\big(e^{-\varepsilon H}M\otimes1+1\otimes e^{-\varepsilon H}M\big)P-\tfrac12\big(P\star M\otimes1+1\otimes P\star M\big)K_\varepsilon .
+\]
+$O_\varepsilon(J):=QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$, $QW=W'_J(O_\varepsilon(J))$.
+\[
+O_\varepsilon(J+\xi S_M)=O_\varepsilon(J)-\xi\big(\{S_M,J\}_\varepsilon+\hbar\Delta_\varepsilon S_M\big),
+\]
+\[
+Q\,W'_J(S_M)=W'_J\big(\{S_M,J\}_\varepsilon\big)+\hbar\Delta_\varepsilon S_M
+-\hbar^{-1}\Big(e^{-W/\hbar}e^{\hbar\partial_P}\big(S_M\,O_\varepsilon(J)\,e^{J/\hbar}\big)-W'_J(S_M)\,W'_J(O_\varepsilon(J))\Big),
+\]
+the last bracket connected (no negative power of $\hbar$), nonzero unless $O_\varepsilon(J)=0$; $\hbar\Delta_\varepsilon S_M$ field independent.
+Term by term from \S1:
+\[
+Q\,W'_J(S_M)=D_{e^{-\varepsilon H}M}W-D_{P\star M}(QW)+\hbar^2\Big(e^{-W/\hbar}\partial_{(Q\otimes1+1\otimes Q)\kappa}e^{W/\hbar}
+-\hbar^{-1}(QW)\,e^{-W/\hbar}\partial_\kappa e^{W/\hbar}-\hbar^{-1}e^{-W/\hbar}\partial_\kappa\big((QW)e^{W/\hbar}\big)\Big).
+\]
+
+\section*{3. D1(c)}
+\[
+[D_M,\partial_\phi]=-\partial_{(M\otimes1+1\otimes M)\phi}\quad(\phi\text{ even or odd}),\qquad
+\big((M\otimes1+1\otimes M)\phi\big)\star=[M,\phi\star],
+\]
+\[
+(M\otimes1+1\otimes M)P(\varepsilon,\infty)=4\varepsilon L_\varepsilon=-4\varepsilon\frac{d}{d\varepsilon}P(\varepsilon,\infty)
+\quad(A\otimes A:\ 2+2,\ c\otimes A^*|_V:\ 0+6,\ \lambda\otimes\lambda:\ 3+3),
+\]
+\[
+(M\otimes1+1\otimes M)K_t=-4t\frac{d}{dt}K_t,\qquad E\big|_{\text{Fourier}}=-(4+p\cdot\partial_p),
+\]
+\[
+D_MW(P,J)=W'_J(D_MJ)-\hbar^2e^{-W/\hbar}\partial_{(M\otimes1+1\otimes M)P}e^{W/\hbar}
+\ \Longrightarrow\
+\{S_M,W(P,J)\}=W'_J(\{S_M,J\})+4\varepsilon\frac{\partial}{\partial\varepsilon}\Big|_JW(P(\varepsilon,\infty),J).
+\]
+Sign $+4\varepsilon\partial_\varepsilon$ confirmed; $-4\varepsilon\partial_\varepsilon$ fails (control). The bracket on the left is the scale-$0$ bracket; $\{S_M,W\}_\varepsilon=D_{e^{-\varepsilon H}M}W\neq D_MW$.
+
+\end{document}

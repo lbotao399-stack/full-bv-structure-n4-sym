@@ -1,0 +1,316 @@
+{
+ "file": "step2/theory/k_transfer.tex (compiled: step2/theory/_build_ktr/k_transfer_build.pdf, 13 pp., 0 errors, 0 undefined references)",
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+ "verdict": {
+  "local_K1_T_independent": "yes",
+  "defect_logT_vanishes_as_eps_to_0_arity_one_K": "yes",
+  "defect_logT_vanishes_as_eps_to_0_arity_two_eta_eta": "yes",
+  "total_logR_or_logT_cancels": "no",
+  "summary": "K_1 := hbar L_1(O)^(1)(K_b) at finite T exists and is T-independent (Thm thm:ktr-defect: T d/dT of every special-edge cycle is O(eps) at fixed T, the eps->0 limits are local). The flows W(P(eps,T),I_psl)^(1)(K_b) and O[T]^(1)(K_b) carry (3/(8 pi^2)) hbar log T times nonzero zero-mode trees; these are Q-closed and Q-exact and cancel in d_T O[T] for gauge-invariant O. The defect at fixed eps has log T coefficient (3/(8 pi^2)) hbar Q(zero-mode tree at eps): identically 0 in the two-point action sectors, O(eps) and nonzero for the scalar bilinears."
+ },
+ "results": {
+  "composite_line": {
+   "TdF/dT_at_z0_closed_form": "-(tau - 1)*(3*tau**2 + 8*tau + 3)/(16*pi**2*(tau + 1)**3)",
+   "limit_T_to_infinity": "-3 b_k/(16 pi^2) (scalar part); composite line incl. fibre factors -> (3/(8 pi^2)) b (x) (-,-)^{-1} (zero-mode kernel)",
+   "z_nonzero_check_T=1e8": {
+    "k=1": -0.013298405185152589,
+    "k=2": 0.020897493831494383,
+    "k=3": -0.0075990886621573935,
+    "k=4": -0.017097949502802273
+   },
+   "scale_invariance": {
+    "lambda=2": {
+     "TdF(z,1,50)": -0.012954446407226598,
+     "TdF(lambda z, lambda^2, 50 lambda^2)": -0.012954446407226594,
+     "rel_dev": 2.678190053739536e-16
+    },
+    "lambda=0.5": {
+     "TdF(z,1,50)": -0.012954446407226598,
+     "TdF(lambda z, lambda^2, 50 lambda^2)": -0.012954446407226601,
+     "rel_dev": 2.678190053739536e-16
+    }
+   },
+   "noninvariance_identities_max_residuals": {
+    "C1_heat_kernel_weight_w": "1.0762e-42",
+    "C2_P_scalar": "3.5873e-42",
+    "C3_P_vector": "1.6143e-42",
+    "C4_P_ghost_line": "3.5873e-43"
+   }
+  },
+  "zero_mode_trees_W_two_point (momentum space, C = tr(ad ad)/(,), field leg p,u; antifield leg -p,u*)": {
+   "(A_Wperp,A*_Wperp)": "-2 i C (b.p)/|p|^2 (u,u*)  <->  -2C int((b,d)(d*d)^{-1}A|_Wperp, A*|_Wperp)",
+   "(A_V,A*_V)": "i C/|p|^2 [-2(b.p)(u.u*) + (b.u)(p.u*)]  (coefficients ['-2', '1', '0', '0'])",
+   "(c,c*)": "i C (b.p)/|p|^2",
+   "(lambda,lambda*)": "C (rho(ip) rho(b) u, u*)/|p|^2",
+   "logT_coefficient_of_W^(1)(K_b) in units": "-12, 6, 6, 6 times the functionals divided by C"
+  },
+  "independent_engine_crosscheck_logT_slopes": {
+   "AWAsW": {
+    "TdT_kap0_engine": "(-0-6.857094404291136j)",
+    "prediction_6_Y_W": "-6.857142857142857j",
+    "rel_dev": 7.066040875987797e-06
+   },
+   "AVAsV": {
+    "TdT_kap0_engine": "(-0-3.4285439086616947j)",
+    "prediction_6_Y_W": "-3.4285714285714284j",
+    "rel_dev": 8.026640338998359e-06
+   },
+   "ccs": {
+    "TdT_kap0_engine": "(-0-1.7142737504410714j)",
+    "prediction_6_Y_W": "-1.7142857142857142j",
+    "rel_dev": 6.978909374936541e-06
+   },
+   "lls": {
+    "TdT_kap0_engine": "(-0-44.57111386064073j)",
+    "prediction_6_Y_W": "not compared: the engine uses the spinor realisation engine_a/cliff.py, the closed form (rho(ip) rho(b) u, u*) C/|p|^2 is in the realisation of classical/n4_model.py"
+   }
+  },
+  "independent_engine_reproducibility": {
+   "flow_AWAsW": {
+    "eps=1e-06,T=100": {
+     "rerun_finer_grid": "(-0-6.852224869837051j)",
+     "stored": "(-0-6.852224867842866j)",
+     "rel_dev": 2.9102741077946415e-10
+    },
+    "eps=1e-06,T=1e+06": {
+     "rerun_finer_grid": "(-0-6.857094405819878j)",
+     "stored": "(-0-6.857094404291136j)",
+     "rel_dev": 2.2294318494343504e-10
+    }
+   },
+   "defect_AWAW": {
+    "eps=0.0001,T=100": {
+     "rerun_finer_grid": "(-0+9.186265214478995e-05j)",
+     "stored": "(-0+9.186264884393616e-05j)",
+     "rel_dev": 3.5932490807993395e-08
+    },
+    "eps=0.0001,T=100000": {
+     "rerun_finer_grid": "(-0+9.187126602799293e-08j)",
+     "stored": "(-0+9.187126186864236e-08j)",
+     "rel_dev": 4.527368505962743e-08
+    },
+    "eps=1e-06,T=100": {
+     "rerun_finer_grid": "(-0+9.199164330587757e-07j)",
+     "stored": "(-0+9.199164000384041e-07j)",
+     "rel_dev": 3.5894969997651524e-08
+    },
+    "eps=1e-06,T=100000": {
+     "rerun_finer_grid": "(-0+9.199871197723208e-10j)",
+     "stored": "(-0+9.199870781349795e-10j)",
+     "rel_dev": 4.525861539209592e-08
+    }
+   }
+  },
+  "defect_two_point_TdT (independent engine)": {
+   "AWAW": {
+    "T*TdT_kap0/eps at T=1e4,1e5,1e6": [
+     "91.99870698490693j",
+     "91.99870781349796j",
+     "91.99870781910046j"
+    ],
+    "no_logT": true,
+    "proportional_to_eps": true
+   },
+   "AVAV": {
+    "T*TdT_kap0/eps at T=1e4,1e5,1e6": [
+     "-484.0184486242254j",
+     "-483.998934719529j",
+     "-483.9969833243246j"
+    ],
+    "no_logT": true,
+    "proportional_to_eps": true
+   },
+   "ll": {
+    "T*TdT_kap0/eps at T=1e4,1e5,1e6": [
+     "(-728.0129215135023+0j)",
+     "(-727.9931734137789+0j)",
+     "(-727.9911986534506+0j)"
+    ],
+    "no_logT": true,
+    "proportional_to_eps": true
+   },
+   "cAs": {
+    "T*TdT_kap0/eps at T=1e4,1e5,1e6": [
+     "(-46.85425159046863+0j)",
+     "(-46.856367497497104+0j)",
+     "(-46.856579069246045+0j)"
+    ],
+    "no_logT": true,
+    "proportional_to_eps": true
+   }
+  },
+  "zero_mode_tree_scalar_bilinear": {
+   "alpha_tree": "-4 i C (b,p)/(|p|^2|q|^2) S",
+   "beta_tree": "4 i C (b,q)/|q|^4 S",
+   "total_nonzero": true,
+   "Q_Y_O": "0"
+  },
+  "Q_Y_W_(A_Wperp,A_Wperp)": "0",
+  "Y_W = Q Z (arity two eta-eta zero-mode tree), ratio": "1",
+  "defect_logT_coefficient": {
+   "formula": "(3/(8 pi^2)) hbar Q(zero-mode tree at eps)",
+   "two_point_action": {
+    "term_1_Y_W(phi1(p); Q phi2(-p))": "(0+-11/882i)",
+    "term_2_Y_W(phi2(-p); Q phi1(p))": "(0+11/882i)",
+    "internal_line_momentum_both_terms": "|p|^2 = 23881/44100 (term 1), 23881/44100 (term 2)",
+    "Q_Y_W(eps)": "e^{-eps|p|^2} (term_1 + term_2) = 0",
+    "identically_zero_in_eps": true
+   },
+   "scalar_bilinear_closed_form": "(3/(8 pi^2)) hbar 2 i C S (e^{-eps q^2}-e^{-eps p^2})((b,p)e^{-eps p^2}/p^2 - (b,q)e^{-eps q^2}/q^2)",
+   "scalar_bilinear_cases": [
+    {
+     "tag": "generic (w1,w2) (traceless + trace)",
+     "closed_forms": {
+      "a1_closed_form_ok": true,
+      "a2_closed_form_ok": true,
+      "b1=-a2": true,
+      "b2=-a1": true
+     },
+     "Q_Y_O(0)_zero": true,
+     "eps_coefficient_nonzero": true
+    },
+    {
+     "tag": "traceless (w1,w2)=0",
+     "closed_forms": {
+      "a1_closed_form_ok": true,
+      "a2_closed_form_ok": true,
+      "b1=-a2": true,
+      "b2=-a1": true
+     },
+     "Q_Y_O(0)_zero": true,
+     "eps_coefficient_nonzero": true
+    },
+    {
+     "tag": "trace sum_w (iota_w A, iota_w A) (with the 1/2 of w1=w2 not divided out)",
+     "Q_Y_O(0)_zero": true,
+     "eps_coefficient_nonzero": true
+    },
+    {
+     "tag": "generic, second kinematic point",
+     "closed_forms": {
+      "a1_closed_form_ok": true,
+      "a2_closed_form_ok": true,
+      "b1=-a2": true,
+      "b2=-a1": true
+     },
+     "Q_Y_O(0)_zero": true,
+     "eps_coefficient_nonzero": true
+    }
+   ]
+  },
+  "eta_eta_logT": {
+   "slope_vs_prediction_6pi^2 i v1.(f0 g1 - f1 g0)": {
+    "(J(1e4)-J(1e2))/log100": "(-2421.984493238693+1795.7539728258805j)",
+    "(J(1e6)-J(1e4))/log100": "(-2421.984493238699+1795.7539728258776j)",
+    "prediction_6 pi^2 i v1.(f0 g1 - f1 g0)": "(-2421.9844932386954+1795.7539728258807j)",
+    "rel_dev_last": 1.6032813917307593e-15
+   },
+   "v1=0": {
+    "|v1|": 2.8435583831733384e-15,
+    "(J(1e4)-J(1e2))/log100": "(-3.7079952286357426e-13+1.6021148002989285e-13j)",
+    "generic_pair_slope_for_scale": "(-2421.984493238699+1795.7539728258776j)"
+   }
+  },
+  "relations": {
+   "solution_(K,P),(P,Delta),(K,Delta) with ansatz": [
+    {
+     "alpha": "-p",
+     "d": "0",
+     "kappa": "gamma - p*w",
+     "m": "0"
+    }
+   ],
+   "(K,P)_alone": [
+    {
+     "alpha": "d - p",
+     "kappa": "d*w + gamma - p*w",
+     "m": "d"
+    }
+   ],
+   "(P,Delta)_alone": [
+    {
+     "d": "0"
+    }
+   ],
+   "scheme_change_(a/2)ad_S(Delta)": {
+    "P_c": "-a",
+    "K_b": "a",
+    "Delta": "0",
+    "w_bc": "0"
+   },
+   "two_component_eta_eta_bracket": {
+    "max|[eta1,eta2]|_V + K_{v1}| over 5 random x": 2.2469334198890888e-14,
+    "rank of eta2 -> Gamma(eta1,eta2)|_V (eta1 generic)": 4
+   }
+  }
+ },
+ "definition_of_K1": "K_1(O) = hbar L_1(O)^(1)(K_b): the part with the fewest legs of the eps -> 0 limit, at any finite T, of the defect graphs along K_b (design eq:o-L1graphs); T-independent; equal to the fewest-leg part of lim_{T->inf} Q(O[T]^(1)(K_b)) - {S^(1)(K_b),O}[inf] for gauge-invariant O with L_1(O)^(0) = 0. The defect graphs at T = inf and fixed eps are not used (they diverge like eps log T for the scalar bilinears).",
+ "consistency_relations": {
+  "(K_b,P_c)": "[K_1(K_b), ad_S1(P_c)] + [ad_S1(K_b), P_1(P_c)] + (b,c) D_1 + M_1(w_bc) = 0 on H(Lambda^(0))",
+  "(P_c,Delta)": "[P_1(P_c), ad_S1(Delta)] + [ad_S1(P_c), D_1] + 2 P_1(P_c) = 0",
+  "(K_b,Delta)": "[K_1(K_b), ad_S1(Delta)] + [ad_S1(K_b), D_1] - 2 K_1(K_b) = 0",
+  "(K_b,K_c)": "[K_1(K_b), ad_S1(K_c)] + [ad_S1(K_b), K_1(K_c)] = 0",
+  "(eta1,eta2)": "K_1(K_{Gamma(eta1,eta2)|_V}) = [S_1(eta1), ad_S1(eta2)] + [ad_S1(eta1), S_1(eta2)] (anticommutators)",
+  "generalised thm:o-KD": "P_1 = p ad, D_1 = 2gamma + d ad, M_1 = m ad  =>  d = 0, m = 0, K_1 = (1/4) div v gamma O - p {S^(1)(K_b),O}; two-component K_1 = -2(b.x) gamma O - p{S^(1)(K_b),O}",
+  "K=P^dagger with P_1 != 0": "K_1 along K_bbar = pbar ad_S1(K_bbar) + hbar[ad_S1(K_bbar), Gram_tree^{-1} Gram_1]",
+  "engine values (compare_delta)": "d = -(1/3+f_S), p = -(1/3+f_P) units on the scalar bilinears => f_S = -1/3 forced by (P,Delta); K_1 = (1/4)div v gamma O + (1/3+f_P){S^(1)(K_b),O}; no rescaling in M_1"
+ },
+ "T_to_infinity": {
+  "safe": [
+   "counterterms along K_b",
+   "obstruction and finite counterterm along K_b",
+   "K_1",
+   "L_1^(2)(eta1,eta2), L_1^(2)(K_b,P_c)",
+   "two-point action defect at fixed eps (TdT = O(eps/T))",
+   "d_T O[T]^(1)(K_b) for gauge-invariant O with L_1(O)^(0) = 0",
+   "Q(O[T]^(1)(K_b)) for the same O",
+   "K_T terms of d_T (O(T^{-1/2} log T))",
+   "eta-eta objects with Gamma(eta1,eta2)|_V = 0"
+  ],
+  "not_safe": [
+   "W(P(eps,T),I_psl)^(1)(K_b) (log T, nonzero tree)",
+   "O[T]^(1)(K_b) (scalar bilinears)",
+   "defect of the scalar bilinears at fixed eps (O(eps) log T)",
+   "W^(2), O[T]^(2) along (eta1,eta2) with v1 != 0"
+  ]
+ },
+ "ch08_issues": [
+  "CH08: def:c8-radial: 'with $P_1=0$ (Proposition \\ref{prop:c7-cov})' presents P_1 = 0 as a consequence of the covariance of the regulator, but the internal insertions of S^(1)(P_b) (composite A|_V--c lines, present because (Q^GF)^2 != 0) give on the scalar bilinears P_1(O) = -(1/3+f_P) unit {S^(1)(P_b),O}; evidence: step2/qa/compare_delta.json (engine B K5 fit, engine A corrected, analytic closed form), step2/theory/k_transfer.tex Prop prop:ktr-rescale; proposed fix: replace 'with $P_1=0$ (Proposition \\ref{prop:c7-cov})' by 'in a scheme with $P_1=0$ on the operators considered: Proposition \\ref{prop:c7-cov} makes the regulator covariant, the internal insertions of $S^{(1)}(P_b)$ can still give $P_1$ a multiple $a$ of $\\{S^{(1)}(P_b),-\\}$, and the finite part $\\psi'=\\tfrac a2\\,\\mathrm{ad}_{S^{(1)}(\\Delta)}$ of the operators removes it'",
+  "CH08: thm:c8-adjoint: hypothesis 'with $P_1=M_1=R_1=0$': P_1 = 0 is not used in the proof (the reflection identity holds for every P_1, and the radial identity uses Cor c8-homotopy, valid for every P_1); evidence: proof of thm:c8-adjoint, k_transfer.tex Cor cor:ktr-gram; proposed fix: replace 'with $P_1=M_1=R_1=0$' by 'with $M_1=R_1=0$, the radial conjugation of Definition \\ref{def:c8-radial} being built from the full $\\Lambda^{(1)}(P_n)$ and $\\Lambda^{(1)}(K_n)$'",
+  "CH08: rem:c8-existence (The existence along K): (a) the coefficient of log T in the defect graphs is now known exactly and the T-independence follows without large-T asymptotics; (b) the list of consistency relations omits P_1, M_1 and the (eta1,eta2) relation; evidence: k_transfer.tex Thm thm:ktr-defect (T d/dT of every special-edge cycle is O(eps) at fixed T), Thm thm:ktr-defectlog (coefficient (3/8pi^2) hbar Q(zero-mode tree at eps): 0 in two-point action sectors, O(eps) nonzero for scalar bilinears), Thm thm:ktr-relations; proposed fix: replace the remark body by 'In the graphs of the defect along $K_b$ at a fixed $\\varepsilon$ the coefficient of $\\log T$ is $\\tfrac{3}{8\\pi^2}\\hbar$ times $Q$ of the tree obtained by cutting the floating insertion out of the cycle and evaluating the freed legs on the constant modes $A|_V=b\\otimes X_a$, $c=X^a$; this tree carries the special edge $K_\\varepsilon-K_0$ at generic momenta, so the coefficient is $O(\\varepsilon)$; it vanishes identically in the two-point sectors of the action. Independently, at fixed $T$ the $T$-derivative of every graph with the special edge on its cycle is $O(\\varepsilon)$, because the edge pinned at $T$ bounds the loop momentum and the special edge carries $e^{-\\varepsilon|q|^2}-1$; the limit $\\varepsilon\\to0$ is therefore local and independent of $T$, and the local representative exists at every finite $T$. Three relations constrain $K_1$ on the cohomology of $\\Lambda^{(0)}$: the component of $L\\circ L=0$ at $(K_b,P_{b\\prime})$, which ties $K_1$ to $D_1$, $P_1$ and $M_1$ through $[K_b,P_{b\\prime}]=(b,b\\prime)\\Delta+(\\text{rotation})$ (Remark \\ref{rem:c7-KDelta}); the component at $(\\eta_1,\\eta_2)\\in\\Sigma^*\\times\\Sigma^*$, which gives $K_1$ along $K_{\\Gamma(\\eta_1,\\eta_2)|_V}$ as the graded commutator of $S_1$ with the classical transformations; and the relation $K=P^\\dagger$ of Corollary \\ref{cor:c8-gram}.'",
+  "CH08: thm:c8-K: the statement 'The observables O[T] themselves may keep a term in log T in their component along K_b' can be made exact; evidence: k_transfer.tex Thm thm:ktr-flowlog, Prop prop:ktr-values (nonzero for the scalar bilinears), Thm thm:ktr-nocore; proposed fix: replace 'The observables $O[T]$ themselves may keep a term in $\\log T$ in their component along $K_b$; such a term is part of the flow of Lemma \\ref{lem:c8-flow}, and the local representative is independent of $T$.' by 'The observables keep the term $\\tfrac{3}{8\\pi^2}\\hbar\\log T$ times the tree obtained from the order-$\\hbar^0$ part of $O[\\infty]$ by differentiating along the constant modes $A|_V=b\\otimes X_a$ and $c=X^a$ (summed over a basis $X_a$ of $\\mathfrak g$ and its dual basis $X^a$), which is nonzero for the scalar bilinears; it is generated by the flow of Lemma \\ref{lem:c8-flow}, its $Q$-image vanishes for gauge-invariant $O$, and the component along $K_b$ of $d_TO[T]$ converges as $T\\to\\infty$ when moreover $L_1(O)^{(0)}=0$; the local representative is independent of $T$.'",
+  "CH08: prop:c8-Tsafe: the last sentence ('grow logarithmically in T') does not give the coefficient; evidence: k_transfer.tex Prop prop:ktr-composite, Thm thm:ktr-flowlog; proposed fix: append 'The coefficient of $\\log T$ is $\\tfrac{3}{8\\pi^2}\\hbar$ times the tree obtained by cutting the insertion out of the cycle and evaluating the freed legs on the constant modes $A|_V=b\\otimes X_a$ and $c=X^a$.'",
+  "CH08: cor:c8-gram: with P_1 != 0 (engine finding) the third relation has the explicit form K_1 along K_bbar = pbar ad_{S^(1)(K_bbar)} + hbar[...] for P_1 = p ad_{S^(1)(P_b)}; evidence: k_transfer.tex Cor cor:ktr-gram; proposed fix: after 'With $P_1=0$ the third relation is the statement $K=P^\\dagger$: ...' insert 'For $P_1=p\\,\\mathrm{ad}_{S^{(1)}(P_b)}$ on the family, $-(P_1)^{\\rm adj}=\\bar p\\,\\mathrm{ad}_{S^{(1)}(K_{\\bar b})}$, since $(\\mathrm{ad}_{S^{(1)}(P_b)})^{\\rm adj}=-\\mathrm{ad}_{S^{(1)}(K_{\\bar b})}$.'"
+ ],
+ "design_file_issues (odd_components_design.tex)": [
+  "thm:o-ir (ii): 'the nonvanishing of the tree is not established' -> the coefficient is (3/(8pi^2)) hbar Q(zero-mode tree at eps): identically 0 in the two-point action sectors, O(eps) and nonzero for the scalar bilinears (k_transfer.tex Thm thm:ktr-defectlog).",
+  "thm:o-ir (iii): 'their limits T -> infinity exist exactly when Y = 0' -> Y != 0 in all four quadratic sectors and for the scalar bilinears (Prop prop:ktr-values), so these limits do not exist; Y is Q-closed and Q-exact (Prop prop:ktr-consistency).",
+  "prop:o-Kclaim (placeholder) -> proved: Thm thm:ktr-defect (existence and T-independence at finite T, arity one along K_b, arity two along (eta1,eta2) and (K_b,P_c)).",
+  "prop:o-Kconsistent (i) -> exact form K_1(K_{v1}) = [S_1(eta1), ad_S1(eta2)] + [ad_S1(eta1), S_1(eta2)] on H(Lambda^(0)) (Thm thm:ktr-relations).",
+  "thm:o-KD -> generalise to P_1 = p ad: K_1 = (1/4) div v gamma O - p{S^(1)(K_b),O}, with d = m = 0 forced (Thm thm:ktr-KD); the hypothesis P_1 = 0 'covariant choice' is a scheme condition (Prop prop:ktr-rescale).",
+  "prop:o-Tsafe (ii) 'Not established' -> replace by the table of Prop prop:ktr-Tsafe.",
+  "engine item E10: zero-mode trees done (4 quadratic sectors, scalar bilinear); remaining: direct K-route values of K_1 on the bilinears to test Thm thm:ktr-KD and Prop prop:ktr-rescale (iii)."
+ ],
+ "files": {
+  "theory": "step2/theory/k_transfer.tex",
+  "build": "step2/theory/_build_ktr/k_transfer_build.tex, k_transfer_build.pdf",
+  "scripts": [
+   "step2/theory/k_tr_kernel.py",
+   "step2/theory/k_tr_zeromode.py",
+   "step2/theory/k_tr_etaeta.py",
+   "step2/theory/k_tr_defectlog.py",
+   "step2/theory/k_tr_crosscheck.py",
+   "step2/theory/k_tr_relations.py"
+  ],
+  "outputs": [
+   "step2/theory/ktr_out/k_tr_kernel.json",
+   "step2/theory/ktr_out/k_tr_zeromode.json",
+   "step2/theory/ktr_out/k_tr_etaeta.json",
+   "step2/theory/ktr_out/k_tr_defectlog.json",
+   "step2/theory/ktr_out/k_tr_crosscheck.json",
+   "step2/theory/ktr_out/k_tr_relations.json"
+  ],
+  "partial_work_checked": "k_tr_kernel.py, k_tr_zeromode.py, k_tr_etaeta.py rerun: outputs identical to the stored ones (ktr_out/rerun/*_prev.json); qa/k_transfer_numeric engine: flow slopes agree with the zero-mode trees in 3 sectors (7e-6), finer-grid rerun reproduces stored values (3e-10 flow, 4.5e-8 defect)."
+ },
+ "machine": "one python process at a time, max RSS 153 MB, longest run 29 s; no Wolfram; no /tmp."
+}

@@ -1,0 +1,1898 @@
+{
+ "statement": "Engine B, Part D4 of DESIGN_STEP2.md: the dilatation along psl(4|4) at one loop, quadratic sector, N = 4, Feynman-gauge Q^GF, UV boundary eps only (upper Schwinger limit infinity), no dimensional regularisation, exact rational arithmetic for every number marked exact.",
+ "units": "unit = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)); every two-leg value multiplies the colour pairing (Z_1, Z_2) of the legs",
+ "conventions": {
+  "S_M": "S_M = S^(1)(Delta), Delta = 2E: int (2E(A)+2A, A*) - int (2E(lambda)+3lambda, lambda*) - int (2E(c), c*)  (ex:c2-dil); M = v. (def:c7-vdot)",
+  "E_in_momentum_space": "on Fourier components E -> -(4 + p.d/dp); v.A -> -(6 + 2p.d/dp), v.lambda -> -(5 + 2p.d/dp), v.c -> -(8 + 2p.d/dp), v.A* -> -(2 + 2p.d/dp), v.lambda* -> -(3 + 2p.d/dp), v.c* -> -2p.d/dp",
+  "position_dependence": "S_M = S_w + S_E, S_w = 2 int(A,A*) - 3 int(lambda,lambda*), S_E = sum_mu (-i d/dkappa_mu)|_0 T_mu[kappa], T_mu[kappa] = 2 int e^{i kappa.x}[(d_mu A,A*) - (d_mu lambda,lambda*) - (d_mu c,c*)] (= 2 S^(1)(translation) injecting kappa)",
+  "canonical_form": "a two-leg functional on (leg 1 at p, leg 2 at p_2) is alpha(p) delta(p+p_2) + beta^mu(p) d/dp_2^mu delta(p+p_2) <-> int dvol [(leg2, alpha(-i d) leg1) + x^mu (leg2, i beta_mu(-i d) leg1)]  (x placed on leg 2 = antifield leg in Part 1)",
+  "ghost_convention": "right ghost: J = I - I^CT[eps] - F_0 + (S_M - I^CT_Delta[eps] - F(Delta)) xi, component = coefficient left of xi (the cochain evaluation of Def c2-dce); then [(d_CE+Q)O[infty]](Delta) = Q(arity-one part of O[infty]) with no sign",
+  "sign_of_D_M": "{S_M, -} = + (derivation induced by e -> v.e).  Test: {S_M, int(A,A)} = -4 int(A,A) (expected -4 = 2(2-4)); {S_M, -1/4 int(dA,dA)} = 0; Q S_M = 0 on all four two-leg sectors (machine, exact).",
+  "D_M_on_canonical_two_point": "for w_f + w_a = 4: alpha -> 2 p.d_p alpha, beta -> 2 (p.d_p - 1) beta;  on translation-invariant F(p) with leg weights w_1, w_2: F -> 2(w_1 + w_2 - 4 + p.d_p) F",
+  "word_formula": "P only: W_1 coefficient = sum_words (1/2n) rsign colour STr[P Pi h ...]; one special edge Khat = K_eps - K_0: hbar Delta_Khat W + 1/2{W,W}_Khat (1PI part) = sum_words sum_pos (1/2n) rsign (-1)^{odd legs before pos} colour STr; S_M is a letter with one odd leg xi placed last (toy-verified formula of engine_b/toy_r2.py)"
+ },
+ "part1": {
+  "sectors": {
+   "occurring": [
+    "(A|_Wperp, A*|_Wperp)",
+    "(A|_V, A*|_V)",
+    "(lambda, lambda*)",
+    "(c, c*)"
+   ],
+   "excluded": "(A*|_V, c), (A, A), (lambda, lambda), (c, A*): wrong degree (the arity-one functional has degree -1: coordinate degrees A, lambda: 0; A*, lambda*: -1; c: +1; c*: -2); (A|_V, A*|_Wperp) and spinor-vector mixings: Spin(4) x Spin(6) covariance (Delta commutes with both)."
+  },
+  "graph_classes": {
+   "(i) S_M on the cycle (1PI)": "only the block (A|_V, A*|_V) of S_M can sit on an internal line (lambda*, c*, A*|_Wperp have no propagator component): the internal S_M turns a line into an A|_V - c line.  One graph per sector: (A*_perp,A_perp): AcA*[A*_perp] - AAA[A_perp], lines A_perp and A_V-(S_M)-c;  (A*_V,A_V): two graphs (AcA*-AAA with A_V and A_V-(S_M)-c lines; AcA*-AcA* with c-A* and A_V-(S_M)-c lines);  (lambda*,lambda): c lambda lambda* - lambda lambda A, lines lambda and A_V-(S_M)-c;  (c*,c): ccc* - AcA*, lines c-A* and A_V-(S_M)-c.  No graph with a quartic vertex (the A_V - c line cannot close on AAAA).",
+   "(ii) S_M on an external leg": "B_P(S_M, W^(2)_1loop(eps) - I^CT_2[eps]) = S_M joined by P(eps,infty) to the renormalised one-loop two-point function: (A*_perp,A_perp) <- Sigma_perp; (A*_V,A_V) <- Sigma_VV and (via the c-A* edge) Sigma_(c,A*); (lambda*,lambda) <- Sigma_lambda; (c*,c) <- Sigma_(A*,c).  Finite as eps -> 0 (I^CT_2 tree included).",
+   "closed form (D1(a))": "W'_J(S_M) = S_M + hbar d_P S_M + B_P(S_M, W) + (hbar/2) d_{K''} W + (1/4) B_{K''}(W,W), K'' the kernel of [d_P,[d_P,S_M]]; P*M P* = (M P*^2 + P*^2 M)/2 since [M,P*] = 4 eps L_eps* commutes with P*; at two legs, order hbar: class (ii) = B_P(S_M, W^(2)), class (i) = (hbar/2) d_{K''} W_0^(4) (tadpoles vanish by colour)."
+  },
+  "eps_expansion": {
+   "eps^-1": "0 in every sector (superficial degree 0 for alpha, 1 for beta: no power divergence)",
+   "log eps (exact; I^CT[eps](Delta) on the quadratic sector = unit log eps X)": {
+    "A|_Wperp": "X = 0",
+    "A|_V": "alpha = (u_f,u_a)_V, beta^mu = u_f^mu (p,u_a)  <->  X_V = int (d(iota_x A|_V), A*|_V)",
+    "c": "alpha = 0, beta^mu = -p^mu u_c u_c*  <->  X_c = -int (iota_x dc, c*) = -int (E(c), c*)",
+    "lambda": "alpha = 0, beta^mu = -(rho(e_mu) rho(p) u_f, u_a) (both chiralities, fit {'b1m': '0', 'b1p': '0', 'b2m': '-1', 'b2p': '-1'})  <->  X_lambda = -int (rho(x) dslash lambda, lambda*)",
+    "total": "X = int(d(iota_x A|_V), A*|_V) - int(iota_x dc, c*) - int(rho(x) dslash lambda, lambda*)",
+    "Q-closed": "Q X = 0 exactly on (A_V,A_V), (A_perp,A_perp), (c,A*_V), (lambda,lambda) (machine); Q X_V and Q X_c separately nonzero on (c,A*_V) and cancel",
+    "Q-exact": "X = Q( int(iota_x A|_V, c*) - (1/2) int(rho(x) lambda*, lambda*) ) exactly (machine, all sectors)",
+    "raw_samples": {
+     "Aperp_c": {
+      "Aperp": [
+       {
+        "uf": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "1",
+         "2",
+         "1",
+         "1",
+         "2",
+         "2"
+        ],
+        "ua": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "-2",
+         "-2",
+         "2",
+         "1",
+         "3",
+         "2"
+        ],
+        "alpha": "0",
+        "Gw": "28",
+        "alphaE": "-28",
+        "beta": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "tree_alpha": "14",
+        "tree_beta": [
+         "14*P0",
+         "14*P1",
+         "14*P2",
+         "14*P3"
+        ],
+        "time": 20.9
+       },
+       {
+        "uf": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "-2",
+         "-3",
+         "1",
+         "-1",
+         "-2",
+         "-3"
+        ],
+        "ua": [
+         "0",
+         "0",
+         "0",
+         "0",
+         "2",
+         "3",
+         "3",
+         "-3",
+         "2",
+         "1"
+        ],
+        "alpha": "0",
+        "Gw": "-56",
+        "alphaE": "56",
+        "beta": [
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "tree_alpha": "-28",
+        "tree_beta": [
+         "-28*P0",
+         "-28*P1",
+         "-28*P2",
+         "-28*P3"
+        ],
+        "time": 4.0
+       }
+      ],
+      "c": [
+       {
+        "uf": [
+         "1"
+        ],
+        "ua": [
+         "3"
+        ],
+        "alpha": "0",
+        "Gw": "-12",
+        "alphaE": "12",
+        "beta": [
+         "-3*P0",
+         "-3*P1",
+         "-3*P2",
+         "-3*P3"
+        ],
+        "tree_alpha": "0",
+        "tree_beta": [
+         "-6*P0",
+         "-6*P1",
+         "-6*P2",
+         "-6*P3"
+        ],
+        "time": 2.6
+       },
+       {
+        "uf": [
+         "3"
+        ],
+        "ua": [
+         "2"
+        ],
+        "alpha": "0",
+        "Gw": "-24",
+        "alphaE": "24",
+        "beta": [
+         "-6*P0",
+         "-6*P1",
+         "-6*P2",
+         "-6*P3"
+        ],
+        "tree_alpha": "0",
+        "tree_beta": [
+         "-12*P0",
+         "-12*P1",
+         "-12*P2",
+         "-12*P3"
+        ],
+        "time": 2.5
+       }
+      ]
+     },
+     "AV": {
+      "AV": [
+       {
+        "uf": [
+         "1",
+         "2",
+         "1",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "ua": [
+         "2",
+         "2",
+         "-2",
+         "-2",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "alpha": "2",
+        "Gw": "4",
+        "alphaE": "-2",
+        "beta": [
+         "2*P0 + 2*P1 - 2*P2 - 2*P3",
+         "4*P0 + 4*P1 - 4*P2 - 4*P3",
+         "2*P0 + 2*P1 - 2*P2 - 2*P3",
+         "2*P0 + 2*P1 - 2*P2 - 2*P3"
+        ],
+        "tree_alpha": "4",
+        "tree_beta": [
+         "4*P0",
+         "4*P1",
+         "4*P2",
+         "4*P3"
+        ],
+        "time": 30.6
+       },
+       {
+        "uf": [
+         "2",
+         "1",
+         "3",
+         "2",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "ua": [
+         "-2",
+         "-3",
+         "1",
+         "-1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "alpha": "-6",
+        "Gw": "-12",
+        "alphaE": "6",
+        "beta": [
+         "-4*P0 - 6*P1 + 2*P2 - 2*P3",
+         "-2*P0 - 3*P1 + P2 - P3",
+         "-6*P0 - 9*P1 + 3*P2 - 3*P3",
+         "-4*P0 - 6*P1 + 2*P2 - 2*P3"
+        ],
+        "tree_alpha": "-12",
+        "tree_beta": [
+         "-12*P0",
+         "-12*P1",
+         "-12*P2",
+         "-12*P3"
+        ],
+        "time": 20.3
+       },
+       {
+        "uf": [
+         "-2",
+         "-3",
+         "2",
+         "3",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "ua": [
+         "3",
+         "-3",
+         "2",
+         "1",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0",
+         "0"
+        ],
+        "alpha": "10",
+        "Gw": "20",
+        "alphaE": "-10",
+        "beta": [
+         "-6*P0 + 6*P1 - 4*P2 - 2*P3",
+         "-9*P0 + 9*P1 - 6*P2 - 3*P3",
+         "6*P0 - 6*P1 + 4*P2 + 2*P3",
+         "9*P0 - 9*P1 + 6*P2 + 3*P3"
+        ],
+        "tree_alpha": "20",
+        "tree_beta": [
+         "20*P0",
+         "20*P1",
+         "20*P2",
+         "20*P3"
+        ],
+        "time": 19.8
+       }
+      ]
+     },
+     "lam": {
+      "lam": [
+       {
+        "uf": [
+         "1",
+         "2",
+         "1",
+         "1",
+         "2",
+         "2",
+         "-2",
+         "-2",
+         "2",
+         "1",
+         "3",
+         "2",
+         "-2",
+         "-3",
+         "1",
+         "-1"
+        ],
+        "ua": [
+         "-2",
+         "-3",
+         "2",
+         "3",
+         "3",
+         "-3",
+         "2",
+         "1",
+         "1",
+         "3",
+         "3",
+         "2",
+         "3",
+         "-2",
+         "2",
+         "-3"
+        ],
+        "alpha": "0",
+        "Gw": "-4",
+        "alphaE": "4",
+        "beta": [
+         "-P0 + 9*I*P1 - 25*P2 - 19*I*P3",
+         "-9*I*P0 - P1 + 27*I*P2 + 7*P3",
+         "25*P0 - 27*I*P1 - P2 + 7*I*P3",
+         "19*I*P0 - 7*P1 - 7*I*P2 - P3"
+        ],
+        "tree_alpha": "-3",
+        "tree_beta": [
+         "-2*P0",
+         "-2*P1",
+         "-2*P2",
+         "-2*P3"
+        ],
+        "time": 42.8
+       },
+       {
+        "uf": [
+         "2",
+         "-3",
+         "-3",
+         "-3",
+         "-2",
+         "-2",
+         "2",
+         "-3",
+         "1",
+         "-1",
+         "1",
+         "2",
+         "-2",
+         "2",
+         "-2",
+         "3"
+        ],
+        "ua": [
+         "-1",
+         "1",
+         "-3",
+         "3",
+         "-3",
+         "1",
+         "3",
+         "-1",
+         "1",
+         "2",
+         "-3",
+         "3",
+         "-1",
+         "-1",
+         "-2",
+         "2"
+        ],
+        "alpha": "0",
+        "Gw": "-176",
+        "alphaE": "176",
+        "beta": [
+         "-44*P0 + 4*I*P1 + 10*P2 + 4*I*P3",
+         "-4*I*P0 - 44*P1 + 36*I*P2 - 10*P3",
+         "-10*P0 - 36*I*P1 - 44*P2",
+         "-4*I*P0 + 10*P1 - 44*P3"
+        ],
+        "tree_alpha": "-132",
+        "tree_beta": [
+         "-88*P0",
+         "-88*P1",
+         "-88*P2",
+         "-88*P3"
+        ],
+        "time": 27.9
+       }
+      ]
+     }
+    }
+   },
+   "finite parts at generic momenta": {
+    "class (i), A|_Wperp": "no log; numerical limits alpha -> a0 (u_f,u_a), beta -> b0 p (u_f,u_a), i.e. class (i)_perp -> a0 int(A_perp,A*_perp) + b0 int(E(A_perp),A*_perp) = (5/3) S_M|_perp - (2/3) int(A_perp,A*_perp) for a0 = 8/3, b0 = 10/3: numerically a0 = 2.66644 (eps = 1e-7) -> 2.6666 +- 0.0002, b0 = 3.33326 -> 3.3333 +- 0.0001 (remainder O(eps log eps), Gauss-Legendre 56^3 in log u, eps = 1e-5, 1e-6, 1e-7, Schwinger representation without Taylor expansion); raw: see routeA",
+    "class (i), c": "beta = -p (u_c u_c*)[log(eps|p|^2) + c_c] + o(1): slope per log eps -0.9999 (eps 1e-6 -> 1e-7, exact value -1), c_c = 2.509 +- 0.001 (numerical; not identified); alpha -> a_c u_c u_c*, a_c = -2.6666 +- 0.0001 (-8/3)",
+    "class (ii)": "B_{P(0,infty)}(S_M, Sigma_ren), Sigma_ren = lim (W^(2)_1loop - I^CT_2) (Step-1 two-point functions, constant terms not recomputed here); its Q-image is exact: Q B_P(S_M, Sigma) = -B_{K_eps}(S_M, Sigma) -> {S_M, Sigma_ren} = D_M Sigma_ren = 4 x (the log eps coefficient of I^CT_2 in the sector), e.g. -4 int(dA_perp,dA_perp)",
+    "routeA_raw": {
+     "Aperp_n40": {
+      "0.001": {
+       "alpha_over_uu": [
+        2.2086091742315115,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.0701823085519497,
+         0.0
+        ],
+        [
+         3.0701823085519497,
+         -0.0
+        ],
+        [
+         3.0701823085519493,
+         0.0
+        ],
+        [
+         3.0701823085519497,
+         0.0
+        ]
+       ],
+       "time": 20.7
+      },
+      "0.0001": {
+       "alpha_over_uu": [
+        2.593416860705307,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.2932700846829785,
+         0.0
+        ],
+        [
+         3.2932700846829785,
+         -0.0
+        ],
+        [
+         3.29327008468298,
+         0.0
+        ],
+        [
+         3.2932700846829785,
+         0.0
+        ]
+       ],
+       "time": 3.8
+      },
+      "1e-05": {
+       "alpha_over_uu": [
+        2.656494617508419,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.3278878111886465,
+         0.0
+        ],
+        [
+         3.3278878111886465,
+         -0.0
+        ],
+        [
+         3.327887811188647,
+         0.0
+        ],
+        [
+         3.3278878111886465,
+         0.0
+        ]
+       ],
+       "time": 3.7
+      },
+      "scaling_check": {
+       "eps": 0.001,
+       "alpha": [
+        "(-28.71191926500965+0j)",
+        "(-28.711240872985915+0j)"
+       ],
+       "beta": [
+        [
+         "(39.91237001117535+0j)",
+         "(-39.91237001117535+0j)",
+         "(119.73711003352602+0j)",
+         "(79.8247400223507+0j)"
+        ],
+        [
+         "(39.91234677255358+0j)",
+         "(-39.91234677255358+0j)",
+         "(119.73704031766073+0j)",
+         "(79.82469354510717+0j)"
+        ]
+       ]
+      }
+     },
+     "c_n40": {
+      "0.001": {
+       "alpha_over_uu": [
+        -2.411249330316947,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         1.8425615833532474,
+         0.0
+        ],
+        [
+         1.8425615833532474,
+         -0.0
+        ],
+        [
+         1.8425615833532474,
+         0.0
+        ],
+        [
+         1.8425615833532474,
+         0.0
+        ]
+       ],
+       "time": 19.1
+      },
+      "0.0001": {
+       "alpha_over_uu": [
+        -2.6273919728429953,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         4.015226696528827,
+         0.0
+        ],
+        [
+         4.015226696528827,
+         -0.0
+        ],
+        [
+         4.015226696528827,
+         0.0
+        ],
+        [
+         4.015226696528827,
+         0.0
+        ]
+       ],
+       "time": 2.7
+      },
+      "1e-05": {
+       "alpha_over_uu": [
+        -2.6612552096220163,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         6.298593592126308,
+         0.0
+        ],
+        [
+         6.298593592126308,
+         -0.0
+        ],
+        [
+         6.298593592126307,
+         0.0
+        ],
+        [
+         6.298593592126308,
+         0.0
+        ]
+       ],
+       "time": 2.8
+      },
+      "scaling_check": {
+       "eps": 0.001,
+       "alpha": [
+        "(14.467495981901681+0j)",
+        "(14.467459732254532+0j)"
+       ],
+       "beta": [
+        [
+         "(11.055369500119484+0j)",
+         "(-11.055369500119484+0j)",
+         "(33.166108500358455+0j)",
+         "(22.11073900023897+0j)"
+        ],
+        [
+         "(11.055353572615886+0j)",
+         "(-11.055353572615886+0j)",
+         "(33.16606071784766+0j)",
+         "(22.11070714523177+0j)"
+        ]
+       ]
+      }
+     },
+     "Aperp_n56": {
+      "1e-05": {
+       "alpha_over_uu": [
+        2.656567381426662,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.32794447800215,
+         0.0
+        ],
+        [
+         3.32794447800215,
+         -0.0
+        ],
+        [
+         3.3279444780021494,
+         0.0
+        ],
+        [
+         3.32794447800215,
+         0.0
+        ]
+       ],
+       "time": 17.5
+      },
+      "1e-06": {
+       "alpha_over_uu": [
+        2.6653954183767086,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.332653133495396,
+         0.0
+        ],
+        [
+         3.332653133495396,
+         -0.0
+        ],
+        [
+         3.332653133495394,
+         0.0
+        ],
+        [
+         3.332653133495396,
+         0.0
+        ]
+       ],
+       "time": 3.4
+      },
+      "1e-07": {
+       "alpha_over_uu": [
+        2.666436419381671,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         3.333258976508839,
+         0.0
+        ],
+        [
+         3.333258976508839,
+         -0.0
+        ],
+        [
+         3.3332589765088394,
+         0.0
+        ],
+        [
+         3.333258976508839,
+         0.0
+        ]
+       ],
+       "time": 3.3
+      },
+      "scaling_check": {
+       "eps": 1e-05,
+       "alpha": [
+        "(-34.53537595854661+0j)",
+        "(-34.53542942373336+0j)"
+       ],
+       "beta": [
+        [
+         "(43.26327821402795+0j)",
+         "(-43.26327821402795+0j)",
+         "(129.78983464208383+0j)",
+         "(86.5265564280559+0j)"
+        ],
+        [
+         "(43.26329779071099+0j)",
+         "(-43.26329779071099+0j)",
+         "(129.78989337213295+0j)",
+         "(86.52659558142199+0j)"
+        ]
+       ]
+      }
+     },
+     "c_n56": {
+      "1e-05": {
+       "alpha_over_uu": [
+        -2.6613555507484343,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         6.298613676187412,
+         0.0
+        ],
+        [
+         6.298613676187412,
+         -0.0
+        ],
+        [
+         6.298613676187415,
+         0.0
+        ],
+        [
+         6.298613676187412,
+         0.0
+        ]
+       ],
+       "time": 17.5
+      },
+      "1e-06": {
+       "alpha_over_uu": [
+        -2.6659928282311944,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         8.598657644635255,
+         0.0
+        ],
+        [
+         8.598657644635255,
+         -0.0
+        ],
+        [
+         8.598657644635255,
+         0.0
+        ],
+        [
+         8.598657644635255,
+         0.0
+        ]
+       ],
+       "time": 3.6
+      },
+      "1e-07": {
+       "alpha_over_uu": [
+        -2.66659562475107,
+        -0.0
+       ],
+       "beta_over_p_uu": [
+        [
+         10.900927024468528,
+         0.0
+        ],
+        [
+         10.900927024468528,
+         -0.0
+        ],
+        [
+         10.90092702446853,
+         0.0
+        ],
+        [
+         10.900927024468528,
+         0.0
+        ]
+       ],
+       "time": 2.8
+      },
+      "scaling_check": {
+       "eps": 1e-05,
+       "alpha": [
+        "(15.968133304490607+0j)",
+        "(15.968147963395424+0j)"
+       ],
+       "beta": [
+        [
+         "(37.791682057124476+0j)",
+         "(-37.791682057124476+0j)",
+         "(113.37504617137347+0j)",
+         "(75.58336411424895+0j)"
+        ],
+        [
+         "(37.791684972025536+0j)",
+         "(-37.791684972025536+0j)",
+         "(113.37505491607656+0j)",
+         "(75.58336994405107+0j)"
+        ]
+       ]
+      }
+     }
+    }
+   }
+  },
+  "scaling_Ward_identity": {
+   "identity": "D_M W(P(eps,infty),J) = W'_J(D_M J) + 4 eps d/deps|_J W(P(eps,infty),J), D_M = {S_M,-} = + derivation of M; proof: [D_M, d_phi] = -d_{(M x 1 + 1 x M) phi} and (M x 1 + 1 x M) P(eps,infty) = 4 eps L_eps = -4 eps dP/deps (prop:c7-dil). With the opposite sign of D_M the right side would carry -4 eps d/deps.",
+   "two-point check (arity zero)": "W^(2) = Sigma - I^CT_2: D_M Sigma = 4 eps d/deps Sigma (homogeneity Sigma(sp, eps/s^2) = s^{4 - w_1 - w_2} Sigma), W'(D_M J) = -D_M I^CT_2 = +9 unit eps^-1 int(A,A) (the eps^-1 coefficient; the log eps part of I^CT_2 has weight 4 and is D_M-closed)",
+   "two-point check (arity one, class (i))": "D_M acts on (alpha, beta) as (2p.d_p alpha, 2(p.d_p - 1) beta); numerically alpha(2p, eps/4) = alpha(p, eps) and beta(2p, eps/4) = 2 beta(p, eps) to 2e-5 relative (routeA scaling_check), i.e. D_M(class i) = 4 eps d/deps(class i); the extra term W''(D_M J, S_M) = B_P(S_M, 9 unit eps^-1 int(A,A)) is the class-(ii) counterterm tree."
+  }
+ },
+ "arity_one_obstruction_quadratic": {
+  "formula": "Q W'_J(S_M) = W'_J(D_xi) + W''_J(D_0, S_M) (UV-boundary identity, arity one); at two legs, order hbar: D_xi flow = 1PI special-edge graphs with S_M on the cycle (B1, exact masters) + {I^CT_2, S_M} term = +9 unit eps^-1 int(A,A) (D_M I^CT_2 = -9 eps^-1 int(A,A)) - Q I^CT_Delta (= 0, Q X = 0) + Khat bridges (O(eps)) + S_M - P - (arity-zero two-leg defect, -> 0 after F_0).  Ob(Delta)^(2) = lim [B1 + 9 unit eps^-1 int(A,A)].",
+  "B1_fits": {
+   "ApAp": {
+    "alpha eps^0": {
+     "int(dA,dA)": "-11/3"
+    },
+    "alpha eps^-1": {
+     "int(A,A)": "-9"
+    },
+    "beta eps^0": {
+     "p^mu p^2 (u1,u2)": "0",
+     "p^mu (p,u1)(p,u2)": "free",
+     "u1^mu p^2 (p,u2)": "free",
+     "u2^mu p^2 (p,u1)": "free",
+     "eps^mu(u1,u2,p) p^2": "free"
+    },
+    "beta eps^-1": {
+     "p^mu (u1,u2)": "0",
+     "u1^mu (p,u2)": "free",
+     "u2^mu (p,u1)": "free",
+     "eps^mu(u1,u2,p)": "free"
+    },
+    "n_samples": 3,
+    "log_constant_parts": [
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     },
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     },
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     }
+    ]
+   },
+   "AVAV": {
+    "alpha eps^0": {
+     "int(dA,dA)": "-11/3",
+     "int(d*A,d*A)": "0"
+    },
+    "alpha eps^-1": {
+     "int(A,A)": "-9"
+    },
+    "beta eps^0": {
+     "p^mu p^2 (u1,u2)": "0",
+     "p^mu (p,u1)(p,u2)": "0",
+     "u1^mu p^2 (p,u2)": "0",
+     "u2^mu p^2 (p,u1)": "0",
+     "eps^mu(u1,u2,p) p^2": "0"
+    },
+    "beta eps^-1": {
+     "p^mu (u1,u2)": "0",
+     "u1^mu (p,u2)": "0",
+     "u2^mu (p,u1)": "0",
+     "eps^mu(u1,u2,p)": "0"
+    },
+    "n_samples": 2,
+    "log_constant_parts": [
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     },
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     }
+    ]
+   },
+   "cAsV": {
+    "alpha eps^0": {
+     "int(dc,A*)": "-14/3"
+    },
+    "alpha eps^-1": {
+     "all_zero": true
+    },
+    "beta eps^0": {
+     "p^mu (p,a) c": "0",
+     "a^mu p^2 c": "0"
+    },
+    "beta eps^-1": {
+     "a^mu c": "0"
+    },
+    "n_samples": 2,
+    "log_constant_parts": [
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     },
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     }
+    ]
+   },
+   "lamlam": {
+    "alpha eps^0": {
+     "int(lambda,dslash lambda)": "47/3"
+    },
+    "alpha eps^-1": {
+     "all_zero": true
+    },
+    "beta eps^0": {
+     "raw": "not fitted"
+    },
+    "beta eps^-1": {
+     "all_zero": true
+    },
+    "n_samples": 2,
+    "log_constant_parts": [
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     },
+     {
+      "a0": {},
+      "am1": {},
+      "b0": [
+       {},
+       {},
+       {},
+       {}
+      ],
+      "bm1": [
+       {},
+       {},
+       {},
+       {}
+      ]
+     }
+    ]
+   }
+  },
+  "A_perp_result": "Ob(Delta)|_(A_perp,A_perp) = -(11/3) unit int(dA_perp, dA_perp), no x-part, no log 2 / log(3/2) parts (exact, 3 samples incl. two independent implementations of the eps-expansion); eps^-1 part of B1 = -9 unit int(A,A) cancels the K_0 term exactly.",
+  "route_A_crosscheck": "Independent: Q(class (i)) + Q(class (ii)) at eps -> 0 with class (i)_perp -> a0 int(A,A*) + b0 int(E A,A*) (numerical) and Q int(A_perp,A*_perp) = -1/2 int(dA,dA), Q int(E A_perp,A*_perp) = +1/2 int(dA,dA) (exact): Q(i) = -(1/2)(a0 - b0) int(dA,dA) = +0.33 int(dA,dA) (numerics: a0 - b0 = -0.667), Q(ii) -> D_M Sigma_ren = -4 int(dA,dA); sum -3.67 = -11/3 (agreement to the numerical precision).  The translation part (b0) drops out of Q(i) on (A_perp, A_perp) because int(a.dA, d*dA) is a total derivative; equivalently B1 with the translation letter vanishes identically (identity test, delta_identity_T.json).",
+  "all_sectors": "Ob(Delta) on the quadratic sector (exact; per sector 1-3 samples, residual-free fits, no x-dependent part, no log 2 / log(3/2) constants, eps^-1 parts: -9 unit int(A,A) on (A,A) cancelling the K_0 term, 0 elsewhere): unit [ -(11/3) int(dA,dA) (all ten components; coefficient of int(d*A_V,d*A_V) = 0) + (47/3) int(lambda, dslash lambda) - (14/3) int(dc, A*) ]  (lambda: 2 samples, residual-free fit to the single structure int(lambda,dslash lambda); beta = 0)",
+  "F(Delta)_translation_invariant": "unique translation-invariant quadratic solution of Q F = Ob(Delta): F(Delta) = unit [ (22/3) int(A,A*) - (47/3) int(lambda*,lambda) - (8/3) int(c*,c) ] = unit [ (11/3) FC - int(lambda*,lambda) + int(c*,c) ], FC = 2 int(A,A*) - 4 int(lambda*,lambda) - int(c*,c) (using Q int(A_perp,A*_perp) = -1/2 int(dA_perp,dA_perp), Q int(A_V,A*_V) = -1/2 int(dA_V,dA_V) - int(dc,A*), Q int(lambda*,lambda) = -int(lambda,dslash lambda), Q int(c*,c) = -int(dc,A*)).  Q-closed directions (not fixed by the two-leg QME): S_M|_perp, S_M|_lambda, S_M|_V + S_M|_c, X; they change the translation-invariant coefficients only through their weight terms.",
+  "F(Delta)_perp": "Q F(Delta) = Ob(Delta) on (A_perp,A_perp): F(Delta)|_perp = unit [a int(A_perp,A*_perp) + b int(E(A_perp), A*_perp)] with a - b = 22/3; b is the Q-closed direction int((E+1)A_perp, A*_perp) = (1/2) S_M|_perp, not fixed by the two-leg QME.  Translation-invariant choice: b = 0, F = (22/3) unit int(A_perp,A*_perp) = (11/3) unit x (Wperp part of the field-counting functional).  Choice cancelling the x-dependent part of K5 (below): b = -2/3, F|_perp = unit[(11/3) FC|_perp - (1/3) S_M|_perp], FC = 2 int(A,A*) - 4 int(lambda*,lambda) - int(c*,c)."
+ },
+ "part2": {
+  "classical": {
+   "statement": "{S_M, O} = 2(E + w_O) O verified in canonical form: alpha = -4 v, beta^mu = -2 k^mu v (v = vertex value of O, k = momentum of omega), i.e. 2(E+w_O)O_k = -2(2 + k.d/dk)O_k; at order hbar^0 [(d_CE+Q)O[infty]](Delta) = -B_{K_eps}(S_M,O) flowed -> {S_M,O}[infty]",
+   "samples": {
+    "statement": "{S_M, O} in canonical form (x on leg 2): expected alpha = -4 v, beta^mu = -2 k^mu v (= 2(E+w_O)O, w_O = 2)",
+    "samples": [
+     {
+      "alpha_over_v": "-4",
+      "beta_over_v": [
+       "4",
+       "2",
+       "4",
+       "-4"
+      ],
+      "k": [
+       "-2",
+       "-1",
+       "-2",
+       "2"
+      ]
+     },
+     {
+      "alpha_over_v": "-4",
+      "beta_over_v": [
+       "4",
+       "4",
+       "2",
+       "-4"
+      ],
+      "k": [
+       "-2",
+       "-2",
+       "-1",
+       "2"
+      ]
+     }
+    ]
+   }
+  },
+  "decomposition": "[(d_CE+Q)O[infty]](Delta) = d_xi^R d_delta lim [flow of D_{K_0} + hbar Delta_Khat W + 1/2{W,W}_Khat] (UV-boundary identity, D = (d_CE+Q)J + 1/2{J,J}_eps + hbar Delta_eps J, {,}_eps = {,}_{K_0} + {,}_Khat).  On (A_perp,A_perp), order hbar: K_0 part = (D_M O)[infty] - {I^CT_Delta + F(Delta), O} + O-P-[Ob(Delta) - Q F(Delta)] (+ S_M-P-(cocycle defect of O), zero on A_perp by Spin(6)); Khat part = K5 (1PI graphs with O, S_M and Khat on the cycle) + O-P-(B1) [inside Ob] + bridges (-> 0).  Hence LHS - 2((E+w_O)O)[infty] = lim [K5 - {F(Delta),O} - {I^CT_Delta,O}] with {I^CT_Delta, O} = 0 (X_perp = 0), given Q F(Delta) = Ob(Delta).",
+  "K5": {
+   "fit": "alpha = 16 T1 - 16 T2, beta^mu = (2/3) k^mu T1; T1 = (w1,u1)(w2,u2)+(w1,u2)(w2,u1) (= vertex value of O), T2 = (w1,w2)(u1,u2); eps^-1 parts 0, log(3/2), log(4/3) parts 0; 3 samples, 15 equations, 6 unknowns, exact",
+   "alpha_part": "16 T1 - 16 T2 = 4 x (log eps coefficient of partial_delta I^CT[eps]) = 4 [4 O - 2 (w1,w2) int omega (A_perp,A_perp)]",
+   "beta_part": "(2/3) k T1 = -(1/3) x (beta part of 2(E+w_O)O): the translation component of K5 is -(1/3) unit {S^(1)(P), O}",
+   "raw": {
+    "ApAp": [
+     {
+      "w1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-3",
+       "1",
+       "-3",
+       "1",
+       "-2",
+       "3"
+      ],
+      "w2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-3",
+       "-2",
+       "-3",
+       "2",
+       "-2",
+       "3"
+      ],
+      "u1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-2",
+       "-2",
+       "3",
+       "-3",
+       "3",
+       "-3"
+      ],
+      "u2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-2",
+       "-2",
+       "2",
+       "3",
+       "1",
+       "2"
+      ],
+      "p1": [
+       "1",
+       "-2",
+       "2",
+       "-3"
+      ],
+      "k": [
+       "-3",
+       "-3",
+       "1",
+       "-1"
+      ],
+      "res": {
+       "-1": {
+        "alpha": {
+         "1": "0",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       },
+       "0": {
+        "alpha": {
+         "1": "-7744",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "844",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "844",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "-844/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "844/3",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       }
+      },
+      "time": 341.4
+     },
+     {
+      "w1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-2",
+       "-2",
+       "-1",
+       "1",
+       "-1",
+       "2"
+      ],
+      "w2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-2",
+       "-2",
+       "3",
+       "-2",
+       "1",
+       "2"
+      ],
+      "u1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "3",
+       "2",
+       "-3",
+       "-3",
+       "-2",
+       "-1"
+      ],
+      "u2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-2",
+       "-2",
+       "-2",
+       "1",
+       "-3",
+       "-3"
+      ],
+      "p1": [
+       "3",
+       "2",
+       "1",
+       "3"
+      ],
+      "k": [
+       "-2",
+       "-2",
+       "1",
+       "3"
+      ],
+      "res": {
+       "-1": {
+        "alpha": {
+         "1": "0",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       },
+       "0": {
+        "alpha": {
+         "1": "-928",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "184/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "184/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "-92/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "-92",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       }
+      },
+      "time": 315.6
+     },
+     {
+      "w1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-1",
+       "-2",
+       "-1",
+       "3",
+       "-2",
+       "1"
+      ],
+      "w2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "-3",
+       "-1",
+       "-1",
+       "-1",
+       "-1",
+       "2"
+      ],
+      "u1": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "1",
+       "1",
+       "3",
+       "3",
+       "-1",
+       "-2"
+      ],
+      "u2": [
+       "0",
+       "0",
+       "0",
+       "0",
+       "3",
+       "-3",
+       "-1",
+       "-2",
+       "2",
+       "2"
+      ],
+      "p1": [
+       "2",
+       "3",
+       "-1",
+       "-3"
+      ],
+      "k": [
+       "-2",
+       "-2",
+       "-3",
+       "2"
+      ],
+      "res": {
+       "-1": {
+        "alpha": {
+         "1": "0",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "0",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       },
+       "0": {
+        "alpha": {
+         "1": "2464",
+         "L4": "0",
+         "L3": "0"
+        },
+        "beta": [
+         {
+          "1": "-196/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "-196/3",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "-98",
+          "L4": "0",
+          "L3": "0"
+         },
+         {
+          "1": "196/3",
+          "L4": "0",
+          "L3": "0"
+         }
+        ]
+       }
+      },
+      "time": 2175.5
+     }
+    ]
+   }
+  },
+  "translation_part_check": {
+   "statement": "closed form for a translation letter T (T commutes with Q, Q^GF, H, P*; the kernel of P* T P* is Q-closed): LHS_P - (D_P O)[infty] = lim (hbar/2) d_{K''}(Q O_W)_tree, i.e. only graphs with T on an A_V - c line between two P edges and Khat between O and an AcA* vertex; all other K5 graphs must cancel",
+   "result": {
+    "subset": "844",
+    "complement": "0"
+   },
+   "meaning": "subset = full translation part (844 on sample 0, = (2/3) k_0 T1), complement = 0 exactly: internal consistency of K5.  The nonzero translation part comes from the scale-eps BRST variation of O ({I,O}_eps - {I,O}) joined to the A_V - c line (which exists because (Q^GF)^2 != 0)."
+  },
+  "coefficient": {
+   "formula": "with F(Delta)|_perp = a int(A,A*) + b int(E A, A*), a - b = 22/3: LHS - 2((E+w_O)O)[infty] = -(1/3 + b/2) 2(E+w_O)O + 2 c_O O with alpha: 16 T1 - 16 T2 - 2a T1 + 4b T1, beta: (2/3 + b) k T1;  2 c_O(T1 part) = 44/3 - 2(a - b) = 0 for every admissible b",
+   "traceless": "0",
+   "trace": "-24",
+   "trace_detail": "O_tr = int omega (A_perp, A_perp): T1 -> 2(u1,u2), T2 -> 6(u1,u2), v_tr = 2(u1,u2): alpha = 0 x T1 - 16 x 6 (u1,u2) = -96 (u1,u2) = -48 v_tr -> 2 c = -48, c = -24 (units); = 3 g^2 N/(4 pi^2) for su(N) with unit = -g^2 N/(32 pi^2)",
+   "normalisation_of_the_classical_part": "the factor of 2(E+w_O)O is 1 - (1/3 + b/2) unit: = 1 for b = -2/3 (F(Delta) contains -(1/3) unit S_M|_perp); = 1 - unit/3 for the translation-invariant choice b = 0 (then the translation component of O is (1 - unit/3) D_P O as well)",
+   "Step-1 scaling route prediction": "0 (traceless), -24 (trace): reproduced"
+  },
+  "not_computed": [
+   "the (A_V, A_V) and (c, A*_V) sectors of the trace component (K5 with A_V legs, the cocycle-defect tree S_M-P-(cocycle obstruction of O_tr), and the finite counterterm g (w1,w2) int omega (A_V,A_V) of Remark c5-cocycle)",
+   "the cubic arity-one obstruction that would fix b (the S_M|_perp component of F(Delta))"
+  ]
+ },
+ "comparison_with_theory": "step2/theory/delta_predictions.json did not exist when this file was written; no comparison made. Step-1 scaling-route values (STORY.md, ch06 Theorem thm:c6-dil): coefficient 0 (traceless), -24 (trace): reproduced (part2.coefficient).",
+ "checks": {
+  "regressions": {
+   "masters_J2_J3": true,
+   "special_bubbles_c_AV": {
+    "eps^-1 / i(p.a)": "-9/2",
+    "eps^0 / i(p.a)|p|^2": "-27/8",
+    "expected": "-9/2 (sum of a-e), -27/8 (sum of a-e)"
+   },
+   "log_coeff_Aperp": {
+    "value / (2|p|^2 (u,v))": "-1",
+    "expected": "-1"
+   },
+   "log_coeff_lambda": {
+    "value / plane-wave value of int(lambda,dslash lambda)": "4",
+    "expected": "4"
+   },
+   "time_s": 22.3
+  },
+  "Q_basis": {
+   "int(A_perp,A*_perp)": {
+    "(A_perp,A_perp) in units of int(dA_perp,dA_perp)": [
+     "-1/2",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "int(E A_perp,A*_perp)": {
+    "(A_perp,A_perp) in units of int(dA_perp,dA_perp)": [
+     "1/2",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "int(A_V,A*_V)": {
+    "(A_V,A_V) in units of [int(dA_V,dA_V), int(d*A_V,d*A_V)]": [
+     "[{x1: -1/2, x2: 0}]",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "(c,A*_V) in units of int(dc,A*)": [
+     "-1",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "int(E A_V,A*_V)": {
+    "(A_V,A_V) in units of [int(dA_V,dA_V), int(d*A_V,d*A_V)]": [
+     "[{x1: 1/2, x2: 0}]",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "(c,A*_V) in units of int(dc,A*)": [
+     "0",
+     [
+      "2*I*P0**2 - 3*I*P0*P1 - I*P0*P2 - I*P0*P3",
+      "2*I*P0*P1 - 3*I*P1**2 - I*P1*P2 - I*P1*P3",
+      "2*I*P0*P2 - 3*I*P1*P2 - I*P2**2 - I*P2*P3",
+      "2*I*P0*P3 - 3*I*P1*P3 - I*P2*P3 - I*P3**2"
+     ]
+    ]
+   },
+   "int(lambda*,lambda)": {
+    "(lambda,lambda) in units of int(lambda,dslash lambda)": [
+     "-1",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "int(c*,c)": {
+    "(c,A*_V) in units of int(dc,A*)": [
+     "-1",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   }
+  },
+  "X_exactness": {
+   "Q Y1": {
+    "A": [
+     "-6",
+     [
+      "-2*P0 - 2*P1 + 4*P2 + 6*P3",
+      "-P0 - P1 + 2*P2 + 3*P3",
+      "-3*P0 - 3*P1 + 6*P2 + 9*P3",
+      "3*P0 + 3*P1 - 6*P2 - 9*P3"
+     ]
+    ],
+    "c": [
+     "0",
+     [
+      "-9*P0",
+      "-9*P1",
+      "-9*P2",
+      "-9*P3"
+     ]
+    ],
+    "lam": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "Q Y2": {
+    "A": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "c": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "lam": [
+     "0",
+     [
+      "48*P0 - 4*I*P1 + 16*P2 + 16*I*P3",
+      "4*I*P0 + 48*P1 + 56*I*P2 + 44*P3",
+      "-16*P0 - 56*I*P1 + 48*P2 + 32*I*P3",
+      "-16*I*P0 - 44*P1 - 32*I*P2 + 48*P3"
+     ]
+    ]
+   },
+   "X": {
+    "A": [
+     "-6",
+     [
+      "-2*P0 - 2*P1 + 4*P2 + 6*P3",
+      "-P0 - P1 + 2*P2 + 3*P3",
+      "-3*P0 - 3*P1 + 6*P2 + 9*P3",
+      "3*P0 + 3*P1 - 6*P2 - 9*P3"
+     ]
+    ],
+    "c": [
+     "0",
+     [
+      "-9*P0",
+      "-9*P1",
+      "-9*P2",
+      "-9*P3"
+     ]
+    ],
+    "lam": [
+     "0",
+     [
+      "-24*P0 + 2*I*P1 - 8*P2 - 8*I*P3",
+      "-2*I*P0 - 24*P1 - 28*I*P2 - 22*P3",
+      "8*P0 + 28*I*P1 - 24*P2 - 16*I*P3",
+      "8*I*P0 + 22*P1 + 16*I*P2 - 24*P3"
+     ]
+    ]
+   }
+  },
+  "local_tests": {
+   "{S_M, int(A,A)} / int(A,A)": [
+    "-4",
+    [
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   ],
+   "{S_M, -1/4 int(dA,dA)}": [
+    "0",
+    [
+     "0",
+     "0",
+     "0",
+     "0"
+    ]
+   ],
+   "QX": {
+    "A[0],A": [
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ],
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ]
+    ],
+    "A[4],A": [
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ],
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ]
+    ],
+    "c[0],As": [
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ],
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ]
+    ],
+    "lam[0],lam": [
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ],
+     [
+      "0",
+      [
+       "0",
+       "0",
+       "0",
+       "0"
+      ]
+     ]
+    ]
+   },
+   "Q S_M": {
+    "A[0],A": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "A[4],A": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "c[0],As": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ],
+    "lam[0],lam": [
+     "0",
+     [
+      "0",
+      "0",
+      "0",
+      "0"
+     ]
+    ]
+   },
+   "Q X_V on (c, A*_V)": [
+    "-I*P0 + I*P1 + I*P2 - 2*I*P3",
+    [
+     "-I*P0**2 + I*P0*P1 + I*P0*P2 - 2*I*P0*P3",
+     "-I*P0*P1 + I*P1**2 + I*P1*P2 - 2*I*P1*P3",
+     "-I*P0*P2 + I*P1*P2 + I*P2**2 - 2*I*P2*P3",
+     "-I*P0*P3 + I*P1*P3 + I*P2*P3 - 2*I*P3**2"
+    ]
+   ],
+   "Q X_c on (c, A*_V)": [
+    "-3*I*P0 - 6*I*P1 + 6*I*P2 - 9*I*P3",
+    [
+     "-3*I*P0**2 - 6*I*P0*P1 + 6*I*P0*P2 - 9*I*P0*P3",
+     "-3*I*P0*P1 - 6*I*P1**2 + 6*I*P1*P2 - 9*I*P1*P3",
+     "-3*I*P0*P2 - 6*I*P1*P2 + 6*I*P2**2 - 9*I*P2*P3",
+     "-3*I*P0*P3 - 6*I*P1*P3 + 6*I*P2*P3 - 9*I*P3**2"
+    ]
+   ]
+  },
+  "identity_T": {
+   "0.01": {
+    "classi_T_over_uu_p": [
+     0.0,
+     2.030656976091638
+    ],
+    "Q_classi_T": [
+     -0.0,
+     -30.45985464137457
+    ],
+    "B1_T_over_uu_p": [
+     0.0,
+     0.0
+    ]
+   },
+   "0.001": {
+    "classi_T_over_uu_p": [
+     0.0,
+     3.07018230855195
+    ],
+    "Q_classi_T": [
+     -0.0,
+     -46.052734628279254
+    ],
+    "B1_T_over_uu_p": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "machine": "one python process at a time, RSS < 0.2 GB, no Wolfram kernel, no files outside the project folder"
+}

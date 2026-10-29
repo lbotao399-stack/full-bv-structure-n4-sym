@@ -1,0 +1,385 @@
+\chapter{The dilatation component and anomalous dimensions}
+
+The dilatation is the simplest superconformal component of the BV transformation of an operator. The classical theory is invariant under the rescaling of the fields by their Weyl weights, and the regulator breaks this invariance through $\varepsilon$ alone: the rescaling maps $P(\varepsilon,\infty)$ to $P(s^2\varepsilon,\infty)$. Consequently the scale dependence of $O[\infty]$ is carried by the $\log\varepsilon$ parts of $I^{CT}[\varepsilon]$ and of $\partial_\delta I^{CT}[\varepsilon]$, and by Theorem \ref{thm:c4-log} (the logarithmic part of the one-loop counterterm) the part coming from the action is a field redefinition. This chapter proves these statements, computes the resulting coefficients for the scalar bilinears and the single letters, shows how the boundary graphs with an $L_\varepsilon$ edge produce them, and states the identification with the equivariant dilatation cochain as the task of Step 2, together with the graphs that Step 2 must evaluate.
+
+\section{Scaling covariance of the regulator}
+
+\begin{definition}[Weyl scaling]
+\label{def:c6-sigma}
+The Weyl weights of the slots are
+
+\begin{tabular}{l|c|c|c|c|c|c}
+slot & $c$ & $A$ & $\lambda$ & $A^*$ & $\lambda^*$ & $c^*$ \\
+\hline
+Weyl weight & $0$ & $1$ & $\tfrac32$ & $3$ & $\tfrac52$ & $4$ \\
+\end{tabular}
+\tabcaption{Weyl weights; a field and its antifield have weights adding up to $4$. They are one half of the weights $0,2,3$ of $c$, $A$, $\lambda$ read off from $S^{(1)}(\Delta)$ in Example \ref{ex:c2-dil}.}
+
+For a real number $s>0$ and a section $e$ in a slot,
+\[
+(\sigma_s e)(x)=s^{-(\text{Weyl weight of the slot})}\,e(s^{-1}x),
+\]
+extended to $\mathscr E\otimes\mathscr E$ as $\sigma_s\otimes\sigma_s$ and to functionals by $(\sigma_s F)(e)=F(\sigma_s^{-1}e)$. For a local operator $O=\int\omega\,(\text{density})$ of Weyl weight $w_O$ (Definition \ref{def:c5-family}) we write
+\[
+(E+w_O)\,O=\int\omega\,(E+w_O)(\text{density}),
+\]
+where $E$ is the Euler vector field of [SW, (3)] acting on the position dependence of the density.
+\end{definition}
+
+\begin{lemma}[Scaling of the data]
+\label{lem:c6-data}
+\begin{itemize}
+\item $\langle\sigma_s e_0,\sigma_s e_1\rangle=\langle e_0,e_1\rangle$ and $(\sigma_s\otimes\sigma_s)K_t=K_{s^2t}$.
+\item $\sigma_s Q=Q\sigma_s$, $\sigma_s Q^{GF}=s^2Q^{GF}\sigma_s$ and $\sigma_s H=s^2H\sigma_s$; on functionals $\sigma_s$ commutes with $Q$ and with the bracket.
+\item $\sigma_s S=S$ and $\sigma_s I=I$. A local functional $\int\mathrm{dvol}\,(\text{density})$ whose density has Weyl weight $k$ (fields plus derivatives) satisfies $\sigma_s\int\mathrm{dvol}\,(\text{density})=s^{k-4}\int\mathrm{dvol}\,(\text{density})$; for example $\sigma_s\int\mathrm{dvol}\,(A,A)=s^{-2}\int\mathrm{dvol}\,(A,A)$.
+\item For a local operator $O$, $\sigma_s O$ is $O$ with $\omega$ replaced by $s^{w_O}$ times the pullback of $\omega$ along $x\mapsto s^{-1}x$, and $s\frac{d}{ds}\big|_{s=1}\sigma_s O=(E+w_O)\,O$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+For the pairing substitute $x=sy$, $\mathrm{dvol}(x)=s^4\mathrm{dvol}(y)$; the two weights add up to $4$. The scalar factor of $K_t$ (Definition \ref{def:c3-K}) becomes $s^{-4}(4\pi t)^{-2}e^{-|x-y|^2/4s^2t}=(4\pi s^2t)^{-2}e^{-|x-y|^2/4s^2t}$. An operator with $j$ derivatives from a slot of Weyl weight $k$ to a slot of Weyl weight $k^{\prime}$ is multiplied by $s^{k+j-k^{\prime}}$ under conjugation by $\sigma_s$. For the arrows of $Q$ (Proposition \ref{prop:c1-Q}) the exponent is $0+1-1$, $1+2-3$, $3+1-4$, $\tfrac32+1-\tfrac52$, all $0$; for the arrows of $Q^{GF}$ (Definition \ref{def:c3-qgf}) it is $3+0-1$, $1+1-0$, $4+1-3$, $\tfrac52+1-\tfrac32$, all $2$; hence also for $H=[Q,Q^{GF}]$. Every term of \eqref{eq:c1-action} has a density of Weyl weight $4$: for example $1+1+2$ for $(dA,dA)$, $\tfrac32+\tfrac32+1$ for $(\lambda,{\not d}\lambda)$, $0+1+3$ for $(dc,A^*)$ and $([A,c],A^*)$, $0+\tfrac32+\tfrac52$, $0+0+4$, and $4$ for the cubic and quartic gauge terms. For a density of Weyl weight $k$, $(\text{density})(\sigma_s^{-1}e)(x)=s^{k}(\text{density})(e)(sx)$, and $\int\mathrm{dvol}(x)\,s^k(\text{density})(sx)=s^{k-4}\int\mathrm{dvol}\,(\text{density})$. With $\omega$ in place of $\mathrm{dvol}$ the same substitution moves the factor $s^{w_O}$ and the dilation onto $\omega$, and $s\frac{d}{ds}\big|_{s=1}s^{w_O}(\text{density})(sx)=(w_O+E)(\text{density})(x)$.
+\end{proof}
+
+\begin{proposition}[Scaling covariance]
+\label{prop:c6-scaling}
+For every $s>0$ and $\varepsilon>0$,
+\begin{equation}
+(\sigma_s\otimes\sigma_s)\,P(\varepsilon,\infty)=P(s^2\varepsilon,\infty),\qquad \sigma_s\,\partial_{P(\varepsilon,\infty)}=\partial_{P(s^2\varepsilon,\infty)}\,\sigma_s ,
+\label{eq:c6-sigmaP}
+\end{equation}
+and for every even functional $J$ as in Definition \ref{def:c3-W},
+\begin{equation}
+\sigma_s\,W\big(P(\varepsilon,\infty),J\big)=W\big(P(s^2\varepsilon,\infty),\sigma_s J\big).
+\label{eq:c6-sigmaW}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:c6-data}, $(\sigma_s\otimes\sigma_s)L_t=(\sigma_s Q^{GF}\otimes\sigma_s)K_t=s^2(Q^{GF}\otimes1)K_{s^2t}=s^2L_{s^2t}$, and
+\[
+(\sigma_s\otimes\sigma_s)\,P(\varepsilon,\infty)=\int_\varepsilon^\infty s^2L_{s^2t}\,dt=\int_{s^2\varepsilon}^\infty L_{t}\,dt=P(s^2\varepsilon,\infty).
+\]
+For linear functionals $\ell_1,\ell_2$, the operator $\partial_\phi$ of [C07, §6.4] gives $\partial_\phi\big((\ell_1\circ\sigma_s^{-1})(\ell_2\circ\sigma_s^{-1})\big)=(\ell_1\otimes\ell_2)\big((\sigma_s^{-1}\otimes\sigma_s^{-1})\phi\big)$; since $\partial_\phi$ is determined by its values on products of two linear functionals and $\sigma_s$ is an even algebra automorphism of functionals, $\partial_\phi\,\sigma_s=\sigma_s\,\partial_{(\sigma_s^{-1}\otimes\sigma_s^{-1})\phi}$. With $\phi=P(s^2\varepsilon,\infty)$ and the first identity for $s^{-1}$ this is the second identity in \eqref{eq:c6-sigmaP}. Then $\sigma_s e^{\hbar\partial_{P(\varepsilon,\infty)}}e^{J/\hbar}=e^{\hbar\partial_{P(s^2\varepsilon,\infty)}}e^{\sigma_s J/\hbar}$, and taking $\hbar\log$ gives \eqref{eq:c6-sigmaW}.
+\end{proof}
+
+\begin{lemma}[Covariance of the counterterms]
+\label{lem:c6-ct}
+For a local family $J=I+\delta O$ with $O$ homogeneous, let $J^{CT}[\varepsilon]=I^{CT}[\varepsilon]+\delta\,\partial_\delta I^{CT}[\varepsilon]$ be its one-loop counterterm (Proposition \ref{prop:c5-thmB}). Then the counterterm of the family $\sigma_s J=I+\delta\,\sigma_s O$ at the cutoff $s^2\varepsilon$ is
+\begin{equation}
+(\sigma_s J)^{CT}[s^2\varepsilon]=\sigma_s\big(J^{CT}[\varepsilon]\big)+2\log s\;\sigma_s\big(\text{coefficient of }\log\varepsilon\text{ in }J^{CT}[\varepsilon]\big).
+\label{eq:c6-ct}
+\end{equation}
+In particular $\sigma_s$ maps the coefficient of $\varepsilon^{-1}$ in $I^{CT}[\varepsilon]$ to $s^{-2}$ times itself and fixes the coefficient of $\log\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+At one loop $W$ is affine in the counterterm, which enters through its tree-level flow. By \eqref{eq:c6-sigmaW}, $W(P(s^2\varepsilon,\infty),\sigma_s J-\sigma_s J^{CT}[\varepsilon])=\sigma_s W(P(\varepsilon,\infty),J-J^{CT}[\varepsilon])$ has a limit as $\varepsilon\to0$, and so has $W(P(s^2\varepsilon,\infty),\sigma_s J-(\sigma_s J)^{CT}[s^2\varepsilon])$. The difference of the two counterterms is a local functional whose tree-level flow has a limit, and its part without $\delta$ is invariant under translations and under the adjoint action of $\mathfrak g$, which $\sigma_s$ preserves; so, as in the uniqueness parts of Propositions \ref{prop:c4-unique} and \ref{prop:c5-thmB}, their singular parts in $\varepsilon$ coincide. Write $(\sigma_s J)^{CT}[\varepsilon^{\prime}]$ as $\varepsilon^{\prime-1}$ times one local functional plus $\log\varepsilon^{\prime}$ times another. At $\varepsilon^{\prime}=s^2\varepsilon$, $\log\varepsilon^{\prime}=\log\varepsilon+2\log s$ and $\varepsilon^{\prime-1}=s^{-2}\varepsilon^{-1}$; matching the coefficients of $\varepsilon^{-1}$ and $\log\varepsilon$ with those of $\sigma_s J^{CT}[\varepsilon]$ gives \eqref{eq:c6-ct}, the constant $2\log s$ times the $\log\varepsilon$ coefficient being the remainder. For $J=I$, $\sigma_s I=I$ and the uniqueness of Proposition \ref{prop:c4-unique} give the last statement; it agrees with Lemma \ref{lem:c6-data}: the coefficient of $\varepsilon^{-1}$ is a multiple of $\int\mathrm{dvol}\,(A|_V,A|_V)+\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ (Theorem \ref{thm:c4-quadratic}), of density weight $2$.
+\end{proof}
+
+\section{The Callan--Symanzik form}
+
+\begin{definition}[Tree insertion]
+\label{def:c6-tree}
+For local functionals $F$ and $X$ of either parity, the tree insertion of $F$ into $X[\infty]$ is
+\[
+\lim_{\varepsilon\to0}\Big(\hbar\,e^{-W(P(\varepsilon,\infty),I)/\hbar}\,e^{\hbar\partial_{P(\varepsilon,\infty)}}\big(\hbar^{-1}F\,\hbar^{-1}X\,e^{I/\hbar}\big)\Big)_{\text{connected trees}},
+\]
+the sum of the connected trees with one vertex $F$, one vertex $X$, any number of vertices $I$ and edges $P(0,\infty)$, with the weights of Proposition \ref{prop:c3-graphs}, the vertex functions of $F$ and $X$ being multiplied in this order. For odd $F$ and odd $X$ this order fixes the sign; the opposite order multiplies the insertion by $-1$. For an even $F$ of order $\hbar$ and $X=O$, at order $\hbar$ it is
+\[
+\lim_{\varepsilon\to0}\partial_\delta\Big[W\big(P(\varepsilon,\infty),I-I^{CT}[\varepsilon]+\delta O(\varepsilon)+F\big)-W\big(P(\varepsilon,\infty),I-I^{CT}[\varepsilon]+\delta O(\varepsilon)\big)\Big].
+\]
+For a local functional $F$ of order $\hbar$, $F[\infty]$ denotes at order $\hbar$ the construction \eqref{eq:c5-Oinfty} applied to $F$: the trees with one vertex $F$ and vertices $I$.
+\end{definition}
+
+\begin{theorem}[Callan--Symanzik form]
+\label{thm:c6-CS}
+For a homogeneous local operator $O$, modulo $\hbar^2$,
+\begin{equation}
+\begin{aligned}
+s\frac{d}{ds}\Big|_{s=1}\sigma_s\big(O[\infty]\big)=\ &\big((E+w_O)\,O\big)[\infty]+2\,\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[\infty]\\
+&+2\,\big(\text{tree insertion of the coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\text{ into }O[\infty]\big).
+\end{aligned}
+\label{eq:c6-CS}
+\end{equation}
+The coefficients of $\varepsilon^{-1}$ in $I^{CT}[\varepsilon]$ and in $\partial_\delta I^{CT}[\varepsilon]$ are absorbed by the scaling of the cutoff, and the scale dependence of $O[\infty]$ is carried by the $\log\varepsilon$ parts.
+\end{theorem}
+
+\begin{proof}
+Put $J(\varepsilon)=I-I^{CT}[\varepsilon]+\delta O(\varepsilon)$. Since $\sigma_s$ is independent of $\varepsilon$ and commutes with $\partial_\delta$, \eqref{eq:c6-sigmaW} gives
+\[
+\sigma_s\big(O[\infty]\big)=\lim_{\varepsilon\to0}\partial_\delta W\big(P(s^2\varepsilon,\infty),\sigma_s J(\varepsilon)\big).
+\]
+By $\sigma_s I=I$ and \eqref{eq:c6-ct}, with $\varepsilon^{\prime}=s^2\varepsilon$,
+\[
+\begin{aligned}
+\sigma_s J(\varepsilon)=\ &\Big(I-I^{CT}[\varepsilon^{\prime}]+\delta\,(\sigma_s O)(\varepsilon^{\prime})\Big)\\
+&+2\log s\,\sigma_s\big(\text{coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]+\delta\,\partial_\delta I^{CT}[\varepsilon]\big),
+\end{aligned}
+\]
+where $(\sigma_s O)(\varepsilon^{\prime})$ is the local family of Definition \ref{def:c5-Oeps} for the operator $\sigma_s O$ at the cutoff $\varepsilon^{\prime}$, by \eqref{eq:c6-ct}. The second term is of order $\hbar$, so modulo $\hbar^2$ it enters linearly and through trees. As $\varepsilon\to0$, the first bracket gives $(\sigma_s O)[\infty]$, and the second gives $2\log s$ times the observable of the $\delta$-part plus the tree insertion of the $\delta$-independent part, both for $\sigma_s O$. Hence, modulo $\hbar^2$,
+\[
+\begin{aligned}
+\sigma_s\big(O[\infty]\big)=(\sigma_s O)[\infty]+2\log s\Big[&\sigma_s\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[\infty]\\
+&+\big(\text{tree insertion of the coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\\
+&\qquad\text{into }(\sigma_s O)[\infty]\big)\Big].
+\end{aligned}
+\]
+The construction $O\mapsto O[\infty]$ is linear in $\omega$, so $s\frac{d}{ds}\big|_{s=1}(\sigma_s O)[\infty]=((E+w_O)O)[\infty]$ by Lemma \ref{lem:c6-data}; the derivative of $2\log s$ is $2$ at $s=1$. This is \eqref{eq:c6-CS}. The $\varepsilon^{-1}$ coefficients are absorbed into $I^{CT}[\varepsilon^{\prime}]$ and $\partial_\delta I^{CT}[\varepsilon^{\prime}]$ by \eqref{eq:c6-ct}.
+\end{proof}
+
+\section{The action counterterm as a field redefinition}
+
+By Theorem \ref{thm:c4-log} (the logarithmic part of the one-loop counterterm), the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ is $(Q+\{I,-\})$-exact:
+\begin{equation}
+\begin{aligned}
+&\text{coefficient of }\log\varepsilon\text{ in }I^{CT}[\varepsilon]\\
+&\qquad=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,(Q+\{I,-\})\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big).
+\end{aligned}
+\label{eq:c6-fieldren}
+\end{equation}
+Here $\int(A,A^*)$, $\int(\lambda^*,\lambda)$, $\int(c^*,c)$ are the local functionals of Chapter 4, the pairing of Definition \ref{def:c1-pairing} applied to the two slots of a pair with the even member first; we call $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ the field-counting functional. The quadratic part of \eqref{eq:c6-fieldren} is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\big(-\int\mathrm{dvol}\,(dA,dA)+4\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)-\int\mathrm{dvol}\,(dc,A^*)\big)$ (Theorem \ref{thm:c4-quadratic}).
+
+\begin{lemma}[The field-counting functional]
+\label{lem:c6-count}
+The derivation $\big\{2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c),\,-\big\}$ multiplies the coordinate functionals of $c$, $A$, $\lambda$, $A^*$, $\lambda^*$, $c^*$ by $1$, $2$, $4$, $-2$, $-4$, $-1$, hence a monomial by the corresponding weighted count of its fields. On the operators of Chapter 5 it acts as
+\[
+\begin{aligned}
+&\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)\mapsto4\int\omega\,(\iota_{w_1}A,\iota_{w_2}A),\qquad \int\omega\,(X,\iota_wA)\mapsto2\,(\cdot),\\
+&\int\omega\,(X,\iota_v(A|_V))\mapsto2\,(\cdot),\qquad \int\omega\,(\zeta,\lambda)\mapsto4\,(\cdot),\qquad \int\omega\,(X,c)\mapsto(\cdot),
+\end{aligned}
+\]
+where $(\cdot)$ is the operator on the left.
+\end{lemma}
+
+\begin{proof}
+This is Lemma \ref{lem:c4-count} applied to the monomials of the operators: two factors $A$, one $A$, one $A$, one $\lambda$, one $c$, and no antifields.
+\end{proof}
+
+\begin{lemma}[Insertion of a BV-exact functional]
+\label{lem:c6-bvexact}
+Let $F$ be an odd local functional and $O$ a homogeneous local operator. At order $\hbar^0$,
+\begin{equation}
+\begin{aligned}
+\text{tree insertion of }(Q+\{I,-\})F\text{ into }O[\infty]=\ &Q\big(\text{tree insertion of }F\text{ into }O[\infty]\big)-\{F,O\}[\infty]\\
+&+\text{tree insertion of }F\text{ into }\big((Q+\{I,-\})O\big)[\infty].
+\end{aligned}
+\label{eq:c6-bvexact}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $J=I+\delta O$. By Theorem \ref{thm:c3-uv}, $Q\,e^{\hbar\partial_{P(\varepsilon,\infty)}}\big(F\,e^{J/\hbar}\big)=e^{\hbar\partial_{P(\varepsilon,\infty)}}(Q+\hbar\Delta_\varepsilon)\big(F\,e^{J/\hbar}\big)$. By the product rule of Definition \ref{def:c3-delta} and $|F|$ odd,
+\[
+\begin{aligned}
+(Q+\hbar\Delta_\varepsilon)\big(F\,e^{J/\hbar}\big)=\ &\big(QF+\{J,F\}_\varepsilon+\hbar\Delta_\varepsilon F\big)e^{J/\hbar}\\
+&-F\,\hbar^{-1}\big(QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J\big)e^{J/\hbar}.
+\end{aligned}
+\]
+Divide both sides by $e^{W(P(\varepsilon,\infty),J)/\hbar}$. On the left, $Q$ acts on the product $e^{W(P(\varepsilon,\infty),J)/\hbar}\cdot e^{-W(P(\varepsilon,\infty),J)/\hbar}e^{\hbar\partial_{P(\varepsilon,\infty)}}(Fe^{J/\hbar})$, and the term in which it acts on $e^{W(P,J)/\hbar}$ equals, by Corollary \ref{cor:c3-qme}, the disconnected part of the last term on the right; the two cancel. In the remaining terms take the part linear in $\delta$, connected, at order $\hbar^0$. The term $\hbar\Delta_\varepsilon F$ is of order $\hbar$. For even $O$ the $\delta$-part of $\{J,F\}_\varepsilon$ is $\{O,F\}_\varepsilon=\{F,O\}_\varepsilon$. For odd $O$ the parameter $\delta$ is odd, and moving $\delta$ to the left through $F$, $Q$ and the bracket gives $\{\delta O,F\}_\varepsilon=-\delta\{O,F\}_\varepsilon=\delta\{F,O\}_\varepsilon$, $Q(\delta O)=-\delta\,QO$, $\{I,\delta O\}_\varepsilon=-\delta\{I,O\}_\varepsilon$ and $F\,\delta=-\delta\,F$; the signs agree term by term, and after removing $\delta$ the identities below are the same in both cases, with the vertex functions of $F$ placed first as in Definition \ref{def:c6-tree}. The $\delta$-part of $QJ+\frac12\{J,J\}_\varepsilon$ is $QO+\{I,O\}_\varepsilon$, and its $\delta$-independent part is $QI+\frac12\{I,I\}_\varepsilon$. This gives, with edges $P(\varepsilon,\infty)$,
+\[
+\begin{aligned}
+Q\big(\text{tree insertion of }F\text{ into }O\big)=\ &\text{tree insertion of }QF+\{I,F\}_\varepsilon\text{ into }O\ +\ \big(\{F,O\}_\varepsilon\text{ flowed}\big)\\
+&-\text{tree insertion of }F\text{ into }QO+\{I,O\}_\varepsilon\\
+&-\text{trees with }F,\ O\text{ and }QI+\tfrac12\{I,I\}_\varepsilon .
+\end{aligned}
+\]
+As $\varepsilon\to0$, $\{-,-\}_\varepsilon$ tends to $\{-,-\}$ on local functionals, the edges tend to $P(0,\infty)$, and $QI+\frac12\{I,I\}=0$ by Proposition \ref{prop:c1-cme}. Rearranging gives \eqref{eq:c6-bvexact}.
+\end{proof}
+
+\begin{corollary}[The field redefinition]
+\label{cor:c6-fieldredef}
+For a homogeneous local operator $O$, modulo $\hbar^2$,
+\begin{equation}
+\begin{aligned}
+s\frac{d}{ds}\Big|_{s=1}\sigma_s\big(O[\infty]\big)=\ &\big((E+w_O)O\big)[\infty]\\
+&+2\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[\infty]\\
+&-2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\big\{\text{field-counting functional},\,O\big\}[\infty]\\
+&+Q\Big(2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\cdot\text{tree insertion of the field-counting functional into }O[\infty]\Big)\\
+&+2\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\\
+&\qquad\cdot\text{tree insertion of the field-counting functional into }\big((Q+\{I,-\})O\big)[\infty].
+\end{aligned}
+\label{eq:c6-fieldredef}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Insert \eqref{eq:c6-fieldren} into the last term of \eqref{eq:c6-CS} and apply Lemma \ref{lem:c6-bvexact} with $F$ the field-counting functional; the factor $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ makes the order-$\hbar^0$ identity \eqref{eq:c6-bvexact} an identity at order $\hbar$.
+\end{proof}
+
+\begin{remark}[Reading of the three terms]
+\label{rem:c6-reading}
+By \eqref{eq:c6-fieldren} the action counterterm is the change of $S$ under the infinitesimal rescaling of the fields by the weights of Lemma \ref{lem:c6-count}; on $O[\infty]$ it acts through the bracket $\{-,O\}$ with the field-counting functional, the field redefinition proper, and through the image under $Q$ of a tree. The tree insertion of the field-counting functional into $O[\infty]$ is a nonlocal functional whose image under $Q$ is the scale-$\infty$ observable of a local functional; by Proposition \ref{prop:c5-local} such terms are the ones that a statement about classes of local functionals must specify, and the identification with the equivariant dilatation cochain, stated in the last section of this chapter, specifies how this term enters. The last term involves $(Q+\{I,-\})O$ and vanishes for gauge-invariant $O$.
+\end{remark}
+
+\section{The dilatation component}
+
+The dilatation is $\Delta=2E$, the generator $\mathrm{diag}(1,-1\,|\,0)$ of [SW, (17)] (Remark \ref{rem:c2-dilatation}). By Example \ref{ex:c2-dil} it acts classically on a field as $2E$ plus twice its Weyl weight, hence on a local operator as $2(E+w_O)$, and by Lemma \ref{lem:c6-data} this is $2s\frac{d}{ds}\big|_{s=1}\sigma_s$.
+
+\begin{theorem}[Dilatation in Callan--Symanzik form]
+\label{thm:c6-dil}
+For a homogeneous local operator $O$, modulo $\hbar^2$,
+\begin{equation}
+\begin{aligned}
+&2s\frac{d}{ds}\Big|_{s=1}\sigma_s\big(O[\infty]\big)-Q\Big(4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\cdot\text{tree insertion of the field-counting functional into }O[\infty]\Big)\\
+&\qquad=2\big((E+w_O)O\big)[\infty]\\
+&\qquad\quad+4\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon]\big)[\infty]-4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\big\{\text{field-counting functional},\,O\big\}[\infty]\\
+&\qquad\quad+\big(\text{terms built from }(Q+\{I,-\})O\big),
+\end{aligned}
+\label{eq:c6-dil}
+\end{equation}
+the last terms being $4\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ times the tree insertion of the field-counting functional into $\big((Q+\{I,-\})O\big)[\infty]$. When the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon]$ minus the unit times the bracket with the field-counting functional is a multiple of $O$, the right side is
+\[
+2\big(E+w_O+\text{coefficient}\big)\,O[\infty]+\big(\text{terms built from }(Q+\{I,-\})O\big),
+\]
+with the coefficient equal to twice that multiple; its values are given in the table.
+
+\begin{tabular}{l|c|c|c|c}
+operator & $w_O$ & $\log\varepsilon$ coefficient of $\partial_\delta I^{CT}[\varepsilon]$, per $O$ & bracket with the field-counting functional, per $O$ & coefficient \\
+\hline
+traceless part of $\int\omega(\iota_{w_1}A,\iota_{w_2}A)$ & $2$ & $4$ & $4$ & $0$ \\
+$\int\omega\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $2$ & $-8$ & $4$ & $-24$ \\
+$\int\omega\,(X,\iota_wA)$ & $1$ & $0$ & $2$ & $-4$ \\
+$\int\omega\,(X,\iota_v(A|_V))$, modulo terms built from $(Q+\{I,-\})O$ & $1$ & $0$ & $2$ & $-4$ \\
+$\int\omega\,(\zeta,\lambda)$ & $\tfrac32$ & $0$ & $4$ & $-8$ \\
+$\int\omega\,(X,c)$ & $0$ & $0$ & $1$ & $-2$ \\
+\end{tabular}
+\tabcaption{The coefficient in units of $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$; the third column in the same units (Theorem \ref{thm:c5-Oeps}, Proposition \ref{prop:c5-letters}), the fourth from Lemma \ref{lem:c6-count}, and the coefficient is twice their difference. With the generator $-E$ of [SW, (3)], which is $-\tfrac12$ times $\Delta$ (Remark \ref{rem:c2-dilatation}), the same statement reads $-\big(E+w_O+\text{coefficient}\big)O[\infty]$. The letters are gauge dependent (Feynman gauge); the ghost letter $\int\omega\,(X,c)$ has degree $1$.}
+\end{theorem}
+
+\begin{proof}
+Multiply \eqref{eq:c6-fieldredef} by $2$ and move the $Q$-term to the left; this is \eqref{eq:c6-dil}. For the scalar bilinears, \eqref{eq:c5-traceless} and \eqref{eq:c5-trace} give the $\log\varepsilon$ coefficients $4$ and $-8$ per operator, and Lemma \ref{lem:c6-count} gives $4$; for the letters the $\log\varepsilon$ coefficient is $0$ by \eqref{eq:c5-letters} and the bracket gives $2,2,4,1$. Twice the differences are $2(4-4)=0$, $2(-8-4)=-24$, $2(0-2)=-4$, $-4$, $2(0-4)=-8$, $2(0-1)=-2$. The operator $(E+w_O)$ acts on $O[\infty]$ through the linear dependence of $O[\infty]$ on $\omega$.
+\end{proof}
+
+\begin{remark}[The letter $A|_V$]
+\label{rem:c6-AV}
+The letters are gauge variant, and $(Q+\{I,-\})O$ contributes. For $\int\omega\,(X,\iota_wA)$, $\int\omega\,(\zeta,\lambda)$ and $\int\omega\,(X,c)$ the linear part of $Q$ on the coordinate functional vanishes ($Q$ has no arrow into the slots of $A|_{W_{\mathbb R}^\perp}$, $\lambda$, $c$; Proposition \ref{prop:c1-Q}), and $(Q+\{I,-\})O=\{I,O\}$ is quadratic in the fields: the terms built from $(Q+\{I,-\})O$ have at least two legs, and the coefficients $-4$, $-8$, $-2$ multiply $O$ itself. For $\int\omega\,(X,\iota_v(A|_V))$ the arrow $c\mapsto-dc$ of $Q$ gives the linear functional $(Q+\{I,-\})O\ni-\int\omega\,(X,\iota_v(dc))$; joined through the $c\otimes A^*|_V$ component of $P(0,\infty)$ (Proposition \ref{prop:c3-P}) to a vertex with an $A^*|_V$ leg, it produces linear functionals of $A|_V$ that depend on $A|_V$ through $d^*A|_V$, nonlocal projections onto the longitudinal part. The entry $-4$ of the table is therefore the coefficient of $O$ modulo terms built from $(Q+\{I,-\})O$; the coefficient on the longitudinal part requires these terms, at order $\hbar^0$ (Proposition \ref{prop:c6-classical}) and at one loop, and its evaluation is part of Step 2.
+\end{remark}
+
+\begin{remark}[The Konishi value]
+\label{rem:c6-konishi}
+For $\mathfrak g=\mathfrak{su}(N)$ with $(X,Y)=-\frac{4\hbar}{g^2}\operatorname{tr}(XY)$, $\operatorname{tr}$ the trace in the defining representation, $e^{S/\hbar}$ is the standard Euclidean Yang--Mills weight with coupling $g$, and $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)=2N\operatorname{tr}(XY)$. Then
+\[
+\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}=-\frac{g^2N}{32\pi^2},\qquad -24\cdot\Big(-\frac{g^2N}{32\pi^2}\Big)=\frac{3g^2N}{4\pi^2},
+\]
+so the trace bilinear has dimension $2+\frac{3g^2N}{4\pi^2}$ at one loop, the one-loop value for the Konishi operator, and the twenty traceless bilinears keep dimension $2$.
+\end{remark}
+
+\begin{corollary}[Dilatation component]
+\label{cor:c6-dilcomp}
+Assume the identification of Step 2 (last section of this chapter),
+\begin{equation}
+\begin{aligned}
+\big[(d_{CE}+Q)\,O[\infty]\big](\Delta)=\ &2s\frac{d}{ds}\Big|_{s=1}\sigma_s\big(O[\infty]\big)\\
+&-Q\Big(4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\cdot\text{tree insertion of }2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\\
+&\qquad\text{into }O[\infty]\Big)+\big(\text{terms built from }(Q+\{I,-\})O\big)
+\end{aligned}
+\label{eq:c6-step2}
+\end{equation}
+modulo $\hbar^2$, where the terms built from $(Q+\{I,-\})O$ are the trees with one vertex $(Q+\{I,-\})O(\varepsilon)$ and one vertex $S^{(1)}(\Delta)$, at order $\hbar^0$, with their one-loop corrections; they vanish for $(Q+\{I,-\})O=0$. Then, with $\Delta=2E$ of [SW, (17)],
+\begin{equation}
+\big[(d_{CE}+Q)\,O[\infty]\big](\Delta)=2\big(E+w_O+\text{coefficient}\big)\,O[\infty]+\big(\text{terms built from }(Q+\{I,-\})O\big),
+\label{eq:c6-dilcomp}
+\end{equation}
+with the coefficient of the table of Theorem \ref{thm:c6-dil}: $0$ for the traceless scalar bilinears, $-24\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ for the trace, and $-4$, $-4$, $-8$, $-2$ times $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ for the letters $\iota_wA$, $A|_V$ (modulo terms built from $(Q+\{I,-\})O$, Remark \ref{rem:c6-AV}), $\lambda$, $c$. With the generator $-E$ of [SW, (3)] the same statement reads $-\big(E+w_O+\text{coefficient}\big)O[\infty]$.
+\end{corollary}
+
+\begin{proof}
+Insert \eqref{eq:c6-step2} into \eqref{eq:c6-dil}.
+\end{proof}
+
+\section{The UV boundary at work: graphs with an $L_\varepsilon$ edge}
+
+By \eqref{eq:c3-dP}, $s\frac{d}{ds}\big|_{s=1}P(s^2\varepsilon,\infty)=2\varepsilon\frac{d}{d\varepsilon}P(\varepsilon,\infty)=-2\varepsilon L_\varepsilon$: the scaling acts on every edge as the boundary kernel $L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon$ at $t=\varepsilon$ (Remark \ref{rem:c3-two}).
+
+\begin{proposition}[The coefficients on the boundary]
+\label{prop:c6-Leps}
+Let $\gamma$ be a one-loop graph whose value has the expansion $(\varepsilon^{-1}\text{-coefficient})\,\varepsilon^{-1}+(\log\varepsilon\text{-coefficient})\log\varepsilon+(\text{a function with a limit})$. Then
+\[
+\begin{aligned}
+2\cdot(\log\varepsilon\text{-coefficient})=\lim_{\varepsilon\to0}\Big(&-2\varepsilon\sum_{e\in E(\gamma)}\big(\text{value of }\gamma\text{ with }t_e=\varepsilon\text{, i.e. edge }e\text{ carrying }L_\varepsilon\big)\\
+&+2\varepsilon^{-1}(\varepsilon^{-1}\text{-coefficient})\Big).
+\end{aligned}
+\]
+The term $2\varepsilon^{-1}(\varepsilon^{-1}\text{-coefficient})$ is the scaling $s\frac{d}{ds}\big|_{s=1}$ of the counterterm $-(\varepsilon^{-1}\text{-coefficient})\,\varepsilon^{-1}$ under $\sigma_s$ (Lemma \ref{lem:c6-ct}). Hence the terms $2(\cdot)$ of \eqref{eq:c6-CS} are the limits of the sums of the graphs with one edge carrying $-2\varepsilon L_\varepsilon$, the $\varepsilon^{-1}$ parts cancelling against the scaling of the $\varepsilon^{-1}$ counterterms; for graphs of degree $0$ each edge carries the fraction $1/|E(\gamma)|$ (Lemma \ref{lem:c5-log}).
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c4-boundary}, $\varepsilon\frac{d}{d\varepsilon}(\text{value of }\gamma)=-\varepsilon\sum_e(\text{value with }t_e=\varepsilon)$, and $\varepsilon\frac{d}{d\varepsilon}$ of the expansion is $-(\varepsilon^{-1}\text{-coefficient})\varepsilon^{-1}+(\log\varepsilon\text{-coefficient})+(\text{a function tending to }0)$. The last term tends to $0$ by Lemma \ref{lem:c4-local}, which gives $\varepsilon\frac{d}{d\varepsilon}$ of the function with a limit tending to $0$. Multiply by $2$ and add $2\varepsilon^{-1}(\varepsilon^{-1}\text{-coefficient})$.
+\end{proof}
+
+\fig{diagrams/composite/boundary_Leps_representatives.png}{Boundary graphs with one edge carrying $L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon$ (shaded). (a), (b): the $A|_{W_{\mathbb R}^\perp}$ two-point graph with two cubic vertices of type $A|_V(A|_{W_{\mathbb R}^\perp})^2$, each edge pinned in turn. (c)--(e): graph (f) of Chapter 5, the triangle with external $A|_{W_{\mathbb R}^\perp}$, each of its three edges pinned in turn.}
+
+\begin{example}[The scalar bilinears on the boundary]
+\label{ex:c6-bilinear}
+For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, the terms on the right of \eqref{eq:c6-CS} other than $((E+w_O)O)[\infty]$ are, in their bilinear part and in units of $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, the following limits of $L_\varepsilon$ graphs (Proposition \ref{prop:c6-Leps}).
+\begin{itemize}
+\item Graph (e) of Chapter 5: each of its two edges carrying $-2\varepsilon L_\varepsilon$ tends to $2\int\omega(\iota_{w_1}A,\iota_{w_2}A)-2(w_1,w_2)\int\omega(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, one half of twice the singular part of Example \ref{ex:c5-e}.
+\item Graph (f): each of its three edges (figure, (c)--(e)) tends to $\tfrac43\int\omega(\iota_{w_1}A,\iota_{w_2}A)$, one third of twice the singular part of Example \ref{ex:c5-f}.
+\item Graphs (c), (d): each edge of (c) tends to $-2(w_1,w_2)\int\omega(A|_V,A|_V)$ and each edge of (d) to $\tfrac43(w_1,w_2)\int\omega(A|_V,A|_V)$; the sum is $0$ (Example \ref{ex:c5-cd}).
+\item Graph (a): $-2\varepsilon$ times its single edge carrying $L_\varepsilon$ is $-2\varepsilon^{-1}$ times its $\varepsilon^{-1}$-coefficient, cancelled by the scaling of the vacuum counterterm; the limit is $0$.
+\item The legs: the $A|_{W_{\mathbb R}^\perp}$ two-point graphs of Theorem \ref{thm:c4-quadratic} with an $L_\varepsilon$ edge, joined to $O$ by an edge $P(\varepsilon,\infty)$. Their $\varepsilon^{-1}$ parts cancel against the scaling of $\frac94\varepsilon^{-1}\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, and their limit is twice the tree insertion of $-\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ into $O$. The graphs in which the joining edge carries $L_\varepsilon$ tend to $0$, since $\varepsilon L_\varepsilon$ tends to $0$ at fixed momentum and the renormalised two-point function has a limit.
+\end{itemize}
+The tree insertion is computed from the vertex function $2|p|^2(w,w^{\prime})(Z,Z^{\prime})$ of $\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ on legs $(w,-)\otimes Z$, $(w^{\prime},-)\otimes Z^{\prime}$ of momenta $\pm p$ and the edge $2(-,-)^{-1}\otimes(\text{inverse metric})|p|^{-2}$ of $P(0,\infty)$: each $A|_{W_{\mathbb R}^\perp}$ leg of $O$ is multiplied by
+\[
+-1\cdot2|p|^2\cdot\frac{2}{|p|^2}=-4,
+\]
+so the tree insertion of $-\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ into $O$ has bilinear part $-8\,O$. Summing, with the trace written $\int\omega(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$:
+
+\begin{tabular}{l|c|c|c}
+contribution & general $w_1w_2$ & traceless part & trace \\
+\hline
+graph (e), two $L_\varepsilon$ edges & $4O-4(w_1,w_2)\,\text{(trace)}$ & $4$ & $-20$ \\
+graph (f), three $L_\varepsilon$ edges & $4O$ & $4$ & $4$ \\
+graphs (c), (d) & $0$ & $0$ & $0$ \\
+legs, $2\times(-8)$ & $-16O$ & $-16$ & $-16$ \\
+\hline
+total & $-8O-4(w_1,w_2)\,\text{(trace)}$ & $-8$ & $-32$ \\
+removed $Q$-term & $8O$ & $8$ & $8$ \\
+\hline
+coefficient & $-4(w_1,w_2)\,\text{(trace)}$ & $0$ & $-24$ \\
+\end{tabular}
+\tabcaption{Contributions to $s\frac{d}{ds}\big|_{s=1}\sigma_s(O[\infty])-((E+w_O)O)[\infty]$ for the scalar bilinears, bilinear parts, in units of $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$; the traceless and trace columns give the multiple of the operator itself.}
+
+The row ``removed $Q$-term'' is the bilinear part of minus the $Q$-term of \eqref{eq:c6-fieldredef}, the image under $Q$ of twice the unit times the tree insertion of the field-counting functional into $O[\infty]$. Its value follows from the legs row and Lemmas \ref{lem:c6-bvexact}, \ref{lem:c6-count}: the bilinear part involves the quadratic part of \eqref{eq:c6-fieldren} alone, and twice its tree insertion into $O$ equals the $Q$-term minus twice $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$ times the bracket of the field-counting functional with $O$. In units, $-16\,O=(\text{bilinear part of the }Q\text{-term})-2\cdot4\,O$, so the $Q$-term has bilinear part $-8\,O$ and the removed term is $+8\,O$. The coefficient row agrees with Theorem \ref{thm:c6-dil}: $2(4-4)=0$ and $2(-8-4)=-24$.
+\end{example}
+
+\begin{example}[The letter $\iota_wA$ on the boundary]
+\label{ex:c6-letter}
+For $O=\int\omega\,(X,\iota_wA)$ there is no graph with $O$ on the cycle (Proposition \ref{prop:c5-letters}), and the boundary contributions are the legs. With the single leg multiplied by $-4$, the tree insertion of $-\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ into $O$ is $-4O$, and twice it is $-8O$ in units. The bracket with the field-counting functional is $2\,O$, so by the same argument $-8\,O=(\text{linear part of the }Q\text{-term})-2\cdot2\,O$, the $Q$-term has linear part $-4\,O$, and the removed term is $+4\,O$. The result is $-8+4=-4$ units, the coefficient $2(0-2)=-4$ of Theorem \ref{thm:c6-dil}.
+\end{example}
+
+\section{The equivariant dilatation cochain: the task of Step 2}
+
+The left side of \eqref{eq:c6-dilcomp} is defined by the equivariant construction of Definition \ref{def:c5-Oeps}. By Theorem \ref{thm:c3-uv} and the product rule used in Corollary \ref{cor:c3-qme}, for every even $J$ with values in $C^\bullet(\mathfrak{psl}(4|4))$,
+\begin{equation}
+(d_{CE}+Q)\,W\big(P(\varepsilon,\infty),J\big)=e^{-W(P(\varepsilon,\infty),J)/\hbar}\,e^{\hbar\partial_{P(\varepsilon,\infty)}}\Big(\big((d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J\big)\,e^{J/\hbar}\Big).
+\label{eq:c6-uvobs}
+\end{equation}
+For $J=I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]+\delta O(\varepsilon)$, applying $\partial_\delta$ and $\varepsilon\to0$ gives $(d_{CE}+Q)O[\infty]$. Every bracket $\{-,-\}_\varepsilon$ and every $\Delta_\varepsilon=-\partial_{K_\varepsilon}$ is an edge carrying $K_\varepsilon$ (Remark \ref{rem:c3-two}). Evaluated on $\Delta$, the component of arity one contains the vertex $S^{(1)}(\Delta)$ of Example \ref{ex:c2-dil}, or the component of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ along $\Delta$, exactly once. Its terms are:
+\begin{itemize}
+\item the graphs with one vertex $O(\varepsilon)$, one vertex $S^{(1)}(\Delta)$ joined by an edge $K_\varepsilon$, and edges $P(\varepsilon,\infty)$ (figure): one-loop graphs (a)--(u), and trees (v)--(y) in which the vertex is $\partial_\delta I^{CT}[\varepsilon]$;
+\item the graphs with the component of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ along $\Delta$, and with the finite counterterms that the equivariant master equation requires along $\Delta$;
+\item the component along $\Delta$ of the equivariant master-equation defect $(d_{CE}+Q)J+\frac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ at $\delta=0$, inserted together with $O(\varepsilon)$;
+\item the graphs with the vertex $QO(\varepsilon)+\{I-I^{CT}[\varepsilon],O(\varepsilon)\}_\varepsilon+\hbar\Delta_\varepsilon O(\varepsilon)$ and one vertex $S^{(1)}(\Delta)$, which at order $\hbar^0$ are the trees of Proposition \ref{prop:c6-classical} and vanish for $(Q+\{I,-\})O=0$.
+\end{itemize}
+
+\fig{diagrams/composite/route_ii_Keps.png}{The graphs with one vertex $O$, one vertex $S^{(1)}(\Delta)$ (zigzag leg $\Delta$) and one edge carrying $K_\varepsilon$ (shaded, arrow from the field to the antifield slot); all other edges carry $P(\varepsilon,\infty)$. (a)--(u): one loop; (v)--(y): trees with the vertex $\partial_\delta I^{CT}[\varepsilon]$ (cross).}
+
+\begin{proposition}[Order $\hbar^0$]
+\label{prop:c6-classical}
+At order $\hbar^0$, the component $[(d_{CE}+Q)O[\infty]](\Delta)$ is the sum of $2\big((E+w_O)O\big)[\infty]$ and the trees with one vertex $(Q+\{I,-\})O$ and one vertex $S^{(1)}(\Delta)$. In particular, for $O$ with $(Q+\{I,-\})O=0$, both sides of \eqref{eq:c6-step2} equal $2\big((E+w_O)O\big)[\infty]$, and \eqref{eq:c6-step2} holds at order $\hbar^0$ for every $O$, with these trees as its last term.
+\end{proposition}
+
+\begin{proof}
+At order $\hbar^0$ the counterterms and the field-redefinition term are absent, and the first term of the right side of \eqref{eq:c6-step2} is $2((E+w_O)O)[\infty]$ by Theorem \ref{thm:c6-CS}. On the left, by \eqref{eq:c6-uvobs} at order $\hbar^0$, the arity-one component along $\Delta$ is the flow of graphs with one vertex given by the part of $(d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon$ that is linear in $\delta$ or contains $S^{(1)}(\Delta)$. The defect at $\delta=0$ tends to $0$ by the master equation of $S_{\mathfrak{psl}(4|4)}$ (Definition \ref{def:c2-action}). The vertex $\{S^{(1)}(\Delta),O\}_\varepsilon$, with all other vertices $I$, tends to the tree flow of the classical bracket of $S^{(1)}(\Delta)$ with $O$; by Example \ref{ex:c2-dil} this bracket transforms each field by $2E$ plus twice its Weyl weight, hence $O$ by $2(E+w_O)$. The vertex $QO+\{I,O\}_\varepsilon$, of arity zero, joined to a vertex $S^{(1)}(\Delta)$, gives the trees with one vertex $(Q+\{I,-\})O$ and one vertex $S^{(1)}(\Delta)$ in the limit. For $O=\int\omega\,(X,\iota_v(A|_V))$ these trees are nonzero: $QO=-\int\omega\,(X,\iota_v(dc))$ is linear, and its $c$ leg joined to the $A^*|_V$ leg of $S^{(1)}(\Delta)$ through the $c\otimes A^*|_V$ component of $P(0,\infty)$ gives a linear functional of $A|_V$ through $d^*A|_V$.
+\end{proof}
+
+\begin{remark}[Step 2]
+\label{rem:c6-step2}
+Step 2 of the program consists of three computations at order $\hbar$: the component along $\Delta$ of the one-loop counterterm of $I_{\mathfrak{psl}(4|4)}$, with the finite counterterms fixed by the equivariant master equation along $\Delta$; the graphs (a)--(y) of the figure together with the defect insertion; and the proof of \eqref{eq:c6-step2} for every homogeneous local operator, with the trees built from $(Q+\{I,-\})O(\varepsilon)$ and $S^{(1)}(\Delta)$ included. Reading the result as the anomalous dimension of a class also needs the cocycle condition $Q\,O[\infty]=0$ of Remark \ref{rem:c5-cocycle}; a finite local counterterm of Weyl weight $w_O$ that it may require is independent of $\varepsilon$, scales covariantly, and leaves the coefficients of Theorem \ref{thm:c6-dil} unchanged. The form of \eqref{eq:c6-step2} is dictated by \eqref{eq:c6-fieldren}: the Weyl scaling and the dilatation cochain differ by the field redefinition generated by $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$, whose image under $Q$ in \eqref{eq:c6-fieldredef} is the term subtracted in \eqref{eq:c6-step2}. Until that computation, \eqref{eq:c6-dilcomp} is the dilatation component obtained from scaling covariance, with the coefficients of Theorem \ref{thm:c6-dil}.
+\end{remark}
+
+\begin{remark}[Method of computation]
+\label{rem:c6-verification}
+The limits of Proposition \ref{prop:c6-Leps} are evaluated exactly in explicit realisations of $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$: each boundary integral of the Schwinger parametrisation with one edge at $t=\varepsilon$ is computed in closed form in exact rational arithmetic, edge by edge, and each edge of a graph of degree $0$ carries the fraction of Lemma \ref{lem:c5-log}; the resulting rational multiples of $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$ are the same for both gauge algebras.
+\end{remark}

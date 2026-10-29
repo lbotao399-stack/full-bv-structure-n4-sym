@@ -1,0 +1,626 @@
+{
+ "audit": "notation, style and conversion, round 3 (adversarial), all chapters",
+ "date": "2026-10-28",
+ "scope": [
+  "manuscript/ch00_overview.tex",
+  "manuscript/ch01_classical.tex",
+  "manuscript/ch02_superconformal.tex",
+  "manuscript/ch03_uv_boundary.tex",
+  "manuscript/ch04_counterterms.tex",
+  "manuscript/ch05_operators.tex",
+  "manuscript/ch06_dilatation.tex",
+  "manuscript/ch07_selection_roadmap.tex"
+ ],
+ "references": [
+  "manuscript/FORMAT.md",
+  "DEFINITIONS_v2.md item 11 (and items 6-7)",
+  "DESIGN.md rules 2, 4, 5",
+  "STORY.md",
+  "sources/ledger_SYNTHESIS.md (sections 1-6, symbol collisions 5b)",
+  "~/.codex/skills/mathematical-textbook/SKILL.md",
+  "primary texts (existence of cited items: ESW Def 1.13/1.15/1.34/1.55, Prop 1.56, Rem 1.28/1.33/1.36, Def 2.5/3.2, Thm 2.10, Lemmas 3.4/3.7; C07 6.4.1, 8.0.2, 12.0.4; CG2 13.7.2): all present"
+ ],
+ "checks": {
+  "convert": {
+   "command": "python3 reader_build/convert.py ch00_overview.tex ... ch07_selection_roadmap.tex",
+   "result": {
+    "blocks": 1339,
+    "labels": 195,
+    "unresolved": []
+   },
+   "verdict": "PASS (no unresolved references); reader_build/document.json rewritten for all 8 chapters"
+  },
+  "katex_dryrun": {
+   "output": "reader_build/dryrun_audit_notation3.json",
+   "verification_passed": true,
+   "formulas": {
+    "count": 6168,
+    "errors": 0
+   },
+   "document_blocks": 2169,
+   "images": 26,
+   "tables": 30,
+   "raw_latex_outside_math_in_reader_blocks": 0,
+   "verdict": "PASS"
+  },
+  "xelatex_full_book": {
+   "wrapper": "manuscript/build/preview_book_audit3.tex (chapters 0-7, \\setcounter{chapter}{-1})",
+   "passes": 2,
+   "errors": 0,
+   "undefined_references": 0,
+   "pages": 101,
+   "overfull_hboxes": 7,
+   "max_overfull_pt": 20.7,
+   "hyperref_pdfstring_warnings": 11,
+   "logs": [
+    "manuscript/build/preview_book_audit3.log",
+    "manuscript/build/xelatex_book_audit3.out"
+   ],
+   "verdict": "PASS"
+  },
+  "label_crosscheck": {
+   "labels_reader": 195,
+   "labels_pdf": 195,
+   "mismatches_after_uniform_chapter_offset": 0,
+   "chapter_offset_reader_minus_pdf": 1,
+   "verdict": "FAIL (uniform +1 chapter offset in the reader, H1)"
+  }
+ },
+ "verdicts": {
+  "symbols_not_in_ledger_or_colliding": "FAIL: H 2 (H3 lambda as scale vs gaugino in ch06; H4 Landau O vs O(eps) in ch04); M 13 (M2 Y, M6 d*d, M7 bare Q, M8 x->-x, M9 x_i in g, M10 X in so(V), M11 X as functional, M12 T, M13 u, M14 Theta, M15 D_eps, M16 phi, M18 eps-tensor, M19 bare P); L 7",
+  "explicit_indices": "FAIL: M 2 (M20 ch05 (ab|cd) sum with index c = ghost; M25 ch07 indexed generator names as table labels); L 1 (ch04:618 x_i, xi_i)",
+  "defensive_phrases": "PASS with 1 L: \"only\", \"does not\", \"not a\" occur 0 times in all chapters; ch00:3 \"no infrared scale and no dimensional continuation enter\" (L4)",
+  "process_audit_narration": "FAIL: M 3 (M21 ch04 Remark method: second/third evaluation, identical results, floating point; M22 ch05 Remark \"Verification\"; M23 ch06 Remark \"Verification\" with numerical extrapolation); no script names, file paths or residual counts anywhere (PASS)",
+  "citations_at_first_use": "PASS with L 3 (L1 ch00 Q^GF/H, P(0,infty), L_eps; L2 UV/QME; L3 Sigma^* in ch00); cited ESW/C07/CG2 items exist in the primary texts",
+  "cross_chapter_consistency": "FAIL: H 1 (H2 ch00 misstates the ch02 master-equation result); M 5 (M3 \"finitely many zero-mode classes\", M4 \"decaying sections\", M5 A_{<0} redefined, M17 delta odd in ch04 vs degree -|O| elsewhere, M24 O_loc vs O_l and E_c font); L 4 (tr macro, field-renormalisation naming, Chapter 6 forward reference, dvol-free shorthand)",
+  "katex_and_conversion": "KaTeX PASS (6168 formulas, 0 errors); converter FAIL H 1 (H1 chapter numbering offset: reader chapters 1-8 vs PDF 0-7, 67 prose \"Chapter N\" references point to the wrong reader heading); L 2 (lists with displays, axiom/figure naming)",
+  "xelatex": "PASS (0 errors, 0 undefined references, 101 pages; 7 overfull boxes, max 20.7pt)"
+ },
+ "counts": {
+  "H": 4,
+  "M": 25,
+  "L": 25
+ },
+ "findings": [
+  {
+   "id": "H1",
+   "sev": "H",
+   "category": "conversion",
+   "file": "reader_build/convert.py",
+   "lines": "38, 125-127, 248 (Converter.__init__, \\chapter branch, run)",
+   "found": "The reader numbers chapters from 1: ch00 becomes \"1. Overview\", ch01 \"2. The classical theory\", ..., ch07 \"8. ...\". Every equation/theorem number in the reader is shifted by +1 in the chapter digit relative to the PDF (e.g. thm:c3-acyclic is Theorem 3.19 in the PDF and Theorem 4.19 in the reader; eq:c4-ict is (4.1) in the PDF while the reader tag (4.1) belongs to eq:c3-QP). The 67 prose references \"Chapter N\" (ch00:46,57-113; ch03-ch07) point to the wrong reader heading.",
+   "rule": "FORMAT.md: one manuscript converted to the reader AND compiled to PDF; cross references must agree.",
+   "replacement": "In Converter.run, before self.parse_body(text) for each file f, set the chapter counter from the file name so that \\chapter increments to the file number: `self.chap = int(f.name[2:4]) - 1`. (All 195 labels otherwise agree between reader and PDF after the uniform offset; checked.)"
+  },
+  {
+   "id": "H2",
+   "sev": "H",
+   "category": "cross-chapter consistency",
+   "file": "manuscript/ch00_overview.tex",
+   "lines": "57",
+   "found": "\"... the remaining components, of arities $1$ to $3$, hold for $\\mathfrak g=\\mathfrak{su}(2)$ at sampled generators, with the probability bound stated there.\"",
+   "rule": "Overview must state the results of the chapters; ch02 Theorem thm:c2-master proves the master equation for every g (exact identities on a basis for su(2), su(3), Remark rem:c2-method, transferred by Lemma lem:c2-colour). No sampling and no probability bound appear in ch02.",
+   "replacement": "\\item Chapter 2. The equivariant action $S+S^{(1)}+S^{(2)}$, with $S^{(k)}=0$ for $k\\ge3$, satisfies its master equation for every $\\mathfrak g$ with a nondegenerate invariant symmetric pairing: the components of arity $\\ge4$ and of arity $3$ with at most one or with three odd arguments by a structural argument, the remaining components of arities $1$ to $3$ as exact identities on a basis of $\\mathfrak{psl}(4|4)$ for $\\mathfrak g=\\mathfrak{su}(2),\\mathfrak{su}(3)$, carried to every $\\mathfrak g$ by colour reduction."
+  },
+  {
+   "id": "H3",
+   "sev": "H",
+   "category": "symbol collision",
+   "file": "manuscript/ch06_dilatation.tex",
+   "lines": "3, 7, 20-24, 34-37, 42, 47-64, 67-78, 97-124, 191, 213, 220, 269, 288, 299, 337",
+   "found": "The scale parameter is written $\\lambda$ (\"$\\sigma_\\lambda$\", \"$P(\\lambda^2\\varepsilon,\\infty)$\", \"$\\lambda^{-w}$\", \"$\\lambda\\frac{d}{d\\lambda}$\") in the same chapter, same definitions and same displays as the gaugino $\\lambda$ (Weyl-weight table line 14-16, $(\\lambda^*,\\lambda)$, $(\\zeta,\\lambda)$, $v.\\lambda$); line 7 has to announce the double meaning. ch04:346 uses $s$ for the same scaling.",
+   "rule": "DESIGN rule 2 / DEFINITIONS item 11: no new notation, no reuse of a ledger symbol ([ESW] gaugino lambda) for a second object; consistent naming across chapters.",
+   "replacement": "Use the letter of ch04:346: replace the scale parameter by $s>0$ throughout ch06 ($\\sigma_s$, $P(s^2\\varepsilon,\\infty)$, $s^{-w}$, $\\log s$, $s\\frac{d}{ds}\\big|_{s=1}$, $\\varepsilon^{\\prime}=s^2\\varepsilon$) and delete line 7. Line 3: \"the rescaling maps $P(\\varepsilon,\\infty)$ to $P(s^2\\varepsilon,\\infty)$\"."
+  },
+  {
+   "id": "H4",
+   "sev": "H",
+   "category": "symbol collision",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "53, 55, 60, 92, 93, 94, 100, 110, 111, 112, 207, 208, 235, 254, 288, 749",
+   "found": "Landau symbols \"$+O(\\varepsilon)$\", \"$+O(1)$\", \"$O(\\varepsilon^2|p|^4)$\", \"$\\varepsilon^{-1}O(\\varepsilon)$\", \"plus $O(\\varepsilon)$\" (16 occurrences), while $O(\\varepsilon)$ is the program symbol for the local operator family (ch00:17, ch03:338, ch05:22, ch06:87, ch07:11) and ch04:808 itself uses $O[\\infty]$.",
+   "rule": "DEFINITIONS (Observables): O(eps) is the user's own symbol for the local family; ledger 5b: O = obstruction/observable; no second meaning.",
+   "replacement": "Lemma lem:c4-integrals (92-94) and Examples (207-208, 235, 254, 288): replace \"$+O(1)$\" by \"$+(\\text{a function with a limit as }\\varepsilon\\to0)$\", or state the expansions as membership in $\\mathscr A_{\\ge0}$ [C07, Def 1.4.1]. Corollary cor:c4-sing (53-60) and Lemma lem:c4-special (749): \"$-a\\,\\varepsilon^{-1}+b+(\\text{a term bounded by a multiple of }\\varepsilon)$\" and in the proof \"$\\varepsilon^{-1}$ times a term bounded by a multiple of $\\varepsilon$ is bounded near $\\varepsilon=0$\". Line 100: \"$e^{-y}=1-y+(\\text{a remainder between }0\\text{ and }\\tfrac12y^2)$ for $y=\\frac{\\varepsilon t|p|^2}{\\varepsilon+t}\\in[0,\\varepsilon|p|^2]$\". Lines 110-112: \"$+(\\text{a term bounded by a multiple of }\\varepsilon)$\"."
+  },
+  {
+   "id": "M1",
+   "sev": "M",
+   "category": "notation (unit)",
+   "file": "manuscript/ch00_overview.tex",
+   "lines": "95",
+   "found": "\"$-\\big(E+w_O+\\text{coefficient}\\cdot\\text{unit}\\big)O[\\infty]+\\cdots$\"; line 54 states that the unit is \"written out in every formula\".",
+   "rule": "DEFINITIONS item 11 / round-1 facts: the unit is always written out, never named in a formula.",
+   "replacement": "$-\\Big(E+w_O+\\text{coefficient}\\cdot\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\Big)O[\\infty]+\\cdots$"
+  },
+  {
+   "id": "M2",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch07_selection_roadmap.tex; manuscript/ch00_overview.tex",
+   "lines": "ch07: 13-15, 32, 253, 267, 276, 293; ch00: 30",
+   "found": "The local representative of a component is called $Y$ (\"represented by a local functional $Y$\", \"$=Y[\\infty]$\", \"$Y=\\int\\omega\\,f_{x_1}$\", \"$Y$ lies in the span\"), while the same chapters write the unit with $X,Y\\in\\mathfrak g$ (ch07:147-151, 350; ch00:52-110).",
+   "rule": "No reuse of a symbol for two objects in one chapter (DEFINITIONS item 11; skill: define notation once).",
+   "replacement": "ch07 Definition def:c7-component: \"The component is represented by the local functional $\\int\\omega\\,f_{x_1}$ if $[(d_{CE}+Q)O[\\infty]](x_1)=\\big(\\int\\omega\\,f_{x_1}\\big)[\\infty]$\", with $f_{x_1}$ a polynomial in the jets of the fields; then replace every $Y$ by $\\int\\omega\\,f_{x_1}$ (32: \"its local representative $\\int\\omega\\,f_{x_1}$\"; 253: drop \"$Y=$\"; 267, 276, 293: \"$\\int\\omega\\,f_{Q_1}$ lies in the span ...\"). ch00:30: \"An equation expressing $[(d_{CE}+Q)O[\\infty]](x_1)$ as the scale-$\\infty$ observable of a second functional has content because that functional is required to be local, ...\""
+  },
+  {
+   "id": "M3",
+   "sev": "M",
+   "category": "cross-chapter consistency",
+   "file": "manuscript/ch00_overview.tex; ch05_operators.tex; ch07_selection_roadmap.tex",
+   "lines": "ch00:30; ch05:3, 57; ch07:32",
+   "found": "\"Away from finitely many zero-mode classes\" (ch00:30, ch07:32), \"fixed by the finitely many zero-mode classes alone\" (ch05:3), \"$Q$-exact up to the finitely many zero-mode classes\" (ch05:57).",
+   "rule": "ch03 Theorem thm:c3-acyclic and Remark rem:c3-story: the zero-mode classes are finitely many in each polynomial degree (infinitely many in total), and acyclicity holds on moment-free Schwartz sections.",
+   "replacement": "ch00:30 and ch07:32: \"On moment-free Schwartz sections every $Q$-closed functional without constant term is $Q$-exact (Chapter 3); on compactly supported sections $Q$ has in addition the zero-mode classes, finitely many in each polynomial degree.\" ch05:3: \"... a general functional family $O(\\varepsilon)$ produces the zero class on moment-free Schwartz sections.\" ch05:57: see M4."
+  },
+  {
+   "id": "M4",
+   "sev": "M",
+   "category": "cross-chapter naming",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "3, 57, 67",
+   "found": "\"$P(0,\\infty)$ is a contracting homotopy for $Q$ on decaying sections\" (3); \"Let $F$ be a functional of decaying sections ... Then $F$ is $Q$-exact up to the finitely many zero-mode classes\" (57); \"on decaying sections\" (67).",
+   "rule": "ch03 defines and uses \"moment-free Schwartz sections\" (ch03:278, Theorem thm:c3-acyclic, Corollary cor:c3-functionals); \"decaying sections\" is undefined and the statement is false for them (zero modes pair with decaying sections).",
+   "replacement": "3: \"on moment-free Schwartz sections (Chapter 3)\". 57: \"Let $F$ be a continuous polynomial functional of moment-free Schwartz sections, without constant term, with $QF=0$. Then $F$ is $Q$-exact (Corollary \\ref{cor:c3-functionals}); on compactly supported sections the $Q$-closed functionals carry in addition the zero-mode classes of Theorem \\ref{thm:c3-acyclic}.\" 67: \"on moment-free Schwartz sections\"."
+  },
+  {
+   "id": "M5",
+   "sev": "M",
+   "category": "ledger symbol redefined",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "38",
+   "found": "\"$\\partial_\\delta I^{CT}[\\varepsilon]\\in\\mathscr O_l(\\mathscr E)\\otimes\\mathscr A_{<0}$, with $\\mathscr A_{<0}=\\mathrm{span}\\{\\varepsilon^{-1},\\log\\varepsilon\\}$ [C07, Def 8.0.2; CG2, §13.7.2]\"",
+   "rule": "Ledger §1 (C07 Def 1.4.1, 8.0.2): A_{<0} is the singular part of the whole space of epsilon-functions; ch04:20 correctly says \"the span of eps^{-1} and log eps, the one-loop part of the renormalisation scheme A_{<0}\".",
+   "replacement": "\"a unique local functional $\\partial_\\delta I^{CT}[\\varepsilon]$ with coefficients in $\\mathrm{span}\\{\\varepsilon^{-1},\\log\\varepsilon\\}\\subset\\mathscr A_{<0}$ [C07, Def 1.4.1; CG2, §13.7.2]\""
+  },
+  {
+   "id": "M6",
+   "sev": "M",
+   "category": "symbol with several meanings",
+   "file": "manuscript/ch00_overview.tex; ch01_classical.tex; ch03_uv_boundary.tex; ch04_counterterms.tex; ch07_selection_roadmap.tex",
+   "lines": "ch01:199, 204; ch00:58, 60; ch03:25, 27, 36-37, 43, 82; ch04:71-73, 83, 314; ch07:196, 229",
+   "found": "$d^*d$ is (i) the operator $d^*d$ on one-forms, which is not the Laplacian (ch01:199 \"$A\\mapsto-\\tfrac12\\,d^*dA$\", caption 204 \"on $A|_V$ it is $d^*d$ on one-forms\", ch03:36), (ii) the scalar Laplacian in \"$H=d^*d\\otimes\\mathrm{id}$ on every component\" (ch00:60, ch03:25, ch04:314, ch07:229), (iii) the Laplacian in the momentum variable $p_1$ (ch04:71-73, 83).",
+   "rule": "One symbol, one meaning (DEFINITIONS item 11; skill: define at first use).",
+   "replacement": "Keep (i). For (ii) write the Hodge Laplacian: ch03:25 \"$H:=[Q,Q^{GF}]=d^*d+dd^*$, the Hodge Laplacian of flat $\\mathbb R^4$, which acts on every component function of every slot as the positive Laplacian of functions; in momentum space $H=|p|^2$\"; ch00:58-60, ch03:27, 82, ch04:314, ch07:229: \"$H=d^*d+dd^*$ (componentwise Laplacian)\". For (iii) ch04:71: \"$\\Big[\\text{numerator}-\\frac{(\\text{positive Laplacian of the numerator in }p_1)}{4(t_1+t_2)}\\Big]$\", and delete \"where $d^*d$ is the positive Laplacian in the variable $p_1$\"."
+  },
+  {
+   "id": "M7",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "68",
+   "found": "\"... from the Clifford relation and $(\\rho(x)Q,Q^{\\prime})=(Q,\\rho(x)Q^{\\prime})$.\"",
+   "rule": "ch02:28 (Definition def:c2-odd): \"the unsubscripted $Q$ is the differential of Chapter 1\"; ledger 5b.",
+   "replacement": "\"... and $(\\rho(x)Q_1,Q_2)=(Q_1,\\rho(x)Q_2)$.\""
+  },
+  {
+   "id": "M8",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "175, 179",
+   "found": "\"the substitution $x\\mapsto-x$, $S^{(k)}\\mapsto(-1)^kS^{(k)}$ exchanges the two conventions\" (175); \"the linear map $x\\mapsto-x$ is an isomorphism from $\\mathfrak{psl}(4|4)$ to its opposite, since $-[x_1,x_2]=-[-x_1,-x_2]$\" (179).",
+   "rule": "ch02:7 and 140: $x$ is the position on $\\mathbb R^4$, generators carry a subscript; $x\\mapsto-x$ reads as the reflection of $\\mathbb R^4$.",
+   "replacement": "175: \"the substitution $x_i\\mapsto-x_i$ in every argument, $S^{(k)}\\mapsto(-1)^kS^{(k)}$, exchanges the two conventions\". 179: \"the linear map $x_1\\mapsto-x_1$ is an isomorphism from $\\mathfrak{psl}(4|4)$ to its opposite, since $-[x_1,x_2]=-[-x_1,-x_2]$\"."
+  },
+  {
+   "id": "M9",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "350",
+   "found": "\"every tree tensor with $k$ legs is a sign times $(b(x_1,\\dots,x_{k-1}),x_k)$ for a bracket monomial $b$ of $x_1,\\dots,x_{k-1}$\" with $x_i\\in\\mathfrak g$.",
+   "rule": "In ch02 $x_i$ are elements of psl(4|4) (Definition def:c2-cochains) and $x$ is the position; elements of the gauge algebra are $X,Y,Z,X_j$ elsewhere (ch01:339, ch04:476, ch05:81).",
+   "replacement": "\"... is a sign times $(b(X_1,\\dots,X_{k-1}),X_k)$ for a bracket monomial $b$ of $X_1,\\dots,X_{k-1}\\in\\mathfrak g$, each used once.\""
+  },
+  {
+   "id": "M10",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch02_superconformal.tex; ch07_selection_roadmap.tex",
+   "lines": "ch02:14, 92, 93; ch07:97",
+   "found": "\"rotations $x\\mapsto Xx$, $X\\in\\mathfrak{so}(V)$\" (ch02:14), table realisation \"$x\\mapsto Xx$\" (ch02:92-93), \"a rotation of $V$ is $x\\mapsto Xx$ with $X$ antisymmetric\" (ch07:97); $X\\in\\mathfrak g$ in the unit and the letters in every chapter.",
+   "rule": "One symbol, one meaning across the book (DEFINITIONS item 11).",
+   "replacement": "ch02:14 \"\\item rotations, the linear vector fields given by elements of $\\mathfrak{so}(V)$;\" ch02:92-93 realisation column: \"linear vector field of $\\mathfrak{so}(V)$\". ch07:97 \"a rotation of $V$ is the linear vector field of an antisymmetric endomorphism of $V$\"."
+  },
+  {
+   "id": "M11",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch05_operators.tex; ch06_dilatation.tex",
+   "lines": "ch05:48, 56; ch06:89",
+   "found": "\"two such counterterms differ by a local functional $X(\\varepsilon)$ ... $X(\\varepsilon)$ itself, so $X(\\varepsilon)$ has a limit\" (ch05:48); \"For an $\\varepsilon$-independent local functional $X$ of order $\\hbar$, the family $O(\\varepsilon)+X$ gives the observable $O[\\infty]+X[\\infty]$\" (ch05:56); \"For a local functional $X$ of order $\\hbar$, $X[\\infty]$ denotes ...\" (ch06:89). The same chapters use $X\\in\\mathfrak g$ (letters $\\int\\omega(X,\\iota_wA)$, the unit).",
+   "rule": "One symbol, one meaning in a chapter.",
+   "replacement": "ch05:48 \"Uniqueness: two such counterterms differ by a local functional with values in $\\mathscr A_{<0}$ whose tree-level flow has a limit. The part of that flow with as many legs as the difference is the difference itself, which therefore has a limit, and its singular part vanishes.\" ch05:56 \"Adding to $O(\\varepsilon)$ an $\\varepsilon$-independent local functional $F$ of order $\\hbar$ adds $F[\\infty]$ to $O[\\infty]$.\" ch06:89 \"For a local functional $F$ of order $\\hbar$, $F[\\infty]$ denotes ...\"."
+  },
+  {
+   "id": "M12",
+   "sev": "M",
+   "category": "banned symbol",
+   "file": "manuscript/ch05_operators.tex; ch06_dilatation.tex",
+   "lines": "ch05:81, 84, 91; ch06:42",
+   "found": "ch05 Lemma lem:c5-colour: \"a linear map $T\\colon\\mathfrak g\\to\\mathfrak g$\", \"$(-,T\\,-)$ ... is $\\operatorname{tr}_{\\mathfrak g}T$\", proof \"$T=-\\mathrm{ad}_{X_1}$\", \"$T=-\\mathrm{ad}_{X_1}\\mathrm{ad}_{X_2}$\"; ch06:42 \"satisfies $\\sigma_\\lambda T=\\lambda^{w+j-w^{\\prime}}T\\sigma_\\lambda$\".",
+   "rule": "DESIGN rule 4 / DEFINITIONS item 11: the letter T is never used.",
+   "replacement": "ch05: \"for every linear map of $\\mathfrak g$, the bilinear form $(Z,Z^{\\prime})\\mapsto(Z,\\text{(the map applied to }Z^{\\prime}))$ evaluated on $(-,-)^{-1}$ is its trace $\\operatorname{tr}_{\\mathfrak g}$; in particular $(-,-)$ gives $\\dim\\mathfrak g$, $(-,\\mathrm{ad}_{X_1}-)$ gives $0$ and $(-,\\mathrm{ad}_{X_1}\\mathrm{ad}_{X_2}-)$ gives $\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_{X_1}\\mathrm{ad}_{X_2})$\"; proof: replace \"with $T=\\dots$\" by \"the case of the map $-\\mathrm{ad}_{X_1}$\", etc. ch06:42: \"An operator with $j$ derivatives from a slot of weight $w$ to a slot of weight $w^{\\prime}$ is multiplied by $s^{w+j-w^{\\prime}}$ under conjugation by $\\sigma_s$.\""
+  },
+  {
+   "id": "M13",
+   "sev": "M",
+   "category": "banned symbol",
+   "file": "manuscript/ch03_uv_boundary.tex; ch07_selection_roadmap.tex",
+   "lines": "ch03:364; ch07:141, 262, 286, 310",
+   "found": "ch03:364 \"on the map $e\\mapsto u\\,\\ell(e)$, with $u\\in\\mathscr E$ homogeneous ... it is $(-1)^{|u|}\\ell(u)$\"; ch07:141 \"$(\\iota_uA,\\iota_{u^{\\prime}}A)$ with $u,u^{\\prime}\\in W_{\\mathbb R}^\\perp$\"; ch07:262 \"derivative $\\rho(u)Q_2=\\tfrac14\\rho(u){\\not d}(\\dots)$ along $u\\in V$\"; ch07:286 \"the index $u$ of $\\iota_uA$\", \"$\\rho(u),\\rho(w_1),\\rho(w_2)$\", \"$\\sum_u\\iota_uA\\,\\rho(u)$\"; ch07:310 \"$dv(x_0)u=2(x_0,u)v_1-\\dots$\".",
+   "rule": "DEFINITIONS item 11: never u.",
+   "replacement": "ch03:364 \"on the map $e\\mapsto e_0\\,\\ell(e)$, with $e_0\\in\\mathscr E$ homogeneous ... it is $(-1)^{|e_0|}\\ell(e_0)$\". ch07:141 \"$(\\iota_wA,\\iota_{w^{\\prime}}A)$ with $w,w^{\\prime}\\in W_{\\mathbb R}^\\perp$\". ch07:262 \"derivative $\\rho(v_2)Q_2=\\tfrac14\\rho(v_2){\\not d}(Q_1+\\rho(x)Q_2)$ along $v_2\\in V$\". ch07:286 use $w$ for the running basis vector, as in Corollary cor:c7-schur (\"the index $w$ of $\\iota_wA$\", \"$\\rho(w),\\rho(w_1),\\rho(w_2)$\", \"$\\sum_w\\iota_wA\\,\\rho(w)=\\rho(A|_{W_{\\mathbb R}^\\perp})$\", \"$(w,w_1)\\rho(w_2)+(w,w_2)\\rho(w_1)$\", \"$\\rho(q(w\\wedge w_1\\wedge w_2))$\"). ch07:310 \"$dv(x_0)v_2=2(x_0,v_2)v_1-2(v_1,v_2)x_0-2(v_1,x_0)v_2$\"."
+  },
+  {
+   "id": "M14",
+   "sev": "M",
+   "category": "ledger symbol reused",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "318, 322, 324, 326, 393",
+   "found": "\"Let $\\Theta=(d_{CE}+Q)O[\\infty]$ ... $(d_{CE}+Q)\\Theta=0$ ... $\\Theta(\\Delta)$ ... $\\Theta(K_{v_1})$\"; Step 3 (393) \"through $(d_{CE}+Q)\\Theta=0$\".",
+   "rule": "Ledger §4 SC6: $\\Theta$ is the [SW] anomaly $\\Theta[L]$; no new meaning.",
+   "replacement": "Write the cochain out: \"The cochain $(d_{CE}+Q)O[\\infty]$ has degree $|O|+1$ and $(d_{CE}+Q)\\big((d_{CE}+Q)O[\\infty]\\big)=0$. For even $x_1,x_2$ ... $\\big(d_{CE}(d_{CE}+Q)O[\\infty]\\big)(x_1,x_2)=(-1)^{|O|+1}[(d_{CE}+Q)O[\\infty]]([x_1,x_2])$ ...\" and in 324/326 \"$[(d_{CE}+Q)O[\\infty]](\\Delta)$\", \"$[(d_{CE}+Q)O[\\infty]](K_{v_1})$\"; 393 \"through $(d_{CE}+Q)^2O[\\infty]=0$\"."
+  },
+  {
+   "id": "M15",
+   "sev": "M",
+   "category": "new symbol",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "678-729 (Definition def:c4-defect, Proposition prop:c4-defectflow, eq:c4-defect1)",
+   "found": "\"the defect vertex at scale $\\varepsilon$ is the odd functional $D_\\varepsilon=QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J$\"; then $J+\\delta D_\\varepsilon$, $D_\\varepsilon=\\tfrac12(\\{I,I\\}_\\varepsilon-\\{I,I\\})+\\dots$",
+   "rule": "DESIGN rule 2: no new notation; D collides with [CG2] D (generalised Laplacian) and [SW] D (ledger 5b).",
+   "replacement": "Keep the words \"the defect vertex\" and write the functional out: \"the defect vertex at scale $\\varepsilon$ is the odd functional $QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J$\"; eq:c4-defectflow \"$Q\\,W(P(\\varepsilon,\\infty),J)=\\partial_\\delta W\\big(P(\\varepsilon,\\infty),J+\\delta\\,(QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J)\\big)$\" (or drop $\\delta$, see M17); eq:c4-defect1 \"$QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J=\\tfrac12(\\dots)$\"."
+  },
+  {
+   "id": "M16",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch03_uv_boundary.tex; ch07_selection_roadmap.tex",
+   "lines": "ch03:290, 314; ch07:75",
+   "found": "ch03 Theorem thm:c3-acyclic: \"Let $\\phi$ be a section in the slot of $c$ ... with $Q\\phi=0$: a constant ghost $\\phi=X$ ... $e\\mapsto\\langle\\phi,e\\rangle$\" while the same chapter uses $\\phi\\in\\mathrm{Sym}^2\\mathscr E$ for kernels (227, 245, 249, 278, 353-413). ch07:75 \"with $\\phi\\in\\{A,\\lambda,c\\}$\" while ch07:107 uses $\\phi$ for the kernel of $\\partial_\\phi$.",
+   "rule": "Ledger [C07 §6.4]: $\\phi\\in\\mathrm{Sym}^2\\mathscr E$; one meaning per chapter.",
+   "replacement": "ch03:290, 314: rename the zero mode $e_0$ (\"Let $e_0$ be a section ... with $Qe_0=0$: a constant ghost $e_0=X\\in\\mathfrak g$, ... The linear functional $e\\mapsto\\langle e_0,e\\rangle$ ...\"). ch07:75: \"for each of the pairs $(A,A^*)$, $(\\lambda,\\lambda^*)$, $(c,c^*)$ the condition ... reads $\\int\\mathrm{dvol}\\,\\big((v.A,A^*)+(A,v.A^*)\\big)=0$, and likewise for the other two pairs\"."
+  },
+  {
+   "id": "M17",
+   "sev": "M",
+   "category": "cross-chapter symbol meaning",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "689-709",
+   "found": "\"Let $\\delta$ be an odd parameter with $\\delta^2=0$ [C07, (12.0.1)]\" in Proposition prop:c4-defectflow, while ch00:17, ch05:13, ch06:69, 168 and ch07:9 use $\\delta$ for the [CG2, Def 8.3.1.1] square-zero parameter of degree $-|O|$ (even for the degree-0 operators of Chapters 5-7).",
+   "rule": "Ledger G6/X17: the two parameters have no common source symbol; one symbol must not change parity between chapters.",
+   "replacement": "Remove $\\delta$ from ch04 and state the graph form directly, as ch07:352 does: \"$Q\\,W(P(\\varepsilon,\\infty),J)=e^{-W(P(\\varepsilon,\\infty),J)/\\hbar}e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}\\big((QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J)\\,e^{J/\\hbar}\\big)$, the sum of the connected graphs with exactly one vertex labelled by $QJ+\\tfrac12\\{J,J\\}_\\varepsilon+\\hbar\\Delta_\\varepsilon J$, all other vertices by $J$ and all edges by $P(\\varepsilon,\\infty)$ [C07, §15.4]\"; the proof keeps the same steps with the product rule."
+  },
+  {
+   "id": "M18",
+   "sev": "M",
+   "category": "symbol collision",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "362",
+   "found": "\"$\\mathrm{Spin}(6,\\mathbb C)$ admits invariants of an even number of vectors of $W_{\\mathbb R}^\\perp$ (the $\\varepsilon$-tensor needs six)\"",
+   "rule": "Ledger 5b: $\\varepsilon$ = UV cutoff only.",
+   "replacement": "\"(the invariant volume form of $W_{\\mathbb R}^\\perp$ needs six)\""
+  },
+  {
+   "id": "M19",
+   "sev": "M",
+   "category": "ledger symbol misuse",
+   "file": "manuscript/ch06_dilatation.tex",
+   "lines": "168 (and every $P$ in 168-182)",
+   "found": "\"Put $J=I+\\delta O$ and $P=P(\\varepsilon,\\infty)$\", then $e^{\\hbar\\partial_P}$, $W(P,J)$.",
+   "rule": "Ledger 5b: $P$ with its two-slot argument = propagator, with an index = translation; bare $P$ was already removed from ch03 (audit 2, N5).",
+   "replacement": "Delete \"and $P=P(\\varepsilon,\\infty)$\" and write $e^{\\hbar\\partial_{P(\\varepsilon,\\infty)}}$, $W(P(\\varepsilon,\\infty),J)$ in full in lines 168-175."
+  },
+  {
+   "id": "M20",
+   "sev": "M",
+   "category": "explicit indices",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "107-110, 124, 128",
+   "found": "\"$-\\frac12\\sum_{(ab|cd)}\\big[(v_a,v_c)(v_b,v_d)-(v_a,v_d)(v_b,v_c)\\big]\\big([Z_a,Z_b],[Z_c,Z_d]\\big)$, the sum running over the three pairings $(12|34)$, $(13|24)$, $(14|23)$\"; proof \"$[A_a\\wedge A_b]$\", \"$[A(p_i),A(p_j)]=(v_i,v_j)[Z_i,Z_j]$\". The index letter $c$ is the ghost.",
+   "rule": "DESIGN rule 2: reported formulas index-free; no index letter that is a field name.",
+   "replacement": "Write the three pairings out, as ch04 eq:c4-tree4 does: \"$-\\frac12\\Big[\\big((v_1,v_3)(v_2,v_4)-(v_1,v_4)(v_2,v_3)\\big)([Z_1,Z_2],[Z_3,Z_4])+\\big((v_1,v_2)(v_3,v_4)-(v_1,v_4)(v_3,v_2)\\big)([Z_1,Z_3],[Z_2,Z_4])+\\big((v_1,v_2)(v_4,v_3)-(v_1,v_3)(v_4,v_2)\\big)([Z_1,Z_4],[Z_2,Z_3])\\Big]$\"; in the proof \"for legs $1,2$ the two-form $[A(p_1)\\wedge A(p_2)]$ is $(v_1,-)\\wedge(v_2,-)\\otimes[Z_1,Z_2]$, and likewise for every pair of legs\"."
+  },
+  {
+   "id": "M21",
+   "sev": "M",
+   "category": "process/verification narration",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "844 (Remark rem:c4-method); also 789",
+   "found": "\"Each per-graph coefficient of this chapter was computed ... and every graph was evaluated a second time independently, with identical results; for the two-point graphs the second evaluation used floating-point arithmetic with rational reconstruction ... the purely bosonic graphs and the sector $(c,A|_V)$ of the obstruction were evaluated a third time\"; 789 \"A direct evaluation ... reproduces $-\\tfrac92\\varepsilon^{-1}$ and $-\\tfrac{27}8$\".",
+   "rule": "FORMAT.md / task rules: one Remark per chapter describing the method mathematically (exact rational arithmetic over a basis / sampled points with the Schwartz-Zippel bound); no audit narration (\"second time\", \"identical results\", floating point).",
+   "replacement": "Remark (Method of computation): \"Each per-graph coefficient is an exact rational number. It is obtained in an explicit realisation of $V_{10}$, $\\Sigma$ and $\\mathfrak g$, over $\\mathbb Q(i)$, with the loop momentum integrated as a Gaussian (Lemma \\ref{lem:c4-gauss}) and the $\\varepsilon$-expansion taken on the graphs with one pinned edge (Proposition \\ref{prop:c4-boundary}); for the two-point graphs polarisations and momenta are symbolic. For the cubic and quartic sets each multilinear form is determined by exact linear algebra on a basis of the $\\mathrm{Spin}(4,\\mathbb C)\\times\\mathrm{Spin}(6,\\mathbb C)$-invariant multilinear forms of the given legs, including the parity-odd ones, from evaluations at integer points drawn uniformly from a finite set; a nonzero polynomial vanishes at such a point with probability at most its total degree divided by the size of the set (Schwartz--Zippel), the full rank of the system is then established exactly, and the solution is exact. The colour factors are reduced exactly for a general simple $\\mathfrak g$.\" 789: \"Equivalently, the longitudinal parts of the graphs of the $A|_V$ two-point function, with every edge cut off at $\\varepsilon$, sum to $-\\tfrac92\\varepsilon^{-1}$ and $-\\tfrac{27}8$; ...\""
+  },
+  {
+   "id": "M22",
+   "sev": "M",
+   "category": "process/verification narration",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "407-409 (Remark rem:c5-verification)",
+   "found": "Title \"Verification\"; \"was also obtained by two independent evaluations ... the other from floating-point evaluations of the boundary integrals ... with rational reconstruction of the coefficients. Both reproduce every entry ... The list (a)--(f) agrees with a computer enumeration of all one-loop graphs with one vertex $O$.\"",
+   "rule": "FORMAT.md / task rules: method stated mathematically once per chapter; no verification narration.",
+   "replacement": "\\begin{remark}[Method of computation] The entries of the table of Proposition \\ref{prop:c5-table} are exact rational multiples of $\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)/(X,Y)$: in explicit realisations of $V_{10}$, of the Clifford module and of $\\mathfrak g=\\mathfrak{su}(2)$ and $\\mathfrak{su}(3)$, the Schwinger integrals of each graph are integrated in closed form in exact rational arithmetic and the singular part is read off from the exact $\\varepsilon$-expansion, with the same multiples for both gauge algebras. The graphs (a)--(f) are all one-loop graphs with one vertex $O$ on the cycle and superficial degree $\\ge0$ (Proposition \\ref{prop:c5-census}). \\end{remark}"
+  },
+  {
+   "id": "M23",
+   "sev": "M",
+   "category": "process/verification narration",
+   "file": "manuscript/ch06_dilatation.tex",
+   "lines": "377-379 (Remark rem:c6-verification)",
+   "found": "Title \"Verification\"; \"were evaluated in two ways ... and at finite $\\varepsilon$ with the exact Gaussian factors at rational external momenta and polarisations, followed by extrapolation to $\\varepsilon\\to0$. Both reproduce the coefficients ...\"",
+   "rule": "FORMAT.md / task rules: exact method stated once; numerical extrapolation is neither exact nor a mathematical statement.",
+   "replacement": "\\begin{remark}[Method of computation] The limits of Proposition \\ref{prop:c6-Leps} are evaluated exactly in explicit realisations of $\\mathfrak g=\\mathfrak{su}(2)$ and $\\mathfrak{su}(3)$: each boundary integral of the Schwinger parametrisation with one edge at $t=\\varepsilon$ is computed in closed form in exact rational arithmetic, edge by edge; each edge of a degree-$0$ graph carries the fraction of Lemma \\ref{lem:c5-log}. \\end{remark}"
+  },
+  {
+   "id": "M24",
+   "sev": "M",
+   "category": "cross-chapter naming",
+   "file": "manuscript/ch02_superconformal.tex; ch03_uv_boundary.tex; ch05_operators.tex; ch07_selection_roadmap.tex",
+   "lines": "ch02:138, 186; ch03:214; ch05:38; ch07:381; ch01:76, ch03:214 (E_c)",
+   "found": "Local functionals are $\\mathcal O_{\\rm loc}(\\mathscr E)$ in ch02, ch03, ch07 ([ESW] letter with [C07] font of the fields) and $\\mathscr O_l(\\mathscr E)$ in ch05 ([C07]); compactly supported sections are $\\mathscr E_c$ cited to [ESW, §1.1], whose symbol is $\\mathcal E_c$.",
+   "rule": "Consistent naming across chapters; ledger symbols with their source font.",
+   "replacement": "Use the [C07] notation throughout, as the fields are $\\mathscr E$: $\\mathscr O_l(\\mathscr E)$ [C07, Def 4.2.2] in ch02:138, 186, ch03:214, ch07:381 (\"$C^\\bullet(\\mathfrak{psl}(4|4),\\mathscr O_l(\\mathscr E))$\"), and \"$\\mathscr E_c$, the compactly supported elements of $\\mathscr E$ ($\\mathcal E_c$ in [ESW, §1.1])\" at ch01:76."
+  },
+  {
+   "id": "M25",
+   "sev": "M",
+   "category": "generator names with indices",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "318, 334-342",
+   "found": "Table rows labelled \"translation $P_{\\alpha\\dot\\beta}$\", \"rotation $M_{\\alpha\\beta}$, $\\bar M_{\\dot\\alpha\\dot\\beta}$\", \"R-symmetry $R^i_j$\", \"$Q^i_\\alpha$\", \"$\\bar Q_{\\dot\\alpha i}$\", \"$S^\\alpha_i$\", \"$\\bar S^{\\dot\\alpha i}$\", \"$K^{\\alpha\\dot\\beta}$\"; line 318 \"$K_{v_1}$\", \"$P_{v_2}$\" introduced without the [SW] citation.",
+   "rule": "DEFINITIONS item 11: generator names are index-free subspaces; Delta, K, P only with the SW meaning stated (and cited) at first use; DESIGN rule 2 (spinors index-free).",
+   "replacement": "First column: \"translations\", \"$\\mathfrak{so}(V)$\", \"$\\mathfrak{so}(W_{\\mathbb R}^\\perp)$\", \"dilatation $\\Delta$\", \"$S_+\\otimes W\\subset\\Sigma$\", \"$S_-\\otimes W^*\\subset\\Sigma$\", \"$S_+\\otimes W^*\\subset\\Sigma^*$\", \"$S_-\\otimes W\\subset\\Sigma^*$\", \"special conformal\"; keep the [SW, (8)] names in the caption (\"in the names of [SW, (8)]: $P,M,\\bar M,R,Q,\\bar Q,S,\\bar S,K$\"). Line 318: \"for the special conformal generator $K_{v_1}$ of [SW, (3)] along $v_1\\in V$ and the translation $P_{v_2}$ of [SW, (3)] along $v_2\\in V$\"."
+  },
+  {
+   "id": "L1",
+   "sev": "L",
+   "category": "citation at first use",
+   "file": "manuscript/ch00_overview.tex",
+   "lines": "9, 26, 36",
+   "found": "9: \"$Q^{GF}$, here of Feynman type, makes $H=[Q,Q^{GF}]$ the Laplacian\" (no source); 26: \"$P(0,\\infty)$ is a contracting homotopy\" (undefined in ch00); 36: \"$L_\\varepsilon=(Q^{GF}\\otimes1)K_\\varepsilon$\" (no source).",
+   "rule": "Skill/FORMAT: every symbol cited at first use.",
+   "replacement": "9: \"A gauge-fixing operator $Q^{GF}$ [C07, §1.1, Def 4.3.3], here of Feynman type, makes $H=[Q,Q^{GF}]$ [C07, Def 4.3.3(4)] ...\"; 26: \"... and $P(0,\\infty)=\\lim_{\\varepsilon\\to0}P(\\varepsilon,\\infty)$ [C07, §1.2] is a contracting homotopy\"; 36: \"$L_\\varepsilon=(Q^{GF}\\otimes1)K_\\varepsilon$ [C07, §6.5]\"."
+  },
+  {
+   "id": "L2",
+   "sev": "L",
+   "category": "first use / abbreviation",
+   "file": "manuscript/ch00_overview.tex; ch04_counterterms.tex",
+   "lines": "ch00:17; ch04:1",
+   "found": "ch00:17 \"the local operator at the UV end\" (UV never expanded); ch04 chapter title \"Counterterms at one loop and the QME at the UV boundary\" (QME never defined as an abbreviation).",
+   "rule": "Define at first use; no unexplained shorthand.",
+   "replacement": "ch00:3 \"a lower cutoff $\\varepsilon>0$ on Schwinger time, the ultraviolet (UV) boundary;\"; ch04:1 \"\\chapter{Counterterms at one loop and the quantum master equation at the UV boundary}\"."
+  },
+  {
+   "id": "L3",
+   "sev": "L",
+   "category": "new symbol",
+   "file": "manuscript/ch00_overview.tex; ch05_operators.tex; ch06_dilatation.tex",
+   "lines": "ch00:80; ch05:192, 194; ch06:7, 145, 240, 252",
+   "found": "\"$\\zeta\\in\\Sigma^*\\otimes\\mathfrak g$\" and the letter $\\int\\omega\\,(\\zeta,\\lambda)$; in ch00 $\\Sigma^*$ is used before it is introduced, and the letters use $X\\in\\mathfrak g$ next to the unit with $X,Y$.",
+   "rule": "No new notation; define at first use.",
+   "replacement": "Acceptable if kept uniform; minimal fix: ch00:80 \"with fixed $X\\in\\mathfrak g$, $v\\in V$ and $\\zeta$ in $\\Sigma^*\\otimes\\mathfrak g$, $\\Sigma^*$ the dual semi-spin representation [ESW, §2.1]\". The $X$ of the letters is harmless (the unit is independent of $X,Y$) but ch00:80-82 puts both in one item; write the letters with $Z\\in\\mathfrak g$ if a rename is wanted."
+  },
+  {
+   "id": "L4",
+   "sev": "L",
+   "category": "defensive wording",
+   "file": "manuscript/ch00_overview.tex",
+   "lines": "3",
+   "found": "\"the upper end of every Schwinger integral is $\\infty$, and no infrared scale and no dimensional continuation enter.\"",
+   "rule": "Skill: state objects affirmatively; no defensive contrasts.",
+   "replacement": "\"the upper end of every Schwinger integral is $\\infty$, so that $\\varepsilon$ is the single scale of the construction.\""
+  },
+  {
+   "id": "L5",
+   "sev": "L",
+   "category": "source symbol in a quote",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "237",
+   "found": "\"[ESW, Def 1.16] prints the adjointness of the BV differential as $\\int\\omega(e_0,Q_{BV}e_1)=\\dots$\" ($\\omega$ elsewhere is the background four-form of [CG2]).",
+   "rule": "Ledger 5b: [ESW] omega = BV pairing <-> [C07] <,>.",
+   "replacement": "Add after the formula: \"where $\\omega$ and $Q_{BV}$ are the [ESW] names of $\\langle\\,,\\rangle$ and $Q$\"."
+  },
+  {
+   "id": "L6",
+   "sev": "L",
+   "category": "symbol collision",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "27",
+   "found": "\"${\\not d}=\\rho\\circ d$ is the Dirac operator $\\Gamma(\\Sigma)\\to\\Gamma(\\Sigma^*)$\" ($\\Gamma$ is the $\\Gamma$-pairing six lines earlier and the [C07] flow).",
+   "rule": "Ledger 5b: Gamma reserved for the Gamma-pairing.",
+   "replacement": "\"is the Dirac operator from $\\Sigma$-valued to $\\Sigma^*$-valued functions [ESW, §2.1]\"."
+  },
+  {
+   "id": "L7",
+   "sev": "L",
+   "category": "order of definitions / grammar",
+   "file": "manuscript/ch02_superconformal.tex",
+   "lines": "113, 319",
+   "found": "113 \"$\\mathrm{str}(\\mathrm{ad}_{x_1}\\mathrm{ad}_{x_2})$\" uses $x_1,x_2$ for generators before Definition def:c2-cochains (140) fixes that convention; 319 \"For every $\\mathfrak g$ and every arguments\".",
+   "rule": "Define at first use.",
+   "replacement": "113 \"for $x_1,x_2\\in\\mathfrak{psl}(4|4)$\"; 319 \"For every $\\mathfrak g$ and all arguments\"."
+  },
+  {
+   "id": "L8",
+   "sev": "L",
+   "category": "symbol collision (local)",
+   "file": "manuscript/ch03_uv_boundary.tex",
+   "lines": "295, 308, 370",
+   "found": "295 \"at distance $r\\ge1$\" next to 321 \"$r$ an odd element of an auxiliary nilpotent ring\"; 308 \"$g$\" (a Schwartz function) and \"$N$\" (Taylor order) in a chapter that uses $\\{f,g\\}_\\varepsilon$; 370 \"$\\big|_{0}$\" in eq:c3-oneloop, explained only at 405 (\"At the origin\").",
+   "rule": "One meaning per chapter; define at first use.",
+   "replacement": "295 \"at a point $x$ with $\\operatorname{dist}(x,\\operatorname{supp}\\alpha)\\ge1$, $|e^{-tH}\\alpha(x)|\\le(4\\pi t)^{-2}e^{-\\operatorname{dist}(x,\\operatorname{supp}\\alpha)^2/4t}\\int\\mathrm{dvol}\\,|\\alpha|$\"; 308 rename the Schwartz function $h$ and the order $n$; 370 add \"evaluated at the origin of $\\mathscr E$\" after the display or write \"$\\big|_{e=0}$\"."
+  },
+  {
+   "id": "L9",
+   "sev": "L",
+   "category": "C07 symbols vs program symbols",
+   "file": "manuscript/ch03_uv_boundary.tex; ch04_counterterms.tex; ch05_operators.tex; ch06_dilatation.tex",
+   "lines": "ch03:207, 349, 355; ch04:32, 37, 346; ch05:149-183; ch06:295, 299",
+   "found": "$E(\\gamma)$, $V(\\gamma)$ (edge and vertex sets of [C07, §15.5]) next to $E$ = Euler field (ch06:28) and $V$ = complexified $\\mathbb R^4$.",
+   "rule": "Ledger 5b (E, V); accepted [C07] notation, always written with the argument $\\gamma$.",
+   "replacement": "Keep, always with the argument; add once in ch03:349 \"($E(\\gamma)$, $V(\\gamma)$ always carry the argument $\\gamma$)\"."
+  },
+  {
+   "id": "L10",
+   "sev": "L",
+   "category": "new shorthand",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "180, 358, 603, 618",
+   "found": "180 \"abbreviated below as $(A,A)$ and $(\\iota_pA,\\iota_pA)$\" (the pointwise pairing $(A,A)$ is a different object); 358 \"where $\\partial$ stands for one derivative\"; 603 \"$n_A,n_{A^*},n_\\lambda,\\dots$\"; 618 \"$K_0=-\\sum(x_i\\otimes\\xi_i+\\xi_i\\otimes x_i)$, $\\Delta_0=\\sum\\partial_{x_i}\\partial_{\\xi_i}$\" (indexed coordinates, $x$ = position).",
+   "rule": "No new notation; index-free formulas.",
+   "replacement": "180: keep $(A(p),A(-p))$ and $(\\iota_pA(p),\\iota_pA(-p))$ in the examples. 358: write \"(two derivatives)\", \"(one derivative)\" in the field contents. 603-664: \"the number of factors $A$ minus the number of factors $A^*$\" etc., or keep $n_A$ with a one-line definition (current). 618: \"the structure of [C07, §10.1] for $M$ a point, $\\Delta_0$ pairing an even coordinate with its odd partner, applied pointwise\", and in the display use \"$a$\" and \"$a^*$\" for one even coordinate and its odd partner only if a symbol is needed."
+  },
+  {
+   "id": "L11",
+   "sev": "L",
+   "category": "typography consistency",
+   "file": "manuscript/ch04_counterterms.tex",
+   "lines": "9, 144, 180, 186, ... (38 occurrences)",
+   "found": "$\\mathrm{tr}_{\\mathfrak g}$ in ch04; $\\operatorname{tr}_{\\mathfrak g}$ in ch00, ch05, ch06, ch07.",
+   "rule": "Consistent notation across chapters.",
+   "replacement": "Replace every \\mathrm{tr} by \\operatorname{tr} in ch04."
+  },
+  {
+   "id": "L12",
+   "sev": "L",
+   "category": "cross-reference",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "29",
+   "found": "\"the components with arguments in $\\mathfrak{psl}(4|4)$ involve the counterterms of $I_{\\mathfrak{psl}(4|4)}$ along the ghosts and are taken up in Chapter 6.\"",
+   "rule": "ch06 Remark rem:c6-step2 and ch07 assign these components to Step 2.",
+   "replacement": "\"... along the ghosts; Chapter 6 treats the dilatation through the scaling covariance, and the ghost components are part of Step 2 (Chapter 7).\""
+  },
+  {
+   "id": "L13",
+   "sev": "L",
+   "category": "punctuation",
+   "file": "manuscript/ch05_operators.tex",
+   "lines": "391-394",
+   "found": "Theorem thm:c5-Oeps ends with the display \"$\\dots-\\frac{12\\,\\hbar\\dim\\mathfrak g}{16\\pi^2\\,\\varepsilon}\\int\\omega ,$\" followed by \\end{theorem}.",
+   "rule": "Style.",
+   "replacement": "End the display with \".\" (replace \" ,\" by \" .\")."
+  },
+  {
+   "id": "L14",
+   "sev": "L",
+   "category": "naming",
+   "file": "manuscript/ch06_dilatation.tex",
+   "lines": "3, 129, 137",
+   "found": "\"by the field-renormalisation theorem of Chapter 4\", \"By the field-renormalisation theorem, Theorem \\ref{thm:c4-log}\"; \"we call ... the field-counting functional\".",
+   "rule": "ch04 titles the theorem \"The logarithmic part of the one-loop counterterm\"; DEFINITIONS item 7 \"Name nothing new\".",
+   "replacement": "3 and 129: \"by Theorem \\ref{thm:c4-log} (the logarithmic part of the one-loop counterterm)\". The verbal name \"field-counting functional\" is acceptable (defined at 137) but the displayed theorem statements (eq:c6-fieldredef, eq:c6-dil, eq:c6-step2) may write $2\\int(A,A^*)-4\\int(\\lambda^*,\\lambda)-\\int(c^*,c)$ out at least once."
+  },
+  {
+   "id": "L15",
+   "sev": "L",
+   "category": "symbol collision (local)",
+   "file": "manuscript/ch06_dilatation.tex; ch07_selection_roadmap.tex",
+   "lines": "ch06:20, 22, 36, 42, 213, 369; ch07:256, 302-305",
+   "found": "\"a section $e$ in a slot of Weyl weight $w$\", \"$\\lambda^{-w}$\", \"a density of Weyl weight $w$\", \"as $2(E+w)$\", \"of weight $w_O+1$\" next to $w,w_1,w_2\\in W_{\\mathbb R}^\\perp$ in the same chapters ($\\iota_wA$, $(w_1,w_2)$).",
+   "rule": "One meaning per chapter (STORY fixes $w_O$; a bare $w$ for a weight collides with $w\\in W_{\\mathbb R}^\\perp$).",
+   "replacement": "ch06:20-22 \"$(\\sigma_s e)(x)=s^{-(\\text{Weyl weight of the slot})}e(s^{-1}x)$\"; 36 and 42 \"whose density has Weyl weight $k$\" with a fresh letter or in words; 213 and 369 \"acts on a field as $2E$ plus twice its Weyl weight\"."
+  },
+  {
+   "id": "L16",
+   "sev": "L",
+   "category": "shorthand without dvol",
+   "file": "manuscript/ch06_dilatation.tex",
+   "lines": "137, 316, 318, 322, 344",
+   "found": "\"$-\\int(dA,dA)+4\\int(\\lambda,{\\not d}\\lambda)-\\int(dc,A^*)$\", \"$\\frac94\\varepsilon^{-1}\\int(A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})$\", \"$-\\int(dA|_{W_{\\mathbb R}^\\perp},dA|_{W_{\\mathbb R}^\\perp})$\".",
+   "rule": "ch04:603 defines the dvol-free shorthand for $\\int(A,A^*)$, $\\int(\\lambda^*,\\lambda)$, $\\int(c^*,c)$ only; elsewhere the book writes $\\int\\mathrm{dvol}$.",
+   "replacement": "Insert $\\mathrm{dvol}\\,$: \"$\\int\\mathrm{dvol}\\,(dA,dA)$\", \"$\\int\\mathrm{dvol}\\,(A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})$\", \"$\\int\\mathrm{dvol}\\,(dA|_{W_{\\mathbb R}^\\perp},dA|_{W_{\\mathbb R}^\\perp})$\"."
+  },
+  {
+   "id": "L17",
+   "sev": "L",
+   "category": "new symbol",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "90",
+   "found": "\"$\\{S^{(1)}(x_1),W(P(\\varepsilon,\\infty),J)\\}=\\frac{d}{d\\tau}\\Big|_{\\tau=0}W\\big(P(\\varepsilon,\\infty),J+\\tau\\{S^{(1)}(x_1),J\\}\\big)$\"",
+   "rule": "No new notation.",
+   "replacement": "Use the square-zero parameter of Definition def:c7-component: \"$=\\partial_\\delta W\\big(P(\\varepsilon,\\infty),J+\\delta\\{S^{(1)}(x_1),J\\}\\big)$\" with $\\delta^2=0$ of degree $0$."
+  },
+  {
+   "id": "L18",
+   "sev": "L",
+   "category": "ambiguous notation",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "235",
+   "found": "\"At $(p,a)=0$, where $\\rho(p)\\rho(a)$ is invertible\" (reads as the pair $(p,a)$ being zero).",
+   "rule": "Clarity.",
+   "replacement": "\"When $p$ and $a$ are orthogonal, $(p,a)=0$, the product $\\rho(p)\\rho(a)$ is invertible\"."
+  },
+  {
+   "id": "L19",
+   "sev": "L",
+   "category": "typography",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "344",
+   "found": "Caption: 'The column \"regulator\" records ...' (straight double quotes; LaTeX prints two closing quotes, the reader keeps straight quotes).",
+   "rule": "FORMAT/converter quote handling (``...'').",
+   "replacement": "The column ``regulator'' records ..."
+  },
+  {
+   "id": "L20",
+   "sev": "L",
+   "category": "story opening length",
+   "file": "manuscript/ch07_selection_roadmap.tex",
+   "lines": "3",
+   "found": "Chapter opening has five sentences.",
+   "rule": "FORMAT.md: each chapter opens with 2-4 sentences.",
+   "replacement": "Merge the third and fourth sentences: \"Translations, rotations and the R-symmetry commute with $Q^{GF}$ and $H$, so every regulated kernel, counterterm and the maps $O\\mapsto O(\\varepsilon)$, $O\\mapsto O[\\infty]$ are covariant and these components can be chosen with no one-loop correction, while the dilatation, the special conformal transformations, the supercharges and the special supercharges move $Q^{GF}$ and confine the one-loop output by weight, Lorentz and R-representation, ghost degree and colour to a short list of local structures.\""
+  },
+  {
+   "id": "L21",
+   "sev": "L",
+   "category": "conversion (lists)",
+   "file": "manuscript/ch00_overview.tex; ch05_operators.tex; ch07_selection_roadmap.tex",
+   "lines": "ch00:56-96 (7 displays in one itemize); ch05:103-121 (itemize split around eq:c5-quartic/eq:c5-cubic); ch07:81-93, 117-124, 216-224, 268-275, 316-328, 370-382",
+   "found": "Displays inside \\item: the reader emits the bullet on the first paragraph only; continuation paragraphs after a display are unbulleted top-level paragraphs (e.g. ch00:84 \"for $(w_1,w_2)=0$ ...\" and ch00:95 \"the dots being terms ...\"). Converter and xelatex agree on numbering (checked).",
+   "rule": "FORMAT.md lists: no nesting; previous audit K2.",
+   "replacement": "Optional: end the itemize before each display and continue with a plain paragraph, or accept the current rendering."
+  },
+  {
+   "id": "L22",
+   "sev": "L",
+   "category": "conversion (environment names)",
+   "file": "reader_build/convert.py; manuscript/preview_ch01_03.tex (wrapper)",
+   "lines": "convert.py THM_NAME; wrapper \\newtheorem{axiom}",
+   "found": "Axiom ax:c2-esw is titled \"External input 2.x\" in the reader and \"Axiom 2.x\" in the PDF; figures and tables carry numbers (\"Figure 4.1\", \"Table 4.3\") in the reader and none in the PDF.",
+   "rule": "One manuscript, two outputs with the same names.",
+   "replacement": "In the book wrapper use \\newtheorem{axiom}[theorem]{External input}; numbering of figures/tables may stay reader-only since the prose refers to them by position."
+  },
+  {
+   "id": "L23",
+   "sev": "L",
+   "category": "layout",
+   "file": "manuscript/ch06_dilatation.tex; ch05_operators.tex; ch07_selection_roadmap.tex",
+   "lines": "ch06:268-273 (17.8pt), ch06:303 (20.7pt), ch06:36 (7.8pt), ch05:186 (6.5pt), ch07:110-112 (2.7pt), ch06:123, 199 (<2pt)",
+   "found": "Overfull hboxes in the full-book xelatex build (7 in total).",
+   "rule": "Typesetting quality.",
+   "replacement": "ch06:268-273 break the second line of eq:c6-step2 after \"$\\cdot$\"; ch06:303 split the sentence after \"[C07, Def 7.1.1, Thm A]\"; others cosmetic."
+  },
+  {
+   "id": "L24",
+   "sev": "L",
+   "category": "PDF bookmarks",
+   "file": "manuscript/ch02_superconformal.tex; ch05_operators.tex; ch06_dilatation.tex",
+   "lines": "ch02:5; ch05:1; ch06:286",
+   "found": "Math in \\section/\\chapter titles: hyperref drops \"$\\mathfrak{psl}(4|4)$\", \"$O(\\varepsilon)$\", \"$L_\\varepsilon$\" from the PDF outline (11 \"Token not allowed in a PDF string\" warnings).",
+   "rule": "Cosmetic; FORMAT allows no \\texorpdfstring.",
+   "replacement": "Accept, or define \\pdfstringdefDisableCommands in the wrapper only."
+  },
+  {
+   "id": "L25",
+   "sev": "L",
+   "category": "auxiliary symbol",
+   "file": "manuscript/ch01_classical.tex",
+   "lines": "269 (and ch03:321, ch04:120, 280)",
+   "found": "\"$r_j=1$ for even legs and $r_j$ is an odd element of an auxiliary nilpotent supercommutative ring\" — a new letter, used consistently in ch01, ch03, ch04.",
+   "rule": "No new notation (mild: defined at first use with [C07, Lemma 6.4.1, proof], which uses the ring R).",
+   "replacement": "Acceptable as defined; no change required."
+  }
+ ]
+}

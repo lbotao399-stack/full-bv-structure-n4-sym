@@ -1,0 +1,440 @@
+% two_point_design.tex -- standalone; build: pdflatex two_point_design.tex (twice)
+\documentclass[11pt]{report}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{chapter}
+\tcolorboxenvironment{proof}{breakable,enhanced,colback=white,colframe=black!35,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt}
+\newcommand{\tabcaption}[1]{\par\smallskip\noindent\centerline{\parbox{0.92\linewidth}{\small #1}}\par\medskip}
+% \unit expands to the unit written out in full (no new symbol in the rendered text)
+\newcommand{\unit}{\tfrac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}
+\newcommand{\Wp}{W_{\mathbb R}^\perp}
+\newcommand{\TP}[2]{\mathrm{two\mbox{-}point}\big(#1,#2\big)}
+\newcommand{\TPz}[2]{\mathrm{two\mbox{-}point}_{\rm tree}\big(#1,#2\big)}
+\begin{document}
+\setcounter{chapter}{9}
+\chapter{Two-point functions of local operators at one loop: design}
+
+This chapter defines the connected two-point function of two local operators in the UV-boundary formalism, proves that it exists at one loop at separated points, fixes its dependence on the separation by the dilatation component, lists how it changes under every scheme choice, derives the $\mathfrak{psl}(4|4)$ Ward identities it satisfies, gives the graph census for the scalar bilinears, the weight-$\tfrac52$ fermion--scalar bilinears and the weight-$3$ sector of the Konishi anomaly, and evaluates the scalar bilinears exactly. The conjugation $X\mapsto X^\dagger$ is not used. Every statement carries its two-component form in the notation of [dictionary]; the only expressions written in words are the two-point function $\TP{O_1}{O_2}$ and its tree part $\TPz{O_1}{O_2}$ (Definition \ref{def:t-2pt}), and the unit
+\[
+\unit
+\]
+written out in full. $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ are the one-loop components of [odd, def:o-comp]; $Q$ is the linear BV differential; spinor parameters are $\xi\in\Sigma$, $\eta\in\Sigma^*$ [odd, def:o-names]. References: [ch0n, label] are the manuscript chapters, [odd] is \texttt{step2/theory/odd\_components\_design.tex}, [dictionary] is \texttt{step2/notation/esw\_to\_weinberg\_srednicki.tex}, [script] is \texttt{step2/theory/two\_point\_scalar\_example.py} with output \texttt{two\_point\_example\_results.json}, [census] is \texttt{two\_point\_census.json}; [conj], [ip], [delta\_theory], [k\_transfer] are \texttt{conjugation.tex}, \texttt{inner\_product\_design.tex} (checks \texttt{inner\_product\_checks.py}), \texttt{delta\_theory.tex}, \texttt{k\_transfer.tex} in the same folder. Revision 2026-10-29: the two-point function is the coefficient of $t_2t_1$ (Definition \ref{def:t-2pt}), which fixes the sign of the fermionic tree values; the gauge-fixing law is a hypothesis; the special conformal identity uses the finite-endpoint local representative; the vanishing of the order-$g$ entries at weight $3$ is by colour and field content.
+\section{Definition and existence at one loop}
+
+\begin{definition}[The two-point function]
+\label{def:t-2pt}
+Let $O_a=\int\omega_a\,f_a$, $a=1,2$, be homogeneous gauge-invariant local operators [ch05, def:c5-family] of degree $0$ with $(Q+\{I,-\})O_a=0$, Weyl weights $w_1,w_2$, and $\omega_1,\omega_2\in\Omega^4_c(\mathbb R^4)$ with disjoint supports. Let $t_1,t_2$ be square-zero parameters of degree $0$ and of the total parity of $O_1$, $O_2$, commuting with each other up to the Koszul sign, and put
+\begin{equation}
+J(\varepsilon)=I-F_0-I^{CT}[\varepsilon]+t_1O_1(\varepsilon)+t_2O_2(\varepsilon),\qquad O_a(\varepsilon)=O_a-\partial_\delta I^{CT}[\varepsilon](O_a)+\hbar\,\varphi(O_a),
+\label{eq:t-J}
+\end{equation}
+where $F_0$ is the arity-zero finite counterterm (at one loop $\tfrac{27}{16}\unit\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ [ch04, thm:c4-finite] plus the $s$-closed choices of [odd, prop:o-arity0]), $\partial_\delta I^{CT}[\varepsilon](O_a)$ is the counterterm of [ch05, prop:c5-thmB] with all its Taylor components, those with the field content of $O_a$ and those with other field contents (length-changing), and $\hbar\varphi(O_a)$ is an $\varepsilon$-independent local functional (the finite part of $O_a(\varepsilon)$; $\varphi=0$ is the minimal scheme). The two-point function of $O_1$ and $O_2$ is
+\begin{equation}
+\TP{O_1}{O_2}:=\lim_{\varepsilon\to0}\ \partial_{t_1}\partial_{t_2}\,W\big(P(\varepsilon,\infty),J(\varepsilon)\big)\Big|_{e=0},
+\label{eq:t-def}
+\end{equation}
+the coefficient of $t_2t_1$ at the zero field, i.e.\ $(-1)^{p(O_1)p(O_2)}$ times the coefficient of $t_1t_2$ ($p$ the total parity), a bilinear functional of $(\omega_1,\omega_2)$; at tree level it is the free expectation $\hbar\,\partial_{P(0,\infty)}(O_1O_2)|_{e=0}$ with $O_1$ on the left, since $(t_1O_1)(t_2O_2)=t_2t_1O_1O_2$, the form in which the Ward identity \eqref{eq:t-ward} holds (for odd $O_1,O_2$ the coefficient of $t_1t_2$ is minus the expectation); its kernel at $(x,y)$, $x\neq y$, is written $\TP{O_1}{O_2}(x,y)$, and $\TP{O_1}{O_2}(x)$ for $y=0$. Its tree part $\TPz{O_1}{O_2}$ is the part of lowest order in the unit; for operators of equal length $L$ it is the sum of the graphs with the two vertices $O_1,O_2$ and $L$ edges, of order $\hbar^{L-1}$ [ch03, prop:c3-graphs]. The one-loop part is the part of relative order $\unit$. With the global ghosts, $I-F_0-I^{CT}[\varepsilon]$ is replaced by $I_{\mathfrak{psl}(4|4)}-F_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ and $O_a(\varepsilon)$ by the equivariant family [ch05, def:c5-Oeps]; the result is a cochain, the two-point cochain, whose arity-zero component is \eqref{eq:t-def}.
+\end{definition}
+
+Two-component form: $\iota_wA=\tfrac14w^{ij}A_{ij}$, $(w_1,w_2)=\tfrac14w_1^{ij}w_{2ij}$, $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$; the scalar bilinear is $\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$, the trace $\tfrac14\int\omega\,(A^{ij},A_{ij})$, and the propagator $\langle A_{ij}A_{kl}\rangle=4(-,-)^{-1}\varepsilon_{ijkl}\,e^{-\varepsilon|p|^2}/|p|^2$ [dictionary, propagator, bilinears].
+
+\begin{lemma}[Elementary properties]
+\label{lem:t-elem}
+\begin{itemize}
+\item[(i)] Constant terms of $O_a(\varepsilon)$ (for instance $-\tfrac{12\hbar\dim\mathfrak g}{16\pi^2\varepsilon}\int\omega$ in the trace bilinear [ch05, eq:c5-trace]) do not contribute to \eqref{eq:t-def}.
+\item[(ii)] For every functional $F$, $(QF)|_{e=0}=0$; hence $Q$-exact terms of the flow do not contribute to \eqref{eq:t-def}.
+\item[(iii)] $\TP{O_2}{O_1}(y,x)=(-1)^{p(O_1)p(O_2)}\,\TP{O_1}{O_2}(x,y)$, $p$ the total parity.
+\item[(iv)] $\{O_1(\varepsilon),O_2(\varepsilon)\}_\varepsilon$ and every $K_\varepsilon$ edge joining a vertex supported on $\operatorname{supp}\omega_1$ to one supported on $\operatorname{supp}\omega_2$ are bounded by a multiple of $\varepsilon^{-2}e^{-d^2/4\varepsilon}$, $d=\operatorname{dist}(\operatorname{supp}\omega_1,\operatorname{supp}\omega_2)$, and tend to $0$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) $W(P,J+c\,t_1)=W(P,J)+c\,t_1$ for a constant $c$, by the definition of $W$ [ch03, def:c3-W]; the $t_1t_2$ coefficient is unchanged. (ii) $Q$ is the derivation induced by a linear operator on fields [C07, \S6.2], so it preserves the polynomial degree and annihilates constants; the constant term of $QF$ is $0$. (iii) $W$ is symmetric in its vertices; exchanging $t_1,t_2$ gives the Koszul sign. (iv) The scalar factor of $K_\varepsilon$ is $(4\pi\varepsilon)^{-2}e^{-|x-y|^2/4\varepsilon}$ [ch03, def:c3-K].
+\end{proof}
+
+\begin{lemma}[Large distance]
+\label{lem:t-ir}
+Let $\gamma$ be a connected graph without legs, with vertices $O_1$ at $\operatorname{supp}\omega_1$, $O_2$ at $\operatorname{supp}\omega_2$ and internal vertices of $I$, $F_0$, $I^{CT}[\varepsilon]$, edges $P(\varepsilon,\infty)$. For a nonempty set $S$ of internal vertices sent to infinity at a common scale $R$, the integrand decays as $R^{-4|S|-\sigma}$ with $\sigma=\sum(\text{Weyl weights of the half-edges at the ends, outside }S,\text{ of the edges leaving }S)$. If $\sigma>0$ for every $S$, the vertex integrations converge at large distance, uniformly in $\varepsilon\in(0,1]$. In particular they converge when no edge leaving $S$ ends on a ghost $c$ outside $S$; this holds for every graph of Section \ref{sec:t-census}.
+\end{lemma}
+
+\begin{proof}
+An edge with half-edges of weights $w,w'$ carries a kernel bounded by a multiple of $|z-z'|^{-(w+w')}$ for $|z-z'|\ge1$, uniformly in $\varepsilon\le1$: $D_\varepsilon(r)=\frac{1-e^{-r^2/4\varepsilon}}{4\pi^2r^2}$ for $A\otimes A$ ($w+w'=2$), $dD_\varepsilon$ for $c\otimes A^*|_V$ ($0+3$) and ${\not d}D_\varepsilon$ for $\lambda\otimes\lambda$ ($\tfrac32+\tfrac32$) [ch03, prop:c3-P]. A vertex of weight $4$ (fields plus derivatives [ch04, lem:c4-weights]) with all its derivatives acting on edges contributes, together with its edges, $R^{-(\text{sum of weights of its half-edges and derivatives})}=R^{-4}$; edges internal to $S$ are counted at both ends, edges leaving $S$ contribute in addition the weight of their far end. Hence the integrand is $O(R^{-4|S|-\sigma})$ against the measure $R^{4|S|-1}dR$. Finite counterterm vertices of weight $<4$ (the $\varepsilon^{-1}$ mass term) decay faster. The weights of $A,\lambda,A^*,\lambda^*,c^*$ are positive; a zero weight occurs only for $c$.
+\end{proof}
+
+\begin{lemma}[Fourier transforms at separated points]
+\label{lem:t-ft}
+Let a translation-invariant two-point kernel have the momentum-space form $h(\varepsilon|q|^2)\,|q|^{-2k}$, $k\in\{0,1\}$, with $h$ smooth on $(0,\infty)$, bounded by a polynomial in $1+|\log y|$, and $h(y)=\sum_{j=0}^2c_j\log^jy+O\big(y(1+|\log y|)^2\big)$ as $y\to0$. Then at $x\neq0$, as $\varepsilon\to0$, its position-space kernel converges to the Fourier transform of $\sum_jc_j(\log\varepsilon+\log|q|^2)^j|q|^{-2k}$, given by
+\[
+\begin{aligned}
+&\int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\log|q|^2=-\frac{1}{\pi^2|x|^4},\qquad \int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\log^2|q|^2=\frac{2}{\pi^2|x|^4}\big(\log|x|^2+2\gamma_E-1-2\log2\big),\\
+&\int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\frac{1}{|q|^2}=\frac{1}{4\pi^2|x|^2},\qquad \int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\frac{\log|q|^2}{|q|^2}=-\frac{\log|x|^2+2\gamma_E-2\log2}{4\pi^2|x|^2},
+\end{aligned}
+\]
+and constants (polynomials in $q$) contribute $0$ at $x\neq0$.
+\end{lemma}
+
+\begin{proof}
+The four transforms are the coefficients of $a^1$, $a^2$ in $\int\frac{d^4q}{(2\pi)^4}e^{i(q,x)}|q|^{2a}=\frac{4^a\Gamma(2+a)}{\pi^2\Gamma(-a)}|x|^{-4-2a}$ and $\int\frac{d^4q}{(2\pi)^4}e^{i(q,x)}|q|^{2a-2}=\frac{4^a\Gamma(1+a)}{4\pi^2\Gamma(1-a)}|x|^{-2-2a}$ at $x\neq0$, continued in $a$ from the region of absolute convergence (an analytic continuation in the exponent of $|q|$, not a change of dimension); [script, C] expands them exactly. The remainder $r(y)=h(y)-\sum_jc_j\log^jy$ gives the kernel $\varepsilon^{-2+k}\hat r_k(x/\sqrt\varepsilon)$ with $\hat r_k$ the transform of $r(|q|^2)|q|^{-2k}$; since $r(|q|^2)|q|^{-2k}$ is smooth for $q\neq0$, of polynomial growth, and $O(|q|^{2-2k}\log^2|q|)$ at $q=0$, $\hat r_k(X)=O(|X|^{-6+2k}\log^2|X|)$ at large $|X|$, so the kernel is $O(\varepsilon\log^2\varepsilon)$ at fixed $x\neq0$.
+\end{proof}
+
+\begin{proposition}[Existence at one loop]
+\label{prop:t-exist}
+For $O_1,O_2$ as in Definition \ref{def:t-2pt}, the limit \eqref{eq:t-def} exists at $x\neq y$ through relative order $\unit$, including the length-changing entries. It is a sum over the classes of graphs:
+\begin{itemize}
+\item[(T)] the tree part: $O_1$ and $O_2$ joined by edges (equal lengths), or joined through one or more vertices of $I$ (different lengths, Proposition \ref{prop:t-orderg});
+\item[(SE)] a line of the tree carrying a one-loop one-particle-irreducible two-point subgraph of $I$ together with the vertex $-I^{CT}[\varepsilon]$ (and $-F_0$);
+\item[(V)] graphs containing a one-loop subgraph through $O_a$ (the graphs of [ch05, prop:c5-census] with their legs contracted into the rest), together with the trees carrying the vertex $-\partial_\delta I^{CT}[\varepsilon](O_a)$, $a=1,2$; when a subgraph through $O_1$ and one through $O_2$ share edges (exchange graphs) both subtractions occur;
+\item[(F)] trees with one vertex $\hbar\varphi(O_a)$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+By [ch03, prop:c3-graphs] the order counted from the tree part is $b_1(\gamma)+\sum_v\deg v$ minus its value at the tree part, so at relative order one either one more cycle appears with vertices of $I$, or one vertex of order $\hbar$ ($-I^{CT}[\varepsilon]$, $-F_0$, $-\partial_\delta I^{CT}[\varepsilon](O_a)$, $\hbar\varphi(O_a)$) replaces a tree position. UV: in position space the integrand is singular only where a set of vertices collapses to a point; a collapsing set containing both $O_1$ and $O_2$ is excluded by $\operatorname{dist}(\operatorname{supp}\omega_1,\operatorname{supp}\omega_2)>0$. The remaining collapsing sets at this order are one-loop subgraphs: those without $O_a$ are the one-particle-irreducible subgraphs of $I$, whose singular parts are cancelled by the trees with $-I^{CT}[\varepsilon]$ [ch04, lem:c4-factor, prop:c4-limit]; those containing $O_a$ are cancelled by $-\partial_\delta I^{CT}[\varepsilon](O_a)$ [ch05, prop:c5-thmB]. The complementary graph, obtained by contracting the subgraph to a point, is a tree with nonzero edge momenta at $x\neq y$, so the factorisation of [ch04, lem:c4-factor] applies; two collapsing sets at $O_1$ and at $O_2$ are disjoint in position space, and their subtractions factorise. Edges of the trees tend to $P(0,\infty)$ by Lemma \ref{lem:t-ft} and [ch05, prop:c5-thmB, first item]. Large distance: Lemma \ref{lem:t-ir}. The order-$\hbar$ vertices $-F_0$, $\hbar\varphi(O_a)$ enter as tree vertices with limits. Every remaining $\varepsilon$-dependence of the subtracted graphs is of the form of Lemma \ref{lem:t-ft}, by dimensional analysis: each graph is $|x-y|^{-w_1-w_2}$ times a function of $|x-y|^2/\varepsilon$ and of $\log\varepsilon$ through the counterterms only.
+\end{proof}
+
+\begin{proposition}[Length-changing entries]
+\label{prop:t-orderg}
+Let $O_{L}$, $O_{L+1}$ be gauge-invariant operators of lengths $L$, $L+1$. The entry of order $g$ (one cubic vertex of $I$) is the sum of the graphs in which the cubic vertex carries two legs of $O_{L+1}$ and one leg of $O_L$; its only subdivergence is the one-loop subgraph formed by $O_{L+1}$ and the cubic vertex, removed by the length-changing component of $\partial_\delta I^{CT}[\varepsilon](O_{L+1})$. It vanishes unless (a) the two legs of $O_{L+1}$ at the cubic vertex carry an antisymmetric colour tensor (the bracket), and (b) the third leg of the cubic vertex matches a leg of $O_L$. For the operators of Section \ref{sec:t-census} (Lorentz scalars of weight $\le3$, and $O_\zeta$) every order-$g$ entry vanishes: the cubic vertices with two scalar legs have a third leg $A|_V$, which no gauge-invariant Lorentz-scalar bilinear of weight $\le3$ contains, and the Yukawa vertex carries one scalar leg, so a scalar trilinear meets it with one leg and its two remaining legs are joined to each other, which gives the colour factor $\big(Z,[-,-]\big)$ on $(-,-)^{-1}$, i.e. $0$ [ch05, lem:c5-colour]. For lengths $L$, $L+1$ the next graphs have an odd number of cubic vertices (three, or one cubic and one quartic), since the number of half-edges must be even. When the longer operator carries a bracket, the order-$g$ entry is itself of relative order $\unit$ with respect to the tree part of the shorter pair (the coupling sits in $(-,-)$); the example used below is $O_\zeta$ with the trilinear part of $\{S^{(1)}(\xi),F_n\}$, colour factor $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)\cdot\dim\mathfrak g$ [census].
+\end{proposition}
+
+\begin{proof}
+A connected graph with $O_L$, $O_{L+1}$ and one cubic vertex has $(L+L+1+3)/2=L+2$ edges. If the cubic vertex carries two legs of $O_L$ and one of $O_{L+1}$, the two legs of $O_L$ meet $(-,-)$ (the colour factor of a gauge-invariant bilinear contracted on two legs is symmetric) with the antisymmetric cubic colour factor, giving $0$; if it carries one leg of each and one further leg, that leg must join $O_L$ or $O_{L+1}$, the first case being the previous one and the second one in which $O_{L+1}$ has a self-contraction, $0$ by [ch05, lem:c5-colour]. The subgraph $\{O_{L+1},\text{cubic vertex}\}$ is a cycle of two edges, the only collapsing set. The vanishing statements are case checks of (a), (b) with the vertex list of [ch01, def:c1-vertex].
+\end{proof}
+\section{Dependence on the separation}
+
+For a homogeneous operator $O$ write $Z(O)$ for the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon](O)$, and $\{N,O\}$ for its bracket with the field-counting functional $N=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ [ch06, lem:c6-count]. The dilatation component of [ch06, thm:c6-dil, cor:c6-dilcomp], identified with the equivariant cochain along $\Delta=2E$ (Part D, eq:c6-step2), is, for gauge-invariant cocycles,
+\begin{equation}
+\Delta\cdot O:=2\big((E+w_O)O\big)+D_1(O),\qquad D_1(O)=4\Big(Z(O)-\unit\{N,O\}\Big),
+\label{eq:t-D1}
+\end{equation}
+modulo $s$-exact local functionals; for the trace bilinear $D_1(O)=-48\unit\,O$, for the traceless ones $0$ [ch06, thm:c6-dil]. In the generator $-E$ of [SW, (3)] every statement below holds with $\Delta$ replaced by $-\tfrac12\Delta$.
+
+\begin{theorem}[Scaling identity]
+\label{thm:t-scaling}
+Let $O_1,O_2$ be as in Definition \ref{def:t-2pt}, with $F_0$ of weight $4$ and $\varphi$ preserving the Weyl weight. Through relative order $\unit$,
+\begin{equation}
+\begin{aligned}
+&\big(x\cdot\partial_x+y\cdot\partial_y+w_1+w_2\big)\TP{O_1}{O_2}(x,y)\\
+&\qquad=-\tfrac12\Big[\TPz{D_1(O_1)}{O_2}+\TPz{O_1}{D_1(O_2)}\Big](x,y).
+\end{aligned}
+\label{eq:t-scaling}
+\end{equation}
+Equivalently, $\TP{\Delta\cdot O_1}{O_2}+\TP{O_1}{\Delta\cdot O_2}=0$, with $\Delta$ acting on the labels $O_a$, its classical part through $\omega_a$ (the dilatation Ward identity).
+\end{theorem}
+
+\begin{proof}
+On numbers $\sigma_s$ acts trivially: $(\sigma_sF)(0)=F(\sigma_s^{-1}0)=F(0)$ [ch06, def:c6-sigma]. By [ch06, prop:c6-scaling], $\partial_{t_2}\partial_{t_1}W(P(\varepsilon,\infty),J(\varepsilon))|_{e=0}=\partial_{t_2}\partial_{t_1}W(P(s^2\varepsilon,\infty),\sigma_sJ(\varepsilon))|_{e=0}$. By [ch06, lem:c6-ct] and $\sigma_sI=I$, $\sigma_sF_0=F_0$,
+\[
+\sigma_sJ(\varepsilon)=I-F_0-I^{CT}[s^2\varepsilon]+2\log s\,Y+t_1\big((\sigma_sO_1)(s^2\varepsilon)+2\log s\,\sigma_sZ(O_1)\big)+t_2\big(\cdots\big),
+\]
+$Y$ the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$. Letting $\varepsilon\to0$ (Proposition \ref{prop:t-exist}) and differentiating at $s=1$: by the linearity in $\omega_a$ and [ch06, lem:c6-data], $s\frac{d}{ds}|_{s=1}$ of the two-point function of $\sigma_sO_1,\sigma_sO_2$ is $\int\!\!\int h_1(x)h_2(y)(x\cdot\partial_x+y\cdot\partial_y+w_1+w_2)\TP{O_1}{O_2}(x,y)$ for $\omega_a=h_a\,\mathrm{dvol}$, since the two-point function of $\sigma_sO_a$ is $s^{w_1+w_2}\int\!\!\int h_1h_2\,\TP{O_1}{O_2}(sx,sy)$. The $2\log s$ terms are of order $\unit$ and enter through tree graphs:
+\[
+\begin{aligned}
+0={}&(x\cdot\partial_x+y\cdot\partial_y+w_1+w_2)\TP{O_1}{O_2}\\
+&+2\TPz{Z(O_1)}{O_2}+2\TPz{O_1}{Z(O_2)}+2\big(\text{tree insertion of }Y\big).
+\end{aligned}
+\]
+By [ch06, eq:c6-fieldren] $Y=\unit\,(Q+\{I,-\})N$, and the two-point form of [ch06, lem:c6-bvexact] (same proof with two operators; Lemma \ref{lem:t-elem} (ii) removes the $Q$-term at $e=0$, and the terms built from $(Q+\{I,-\})O_a$ vanish) gives the tree insertion $-\unit\big(\TPz{\{N,O_1\}}{O_2}+\TPz{O_1}{\{N,O_2\}}\big)$. With \eqref{eq:t-D1} this is \eqref{eq:t-scaling}. The equivalent form: the classical part $2(E+w_a)$ of $\Delta$ on $O_a$ acts on the kernel as $2(x\cdot\partial_x+w_1)$, resp. $2(y\cdot\partial_y+w_2)$.
+\end{proof}
+
+\begin{corollary}[Form of the two-point functions of scaling operators]
+\label{cor:t-form}
+Let $O_a$, $a=1,\dots,n$, be Lorentz-scalar cocycles of common weight $w$ with $D_1(O_a)=\sum_b(D_1)_{ab}O_b$ modulo $s$-exact terms, $\TPz{O_a}{O_b}(x)=C_{ab}|x|^{-2w}$. Then through relative order $\unit$
+\begin{equation}
+\TP{O_a}{O_b}(x)=|x|^{-2w}\Big[C_{ab}+\big(\text{one-loop finite matrix}\big)_{ab}-\tfrac14\big(D_1C+C D_1^{\,T}\big)_{ab}\log\frac{|x|^2}{\ell^2}\Big],
+\label{eq:t-form}
+\end{equation}
+where $\ell$ is the unit of length in which $\varepsilon$ is measured: the counterterms $\log\varepsilon$ of [ch05, thm:c5-Oeps] and [ch04, thm:c4-log] are $\log(\varepsilon/\ell^2)$. The one-loop finite matrix is the one-loop part at $|x|=\ell$. Changing $\ell\mapsto\lambda\ell$ is the scheme change $\hbar\varphi(O)=Z(O)\log\lambda^2$ (type (F3)) together with $F_0\mapsto F_0-Y\log\lambda^2$ (type (F0), $Y$ the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$); it adds $\tfrac14(D_1C+CD_1^{\,T})|x|^{-2w}\log\lambda^2$, so that \eqref{eq:t-form} holds with $\lambda\ell$ in place of $\ell$ and the same finite matrix.
+\end{corollary}
+
+\begin{proof}
+Translations and rotations (Proposition \ref{prop:t-cov}) give $\TP{O_a}{O_b}(x,y)=g_{ab}(|x-y|)$. With $g_{ab}=r^{-2w}(c_{ab}+e_{ab}\log r^2)$, $(r\partial_r+2w)g_{ab}=2e_{ab}r^{-2w}$, and \eqref{eq:t-scaling} gives $2e=-\tfrac12(D_1C+CD_1^T)$. Every ratio $|x|^2/\varepsilon$ produced by the graphs is dimensionless; $\log\varepsilon$ alone occurs only through the counterterms, so the only scale is the unit $\ell$ fixed with them.
+\end{proof}
+
+\begin{proposition}[Translations, rotations, R-symmetry]
+\label{prop:t-cov}
+$H$, $Q^{GF}$, $I$, $I^{CT}[\varepsilon]$ and $F_0$ are invariant under translations, $\mathrm{Spin}(4,\mathbb C)$ and $\mathrm{Spin}(6,\mathbb C)$ [ch04, thm:c4-quadratic, proof; ch07, prop:c7-cov]. With $\varphi$ covariant, $\TP{g\cdot O_1}{g\cdot O_2}=\TP{O_1}{O_2}$ for $g$ in these groups acting on the labels; in particular $\TP{O_1}{O_2}(x,y)$ depends on $x-y$, and on its length for Lorentz scalars. In the scheme $P_1=M_1=R_1=0$ [odd, thm:o-invariants], these are the Ward identities of Theorem \ref{thm:t-ward} along translations, rotations and $\mathfrak{so}(\Wp)$.
+\end{proposition}
+
+\begin{proof}
+The regulator and all vertices are covariant, so the whole graph sum is; the limit preserves covariance.
+\end{proof}
+
+\section{Scheme covariance}
+\label{sec:t-scheme}
+
+\begin{proposition}[Transformation laws]
+\label{prop:t-laws}
+Through relative order $\unit$, with $\mathrm{ins}(G;O_1,O_2)$ the tree graphs with one vertex $G$ (sum over the lines of the tree):
+\begin{itemize}
+\item[(F0)] $F_0\mapsto F_0+\hbar G$, $G$ local of weight $4$ and degree $0$: $\TP{O_1}{O_2}\mapsto\TP{O_1}{O_2}-\mathrm{ins}(\hbar G;O_1,O_2)$. For $\hbar G=(Q+\{I,-\})\phi$ ($\phi$ odd, a field redefinition): $\mapsto\TP{O_1}{O_2}+\TPz{\{\phi,O_1\}}{O_2}+\TPz{O_1}{\{\phi,O_2\}}$. For the forced term $\tfrac{27}{16}\unit\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$: the change is $0$ whenever no tree line is an $A|_V$ line, and also when the $A|_V$ lines end on vertices built from $F_A$ (transversality, $\iota_p$ of the vertex function vanishes). For the coupling direction $\hbar G=a(S-S^{(2)})$ at arity zero, $a\,S$: every edge is multiplied by $1-a$ and every vertex of $I$ by $1+a$, so a tree with $L$ edges and $m$ vertices of $I$ is multiplied by $1+(m-L)a$.
+\item[(F3)] $O_a(\varepsilon)\mapsto O_a(\varepsilon)+\hbar\varphi(O_a)$: $\TP{O_1}{O_2}\mapsto\TP{O_1}{O_2}+\TPz{\hbar\varphi(O_1)}{O_2}+\TPz{O_1}{\hbar\varphi(O_2)}$.
+\item[(F1/F2)] arity-one and arity-two finite counterterms $F^{(1)},F^{(2)}$: no change of $\TP{O_1}{O_2}$, which is built from the arity-zero interaction; they change $L_1$ by $[s_{\mathfrak{psl}(4|4)},\mathrm{ad}_\phi]$ or by an $s$-exact choice [odd, prop:o-laws (a)], and the Ward identities of Theorem \ref{thm:t-ward} are invariant (Corollary \ref{cor:t-wardcov}).
+\item[(gauge)] (hypothesis) if two gauge-fixing operators are joined by a family $Q^{GF}_t$ with the properties of [odd, prop:o-laws (c)], the derivative in $t$ is a sum of changes of types (F0) with $\hbar G$ exact, (F3), and the coupling direction; this is the proof plan of [odd, prop:o-laws (c)]. For the Feynman operator of the minimal complex, with $(Q^{GF})^2\neq0$, a family of this type ending at a nilpotent gauge fixing with a Laplacian $H$ needs an enlarged field space [delta\_theory, rem:d-gf], and the statement is not established.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(F0) At order $\hbar$ the added vertex $-\hbar G$ enters linearly through trees. For $\hbar G=(Q+\{I,-\})\phi$ apply the two-point form of [ch06, lem:c6-bvexact] used in the proof of Theorem \ref{thm:t-scaling}, with the opposite sign of the vertex. The forced term is $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$, whose vertex function on two $A|_V$ legs of momenta $\pm p$ is $2(\iota_pA(p),\iota_pA(-p))$ [ch04, eq:c4-pw]: inserted in a line it contracts $\iota_p$ with the vertex functions at the ends. For the coupling direction, $S\mapsto(1+a)S$ multiplies the quadratic form by $1+a$, its inverse $P$ by $1-a$ at this order. (F3) linearity. (F1/F2) the arity-zero component of the two-point cochain contains no ghost vertex. (gauge) under its hypothesis, [odd, prop:o-laws (c), proof plan]: the Duhamel term at $t=\varepsilon$ is local and of the listed types; the term $(Q\otimes1+1\otimes Q)$ of a kernel gives $Q$-exact terms, zero at $e=0$ (Lemma \ref{lem:t-elem} (ii)), up to brackets with $O_a$, which are of type (F3).
+\end{proof}
+
+\begin{corollary}[Invariant content]
+\label{cor:t-inv}
+\begin{itemize}
+\item[(i)] The coefficient of $\log|x|^2$ in \eqref{eq:t-form}, $-\tfrac14(D_1C+CD_1^T)$, is invariant under (F0), (F1/F2), (gauge) under its hypothesis, and under (F3) with $\varphi$ weight-preserving [odd, thm:o-invariants (ii)].
+\item[(ii)] The finite matrix is not invariant: (F3) shifts it by $\hbar(\varphi C+C\varphi^T)$ (with $\varphi(O_a)=\sum_b\varphi_{ab}O_b$), (F0) by the insertion, the unit $\ell$ by Corollary \ref{cor:t-form}.
+\item[(iii)] If (F3) is restricted to $\mathfrak{psl}(4|4)$-equivariant finite parts (the map $\psi$ of [odd, prop:o-laws (b)] commuting with the classical $\mathfrak{psl}(4|4)$ action on the multiplet), $\varphi$ is constant on each irreducible multiplet; then differences of the finite parts of the normalised two-point functions between members of one multiplet are invariant, and they are fixed by the Ward identities (Theorem \ref{thm:t-ward}).
+\item[(iv)] Orthogonality: $\TP{O_a}{O_b}=0$ through relative order $\unit$ when $O_a,O_b$ have different eigenvalues of $D_1$ at equal weight, up to the tree mixing $C_{ab}$ (zero if $C$ is block-diagonal in the eigenspaces).
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+(i) By \eqref{eq:t-scaling} the coefficient is built from $D_1$ and the tree part; $D_1$ changes by $s$-exact terms under (a)--(d) [odd, thm:o-invariants (ii)], which have vanishing two-point functions with cocycles (Corollary \ref{cor:t-exact}). (ii) Proposition \ref{prop:t-laws}. (iii) Schur's lemma for the irreducible multiplet under the classical action. (iv) Diagonalise $D_1$; \eqref{eq:t-scaling} for $O_a,O_b$ with eigenvalues $d_a\neq d_b$ and $C_{ab}=0$ gives $(r\partial_r+2w)g_{ab}=0$ with $g_{ab}$ of relative order $\unit$; Theorem \ref{thm:t-ward} along $K$ (Example \ref{ex:t-Kcheck}) forces $g_{ab}=0$.
+\end{proof}
+\section{Ward identities}
+
+For a generator $x\in\mathfrak{psl}(4|4)$ and a local operator $O$ with local representative $L(O)$ [odd, def:o-comp] put
+\begin{equation}
+x\cdot O:=L(O)^{(1)}(x)=\{S^{(1)}(x),O\}+\hbar L_1(O)^{(1)}(x).
+\label{eq:t-action}
+\end{equation}
+The classical part is position dependent: for a conformal Killing field $v$ and a Lorentz-scalar density $f$ of weight $w$, $\{S^{(1)}(v),\int\omega\,f\}=\int\omega\,\big(v(f)+\tfrac w4(\operatorname{div}v)f\big)$ [ch07, lem:c7-weights], acting on the kernel as $v(x)\cdot\partial_x+\tfrac w4\operatorname{div}v(x)$; for $\Delta=2E$ this is $2(x\cdot\partial_x+w)$, for $K_{v_1}$, $v(x)=(x,x)v_1-2(v_1,x)x$, $\operatorname{div}v=-8(v_1,x)$, two-component $v^m=x^2b^m-2(b\cdot x)x^m$, $\operatorname{div}v=-8\,b\cdot x$, $b=v_1$; for $\eta\in\Sigma^*$ the Killing spinor $\xi+\rho(x)\eta$, two-component $\epsilon_\alpha{}^i(x)=\xi_\alpha{}^i-ix_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}$, $\bar\epsilon_{\dot\alpha i}(x)=\bar\xi_{\dot\alpha i}+ix_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}$ [odd, def:o-names], together with the term in $4\eta$ [ch02, eq:c2-S1S].
+
+\begin{theorem}[Two-point Ward identity]
+\label{thm:t-ward}
+Assume
+\begin{itemize}
+\item[(H1)] (no anomaly) the equivariant one-loop master equation holds in arities $0$ and $1$ along $x$ after finite counterterms $F_{\mathfrak{psl}(4|4)}$;
+\item[(H2)] (local representatives) $O_a$ have local representatives with $L(O_a)^{(0)}=0$ through order $\hbar$, and the flow of the $t_a$-linear part of the defect vertex converges to $L(O_a)[\infty]$ as a distribution in the leg positions, tested against sections smooth near $\operatorname{supp}\omega_a$;
+\item[(H3)] (large distance) the arity-one graphs along $x$ converge at large distance: $x\in\Sigma\oplus\Sigma^*$, $\Delta$, translations, $\mathfrak{so}(V)$, $\mathfrak{so}(\Wp)$ [odd, thm:o-ir (i)];
+\item[(H4)] $\operatorname{supp}\omega_1\cap\operatorname{supp}\omega_2=\emptyset$.
+\end{itemize}
+Then through relative order $\unit$
+\begin{equation}
+\TP{x\cdot O_1}{O_2}+(-1)^{p(x)p(O_1)}\,\TP{O_1}{x\cdot O_2}=0 .
+\label{eq:t-ward}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $\mathscr G$ be the two-point cochain (Definition \ref{def:t-2pt}) and $J_t$ the equivariant family. By [ch03, thm:c3-uv] and [ch06, eq:c6-uvobs], $(d_{CE}+Q)W(P(\varepsilon,\infty),J_t)$ is the flow of the defect vertex $(d_{CE}+Q)J_t+\tfrac12\{J_t,J_t\}_\varepsilon+\hbar\Delta_\varepsilon J_t$. Its $t$-independent part tends to $0$ in arities $0,1$ by (H1); its $t_1t_2$ part is $\{O_1(\varepsilon),O_2(\varepsilon)\}_\varepsilon\to0$ (Lemma \ref{lem:t-elem} (iv), (H4)); its $t_a$-linear parts are the operator defects of [odd, eq:o-defect], whose flows in the presence of the vertex $t_bO_b(\varepsilon)$ converge by (H2), (H3) to the two-point cochains of $L(O_1)$ with $O_2$ and of $O_1$ with $L(O_2)$: the singular regions are those of the defect at $O_a$ alone (Proposition \ref{prop:t-exist}, proof), and the lines to $O_b$ are smooth near $\operatorname{supp}\omega_a$. Take the $t_2t_1$ coefficient at $e=0$. On the left, the $Q$-part vanishes (Lemma \ref{lem:t-elem} (ii)); $d_{CE}$ has trivial coefficients [ch02, def:c2-dce], so it maps arity $0$ to $0$ and arity $k$ to arity $k+1$; the arity-one component of $\mathscr G$ at $e=0$ is a number of degree $-1$, hence $0$. So the left side vanishes in arities $0$ and $1$. On the right, in arity one along $x$, the terms are $\TP{L(O_1)^{(1)}(x)}{O_2}$, $\TP{O_1}{L(O_2)^{(1)}(x)}$ with the Koszul sign of moving the ghost of $x$ past $t_1O_1$, and terms containing $L(O_a)^{(0)}$, which vanish by (H2).
+\end{proof}
+
+\begin{corollary}[Exact operators]
+\label{cor:t-exact}
+Under (H1), (H2), (H4), for every local $A$ of degree $-1$ with a local representative, $\TP{L(A)^{(0)}}{O_2}=0$. The two-point function descends to the cohomology of $L^{(0)}=(Q+\{I,-\})+\hbar L_1^{(0)}$ on local operators; in particular it is independent of the $s$-exact ambiguity of $x\cdot O$, and of $D_1$, $K_1$ modulo $s$-exact terms.
+\end{corollary}
+
+\begin{proof}
+The arity-zero part of the proof of Theorem \ref{thm:t-ward} applied to the pair $(A,O_2)$: $0=\TP{L(A)^{(0)}}{O_2}\pm\TP{A}{L(O_2)^{(0)}}$, and $L(O_2)^{(0)}=0$.
+\end{proof}
+
+\begin{corollary}[Covariance of the identity]
+\label{cor:t-wardcov}
+Under the scheme changes (a)--(d) of [odd, prop:o-laws] and (F0), (F3) of Proposition \ref{prop:t-laws}, $\TP{-}{-}$ and $x\cdot(-)$ change so that \eqref{eq:t-ward} is preserved; finite parts $\varphi$ of operators are compatible with \eqref{eq:t-ward} exactly when $[\,x\cdot,\varphi\,]$ is $s$-exact on the operators considered.
+\end{corollary}
+
+\begin{proof}
+Theorem \ref{thm:t-ward} holds in every scheme satisfying (H1)--(H4). For (F3) directly: $x\cdot$ changes by $[s_{\mathfrak{psl}(4|4)},\psi]$ [odd, prop:o-laws (b)], whose arity-one part on a cocycle is $[\,x\cdot,\psi]$ plus $s$-exact terms; by Proposition \ref{prop:t-laws} the left side of \eqref{eq:t-ward} changes by $\TPz{\hbar\varphi(x\cdot O_1)-x\cdot\hbar\varphi(O_1)}{O_2}+(\cdots)$ plus the image of \eqref{eq:t-ward} under $\varphi$, and Corollary \ref{cor:t-exact} removes the $s$-exact terms.
+\end{proof}
+
+\begin{proposition}[The special conformal identity from the special supercharges]
+\label{prop:t-K}
+Let $\eta_1,\eta_2\in\Sigma^*$, $v_1=\Gamma(\eta_1,\eta_2)|_V$, and let $K_1$ be defined by [odd, def:o-K]. Assume (H1)--(H4) for $x=\eta_1,\eta_2$, the arity-two components of the cochain identity [odd, thm:o-cocycle] at $(\eta_1,\eta_2)$ on $O_1,O_2$ and on $\eta_a\cdot O_b$, and the existence and $T$-independence of the local representative $L_1^{(2)}(\eta_1,\eta_2)$ at a finite endpoint $T$ [k\_transfer, thm:ktr-defect (v)]; the arity-two flows themselves grow as $\log T$ when $\Gamma(\eta_1,\eta_2)|_V\neq0$, and only the local representative enters. Then
+\[
+\TP{K_{v_1}\cdot O_1}{O_2}+\TP{O_1}{K_{v_1}\cdot O_2}=0
+\]
+with $K_{v_1}\cdot O=\{S^{(1)}(K_{v_1}),O\}+K_1(O)$; no arity-one graph along $K_{v_1}$, in particular no floating insertion of $S^{(1)}(K_{v_1})$ with its borderline decay $|y|^{-4}$ [odd, prop:o-ir], enters.
+\end{proposition}
+
+\begin{proof}
+Write $\rho(x)O:=x\cdot O$. The arity-two component of [odd, thm:o-cocycle] at $(\eta_1,\eta_2)$ on a cocycle $O$ reads $\rho(\eta_1)\rho(\eta_2)O+\rho(\eta_2)\rho(\eta_1)O=\pm\rho([\eta_1,\eta_2])O+L^{(0)}\big(L^{(2)}(\eta_1,\eta_2)O\big)$, the sign fixed by [ch02, eq:c2-dce]; [odd, def:o-K] defines $K_1$ exactly through this relation, with $[\eta_1,\eta_2]=-K_{v_1}$ [ch02, prop:c2-special]. For $O_1,O_2$ of even parity, \eqref{eq:t-ward} for the odd $\eta_a$ gives $\TP{\eta_1\eta_2O_1}{O_2}=\TP{\eta_2O_1}{\eta_1O_2}=-\TP{O_1}{\eta_2\eta_1O_2}$ (first with the odd operator $\eta_2O_1$, sign $-1$, then with $O_1$, sign $+1$), and likewise with $1\leftrightarrow2$. Adding, $\TP{(\eta_1\eta_2+\eta_2\eta_1)O_1}{O_2}=-\TP{O_1}{(\eta_1\eta_2+\eta_2\eta_1)O_2}$; the $L^{(0)}$-exact terms drop by Corollary \ref{cor:t-exact}, and $\rho([\eta_1,\eta_2])=-\rho(K_{v_1})$ appears linearly on both sides. The pairs $\eta_1\eta_2$ span $\mathrm{Sym}^2\Sigma^*$, whose image under $\Gamma|_V$ is $V$, so every $v_1$ occurs.
+\end{proof}
+
+\begin{remark}[Finite transfer endpoint]
+With $P(\varepsilon,T)$ [DESIGN\_STEP2, R7] the two-point function at scale $T$ satisfies \eqref{eq:t-ward} up to the brackets $\{-,-\}_T$ between $\operatorname{supp}\omega_1$ and $\operatorname{supp}\omega_2$, bounded by $T^{-2}e^{-d^2/4T}$ times polynomials, which vanish as $T\to\infty$; at finite $T$ the arity-one graphs along $K_{v_1}$ converge, and if $K_1$ is defined at finite $T$ and shown $T$-independent (R7), Theorem \ref{thm:t-ward} applies along $K_{v_1}$ directly and agrees with Proposition \ref{prop:t-K} by [odd, prop:o-Kconsistent].
+\end{remark}
+
+\begin{example}[The special conformal identity on scalar operators]
+\label{ex:t-Kcheck}
+Let $O_1,O_2$ be Lorentz-scalar operators of weight $w$ with $D_1(O_a)\equiv2\gamma_aO_a$ and, by [odd, thm:o-KD], $K_1(O_a)\equiv\tfrac14\operatorname{div}v\,\gamma_aO_a$. Write $\TP{O_1}{O_2}(x,y)=g(|x-y|^2)$. Since $(v(x)\cdot\partial_x+v(y)\cdot\partial_y)|x-y|^2=-2\big((v_1,x)+(v_1,y)\big)|x-y|^2$,
+\[
+\TP{K_{v_1}\cdot O_1}{O_2}+\TP{O_1}{K_{v_1}\cdot O_2}=-2(v_1,x)\big(rg'+(w+\gamma_1)g\big)-2(v_1,y)\big(rg'+(w+\gamma_2)g\big),\quad r=|x-y|^2,
+\]
+so the identity holds for all $v_1,x,y$ exactly when $g=0$ or $\gamma_1=\gamma_2=\gamma$ and $r\,g'=-(w+\gamma)g$; through relative order $\unit$, $g=C\,r^{-w}\big(1+(\text{finite})-\gamma\log r\big)$, the form of Corollary \ref{cor:t-form} with $D_1=2\gamma$. Two-component: $v^m\partial_m+\tfrac{w+\gamma}{4}\partial_mv^m$ with $\partial_mv^m=-8\,b\cdot x$. The finite constant is not constrained by $K$: it is the scheme freedom (F3).
+\end{example}
+
+\begin{proposition}[Selection rules and the nontrivial odd identities]
+\label{prop:t-select}
+Let $c$ be the central element of $\mathrm{Spin}(6;\mathbb C)\cong SL(4,\mathbb C)$ acting by $i$ on $W$, $-i$ on $W^*$, $-1$ on $\Wp$; it preserves the action and the regulator, so $\TP{O_1}{O_2}=0$ unless the product of the eigenvalues of $c$ on $O_1,O_2$ is $1$. The propagator joins $\lambda_\alpha{}^i$ only to $\bar\lambda_{\dot\beta j}$. On fields $\xi\cdot$ ($\xi\in S_+\otimes W$) multiplies the eigenvalue by $-i$. Eigenvalues: the scalar bilinears $1$; $O_\zeta=\int\omega\,(\lambda,\rho(A|_{\Wp})\zeta)$ with $\zeta\in S_+\otimes W$ (two-component $\int\omega\,(\lambda_\alpha{}^j,A_{ji})\zeta^{\alpha i}$): $-i$; with $\bar\zeta\in S_-\otimes W^*$ (two-component $-\int\omega\,(\bar\lambda_{\dot\alpha j},A^{ji})\bar\zeta^{\dot\alpha}{}_i$): $i$; $B_w$, $\bar F_w$ [odd, eq:o-BF]: $-1$; $F_n=\int\omega\,(\lambda^{\alpha i}n_i,\lambda_\alpha{}^jn_j)$, $n\in W^*$, and $\bar B_n=\int\omega\,([A_{ik},A^{kj}n_j],A^{il}n_l)$: $-1$. Hence the nontrivial identities \eqref{eq:t-ward} along $\xi=u\otimes w$ among these operators are
+\begin{itemize}
+\item[(a)] $\big(O,\ O_{\bar\zeta}\big)$, $O$ a scalar bilinear: relating the tree and one-loop parts of $\TP{O_{\xi}}{O_{\bar\zeta}}$ to $\partial\,\TP{O}{O}$;
+\item[(b)] $\big(O_\zeta,\ F_n\big)$ and $\big(O_\zeta,\ \bar B_n\big)$: the Konishi-anomaly identities, relating $c_K$, $c_B'$ of [odd, prop:o-konishi] to the weight-$3$ two-point functions.
+\end{itemize}
+The $\eta$-identities are the same with the Killing spinor in place of $\xi$.
+\end{proposition}
+
+\begin{proof}
+$c$ lies in $\mathrm{Spin}(6;\mathbb C)$, which commutes with $H$ and $Q^{GF}$ and preserves $I$, $I^{CT}[\varepsilon]$, $F_0$ [ch04, thm:c4-quadratic, proof]; it acts on $\lambda\in S_+\otimes W\oplus S_-\otimes W^*$ by $(i,-i)$ and on $\iota_wA$ by $-1$, since $\Wp\cong\wedge^2W$. On fields, $\delta_\xi A\propto\Gamma(\xi,\lambda)$ maps eigenvalue $-1$ to $i$, and $\delta_\xi\lambda\propto\rho(F_A)\xi$ maps $i$ (resp. $-i$) to $1$ or $-1$ products accordingly; a direct count gives the factor $-i$. The pairs listed are those with product $i$ (so that $\xi\cdot O_1$ times $O_2$ has product $1$); the propagator rule removes $(O_\zeta,\xi\cdot O)$-type tree terms with two undotted $\lambda$.
+\end{proof}
+
+\begin{proposition}[Content of the identities (a) and (b)]
+\label{prop:t-konishiward}
+(a) Let $K=\int\omega\,(A|_{\Wp},A|_{\Wp})$ (two-component $\tfrac14\int\omega\,(A^{ij},A_{ij})$). Classically $\{S^{(1)}(\xi),K\}=\mp2\,O_{\zeta=\xi}$ (sign of [ch01, def:c1-bracket], engine E0). With $\TP{K}{K}(x)=C_K|x|^{-4}\big[1+\unit\big(a_K+24\log\tfrac{|x|^2}{\ell^2}\big)\big]$ and, by Theorem \ref{thm:t-scaling} with $D_1(O_\xi)=-48\unit\,O_\xi$ and Lorentz covariance, $\TP{O_\xi}{O_{\bar\zeta}}(x)=C_\zeta\,(\xi,\rho(x)\bar\zeta)|x|^{-6}\big[1+\unit\big(a_\zeta+24\log\tfrac{|x|^2}{\ell^2}\big)\big]$, identity (a) with $O=K$ gives $C_\zeta$ as a fixed multiple of $C_K$ and
+\[
+a_\zeta-a_K=-12+\big(\text{the coefficients of }Q_1(K)\text{ along }O_\xi\big)+\big(\text{the one-loop coefficient of }Q_1(O_{\bar\zeta})\text{ along the derivative of }K\big),
+\]
+where $-12$ is $-\tfrac12\cdot24$ from $\partial_m\big(|x|^{-4}(1+24\unit\log|x|^2)\big)=-4x_m|x|^{-6}\big(1+\unit(-12+24\log|x|^2)\big)$; the remaining coefficients are those of [ch07, cor:c7-Q] (engine E5). (b) $\TP{\xi\cdot O_\zeta}{F_n}+\TP{O_\zeta}{\xi\cdot F_n}=0$ with $\xi\cdot O_\zeta=\kappa_BB_w+\unit(c_B'B_w+c_K\bar F_w)$: since $\TP{B_w}{F_n}$ vanishes at order $g$ (Proposition \ref{prop:t-orderg}) and its next graphs have $b_1=3$, i.e. relative order $\unit^2$ with respect to $\TPz{\bar F_w}{F_n}$, and $\TP{O_\zeta}{\{S^{(1)}(\xi),F_n\}}$ has no tree part (two undotted $\lambda$), the identity reads, through relative order $\unit$,
+\[
+c_K\,\unit\,\TPz{\bar F_w}{F_n}=-\TP{O_\zeta}{\{S^{(1)}(\xi),F_n\}+Q_1(F_n)}\big|_{\text{rel. order}\unit}:
+\]
+$c_K$ is fixed by one-loop two-point functions of $O_\zeta$ with the weight-$\tfrac72$ operators $\{S^{(1)}(\xi),F_n\}$ (whose trilinear part $([A^{ik},A_{kj}w^j]u_\alpha,\lambda^{\alpha}{}_i)$-type has a nonzero order-$g$ entry with $O_\zeta$ through one Yukawa vertex) and $Q_1(F_n)$, independently of the evaluation of $Q_1(O_\zeta)$.
+\end{proposition}
+
+\begin{proof}
+(a) $\{S^{(1)}(\xi),A\}=\mp\Gamma(\xi,\lambda)$ on the slot of $A$ [ch02, eq:c2-S1Q], and $(\iota_wA\ \text{paired with}\ \Gamma(\xi,\lambda)|_{\Wp})=(\lambda,\rho(A|_{\Wp})\xi)$ by [ESW, (28)]. The classical $\{S^{(1)}(\xi),O_{\bar\zeta}\}$ contains $\tfrac12(\rho(dA|_{\Wp})\xi,\bar\zeta)$-terms, i.e. the derivative of $K$ projected by $(\xi,\rho(-)\bar\zeta)$, and terms whose two-point function with $K$ vanishes at tree level; insert in \eqref{eq:t-ward} and compare the two tensor structures. (b) Proposition \ref{prop:t-select} (b), Proposition \ref{prop:t-orderg}, and the propagator rule.
+\end{proof}
+\section{Graph census at relative order $\unit$}
+\label{sec:t-census}
+
+Notation of the census (all written out in [census]): $D_\varepsilon(r)=\frac{1-e^{-r^2/4\varepsilon}}{4\pi^2r^2}=\int_\varepsilon^\infty(4\pi t)^{-2}e^{-r^2/4t}dt$ is the scalar factor of $P(\varepsilon,\infty)$ [ch03, prop:c3-P], $\hat D_\varepsilon(p)=e^{-\varepsilon|p|^2}/|p|^2$; every edge carries a Schwinger time $t_e\in[\varepsilon,\infty)$, every internal vertex a position integrated over $\mathbb R^4$; $\mathrm{Aut}$ fixes $O_1$, $O_2$. The Euclidean Fourier convention is that of [ch01]. The colour factor of every graph below is $\dim\mathfrak g$ (tree) or $\dim\mathfrak g\cdot\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$ (one loop) by [ch05, lem:c5-colour]; this is the origin of the unit.
+
+\begin{proposition}[Scalar bilinears]
+\label{prop:t-census-scalar}
+For $O_a=\int\omega_a(\iota_{a_1}A,\iota_{a_2}A)$, $a=1,2$, $a_1,a_2\in\Wp$ (also written $(a_1,b_1)$, $(a_2,b_2)$ for the two pairs), the tree part is one cycle of two $A|_{\Wp}$ edges, $|\mathrm{Aut}|=2$,
+\begin{equation}
+\TPz{O_1}{O_2}(x)=4\hbar\dim\mathfrak g\,\big[(a_1,a_2)(b_1,b_2)+(a_1,b_2)(b_1,a_2)\big]\,D_0(|x|)^2,\qquad D_0(r)=\frac1{4\pi^2r^2},
+\label{eq:t-tree}
+\end{equation}
+two-component $\tfrac14\hbar\dim\mathfrak g\big[a_1^{ij}a_{2ij}b_1^{kl}b_{2kl}+a_1^{ij}b_{2ij}b_1^{kl}a_{2kl}\big]D_0^2$ with $a=\tfrac14a^{ij}(\cdot)_{ij}$ [dictionary, bilinears]. The graphs of relative order $\unit$ are exactly:
+\begin{itemize}
+\item[(SE)] one of the two lines carries a one-particle-irreducible one-loop $A|_{\Wp}$ two-point subgraph: the seagulls with an $A|_V$ and with an $A|_{\Wp}$ loop, the bubble with one $A|_V$ and one $A|_{\Wp}$ line, the gaugino loop [ch04, second table], and the vertex $-I^{CT}[\varepsilon]$ (quadratic part); $|\mathrm{Aut}|$ as the tree times the subgraph factors $2,2,1,2$;
+\item[(EX)] the exchange: cubic vertices $A|_V(A|_{\Wp})^2$ at $z_1,z_2$, edges $O_1z_1$, $O_1z_2$, $O_2z_1$, $O_2z_2$ ($A|_{\Wp}$) and $z_1z_2$ ($A|_V$); $|\mathrm{Aut}|=2$; it contains the triangle (f) of [ch05] at $O_1$ and at $O_2$;
+\item[(QU)] the quartic graph: one vertex $(A|_{\Wp})^4$ at $z$ joined to each $O_a$ by two edges; $|\mathrm{Aut}|=4$; it contains the bubble (e) of [ch05] at $O_1$ and at $O_2$;
+\item[(OC)] the trees with one vertex $-\partial_\delta I^{CT}[\varepsilon](O_a)$, $a=1,2$, i.e. $\varepsilon$-dependence $-\unit\log\varepsilon\big[4O_a-2(a_a,b_a)\int\omega_a(A|_{\Wp},A|_{\Wp})\big]$ [ch05, eq:c5-dICT];
+\item[(F)] the trees with $\hbar\varphi(O_a)$.
+\end{itemize}
+All other graphs vanish: a cubic vertex with two legs joined (colour), the graph with $O_a$ joined to one cubic vertex by both legs ((b) of [ch05], colour), Yukawa or ghost vertices on two different lines (no propagator $\lambda$--$A$, none in the slot of $A^*|_{\Wp}$), and the finite term $\tfrac{27}{16}\unit\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ (no $A|_V$ line at this order).
+\end{proposition}
+
+\begin{proof}
+At relative order $\unit$ a graph has the two vertices $O_a$ and either one quartic vertex or two cubic vertices of $I$ (one more cycle), or one vertex of order $\hbar$. The vertices with $A|_{\Wp}$ legs are $A|_V(A|_{\Wp})^2$, $\lambda\lambda A|_{\Wp}$, $(A|_V)^2(A|_{\Wp})^2$, $(A|_{\Wp})^4$, $([A,c],A^*)$ [ch01, eq:c1-I]; the enumeration of the attachments of their legs to the four legs of $O_1,O_2$, with connectedness and the propagator components of [ch03, prop:c3-P], gives the list; the vanishing ones are the colour statements of [ch05, lem:c5-colour] and the absence of the components $A\otimes\lambda$, $A^*|_{\Wp}\otimes(\cdot)$. Automorphisms: (EX) the exchange $z_1\leftrightarrow z_2$ with the lines; (QU) the two pairs of parallel edges.
+\end{proof}
+
+\begin{proposition}[Weight $\tfrac52$: $O_\zeta$ and partners]
+\label{prop:t-census-zeta}
+For $O_\zeta$, $O_{\bar\zeta}$ of Proposition \ref{prop:t-select} (both Konishi descendants by the projection $W\otimes\wedge^2W^*\to W^*$; the partners in the $\mathbf{20'}$ multiplet are $\int\omega(\lambda_\alpha{}^i,A_{jk})$ projected to the $\mathbf{20}$), the tree part is the cycle of one $\lambda$ edge and one $A|_{\Wp}$ edge, $|\mathrm{Aut}|=1$, with value $+24\hbar\dim\mathfrak g\,(\zeta,\rho(x)\bar\zeta)\,(16\pi^4)^{-1}|x|^{-6}$ in the convention of Definition \ref{def:t-2pt} (coefficient of $t_2t_1$), with the $\lambda\otimes\lambda$ component of [ch03, prop:c3-P] contracted as $\hbar\partial_P\big((\lambda(y),g)(\lambda(x),f)\big)=\hbar\big(\rho(\partial_y)\tfrac1{4\pi^2|y-x|^2}g,f\big)$ times the inverse pairing of $\mathfrak g$ [conj, prop:RP], and $\sum_w\rho(w)\rho(x)\rho(w)=-6\rho(x)$ over an orthonormal basis of $\Wp$; with the inversion of [ch08, prop:c8-C] (spinor factor $-\rho(x)/|x|$ on $\lambda$) the radial value is $+24\hbar\dim\mathfrak g\,(\zeta',\overline\zeta)/(16\pi^4)$, positive, and the coefficient of $t_1t_2$ would give $-24$ [ip, checks C12]. Relative order $\unit$: (SE$_\lambda$) the $\lambda$ self-energies with an $A|_V$ and an $A|_{\Wp}$ line, and $-4\unit\log\varepsilon\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$; (SE$_A$) as in Proposition \ref{prop:t-census-scalar}; (EX$_V$) $A|_V$ exchanged between the $\lambda$ line (vertex $\lambda\lambda A|_V$) and the $A|_{\Wp}$ line (vertex $A|_V(A|_{\Wp})^2$); (EX$_Y$) the crossed Yukawa graph: Yukawa vertices at $z_1,z_2$, $O_1$'s $\lambda$ to $z_1$, $O_1$'s $A$ to $z_2$, $O_2$'s $\bar\lambda$ to $z_2$, $O_2$'s $A$ to $z_1$, a $\lambda$ edge $z_1z_2$; (OC), (F). No quartic vertex has fermion legs. The subdivergences at $O_a$ are the one-loop graphs with $O_\zeta$ on the cycle and legs $(\lambda,A|_{\Wp})$, whose $\log\varepsilon$ coefficient fixes $Z(O_\zeta)$; Theorem \ref{thm:t-scaling} and $D_1(O_\zeta)=-48\unit\,O_\zeta$ predict the coefficient $24\unit$ of $\log|x|^2$, a check of the census.
+\end{proposition}
+
+\begin{proposition}[Weight $3$: the Konishi-anomaly sector]
+\label{prop:t-census-w3}
+For $\bar F_w$, $F_n$ (two-component $\int\omega(\bar\lambda_{\dot\alpha i}w^i,\bar\lambda^{\dot\alpha}{}_jw^j)$, $\int\omega(\lambda^{\alpha i}n_i,\lambda_\alpha{}^jn_j)$) the tree part is a cycle of two $\lambda$ edges, $|\mathrm{Aut}|=2$, value $\propto\hbar\dim\mathfrak g\,(n_iw^i)^2|x|^{-6}$; for $B_w$, $\bar B_n$ the tree part has three $A|_{\Wp}$ edges, $|\mathrm{Aut}|=3!$ modulo the colour antisymmetry, and is of relative order $\unit$ with respect to the former (one bracket in each operator). The order-$g$ entries $\TP{B_w}{F_n}$, $\TP{\bar F_w}{\bar B_n}$ vanish (Proposition \ref{prop:t-orderg}); the graph of $\bar F_w$, a Yukawa vertex, an $A|_{\Wp}$ edge, a Yukawa vertex and $F_n$ vanishes by the colour trace of $\bar F_w$ at a cubic vertex. At relative order $\unit$: $\lambda$ self-energies, $A|_V$ and $A|_{\Wp}$ exchange between the two $\lambda$ lines, (OC) with the component of $\partial_\delta I^{CT}[\varepsilon](\bar F_w)$ with legs $(\bar\lambda,\bar\lambda)$, and (F), for $(\bar F_w,F_n)$. The entry $\TP{B_w}{F_n}$ at relative order $\unit$ consists of the graphs with one cubic vertex ($3+2+3=8$ half-edges, four edges); they vanish: either the cubic vertex is the Yukawa vertex carrying both fermion legs of $F_n$ and one leg of $B_w$, with colour factor $\delta_{ac}f_{abc}=0$ (and the two remaining legs of $B_w$ joined, $([e_a,e_b],e_c)\delta_{bc}=0$), or it carries two scalar legs of $B_w$ and one fermion leg, and no cubic vertex has this field content (Proposition \ref{prop:t-orderg}); $3+2+3+3$ and $3+2+4$ are odd, so there is no graph with two cubic vertices or one quartic vertex; the first nonvanishing classes have $b_1=3$ (one cubic and one quartic vertex, or three cubic vertices), relative order $\unit^2$ [ip, checks C14]. The length-changing entries of relative order $\unit$ in this sector are those of $O_\zeta$ with the trilinear weight-$\tfrac72$ operators of $\{S^{(1)}(\xi),F_n\}$ through one Yukawa vertex (Proposition \ref{prop:t-konishiward} (b)), each with the length-changing component of $\partial_\delta I^{CT}[\varepsilon]$ of the trilinear (legs $(\lambda,A|_{\Wp})$, superficial degree $1$).
+\end{proposition}
+
+\begin{lemma}[Numerator reduction with the heat-kernel regulator]
+\label{lem:t-reduce}
+For an edge of momentum $k$, $|k|^2\hat D_\varepsilon(k)=e^{-\varepsilon|k|^2}$, the Fourier transform of the scalar factor $(4\pi\varepsilon)^{-2}e^{-r^2/4\varepsilon}$ of $K_\varepsilon$. Hence every scalar product in a numerator that is a combination of squared edge momenta reduces a graph exactly, at every $\varepsilon$, to graphs in which that edge is replaced by the kernel $K_\varepsilon$ (a contact of range $\sqrt\varepsilon$).
+\end{lemma}
+
+\begin{lemma}[Localisation constants]
+\label{lem:t-local}
+Let a graph differ from a reference graph by replacing a subgraph $\gamma$ at a vertex $O_a$ by a subgraph $\gamma'$ with the same superficial degree $0$ and the same $\log\varepsilon$ coefficient. Then the difference of the two graphs tends, at $x\neq0$, to the reference tree at $O_a$ times the constant
+\[
+\lim_{R\to\infty}\Big(\int_{|w|<R}(\text{value of }\gamma'\text{ at }\varepsilon=1)-\int_{|w|<R}(\text{value of }\gamma\text{ at }\varepsilon=1)\Big),
+\]
+an integral over the rescaled positions $w=z/\sqrt\varepsilon$ of the vertices of $\gamma$. In particular, for the bubble $D_\varepsilon(w_1)D_\varepsilon(w_2)$ with its two ends joined by $K_\varepsilon$ instead of identified,
+\[
+\int\frac{d^4k}{(2\pi)^4}\frac{e^{-2|k|^2}\big(e^{-|k|^2}-1\big)}{|k|^4}=\frac{1}{8\pi^2}\int_0^\infty\frac{e^{-3k^2}-e^{-2k^2}}{k}\,dk=\frac{\log(2/3)}{16\pi^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+The difference of the integrands is concentrated where the vertices of $\gamma$ are within $O(\sqrt\varepsilon)$ of $O_a$, up to tails bounded by $\varepsilon\,|z|^{-6}$ (the smearing by $K_\varepsilon$ changes a function by $\varepsilon$ times its Laplacian), whose integral over $|z|>\rho$ is $O(\varepsilon/\rho^2)$; there the rest of the graph is smooth and equal to the reference tree up to $O(|z|)$, which gives the stated limit by dominated convergence. The integral over all $w$ converges because the two $\log$ coefficients agree; by Parseval it is the momentum integral displayed, $\hat K_1(k)=e^{-|k|^2}$, $\hat D_1(k)=e^{-|k|^2}/|k|^2$ [script, D].
+\end{proof}
+
+\section{The scalar bilinears: exact evaluation}
+\label{sec:t-example}
+
+\begin{theorem}[Two-point functions of the scalar bilinears at one loop]
+\label{thm:t-scalar}
+For $O_a=\int\omega_a(\iota_{a_1}A,\iota_{a_2}A)$ as in Proposition \ref{prop:t-census-scalar}, in the minimal scheme $\varphi=0$ with $F_0$ of [ch04, thm:c4-finite], put
+\[
+S_{12}=(a_1,a_2)(b_1,b_2)+(a_1,b_2)(b_1,a_2),\qquad T_{12}=(a_1,b_1)(a_2,b_2).
+\]
+Then, as $\varepsilon\to0$ at $x\neq0$, through relative order $\unit$,
+\begin{equation}
+\TP{O_1}{O_2}(x)=\frac{4\hbar\dim\mathfrak g\,S_{12}}{16\pi^4|x|^4}\Big[1+\unit\Big(\frac{27}2+4\log\frac32\Big)\Big]+\frac{32\hbar\dim\mathfrak g\,T_{12}}{16\pi^4|x|^4}\,\unit\Big(\log\frac{|x|^2}{\ell^2}+\gamma_E-3\log2\Big).
+\label{eq:t-result}
+\end{equation}
+For the traceless bilinears ($T_{12}=0$): $\TP{O_1}{O_2}=\TPz{O_1}{O_2}\big[1+\unit\big(\tfrac{27}2+4\log\tfrac32\big)\big]$, with no $\log|x|^2$. For the trace $K=\int\omega(A|_{\Wp},A|_{\Wp})$ ($S_{12}=12$, $T_{12}=36$):
+\[
+\TP{K}{K}(x)=\frac{48\hbar\dim\mathfrak g}{16\pi^4|x|^4}\Big[1+\unit\Big(\frac{27}2+4\log\frac32+24\Big(\log\frac{|x|^2}{\ell^2}+\gamma_E-3\log2\Big)\Big)\Big].
+\]
+The mixed function of a traceless bilinear with $K$ vanishes. Two-component: $S_{12}=\tfrac1{16}\big(a_1^{ij}a_{2ij}\,b_1^{kl}b_{2kl}+a_1^{ij}b_{2ij}\,b_1^{kl}a_{2kl}\big)$, $T_{12}=\tfrac1{16}a_1^{ij}b_{1ij}\,a_2^{kl}b_{2kl}$, $K=\tfrac14\int\omega(A^{ij},A_{ij})$. For $\mathfrak g=\mathfrak{su}(N)$ in the normalisation of [ch06, rem:c6-konishi] the unit is $-\tfrac{g^2N}{32\pi^2}$ (sanity remark only).
+\end{theorem}
+
+\begin{proof}
+Write every class relative to $\TPz{O_1}{O_2}=4\hbar\dim\mathfrak g\,S_{12}D_0^2$, $\tau=T_{12}/S_{12}$; all steps are exact and are reproduced in [script].
+
+Step 1 (bubble integrals). With $t_1=s\,u$, $t_2=s(1-u)$, $s\ge\varepsilon/\min(u,1-u)$, and $\log(\varepsilon|p|^2)+\gamma_E+\log2$ abbreviated in this proof as $\ell_2$ (a local abbreviation, not a symbol of the results),
+\[
+\begin{aligned}
+&\iint_{[\varepsilon,\infty)^2}\frac{e^{-t_1t_2|p|^2/s}}{s^2}=1-\ell_2,\qquad \iint\frac{e^{-t_1t_2|p|^2/s}}{s^3}=\frac1{4\varepsilon}+|p|^2\Big(\frac{\ell_2}6-\frac{25}{72}\Big),\qquad \iint\frac{t_1t_2\,e^{-t_1t_2|p|^2/s}}{s^4}=-\frac{\ell_2}6+\frac{13}{72},
+\end{aligned}
+\]
+up to $O(\varepsilon\log\varepsilon)$, from $\int_b^\infty s^{-1}e^{-as}ds=-\gamma_E-\log(ab)+O(b)$, $\int_b^\infty s^{-2}e^{-as}ds=b^{-1}+a(\gamma_E+\log(ab)-1)+O(b)$, $\int_0^1\log(u(1-u))du=-2$, $\int_0^1\log\min(u,1-u)\,du=-1-\log2$ and their moments; checked numerically at $\varepsilon=10^{-5}$ [script, A]. The $\log\varepsilon$ coefficients agree with [ch04, lem:c4-integrals].
+
+Step 2 (self-energy). The bubble with one $A|_V$ and one $A|_{\Wp}$ line has numerator $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})(w_1,w_2)|l-p|^2$ (vertices [ch05, eq:c5-cubic], the factor $\tfrac12\cdot2$ of the two internal assignments of [ch04, two-point graphs]); with the centre $-\tfrac{t_2}sp$ and positive Laplacian $-8$ [ch04, lem:c4-gauss] its plane-wave value is $\unit(w_1,w_2)(X_1,X_2)\big[-\tfrac1{2\varepsilon}+|p|^2(2\ell_2-\tfrac{13}8)\big]$, matching both Step-1 entries of [ch04] ($-\tfrac14\varepsilon^{-1}$, $+1\log\varepsilon$). The gaugino loop has numerator $c\,(l,l+p)$ by $\mathrm{tr}_\Sigma(\rho(a)\rho(w)\rho(b)\rho(w'))=-16(a,b)(w,w')$ for $a,b\in V$, $w,w'\in\Wp$; its value $c\,[\tfrac1{2\varepsilon}+|p|^2(\tfrac{\ell_2}2-\tfrac78)]$ matches the Step-1 entries $-2\varepsilon^{-1}$, $-2\log\varepsilon$ for the single value $c=-8$ (two conditions, one number). The seagulls give exactly $9\varepsilon^{-1}$. Subtracting $I^{CT}[\varepsilon]$ (plane wave $\tfrac92\varepsilon^{-1}-2|p|^2\log\varepsilon$), the renormalised self-energy is $\unit(w_1,w_2)(X_1,X_2)|p|^2\big(\tfrac{43}8-2(\log|p|^2+\gamma_E+\log2)\big)$, and the line is multiplied by $1+2\unit\big(\tfrac{43}8-2(\log|p|^2+\gamma_E+\log2)\big)$. By Lemma \ref{lem:t-ft} each line becomes $D_0\big[1+\unit\big(\tfrac{43}4+4\gamma_E-12\log2+4\log|x|^2\big)\big]$; two lines:
+\[
+\text{(SE)}=\unit\Big(\frac{43}2+8\gamma_E-24\log2+8\log|x|^2\Big).
+\]
+
+Step 3 (masters). By Lemma \ref{lem:t-ft} with $\int\frac{d^4k}{(2\pi)^4}\hat D_\varepsilon(k)\hat D_\varepsilon(q-k)=\frac{1}{16\pi^2}\big(1-\log(\varepsilon|q|^2)-\gamma_E-\log2\big)+O(\varepsilon)$ (Step 1),
+\[
+\begin{aligned}
+\int d^4z\,D_\varepsilon(|x-z|)^2D_\varepsilon(|z|)^2&=\frac{D_0^2}{8\pi^2}\Big(\log\frac{|x|^2}\varepsilon+\gamma_E-3\log2\Big),\\
+\int d^4z\,D_\varepsilon(|x-z|)^2D_\varepsilon(|z|)&=\frac{D_0}{16\pi^2}\Big(\log\frac{|x|^2}\varepsilon+1+\gamma_E-3\log2\Big),
+\end{aligned}
+\]
+both confirmed by direct position-space quadrature at $\varepsilon=10^{-4}$ to $10^{-4}$ relative accuracy [script, D]. By Lemma \ref{lem:t-local}, smearing the quartic point by $K_\varepsilon$ adds $\frac{D_0^2}{8\pi^2}\log\frac23$ (two ends), and replacing one line at $O_1$ by $K_\varepsilon$ in the exchange topology gives $D_0\cdot(\text{second master})+\frac{D_0^2}{16\pi^2}\log\frac23$.
+
+Step 4 (exchange). The cubic vertices at $z_1,z_2$ give, with the routing $k$ ($O_1z_1$), $q-k$ ($O_1z_2$), $k'$ ($z_1O_2$), $q-k'$ ($z_2O_2$), $k-k'$ ($z_1z_2$), the numerator $-\tfrac12(k+k')\cdot(2q-k-k')$ times $2^2(-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}))$ and the flavour factor of the tree: so the exchange is $\TPz{\Gamma^{(f)}(O_1)}{O_2}$ with $\Gamma^{(f)}(O_1)=O_1\cdot32\pi^2\unit\int\frac{d^4k}{(2\pi)^4}(k+k')\cdot(2q-k-k')\hat D\hat D\hat D$, whose $\log\varepsilon$ coefficient $+2\unit$ is [ch05, ex:c5-f]. The exact identity
+\[
+(k+k')\cdot(2q-k-k')=2|q|^2-|k|^2-|q-k|^2-|k'|^2-|q-k'|^2+|k-k'|^2
+\]
+and Lemma \ref{lem:t-reduce} split the exchange into $2|q|^2$ times the finite five-line graph (a function of $\varepsilon|q|^2$ times $|q|^{-2}$ with a limit, a contact term at $x\neq0$ by Lemma \ref{lem:t-ft}), four graphs with one $O_a$-line replaced by $K_\varepsilon$, and the quartic topology with the point smeared. By Step 3,
+\[
+\text{(EX)}=2\Big[\Big(2\log\frac{|x|^2}\varepsilon+2\gamma_E-4\log2-2\log3\Big)-4\Big(\log\frac{|x|^2}\varepsilon+1+\gamma_E-2\log2-\log3\Big)\Big]\unit .
+\]
+
+Step 5 (quartic). By [ch05, ex:c5-e] the bubble at $O_1$ is $2\unit\cdot16\pi^2\hat B_\varepsilon\big[(a_1,b_1)\int\omega_1(A|_{\Wp},A|_{\Wp})-O_1\big]$, $\hat B_\varepsilon$ the bubble of Step 3; contracted with $O_2$,
+\[
+\text{(QU)}=4(2\tau-1)\Big(\log\frac{|x|^2}\varepsilon+\gamma_E-3\log2\Big)\unit .
+\]
+
+Step 6 (counterterms of the operators). By [ch05, eq:c5-dICT], $\text{(OC)}=-8(1-\tau)\log\varepsilon\,\unit$.
+
+Sum. The coefficient of $\log\varepsilon$ is $4+(4-8\tau)-8(1-\tau)=0$; that of $\log|x|^2$ is $8-4+(8\tau-4)=8\tau$; the constant is $\tfrac{43}2-8+8\tau(\gamma_E-3\log2)+(8-4-4)\gamma_E-4\log2+4\log3$. This is \eqref{eq:t-result}. For $K$, $\tau=3$.
+\end{proof}
+
+\begin{corollary}[Checks]
+\label{cor:t-checks}
+(i) The coefficient $8\tau\unit$ of $\log|x|^2$ equals $-\tfrac14\big(\TPz{D_1(O_1)}{O_2}+\TPz{O_1}{D_1(O_2)}\big)/\TPz{O_1}{O_2}$ with $D_1(O)=4(Z(O)-4\unit\,O)=-8\unit(a,b)\int\omega(A|_{\Wp},A|_{\Wp})$ \eqref{eq:t-D1}, for every pair $(a_a,b_a)$, not only for the traceless and trace projections: Theorem \ref{thm:t-scaling} is verified on the computed graphs. (ii) $\gamma_E$ cancels in the traceless function, as it must for an operator with $D_1=0$: every $\gamma_E$ enters with a $\log(|x|^2/\varepsilon)$. (iii) The trace function has the Konishi exponent $|x|^{-4-2\cdot(-24)\unit}$ and the natural reference point $|x|^2=8e^{-\gamma_E}\ell^2$, where its logarithm vanishes. (iv) The special conformal identity of Example \ref{ex:t-Kcheck} holds with $\gamma=0$, resp. $-24\unit$.
+\end{corollary}
+
+\begin{remark}[Scheme dependence of the result]
+By Proposition \ref{prop:t-laws}: a field rescaling $\phi=a\int(A|_{\Wp},A^*|_{\Wp})$ adds $4a$ to both constants; the $\beta$-direction $\beta_2\int\mathrm{dvol}\,(dA|_{\Wp},dA|_{\Wp})$ in $F_0$ adds $-8\beta_2$; a finite part $\hbar\varphi(O)$ equal to a number times $O$ (separately on the $\mathbf{20'}$ and on $K$) adds twice that number, divided by the unit; the unit $\ell$ moves the reference point. The constants $\tfrac{27}2+4\log\tfrac32$ and $\tfrac{27}2+4\log\tfrac32+24(\gamma_E-3\log2)$ are therefore scheme data of the minimal UV-boundary scheme. The coefficient $24$ and the vanishing for the traceless bilinears are invariant. The normalisation of the $\mathbf{20'}$ fixed by symmetry (its Ward identities with the protected multiplet, Corollary \ref{cor:t-inv} (iii)) fixes that number on the $\mathbf{20'}$; with the target statement that the protected normalised two-point function has no order-$g^2$ correction (a literature statement, recorded with its regulator in [census]), it is $\hbar\varphi(O)=-\tfrac12\big(\tfrac{27}2+4\log\tfrac32\big)\unit\,O$ in a scheme without field rescaling.
+\end{remark}
+
+\end{document}

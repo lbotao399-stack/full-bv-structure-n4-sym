@@ -1,0 +1,258 @@
+{
+ "review": "Physics-notation supplements, review pass 2026-10-29",
+ "n_blocks_reviewed": 101,
+ "n_changes": 31,
+ "verification": "step2/qa/physics_supp/review/verify_review.py -> verify_review.json: 37/37 checks passed (32 formula checks, 5 negative controls)",
+ "prep_supplements": "reader_build/prep_supplements.py: 101 supplements, n_katex_errors = 0, problems = []",
+ "backup": "step2/qa/physics_supp/review/backup_before/ (supplement files before this review)",
+ "changes": [
+  {
+   "file": "manuscript/supplements/key.tex",
+   "anchor": "end_of_section 1.2",
+   "old_text_excerpt": "the even part consists of $P_m$, $K_m$, the dilatation $\\Delta$, the rotations",
+   "new_text": "the even part consists of $P_m$, $K_m$, the dilatation $\\Delta=2E$ of [SW, (17)] (the physics dilatation is $D=-E=-\\tfrac12\\Delta$, the generator $-E$ of [SW, (3)], with $[D,P_m]=P_m$), the rotations",
+   "reason": "Item 1/3: one dilatation wording for all files, fixed once in the key: the manuscript's Delta is 2E of [SW, (17)]; [SW, (3)] uses -E, written as -E = -(1/2) Delta = D, never as Delta.",
+   "evidence": "ch02 Remark rem:c2-dilatation (Delta = 2E = diag(1,-1|0) of [SW,(17)]; the generator called Delta in [SW,(3)] is -E); Prop prop:c2-special ([Delta,Q_1]=-Q_1); ch06 table caption of thm:c6-dil."
+  },
+  {
+   "file": "manuscript/supplements/ch00.tex",
+   "anchor": "end_of_section 0.1",
+   "old_text_excerpt": "the edge $\\hbar P(\\varepsilon,\\infty)$ of $\\hbar\\partial_{P(\\varepsilon,\\infty)}$ has the components",
+   "new_text": "the edge $\\hbar P(\\varepsilon,\\infty)$ of $\\hbar\\partial_{P(\\varepsilon,\\infty)}$ is the canonical Euclidean propagator of the gluon, the six scalars and the gauginos, written out in components after Proposition \\ref{prop:c3-P}.",
+   "reason": "Item 3 (duplication): the su(N) propagator display was the same as the last display of the block after prop:c3-P (and again in ch08); the core text of Section 0.1 contains no propagator components. Display removed, pointer to the existing block.",
+   "evidence": "Block ch03.tex after_label prop:c3-P (hbar<A^a_m A^b_n> = delta delta e^{-eps p^2}/p^2, hbar<lambda lambdabar> = -delta delta p.sigma ...); verify_review.py / verify_review.json (this directory) D4, E1."
+  },
+  {
+   "file": "manuscript/supplements/ch00.tex",
+   "anchor": "end_of_section 0.3",
+   "old_text_excerpt": "The Feynman-gauge operator of Chapter 3 (Definition \\ref{def:c3-qgf}) is, with the slot of the image in brackets,",
+   "new_text": "The Feynman-gauge operator $Q^{GF}$ of Chapter 3, written out in components after Definition \\ref{def:c3-qgf}, maps the antifield $A^*_M$ to $-2A^*_M$ in the slot of $A_M$ and $A_m$ to $\\partial_mA_m$ in the ghost slot, with $H=[Q,Q^{GF}]=-\\partial_m\\partial_m$.",
+   "reason": "Item 3 (duplication): the Q^GF arrow display was verbatim the one of the block after def:c3-qgf; Section 0.3 (plan of the chapters) contains no Q^GF formula. Display replaced by a one-clause description and a pointer.",
+   "evidence": "Block ch03.tex after_label def:c3-qgf; ch03 Definition def:c3-qgf table."
+  },
+  {
+   "file": "manuscript/supplements/ch00.tex",
+   "anchor": "end_of_section 0.4",
+   "old_text_excerpt": "(sentence added before) The coefficient times the unit is the one-loop anomalous dimension",
+   "new_text": "In the item on Chapter 6, the generator written $\\Delta=-E$ of [SW, (3)] is $-E=-\\tfrac12\\Delta$, the physics dilatation $D$ with $[D,P_m]=P_m$; the manuscript's $\\Delta$ is the generator $2E$ of [SW, (17)].",
+   "reason": "Item 1: the core overview (Section 0.4, item on Chapter 6) writes \"the normalisation Delta=-E of [SW, (3)]\", reusing Delta for another generator; the supplement now translates it as -E = -(1/2)Delta = D. The core text itself is unchanged (not editable here).",
+   "evidence": "ch02 Remark rem:c2-dilatation; ch06 thm:c6-dil table caption (\"the generator -E of [SW, (3)], which is -1/2 times Delta\")."
+  },
+  {
+   "file": "manuscript/supplements/ch02.tex",
+   "anchor": "end_of_section 2.1",
+   "old_text_excerpt": "In the normalisation $\\Delta=-E$ of [SW, (3)] the eigenvalues of $\\mathrm{ad}_\\Delta$ are the scaling dimensions",
+   "new_text": "For the physics dilatation $D=-E=-\\tfrac12\\Delta$, the generator $-E$ of [SW, (3)] (Remark \\ref{rem:c2-dilatation}), the eigenvalues of $\\mathrm{ad}_D=-\\tfrac12\\mathrm{ad}_\\Delta$ are the scaling dimensions",
+   "reason": "Item 1 (known suspect): the old wording called the generator -E of [SW,(3)] \"Delta\", while the same block (last item) and the whole manuscript use Delta = 2E. The eigenvalues 1, 1/2, -1/2, -1 are those of ad_D = -(1/2) ad_Delta.",
+   "evidence": "ch02 table of named subspaces (ad_Delta = -2, -1, +1, +2 on P, Q, S, K) and Remark rem:c2-dilatation; verify_review.py / verify_review.json (this directory) B5, B6."
+  },
+  {
+   "file": "manuscript/supplements/ch02.tex",
+   "anchor": "end_of_section 2.4",
+   "old_text_excerpt": "\\item $Q_1,Q_2\\in\\Sigma$: constant, with $\\Gamma^m=i\\big(\\bar\\xi_{2\\dot\\alpha i}\\bar\\sigma^{m\\dot\\alpha\\alpha}\\xi_{1\\alpha}{}^i+",
+   "new_text": "\\item $Q_1,Q_2\\in\\Sigma$: constant, with the components $\\Gamma^m(\\xi_1,\\xi_2)$ and $\\Gamma_{kl}(\\xi_1,\\xi_2)$ written out after Definition \\ref{def:c1-spaces}; ... with $v_1^m=\\Gamma^m(\\eta_1,\\eta_2)$ as at the end of Section 2.1.",
+   "reason": "Item 3 (duplication): Gamma^m(xi_1,xi_2) and v_1 = Gamma(eta_1,eta_2)|_V were written out a third time; replaced by pointers to the blocks after def:c1-spaces and at the end of Section 2.1.",
+   "evidence": "verify_review.py / verify_review.json (this directory) A6 (G1-G4), C1 (gauge parameter for Q_1,Q_2 in Sigma^*)."
+  },
+  {
+   "file": "manuscript/supplements/ch03.tex",
+   "anchor": "after_label def:c3-qgf",
+   "old_text_excerpt": "Q:&\\quad c\\mapsto-\\partial_mc\\ [A_m],\\quad A_m\\mapsto\\tfrac12(\\partial^2A_m-\\partial_m\\partial_nA_n)\\ [A^*_m],",
+   "new_text": "$Q$ is the free BRST--BV differential, with the arrows written out at the end of Section 1.5, and $Q^{GF}$ the gauge-fixing operator. ... [Q^GF display kept] ... in momentum space with $\\partial_m\\mapsto ip_m$.",
+   "reason": "Item 3 (duplication): the Q arrows and their reading (linearised gauge transformation, Maxwell, Klein-Gordon, Weyl operators) were verbatim those of the block at the end of Section 1.5; Definition c3-qgf defines Q^GF only. Q part replaced by a pointer, Q^GF display kept.",
+   "evidence": "Block ch01.tex end_of_section 1.5; ch01 Prop prop:c1-Q; ch03 Def def:c3-qgf."
+  },
+  {
+   "file": "manuscript/supplements/ch03.tex",
+   "anchor": "after_label def:c3-K",
+   "old_text_excerpt": "the inverse of the field--antifield pairings $(A,A^*)=(A_m,A^*_m)+\\tfrac14(A^{ij},A^*_{ij})$,",
+   "new_text": "the inverse of the field--antifield pairings written out after Definition \\ref{def:c1-fields}, with",
+   "reason": "Item 3 (duplication): the three fibre pairings repeated the block after def:c1-fields.",
+   "evidence": "Block ch01.tex after_label def:c1-fields."
+  },
+  {
+   "file": "manuscript/supplements/ch05.tex",
+   "anchor": "end_of_section 5.3",
+   "old_text_excerpt": "the gaugini $\\lambda_\\alpha{}^i$",
+   "new_text": "the gauginos $\\lambda_\\alpha{}^i$",
+   "reason": "Item 3: one name per object (every other block says gauginos).",
+   "evidence": "grep over manuscript/supplements/*.tex."
+  },
+  {
+   "file": "manuscript/supplements/ch06.tex",
+   "anchor": "end_of_section 6.2",
+   "old_text_excerpt": "being the one-loop renormalisation constant of $O$",
+   "new_text": "being the one-loop operator counterterm of $O$",
+   "reason": "Item 1 (sign/name): the coefficient of log eps in partial_delta I^CT[eps] is the operator counterterm; the renormalisation constant Z of O(eps) = Z O = O - partial_delta I^CT has the opposite log eps coefficient (Z = 1 - 4 unit log eps for the 20').",
+   "evidence": "ch06 thm:c6-dil table (third column: log eps coefficient of partial_delta I^CT, per O); ch05 thm:c5-Oeps; ch00 Section 0.4 (traceless: O(eps)=(1-4 unit log eps)O)."
+  },
+  {
+   "file": "manuscript/supplements/ch06.tex",
+   "anchor": "after_label thm:c6-dil",
+   "old_text_excerpt": "The dilatation of physics, normalised by $[D,P_m]=P_m$, is $D=-E=-\\tfrac12\\Delta$, the generator $-E$ of [SW, (3)]. ... anomalous dimension $\\gamma_O$ equal to the coefficient of the table. ... twice the $\\log\\varepsilon$ coefficient of its renormalisation constant, plus",
+   "new_text": "The physics dilatation $D=-E=-\\tfrac12\\Delta$ (the generator $-E$ of [SW, (3)]) is normalised by $[D,P_m]=P_m$. ... anomalous dimension $\\gamma_O$ equal to the coefficient of the table times the unit. ... twice the coefficient of $\\log\\varepsilon$ in its operator counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$, plus",
+   "reason": "Item 1: (i) uniform dilatation wording; (ii) gamma_O is the table coefficient times the unit (-24 units = 3g^2N/(4pi^2)); (iii) \"twice the log eps coefficient of its renormalisation constant\" has the wrong sign: with Z the 20' would get 2(-4)-4-4 = -16 instead of 0; the vertex part is twice the log eps coefficient of the counterterm, 2*4-4-4 = 0, 2*(-8)-4-4 = -24.",
+   "evidence": "ch06 thm:c6-dil table and proof; Remark rem:c6-konishi; verify_review.py / verify_review.json (this directory) D1 (unit, Konishi), N5 (negative control for the Z reading)."
+  },
+  {
+   "file": "manuscript/supplements/ch06.tex",
+   "anchor": "after_label rem:c6-konishi",
+   "old_text_excerpt": "With $\\phi_I=A^a_IT^a$, $\\phi_{ij}=\\phi_I\\Sigma^I_{ij}$, $\\phi^{ij}=\\tfrac12\\varepsilon^{ijkl}\\phi_{kl}$ as after Definition \\ref{def:c5-bilinear}, the trace bilinear is the Konishi operator $4\\hbar\\int\\omega\\operatorname{tr}(\\phi_I\\phi_I)=",
+   "new_text": "In the components written out after Definition \\ref{def:c5-bilinear}, with $\\phi_I=A^a_IT^a$, the trace bilinear is the Konishi operator, the superconformal primary of the long Konishi multiplet, and the traceless part is the half-BPS $\\mathbf{20'}$.",
+   "reason": "Item 3 (duplication): the Konishi and 20' formulas repeated the block after def:c5-bilinear; the physics names (long Konishi multiplet, half-BPS) and the mixing matrix are kept.",
+   "evidence": "Block ch05.tex after_label def:c5-bilinear; verify_review.py / verify_review.json (this directory) D3 (forms and eigenvalues 0 x20, 6 of the mixing matrix)."
+  },
+  {
+   "file": "manuscript/supplements/ch06.tex",
+   "anchor": "end_of_section 6.4",
+   "old_text_excerpt": "The letters are the elementary fields smeared with $\\omega$: $\\int\\omega\\,(X,\\iota_wA)=w_I\\int\\omega\\,(X,A_I)$,",
+   "new_text": "The letters are the elementary fields smeared with $\\omega$, in the components written out at the end of Section 5.3.",
+   "reason": "Item 3 (duplication): the component forms of the four letters and their su(N) normalisation repeated the block at the end of Section 5.3 verbatim.",
+   "evidence": "Block ch05.tex end_of_section 5.3."
+  },
+  {
+   "file": "manuscript/supplements/ch06.tex",
+   "anchor": "end_of_section 6.6",
+   "old_text_excerpt": "The graphs (a)--(y) are the one-loop graphs with one insertion of this vertex, joined to the rest through the heat-kernel edge $K_\\varepsilon$;",
+   "new_text": "The graphs (a)--(u) are the one-loop graphs with one insertion of this vertex, joined to the rest through the heat-kernel edge $K_\\varepsilon$, and (v)--(y) the trees with the same insertion and the operator counterterm $\\partial_\\delta I^{CT}[\\varepsilon]$;",
+   "reason": "Item 1 (correctness against the chapter): (v)-(y) are trees with the vertex partial_delta I^CT[eps], not one-loop graphs.",
+   "evidence": "ch06 Section 6.6 list (\"one-loop graphs (a)--(u), and trees (v)--(y) in which the vertex is partial_delta I^CT[eps]\") and figure caption; ch07 Step 2 (\"twenty-one one-loop graphs (a)--(u) ... four trees (v)--(y)\")."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "after_label prop:c7-cov",
+   "old_text_excerpt": "acts on $\\lambda_\\alpha{}^i$ by $-\\tfrac18X_{mn}(\\sigma^m\\bar\\sigma^n)_\\alpha{}^\\beta$, on $\\bar\\lambda_{\\dot\\alpha i}$ from the right by $+\\tfrac18X_{mn}(\\bar\\sigma^m\\sigma^n)^{\\dot\\beta}{}_{\\dot\\alpha}$,",
+   "new_text": "is the spin term of $\\lambda_\\alpha{}^i$ and $\\bar\\lambda_{\\dot\\alpha i}$ written out after Definition \\ref{def:c2-S1},",
+   "reason": "Item 3 (duplication): the spin terms were stated after def:c2-bracket, def:c2-S1 and def:c7-vdot already.",
+   "evidence": "Block ch02.tex after_label def:c2-S1; verify_review.py / verify_review.json (this directory) A7."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "after_label cor:c7-schur",
+   "old_text_excerpt": "Under $SO(6)_R$, $\\mathrm{Sym}^2\\mathbf6=\\mathbf1\\oplus\\mathbf{20'}$. With $\\phi_I=A^a_IT^a$ and $(\\iota_{w_1}A,\\iota_{w_2}A)=4\\hbar\\,w_{1I}w_{2J}\\operatorname{tr}(\\phi_I\\phi_J)$, the $\\mathbf{20'}$ operators",
+   "new_text": "With the $\\mathbf{20'}$ and Konishi operators written out after Definition \\ref{def:c5-bilinear} ($\\phi_I=A^a_IT^a$), the $\\mathbf{20'}$ operators",
+   "reason": "Item 3 (duplication): decomposition and normalisation repeated the block after def:c5-bilinear.",
+   "evidence": "Block ch05.tex after_label def:c5-bilinear; verify_review.py / verify_review.json (this directory) D1, D3."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "end_of_section 7.2",
+   "old_text_excerpt": "squares to a nonzero operator; in components \\[ (Q^{GF})^2A^*_m=-2\\,\\partial_mA^*_m\\quad(\\text{in the slot of }c), \\]",
+   "new_text": "squares to a nonzero operator: $(Q^{GF})^2A^*_m=-2\\,\\partial_mA^*_m$ in the slot of $c$ (end of Section 3.1),",
+   "reason": "Item 3 (duplication): the displayed formula is the first display of the block at the end of Section 3.1; kept inline with a pointer, the composition explanation kept.",
+   "evidence": "Block ch03.tex end_of_section 3.1; ch03 Prop prop:c3-axioms."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "after_label prop:c7-dil",
+   "old_text_excerpt": "In components the dilatation is $v^m=2x^m$, $\\operatorname{div}v=8$, and the special conformal field along $b$ is \\[ v^m=x^2b^m-2(b\\cdot x)x^m,\\qquad X_{mn}=4(x_mb_n-x_nb_m),\\qquad \\operatorname{div}v=-8\\,b\\cdot x . \\]",
+   "new_text": "In components the dilatation and the special conformal field along $b$, $v^m=x^2b^m-2(b\\cdot x)x^m$, have the data $X_{mn}$, $\\operatorname{div}v$ written out after Definition \\ref{def:c2-even}.",
+   "reason": "Item 3 (duplication): the conformal Killing data were verbatim those of the block after def:c2-even.",
+   "evidence": "Block ch02.tex after_label def:c2-even; verify_review.py / verify_review.json (this directory) C5."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "end_of_section 7.3",
+   "old_text_excerpt": "is that of the conformal Killing spinor $\\epsilon_\\alpha{}^i(x)=-i\\,x_m\\sigma^m_{\\alpha\\dot\\alpha}\\bar\\eta^{\\dot\\alpha i}$, ... the borderline of a logarithmic infrared divergence.",
+   "new_text": "is that of the conformal Killing spinor written out after Definition \\ref{def:c2-odd}, at $\\xi=\\bar\\xi=0$, ... the borderline of a logarithmic divergence at large distance.",
+   "reason": "Item 3 (duplication of the Killing spinor, also in cor:c7-S and def:c2-odd blocks) and item 2 (wording aligned with ch08: the large-distance logarithm is cut off by the transfer endpoint T, a Wilsonian scale, not an infrared regulator).",
+   "evidence": "Block ch02.tex after_label def:c2-odd; ch07 Remark rem:c7-ir; ch08 Prop prop:c8-Tsafe."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "end_of_section 7.4",
+   "old_text_excerpt": "With the dilatation of physics $D=-E=-\\tfrac12\\Delta$ ... The column ``weight of output'' is the canonical dimension of the transformed operator, the dimension of $O$ plus that of the generator, and for $S^\\alpha{}_i$, $\\bar S^{\\dot\\alpha i}$ evaluated on the Killing spinor $\\rho(x)Q_2$ of dimension $-\\tfrac12$.",
+   "new_text": "With the physics dilatation $D=-E=-\\tfrac12\\Delta$ ... The column ``weight of output'' is the canonical dimension of the transformed operator: the dimension of $O$ plus that of the generator for $P$, $M$, $\\bar M$, $R$, $D$, $Q$, $\\bar Q$; for $S^\\alpha{}_i$, $\\bar S^{\\dot\\alpha i}$ the term linear in the value $\\rho(x)Q_2$ of the Killing spinor, of dimension $-\\tfrac12$; for $K_b$ the terms linear in $v(x_0)$, in its first and in its second derivatives, of dimensions $-1$, $0$, $+1$ (Proposition \\ref{prop:c7-select}).",
+   "reason": "Item 1: uniform D wording; the old rule \"dimension of O plus that of the generator\" gives w_O-1 for K_b, while the table lists w_O+1, w_O, w_O-1 for the three terms of Proposition c7-select.",
+   "evidence": "ch07 table after rem:c7-KDelta (row special conformal: w_O+1, w_O, w_O-1); Prop prop:c7-select; block ch07.tex after_label prop:c7-select (parameter dimensions -1, 0, +1)."
+  },
+  {
+   "file": "manuscript/supplements/ch07.tex",
+   "anchor": "end_of_section 7.5.1",
+   "old_text_excerpt": "The finite counterterm of Chapter 4, the Feynman-gauge longitudinal term, reads for $\\mathfrak{su}(N)$, with $d^*A|_V=-\\partial_mA_m$, \\[ \\frac{27}{16}\\,... =-\\frac{27g^2N}{256\\pi^2}\\,\\hbar\\int d^4x\\,(\\partial_mA^a_m)^2 . \\]",
+   "new_text": "The finite counterterm of Chapter 4 is the Feynman-gauge longitudinal term, in components after Theorems \\ref{thm:c4-obstruction} and \\ref{thm:c4-finite}.",
+   "reason": "Item 3 (duplication): the display was verbatim the last display of the block after thm:c4-obstruction.",
+   "evidence": "Blocks ch04.tex after_label thm:c4-obstruction and thm:c4-finite; verify_review.py / verify_review.json (this directory) D1 (27/16 unit * 2 hbar = -27 g^2N hbar/(256 pi^2))."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "after_label prop:c8-twocomp",
+   "old_text_excerpt": "so the edges $\\hbar P(\\varepsilon,T)$ of the flow are the canonical Euclidean propagators \\[ ... \\] each times $\\big(e^{-\\varepsilon|p|^2}-e^{-T|p|^2}\\big)/|p|^2$, with the proper-time cutoffs $\\varepsilon$ (ultraviolet) and $T$ (infrared).",
+   "new_text": "The propagator is that of Feynman gauge: the edges $\\hbar P(\\varepsilon,T)$ of the flow are the canonical Euclidean propagators written out after Proposition \\ref{prop:c3-P}, with the factor $e^{-\\varepsilon|p|^2}/|p|^2$ replaced by $\\big(e^{-\\varepsilon|p|^2}-e^{-T|p|^2}\\big)/|p|^2$, the modes of proper time between the ultraviolet cutoff $\\varepsilon$ and the endpoint $T$ of the transfer of [C07], a Wilsonian scale. The counterterms, the obstruction and the local representatives are independent of $T$ (Proposition \\ref{prop:c8-Tindep}, Theorem \\ref{thm:c8-L} (ii)).",
+   "reason": "Item 2 (T called an infrared cutoff) and item 3 (the canonical propagator display duplicated the block after prop:c3-P; only the scalar factor differs).",
+   "evidence": "ch08 Def def:c8-PT (\"T is the endpoint of the transfer, the scale of the effective interaction of [C07]\"); Prop prop:c8-Tindep (i); Def def:c8-ob; Thm thm:c8-L (ii); verify_review.py / verify_review.json (this directory) D4."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "end_of_section 8.1",
+   "old_text_excerpt": "the values of $[\\xi_1,\\xi_2]=i\\big(\\bar\\xi_{1\\dot\\alpha i}\\bar\\sigma^{m\\dot\\alpha\\alpha}\\xi_{2\\alpha}{}^i+\\bar\\xi_{2\\dot\\alpha i}\\bar\\sigma^{m\\dot\\alpha\\alpha}\\xi_{1\\alpha}{}^i\\big)P_m$,",
+   "new_text": "the values on unit elements of the translation $[\\xi_1,\\xi_2]=\\Gamma^m(\\xi_1,\\xi_2)P_m$ of the end of Section 2.1,",
+   "reason": "Item 3 (duplication): third statement of the same bracket formula.",
+   "evidence": "Block ch02.tex end_of_section 2.1; verify_review.py / verify_review.json (this directory) B7 ([Q^i_alpha, Qbar_{alphadot j}] = i delta sigmabar^m P_m re-verified)."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "end_of_section 8.2",
+   "old_text_excerpt": "$T$ is an infrared proper-time cutoff, of length $T^{1/2}$, and $\\varepsilon$ the ultraviolet one: the scalar factor of $P(\\varepsilon,T)$ is the massless propagator $\\frac1{4\\pi^2|x-y|^2}$ with both cutoffs,",
+   "new_text": "$T$ is the endpoint of the transfer of [C07], the Wilsonian scale, of length $T^{1/2}$, at which the effective interaction is taken, and $\\varepsilon$ is the ultraviolet proper-time cutoff: the scalar factor of $P(\\varepsilon,T)$ is the massless propagator $\\frac1{4\\pi^2|x-y|^2}$ restricted to the proper times between $\\varepsilon$ and $T$,",
+   "reason": "Item 2: T is the endpoint of the transfer (Wilsonian scale), not an infrared cutoff.",
+   "evidence": "ch08 Def def:c8-PT; Lemma lem:c8-transfer; Prop prop:c8-Tindep."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "after_label def:c8-components",
+   "old_text_excerpt": "For the dilatation $D=-\\tfrac12\\Delta$ of physics, acting through $-\\Lambda^{(1)}$",
+   "new_text": "For the physics dilatation $D=-E=-\\tfrac12\\Delta$ (the generator $-E$ of [SW, (3)]), acting through $-\\Lambda^{(1)}$",
+   "reason": "Item 1: uniform dilatation wording. Content re-checked: -Lambda^(1)(D) = (1/2)Lambda^(1)(Delta), whose order-hbar part is D_1/2 = -24 units = 3g^2N/(4pi^2) on Konishi (D_1 = -48 units, ch08 remark \"What is computed\").",
+   "evidence": "ch08 Def def:c8-components, Cor cor:c8-homotopy, remark after it; verify_review.py / verify_review.json (this directory) D1."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "end_of_section 8.4",
+   "old_text_excerpt": "in this normalisation $D=-\\tfrac12\\Delta$ acts on an operator of degree $0$",
+   "new_text": "through it the physics dilatation $D=-E=-\\tfrac12\\Delta$ acts on an operator of degree $0$",
+   "reason": "Item 1: uniform dilatation wording.",
+   "evidence": "ch08 Cor cor:c8-homotopy."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "end_of_section 8.7",
+   "old_text_excerpt": "The endpoint $T$ is an infrared regulator. The insertions of $S^{(1)}$ along ... are infrared finite, ... produces an infrared logarithm, ... is nevertheless infrared safe,",
+   "new_text": "The endpoint $T$ is the Wilsonian scale of the transfer, and the one-loop components are independent of it (Theorem \\ref{thm:c8-L} (ii)). The insertions of $S^{(1)}$ along ... converge at large distance, so these components may be computed at $T=\\infty$ (Proposition \\ref{prop:c8-Tsafe}); ... produces a large-distance logarithm, ... is nevertheless the same at every $T$,",
+   "reason": "Item 2: T is not an infrared regulator; core quantities (local representatives, K_1) are independent of it, the log T sits in the flow of O[T].",
+   "evidence": "ch08 Def def:c8-PT, Thm thm:c8-L (ii), Prop prop:c8-Tsafe, Thm thm:c8-K."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "after_label thm:c8-dag",
+   "old_text_excerpt": "contain $-\\tfrac12\\Delta=D$, the physics dilatation;",
+   "new_text": "contain $-\\tfrac12\\Delta$, the physics dilatation $D=-E$;",
+   "reason": "Item 1: uniform dilatation wording. Content re-verified.",
+   "evidence": "ch08 Thm thm:c8-dag (i), Prop prop:c2-special; verify_review.py / verify_review.json (this directory) B4, B6, N4."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "after_label def:c8-Theta",
+   "old_text_excerpt": "the Euclidean form of the Lorentzian relation $(Q_\\alpha)^\\dagger=\\bar Q_{\\dot\\alpha}$",
+   "new_text": "the Euclidean counterpart, with the sign $-1$, of the Lorentzian relation $(Q_\\alpha)^\\dagger=\\bar Q_{\\dot\\alpha}$",
+   "reason": "Known suspect re-verified: (Q^i_alpha)^{dagger e_4} = -Qbar_{alphadot i}|_{alphadot=alpha} and (Qbar)^{dagger e_4} = -Q|_{alpha=alphadot} are correct (from (xi)^{dagger_n} = rho(n) conj(xi), Lemma c8-cc conjugation, sigma^4 = i); only the comparison sentence now states the sign -1 explicitly.",
+   "evidence": "ch08 Def def:c8-Theta (two-component (xi^{dagger_n})), Lemma lem:c8-cc; verify_review.py / verify_review.json (this directory) B1, B2, B3 and negative control N1 (the + sign is rejected)."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "end_of_section 8.8",
+   "old_text_excerpt": "with $\\kappa$ its one-loop anomalous dimension",
+   "new_text": "with $\\kappa=\\gamma_O$ its one-loop anomalous dimension",
+   "reason": "Item 3: one name per object: kappa (the core name in Prop c8-primary) identified with gamma_O used in ch06 and ch08 8.4.",
+   "evidence": "ch08 Prop prop:c8-primary (D_1(O) = 2 kappa O); ch06 block after thm:c6-dil."
+  },
+  {
+   "file": "manuscript/supplements/ch08.tex",
+   "anchor": "after_label prop:c8-2pt",
+   "old_text_excerpt": "(ii) the absence of ultraviolet and infrared problems at separated points, ... $D_1(O)=2\\gamma O$ ($\\gamma=\\frac{3g^2N}{4\\pi^2}$",
+   "new_text": "(ii) the existence of the limit at separated points and the convergence at large distance, so that the endpoint is taken at $T=\\infty$, ... $D_1(O)=2\\gamma_OO$ ($\\gamma_O=\\frac{3g^2N}{4\\pi^2}$",
+   "reason": "Items 2/3: (ii) phrased as in the proposition (limit at separated supports, large-distance convergence, endpoint T = infinity safe); gamma renamed gamma_O as in ch06. The formula -gamma_O C log(|x|^2/l^2) re-checked against -(1/4)(D_1^T C + C D_1).",
+   "evidence": "ch08 Prop prop:c8-2pt (ii), (iii)."
+  }
+ ]
+}

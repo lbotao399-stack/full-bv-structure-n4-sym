@@ -1,0 +1,440 @@
+\chapter{The cubic sector of the one-loop obstruction: structure}
+
+The obstruction to the quantum master equation at one loop has a quadratic part, removed in Chapter 4 by the finite counterterm $\tfrac{27}{16}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$, and a part with three legs, which this chapter organises. We list the three-leg sectors of degree one that can be nonzero, fix a basis $G_1,\dots,G_5$ of each, compute the linear maps $Q$ and $\{I_3,-\}$ that enter the equation for the cubic finite counterterm, solve that equation, decide the Wess--Zumino condition, and give the census of the one-loop graphs with one defect vertex together with the two limit statements and the cancellation of $\log\varepsilon$. Every coefficient is a rational multiple of
+\[
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2\,(X,Y)},
+\]
+and coefficients are stated in this unit.
+
+\section{Conventions}
+
+The subscript $n$ on a functional denotes its part with $n$ legs: $I_3$ is the cubic part of \eqref{eq:c1-I}, $I^{CT}_2$, $I^{CT}_3$ the quadratic and cubic parts of $I^{CT}[\varepsilon]$ (Theorems \ref{thm:c4-quadratic}, \ref{thm:c4-log}). The two bases:
+\[
+\begin{aligned}
+G_1&=\int\mathrm{dvol}\,([c,A|_V],d^*dA|_V),&\quad G_2&=\int\mathrm{dvol}\,([c,A|_V],dd^*A|_V),&\quad G_3&=\int\mathrm{dvol}\,([c,A|_{W_{\mathbb R}^\perp}],d^*dA|_{W_{\mathbb R}^\perp}),\\
+G_4&=\int\mathrm{dvol}\,([c,dc],A^*),&\quad G_5&=\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda),
+\end{aligned}
+\]
+\[
+\begin{aligned}
+H_1&=\int\mathrm{dvol}\,(dA|_V,[A|_V\wedge A|_V]),&\quad H_2&=\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},[A|_V,A|_{W_{\mathbb R}^\perp}]),&\quad H_3&=\int\mathrm{dvol}\,([A|_V,c],A^*|_V),\\
+H_4&=\int\mathrm{dvol}\,([A|_{W_{\mathbb R}^\perp},c],A^*|_{W_{\mathbb R}^\perp}),&\quad H_5&=\int\mathrm{dvol}\,([c,\lambda],\lambda^*),&\quad H_6&=\int\mathrm{dvol}\,([c,c],c^*).
+\end{aligned}
+\]
+In $H_2$ the one-form $dA|_{W_{\mathbb R}^\perp}$ and the one-form $[A|_V,A|_{W_{\mathbb R}^\perp}]$ are paired with the metrics of $V$ and $W_{\mathbb R}^\perp$; in $[A,dc]$ and $[A,B]$ for one-forms the metric of $V$ contracts the form factors.
+
+\begin{definition}[The two operations]
+\label{def:s2c-ops}
+$Q$ acts on a functional $F$ by $F(e+rQe)=F(e)+r\,(QF)(e)$ with $r$ odd, moved to the left [C07, §6.2], i.e. by the substitutions (Proposition \ref{prop:c1-Q})
+\[
+A|_V\mapsto A|_V-r\,dc,\qquad A^*\mapsto A^*-\tfrac r2\,d^*dA,\qquad c^*\mapsto c^*+r\,d^*(A^*|_V),\qquad \lambda^*\mapsto\lambda^*+r\,{\not d}\lambda .
+\]
+With $x\in\{A,\lambda^*,c^*\}$ the even member and $\xi\in\{A^*,\lambda,c\}$ its partner, $\Delta_0=\sum\partial_x\partial_\xi$ (proof of Lemma \ref{lem:c4-count}) and Definition \ref{def:c1-bracket} give, with left derivatives,
+\begin{equation}
+\{f,g\}=\sum\Big((\partial_\xi f)(\partial_xg)+(-1)^{|f|}(\partial_xf)(\partial_\xi g)\Big).
+\label{eq:s2c-br}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Brackets with $I_3$]
+\label{lem:s2c-brrules}
+\begin{itemize}
+\item For $X$ a functional of $A$ alone: $\{I_3,X\}=-\frac{d}{dt}\Big|_{t=0}X\big(A+t[A,c]\big)$, the odd factor $[A,c]$ placed to the left.
+\item For $X$ a functional of $\lambda$ alone: $\{I_3,X\}=\sum[c,\lambda]\,\partial_\lambda X$.
+\item $\{I_3,\int\mathrm{dvol}\,(dc,A^*)\}=(QI_3)\big|_{A|_V\mapsto A|_V-r\,dc}+(QI_3)\big|_{c^*\mapsto c^*+r\,d^*A^*|_V}$, the parts of $QI_3$ from the first and third substitutions.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+In $I_3$ the antifields enter linearly, through $\int([A,c],A^*)+\int([c,\lambda],\lambda^*)+\tfrac12\int([c,c],c^*)$. By \eqref{eq:s2c-br} with $|I_3|=0$:
+\[
+\partial_{A^*}I_3=-[A,c],\qquad \partial_{\lambda^*}I_3=[c,\lambda],\qquad \partial_{c^*}I_3=\tfrac12[c,c],
+\]
+the first sign from moving the odd $A^*$ across the odd $[A,c]$. For $X=X(A)$ only the term $(\partial_{A^*}I_3)(\partial_AX)$ survives; for $X=X(\lambda)$ only $(\partial_{\lambda^*}I_3)(\partial_\lambda X)$. For $X=\int(dc,A^*)$, $\partial_{A^*}X=-dc$ and $\partial_cX=d^*A^*$, so
+\[
+\{I_3,X\}=-\sum(\partial_AI_3)\,dc+\tfrac12\int\mathrm{dvol}\,([c,c],d^*A^*|_V)=\partial_r\,I_3(A-r\,dc)+\partial_r\,I_3\big(c^*+r\,d^*A^*|_V\big).
+\]
+\end{proof}
+
+\section{The three-leg sectors of degree one}
+
+\begin{lemma}[Leg sets]
+\label{lem:s2c-legs}
+A translation-, $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$- and $\mathfrak g$-invariant local functional of degree $1$ with three legs and weight at most $4$ has legs in one of
+\[
+(c,A|_V,A|_V),\qquad (c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}),\qquad (c,\lambda,\lambda),\qquad (c,c,A^*|_V).
+\]
+Its colour factor is a multiple of $(X_0,[X_1,X_2])$, $X_j$ the $\mathfrak g$-factor of leg $j$.
+\end{lemma}
+
+\begin{proof}
+Functional degrees: $c$: $+1$; $A,\lambda$: $0$; $A^*,\lambda^*$: $-1$; $c^*$: $-2$. Weights: $0,1,\tfrac32,3,\tfrac52,4$. Degree $1$ with three legs:
+\[
+n_c-n_{A^*}-n_{\lambda^*}-2n_{c^*}=1,\quad n_c+n_A+n_\lambda+n_{A^*}+n_{\lambda^*}+n_{c^*}=3 .
+\]
+Solutions: one $c$ with two legs among $A,\lambda$; two $c$ with one $A^*$ or one $\lambda^*$ ($c^*$ needs three $c$). A single spinor ($c\,A\,\lambda$, $c\,c\,\lambda^*$) is odd under $-1\in\mathrm{Spin}(4,\mathbb C)$. One vector of $W_{\mathbb R}^\perp$ ($c\,A|_V\,A|_{W_{\mathbb R}^\perp}$, $c\,c\,A^*|_{W_{\mathbb R}^\perp}$) has no $\mathrm{Spin}(6,\mathbb C)$-invariant. Weights of the rest: $2,2,3,3$, all $\le4$.
+
+Colour. A tree contraction (a bracket or $Q$) of the vertices of $I$ produces $([X_0,X_1],X_2)$. A one-loop colour factor is a trace over $\mathfrak g$ of products of $\mathrm{ad}$'s; invariance gives $\mathrm{ad}_X^{T}=-\mathrm{ad}_X$, hence
+\[
+\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Z\mathrm{ad}_Y)=-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_Y\mathrm{ad}_Z\mathrm{ad}_X)=-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y\mathrm{ad}_Z),
+\]
+\[
+\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y\mathrm{ad}_Z)=\tfrac12\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_{[Y,Z]})=\tfrac12\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\,(X,[Y,Z]),
+\]
+and the bubbles with a quartic vertex give $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_i}\mathrm{ad}_{[X_j,X_k]})$, the same.
+\end{proof}
+
+\begin{proposition}[Dimensions and the basis]
+\label{prop:s2c-dims}
+Write $f=([X_0,X_1],X_2)$, $p_j$ the momentum of leg $j$, $a_j\in V$, $w_j\in W_{\mathbb R}^\perp$, $b\in V$, $\lambda_j\in\Sigma$ the fibre elements, and the plane-wave value as the coefficient of the product of the odd parameters of the odd legs in leg order (Definition \ref{def:c1-vertex}).
+\begin{itemize}
+\item $(c,A|_V,A|_V)$: dimension $2$, basis $G_1,G_2$;
+\[
+G_1=f\big[(p_2^2-p_1^2)(a_1,a_2)-(a_1,p_2)(a_2,p_2)+(a_1,p_1)(a_2,p_1)\big],\qquad G_2=f\big[(a_1,p_2)(a_2,p_2)-(a_1,p_1)(a_2,p_1)\big].
+\]
+\item $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$: dimension $1$, $G_3=f\,(w_1,w_2)(p_2^2-p_1^2)$.
+\item $(c,\lambda,\lambda)$: one parity-even structure, $G_5=-i f\,(\lambda_1,\rho(p_0)\lambda_2)$, and one parity-odd structure
+\[
+\int\mathrm{dvol}\,\big([c,\lambda],{\not d}\,\rho(v_1v_2v_3v_4)\lambda\big)=i f\,\big(\lambda_1,\rho(p_2-p_1)\rho(v_1v_2v_3v_4)\lambda_2\big),
+\]
+$v_1,\dots,v_4$ an oriented orthonormal basis of $V$ (Proposition \ref{prop:c1-chirality}).
+\item $(c,c,A^*|_V)$: dimension $1$, $G_4=-i f\,(p_2,b)$.
+\item The weight-$2$ structures $\int\mathrm{dvol}\,([c,A|_V],A|_V)$, $\int\mathrm{dvol}\,([c,A|_{W_{\mathbb R}^\perp}],A|_{W_{\mathbb R}^\perp})$ vanish identically; weight $3$ has no invariant.
+\end{itemize}
+The parity-odd structure has coefficient $0$ in every functional built from $S$, $I^{CT}[\varepsilon]$, $P(\varepsilon,\infty)$, $K_\varepsilon$ and $K_0$.
+\end{proposition}
+
+\begin{proof}
+Statistics. Relabelling two identical legs leaves the functional unchanged. For two even legs ($A$) the plane-wave value is symmetric under the exchange, for two odd legs ($\lambda$, $c$) antisymmetric ($r_ir_j=-r_jr_i$). $f$ is antisymmetric under $1\leftrightarrow2$ and under $0\leftrightarrow1$; hence the kinematic factor $K$ is antisymmetric under $(p_1,a_1)\leftrightarrow(p_2,a_2)$ for $(c,A,A)$, symmetric for $(c,\lambda,\lambda)$ and $(c,c,A^*)$.
+
+$(c,A|_V,A|_V)$, weight $4$: $K$ bilinear in $a_1,a_2$, quadratic in $p_1,p_2$ ($p_0=-p_1-p_2$). Parity-even monomials:
+\[
+(a_1,a_2)\{p_1^2,p_2^2,(p_1,p_2)\},\quad (a_1,p_i)(a_2,p_j),\ i,j\in\{1,2\};
+\]
+antisymmetric part: $(a_1,a_2)(p_1^2-p_2^2)$ and $(a_1,p_1)(a_2,p_1)-(a_1,p_2)(a_2,p_2)$. Parity-odd: $\varepsilon(a_1,a_2,p_1,p_2)$, symmetric, excluded. The values of $G_1,G_2$ follow from $d^*d\mapsto|p|^2-p(p,\cdot)$, $dd^*\mapsto p(p,\cdot)$ on the second $A$ and the two assignments of the legs; the matrix of $(G_1,G_2)$ on the two antisymmetric monomials is $\begin{pmatrix}-1&1\\0&-1\end{pmatrix}$, invertible. Weight $2$: $K=(a_1,a_2)$, symmetric, so $\int([c,A|_V],A|_V)=0$.
+
+$(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$: $\mathrm{Spin}(6,\mathbb C)$ allows $(w_1,w_2)$ only; $K=(w_1,w_2)\{p_1^2,p_2^2,(p_1,p_2)\}$, antisymmetric part $(w_1,w_2)(p_1^2-p_2^2)$.
+
+$(c,\lambda,\lambda)$: the invariant bilinears of $\Sigma\otimes\Sigma$ with one vector $q\in V$ pair $S_+\otimes W$ with $S_-\otimes W^*$ through $\rho(q)$ (Proposition \ref{prop:c1-chirality}); the two chiral parts give $(\lambda_1,\rho(q)\lambda_2)$ and $(\lambda_1,\rho(q)\rho(v_1v_2v_3v_4)\lambda_2)$, $q\in\{p_1,p_2\}$. From $(\rho(v)Q_1,Q_2)=(Q_1,\rho(v)Q_2)$ and $q\,v_1v_2v_3v_4=-v_1v_2v_3v_4\,q$:
+\[
+(\lambda_2,\rho(q)\lambda_1)=(\lambda_1,\rho(q)\lambda_2),\qquad (\lambda_2,\rho(q)\rho(v_1v_2v_3v_4)\lambda_1)=-(\lambda_1,\rho(q)\rho(v_1v_2v_3v_4)\lambda_2).
+\]
+Symmetric combinations: $(\lambda_1,\rho(p_1+p_2)\lambda_2)$ and $(\lambda_1,\rho(p_1-p_2)\rho(v_1v_2v_3v_4)\lambda_2)$. Weight $3$: $\Sigma\otimes\Sigma$ has no invariant (Lemma \ref{lem:c4-enumeration}).
+
+$(c,c,A^*|_V)$: $K=(b,q)$, $q\in\{p_0,p_1\}$, symmetric in $0\leftrightarrow1$: $(b,p_0+p_1)=-(b,p_2)$. Value of $G_4$: $[c,dc]=r_0r_1[X_0,X_1]\,i(p_0+p_1)$.
+
+Parity. Let $R\in\mathrm{Spin}(10,\mathbb C)$ lift the product of the reflection of one direction of $V$ and of one direction of $W_{\mathbb R}^\perp$. It preserves $V$, $W_{\mathbb R}^\perp$, $\Sigma$, the action \eqref{eq:c1-action}, $Q$, $Q^{GF}$, $H$, hence $P(\varepsilon,\infty)$, $K_t$ and every graph and counterterm. Conjugation by $R$ sends $\rho(v_1v_2v_3v_4)$ to $-\rho(v_1v_2v_3v_4)$ ($v_1$ anticommutes with $v_2,v_3,v_4$, the direction of $W_{\mathbb R}^\perp$ commutes with all four), and fixes $G_5$. So the parity-odd coefficient is $0$.
+\end{proof}
+
+\section{The maps $Q$ and $\{I_3,-\}$}
+
+\begin{proposition}[$Q$ on the cubic functionals]
+\label{prop:s2c-QH}
+\[
+\begin{aligned}
+QH_1&=-2G_1,&\quad QH_2&=-G_3,&\quad QH_3&=-\tfrac12G_1-G_4,\\
+QH_4&=-\tfrac12G_3,&\quad QH_5&=G_5,&\quad QH_6&=2G_4,
+\end{aligned}
+\qquad
+Q\Big(\tfrac12\int\mathrm{dvol}\,(\lambda,\rho([A,\lambda]))\Big)=-G_5 .
+\]
+In the basis $G_1,\dots,G_5$ (rows) and $H_1,\dots,H_6$ (columns),
+\[
+Q=\begin{pmatrix}-2&0&-\tfrac12&0&0&0\\0&0&0&0&0&0\\0&-1&0&-\tfrac12&0&0\\0&0&-1&0&0&2\\0&0&0&0&1&0\end{pmatrix},
+\]
+of rank $4$, image $\mathrm{span}\{G_1,G_3,G_4,G_5\}$, kernel spanned by $H_1-4H_3-2H_6$ and $H_2-2H_4$.
+\end{proposition}
+
+\begin{proof}
+$H_1$: $d(A|_V-r\,dc)=dA|_V$, $[(A-r\,dc)\wedge(A-r\,dc)]=[A\wedge A]-2r[A\wedge dc]$; with $d[A,c]=[dA,c]-[A\wedge dc]$ and $\int(dA,[dA,c])=0$ (symmetric in the two $A$ legs),
+\[
+QH_1=-2\int\mathrm{dvol}\,(dA|_V,[A|_V\wedge dc])=-2\Big(\int\mathrm{dvol}\,(dA|_V,[dA|_V,c])-\int\mathrm{dvol}\,(d^*dA|_V,[A|_V,c])\Big)=-2G_1 .
+\]
+$H_2$: with $[dc,\varphi]=d[c,\varphi]-[c,d\varphi]$ for $\varphi=A|_{W_{\mathbb R}^\perp}$,
+\[
+QH_2=-\int\mathrm{dvol}\,(d\varphi,[dc,\varphi])=-\int\mathrm{dvol}\,(d^*d\varphi,[c,\varphi])+\int\mathrm{dvol}\,(d\varphi,[c,d\varphi])=-G_3 .
+\]
+$H_3$: the substitution in $A|_V$ gives $-\int([dc,c],A^*|_V)$ and $[dc,c]=[c,dc]$ (both odd); the substitution in $A^*|_V$ gives $\int([A|_V,c],-\tfrac r2d^*dA|_V)$, and moving $r$ across the odd $[A|_V,c]$ gives $+\tfrac12\int([A|_V,c],d^*dA|_V)=-\tfrac12G_1$. $H_4$: the second step alone, $-\tfrac12G_3$. $H_5$: $\int([c,\lambda],r\,{\not d}\lambda)$, $[c,\lambda]$ even: $G_5$. $H_6$: $\int([c,c],r\,d^*A^*|_V)=\int(d[c,c],A^*)=2G_4$.
+
+$\lambda\lambda A$: $\tfrac12\int(\lambda,\rho([-r\,dc,\lambda]))=\tfrac r2\int(\lambda,\rho([dc,\lambda]))$ ($r$ across the odd $\lambda$). The trilinear form $(\lambda_1,\rho(v)[Y,\lambda_2])$ is symmetric in $\lambda_1,\lambda_2$, so integration by parts gives
+\[
+\int\mathrm{dvol}\,(\lambda,\rho([dc,\lambda]))=-2\int\mathrm{dvol}\,(\lambda,[c,{\not d}\lambda])=-2\int\mathrm{dvol}\,([c,\lambda],{\not d}\lambda)=-2G_5,
+\]
+using $[\lambda,c]=[c,\lambda]$. The kernel: $Q(H_1-4H_3-2H_6)=-2G_1+2G_1+4G_4-4G_4=0$, $Q(H_2-2H_4)=-G_3+G_3=0$.
+\end{proof}
+
+\begin{corollary}[$QI_3=0$]
+\label{cor:s2c-QI3}
+$I_3=-\tfrac14H_1-\tfrac12H_2+\tfrac12\int(\lambda,\rho([A,\lambda]))+H_3+H_4+H_5+\tfrac12H_6$, and
+\[
+QI_3=\big(\tfrac12G_1+\tfrac12G_3\big)-G_5+\big(-\tfrac12G_1-G_4-\tfrac12G_3\big)+G_5+G_4=0 .
+\]
+\end{corollary}
+
+\begin{proof}
+$(dA,[A\wedge A])=(dA|_V,[A|_V\wedge A|_V])+2(dA|_{W_{\mathbb R}^\perp},[A|_V,A|_{W_{\mathbb R}^\perp}])$, since $(dA)$ has no component along $\wedge^2W_{\mathbb R}^\perp$ and $[A\wedge A]$ along $V\wedge W_{\mathbb R}^\perp$ is $2[A|_V,A|_{W_{\mathbb R}^\perp}]$; the Yukawa part of $\lambda\lambda A$ is not hit by $Q$. The rest is Proposition \ref{prop:s2c-QH}. This is the cubic part of $QI+\tfrac12\{I,I\}=0$ (Proposition \ref{prop:c1-cme}).
+\end{proof}
+
+\begin{proposition}[Brackets with $I_3$]
+\label{prop:s2c-br}
+\[
+\begin{aligned}
+\Big\{I_3,\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\Big\}&=2G_2, &\qquad \Big\{I_3,\int\mathrm{dvol}\,(dA|_V,dA|_V)\Big\}&=2G_1,\\
+\Big\{I_3,\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})\Big\}&=2G_3, &\qquad \Big\{I_3,\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)\Big\}&=2G_5,\\
+\Big\{I_3,\int\mathrm{dvol}\,(dc,A^*)\Big\}&=\tfrac12G_1+\tfrac12G_3-G_5, &\qquad \Big\{I_3,\int\mathrm{dvol}\,(A,A)\Big\}&=0,
+\end{aligned}
+\]
+and, with $H=d^*d+dd^*$ componentwise, $\{I_3,\int\mathrm{dvol}\,(A,HA)\}=2(G_1+G_2+G_3)$.
+\end{proposition}
+
+\begin{proof}
+First item of Lemma \ref{lem:s2c-brrules} and integration by parts:
+\[
+\begin{aligned}
+\Big\{I_3,\int(d^*A|_V,d^*A|_V)\Big\}&=-2\int(d^*[A|_V,c],d^*A|_V)=-2\int([A|_V,c],dd^*A|_V)=2G_2,\\
+\Big\{I_3,\int(dA|_V,dA|_V)\Big\}&=-2\int(d[A|_V,c],dA|_V)=-2\int([A|_V,c],d^*dA|_V)=2G_1,\\
+\Big\{I_3,\int(d\varphi,d\varphi)\Big\}&=-2\int([\varphi,c],d^*d\varphi)=2G_3,\qquad \Big\{I_3,\int(A,A)\Big\}=-2\int([A,c],A)=0,\\
+\Big\{I_3,\int(A,HA)\Big\}&=-2\int([A,c],HA)=2(G_1+G_2+G_3).
+\end{aligned}
+\]
+Second item: with $v=[c,\lambda]$ even, $\sum v\,\partial_\lambda\int(\lambda,{\not d}\lambda)=\int(v,{\not d}\lambda)-\int(\lambda,{\not d}v)=2\int(v,{\not d}\lambda)=2G_5$. Third item: from Corollary \ref{cor:s2c-QI3}, the $A|_V$-substitution part of $QI_3$ is $\tfrac12G_1+\tfrac12G_3-G_5-G_4$ (gauge vertex, $\lambda\lambda A$, $H_3$), the $c^*$-substitution part is $\tfrac12QH_6=G_4$.
+\end{proof}
+
+\begin{corollary}[$s$-closed completions]
+\label{cor:s2c-completions}
+$QX_3+\{I_3,X_2\}=0$ for
+\[
+\begin{aligned}
+&X_2=\int(dA|_V,dA|_V),\ X_3=H_1;&\quad &X_2=\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp}),\ X_3=2H_2;\\
+&X_2=\int(\lambda,{\not d}\lambda),\ X_3=\int(\lambda,\rho([A,\lambda]))\ \text{or}\ X_3=-2H_5;&\quad &X_2=\int(dc,A^*),\ X_3=H_3+H_4+H_5+\tfrac12H_6 .
+\end{aligned}
+\]
+These are the cubic parts of $\int(F_{A|_V},F_{A|_V})$, $\int(d_{A|_V}A|_{W_{\mathbb R}^\perp},d_{A|_V}A|_{W_{\mathbb R}^\perp})$, $\int(\lambda,{\not d}_A\lambda)$ and of the antifield part $\int((d_Ac,A^*)+([c,\lambda],\lambda^*)+\tfrac12([c,c],c^*))$ of $S$; the two choices for $\lambda$ differ by the $Q$-closed $\int(\lambda,\rho([A,\lambda]))+2H_5$.
+\end{corollary}
+
+\begin{lemma}[The degree-two sector and $\{I_3,\mathrm{Ob}_2\}$]
+\label{lem:s2c-QG}
+On the sector $(c,c,A|_V)$ of degree $2$:
+\[
+QG_1=\int\mathrm{dvol}\,([c,dc],d^*dA|_V)=0,\qquad QG_3=QG_4=QG_5=0,
+\]
+\[
+QG_2=\int\mathrm{dvol}\,([c,dc],dd^*A|_V)+\int\mathrm{dvol}\,([c,A|_V],dd^*dc)\neq0,
+\]
+\[
+\Big\{I_3,\int\mathrm{dvol}\,(d^*dc,d^*A|_V)\Big\}=QG_2 .
+\]
+\end{lemma}
+
+\begin{proof}
+$[c,dc]=\tfrac12d[c,c]$ and $d^*d^*=0$ give $QG_1=\tfrac12\int([c,c],d^*d^*dA)=0$; in $QG_4$ the $A^*$ substitution gives $-\tfrac12\int([c,dc],d^*dA)=0$; $Q$ hits no slot of $G_3$, $G_5$; $dd^*(dc)$ in the second slot of $G_2$ is $d(d^*dc)$. Plane wave of $QG_2$: $-if\,r_0r_1\big(|p_0|^2(p_0,b)+|p_1|^2(p_1,b)+|p_2|^2(p_2,b)\big)$, nonzero. For the bracket, \eqref{eq:s2c-br} with $X=\int(d^*dc,d^*A|_V)=\int(dd^*dc,A|_V)=\int(c,d^*dd^*A|_V)$:
+\[
+\{I_3,X\}=-\int([A|_V,c],dd^*dc)+\tfrac12\int([c,c],d^*dd^*A|_V)=\int([c,A|_V],dd^*dc)+\int([c,dc],dd^*A|_V).
+\]
+Equivalently, $\int(d^*dc,d^*A|_V)=Q\big(-\tfrac12\int(d^*A|_V,d^*A|_V)\big)$ and, by the Jacobi identity and $QI_3=0$, $\{I_3,QF\}=-Q\{I_3,F\}$, so the bracket is $-Q\big(-\tfrac12\cdot2G_2\big)=QG_2$.
+\end{proof}
+
+\section{The equation for the cubic finite counterterm}
+
+\begin{theorem}[Solution]
+\label{thm:s2c-solve}
+Let $\mathrm{Ob}_3=\sum_i\alpha_iG_i$, $\mathrm{Ob}_2=-\tfrac{27}8\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$ (Theorem \ref{thm:c4-obstruction}),
+\[
+F_2=\tfrac{27}{16}\int(d^*A|_V,d^*A|_V)+\beta_1\int(dA|_V,dA|_V)+\beta_2\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})+\beta_3\int(\lambda,{\not d}\lambda)+\beta_4\int(dc,A^*),
+\]
+all in the unit. The equation $\mathrm{Ob}_3=QF_3+\{I_3,F_2\}$ with $F_3\in\mathrm{span}\{H_1,\dots,H_6\}$ reads, component by component,
+\[
+\begin{aligned}
+G_1:&\ \alpha_1=-2h_1-\tfrac12h_3+2\beta_1+\tfrac12\beta_4, &\quad G_2:&\ \alpha_2=\tfrac{27}{8},\\
+G_3:&\ \alpha_3=-h_2-\tfrac12h_4+2\beta_2+\tfrac12\beta_4, &\quad G_4:&\ \alpha_4=-h_3+2h_6,\qquad G_5:\ \alpha_5=h_5+2\beta_3-\beta_4,
+\end{aligned}
+\]
+with $F_3=\sum_jh_jH_j$. It is solvable if and only if $\alpha_2=\tfrac{27}8$, and then the solutions are
+\[
+\begin{aligned}
+F_3={}&\big(\tfrac14\alpha_4-\tfrac12\alpha_1\big)H_1-\alpha_4H_3-2\alpha_3H_4+\alpha_5H_5\\
+&+\beta_1H_1+2\beta_2H_2-2\beta_3H_5+\beta_4\big(H_3+H_4+H_5+\tfrac12H_6\big)+\big(\text{element of }\mathrm{span}\{H_1-4H_3-2H_6,\ H_2-2H_4\}\big).
+\end{aligned}
+\]
+The $\beta$-directions are the pairs $(X_2,X_3)$ of Corollary \ref{cor:s2c-completions}; the two remaining directions are the kernel of $Q$ on $\mathrm{span}\{H_j\}$. No weight-$4$ local functional of degree $-1$ with three legs exists, so these kernel elements are not $Q$-exact.
+\end{theorem}
+
+\begin{proof}
+The component equations are Propositions \ref{prop:s2c-QH} and \ref{prop:s2c-br}. $G_2$ is reached only by $\tfrac{27}{16}\{I_3,\int(d^*A|_V,d^*A|_V)\}=\tfrac{27}8G_2$. The other four equations are solved by $h_3=2h_6-\alpha_4$, $h_1=\beta_1+\tfrac14\beta_4-\tfrac12h_6+\tfrac14\alpha_4-\tfrac12\alpha_1$, $h_4=4\beta_2+\beta_4-2h_2-2\alpha_3$, $h_5=\alpha_5-2\beta_3+\beta_4$, $h_2,h_6$ free, which is the displayed family. Degree $-1$ with three legs needs an antifield: $A^*AA$, $\lambda^*\lambda A$, $\lambda^*AA$, $c^*cA$ have weights $5,5,\tfrac92,5$.
+\end{proof}
+
+\begin{theorem}[Wess--Zumino condition]
+\label{thm:s2c-wz}
+\[
+Q\,\mathrm{Ob}_3+\{I_3,\mathrm{Ob}_2\}=\big(\alpha_2-\tfrac{27}8\big)\,QG_2 ,
+\]
+so the condition is $\alpha_2=\tfrac{27}8$, $\alpha_2+\big(-\tfrac{27}8\big)=0$ with $-\tfrac{27}8$ the coefficient of $\mathrm{Ob}_2$; $\alpha_1,\alpha_3,\alpha_4,\alpha_5$ are unconstrained. The map $(F_3,\beta)\mapsto QF_3+\{I_3,F_2-\tfrac{27}{16}\int(d^*A|_V,d^*A|_V)\}$ has image $\mathrm{span}\{G_1,G_3,G_4,G_5\}$, so solvability is equivalent to the Wess--Zumino condition. The condition holds automatically, as a consequence of $Q^2=0$, $QI_3=0$, $Q\,\mathrm{Ob}_2=0$ and Propositions \ref{prop:s2c-lim1}, \ref{prop:s2c-lim2}.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:s2c-QG}: $Q\,\mathrm{Ob}_3=\alpha_2QG_2$, $\{I_3,\mathrm{Ob}_2\}=-\tfrac{27}8QG_2$. Automatic: let $W^{(1)}_\varepsilon$ be the order-$\hbar$ part of $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$. $Q$ acts on plane-wave values by polynomial substitutions, so $Q\lim_{\varepsilon\to0}QW^{(1)}_\varepsilon=\lim Q^2W^{(1)}_\varepsilon=0$. By Propositions \ref{prop:s2c-lim1}, \ref{prop:s2c-lim2} the three-leg part of $\lim QW^{(1)}_\varepsilon$ is $\mathrm{Ob}_3+\mathrm{tree}(\mathrm{Ob}_2,I_3)$, the cross term of $\partial_{P(0,\infty)}(\mathrm{Ob}_2\,I_3)$, and the two-leg part is $\mathrm{Ob}_2$. From $Q\,\partial_{P(0,\infty)}=\partial_{P(0,\infty)}Q+\Delta_0$ ($QP(0,\infty)=K_0$, Theorem \ref{thm:c3-acyclic}),
+\[
+Q\,\mathrm{tree}(\mathrm{Ob}_2,I_3)=\mathrm{tree}(Q\,\mathrm{Ob}_2,I_3)-\mathrm{tree}(\mathrm{Ob}_2,QI_3)+\{\mathrm{Ob}_2,I_3\}=\{I_3,\mathrm{Ob}_2\},
+\]
+with $Q\,\mathrm{Ob}_2=-\tfrac{27}8\int(d^*dc,d^*(-dc))=0$ and $QI_3=0$. Hence $Q\,\mathrm{Ob}_3+\{I_3,\mathrm{Ob}_2\}=0$.
+\end{proof}
+
+\section{Graph census}
+
+The defect vertex is $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})+\hbar\Delta_\varepsilon I-QI^{CT}[\varepsilon]-\{I,I^{CT}[\varepsilon]\}_\varepsilon$ (Proposition \ref{prop:c4-defect1}); $\Delta_\varepsilon I=0$ (proof of Theorem \ref{thm:c4-obstruction}). The special edge carries $K_\varepsilon-K_0$ between a field and its antifield: $A|_V$--$A^*|_V$, $A|_{W_{\mathbb R}^\perp}$--$A^*|_{W_{\mathbb R}^\perp}$, $\lambda$--$\lambda^*$, $c$--$c^*$. Lines of $P(\varepsilon,\infty)$: $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $\lambda$, $c$--$A^*$. Legs are labelled; a row collects the graphs related by exchanging identical legs, ``number'' is their count; the weight is $1/|\operatorname{Aut}|$ with the special edge marked, the $\tfrac12$ of $\tfrac12\{I,I\}$ cancelling the two orders of its two vertices.
+
+\begin{proposition}[The classes are complete]
+\label{prop:s2c-classes}
+At order $\hbar$, the three-leg connected graphs with one defect vertex are exactly: I-a (special edge on the cycle; triangles, and bubbles of one quartic and one cubic vertex), I-b (special edge a bridge from a cubic vertex with two legs to a one-loop two-point subgraph), II-a ($-QI^{CT}_3$), III ($-\{I_3,I^{CT}_2\}_\varepsilon$), I-d (a two-leg special bubble of Chapter 4 joined by $P(\varepsilon,\infty)$ to a cubic vertex with two legs), II-b ($-QI^{CT}_2$ joined by $P(\varepsilon,\infty)$ to a cubic vertex with two legs).
+\end{proposition}
+
+\begin{proof}
+The vertex $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$ has order $\hbar^0$, so its graphs have $b_1=1$; the other defect terms have order $\hbar$, so their graphs are trees. Cycle through the special edge: a cycle of $n$ vertices of valence $\ge3$ carries $\ge n$ further half-edges; with three legs and every tree hanging off the cycle carrying $\ge2$ legs, the cycle is a triangle of cubic vertices, a quartic-cubic bubble (I-a), or a cubic-cubic bubble with one half-edge to a cubic vertex with two legs (I-d). Special edge a bridge: the tree side has $\ge2$ legs, so two legs at one cubic vertex and a two-point one-loop side (I-b), or three legs and a one-point side, $0$ by Lemma \ref{lem:c4-factor}. Trees: $-QI^{CT}_3$ alone (II-a), $-QI^{CT}_2$ with one edge to a cubic vertex (II-b), $-\{I_3,I^{CT}_2\}_\varepsilon$ alone (III); $\{I_4,I^{CT}_2\}$, $\{I_3,I^{CT}_3\}$ have four legs.
+\end{proof}
+
+\subsection{I-a}
+
+\begin{tabular}{l|l|l|l|c}
+sector & vertices (leg) & special edge & lines $P(\varepsilon,\infty)$ & number \\
+\hline
+$(c,A|_V,A|_V)$ & $A|_VcA^*|_V$ ($c$), $(A|_V)^3$, $(A|_V)^3$ & $A^*|_V$ at $c$-vertex -- $A|_V$ & $A|_V$, $A|_V$ & $2$ \\
+ & $A|_VcA^*|_V$ ($c$), $(A|_V)^3$, $A|_VcA^*|_V$ ($A|_V$) & $A|_V$ at $(A|_V)^3$ -- $A^*|_V$ & $A|_V$, $c$--$A^*$ & $2$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$, $A|_VcA^*|_V$ & $A|_V$ at $c$-vertex -- $A^*|_V$ & $c$--$A^*$, $c$--$A^*$ & $2$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $2$ \\
+ & $ccc^*$ ($c$), $A|_VcA^*|_V$, $A|_VcA^*|_V$ & $c^*$ -- $c$ & $c$--$A^*$, $c$--$A^*$ & $2$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $\lambda$ & $2$ \\
+ & bubble: $A|_VcA^*|_V$ ($c$), $(A|_V)^4$ & $A^*|_V$ -- $A|_V$ & $A|_V$ & $1$ \\
+ & bubble: $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ & $1$ \\
+\hline
+$(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $A|_VcA^*|_V$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_V$ -- $A|_V$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $2$ \\
+ & $A|_VcA^*|_V$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ -- $A^*|_{W_{\mathbb R}^\perp}$ & $A|_V$, $c$--$A^*$ & $2$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $A|_V$ & $2$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $\lambda$ & $2$ \\
+ & bubble: $A|_VcA^*|_V$ ($c$), $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A^*|_V$ -- $A|_V$ & $A|_V$ & $1$ \\
+ & bubble: $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $(A|_{W_{\mathbb R}^\perp})^4$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ & $1$ \\
+\hline
+$(c,\lambda,\lambda)$ & $A|_VcA^*|_V$ ($c$), $c\lambda\lambda^*$ ($\lambda$), $\lambda\lambda A|_V$ ($\lambda$) & $\lambda^*$ -- $\lambda$ & $A|_V$, $c$--$A^*$ & $2$ \\
+ & $A|_VcA^*|_V$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $A^*|_V$ -- $A|_V$ & $A|_V$, $\lambda$ & $2$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $\lambda$ & $2$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $A|_V$ & $2$ \\
+ & $c\lambda\lambda^*$ ($c$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda^*$ -- $\lambda$ & $\lambda$, $A|_{W_{\mathbb R}^\perp}$ & $2$ \\
+\hline
+$(c,c,A^*|_V)$ & $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($c$), $A|_VcA^*|_V$ ($A^*|_V$) & $A^*|_V$ at a $c$-vertex -- $A|_V$ at the $A^*$-vertex & $A|_V$, $c$--$A^*$ & $2$ \\
+ & same vertices & $A|_V$ at one $c$-vertex -- $A^*|_V$ at the other & $c$--$A^*$, $A|_V$ & $2$ \\
+ & $A|_VcA^*|_V$ ($c$), $ccc^*$ ($c$), $A|_VcA^*|_V$ ($A^*|_V$) & $c^*$ -- $c$ at the $A^*$-vertex & $A|_V$, $c$--$A^*$ & $2$ \\
+\end{tabular}
+\tabcaption{Class I-a: triangles (weight $1$) and bubbles (weight $1$); totals $12+2$, $8+2$, $10$, $6$ graphs. In each triangle row the two graphs differ by the exchange of the identical legs.}
+
+\subsection{I-b and III}
+
+\begin{tabular}{l|l|l|l|l}
+sector & cubic vertex (legs) & special edge & I-b: two-point subgraphs (weight) & III: $I^{CT}_2$ terms \\
+\hline
+$(c,A|_V,A|_V)$ & $(A|_V)^3$ ($A|_V,A|_V$) & $A|_V$ -- $A^*|_V$ & $(A^*|_V,c)$: bubble $A|_VcA^*|_V$ twice, lines $A|_V$, $c$--$A^*$ (1) & $-\log\varepsilon\int(dc,A^*)$ \\
+ & $A|_VcA^*|_V$ ($c,A|_V$), number $2$ & $A^*|_V$ -- $A|_V$ & $(A|_V,A|_V)$: bubbles $(A|_V)^3$ ($\tfrac12$), $A|_V(A|_{W_{\mathbb R}^\perp})^2$ ($\tfrac12$), $\lambda\lambda A|_V$ ($\tfrac12$), ghost (1); seagulls $(A|_V)^4$ ($\tfrac12$), $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ ($\tfrac12$) & $\tfrac94\varepsilon^{-1}\int(A|_V,A|_V)$, $-\log\varepsilon\int(dA|_V,dA|_V)$ \\
+\hline
+$(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$ -- $A^*|_V$ & $(A^*|_V,c)$ as above (1) & $-\log\varepsilon\int(dc,A^*)$ \\
+ & $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$, number $2$ & $A^*|_{W_{\mathbb R}^\perp}$ -- $A|_{W_{\mathbb R}^\perp}$ & bubbles $A|_V(A|_{W_{\mathbb R}^\perp})^2$ (1), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ ($\tfrac12$); seagulls $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ ($\tfrac12$), $(A|_{W_{\mathbb R}^\perp})^4$ ($\tfrac12$) & $\tfrac94\varepsilon^{-1}\int(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $-\log\varepsilon\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ \\
+\hline
+$(c,\lambda,\lambda)$ & $\lambda\lambda A|_V$ & $A|_V$ -- $A^*|_V$ & $(A^*|_V,c)$ (1) & $-\log\varepsilon\int(dc,A^*)$ \\
+ & $c\lambda\lambda^*$, number $2$ & $\lambda^*$ -- $\lambda$ & bubbles $\lambda\lambda A|_V$ (1), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ (1) & $4\log\varepsilon\int(\lambda,{\not d}\lambda)$ \\
+\hline
+$(c,c,A^*|_V)$ & $A|_VcA^*|_V$ ($c,A^*|_V$), number $2$ & $A|_V$ -- $A^*|_V$ & $(A^*|_V,c)$ (1) & $-\log\varepsilon\int(dc,A^*)$ \\
+ & $ccc^*$ ($c,c$) & $c^*$ -- $c$ & $(c,A^*|_V)$ (1) & $-\log\varepsilon\int(dc,A^*)$ \\
+\end{tabular}
+\tabcaption{Classes I-b and III: the same cubic vertex and special pairing, with the two-point subgraph (I-b, all edges $P(\varepsilon,\infty)$) or the term of $I^{CT}_2$ (III, bracket with $K_0$ and with $K_\varepsilon-K_0$), in the unit.}
+
+\subsection{II-a, I-d, II-b}
+
+\begin{tabular}{l|l|l}
+sector & II-a: tree vertex $\times$ $\log\varepsilon$ multiple, substitution of $Q$ & I-d and II-b: connection, cubic vertex, number \\
+\hline
+$(c,A|_V,A|_V)$ & $(A|_V)^3\times6$, $A|_V\mapsto-dc$; $A|_VcA^*|_V\times1$, $A^*|_V\mapsto-\tfrac12d^*dA|_V$ & $c$ external, $A|_V$ line to $(A|_V)^3$, $1$; $A|_V$ external, $c$--$A^*$ line to $A|_VcA^*|_V$, $2$ \\
+$(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $A|_V(A|_{W_{\mathbb R}^\perp})^2\times6$; $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}\times1$ & $c$ external, $A|_V$ line to $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $1$ \\
+$(c,\lambda,\lambda)$ & $\lambda\lambda A|_V\times10$; $c\lambda\lambda^*\times1$, $\lambda^*\mapsto{\not d}\lambda$ & $c$ external, $A|_V$ line to $\lambda\lambda A|_V$, $1$ \\
+$(c,c,A^*|_V)$ & $A|_VcA^*|_V\times1$, $A|_V\mapsto-dc$; $ccc^*\times1$, $c^*\mapsto d^*A^*|_V$ & $c$ external, $A|_V$ line to $A|_VcA^*|_V$, $2$ \\
+\end{tabular}
+\tabcaption{II-a, and the connections of I-d and II-b. I-d: each connection with each of the five special bubbles (a)--(e) of Theorem \ref{thm:c4-obstruction}; II-b: each connection with $-QI^{CT}_2=\tfrac92\varepsilon^{-1}\int(dc,A|_V)$. Weights $1$.}
+
+\section{The two limit statements}
+
+\begin{proposition}[I-b and the $K_\varepsilon-K_0$ part of III]
+\label{prop:s2c-lim1}
+Let $\Sigma_\varepsilon$ be the order-$\hbar$ two-leg part of $W(P(\varepsilon,\infty),I)$. Then
+\[
+\text{I-b}=\{I_3,\Sigma_\varepsilon\}_{K_\varepsilon-K_0},\qquad \text{I-b}+\big(\text{III with }K_\varepsilon-K_0\big)=\{I_3,\Sigma_\varepsilon-I^{CT}_2[\varepsilon]\}_{K_\varepsilon-K_0}\longrightarrow0 .
+\]
+Separately, in the unit,
+\[
+\lim\text{III}_{K_\varepsilon-K_0}=-\lim\text{I-b}=\tfrac92(G_1+G_2)\ \text{on}\ (c,A|_V,A|_V),\quad \tfrac92G_3\ \text{on}\ (c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}),\quad 0\ \text{on the other two}.
+\]
+\end{proposition}
+
+\begin{proof}
+Removing the bridge separates the graph into the cubic vertex and a connected one-loop two-point graph of $W(P(\varepsilon,\infty),I)$; summing with the weights, the graphs with the special edge as bridge are the cross terms of $\tfrac12\{W,W\}_{K_\varepsilon-K_0}$, i.e. $\{I_3,\Sigma_\varepsilon\}_{K_\varepsilon-K_0}$ ($I_3$ is the only three-leg tree). In momentum space $K_\varepsilon-K_0=(e^{-\varepsilon|p|^2}-1)K_0$ with $p$ the momentum of the leg on the two-point side, so
+\[
+\text{I-b}+\big(\text{III with }K_\varepsilon-K_0\big)=\big(e^{-\varepsilon|p|^2}-1\big)\cdot\{I_3,\Sigma_\varepsilon-I^{CT}_2[\varepsilon]\}\big|_{p}.
+\]
+By Theorem \ref{thm:c4-quadratic} and Proposition \ref{prop:c4-limit}, $\Sigma_\varepsilon(p)-I^{CT}_2[\varepsilon](p)$ has a limit at $p\neq0$, hence is bounded for small $\varepsilon$, and $e^{-\varepsilon|p|^2}-1\to0$. Separately: the $\log\varepsilon$ terms of $I^{CT}_2$ give $(e^{-\varepsilon|p|^2}-1)\log\varepsilon\to0$; the mass term gives, with $\varepsilon^{-1}(e^{-\varepsilon H}-1)\to-H$ and Proposition \ref{prop:s2c-br},
+\[
+-\tfrac94\varepsilon^{-1}\Big\{I_3,\int(A,A)\Big\}_{K_\varepsilon-K_0}=-\tfrac94\varepsilon^{-1}\Big\{I_3,\int\big(A,(e^{-\varepsilon H}-1)A\big)\Big\}\longrightarrow\tfrac94\Big\{I_3,\int(A,HA)\Big\}=\tfrac92(G_1+G_2+G_3).
+\]
+\end{proof}
+
+\begin{proposition}[I-d and II-b]
+\label{prop:s2c-lim2}
+\[
+\lim_{\varepsilon\to0}\big(\text{I-d}+\text{II-b}\big)=\mathrm{tree}\big(\mathrm{Ob}_2,I_3;P(0,\infty)\big),
+\]
+the cross term of $\partial_{P(0,\infty)}(\mathrm{Ob}_2\,I_3)$, and this tree is the local functional
+\[
+-\tfrac{27}8\big(-G_1+G_2-G_3+2G_4+2G_5\big)=\tfrac{27}8G_1-\tfrac{27}8G_2+\tfrac{27}8G_3-\tfrac{27}4G_4-\tfrac{27}4G_5 .
+\]
+No further local term arises.
+\end{proposition}
+
+\begin{proof}
+I-d$+$II-b$=\mathrm{tree}(D_2(\varepsilon),I_3;P(\varepsilon,\infty))$ with $D_2(\varepsilon)$ the two-leg order-$\hbar$ defect graphs. By Lemma \ref{lem:c4-special} and Theorem \ref{thm:c4-obstruction}, $D_2(\varepsilon)(p)=\mathrm{Ob}_2(p)+O(\varepsilon)$ at fixed $p\neq0$ (the $\varepsilon^{-1}$ coefficients cancel, no $\log\varepsilon$, integer powers of $\varepsilon$ beyond), and the edge carries the nonzero momentum $p$ of one leg: $P(\varepsilon,\infty)(p)=e^{-\varepsilon|p|^2}P(0,\infty)(p)$. Both factors converge, which gives the limit. Locality: $\mathrm{Ob}_2=-\tfrac{27}8\int(dd^*dc,A|_V)=-\tfrac{27}8\int(c,d^*dd^*A|_V)$; through the $A|_V$ line the factor $|p|^2$ of $d^*d$ on $c$, through the $c$--$A^*$ line the factor $|p|^2$ of $d^*d$ on $A|_V$, cancels $|p|^{-2}$ of $P(0,\infty)$. The $G$-coefficients follow from $Q\,\mathrm{tree}(F,I_3)=\mathrm{tree}(QF,I_3)+\{F,I_3\}$ for even $F$ (proof of Theorem \ref{thm:s2c-wz}) and are confirmed on plane waves (Remark \ref{rem:s2c-method}).
+\end{proof}
+
+\begin{remark}[The three-leg limit]
+\label{rem:s2c-total}
+The three-leg part of $\lim QW^{(1)}_\varepsilon$ is $\mathrm{Ob}_3+\tfrac{27}8G_1-\tfrac{27}8G_2+\tfrac{27}8G_3-\tfrac{27}4G_4-\tfrac{27}4G_5$, with $\mathrm{Ob}_3=\lim\big(\text{I-a}+\text{II-a}+\text{III with }K_0\big)$.
+\end{remark}
+
+\section{Singular parts}
+
+\begin{proposition}[I-a graph by graph]
+\label{prop:s2c-Ia}
+For each I-a graph, with scaled Schwinger times $t_1=\varepsilon\tau_1$ (special), $t_2=\varepsilon\tau_2$, $t_3=\varepsilon\tau_3$, $\tau_1\in[0,1]$, $\tau_2,\tau_3\in[1,\infty)$, the value is
+\[
+\varepsilon^{-1}c_{-1}+c_0+o(1),
+\]
+$c_{-1}$ the order-$|p|^0$ and $c_0$ the order-$|p|^{\omega}$ Taylor coefficient of the Gaussian-integrated integrand, integrated over the scaled region, $\omega=2$ for $(c,A,A)$ and $\omega=1$ for $(c,\lambda,\lambda)$, $(c,c,A^*|_V)$. These integrals converge. $c_{-1}$ is a weight-$2$ form, zero after the sum over the graphs of a row; there is no $\log\varepsilon$ and no $\varepsilon^{-1/2}$.
+\end{proposition}
+
+\begin{proof}
+The special edge carries $-\int_0^\varepsilon|q_1|^2e^{-t_1|q_1|^2}dt_1$ times the components of $K_0$, of momentum degree $2-2=0$ against a propagator of degree $-2$. With $D$ the total momentum degree of the vertex functions and of the numerators of the $P(\varepsilon,\infty)$ edges, the superficial degree is $\omega=4+D-4=D$ for triangles and $\omega=4+D-2=D+2$ for bubbles. Homogeneity: the order-$|p|^j$ Taylor coefficient carries $\varepsilon^{(j-\omega)/2}$; $j<\omega$ odd gives a Lorentz-odd form, $0$; $j=0$, $\omega=2$ gives $\varepsilon^{-1}$ times a weight-$2$ form, zero after symmetrisation (Proposition \ref{prop:s2c-dims}). Convergence of the coefficient $j$: on $\tau_2,\tau_3\ge R$, the Gaussian integral over the loop momentum gives $T^{-2}$ ($T=\tau_1+\tau_2+\tau_3$) times monomials of total degree $D+2$ in $q$ and $p$; a $q$-pair gives $T^{-1}$, a $p^2$ from the exponent gives $\tau_i\tau_k/T\le R$; the coefficient $j$ is bounded by a multiple of $R^{-2-(D+2-j)/2}$, so the shell $R\le\tau_2+\tau_3\le2R$, of area $\sim R^2$, contributes at most a multiple of $R^{-(D+2-j)/2}$, summable over dyadic $R$ for $j<D+2=\omega+2$ (triangles); one long edge gives $T^{-2}$ with bounded ratios, convergent; $\tau_1\to0$ is regular. For bubbles the exponent is $\tau_1\tau_2|p|^2/(\tau_1+\tau_2)\le\tau_1|p|^2\le|p|^2$, uniform in $\tau_2$ (Lemma \ref{lem:c4-special}). The remainder after $j\le\omega$: $j=\omega+1$ is Lorentz-odd, $j=\omega+2$ diverges logarithmically and contributes $O(\varepsilon\log\varepsilon)$, $j\ge\omega+3$ with the bound $\big|e^{-x}-\sum_{n\le N}(-x)^n/n!\big|\le x^{N+1}/(N+1)!$ on $\tau\le\varepsilon^{-1}$ and the Gaussian decay beyond, $O(\varepsilon\log\varepsilon)$.
+\end{proof}
+
+\begin{theorem}[Cancellation of $\log\varepsilon$ and $\varepsilon^{-1}$]
+\label{thm:s2c-log}
+In each sector the $\log\varepsilon$ coefficients, in the unit, are
+\[
+\text{II-a}:\ -\tfrac52G_1,\ -\tfrac52G_3,\ 9G_5,\ 0;\qquad \text{III with }K_0:\ \tfrac52G_1,\ \tfrac52G_3,\ -9G_5,\ 0
+\]
+for $(c,A|_V,A|_V)$, $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $(c,\lambda,\lambda)$, $(c,c,A^*|_V)$. Row by row: II-a $(A|_V)^3$: $-3G_1$, $A|_VcA^*|_V$: $+\tfrac12G_1$; $A|_V(A|_{W_{\mathbb R}^\perp})^2$: $-3G_3$, $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$: $+\tfrac12G_3$; $\lambda\lambda A|_V$: $+10G_5$, $c\lambda\lambda^*$: $-G_5$; $A|_VcA^*|_V$: $+G_4$, $ccc^*$: $-G_4$. III: $(A|_V)^3$: $+\tfrac12G_1$, $A|_VcA^*|_V$: $+2G_1$; $A|_V(A|_{W_{\mathbb R}^\perp})^2$: $+\tfrac12G_3$, $A|_{W_{\mathbb R}^\perp}cA^*|_{W_{\mathbb R}^\perp}$: $+2G_3$; $\lambda\lambda A|_V$: $-G_5$, $c\lambda\lambda^*$: $-8G_5$; $A|_VcA^*|_V$: $-G_4$, $ccc^*$: $+G_4$. The sum vanishes:
+\[
+\big(\text{II-a}+\text{III with }K_0\big)\big|_{\log\varepsilon}=-\Big(Q\big((Q+\{I,-\})Y\big)_3+\big\{I_3,\big((Q+\{I,-\})Y\big)_2\big\}\Big)=-\Big(Q\{I_3,Y\}+\{I_3,QY\}\Big)=0,
+\]
+with $Y=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ (Theorem \ref{thm:c4-log}). III has no $\varepsilon^{-1}$ ($\{I_3,\int(A,A)\}=0$). Together with Propositions \ref{prop:s2c-Ia}, \ref{prop:s2c-lim1}, \ref{prop:s2c-lim2}: the total coefficients of $\varepsilon^{-1}$ and $\log\varepsilon$ vanish in every sector, and the $\log\varepsilon$ coefficient of I-a equals $Q\big((Q+\{I,-\})Y\big)_3+\big\{I_3,\big((Q+\{I,-\})Y\big)_2\big\}=0$, graph by graph.
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:c4-log}, the $\log\varepsilon$ parts are $I^{CT}_3|_{\log}=((Q+\{I,-\})Y)_3=\{I_3,Y\}$ (multiples $6,6,10,10,1,1,1,1$ of the tree vertices) and $I^{CT}_2|_{\log}=QY$. II-a: $-Q$ of the multiples, with Proposition \ref{prop:s2c-QH} and Corollary \ref{cor:s2c-QI3} (gauge vertex $\tfrac12G_1+\tfrac12G_3$, $\lambda\lambda A$ $-G_5$, $H_3$ $-\tfrac12G_1-G_4$, $H_4$ $-\tfrac12G_3$, $H_5$ $G_5$, $\tfrac12H_6$ $G_4$). III: $-\{I_3,-\int(dA|_V,dA|_V)-\int(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})+4\int(\lambda,{\not d}\lambda)-\int(dc,A^*)\}$ with Proposition \ref{prop:s2c-br}, split by Lemma \ref{lem:s2c-brrules}. The identity: $Q(\{I_3,Y\})+\{I_3,QY\}=0$ by the Jacobi identity and $QI_3=0$ ($\{I_3,QY\}=-Q\{I_3,Y\}$). The remaining classes: I-a has no $\log\varepsilon$ (Proposition \ref{prop:s2c-Ia}); I-b plus III with $K_\varepsilon-K_0$, and I-d$+$II-b, converge.
+\end{proof}
+
+\begin{remark}[Verification on plane waves]
+\label{rem:s2c-method}
+Every identity of Propositions \ref{prop:s2c-dims}--\ref{prop:s2c-lim2} and Lemma \ref{lem:s2c-QG} was evaluated exactly in the realisation of $V_{10}$, $\Sigma$, $\Sigma^*$ over $\mathbb Q(i)$ and $\mathfrak g=\mathfrak{su}(2)$, on random integer momenta, polarisations and colours, with $\partial_x,\partial_\xi$ and $\partial_{P(0,\infty)}$ realised on Fourier modes. The realisation reproduces Chapter 1: the Clifford relations and $(\rho(v)Q_1,Q_2)=(Q_1,\rho(v)Q_2)$; the vertex \eqref{eq:c1-AAA}; $\{\tfrac12\langle e,Qe\rangle,F\}=QF$ for every term of $I_3$ and every $H_j$; $QI_3=0$ in all four sectors; $QI_4+\tfrac12\{I_3,I_3\}=0$ on $(c,A|_V,A|_V,A|_V)$ and $(c,A|_V,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$; Lemma \ref{lem:c4-count} on eight vertex-functional pairs; $Q\,\mathrm{tree}(F,I_3)=\mathrm{tree}(QF,I_3)+\{F,I_3\}$ for $F=\int(d^*A|_V,d^*A|_V)$. Each decomposition into $G_1,\dots,G_5$ has zero residual on independent samples; the parity-odd structure of $(c,\lambda,\lambda)$ is independent of $G_5$ and has coefficient $0$ in $QH_5$, $\{I_3,\int(\lambda,{\not d}\lambda)\}$, $\{I_3,\int(dc,A^*)\}$.
+\end{remark}

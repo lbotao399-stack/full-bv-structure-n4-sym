@@ -1,0 +1,619 @@
+{
+ "thC": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_structure.tex",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_maps.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_maps.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_core.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_census.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_census.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_assemble.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_maps_numeric.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/cubic_maps_run.txt",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/theory/_build/test.pdf"
+  ],
+  "summary": "Part C theory is complete. Every result was derived by hand and then checked exactly on random plane waves, in an explicit realisation over Q(i) with g = su(2).\n\nThe realisation was first checked against ch01. All of these hold:\n- the Clifford relations and the symmetry of rho;\n- eq:c1-AAA;\n- {S_2, F} = QF for every term of I_3 and every H_j;\n- QI_3 = 0 in all four sectors;\n- the quartic master equation QI_4 + \u00bd{I_3,I_3} = 0 on (c,A_V,A_V,A_V) and (c,A_V,A_W,A_W);\n- Lemma c4-count on 8 pairs;\n- Q tree(F,I_3) = tree(QF,I_3) + {F,I_3} with P(0,\u221e) built from Q^GF.\n\nConventions: QF is the coefficient of r in F(e+rQe), using the substitutions A_V\u2192A_V\u2212r dc, A*\u2192A*\u2212(r/2)d*dA, c*\u2192c*+r d*A*_V, \u03bb*\u2192\u03bb*+r dslash \u03bb. The bracket is {f,g} = \u03a3[(\u2202_\u03be f)(\u2202_x g) + (\u22121)^{|f|}(\u2202_x f)(\u2202_\u03be g)], with x \u2208 {A, \u03bb*, c*} and \u03be its partner.\n\n**1. Sectors.** The degree-1, three-leg sectors of weight \u22644 are exactly the four listed.\n- The other leg sets drop out: (c,A,\u03bb) and (c,c,\u03bb*) contain a single spinor; (c,A_V,A_W) and (c,c,A*_W) contain one W-vector.\n- The colour factor is f = ([X0,X1],X2), because the totally symmetric part of tr(ad ad ad) vanishes.\n- Counting plane-wave structures allowed by statistics gives dimensions 2 (G1, G2), 1 (G3), 1 (G4), and for (c,\u03bb,\u03bb) one even structure (G5) plus one parity-odd candidate, \u222b([c,\u03bb], dslash \u03c1(vol4) \u03bb). The candidate is independent of G5, and its coefficient is forced to 0 by a reflection in Spin(10) (one V-direction times one W\u22a5-direction) that commutes with the action and the regulator.\n- The weight-2 structures \u222b([c,A_V],A_V) and \u222b([c,A_W],A_W) vanish identically. There are none of weight 3.\n\n**2. The maps** (G-basis rows G1..G5, H-columns H1..H6):\n- QH1 = \u22122G1, QH2 = \u2212G3, QH3 = \u2212\u00bdG1 \u2212 G4, QH4 = \u2212\u00bdG3, QH5 = G5, QH6 = 2G4.\n- Q has rank 4 on span{H}, with image span{G1,G3,G4,G5}. Its kernel is spanned by H1 \u2212 4H3 \u2212 2H6 and H2 \u2212 2H4; these are not Q-exact, because no degree \u22121 three-leg local functional of weight 4 exists.\n- {I3, \u222b(d*A_V,d*A_V)} = 2G2\n- {I3, \u222b(dA_V,dA_V)} = 2G1\n- {I3, \u222b(dA_W,dA_W)} = 2G3\n- {I3, \u222b(\u03bb,dslash \u03bb)} = 2G5\n- {I3, \u222b(dc,A*)} = \u00bdG1 + \u00bdG3 \u2212 G5\n- {I3, \u222b(A,A)} = 0 and {I3, \u222b(A,HA)} = 2(G1+G2+G3).\n- On the degree-2 sector (c,c,A_V): QG1 = QG3 = QG4 = QG5 = 0, QG2 \u2260 0, and {I3, \u222b(d*dc,d*A_V)} = QG2.\n\n**3. Solving Ob3 = QF3 + {I3,F2}.**\n- The G2 row gives \u03b12 = 27/8; this is the only condition.\n- The Wess\u2013Zumino closure works out to Q Ob3 + {I3,Ob2} = (\u03b12 \u2212 27/8)\u00b7unit\u00b7QG2. So it is the same condition (\u03b12 + (\u221227/8) = 0), and \u03b11, \u03b13, \u03b14, \u03b15 are unconstrained.\n- The map from (F3, \u03b2) to span{G} is not surjective: G2 is missed. So WZ is not automatic from linear algebra. It does follow from Q\u00b2 = 0, QI3 = 0, Q Ob2 = 0 and the two limit statements of item 4.\n- Solution family (unit omitted): F3 = (\u03b14/4 \u2212 \u03b11/2)H1 \u2212 \u03b14 H3 \u2212 2\u03b13 H4 + \u03b15 H5 + \u03b21 H1 + 2\u03b22 H2 \u2212 2\u03b23 H5 + \u03b24(H3 + H4 + H5 + \u00bdH6) + span{H1 \u2212 4H3 \u2212 2H6, H2 \u2212 2H4}.\n- The \u03b2-directions are the cubic parts of the s-closed completions:\n  - \u222b(F,F) gives H1;\n  - \u222b(d_A \u03c6, d_A \u03c6) gives 2H2;\n  - \u222b(\u03bb, dslash_A \u03bb) gives \u222b(\u03bb,\u03c1([A,\u03bb])), which is \u2261 \u22122H5 modulo a Q-closed functional;\n  - the antifield (BRST) term of S gives H3 + H4 + H5 + \u00bdH6.\n\n**4. Graph census** (in cubic_census.json and in the tex tables).\n- I-a counts: (c,A_V,A_V) has 6 triangle rows (12 graphs) and 2 bubbles; (c,A_W,A_W) has 4 rows (8 graphs) and 2 bubbles; (c,\u03bb,\u03bb) has 5 rows (10 graphs); (c,c,A*_V) has 3 rows (6 graphs). All have weight 1 once the special edge is marked.\n- I-b and III have 2 rows per sector, with full two-point subgraph lists and weights (\u00bd for identical lines and for seagulls).\n- II-a, I-d and II-b connections are tabulated.\n- Limit (a): I-b equals {I3, \u03a3_\u03b5} with the K_\u03b5\u2212K_0 kernel, i.e. a factor (e^{\u2212\u03b5 p\u00b2} \u2212 1). So I-b + III_{K\u03b5\u2212K0} \u2192 0. Separately, lim I-b = \u2212lim III_{K\u03b5\u2212K0} = \u2212(9/2)(G1+G2) on (c,A_V,A_V), \u2212(9/2)G3 on (c,A_W,A_W), and 0 on the other two sectors. The pairing of the two classes is therefore essential.\n- Limit (b): I-d + II-b \u2192 tree(Ob2, I3; P(0,\u221e)). This tree is local: the |p|\u00b2 from d*d cancels the propagator. Its value in units is (27/8)G1 \u2212 (27/8)G2 + (27/8)G3 \u2212 (27/4)G4 \u2212 (27/4)G5. There is no further local remainder.\n- So the total three-leg limit is Ob3 plus that tree.\n\n**5. Singular parts.**\n- I-a graph by graph: value = \u03b5\u207b\u00b9c\u208b\u2081 + c\u2080 + o(1), with no log \u03b5. The \u03b5\u207b\u00b9 term is a weight-2 form that cancels within each row. The \u03b5\u2070 Taylor-coefficient integrals over \u03c41 \u2208 [0,1], \u03c42,\u03c43 \u2208 [1,\u221e) converge for j < \u03c9+2. The log appears only at order \u03b5 log \u03b5.\n- log \u03b5 per sector:\n  - II-a: \u22125/2 G1, \u22125/2 G3, +9 G5, 0;\n  - III with K0: +5/2 G1, +5/2 G3, \u22129 G5, 0.\n  - Per-row values are tabulated.\n- These cancel because II-a + III = \u2212(Q{I3,Y} + {I3,QY}) = 0, with Y = 2\u222b(A,A*) \u2212 4\u222b(\u03bb*,\u03bb) \u2212 \u222b(c*,c), by Jacobi and QI3 = 0. III has no \u03b5\u207b\u00b9 part, since {I3,\u222b(A,A)} = 0.",
+  "key_numbers": {
+   "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+   "QH_matrix_rows_G1toG5_cols_H1toH6": [
+    [
+     "-2",
+     "0",
+     "-1/2",
+     "0",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "-1",
+     "0",
+     "-1/2",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "-1",
+     "0",
+     "0",
+     "2"
+    ],
+    [
+     "0",
+     "0",
+     "0",
+     "0",
+     "1",
+     "0"
+    ]
+   ],
+   "QH": {
+    "QH1": "-2 G1",
+    "QH2": "-G3",
+    "QH3": "-1/2 G1 - G4",
+    "QH4": "-1/2 G3",
+    "QH5": "G5",
+    "QH6": "2 G4",
+    "Q(1/2 int(lambda,rho([A,lambda])))": "-G5"
+   },
+   "brackets_I3_in_G_basis_[G1,G2,G3,G4,G5]": {
+    "int(d*A_V,d*A_V)": [
+     "0",
+     "2",
+     "0",
+     "0",
+     "0"
+    ],
+    "int(dA_V,dA_V)": [
+     "2",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "int(dA_W,dA_W)": [
+     "0",
+     "0",
+     "2",
+     "0",
+     "0"
+    ],
+    "int(lambda,dslash lambda)": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "2"
+    ],
+    "int(dc,A*)": [
+     "1/2",
+     "0",
+     "1/2",
+     "0",
+     "-1"
+    ],
+    "int(A,A)": [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "int(A,HA)": [
+     "2",
+     "2",
+     "2",
+     "0",
+     "0"
+    ]
+   },
+   "rank_Q_on_spanH": 4,
+   "kernel_Q_on_spanH": [
+    "H1 - 4 H3 - 2 H6",
+    "H2 - 2 H4"
+   ],
+   "image_Q_plus_beta": "span{G1,G3,G4,G5} (G2 missing)",
+   "QG_degree2": {
+    "QG1": "0",
+    "QG2": "int([c,dc],dd*A_V)+int([c,A_V],dd*dc) != 0",
+    "QG3": "0",
+    "QG4": "0",
+    "QG5": "0",
+    "{I3,int(d*dc,d*A_V)}": "QG2"
+   },
+   "WZ": "Q Ob3 + {I3,Ob2} = (alpha2 - 27/8) unit QG2  =>  alpha2 = 27/8; alpha1, alpha3, alpha4, alpha5 free",
+   "solvability_condition": "alpha2 = 27/8",
+   "F3_family": "(alpha4/4 - alpha1/2) H1 - alpha4 H3 - 2 alpha3 H4 + alpha5 H5 + beta1 H1 + 2 beta2 H2 - 2 beta3 H5 + beta4 (H3+H4+H5+H6/2) + span{H1-4H3-2H6, H2-2H4}",
+   "sector_dims": {
+    "(c,A_V,A_V)": 2,
+    "(c,A_W,A_W)": 1,
+    "(c,lambda,lambda)": "1 even + 1 parity-odd (excluded)",
+    "(c,c,A*_V)": 1
+   },
+   "tree_Ob2_I3_P0inf_in_units_[G1..G5]": [
+    "27/8",
+    "-27/8",
+    "27/8",
+    "-27/4",
+    "-27/4"
+   ],
+   "lim_Ib_units": {
+    "(c,A_V,A_V)": "-9/2 (G1+G2)",
+    "(c,A_W,A_W)": "-9/2 G3",
+    "(c,lambda,lambda)": "0",
+    "(c,c,A*_V)": "0"
+   },
+   "lim_III_Keps_minus_K0_units": {
+    "(c,A_V,A_V)": "+9/2 (G1+G2)",
+    "(c,A_W,A_W)": "+9/2 G3",
+    "(c,lambda,lambda)": "0",
+    "(c,c,A*_V)": "0"
+   },
+   "log_eps_IIa_per_sector": [
+    "-5/2 G1",
+    "-5/2 G3",
+    "+9 G5",
+    "0"
+   ],
+   "log_eps_III_K0_per_sector": [
+    "+5/2 G1",
+    "+5/2 G3",
+    "-9 G5",
+    "0"
+   ],
+   "census_Ia_graphs": {
+    "(c,A_V,A_V)": "12 triangles + 2 bubbles",
+    "(c,A_W,A_W)": "8 triangles + 2 bubbles",
+    "(c,lambda,lambda)": "10 triangles",
+    "(c,c,A*_V)": "6 triangles"
+   },
+   "G_plane_wave_values": {
+    "G1": "f[(p2^2-p1^2)(a1,a2)-(a1,p2)(a2,p2)+(a1,p1)(a2,p1)]",
+    "G2": "f[(a1,p2)(a2,p2)-(a1,p1)(a2,p1)]",
+    "G3": "f (w1,w2)(p2^2-p1^2)",
+    "G4": "-i f (p2,b)",
+    "G5": "-i f (lambda1, rho(p0) lambda2)",
+    "f": "([X0,X1],X2)"
+   }
+  },
+  "open_issues": [
+   "The numerical values of alpha_1..alpha_5 (the I-a integrals) are for engines A and B. The theory predicts alpha2 = 27/8 exactly, from both the Wess-Zumino closure and solvability; this is a check on the engines.",
+   "Engines that report the total three-leg limit of Q W^(1) must subtract the tree (27/8)G1 - (27/8)G2 + (27/8)G3 - (27/4)G4 - (27/4)G5 (in units) to get Ob3. I-b alone tends to -(9/2)(G1+G2) and -(9/2)G3, not to 0; only its sum with the K_eps-K_0 part of III vanishes.",
+   "The power-counting argument for 'no log eps graph by graph in I-a' and the O(eps log eps) remainder bound is stated at the level of a dyadic-shell estimate, not with full dominated-convergence detail in the style of Lemma c4-local.",
+   "The two kernel directions H1-4H3-2H6 and H2-2H4 are left free by the cubic equation. Whether they extend at quartic order, together with how beta1, beta2 enter, has not been examined.",
+   "Checks used g = su(2) only, which suffices because every map here is tree-level with colour factor f. Momenta, polarisations and colours were random integers, with 4-5 samples per sector plus residual checks.",
+   "cubic_structure.tex follows FORMAT.md markup and compiles cleanly; the preview is step2/theory/_build/test.pdf. References to manuscript labels (ch01, ch03, ch04) are unresolved when the chapter is built on its own.",
+   "The tex introduces two coefficient labels not taken from DESIGN: h_j (coefficients of F3) and 'tree(Ob_2, I_3; P(0,infinity))'. The names G_i, H_j, Ob_2, Ob_3, F_2, F_3 are taken from DESIGN_STEP2."
+  ]
+ },
+ "bC": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/cubic_results.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/ia_engine.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/masters.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/fa.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/sectors3.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/run_ia.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/others.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/numeric_check.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/nc_ia_cApAp.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/d2_series.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/wz.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/solve_F3.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/colour_check.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/fa_tests.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/regress_2pt.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/assemble.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/ia_fit_cAVAV.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/ia_fit_cApAp.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/ia_fit_clamlam.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/ia_fit_ccAsV.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/others.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/numeric_check_ccAsV.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/numeric_check_ia_cApAp.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/solve_F3.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/wz_result.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/d2_series.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/colour_check.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/fa_tests.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/regress_2pt.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/masters_check.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/method_notes.json"
+  ],
+  "summary": "Engine B finished Part C, the cubic sector of the one-loop obstruction. All coefficients are exact. The unit is hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)), and every colour structure is ([c0,c1],c2).\n\nRESULT: Ob_3 = unit*[(11/4 + 19/4 log(3/2)) (G1 + G3) + (27/8) G2 + 0*G4 - 9 log(3/2) G5].\nSo alpha_1 = alpha_3 = 11/4 - 19/4 log2 + 19/4 log3 (= 4.675959263513781), alpha_2 = 27/8, alpha_4 = 0, and alpha_5 = 9 log2 - 9 log3 (= -3.649185972973479). The residual outside span{G_i} is exactly 0 for every class and every total. It was checked on 11, 6, 8 and 5 random plane-wave configurations, fitted on the complete list of Spin(4)xSpin(6) invariants. That list includes eps(a1,a2,p1,p2) and the chirality-odd lambda form.\n\nI-a, PER CLASS. The method is the toy-verified word formula with the special edge -int_0^eps k^2 e^{-tk^2} dt times the K_0 fibre, the Gaussian loop integral, and t = eps*u with u_special in [0,1] and the others in [1,oo).\n- Only integer powers eps^n appear, with momentum degree omega+2n, because C_k is homogeneous. So there is no log eps and no eps^{-1/2}.\n- The eps^{-1} coefficients vanish identically after the leg symmetrisation contained in each class.\n- The eps^0 coefficients are finite sums of master integrals J3, J2 in closed form: J3 lies in Q + Q log(3/2) and J2 in Q + Q log 2.\n- The convergence bound is T^{-E+n} over E-1 non-compact directions. The remainder bound |e^{-x} - Taylor| <= C x^{J+1/2} makes the limit exact.\n- The eps^0 values by sector:\n  - (c,A_V,A_V): 8 classes. They include the triangle AAA,AAA,AcA*[c] with a K[A_V] edge, which gives (103/144 + 2/3 L)G1 + (41/48 + 1/4 L)G2, where L = log(3/2). The two quartic bubbles are 0. The total is (11/4 + 19/4 L)G1 + 27/8 G2.\n  - (c,A_perp,A_perp): 6 classes, total (11/4 + 19/4 L)G3.\n  - (c,lambda,lambda): 5 classes, total -9L G5.\n  - (c,c,A*_V): 3 classes, with values L, -1/4 - L/2 and 1/4 - L/2 times G4. The total is 0.\n\nOTHER CONTRIBUTIONS.\n- II-a (log part, -Q Y_3): -5/2 G1, -5/2 G3, +9 G5 and 0 in the four sectors. III_K0 (log part, -{I_3,Y_2}) is exactly the opposite in each sector, so log eps cancels in every sector.\n- The eps^{-1} part of III_K0 is -(9/4){I_3, int(A,A)} = 0 identically. So eps^{-1} also cancels in every sector.\n- I-b + III_Khat = -B_Khat(I_3, W_1^(2) - I^CT_2).\n  - I-b alone tends to -9/2 (G1+G2), resp. -9/2 G3. III_Khat alone tends to the opposite.\n  - The eps log eps terms cancel identically.\n  - The sum is +eps B_{k^2 K_0}(I_3, renormalised self-energy) + O(eps^2 log eps), so it goes to 0. Numerically, in (c,c,A*) config 0 it is -0.039679i, -0.0039741i, -0.00039747i at eps = 1e-4, 1e-5, 1e-6. The prediction is -0.039748i times eps/1e-4.\n- I-d + II-b = B_{P(eps,oo)}(D_2(eps), I_3).\n  - Exactly, D_2 = i(p.a)[0*eps^{-1} - 27/8 |p|^2 + 21/16 eps |p|^4 + O(eps^2)].\n  - The limit is the tree B_{P(0,oo)}(Ob_2, I_3). It is local: unit*[27/8 (G1 - G2 + G3) - 27/4 (G4 + G5)]. It is not part of Ob_3.\n\nCHECKS.\n- The I-a machinery on two legs reproduces the Step-1 special bubbles: -9/4, 1/8, -9/2, 2, 1/8 and -5/8, -1/12, -5/4, -4/3, -1/12.\n- The bracket implementation satisfies:\n  - the field-count lemma;\n  - Q int(d*A,d*A) = -2 int(d*dc,d*A);\n  - Q I_3 = 0 and Q I_4 + 1/2{I_3,I_3} = 0;\n  - the P-tree identity Q B_P = B_P(Q.) - B_{K_eps};\n  - {Z, I_3} = Y_3.\n- Colour: every word type reduces abstractly for a general simple g. Explicit su(2) and su(3) traces agree, with the same multiples \u00b11/2, \u00b11.\n- The masters agree with adaptive quadrature to 1.5e-12 relative.\n- Full regulated sum, sector (c,c,A*_V), two configurations at eps = 1e-4, 1e-5, 1e-6: total/G4 = -6.7233, -6.7469, -6.74965 and -6.7018, -6.7443, -6.74935. The limit is -27/4 (Ob_3 = 0 plus the tree), approached at a rate of about eps log eps. Every I-a class converges to its exact value.\n- I-a alone at finite eps with no Taylor expansion, sector (c,A_perp,A_perp): 4.66741, 4.67510, 4.675874 against the exact 4.675959.\n- Wess-Zumino: Q Ob_3 + {I_3, Ob_2} = 0 is automatic (Q^2 = 0 on the limit, Q P(0,oo) = K_0, Q Ob_2 = 0, Q I_3 = 0). Q G1 = Q G3 = Q G4 = Q G5 = 0 identically, so the identity lives only in (c,c,A_V). There it forces alpha_2 = 27/8, which the computed value satisfies.\n- Exactness Ob_3 = Q F_3 + {I_3, F_2} is solvable. The G2 equation holds identically with the 27/16 term. The family is h3 = 2h6, h1 = beta1 + beta4/4 - h6/2 - alpha_1/2, h2 = 2beta2 + beta4/2 - h4/2 - alpha_3, h5 = alpha_5 - 2beta3 + beta4. beta1..beta4, h4 and h6 are free.\n\nRuntime is about 380 s for I-a and 15 s for the tree terms. It ran as one Python process at a time, RSS under 0.1 GB, with no Wolfram, nothing written to /tmp, and no processes left running.",
+  "open_issues": [
+   "alpha_1 = alpha_3 and alpha_5 contain log(3/2) (from the special-edge boundary region: J3 = int_2^3 dv/v). They are scheme coefficients: the Wess-Zumino identity does not constrain them, and they are removable by F_3. Only alpha_2 = 27/8 is forced by Ob_2.",
+   "The full regulated-sum numerical check was done for (c,c,A*_V), where Ob_3 = 0, and an I-a-only finite-eps numerical check for (c,A_Wperp,A_Wperp). The (c,A_V,A_V) and (c,lambda,lambda) sectors were not checked numerically at finite eps.",
+   "The eps^1 coefficient of I-b + III_Khat, +eps B_{k^2 K_0}(I_3, renormalised self-energy), is nonlocal. It was confirmed numerically only for (c,c,A*). There the ghost self-energy constant is numerically -0.27036, consistent with 1 - gamma_E - log 2 but not derived.",
+   "The H1, H2 normalisations used in solve_F3 are H1 = 2 sum_{mu,nu}(d_mu A_nu,[A_mu,A_nu]) (2-form pairing sum_{mu<nu}, [A^A]_{mu nu} = 2[A_mu,A_nu]) and H2 = sum_{mu,w}(d_mu iota_w A,[A_mu,iota_w A]). The theory engine may normalise differently, which rescales h1 and h2.",
+   "In this implementation the bracket symmetry is {a,b} = (-1)^{|a||b|}{b,a}, so {Ob_2,I_3} = {I_3,Ob_2}. The Q-variation of odd-slot functionals uses left derivatives, for example Q int([A_V,c],A*_V) = -1/2 G1 on (c,A_V,A_V). This is consistent with the CME and field-count checks, but should be compared with engine A's sign conventions."
+  ],
+  "key_numbers": {
+   "alpha_1": "11/4 - 19/4*log(2) + 19/4*log(3)",
+   "alpha_2": "27/8",
+   "alpha_3": "11/4 - 19/4*log(2) + 19/4*log(3)",
+   "alpha_4": "0",
+   "alpha_5": "9*log(2) - 9*log(3)",
+   "alpha_1_float": 4.675959263513781,
+   "alpha_5_float": -3.649185972973479,
+   "Ob_3": "unit*[(11/4 + 19/4 log(3/2))(G1+G3) + 27/8 G2 + 0 G4 - 9 log(3/2) G5]",
+   "tree_Ob2_I3_limit_of_Id_IIb": "unit*[27/8 (G1 - G2 + G3) - 27/4 (G4 + G5)]",
+   "IIa_log_per_sector_G1_G3_G5_G4": "-5/2, -5/2, +9, 0 (III_K0 log exactly opposite)",
+   "Ib_eps0_alone": "-9/2 (G1+G2) in (c,A_V,A_V); -9/2 G3 in (c,A_perp,A_perp); III_Khat opposite",
+   "D2_series": "i(p.a)[0 eps^-1 - 27/8 |p|^2 + 21/16 eps |p|^4]",
+   "numeric_full_sum_ccAsV_total_over_G4_eps1e-6": "-6.74965 / -6.74935 (limit -27/4)",
+   "numeric_Ia_cApAp_eps1e-6": "4.675874 (exact 4.675959)",
+   "WZ_forced_alpha_2": "27/8"
+  }
+ },
+ "aC": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/cubic_results.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_notes.txt",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_core.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_graphs.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_integrals.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_Ia.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_ga.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_ga_tests.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_trees.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_numeric.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_verify0d.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_regress2pt.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/s2_make_results.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/logs/"
+  ],
+  "summary": "Engine A, Part C: the cubic sector of the one-loop obstruction, computed exactly in all four sectors (Ob_3 = unit * sum alpha_i G_i).\n\nResult: Ob_3 = unit * [ (11/4 + (19/4) log(3/2)) (G1 + G3) + (27/8) G2 + 0 G4 - 9 log(3/2) G5 ].\n\nGraph decomposition used:\n- Starting point: J = I - I^CT[eps], with D_0 = 1/2{I,I}_{K'} and K' = K_eps - K_0.\n- Exact identity: the D_0 part of Q W at order hbar is hbar Delta_{K'} W_0 + {W_0, W_1}_{K'}.\n  - The first term splits into I-a (graphs with the special edge on the cycle), equal to hbar (1/2) str[K' S H (P S H)^{n-1}], plus I-d, equal to C_P((1/2) str[K' S H3 P S H3], I_3).\n  - The second term is I-b.\n- This decomposition was checked as a polynomial identity in a 0-dim super model, with 0 mismatches over 5 random models; a sign-flipped control fails.\n- The engine reproduces the Step-1 two-leg special bubbles exactly in su(2) and sl(3): -9/4, 1/8, -9/2, 2, 1/8 at eps^{-1} and -5/8, -1/12, -5/4, -4/3, -1/12 at eps^0.\n\nMethod for the I-a graphs:\n- Each numerator N(k) is rebuilt exactly as a polynomial, then the Gaussian loop integral is done with moments (Delta^j N)(-K(u))/(4^j j! T^j).\n- Schwinger variables are scaled by eps: the special tau_1 lies in [0,1], the others in [1,infty).\n- The eps^e coefficient is sum over j - i = n - 2 - e of (4^j j! i!)^{-1} int T^{-2-j+i} F_j (-q)^i.\n- Convergence: the integrand is at most C T^{-2-j+i} on a large-tau region of dimension n - 1, with T >= 1. The integrals converge iff j - i > n - 3, i.e. for e < 1, so e = -1 and 0 are fine.\n- The remainder is O(eps log eps), so no I-a graph has a log eps term.\n- All 13 integrals J(n;b;N) are exact elements of Q + Q log2 + Q log3. Examples:\n  - J(3;0,0;3) = (1/2) log(3/2)\n  - J(3;0,0;4) = 1/36\n  - J(3;1,0;4) = 1/36 + (1/6) log(3/2)\n  - J(3;2,0;5) = 17/864 + (1/12) log(3/2)\n- Each integral was confirmed by an independent 50-digit evaluation in (T,u) variables (differences at most 1.4e-51) and by a consistent PSLQ relation.\n- Every class fit has zero residual on extra random plane waves and full column rank on a complete invariant basis, including parity-odd and chirality-weighted forms.\n\nPer-sector results:\n- (c,A|_V,A|_V), 8 classes (6 triangles, 2 quartic bubbles; the bubbles give 0). I-a eps^0 = (11/4 + 19/4 log(3/2)) G1 + 27/8 G2.\n- (c,A|_Wperp,A|_Wperp), 8 classes. I-a eps^0 = (11/4 + 19/4 log(3/2)) G3, the same coefficient as G1.\n- (c,lambda,lambda), 6 classes. I-a eps^0 = -9 log(3/2) G5.\n- (c,c,A^*|_V), 3 classes, with values log(3/2), -1/2 log(3/2) - 1/4 and -1/2 log(3/2) + 1/4. They sum to alpha_4 = 0.\n- The eps^{-1} part is 0 for every class.\n\nContributions other than I-a, evaluated exactly with the plane-wave mode model:\n- II-a = -Q I^CT_3, using the Step-1 multiples 6, 10, 1, 1, 1 read from engine_a/logs/r2_T1_seed13.json. Its log eps part is:\n  - -5/2 G1 in (c,A|_V,A|_V)\n  - -5/2 G3 in (c,A|_Wperp,A|_Wperp)\n  - +9 G5 in (c,lambda,lambda)\n  - 0 in (c,c,A^*|_V)\n- III(K_0) gives exactly the negative of each of these, so log eps (Q Y_3 + {I_3,Y_2}) = 0 exactly. Its eps^{-1} part is identically 0. Y_3 = {I_3,Y} was checked.\n- I-b + III(K'):\n  - At eps^0, I-b gives -9/2 (G1+G2) in the A|_V sector and -9/2 G3 in the A|_Wperp sector (0 in the other two); III(K') gives exactly the opposite.\n  - Neither has an eps^{-1} or log eps term, and the eps log eps terms also cancel.\n  - The sum equals (e^{-eps p^2} - 1) times the renormalised self-energy, which is O(eps).\n  - The self-energy mass 9/4 was recomputed from the graphs.\n- I-d + II-b:\n  - The nonlocal eps^{-1}/|p|^2 parts cancel exactly.\n  - The local parts -/+ C_P(sb_{-1}, I_3) cancel.\n  - The eps^0 limit equals the tree of Ob_2 with I_3 exactly, with no extra local remainder. That tree is (27/8)(G1 - G2) + (27/8) G3 - (27/4) G4 - (27/4) G5. It is local because Ob_2 carries |p|^2.\n- Totals: eps^{-1} = 0 and log eps = 0 in every sector.\n\nColour:\n- Every colour factor reduces to (1/2) tr(ad ad)/(X,Y) times ([X,Y],Z) for any simple g.\n- Every class coefficient is identical in su(2) (two seeds) and in sl(3) = complexified su(3), embedded in gl(3) with the unimodular trace form; the centre decouples. All fits use the f-structure alone with zero residual.\n\nIndependent numerical check:\n- In all four sectors, the full regulated sum was evaluated at finite eps with no expansion: I-a, I-b + III(K') with finite-eps self-energies, and I-d + II-b with finite-eps special bubbles.\n- The deviation from alpha.G + tree, at eps = 1e-4, 1e-5, 1e-6:\n  - (c,lambda,lambda): 0.108, 0.0171, 0.00235\n  - (c,A|_Wperp,A|_Wperp): 0.129, 0.0159, 0.00189 (relative to 177)\n  - (c,A|_V,A|_V): 0.0203, 0.0039, 0.00058 (relative to 193)\n  - (c,c,A^*|_V): 0.336, 0.0393, 0.0045\n- The deviation tends to 0 like eps log eps, with no constant, no log eps and no nonlocal remainder.\n\nTotal compute: about 1850 s. No process is left running, no Wolfram kernel was used, and nothing was written to /tmp.",
+  "key_numbers": {
+   "alpha_1": "11/4 + 19/4*log(3/2)",
+   "alpha_2": "27/8",
+   "alpha_3": "11/4 + 19/4*log(3/2)",
+   "alpha_4": "0",
+   "alpha_5": "-9*log(3/2)",
+   "alpha_numeric": {
+    "alpha_1": "4.6759592635137808144",
+    "alpha_2": "3.375",
+    "alpha_3": "4.6759592635137808144",
+    "alpha_4": "0",
+    "alpha_5": "-3.6491859729734794378"
+   },
+   "Ob_3": "unit*[(11/4 + 19/4 log(3/2))(G1+G3) + 27/8 G2 + 0 G4 - 9 log(3/2) G5]",
+   "tree_Ob2_with_I3": "unit*[27/8 (G1-G2) + 27/8 G3 - 27/4 G4 - 27/4 G5]",
+   "IIa_log_per_sector": {
+    "G1": "-5/2",
+    "G3": "-5/2",
+    "G5": "9",
+    "G4": "0"
+   },
+   "IIIK0_log_per_sector": {
+    "G1": "5/2",
+    "G3": "5/2",
+    "G5": "-9",
+    "G4": "0"
+   },
+   "Ib_eps0": {
+    "(c,A_V,A_V)": "-9/2 (G1+G2)",
+    "(c,A_Wperp,A_Wperp)": "-9/2 G3",
+    "others": "0"
+   },
+   "IIIKprime_eps0": "exact negative of Ib_eps0",
+   "eps_inverse_total_each_sector": "0",
+   "log_eps_total_each_sector": "0",
+   "I-a_classes": {
+    "(c,A_V,A_V)": 8,
+    "(c,A_Wperp,A_Wperp)": 8,
+    "(c,lambda,lambda)": 6,
+    "(c,c,A*_V)": 3
+   },
+   "numeric_deviation_eps1e-6": {
+    "(c,A_V,A_V)": "5.8e-4",
+    "(c,A_Wperp,A_Wperp)": "1.9e-3",
+    "(c,lambda,lambda)": "2.3e-3",
+    "(c,c,A*_V)": "4.5e-3"
+   },
+   "runtime_seconds": 1852.6
+  },
+  "open_issues": [
+   "log(3/2) appears in alpha_1 = alpha_3 and in alpha_5. It is a constant fixed by the shape of the Schwinger region [0,1]x[1,infty)^2. Exactness of Ob_3 requires F_3 to absorb it, through H3/H6 for G1, H4/H2 for G3 and H5 for G5. Solving Ob_3 = Q F_3 + {I_3,F_2} and checking the Wess-Zumino closure were not part of this engine-A task and were not done.",
+   "The split between Ob_3 and the tree of Ob_2 with I_3 follows the design convention: that tree is the flow of Ob_2. Here the tree is itself local (Ob_2 carries |p|^2). The full cubic part of lim Q W is therefore (49/8 + 19/4 log(3/2))(G1+G3) + 0 G2 - 27/4 G4 + (-27/4 - 9 log(3/2)) G5.",
+   "The finite-eps numerical check uses the same exact numerator polynomials as the exact calculation. It tests the eps-expansion, the integrals and the absence of remainders, not the numerators themselves. The numerators rest on the Step-1 code path, the 0-dim identity and the exact two-leg regression. A fully independent second route, Q applied to the ordinary P-regulated three-point functions at finite eps, was not carried out.",
+   "The numerical finite-eps checks were run in su(2) only; the exact results were run in both su(2) and sl(3).",
+   "Step-1 inputs reused: the cubic log multiples 6, 10, 1, 1, 1 (engine_a/logs/r2_T1_seed13.json); the mass 9/4 (recomputed here from the graphs); the special-bubble values -9/2 and -27/8 (reproduced here by s2_regress2pt.py)."
+  ]
+ },
+ "cmpC": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/compare_cubic.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/compare_cubic.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/compare_cubic.log",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/plugback_theory.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/plugback_theory.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/plugback_engine_b.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/plugback_engine_b.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/masters_indep.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/masters_indep.json"
+  ],
+  "summary": "Part C, comparison and synthesis. Engines A and B agree on every I-a class coefficient, every other contribution and the totals, with no disagreement anywhere. The theory census and maps are consistent with both engines.\n\n**1. Class-by-class comparison**\n- Method: each I-a class of A, each class of B and each theory census row was reduced to a canonical cyclic word around the loop (vertex type with its external legs, then edge type, minimised over rotations and reflections) and matched.\n- Every eps^-1, log eps and eps^0 coefficient on every G_i was compared exactly in Q + Q log2 + Q log3.\n- Matched classes:\n  - (c,A_V,A_V): 8 = 8 = 8 census rows. eps^0 values per class:\n    - (103/144 + 2/3 L) G1 + (41/48 + 1/4 L) G2\n    - (1/12 + 1/2 L) G1\n    - (11/12 + L) G1 + 5/4 G2\n    - two ghost classes, each -(11/288 + L/24) G1 - (1/32 + L/8) G2\n    - (10/9 + 8/3 L) G1 + 4/3 G2\n    - two quartic bubbles, each 0\n  - (c,A_W,A_W): 6 rows matched. Values (17/48 + L/2), (-1/48 - L/4), (1/12 + L/2), (7/3 + 4L) and two bubbles 0, all times G3.\n  - (c,lambda,lambda): 5 rows matched. Values -L, (-1/2 - L), (-3/2 - 3L), (1/2 - L), (3/2 - 3L), all times G5.\n  - (c,c,A*_V): 3 rows matched. Values L, (-1/4 - L/2), (1/4 - L/2), all times G4.\n- Here L = log(3/2).\n- Engine A lists 3 extra classes: two in (c,A_W,A_W) and one in (c,lambda,lambda). All have value identically 0. They are component-forbidden:\n  - the P(eps,infty) ghost line c--A* carries only A*|_V, because Q^GF c* = dc* lies in V;\n  - the vertex ([A,c],A*) pairs A and A* component by component.\n  - Engine B and the theory census correctly omit them.\n- Every class has eps^-1 = 0 and log eps = 0 in both engines.\n\n**2. Other contributions (A = B = theory)**\n- II-a log part: -5/2 G1, -5/2 G3, +9 G5, 0.\n- III(K_0) log part: the exact negative of II-a.\n- I-b eps^0 alone: -9/2(G1+G2) and -9/2 G3. III(K_eps-K_0) eps^0 alone: the opposite. Their sum is 0.\n- lim(I-d + II-b) = tree(Ob_2, I_3; P(0,infty)) = unit*[27/8(G1 - G2 + G3) - 27/4(G4 + G5)]. This is local and is not part of Ob_3.\n- I re-derived the II-a and III(K_0) values independently in the theory realisation, on fresh plane waves:\n  - II-a = -Q Y_3, with Y_3 = 6 AAA + 10 lambda lambda A + AcA* + c lambda lambda* + ccc*;\n  - III(K_0) = -{I_3, Y_2}, with Y_2 = -B1 - B2 + 4B3 - B4.\n- III(K_eps-K_0) was re-derived as (9/4){I_3, int(A,HA)} = +9/2(G1+G2), +9/2 G3.\n\n**3. Totals and census**\n- In every sector: eps^-1 total = 0, and log eps total = 0 (I-a gives 0, and II-a + III(K_0) = 0).\n- The reported engine totals equal the sums over classes.\n- I-a census:\n  - theory: (c,A_V,A_V) 6 triangle rows (12 graphs) + 2 bubbles; (c,A_W,A_W) 4 rows (8 graphs) + 2 bubbles; (c,lambda,lambda) 5 rows (10 graphs); (c,c,A*_V) 3 rows (6 graphs);\n  - engine B matches exactly;\n  - engine A matches plus the 3 zero classes.\n- The census rows for I-b, III, II-a, I-d and II-b can be compared only at the aggregate level, because the engines do not break those down by row. They agree there.\n\n**Master integrals (independent check)**\n- New route: the last [1,oo) integral in closed form, the rest by 40-digit tanh-sinh quadrature.\n- A's 13 J(n;b;N) agree to a maximum relative difference of 1.3e-41.\n- B's masters (16 listed plus 40 random index sets) agree to 9.5e-36.\n- On A's list, A's and B's exact closed forms are identical.\n\n**Agreed coefficients**\n- alpha_1 = alpha_3 = 11/4 + 19/4 log(3/2)\n- alpha_2 = 27/8\n- alpha_4 = 0\n- alpha_5 = -9 log(3/2)\n- Ob_3 = unit*[(11/4 + 19/4 log(3/2))(G1+G3) + 27/8 G2 - 9 log(3/2) G5].\n\n**4. F_3**\n- Theory maps:\n  - QH1 = -2G1, QH2 = -G3, QH3 = -1/2 G1 - G4, QH4 = -1/2 G3, QH5 = G5, QH6 = 2G4;\n  - {I_3,D1} = 2G2, {I_3,B1} = 2G1, {I_3,B2} = 2G3, {I_3,B3} = 2G5, {I_3,B4} = 1/2 G1 + 1/2 G3 - G5.\n- These maps are identical entry by entry to engine B's independent projections.\n- The G2 row is 27/8 - alpha_2 = 0, so the equation is solvable.\n- Particular solution (beta = 0, H2 and H6 coefficients 0):\n  - F_3 = unit*[-(11/8 + 19/8 log(3/2)) H1 - (11/2 + 19/2 log(3/2)) H4 - 9 log(3/2) H5];\n  - written out: -(11/8 + 19/8 log(3/2)) int(dA|_V,[A|_V ^ A|_V]) - (11/2 + 19/2 log(3/2)) int([A|_Wperp,c],A*|_Wperp) - 9 log(3/2) int([c,lambda],lambda*).\n- Full family:\n  - h1 = -alpha_1/2 + alpha_4/4 + beta1 + kappa1\n  - h2 = 2beta2 + kappa2\n  - h3 = -alpha_4 + beta4 - 4kappa1\n  - h4 = -2alpha_3 + beta4 - 2kappa2\n  - h5 = alpha_5 - 2beta3 + beta4\n  - h6 = beta4/2 - 2kappa1\n- Free directions:\n  - the beta directions are the s-closed completions: B1+H1, B2+2H2, B3-2H5, and B4+(H3+H4+H5+H6/2);\n  - the kernel of Q on span H is spanned by H1 - 4H3 - 2H6 and H2 - 2H4 (Q-closed, not Q-exact); rank Q = 4.\n- This family is identical to the theory's family and to engine B's (which is parametrised by h4, h6).\n- Additional finding: because alpha_1 = alpha_3 and alpha_4 = 0, there is a representative with F_3 = 0.\n  - Choice: beta1 = beta2 = alpha_1/2, beta3 = alpha_5/2, beta4 = 0, kappa1 = 0, kappa2 = -alpha_3.\n  - Then Ob_3 = {I_3, F_2} with F_2 = unit*[(27/16) int(d*A_V,d*A_V) + (11/8 + 19/8 log(3/2))(int(dA_V,dA_V) + int(dA_Wperp,dA_Wperp)) - 9/2 log(3/2) int(lambda,dslash lambda)].\n\n**Verification of F_3**\n- Symbolic substitution of the family into all five rows gives residual 0.\n- Plane-wave plug-back in the theory realisation (cubic_core, su(2), exact over Q(i)):\n  - fresh seeds, 5 samples per sector;\n  - beta = kappa = 0 plus 3 random rational (beta, kappa) sets;\n  - the rational and log(3/2) parts were checked separately;\n  - it holds in all four sectors, and gives 0 in the four degree-1 three-leg sectors that carry no invariant: (c,A_V,A_W), (c,A,lambda), (c,c,lambda*), (c,c,A*_W).\n- The same plug-back in engine B's realisation (6 fresh configurations per sector) holds.\n- The F_3 = 0 representative holds in both realisations.\n- Wess-Zumino: Q Ob_3 + {I_3,Ob_2} = (alpha_2 - 27/8) unit QG2 = 0. This was verified on fresh (c,c,A_V) plane waves.\n  - It is automatic from Q^2 = 0, Q I_3 = 0, Q Ob_2 = 0, Q P(0,infty) = K_0 and the two limit statements; it does not follow from linear algebra alone, since G2 is missing from the image.\n  - It constrains only alpha_2. alpha_1, alpha_3, alpha_4 and alpha_5, including the log(3/2) constants, are scheme constants.\n\nAll QA runs took about 30 s in total. There was one process at a time, each under 0.1 GB. No Wolfram kernel was used, nothing was written to /tmp, and no process is left running.",
+  "key_numbers": {
+   "alpha_1": "11/4 + 19/4*log(3/2)",
+   "alpha_2": "27/8",
+   "alpha_3": "11/4 + 19/4*log(3/2)",
+   "alpha_4": "0",
+   "alpha_5": "-9*log(3/2)",
+   "alpha_float": {
+    "alpha_1": "4.675959263513781",
+    "alpha_5": "-3.6491859729734792"
+   },
+   "Ob_3": "unit*[(11/4 + 19/4 log(3/2))(G1+G3) + 27/8 G2 + 0 G4 - 9 log(3/2) G5]",
+   "class_agreement": "all matched I-a classes identical in eps^-1, log, eps^0 (8/6/5/3 matched per sector); engine A has 3 extra component-forbidden classes, value 0",
+   "census_Ia": {
+    "(c,A_V,A_V)": "theory 8 rows = A 8 = B 8",
+    "(c,A_W,A_W)": "theory 6 = B 6; A 8 (2 extra, zero)",
+    "(c,lambda,lambda)": "theory 5 = B 5; A 6 (1 extra, zero)",
+    "(c,c,A*_V)": "3 = 3 = 3"
+   },
+   "eps_inverse_total_each_sector": "0",
+   "log_eps_total_each_sector": "0",
+   "IIa_log": "-5/2 G1, -5/2 G3, +9 G5, 0 (III(K_0) opposite)",
+   "Ib_eps0_alone": "-9/2(G1+G2), -9/2 G3, 0, 0 (III(K_eps-K_0) opposite)",
+   "tree_Ob2_I3": "unit*[27/8(G1-G2+G3) - 27/4(G4+G5)]",
+   "QH_matrix_rows_G1toG5": [
+    [
+     "-2",
+     "0",
+     "-1/2",
+     "0",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "-1",
+     "0",
+     "-1/2",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "-1",
+     "0",
+     "0",
+     "2"
+    ],
+    [
+     "0",
+     "0",
+     "0",
+     "0",
+     "1",
+     "0"
+    ]
+   ],
+   "brackets_I3": {
+    "D1": "2 G2",
+    "B1": "2 G1",
+    "B2": "2 G3",
+    "B3": "2 G5",
+    "B4": "1/2 G1 + 1/2 G3 - G5"
+   },
+   "F3_particular_beta0": "unit*[-(11/8 + 19/8 log(3/2)) H1 - (11/2 + 19/2 log(3/2)) H4 - 9 log(3/2) H5]",
+   "F3_family_h": {
+    "h1": "-alpha1/2 + alpha4/4 + beta1 + kappa1",
+    "h2": "2 beta2 + kappa2",
+    "h3": "-alpha4 + beta4 - 4 kappa1",
+    "h4": "-2 alpha3 + beta4 - 2 kappa2",
+    "h5": "alpha5 - 2 beta3 + beta4",
+    "h6": "beta4/2 - 2 kappa1"
+   },
+   "F3_kernel": [
+    "H1 - 4 H3 - 2 H6",
+    "H2 - 2 H4"
+   ],
+   "F3_zero_representative": "beta1 = beta2 = alpha1/2, beta3 = alpha5/2, beta4 = 0, kappa1 = 0, kappa2 = -alpha3: F_3 = 0, F_2 = unit*[(27/16) int(d*A_V,d*A_V) + (11/8 + 19/8 log(3/2))(int(dA_V,dA_V) + int(dA_Wperp,dA_Wperp)) - 9/2 log(3/2) int(lambda,dslash lambda)]",
+   "WZ": "Q Ob_3 + {I_3,Ob_2} = (alpha_2 - 27/8) unit QG2 = 0; automatic; constrains alpha_2 only",
+   "plugback": "theory realisation: all hold (4 target + 4 no-invariant sectors, 5 samples, 4 parameter sets); engine B realisation: all hold (4 sectors, 6 samples, 4 parameter sets); symbolic residuals 0",
+   "masters_max_rel_diff": {
+    "engine_A_13": "1.34e-41",
+    "engine_B_56": "9.48e-36"
+   },
+   "maps_theory_vs_engineB": "entrywise identical"
+  },
+  "open_issues": [
+   "Engines A and B share two Step-1 inputs: the cubic log multiples 6, 10, 1, 1, 1 and the mass coefficient 9/4. The II-a, III(K_0) and III(K_eps-K_0) values were re-derived here in the theory realisation, but the Step-1 numbers themselves were not recomputed in this QA step.",
+   "Finite-eps full-sum numerics: engine A covered all four sectors; engine B covered only (c,c,A*_V) (full sum) and (c,A_Wperp,A_Wperp) (I-a only). No new finite-eps numerics were run here.",
+   "The census rows for I-b, III, I-d and II-b (theory cubic_census.json) were compared only at the aggregate level, because neither engine reports these contributions row by row.",
+   "The cubic equation leaves beta_1..beta_4 and the kernel directions H1 - 4H3 - 2H6 and H2 - 2H4 free. Whether they are fixed or constrained at quartic order, and whether the F_3 = 0 representative (purely quadratic finite counterterm) remains consistent there, was not examined.",
+   "Directive R1 (a second version of every user report in Weinberg-Srednicki two-component notation) applies to the user-facing synthesis. This QA output is a JSON comparison only, and no two-component version was produced here."
+  ]
+ },
+ "aD": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/delta_results.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_notes.txt",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_signs.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_treecheck.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_cycles.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_integrals.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_two_point.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_pi_sectors.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_se_sectors.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_y1a.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_y1a_ward.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/d4_make_results.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_a/logs/"
+  ],
+  "summary": "Engine A, Part D4 (dilatation sector, N=4). Units: unit = hbar tr_g(ad ad)/(16 pi^2 (X,Y)). Every number is exact and was checked to be the same for su(2) and gl(3).\n\nSigns and conventions:\n- The bracket with S_M is the derivation induced by M: {S_M,-} = +D_M. This was measured exactly from the ch01 bracket on int(A,A), int(dA,dA), int(lambda,dslash lambda) and int(dc,A^*).\n- Scaling identity: D_M W = W'(D_M J) + 4 eps d/deps|_J W, with sign +. On the A|_Wperp self-energy, D_M Sigma = -18/eps - 8|p|^2 = 4 eps d/deps Sigma; the opposite sign fails.\n- Momentum space: E acts as -(4+p.d/dp). Because S_M contains x explicitly, every graph with one S_M is a distribution of the form alpha delta(Sigma) + beta^mu d_mu delta(Sigma).\n- Two internal checks of this machinery. Taking either leg as the dependent one gives exactly related results ((8/3, 10/3 p) versus (-32/3, -10/3 p')). In the mode model, the tree O-P-S_M maps under Q to +2(E+w_O)O.\n- Pitfall found: for a constant pairing-preserving X, Q C_P(S_X,F) = -D_X F. For M it is +D_M F, because |p|^-2 M_{A^*} |p|^2 = M_A.\n\n(1) Two-point part of the arity-one functional d/dxi W(P, I - I^CT + xi S_M):\n- The sectors are (A^*_P,A_P), (A^*_V,A_V), (lambda^*,lambda) and (c^*,c).\n- S_M can sit inside a loop only as a composite A_V--c line with kernel P*MP* = (1/2){M,(P*)^2}. This line exists only because (Q^GF)^2 != 0.\n- A_P sector: the internal bubble has alpha = 8/3, beta = (10/3)p, i.e. (5/3)S_M - (2/3)int(A,A^*). It is finite and local.\n- A_P sector, external-leg graphs: individually they carry \u00b19/(eps|p|^2) and \u22134 log eps, which cancel between S_M-P-Sigma and S_M-P-(-I^CT). The total is g = 43/4 - 4(log|p|^2 + gamma + log 2), entering as alpha = 2g, beta = 2g p.\n- A_P sector, arity-one counterterm: none (I^CT_Delta|_P = 0). The two-point obstruction is Q(R)_sym = -(11/3) unit int(dA_P,dA_P). It is removed by F_Delta|_P = (22/3) unit int(A_P,A^*_P) plus a free multiple of S_M.\n- A_V, lambda and c sectors: no eps^-1. The log eps parts are, with L3 = log(eps|p|^2) + gamma + log 3:\n  - A_V: alpha = (a.b), beta = a^mu(p.b), i.e. log eps int(iota_x A_V, d^*A^*_V).\n  - c: beta = -p, i.e. -log eps int(Ec, c^*).\n  - lambda: beta = -(u, rho(p) rho(e^mu) v).\n- The A_V and c log parts together equal log eps Q int(iota_x A_V, c^*). This is Q-exact, as the log part of the arity-one defect requires.\n- Full finite parts are in the JSON. The Ward identity holds in every entry: the eps dependence is only through eps|p|^2.\n\n(2) Bilinear part of [(d_CE+Q)O[infty]](Delta) for O = int omega(iota_w1 A, iota_w2 A):\n- Route: this component equals Q of the arity-one part of O[infty] (lem:c7-image), which is equivalent to graphs (a)-(y) by the UV-boundary identity.\n- The graph classes are complete at one loop: B0 (O-P-S_M), B-S, Y1a (a 1PI triangle containing O, the composite S_M line, A_V(A_P)^2 and ([A,c],A^*)), Y1b, and the counterterm trees.\n- Classical part: verified, +2(E+w_O)O.\n- B0 and B-S under Q give D_M O[infty] = 2 s d/ds sigma_s O[infty] = 2(E+w_O)O[infty] + {-16 traceless, -64 trace} unit O (thm:c6-CS with the Step-1 inputs).\n- Y1b plus the counterterm trees give Q C_P(Z,O). The arity-one master equation fixes z_1 = -8 unit. This term is +16 unit O, equal to -Q(4 unit tree insertion of the field-counting functional into O), plus z_2 D_M O. z_2 is the free S_M direction: an order-hbar rescaling of Delta.\n- Result: C = 2(E+w_O)O[infty] + 2c unit O + z_2 D_M O + Q(Y1a), with c = 0 (traceless) and c = -24 (trace). This reproduces the Step-1 scaling route.\n- Y1a is not zero. alpha(Y1a) = 0 to 1e-14, and beta(Y1a) = unit T_O [8 p2/|p2|^2 + 8|p1|^2 That(p1,p2)], where That_nu = -int x(y p2 - z p1)_nu/Delta^2. The fit coefficients are exactly -8 and 8 at 3 kinematic points (su(2) and gl(3), traceless and diagonal flavour).\n- Q(Y1a) is nonlocal. Hence eq:c6-step2 is false as stated: it holds up to z_2 D_M O + Q(Y1a). The extra term exists only because (Q^GF)^2 != 0; with a gauge fixing satisfying (Q^GF)^2 = 0 it vanishes and c6-step2 is exact.\n- Splitting Q(Y1a) by the Ward identity would leave a local piece -4O - D_M O and give -2/-26. That split is not canonical (That ~ p1/|p1|^2) and contradicts the protection of the traceless bilinear, so it was not used.\n- No genuine IR divergence. Spurious per-monomial divergences in the Feynman-parameter integrals were removed by homogenisation. All graph values are distributions, handled by the canonical form.\n\nstep2/theory/delta_predictions.json did not exist, so the comparison is with the manuscript only.",
+  "open_issues": [
+   "eq:c6-step2 fails by Q(Y1a), which is nonzero and nonlocal (it also fails by the free rescaling term z_2 D_M O), so the component is not of the form (local functional)[infty] (def:c7-component) at one loop. The coefficients 0/-24 hold only if Q(Y1a) is kept as a separate Q-exact term. The theory side must decide the correct statement: for example the class modulo Q-images of one-loop 1PI functionals linear in A^*, or a gauge fixing with (Q^GF)^2 = 0.",
+   "The same internal-insertion mechanism applies to translations: beta(Y1a) is -i times the translation internal-insertion graph. So rem:c7-internal's expectation that the translation component can be chosen with no one-loop correction, ({S^(1)(x1),O})[infty], fails by a nonlocal Q-exact term, not only by a rescaling. This has not been analysed further.",
+   "The arity-one finite counterterm F_Delta was only partly determined. In the A_P sector it is (22/3) unit int(A_P,A^*_P) up to S_M. If F_Delta is proportional to the field-counting functional, the multiple is 11/3; this was not tested in the A_V, lambda and c sectors (two-point QME there not assembled).",
+   "The z_2 (S_M-direction) scheme freedom of F_Delta rescales Delta at order hbar. It is presumably fixed by the arity-two master equation ([K,P] = Delta), which was not computed.",
+   "CS input (-16/-64) is taken from thm:c6-CS with the Step-1 log coefficients of d_delta I^CT (4, -8). These were not recomputed by this engine. Only the tree-insertion convention (4 lambda per leg) and the A_P self-energy log coefficient were rechecked.",
+   "The two-component (Weinberg-Srednicki) version of the lambda-sector structures required by directive R1 is not supplied: the step2/notation dictionary was not read.",
+   "step2/theory/delta_predictions.json did not exist when the raw results were written."
+  ],
+  "key_numbers": {
+   "sigma_bracket_sign": "+1",
+   "ward_identity_sign": "+4 eps d/deps|_J",
+   "Pi_int_AP_alpha": "8/3",
+   "Pi_int_AP_beta_over_p": "10/3",
+   "external_leg_AP_g": "43/4 - 4(log|p|^2+gamma+log2)",
+   "I_CT_Delta_AP": "0",
+   "Ob_Delta_AP": "-(11/3) unit int(dA_P,dA_P)",
+   "F_Delta_AP": "(22/3) unit int(A_P,A^*_P) + free S_M multiple",
+   "z1": "-8 unit",
+   "Z_term_bilinear": "+16 unit O",
+   "CS_bilinear_traceless": "-16",
+   "CS_bilinear_trace": "-64",
+   "coefficient_traceless": "0",
+   "coefficient_trace": "-24",
+   "Y1a_alpha": "0",
+   "Y1a_beta_fit": "lambda_1=-8 (bubble -p2/|p2|^2 basis), lambda_2=8 (|p1|^2 That basis)",
+   "Pi_int_c_log_eps": "beta = -p (gamma,w)",
+   "Pi_int_AV_log_eps": "alpha=(a.b), beta=a^mu(p.b)",
+   "Pi_int_lambda_log_eps": "beta = -2p(u,v) + (u,rho(e^mu)rho(p)v)",
+   "Ward_split_coefficients_not_used": "-2 (traceless), -26 (trace)"
+  }
+ },
+ "bD": {
+  "status": "complete",
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_results.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_engine.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_canon.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_local.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_numeric_i.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_part1_sing.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_B1s_run.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_K5_run.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_K5_class.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_routeA.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_fit_B1.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_K5_ApAp_s31.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_K5_class_s0_mu0.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_classical.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_local_tests.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_Xexact.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_routeA_Ap_n56.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_routeA_c_n56.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/engine_b/delta_tests.json"
+  ],
+  "summary": "Engine B, Part D4 (dilatation, quadratic sector, N=4). Units are unit = hbar tr_g(ad ad)/(16 pi^2 (X,Y)) times the colour pairing of the legs. The ghost of Delta is placed on the right (the cochain evaluation of Def c2-dce), so [(d_CE+Q)O[infty]](Delta) = Q(arity-one part of O[infty]) with no extra sign.\n\nS_M = S^(1)(Delta) is split as S_M = S_w + S_E, with S_w = 2int(A,A*) - 3int(lambda,lambda*) and S_E = sum_mu (-i d/dkappa_mu)|_0 of 2int e^{i kappa x}[(d_mu A,A*) - (d_mu lambda,lambda*) - (d_mu c,c*)]. E acts on Fourier components as -(4 + p.d/dp).\n\nCanonical form of a two-leg value: alpha(p) delta + beta^mu(p) d/dp_2 delta, which is int[(leg2, alpha leg1) + x^mu (leg2, i beta_mu leg1)].\n\nSign of {S_M,-} (determined and checked on a classical example): it is + the derivation induced by v. The machine gives {S_M, int(A,A)} = -4 int(A,A), {S_M, kinetic} = 0 and Q S_M = 0. Hence D_M W = W'(D_M J) + 4 eps d/deps|_J W, using (M x 1 + 1 x M)P = -4 eps dP/deps. On canonical two-point functions D_M acts as alpha -> 2p.d alpha, beta -> 2(p.d - 1)beta. Numerically on class (i): alpha(2p, eps/4) = alpha(p, eps) and beta(2p, eps/4) = 2 beta(p, eps), to 2e-5 relative.\n\n(1) Two-point functions of d/dxi W(P, I - I^CT + xi S_M) (Part 1).\n- Sectors that occur: (A_perp,A*_perp), (A_V,A*_V), (lambda,lambda*), (c,c*). (A*_V,c) is excluded because it has degree 0, not -1.\n- Class (i): S_M on the cycle. Only its (A_V, A*_V) block can sit on an internal line, where it makes an A_V - c line. There is 1 graph per sector, except 2 for A_V.\n- Class (ii) = B_P(S_M, W^(2) - I^CT_2).\n- eps^-1: 0 in every sector.\n- log eps (exact): I^CT_Delta[eps] = unit log eps X, with X = int(d(iota_x A_V), A*_V) - int(iota_x dc, c*) - int(rho(x) dslash lambda, lambda*). X_perp = 0.\n- Q X = 0 exactly. Q X_V and Q X_c are separately nonzero and cancel. X = Q( int(iota_x A_V, c*) - 1/2 int(rho(x) lambda*, lambda*) ) exactly.\n- Finite parts (numerical, Schwinger quadrature at eps down to 1e-7):\n  - class (i)_perp -> a0 int(A_perp,A*_perp) + b0 int(E A_perp, A*_perp), with a0 = 2.6666(2) (8/3) and b0 = 3.3333(1) (10/3);\n  - c sector: alpha -> -2.6666 (-8/3); beta = -p(u_c u_c*)[log(eps p^2) + 2.509(1)];\n  - the A_V and lambda sectors of class (i), and the constant parts of class (ii), were not computed.\n- Q(class (ii)) -> D_M Sigma_ren exactly.\n\nArity-one obstruction on the quadratic sector (exact, UV-boundary special-edge graphs, master integrals in Q + Q log(E/(E-1))):\n- Ob(Delta) = unit[ -(11/3) int(dA,dA) + (47/3) int(lambda, dslash lambda) - (14/3) int(dc, A*) ].\n- The coefficient of int(d*A_V,d*A_V) is 0. There is no x-dependent part and no log constants.\n- The eps^-1 part of the special-edge graphs, -9 unit int(A,A), cancels -{I^CT_2, S_M} exactly.\n- Independent cross-check in the perp sector: Q(class i) + Q(class ii) = -(1/2)(a0 - b0) - 4 = -11/3 (route A, numerical).\n- Translation-invariant solution of Q F = Ob: F(Delta) = unit[(11/3) FC - int(lambda*,lambda) + int(c*,c)], where FC = 2int(A,A*) - 4int(lambda*,lambda) - int(c*,c).\n- The Q-closed directions S_M|_perp, S_M|_lambda, S_M|_V + S_M|_c and X are left free by the two-leg QME.\n\n(2) Bilinear part of [(d_CE+Q)O[infty]](Delta) for O = int omega(iota_w1 A, iota_w2 A).\n- Classical part verified: {S_M,O} = 2(E+w_O)O, i.e. alpha = -4v, beta = -2k v.\n- Decomposition: the UV-boundary identity with {,}_eps = {,}_K0 + {,}_Khat gives, on (A_perp,A_perp) and given Q F = Ob, LHS - 2((E+w_O)O)[infty] = lim[K5 - {F(Delta),O} - {I^CT_Delta,O}]. Here {I^CT_Delta,O} = 0 because X_perp = 0.\n- K5: the 1PI graphs with O, S_M and one Khat = K_eps - K_0 edge on the cycle; this is graph family (a)-(u). Exact result: alpha = 16 T1 - 16 T2 and beta = (2/3) k T1, where T1 is the vertex value of O and T2 = (w1,w2)(u1,u2). There is no eps^-1 or log part; 3 samples give 15 equations for 6 unknowns.\n- alpha = 4 x (log coefficient of partial_delta I^CT).\n- With F_perp = a int(A,A*) + b int(E A, A*) and a - b = 22/3: 2c_O = 44/3 - 2(a - b) = 0 for every admissible b.\n- **Coefficient multiplying O: 0 (traceless), -24 (trace)**, independent of the free b. This reproduces the Step-1 scaling route (-24 unit = 3g^2N/(4pi^2)).\n- The classical part comes with the factor 1 - (1/3 + b/2) unit: b = -2/3 (F contains -(1/3) unit S_M|_perp) gives exactly 2(E+w_O); b = 0 gives (1 - unit/3).\n- Translation part of K5: -(1/3) unit {S^(1)(P), O}, which is nonzero. Internal check: the closed-form subset (T on an A_V - c line, Khat between O and AcA*) gives 844 = full; the complement is exactly 0.\n- The singular part of the graphs with one O and one S_M vertex vanishes (superficial degree -2), so O(eps) has no arity-one counterterm along Delta.\n\nThe theory predictions file was absent when the results were written, so no comparison with it was made.",
+  "open_issues": [
+   "Translation component of the scalar bilinear: the Khat graphs give -(1/3) unit {S^(1)(P),O} != 0 (graphs exist because (Q^GF)^2 != 0 and O is not BRST invariant at scale eps). Letters have no such graphs, so no universal F(P) proportional to S^(1)(P) removes it for both letters and bilinears. The arity-two (Delta,P) consistency, or the cubic arity-one QME, must decide b (the S_M|_perp component of F(Delta)), and with it the normalisation 1 - (1/3 + b/2) unit of the classical part 2(E+w_O)O. The anomalous coefficients 0 / -24 do not depend on b.",
+   "Trace component: the (A_V,A_V) and (c,A*_V) output sectors were not computed. These are K5 with A_V legs, S_M joined to the cocycle obstruction of O_tr, and the finite counterterm g (w1,w2) int omega (A_V,A_V).",
+   "Part-1 finite parts: computed only numerically and only in the A_perp sector (8/3, 10/3 to 1e-4) and the c sector (alpha -8/3; beta constant 2.509, not identified). The A_V and lambda sectors of class (i), and the constants of Sigma_ren entering class (ii), were not computed.",
+   "lambda sector of Ob(Delta): 47/3 times int(lambda, dslash lambda) is fitted on 2 samples to a single structure. The beta part is zero on both samples but was not fitted to a basis.",
+   "F(Delta) quadratic part is fixed only modulo the Q-closed directions S_M|_perp, S_M|_lambda, S_M|_V + S_M|_c and X = Q(int(iota_x A_V,c*) - 1/2 int(rho(x) lambda*,lambda*)). The translation-invariant representative is reported.",
+   "step2/theory/delta_predictions.json was absent; no comparison section with engine-A/theory predictions."
+  ],
+  "key_numbers": {
+   "sign_D_M": "{S_M,-} = + derivation induced by v.; {S_M, int(A,A)} = -4 int(A,A)",
+   "ICT_Delta_quadratic": "unit log eps [int(d(iota_x A_V),A*_V) - int(iota_x dc,c*) - int(rho(x) dslash lambda,lambda*)], A_perp part 0, eps^-1 part 0, Q-exact",
+   "Ob_Delta_quadratic": "unit[-(11/3) int(dA,dA) + (47/3) int(lambda,dslash lambda) - (14/3) int(dc,A*)]",
+   "F_Delta_translation_invariant": "unit[(11/3) FC - int(lambda*,lambda) + int(c*,c)]",
+   "classi_perp_finite": "a0 = 8/3 (2.6666(2)), b0 = 10/3 (3.3333(1)), numerical",
+   "K5_alpha": "16 T1 - 16 T2",
+   "K5_beta": "(2/3) k T1",
+   "coefficient_traceless": "0",
+   "coefficient_trace": "-24",
+   "classical_check": "alpha = -4 v, beta = -2 k v (= 2(E+w_O)O)",
+   "translation_component_bilinear": "-(1/3) unit {S^(1)(P),O}"
+  }
+ },
+ "refC1": {
+  "refuted": false,
+  "items": [
+   {
+    "claim": "alpha_3 = 11/4 + 19/4 log(3/2) (= 4.675959264), the G3 coefficient of Ob_3 in the sector (c, A|_Wperp, A|_Wperp)",
+    "verdict": "confirmed",
+    "evidence": "I ran a direct evaluation from scratch at finite eps (eps = 2e-4 * 2^-k, k = 0..8) and extrapolated to eps -> 0. Including the finite counterterm F_2 = (27/16) unit int(d^*A_V, d^*A_V), which removes Ob_2 and its tree, the limit of the order-hbar three-leg part of Q W(P(eps,infty), I - F_2 - I^CT[eps]) divided by unit*G3 came out as 4.6759598, 4.6759557, 4.6759609, 4.6759593 and 4.6759599 in 5 random configurations (seeds 11 and 23). The largest deviation from the claim is 3.5e-6, and the imaginary parts are below 1e-6. Files: main_cubic_seed11.json, main_cubic_seed23.json, result.json."
+   },
+   {
+    "claim": "alpha_4 = 0 in the sector (c, c, A^*|_V)",
+    "verdict": "confirmed",
+    "evidence": "The same direct evaluation with F_2 included gives limit/(unit*G4) = -3.3e-7, -2.4e-6, -3.1e-6, -6.6e-7 and -1.3e-6 over the 5 configurations, consistent with 0 at the 3e-6 level. G4 is the only invariant structure in this sector."
+   },
+   {
+    "claim": "tree(Ob_2, I_3; P(0,infty)) contributes +27/8 G3 in (c, A_Wperp, A_Wperp) and -27/4 G4 in (c, c, A^*_V), and is local",
+    "verdict": "confirmed",
+    "evidence": "Without F_2, the complete limit of Q W(P(eps,infty), I - I^CT[eps]) is (in units of unit*G) 8.0509598, 8.0509557, 8.0509609, 8.0509593 and 8.0509599, against the claimed 11/4 + 27/8 + 19/4 log(3/2) = 8.0509593 (largest deviation 3.6e-6). In (c,c,A^*_V) it is -6.7500003, -6.7500024, -6.7500031, -6.7500007 and -6.7500013, against the claimed -27/4. The difference between the runs with and without F_2 is 3.375000 and -6.750000 in every configuration, so the tree part is local."
+   },
+   {
+    "claim": "In every sector the eps^-1 total and the log eps total vanish (checked here in my two sectors)",
+    "verdict": "confirmed",
+    "evidence": "In both sectors and all 5 configurations, the fitted log eps coefficient of the total is below 3e-7 in units of unit*G, and the eps^-1 coefficient is below 1e-6. The eps^-1 pieces of the self-energy subgraphs cancel against the -I^CT_2 trees leg by leg."
+   },
+   {
+    "claim": "II-a log part (-Q I^CT_3) is -5/2 G3 in (c, A_Wperp, A_Wperp) and 0 in (c, c, A^*_V)",
+    "verdict": "confirmed",
+    "evidence": "Summing the -I^CT_3 log eps contributions over the three Q-insertions gives -2.50000000 and 0.0000000 in all 5 configurations (result.json)."
+   },
+   {
+    "claim": "Step-1 inputs that both engines share (open issue 1): the cubic log multiples and the quadratic counterterm",
+    "verdict": "confirmed",
+    "evidence": "These were recomputed independently in test_3pt_log.log and test_2pt.log. The log eps coefficients of the 1PI one-loop three-point functions divided by unit*vertex are 6.0000000 for (A_V,A_W,A_W) and for (A_V,A_V,A_V); 10.000000 for (l,l,A_V) and for (l,l,A_W); and 1.0000000 for (c,A_W,A^*_W), (c,A_V,A^*_V), (c,c,c^*) and (c,l,l^*). The quadratic counterterm coefficients come out as eps^-1 9/4 for A_V and for A_W; log -1 for A_V, -1 for A_W, 4 for lambda and -1 for (c,A^*); with no A_V-A_W mixing. Ob_2 in the sector (c,A_V) comes out as -3.374999994 against -27/8."
+   },
+   {
+    "claim": "Engines A and B agree class by class; engine A's 3 extra classes are zero; the census counts",
+    "verdict": "unverified",
+    "evidence": "Not tested. My method evaluates the complete Q W directly (W on e + rQe) and has no defect-vertex class decomposition. Only the totals of that decomposition are tested here."
+   },
+   {
+    "claim": "alpha_1 = 11/4 + 19/4 log(3/2), alpha_2 = 27/8, alpha_5 = -9 log(3/2); the F_3 family, the maps Q H and {I_3, -}, and the Wess-Zumino statement",
+    "verdict": "unverified",
+    "evidence": "Outside the sectors assigned to refuter #1. The sectors (c,A_V,A_V) and (c,lambda,lambda) and the finite-counterterm algebra were not recomputed."
+   }
+  ],
+  "corrections": [
+   "No correction to the Part C numbers in my two sectors: alpha_3 = 11/4 + 19/4 log(3/2), alpha_4 = 0, and tree(Ob_2, I_3) = +27/8 G3 and -27/4 G4 are reproduced to about 4e-6 relative across 5 generic momentum configurations.",
+   "Open issue 1 of the QA can be closed for the inputs used in these sectors: the Step-1 numbers (cubic log multiples 6, 6, 10, 10, 1, 1, 1, 1; mass 9/4; quadratic log coefficients -1, -1, 4, -1; and Ob_2 = -27/8) were recomputed by code independent of both engines.",
+   "Open issue 2 can be closed for these two sectors: a complete finite-eps full-sum evaluation of (c,A_Wperp,A_Wperp) and (c,c,A^*_V) now exists. Precision note: a least-squares numerator fit with unrestricted degree puts noise into the seagull Laplacian, which is amplified by eps^-2. The polynomial degree must be capped by the number of edges; fit_poly(maxdeg=n) does this.",
+   "Process note: background-task stdout was captured by the harness under the session scratchpad (/private/tmp/claude-501/...). All of my own files are in step2/qa/refute_cubic_1. No Wolfram kernel was used, at most one heavy process ran at a time (under 0.13 GB RSS), and no process is left running."
+  ],
+  "files": [
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/result.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/main_cubic.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/main_cubic_seed11.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/main_cubic_seed23.json",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/ft.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/loop.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/superalg.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/toy_conventions.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/toy_conventions.log",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/test_2pt.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/test_2pt.log",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/test_3pt_log.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/test_3pt_log.log",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/check_schwinger.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/check_schwinger.log",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/check_vertices.py",
+   "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/qa/refute_cubic_1/summarize.py"
+  ]
+ }
+}

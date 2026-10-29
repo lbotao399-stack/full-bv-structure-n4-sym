@@ -1,0 +1,1493 @@
+{
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+ "conventions": {
+  "Q_on_functionals": "Q F = left d/dr F(e + r Qe); Qe: c -> -dc (A|_V), A -> -1/2 d^*dA (A^*), A^*|_V -> d^*A^*|_V (c^*), lambda -> dslash lambda (lambda^*)  [Prop c1-Q]",
+  "bracket": "{f,g} = Delta_0(fg) - Delta_0(f)g - (-1)^{|f|} f Delta_0(g), Delta_0 = sum d_x d_xi, x in {A, lambda^*, c^*}  [Def c1-bracket]; checks: {S_2,-} = Q, field-count lemma, quartic CME",
+  "G_basis": {
+   "G1": "int([c,A|_V], d^*d A|_V)",
+   "G2": "int([c,A|_V], d d^* A|_V)",
+   "G3": "int([c,A|_Wperp], d^*d A|_Wperp)",
+   "G4": "int([c,dc], A^*)",
+   "G5": "int([c,lambda], dslash lambda)"
+  },
+  "H_basis": {
+   "H1": "int(dA|_V,[A|_V ^ A|_V])",
+   "H2": "int(dA|_Wperp,[A|_V,A|_Wperp])",
+   "H3": "int([A|_V,c],A^*|_V)",
+   "H4": "int([A|_Wperp,c],A^*|_Wperp)",
+   "H5": "int([c,lambda],lambda^*)",
+   "H6": "int([c,c],c^*)"
+  },
+  "quadratic": {
+   "D1": "int(d^*A|_V,d^*A|_V)",
+   "B1": "int(dA|_V,dA|_V)",
+   "B2": "int(dA|_Wperp,dA|_Wperp)",
+   "B3": "int(lambda,dslash lambda)",
+   "B4": "int(dc,A^*)",
+   "mass": "int(A,A)",
+   "massH": "int(A, H A), H = d^*d + dd^* componentwise",
+   "Ob2int": "int(d^*dc, d^*A|_V)  (Ob_2 = -27/8 unit Ob2int)"
+  },
+  "plane_wave_values": {
+   "G1": "f r0 [(p2^2-p1^2)(a1.a2) - (a1.p2)(a2.p2) + (a1.p1)(a2.p1)]",
+   "G2": "f r0 [(a1.p2)(a2.p2) - (a1.p1)(a2.p1)]",
+   "G3": "f r0 (w1.w2)(p2^2 - p1^2)",
+   "G4": "-i f (p2.b) r0 r1 r2",
+   "G5": "-i f (lambda1, rho(p0) lambda2) r0 r1 r2",
+   "f": "([X0,X1],X2)"
+  }
+ },
+ "sector_dimensions": {
+  "(c,A|_V,A|_V)": {
+   "weight4_even": 2,
+   "basis": [
+    "G1",
+    "G2"
+   ],
+   "parity_odd": 0,
+   "reason": "K antisymmetric in legs 1,2: (a1.a2)(p1^2-p2^2), (a1.p1)(a2.p1)-(a1.p2)(a2.p2); eps(a1,a2,p1,p2) is symmetric"
+  },
+  "(c,A|_Wperp,A|_Wperp)": {
+   "weight4_even": 1,
+   "basis": [
+    "G3"
+   ],
+   "parity_odd": 0
+  },
+  "(c,lambda,lambda)": {
+   "weight4_even": 1,
+   "basis": [
+    "G5"
+   ],
+   "parity_odd_candidates": 1,
+   "odd_candidate": "int([c,lambda], dslash rho(v1 v2 v3 v4) lambda) = i f (lambda1, rho(p2-p1) rho(vol) lambda2): excluded by the reflection (one direction of V) x (one direction of W_R^perp) in Spin(10)"
+  },
+  "(c,c,A^*|_V)": {
+   "weight4_even": 1,
+   "basis": [
+    "G4"
+   ],
+   "parity_odd": 0
+  },
+  "weight2_structures": "int([c,A|_V],A|_V), int([c,A|_Wperp],A|_Wperp): identically zero (verified numerically)",
+  "other_degree1_three_leg_sets": "(c,A|_V,A|_Wperp), (c,A,lambda), (c,c,lambda^*), (c,c,A^*|_Wperp): no invariant"
+ },
+ "matrices": {
+  "Q_H_in_G_basis(rows G1..G5, cols H1..H6)": [
+   [
+    "-2",
+    "0",
+    "-1/2",
+    "0",
+    "0",
+    "0"
+   ],
+   [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   [
+    "0",
+    "-1",
+    "0",
+    "-1/2",
+    "0",
+    "0"
+   ],
+   [
+    "0",
+    "0",
+    "-1",
+    "0",
+    "0",
+    "2"
+   ],
+   [
+    "0",
+    "0",
+    "0",
+    "0",
+    "1",
+    "0"
+   ]
+  ],
+  "bracket_I3_in_G_basis": {
+   "D1": [
+    "0",
+    "2",
+    "0",
+    "0",
+    "0"
+   ],
+   "B1": [
+    "2",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "B2": [
+    "0",
+    "0",
+    "2",
+    "0",
+    "0"
+   ],
+   "B3": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "2"
+   ],
+   "B4": [
+    "1/2",
+    "0",
+    "1/2",
+    "0",
+    "-1"
+   ],
+   "mass": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "massH": [
+    "2",
+    "2",
+    "2",
+    "0",
+    "0"
+   ]
+  },
+  "Q_G_degree2_sector(c,c,A|_V)": {
+   "QG1": "0 (identically: [c,dc] = d[c,c]/2, d^*d^* = 0)",
+   "QG2": "int([c,dc], dd^*A|_V) + int([c,A|_V], dd^*dc) != 0",
+   "QG3": "0",
+   "QG4": "0",
+   "QG5": "0"
+  },
+  "{I3,Ob2int}": "Q G2",
+  "{I3,Ob_2}": "-(27/8) unit Q G2",
+  "tree(Ob2int, I3; P(0,infinity)) in G basis": [
+   "-1",
+   "1",
+   "-1",
+   "2",
+   "2"
+  ],
+  "tree(Ob_2, I3; P(0,infinity)) in units": [
+   "27/8",
+   "-27/8",
+   "27/8",
+   "-27/4",
+   "-27/4"
+  ]
+ },
+ "rank": {
+  "rank Q on span H": 4,
+  "image Q span H + beta brackets": 4,
+  "missing direction": "G2 (reached only by {I3, int(d^*A|_V,d^*A|_V)} = 2 G2)",
+  "kernel of Q on span H": [
+   "H1 - 4 H3 - 2 H6",
+   "H2 - 2 H4"
+  ],
+  "kernel_check": [
+   "[0, -1/2, 0, 1, 0, 0]",
+   "[-1/2, 0, 2, 0, 0, 1]"
+  ]
+ },
+ "solution": {
+  "equation": "Ob_3 = Q F_3 + {I_3, F_2},  Ob_3 = unit sum alpha_i G_i,  F_3 = unit sum h_j H_j",
+  "G2_component_condition": "alpha2 = 27/8  (from 27/8 - alpha2 = 0)",
+  "particular_solution(h2=h6=0)": {
+   "h1": "-alpha1/2 + alpha4/4 + beta1 + beta4/4 - h6/2",
+   "h3": "-alpha4 + 2*h6",
+   "h4": "-2*alpha3 + 4*beta2 + beta4 - 2*h2",
+   "h5": "alpha5 - 2*beta3 + beta4"
+  },
+  "family": "F_3/unit = (alpha4/4 - alpha1/2) H1 - alpha4 H3 - 2 alpha3 H4 + alpha5 H5 + beta1 H1 + 2 beta2 H2 - 2 beta3 H5 + beta4 (H3 + H4 + H5 + H6/2) + mu1 (H1 - 4 H3 - 2 H6) + mu2 (H2 - 2 H4),  mu1, mu2 free",
+  "family_residual": [
+   "0",
+   "27/8 - alpha2",
+   "0",
+   "0",
+   "0"
+  ],
+  "s_closure_directions(Q X3 + {I3,X2})": {
+   "beta1: int(dA|_V,dA|_V) completed by H1 [cubic part of int(F_{A|_V},F_{A|_V})]": "[0, 0, 0, 0, 0]",
+   "beta2: int(dA|_Wperp,dA|_Wperp) completed by 2 H2 [cubic part of int(d_A A|_Wperp, d_A A|_Wperp)]": "[0, 0, 0, 0, 0]",
+   "beta3: int(lambda,dslash lambda) completed by -2 H5 (in span H; the cubic part int(lambda, rho([A,lambda])) of int(lambda,dslash_A lambda) has the same Q-image -2 G5)": "[0, 0, 0, 0, 0]",
+   "beta4: int(dc,A^*) completed by H3+H4+H5+(1/2)H6 [cubic part of the BRST (antifield) term of S]": "[0, 0, 0, 0, 0]"
+  }
+ },
+ "wess_zumino": {
+  "statement": "Q Ob_3 + {I_3, Ob_2} = (alpha2 - 27/8) unit Q G2, Q G2 != 0: WZ <=> alpha2 = 27/8",
+  "alpha1_alpha4": "unconstrained (Q G1 = Q G4 = 0 identically; Q G3 = Q G5 = 0)",
+  "automatic": "yes, as a consequence of Q^2 = 0 on Q W(P(eps,infty),J), Q I_3 = 0, Q Ob_2 = 0 and the two limit statements (I-b + III_{eps-0} -> 0, I-d + II-b -> tree(Ob_2,I_3;P(0,inf))); not from linear algebra: Q + beta-brackets is not surjective onto span G (G2 missing). Solvability <=> WZ <=> alpha2 = 27/8."
+ },
+ "log_and_inverse_eps_bookkeeping(units of unit)": {
+  "III_eps^{-1}": "0: {I_3, int(A,A)} = 0 identically",
+  "II-a_log_per_row": {
+   "(c,A|_V,A|_V)": {
+    "(A|_V)^3 x6": "-3 G1",
+    "A|_V c A^*|_V x1": "+1/2 G1",
+    "total": "-5/2 G1"
+   },
+   "(c,A|_Wperp,A|_Wperp)": {
+    "A|_V (A|_Wperp)^2 x6": "-3 G3",
+    "A|_Wperp c A^*|_Wperp x1": "+1/2 G3",
+    "total": "-5/2 G3"
+   },
+   "(c,lambda,lambda)": {
+    "lambda lambda A|_V x10": "+10 G5",
+    "c lambda lambda^* x1": "-G5",
+    "total": "+9 G5"
+   },
+   "(c,c,A^*|_V)": {
+    "A|_V c A^*|_V x1": "+G4",
+    "c c c^* x1": "-G4",
+    "total": "0"
+   }
+  },
+  "III_K0_log_per_row": {
+   "(c,A|_V,A|_V)": {
+    "(A|_V)^3 with -int(dc,A^*)": "+1/2 G1",
+    "A|_V c A^*|_V with -int(dA|_V,dA|_V)": "+2 G1",
+    "total": "+5/2 G1"
+   },
+   "(c,A|_Wperp,A|_Wperp)": {
+    "A|_V (A|_Wperp)^2 with -int(dc,A^*)": "+1/2 G3",
+    "A|_Wperp c A^*|_Wperp with -int(dA|_Wperp,dA|_Wperp)": "+2 G3",
+    "total": "+5/2 G3"
+   },
+   "(c,lambda,lambda)": {
+    "lambda lambda A|_V with -int(dc,A^*)": "-G5",
+    "c lambda lambda^* with 4 int(lambda,dslash lambda)": "-8 G5",
+    "total": "-9 G5"
+   },
+   "(c,c,A^*|_V)": {
+    "A|_V c A^*|_V with -int(dc,A^*)": "-G4",
+    "c c c^* with -int(dc,A^*)": "+G4",
+    "total": "0"
+   }
+  },
+  "II-a + III_K0 (log)": "0 in every sector (= -(s s Y)_3 with Y = 2int(A,A^*) - 4int(lambda^*,lambda) - int(c^*,c))",
+  "I-a": "eps^{-1}: weight-2 forms, zero after the sum over identical legs; log eps: 0 graph by graph (power counting)",
+  "lim III_{K_eps-K_0}": {
+   "(c,A|_V,A|_V)": "+9/2 (G1+G2)",
+   "(c,A|_Wperp,A|_Wperp)": "+9/2 G3",
+   "(c,lambda,lambda)": "0",
+   "(c,c,A^*|_V)": "0"
+  },
+  "lim I-b": {
+   "(c,A|_V,A|_V)": "-9/2 (G1+G2)",
+   "(c,A|_Wperp,A|_Wperp)": "-9/2 G3",
+   "(c,lambda,lambda)": "0",
+   "(c,c,A^*|_V)": "0"
+  },
+  "lim (I-d + II-b)": {
+   "(c,A|_V,A|_V)": "27/8 G1 - 27/8 G2",
+   "(c,A|_Wperp,A|_Wperp)": "27/8 G3",
+   "(c,lambda,lambda)": "-27/4 G5",
+   "(c,c,A^*|_V)": "-27/4 G4"
+  },
+  "total three-leg limit of Q W^(1)": "Ob_3 + lim(I-d + II-b)"
+ },
+ "checks": {
+  "clifford_sig_sigbar": true,
+  "rho_symmetric_(rho(v)Q1,Q2)=(Q1,rho(v)Q2)": true,
+  "AAA_vertex_equals_eq_c1_AAA": true,
+  "bracket_S2_equals_Q": true,
+  "bracket_S2_equals_Q_detail": {
+   "c_AV_AV:gauge": true,
+   "c_AV_AV:llA": true,
+   "c_AV_AV:AcAs": true,
+   "c_AV_AV:clls": true,
+   "c_AV_AV:cccs": true,
+   "c_AV_AV:H1": true,
+   "c_AV_AV:H2": true,
+   "c_AV_AV:H3": true,
+   "c_AV_AV:H4": true,
+   "c_AV_AV:H5": true,
+   "c_AV_AV:H6": true,
+   "c_AW_AW:gauge": true,
+   "c_AW_AW:llA": true,
+   "c_AW_AW:AcAs": true,
+   "c_AW_AW:clls": true,
+   "c_AW_AW:cccs": true,
+   "c_AW_AW:H1": true,
+   "c_AW_AW:H2": true,
+   "c_AW_AW:H3": true,
+   "c_AW_AW:H4": true,
+   "c_AW_AW:H5": true,
+   "c_AW_AW:H6": true,
+   "c_lam_lam:gauge": true,
+   "c_lam_lam:llA": true,
+   "c_lam_lam:AcAs": true,
+   "c_lam_lam:clls": true,
+   "c_lam_lam:cccs": true,
+   "c_lam_lam:H1": true,
+   "c_lam_lam:H2": true,
+   "c_lam_lam:H3": true,
+   "c_lam_lam:H4": true,
+   "c_lam_lam:H5": true,
+   "c_lam_lam:H6": true,
+   "c_c_AsV:gauge": true,
+   "c_c_AsV:llA": true,
+   "c_c_AsV:AcAs": true,
+   "c_c_AsV:clls": true,
+   "c_c_AsV:cccs": true,
+   "c_c_AsV:H1": true,
+   "c_c_AsV:H2": true,
+   "c_c_AsV:H3": true,
+   "c_c_AsV:H4": true,
+   "c_c_AsV:H5": true,
+   "c_c_AsV:H6": true
+  },
+  "Q_I3_zero": {
+   "c_AV_AV": true,
+   "c_AW_AW": true,
+   "c_lam_lam": true,
+   "c_c_AsV": true
+  },
+  "field_count_lemma": {
+   "AAA:cntA": {
+    "bracket/F": "3",
+    "expected": 3
+   },
+   "c_lam_lams:cntl": {
+    "bracket/F": "0",
+    "expected": 0
+   },
+   "c_lam_lams:cntc": {
+    "bracket/F": "-1",
+    "expected": -1
+   },
+   "A_c_As:cntA": {
+    "bracket/F": "0",
+    "expected": 0
+   },
+   "A_c_As:cntc": {
+    "bracket/F": "-1",
+    "expected": -1
+   },
+   "c_c_cs:cntc": {
+    "bracket/F": "-1",
+    "expected": -1
+   },
+   "lam_A_lam:cntl": {
+    "bracket/F": "-2",
+    "expected": -2
+   },
+   "lam_A_lam:cntA": {
+    "bracket/F": "1",
+    "expected": 1
+   }
+  },
+  "quartic_CME": {
+   "cAAA4": {
+    "QI4": "0+213*i",
+    "half_I3I3": "0+-213*i",
+    "sum_zero": true
+   },
+   "cAWW4": {
+    "QI4": "0+3900*i",
+    "half_I3I3": "0+-3900*i",
+    "sum_zero": true
+   }
+  },
+  "weight2_structures_vanish_identically": {
+   "w2_AV": true,
+   "w2_AW": true
+  }
+ },
+ "wz_numeric": {
+  "0": {
+   "QG1": "0",
+   "QG2": "0+-322*i",
+   "QG3": "0",
+   "QG4": "0",
+   "QG5": "0",
+   "{I3,Ob2int}": "0+-322*i",
+   "{I3,Ob2int}-QG2": "0",
+   "{I3,Ob2int}+QG2": "0+-644*i"
+  },
+  "1": {
+   "QG1": "0",
+   "QG2": "0+-3392*i",
+   "QG3": "0",
+   "QG4": "0",
+   "QG5": "0",
+   "{I3,Ob2int}": "0+-3392*i",
+   "{I3,Ob2int}-QG2": "0",
+   "{I3,Ob2int}+QG2": "0+-6784*i"
+  },
+  "2": {
+   "QG1": "0",
+   "QG2": "0+406*i",
+   "QG3": "0",
+   "QG4": "0",
+   "QG5": "0",
+   "{I3,Ob2int}": "0+406*i",
+   "{I3,Ob2int}-QG2": "0",
+   "{I3,Ob2int}+QG2": "0+812*i"
+  }
+ },
+ "tree_identity_check": {
+  "c_AV_AV": {
+   "Q_tree": "-10880",
+   "tree_QD1": "-15760",
+   "{D1,I3}": "4880",
+   "identity_holds": true
+  },
+  "c_c_AsV": {
+   "Q_tree": "0+1560*i",
+   "tree_QD1": "0+1560*i",
+   "{D1,I3}": "0",
+   "identity_holds": true
+  }
+ },
+ "census": {
+  "(c, A|_V, A|_V)": {
+   "I-a": [
+    {
+     "topology": "bubble",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "(A|_V)^4 [external A|_V#1, A|_V#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1, 2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[1, 2]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "topology": "bubble",
+     "vertices": [
+      "A|_Wperp c A^*|_Wperp [external c#0]",
+      "(A|_V)^2 (A|_Wperp)^2 [external A|_V#1, A|_V#2]"
+     ],
+     "P_edges": [
+      "A|_Wperp: A|_Wperp at vertex[0] -- A|_Wperp at vertex[1, 2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A^*|_Wperp at vertex[0] -- A|_Wperp at vertex[1, 2]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "(A|_V)^3 [external A|_V#1]",
+      "(A|_V)^3 [external A|_V#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "A|_V: A|_V at vertex[1] -- A|_V at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "(A|_V)^3 [external A|_V#1]",
+      "A|_V c A^*|_V [external A|_V#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A|_V at vertex[1] -- A^*|_V at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "A|_V c A^*|_V [external A|_V#1]",
+      "A|_V c A^*|_V [external A|_V#2]"
+     ],
+     "P_edges": [
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[2]",
+      "c--A^*: c at vertex[1] -- A^*|_V at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A|_V at vertex[0] -- A^*|_V at vertex[1]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_Wperp c A^*|_Wperp [external c#0]",
+      "A|_V (A|_Wperp)^2 [external A|_V#1]",
+      "A|_V (A|_Wperp)^2 [external A|_V#2]"
+     ],
+     "P_edges": [
+      "A|_Wperp: A|_Wperp at vertex[0] -- A|_Wperp at vertex[1]",
+      "A|_Wperp: A|_Wperp at vertex[1] -- A|_Wperp at vertex[2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A^*|_Wperp at vertex[0] -- A|_Wperp at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "c c c^* [external c#0]",
+      "A|_V c A^*|_V [external A|_V#1]",
+      "A|_V c A^*|_V [external A|_V#2]"
+     ],
+     "P_edges": [
+      "c--A^*: c at vertex[0] -- A^*|_V at vertex[1]",
+      "c--A^*: c at vertex[1] -- A^*|_V at vertex[2]"
+     ],
+     "special_edge": "c--c^*: c^* at vertex[0] -- c at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "c lambda lambda^* [external c#0]",
+      "lambda lambda A|_V [external A|_V#1]",
+      "lambda lambda A|_V [external A|_V#2]"
+     ],
+     "P_edges": [
+      "lambda: lambda at vertex[0] -- lambda at vertex[1]",
+      "lambda: lambda at vertex[1] -- lambda at vertex[2]"
+     ],
+     "special_edge": "lambda--lambda^*: lambda^* at vertex[0] -- lambda at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "I-a_count": {
+    "triangle_rows": 6,
+    "triangle_graphs": 12,
+    "bubble_rows": 2,
+    "bubble_graphs": 2
+   },
+   "I-b": [
+    {
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg A^*|_V]",
+        "A|_V c A^*|_V [leg c]"
+       ],
+       "lines": [
+        "A|_V",
+        "c--A^*"
+       ],
+       "weight": "1"
+      }
+     ]
+    },
+    {
+     "cubic_vertex": "A|_V c A^*|_V [external c, A|_V]",
+     "special_edge": "A^*|_V (at the cubic vertex) -- A|_V",
+     "other_side_legs": [
+      "A|_V",
+      "A|_V"
+     ],
+     "number": 2,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "(A|_V)^3 [leg A|_V]",
+        "(A|_V)^3 [leg A|_V]"
+       ],
+       "lines": [
+        "A|_V",
+        "A|_V"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V (A|_Wperp)^2 [leg A|_V]",
+        "A|_V (A|_Wperp)^2 [leg A|_V]"
+       ],
+       "lines": [
+        "A|_Wperp",
+        "A|_Wperp"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "bubble",
+       "vertices": [
+        "lambda lambda A|_V [leg A|_V]",
+        "lambda lambda A|_V [leg A|_V]"
+       ],
+       "lines": [
+        "lambda",
+        "lambda"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg A|_V]",
+        "A|_V c A^*|_V [leg A|_V]"
+       ],
+       "lines": [
+        "c--A^*",
+        "c--A^*"
+       ],
+       "weight": "1"
+      },
+      {
+       "type": "seagull",
+       "vertices": [
+        "(A|_V)^4 [legs A|_V, A|_V]"
+       ],
+       "lines": [
+        "A|_V"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "seagull",
+       "vertices": [
+        "(A|_V)^2 (A|_Wperp)^2 [legs A|_V, A|_V]"
+       ],
+       "lines": [
+        "A|_Wperp"
+       ],
+       "weight": "1/2"
+      }
+     ]
+    }
+   ],
+   "III": [
+    {
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "I^CT_2_terms": [
+      "-log(eps) int(dc, A^*)"
+     ]
+    },
+    {
+     "cubic_vertex": "A|_V c A^*|_V [external c, A|_V]",
+     "special_edge": "A^*|_V (at the cubic vertex) -- A|_V",
+     "other_side_legs": [
+      "A|_V",
+      "A|_V"
+     ],
+     "number": 2,
+     "I^CT_2_terms": [
+      "(9/4) eps^{-1} int(A|_V,A|_V)",
+      "-log(eps) int(dA|_V,dA|_V)"
+     ]
+    }
+   ],
+   "II-a": [
+    {
+     "tree_vertex": "(A|_V)^3",
+     "log_multiple": 6,
+     "Q_substitution": "A|_V <- -dc"
+    },
+    {
+     "tree_vertex": "A|_V c A^*|_V",
+     "log_multiple": 1,
+     "Q_substitution": "A^*|_V <- -1/2 d^*dA|_V"
+    }
+   ],
+   "I-d": [
+    {
+     "defect_bubble": "(a) special A|_V--A^*|_V, line A|_V",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(b) special A|_V--A^*|_V, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(c) special A|_Wperp--A^*|_Wperp, line A|_Wperp",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(d) special lambda^*--lambda, line lambda",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(e) special c^*--c, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(a) special A|_V--A^*|_V, line A|_V",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(b) special A|_V--A^*|_V, line c--A^*",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(c) special A|_Wperp--A^*|_Wperp, line A|_Wperp",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(d) special lambda^*--lambda, line lambda",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(e) special c^*--c, line c--A^*",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "II-b": [
+    {
+     "two_leg_vertex": "-Q I^CT_2 = (9/2) eps^{-1} unit int(dc, A|_V)",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "(A|_V)^3 [external A|_V, A|_V]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "two_leg_vertex": "-Q I^CT_2 = (9/2) eps^{-1} unit int(dc, A|_V)",
+     "connection": "A|_V external, c joined by the c--A^* line",
+     "cubic_vertex": "A|_V c A^*|_V [external A|_V, c]",
+     "number": 2,
+     "weight": "1"
+    }
+   ]
+  },
+  "(c, A|_Wperp, A|_Wperp)": {
+   "I-a": [
+    {
+     "topology": "bubble",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "(A|_V)^2 (A|_Wperp)^2 [external A|_Wperp#1, A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1, 2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[1, 2]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "topology": "bubble",
+     "vertices": [
+      "A|_Wperp c A^*|_Wperp [external c#0]",
+      "(A|_Wperp)^4 [external A|_Wperp#1, A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "A|_Wperp: A|_Wperp at vertex[0] -- A|_Wperp at vertex[1, 2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A^*|_Wperp at vertex[0] -- A|_Wperp at vertex[1, 2]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "A|_V (A|_Wperp)^2 [external A|_Wperp#1]",
+      "A|_V (A|_Wperp)^2 [external A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "A|_Wperp: A|_Wperp at vertex[1] -- A|_Wperp at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "A|_V (A|_Wperp)^2 [external A|_Wperp#1]",
+      "A|_Wperp c A^*|_Wperp [external A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A|_Wperp at vertex[1] -- A^*|_Wperp at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_Wperp c A^*|_Wperp [external c#0]",
+      "A|_V (A|_Wperp)^2 [external A|_Wperp#1]",
+      "A|_V (A|_Wperp)^2 [external A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "A|_Wperp: A|_Wperp at vertex[0] -- A|_Wperp at vertex[1]",
+      "A|_V: A|_V at vertex[1] -- A|_V at vertex[2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A^*|_Wperp at vertex[0] -- A|_Wperp at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "c lambda lambda^* [external c#0]",
+      "lambda lambda A|_Wperp [external A|_Wperp#1]",
+      "lambda lambda A|_Wperp [external A|_Wperp#2]"
+     ],
+     "P_edges": [
+      "lambda: lambda at vertex[0] -- lambda at vertex[1]",
+      "lambda: lambda at vertex[1] -- lambda at vertex[2]"
+     ],
+     "special_edge": "lambda--lambda^*: lambda^* at vertex[0] -- lambda at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "I-a_count": {
+    "triangle_rows": 4,
+    "triangle_graphs": 8,
+    "bubble_rows": 2,
+    "bubble_graphs": 2
+   },
+   "I-b": [
+    {
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg A^*|_V]",
+        "A|_V c A^*|_V [leg c]"
+       ],
+       "lines": [
+        "A|_V",
+        "c--A^*"
+       ],
+       "weight": "1"
+      }
+     ]
+    },
+    {
+     "cubic_vertex": "A|_Wperp c A^*|_Wperp [external c, A|_Wperp]",
+     "special_edge": "A^*|_Wperp (at the cubic vertex) -- A|_Wperp",
+     "other_side_legs": [
+      "A|_Wperp",
+      "A|_Wperp"
+     ],
+     "number": 2,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V (A|_Wperp)^2 [leg A|_Wperp]",
+        "A|_V (A|_Wperp)^2 [leg A|_Wperp]"
+       ],
+       "lines": [
+        "A|_V",
+        "A|_Wperp"
+       ],
+       "weight": "1"
+      },
+      {
+       "type": "bubble",
+       "vertices": [
+        "lambda lambda A|_Wperp [leg A|_Wperp]",
+        "lambda lambda A|_Wperp [leg A|_Wperp]"
+       ],
+       "lines": [
+        "lambda",
+        "lambda"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "seagull",
+       "vertices": [
+        "(A|_V)^2 (A|_Wperp)^2 [legs A|_Wperp, A|_Wperp]"
+       ],
+       "lines": [
+        "A|_V"
+       ],
+       "weight": "1/2"
+      },
+      {
+       "type": "seagull",
+       "vertices": [
+        "(A|_Wperp)^4 [legs A|_Wperp, A|_Wperp]"
+       ],
+       "lines": [
+        "A|_Wperp"
+       ],
+       "weight": "1/2"
+      }
+     ]
+    }
+   ],
+   "III": [
+    {
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "I^CT_2_terms": [
+      "-log(eps) int(dc, A^*)"
+     ]
+    },
+    {
+     "cubic_vertex": "A|_Wperp c A^*|_Wperp [external c, A|_Wperp]",
+     "special_edge": "A^*|_Wperp (at the cubic vertex) -- A|_Wperp",
+     "other_side_legs": [
+      "A|_Wperp",
+      "A|_Wperp"
+     ],
+     "number": 2,
+     "I^CT_2_terms": [
+      "(9/4) eps^{-1} int(A|_Wperp,A|_Wperp)",
+      "-log(eps) int(dA|_Wperp,dA|_Wperp)"
+     ]
+    }
+   ],
+   "II-a": [
+    {
+     "tree_vertex": "A|_V (A|_Wperp)^2",
+     "log_multiple": 6,
+     "Q_substitution": "A|_V <- -dc"
+    },
+    {
+     "tree_vertex": "A|_Wperp c A^*|_Wperp",
+     "log_multiple": 1,
+     "Q_substitution": "A^*|_Wperp <- -1/2 d^*dA|_Wperp"
+    }
+   ],
+   "I-d": [
+    {
+     "defect_bubble": "(a) special A|_V--A^*|_V, line A|_V",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(b) special A|_V--A^*|_V, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(c) special A|_Wperp--A^*|_Wperp, line A|_Wperp",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(d) special lambda^*--lambda, line lambda",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(e) special c^*--c, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    }
+   ],
+   "II-b": [
+    {
+     "two_leg_vertex": "-Q I^CT_2 = (9/2) eps^{-1} unit int(dc, A|_V)",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V (A|_Wperp)^2 [external A|_Wperp, A|_Wperp]",
+     "number": 1,
+     "weight": "1"
+    }
+   ]
+  },
+  "(c, lambda, lambda)": {
+   "I-a": [
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "c lambda lambda^* [external lambda#1]",
+      "lambda lambda A|_V [external lambda#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[2]",
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[1]"
+     ],
+     "special_edge": "lambda--lambda^*: lambda^* at vertex[1] -- lambda at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "lambda lambda A|_V [external lambda#1]",
+      "lambda lambda A|_V [external lambda#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "lambda: lambda at vertex[1] -- lambda at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_Wperp c A^*|_Wperp [external c#0]",
+      "lambda lambda A|_Wperp [external lambda#1]",
+      "lambda lambda A|_Wperp [external lambda#2]"
+     ],
+     "P_edges": [
+      "A|_Wperp: A|_Wperp at vertex[0] -- A|_Wperp at vertex[1]",
+      "lambda: lambda at vertex[1] -- lambda at vertex[2]"
+     ],
+     "special_edge": "A|_Wperp--A^*|_Wperp: A^*|_Wperp at vertex[0] -- A|_Wperp at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "c lambda lambda^* [external c#0]",
+      "lambda lambda A|_V [external lambda#1]",
+      "lambda lambda A|_V [external lambda#2]"
+     ],
+     "P_edges": [
+      "lambda: lambda at vertex[0] -- lambda at vertex[1]",
+      "A|_V: A|_V at vertex[1] -- A|_V at vertex[2]"
+     ],
+     "special_edge": "lambda--lambda^*: lambda^* at vertex[0] -- lambda at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "c lambda lambda^* [external c#0]",
+      "lambda lambda A|_Wperp [external lambda#1]",
+      "lambda lambda A|_Wperp [external lambda#2]"
+     ],
+     "P_edges": [
+      "lambda: lambda at vertex[0] -- lambda at vertex[1]",
+      "A|_Wperp: A|_Wperp at vertex[1] -- A|_Wperp at vertex[2]"
+     ],
+     "special_edge": "lambda--lambda^*: lambda^* at vertex[0] -- lambda at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "I-a_count": {
+    "triangle_rows": 5,
+    "triangle_graphs": 10,
+    "bubble_rows": 0,
+    "bubble_graphs": 0
+   },
+   "I-b": [
+    {
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg A^*|_V]",
+        "A|_V c A^*|_V [leg c]"
+       ],
+       "lines": [
+        "A|_V",
+        "c--A^*"
+       ],
+       "weight": "1"
+      }
+     ]
+    },
+    {
+     "cubic_vertex": "c lambda lambda^* [external c, lambda]",
+     "special_edge": "lambda^* (at the cubic vertex) -- lambda",
+     "other_side_legs": [
+      "lambda",
+      "lambda"
+     ],
+     "number": 2,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "lambda lambda A|_V [leg lambda]",
+        "lambda lambda A|_V [leg lambda]"
+       ],
+       "lines": [
+        "A|_V",
+        "lambda"
+       ],
+       "weight": "1"
+      },
+      {
+       "type": "bubble",
+       "vertices": [
+        "lambda lambda A|_Wperp [leg lambda]",
+        "lambda lambda A|_Wperp [leg lambda]"
+       ],
+       "lines": [
+        "A|_Wperp",
+        "lambda"
+       ],
+       "weight": "1"
+      }
+     ]
+    }
+   ],
+   "III": [
+    {
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 1,
+     "I^CT_2_terms": [
+      "-log(eps) int(dc, A^*)"
+     ]
+    },
+    {
+     "cubic_vertex": "c lambda lambda^* [external c, lambda]",
+     "special_edge": "lambda^* (at the cubic vertex) -- lambda",
+     "other_side_legs": [
+      "lambda",
+      "lambda"
+     ],
+     "number": 2,
+     "I^CT_2_terms": [
+      "4 log(eps) int(lambda, dslash lambda)"
+     ]
+    }
+   ],
+   "II-a": [
+    {
+     "tree_vertex": "lambda lambda A|_V",
+     "log_multiple": 10,
+     "Q_substitution": "A|_V <- -dc"
+    },
+    {
+     "tree_vertex": "c lambda lambda^*",
+     "log_multiple": 1,
+     "Q_substitution": "lambda^* <- dslash lambda"
+    }
+   ],
+   "I-d": [
+    {
+     "defect_bubble": "(a) special A|_V--A^*|_V, line A|_V",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(b) special A|_V--A^*|_V, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(c) special A|_Wperp--A^*|_Wperp, line A|_Wperp",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(d) special lambda^*--lambda, line lambda",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(e) special c^*--c, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    }
+   ],
+   "II-b": [
+    {
+     "two_leg_vertex": "-Q I^CT_2 = (9/2) eps^{-1} unit int(dc, A|_V)",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "lambda lambda A|_V [external lambda, lambda]",
+     "number": 1,
+     "weight": "1"
+    }
+   ]
+  },
+  "(c, c, A^*|_V)": {
+   "I-a": [
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "A|_V c A^*|_V [external c#1]",
+      "A|_V c A^*|_V [external A^*|_V#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[1]",
+      "c--A^*: A^*|_V at vertex[1] -- c at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A^*|_V at vertex[0] -- A|_V at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "A|_V c A^*|_V [external c#1]",
+      "A|_V c A^*|_V [external A^*|_V#2]"
+     ],
+     "P_edges": [
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[2]",
+      "A|_V: A|_V at vertex[1] -- A|_V at vertex[2]"
+     ],
+     "special_edge": "A|_V--A^*|_V: A|_V at vertex[0] -- A^*|_V at vertex[1]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "topology": "triangle",
+     "vertices": [
+      "A|_V c A^*|_V [external c#0]",
+      "c c c^* [external c#1]",
+      "A|_V c A^*|_V [external A^*|_V#2]"
+     ],
+     "P_edges": [
+      "A|_V: A|_V at vertex[0] -- A|_V at vertex[2]",
+      "c--A^*: A^*|_V at vertex[0] -- c at vertex[1]"
+     ],
+     "special_edge": "c--c^*: c^* at vertex[1] -- c at vertex[2]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "I-a_count": {
+    "triangle_rows": 3,
+    "triangle_graphs": 6,
+    "bubble_rows": 0,
+    "bubble_graphs": 0
+   },
+   "I-b": [
+    {
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 2,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg A^*|_V]",
+        "A|_V c A^*|_V [leg c]"
+       ],
+       "lines": [
+        "A|_V",
+        "c--A^*"
+       ],
+       "weight": "1"
+      }
+     ]
+    },
+    {
+     "cubic_vertex": "c c c^* [external c, c]",
+     "special_edge": "c^* (at the cubic vertex) -- c",
+     "other_side_legs": [
+      "c",
+      "A^*|_V"
+     ],
+     "number": 1,
+     "two_point_subgraphs": [
+      {
+       "type": "bubble",
+       "vertices": [
+        "A|_V c A^*|_V [leg c]",
+        "A|_V c A^*|_V [leg A^*|_V]"
+       ],
+       "lines": [
+        "A|_V",
+        "c--A^*"
+       ],
+       "weight": "1"
+      }
+     ]
+    }
+   ],
+   "III": [
+    {
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "special_edge": "A|_V (at the cubic vertex) -- A^*|_V",
+     "other_side_legs": [
+      "A^*|_V",
+      "c"
+     ],
+     "number": 2,
+     "I^CT_2_terms": [
+      "-log(eps) int(dc, A^*)"
+     ]
+    },
+    {
+     "cubic_vertex": "c c c^* [external c, c]",
+     "special_edge": "c^* (at the cubic vertex) -- c",
+     "other_side_legs": [
+      "c",
+      "A^*|_V"
+     ],
+     "number": 1,
+     "I^CT_2_terms": [
+      "-log(eps) int(dc, A^*)"
+     ]
+    }
+   ],
+   "II-a": [
+    {
+     "tree_vertex": "A|_V c A^*|_V",
+     "log_multiple": 1,
+     "Q_substitution": "A|_V <- -dc"
+    },
+    {
+     "tree_vertex": "c c c^*",
+     "log_multiple": 1,
+     "Q_substitution": "c^* <- d^*A^*|_V"
+    }
+   ],
+   "I-d": [
+    {
+     "defect_bubble": "(a) special A|_V--A^*|_V, line A|_V",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(b) special A|_V--A^*|_V, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(c) special A|_Wperp--A^*|_Wperp, line A|_Wperp",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(d) special lambda^*--lambda, line lambda",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    },
+    {
+     "defect_bubble": "(e) special c^*--c, line c--A^*",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    }
+   ],
+   "II-b": [
+    {
+     "two_leg_vertex": "-Q I^CT_2 = (9/2) eps^{-1} unit int(dc, A|_V)",
+     "connection": "c external, A|_V joined by the A|_V line",
+     "cubic_vertex": "A|_V c A^*|_V [external c, A^*|_V]",
+     "number": 2,
+     "weight": "1"
+    }
+   ]
+  }
+ }
+}

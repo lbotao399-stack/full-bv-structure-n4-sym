@@ -1,0 +1,53 @@
+Audit #3 of step2/theory/delta_theory.tex (Part D theory), focus D3.  Derivations behind the checks in this folder.
+Unit = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)).  VV = vertex value (second derivative on plane-wave legs).
+
+1. Exchange of the two legs of a canonical two-point kernel (check_y1a_symmetry.py)
+   D(p1,p2) = alpha(p1) delta(S) + beta^mu(p1) d_mu delta(S),  S = p1 + p2 + k, p1 fixed, p2 dependent.
+   D^T(p1,p2) := D(p2,p1).  With f(y) delta'(y-a) = f(a) delta'(y-a) - f'(a) delta(y-a) at fixed p1:
+      alpha^T(p1) = alpha(p2) - (div beta)(p2),   beta^T(p1) = beta(p2),    p2 = -p1 - k.
+   A functional int A(p1) A(p2) D of one even field depends on D + D^T only.
+
+2. Engine A's Y1a after Q (both legs A|_Wperp):
+      beta(q) = 8 q'/|q'|^2 + 8 |q|^2 J(q),   q' = -q - k,   J(q) = That(q, q'),   alpha = 0,
+      alpha_Q(q) = q'.beta(q),   beta_Q(q) = -1/2 |q'|^2 beta(q) = 4(q + k) - 4 |q+k|^2 |q|^2 J(q).
+   (a) That(b,a) = -That(a,b)   (l -> -l in 16 pi^2 int d^4l/(2pi)^4 l/(l^4 (l+b)^2 (l-a)^2)).
+   (b) div_q J(q) = -16 pi^2 int (l_nu/l^4) d_{l^nu} G(l),  G = 1/((l-q-k)^2 (l-q)^2)
+                  = 16 pi^2 int G d_nu(l_nu/l^4) = 16 pi^2 (2 pi^2/(2pi)^4) G(0) = 2/(|q+k|^2 |q|^2)
+       since d_nu(l_nu/l^4) = -1/2 Laplacian(1/l^2) = 2 pi^2 delta^4(l).  At q = p2: 2/(|p1|^2 |p2|^2).
+   (c) beta part of VV: beta_Q(p1) + beta_Q(p2) = -4 p2 - 4p1 - 4|p1|^2|p2|^2 (That(p1,p2) + That(p2,p1)) = 4k.
+       alpha part: alpha_Q(p1) + alpha_Q(p2) - div beta_Q(p2) = 4 |p1|^2 |p2|^2 div J(p2) = 8.
+       VV[Q(Y1a)] = (8, 4k) unit T_O;  VV[{S^(1)(Delta),O}] = VV[2(E+2)O] = (-4, -2k) T_O.
+       Hence Q(Y1a) = -2 unit {S^(1)(Delta),O}: local.  The nonlocal |p1|^2 That terms are exchange-antisymmetric.
+   (d) Engine A's assembly C = 2(E+w_O)O + 2c_O O + z_2 unit D_M O + Q(Y1a) becomes
+       C = 2(E+w_O)O + 2c_O O + (z_2 - 2) unit D_M O,  z_2 = 5/3 - f,  f = coefficient of S^(1)(Delta)|_perp in F_1(Delta);
+       engine B: C = 2(E+w_O)O + 2c_O O - (1/3 + b/2) unit D_M O with b/2 = f.  Equal: z_2 - 2 = -(1/3 + f).
+   (e) translation analogue (engine A: beta(Y1a) = -i x translation graph): exchange-symmetric part 4 i k.v, local.
+
+3. (Delta, P_b) component of L o L = 0 (cor:c8-homotopy (ii)) at order hbar (check_scheme_P1.py)
+   On an s-closed family closed under translations with Lambda^(1)(Delta) = (1 + hbar kappa) ad_Delta + hbar (constant)
+   and Lambda^(1)(P) = (1 + hbar pi) ad_P, [ad_Delta, ad_P] = 2 ad_P = -ad_{[Delta,P]} (jet model, exact):
+      [Lambda(Delta),Lambda(P)] + Lambda([Delta,P]) = 2 hbar kappa ad_P + O(hbar^2)      (pi drops out).
+   It must equal [Lambda^(0), X]; on O in the 20 it is s(X_1 O) with X_1 O local of degree -1, Weyl weight 3, colour
+   singlet: no such functional exists, so kappa = 0.  For the scalar bilinears kappa = (z_2 - 2) unit = -(1/3 + f) unit
+   (both engines), so every one-loop quantisation solving the QME through arity two has f = -1/3 unit and
+   [(d_CE+Q)O[infty]](Delta) = RHS of eq:c6-step2 exactly on the (A|_Wperp, A|_Wperp) output.
+
+4. Schemes removing P_1 = c {S^(1)(P_b),-} on a family (check_scheme_P1.py)
+   Change of the component along x under psi (prop:c8-laws (b)): ad_x psi - psi ad_x.
+   psi_w = c x (Weyl weight, fields + derivatives, lem:c6-data): P: -c; but Delta, rotations, K change by non-multiples
+   (ad_Delta and ad_K of phi^2 contain densities of two different Weyl weights).
+   psi_D = (c/2) ad_{S^(1)(Delta)} = c (E + w): P: -c, Delta: 0, rotation: 0, K: +c (exact), Sigma: -c/2, Sigma^*: +c/2
+   (ad_Delta eigenvalues -1, +1).  Reflection compatible for real c (({S^(1)(Delta),a})^Theta = {S^(1)(Delta),a^Theta}).
+
+5. Large distance of one insertion on a cycle (check_tsafe_decay.py)
+   A|_V leg (Lie derivative of the A x A edge) times the A^*|_V x c edge: Delta O(|y|^-5) (odd), K_b O(|y|^-4) (even,
+   nonzero average, from the rotation part of dv), translation O(|y|^-6).  prop:c8-Tsafe is right; the |y|^-4 for Delta
+   claimed in the theory's CH08 item is not.
+
+6. eq:d-Ob with engine A input and engine B target (check_eqdOb_AV.py)
+   (A_V,A_V): VV[Q Pi_int] = (1/3) int(dA_V,dA_V) + 0 int(d^*A_V,d^*A_V); (c,A^*_V): Q Pi_int = -(2/3) int(dc,A^*)
+   (the one sign of engine A's (c^*,c) normalisation fixed by locality; the other sign leaves log|p|^2).  Pi_int itself
+   contains log|p|^2 and (p.a)(p.b)/|p|^2: Pi_Psi is not local, only Q Pi_Psi is.
+
+7. prop:d-psi (ii) proof (check_psi_proof_steps.py): k M P* - P* M k = Q^GF(kMf - fMk - 4kf) and
+   kMf - fMk = -4(kHf' - fHk') (the two displays of the proof are each false; their errors cancel).

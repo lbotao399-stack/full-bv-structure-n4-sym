@@ -1,0 +1,15 @@
+# N=4 super Yang–Mills in Costello’s formalism — Step 1
+
+Start with `/Users/libotao/Documents/Codex/2026-10-21/ge/output/video/trace_algorithm_5min/neural_tts/venv/bin/python start_reader.py --port PORT`, choosing an unused local port. Open `http://127.0.0.1:PORT/app/index.html`. This command serves locally; it does not publish the manuscript.
+
+No Mandarin speech service is configured; select an explicit supported route before Mandarin synthesis. English uses its configured voice service at `http://127.0.0.1:8795`. Character services synthesize locally; the legacy Xiaoxiao service needs internet for new recordings. Cached audio remains local. The scaffold did not contact or start a service.
+
+Text/math are directly editable. Enter splits a block; Shift+Enter inserts a line. Use `/math`, `/quote`, `/callout`, `/h1`–`/h3`; Command/Ctrl+Shift+E edits inline math and Command/Ctrl+Shift+H toggles yellow highlight. Block handles move, group, duplicate, sync locally, select, or delete content with undo.
+
+Play starts source-language narration. Space toggles playback outside editing controls; Left/Right selects passages. Scrolling stays manual unless Follow is enabled. Speed, Follow, outline visibility, and supported narration mode save in this browser. Text edits autosave to `notion-reader/data/document.json`; revision history is in `data/history/`. Browser drafts provide recovery, not proof that a server save succeeded.
+
+During playback the next twelve readable passages and the previous one prepare in the background, with a sixteen-file/96 MiB byte cache. Typing does not generate speech. Select an English word or short phrase to see its local Chinese definition automatically; install the shared ECDICT index with the skill's `scripts/install_dictionary.py` if unavailable. Prose compounds such as “two-point function” are spoken without “minus”; mathematical subtraction is preserved. The Narration panel also prepares or refreshes recordings explicitly. Guided table/formula/image plans live in `app/narration-plans.json` and must match current source hashes; exact reading remains available when a plan is missing or stale.
+
+Source snapshots and import verification are under `notion-reader/source/`. `source/narration-review-needed.json` lists tables, figures, and detected dense formulas needing authored explanation, together with any source-bound reviewed plans. This inventory never writes or approves narration automatically; inspect the source for candidates missed by size/structure detection. Figures are in `figures/`; recordings in `audio/`. Local runtime paths are recorded in `qa/runtime.json` and must be revalidated when moving the project. Mobile access requires an explicitly configured authenticated gateway or deployment; the local URL alone is available only on this computer.
+
+This scaffold validated imports, runtime imports, formulas, assets, and supplied plan bindings. It has not yet verified synthesized audio, browser playback, cues, or listening. Complete those checks before delivering a narrated reader.

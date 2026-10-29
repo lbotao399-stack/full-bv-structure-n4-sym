@@ -1,0 +1,257 @@
+{
+ "source": "workflow wf_c6617485-557 (design audits + literature refuters), 2026-10-28",
+ "design_audits": [
+  {
+   "refuted": true,
+   "flagged": [
+    {
+     "claim": "Def def:o-twisted: Q_1^xi = hbar(L_1^(0) + L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi)), 'i.e. Q_1^xi = r_xi(hbar L_1)|_{q=1}'",
+     "verdict": "UNVERIFIED (gap; correct for the listed targets only)",
+     "evidence": "r_xi (eq:o-ev) sums over all k, but the design never shows that L_1(O)^(k)(xi^k) = 0 for k >= 3. By targets Lemma lem:arity the output has weight w_O+k/2 and ghost degree |O|+1-k. Each unit of negative degree costs weight >= 2, which allows k up to floor((2w_O+4+4|O|)/3): for example k=3 at w_O = 5/2, and k=4 at w_O = 4 with an output of (c*, lambda) type. For the listed targets k >= 3 is excluded. Letters and bilinears: by weight. O_zeta: the k=3 output needs weight 4 and degree -2, i.e. c* alone, which is not a colour singlet. bc entry: the k=3 output (lambda*, A_ij) cannot absorb w^{(x)3} because A_ij w^i w^j = 0; the k=4 output c* has no W index. Thm thm:o-twist (ii) and (iii) are stated for all local functionals and rely on this truncation. Their proof is r_xi of eq:o-cocycle, whose q^3 and q^4 parts contain L_1^(3) and L_1^(4)."
+    },
+    {
+     "claim": "Thm thm:o-twist (i),(ii): Q(r_xi O[infty]) = (Q_0^xi O + Q_1^xi O)[infty]_xi and {Q_0^xi,Q_1^xi} = 0 follow from r_xi of eq:o-rep and eq:o-cocycle",
+     "verdict": "PLAUSIBLE (conditional)",
+     "evidence": "(Q_0^xi)^2 = 1/2{{S^xi,S^xi},-} = 0 is confirmed. The rest needs r_xi to be multiplicative through the products in W(P,J) and through the C^bullet-linear extension of L_1. The proof only asserts this ('decalage identification ... multiplicative'). The design itself leaves the shuffle signs of that extension as +- (open issues; engine_plan E0, last task), and the -1/2 in front of L_1^(2) depends on the same sign. Further conditions: local representatives must exist for every local functional, and the equivariant QME must hold at arities 0,1,2. Arity >= 3 on the action side vanishes by weight: degree -k needs weight >= 2k, while the available weight is 4+k/2. The design does not state this."
+    },
+    {
+     "claim": "Thm thm:o-twist (iii) / Thm thm:o-invariants (i): [Q_1^xi] on H(O_l,Q_0^xi) is independent of every scheme choice of Section 5",
+     "verdict": "REFUTED as stated (overclaimed)",
+     "evidence": "Prop prop:o-laws (d) allows an arbitrary s-closed G, with twisted shift -a{r_xi G,-}. The proof of thm:o-invariants (i) treats only [Q_0^xi,Psi^xi] and the coupling direction. For a general closed G, {r_xi G,-} vanishes on H(Q_0^xi) only if r_xi G lies in C S^xi + Im Q_0^xi (or is a commutator with Q_0^xi). That needs the E3b hypothesis of Prop prop:o-arity0, which is not among the hypotheses of thm:o-twist. Law (c) (gauge fixing) is explicitly only a proof plan."
+    },
+    {
+     "claim": "Renormalisation freedom (Prop prop:o-laws, the freedom table, Prop prop:o-arity0): apart from s-exact terms, the only closed non-exact direction is the coupling G = S - S^(2); arity-one counterterms act only by s-exact choices",
+     "verdict": "REFUTED (one freedom missing)",
+     "evidence": "psl(4|4) has the outer derivation B induced by ad of diag(1_4,0_4) in gl(4|4). It acts as +1 on S_+(x)W and S_-(x)W (one odd block, [xi,eta]=0 there; targets T10) and as -1 on S_-(x)W^* and S_+(x)W^*. Pulling back an MC element by an automorphism gives an MC element, so G_B := d/dt S_psl o e^{tB} is s-closed of degree 0, with G_B^(0)=0, G_B^(1)(x) = S^(1)(Bx) and G_B^(2)(x1,x2) = S^(2)(Bx1,x2) + S^(2)(x1,Bx2). G_B is not s-exact: exactness would need a degree -1 symmetry phi^(0) with {S^(1)(x),phi^(0)} = S^(1)(Bx) modulo exact terms, i.e. B inner. Effect: Q_1(O) -> Q_1(O) - a delta_xi O for xi in S_+(x)W, S_1 -> S_1 + a delta_eta O for eta in S_+(x)W^*; D_1, K_1, P_1, M_1, R_1 unchanged; arity (xi,xi): -2a{S^(2)(xi,xi),-}. Twisted: r_xi G_B = S^(1)(xi) - S^(2)(xi,xi) = -N_{R_xi}S^xi, so Q_1^xi -> Q_1^xi + a[N_{R_xi},Q_0^xi], which is zero on H(Q_0^xi). So the twisted class map survives, but the table row 'arity-one counterterms: s-exact choices' and thm:o-invariants (iii) are incomplete. The hypothesis of prop:o-arity0, 'degree-0 weight-4 cohomology one-dimensional', is false as worded: G_B is a second class. The classical-type coefficient of E4 (general traceless bilinear) and those of E5 are shifted by G_B, so they are pure scheme."
+    },
+    {
+     "claim": "Thm thm:o-invariants (iii): pair values such as c_K are representatives of invariant classes",
+     "verdict": "REFUTED",
+     "evidence": "The design itself (E2, Prop prop:o-laws (b)) gives c_K -> c_K - kappa_B x under psi(B_w) = x Fbar_w, so c_K can be shifted to any value. O_zeta is not Q_0^xi-closed: (Q+{I,-})O_zeta = 0 by gauge invariance; {S^(2)(xi,xi),O_zeta} is proportional to (u u')A_ij w^i w^j = 0; hence Q_0^xi O_zeta = kappa_B B_w != 0. So c_K is not an entry of [Q_1^xi] on H(Q_0^xi). It becomes meaningful only after x is fixed (targets T5 (d): orthogonality normalisation)."
+    },
+    {
+     "claim": "Thm thm:o-twist (iv): ESW Thm 10.9 transports [Q_1^xi] to the holomorphic letters c, gamma, beta, b; on letters, Phi is the targets table modulo exact terms",
+     "verdict": "UNVERIFIED",
+     "evidence": "ESW Thm 10.9 is quoted accurately (esw.txt line 4585). Its proof organises the fields U(2)-equivariantly into Omega^{0,*}[1], Omega^{1,*}, Omega^{2,*}[-1] and their duals, in ESW's own symbols (A_{0,1}, phi, psi, sigma, xi, a, b, B), not as BK's c, gamma^I, beta_I, b. The letter-level map is targets section 2.3, labelled [I]. Using it for comparison is fine; stating it inside a theorem is not proven."
+    },
+    {
+     "claim": "EOM / BV-exact terms are handled consistently in the twisted recovery",
+     "verdict": "PLAUSIBLE (with a procedural caveat)",
+     "evidence": "Q_0^xi = Q + {I + S^(1)(xi) - 1/2 S^(2)(xi,xi), -} contains the antifield (EOM) terms and the lambda* lambda* closure term, and L_1^(0) is included in Q_1^xi. Under r_xi, only full s-exact cochains map to Q_0^xi-exact functionals: r_xi(s chi) = Q_0^xi r_xi(chi). A term (Q+{I,-})chi^(1)(xi) dropped at arity one alone differs from Q_0^xi chi^(1)(xi) by {S^(1)(xi),chi^(1)} and S^(2) terms at higher arity. engine_plan E4 and E6 phrase reductions as 'plus [Q_0, phi] terms' without stating that the arity-0 and arity-2 partners must be carried along."
+    }
+   ],
+   "corrections": [
+    "Def def:o-twisted: define Q_1^xi := sum_{k>=0} (-1)^{k(k-1)/2}/k! hbar L_1(O)^(k)(xi,...,xi) and drop the 'i.e.' identification with the truncated sum. State the truncation k <= 2 as a separate proposition with the weight/colour/R argument: letters and scalar bilinears by weight; O_zeta because the k=3 output would be c* alone, not a colour singlet; bc entry because A_ij w^i w^j = 0 kills (lambda*, A) at k=3 and c* has no W index at k=4. For higher-weight multi-letter operators, which the class-level lifting statements need, include k >= 3 in the census (allowed up to k = floor((2w_O+4+4|O|)/3)).",
+    "Thm thm:o-twist: add as hypotheses (1) that the products in W(P,J) and the C^bullet-linear extension of L_1 use the decalage signs, fixed in E0 before the -1/2 in front of L_1^(2)(xi,xi) is quoted; (2) that local representatives exist on all of O_l. Note that the action side has no arity >= 3 counterterms: degree -k needs weight >= 2k, while the available weight is 4+k/2.",
+    "Thm thm:o-twist (iii) and thm:o-invariants (i): restrict the invariance to (a), (b), the coupling direction and G_B, and add the E3b hypothesis that every s-closed degree-0 local cochain lies in span{S - S^(2), G_B} + Im s. Mark (c) (gauge fixing) as a proof plan.",
+    "Add the outer-derivation freedom of psl(4|4) to Prop prop:o-laws and to the freedom table. B = +1 on S_+(x)W and S_-(x)W, -1 on S_-(x)W^* and S_+(x)W^*. G_B = d/dt S_psl o e^{tB} with G_B^(1)(x) = S^(1)(Bx) and G_B^(2)(x1,x2) = S^(2)(Bx1,x2) + S^(2)(x1,Bx2). Effects: Q_1 -> Q_1 - a delta_xi (xi in S_+(x)W) and + a delta_xibar (S_-(x)W^*); S_1 -> S_1 + a delta_eta (eta in S_+(x)W^*) and - a (S_-(x)W); D_1, K_1, P_1, M_1, R_1 unchanged; arity (xi,xi): -2a{S^(2)(xi,xi),-}; twisted: Q_1^xi -> Q_1^xi + a[N_{R_xi},Q_0^xi]. Restate the hypothesis of prop:o-arity0 (a two-dimensional H^0, or a one-dimensional image of H^0 in arity zero). Report the classical-type coefficients of E4 and E5 as scheme families.",
+    "Thm thm:o-invariants (iii): remove 'pair values (e.g. c_K) are representatives of invariant classes'. State that c_K -> c_K - kappa_B x under the B-F finite part. O_zeta is not Q_0^xi-closed (Q_0^xi O_zeta = kappa_B B_w), so c_K is a scheme-dependent pair value, invariant only after x is fixed by the orthogonality normalisation (targets T5 (d)).",
+    "Thm thm:o-twist (iv): move the letter-level identification 'Phi on letters = targets table' out of the theorem and label it as an identification. Derive Phi explicitly from the collections of ESW Thm 10.9 (U(2)-equivariant, ESW's own symbols) and the regrading to BK's c, gamma^I, beta_I, b before any numerical comparison.",
+    "Engine guidance (E4, E6, E7): reduce outputs only by full s-exact cochains, carrying their arity-0, 1, 2 partners, before applying r_xi. Do not drop (Q+{I,-})-exact terms at a single arity.",
+    "Prop prop:o-arity2: delete the case 'arity-zero marked vertices with one vertex S^(2)(xi,xi)'. S^(2) has only lambda* legs and cannot be joined to the graph except through the marked pairing."
+   ]
+  },
+  {
+   "refuted": true,
+   "flagged": [
+    {
+     "claim": "Prop o-laws (c): gauge-fixing change reduces to (a),(b),(d).",
+     "verdict": "UNVERIFIED (proof plan only)",
+     "evidence": "The design states it as a proof plan (Duhamel splitting plus [C07 \u00a71.10]) and does not exercise it, since Q^GF is unique (prop:c3-H). Nothing to confirm."
+    },
+    {
+     "claim": "Prop o-arity0: equivariance cuts the Part C free directions (4 beta plus kernel span{H1-4H3-2H6, H2-2H4}) down to s phi (five phi) plus the coupling direction.",
+     "verdict": "UNVERIFIED (conditional)",
+     "evidence": "The list of five weight-4, degree -1 two-leg functionals and the absence of three-leg ones (weight count, cubic_structure.tex l.263) are confirmed. The 'cut down' statement depends on the stated hypothesis that the degree-0, weight-4 equivariant cohomology is one-dimensional (engine E3b). Note that 5+1 = 6 equals the Part C count of 6, so the reduction is nontrivial only through dependences of the projections."
+    },
+    {
+     "claim": "Thm o-ir (ii): K-route classes C, D diverge logarithmically at large distance for every eps > 0, with an O(eps) coefficient (a cut tree containing the special edge).",
+     "verdict": "PARTLY CONFIRMED",
+     "evidence": "The log R term and its O(eps) coefficient (through e^{-eps|p|^2}-1 at a generic partial momentum) are correct. 'Diverges for every eps > 0' additionally needs the cut tree with stubs b(x)(,)^-1 and 1 to be nonzero, which is not shown."
+    },
+    {
+     "claim": "Thm o-ir (iv): the arity-two graphs along (eta1, eta2) in Sigma* x Sigma* converge at large distance, because floating S^(1)(eta) decays as |y|^-5, a special-edge pair as |y|^-6, and S^(2) never floats.",
+     "verdict": "REFUTED",
+     "evidence": "The list leaves out two floating S^(1)(eta_a) joined by a lambda-lambda edge P(eps,inf). This chain is allowed by Lemma o-legs (each floating odd vertex has one lambda leg and one A*|_V leg). Its superficial IR degree in R^8 is +1. eta_pair_ir.py works out the momentum-space symbol with explicit Euclidean sigma matrices. (1) The single-orientation degree -5 part is 4(eta1 pslash etabar2)/p^6, nonzero pointwise. (2) Wick signs plus graded symmetry of P(lambda lambda) give Total = C1[z,z'] - C1[z',z] + (1<->2), so the degree -5 part cancels identically. (3) The surviving degree -4 part has S^3 average 6i v1.(f0 g1 - f1 g0), with v1 = Gamma(eta1,eta2)|_V and (f0,f1), (g0,g1) the Taylor data of the rest of the cycle; the hand formula matches to 6e-15. (4) Shell integrals over rho<|p|<2rho with an exact (non-Taylor) Gaussian rest tend to 2pi^2 log2 * 6i v1.(f0 g1 - f1 g0) (relative deviation 5e-8 at rho = 1e-4). This is a genuine log R divergence, proportional in position space to the integral of v1.(z'-z) against the rest. For defect graphs the coefficient is O(eps), exactly as in K-route classes C, D. For O[inf]^(2)(eta1,eta2) and W^(2) it is O(1). For v1 = 0 the degree -4 part vanishes pointwise (max 6e-14 against 64 for a generic pair). Control: for (xi,eta) pairs the single-orientation log term cancels between orientations, so they converge."
+    },
+    {
+     "claim": "'Decision' paragraph and Def o-K: the K route diverges graph by graph while the Sigma* x Sigma* graphs converge, which gives the definition C(O)^(1)(K_{v1}) := -Q C(O)^(2)(eta1,eta2).",
+     "verdict": "REFUTED (rationale); identity itself correct",
+     "evidence": "The identity C^(1)(K) + Q C^(2)(eta1,eta2) = 0 follows from eq:c2-dce with sign (-1)^{|C|}, and [eta1,eta2] = -K_{v1} has no so(W) part by eq:c2-oddodd. The convergence that motivates the definition fails for every v1 != 0, i.e. for every pair that defines a nonzero K: see the previous item. The Sigma* x Sigma* graphs carry log R terms with O(eps) coefficients, the same IR status as the arity-one route. Both need eps -> 0 before R -> infinity, an IR truncation that DESIGN.md hard rule 4 excludes unless the total log coefficient is shown to vanish."
+    },
+    {
+     "claim": "Thm o-KD: assuming P_1 = M_1 = R_1 = 0 and a local arity-two representative at (K,P) fixed through the arity-three identity at (eta1,eta2,P), 'whose graphs ... converge (Prop o-ir)', K_1(O) = 1/4 div v gamma_O O = -2(b.x) gamma_O O mod s-exact. Values 0, 48, 8, 8, 16, 4 times (b.x) unit O.",
+     "verdict": "PARTLY REFUTED",
+     "evidence": "Algebra confirmed: 1/4 div is a 1-cocycle on all conformal Killing fields of R^4; [K_b,P_c] = (b,c)2E + (2(b,x)c - 2(c,x)b); 1/4 div K_b = -2 b.x; values -2*(0,-24,-4,-4,-8,-2) = (0,48,8,8,16,4) (misc_checks.json M2-M4). The stated justification of the premise is false: the (eta1,eta2,P) graphs contain the P-edge eta1-eta2 chains, which diverge logarithmically for v1 != 0. Minor gap: 'V == 0 because the V term depends on x' holds only modulo s-exact terms, which may depend on x."
+    }
+   ],
+   "corrections": [
+    "Thm o-ir (iv) is false as stated. Replace with: arity-two graphs along (eta1,eta2) that contain two floating S^(1)(eta_a) joined by a lambda-lambda edge P(eps,inf) have, after summing both orientations, a log R term with coefficient proportional to v1 = Gamma(eta1,eta2)|_V times the first moment of the rest of the cycle. Normalised momentum symbol: S^3 average 6i v1.(f0 grad g(0) - grad f(0) g0). This coefficient is O(eps) for defect graphs (special edge in the rest) and O(1) in O[inf]^(2)(eta1,eta2) and W^(2)(eta1,eta2). It vanishes exactly when v1 = 0. Evidence: step2/qa/design_audit_2/eta_pair_ir.py and eta_pair_ir.json.",
+    "Withdraw the 'Decision' paragraph. The Sigma* x Sigma* route has the same IR status as the arity-one K route (log R times O(eps) in defect graphs; possible O(1) obstruction in the flow at arity two, like the tree Y). Def o-K is legitimate only after one of two fixes: (i) prove that the total log R coefficient of each defect sum vanishes; or (ii) adopt an explicit eps -> 0 before R -> infinity prescription, which conflicts with DESIGN.md hard rule 4 and must be flagged to the user.",
+    "Add the P-edge pair to Prop o-ir and to engine_plan.json 'large_distance_decay_of_floating_insertions'. For two floating odd insertions joined by lambda-lambda, the IR degree in R^8 is g1+g2-1 (g = 0 for Sigma, 1 for Sigma*), and the orientation sum lowers it by 1. Sigma* x Sigma* is therefore logarithmic (coefficient proportional to v1), while Sigma x Sigma* and Sigma x Sigma converge. Extend E10b: compute the arity-two analogue of Y, a tree with one constant and one linear c-stub, proportional to v1.",
+    "Prop o-Kconsistent: keep the statement but justify convergence for v1 = 0 pairs by the pointwise vanishing of the degree -4 part of the P-edge eta-eta chain when v1 = 0 (verified), not by Prop o-ir.",
+    "Thm o-KD: remove 'whose graphs ... converge (Prop o-ir)' from the hypotheses. Keep K_1 = 1/4 div v gamma_O O = -2(b.x) gamma_O O as a conditional algebraic consequence (cocycle and values verified). State that V == 0 holds only modulo s-exact local functionals.",
+    "Thm o-ir (ii): replace 'diverges logarithmically ... for every eps > 0' with 'has a log R term whose coefficient is O(eps) times the cut tree; it diverges for eps > 0 when that tree is nonzero'. Nonvanishing of the tree is not shown.",
+    "Freedom table and Prop o-laws (d): the coupling direction also changes L_1^(0) by -a{S,-} = -a(Q+{I,-}), which vanishes only on gauge-invariant O. Change 'arity two only' to 'arity zero (-a(Q+{I,-})) and arity two'; the twisted formula -aQ_0^xi + [Q_0^xi, aN_R] already contains this.",
+    "Prop o-laws (a) and the table: note that [s, ad_phi] = -ad_{s phi} (verified in a finite-dimensional model with the ch01 bracket), so (a) is (d) at G = s phi. The arity-one change is exactly -{{S^(1)(x1),phi^(0)} + (Q+{I,-})phi^(1)(x1), -}. The entries '+[Q_0, ad_phi]', '+[S_0, ad_phi]', '+[K_0, ad_phi]' omit the (Q+{I,-})-exact part from phi^(1)."
+   ]
+  }
+ ],
+ "literature_refuters": [
+  {
+   "refuted": true,
+   "flagged": [
+    {
+     "claim": "T4: bc entry (BK (3.13), (3.21), (3.64), (B.5), fn 23; BGKWWY (C.4))",
+     "verdict": "PARTIAL",
+     "evidence": "Every formula is quoted exactly. BGKWWY (C.4) = f_ACE f_BDE dc^C.dc^D for f=eps is verified. Not flagged in the file: at face value BGKWWY (C.4) = 2 x BK (3.35)/(3.64), and (C.3) = 2 x BK (3.36), with the same index structure. This is the 1/2 that BK fn 23 says was missing ('We thank Jiyoo Park for pointing out a missing factor of 1/2 ...'; fn 23 does not mention 'v3'). The reader check CK02 (Q_1 Tr b^2 = -4 d Tr(b dc), which I re-derived from (C.3) and (3.23)) inherits the BGKWWY normalisation."
+    },
+    {
+     "claim": "T5(a)-(c): Konishi entry sources and derived numbers",
+     "verdict": "PARTIAL",
+     "evidence": "Exact: BK (3.16), (3.23), (3.66) and 'The correction (3.66) was computed also in [49]' ([49] = CL25); CL25 (2.1), (2.2), (2.5) and the example after (2.6) (g^2 (N-2)/16pi^2 Tr lambdabar lambdabar), plus 'C(R) as the dual Coxeter number'; KKLP (2.4), (2.7) with 1/4 kappa^2; KLLS (2.4) kappa_1^2/16 and 'We leave kappa_1 as a free parameter'. KvLM (5.5) has explicit f^{cd}_a f_{bc}^e, and kappa_Q is a 'non-zero normalization ... whose precise value will not be needed', not a free parameter. Verified: sum_I gives 3/2 f_ACD f_ACE = -3/2 tr(ad ad), and Q_0 sum Tr beta_I gamma^I contains 3W by BK (3.50)."
+    },
+    {
+     "claim": "T5(d): -3x shift; 'relative normalisation of CL25 classical and one-loop terms is compared in the SO(7) lifting'",
+     "verdict": "REFUTED (second half)",
+     "evidence": "The -3x shift is correct: [Q_0,phi_1] applied to Tr beta gamma gives -phi_1(3W). CL25 Sec 3 applies Q_K to the Q_0-closed O_f and finds Q_K O_f = O_m + Q_0 Lambda. The classical term never enters; only the nonvanishing of Q_K's overall factor does."
+    },
+    {
+     "claim": "T7(a): no-Leibniz sources",
+     "verdict": "PARTIAL",
+     "evidence": "BK fn 21, BGKWWY fn 28 and (3.26), CL22 (3.4)-(3.5) and CL22 fn 10 (DRED [61] or [62]) are correct. Misattributed: the sentence 'the only known obstruction, the Konishi anomaly [63], is absent in N = 4 SYM [64]' is CL22 main text; fn 11 is an acknowledgement. The file also omits CL22's claim that the anomaly is absent in N=4, which BK (3.66) and CL25 contradict."
+    },
+    {
+     "claim": "T7(d): lifted pairs exclude Q_1 = derivation + aQ_0 + [Q_0,phi_1], since a derivation reproduces the CL22 hypothesis",
+     "verdict": "REFUTED",
+     "evidence": "CL22 p.9 needs two hypotheses: (i) a scheme in which 'the action of Q on the BPS superfield is undeformed', and (ii) the Leibniz rule. A nonzero derivation Q_1 violates (i). Derivations that (anti)commute with Q_0 can act nontrivially on H(Q_0); BK (3.55) Q^I_+ ~ d_theta_I is an example. Only Q_1 = aQ_0 + [Q_0,phi] is excluded (Lemma inv)."
+    },
+    {
+     "claim": "T9: BK (2.17)-(2.18); BGKWWY (3.40), (3.24), (2.20)-(2.22); and (c) 'N=4 analogue of BGKWWY (3.40) is Q_0-exact'",
+     "verdict": "(a) CONFIRMED; (c) REFUTED/unsupported",
+     "evidence": "(a): the one-loop-beta-function statement is in the paragraph after BGKWWY (2.22). (c): in N=4, BK (3.49) Q_0 b = [c,b] - [gamma^I,beta_I] gives Q_0 Tr b^2 proportional to Tr b[gamma^I,beta_I] != 0, so Tr b^2 is not Q_0-closed and no analogue of (3.40) lifting exists. From BK (3.65), Q_1 Tr b^2 is proportional to d^adot(Tr b d_adot c + Tr gamma^I d_adot beta_I), i.e. proportional to d.S with S as in BGWW (4.82). No source states the claimed exactness."
+    },
+    {
+     "claim": "T10: BK fn 24 '... ; R_1 not computed'; KvLM commutant 'used in (5.4)'; commutant list",
+     "verdict": "PARTIAL",
+     "evidence": "BK fn 24 reads: 'The tree-level action of psl(3|3) might also receive loop corrections, however ... {Q_1,R_0}+{Q_0,R_1}=0'. 'R_1 not computed' is an inference labelled [S], and the R4 table repeats it. KvLM credits the Qbar_{m alphadot} anticommutation to [12]=BK and uses it in the paragraph after (5.4); (5.4) itself uses Sbar charges. The odd commutant [D] is verified. Even elements are not listed."
+    },
+    {
+     "claim": "T11: scheme statements",
+     "verdict": "PARTIAL",
+     "evidence": "Exact: BGKWWY Sec 3.2.1 ('scheme-dependent ... quasi-isomorphisms') and App E ('parameterization of the space of deformations is scheme-dependent beyond'); BK Sec 2.2.2; GKW after (2.10), after (2.17) and fn 13; BGKWY22 (B.6) 'essentially an infinitesimal operator redefinition'; W18 Thm 3.4. GKW (6.28) is the BRST anomaly of the regularised interaction and (6.33) identifies brackets with contour brackets. Neither is a scheme-dependence statement."
+    },
+    {
+     "claim": "Sec 4 F1: a S^(1)(xi) acts as Q_1 -> Q_1 + aQ_0",
+     "verdict": "REFUTED",
+     "evidence": "F2 itself requires S^(2) -> (1+2a hbar)S^(2). S and omega are invariant under the R-rotation alpha of ESW Def 2.18 (Sec 10.3.1), and S^(k)(xi,...) has alpha-weight k. Hence S + (1+a hbar)S^(1) + (1+2a hbar)S^(2) = (S+S^(1)+S^(2)) composed with alpha(1+a hbar)^{-1}. The twisted differential is therefore conjugated: Q_1 -> Q_1 + a[N_alpha,Q_0] = Q_1 + aQ_0 - a[N_gh,Q_0]. On letters this is 0 on c and gamma and a*1/2 eps[gamma,gamma] on beta, i.e. a one-to-two-letter [Q_0,phi]-type shift, not aQ_0. Lemma inv is unaffected."
+    },
+    {
+     "claim": "R4 table: twisted-side evidence for 'not found'",
+     "verdict": "PARTIAL",
+     "evidence": "'[BGKWWY] absent list' is the reader file bgkwwy.json 'absent_from_paper', not a statement in the paper. BGWW (3.46)-(3.49) and (4.82)-(4.85) are confirmed. The file omits BGWW Sec 4.3 (4.73)-(4.77): one-loop ternary lambda-brackets of the twisted N=4 superconformal currents, encoding a=c, with the 3-cocycle representative 'left for future work'. This is the closest twisted precedent for one-loop data along the superconformal generators, and it is c-number only."
+    },
+    {
+     "claim": "Completeness of twisted-side sources",
+     "verdict": "REFUTED (missing source)",
+     "evidence": "CLW 2310.20086 is in the key list but no target uses it. Its (3.1) gives Q_HT = Q^4_- + Q_{-dot 3}. Sec 3.1: 'all the loop diagrams naively contributing to the BRST differential vanish identically' (3-Laman, H=1, T=2), so Q_int = Q_0 to all orders. (3.17)-(3.19) give a nonzero 2d chiral-algebra Q_1^{2d}, also quoted as BK (1.11). Its fn 5 says the leading Q_1 computed in [32] = Zwiebel hep-th/0511109 'takes the form [Q_0, -]'. This bears directly on open item 6, the Zwiebel tension. Also unread or abstract-only: Bomans-Wu 2311.04304 (BK [28]) and Saberi-Williams 1910.04120 (BK [27]), which is the source of the realisation (3.55)-(3.56)."
+    }
+   ],
+   "corrections": [
+    "T4: state explicitly that, at face value with f=eps, BGKWWY (C.4) = 2 x BK (3.35)/(3.64) and (C.3) = 2 x BK (3.36): the 1/2 of BK fn 23. Mark the reader check CK02 (Q_1 Tr b^2 = -4 d Tr(b dc)) as BGKWWY-normalised. Remove 'corrected in v3' from the fn-23 paraphrase.",
+    "T5(a): KvLM (5.5) reads Q_1 (psi_m)_a (phi^n)_b = -kappa_Q delta^n_m f^{cd}_a f_{bc}^e (lambda_alphadot)_d (lambda^alphadot)_e. kappa_Q is 'non-zero ... precise value will not be needed', not 'free'.",
+    "T5(d): replace 'relative normalisation of CL25's classical and one-loop terms' with 'the nonvanishing of the overall normalisation of Q_K'. CL25 Sec 3 applies Q_K only to the Q_0-closed O_f.",
+    "T7(a): the 'only known obstruction' sentence is CL22 main text p.9, not fn 11 (an acknowledgement). Add its continuation, that the Konishi anomaly 'is absent in N = 4 SYM [64]', which is contradicted by BK (3.66) and CL25.",
+    "T7(d): replace with: lifted pairs exclude Q_1 = aQ_0 + [Q_0,phi] (Lemma inv), and exclude a scheme with Q undeformed on the BPS superfield plus Leibniz (both CL22 hypotheses). A nonzero derivation is not excluded by this argument; e.g. BK (3.55) Q^I_+ is a derivation commuting with Q_0.",
+    "T9(c): delete 'the N=4 analogue of BGKWWY (3.40) is Q_0-exact'. In N=4, Tr b^2 is not Q_0-closed (BK (3.49)), and BK (3.65) gives Q_1 Tr b^2 proportional to d^adot(Tr b d_adot c + Tr gamma^I d_adot beta_I). Record this instead as a [D] check of compatibility with BK (2.18).",
+    "T10(a) and R4 table: relabel 'R_1 not computed' as [I]. BK fn 24 says only that the tree-level psl(3|3) 'might also receive loop corrections'. In the KvLM item, the Qbar-anticommutation is cited from BK and used after (5.4); (5.4) uses Sbar charges.",
+    "T1(a): cite the triangle-only statement to BK text after (2.43) ('at one-loop there is only the triangle diagram'). GKW (3.10) is only the global Laman constraint.",
+    "T11(a): drop GKW (6.28) and (6.33) as scheme-dependence sources.",
+    "Sec 4 F1: replace 'Q_1 -> Q_1 + aQ_0' with: with the correlated F2 rescaling, F1 is conjugation by the R-rotation alpha(1 + a hbar) of ESW Def 2.18, giving Q_1 -> Q_1 + a[N_alpha, Q_0] = Q_1 + aQ_0 - a[N_gh, Q_0], a [Q_0,phi]-type shift (e.g. a * 1/2 eps[gamma,gamma] on beta). Lemma inv still applies.",
+    "R4 table: replace '[BGKWWY] absent list' with a reference to the reader file. Add BGWW Sec 4.3 (4.73)-(4.77) (one-loop ternary brackets of the twisted N=4 superconformal currents, a=c; cocycle representative left open) as the nearest twisted one-loop data along superconformal generators.",
+    "Add a target from CLW 2310.20086 Sec 3.1: for the rank-(1,1) supercharge Q_HT = Q^4_- + Q_{-dot 3} ((3.1); in the project xi + xibar', with xibar' in the commutant of T10(c)), all loop corrections vanish, Q_int = Q_0 to all orders. Its fn 5 says Zwiebel's leading Q_1 is [Q_0,-]-form. Use this to address open item 6 (Zwiebel tension) and as a further R3 reproduction check. Also note BK (1.11)/CLW (3.19) Q_1^{2d}.",
+    "Open item 8: add Bomans-Wu 2311.04304 (BK [28]) and Saberi-Williams 1910.04120 (BK [27], source of (3.55)-(3.56)) as unread twisted-side sources."
+   ]
+  },
+  {
+   "refuted": true,
+   "flagged": [
+    {
+     "claim": "T5(d) second half and Sec. 4 list: the Konishi coefficient becomes scheme independent once the representative is fixed by two-point orthogonality to the protected operator ([EJSS05] (103), n4_untwisted D6)",
+     "verdict": "REFUTED",
+     "evidence": "hep-th/0501077v2. (101): K_10 = Z_K B + Z_O D^2O. (102): Z_K = 1 + g^2 m11/eps, 'we take Z_K to have minimal subtraction form' (a choice). (103): <K_10 Dbar^2 Obar> = O(eps). (106): n10 = -M/4, M = N/(4pi^2). (99): -2D^2O = F - 4B. Redefine the trilinear by B' = B + y g^2 (F - 4B); this has the same quantum numbers and is the project's F3 finite-part freedom. Then F - 4B' is still proportional to the protected operator, so (99) still holds, and orthogonality (103) now gives an F coefficient g^2N/(32pi^2) - y g^2. EJSS (2) says a(g), b(g) 'depend on the normalization of the operators, i.e. on the subtraction scheme'. EJSS (3) and the abstract: in the superconformal scheme [F]_R does not appear at all. EJSS fn 13: exactness of the classical field equations 'may be a scheme-dependent property'. Twisted side: sum Tr beta_I gamma^I is not Q_0-closed, so c_K is not part of pi_0 Q_1 iota_0. By the file's own Lemma inv it is therefore scheme dependent."
+    },
+    {
+     "claim": "[EJSS05] (1) Dbar^2 K = B + g^2/(32pi^2) F; (8) Dbar^2 K = g/6 eps Tr(Phi[Phi,Phi]) + g^2N/(32pi^2) Tr(W^alpha W_alpha); (12) Z_F = g^2N/(32pi^2); conventions Tr(T^aT^b) = delta^ab, W = g/3 eps Tr PhiPhiPhi, (109)-(113), SSDR",
+     "verdict": "PARTIAL",
+     "evidence": "The transcriptions match pp.1, 6, 7, 23. The conventions are incomplete. (5): K = -1/3 Tr(e^{gV} Phibar_I e^{-gV} Phi^I), which is the K of (7)-(8). In (1), K = Tr(Phibar e^{gV} Phi), with no -1/3 and no N. fn 8: Dbar^2 = -1/4 Dbar_alphadot Dbar^alphadot. Z_B = 1, Z_F = g^2N/32pi^2 are stated in the text after (12), with F_6 carrying C_F of (10). (109): the action has 1/4 int d^2theta Tr W^alpha W_alpha and superpotential (g/3!) eps Tr Phi[Phi,Phi]. (110)/(112): propagators. Any numerical comparison depends on all of these."
+    },
+    {
+     "claim": "D7 / T5(c): the EJSS coefficient equals -1 x unit if the trace and coupling normalisations agree",
+     "verdict": "REFUTED (ill-posed)",
+     "evidence": "The project dictionary (Cor. cor:wick) uses tr(T^aT^b) = 1/2 delta^ab with (X,Y) = -4hbar/g^2 tr. EJSS (109) uses Tr(T^aT^b) = delta^ab with e^{gV}, K = -1/3 Tr (5) and Dbar^2 = -1/4 DbarDbar (fn 8). The premise therefore already fails. In addition, the EJSS number is a coefficient in a superfield operator relation, not an arity-one component."
+    },
+    {
+     "claim": "[CL25] (2.1) Dbar^2 Tr Phibar e^{[V,.]}Phi|_anomaly = g_YM^2 C(adj)/(16pi^2) Tr W W; (2.5) Q_K = Abar^{ij,kl} g_YM^2/(32pi^2)(d_psi)_ij(d_Phibar)_kl; the example after (2.6) with g_YM^2 (N-2)/(16pi^2) Tr lambdabar lambdabar; C(R) called the 'dual Coxeter number'; Sec. 3 SO(7) lift",
+     "verdict": "PARTIAL",
+     "evidence": "arXiv:2511.09519v1 HTML. The coefficients are confirmed. The source has Abar_{ij,kl} (lower indices), and Abar is defined in (2.6). The example is unnumbered. CL25 call Q_K 'inferred' from the generalized anomaly and say that other quantum corrections from other interaction terms could arise. Sec. 3 statements (O_m proportional to M1 - M2 - 4M3, 741 Q_0-exact operators, (3.3) M1 + 2M2 - 10M3 exact) are confirmed."
+    },
+    {
+     "claim": "[KvLM] (5.5) Q_1(psi_m)_a(phi^n)_b = -kappa_Q delta^n_m (ff)_ab^de (lambda)_d(lambda)_e, 'kappa_Q free'",
+     "verdict": "REFUTED (wording)",
+     "evidence": "arXiv:2610.22332v2 p.21 (5.5) reads -kappa_Q delta^n_m f_a^{cd} f^{bc}_e (lambda_alphadot)^d (lambda^alphadot)^e. Text: 'The overall sign fixes our convention for the non-zero normalization kappa_Q, whose precise value will not be needed.' This makes kappa_Q a fixed nonzero constant left uncomputed, not a free scheme parameter. (5.21) gives [Q1][F4] = -12 kappa_Q [S^4]. By contrast, KLLS (2.4) explicitly says 'We leave kappa_1 as a free parameter'."
+    },
+    {
+     "claim": "[KvLM] Sec. 5: the commutant Qbar_{m alphadot} anticommute with Q_1 in Q_0-cohomology '(used in (5.4))'; (1.2)/(5.3); (1.3); (5.1)-(5.2); Sec. 6",
+     "verdict": "PARTIAL",
+     "evidence": "(1.2), (1.3), (5.1)-(5.3) and the Sec. 6 claims (from the introduction) are confirmed. (5.4) is the classical action of the six Sbar commutant charges on S^4 (proportional to M1 - 3M2). The Qbar\u2013Q_1 anticommutation statement is in the paragraph after (5.4) and cites [12] = BK. The attribution is wrong."
+    },
+    {
+     "claim": "R4 table: special conformal K known for 'psu(1,1|2) only' (Z05); full-theory one-loop K on letters and operators 'not found'",
+     "verdict": "REFUTED",
+     "evidence": "Zwiebel arXiv:1111.0083 (listed in the target as 'abstract only') Sec. 2.3. (2.33) gives (S^C_alpha)_{2->1} and (Sdot^C_alphadot)_{2->1} for the full planar psu(2,2|4) chain through the generalized harmonic action H^{(1/2,1/2)}. (2.34): (K)_{2->1} = {(S)_{2->1},(Sdot)_{1->1}} + {(S)_{1->1},(Sdot)_{2->1}} and (K)_{3->1} = {(S)_{2->1},(Sdot)_{2->1}}. These were derived in Zwiebel's thesis [24] and are 'fixed (up to normalization) by superconformal symmetry'. By n4_untwisted D1, L = (k-m+n)/2, so S_{2->1} and K_{2->1} at O(g) are one loop."
+    },
+    {
+     "claim": "R4 table: full-theory one-loop S on local operators 'not found' beyond B03 su(2|3) and Z05 psu(1,1|2)",
+     "verdict": "PARTIAL (overclaim)",
+     "evidence": "The 2->1 part of the one-loop S and Sdot is known for the full planar chain (Zwiebel 1111.0083 (2.33)). What is not found is the 2->2 part outside su(2|3) and psu(1,1|2), the non-planar part, gauge-variant letters, and any BV-equivariant form."
+    },
+    {
+     "claim": "T8 lifting sources complete on the untwisted side; [BMV] used for footnote 5 only",
+     "verdict": "PARTIAL (missing source)",
+     "evidence": "BK v3 p.5: the lowest SU(2) fortuitous class survives 'by directly computing the one-loop action [37]', and [37] is BMV arXiv:2306.04693, an untwisted one-loop (dilatation operator) computation at non-integer N. Its main result is not recorded."
+    },
+    {
+     "claim": "F1: the s-closed arity-one finite counterterm a S^(1)(xi) acts as Q_1 -> Q_1 + a Q_0",
+     "verdict": "REFUTED",
+     "evidence": "Target T1(c) gives Q_0 = Q + {I + S^(1)(xi) + c_2 S^(2)(xi,xi), -}. F2 forces S^(2) -> (1+2a hbar)S^(2). The change of Q_1 is therefore a({S^(1)(xi),-} + 2c_2{S^(2)(xi,xi),-}) = a[N_alpha, Q_0], with N_alpha the alpha-weight derivation: by ESW Def 2.18, S^(k)(Q,...,Q) has alpha-weight k and S is alpha-invariant. This is a [Q_0,phi] term, not a Q_0. Lemma inv still kills it, so only the stated form is wrong."
+    },
+    {
+     "claim": "T5(d): 'twisted form of [EJSS05] (2) and abstract (classical/quantum split scheme dependent)'",
+     "verdict": "PARTIAL",
+     "evidence": "(2) supports scheme dependence. The abstract says more: in a superconformal scheme the separation 'is not possible', and (3) contains no [F]_R term."
+    },
+    {
+     "claim": "Statements outside this checker's focus, not re-opened against the source: BGKWWY (3.24),(3.26),(3.33),(3.40)-(3.45),(C.1)-(C.9),(D.13)-(D.15), App. E, fn 28; GKW (2.27),(2.31),(3.10),(6.28),(6.33), fn 13; W18 Thm 3.4; BGKWY22 (B.6); BGWW (3.46)-(3.52),(4.82)-(4.85); CL22 (3.4)-(3.5), fn 10-11; ESW Defs 2.16-2.18, Prop 2.21, Rem 1.29, Sec. 10.3, Thm 10.9; BK App. B; B03 Table 2",
+     "verdict": "UNVERIFIED (default refuted)",
+     "evidence": "Not checked by this checker, whose focus is the untwisted N=4 side and the Konishi anomaly."
+    }
+   ],
+   "corrections": [
+    "T5(d) and Sec. 4 'to be reproduced exactly': remove the claim that the Konishi coefficient is scheme independent in the orthogonality normalisation. Replace with: c_K is scheme dependent even after orthogonality (EJSS (103)). The F3 shift B -> B + y hbar (F - 4B) keeps (99) and changes the F coefficient by -y. EJSS fix it only by convention (SSDR with Z_K minimal, (102)). c_K is not part of pi_0 Q_1 iota_0, because sum Tr beta_I gamma^I is not Q_0-closed.",
+    "T5(a): replace 'kappa_Q free' by 'kappa_Q a non-zero normalisation whose precise value is not needed (KvLM after (5.5))'. Write the index structure as f_a^{cd} f^{bc}_e (lambda_alphadot)^d (lambda^alphadot)^e, and add KvLM (5.21) [Q1][F4] = -12 kappa_Q [S^4].",
+    "T5(b): add the EJSS conventions. (5) K = -1/3 Tr(e^{gV} Phibar_I e^{-gV} Phi^I) is the K of (7)-(8), whereas (1) uses K = Tr(Phibar e^{gV} Phi) without N. fn 8: Dbar^2 = -1/4 Dbar_alphadot Dbar^alphadot. Z_B = 1, Z_F = g^2N/32pi^2 are in the text after (12), with C_F of (10). Add the (109) action normalisation and the (110)/(112) propagators.",
+    "Drop the 'EJSS coefficient = -1 x unit' identification (D7 and T5(c)). The project dictionary uses tr(T^aT^b) = 1/2 delta^ab while EJSS uses delta^ab, EJSS K carries -1/3 and Dbar^2 = -1/4 DbarDbar, and the EJSS number is not an arity-one component.",
+    "F1: replace 'acting as Q_1 -> Q_1 + a Q_0' by 'acting as Q_1 -> Q_1 + a[N_alpha, Q_0]', with N_alpha the alpha-weight derivation (ESW Def 2.18). Keep a Q_0 only for the coupling (total-action) direction of F0.",
+    "R4 novelty table: add Zwiebel arXiv:1111.0083 Sec. 2.3 (2.33)-(2.34) and Zwiebel's thesis (its ref. [24]). These give S_{2->1}, Sdot_{2->1}, K_{2->1}, K_{3->1} for the full planar psu(2,2|4) chain, and S_{2->1}, K_{2->1} are one loop by D1. Delete 'psu(1,1|2) only' in the K row. Restate the open part as: 2->2 one-loop S and K beyond su(2|3)/psu(1,1|2), non-planar, gauge-variant letters, and the BV-equivariant form.",
+    "T8: add BMV arXiv:2306.04693 as the direct untwisted one-loop computation that the lowest SU(2) fortuitous class survives (credited in BK v3 p.5, ref. [37]), not only its footnote 5.",
+    "T10: the Qbar_{m alphadot}\u2013Q_1 anticommutation in KvLM is in the paragraph after (5.4), citing [12] = BK. (5.4) itself is the classical action of six Sbar commutant charges on S^4.",
+    "T5(a): CL25 (2.5) has Abar_{ij,kl} with lower indices; the example is unnumbered, after (2.6). Note that CL25's Q_K is only the part inferred from the generalized Konishi anomaly and that other one-loop terms are possible.",
+    "Konishi value: cite B03c (4.49) (E = 6, delta Delta = 3g_YM^2N/(4pi^2)) with the normalisation (1.2), in addition to ch06 rem:c6-konishi.",
+    "T3/T10 and the JSON summary: BK Sec. 3.4.1 says the psl(3|3) descendants of (3.77) are 'Q_1-closed' on Q_0-cohomology, not that Q_1 'vanishes on' them. BK fn 24 says the tree-level psl(3|3) 'might also receive loop corrections'; 'R_1 not computed' is an inference.",
+    "T5(d): the EJSS abstract says the classical/quantum split is 'not possible' in a superconformal scheme, and (3) has no [F]_R term. Quote it that way rather than as merely 'scheme dependent'.",
+    "T11: add CDSW Sec. 3 (after (3.4)): higher-loop contributions to the Konishi anomaly are 'renormalization scheme dependent'."
+   ]
+  }
+ ]
+}

@@ -1,0 +1,616 @@
+{
+ "role": "adversarial auditor, lens: numbers, round 3",
+ "date": "2026-10-28",
+ "scope": [
+  "manuscript/ch00_overview.tex",
+  "manuscript/ch01_classical.tex",
+  "manuscript/ch02_superconformal.tex",
+  "manuscript/ch03_uv_boundary.tex",
+  "manuscript/ch04_counterterms.tex",
+  "manuscript/ch05_operators.tex",
+  "manuscript/ch06_dilatation.tex",
+  "manuscript/ch07_selection_roadmap.tex"
+ ],
+ "agreed_data_used": [
+  "compare/compare.json",
+  "compare/compare_r2.json",
+  "engine_b/results.json (formula_chain_data)",
+  "engine_b/results_r2.json (formula_chains)",
+  "classical/classical_spec.md",
+  "classical/checks.json",
+  "superconformal/verify.json",
+  "superconformal/verify_exhaustive.json",
+  "diagrams/composite/composites.json",
+  "qa/audit_numbers2.json",
+  "qa/audit_theory2.json",
+  "DEFINITIONS_v2.md",
+  "STORY.md"
+ ],
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+ "method": {
+  "tables": "every numeric cell of the tables of ch00 (dilatation), ch04 (two-point, cubic, quartic, QME), ch05 (insertions), ch06 (dilatation) parsed from the .tex source and compared in exact rational arithmetic with compare.json / compare_r2.json (script qa/audit_numbers3_src/tables_vs_data.py, output tables_vs_data_out.json)",
+  "text_and_displays": "every other printed number (displays, proofs, examples, captions, panel letters, graph counts, symmetry factors) read line by line and checked against the data or recomputed by hand",
+  "recomputations": "sums of all tables (sums.py); gauge-bubble numerator of Example ex:c4-gauge contracted symbolically from the printed AAA vertex function (bubble.py: Sum_{mu,nu} K*K equals the printed numerator identically; Laplacians 36, 64, -4; centre values of gauge, gaugino, ghost numerators); the four elementary Schwinger integrals of Lemma lem:c4-integrals (exact pinned integrals by hand, numerical remainders stable at eps = 1e-3, 1e-4, integrals.py); graph (d) of the A|_V two-point function and the four seagull graphs recomputed by hand in the same normalisation; Konishi conversion; all sign/exponent arithmetic of ch01-ch03, ch06, ch07"
+ },
+ "counts": {
+  "table_cells_machine_checked": 345,
+  "table_cell_mismatches": 0,
+  "text_numbers_checked_by_hand": "about 260 (listed per chapter below)",
+  "numeric_mismatches_with_agreed_data": 0,
+  "findings": 6
+ },
+ "per_chapter": {
+  "ch00": [
+   {
+    "lines": "66-67",
+    "printed": "(9/4) eps^-1 [(A|_V,A|_V)+(A|_W,A|_W)] + log eps[-(dA|_V,dA|_V)-(dA|_W,dA|_W)+4(lambda,dslash lambda)-(dc,A^*)]",
+    "data": "compare.json final_tables ICT_quadratic B3=B5 eps 9/4; B1=B4 log -1; B6 4; B7 -1; B2 0",
+    "verdict": "match"
+   },
+   {
+    "lines": "74",
+    "printed": "6,6,10,10,1,1,1,1,8,8,8",
+    "data": "compare_r2 final_tables T1_totals",
+    "verdict": "match"
+   },
+   {
+    "lines": "77-79",
+    "printed": "-27/8 = (27/16) Q int(d^*A,d^*A); I -> I - 27/16 unit int(d^*A,d^*A)",
+    "data": "compare_r2 T2 totals finite -27/8, obstruction 27/16, finite_counterterm",
+    "verdict": "match (27/16 x (-2) = -27/8 recomputed)"
+   },
+   {
+    "lines": "82",
+    "printed": "log eps[4 O - 2 (w1,w2) Sum_w ...] + 2 hbar dim g (w1,w2)/(16 pi^2 eps)",
+    "data": "compare.json partial_delta_ICT (4, -2, 0; vacuum 2)",
+    "verdict": "match"
+   },
+   {
+    "lines": "87-88",
+    "printed": "traceless 1 - 4 unit log eps; trace 1 + 8 unit log eps, -12 hbar dim g/(16 pi^2 eps)",
+    "data": "compare.json O_eps",
+    "verdict": "match (4-2x6 = -8, 2x6 = 12 recomputed)"
+   },
+   {
+    "lines": "91-95",
+    "printed": "weights 1, 3/2, 0; 2(E+w_O+coefficient); -(E+w_O+coefficient) for SW(3)",
+    "data": "DEFINITIONS_v2 item 6/7; compare.json dilatation_component conversion",
+    "verdict": "match"
+   },
+   {
+    "lines": "101-106",
+    "printed": "w_O 2,2,1,1,3/2,0; coefficients 0,-24,-4,-4,-8,-2",
+    "data": "compare_r2 T3 SW3 (engines A and B)",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "110",
+    "printed": "unit = -g^2 N/(32 pi^2); -24 units = 3 g^2 N/(4 pi^2)",
+    "data": "compare_r2 T3 konishi",
+    "verdict": "match (tr_adj = 2N tr; hbar 2N/(16 pi^2 x (-4 hbar/g^2)) = -g^2N/32pi^2; -24 x (-1/32) = 3/4 recomputed)"
+   },
+   {
+    "lines": "57",
+    "printed": "remaining components of arities 1-3 hold for g = su(2) at sampled generators, with a probability bound",
+    "data": "superconformal/verify_exhaustive.json: exhaustive on all basis tuples (62, 1953, 21824) for su(2) and su(3), every g via colour reduction; ch02 Thm thm:c2-master",
+    "verdict": "MISMATCH (finding F1)"
+   },
+   {
+    "lines": "60-62",
+    "printed": "H = d^*d (x) id; (Q(x)1+1(x)Q)P = K_eps; (Q^GF)^2 != 0; (1),(2),(4) hold, (3),(5) fail",
+    "data": "classical_spec section 6, 7",
+    "verdict": "match"
+   }
+  ],
+  "ch01": [
+   {
+    "lines": "32, 38, 57",
+    "printed": "dim W = 4; eigenvalues +-1 of multiplicity 8; (v1 w)^2 = -1, 16/2 = 8",
+    "data": "checks.json 1_gamma Omega4_eigenvalues {1:8,-1:8}",
+    "verdict": "match"
+   },
+   {
+    "lines": "55",
+    "printed": "(-1)^{3+2+1} = 1",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "131, 136, 169",
+    "printed": "action coefficients -1/4, 1/2, 1, 1, 1/2; F_A = dA + 1/2[A^A]; free part",
+    "data": "classical_spec section 4",
+    "verdict": "match"
+   },
+   {
+    "lines": "160, 164",
+    "printed": "-1/4 unique zero; +1/4 and -1/2 nonzero",
+    "data": "checks.json 3_ESW_Lemma3.4",
+    "verdict": "match"
+   },
+   {
+    "lines": "184-186",
+    "printed": "<A,QA> = -1/2 int(dA,dA); eigenvalues -1/2|p|^2 (x9), 0 (x1)",
+    "data": "checks.json 6_hessian_positivity",
+    "verdict": "match"
+   },
+   {
+    "lines": "198-201",
+    "printed": "Q: c -> -dc (-i(p,-)c); A -> -1/2 d^*dA; A^* -> d^*(A^*|_V) (-i(p,A^*)); lambda -> dslash lambda (i rho(p))",
+    "data": "checks.json 4_free_complex; classical_spec section 5",
+    "verdict": "match"
+   },
+   {
+    "lines": "249-250, 277-297",
+    "printed": "cubic -1/2(dA,1/2[A^A]); quartic -1/4(...); AAA -i/2 Sum_cyc; AAAA -1/2 Sum_pairings; odd vertex functions",
+    "data": "checks.json 8_vertex_functions; classical_spec section 8-9",
+    "verdict": "match"
+   },
+   {
+    "lines": "331-332, 341, 345",
+    "printed": "d_A[c,c] = 2[d_Ac,c]; 2[c,[c,lambda]] = [[c,c],lambda]; 2 r1r3r2 (X,[Z,Y]) int(df,Gamma(s1,s2)); r1r2 int([X,Y],(d(f1f2),A^*|_V))",
+    "data": "recomputed (graded signs, r2r3r1 = -r1r3r2)",
+    "verdict": "match"
+   },
+   {
+    "lines": "326",
+    "printed": "su(2) CME and three other sign patterns fail; su(3) CME",
+    "data": "checks.json 2_CME_su2 negative controls; verify_exhaustive classical_master_equation_arity0 su3",
+    "verdict": "match"
+   }
+  ],
+  "ch02": [
+   {
+    "lines": "15, 88-101, 125",
+    "printed": "ad_Delta -2, 0, 0, 0, +2, 0, -1, -1, +1, +1; dims 4,3,3,1,4,15,8,8,8,8; blocks of SW(17)",
+    "data": "verify_exhaustive ad_Delta_eigenvalues_on_basis and subspaces; block eigenvalue d_a - d_b for diag(1,-1|0) recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "19, 108, 120, 341",
+    "printed": "15+15 = 30; 30|32; 4+6+1+4+15; 16+16; 4+3+3+1+4+15 and 8+8+8+8",
+    "data": "verify_exhaustive basis",
+    "verdict": "match"
+   },
+   {
+    "lines": "35, 66-85",
+    "printed": "coefficients 1/4, -1/8; div(2E) = 8; d(v,-) = 4 (x,-)^(v1,-); div v = -8(v1,x); rho(x)rho(v)rho(x) = 2(v,x)rho(x)-(x,x)rho(v); [Delta,Q1] = -Q1, [Delta,Q2] = +Q2",
+    "data": "recomputed; consistent with verify_exhaustive eigenvalues",
+    "verdict": "match"
+   },
+   {
+    "lines": "49, 341",
+    "printed": "rotation coefficient 1; super-Jacobi fails at 0",
+    "data": "verify.json cR = 1; verify_exhaustive negative control (1024 violating pairs)",
+    "verdict": "match"
+   },
+   {
+    "lines": "113-114",
+    "printed": "Killing form 0; derived algebra = all; trivial centre; two 15-dim ideals",
+    "data": "verify_exhaustive (62, 0, 15/15 rank)",
+    "verdict": "match"
+   },
+   {
+    "lines": "127",
+    "printed": "S^(1)(2E) = -2 S^(1)(-E)",
+    "data": "DEFINITIONS_v2 item 7",
+    "verdict": "match"
+   },
+   {
+    "lines": "179, 213, 228-238",
+    "printed": "exponent 1+2+|f|+1; seven signs; (-1)^{|x1|}; exponents 4, 6, 6; shuffle signs -, -, +",
+    "data": "recomputed from eq:c2-dce and the shuffle formula",
+    "verdict": "match"
+   },
+   {
+    "lines": "249, 268, 272-276",
+    "printed": "spin 1/4, Weyl 3/8, A|_W 1/4; dslash(rho(x)Q2) = 4Q2; S^(1)(Delta) weights 2, 3, 0",
+    "data": "verify.json derived_coefficients; 3/8 x 8 = 3, 1/4 x 8 = 2 recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "281-286",
+    "printed": "(1/4); (3/8, 1/4); (1/4, 3/8, 1/4); -1",
+    "data": "verify.json arity1_invariance derived_coefficients",
+    "verdict": "match"
+   },
+   {
+    "lines": "313, 315",
+    "printed": "W-part -(x,x)Gamma|_W; S^(2) = 0 fails on every odd pair",
+    "data": "recomputed; verify_exhaustive 528 of 528; verify.json negative controls",
+    "verdict": "match"
+   },
+   {
+    "lines": "350, 359",
+    "printed": "(k-2)!; ranks 1, 1, 2, 6; 4+3-2 = 5 legs",
+    "data": "verify_exhaustive color_tree_injectivity",
+    "verdict": "match"
+   }
+  ],
+  "ch03": [
+   {
+    "lines": "14-17, 27",
+    "printed": "Q^GF: -2, -d^*, d, -dslash; momentum -2, i iota_p, i p, -i rho(p); unique coefficients -2, -1, 1, -1",
+    "data": "classical_spec section 6; checks.json QGF_coefficients_solved (unique)",
+    "verdict": "match"
+   },
+   {
+    "lines": "35-40, 58, 62, 66",
+    "printed": "slot-by-slot H; adjointness +-2 int(e0,e1)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "86, 90, 94",
+    "printed": "(Q^GF)^2 A^* = 2 d^*(A^*|_V); (Q^GF)^2 c^* = -2 dc^*; Q^GF(1/2 dc) = -dc; -2 int(e0,de1)",
+    "data": "classical_spec section 6; checks.json (QGF)^2 components",
+    "verdict": "match"
+   },
+   {
+    "lines": "108",
+    "printed": "2(-,-)^-1 |p|^-2 in all ten directions; 1/4 int(A,HA)",
+    "data": "checks.json eigenvalues of p^2 P_AA {2/kappa: 10}",
+    "verdict": "match"
+   },
+   {
+    "lines": "152, 159-162, 168, 176, 180, 202, 297",
+    "printed": "scalar factor (1-e^{-r^2/4eps})/(4pi^2 r^2), e^{-eps p^2}/p^2; P table; d_x formula; 1/(16 pi^2 eps); 1/(4 eps); (4 pi eps)^-2 e^{-r^2/4eps}; 1/(4 pi^2 r^2)",
+    "data": "classical_spec section 7; checks.json 7_position_space; recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "349-355, 373, 413",
+    "printed": "b1 = |E|-|V|+1; hbar power; cycle automorphisms 2n",
+    "data": "recomputed",
+    "verdict": "match"
+   }
+  ],
+  "ch04": [
+   {
+    "lines": "71, 81-83",
+    "printed": "Gaussian 1/(16 pi^2 T^2), second moment 1/(2T), -d^*d/(4T)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "91-115",
+    "printed": "1/4 eps^-1 + 1/6 p^2 log eps; -log eps; -1/6 log eps; 1/(2eps), 1/(8eps^2), 1/(12eps^2); pinned values",
+    "data": "recomputed exactly; numerical remainders stable (integrals.py)",
+    "verdict": "match"
+   },
+   {
+    "lines": "123-129",
+    "printed": "plane-wave factors 2, 2, 2(|p|^2(A,A)-(iota,iota)), i(pc,A^*)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "136-170",
+    "printed": "all two-point per-graph entries, 1/|Aut|, totals 9/4, -1, 4, -1",
+    "data": "compare.json ICT_two_point_per_graph, census_Aut",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "186-215",
+    "printed": "gauge bubble: numerator, centre values, Laplacian 36, bracket -9/T, (2t1t2/T^2-5), (10t1t2/T^2+2); -9/4, 19/6, -11/3; -9/8, 19/12, -11/6; -9/16, 19/24, -1/8",
+    "data": "bubble.py (numerator = single contraction of the printed AAA vertex functions); engine_b formula_chain_data C0, C1/2, pole -9/4, log 19/6, -11/3",
+    "verdict": "match (see finding F2 for the sentence on edge assignments)"
+   },
+   {
+    "lines": "224-237",
+    "printed": "gaugino: -16[...], centre 16 t1t2/T^2(p^2(A,A)-2(iota,iota)), Laplacian 64; -4 eps^-1, -16/3; local -1, -4/3",
+    "data": "bubble.py; engine_b C1 -32, C0",
+    "verdict": "match"
+   },
+   {
+    "lines": "246-260",
+    "printed": "ghost: centre -2 t1t2/T^2, Laplacian -4; 1/4, 1/6, 1/3; 1/16, 1/24, 1/8",
+    "data": "bubble.py; engine_b C1 2, C0 2x(x-1)",
+    "verdict": "match"
+   },
+   {
+    "lines": "267-275",
+    "printed": "seagull numerator 6, 6 eps^-1, 3/2",
+    "data": "recomputed (also A|_W loop 12 -> 3, A|_W external 8 -> 2, 10 -> 5/2); engine_b C0 6, 12, 8, 10",
+    "verdict": "match"
+   },
+   {
+    "lines": "282-290",
+    "printed": "(c,A^*): 2i, -2i log eps, -1",
+    "data": "engine_b C0 2i; compare census 12 B7 -1",
+    "verdict": "match"
+   },
+   {
+    "lines": "298-320",
+    "printed": "quadratic counterterm and the sums 3/2+3-9/16-3/4-1+1/16 = 9/4 etc.",
+    "data": "sums.py; compare.json",
+    "verdict": "match"
+   },
+   {
+    "lines": "330",
+    "printed": "multiples 4, 8, -1 of the free terms",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "338, 342",
+    "printed": "superficial degrees 2,1,1,1,1,0; weights 2, 4, 3, 1",
+    "data": "recomputed from Weyl weights",
+    "verdict": "match"
+   },
+   {
+    "lines": "380-472",
+    "printed": "all cubic per-class coefficients, numbers of graphs, 1/|Aut|, totals 6, 6, 10, 10, 1, 1, 1, 1",
+    "data": "compare_r2 T1 per class, FeynArts per_key counts, symmetry_factors",
+    "verdict": "match (coefficients machine-checked; counts and 1/|Aut| by hand)"
+   },
+   {
+    "lines": "484-502",
+    "printed": "Hodge form of [A^A] pairing; Jacobi form; tree vertex (eq:c4-tree4) and its (A|_V)^2(A|_W)^2 restriction",
+    "data": "recomputed; 8 x tree equals compare_r2 eight_times_tree_general_basis",
+    "verdict": "match"
+   },
+   {
+    "lines": "511-597",
+    "printed": "quartic class tables (numbers 3,3,3,6,6,6,3,3 = 33; 2,2,2,3,1,1,1,5,4,1,1,2 = 25; 6,3,6,6,3,3 = 27; 1/|Aut|) and all 9x10, 12x3, 9x8 coefficient matrices with totals and 8 x tree",
+    "data": "compare_r2 T1 per class (classes 7+8 and the two lambda box classes summed where the manuscript merges them), FeynArts per_key",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "609-652",
+    "printed": "field count weights 2, 4, 1; {x xi,x} = x, {x xi,xi} = -xi; multiples 4, 8, 1-2 = -1, 6, 8+2 = 10, 2+1-2 = 1, 1+4-4 = 1, 2-1 = 1, 8",
+    "data": "recomputed; compare_r2 predicted_from_A",
+    "verdict": "match"
+   },
+   {
+    "lines": "664",
+    "printed": "3x4-2x6 = 0; (10-2)/2 = 4; -1+2 = 1",
+    "data": "compare_r2 T1_coupling_direction (beta 0, weights 2,2,4,1)",
+    "verdict": "match"
+   },
+   {
+    "lines": "671, 780",
+    "printed": "-9/2 eps^-1 int(dc,A|_V); -9/4 x (-2) = 9/2",
+    "data": "compare_r2 T2 QME2-CT +9/2",
+    "verdict": "match"
+   },
+   {
+    "lines": "756-766, 771-780",
+    "printed": "QME table and totals 0, -27/8; -81/24; 27/16 x (-2)",
+    "data": "compare_r2 T2 rows QME2-a,c,b,d,e,CT",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "785-789",
+    "printed": "G = 27/16; direct route -9/2, -27/8; log 2 cancellation",
+    "data": "compare_r2 cross_check_route; audit_numbers2 T2",
+    "verdict": "match"
+   },
+   {
+    "lines": "796-808",
+    "printed": "27/16; -27/8 + 27/16 x 2 = 0",
+    "data": "compare_r2 finite_counterterm",
+    "verdict": "match"
+   },
+   {
+    "lines": "820-837",
+    "printed": "-8 int(d^*A|_V, iota_{v1} A|_V); 1/4 div v; 1/2 grad div v; div v = -8(v1,x)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "63, 131, 146, 160, 378-464, 505-570, 743-745",
+    "printed": "panel letters of every composite figure",
+    "data": "composites.json panel graph_ids",
+    "verdict": "match"
+   }
+  ],
+  "ch05": [
+   {
+    "lines": "13",
+    "printed": "Weyl weights 0, 1, 3/2, 3, 5/2, 4",
+    "data": "DEFINITIONS_v2",
+    "verdict": "match"
+   },
+   {
+    "lines": "13 (\"All operators of this chapter have i=0\")",
+    "printed": "i = 0",
+    "data": "the ghost letter int omega (X,c) of Prop prop:c5-letters has cohomological degree +1 (functional convention of ch04 l.362) / -1 (field convention of ch07 l.249)",
+    "verdict": "MISMATCH (finding F3)"
+   },
+   {
+    "lines": "98, 107-119",
+    "printed": "unit negative; quartic, cubic, O vertex functions",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "155-186",
+    "printed": "sphere area 2 pi^2; 1/(8 pi^2); 1/(2|E|); -1/(16 pi^2)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "215-224",
+    "printed": "20 + 1; 1/6; 6",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "229-241",
+    "printed": "six graphs; degrees 2, 1, 0",
+    "data": "compare.json insertion_matched O1-O6; composites insertion_O1_O6",
+    "verdict": "match"
+   },
+   {
+    "lines": "248-258",
+    "printed": "insertion table (vacuum 2 hbar dim g (w1,w2)/16pi^2; -2, 2; 2, -2; 2; totals 4, -2, 0)",
+    "data": "compare.json partial_delta_ICT per graph",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "273-370",
+    "printed": "graph (a) 2 hbar dim g (w1,w2)/(16 pi^2 eps); (e) -1/2(-tr)[2,-1,-1], hbar/2 x 2^2 x 2 x 1/2, result 2, -2; (f) i/2 x (-i/2) = 1/4, 2^3/4, average -2 tr, result 2; (c) -4 -> -2; (d) i i = -1, 1/4 sphere average, -4 -> +2",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "379-404",
+    "printed": "4, -2, 2; 1 - 4 unit; 1 + 8 unit, -12; 4-12 = -8; 2 - (1/6) 12 = 0; 2 x 6 = 12",
+    "data": "compare.json O_eps; recomputed",
+    "verdict": "match"
+   }
+  ],
+  "ch06": [
+   {
+    "lines": "13-18",
+    "printed": "Weyl weights 0, 1, 3/2, 3, 5/2, 4 = half of 0, 2, 3",
+    "data": "DEFINITIONS_v2 item 6",
+    "verdict": "match"
+   },
+   {
+    "lines": "36, 42, 74",
+    "printed": "lambda^{w-4}; lambda^-2; exponents 0 (Q) and 2 (Q^GF); density weights 4",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "141-146",
+    "printed": "weights 1, 2, 4, -2, -4, -1; operator multiples 4, 2, 2, 4, 1",
+    "data": "compare_r2 T3 psi_weights",
+    "verdict": "match"
+   },
+   {
+    "lines": "233-247",
+    "printed": "table (w_O, log coefficient, bracket, coefficient) and 2(4-4) = 0, 2(-8-4) = -24, ...",
+    "data": "compare.json gamma, compare_r2 T3",
+    "verdict": "match (machine-checked)"
+   },
+   {
+    "lines": "252",
+    "printed": "longitudinal part of the letter A|_V carries 0",
+    "data": "compare_r2 T3 engine_B_only; compare_r2 unresolved: not cross-checked, outside the agreed table",
+    "verdict": "UNAGREED (finding F4)"
+   },
+   {
+    "lines": "257-261, 279",
+    "printed": "tr_adj = 2N tr; -g^2N/(32 pi^2); 3 g^2N/(4 pi^2); dimension 2 + 3g^2N/(4pi^2); twenty traceless; coefficients 0, -24, -4, -4, -8, -2",
+    "data": "compare_r2 T3 konishi; recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "288-299",
+    "printed": "lambda d/dlambda P(lambda^2 eps) = -2 eps L_eps; 2 eps^-1 (eps^-1-coefficient)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "312-344",
+    "printed": "per-edge limits 2O-2(w1,w2)tr, 4/3 O, -2 and 4/3 (w1,w2) int(A|_V,A|_V); 9/4; -1 x 2|p|^2 x 2/|p|^2 = -4; -8 O; table 4/-20, 4/4, 0, -16, -8/-32, +8, 0/-24; -16 = Q-term - 8; letter: -4, -8, 2, -4, +4, -4",
+    "data": "recomputed; final column equals compare (0, -24, -4)",
+    "verdict": "match"
+   }
+  ],
+  "ch07": [
+   {
+    "lines": "58-75",
+    "printed": "3/4 div v; 2E weights 2, 3, 0, 6, 5, 8",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "172-204",
+    "printed": "[v.,Q^GF] = div v on A^*|_W; [v.,Q^GF] = -4 Q^GF; [v.,H] = -4H; 4 eps L_eps; line-by-line arrows (8A^*, 2d^*A+2d^*A, -4 dc^*, 2-3+5)",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "235, 239, 244",
+    "printed": "invertibility |p|^2|a|^2; -2(df1,df2); orders |y|^-4, |y|^-5",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "256-262, 267, 280-293",
+    "printed": "weights w_O +- 1/2, 4Q2, data weights -1/2, +1/2, -1, 0, +1; 5/2; 9/2; End(W) = 1+15; 20; 3/2",
+    "data": "recomputed",
+    "verdict": "match"
+   },
+   {
+    "lines": "300-310",
+    "printed": "1/4 div v(x0) = -2(v1,x0); {0,0,1/2,-1}; |O| in {0,0,0,-1}; trace -8(v1,x0)",
+    "data": "recomputed; see finding F5 for the sign of |O| of the ghost letter",
+    "verdict": "match up to convention (F5)"
+   },
+   {
+    "lines": "317-324",
+    "printed": "1/8 div v; (-1)^{|O|+1}; [K,P] = (v1,v2) Delta + rotation",
+    "data": "recomputed from eq:c2-dce and [v,v'] = v(v')-v'(v)",
+    "verdict": "match"
+   },
+   {
+    "lines": "331-343",
+    "printed": "ad_Delta -2, 0, 0, 0, -1, -1, +1, +1, +2; output weights; -4 eps d/deps",
+    "data": "verify_exhaustive; Prop prop:c7-dil",
+    "verdict": "match"
+   },
+   {
+    "lines": "350, 384, 392, 411",
+    "printed": "27/16; five special-edge graphs; 25 = 21 + 4 graphs (a)-(y), (t),(u) with a c-A^* line; one / three numbers; (log eps)^2 integral",
+    "data": "compare.json feynarts_boundary_counts (21, 4); composites route_ii_Keps; recomputed",
+    "verdict": "match"
+   }
+  ]
+ },
+ "findings": [
+  {
+   "id": "F1",
+   "severity": "major",
+   "location": "manuscript/ch00_overview.tex line 57 (Results of Step 1, item \"Chapter 2\")",
+   "printed": "satisfies its master equation for every g on the Poincare supersymmetry subalgebra, in arity 0, in arity 3 with at most one or with three odd arguments, and in every arity >= 4; the remaining components, of arities 1 to 3, hold for g = su(2) at sampled generators, with the probability bound stated there.",
+   "data": "superconformal/verify_exhaustive.json: arity 1, 2, 3 components exact on every basis tuple (62 / 1953 / 21824) for su(2) and for su(3), extended to every g by the colour-reduction lemma (tree ranks 1, 1, 2, 6); ch02 Thm thm:c2-master states the master equation for every g; ch02 contains no probability bound.",
+   "fix": "Replace by: \"satisfies its master equation for every Lie algebra g with a nondegenerate invariant pairing: in arity 0 and arities >= 4, and in arity 3 with at most one or three odd arguments, structurally; in arities 1, 2 and in arity 3 with two odd arguments by exact evaluation on every tuple of basis elements for su(2) and su(3), extended to every g by a colour-reduction lemma.\""
+  },
+  {
+   "id": "F2",
+   "severity": "minor",
+   "location": "manuscript/ch04_counterterms.tex line 188 (Example ex:c4-gauge, \"Numerator algebra\")",
+   "printed": "Contracting the two vertex functions along the edges and summing over the two assignments of the edges, numerator = ...",
+   "data": "The displayed numerator equals exactly one contraction Sum_{mu,nu} K(A(p);e_mu,-p1;e_nu,p1-p) K(A(-p);e_mu,p1;e_nu,p-p1) of the printed AAA vertex function (symbolic check, ratio 1); engine_b formula_chain_data word STr[P Pi d2I_3 P Pi d2I_3] is a single word. With the stated prefactor hbar/2 = hbar/|Aut| this single contraction gives the agreed -9/16, 19/24, -1/8 (and in the same normalisation graph (d): -3/4, -1/2, 0). Summing over the two assignments in addition to 1/|Aut| = 1/2 would double the graph.",
+   "fix": "Delete \"and summing over the two assignments of the edges\" (the second assignment is the automorphism counted by 1/|Aut| = 1/2), or write \"one assignment of the edges\"."
+  },
+  {
+   "id": "F3",
+   "severity": "minor",
+   "location": "manuscript/ch05_operators.tex line 13 (\"All operators of this chapter have i=0\"); hypotheses \"local operator of degree 0\" in ch05 Prop prop:c5-thmB, prop:c5-local, ch06 Lemma lem:c6-ct, Thm thm:c6-CS, Thm thm:c6-dil; rows \"int omega (X,c)\" in ch06 table (line 241) and \"letter c\" in ch00 table (line 106)",
+   "printed": "i = 0 for every operator; the ghost letter is listed under theorems for degree-0 operators",
+   "data": "The ghost letter int omega (X,c) is linear in c and has cohomological degree +1 as a functional (ch04 Lemma lem:c4-enumeration: \"As functionals, c has degree +1\"); its coefficient -2 agrees with compare_r2 T3 (both engines), only the stated degree hypothesis excludes it.",
+   "fix": "Replace \"All operators of this chapter have i=0\" by \"The scalar bilinears and the letters iota_w A, A|_V, lambda have i = 0; the ghost letter int omega (X,c) has i = 1 and delta of degree -1\", and state Props c5-thmB/c5-local and the ch06 results for homogeneous O of any degree (or mark the c row as degree 1)."
+  },
+  {
+   "id": "F4",
+   "severity": "minor",
+   "location": "manuscript/ch06_dilatation.tex line 252 (Remark rem:c6-AV)",
+   "printed": "\"the transverse part of A|_V carries -4 units and the longitudinal part, which is the image of c under Q, carries 0\"",
+   "data": "compare_r2 T3 engine_B_only \"letter A|_V (longitudinal part)\" = 0; compare_r2 unresolved: \"engine B only, not cross-checked ... outside the agreed DEFINITIONS_v2 table\" (engine A gives no entry; engine B round 1 calls the longitudinal projection nonlocal, and the printed functional int omega (X, iota_v(d (d^*d)^{-1} d^*A|_V)) is nonlocal).",
+   "fix": "Either cross-check the 0 with a second engine before printing it as a result, or phrase it as the cancellation mechanism without a numerical claim; note that the longitudinal projection is a nonlocal functional."
+  },
+  {
+   "id": "F5",
+   "severity": "note",
+   "location": "manuscript/ch07_selection_roadmap.tex line 249 (definition of ghost degree) vs line 262 and line 302",
+   "printed": "ghost degree = sum of field degrees (c: -1; A^*, lambda^*: +1; c^*: +2); |O| in {0,0,0,-1} for the letters (c letter -1); proof of Prop prop:c7-select: \"(d_CE+Q)O[infty] has degree |O|+1\"",
+   "data": "ch04 line 362 and ch07 Def def:c7-component (delta of degree -|O|) use the functional degree (c: +1, A^*: -1, c^*: -2); \"(d_CE+Q)O has degree |O|+1\" holds in the functional convention, where the c letter has |O| = +1. All selection statements are invariant under the global sign flip, so no conclusion changes.",
+   "fix": "Use one convention: define the ghost degree of a monomial as the degree of the functional (c: +1, A^*, lambda^*: -1, c^*: -2) and print |O| in {0,0,0,1} in Cor cor:c7-K."
+  },
+  {
+   "id": "F6",
+   "severity": "note",
+   "location": "manuscript/ch04_counterterms.tex line 844 (Remark rem:c4-method) vs manuscript/ch05_operators.tex line 409 (Remark rem:c5-verification)",
+   "printed": "ch04: \"The colour factors were reduced exactly for a general simple g in one evaluation and for g = su(2) in the other\"; ch05: both evaluations \"in explicit realisations of ... g = su(2) and su(3)\"",
+   "data": "engine_b/results.json conventions: colour reduced to c_adj, \"checked on su(2), su(3)\"; compare.json engineA_su2_equals_su3 = true. The two remarks describe the same two evaluations differently; no printed coefficient is affected.",
+   "fix": "Make the two method remarks state the same thing (one evaluation: general simple g with the reduction checked on su(2), su(3); the other: su(2) and su(3), identical rational multiples)."
+  }
+ ],
+ "self_checks": "No chapter was written or modified by this audit, so the convert.py / KaTeX dry-run / xelatex chapter checks do not apply. Scripts and outputs: qa/audit_numbers3_src/{tables_vs_data.py, tables_vs_data_out.json, sums.py, bubble.py, integrals.py, make_audit.py}; each run < 0.2 GB, < 1 min, one process at a time; no Wolfram kernel; nothing left running.",
+ "verdict": "Every coefficient printed in ch00-ch07 agrees with the agreed data (345 table cells machine-checked with 0 mismatches; all remaining displayed numbers, sums, conversions and sign arithmetic recomputed with 0 numerical disagreements). One major statement mismatch (F1: ch00 misstates the verification status of the Chapter 2 master equation as su(2)-sampled with a probability bound, while ch02 and the data establish it exhaustively for every g), two minor numerical-context issues (F2 factor-2 wording in Example ex:c4-gauge; F3 degree-0 hypothesis versus the degree-1 ghost letter), one unagreed printed number (F4: longitudinal A|_V letter coefficient 0, engine B only), and two notes (F5 ghost-degree sign convention, F6 inconsistent method remarks)."
+}

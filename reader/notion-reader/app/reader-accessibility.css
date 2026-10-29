@@ -1,0 +1,37 @@
+/* Layout and touch targets; colours inherit the current reader theme. */
+.reader-player-heading { display: none; }
+#reader-show-narration { flex-shrink: 0; min-height: 44px; padding: 6px 12px; }
+body:not(.floating):not(.controls-only) .reader-accessible-player {
+  bottom: var(--reader-bottom-inset, 0px);
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+#workspace { padding-bottom: calc(var(--reader-player-space, var(--player, 120px)) + 28px); }
+.reader-player-backdrop {
+  position: fixed; inset: 0; z-index: 8999;
+  background: rgb(0 0 0 / .18);
+}
+body.reader-player-expanded .reader-accessible-player {
+  position: fixed !important; z-index: 9000 !important;
+  top: calc(var(--reader-visible-top, 0px) + 16px) !important; bottom: auto !important;
+  left: 16px !important; right: 16px !important;
+  width: auto !important; max-width: 640px; margin: 0 auto;
+  max-height: calc(var(--reader-visible-height, 100dvh) - 32px);
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: 16px !important; border: 1px solid var(--line, #ddd); border-radius: 16px;
+  background: var(--paper, #fffdf9); color: var(--ink, #1d2024);
+  box-shadow: 0 16px 60px rgb(0 0 0 / .22);
+}
+body.reader-player-expanded .reader-player-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+.reader-player-heading button { min-height: 44px; padding: 8px 14px; border-radius: 8px; }
+body.reader-player-expanded .reader-accessible-player :is(button, select) { min-height: 44px !important; min-width: 44px; font-size: 14px !important; }
+body.reader-player-expanded .reader-accessible-player .play { width: 48px !important; height: 48px !important; }
+body.reader-player-expanded .player-row { display: flex; flex-wrap: wrap; gap: 12px !important; }
+body.reader-player-expanded #seek { flex: 1 0 100%; width: 100%; height: 36px !important; order: 10; }
+body.reader-player-expanded .caption-row p { max-height: 8em !important; overflow-y: auto; }
+@media (pointer: coarse) {
+  body:not(.floating):not(.controls-only) .reader-accessible-player :is(button, select) { min-height: 44px !important; min-width: 44px; }
+  body:not(.floating):not(.controls-only) .reader-accessible-player .play { width: 44px !important; height: 44px !important; }
+  body:not(.floating):not(.controls-only) .reader-accessible-player #seek { height: 30px !important; }
+  body:not(.floating):not(.controls-only) .reader-accessible-player .player-row { flex-wrap: wrap; row-gap: 6px !important; }
+}
+@media print { #reader-show-narration, .reader-player-backdrop, .reader-accessible-player { display: none !important; } }

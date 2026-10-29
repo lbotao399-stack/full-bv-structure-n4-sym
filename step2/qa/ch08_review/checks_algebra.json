@@ -1,0 +1,144 @@
+{
+ "A1_block_convention_reproduces_ch02_adDelta_table": {
+  "passed": true
+ },
+ "A2_ad_diag(1_4,0_4)_equals_B_of_ch08": {
+  "passed": false,
+  "ad_diag_1_0": {
+   "S+(x)W in Sigma": -1.0,
+   "S-(x)W* in Sigma": 1.0,
+   "S-(x)W in Sigma*": -1.0,
+   "S+(x)W* in Sigma*": 1.0
+  },
+  "B_ch08": {
+   "S+(x)W in Sigma": 1,
+   "S-(x)W in Sigma*": 1,
+   "S-(x)W* in Sigma": -1,
+   "S+(x)W* in Sigma*": -1
+  }
+ },
+ "A3_ad_diag(0_4,1_4)_equals_B_of_ch08": {
+  "passed": true,
+  "ad_diag_0_1": {
+   "S+(x)W in Sigma": 1.0,
+   "S-(x)W* in Sigma": -1.0,
+   "S-(x)W in Sigma*": 1.0,
+   "S+(x)W* in Sigma*": -1.0
+  }
+ },
+ "C1_relation_(X^dag)_1=(X_1)^adj+[(X^dag)_0,G^-1G_1]_solves_conj(X)^T G=G Y_to_O(h^2)": {
+  "passed": true,
+  "residual_over_h2": 77.03363129472217
+ },
+ "C2_transformation_G->g^dag G g,X->g^-1 X g_preserves_relation": {
+  "passed": true,
+  "residual_over_h2": 77.05417338126858
+ },
+ "C3_G^-1G_1_shifts_by_psi+psi^adj": {
+  "passed": true,
+  "err": 0.009647911027432593
+ },
+ "C4_X_1_shifts_by_[X_0,psi]_(correct)": {
+  "passed": true,
+  "note": "exact first-order expansion: X_1 -> X_1 + [X_0,psi] (symbolic 2x2); finite-difference err was O(h)"
+ },
+ "C5_X_1_shifts_by_[psi,X_0]_(ch08_as_printed)": {
+  "passed": false,
+  "err": 67.56072208496391,
+  "note": "fails: the printed sign is opposite to the exact first-order expansion"
+ },
+ "C6_printed_rules_(X1+[psi,X0],M+psi+psi^adj)_covariant": {
+  "passed": false,
+  "defect": 177.5718014073325
+ },
+ "C7_corrected_rules_(X1+[X0,psi],M+psi+psi^adj)_covariant": {
+  "passed": true,
+  "defect": 2.8328097037883047e-14
+ },
+ "C8_IP-P1_rules_(X1+[Z,X0],M-Z-Z^adj)_covariant": {
+  "passed": true,
+  "defect": 3.3144387764423695e-14
+ },
+ "C9_outer_direction_a_real": {
+  "passed": true,
+  "defect": 16.14162478300296
+ },
+ "C9_outer_direction_a_imaginary": {
+  "passed": true,
+  "defect": 3.0871138198657007e-15
+ },
+ "C9_outer_direction_a_generic": {
+  "passed": true,
+  "defect": 6.917839192715554
+ },
+ "D1_C_is_time_-pi/4_flow_of_P_n-K_n": {
+  "passed": true,
+  "max_err": 4.081202338899478e-15
+ },
+ "D2_C_maps_half_space_into_unit_ball": {
+  "passed": true
+ },
+ "D3_C_r_n_C^-1_equals_inversion": {
+  "passed": true,
+  "max_err": 9.992007221626409e-16
+ },
+ "E1_|d^k P(eps,T)|<=|d^k P(0,inf)|_radial_k<=3_and_Hessian": {
+  "passed": false,
+  "max_ratio": {
+   "0": 0.9048013033873292,
+   "1": 0.9854679835762262,
+   "2": 1.0108844266589125,
+   "3": 1.0598682604658298,
+   "hess_transverse": 0.9854679835762263
+  }
+ },
+ "I1_a_k_a_l=a_{k+l}binom(k+l,k)(-1)^{kl}": {
+  "passed": true,
+  "a_0_to_4": [
+   "1",
+   "1",
+   "-1/2",
+   "-1/6",
+   "1/24"
+  ]
+ },
+ "J1_log_form_solves_scaling_identity": {
+  "passed": true
+ },
+ "K1_unit_su(2)=-g^2N/(32pi^2)": {
+  "passed": true,
+  "unit": -0.005129384921893351,
+  "expected": -0.005129384921893351,
+  "konishi_gamma_from_minus24_units": 0.12310523812544041,
+  "expected_3g2N_over_4pi2": 0.12310523812544041
+ },
+ "K1_unit_su(3)=-g^2N/(32pi^2)": {
+  "passed": true,
+  "unit": -0.007694077382840028,
+  "expected": -0.007694077382840026,
+  "konishi_gamma_from_minus24_units": 0.18465785718816066,
+  "expected_3g2N_over_4pi2": 0.18465785718816063
+ },
+ "K1_unit_su(4)=-g^2N/(32pi^2)": {
+  "passed": true,
+  "unit": -0.0102587698437867,
+  "expected": -0.010258769843786701,
+  "konishi_gamma_from_minus24_units": 0.24621047625088077,
+  "expected_3g2N_over_4pi2": 0.24621047625088083
+ },
+ "E2_T_infinity_radial_derivative_ratio_max": {
+  "passed": true,
+  "max_ratio": {
+   "0": 1.0000000000000002,
+   "1": 1.0,
+   "2": 1.0000000000000004,
+   "3": 1.0000000000000004,
+   "4": 1.0000000000000004
+  }
+ },
+ "D4_Ad(C)=C_*=exp(+pi/4 ad_{P_n-K_n})": {
+  "passed": true,
+  "err_plus": 8.55634263680229e-11,
+  "err_minus": 4.626099343926742
+ }
+}

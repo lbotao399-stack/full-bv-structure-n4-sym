@@ -1,0 +1,1314 @@
+{
+ "file": "step2/theory/conjugation_checks.py",
+ "tex": "step2/theory/conjugation.tex",
+ "sections": {
+  "S1": [
+   {
+    "id": "A1",
+    "check": "involution (X^dag)^dag = X on all 62 basis elements, radial, c=-1",
+    "value": "failures 0",
+    "passed": true
+   },
+   {
+    "id": "A2",
+    "check": "[X,Y]^dag = [Y^dag,X^dag] on all 3844 ordered basis pairs, radial, c=-1",
+    "value": "violations 0",
+    "passed": true
+   },
+   {
+    "id": "A1",
+    "check": "involution (X^dag)^dag = X on all 62 basis elements, radial, c=+1",
+    "value": "failures 0",
+    "passed": true
+   },
+   {
+    "id": "A2",
+    "check": "[X,Y]^dag = [Y^dag,X^dag] on all 3844 ordered basis pairs, radial, c=+1",
+    "value": "violations 0",
+    "passed": true
+   },
+   {
+    "id": "A1",
+    "check": "involution (X^dag)^dag = X on all 62 basis elements, OS n=e_0, c=+1",
+    "value": "failures 0",
+    "passed": true
+   },
+   {
+    "id": "A2",
+    "check": "[X,Y]^dag = [Y^dag,X^dag] on all 3844 ordered basis pairs, OS n=e_0, c=+1",
+    "value": "violations 0",
+    "passed": true
+   },
+   {
+    "id": "A1",
+    "check": "involution (X^dag)^dag = X on all 62 basis elements, OS n=(3/5,0,4/5,0), c=+1",
+    "value": "failures 0",
+    "passed": true
+   },
+   {
+    "id": "A2",
+    "check": "[X,Y]^dag = [Y^dag,X^dag] on all 3844 ordered basis pairs, OS n=(3/5,0,4/5,0), c=+1",
+    "value": "violations 0",
+    "passed": true
+   },
+   {
+    "id": "A3",
+    "check": "control: odd phase c = i violates the anti-automorphism (odd-odd pairs)",
+    "value": "violations 148/400",
+    "passed": true
+   },
+   {
+    "id": "A4",
+    "check": "control: v -> +I_*(vbar) (an automorphism) violates the anti-automorphism (even-even pairs)",
+    "value": "violations 146/400",
+    "passed": true
+   },
+   {
+    "id": "A5",
+    "check": "v -> -(-I)_*(vbar) (inversion composed with x->-x) is also an anti-automorphism of the even part",
+    "value": "violations 0",
+    "passed": true
+   },
+   {
+    "id": "A6",
+    "check": "radial: images of the named subspaces (Q^dag in S, P^dag in K, ...)",
+    "value": {
+     "P": [
+      "K"
+     ],
+     "K": [
+      "P"
+     ],
+     "M": [
+      "M"
+     ],
+     "Mbar": [
+      "Mbar"
+     ],
+     "Delta": [
+      "Delta"
+     ],
+     "R": [
+      "R"
+     ],
+     "Q": [
+      "S"
+     ],
+     "Qbar": [
+      "Sbar"
+     ],
+     "Sbar": [
+      "Qbar"
+     ],
+     "S": [
+      "Q"
+     ]
+    },
+    "passed": true
+   },
+   {
+    "id": "A7",
+    "check": "OS (n=e_0): images of the named subspaces",
+    "value": {
+     "P": [
+      "P"
+     ],
+     "K": [
+      "K"
+     ],
+     "M": [
+      "Mbar"
+     ],
+     "Mbar": [
+      "M"
+     ],
+     "Delta": [
+      "Delta"
+     ],
+     "R": [
+      "R"
+     ],
+     "Q": [
+      "Qbar"
+     ],
+     "Qbar": [
+      "Q"
+     ],
+     "Sbar": [
+      "S"
+     ],
+     "S": [
+      "Sbar"
+     ]
+    },
+    "passed": true
+   },
+   {
+    "id": "A8",
+    "check": "radial: P_v^dag = -K_vbar, Delta^dag = Delta, rotation^dag = -rotationbar, R^dag = -Rbar (basis)",
+    "value": "26/26",
+    "passed": true
+   },
+   {
+    "id": "A9",
+    "check": "radial: Delta-coefficient of [X, X^dag] / (X, C X) for all 32 odd basis X (Delta = 2E)",
+    "value": [
+     "-1/2"
+    ],
+    "passed": true
+   },
+   {
+    "id": "A10",
+    "check": "OS n=e_0: coefficient of the translation P_n in [X, X^dagTheta] / (X, C X) for the 16 basis X in Sigma",
+    "value": [
+     "1"
+    ],
+    "passed": true
+   }
+  ],
+  "S2": [
+   {
+    "id": "G1",
+    "check": "d/dt C_t(x) = (P_n - K_n)(C_t(x)) (sample point, t = 3/10, 30 digits)",
+    "value": [
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "passed": true
+   },
+   {
+    "id": "G2",
+    "check": "C_{pi/4}(x) = (2x + (1-(x,x)-2(n,x)) n)/|x-n|^2, C_{-pi/4}(x) = (2x + ((x,x)-1-2(n,x)) n)/|x+n|^2",
+    "value": [
+     "Matrix([[0], [0], [0], [0]])",
+     "Matrix([[0], [0], [0], [0]])"
+    ],
+    "passed": true
+   },
+   {
+    "id": "G3",
+    "check": "|C_{+-pi/4}(x)|^2 = 1 for (n,x) = 0",
+    "value": [
+     "1",
+     "1"
+    ],
+    "passed": true
+   },
+   {
+    "id": "G4",
+    "check": "C_{pi/4} C_{-pi/4} = id;  C_{pi/4} r_n C_{pi/4}^{-1} = I and C_{-pi/4} r_n C_{-pi/4}^{-1} = I (exact)",
+    "value": [
+     true,
+     true,
+     true
+    ],
+    "passed": true
+   },
+   {
+    "id": "G5",
+    "check": "|C_{pi/4}(s n)|^2 and |C_{-pi/4}(s n)|^2 for s > 0 (outside / inside the unit ball)",
+    "value": [
+     "(s**2 - 1)**2/(s - 1)**4",
+     "(s**2 - 1)**2/(s + 1)**4"
+    ],
+    "passed": true
+   },
+   {
+    "id": "G6",
+    "check": "C_{pi/4}(-n) = 0, C_{-pi/4}(n) = 0",
+    "value": [
+     "[0, 0, 0, 0]",
+     "[0, 0, 0, 0]"
+    ],
+    "passed": true
+   }
+  ],
+  "S3": [
+   {
+    "id": "C1",
+    "check": "spectrum of ad_{P_n - K_n} (compact generator)",
+    "value": [
+     -2.0,
+     -1.0,
+     -0.0,
+     1.0,
+     2.0
+    ],
+    "passed": true
+   },
+   {
+    "id": "C2",
+    "check": "C_{pi/4}: Ad = exp(-pi/4 ad), OS c_Theta=+1  ->  radial c=+1",
+    "value": "2.6e-16",
+    "passed": true
+   },
+   {
+    "id": "C2",
+    "check": "C_{pi/4}: Ad = exp(-pi/4 ad), OS c_Theta=-1  ->  radial c=-1",
+    "value": "2.6e-16",
+    "passed": true
+   },
+   {
+    "id": "C3",
+    "check": "C_{pi/4}: Ad = exp(-pi/4 ad) equals the pushforward by the map on all conformal basis fields",
+    "value": "4.0e-10",
+    "passed": true
+   },
+   {
+    "id": "C2",
+    "check": "C = C_{-pi/4} (the map of the tex): Ad = exp(+pi/4 ad), OS c_Theta=+1  ->  radial c=-1",
+    "value": "2.6e-16",
+    "passed": true
+   },
+   {
+    "id": "C2",
+    "check": "C = C_{-pi/4} (the map of the tex): Ad = exp(+pi/4 ad), OS c_Theta=-1  ->  radial c=+1",
+    "value": "2.6e-16",
+    "passed": true
+   },
+   {
+    "id": "C3",
+    "check": "C = C_{-pi/4} (the map of the tex): Ad = exp(+pi/4 ad) equals the pushforward by the map on all conformal basis fields",
+    "value": "3.3e-10",
+    "passed": true
+   },
+   {
+    "id": "C4",
+    "check": "stored structure constants (superconformal/out/psl44_structure_constants.json) = realised brackets (spot check)",
+    "value": "0.0e+00 on 117 pairs",
+    "passed": true
+   },
+   {
+    "id": "C5",
+    "check": "B (+1 on S_+(x)W and S_-(x)W, -1 on S_-(x)W^* and S_+(x)W^*) is a derivation of psl(4|4)",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "C6",
+    "check": "X -> exp(log2 B)(X^dag): involution and anti-automorphism on all ordered basis pairs",
+    "value": "0.0e+00, 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "C6",
+    "check": "X -> (-1)^F(X^dag): involution and anti-automorphism on all ordered basis pairs",
+    "value": "0.0e+00, 0.0e+00",
+    "passed": true
+   }
+  ],
+  "S4": [
+   {
+    "id": "F0",
+    "check": "dC and d(C^-1) equal Omega times the stated products of reflections (finite differences)",
+    "value": "1.7e-10",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field A",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field c",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field lam",
+    "value": "s_lam(radial) = + s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field As",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field ls",
+    "value": "s_lam(radial) = + s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C_{pi/4} for the field cs",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field A",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field c",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field lam",
+    "value": "s_lam(radial) = - s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field As",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field ls",
+    "value": "s_lam(radial) = - s_lam(OS)",
+    "passed": true
+   },
+   {
+    "id": "F1",
+    "check": "composite through C = C_{-pi/4} for the field cs",
+    "value": "s_lam(radial) = both s_lam(OS)",
+    "passed": true
+   }
+  ],
+  "S5": [
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: YM quadratic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "4.4e-15",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: YM cubic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.8e-15",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: YM quartic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.5e-14",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: (lam,dslash lam)/2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "7.4e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: lam lam A|V  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.5e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: lam lam A|perp (Yukawa)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.8e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: (dc,A*)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "4.6e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: ([A|V,c],A*|V)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "7.3e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: ([A|perp,c],A*|perp)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: ([c,lam],lam*)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.7e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S: ([c,c],c*)/2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even P  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.8e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even M  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "3.8e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even Delta  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.2e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even K  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "7.9e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even R  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.9e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 even all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.0e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 odd Sigma  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.0e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 odd Sigma*  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "4.4e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S1 odd all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.1e-15",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS, s_lam=+1, c_Theta=+1 (physical, half space (n,x)>0): S2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.0e-15",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS control: s_lam=+1, c_Theta=-1: S1 odd Sigma  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS control: s_lam=+1, c_Theta=-1: S1 odd Sigma*  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "OS control: s_lam=+1, c_Theta=-1: S1 odd all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: YM quadratic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "8.1e-12",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: YM cubic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.7e-14",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: YM quartic  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.1e-15",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: (lam,dslash lam)/2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.6e-14",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: lam lam A|V  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.3e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: lam lam A|perp (Yukawa)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "4.6e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: (dc,A*)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "5.9e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: ([A|V,c],A*|V)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "3.1e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: ([A|perp,c],A*|perp)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.6e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: ([c,lam],lam*)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.7e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: ([c,c],c*)/2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.7e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S: YM quadratic WITHOUT the total derivative (control)  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.8e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even P  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.3e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even M  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.5e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even Delta  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even K  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.9e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even R  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "4.3e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 even all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "3.8e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 odd Sigma  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "1.9e-11",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 odd Sigma*  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "7.1e-12",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S1 odd all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "6.4e-12",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial, s_lam=-1, c=-1 (physical, unit ball): S2  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "7.2e-16",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial control: s_lam=-1, c=+1: S1 odd Sigma  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial control: s_lam=-1, c=+1: S1 odd Sigma*  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "D",
+    "check": "radial control: s_lam=-1, c=+1: S1 odd all  [S^Theta=S; S1(X)^Theta=(-1)^|X| S1(X^dag); S2(X,Y)^Theta=S2(Y^dag,X^dag)]",
+    "value": "2.0e+00",
+    "passed": true
+   }
+  ],
+  "S6": [
+   {
+    "id": "K",
+    "check": "s_lam=+1: Theta^2 = 1",
+    "value": "2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: H = [Q,QGF] = |p|^2",
+    "value": "2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: Theta Q Theta^-1 = (-1)^F Q",
+    "value": "4.4e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: Theta QGF Theta^-1 = -(-1)^F QGF",
+    "value": "4.4e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: <Theta e0,Theta e1> = -conj<e0,e1> (M^T W M = -W)",
+    "value": "2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: kernel K_t (lambda=-1)",
+    "value": "1.7e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: kernel L_t = (QGF x 1)K_t (lambda=+1)",
+    "value": "3.3e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: kernel P(eps,infty) (lambda=+1)",
+    "value": "4.4e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: kernel P(eps,T) (lambda=+1)",
+    "value": "2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=+1: P graded symmetric",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: Theta^2 = 1",
+    "value": "3.3e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: H = [Q,QGF] = |p|^2",
+    "value": "1.8e-15",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: Theta Q Theta^-1 = (-1)^F Q",
+    "value": "8.9e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: Theta QGF Theta^-1 = -(-1)^F QGF",
+    "value": "8.9e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: <Theta e0,Theta e1> = -conj<e0,e1> (M^T W M = -W)",
+    "value": "3.3e-16",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: kernel K_t (lambda=-1)",
+    "value": "2.8e-17",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: kernel L_t = (QGF x 1)K_t (lambda=+1)",
+    "value": "4.2e-17",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: kernel P(eps,infty) (lambda=+1)",
+    "value": "5.6e-17",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: kernel P(eps,T) (lambda=+1)",
+    "value": "5.6e-17",
+    "passed": true
+   },
+   {
+    "id": "K",
+    "check": "s_lam=-1: P graded symmetric",
+    "value": "0.0e+00",
+    "passed": true
+   }
+  ],
+  "S7": [
+   {
+    "id": "T",
+    "check": "s_lam=+1: Step1 eps^-1: int (A,A)  (F^Theta = +F)",
+    "value": "7.9e-16 (functional size 2.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: Step1 log: int (dA|V,dA|V)  (F^Theta = +F)",
+    "value": "2.3e-15 (functional size 1.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: Step1 log: int (dA|perp,dA|perp)  (F^Theta = +F)",
+    "value": "6.5e-16 (functional size 1.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: Step1 log: int (lam,dslash lam)  (F^Theta = +F)",
+    "value": "3.9e-16 (functional size 6.8e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: Step1 log: int (dc,A*)  (F^Theta = +F)",
+    "value": "2.2e-16 (functional size 2.5e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: finite: int (d*A|V,d*A|V)  (F^Theta = +F)",
+    "value": "5.4e-16 (functional size 2.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: field counting 2(A,A*)-4(lam*,lam)-(c*,c)  [anti-invariant]  (F^Theta = -F)",
+    "value": "6.3e-16 (functional size 8.0e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H1  (F^Theta = +F)",
+    "value": "1.4e-16 (functional size 7.4e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H2  (F^Theta = +F)",
+    "value": "6.8e-16 (functional size 6.6e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H3  (F^Theta = +F)",
+    "value": "3.0e-16 (functional size 3.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H4  (F^Theta = +F)",
+    "value": "0.0e+00 (functional size 2.9e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H5  (F^Theta = +F)",
+    "value": "5.1e-16 (functional size 7.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: H6  (F^Theta = +F)",
+    "value": "0.0e+00 (functional size 2.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: G1  (F^Theta = +F)",
+    "value": "6.3e-16 (functional size 4.0e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: G2  (F^Theta = +F)",
+    "value": "4.5e-16 (functional size 3.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: G3  (F^Theta = +F)",
+    "value": "3.5e-16 (functional size 7.5e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: G4  (F^Theta = +F)",
+    "value": "7.4e-16 (functional size 3.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: G5  (F^Theta = +F)",
+    "value": "8.2e-16 (functional size 1.4e+02)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=+1: theta-term density eps^{mnrs}(dA_mn,dA_rs)  [anti-invariant with real coefficient]  (F^Theta = -F)",
+    "value": "4.6e-16 (functional size 1.2e+02)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: Step1 eps^-1: int (A,A)  (F^Theta = +F)",
+    "value": "2.3e-16 (functional size 2.0e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: Step1 log: int (dA|V,dA|V)  (F^Theta = +F)",
+    "value": "6.5e-16 (functional size 4.3e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: Step1 log: int (dA|perp,dA|perp)  (F^Theta = +F)",
+    "value": "4.7e-16 (functional size 1.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: Step1 log: int (lam,dslash lam)  (F^Theta = +F)",
+    "value": "7.2e-16 (functional size 5.2e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: Step1 log: int (dc,A*)  (F^Theta = +F)",
+    "value": "3.7e-16 (functional size 1.4e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: finite: int (d*A|V,d*A|V)  (F^Theta = +F)",
+    "value": "6.7e-16 (functional size 3.4e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: field counting 2(A,A*)-4(lam*,lam)-(c*,c)  [anti-invariant]  (F^Theta = -F)",
+    "value": "3.3e-16 (functional size 1.1e+02)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H1  (F^Theta = +F)",
+    "value": "8.9e-16 (functional size 8.7e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H2  (F^Theta = +F)",
+    "value": "1.2e-15 (functional size 5.5e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H3  (F^Theta = +F)",
+    "value": "3.5e-16 (functional size 2.1e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H4  (F^Theta = +F)",
+    "value": "0.0e+00 (functional size 2.6e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H5  (F^Theta = +F)",
+    "value": "6.1e-16 (functional size 5.5e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: H6  (F^Theta = +F)",
+    "value": "0.0e+00 (functional size 1.2e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: G1  (F^Theta = +F)",
+    "value": "8.2e-16 (functional size 3.4e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: G2  (F^Theta = +F)",
+    "value": "9.1e-16 (functional size 2.9e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: G3  (F^Theta = +F)",
+    "value": "4.1e-16 (functional size 3.8e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: G4  (F^Theta = +F)",
+    "value": "5.6e-16 (functional size 3.6e+01)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: G5  (F^Theta = +F)",
+    "value": "6.7e-16 (functional size 1.3e+02)",
+    "passed": true
+   },
+   {
+    "id": "T",
+    "check": "s_lam=-1: theta-term density eps^{mnrs}(dA_mn,dA_rs)  [anti-invariant with real coefficient]  (F^Theta = -F)",
+    "value": "1.5e-15 (functional size 2.1e+01)",
+    "passed": true
+   },
+   {
+    "id": "T9",
+    "check": "engine B cubic obstruction (step2/engine_b/cubic_results.json) has real coefficients (as Theta-covariance requires)",
+    "value": "unit * [ (11/4 + 19/4 log(3/2)) (G1 + G3) + (27/8) G2 + 0 G4 - 9 log(3/2) G5 ]",
+    "passed": true
+   }
+  ],
+  "S8": [
+   {
+    "id": "R1",
+    "check": "OS scalar form, points with sign(n,x) = +1: min eigenvalue",
+    "value": "2.882e-03",
+    "passed": true
+   },
+   {
+    "id": "R2",
+    "check": "OS fermion form, side +1, s_lam=+1: (min, max) eigenvalue, hermiticity residual",
+    "value": "(1.884e-03, 7.062e-02), 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "R2",
+    "check": "OS fermion form, side +1, s_lam=-1: (min, max) eigenvalue, hermiticity residual",
+    "value": "(-7.062e-02, -1.884e-03), 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "R1",
+    "check": "OS scalar form, points with sign(n,x) = -1: min eigenvalue",
+    "value": "1.253e-03",
+    "passed": true
+   },
+   {
+    "id": "R2",
+    "check": "OS fermion form, side -1, s_lam=+1: (min, max) eigenvalue, hermiticity residual",
+    "value": "(-1.010e-01, -7.085e-04), 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "R2",
+    "check": "OS fermion form, side -1, s_lam=-1: (min, max) eigenvalue, hermiticity residual",
+    "value": "(7.085e-04, 1.010e-01), 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "R3",
+    "check": "radial scalar form, inside the unit ball: min eigenvalue",
+    "value": "2.950e-02",
+    "passed": true
+   },
+   {
+    "id": "R4",
+    "check": "radial fermion form, inside, s_lam=+1: (min, max) eigenvalue",
+    "value": "(-7.150e-01, -4.665e-02), 8.3e-17",
+    "passed": true
+   },
+   {
+    "id": "R4",
+    "check": "radial fermion form, inside, s_lam=-1: (min, max) eigenvalue",
+    "value": "(4.665e-02, 7.150e-01), 8.3e-17",
+    "passed": true
+   },
+   {
+    "id": "R3",
+    "check": "radial scalar form, outside the unit ball: min eigenvalue",
+    "value": "1.697e-02",
+    "passed": true
+   },
+   {
+    "id": "R4",
+    "check": "radial fermion form, outside, s_lam=+1: (min, max) eigenvalue",
+    "value": "(9.857e-03, 1.539e+00), 2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "R4",
+    "check": "radial fermion form, outside, s_lam=-1: (min, max) eigenvalue",
+    "value": "(-1.539e+00, -9.857e-03), 2.2e-16",
+    "passed": true
+   },
+   {
+    "id": "R5",
+    "check": "radial: G(phi(x), delta_Delta phi(x)) > 0 for |x| < 1 (delta_Delta = 2E + 2 acts as +2D, rho(Delta) = -delta_Delta as -2D)",
+    "value": "1.549e-01..7.960e-01",
+    "passed": true
+   },
+   {
+    "id": "R6",
+    "check": "OS, side (n,x)>0: G(phi(x), delta_{P_n} phi(x)) < 0 (delta_{P_n} acts as -H, rho(P_n) as +H)",
+    "value": "-1.361e-01..-7.205e-03",
+    "passed": true
+   }
+  ],
+  "S9": [
+   {
+    "id": "W1",
+    "check": "radial, X in Sigma, c=-1 (physical s_lam=-1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "1.4e-15",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "radial, X in Sigma, c=+1 (physical s_lam=-1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "radial, X in Sigma*, c=-1 (physical s_lam=-1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "6.3e-16",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "radial, X in Sigma*, c=+1 (physical s_lam=-1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "OS, X in Sigma, c=-1 (physical s_lam=+1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "OS, X in Sigma, c=+1 (physical s_lam=+1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "6.2e-16",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "OS, X in Sigma*, c=-1 (physical s_lam=+1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "2.0e+00",
+    "passed": true
+   },
+   {
+    "id": "W1",
+    "check": "OS, X in Sigma*, c=+1 (physical s_lam=+1): G(delta_X a, b) = G(a, delta_{X^dag} b) for a = lam letter, b = A_perp letter",
+    "value": "5.7e-16",
+    "passed": true
+   },
+   {
+    "id": "W2",
+    "check": "radial scalars: G(delta_P a, b) = -G(a, delta_K b) (P^dag = -K)",
+    "value": "7.3e-14",
+    "passed": true
+   },
+   {
+    "id": "W3",
+    "check": "radial scalars: G(delta_Delta a, b) = G(a, delta_Delta b) (Delta^dag = Delta)",
+    "value": "4.2e-13",
+    "passed": true
+   },
+   {
+    "id": "W2",
+    "check": "radial scalars: G(delta_P a, b) = -G(a, delta_K b) (P^dag = -K)",
+    "value": "1.2e-12",
+    "passed": true
+   },
+   {
+    "id": "W3",
+    "check": "radial scalars: G(delta_Delta a, b) = G(a, delta_Delta b) (Delta^dag = Delta)",
+    "value": "8.4e-14",
+    "passed": true
+   },
+   {
+    "id": "W2",
+    "check": "radial scalars: G(delta_P a, b) = -G(a, delta_K b) (P^dag = -K)",
+    "value": "1.0e-12",
+    "passed": true
+   },
+   {
+    "id": "W3",
+    "check": "radial scalars: G(delta_Delta a, b) = G(a, delta_Delta b) (Delta^dag = Delta)",
+    "value": "1.8e-13",
+    "passed": true
+   }
+  ],
+  "S10": [
+   {
+    "id": "E1",
+    "check": "engine: S^Theta = S (exact, n = e_0, s_lam = +1)",
+    "value": "",
+    "passed": true
+   },
+   {
+    "id": "E2",
+    "check": "engine: S1(X)^Theta = -S1(X^dagTheta), c_Theta=+1, on all 32 odd basis spinors (Q_1 = e_a or Q_2 = e_a), exact",
+    "value": "32/32",
+    "passed": true
+   },
+   {
+    "id": "E2c",
+    "check": "engine control: the same identity with c_Theta=-1 fails (random sparse X)",
+    "value": false,
+    "passed": true
+   },
+   {
+    "id": "E3",
+    "check": "engine: S1(K_b + 3 Delta)^Theta = S1((K_b + 3 Delta)^dagTheta) (exact)",
+    "value": "",
+    "passed": true
+   },
+   {
+    "id": "E4",
+    "check": "engine bracket: {f,g}^Theta = (-1)^(|f|+|g|) {g^Theta, f^Theta}, f = S1(odd), g = S1(even)",
+    "value": true,
+    "passed": true
+   },
+   {
+    "id": "E4",
+    "check": "engine bracket: {f,g}^Theta = (-1)^(|f|+|g|) {g^Theta, f^Theta}, f = S1(even), g = test functional",
+    "value": true,
+    "passed": true
+   },
+   {
+    "id": "E4",
+    "check": "engine bracket: {f,g}^Theta = (-1)^(|f|+|g|) {g^Theta, f^Theta}, f = S1(odd), g = test functional",
+    "value": true,
+    "passed": true
+   },
+   {
+    "id": "E5",
+    "check": "engine bracket Jacobi for even f,g: {f,{g,h}} + {g,{f,h}} = -{{f,g},h} (h even): hence [delta_x,delta_y] = -delta_[x,y]",
+    "value": "",
+    "passed": true
+   },
+   {
+    "id": "E5",
+    "check": "engine bracket Jacobi for even f,g: {f,{g,h}} + {g,{f,h}} = -{{f,g},h} (h odd): hence [delta_x,delta_y] = -delta_[x,y]",
+    "value": "",
+    "passed": true
+   }
+  ],
+  "S11": [
+   {
+    "id": "N1",
+    "check": "two-component C: C rho(e_M) = rho(e_M) C for the ten real basis vectors, C^2 = 1",
+    "value": "0.0e+00, 0.0e+00, 0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "N2",
+    "check": "two-component C: (xi, C xi) = |xi_alpha^i|^2 + |xibar_{adot i}|^2 > 0",
+    "value": "(1-0j)",
+    "passed": true
+   },
+   {
+    "id": "N3",
+    "check": "uniqueness: equivariant antilinear (Sigma <-> Sigma^*) maps form a one-dimensional space",
+    "value": 1,
+    "passed": true
+   },
+   {
+    "id": "N4",
+    "check": "intertwiner U (D -> classical): C_classical U = U^* C_D (C_classical = componentwise conjugation)",
+    "value": "4.4e-15",
+    "passed": true
+   },
+   {
+    "id": "N5",
+    "check": "(rho(n)C lam)_alpha^i = i n_m sigma^m_{alpha adot} (lambar_{adot i})^*, (rho(n)C lam)_{adot i} = i n_m (lam_alpha^i)^* sigma^m_{alpha adot}",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "N6",
+    "check": "(rho(n)C lam*)^alpha_i = -i n_m (lambar*^{adot i})^* sigmabar^{m adot alpha}, (rho(n)C lam*)^{adot i} = -i n_m sigmabar^{m adot alpha}(lam*^alpha_i)^*",
+    "value": "0.0e+00",
+    "passed": true
+   },
+   {
+    "id": "N7",
+    "check": "R-symmetry: r(-Rbar) = r(R)^H (two-component dagger = matrix adjoint on sl(4)); r(R) anti-Hermitian for real R",
+    "value": "0.0e+00, 0.0e+00",
+    "passed": true
+   }
+  ]
+ },
+ "summary": {
+  "checks": 198,
+  "passed": 198,
+  "seconds": 106.1
+ }
+}

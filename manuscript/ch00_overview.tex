@@ -1,0 +1,114 @@
+\chapter{Overview}
+
+This manuscript constructs the one-loop quantum Batalin--Vilkovisky theory of four-dimensional $\mathcal N=4$ super Yang--Mills theory on Euclidean $\mathbb R^4$, together with the transformations of its local operators under the whole superconformal algebra, in the renormalisation formalism of Costello [C07] and Costello--Gwilliam [CG2]. The single regulator is a lower cutoff $\varepsilon>0$ on Schwinger time, the ultraviolet (UV) boundary; the upper end of every Schwinger integral is $\infty$, so that $\varepsilon$ is the single scale of the construction. This overview states what is constructed, where the construction needs care, how the chapters are organised, and the results of this first step.
+
+\section{What is constructed}
+
+The fields are those of ten-dimensional super Yang--Mills theory reduced to $\mathbb R^4$ [ESW, Prop 2.20, §10.3], complexified. Write $V$ for the complexification of $\mathbb R^4$ and $W_{\mathbb R}^\perp$ for the six transverse directions, and $\mathfrak g$ for the complexified gauge Lie algebra with its invariant pairing $(-,-)$, which carries the coupling. The gauge field $A$ is a ten-component one-form with values in $\mathfrak g$: its components along $V$ form the connection $A|_V$, and its components $\iota_wA$, $w\in W_{\mathbb R}^\perp$, are the six scalars. The gaugino $\lambda$ takes values in the ten-dimensional semi-spin representation $\Sigma$, which in four dimensions is $S_+\otimes W\oplus S_-\otimes W^*$, with $S_\pm$ the two Weyl spinor representations and $W$ the four-dimensional R-symmetry space [ESW, §10]; spinors stay index free throughout. The ghost $c$ and the antifields $A^*$, $\lambda^*$, $c^*$ complete the fields [ESW, Def 3.2, Rem 1.36]. The action $S$ is [ESW, (31)] reduced to four dimensions; its quadratic part defines the linear differential $Q$, the rest is the interaction $I$, and $\{-,-\}$ is the odd Poisson bracket [C07, Lemma 4.3.2].
+
+Costello's construction needs three more objects. A gauge-fixing operator $Q^{GF}$ [C07, §1.1, Def 4.3.3], here of Feynman type, makes $H=[Q,Q^{GF}]$ [C07, Def 4.3.3(4)] the Laplacian on every field. The heat kernel $K_t$ of $H$ at Schwinger time $t$ [C07, §6.5] gives the propagator
+\[
+P(\varepsilon,\infty)=\int_\varepsilon^\infty(Q^{GF}\otimes1)K_t\,dt ,
+\]
+and Feynman graphs with these edges assemble into the renormalisation group flow of an even functional $J$,
+\[
+W\big(P(\varepsilon,\infty),J\big)=\hbar\log\Big(e^{\hbar\partial_{P(\varepsilon,\infty)}}e^{J/\hbar}\Big)\qquad[\text{CG2, §7.2.7}],
+\]
+with $\partial_{P(\varepsilon,\infty)}$ the second-order operator contracting two fields with the kernel $P(\varepsilon,\infty)$ [C07, §6.4]; this is the functional called $\Gamma$ in [C07, Def 6.6.1]. As in Theorem B of [C07], whose analogue on $\mathbb R^4$ with upper scale $\infty$ Chapter 4 proves at one loop, the counterterm $I^{CT}[\varepsilon]$ is the singular part of the graph expansion, extracted graph by graph, with coefficients in the span of $\varepsilon^{-1}$ and $\log\varepsilon$ at one loop; it is local by power counting in the Schwinger times, it is unique among the translation-invariant and $\mathfrak g$-invariant local functionals with such coefficients, and the order-$\hbar$ part of $W\big(P(\varepsilon,\infty),I-I^{CT}[\varepsilon]\big)$ has a limit as $\varepsilon\to0$, as plane-wave values at generic leg momenta. A local operator $O$, for instance $\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$ with $\omega$ a compactly supported four-form [CG2, Lemma 10.1.1.3], enters through a square-zero parameter $\delta$ [CG2, Def 8.3.1.1]: the counterterm $\partial_\delta I^{CT}[\varepsilon]$ of the family $I+\delta O$ defines the local operator at the UV end, $O(\varepsilon)=O-\partial_\delta I^{CT}[\varepsilon]$, and its quantum observable is
+\[
+O[\infty]=\lim_{\varepsilon\to0}\partial_\delta W\big(P(\varepsilon,\infty),\,I-I^{CT}[\varepsilon]+\delta\,O(\varepsilon)\big)\qquad[\text{CG2, Def 8.3.1.3}].
+\]
+
+The superconformal algebra $\mathfrak{psl}(4|4)$ [SW, (7), (17)] acts through an equivariant action $S+S^{(1)}+S^{(2)}$, a Maurer--Cartan element of the Chevalley--Eilenberg complex of [ESW, Def 1.26--1.27] with differential $d_{CE}$. Building $O[\infty]$ from the equivariant interaction, the transformation of $O$ along a generator $x_1\in\mathfrak{psl}(4|4)$ is the component $[(d_{CE}+Q)O[\infty]](x_1)$. Along the dilatation $\Delta$, the generator $2E$ of [SW, (17)] with $E$ the Euler vector field [SW, (3)], it is the anomalous dimension; along the supercharges $Q^i_\alpha$, $\bar Q_{\dot\alpha i}$ and the special supercharges $S^\alpha_i$, $\bar S^{\dot\alpha i}$ (the names of [SW, (8)]) it is the quantum-corrected supersymmetry; along the special conformal generators it is the primary condition. The program therefore has two outputs: the quantised interaction, with its counterterms and its quantum master equation, and, for every local operator, its observable and its transformations along all of $\mathfrak{psl}(4|4)$.
+
+\section{Three points that need care}
+
+Operators. Inserting a composite operator produces divergences, and the limit defining $O[\infty]$ exists for many choices of the functional $O(\varepsilon)$. At scale $\infty$, however, $K_\infty=\lim_{t\to\infty}K_t=0$ on $\mathbb R^4$, and $P(0,\infty)=\lim_{\varepsilon\to0}P(\varepsilon,\infty)$ [C07, §1.2] is a contracting homotopy for $Q$: for compactly supported $\alpha$,
+\[
+Q\big(P(0,\infty)\star\alpha\big)+P(0,\infty)\star(Q\alpha)=\alpha ,
+\]
+where $P(0,\infty)\star$ is the operator with kernel $P(0,\infty)$ [C07, §6.3]. On moment-free Schwartz sections, whose Fourier transforms vanish to infinite order at $p=0$, every $Q$-closed continuous polynomial functional without constant term is $Q$-exact (Chapter 3); on compactly supported sections $Q$ has in addition nonzero classes, among them the pairings with polynomial zero modes of $Q$, finitely many in each polynomial degree and infinitely many in all. An arbitrary $O(\varepsilon)$ therefore gives the zero class on moment-free sections. The content of an operator is the locality of $O(\varepsilon)$: $O(\varepsilon)=O-\partial_\delta I^{CT}[\varepsilon]$ with local coefficients in the span of $\varepsilon^{-1}$ and $\log\varepsilon$. Locality and the existence of the limit fix the singular part uniquely, and the finite part is the scheme. An equation expressing $[(d_{CE}+Q)O[\infty]](x_1)$ as the scale-$\infty$ observable of a second functional has content because that functional is required to be local, and for an operator whose observable is a cocycle, $Q\,O[\infty]=0$ (Chapter 5), anomalous dimensions are read off in the cohomology of local functionals.
+
+Counterterms. The singular part $I^{CT}[\varepsilon]$ is unique among the translation-invariant and $\mathfrak g$-invariant local functionals (Chapter 4). The cutoff on every edge breaks gauge invariance and superconformal symmetry, and $I^{CT}[\varepsilon]$ contains $\varepsilon^{-1}$ mass terms with nonzero image under $Q$. The quantum master equation, transported to the UV boundary, then forces finite local counterterms. They are constrained by the master equation and fixed up to a choice; this choice is the renormalisation condition, part of the definition of the quantum theory and of every operator.
+
+The UV boundary. The lower end $t=\varepsilon$ of the Schwinger integral carries two kernels,
+\[
+\varepsilon\frac{d}{d\varepsilon}P(\varepsilon,\infty)=-\varepsilon L_\varepsilon,\qquad (Q\otimes1+1\otimes Q)P(\varepsilon,\infty)=K_\varepsilon,\qquad L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon\quad[\text{C07, §6.5}],
+\]
+the second being [C07, Lemma 10.2.1] with $K_\infty=0$. Edges pinned at $t=\varepsilon$ and carrying $L_\varepsilon$ produce the singular coefficients and the scaling behaviour. Edges carrying $K_\varepsilon$ produce the defects of the quantum master equation and the transformations of observables, through
+\[
+(d_{CE}+Q)\,e^{\hbar\partial_{P(\varepsilon,\infty)}}=e^{\hbar\partial_{P(\varepsilon,\infty)}}\big(d_{CE}+Q+\hbar\Delta_\varepsilon\big),\qquad \Delta_\varepsilon=-\partial_{K_\varepsilon}\quad[\text{C07, §10.1}].
+\]
+Every singular or anomalous coefficient of this manuscript is carried by edges pinned at $t=\varepsilon$ and carrying $L_\varepsilon$, by special edges carrying $K_\varepsilon-K_0$, whose Schwinger time lies in $[0,\varepsilon]$, and by the counterterm vertices $-QI^{CT}[\varepsilon]-\{I,I^{CT}[\varepsilon]\}_\varepsilon$.
+
+\section{Plan of the chapters}
+
+Chapter 1 fixes the fields, the odd pairing, the reduced action with its linear differential and vertices, and the classical master equation. Chapter 2 realises $\mathfrak{psl}(4|4)$ on Euclidean $\mathbb R^4$ and constructs the equivariant action $S+S^{(1)}+S^{(2)}$ in the Chevalley--Eilenberg complex. Chapter 3 constructs the Feynman-gauge $Q^{GF}$, records which axioms of [C07, Def 4.3.3] it satisfies, and proves the UV-boundary identity, the acyclicity at scale $\infty$ and the one-loop formula. Chapter 4 computes the one-loop counterterms of the action in the two-, three- and four-point sectors and the quantum master equation at the UV boundary. Chapter 5 computes $O(\varepsilon)$ for the single letters and the scalar bilinears, Chapter 6 their dilatation through the scaling covariance of the regulator, and Chapter 7 the selection rules for the other superconformal components and the program of Steps 2--5.
+
+\section{Results of Step 1}
+
+All one-loop coefficients are rational multiples of
+\[
+\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2\,(X,Y)},
+\]
+which is independent of $X,Y\in\mathfrak g$ for simple $\mathfrak g$; below it is called the unit and written out in every formula.
+
+\begin{itemize}
+\item Chapter 2. The equivariant action $S+S^{(1)}+S^{(2)}$, with $S^{(k)}=0$ for $k\ge3$, satisfies its master equation for every Lie algebra $\mathfrak g$ with a nondegenerate invariant symmetric pairing: in arity $0$, in arities $\ge4$ and in arity $3$ with at most one or with three odd arguments by a structural argument; in arities $1$, $2$ and in arity $3$ with two odd arguments by exact evaluation on every tuple of basis elements of $\mathfrak{psl}(4|4)$ for $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak{su}(3)$, carried to every $\mathfrak g$ by a colour-reduction lemma.
+\item Chapter 3. With the Feynman-gauge operator, $H$ is the Hodge Laplacian $d^*d+dd^*$ of flat $\mathbb R^4$, acting on every component as the positive Laplacian of functions, and
+\[
+H=[Q,Q^{GF}]=d^*d+dd^*,\qquad (Q\otimes1+1\otimes Q)P(\varepsilon,\infty)=K_\varepsilon,\qquad (Q^{GF})^2\neq0 ;
+\]
+conditions (1), (2), (4) of [C07, Def 4.3.3] hold and (3), (5) fail, and every identity used later rests on the conditions that hold.
+\item Chapter 4. The part of $I^{CT}[\varepsilon]$ quadratic in the fields is, with $\mathrm{dvol}$ the Euclidean volume form and ${\not d}$ the Dirac operator [ESW, §2.1],
+\[
+\begin{aligned}
+\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\Big\{&\frac{9}{4\varepsilon}\Big[(A|_V,A|_V)+(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\Big]\\
+&+\log\varepsilon\Big[-(dA|_V,dA|_V)-(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})+4(\lambda,{\not d}\lambda)-(dc,A^*)\Big]\Big\}.
+\end{aligned}
+\]
+\item Chapter 4. Through the cubic and quartic sectors the $\log\varepsilon$ part of $I^{CT}[\varepsilon]$ is
+\[
+\log\varepsilon\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\big(Q+\{I,-\}\big)\int\mathrm{dvol}\Big(2(A,A^*)-4(\lambda^*,\lambda)-(c^*,c)\Big),
+\]
+which multiplies the tree vertices $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $cA|_VA^*|_V$, $cA|_{W_{\mathbb R}^\perp}A^*|_{W_{\mathbb R}^\perp}$, $c\lambda\lambda^*$, $ccc^*$, $(A|_V)^4$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$ by $6,6,10,10,1,1,1,1,8,8,8$ units; its component along the coupling vanishes, so the coupling is unrenormalised at one loop, and the $\varepsilon^{-1}$ terms lie in the quadratic sector.
+\item Chapter 4. In the sector $(c,A|_V)$ of the quantum master equation the $\varepsilon^{-1}$ parts cancel against $-Q$ of the mass counterterm, no $\log\varepsilon$ appears, and the finite obstruction is
+\[
+-\frac{27}{8}\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*dc,d^*A|_V)=\frac{27}{16}\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,Q\!\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V),
+\]
+removed by the finite change $I\mapsto I-\frac{27}{16}\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$.
+\item Chapter 5. The single letters $\int\omega\,(X,\iota_wA)$, $\int\omega\,(X,\iota_v(A|_V))$, $\int\omega\,(\zeta,\lambda)$, $\int\omega\,(X,c)$, with fixed $X\in\mathfrak g$, $v\in V$ and $\zeta\in\Sigma^*\otimes\mathfrak g$, $\Sigma^*$ the dual semi-spin representation [ESW, §2.1], have $O(\varepsilon)=O$. For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, with $w$ running over an orthonormal basis of $W_{\mathbb R}^\perp$,
+\[
+\partial_\delta I^{CT}[\varepsilon]=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big[4\,O-2(w_1,w_2)\sum_w\int\omega\,(\iota_wA,\iota_wA)\Big]+\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2\varepsilon}\int\omega ;
+\]
+for $(w_1,w_2)=0$, where $O$ lies in the traceless part, and for the trace $\sum_w\int\omega\,(\iota_wA,\iota_wA)$ this gives
+\[
+\begin{aligned}
+\text{traceless:}\quad O(\varepsilon)&=\Big(1-4\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big)O,\\
+\text{trace:}\quad O(\varepsilon)&=\Big(1+8\,\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon\Big)O-\frac{12\hbar\dim\mathfrak g}{16\pi^2\varepsilon}\int\omega .
+\end{aligned}
+\]
+\item Chapter 6. Let $O$ have Weyl weight $w_O$ (the sum of the weights $1$ of $A$, $\tfrac32$ of $\lambda$, $0$ of $c$, plus the number of derivatives), so that $\Delta=2E$ acts on it classically by $2(E+w_O)$, $E$ acting on its density. The scaling covariance of the regulator, together with the identification of the Weyl scaling with the dilatation cochain that Chapter 6 states as the task of Step 2, gives
+\[
+[(d_{CE}+Q)O[\infty]](\Delta)=2\Big(E+w_O+\text{coefficient}\cdot\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big)O[\infty]+\cdots,
+\]
+the dots being terms built from $(Q+\{I,-\})O$, and the coefficient given in the table. In the normalisation $\Delta=-E$ of [SW, (3)] the same statement reads $-\Big(E+w_O+\text{coefficient}\cdot\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big)O[\infty]+\cdots$.
+\end{itemize}
+
+\begin{tabular}{l|c|c}
+operator & $w_O$ & coefficient \\
+\hline
+$\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, $(w_1,w_2)=0$ & $2$ & $0$ \\
+$\sum_w\int\omega\,(\iota_wA,\iota_wA)$ & $2$ & $-24$ \\
+letter $\iota_wA$ & $1$ & $-4$ \\
+letter $A|_V$, modulo terms built from $(Q+\{I,-\})O$ & $1$ & $-4$ \\
+letter $\lambda$ & $\tfrac32$ & $-8$ \\
+letter $c$ (degree $1$) & $0$ & $-2$ \\
+\end{tabular}
+\tabcaption{The coefficient multiplying the unit in the dilatation component (Chapter 6). The entries for the letters are those of the Feynman gauge used throughout.}
+
+For $\mathfrak g=\mathfrak{su}(N)$ with $(X,Y)=-\frac{4\hbar}{g^2}\operatorname{tr}(XY)$, $\operatorname{tr}$ the trace in the defining representation and $g$ the Yang--Mills coupling (Chapter 6), the unit equals $-g^2N/(32\pi^2)$, and $-24$ units equal $3g^2N/(4\pi^2)$, the one-loop anomalous dimension of the Konishi operator; this serves as a consistency check.
+
+\begin{itemize}
+\item Chapter 7. Translations, rotations and the R-symmetry commute with $Q^{GF}$ and $H$; for gauge-invariant operators their components can be chosen with no one-loop correction, a choice to be realised in Step 2, and the counterterms of the traceless and the trace scalar bilinears stay in their own representations. Along the supercharges, the special supercharges and the special conformal generators the regulator moves, and the one-loop output lies in an explicit list of local structures; under the hypotheses of Proposition \ref{prop:c7-select}, a local representative and equivariant counterterms, the supercharge component of the traceless scalar bilinear is a multiple of its classical structure.
+\end{itemize}

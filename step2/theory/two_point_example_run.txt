@@ -1,0 +1,62 @@
+{
+ "bubble_masters": {
+  "iint exp/s^2": "-1*L2e + 1",
+  "iint exp/s^3": "1/4/eps + p^2(1/6*L2e + -25/72)",
+  "iint t1 t2 exp/s^4": "-1/6*L2e + 13/72",
+  "L2e": "log(eps |p|^2) + gamma_E + log 2"
+ },
+ "check_iint_s3_numeric": {
+  "eps": "1e-5",
+  "numeric": "24997.9456834",
+  "closed_form": "24997.945684"
+ },
+ "A_perp_self_energy": {
+  "graph_c": "2*L2e*p2 - 13*p2/8 - 1/(2*epsilon)",
+  "graph_d": "-4*L2e*p2 + 7*p2 - 4/epsilon",
+  "c_d": "-8",
+  "seagulls": "9/eps",
+  "renormalised": "unit (a,b) |p|^2 (43/8 - 2(log|p|^2 + gamma_E + log 2))"
+ },
+ "fourier": {
+  "FT[log q^2]": "-1/(pi^2 x^4)",
+  "FT[log^2 q^2]": "2/(pi^2 x^4) (log x^2 + 2 gamma_E - 1 - 2 log 2)",
+  "FT[log q^2 / q^2]": "-1/(4 pi^2 x^2) (log x^2 + 2 gamma_E - 2 log 2)"
+ },
+ "check_masters_numeric": {
+  "eps": 0.0001,
+  "J_numeric/J_pred": 0.999912063539818,
+  "R_numeric/R_pred": 0.9999539942263399
+ },
+ "classes_relative_to_tree": {
+  "self_energy": "8*gamma_E - 24*log2 + 8*logx2 + 43/2",
+  "exchange": "-4*gamma_E + 8*log2 + 4*log3 + 4*logeps - 4*logx2 - 8",
+  "quartic": "8*gamma_E*tau - 4*gamma_E - 24*log2*tau + 12*log2 - 8*logeps*tau + 4*logeps + 8*logx2*tau - 4*logx2",
+  "operator_counterterms": "8*logeps*tau - 8*logeps",
+  "total": "8*gamma_E*tau - 24*log2*tau - 4*log2 + 4*log3 + 8*logx2*tau + 27/2"
+ },
+ "result": {
+  "general": "G = G0 [1 + unit (27/2 + 4 log(3/2) + 8 tau (log|x|^2 + gamma_E - 3 log 2))], tau = T/S",
+  "traceless (tau=0)": "G = G0 [1 + unit (27/2 + 4 log(3/2))]",
+  "trace (tau=3)": "G = G0 [1 + unit (27/2 + 4 log(3/2) + 24 (log|x|^2 + gamma_E - 3 log 2))]",
+  "log|x|^2 coefficient": "8 tau unit; = -(1/4)(D_1 G0 + G0 D_1^T)/G0 with D_1 = 4(Z - unit {N,O}): 0 and 24",
+  "tree": "G0(x) = 4 hbar dim(g) [(a1,a2)(b1,b2) + (a1,b2)(b1,a2)] / (16 pi^4 |x|^4)"
+ }
+}
+        6.43 real         5.45 user         0.21 sys
+           119767040  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               33316  page reclaims
+                 897  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1554  voluntary context switches
+                7589  involuntary context switches
+         76324051588  instructions retired
+         21230336084  cycles elapsed
+            98746896  peak memory footprint

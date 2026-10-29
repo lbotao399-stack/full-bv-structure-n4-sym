@@ -1,0 +1,203 @@
+{
+ "file": "manuscript/ch09_cubic_and_dilatation.tex",
+ "date": "2026-10-29",
+ "reviewer": "adversarial referee (Claude)",
+ "verdict": "No fatal or major error: every number of Parts C and D agrees with the engine/refuter/audit data, and the corrected Part D theory is used throughout. Findings are minor statements stronger than or different from the evidence, one wrong example, two imprecise proof sentences, and markup.",
+ "convert_check": {
+  "unresolved": [],
+  "blocks": 1908,
+  "labels": 300
+ },
+ "katex_check": {
+  "items": 1798,
+  "errors": 0,
+  "warnings": 0
+ },
+ "findings": [
+  {
+   "location": "prop:c9-maps (ii), statement (line 75) and proof (ii) (line 98)",
+   "severity": "minor",
+   "claim": "Every invariant local functional of degree -1 with three legs has Weyl weight at least 9/2, \"the lowest being lambda^*AA\".",
+   "evidence": "lambda^*AA has a single spinor leg, odd under -1 in Spin(4,C) (the argument of the proof of lem:c9-legs), so it carries no invariant. Exhaustive count of degree -1 three-leg sets: without derivatives (A^*,A,A) [3 vector indices of V, or one of V, or three of W_R^perp], (lambda^*,lambda,A) [lambda^* (x) lambda contains neither (2,2;1) nor (1,1;6)], (c^*,c,A) [one vector index] and (lambda^*,lambda^*,c) [no Spin(4)xSU(4) singlet in Sigma^* (x) Sigma^*] all have weight 5 and no invariant; the first invariants have weight 6: (A^*,lambda,lambda), (A^*|_V,A^*|_V,c) without derivatives and the four weight-5 sets with one derivative. The conclusion (no degree -1, weight-4 three-leg functional) is unaffected.",
+   "replace": "Every invariant local functional of degree $-1$ with three legs has Weyl weight at least $\\tfrac92$, so these four functionals",
+   "by": "Every invariant local functional of degree $-1$ with three legs has Weyl weight at least $6$, so these four functionals",
+   "replace_2": "Degree $-1$ with three legs requires an antifield, and the invariant leg sets of degree $-1$ have weights at least $\\tfrac92$, the lowest being $\\lambda^*AA$;",
+   "by_2": "Degree $-1$ with three legs requires an antifield; a single spinor leg or a single vector index of $V$ or of $W_{\\mathbb R}^\\perp$ admits no invariant, and $\\lambda^*\\otimes\\lambda$, $\\lambda^*\\otimes\\lambda^*$ contain no invariant vector or scalar, so the invariant leg sets of degree $-1$ have weight at least $6$, the lowest being $(A^*,\\lambda,\\lambda)$ and $(A^*|_V,A^*|_V,c)$;"
+  },
+  {
+   "location": "thm:c9-sing (i), statement and proof (lines 206, 213)",
+   "severity": "minor",
+   "claim": "\"Each cycle graph has the value eps^{-1} times a first coefficient plus a second coefficient ...\", the coefficient of order 0 for omega = 1 included.",
+   "evidence": "By the proof itself the Taylor coefficient of order j carries eps^{(j-omega)/2}; for omega = 1, i.e. (c,lambda,lambda) and (c,c,A^*|_V), the order-0 coefficient multiplies eps^{-1/2}, not eps^{-1}. The proof treats odd j<omega and (j=0, omega=2) only; the case j=0<omega=1 (a weight-3 functional, zero because these leg sets carry no invariant of weight 3, prop:c9-basis (v)) is missing.",
+   "replace": "Each cycle graph has the value $\\varepsilon^{-1}$ times a first coefficient plus a second coefficient plus $O(\\varepsilon\\log\\varepsilon)$",
+   "by": "Each cycle graph has the value $\\varepsilon^{-\\omega/2}$ times a first coefficient plus a second coefficient plus $O(\\varepsilon\\log\\varepsilon)$",
+   "replace_2": "for $j=0$, $\\omega=2$ it is $\\varepsilon^{-1}$ times a functional of weight $2$, which vanishes after the symmetrisation over the identical legs (Proposition \\ref{prop:c9-basis} (v)).",
+   "by_2": "for $j=0$ it is $\\varepsilon^{-\\omega/2}$ times a functional of weight $4-\\omega$: for $\\omega=2$ it vanishes after the symmetrisation over the identical legs, and for $\\omega=1$ the leg sets carry no invariant of weight $3$ (Proposition \\ref{prop:c9-basis} (v))."
+  },
+  {
+   "location": "prop:c9-composite, proof of (i) (line 370)",
+   "severity": "minor",
+   "claim": "\"The degree is that of K_0 plus 0.\"",
+   "evidence": "|K_0| = 1 and |P(eps,T)| = 0 (def:c8-PT: P = int (Q^GF x 1)K_t dt, |Q^GF| = -1). The composite kernel 2(P* v. P* x 1)K_0 has degree |K_0| + 2|P*| = 1 - 2 = -1, as the statement (i) says; the sentence in the proof gives +1.",
+   "replace": "The degree is that of $K_0$ plus $0$.",
+   "by": "The degree is that of $K_0$ minus $2$, $P\\star$ having degree $-1$ and $v.$ degree $0$."
+  },
+  {
+   "location": "thm:c9-quadratic, proof of (i) (line 517)",
+   "severity": "minor",
+   "claim": "\"In the sector (A|_Wperp, A^*|_Wperp) the composite cycle has superficial degree -1\" (as the reason for the vanishing counterterm there).",
+   "evidence": "engine_b/delta_results.json part1.eps_expansion: \"superficial degree 0 for alpha, 1 for beta\" in every sector. Power count of the cycle AcA^*[A^*_perp] - A_V(A_perp)^2[A_perp]: measure 4, A_perp line -2, composite kernel -3 (prop:c9-composite (iv)), one derivative at the cubic vertex +1: degree 0. The vanishing of the log-eps coefficient in that sector is a computed result (engine B \"A|_Wperp: X = 0\", engine A \"no A|_Wperp term\"), not a power-counting consequence.",
+   "replace": "In the sector $(A|_{W_{\\mathbb R}^\\perp},A^*|_{W_{\\mathbb R}^\\perp})$ the composite cycle has superficial degree $-1$.",
+   "by": "In the sector $(A|_{W_{\\mathbb R}^\\perp},A^*|_{W_{\\mathbb R}^\\perp})$ the exact evaluation of the composite cycle gives the coefficient $0$ of $\\log\\varepsilon$."
+  },
+  {
+   "location": "prop:c9-triangle (statement of alpha, beta; proof)",
+   "severity": "minor",
+   "claim": "The value alpha = 0, beta(p1) = 8 units (value of O)(p2/|p2|^2 + 16 pi^2 |p1|^2 int ...) is stated; the proof derives only the Q-image from it.",
+   "evidence": "In the computations the form is the Ward identity at the vertex A|_V(A|_Wperp)^2 for the longitudinal composite line (bubble term plus |p1|^2 times the triangle vector integral), with the two coefficients fitted at three kinematic points (engine A d4_y1a_ward, lambda_1 = -8, lambda_2 = 8 to 1e-13) and fixed exactly by the agreement with the special-edge evaluation (compare_delta_b.json: \"the agreement requires l2 = 8 and l1 = 8\"; ch09 rem:c9-twoeval says so). The proposition proves neither the form nor the 8s; the proof should say where they come from.",
+   "replace": "\\begin{proof}\nThe term with $\\frac{\\partial}{\\partial p_2}\\delta$ carries the explicit position of the density.",
+   "by": "\\begin{proof}\nThe composite line is longitudinal, so by the Ward identity at the vertex $A|_V(A|_{W_{\\mathbb R}^\\perp})^2$ the graph is a bubble term plus $|p_1|^2$ times the triangle vector integral, with $\\alpha=0$; its two coefficients are $8$ and $8$, the values fixed by Remark \\ref{rem:c9-twoeval}. The term with $\\frac{\\partial}{\\partial p_2}\\delta$ carries the explicit position of the density."
+  },
+  {
+   "location": "prop:c9-structure (ii), proof (line 486)",
+   "severity": "minor",
+   "claim": "\"... and its one-loop part tends to 0 by the arity-zero equation\" -- used for eq:c9-Ob in all sectors.",
+   "evidence": "def:c9-data only requires hbar F_1^{(0)} to contain the finite counterterm of thm:c4-finite, which solves the arity-zero equation in the two-leg sectors only. For the quadratic part of Ob^{(1)}(Delta) only the two-leg part of QW enters (P* v. on a two-leg QW; the composite joins of QW and W have at least three legs), so thm:c9-quadratic is unaffected; the general statement eq:c9-Ob needs the arity-zero equation in the sectors with the legs considered (at three legs: thm:c9-F3).",
+   "replace": "\\item (ii) Assume that the $\\varepsilon\\to0$ limit of $Q$ of the composite cycles",
+   "by": "\\item (ii) Assume that $\\hbar F_1^{(0)}$ solves the arity-zero part of $s(\\hbar F_1)=\\hbar\\,\\mathrm{Ob}$ in the sectors with at most $n$ legs, and that the $\\varepsilon\\to0$ limit of $Q$ of the composite cycles",
+   "note": "and append to (ii): \"in the sectors with at most $n$ legs\" after \"Then\"; thm:c9-quadratic (ii) then cites it with $n=2$ (thm:c4-finite)."
+  },
+  {
+   "location": "def:c9-data (definition of hbar Ob^{(1)}(Delta), lines 460-464)",
+   "severity": "minor",
+   "claim": "Defines hbar Ob^{(1)}(Delta) as the limit with hbar F_1^{(0)} included in J.",
+   "evidence": "def:c8-ob (the binding definition) defines Ob with F_psl(4|4) = 0. The two agree here because the extra vertex is -{hbar F_1^(0), S^(1)(Delta)}_eps, whose limit is {S^(1)(Delta), hbar F_1^(0)} = 0 (lem:c9-SDelta (i)), special edges on trees vanishing; as written ch09 gives a second definition of a Chapter 8 name.",
+   "replace": "The arity-one obstruction along $\\Delta$, $\\hbar\\,\\mathrm{Ob}^{(1)}(\\Delta)$, is the local functional of degree $0$ whose tree-level flow",
+   "by": "The arity-one part along $\\Delta$ of the obstruction of Definition \\ref{def:c8-ob}, $\\hbar\\,\\mathrm{Ob}^{(1)}(\\Delta)$, is, since the vertex $\\hbar F_1^{(0)}$ adds $-\\{\\hbar F_1^{(0)},S^{(1)}(\\Delta)\\}_\\varepsilon$, whose limit is $\\{S^{(1)}(\\Delta),\\hbar F_1^{(0)}\\}=0$ (Lemma \\ref{lem:c9-SDelta} (i)), the local functional of degree $0$ whose tree-level flow"
+  },
+  {
+   "location": "thm:c9-F3, statement (line 251)",
+   "severity": "minor",
+   "claim": "\"its quadratic part is the general solution of the quadratic sector (Theorem thm:c4-finite)\".",
+   "evidence": "thm:c4-finite states uniqueness only among quadratic functionals of A|_V; the free terms beta_2 int(dA_perp,dA_perp), beta_3 int(lambda,dslash lambda), beta_4 int(dc,A^*) lie in other sectors (thm:c4-obstruction: those sectors of the obstruction vanish). Degree 0, weight 4 quadratic Q-closed parity-even functionals: exactly the four beta directions (int(lambda,dslash rho(vol)lambda) is a total derivative).",
+   "replace": "its quadratic part is the general solution of the quadratic sector (Theorem \\ref{thm:c4-finite})",
+   "by": "its quadratic part is the general solution of the part with two legs, the finite counterterm of Theorem \\ref{thm:c4-finite} plus the $Q$-closed quadratic local functionals of degree $0$ and Weyl weight $4$, which are spanned by the four functionals with the coefficients $\\beta_k$ (Theorems \\ref{thm:c4-obstruction}, \\ref{thm:c4-finite})"
+  },
+  {
+   "location": "cor:c9-ident (iii)",
+   "severity": "minor",
+   "claim": "\"the one-loop anomalous dimensions are 0 for the traceless bilinears and -24 units for the trace\".",
+   "evidence": "D_1 is computed on the part with two legs A|_Wperp only; for the trace bilinear the outputs with legs (A|_V,A|_V) and (c,A^*|_V) are not computed (engine_b delta_results not_computed; ch09 rem:c9-next). The eigenvalue of Lambda^(1)(Delta) on the class of the trace is -48 units only if that remaining part of D_1(O) is Lambda^(0)-exact (or has no component along [O]); ch06 rem:c6-step2 also lists the cocycle condition. Stated as unconditional.",
+   "replace": "\\item (iii) the one-loop anomalous dimensions are $0$ for the traceless bilinears and $-24$ units for the trace, $\\tfrac{3g^2N}{4\\pi^2}$ for $\\mathfrak g=\\mathfrak{su}(N)$ (Remark \\ref{rem:c6-konishi}).",
+   "by": "\\item (iii) when the part of $D_1(O)$ with legs $(A|_V,A|_V)$ and $(c,A^*|_V)$ lies in the image of $\\Lambda^{(0)}$, the one-loop anomalous dimensions are $0$ for the traceless bilinears and $-24$ units for the trace, $\\tfrac{3g^2N}{4\\pi^2}$ for $\\mathfrak g=\\mathfrak{su}(N)$ (Remark \\ref{rem:c6-konishi})."
+  },
+  {
+   "location": "thm:c9-kappa, hypothesis (ii) and first line of the proof",
+   "severity": "minor",
+   "claim": "Local representatives \"on the family\" of scalar bilinears; the proof applies cor:c8-homotopy (ii) and thm:c8-L (iii),(iv) \"on the family\".",
+   "evidence": "cor:c8-homotopy assumes local representatives on a space stable under Lambda; the scalar bilinears are not (D_1 of the trace has outputs (A|_V,A|_V), (c,A^*|_V)). The argument only uses the part with two legs A|_Wperp, but the hypothesis must cover the space on which L o L = 0 is applied.",
+   "replace": "\\item (ii) local representatives on the family through arity two along $(\\Delta,P_b)$ (Definition \\ref{def:c8-rep}), with $\\psi=0$.",
+   "by": "\\item (ii) local representatives through arity two along $(\\Delta,P_b)$ (Definition \\ref{def:c8-rep}), with $\\psi=0$, on a space of local functionals stable under $\\Lambda$ that contains the family.",
+   "replace_2": "By Theorem \\ref{thm:c8-L} (iii), (iv), $L\\circ L=0$ on the family,",
+   "by_2": "By Theorem \\ref{thm:c8-L} (iii), (iv), $L\\circ L=0$ on that space,"
+  },
+  {
+   "location": "prop:c9-scheme, last sentence of the statement (line 654)",
+   "severity": "minor",
+   "claim": "\"With a = -(1/3+theta_P) units, psi′ gives P_1 = 0 on the scalar bilinears\".",
+   "evidence": "thm:c9-P1 gives P_1(O) = -(1/3+theta_P) units {S^(1)(P_b),O} on the part with two legs A|_Wperp only; the statement is stronger. The shift arithmetic (-a, +a, -a/2, +a/2, 0 along P, K, Sigma, Sigma^*, Delta/so(V)/so(W)) agrees with audit_delta_3b check_scheme_P1.",
+   "replace": "gives $P_1=0$ on the scalar bilinears",
+   "by": "gives $P_1=0$ on the part with two legs $A|_{W_{\\mathbb R}^\\perp}$ of the scalar bilinears"
+  },
+  {
+   "location": "chapter introduction (line 3), last clause",
+   "severity": "minor",
+   "claim": "\"... a multiple of the classical transformation that the two-point equations leave free and the arity-two equation along (Delta,P_b) fixes.\"",
+   "evidence": "thm:c9-kappa fixes theta = -1/3 only under the hypotheses (i), (ii) (one-loop quantisation and local representatives through arity two). The introduction states it unconditionally.",
+   "replace": "and the arity-two equation along $(\\Delta,P_b)$ fixes.",
+   "by": "and the arity-two equation along $(\\Delta,P_b)$ fixes when the one-loop quantisation and the local representatives exist through arity two (Theorem \\ref{thm:c9-kappa})."
+  },
+  {
+   "location": "section \"Closed forms along the dilatation\", first paragraph (line 315)",
+   "severity": "minor",
+   "claim": "\"the regulator moves under it through its two endpoints (Proposition prop:c7-dil)\".",
+   "evidence": "prop:c7-dil states (v. x 1 + 1 x v.)P(eps,infty) = -4 eps dP/deps, one endpoint; the two-endpoint form is eq:c9-MP of prop:c9-ward.",
+   "replace": "through its two endpoints (Proposition \\ref{prop:c7-dil})",
+   "by": "through its two endpoints (Proposition \\ref{prop:c7-dil} at $T=\\infty$, Proposition \\ref{prop:c9-ward} at finite $T$)"
+  },
+  {
+   "location": "rem:c9-next (line 677)",
+   "severity": "minor",
+   "claim": "\"... the bracket of the cubic part of I with int(2E(A|_Wperp)+2A|_Wperp, A^*|_Wperp), which rescales the legs A|_Wperp of the cubic vertices\".",
+   "evidence": "The bracket applies v. = 2E+2 to the legs A|_Wperp and v. = 2E+6 to the legs A^*|_Wperp (lem:c7-weights; the vertex A|_Wperp c A^*|_Wperp has both); it is a weighted Euler operator, not a rescaling.",
+   "replace": "which rescales the legs $A|_{W_{\\mathbb R}^\\perp}$ of the cubic vertices",
+   "by": "which applies $v.$ to the legs $A|_{W_{\\mathbb R}^\\perp}$ and $A^*|_{W_{\\mathbb R}^\\perp}$ of the cubic vertices"
+  },
+  {
+   "location": "thm:c9-quadratic, opening line",
+   "severity": "minor",
+   "claim": "\"In the sectors (A|_Wperp,A^*|_Wperp), (A|_V,A^*|_V), (lambda,lambda^*) and (c,c^*)\" for all three items.",
+   "evidence": "These are the sectors of the degree -1 functionals (counterterm (i), finite counterterm (iii)); the obstruction (ii) has degree 0 and lives in (A,A), (lambda,lambda), (c,A^*|_V).",
+   "replace": "In the sectors $(A|_{W_{\\mathbb R}^\\perp},A^*|_{W_{\\mathbb R}^\\perp})$, $(A|_V,A^*|_V)$, $(\\lambda,\\lambda^*)$ and $(c,c^*)$, with $x$ the position:",
+   "by": "In the sectors $(A|_{W_{\\mathbb R}^\\perp},A^*|_{W_{\\mathbb R}^\\perp})$, $(A|_V,A^*|_V)$, $(\\lambda,\\lambda^*)$ and $(c,c^*)$ of degree $-1$ and the corresponding sectors $(A,A)$, $(\\lambda,\\lambda)$, $(c,A^*|_V)$ of degree $0$, with $x$ the position:"
+  },
+  {
+   "location": "prop:c9-structure (i) and its proof (lines 476, 486)",
+   "severity": "markup",
+   "claim": "\"W(P(\\varepsilon,\\infty),I)_{\\rm tree}\" and \"W_{\\rm tree}\".",
+   "evidence": "\\rm is a TeX font switch outside the macro list of FORMAT.md (KaTeX renders it, the vendored KaTeX check passes); the manuscript elsewhere uses \\mathrm.",
+   "replace": "_{\\rm tree}",
+   "by": "_{\\mathrm{tree}}"
+  },
+  {
+   "location": "prop:c9-basis, proof (line 64)",
+   "severity": "markup",
+   "claim": "\"the parity-odd $\\varepsilon(a_1,a_2,p_1,p_2)$ is symmetric\".",
+   "evidence": "\\varepsilon is the UV boundary throughout the chapter (and \\epsilon the Killing spinor in ch08); the volume form of V needs its own symbol.",
+   "replace": "the parity-odd $\\varepsilon(a_1,a_2,p_1,p_2)$ is symmetric",
+   "by": "the parity-odd $(a_1\\wedge a_2\\wedge p_1\\wedge p_2,\\,v_1\\wedge v_2\\wedge v_3\\wedge v_4)$ is symmetric"
+  },
+  {
+   "location": "rem:c9-method3, rem:c9-methodD, proof of thm:c9-quadratic (ii) (last sentence)",
+   "severity": "markup",
+   "claim": "Verification narratives: \"Three independent evaluations agree row by row: ...\", \"are confirmed by substitution on plane waves ...\", \"The sum agrees with the direct evaluation of the special-edge graphs ...\", \"checked in the realisations su(2) and gl(3)\", \"confirmed in exact finite-dimensional models of the slots c, A, A^*, c^* ...\".",
+   "evidence": "FORMAT.md: no audit notes; the user rule is to deliver the derivation, not its verification. ch04 rem:c4-method has similar wording, hence markup only. The model statement is also inaccurate: the exact models of audit_delta_1b (model.py) contain the slots lambda, lambda^* as well (l1, l2, ls1, ls2).",
+   "replace": "Three independent evaluations agree row by row: two graph expansions organised by the census of Proposition \\ref{prop:c9-classes}, and a third that enumerates every assignment of the field types to the half-edges of the multilinear vertices. A direct evaluation of the complete order-$\\hbar$ sums at finite $\\varepsilon$ in the sectors $(c,A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})$ and $(c,c,A^*|_V)$, followed by the limit $\\varepsilon\\to0$, reproduces $\\alpha_3$, $\\alpha_4$ and the reducible tree. The maps of Proposition \\ref{prop:c9-maps} and the solutions of Theorem \\ref{thm:c9-F3} are confirmed by substitution on plane waves, in the four sectors and in the four sectors of degree $1$ with three legs that carry no invariant.",
+   "by": "The rows are organised by the census of Proposition \\ref{prop:c9-classes}; the complete order-$\\hbar$ sums at finite $\\varepsilon$ in the sectors $(c,A|_{W_{\\mathbb R}^\\perp},A|_{W_{\\mathbb R}^\\perp})$ and $(c,c,A^*|_V)$ have the limits $\\alpha_3$, $\\alpha_4$ and the reducible tree.",
+   "replace_2": "The sum agrees with the direct evaluation of the special-edge graphs of Definition \\ref{def:c9-data} at the UV boundary.",
+   "by_2": "(delete)",
+   "replace_3": "the signs of Lemma \\ref{lem:c9-SDelta} and of Propositions \\ref{prop:c9-composite}--\\ref{prop:c9-ward} are confirmed in exact finite-dimensional models of the slots $c$, $A$, $A^*$, $c^*$ with the arrows of $Q$ and $Q^{GF}$ in momentum space, with $[v.,Q]=0$, $[v.,Q^{GF}]=-4Q^{GF}$, $[v.,H]=-4H$, on all monomials of degree at most three.",
+   "by_3": "(delete, ending the previous sentence at \"$\\mathfrak g=\\mathfrak{su}(2)$ and $\\mathfrak g=\\mathfrak{gl}(3)$.\")"
+  },
+  {
+   "location": "prop:c9-maps (iii), prop:c9-basis, intro paragraph 2",
+   "severity": "markup",
+   "claim": "Symbol overloads: H = d^*d + dd^* next to the functionals H_1..H_6; f = ([X_0,X_1],X_2) next to \"a cochain f\" of the introduction.",
+   "evidence": "Both used in the same propositions (prop:c9-maps (iii) uses H and H_j; prop:c9-basis f).",
+   "replace": "with $H=d^*d+dd^*$ the componentwise Laplacian",
+   "by": "with $H=d^*d+dd^*$ the componentwise Laplacian of Proposition \\ref{prop:c3-axioms} (the functionals $H_j$ carry an index)"
+  }
+ ],
+ "checked_and_correct": [
+  "Every \\ref/\\eqref label of ch09 exists (112 distinct references, 0 missing, no duplicate labels in ch00-ch09); reader_build/convert.py: unresolved = [] (1908 blocks, 300 labels).",
+  "KaTeX: all 1798 math strings of chapter 9 render with the vendored KaTeX, throwOnError, 0 errors, 0 strict warnings (step2/qa/ch09_review/katex_check.py). Tables: every row has the declared number of cells. No \\item[...], $$, \\cite, \\footnote, \\newcommand, \\slashed.",
+  "Cycle-graph table: every row (vertices, special edge, other edges, number of graphs, eps^0 value) equals the matched class of compare_cubic.json (engines A, B, theory census), including the three (c,c,A^*|_V) rows and the zero bubbles; totals 14/10/10/6 graphs; per-row eps^-1 and log eps coefficients are 0 in the data.",
+  "Ob_3 = unit[(11/4 + 19/4 log 3/2)(G1+G3) + 27/8 G2 - 9 log(3/2) G5], alpha_4 = 0, parity-odd coefficient 0: equals agreed_alpha of compare_cubic.json; sums of the rows rechecked by hand.",
+  "Second table (counterterm vertex -5/2,-5/2,9,0; bracket with K_0 +5/2,+5/2,-9,0; bridges -9/2(G1+G2), -9/2 G3; bracket with K_eps-K_0 +9/2; reducible 27/8(G1-G2), 27/8 G3, -27/4 G5, -27/4 G4) and the vertex-by-vertex split -3G1+1/2G1, ..., -G5-8G5: equal to cubic_maps.json II-a/III_K0 per row.",
+  "Q-maps QH1=-2G1, QH2=-G3, QH3=-1/2G1-G4, QH4=-1/2G3, QH5=G5, QH6=2G4, Q(Y_V)=-2G5, Q(Y_W)=0; brackets {I,D1}=2G2, {I,B1}=2G1, {I,B2}=2G3, {I,B3}=2G5, {I,B4}=1/2G1+1/2G3-G5, {I,int(A,A)}=0, {I,int(A,HA)}=2(G1+G2+G3); rank 4, kernel H1-4H3-2H6, H2-2H4, Y_V+2H5, Y_W: equal to cubic_maps.json and rb_verdict_data.json; QI_3 = 0 rechecked by hand.",
+  "Plane-wave values of G1, G2, G3, G4, G5 and the matrix [[-1,1],[0,-1]]; QG2 plane-wave value -if r0r1(|p0|^2(p0,b)+|p1|^2(p1,b)+|p2|^2(p2,b)) rederived by hand.",
+  "thm:c9-F3: the five row equations, the solution formulas for h1,h3,h4,h5, the family (beta_k, kappa_k), the identifications kappa1=beta4/4-h6/2, kappa2=h2-2beta2, the zero-cubic choice and eq:c9-F2rep: equal to compare_cubic.json F3 and refute_cubic_2 plug-back.",
+  "thm:c9-wz: (alpha_2 - 27/8) Q G2, {I,int(d^*dc,d^*A_V)} = QG2 (cubic_maps wz_numeric), equivalence with solvability.",
+  "Corollary c9-completions and the four pairs; lem:c9-legs colour identity (numerically on su(3), twocomp_check.py).",
+  "Part D: Ob^(1)(Delta) = unit[-(11/3) int(dA,dA) + (47/3) int(lambda,dslash lambda) - (14/3) int(dc,A^*)], first summand (-4,16,-4), composite part (1/3,-1/3,-2/3), zero d^*A and x coefficients: equal to compare_delta_b.json (engines A, B, theory).",
+  "Arity-one counterterm log eps[int(d(iota_x A_V),A^*_V) - int(iota_x dc,c^*) - int(rho(x)dslash lambda,lambda^*)] = log eps Q(int(iota_x A_V,c^*) - 1/2 int(rho(x)lambda^*,lambda^*)), no eps^-1, zero in A_perp: equal to engine B.",
+  "Translation-invariant F^(1)(Delta) = (22/3,-47/3,-8/3) = 4 FC + (-2/3,1/3,4/3); A_perp family a-b = 22/3 with theta; Q-images of the four basis functionals; Remark c9-Pi (5/3 S_perp - 2/3 int(A_perp,A^*_perp), nonlocal in the other sectors, Q-image local).",
+  "D_1 table: 16 O / -32 O (thm:c5-Oeps, 4x), -4/3 O - 1/3{S,O} (K5 composite part), -{F,O} = -44/3 O - theta{S,O}; D_1 = 2cO - (1/3+theta) units {S^(1)(Delta),O}, c = 0, -24: equal to engines A (after the Q(Y1a) symmetrisation) and B (b = 2 theta).",
+  "Composite triangle: symmetrisation rule, divergence 2/(|p1|^2|p2|^2), (8, 4k) = -2 x (-4, -2k) rederived by hand; rem:c9-twoeval sums 4/3 O - 1/3{S,O} on both routes, 8/3 O tree insertion rederived from the propagator normalisation of prop:c8-twocomp.",
+  "Audit corrections of the Part D theory are all implemented: composite kernel 2(P* v. P* x 1)K_0 (prop:c9-composite (i), eq:c9-conj with hbar^2/2); Q anticommutes with d_Psi (prop:c9-composite (iii)); d_P S^(1)(Delta) = 0 (lem:c9-SDelta (iii)); signs (-,-) of the Q-image (eq:c9-D1b); Pi local only in A_perp (rem:c9-Pi); Q(Y1a) local = -2 units {S,O} (prop:c9-triangle); scheme psi′ = a/2 {S^(1)(Delta),-} with shifts -a, +a, -a/2, +a/2, 0 (prop:c9-scheme); exponents -5/-6 (rem:c9-endpoint).",
+  "Operator identities rederived by hand: [v.,P*] = 4 eps Q^GF e^{-eps H}, 2P*v.P* = v.(P*)^2 + (P*)^2 v., the vanishing k(Hf)′ - (Hf)k′ in prop:c9-composite (iii), the homotopy of rem:c9-endpoint, eq:c9-conj and eq:c9-D1a (BCH), eq:c9-MP and eq:c9-ward, the (v. - 4 eps d/deps) computation of cor:c9-CS.",
+  "thm:c9-kappa: order-hbar part 2a{S(P_b),O} of [Lambda(Delta),Lambda(P_b)] + Lambda(-2P_b); degree -1 colour singlets have weight >= 4; theta = -1/3, cor:c9-ident (i) 20/3, -2/3 (engine B b = -2/3); Konishi value 3g^2N/(4 pi^2) with unit = -g^2N/(32 pi^2) (rem:c6-konishi).",
+  "thm:c9-P1 -(1/3+theta_P) (engine B K5 translation part 2/3 k T1; engine A -2 + 5/3).",
+  "Two-component formulas of rem:c9-twocomp3 and rem:c9-twocompD against def:c8-twocomp (numpy, commuting components; Grassmann signs analytic): Clifford relation and symmetry of rho on V_10, rho(e1e2e3e4) = +1 on S_+ (x) W, symmetric/antisymmetric bilinears used in prop:c9-basis and prop:c9-maps, (z1,rho(v)z2), (z1,rho(w)z2), the parity-odd structure, (rho(x)dslash lambda,lambda^*), (rho(x)lambda^*,lambda^*) = -2i x lambda^* sigma lambdabar^*, int(lambda,dslash lambda) = 2i int(lambdabar sigmabar d lambda), coefficients 94/3 i, -9i log(3/2), -47/3; Yukawa signs agree with dictionary.json \"action-integrated\" (step2/qa/ch09_review/twocomp_check.py, all residuals < 2e-14)."
+ ]
+}

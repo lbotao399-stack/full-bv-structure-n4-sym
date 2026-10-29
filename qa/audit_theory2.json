@@ -1,0 +1,241 @@
+{
+ "audit": "theory, round 2 (adversarial)",
+ "date": "2026-10-28",
+ "inputs_read": [
+  "DESIGN.md",
+  "DEFINITIONS_v2.md",
+  "sources/ledger_SYNTHESIS.md",
+  "manuscript/ch01_classical.tex",
+  "manuscript/ch02_superconformal.tex",
+  "manuscript/ch03_uv_boundary.tex",
+  "compare/compare_r2.json (T1, T2 sections)",
+  "engine_a/r2_T1.py, r2_T2.py, r2_make_results.py",
+  "engine_b/r2_T1.py, r2_engine.py (colour reduction), r2_T1_AV4.json, r2_T1_Ap4.json, r2_T1_AV2Ap2.json",
+  "superconformal/verify.py, verify.json (super-Jacobi method)",
+  "[ESW] text: Def 1.13, 1.15, 1.16, 1.26, 1.27, (31)-(34), Thm 3.3, Lemmas 3.4, 3.6, 3.7"
+ ],
+ "independent_checks": [
+  {
+   "script": "qa/audit_theory2_src/longit_selfenergy.py (+ longit_parts.py)",
+   "what": "From-scratch longitudinal part of the one-loop A|_V two-point function of the reduced theory, every propagator multiplied by e^{-eps k^2} (the P(eps,infty) regulator), standard Euclidean Feynman-gauge rules: cubic and quartic vertices of -1/4(F_A,F_A) with all ten components of A, Faddeev-Popov ghost loop, two Dirac adjoint fermion loops; Schwinger parameters, exact Gaussian moments, exact eps -> 0 expansion with sympy. No engine code reused.",
+   "result": "W_1 (quadratic, longitudinal and mass parts) = (9/4) hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) eps^{-1} int(A,A) + (27/16) hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) int(d^*A|_V, d^*A|_V) + O(eps); no log eps and no log of the momentum in the longitudinal part. Per contribution (special-edge normalisation of compare_r2.json, coefficient of hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) x int(d^*dc,d^*A|_V) in Q W_1): fermion loop eps^{-1}: 2, finite: -4/3 (= engine row QME2-d exactly); gauge+scalar+ghost finite: -49/24 (= sum of rows QME2-a,b,c,e: -5/8-5/4-1/12-1/12); the log eps / log 2 / Euler-gamma pieces cancel only between the gauge bubble and the ghost loop (nontrivial relative-sign check).",
+   "verdict": "T2 quadratic numbers (eps^{-1} -9/2 from the graphs, +9/2 from -Q I^CT[eps], finite -27/8) and the round-1 mass coefficient 9/4 are independently confirmed."
+  },
+  {
+   "script": "by hand (recorded here)",
+   "what": "Sign/normalisation sanity of the T1 log coefficients against the textbook Feynman-gauge wave-function renormalisation of the reduced theory.",
+   "result": "Gauge-field log coefficient per unit tree: (13/6 - 1/2) - 8/3 - 1 = -2 in units of the Casimir term tr_g(ad ad)/16pi^2 per 1/eps_DR; with 1/eps_DR <-> -log eps and I^CT = singular part of W (= minus the textbook counterterm), this reproduces -hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) log eps int(dA,dA) = 4 x (-1/4 int(dA,dA)) in the unit. With vanishing coupling renormalisation the cubic and quartic gauge counterterms must be 3/2 and 2 times the quadratic one: 4 : 6 : 8, as found.",
+   "verdict": "consistent"
+  },
+  {
+   "script": "by hand",
+   "what": "Re-derivation of manuscript identities: AAA and AAAA vertex functions (ch01), Prop c1-Q pairing preservation (A, A^*-c, lambda slots), Prop c3-H (all six slots), Prop c3-adjoint (three cases), Prop c3-axioms (3),(5) and non-isotropy, Prop c3-P components and graded symmetry, position-space values, Remark c3-feynman covariances (with e^{+S/hbar}), Prop c3-oneloop (both one-dimensional cases), Prop c2-special (all six items), Lemma c2-dcesign item 1 against the printed [ESW, Def 1.26] exponent, Lemma c2-components arity-3 exponents (4, 6, 6), Prop c2-tower, the bracket {S, 2int(A,A^*) - 4int(lambda^*,lambda) - int(c^*,c)} as the weighted field count (0-dim two-pair model with the [C07] Delta_0 and the manuscript K_0 sign).",
+   "result": "all reproduced",
+   "verdict": "confirmed"
+  }
+ ],
+ "verdicts": {
+  "T1_assumption_A_and_coupling_direction": {
+   "verdict": "CONFIRMED (not refuted)",
+   "statement_checked": "log eps part of I^CT[eps] = hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) log eps (Q + {I,-})(2 int(A,A^*) - 4 int(lambda^*,lambda) - int(c^*,c)) in every sector with superficial degree >= 0; coefficient along the coupling direction = 0.",
+   "why_it_survives": [
+    "The bracket with 2int(A,A^*) - 4int(lambda^*,lambda) - int(c^*,c) is the field count with weights A:2, lambda:4, c:1 and antifields with the opposite weights (rederived with the [C07] Delta_0 and the manuscript K_0; the signs -4 and -1 come from lambda^*, c^* being the even members of their pairs). Applied to S it gives the multiples 4 (quadratic gauge), 8 (lambda kinetic), -1 ((dc,A^*)), 6, 10, 1, 1, 1 (cubic), 8 (quartic): all eleven cubic/quartic sets agree.",
+    "Uniqueness: beta S + {S, general weight functional} with beta and four weights is overdetermined by 15 sector equations; the gauge multiples (2,3,4) x weight + beta (1,1,1) force beta = 0, weight 2.",
+    "Completeness at one loop: by power counting (A:1, lambda:3/2, c:0, A^*:3, lambda^*:5/2, c^*:4, ghost number 0, density dimension <= 4) the only local structures are those already in S (no A^*A^*, lambda^*lambda^* or c^* A terms); Spin(6)-odd and eps^{-1/2} pieces are excluded by invariance. Hence (A) is not only 'verified to the extent computed' but holds at one loop given the computed sets.",
+    "General simple g: engine B reduces ordered adjoint traces exactly (symmetrised quartic trace kept separately); its symmetrised-trace coefficient totals vanish in all three quartic sets, so the quartic statement does not rest on su(2) identities. Engine A alone is su(2)."
+   ],
+   "caveats": [
+    {
+     "id": "T1-c1",
+     "severity": "minor",
+     "text": "Coupling direction representative: d/ds S[(1+s)(-,-)] = S also rescales the BV pairing (antifields are identified through (-,-)), so it is not a deformation inside the fixed BV complex. Inside the fixed complex the coupling direction is the classical part of S (the terms without antifields); the difference, the antifield terms of S, equals (Q + {I,-})(-int(c^*,c)) (ghost-number count). Because the fit contains the c-weight, beta is unchanged and the conclusion stands; the text should say this."
+    },
+    {
+     "id": "T1-c2",
+     "severity": "minor",
+     "text": "The most general degree -1 weight-4 functional has two independent lambda terms (the two four-dimensional chiralities of lambda^*, lambda). The fits use one weight; equality of the two weights is forced by the chirality-odd structure in the (lambda,lambda,A|_Wperp) set (multiple of tree 10 in both structures). State it."
+    },
+    {
+     "id": "T1-c3",
+     "severity": "minor",
+     "text": "The quartic statement for general simple g rests on engine B only (engine A is su(2), where every invariant of four adjoints is a combination of products of (-,-)); the third independent check covers bosonic classes only."
+    }
+   ]
+  },
+  "T2_QME_defect": {
+   "verdict": "CONFIRMED for the quadratic sector (numbers independently reproduced); scope of the conclusion must be restricted",
+   "D_eps_formula": {
+    "status": "correct",
+    "details": [
+     "D = Q J + 1/2 {J,J}_eps + hbar Delta_eps J with J = I - I^CT[eps]; Q W(P(eps,infty),J) = sum of connected graphs with one D vertex (UV-boundary identity).",
+     "Order hbar^0: QI + 1/2{I,I}_eps = 1/2({I,I}_eps - {I,I}_0) by the CME; the special edge is K_eps - K_0 (field-antifield components only). Equivalent to [C07] (12.0.1) (special edge K_eps plus the vertex QI, since 1/2{I_3,I_3}_0 = -Q I_4).",
+     "Order hbar: Delta_eps I - Q I^CT[eps] - {I, I^CT[eps]}_eps (signs from QJ and from 1/2{J,J}_eps); Delta_eps I = 0 because every antifield vertex is ([X,c],Y)-type and the contraction with the inverse pairing gives ([t,c],t)-sums = 0.",
+     "Factor 1/2: the bubble with special edge and one P(eps,infty) line has weight 1 after the 1/2 of 1/2{I,I} and the two orderings; route (b) (Q applied to the plain self-energy) reproduces route (a) exactly, which fixes the factor and sign of the special-edge implementation.",
+     "Which terms enter for external (c, A|_V): only the special-edge bubbles (one-loop two-point graphs with one special edge are bubbles; tadpole-type graphs vanish by colour) and -Q I^CT[eps]; {I, I^CT}_eps is cubic. Census complete."
+    ]
+   },
+   "caveats": [
+    {
+     "id": "T2-c1",
+     "severity": "moderate",
+     "type": "significance overstated",
+     "text": "The cancellation of eps^{-1} and the absence of log eps in the quadratic sector are automatic: Q is linear and preserves polynomial degree, so the quadratic part of Q W(P(eps,infty), I - I^CT[eps]) equals Q of (quadratic part of W_1 minus quadratic part of I^CT[eps]), and the latter is finite by the very construction of I^CT[eps] as the singular part of the same two-point function. The check validates the special-edge implementation of the UV-boundary identity, not the quantum master equation.",
+     "fix": "Present the quadratic result as: finite obstruction = Q of the finite longitudinal part of the renormalised A|_V two-point function, (27/16) hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) int(d^*A|_V, d^*A|_V)."
+    },
+    {
+     "id": "T2-c2",
+     "severity": "moderate",
+     "type": "scope",
+     "text": "Q-exactness in this sector is automatic: the only ghost-number-1, dimension-4, Spin(4) x Spin(6) x Ad-invariant quadratic local functional is int(d^*dc, d^*A|_V) = -1/2 Q int(d^*A|_V, d^*A|_V) (int(dc, d^*dA|_V) = 0). The cohomologically meaningful statement is (Q + {I,-})-exactness of the full one-loop obstruction, which needs the cubic sector (OPEN). Adding the finite counterterm changes the cubic obstruction by -(27/16) hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) {I, int(d^*A|_V, d^*A|_V)} (nonzero, built from ([A,c],A^*)), so 'the obstruction is removed' holds only for the quadratic component.",
+     "fix": "State: quadratic component removed; full one-loop QME open until the cubic special-edge triangles and quartic-vertex bubbles are computed."
+    },
+    {
+     "id": "T2-c3",
+     "severity": "minor",
+     "type": "placement of the finite counterterm",
+     "text": "F = (27/16) hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2) int(d^*A|_V, d^*A|_V) is local, even, ghost number 0, dimension 4, invariant under Spin(4) x Spin(6) x Ad, translations and dilatation, and eps-independent: allowed. It is not a part of I^CT[eps], which by [C07, Thm B] lies in O_loc tensor A_{<0} and is unique; it is a finite order-hbar change of the interaction (I -> I - F), the lift of [C07, Prop 12.0.3, Lemma 12.0.4]. It is not invariant under special conformal transformations (it is the Feynman-gauge longitudinal term), so it enters the Step-2 equivariant counterterms.",
+     "fix": "Write 'renormalised interaction I - I^CT[eps] - F' (as engine B does) and never 'I^CT[eps] + F'."
+    }
+   ]
+  },
+  "ch01": {
+   "verdict": "CONFIRMED with two minor defects",
+   "findings": [
+    "ch01-1",
+    "ch01-2"
+   ]
+  },
+  "ch02": {
+   "verdict": "CONFIRMED in substance; two statements overstated",
+   "findings": [
+    "ch02-1",
+    "ch02-2"
+   ]
+  },
+  "ch03": {
+   "verdict": "Core identities CONFIRMED (Q P(eps,infty) = K_eps, UV-boundary identity, homotopy identity, one-loop formula); acyclicity consequences REFUTED as stated",
+   "findings": [
+    "ch03-1",
+    "ch03-2",
+    "ch03-3",
+    "ch03-4",
+    "ch03-5",
+    "ch03-6",
+    "ch03-7"
+   ]
+  },
+  "focus_items": {
+   "UV_boundary_identity (Thm c3-uv, Cor c3-qme)": "CONFIRMED algebraically (uses only Q^2 = 0, [d_phi,Q] = d_{Q phi}, Q P(eps,infty) = K_eps, commuting d_phi, [d_P, d_CE] = 0; no (Q^GF)^2). Minor gap ch03-4: domain of functionals unspecified on R^4.",
+   "axiom_list (Prop c3-axioms; Axiom c2-esw)": "CONFIRMED: (1) in the sense 'opposite adjointness to Q' (naming conflict ch03-7), (2), (4) hold; (3) fails with (Q^GF)^2 A^* = 2 d^*(A^*|_V), (Q^GF)^2 c^* = -2 dc^*; (5) fails via Qc = Q^GF(1/2 dc); Im Q^GF not isotropic. Axiom c2-esw: [ESW, Lemma 3.6] explicitly evaluates on iso(V) and Sigma, so the cited coverage (translations, so(V), so(W_R^perp) as 10d rotations, Sigma) is correct.",
+   "acyclicity_theorem (Thm c3-acyclic, Cor c3-functionals, Rem c3-story)": "Homotopy identity Q P(0,infty)* + P(0,infty)* Q = id on E_c CONFIRMED; 'every Q-closed alpha in E_c is Q-exact', 'the complex of functionals ... is acyclic' and 'every Q-closed functional at scale infinity is Q-exact' REFUTED as stated (ch03-1, ch03-2, ch03-3).",
+   "equivariant_master_equation_status (Rem c2-status, Prop c2-psl, Prop c2-coeff, Prop c2-tower)": "Prop c2-tower CONFIRMED for every g (proof complete); Remark c2-status is an accurate summary; super-Jacobi 'holds on every triple' and 'holds for all seven types' are only single-random-draw / su(2) evaluations (ch02-1, ch02-2). The quantum equivariant master equation is not claimed anywhere in ch01-ch03 (correctly)."
+  }
+ },
+ "findings": [
+  {
+   "id": "ch01-1",
+   "target": "ch01 Prop c1-cme, third item",
+   "severity": "minor",
+   "verdict": "REFUTED as stated",
+   "gap": "The proposition is stated 'for every g as in Def c1-spaces'. For abelian g every term of {S,S} that could distinguish the relative signs contains [-,-], so all four sign patterns and both signs of 1/2([c,c],c^*) give {S,S} = 0.",
+   "fix": "Restrict the third item to g with [g,g] != 0 (it is proved for su(2))."
+  },
+  {
+   "id": "ch01-2",
+   "target": "ch01 Prop c1-Q (pairing preservation) vs ledger X8",
+   "severity": "minor",
+   "verdict": "undocumented source conflict",
+   "gap": "The manuscript's relation <Qe_0,e_1> + (-1)^{|e_0|}<e_0,Qe_1> = 0 is the opposite of [ESW, Def 1.16(3)] as printed, int omega(e_0,Qe_1) = (-1)^{|e_0|} int omega(Qe_0,e_1); with the manuscript's graded antisymmetry the printed ESW sign would make <A,QA> vanish for even A. The ledger resolution X8 says to use the ESW formula; the manuscript silently (and correctly) uses the other one.",
+   "fix": "Add one sentence recording the conflict and why the printed ESW sign is incompatible with a nonzero kinetic term."
+  },
+  {
+   "id": "ch02-1",
+   "target": "ch02 Prop c2-psl (super-Jacobi, Killing form, block rule)",
+   "severity": "moderate",
+   "verdict": "REFUTED as stated (proof gap)",
+   "gap": "'The super-Jacobi identity holds on every unordered triple of the seven types' is supported by one random draw per type triple (superconformal/verify.py, sec_alg). For a triple with three even arguments the Schwartz-Zippel bound per draw is 1/4+1/4+1/4 = 3/4; no bound is stated for this item (Remark c2-sz covers master-equation components only). For a 30|32-dimensional algebra an exact check is cheap.",
+   "fix": "Verify super-Jacobi, the block rule and the Killing form exhaustively on a basis (62^3 triples) or with symbolic coefficients, or state the bound."
+  },
+  {
+   "id": "ch02-2",
+   "target": "ch02 Prop c2-coeff (last sentence) and Remark c2-status",
+   "severity": "minor",
+   "verdict": "overstated",
+   "gap": "'With these values {S,S^(1)(x_1)} = 0 holds for all seven types' is evaluated for su(2) at sampled generators only (for Delta, special conformal and Sigma^* types no general-g argument is given). The heuristic that the identities use [-,-] only through Jacobi and (-,-) only through invariance is not a proof; su(2) satisfies additional identities (products of two structure constants reduce to products of the pairing; every invariant of four adjoints reduces to products of (-,-)), so su(2) cannot certify general g.",
+   "fix": "Add 'for g = su(2), at sampled generators' to the sentence; for general g repeat on a gauge algebra without these degeneracies (e.g. su(3)) or argue symbolically."
+  },
+  {
+   "id": "ch03-1",
+   "target": "ch03 Thm c3-acyclic, 'In particular' sentence",
+   "severity": "moderate",
+   "verdict": "REFUTED as stated",
+   "gap": "P(0,infty)*alpha is not compactly supported, so 'alpha is Q-exact' holds only in E_c + P(0,infty)*E_c. In E_c itself Q has cohomology.",
+   "counterexample": "alpha = an element of C_c^infty(R^4; g) in the c^* slot with int dvol (alpha, X) != 0 for some X in g: Q alpha = 0 (Q vanishes on the c^* slot), but the c^*-component of Q(E_c) is d^*(A^*|_V), whose integral is zero, so alpha is not Q of a compactly supported element.",
+   "fix": "Replace by: 'every alpha in E_c with Q alpha = 0 equals Q(P(0,infty)*alpha), with P(0,infty)*alpha smooth but not compactly supported; (E_c, Q) itself is not acyclic.'"
+  },
+  {
+   "id": "ch03-2",
+   "target": "ch03 Cor c3-functionals, 'Hence the complex ... is acyclic'",
+   "severity": "moderate",
+   "verdict": "REFUTED as stated (proof gap)",
+   "gap": "The identity F = (F o h_(n)) o Q_(n) on E_c^{tensor n} is correct, but F o h_(n) is only shown to be defined on E_c^{tensor n}. Since (Q^GF)^2 != 0, P(0,infty)*P(0,infty) = int_0^infty u (Q^GF)^2 e^{-uH} du != 0, so E_c + P(0,infty)*E_c is not stable under P(0,infty)* and F o h_(n) need not extend to the domain that defines 'functionals of this type'. Acyclicity of that complex (primitive inside the complex) does not follow.",
+   "fix": "Either state only 'every such F is Q-exact on E_c^{tensor n} with primitive F o h_(n)', or define a decay-graded space of sections stable under Q and P(0,infty)* and prove continuity of F o h_(n) on it."
+  },
+  {
+   "id": "ch03-3",
+   "target": "ch03 Remark c3-story ('Q alone has trivial cohomology on functionals without constant term: every Q-closed functional at scale infinity is Q-exact')",
+   "severity": "moderate",
+   "verdict": "REFUTED",
+   "gap": "The corollary's hypothesis (F defined and Q-closed on E_c + P(0,infty)*E_c) excludes exactly the nontrivial classes, and also excludes basic local functionals: int(A|_Wperp, A|_Wperp) diverges logarithmically on A|_Wperp = P(0,infty)*alpha ~ |x|^{-2}.",
+   "counterexample": "For fixed X in g, the linear functional e -> int dvol (c^*-component of e, X) on E_c is Q-closed (its composite with Q is int d^*(A^*|_V) = 0 on E_c) and not Q-exact (G o Q never depends on the c^*-component, because Q kills the c^* slot). On E_c + P(0,infty)*E_c it is not Q-closed (its composite with Q on P(0,infty)* c^* gives int (c^*, X) != 0), consistent with the corollary. This class is the constant gauge parameter, an infrared datum on R^4.",
+   "fix": "Restrict the remark to the class of Cor c3-functionals; acknowledge that zero-mode classes such as int(c^*, X) survive and are discarded by the program (ledger G1)."
+  },
+  {
+   "id": "ch03-4",
+   "target": "ch03 Thm c3-uv, Cor c3-qme, Def c3-delta ('Delta_infty = 0, {-,-}_infty = 0')",
+   "severity": "minor",
+   "verdict": "CONFIRMED algebraically; analytic domain missing",
+   "gap": "On non-compact R^4 the class of functionals is not specified. For translation-invariant local functionals d_{K_eps} and d_P can diverge with the volume (Delta_eps int(A,A^*) is the volume of R^4 times a nonzero multiple of (4 pi eps)^{-2}; d_P of the product of two translation-invariant linear functionals is int int P = infinity), and 'Delta_infty = 0' holds only on functionals with integrable kernels, since int K_T(x,y) dy is the same for every T.",
+   "fix": "State the class (e.g. functionals with compactly supported coefficients, interactions cut off by a compactly supported density with the limit taken at the end, or identities of densities modulo total derivatives), cf. ledger G1/G4."
+  },
+  {
+   "id": "ch03-5",
+   "target": "ch03 Remark c3-two",
+   "severity": "minor",
+   "verdict": "incomplete",
+   "gap": "'The obstruction to the QME and the Q-variation of observables sit on K_eps edges' omits the counterterm vertices -Q I^CT[eps] - {I, I^CT[eps]}_eps (and their delta-derivatives for observables), which carry no special edge and are indispensable (T2: +9/2 eps^{-1} from -Q I^CT[eps]).",
+   "fix": "'... sit on K_eps (or K_eps - K_0) edges and on the counterterm vertices -Q I^CT[eps] - {I, I^CT[eps]}_eps.'"
+  },
+  {
+   "id": "ch03-6",
+   "target": "ch03 Prop c3-oneloop and Remark c3-oneloop",
+   "severity": "minor",
+   "verdict": "proof covers complex coefficients only",
+   "gap": "The Zariski-density/diagonalisation proof does not apply when the coefficients of J contain odd elements (mixed even-odd blocks); the odd-background case is only checked to third order in J.",
+   "fix": "Prove it via d/ds of hbar log(e^{hbar d_P} e^{sJ/hbar})|_0 = (hbar/2) STr(M (1 - sM)^{-1}) using the Gaussian (Wick) identity over a supercommutative coefficient ring, or restrict the statement. (The engines evaluate odd legs graph by graph, so no number depends on this.)"
+  },
+  {
+   "id": "ch03-7",
+   "target": "ch03 Prop c3-adjoint and Prop c3-axioms item (1)",
+   "severity": "minor",
+   "verdict": "naming conflict not recorded",
+   "gap": "The manuscript calls Q 'self adjoint' [C07, §4.3] and Q^GF 'skew self adjoint' [C07, Def 4.3.3(1)]; [C07, §1, §1.1, §2.1] and [CG2, §7.2.1] use the opposite names (Q skew self adjoint, Q^GF self adjoint). The mathematical content (Q^GF has the adjointness opposite to Q; P(eps,infty) graded symmetric) is correct.",
+   "fix": "Say that (1) is read as 'opposite adjointness to Q' because the source names conflict (ledger X8)."
+  }
+ ],
+ "confirmed_statements": [
+  "ch01: Prop c1-chirality; Def c1-pairing and K_0 sign (K_0 * e = e with the [C07] convolution sign); Prop c1-norm (affine argument); Prop c1-Q (Q^2 = 0, pairing preservation); vertex functions (AAA, AAAA re-derived from -1/2(dA,1/2[A^A]) and -1/4(1/2[A^A],1/2[A^A]) with the Hodge pairing); Remark real slice (eigenvalues -1/2|p|^2 x 9 and 0 x 1).",
+  "ch02: Prop c2-special; Lemma c2-dcesign (printed exponent i+j+|f| gives -f([x_1,x_2]) at n = 2, [ESW, Lemma 3.6] item 2 has +); Lemma c2-components arity 2 and arity 3 (exponents 4, 6, 6); Prop c2-tower for every g; Axiom c2-esw coverage.",
+  "ch03: Prop c3-H with uniqueness; Prop c3-adjoint; Prop c3-axioms; Remark c3-feynman; Prop c3-heat; Prop c3-P; Prop c3-QP; Thm c3-uv (algebra); Cor c3-qme (algebra); homotopy identity of Thm c3-acyclic; Prop c3-graphs; Prop c3-oneloop (complex coefficients)."
+ ],
+ "summary": {
+  "T1": "confirmed; three minor presentation caveats",
+  "T2": "quadratic sector confirmed by an independent computation; eps^{-1} cancellation and Q-exactness are automatic in this sector; removal of the obstruction established for the quadratic component only (cubic open); F is a finite change of the interaction, not part of I^CT[eps]",
+  "chapters": "no sign or normalisation error found; acyclicity consequences (ch03-1, ch03-2, ch03-3) refuted as stated; super-Jacobi/arity-1 claims overstated (ch02-1, ch02-2); five minor items",
+  "counts": {
+   "refuted_as_stated": 5,
+   "moderate": 6,
+   "minor": 11
+  }
+ }
+}

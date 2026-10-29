@@ -1,0 +1,2581 @@
+{
+ "engine": "A (round 2): momentum space, per-edge Schwinger parameters t_e in [eps,infty), exact Gaussian loop integral, exact eps-asymptotics, exact arithmetic throughout (no floating-point fits)",
+ "files": [
+  "engine_a/r2_core.py",
+  "engine_a/r2_graphs.py",
+  "engine_a/r2_T1.py",
+  "engine_a/r2_T1_vanishing.py",
+  "engine_a/r2_regress_quadratic.py",
+  "engine_a/r2_verify_special0d.py",
+  "engine_a/r2_T2.py",
+  "engine_a/r2_T2b.py",
+  "engine_a/r2_T3_weights.py",
+  "engine_a/r2_make_results.py"
+ ],
+ "T1": {
+  "definitions": {
+   "cubic A (omega=1)": "legs i=1,2,3 with polarisations a_i (element of V_10^vee (x) g) and incoming momenta p_i (p_3=-p_1-p_2); (a_i.a_j)(p.a_k) := ([a_i-colour, a_j-colour]-free contraction) = ((a_k(p)), [.,.]) pattern: the structure \"(a1.a2)(p1.a3)\" is (a_3(p_1), [a_1, a_2]) with a_1,a_2 contracted by the metric of the stated subspace and the colour parts combined by (X,[Y,Z]); \"eps(a1,a2,a3,p)\" uses the volume form of V.",
+   "lambda lambda A (omega=0)": "\"(u1,rho(a)[.,u2])\" = (u_1, rho([a, u_2])) (ESW pairing Sigma x Sigma^* and Clifford action); \"(u1,rho(a) chirality [.,u2])\" = the same with the 4d chirality operator rho(q(dvol)) inserted before u_2.",
+   "ghost-sector (omega=0)": "\"([gamma,a],alpha)\" = ([gamma, a], alpha) with V_10 metric; \"([gamma,u],v)\" = ([gamma,u],v) with the Sigma x Sigma^* pairing; \"([g1,g2],w)\" = ([gamma_1,gamma_2], w).",
+   "quartic (omega=0)": "Colour pairings X=(12)(34), Y=(13)(24), Z=(14)(23) of the four g-factors through (-,-) (g = su(2) in the code), Lorentz pairings x=(12)(34), y=(13)(24), z=(14)(23) of the V_10^vee factors through the metric of V or W_R^perp; \"Xy\" = product. Algebra-independent form: with tr_g(ad ad ad ad)[ijkl] the trace of the product of ad of the colour parts of legs i,j,k,l in this order, the su(2) identity tr_g(ad_a ad_b ad_c ad_d) = (a,b)(c,d) + (a,d)(b,c) (checked in r2_make_results.py) gives X = (t[1234] + t[1243] - t[1324])/2, Y = (t[1243] + t[1324] - t[1234])/2, Z = (t[1234] + t[1324] - t[1243])/2; the coefficients of the three orderings t[...] are algebra-independent (every one-loop colour factor is a trace of products of ad)."
+  },
+  "units": "u = hbar tr_g(ad_X ad_Y)/((X,Y) 16 pi^2); computed with g = su(2), orthonormal for (-,-), for which tr_g(ad_X ad_Y)/(X,Y) = -2; every number is an exact rational from exact arithmetic (Gaussian integers, Fractions, exact Gauss-Jordan over Q(i) on complete invariant bases with zero residual on extra samples); two independent random seeds agree.",
+  "sets": {
+   "(A|_V, A|_V, A|_V)": {
+    "tree_vertex": "int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3",
+    "tree_in_basis": {
+     "(a1.a2)(p1.a3)": "I/2",
+     "(a1.a3)(p1.a2)": "-I",
+     "(a2.a3)(p1.a1)": "I/2",
+     "(a1.a2)(p2.a3)": "-I/2",
+     "(a1.a3)(p2.a2)": "-I/2",
+     "(a2.a3)(p2.a1)": "I"
+    },
+    "graphs": [
+     {
+      "id": "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": "0 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "2 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": "-9/2 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "13/4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV | AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[A|_V]",
+       "AcAs[A|_V]",
+       "AcAs[A|_V]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "c-A^*|_V",
+       "c-A^*|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "-1/12 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[A|_V]",
+       "llA[A|_V]",
+       "llA[A|_V]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "16/3 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "(a1.a2)(p1.a3)": "3*I",
+      "(a1.a3)(p1.a2)": "-6*I",
+      "(a2.a3)(p1.a1)": "3*I",
+      "(a1.a2)(p2.a3)": "-3*I",
+      "(a1.a3)(p2.a2)": "-3*I",
+      "(a2.a3)(p2.a1)": "6*I"
+     },
+     "multiple_of_tree": "6",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "6",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 1
+   },
+   "(A|_V, A|_Wperp, A|_Wperp)": {
+    "tree_vertex": "int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2",
+    "tree_in_basis": {
+     "(a2.a3)(p1.a1)": "I/2",
+     "(a2.a3)(p2.a1)": "I"
+    },
+    "graphs": [
+     {
+      "id": "AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": "-9/2 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 1,
+      "log_eps": "0 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "3/2 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AP,AP | AAA[A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~",
+      "topology": "bubble",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 1,
+      "log_eps": "0 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[A|_V]",
+       "llA[A|_Wperp]",
+       "llA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "8 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "(a2.a3)(p1.a1)": "3*I",
+      "(a2.a3)(p2.a1)": "6*I"
+     },
+     "multiple_of_tree": "6",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "6",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 1
+   },
+   "(lambda, lambda, A|_V)": {
+    "tree_vertex": "int dvol 1/2 (lambda, rho([A|_V, lambda]))",
+    "tree_in_basis": {
+     "(u1,rho(a)[.,u2])": "-1"
+    },
+    "graphs": [
+     {
+      "id": "l,l,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "llA[lambda]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "lambda-lambda",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "3 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "l,l,AV | llA[lambda] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[lambda]",
+       "llA[A|_V]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "3 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "l,l,AV | AAA[A|_V] ~A|_V-A|_V~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "llA[lambda]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "lambda-lambda",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "3 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "l,l,AV | llA[lambda] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[lambda]",
+       "llA[A|_V]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "(u1,rho(a)[.,u2])": "-10"
+     },
+     "multiple_of_tree": "10",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "10",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(lambda, lambda, A|_Wperp)": {
+    "tree_vertex": "int dvol 1/2 (lambda, rho([A|_Wperp, lambda]))",
+    "tree_in_basis": {
+     "(u1,rho(a)[.,u2])": "-1"
+    },
+    "graphs": [
+     {
+      "id": "l,l,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "llA[lambda]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "lambda-lambda",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": "2 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[lambda]",
+       "llA[A|_Wperp]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "llA[lambda]",
+       "llA[A|_Wperp]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "(u1,rho(a)[.,u2])": "-10"
+     },
+     "multiple_of_tree": "10",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "10",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(c, A|_V, A^*|_V)": {
+    "tree_vertex": "int dvol ([A|_V, c], A^*|_V)",
+    "tree_in_basis": {
+     "([gamma,a],alpha)": "-1"
+    },
+    "graphs": [
+     {
+      "id": "c,AV,AsV | AcAs[A^*|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[A^*|_V]",
+       "AcAs[A|_V]",
+       "AcAs[c]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "c-A^*|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1/4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "c,AV,AsV | AcAs[A^*|_V] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[A^*|_V]",
+       "AcAs[c]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "3/4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "([gamma,a],alpha)": "-1"
+     },
+     "multiple_of_tree": "1",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "1",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(c, A|_Wperp, A^*|_Wperp)": {
+    "tree_vertex": "int dvol ([A|_Wperp, c], A^*|_Wperp)",
+    "tree_in_basis": {
+     "([gamma,a],alpha)": "-1"
+    },
+    "graphs": [
+     {
+      "id": "c,AP,AsP | AcAs[A^*|_Wperp] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[A^*|_Wperp]",
+       "AcAs[c]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "([gamma,a],alpha)": "-1"
+     },
+     "multiple_of_tree": "1",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "1",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(c, lambda, lambda^*)": {
+    "tree_vertex": "int dvol ([c, lambda], lambda^*)",
+    "tree_in_basis": {
+     "([gamma,u],v)": "1"
+    },
+    "graphs": [
+     {
+      "id": "c,l,ls | AcAs[c] ~c-A^*|_V~ -> cllS[lambda^*] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[c]",
+       "cllS[lambda^*]",
+       "llA[lambda]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "lambda-lambda",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "([gamma,u],v)": "1"
+     },
+     "multiple_of_tree": "1",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "1",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(c, c, c^*)": {
+    "tree_vertex": "int dvol 1/2 ([c, c], c^*)",
+    "tree_in_basis": {
+     "([g1,g2],w)": "1"
+    },
+    "graphs": [
+     {
+      "id": "c,c,cs | AcAs[c] ~c-A^*|_V~ -> cccS[c^*] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AcAs[c]",
+       "cccS[c^*]",
+       "AcAs[c]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "c-A^*|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": "1 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "([g1,g2],w)": "1"
+     },
+     "multiple_of_tree": "1",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "1",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(A|_V)^4": {
+    "tree_vertex": "int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_V)^4",
+    "tree_in_basis": {
+     "Xx": "-1",
+     "Xy": "1/2",
+     "Xz": "1/2",
+     "Yx": "1/2",
+     "Yy": "-1",
+     "Yz": "1/2",
+     "Zx": "1/2",
+     "Zy": "1/2",
+     "Zz": "-1"
+    },
+    "graphs": [
+     {
+      "id": "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAAA[A|_V,A|_V]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "6",
+        "Xy": "3",
+        "Xz": "3",
+        "Yx": "3",
+        "Yy": "6",
+        "Yz": "3",
+        "Zx": "3",
+        "Zy": "3",
+        "Zz": "6"
+       },
+       "trace_basis": {
+        "t[1234] x x": "3",
+        "t[1243] x x": "3",
+        "t[1243] x y": "3",
+        "t[1324] x y": "3",
+        "t[1234] x z": "3",
+        "t[1324] x z": "3"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 6,
+      "log_eps": {
+       "structures": {
+        "Xx": "-12",
+        "Xy": "-6",
+        "Xz": "-6",
+        "Yx": "-6",
+        "Yy": "-12",
+        "Yz": "-6",
+        "Zx": "-6",
+        "Zy": "-6",
+        "Zz": "-12"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-6",
+        "t[1243] x x": "-6",
+        "t[1243] x y": "-6",
+        "t[1324] x y": "-6",
+        "t[1234] x z": "-6",
+        "t[1324] x z": "-6"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "4",
+        "Xy": "4",
+        "Xz": "4",
+        "Yx": "4",
+        "Yy": "4",
+        "Yz": "4",
+        "Zx": "4",
+        "Zy": "4",
+        "Zz": "4"
+       },
+       "trace_basis": {
+        "t[1234] x x": "2",
+        "t[1243] x x": "2",
+        "t[1324] x x": "2",
+        "t[1234] x y": "2",
+        "t[1243] x y": "2",
+        "t[1324] x y": "2",
+        "t[1234] x z": "2",
+        "t[1243] x z": "2",
+        "t[1324] x z": "2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAAA[A|_V,A|_V] ~A|_V-A|_V~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAAA[A|_V,A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "7",
+        "Xy": "-1/2",
+        "Xz": "-1/2",
+        "Yx": "-1/2",
+        "Yy": "7",
+        "Yz": "-1/2",
+        "Zx": "-1/2",
+        "Zy": "-1/2",
+        "Zz": "7"
+       },
+       "trace_basis": {
+        "t[1234] x x": "7/2",
+        "t[1243] x x": "7/2",
+        "t[1324] x x": "-4",
+        "t[1234] x y": "-4",
+        "t[1243] x y": "7/2",
+        "t[1324] x y": "7/2",
+        "t[1234] x z": "7/2",
+        "t[1243] x z": "-4",
+        "t[1324] x z": "7/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 6,
+      "log_eps": {
+       "structures": {
+        "Xx": "-23/2",
+        "Xy": "-7/4",
+        "Xz": "-7/4",
+        "Yx": "-7/4",
+        "Yy": "-23/2",
+        "Yz": "-7/4",
+        "Zx": "-7/4",
+        "Zy": "-7/4",
+        "Zz": "-23/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-23/4",
+        "t[1243] x x": "-23/4",
+        "t[1324] x x": "4",
+        "t[1234] x y": "4",
+        "t[1243] x y": "-23/4",
+        "t[1324] x y": "-23/4",
+        "t[1234] x z": "-23/4",
+        "t[1243] x z": "4",
+        "t[1324] x z": "-23/4"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "47/12",
+        "Xy": "8/3",
+        "Xz": "8/3",
+        "Yx": "8/3",
+        "Yy": "47/12",
+        "Yz": "8/3",
+        "Zx": "8/3",
+        "Zy": "8/3",
+        "Zz": "47/12"
+       },
+       "trace_basis": {
+        "t[1234] x x": "47/24",
+        "t[1243] x x": "47/24",
+        "t[1324] x x": "17/24",
+        "t[1234] x y": "17/24",
+        "t[1243] x y": "47/24",
+        "t[1324] x y": "47/24",
+        "t[1234] x z": "47/24",
+        "t[1243] x z": "17/24",
+        "t[1324] x z": "47/24"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~",
+      "topology": "box",
+      "vertices": [
+       "AcAs[A|_V]",
+       "AcAs[A|_V]",
+       "AcAs[A|_V]",
+       "AcAs[A|_V]"
+      ],
+      "internal_lines": [
+       "c-A^*|_V",
+       "c-A^*|_V",
+       "c-A^*|_V",
+       "c-A^*|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "-1/12",
+        "Xy": "-1/12",
+        "Xz": "-1/12",
+        "Yx": "-1/12",
+        "Yy": "-1/12",
+        "Yz": "-1/12",
+        "Zx": "-1/12",
+        "Zy": "-1/12",
+        "Zz": "-1/12"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-1/24",
+        "t[1243] x x": "-1/24",
+        "t[1324] x x": "-1/24",
+        "t[1234] x y": "-1/24",
+        "t[1243] x y": "-1/24",
+        "t[1324] x y": "-1/24",
+        "t[1234] x z": "-1/24",
+        "t[1243] x z": "-1/24",
+        "t[1324] x z": "-1/24"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AV,AV | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~",
+      "topology": "box",
+      "vertices": [
+       "llA[A|_V]",
+       "llA[A|_V]",
+       "llA[A|_V]",
+       "llA[A|_V]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 3,
+      "log_eps": "16/3 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "Xx": "-8",
+      "Xy": "4",
+      "Xz": "4",
+      "Yx": "4",
+      "Yy": "-8",
+      "Yz": "4",
+      "Zx": "4",
+      "Zy": "4",
+      "Zz": "-8"
+     },
+     "multiple_of_tree": "8",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "8",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(A|_V)^2 (A|_Wperp)^2": {
+    "tree_vertex": "int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_V)^2 (A|_Wperp)^2",
+    "tree_in_basis": {
+     "Xx": "-1",
+     "Yx": "1/2",
+     "Zx": "1/2"
+    },
+    "graphs": [
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "5",
+        "Yx": "5/2",
+        "Zx": "5/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "5/2",
+        "t[1243] x x": "5/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "-1",
+        "Yx": "-1/2",
+        "Zx": "-1/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-1/2",
+        "t[1243] x x": "-1/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_V,A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_Wperp]",
+       "AAAA[A|_V,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": {
+       "structures": {
+        "Xx": "5",
+        "Yx": "-3/2",
+        "Zx": "-3/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "5/2",
+        "t[1243] x x": "5/2",
+        "t[1324] x x": "-4"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_V,A|_Wperp]",
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 4,
+      "log_eps": {
+       "structures": {
+        "Xx": "-3/2",
+        "Yx": "9/4",
+        "Zx": "9/4"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-3/4",
+        "t[1243] x x": "-3/4",
+        "t[1324] x x": "3"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_V,A|_Wperp]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_V]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 4,
+      "log_eps": {
+       "structures": {
+        "Xx": "-2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-1",
+        "t[1243] x x": "-1",
+        "t[1324] x x": "1"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "-5",
+        "Yx": "-5/2",
+        "Zx": "-5/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-5/2",
+        "t[1243] x x": "-5/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": {
+       "structures": {
+        "Xx": "1",
+        "Yx": "1/2",
+        "Zx": "1/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "1/2",
+        "t[1243] x x": "1/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": "0 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "AAAA[A|_V,A|_V]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "-3/4",
+        "Yx": "-3/8",
+        "Zx": "-3/8"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-3/8",
+        "t[1243] x x": "-3/8"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": {
+       "structures": {
+        "Xx": "3/4",
+        "Yx": "3/8",
+        "Zx": "3/8"
+       },
+       "trace_basis": {
+        "t[1234] x x": "3/8",
+        "t[1243] x x": "3/8"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_V,A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "3",
+        "Yx": "3/2",
+        "Zx": "3/2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "3/2",
+        "t[1243] x x": "3/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_V]",
+       "AAA[A|_V]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Xx": "-9/2",
+        "Yx": "-9/4",
+        "Zx": "-9/4"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-9/4",
+        "t[1243] x x": "-9/4"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~",
+      "topology": "box",
+      "vertices": [
+       "llA[A|_V]",
+       "llA[A|_V]",
+       "llA[A|_Wperp]",
+       "llA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 2,
+      "log_eps": {
+       "structures": {
+        "Xx": "-8",
+        "Yx": "-4",
+        "Zx": "-4"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-4",
+        "t[1243] x x": "-4"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AV,AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~",
+      "topology": "box",
+      "vertices": [
+       "llA[A|_V]",
+       "llA[A|_Wperp]",
+       "llA[A|_V]",
+       "llA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 1,
+      "log_eps": {
+       "structures": {
+        "Yx": "8",
+        "Zx": "8"
+       },
+       "trace_basis": {
+        "t[1324] x x": "8"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "Xx": "-8",
+      "Yx": "4",
+      "Zx": "4"
+     },
+     "multiple_of_tree": "8",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "8",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   },
+   "(A|_Wperp)^4": {
+    "tree_vertex": "int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_Wperp)^4",
+    "tree_in_basis": {
+     "Xx": "-1",
+     "Xy": "1/2",
+     "Xz": "1/2",
+     "Yx": "1/2",
+     "Yy": "-1",
+     "Yz": "1/2",
+     "Zx": "1/2",
+     "Zy": "1/2",
+     "Zz": "-1"
+    },
+    "graphs": [
+     {
+      "id": "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_Wperp,A|_Wperp]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "9",
+        "Xy": "1/2",
+        "Xz": "1/2",
+        "Yx": "1/2",
+        "Yy": "9",
+        "Yz": "1/2",
+        "Zx": "1/2",
+        "Zy": "1/2",
+        "Zz": "9"
+       },
+       "trace_basis": {
+        "t[1234] x x": "9/2",
+        "t[1243] x x": "9/2",
+        "t[1324] x x": "-4",
+        "t[1234] x y": "-4",
+        "t[1243] x y": "9/2",
+        "t[1324] x y": "9/2",
+        "t[1234] x z": "9/2",
+        "t[1243] x z": "-4",
+        "t[1324] x z": "9/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAAA[A|_Wperp,A|_Wperp]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 6,
+      "log_eps": "4 x tree vertex",
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AP,AP,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "triangle",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "AAAA[A|_Wperp,A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 6,
+      "log_eps": {
+       "structures": {
+        "Xx": "-2",
+        "Xy": "-1",
+        "Xz": "-1",
+        "Yx": "-1",
+        "Yy": "-2",
+        "Yz": "-1",
+        "Zx": "-1",
+        "Zy": "-1",
+        "Zz": "-2"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-1",
+        "t[1243] x x": "-1",
+        "t[1243] x y": "-1",
+        "t[1324] x y": "-1",
+        "t[1234] x z": "-1",
+        "t[1324] x z": "-1"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AP,AP,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~",
+      "topology": "box",
+      "vertices": [
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]",
+       "AAA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp",
+       "A|_V-A|_V",
+       "A|_Wperp-A|_Wperp"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 6,
+      "log_eps": {
+       "structures": {
+        "Xx": "1",
+        "Xy": "1/2",
+        "Xz": "1/2",
+        "Yx": "1/2",
+        "Yy": "1",
+        "Yz": "1/2",
+        "Zx": "1/2",
+        "Zy": "1/2",
+        "Zz": "1"
+       },
+       "trace_basis": {
+        "t[1234] x x": "1/2",
+        "t[1243] x x": "1/2",
+        "t[1243] x y": "1/2",
+        "t[1324] x y": "1/2",
+        "t[1234] x z": "1/2",
+        "t[1324] x z": "1/2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~",
+      "topology": "bubble",
+      "vertices": [
+       "AAAA[A|_Wperp,A|_Wperp]",
+       "AAAA[A|_Wperp,A|_Wperp]"
+      ],
+      "internal_lines": [
+       "A|_V-A|_V",
+       "A|_V-A|_V"
+      ],
+      "symmetry_factor": "1/|Aut| = 1/2",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "4",
+        "Xy": "2",
+        "Xz": "2",
+        "Yx": "2",
+        "Yy": "4",
+        "Yz": "2",
+        "Zx": "2",
+        "Zy": "2",
+        "Zz": "4"
+       },
+       "trace_basis": {
+        "t[1234] x x": "2",
+        "t[1243] x x": "2",
+        "t[1243] x y": "2",
+        "t[1324] x y": "2",
+        "t[1234] x z": "2",
+        "t[1324] x z": "2"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     },
+     {
+      "id": "AP,AP,AP,AP | llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~",
+      "topology": "box",
+      "vertices": [
+       "llA[A|_Wperp]",
+       "llA[A|_Wperp]",
+       "llA[A|_Wperp]",
+       "llA[A|_Wperp]"
+      ],
+      "internal_lines": [
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda",
+       "lambda-lambda"
+      ],
+      "symmetry_factor": "1/|Aut| = 1",
+      "graphs_in_class": 3,
+      "log_eps": {
+       "structures": {
+        "Xx": "-16",
+        "Yy": "-16",
+        "Zz": "-16"
+       },
+       "trace_basis": {
+        "t[1234] x x": "-8",
+        "t[1243] x x": "-8",
+        "t[1324] x x": "8",
+        "t[1234] x y": "8",
+        "t[1243] x y": "-8",
+        "t[1324] x y": "-8",
+        "t[1234] x z": "-8",
+        "t[1243] x z": "8",
+        "t[1324] x z": "-8"
+       }
+      },
+      "eps_inv": "0",
+      "eps_inv_half": "0"
+     }
+    ],
+    "total": {
+     "structures": {
+      "Xx": "-8",
+      "Xy": "4",
+      "Xz": "4",
+      "Yx": "4",
+      "Yy": "-8",
+      "Yz": "4",
+      "Zx": "4",
+      "Zy": "4",
+      "Zz": "-8"
+     },
+     "multiple_of_tree": "8",
+     "eps_inv": "0",
+     "eps_inv_half": "0"
+    },
+    "predicted_from_A": "8",
+    "verdict": "agrees with (A)",
+    "independent_seed_agrees": true,
+    "superficial_degree": 0
+   }
+  },
+  "formula_chains_note": "per-graph chains in formula_chains.T1",
+  "vertex_label_key": {
+   "AAA": "cubic part of int dvol -1/4 (F_A,F_A), i.e. int dvol -1/2 (dA, 1/2[A ^ A]) [ESW (31)]",
+   "AAAA": "quartic part int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A])",
+   "llA": "cubic part of int dvol 1/2 (lambda, dslash_A lambda), i.e. 1/2 (lambda, rho([A,lambda]))",
+   "AcAs": "int dvol ([A,c], A^*) (cubic part of (d_A c, A^*))",
+   "cllS": "int dvol ([c,lambda], lambda^*)",
+   "cccS": "int dvol 1/2 ([c,c], c^*)",
+   "bracket after a label": "the external legs attached to that vertex"
+  },
+  "quadratic_regression": {
+   "AV-AV": {
+    "log": [
+     "-1",
+     "0",
+     "0"
+    ],
+    "epsinv": [
+     "0",
+     "0",
+     "9/4"
+    ]
+   },
+   "AP-AP": {
+    "log": [
+     "-1",
+     "0"
+    ],
+    "epsinv": [
+     "0",
+     "9/4"
+    ]
+   },
+   "AV-AP": {
+    "log": [
+     "0",
+     "0"
+    ],
+    "epsinv": [
+     "0",
+     "0"
+    ]
+   },
+   "l-l": {
+    "log": [
+     "4"
+    ],
+    "epsinv": [
+     "0"
+    ]
+   },
+   "As-c": {
+    "log": [
+     "-1"
+    ],
+    "epsinv": [
+     "0"
+    ]
+   }
+  },
+  "vanishing_sets_checked": {
+   "AV,AV,AP": [
+    "0",
+    "0",
+    "0"
+   ],
+   "AP,AP,AP": [
+    "0",
+    "0",
+    "0"
+   ],
+   "AV,AV,AV,AP": [
+    "0",
+    "0",
+    "0"
+   ],
+   "AV,AP,AP,AP": [
+    "0",
+    "0",
+    "0"
+   ],
+   "c,AV,AsP": [
+    "0",
+    "0",
+    "0"
+   ],
+   "c,AP,AsV": [
+    "0",
+    "0",
+    "0"
+   ]
+  },
+  "test_of_A": {
+   "statement": "log eps part of I^CT[eps] = u log eps (Q + {I,-})(2 int(A,A^*) - 4 int(lambda^*,lambda) - int(c^*,c))",
+   "bracket_rederived": "with <x_i,xi_i> = +int dvol (x_i,xi_i) for (A,A^*),(lambda^*,lambda),(c^*,c) and {f,g} = Delta_0(fg) - Delta_0(f)g - (-1)^{|f|} f Delta_0(g): {Psi,-} is a derivation with weights {\"A|_V\": \"2\", \"A|_Wperp\": \"2\", \"lambda\": \"4\", \"c\": \"1\", \"A^*|_V\": \"-2\", \"A^*|_Wperp\": \"-2\", \"lambda^*\": \"-4\", \"c^*\": \"-1\"} (exact two-mode computation, r2_T3_weights.py); hence (Q + {I,-})Psi = {Psi, S} = sum over the terms of S of (sum of the weights of their legs) x term; the quadratic part reproduces the round-1 log counterterm -int(dA|_V,dA|_V) - int(dA|_Wperp,dA|_Wperp) + 4 int(lambda, dslash lambda) - int(dc,A^*).",
+   "predicted_multiples": {
+    "(c, c, c^*)": "1",
+    "(c, A|_V, A^*|_V)": "1",
+    "(c, A|_Wperp, A^*|_Wperp)": "1",
+    "(c, lambda, lambda^*)": "1",
+    "(lambda, lambda, A|_V)": "10",
+    "(lambda, lambda, A|_Wperp)": "10",
+    "(A|_V, A|_Wperp, A|_Wperp)": "6",
+    "(A|_V, A|_V, A|_V)": "6",
+    "(A|_V)^2 (A|_Wperp)^2": "8",
+    "(A|_Wperp)^4": "8",
+    "(A|_V)^4": "8"
+   },
+   "computed_multiples": {
+    "(c, c, c^*)": "1",
+    "(c, A|_V, A^*|_V)": "1",
+    "(c, A|_Wperp, A^*|_Wperp)": "1",
+    "(c, lambda, lambda^*)": "1",
+    "(lambda, lambda, A|_V)": "10",
+    "(lambda, lambda, A|_Wperp)": "10",
+    "(A|_V, A|_Wperp, A|_Wperp)": "6",
+    "(A|_V, A|_V, A|_V)": "6",
+    "(A|_V)^2 (A|_Wperp)^2": "8",
+    "(A|_Wperp)^4": "8",
+    "(A|_V)^4": "8"
+   },
+   "general_fit": "log eps part = beta S + {Psi', S} with Psi' = w_V int(A|_V,A^*|_V) + w_P int(A|_Wperp,A^*|_Wperp) + (lambda, c weights) [the most general degree -1, weight-4 local functional]; exact solution of all 15 sector equations: [{beta: 0, wP: 2, wV: 2, wc: 1, wl: 4}]",
+   "coupling_direction": "beta = 0: the coefficient along S itself (= d/ds of S under (-,-) -> (1+s)(-,-), since every term of S is linear in (-,-)) vanishes at one loop; the full one-loop log counterterm is (Q + {I,-})-exact."
+  },
+  "verdict": "Assumption (A) holds exactly in every sector with superficial degree >= 0 (quadratic, all cubic, all quartic; the Spin(6)-odd sets vanish); computed multiple = predicted multiple for all 11 sets; no eps^{-1} or eps^{-1/2} pieces in cubic/quartic sectors; the coupling-direction coefficient is 0 at one loop."
+ },
+ "T2": {
+  "sector": "external legs one gauge ghost c and one A|_V (ghost number 1, quadratic)",
+  "other_quadratic_sectors": "degree-1 quadratic local functionals have leg content (c, A|_V), (c, A|_Wperp) or (c, lambda): (c, A|_Wperp) has no Spin(6)-invariant (one vector of W_R^perp; also checked: every special-edge bubble numerator vanishes exactly), (c, lambda) has an odd number of spinor factors (no Spin(4)-invariant). No other leg content has degree 1 with two legs.",
+  "graphs": [
+   {
+    "id": "D(c,A|_V) | special edge (K_eps - K_0) A|_V - A^*|_V ; P(eps,infty) line A|_V - A|_V",
+    "vertices": [
+     "([A,c],A^*)[ext c; A^*|_V on special edge, A|_V on P line]",
+     "AAA[ext A|_V; A|_V on special edge, A|_V on P line]"
+    ],
+    "internal_lines": [
+     "special edge A|_V - A^*|_V",
+     "P line A|_V - A|_V"
+    ],
+    "symmetry_factor": "1 (both orders of the two insertions in (1/2) str(K' S H P S H) summed)",
+    "eps_inv": "-9/4 x u eps^{-1} int(dc, A|_V)",
+    "log_eps": "0",
+    "finite": "-5/8 x u int(d^*dc, d^*A|_V)"
+   },
+   {
+    "id": "D(c,A|_V) | special edge (K_eps - K_0) A|_V - A^*|_V ; P(eps,infty) line c - A^*|_V",
+    "vertices": [
+     "([A,c],A^*)[ext c; A|_V on special edge, A^*|_V on P line (ghost line, A^* end)]",
+     "([A,c],A^*)[ext A|_V; A^*|_V on special edge, c on P line (ghost line, c end)]"
+    ],
+    "internal_lines": [
+     "special edge A|_V - A^*|_V",
+     "P line c - A^*|_V"
+    ],
+    "symmetry_factor": "1 (both orders of the two insertions in (1/2) str(K' S H P S H) summed)",
+    "eps_inv": "1/8 x u eps^{-1} int(dc, A|_V)",
+    "log_eps": "0",
+    "finite": "-1/12 x u int(d^*dc, d^*A|_V)"
+   },
+   {
+    "id": "D(c,A|_V) | special edge (K_eps - K_0) A|_Wperp - A^*|_Wperp ; P(eps,infty) line A|_Wperp - A|_Wperp",
+    "vertices": [
+     "([A,c],A^*)[ext c; A^*|_Wperp on special edge, A|_Wperp on P line]",
+     "AAA[ext A|_V; A|_Wperp on special edge, A|_Wperp on P line]"
+    ],
+    "internal_lines": [
+     "special edge A|_Wperp - A^*|_Wperp",
+     "P line A|_Wperp - A|_Wperp"
+    ],
+    "symmetry_factor": "1 (both orders of the two insertions in (1/2) str(K' S H P S H) summed)",
+    "eps_inv": "-9/2 x u eps^{-1} int(dc, A|_V)",
+    "log_eps": "0",
+    "finite": "-5/4 x u int(d^*dc, d^*A|_V)"
+   },
+   {
+    "id": "D(c,A|_V) | special edge (K_eps - K_0) lambda^* - lambda ; P(eps,infty) line lambda - lambda",
+    "vertices": [
+     "([c,lambda],lambda^*)[ext c; lambda^* on special edge, lambda on P line]",
+     "1/2(lambda, dslash_A lambda)[ext A|_V; lambda on special edge, lambda on P line]"
+    ],
+    "internal_lines": [
+     "special edge lambda^* - lambda",
+     "P line lambda - lambda"
+    ],
+    "symmetry_factor": "1 (both orders of the two insertions in (1/2) str(K' S H P S H) summed)",
+    "eps_inv": "2 x u eps^{-1} int(dc, A|_V)",
+    "log_eps": "0",
+    "finite": "-4/3 x u int(d^*dc, d^*A|_V)"
+   },
+   {
+    "id": "D(c,A|_V) | special edge (K_eps - K_0) c^* - c ; P(eps,infty) line c - A^*|_V",
+    "vertices": [
+     "1/2([c,c],c^*)[ext c; c^* on special edge, c on P line (ghost line, c end)]",
+     "([A,c],A^*)[ext A|_V; c on special edge, A^*|_V on P line (ghost line, A^* end)]"
+    ],
+    "internal_lines": [
+     "special edge c^* - c",
+     "P line c - A^*|_V"
+    ],
+    "symmetry_factor": "1 (both orders of the two insertions in (1/2) str(K' S H P S H) summed)",
+    "eps_inv": "1/8 x u eps^{-1} int(dc, A|_V)",
+    "log_eps": "0",
+    "finite": "-1/12 x u int(d^*dc, d^*A|_V)"
+   },
+   {
+    "id": "D(c,A|_V) | tree vertex -Q I^CT[eps]",
+    "vertices": [
+     "-Q I^CT[eps]"
+    ],
+    "internal_lines": [],
+    "symmetry_factor": "1",
+    "eps_inv": "+9/2 x u eps^{-1} int(dc, A|_V)  [-(9/4) u eps^{-1} Q int(A|_V,A|_V), Q int(A|_V,A|_V) = -2 int(dc, A|_V)]",
+    "log_eps": "0  [Q int(dA|_V,dA|_V) = 0, Q int(dc,A^*) = 0 and Q int(lambda,dslash lambda) = Q int(dA|_Wperp,dA|_Wperp) = 0 in this sector]",
+    "finite": "0"
+   }
+  ],
+  "eps_inv_total": "special-edge graphs -(9/2) u eps^{-1} int(dc, A|_V) + tree vertex (+9/2) u eps^{-1} int(dc, A|_V) = 0",
+  "log_total": "0",
+  "finite_total": "-(27/8) u int(d^*dc, d^*A|_V)",
+  "cross_check_route_b": {
+   "statement": "Q P(eps,infty) = K_eps gives Q W_1 = (special-edge graphs) at every eps; in this sector Q W_1 = Q(A|_V self-energy) (Q annihilates the (c,A^*) self-energy, which is proportional to p). Exact finite parts of every self-energy class (per-edge cutoff; log 2 terms appear in the transverse part only):",
+   "self_energy_totals_units_u": {
+    "epsinv": {
+     "p^2(a1.a2)": "0",
+     "(p.a1)(p.a2)": "0",
+     "(a1.a2)": "9/2",
+     "longitudinal x0+x1": "0"
+    },
+    "log": {
+     "p^2(a1.a2)": "-2",
+     "(p.a1)(p.a2)": "2",
+     "(a1.a2)": "0",
+     "longitudinal x0+x1": "0"
+    },
+    "fin": {
+     "p^2(a1.a2)": "43/8 - log(4)",
+     "(p.a1)(p.a2)": "-2 + 2*log(2)",
+     "(a1.a2)": "0",
+     "longitudinal x0+x1": "27/8"
+    }
+   },
+   "self_energy_classes": {
+    "[('AP', (0, 1))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "6"
+     },
+     "log": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('AP', (0,)), ('AP', (1,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-3/4"
+     },
+     "log": {
+      "p^2(a1.a2)": "-1/2",
+      "(p.a1)(p.a2)": "1/2",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "25/24 - log(2)/2",
+      "(p.a1)(p.a2)": "-5/12 + log(2)/2",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('AP', (1,)), ('AP', (0,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-3/4"
+     },
+     "log": {
+      "p^2(a1.a2)": "-1/2",
+      "(p.a1)(p.a2)": "1/2",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "25/24 - log(2)/2",
+      "(p.a1)(p.a2)": "-5/12 + log(2)/2",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('AV', (0, 1))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "3"
+     },
+     "log": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('AV', (0,)), ('AV', (1,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-9/16"
+     },
+     "log": {
+      "p^2(a1.a2)": "19/24",
+      "(p.a1)(p.a2)": "-11/12",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "-109/288 + 19*log(2)/24",
+      "(p.a1)(p.a2)": "137/144 - 11*log(2)/12",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('AV', (1,)), ('AV', (0,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-9/16"
+     },
+     "log": {
+      "p^2(a1.a2)": "19/24",
+      "(p.a1)(p.a2)": "-11/12",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "-109/288 + 19*log(2)/24",
+      "(p.a1)(p.a2)": "137/144 - 11*log(2)/12",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('gh', (0,)), ('gh', (1,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "1/16"
+     },
+     "log": {
+      "p^2(a1.a2)": "1/24",
+      "(p.a1)(p.a2)": "1/12",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "-25/288 + log(2)/24",
+      "(p.a1)(p.a2)": "-13/144 + log(2)/12",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('gh', (1,)), ('gh', (0,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "1/16"
+     },
+     "log": {
+      "p^2(a1.a2)": "1/24",
+      "(p.a1)(p.a2)": "1/12",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "-25/288 + log(2)/24",
+      "(p.a1)(p.a2)": "-13/144 + log(2)/12",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('l', (0,)), ('l', (1,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-1"
+     },
+     "log": {
+      "p^2(a1.a2)": "-4/3",
+      "(p.a1)(p.a2)": "4/3",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "19/9 - 4*log(2)/3",
+      "(p.a1)(p.a2)": "-13/9 + 4*log(2)/3",
+      "(a1.a2)": "0"
+     }
+    },
+    "[('l', (1,)), ('l', (0,))]": {
+     "epsinv": {
+      "p^2(a1.a2)": "0",
+      "(p.a1)(p.a2)": "0",
+      "(a1.a2)": "-1"
+     },
+     "log": {
+      "p^2(a1.a2)": "-4/3",
+      "(p.a1)(p.a2)": "4/3",
+      "(a1.a2)": "0"
+     },
+     "fin": {
+      "p^2(a1.a2)": "19/9 - 4*log(2)/3",
+      "(p.a1)(p.a2)": "-13/9 + 4*log(2)/3",
+      "(a1.a2)": "0"
+     }
+    }
+   },
+   "Q_maps_two_mode": {
+    "int(A|_V,A|_V)": [
+     "-2*I*p0",
+     "-2*I*p1",
+     "-2*I*p2",
+     "-2*I*p3"
+    ],
+    "int(d^*A|_V,d^*A|_V)": [
+     "-2*I*p0*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-2*I*p1*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-2*I*p2*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-2*I*p3*(p0**2 + p1**2 + p2**2 + p3**2)"
+    ],
+    "int(dA|_V,dA|_V)": [
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "(c,A^*) functional propto p": [
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "int(dc,A^*)": [
+     "0",
+     "0",
+     "0",
+     "0"
+    ],
+    "A|_V kernel x0 p^2 delta + x1 p p": [
+     "-I*p0*(x0 + x1)*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-I*p1*(x0 + x1)*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-I*p2*(x0 + x1)*(p0**2 + p1**2 + p2**2 + p3**2)",
+     "-I*p3*(x0 + x1)*(p0**2 + p1**2 + p2**2 + p3**2)"
+    ]
+   },
+   "result": "longitudinal finite coefficient 27/8 -> Q W_1 = -(27/8) u int(d^*dc, d^*A|_V) and eps^{-1}: -(9/2) u eps^{-1} int(dc,A|_V): identical to the special-edge sum (exact agreement, including the cancellation of all log 2 terms)"
+  },
+  "obstruction": "-(27/8) u int(d^*dc, d^*A|_V) = (27/16) u Q int(d^*A|_V, d^*A|_V)",
+  "q_exact": true,
+  "finite_counterterm": "I^CT[eps] -> I^CT[eps] + (27/16) u int(d^*A|_V, d^*A|_V) (i.e. J = I - I^CT[eps] - (27/16) u int(d^*A|_V,d^*A|_V)); the obstruction in this sector then vanishes. Equivalently: the renormalised A|_V self-energy carries the finite local longitudinal term (27/16) u int(d^*A|_V, d^*A|_V), which this counterterm removes. No int(A|_V,A|_V) finite counterterm is needed (eps^{-1} cancels exactly).",
+  "uniqueness": "the only dimension-4 local functionals with leg content (c, A|_V) are multiples of int(d^*dc, d^*A|_V) (int(dc, d^*dA|_V) = 0); it is Q-exact, so the quadratic obstruction is always removable by a multiple of int(d^*A|_V,d^*A|_V).",
+  "cubic_sector": "OPEN (not computed). Reduction established here: after the quadratic finite counterterm the cubic part of the obstruction is the eps -> 0 limit of the special-edge 1PI loops with three legs (leg contents (c,A|_V,A|_V), (c,A|_Wperp,A|_Wperp), (c,lambda,lambda), (c,c,A^*|_V)); special-edge bridges cancel against the bridge part of -{I,I^CT}_eps; s I^CT[eps] has no cubic part (log part: s^2 Psi = 0 by T1; eps^{-1} part: {I, int(A,A)} = 2 int([A,c],A) = 0). The three-edge special-edge region integrals (t_0 in [0,eps], two t_e in [eps,infty), Taylor order 2 in external momenta) are not done.",
+  "verdict": "Quadratic (c,A|_V) sector: eps^{-1} cancels exactly against -Q of (9/4)u eps^{-1} int(A|_V,A|_V); no log eps; finite obstruction -(27/8)u int(d^*dc,d^*A|_V) = (27/16)u Q int(d^*A|_V,d^*A|_V): Q-exact, removed by the finite counterterm (27/16)u int(d^*A|_V,d^*A|_V)."
+ },
+ "T3": {
+  "normalisations": "SW (3): Delta = -E; SW (17): Delta = 2E (superconformal/spec.md); conversion: coefficient(17) = -2 x coefficient(3)",
+  "table_units_u_coefficient_multiplying_O": {
+   "traceless scalar bilinear (traceless part of int omega (iota_{w1}A, iota_{w2}A))": {
+    "SW(3)": 0,
+    "SW(17)": 0
+   },
+   "trace scalar bilinear (sum_w int omega (iota_w A, iota_w A))": {
+    "SW(3)": -24,
+    "SW(17)": 48
+   },
+   "letter iota_w A (w in W_R^perp)": {
+    "SW(3)": -4,
+    "SW(17)": 8
+   },
+   "letter A|_V (transverse)": {
+    "SW(3)": -4,
+    "SW(17)": 8
+   },
+   "letter lambda": {
+    "SW(3)": -8,
+    "SW(17)": 16
+   },
+   "letter c": {
+    "SW(3)": -2,
+    "SW(17)": 4
+   }
+  },
+  "letter_c": "computed: single letters have no one-loop 1PI graph, so the log-eps coefficient of partial_delta I^CT[eps] is 0; {Psi, c} = +1 x c (exact two-mode computation, r2_T3_weights.py); coefficient = 2(0 - 1) = -2 (SW (3)) = +4 (SW (17)). Cross-check: the (c,A^*) two-point log coefficient -1 = w_c - w_A with w_A = 2 gives w_c = 1.",
+  "Psi_weights": {
+   "A|_V": "2",
+   "A|_Wperp": "2",
+   "lambda": "4",
+   "c": "1",
+   "A^*|_V": "-2",
+   "A^*|_Wperp": "-2",
+   "lambda^*": "-4",
+   "c^*": "-1"
+  },
+  "Konishi": "trace: -24 u (SW 3) = +48 u (SW 17); with u = -g^2 N/(32 pi^2) (standard su(N) normalisation): 3 g^2 N/(4 pi^2) (SW 3), -3 g^2 N/(2 pi^2) (SW 17)."
+ },
+ "formula_chains": {
+  "common_schwinger_formula": "int d^4k/(2pi)^4 N(k) exp(-sum_e t_e (k+q_e)^2) = (16 pi^2)^{-1}(sum_e t_e)^{-2} sum_m (4^m m!)^{-1}(sum_e t_e)^{-m} [(d_k.d_k)^m N](k = -sum_e t_e q_e/sum_e t_e) exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2/sum_e t_e)",
+  "T1": {
+   "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAA[A|_V], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 1 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (0) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AV,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (2) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAA[A|_V], internal lines A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 1 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (-9/2) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AV,AV | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_V-A|_V, A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (13/4) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AV,AV | AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[A|_V], AcAs[A|_V], AcAs[A|_V], internal lines c-A^*|_V, c-A^*|_V, c-A^*|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (-1/12) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AV,AV | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[A|_V], llA[A|_V], llA[A|_V], internal lines lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (16/3) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to (A|_V)^3]"
+   ],
+   "AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_Wperp], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 1 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (-9/2) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAA[A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 1 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (0) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], AAA[A|_Wperp], AAA[A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_Wperp], AAA[A|_V], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (3/2) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "AV,AP,AP | AAA[A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAA[A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 1 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (0) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[A|_V], llA[A|_Wperp], llA[A|_Wperp], internal lines lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 3 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a linear function = value at t_e/sum t = 1/n; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (8) u log eps x [int dvol -1/2 (dA, 1/2[A ^ A]) restricted to A|_V (A|_Wperp)^2]"
+   ],
+   "l,l,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], llA[lambda], llA[lambda], internal lines A|_Wperp-A|_Wperp, lambda-lambda, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (3) u log eps x [int dvol 1/2 (lambda, rho([A|_V, lambda]))]"
+   ],
+   "l,l,AV | llA[lambda] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[lambda], llA[A|_V], llA[lambda], internal lines lambda-lambda, lambda-lambda, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (3) u log eps x [int dvol 1/2 (lambda, rho([A|_V, lambda]))]"
+   ],
+   "l,l,AV | AAA[A|_V] ~A|_V-A|_V~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], llA[lambda], llA[lambda], internal lines A|_V-A|_V, lambda-lambda, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (3) u log eps x [int dvol 1/2 (lambda, rho([A|_V, lambda]))]"
+   ],
+   "l,l,AV | llA[lambda] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[lambda], llA[A|_V], llA[lambda], internal lines lambda-lambda, lambda-lambda, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1) u log eps x [int dvol 1/2 (lambda, rho([A|_V, lambda]))]"
+   ],
+   "l,l,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> llA[lambda] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_Wperp], llA[lambda], llA[lambda], internal lines A|_V-A|_V, lambda-lambda, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (2) u log eps x [int dvol 1/2 (lambda, rho([A|_Wperp, lambda]))]"
+   ],
+   "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[lambda], llA[A|_Wperp], llA[lambda], internal lines lambda-lambda, lambda-lambda, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (4) u log eps x [int dvol 1/2 (lambda, rho([A|_Wperp, lambda]))]"
+   ],
+   "l,l,AP | llA[lambda] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices llA[lambda], llA[A|_Wperp], llA[lambda], internal lines lambda-lambda, lambda-lambda, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (4) u log eps x [int dvol 1/2 (lambda, rho([A|_Wperp, lambda]))]"
+   ],
+   "c,AV,AsV | AcAs[A^*|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[A^*|_V], AcAs[A|_V], AcAs[c], internal lines c-A^*|_V, c-A^*|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1/4) u log eps x [int dvol ([A|_V, c], A^*|_V)]"
+   ],
+   "c,AV,AsV | AcAs[A^*|_V] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[A^*|_V], AcAs[c], AAA[A|_V], internal lines c-A^*|_V, A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (3/4) u log eps x [int dvol ([A|_V, c], A^*|_V)]"
+   ],
+   "c,AP,AsP | AcAs[A^*|_Wperp] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[A^*|_Wperp], AcAs[c], AAA[A|_Wperp], internal lines c-A^*|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1) u log eps x [int dvol ([A|_Wperp, c], A^*|_Wperp)]"
+   ],
+   "c,l,ls | AcAs[c] ~c-A^*|_V~ -> cllS[lambda^*] ~lambda-lambda~ -> llA[lambda] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[c], cllS[lambda^*], llA[lambda], internal lines c-A^*|_V, lambda-lambda, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1) u log eps x [int dvol ([c, lambda], lambda^*)]"
+   ],
+   "c,c,cs | AcAs[c] ~c-A^*|_V~ -> cccS[c^*] ~c-A^*|_V~ -> AcAs[c] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AcAs[c], cccS[c^*], AcAs[c], internal lines c-A^*|_V, c-A^*|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (1) u log eps x [int dvol 1/2 ([c, c], c^*)]"
+   ],
+   "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAAA[A|_V,A|_V], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"6\", \"Xy\": \"3\", \"Xz\": \"3\", \"Yx\": \"3\", \"Yy\": \"6\", \"Yz\": \"3\", \"Zx\": \"3\", \"Zy\": \"3\", \"Zz\": \"6\"})"
+   ],
+   "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_V,A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-12\", \"Xy\": \"-6\", \"Xz\": \"-6\", \"Yx\": \"-6\", \"Yy\": \"-12\", \"Yz\": \"-6\", \"Zx\": \"-6\", \"Zy\": \"-6\", \"Zz\": \"-12\"})"
+   ],
+   "AV,AV,AV,AV | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_V], AAA[A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"4\", \"Xy\": \"4\", \"Xz\": \"4\", \"Yx\": \"4\", \"Yy\": \"4\", \"Yz\": \"4\", \"Zx\": \"4\", \"Zy\": \"4\", \"Zz\": \"4\"})"
+   ],
+   "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAAA[A|_V,A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAAA[A|_V,A|_V], internal lines A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"7\", \"Xy\": \"-1/2\", \"Xz\": \"-1/2\", \"Yx\": \"-1/2\", \"Yy\": \"7\", \"Yz\": \"-1/2\", \"Zx\": \"-1/2\", \"Zy\": \"-1/2\", \"Zz\": \"7\"})"
+   ],
+   "AV,AV,AV,AV | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_V,A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_V-A|_V, A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-23/2\", \"Xy\": \"-7/4\", \"Xz\": \"-7/4\", \"Yx\": \"-7/4\", \"Yy\": \"-23/2\", \"Yz\": \"-7/4\", \"Zx\": \"-7/4\", \"Zy\": \"-7/4\", \"Zz\": \"-23/2\"})"
+   ],
+   "AV,AV,AV,AV | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_V], AAA[A|_V], AAA[A|_V], AAA[A|_V], internal lines A|_V-A|_V, A|_V-A|_V, A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"47/12\", \"Xy\": \"8/3\", \"Xz\": \"8/3\", \"Yx\": \"8/3\", \"Yy\": \"47/12\", \"Yz\": \"8/3\", \"Zx\": \"8/3\", \"Zy\": \"8/3\", \"Zz\": \"47/12\"})"
+   ],
+   "AV,AV,AV,AV | AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~ -> AcAs[A|_V] ~c-A^*|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AcAs[A|_V], AcAs[A|_V], AcAs[A|_V], AcAs[A|_V], internal lines c-A^*|_V, c-A^*|_V, c-A^*|_V, c-A^*|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-1/12\", \"Xy\": \"-1/12\", \"Xz\": \"-1/12\", \"Yx\": \"-1/12\", \"Yy\": \"-1/12\", \"Yz\": \"-1/12\", \"Zx\": \"-1/12\", \"Zy\": \"-1/12\", \"Zz\": \"-1/12\"})"
+   ],
+   "AV,AV,AV,AV | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices llA[A|_V], llA[A|_V], llA[A|_V], llA[A|_V], internal lines lambda-lambda, lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (16/3) u log eps x [int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_V)^4]"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"5\", \"Yx\": \"5/2\", \"Zx\": \"5/2\"})"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_V,A|_V], AAA[A|_Wperp], AAA[A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-1\", \"Yx\": \"-1/2\", \"Zx\": \"-1/2\"})"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_V,A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_Wperp], AAAA[A|_V,A|_Wperp], internal lines A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"5\", \"Yx\": \"-3/2\", \"Zx\": \"-3/2\"})"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_V,A|_Wperp], AAA[A|_V], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-3/2\", \"Yx\": \"9/4\", \"Zx\": \"9/4\"})"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_V,A|_Wperp], AAA[A|_Wperp], AAA[A|_V], internal lines A|_V-A|_V, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-2\"})"
+   ],
+   "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], AAA[A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-5\", \"Yx\": \"-5/2\", \"Zx\": \"-5/2\"})"
+   ],
+   "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_V], AAA[A|_V], AAA[A|_Wperp], AAA[A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"1\", \"Yx\": \"1/2\", \"Zx\": \"1/2\"})"
+   ],
+   "AV,AV,AP,AP | AAA[A|_V] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_V], AAA[A|_Wperp], AAA[A|_V], AAA[A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (0) u log eps x [int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_V)^2 (A|_Wperp)^2]"
+   ],
+   "AV,AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_Wperp], AAAA[A|_V,A|_V], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-3/4\", \"Yx\": \"-3/8\", \"Zx\": \"-3/8\"})"
+   ],
+   "AV,AV,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_Wperp], AAA[A|_V], AAA[A|_V], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"3/4\", \"Yx\": \"3/8\", \"Zx\": \"3/8\"})"
+   ],
+   "AV,AV,AP,AP | AAAA[A|_V,A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_V,A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"3\", \"Yx\": \"3/2\", \"Zx\": \"3/2\"})"
+   ],
+   "AV,AV,AP,AP | AAA[A|_V] ~A|_V-A|_V~ -> AAA[A|_V] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_V], AAA[A|_V], AAAA[A|_Wperp,A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-9/2\", \"Yx\": \"-9/4\", \"Zx\": \"-9/4\"})"
+   ],
+   "AV,AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices llA[A|_V], llA[A|_V], llA[A|_Wperp], llA[A|_Wperp], internal lines lambda-lambda, lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-8\", \"Yx\": \"-4\", \"Zx\": \"-4\"})"
+   ],
+   "AV,AV,AP,AP | llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_V] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices llA[A|_V], llA[A|_Wperp], llA[A|_V], llA[A|_Wperp], internal lines lambda-lambda, lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Yx\": \"8\", \"Zx\": \"8\"})"
+   ],
+   "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_Wperp,A|_Wperp], AAAA[A|_Wperp,A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"9\", \"Xy\": \"1/2\", \"Xz\": \"1/2\", \"Yx\": \"1/2\", \"Yy\": \"9\", \"Yz\": \"1/2\", \"Zx\": \"1/2\", \"Zy\": \"1/2\", \"Zz\": \"9\"})"
+   ],
+   "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAAA[A|_Wperp,A|_Wperp], AAA[A|_Wperp], AAA[A|_Wperp], internal lines A|_Wperp-A|_Wperp, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: (4) u log eps x [int dvol -1/4 (1/2[A ^ A], 1/2[A ^ A]) restricted to (A|_Wperp)^4]"
+   ],
+   "AP,AP,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=3, vertices AAA[A|_Wperp], AAAA[A|_Wperp,A|_Wperp], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 2 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 1 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/2) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-2\", \"Xy\": \"-1\", \"Xz\": \"-1\", \"Yx\": \"-1\", \"Yy\": \"-2\", \"Yz\": \"-1\", \"Zx\": \"-1\", \"Zy\": \"-1\", \"Zz\": \"-2\"})"
+   ],
+   "AP,AP,AP,AP | AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~ -> AAA[A|_Wperp] ~A|_V-A|_V~ -> AAA[A|_Wperp] ~A|_Wperp-A|_Wperp~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices AAA[A|_Wperp], AAA[A|_Wperp], AAA[A|_Wperp], AAA[A|_Wperp], internal lines A|_V-A|_V, A|_Wperp-A|_Wperp, A|_V-A|_V, A|_Wperp-A|_Wperp; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"1\", \"Xy\": \"1/2\", \"Xz\": \"1/2\", \"Yx\": \"1/2\", \"Yy\": \"1\", \"Yz\": \"1/2\", \"Zx\": \"1/2\", \"Zy\": \"1/2\", \"Zz\": \"1\"})"
+   ],
+   "AP,AP,AP,AP | AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~ -> AAAA[A|_Wperp,A|_Wperp] ~A|_V-A|_V~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=2, vertices AAAA[A|_Wperp,A|_Wperp], AAAA[A|_Wperp,A|_Wperp], internal lines A|_V-A|_V, A|_V-A|_V; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 0 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 0 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/1) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"4\", \"Xy\": \"2\", \"Xz\": \"2\", \"Yx\": \"2\", \"Yy\": \"4\", \"Yz\": \"2\", \"Zx\": \"2\", \"Zy\": \"2\", \"Zz\": \"4\"})"
+   ],
+   "AP,AP,AP,AP | llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~ -> llA[A|_Wperp] ~lambda-lambda~": [
+    "amplitude: (1/(2n)) sum over orderings of the external insertions of str[ P(k_1)(-1)^{|.|} d^2 I_{v_1} P(k_2)(-1)^{|.|} d^2 I_{v_2} ... ], n=4, vertices llA[A|_Wperp], llA[A|_Wperp], llA[A|_Wperp], llA[A|_Wperp], internal lines lambda-lambda, lambda-lambda, lambda-lambda, lambda-lambda; P(k) = e^{-eps k^2} k^{-2} x {2 (-,-)^{-1} (x) metric^{-1} (A-A), -i k (-,-)^{-1} (c-A^*|_V), i rho(k) (-,-)^{-1} (lambda-lambda)} = int_eps^infty dt e^{-t k^2} x numerator; line e carries k + q_e, q_e = -(sum of external momenta entering before it)",
+    "numerator algebra: N(k) = str[...] (exact Gaussian-integer arithmetic, 10d chiral Clifford blocks and su(2) colour only in code), polynomial of degree 4 in (k, external momenta); only (4^m m!)^{-1} (d_k.d_k)^m N with m = 2 enters the log eps coefficient",
+    "Schwinger integral: int_{t_e in [eps,infty)} prod_e dt_e (16 pi^2)^{-1} (sum_e t_e)^{-2-m} [(4^m m!)^{-1}(d_k.d_k)^m N](k = -sum_e t_e q_e / sum_e t_e) x exp(-sum_e t_e q_e^2 + (sum_e t_e q_e)^2 / sum_e t_e)",
+    "eps-expansion: {t_e >= eps for all e} = {sum_e t_e >= eps / min_e(t_e/sum t)}; the scale integral gives -log eps + O(1), the remaining integral over the fractions t_e/sum t (simplex, volume 1/(n-1)! = 1/6) is that of a constant; Gaussian moments give integer powers of sum t, the degree count leaves no eps^{-1} and no eps^{-1/2}",
+    "local part: u log eps x (structures {\"Xx\": \"-16\", \"Yy\": \"-16\", \"Zz\": \"-16\"})"
+   ]
+  },
+  "T2": {
+   "D(c,A|_V) | special edge (K_eps - K_0) A|_V - A^*|_V ; P(eps,infty) line A|_V - A|_V": [
+    "amplitude: d_P of D^(0) = (1/2)({I,I}_eps - {I,I}_0) = (1/2){I,I}_{K_eps-K_0}; loop part = (1/2) str(K'(k)(-1)^{|.|} d^2 I_{v_1} P(k-p_1)(-1)^{|.|} d^2 I_{v_2}) (identity checked by brute force in 0 dimensions, r2_verify_special0d.py); vertices ([A,c],A^*)[ext c; A^*|_V on special edge, A|_V on P line] ; AAA[ext A|_V; A|_V on special edge, A|_V on P line]",
+    "special edge: K'(k) = (e^{-eps k^2} - 1) x [-sum (x_i (x) xi_i + xi_i (x) x_i) (x) (-,-)^{-1}] = -int_0^eps dt_0 k^2 e^{-t_0 k^2} x [...]; P line: int_eps^infty dt_1 e^{-t_1 (k-p_1)^2} x numerator",
+    "numerator algebra: M(k) = -k^2 str[...], cubic polynomial in (k, p_1) (exact)",
+    "Schwinger integral: int_0^eps dt_0 int_eps^infty dt_1 (16 pi^2)^{-1}(t_0+t_1)^{-2}[M + (4(t_0+t_1))^{-1}(d_k.d_k)M](k = t_1 p_1/(t_0+t_1)) e^{-t_0 t_1 p_1^2/(t_0+t_1)}",
+    "eps-expansion: rescale t_0, t_1 by eps; with r = t_1/(t_0+t_1) in [1/2,1] and (t_0+t_1)/eps in [1/r, 1/(1-r)]: eps^{-1}: int_{1/2}^1 dr (2r-1)(d_k.d_k)M(r p_1)/4 ; eps^0: int_{1/2}^1 dr log(r/(1-r)) [M(r p_1) - r(1-r)p_1^2 (d_k.d_k)M(r p_1)/4]; no log eps (the special edge confines t_0 to [0,eps]); all log 2 terms cancel inside each class",
+    "local part: (-9/4) u eps^{-1} int(dc, A|_V) + (-5/8) u int(d^*dc, d^*A|_V)"
+   ],
+   "D(c,A|_V) | special edge (K_eps - K_0) A|_V - A^*|_V ; P(eps,infty) line c - A^*|_V": [
+    "amplitude: d_P of D^(0) = (1/2)({I,I}_eps - {I,I}_0) = (1/2){I,I}_{K_eps-K_0}; loop part = (1/2) str(K'(k)(-1)^{|.|} d^2 I_{v_1} P(k-p_1)(-1)^{|.|} d^2 I_{v_2}) (identity checked by brute force in 0 dimensions, r2_verify_special0d.py); vertices ([A,c],A^*)[ext c; A|_V on special edge, A^*|_V on P line (ghost line, A^* end)] ; ([A,c],A^*)[ext A|_V; A^*|_V on special edge, c on P line (ghost line, c end)]",
+    "special edge: K'(k) = (e^{-eps k^2} - 1) x [-sum (x_i (x) xi_i + xi_i (x) x_i) (x) (-,-)^{-1}] = -int_0^eps dt_0 k^2 e^{-t_0 k^2} x [...]; P line: int_eps^infty dt_1 e^{-t_1 (k-p_1)^2} x numerator",
+    "numerator algebra: M(k) = -k^2 str[...], cubic polynomial in (k, p_1) (exact)",
+    "Schwinger integral: int_0^eps dt_0 int_eps^infty dt_1 (16 pi^2)^{-1}(t_0+t_1)^{-2}[M + (4(t_0+t_1))^{-1}(d_k.d_k)M](k = t_1 p_1/(t_0+t_1)) e^{-t_0 t_1 p_1^2/(t_0+t_1)}",
+    "eps-expansion: rescale t_0, t_1 by eps; with r = t_1/(t_0+t_1) in [1/2,1] and (t_0+t_1)/eps in [1/r, 1/(1-r)]: eps^{-1}: int_{1/2}^1 dr (2r-1)(d_k.d_k)M(r p_1)/4 ; eps^0: int_{1/2}^1 dr log(r/(1-r)) [M(r p_1) - r(1-r)p_1^2 (d_k.d_k)M(r p_1)/4]; no log eps (the special edge confines t_0 to [0,eps]); all log 2 terms cancel inside each class",
+    "local part: (1/8) u eps^{-1} int(dc, A|_V) + (-1/12) u int(d^*dc, d^*A|_V)"
+   ],
+   "D(c,A|_V) | special edge (K_eps - K_0) A|_Wperp - A^*|_Wperp ; P(eps,infty) line A|_Wperp - A|_Wperp": [
+    "amplitude: d_P of D^(0) = (1/2)({I,I}_eps - {I,I}_0) = (1/2){I,I}_{K_eps-K_0}; loop part = (1/2) str(K'(k)(-1)^{|.|} d^2 I_{v_1} P(k-p_1)(-1)^{|.|} d^2 I_{v_2}) (identity checked by brute force in 0 dimensions, r2_verify_special0d.py); vertices ([A,c],A^*)[ext c; A^*|_Wperp on special edge, A|_Wperp on P line] ; AAA[ext A|_V; A|_Wperp on special edge, A|_Wperp on P line]",
+    "special edge: K'(k) = (e^{-eps k^2} - 1) x [-sum (x_i (x) xi_i + xi_i (x) x_i) (x) (-,-)^{-1}] = -int_0^eps dt_0 k^2 e^{-t_0 k^2} x [...]; P line: int_eps^infty dt_1 e^{-t_1 (k-p_1)^2} x numerator",
+    "numerator algebra: M(k) = -k^2 str[...], cubic polynomial in (k, p_1) (exact)",
+    "Schwinger integral: int_0^eps dt_0 int_eps^infty dt_1 (16 pi^2)^{-1}(t_0+t_1)^{-2}[M + (4(t_0+t_1))^{-1}(d_k.d_k)M](k = t_1 p_1/(t_0+t_1)) e^{-t_0 t_1 p_1^2/(t_0+t_1)}",
+    "eps-expansion: rescale t_0, t_1 by eps; with r = t_1/(t_0+t_1) in [1/2,1] and (t_0+t_1)/eps in [1/r, 1/(1-r)]: eps^{-1}: int_{1/2}^1 dr (2r-1)(d_k.d_k)M(r p_1)/4 ; eps^0: int_{1/2}^1 dr log(r/(1-r)) [M(r p_1) - r(1-r)p_1^2 (d_k.d_k)M(r p_1)/4]; no log eps (the special edge confines t_0 to [0,eps]); all log 2 terms cancel inside each class",
+    "local part: (-9/2) u eps^{-1} int(dc, A|_V) + (-5/4) u int(d^*dc, d^*A|_V)"
+   ],
+   "D(c,A|_V) | special edge (K_eps - K_0) lambda^* - lambda ; P(eps,infty) line lambda - lambda": [
+    "amplitude: d_P of D^(0) = (1/2)({I,I}_eps - {I,I}_0) = (1/2){I,I}_{K_eps-K_0}; loop part = (1/2) str(K'(k)(-1)^{|.|} d^2 I_{v_1} P(k-p_1)(-1)^{|.|} d^2 I_{v_2}) (identity checked by brute force in 0 dimensions, r2_verify_special0d.py); vertices ([c,lambda],lambda^*)[ext c; lambda^* on special edge, lambda on P line] ; 1/2(lambda, dslash_A lambda)[ext A|_V; lambda on special edge, lambda on P line]",
+    "special edge: K'(k) = (e^{-eps k^2} - 1) x [-sum (x_i (x) xi_i + xi_i (x) x_i) (x) (-,-)^{-1}] = -int_0^eps dt_0 k^2 e^{-t_0 k^2} x [...]; P line: int_eps^infty dt_1 e^{-t_1 (k-p_1)^2} x numerator",
+    "numerator algebra: M(k) = -k^2 str[...], cubic polynomial in (k, p_1) (exact)",
+    "Schwinger integral: int_0^eps dt_0 int_eps^infty dt_1 (16 pi^2)^{-1}(t_0+t_1)^{-2}[M + (4(t_0+t_1))^{-1}(d_k.d_k)M](k = t_1 p_1/(t_0+t_1)) e^{-t_0 t_1 p_1^2/(t_0+t_1)}",
+    "eps-expansion: rescale t_0, t_1 by eps; with r = t_1/(t_0+t_1) in [1/2,1] and (t_0+t_1)/eps in [1/r, 1/(1-r)]: eps^{-1}: int_{1/2}^1 dr (2r-1)(d_k.d_k)M(r p_1)/4 ; eps^0: int_{1/2}^1 dr log(r/(1-r)) [M(r p_1) - r(1-r)p_1^2 (d_k.d_k)M(r p_1)/4]; no log eps (the special edge confines t_0 to [0,eps]); all log 2 terms cancel inside each class",
+    "local part: (2) u eps^{-1} int(dc, A|_V) + (-4/3) u int(d^*dc, d^*A|_V)"
+   ],
+   "D(c,A|_V) | special edge (K_eps - K_0) c^* - c ; P(eps,infty) line c - A^*|_V": [
+    "amplitude: d_P of D^(0) = (1/2)({I,I}_eps - {I,I}_0) = (1/2){I,I}_{K_eps-K_0}; loop part = (1/2) str(K'(k)(-1)^{|.|} d^2 I_{v_1} P(k-p_1)(-1)^{|.|} d^2 I_{v_2}) (identity checked by brute force in 0 dimensions, r2_verify_special0d.py); vertices 1/2([c,c],c^*)[ext c; c^* on special edge, c on P line (ghost line, c end)] ; ([A,c],A^*)[ext A|_V; c on special edge, A^*|_V on P line (ghost line, A^* end)]",
+    "special edge: K'(k) = (e^{-eps k^2} - 1) x [-sum (x_i (x) xi_i + xi_i (x) x_i) (x) (-,-)^{-1}] = -int_0^eps dt_0 k^2 e^{-t_0 k^2} x [...]; P line: int_eps^infty dt_1 e^{-t_1 (k-p_1)^2} x numerator",
+    "numerator algebra: M(k) = -k^2 str[...], cubic polynomial in (k, p_1) (exact)",
+    "Schwinger integral: int_0^eps dt_0 int_eps^infty dt_1 (16 pi^2)^{-1}(t_0+t_1)^{-2}[M + (4(t_0+t_1))^{-1}(d_k.d_k)M](k = t_1 p_1/(t_0+t_1)) e^{-t_0 t_1 p_1^2/(t_0+t_1)}",
+    "eps-expansion: rescale t_0, t_1 by eps; with r = t_1/(t_0+t_1) in [1/2,1] and (t_0+t_1)/eps in [1/r, 1/(1-r)]: eps^{-1}: int_{1/2}^1 dr (2r-1)(d_k.d_k)M(r p_1)/4 ; eps^0: int_{1/2}^1 dr log(r/(1-r)) [M(r p_1) - r(1-r)p_1^2 (d_k.d_k)M(r p_1)/4]; no log eps (the special edge confines t_0 to [0,eps]); all log 2 terms cancel inside each class",
+    "local part: (1/8) u eps^{-1} int(dc, A|_V) + (-1/12) u int(d^*dc, d^*A|_V)"
+   ],
+   "D(c,A|_V) | tree vertex -Q I^CT[eps]": [
+    "D^(1) = Delta_eps I - Q I^CT[eps] - {I, I^CT[eps]}_eps; Delta_eps I = 0 (every self-contraction of a vertex of I is a trace of ad, = 0); {I_3, I^CT_2}_eps is cubic; so only -Q I^CT[eps] enters the quadratic sector",
+    "Q = {S_free,-} on the two-mode model (c at +p, A|_V at -p): Q int(A|_V,A|_V) = -2 int(dc, A|_V), Q int(d^*A|_V,d^*A|_V) = -2 int(d^*dc, d^*A|_V), Q int(dA|_V,dA|_V) = 0, Q int(dc,A^*) = 0 (r2_T2b.py)",
+    "local part: +(9/2) u eps^{-1} int(dc, A|_V)"
+   ]
+  }
+ }
+}

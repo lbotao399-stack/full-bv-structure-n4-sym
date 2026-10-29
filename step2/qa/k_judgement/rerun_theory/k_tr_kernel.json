@@ -1,0 +1,101 @@
+{
+ "A_TdFdT_over_b_k_at_z0": {
+  "closed_form_in_tau=T/eps": "-(tau - 1)*(3*tau**2 + 8*tau + 3)/(16*pi**2*(tau + 1)**3)",
+  "limit_T_to_infinity": "-3/(16*pi**2)",
+  "expected_half_of_logR_coefficient_-3/(8pi^2)": "-3/(16*pi**2)",
+  "agree": true
+ },
+ "A_large_tau_expansion_of_TdF/dT": "(-3*tau**2 + 4*tau + 2)/(16*pi**2*tau**2)",
+ "A_eps_to_0_at_fixed_T": "-3/(16*pi**2)",
+ "B_z_nonzero_eps=1": {
+  "b": [
+   "7/10",
+   "-11/10",
+   "2/5",
+   "9/10"
+  ],
+  "z_a": [
+   "3/10",
+   "-1/5",
+   "1/2",
+   "1/10"
+  ],
+  "z_b": [
+   "-2/5",
+   "1/4",
+   "3/20",
+   "-3/10"
+  ],
+  "values": {
+   "k=1": {
+    "TdF/dT": {
+     "T=100": -0.01312835925082351,
+     "T=10000": -0.01329672608562523,
+     "T=1e+06": -0.013298388562610194,
+     "T=1e+08": -0.013298405185152589
+    },
+    "prediction_-3b_k/(16pi^2)": -0.013298405353056833
+   },
+   "k=2": {
+    "TdF/dT": {
+     "T=100": 0.020600972527659595,
+     "T=10000": 0.02089454655805333,
+     "T=1e+06": 0.02089746465243489,
+     "T=1e+08": 0.020897493831494383
+    },
+    "prediction_-3b_k/(16pi^2)": 0.020897494126232166
+   },
+   "k=3": {
+    "TdF/dT": {
+     "T=100": -0.0074873254089463815,
+     "T=10000": -0.007597978514033252,
+     "T=1e+06": -0.007599077671373593,
+     "T=1e+08": -0.0075990886621573935
+    },
+    "prediction_-3b_k/(16pi^2)": -0.007599088773175333
+   },
+   "k=4": {
+    "TdF/dT": {
+     "T=100": -0.01685949204822254,
+     "T=10000": -0.0170955811456793,
+     "T=1e+06": -0.017097926055404847,
+     "T=1e+08": -0.017097949502802273
+    },
+    "prediction_-3b_k/(16pi^2)": -0.0170979497396445
+   }
+  },
+  "control_z=0_vs_part_A": {
+   "T=100": {
+    "gauss_moment_route": -0.013120258781634602,
+    "closed_form_A": -0.013120258781634607
+   },
+   "T=10000": {
+    "gauss_moment_route": -0.01329663214374023,
+    "closed_form_A": -0.01329663214374024
+   }
+  }
+ },
+ "C_noninvariance": {
+  "C1_heat_kernel_weight_w": {
+   "identity": "(v.(x)1+1(x)v.)K_t|_{field weight w at x, antifield weight 4-w at y} = (1/8 div v)(midpoint) (-4 t dK_t/dt) + (4-2w)(b,x-y) K_t",
+   "max_residual_40digits": "1.0762e-42"
+  },
+  "C2_P_scalar": {
+   "identity": "(v.(x)1+1(x)v.)P(eps,T)|_{A_Wperp(x)A_Wperp} = (1/8 div v)(midpoint)(4 eps L_eps - 4 T L_T)",
+   "max_residual_40digits": "3.5873e-42"
+  },
+  "C3_P_vector": {
+   "identity": "(v.(x)1+1(x)v.)P(eps,T)|_{A_m(x)A_n} = (1/8 div v)(midpoint)(4 eps L_eps - 4 T L_T)_{mn} + 4((x-y)_m b_n - (x-y)_n b_m) D_T",
+   "max_residual_40digits": "1.6143e-42"
+  },
+  "C4_P_ghost_line": {
+   "identity": "(v.(x)1+1(x)v.)P(eps,T)|_{c(x)A^*_m(y)} = (1/8 div v)(midpoint)(4 eps L_eps - 4 T L_T)_{c A^*_m} - (2(x-y)_m b_q + b_m (x-y)_q) d_{x_q} D_T  [fibre factor -(,)^{-1} removed]",
+   "max_residual_40digits": "3.5873e-43"
+  }
+ },
+ "D_special_edge": {
+  "factor": "e^{-eps|p|^2}-1",
+  "bound": "|e^{-eps|p|^2}-1| <= eps|p|^2",
+  "series": "-eps*p2 + eps**2*p2**2/2 + O(eps**3)"
+ }
+}

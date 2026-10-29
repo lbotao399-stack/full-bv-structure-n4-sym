@@ -1,0 +1,359 @@
+\documentclass[10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage[T1]{fontenc}
+\allowdisplaybreaks
+\newcommand{\Dtri}{\mathcal D^{\triangle}_{w,z}}
+\newcommand{\Itri}{\mathcal I_{\triangle}}
+\title{Literature extraction: Gaiotto--Kulp--Wu, Budzik--Kulp, Gui--Wang--Williams\\(one-loop $Q_1$ of the holomorphic twist)}
+\date{2026-10-28}
+\begin{document}\small
+\maketitle
+
+\noindent Equation numbers are those of the arXiv PDFs (section-numbered); the arXiv HTML renderings number equations sequentially and were not used for citations. Every formula below was transcribed from the rendered PDF page. Prose is paraphrased. Items marked \textbf{[inference]} are not statements of the sources.
+
+\noindent Name clash (DESIGN\_STEP2 R3): in this file $Q_1$, $Q_n$ always denote the loop components of the twisted differential of the sources ($Q=Q_0+\hbar Q_1+\dots$); the manuscript's spinor parameters $Q_1\in\Sigma$, $Q_2\in\Sigma^*$ do not occur; in \S\ref{sec:inf} an odd generator is written $x_1$ (manuscript, ch00).
+
+\section{Bibliographic data}
+\begin{itemize}
+\item[{[GKW]}] arXiv:2403.13049 (v1 only, 19 Mar 2024), D.~Gaiotto, J.~Kulp, J.~Wu, \emph{Higher Operations in Perturbation Theory}. Journal reference as given in [BK, ref.~17]: JHEP 05 (2025) 230 (the arXiv page lists none).
+\item[{[BK]}] arXiv:2512.07771 (v1 8 Dec 2025, v2 19 Mar 2026, v3 20 Jul 2026 = JHEP version, JHEP 08 (2026) 089), K.~Budzik, J.~Kulp, \emph{Loop Corrected Supercharges from Holomorphic Anomalies}. Read: v3.
+\item[{[GWW]}] arXiv:2510.26608 (v1 30 Oct 2025, v2 2 Jun 2026), Z.~Gui, M.~Wang, B.~R.~Williams, \emph{Higher-dimensional Chiral Algebras in the Jouanolou Model and free-field realization} (v1 title, as cited in [BK, ref.~22]: \emph{Higher-dimensional Chiral Algebras in the Jouanolou Model}). Read: v2.
+\item[{[BGKWWY]}] arXiv:2306.01039 (v2, JHEP 05 (2024) 245), K.~Budzik, D.~Gaiotto, J.~Kulp, B.~R.~Williams, J.~Wu, M.~Yu, \emph{Semi-Chiral Operators in 4d $\mathcal N=1$ Gauge Theories}. Auxiliary only (source [16] of the $bc$ one-loop formulas in [BK]); read: \S3.2, App.~C (part), App.~D.2. A dedicated check of its App.~C is in \texttt{step2/literature/bgkwwy\_checks.py}.
+\item Not read here: [Bud+23] = arXiv:2207.14321 (triangle integral, cited by [GKW] as [22], by [BK] as [18]); Choi--Lee arXiv:2511.09519 ([BK, ref.~49], where (3.66) of [BK] was also computed).
+\end{itemize}
+
+\section{[GKW] arXiv:2403.13049}
+\subsection{(i) Definitions}
+Couplings $g^i$, interaction densities $\mathcal I_i$, $\mathcal I:=\sum_ig^i\mathcal I_i$ (2.7). BRST action on couplings: odd vector field
+\begin{gather*}
+\boldsymbol\eta=\sum_i\eta^i(g)\frac{\partial}{\partial g^i}\ \text{(2.2)},\\
+\eta^i(g)=\sum_{n>0}\frac1{n!}\sum_{j_1\cdots j_n}\eta^i_{j_1\cdots j_n}g^{j_1}\cdots g^{j_n}\ \text{(2.5)},
+\end{gather*}
+\begin{gather*}
+\boldsymbol\eta\,\mathcal I=\sum_i\eta^i(g)\mathcal I_i=\{\mathcal I\}+\tfrac12\{\mathcal I,\mathcal I\}+\tfrac16\{\mathcal I,\mathcal I,\mathcal I\}+\cdots\ \text{(2.8)},\\
+\{g^{j_1}\mathcal I_{j_1},\dots,g^{j_n}\mathcal I_{j_n}\}=\eta^i_{j_1\cdots j_n}g^{j_1}\cdots g^{j_n}\mathcal I_i\ \text{(2.9)},
+\end{gather*}
+$\boldsymbol\eta^2=0\Leftrightarrow$ the $\eta^i_{j_1\cdots j_n}$ define an $L_\infty[1]$ structure on In (2.10); $\eta^i(g)=0$ is its Maurer--Cartan equation.
+
+Linear order, point splitting:
+\begin{gather*}
+[Q,\mathcal I_i]=\sum_j\eta^j_i\mathcal I_j+d\mathcal J_i\ \text{(2.13)},\\
+\{\mathcal I,\mathcal I\}(x_2)\overset{\text{sharp cutoff}}{=}\int_{|x_{12}|=\epsilon}\mathcal I(x_1)\mathcal J(x_2)+\mathcal J(x_1)\mathcal I(x_2)\ \text{(2.17)}.
+\end{gather*}
+Action on local operators (odd map $\mathbf Q$ on Op):
+\begin{gather*}
+\mathcal L_{\boldsymbol\eta}^2=\{\boldsymbol\eta,\mathbf Q\}+\mathbf Q^2=0\ \text{(2.26)},\\
+\mathbf Q\mathcal O=\{\mathcal O\}+\{\mathcal I,\mathcal O\}+\tfrac12\{\mathcal I,\mathcal I,\mathcal O\}+\cdots\ \text{(2.27)},\\
+\{\mathcal I,\mathcal O\}(x_2)=\int_{|x_{12}|=\epsilon}\mathcal J(x_1)\mathcal O(x_2)\ \text{(2.28)}.
+\end{gather*}
+(2.27) makes Op a right $L_\infty$-module over In (text after (2.26)). Free fields (\S2.4):
+\begin{gather*}
+P_{ab}(x,y):=\langle\phi_a(x)\phi_b(y)\rangle\ \text{(2.36)},\\
+\mathscr D_QP_{ab}(x,y)=0,\ x\neq y\ \text{(2.37)},\\
+\mathscr D_QP_{ab}(x,y;\epsilon)=-K_{ab}(x,y;\epsilon)\ \text{(2.38)}.
+\end{gather*}
+Text after (2.39): the BRST variation of a diagram equals the sum over all ways of replacing one regularised propagator $P_{ab}(x,y;\epsilon)$ by $K_{ab}(x,y;\epsilon)$; the tree-level $\{\mathcal I_i,\mathcal I_j\}$ is one Wick contraction with $K$.
+
+HT superspace on $\mathbb C^H\times\mathbb R^T$ (\S3.1--3.2):
+\begin{gather*}
+\mathrm{dVol}=\prod_{a=1}^H\frac{d(x^{\mathbb C})^a}{2\pi i}\ \text{(3.3)},\\
+\mathrm d=dx^{\mathbb R}\frac{\partial}{\partial x^{\mathbb R}}+d\bar x^{\mathbb C}\frac{\partial}{\partial\bar x^{\mathbb C}}\ \text{(3.5)},\\
+K_\epsilon(x):=\mathrm dP_\epsilon(x)\ \text{(3.6)},\\
+\int[(\Phi,\mathrm d\Phi)+\mathcal I(\Phi)]\,\mathrm{dVol}\ \text{(3.7)},\\
+Q\mathcal O+\mathrm d\mathcal O=0\ \text{(3.8)}.
+\end{gather*}
+$n$-Laman graphs, $n=H+T$:
+\begin{equation*}
+n|\Gamma_0|=(n-1)|\Gamma_1|+n+1\ \text{(3.10)},\qquad n|\Gamma[S]_0|\ge(n-1)|\Gamma[S]_1|+n+1\ \text{(3.11)}.
+\end{equation*}
+For the 4d holomorphic case $H=2$, $T=0$: $2|\Gamma_0|=|\Gamma_1|+3$; tree = one edge, one loop = triangle only, two loops = bitriangle (Fig.~2 caption, Fig.~6). Feynman integral:
+\begin{equation*}
+I_\Gamma(\lambda;z)\overset{\rm def}{=}\int_{\mathcal M^{|\Gamma_0|-1}}\Big[\prod_{v\in\Gamma_0}^{v\neq v_*}\mathrm{dVol}_ve^{\lambda_v\cdot x^{\mathbb C}_v}\Big]\,\mathrm d\Big[\prod_{e\in\Gamma_1}P_\epsilon(x_{e(0)}-x_{e(1)}+z_e)\Big]\ \text{(3.13)},
+\end{equation*}
+\begin{gather*}
+I_\Gamma(\lambda;z)=\int_{\mathcal M^{|\Gamma_0|-1}\times\mathbb{RP}^{|\Gamma_1|-1}_>}\Big[\prod^{v\neq v_*}\mathrm{dVol}_ve^{\lambda_v\cdot x^{\mathbb C}_v}\Big]\\\times\Big[\prod_{e}\mathcal P(x_{e(0)}-x_{e(1)}+z_e;t_e)\Big]\ \text{(3.14)},\\
+\mathcal P(x;t)=\pi^{-\frac T2}e^{-s^2-x^{\mathbb C}\cdot y}\prod_a dy^a\prod_b ds^b,\ y=\frac{\bar x^{\mathbb C}}t,\ s=\frac{x^{\mathbb R}}{t^{1/2}}\ \text{(3.15)}.
+\end{gather*}
+Brackets from integrals (\S4.1):
+\begin{equation*}
+\{\mathcal I_{1\,\lambda_1}\cdots{}_{\lambda_{n-1}}\mathcal I_{v^*}\}=\sum_\Gamma\pm I_\Gamma(\lambda_v+\partial_v;z_e)\prod_v\prod_i{}'\phi_{a_{i,v}}(z_{i,v}),\quad\partial_v:=\textstyle\sum_j\partial_{z_{j,v}}\ \text{(4.11)};
+\end{equation*}
+the $n$-ary $\lambda$-bracket (4.12) is the sum over $(H+T)$-Laman graphs with $n$ vertices. Interacting brackets:
+\begin{equation*}
+\{\mathcal O_1,\dots,\mathcal O_n\}_{\mathcal I}\overset{\rm def}{=}\{\mathcal O_1,\dots,\mathcal O_n\}+\{\mathcal I,\mathcal O_1,\dots,\mathcal O_n\}+\tfrac12\{\mathcal I,\mathcal I,\mathcal O_1,\dots,\mathcal O_n\}+\cdots\ \text{(4.44)}.
+\end{equation*}
+4d holomorphic free example (\S4.4.3; fields $\Omega^{0,*}(\mathbb C^2)\otimes W$, $V=W^*$, $\eta=\omega^{-1}$ of degree $-1$):
+\begin{gather*}
+\{f\,{}_\lambda\,g\}\overset{\rm def}{=}\oint_{S^3}\omega_{\rm BM}(w)e^{\lambda\cdot w}e^\eta(f(w)\otimes g(0))\ \text{(4.40)},\\
+\omega_{\rm BM}(w)=\frac{d^2w}{(2\pi i)^2}\frac{\bar w_1d\bar w_2-\bar w_2d\bar w_1}{|w|^4}\ \text{(4.41)};
+\end{gather*}
+associativity relations (4.42) ($\lambda$-Jacobi), (4.43) (2-bracket/3-bracket). No interacting 4d example and no gauge theory in [GKW].
+
+\subsection{(ii) What is computed, regulator}
+Regulator (App.~B): heat kernel,
+\begin{gather*}
+\mathrm dP_\epsilon(x)=K_\epsilon(x)\overset{\rm def}{=}\frac1{(\pi\epsilon)^{d/2}}e^{-\epsilon^{-1}((x^{\mathbb R})^2+x^{\mathbb C}\bar x^{\mathbb C})}d^H\bar x^{\mathbb C}d^Rx^{\mathbb R}\ \text{(B.1)},\\
+\nabla^2=\tfrac14\partial^2_{x^{\mathbb R}}+\partial_{x^{\mathbb C}}\partial_{\bar x^{\mathbb C}}\ \text{(B.2)},\quad \mathrm d\mathrm d^*=\nabla^2\ \text{(B.3)},
+\end{gather*}
+\begin{equation*}
+\nabla^2K_\epsilon(x)=\partial_tK_t(x)\ \text{(B.4)},\qquad P_\epsilon(x)=\int_{t=\epsilon}^\infty\mathrm d^*K_t(x)\,dt\ \text{(B.5)},
+\end{equation*}
+integrands $\sum_{e\in\Gamma_1}(-1)^{\sigma(\Gamma)}K_\epsilon(x_e)\mathrm{dVol}_{x_e}\prod_{e'\neq e}\int_\epsilon^\infty dt_{e'}\mathrm d^*K_{t_{e'}}(x_{e'})$ (B.6), IR-regulated by $L$ (B.7), Gaussian position integrals leave a rational form $\omega_e$ in the $t$'s with $t_e=\epsilon$ (B.8); claim (sketched proof): $\omega$ is the pull-back of a form on $\mathbb{RP}_>$, so the $\epsilon$-dependence drops out; footnote 30: same with independent cutoffs $\epsilon_e$ per edge. \S3.4 (after (3.15)): the integral is finite as $\epsilon\to0$; after the $x^{\mathbb C}$ integrals impose (3.17), the result is an integral over a bounded region (operatope) (3.18).
+
+Sign remark [inference]: (B.3)--(B.5) as printed give $\mathrm dP_\epsilon=\int_\epsilon^\infty\partial_tK_t\,dt=-K_\epsilon$ (with $K_\infty=0$), opposite to (B.1) and in agreement with (2.38). Not used below.
+
+Identities: shift identity (3.19); quadratic identities $\sum_{{\rm Laman}\,S}\sigma(\Gamma,S)\Delta_{\Gamma[S]}\times\Delta_{\Gamma(S)}=0$ (3.20), $\sum_S\sigma'(\Gamma,S)I_{\Gamma[S]}(\lambda+\partial;z)\cdot I_{\Gamma(S)}(\lambda;z)=0$ (3.21) $\Rightarrow$ $L_\infty$/associativity relations (4.17). Non-renormalisation: $\alpha_\Gamma^2=0$ (3.57) for every graph checked with at least one loop; \S5.4 (argument credited to K.~Costello): for $(H,T\ge2)$ loop graphs vanish ((5.38)--(5.40) force $\Gamma$ to be a tree). For $H=2$, $T=0$ no such statement: the triangle contributes.
+
+2d gauge example (\S2.1.1): $\{\mathcal I,\mathcal I\}(x_2)=\int_{|x_{12}|=\epsilon}{:}AJ{:}(x_1){:}cJ{:}(x_2)+{:}cJ{:}(x_1){:}AJ{:}(x_2)$ (2.21) $=\#\,{:}c\,dA{:}(x_2)$ (2.23), $\{A_\mu J^\mu,A_\nu J^\nu\}=\#\,cF_{12}$ (2.24) (coefficient not computed, ``$\#$''); text: in $2k$ dimensions the one-loop $F^k$ anomaly is expected from the $(k+1)$-bracket.
+
+\subsection{(iii) Scheme statements}
+\begin{itemize}
+\item \S2 after (2.10): the functional form of $\boldsymbol\eta$ depends on the scheme; for a fixed set of deformations schemes differ by invertible perturbative redefinitions of the couplings intertwining the $\boldsymbol\eta$'s; more generally by $L_\infty$ quasi-isomorphisms (only agreement in $Q_{\rm BRST}$-cohomology required); dually, $L_\infty$-morphisms ${\rm In}^{\otimes n}\to{\rm In}'$.
+\item After (2.17): the bracket of two operators is generically scheme dependent.
+\item Footnote 13: translation-invariant schemes expected to exist; regularisation intrinsically breaks scale invariance.
+\item App.~B: within the heat-kernel/Schwinger-cutoff class the Laman-graph integrals are $\epsilon$-independent (also with per-edge cutoffs).
+\item \S6 (topological case only): point-splitting schemes labelled by chains $\gamma_n\subset D_d(n)$; $Q(\mathcal I,\dots,\mathcal I)_{\gamma^\infty_n}=-(\mathcal I,\dots,\mathcal I)_{\partial\gamma^\infty_n}$ (6.28); $\{\mathcal I_1,\dots,\mathcal I_n\}=[\mathcal I_1,\dots,\mathcal I_n]_{\gamma_n}$ (6.33); explicit construction of $\gamma_n$ left open.
+\end{itemize}
+
+\subsection{(iv) Explicit $Q_1$}
+None for 4d gauge theories in [GKW]; it refers to [BGKWWY] for 4d (Introduction). Homotopy transfer is not used in the parts read (\S\S1--4, 5.3--6, App.~A--C).
+
+\section{[BK] arXiv:2512.07771v3}
+\subsection{Conventions}
+Euclidean $(3+1)$d, two-component spinors:
+\begin{gather*}
+\{Q^i_\alpha,\bar Q^j_{\dot\beta}\}=\delta^{ij}P_{\alpha\dot\beta}\ \text{(2.1)},\\
+\{Q^i_\alpha,Q^j_\beta\}=\{\bar Q^i_{\dot\alpha},\bar Q^j_{\dot\beta}\}=0\ \text{(2.2)},\\
+\mathcal Q:=Q^1_-\ \text{(2.3)},\\
+z^{\dot\alpha}:=x^{+\dot\alpha},\ \bar z^{\dot\alpha}:=x^{-\dot\alpha}\ \text{(2.4)},\\
+\{\mathcal Q,\bar Q^1_{\dot\alpha}\}=P_{-\dot\alpha}\ \text{(2.5)};
+\end{gather*}
+$\mathcal Q$ breaks $SU(2)_-$ of $Spin(4)\cong SU(2)_-\times SU(2)_+$; footnote 20: $\dot-,\dot+=1,2$. Superfields $\mathcal O:=e^{i\,d\bar z^{\dot\alpha}\bar Q^1_{\dot\alpha}}\mathcal O^{(0)}=\mathcal O^{(0)}+\mathcal O^{(1)}+\mathcal O^{(2)}$ (2.7), $\bar\partial=d\bar z^{\dot\alpha}\partial_{\bar z^{\dot\alpha}}$, $D_-=\mathcal Q+\bar\partial$ (2.8), descent $\mathcal Q\mathcal O^{(k)}+\bar\partial\mathcal O^{(k-1)}=(\mathcal Q\mathcal O)^{(k)}$ (2.9). For $\mathcal N=4$ the twisting supercharge is $\mathcal Q:=Q^4_-$ (before (3.51)).
+
+Normalisations entering the size of $Q_1$: no coupling in the twisted actions (3.1), (3.33), (3.39), (3.53); $\hbar$ only through (1.3), (2.22); propagator
+\begin{equation*}
+P(z,\bar z):=\frac{\bar z^2d\bar z^1-\bar z^1d\bar z^2}{|z|^4}\ \text{(2.31)},\quad \bar\partial P=\pi^2\delta^{(4)}(z)d^2\bar z\ \text{(2.32)},\quad P^{ab}(z_{12},\bar z_{12})=\eta^{ab}P(z_{12},\bar z_{12})\ \text{(2.33)},
+\end{equation*}
+measure $d^2z/(2\pi i)^2$ in (2.23), (2.27); heat kernel $K_t(x):=t^{-2}e^{-|x|^2/t}$ (A.2); adjoint generators normalised with the Killing form, indices moved with $\delta^{AB}$:
+\begin{equation*}
+[t_A,t_B]=f_{AB}{}^Ct_C,\quad b^A=\delta^{AB}b_B,\quad f_{ABC}=\delta_{CD}f_{AB}{}^D\ \text{(3.12)}.
+\end{equation*}
+
+\subsection{(i) Definitions}
+\begin{gather*}
+\mathcal Q=Q_{\rm free}+Q_{\rm tree}+\hbar Q_{\text{1-loop}}+\hbar^2Q_{\text{2-loop}}+\cdots\ \text{(1.3)},\\
+Q_n\mathcal O=\frac1{(n+1)!}\{\underbrace{\mathcal I,\dots,\mathcal I}_{n+1},\mathcal O\}\ \text{(1.6)},
+\end{gather*}
+\begin{gather*}
+\mathcal Q\mathcal O=\{\mathcal I,\mathcal O\}_0+\frac\hbar{2!}\{\mathcal I,\mathcal I,\mathcal O\}_0+\cdots\ \text{(2.22)},\\
+\{\mathcal I,\cdot\}_0=Q_0,\quad\frac1{2!}\{\mathcal I,\mathcal I,\cdot\}_0=Q_1\ \text{(2.24)},
+\end{gather*}
+\begin{equation*}
+\sum_{n_1+n_2=n}Q_{n_1}Q_{n_2}=0\ \text{(2.25)},\qquad \{Q_0,Q_1\}=0,\quad Q_1^2+\{Q_0,Q_2\}=0\ \text{(2.26)}=\text{(1.12)}.
+\end{equation*}
+\begin{equation*}
+\{\mathcal O_{1\,\lambda_1}\cdots\mathcal O_{k\,\lambda_k}\mathcal O_{k+1}\}_0:=\sum_\Gamma\int_{\mathbb C^{2k}}\Big[\prod_{v=1}^k\frac{d^2z_v}{(2\pi i)^2}e^{\lambda_v\cdot z_v}\Big]\\\times Q_{\rm free}W_\Gamma[\mathcal O_1(z_1)\cdots\mathcal O_k(z_k)\mathcal O_{k+1}(0)]\ \text{(2.27)},\\ \sum_{v=1}^k\lambda_v=:-\lambda_{k+1}.
+\end{equation*}
+Text after (2.24): on $\mathbb C^2$ the $(\ell+2)$-ary operation is the $\ell$-loop correction. Text after (2.26): cohomology computed step by step by homotopy transfer ($Q_0$-cohomology on $Q_{\rm free}$-cohomology, then $Q_1$-cohomology on $Q_0$-cohomology). Footnote 7: $Q_1$ squares to zero on the $Q_0$-cohomology. Footnote 8: for an operator of length $n$ corrections stop at most at $Q_{n+1}$ (graph combinatorics), expected at $Q_{n-1}$. Footnote 17: the deformation of the semi-chiral ring is homotopy transfer [BGKWWY, App.~D]. Footnote 21: generically no composite-operator scheme is associative and has interacting $\mathcal Q$ acting by the Leibniz rule; existence of one would be a one-loop non-renormalisation theorem.
+
+Twisted theory (vector multiplet + chirals in $R$, superpotential $W$):
+\begin{equation*}
+\int_{\mathbb C^2}d^2z\,{\rm Tr}\,b\Big(\bar\partial c+\tfrac12[c,c]\Big)+\beta_I(\bar\partial\gamma^I+c\gamma^I)+W[\gamma]\ \text{(3.1)},
+\end{equation*}
+$b\in\Omega^{0,\bullet}(\mathbb C^2,\mathfrak g^\vee)$, $c\in\Omega^{0,\bullet}(\mathbb C^2,\mathfrak g)[1]$ (3.2), $\beta_I\in\Omega^{0,\bullet}(\mathbb C^2,R^\vee)[1]$, $\gamma^I\in\Omega^{0,\bullet}(\mathbb C^2,R)$ (3.3);
+\begin{equation*}
+Q_0c=\tfrac12[c,c],\ Q_0b=[c,b]-\mu(\beta,\gamma)\ \text{(3.4)},\qquad Q_0\gamma^I=c\gamma^I,\ Q_0\beta_I=\beta_Ic+\partial_{\gamma^I}W\ \text{(3.5)};
+\end{equation*}
+map to the untwisted classical $\mathcal Q$-cohomology:
+\begin{equation*}
+\gamma\sim\bar\phi,\quad\beta\sim\psi_+,\quad\partial_{\dot\alpha}c\sim\bar\lambda_{\dot\alpha},\quad b\sim F_{++},\quad\partial_{\dot\alpha}\sim D_{+\dot\alpha}\ \text{(3.6)}.
+\end{equation*}
+$\mathcal N=4$: three adjoint $\beta\gamma$ and
+\begin{equation*}
+W[\gamma]={\rm Tr}\,\gamma^1[\gamma^2,\gamma^3]=\tfrac1{3!}\varepsilon_{IJK}f_{ABC}(\gamma^I)^A(\gamma^J)^B(\gamma^K)^C\ \text{(3.48)},
+\end{equation*}
+\begin{equation*}
+Q_0c=\tfrac12[c,c],\ Q_0b=[c,b]-[\gamma^I,\beta_I]\ \text{(3.49)},\\ Q_0\gamma_I=[c,\gamma_I],\ Q_0\beta_I=[c,\beta_I]+\tfrac12\varepsilon_{IJK}[\gamma^J,\gamma^K]\ \text{(3.50) (index of $\gamma$ as printed)},
+\end{equation*}
+\begin{equation*}
+\gamma^I\sim\Phi^{4I},\quad\beta_I\sim\Psi_{I+},\quad\partial_{\dot\alpha}c\sim\bar\Psi^4_{\dot\alpha},\quad b\sim F_{++},\quad\partial_{\dot\alpha}\sim D_{+\dot\alpha}\ \text{(3.51)},
+\end{equation*}
+$\Phi^{IJ}$ the six real scalars, $\Psi_{I\alpha}$, $\bar\Psi^I_{\dot\alpha}$ the chiral and antichiral fermions; text before (3.51): the tree-level cohomology of the twisted theory is isomorphic to the classical supercharge cohomology of the untwisted theory. All maps (3.6), (3.51) are stated with ``$\sim$'', i.e. without normalisation factors. Superfield
+\begin{gather*}
+C=c+\theta_I\gamma^I+\tfrac12\varepsilon^{IJK}\theta_I\theta_J\beta_K+\theta_1\theta_2\theta_3b\ \text{(3.52)},\\
+\tfrac12\int_{\mathbb C^{2|3}}d^2z\,d^3\theta\,{\rm Tr}\,C\Big(\bar\partial C+\tfrac13[C,C]\Big)\ \text{(3.53)},\quad Q_0C=\tfrac12[C,C]\ \text{(3.54)}=\text{(1.9)}.
+\end{gather*}
+Residual $\mathfrak{psl}(3|3)\subset\mathfrak{psl}(4|4)$ commuting with $\mathcal Q=Q^4_-$, tree level:
+\begin{gather*}
+Q^I_+\sim\partial_{\theta_I},\quad S^+_I\sim\theta_I(z^{\dot\alpha}\partial_{\dot\alpha}+\theta_J\partial_{\theta_J})\ \text{(3.55)},\\
+\bar Q_{I\dot\alpha}\sim\theta_I\partial_{\dot\alpha},\quad\bar S^{I\dot\alpha}\sim z^{\dot\alpha}\partial_{\theta_I}\ \text{(3.56)},
+\end{gather*}
+\begin{equation*}
+Q^I_+:\ c\mapsto\gamma^I,\ \gamma^J\mapsto-\varepsilon^{IJK}\beta_K,\ \beta_J\mapsto\delta^I_Jb,\ b\mapsto0\ \text{(3.57)},
+\end{equation*}
+\begin{gather*}
+S^+_I:\ c\mapsto0,\ \gamma^J\mapsto-\delta^J_Iz^{\dot\alpha}\partial_{\dot\alpha}c,\\ \beta_J\mapsto-\varepsilon_{IJK}(1+z^{\dot\alpha}\partial_{\dot\alpha})\gamma^K,\\ b\mapsto-(2+z_{\dot\alpha}\partial_{\dot\alpha})\beta_I\ \text{(3.58)}\\ \text{(index position of $z$ in the last entry as printed)}.
+\end{gather*}
+
+\subsection{(ii) What is computed, regulator}
+Wick contractions with $P$; $Q_{\rm free}$ acts by $-\bar\partial$, integrated by parts onto the propagators:
+\begin{equation*}
+Q_{\rm free}W_\Gamma[\mathcal O_1(z_1,\bar z_1)\cdots\mathcal O_k(z_k,\bar z_k)\mathcal O_{k+1}(0,0)]\\\mapsto\bar\partial\Big[\prod_{e\in\Gamma_1}P^{ab}(z_e+w_e,\bar z_e)\Big]\ \text{(2.39)},
+\end{equation*}
+\begin{equation*}
+\{\mathcal O_{1\,\lambda_1}\cdots\mathcal O_{k\,\lambda_k}\mathcal O_{k+1}\}_0\Big|_\Gamma=I_\Gamma\Big[\lambda_v+\sum_{i=1}^{m'}\partial_{w_{v,i}};w_e\Big]\\\times\prod_{e\in\Gamma_1}\eta^{a_eb_e}\prod_{v\in\Gamma_0}\prod_{\rm un.}\phi^{a_{v,i}}(w_{v,i},0)\ \text{(2.41)}.
+\end{equation*}
+Regulator: Schwinger parametrisation of the Bochner--Martinelli kernel with cutoff $t\in[\epsilon,\infty)$ on every propagator, $P(z+w,\bar z)\rightsquigarrow P_\epsilon(z+w,\bar z,t)$ (2.42); combined propagator
+\begin{equation*}
+\mathcal P(x,\bar x;t):=\frac{dt}{t}(\bar x^2d\bar x^1-\bar x^1d\bar x^2)K_t(x)+d^2\bar x\,K_t(x),\quad K_t(x):=t^{-2}e^{-|x|^2/t}\ \text{(A.2)},
+\end{equation*}
+\begin{equation*}
+I_\Gamma[\lambda;w]=\int_{\mathbb C^{2k}\times\mathbb{RP}^{|\Gamma_1|-1}_>}\Big[\prod_{v=1}^k\frac{d^2z_v}{(2\pi i)^2}e^{\lambda_v\cdot z_v}\Big]\\\times\Big[\prod_{e\in\Gamma_1}\mathcal P_\epsilon(z_{e(0)}-z_{e(1)}+w_e;t_e)\Big]\ \text{(2.43)}.
+\end{equation*}
+Footnote 22: after a Fulton--MacPherson--Kontsevich-type change of Schwinger variables the integral is manifestly UV and IR finite; holomorphic theories are finite and need no counterterms; loop integrals vanish with $\ge2$ topological directions. Only Laman graphs contribute; at tree level the propagator, at one loop only the triangle (text after (2.43), Fig.~1). Master integrals:
+\begin{equation*}
+\mathcal I_{\frown}[\lambda;z]=e^{-\lambda_1\cdot z_{12}}\ \text{(2.44)},
+\end{equation*}
+\begin{equation*}
+\Itri[\lambda;z]=-e^{-\lambda_1\cdot z_{13}-\lambda_2\cdot z_{23}}(\lambda_1\wedge\lambda_2)\Big[\frac1{(\lambda_1\cdot Z)(\lambda_2\cdot Z)}\\+\frac{e^{-\lambda_1\cdot Z}}{(\lambda_1\cdot Z)(\lambda_3\cdot Z)}+\frac{e^{\lambda_2\cdot Z}}{(\lambda_2\cdot Z)(\lambda_3\cdot Z)}\Big]\ \text{(2.45)}=\text{(A.12)},
+\end{equation*}
+$Z=z_{12}+z_{23}-z_{13}$, $\lambda_1+\lambda_2+\lambda_3=0$, $\lambda\wedge\lambda'=\lambda_1\lambda'_2-\lambda_2\lambda'_1$, $\lambda\cdot z=\lambda_1z^1+\lambda_2z^2$ (App.~A);
+\begin{equation*}
+\Itri[\lambda;z]=e^{-\lambda_1\cdot z_{13}-\lambda_2\cdot z_{23}}(\lambda_1\wedge\lambda_2)\sum_{n=0}^\infty\sum_{m=0}^\infty\frac{1}{(n+m+2)!}(-\lambda_1\cdot Z)^n(\lambda_2\cdot Z)^m\ \text{(2.47)},\qquad \Itri[\lambda;0]=\tfrac12\lambda_1\wedge\lambda_2\ \text{(2.48)}.
+\end{equation*}
+Intermediate step (A.7)--(A.9): after the Gaussian integrals
+\begin{equation*}
+e^{-\lambda_1\cdot z_{13}-\lambda_2\cdot z_{23}}(\lambda_1\wedge\lambda_2)\int_{\mathbb{RP}^2_>}\Big(\frac{dt_1dt_2}{t_1t_2}+\frac{dt_2dt_3}{t_2t_3}+\frac{dt_3dt_1}{t_1t_3}\Big)\\\times\frac{t_1t_2t_3}{(t_1+t_2+t_3)^3}e^{-\frac{t_3\lambda_1\cdot Z-t_2\lambda_2\cdot Z}{t_1+t_2+t_3}}\ \text{(A.7)},
+\end{equation*}
+integrated on $t_1+t_2+t_3=1$ ((A.8)--(A.9)). The $\epsilon$-cutoff does not appear in the result (projective Schwinger integral).
+
+\subsection{(iii) Scheme statements}
+\begin{itemize}
+\item \S1 (p.~5): higher $\lambda$-brackets and hence the $Q_n$ depend on the scheme; the lifting of cohomology classes from the final perturbative cohomology is scheme independent (footnote 9: under the assumption that non-perturbative corrections only further reduce the cohomology); open whether higher-loop corrections can be removed by a theory-specific scheme.
+\item \S2.2.2 after (2.27): $L_\infty$-brackets and the $Q_n$ are generically scheme dependent beyond first order in perturbation theory; a scheme may exist in which they vanish at some order; their procedure is manifestly UV and IR finite and reproduces known non-renormalisation theorems; different schemes are related by explicit quasi-isomorphisms of the $L_\infty$-conformal algebras.
+\item Footnote 24: tree-level $\mathfrak{psl}(3|3)$ generators may receive loop corrections; on $Q_0$-cohomology $\{Q_1,R_0\}+\{Q_0,R_1\}=0$. This is used to obtain all of $Q_1$ from $Q_1(bc)$:
+\begin{equation*}
+Q_1(b\gamma^I)=-Q^I_+Q_1(bc)\ \text{(3.59)},\ \ Q_1(b\beta_I)=\tfrac12\varepsilon_{IJK}Q^J_+Q_1(b\gamma^K)\ \text{(3.60)},\ \ Q_1(bb)=-Q^I_+Q_1(b\beta_I)\ \text{(3.61)},
+\end{equation*}
+\begin{equation*}
+Q_1(\beta_I\gamma^J)=-\tfrac12S^+_IQ_1(b\gamma^J)\ \text{(3.62)},\qquad Q_1(\beta_I\beta_J)=\tfrac12S^+_IQ_1(b\beta_J)-\tfrac12\varepsilon_{IJK}Q_1(b\gamma^K)\ \text{(3.63)}.
+\end{equation*}
+\end{itemize}
+
+\subsection{(iv) Explicit $Q_1$}
+Action on products (pairs):
+\begin{gather*}
+Q_1(f_1\cdots f_n)=\sum_{1\le i<j\le n}(-1)^{\epsilon_{ij}}Q_1(f_if_j)f_1\cdots f_{i-1}f_{i+1}\cdots f_{j-1}f_{j+1}\cdots f_n\ \text{(3.7)},\\
+\epsilon_{ij}=|f_i|\sum_{k<i}|f_k|+|f_j|\sum_{k<j,\,k\neq i}|f_k|\ \text{(3.8)}.
+\end{gather*}
+Differential-operator form of the triangle on the two output fields:
+\begin{gather*}
+\Dtri(f,g):=\sum_{m,n=0}^\infty\frac1{(n+m+2)!}e^{z\cdot\partial}((w-z)\cdot\partial)^n\partial_{\dot\alpha}f(y)\\ \times e^{w\cdot\partial}((z-w)\cdot\partial)^m\partial^{\dot\alpha}g(y)\Big|_{y=0}\ \text{(3.9)},\\
+\mathcal D^\triangle_{0,0}(f,g)=\tfrac12\partial_{\dot\alpha}f\partial^{\dot\alpha}g\ \text{(3.10)},
+\end{gather*}
+$z\cdot\partial=z^1\partial_{y_1}+z^2\partial_{y_2}$ acting only on $f,g$;
+\begin{equation*}
+Q_1(cc)=Q_1(\gamma\gamma)=Q_1(\gamma c)=Q_1(\beta c)=0\ \text{(3.11)}.
+\end{equation*}
+General $R$ ($\beta_Ic\gamma^I=(\beta_I)_ic^A(T_A)^i{}_j(\gamma^I)^j$ (3.15)):
+\begin{align*}
+Q_1(b^A(z)c^B(w))&=f_{ACD}f_{BCE}\Dtri(c^D,c^E)\ \text{(3.13)},\\
+Q_1((\beta_I)_i(z)(\gamma^J)^j(w))&=-\delta^J_I(T_BT_A)^j{}_i\Dtri(c^A,c^B)\ \text{(3.16)},\\
+Q_1((\beta_I)_i(z)(\beta_J)_j(w))&=-(T_A)^k{}_i\Dtri(c^A,\partial_{\gamma^{Ik}}\partial_{\gamma^{Jj}}W)\\&\quad-(T_A)^k{}_j\Dtri(\partial_{\gamma^{Ii}}\partial_{\gamma^{Jk}}W,c^A)\ \text{(3.17)},\\
+Q_1(b^A(z)b^B(w))&=f_{ACD}f_{BCE}\big[\Dtri(c^D,b^E)-\Dtri(b^D,c^E)\big]\\
+&\quad+(T_BT_A)^i{}_j\Dtri((\gamma^I)^j,(\beta_I)_i)-(T_AT_B)^i{}_j\Dtri((\beta_I)_i,(\gamma^I)^j)\ \text{(3.18)},\\
+Q_1(b^A(z)(\gamma^I)^i(w))&=f_{ABC}(T_B)^i{}_j\Dtri(c^C,(\gamma^I)^j)-(T_BT_A)^i{}_j\Dtri((\gamma^I)^j,c^B)\ \text{(3.19)},\\
+Q_1((\beta_I)_i(z)b^A(w))&=-f_{ABC}(T_B)^j{}_i\Dtri((\beta_I)_j,c^C)+(T_AT_B)^j{}_i\Dtri(c^B,(\beta_I)_j)\\
+&\quad+(T_A)^j{}_k\Dtri(\partial_{\gamma^{Ii}}\partial_{\gamma^{Jj}}W,(\gamma^J)^k)\ \text{(3.20)}.
+\end{align*}
+Adjoint matter, $(T_A)^B{}_C=f_{AC}{}^B$:
+\begin{align*}
+Q_1(b^A(z)c^B(w))&=f_{ACD}f_{BCE}\Dtri(c^D,c^E)\ \text{(3.21)},\\
+Q_1(b^A(z)b^B(w))&=f_{ACD}f_{BCE}\big[\Dtri(c^D,b^E)-\Dtri(b^D,c^E)\\&\quad+\Dtri((\beta_I)^D,(\gamma^I)^E)-\Dtri((\gamma^I)^D,(\beta_I)^E)\big]\ \text{(3.22)},\\
+Q_1((\beta_I)^A(z)(\gamma^J)^B(w))&=\delta^J_If_{ACD}f_{BCE}\Dtri(c^D,c^E)\ \text{(3.23)},\\
+Q_1((\beta_I)^A(z)(\beta_J)^B(w))&=-\big[f_{ACD}\Dtri(c^D,\partial_{\gamma^{IC}}\partial_{\gamma^{JB}}W)\\&\qquad+f_{BCE}\Dtri(\partial_{\gamma^{IA}}\partial_{\gamma^{JC}}W,c^E)\big]\ \text{(3.24)},\\
+Q_1(b^A(z)(\gamma^I)^B(w))&=f_{ACD}f_{BCE}\big[\Dtri(c^D,(\gamma^I)^E)-\Dtri((\gamma^I)^D,c^E)\big]\ \text{(3.25)},\\
+Q_1((\beta_I)^A(z)b^B(w))&=f_{ACD}f_{BCE}\big[\Dtri((\beta_I)^D,c^E)+\Dtri(c^D,(\beta_I)^E)\big]\\&\quad-f_{BCE}\Dtri(\partial_{\gamma^{IA}}\partial_{\gamma^{KC}}W,(\gamma^K)^E)\ \text{(3.26)}.
+\end{align*}
+$\mathcal N=4$ ($W={\rm Tr}\,\gamma^1[\gamma^2,\gamma^3]$):
+\begin{align*}
+Q_1(b^A(z)b^B(w))&=f_{ACD}f_{BCE}\big[\Dtri(c^D,b^E)-\Dtri(b^D,c^E)\\&\quad+\Dtri((\beta_I)^D,(\gamma^I)^E)-\Dtri((\gamma^I)^D,(\beta_I)^E)\big]\ \text{(3.27)--(3.28)},\\
+Q_1((\beta_I)^A(z)(\beta_J)^B(w))&=\varepsilon_{IJK}f_{ACD}f_{BCE}\big[\Dtri(c^D,(\gamma^K)^E)-\Dtri((\gamma^K)^D,c^E)\big]\ \text{(3.29)},\\
+Q_1((\beta_I)^A(z)b^B(w))&=f_{ACD}f_{BCE}\big[\Dtri((\beta_I)^D,c^E)+\Dtri(c^D,(\beta_I)^E)\\&\quad+\varepsilon_{IJK}\Dtri((\gamma^J)^D,(\gamma^K)^E)\big]\ \text{(3.30)--(3.31)}.
+\end{align*}
+$\mathcal N=4$ at $z=w=0$ (\S3.4; footnote 23: a factor $\tfrac12$ missing for $z=w=0$ in \S\S3.2--3.4 of an earlier version was corrected):
+\begin{align*}
+Q_1(b^Ac^B)&=\tfrac12f_{ACD}f_{BCE}\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^E\ \text{(3.64)},\\
+Q_1(b^Ab^B)&=\tfrac12f_{ACD}f_{BCE}\big[\partial_{\dot\alpha}c^D\partial^{\dot\alpha}b^E-\partial_{\dot\alpha}b^D\partial^{\dot\alpha}c^E\\&\quad+\partial_{\dot\alpha}(\beta_I)^D\partial^{\dot\alpha}(\gamma^I)^E-\partial_{\dot\alpha}(\gamma^I)^D\partial^{\dot\alpha}(\beta_I)^E\big]\ \text{(3.65)},\\
+Q_1((\beta_I)^A(\gamma^J)^B)&=\tfrac12\delta^J_If_{ACD}f_{BCE}\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^E\ \text{(3.66)},\\
+Q_1((\beta_I)^A(\beta_J)^B)&=\tfrac12\varepsilon_{IJK}f_{ACD}f_{BCE}\big[\partial_{\dot\alpha}c^D\partial^{\dot\alpha}(\gamma^K)^E-\partial_{\dot\alpha}(\gamma^K)^D\partial^{\dot\alpha}c^E\big]\ \text{(3.67)},\\
+Q_1(b^A(\gamma^I)^B)&=\tfrac12f_{ACD}f_{BCE}\big[\partial_{\dot\alpha}c^D\partial^{\dot\alpha}(\gamma^I)^E-\partial_{\dot\alpha}(\gamma^I)^D\partial^{\dot\alpha}c^E\big]\ \text{(3.68)},\\
+Q_1((\beta_I)^Ab^B)&=\tfrac12f_{ACD}f_{BCE}\big[\partial_{\dot\alpha}(\beta_I)^D\partial^{\dot\alpha}c^E+\partial_{\dot\alpha}c^D\partial^{\dot\alpha}(\beta_I)^E\\&\quad+\varepsilon_{IJK}\partial_{\dot\alpha}(\gamma^J)^D\partial^{\dot\alpha}(\gamma^K)^E\big]\ \text{(3.69)},
+\end{align*}
+\begin{equation*}
+Q_1(C^A(\theta)C^B(\theta'))=-\tfrac12f_{ACD}f_{BCE}(\theta_1-\theta'_1)(\theta_2-\theta'_2)(\theta_3-\theta'_3)\\\times\partial_{\dot\alpha}C^D(\theta)\partial^{\dot\alpha}C^E(\theta')\ \text{(3.70)}=\text{(1.10)}.
+\end{equation*}
+Text after (3.69): (3.66) was also computed in [Choi--Lee, 2511.09519]. Analogues: $\mathcal N=1$ pure SYM $C=c+\theta b$ (3.32), (3.35)--(3.37); $\mathcal N=2$ (3.38)--(3.47); chiral-algebra subsector $Q_1^{2d}(C^A(\theta)C^B(\theta'))=-2f_{ABC}(\theta_1-\theta'_1)(\theta_2-\theta'_2)\partial C^C(\theta)$ (1.11) (from Chang--Lin--Wu).
+
+Derivatives (App.~B): $Q_1(\partial_{\dot\alpha}f\,g)=\partial_{\dot\alpha}Q_1(fg)-Q_1(f\partial_{\dot\alpha}g)$ (B.1); $\Itri[\lambda;0,-w,0]=(\lambda_1\wedge\lambda_2)\sum_{m,n}C_{mn}(w^1)^m(w^2)^n$ (B.3),
+\begin{equation*}
+m!n!C_{mn}=\frac1{m+n+2}\sum_{k=0}^m\sum_{l=0}^n\frac1{k+l+1}\binom mk\binom nl(\lambda_1)_1^k(\lambda_1)_2^l(\lambda_2)_1^{m-k}(\lambda_2)_2^{n-l}\ \text{(B.4)},
+\end{equation*}
+\begin{equation*}
+Q_1(b^A\partial_1^m\partial_2^nc^B)=f_{ACD}f_{BCE}\frac1{m+n+2}\sum_{k=0}^m\sum_{l=0}^n\frac1{k+l+1}\binom mk\binom nl\\\times\Big[\partial_1^k\partial_2^l\partial_{\dot\alpha}c^D\,\partial_1^{m-k}\partial_2^{n-l}\partial^{\dot\alpha}c^E\Big]\ \text{(B.5)},
+\end{equation*}
+and the same kernel in (B.6)--(B.10) for $bb$, $\beta\gamma$, $\beta\beta$, $b\gamma$, $\beta b$ (the brackets of (3.65)--(3.69) with $\partial_1^k\partial_2^l$ on the first and $\partial_1^{m-k}\partial_2^{n-l}$ on the second factor); combinatorial identity (C.5).
+
+Gauge-invariant operators (\S3.4.1): schematic splitting/joining of traces (3.71)--(3.76); $Q_1(\gamma^I\gamma^J)=0$ (no triangle), hence $Q_1$ vanishes on ${\rm Tr}\,\gamma^{(I_1}\gamma^{I_2}\cdots\gamma^{I_n)}$ (3.77) at any $N$, and, by footnote 24, on their $\mathfrak{psl}(3|3)$ descendants; the single-trace$\to$single-trace part of $Q_1$ does not lift the infinite-$N$ tree-level single-trace cohomology; the trace-splitting/joining part is left open.
+
+Other generators: none computed at one loop. Uses: tree-level $\mathfrak{psl}(3|3)$ (3.55)--(3.58) and the relation of footnote 24; motivation (1.4) (dilatation) and (1.5) (axial anomaly $P_\mu J^\mu_5=g^2\hbar\frac{2C(R)}{16\pi^2}{\rm tr}\,F_{\mu\nu}\tilde F^{\mu\nu}$); Konishi anomaly in physical normalisation
+\begin{gather*}
+D^2\bar{\mathcal J}=g^2\hbar\frac{2C(R)}{16\pi^2}{\rm Tr}\,\overline{\mathcal W}_{\dot\alpha}\overline{\mathcal W}^{\dot\alpha}\ \text{(2.15)},\\
+D^2\bar{\mathcal J}_n=\bar\Phi^n\frac{\partial W}{\partial\Phi}+g^2\hbar\frac{n}{16\pi^2}{\rm Tr}\,\overline{\mathcal W}^{\dot\alpha}\overline{\mathcal W}_{\dot\alpha}\bar\Phi^{n-1}\ \text{(2.16)};
+\end{gather*}
+$S^{(0)}_{\dot\alpha}:=S_{+\dot\alpha,+}$ (2.17), $D_-S_{\dot\alpha}=(\mathcal Q+\bar\partial)S_{\dot\alpha}=0$ for superconformal theories (2.18).
+
+\section{[GWW] arXiv:2510.26608v2}
+Scope: higher chiral operations of the unit chiral algebra on $\mathbb A^d$ in the Jouanolou model; Feynman graph integrals as residues; no gauge theory, no BRST/supercharge correction, no $\mathcal N=4$, no regulator (Schwinger representation and compactified Schwinger spaces, App.~B; convergence statements Prop.~2.15--2.17 not read here).
+\begin{equation*}
+P_{ij}\overset{\rm def}{=}x^1_{ij}\mathbf dx^2_{ij}-x^2_{ij}\mathbf dx^1_{ij}\ \text{(Def.~4.1)},\qquad \mu_2(P_{12}d\mathbf z^\blacklozenge_1\boxtimes d\mathbf z^\blacklozenge_2)=d\mathbf z^\blacklozenge\ \text{(Prop.~4.2)},
+\end{equation*}
+Theorem 4.13: the operation of a Type~I$'$ Laman graph is fixed recursively by the $L_\infty$ relations (Henneberg I$'$ operations). One loop (\S4.4), $\Lambda:=\lambda_1\wedge\lambda_2$, $\mathfrak z=\mathfrak z_{2o}-\mathfrak z_{21}-\mathfrak z_{1o}$:
+\begin{equation*}
+\mu_{\{o,1,2\}}(P_{1o}(\mathfrak z_{1o})P_{12}(\mathfrak z_{12})P_{2o}(\mathfrak z_{2o})d\mathbf z^\blacklozenge_{\{o,1,2\}})=e^{-(\lambda_2|\mathfrak z_{2o})-(\lambda_1|\mathfrak z_{1o})}\\\cdot\lambda_1\wedge\lambda_2\cdot\int_{\ell_1+\ell_2\le1}e^{-\ell_1(\lambda_1|\mathfrak z)+\ell_2(\lambda_2|\mathfrak z)}d\ell_1d\ell_2\cdot d\mathbf z^\blacklozenge_o\ \text{(4.1)},
+\end{equation*}
+\begin{equation*}
+\mu_{\{o,1,2\}}(P_{1o}P_{12}P_{2o}d\mathbf z^\blacklozenge_{\{o,1,2\}})=\tfrac12\Lambda\,d\mathbf z^\blacklozenge_o\ \text{(4.2)},
+\end{equation*}
+first and second derivative insertions (4.3)--(4.5); stated to agree with [Bud+23, (4.22)--(4.23)]; two loops: constant term $\frac1{24}(\lambda_1\wedge(\lambda_3+2\lambda_2))\cdot(\lambda_3\wedge(\lambda_1+2\lambda_2))d\mathbf z^\blacklozenge_0$ ((0.5), \S4.5), stated to agree with [Bud+23, (4.44)]; three loops in \S4.6. Consistency [inference]: (4.2) and [BK] (2.48) give the same constant $\tfrac12\lambda_1\wedge\lambda_2$ for the triangle.
+
+\section{[BGKWWY] arXiv:2306.01039v2 (auxiliary, items used above)}
+Holomorphic BF: $\int d^2z\,{\rm Tr}\,b(\bar\partial c-\tfrac12[c,c])$ (3.2) (sign of the cubic term opposite to [BK] (3.1)); this is the self-dual limit; the full twisted action adds $\int d^2z\,\tau\,{\rm Tr}\,\partial_\alpha c\partial^\alpha c$ (3.4), a total derivative in BF theory (instantons only) (\S3, after (3.3)--(3.4)). $Q_n\mathcal O=\frac1{(n+1)!}\{\mathcal I,\dots,\mathcal I,\mathcal O\}$ (3.33), $\mathcal I=-\frac12{\rm Tr}\,b[c,c]$ (before (3.30)); step 5 (\S3.2.1): the integrals are finite and independent of the regulator; $\mathbf Q$ is scheme dependent, different schemes expected to be related by quasi-isomorphisms (\S3.2.1); regulator there: interaction switched off in $|z|<\epsilon$ around the operator ((3.30)); propagator $P=\frac1{4\pi^2}\frac{\bar x^2d\bar x^1-\bar x^1d\bar x^2}{|x|^4}$ (3.36), $\bar\partial P=d\bar x^1d\bar x^2\delta^4(x)$ (3.37). $Q_1{\rm Tr}\,b^2\propto\partial_\alpha({\rm Tr}\,b\partial^\alpha c)$ (3.40) (holomorphic stress tensor $Q$-exact at one loop); $(Q+\bar\partial)S_\alpha\sim\partial_\alpha{\rm Tr}(\partial_\beta c\partial^\beta c)$ (3.24). App.~C: $Q_1(b_Ab_B)$ (C.3), $Q_1(b_Ac^B)$ (C.4); bootstrap of $Q^2=0$ leaves two free coefficients $C_1,C_2$ (C.5)--(C.7), unique up to three loops; direct computation $C_2=0$, $C_1=-2$. Homotopy transfer:
+\begin{equation*}
+Q=Q_0+\hbar Q_1+\hbar^2Q_2+\cdots\ \text{(D.13)},\quad \Delta\equiv\iota_0\pi_0+\{h_0,Q\}=1_X+\hbar\{h_0,Q_1\}+\hbar^2\{h_0,Q_2\}+\cdots\ \text{(D.14)},
+\end{equation*}
+\begin{equation*}
+\tilde Q=\pi_0(\hbar Q_1+\cdots)\Delta^{-1}i_0=\hbar Q^{(1)}_0+\hbar^2Q^{(1)}_1+\cdots\ \text{(D.15)}.
+\end{equation*}
+
+\section{Consequences for Step 2 \textbf{[inference]}}\label{sec:inf}
+\begin{enumerate}
+\item Regulator match. [GKW] (B.5) $P_\epsilon=\int_\epsilon^\infty\mathrm d^*K_t\,dt$, (3.6)/(2.38) $K_\epsilon=\pm\mathrm dP_\epsilon$, and the rule after (2.39) (BRST variation = one propagator replaced by $K_\epsilon$) are the twisted counterparts of the manuscript's $P(\varepsilon,\infty)=\int_\varepsilon^\infty(Q^{GF}\otimes1)K_t\,dt$, $QP(\varepsilon,\infty)=K_\varepsilon$ and the special edge $K_\varepsilon$; $Q_1\mathcal O=\frac12\{\mathcal I,\mathcal I,\mathcal O\}$ is the triangle with vertices $\mathcal I,\mathcal I,\mathcal O$, one $K_\epsilon$ edge and two $P_\epsilon$ edges. Difference: in the twisted theory the triangle is $\epsilon$-independent and no counterterm is needed ([GKW] App.~B, [BK] footnote 22, [BGKWWY] step 5); in the untwisted theory $I^{CT}[\varepsilon]\neq0$. The twisted differential corresponds to the untwisted equivariant action evaluated on a fixed odd generator $x_1\in\Sigma$ with $[x_1,x_1]=0$ (manuscript names: $x_1$ a generator, ch00; $S^{(1)}$, $S^{(2)}$, ch02): $S+S^{(1)}(x_1)+S^{(2)}(x_1,x_1)$. For the holomorphic supercharge (one spinor component times one $R$-index) the full ten-dimensional $\Gamma(x_1,x_1)$ vanishes (to be checked in the project's ESW realisation); then the manuscript's $S^{(2)}$ (ch02, eq.~c2-S2) reduces to $-\frac12\int{\rm dvol}\,(x_1,\lambda^*)(x_1,\lambda^*)$, so arity two contributes. The passage to holomorphic BF $+\beta\gamma$ ([BK] refs.~[15],[23],[24]; [BGKWWY] \S3: field content modified without changing the $\mathcal Q$-cohomology) is a further quasi-isomorphism not given explicitly in the sources read.
+\item Size of $Q_1$. The twisted actions contain no coupling, and (3.6), (3.51) carry no normalisation. Example ([BK] (3.1) without matter): $b\mapsto sb$ multiplies the action by $s$, equivalent to $\hbar\mapsto\hbar/s$; hence the coefficient $\tfrac12$ in (3.64)--(3.69) fixes the untwisted coefficient only after the normalised field map (3.51) (including powers of the coupling in $b\sim F_{++}$, $\partial c\sim\bar\Psi^4$) is derived. Colour: if (3.12) means ${\rm tr}(\mathrm{ad}\,t_A\,\mathrm{ad}\,t_B)=\delta_{AB}$, then ${\rm tr}(\mathrm{ad}\,t_A\,\mathrm{ad}\,t_B)=f_{AC}{}^Df_{BD}{}^C=-f_{ACD}f_{BCD}$, i.e. $f_{ACD}f_{BCD}=-\delta_{AB}$.
+\item Scheme freedom. If two schemes are related by an $L_\infty$ quasi-isomorphism with identity linear part on operators and order-$\hbar$ operator component $\varphi_1$ (degree $0$), then $Q'_1=Q_1+[Q_0,\varphi_1]$; the map induced on $H(Q_0)$, $\pi_0Q_1\iota_0$ (leading term $\hbar Q^{(1)}_0$ of [BGKWWY] (D.15), using $\Delta^{-1}=1-\hbar\{h_0,Q_1\}+O(\hbar^2)$ from (D.14)), is scheme independent; $Q_1$ itself is not ([BK] \S2.2.2). In the untwisted setting the corresponding freedom is the finite local counterterms (arity zero and arity one along the supercharge); R3 requires showing that they shift the component along $x_1$ by terms exact for the tree-level differential and leave $\pi_0Q_1\iota_0$ unchanged.
+\item Test case. From (3.66), with (3.7) for a single pair: $Q_1\big(\sum_I\delta_{AB}(\beta_I)^A(\gamma^I)^B\big)=\tfrac32f_{ACD}f_{ACE}\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^E$, i.e. $-\tfrac32\,\partial_{\dot\alpha}c^D\partial^{\dot\alpha}c^D$ under item 2; by (3.51) input $\sum_I{\rm Tr}\,\Psi_{I+}\Phi^{4I}$, output a multiple of ${\rm Tr}\,\bar\Psi^4_{\dot\alpha}\bar\Psi^{4\dot\alpha}$; by (3.50) and (3.48) its tree-level image contains $\tfrac12\varepsilon_{IJK}{\rm Tr}([\gamma^J,\gamma^K]\gamma^I)=3W[\gamma]$ (the $c$-dependent terms cancel by gauge invariance; overall sign conventions of (3.50) not checked). This is the twisted form of (2.16) with $n=1$: $Q_0$ gives the classical term, $Q_1$ the one-loop term.
+\item Not in these papers: one-loop components along special supercharges, dilatation, special conformal generators ($S_1$, $D_1$, $K_1$ of R4); only tree-level $\mathfrak{psl}(3|3)$ and the consistency $\{Q_1,R_0\}+\{Q_0,R_1\}=0$ on $Q_0$-cohomology ([BK] footnote 24).
+\end{enumerate}
+
+\section{Caveats found while reading}
+\begin{itemize}
+\item [GKW] (B.1) vs (B.3)--(B.5): sign of $\mathrm dP_\epsilon$ (see \S2(ii)).
+\item [BK] (3.1) $+\frac12[c,c]$ vs [BGKWWY] (3.2) $-\frac12[c,c]$; [BK] (2.31)--(2.32) ($\bar\partial P=\pi^2\delta$, measure $(2\pi i)^{-2}$) vs [BGKWWY] (3.36)--(3.37) ($\frac1{4\pi^2}$, $\bar\partial P=\delta$).
+\item [BK] (2.3) $\mathcal Q:=Q^1_-$ (general) vs $\mathcal Q:=Q^4_-$ for $\mathcal N=4$ (before (3.51)): labelling, not a contradiction.
+\item [BK] footnote 23: earlier versions lacked a factor $\frac12$ in the $z=w=0$ formulas; v3 used here.
+\item [BK] (3.50) prints $\gamma_I$ (lower index) while (3.49), (3.52) use $\gamma^I$; (3.58) prints $z_{\dot\alpha}\partial_{\dot\alpha}$ in the $b$-entry.
+\item [BK] (3.70) compact form not re-derived from (3.64)--(3.69) here (depends on the ordering/parity conventions of $\theta_I$ and of the components of $C$).
+\item [BGKWWY] App.~C internal normalisation between (C.3)/(C.4) and (C.6)/(C.7): see \texttt{bgkwwy\_checks\_output.txt}.
+\end{itemize}
+\end{document}

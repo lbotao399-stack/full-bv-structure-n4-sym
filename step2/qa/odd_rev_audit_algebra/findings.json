@@ -1,0 +1,173 @@
+{
+ "audit": "adversarial audit of step2/theory/odd_components_design.tex and engine_plan.json (revision of 2026-10-28) against manuscript/ch08_definitions.tex and the sources; lens: algebra, scheme freedom, twisted recovery",
+ "date": "2026-10-29",
+ "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))",
+ "verdict": "pass_with_fixes",
+ "summary": "The evaluation map r_xi, the twisted action S + S^(1)(xi) - 1/2 S^(2)(xi,xi), the truncation k <= 2, the coupling-direction and G_B laws (up to missing factors hbar), the finite-T framework and the two-component formulas survive independent checks. Two claims fail: (1) P_1 = 0 is not obtained in the translation-covariant scheme. The design's freedom tables leave P_1 invariant, while engine B finds P_1 = -(1/3) unit {S^(1)(P_b),O} on the scalar bilinears, from the composite A|_V--c line. So every result conditioned on P_1 = 0 needs a scheme the tables do not contain: a letter-number-dependent dilatation rescaling psi' of the operators. That scheme also shifts K_1, Q_1 and S_1. (2) The cubic arity-zero family of Part C omits the fermion cubic structures. As a result the six-direction identification of prop:o-arity0 and the E3b rank test are wrong. The non-exactness proofs of G_B (ch08 prop:c8-B, design prop:o-GB (ii)) have a gap that can be closed. Eight Chapter-8 corrections are listed in open_issues.",
+ "findings": [
+  {
+   "id": "F1",
+   "severity": "major",
+   "location": "odd_components_design.tex thm:o-KD (hypothesis 'P_1=M_1=R_1=0 (covariant choice, [ch07, prop:c7-cov])'), thm:o-invariants (iv), prop:o-S (ii), prop:o-Kconsistent (iii), table 'Effect of the scheme choices on D_1, K_1, P_1, M_1, R_1' (rows (a) '0 for the five phi', arity-one counterterms '0', (b) '0 for covariant psi'); engine_plan.json E8, E10c, E10e, E11",
+   "claim": "P_1 = M_1 = R_1 = 0 holds in the covariant scheme, and none of the listed freedoms changes P_1, M_1 or R_1.",
+   "evidence": "Engine B (step2/engine_b/delta_results.json, part2.coefficient.normalisation_of_the_classical_part and part2.translation_part_check) works in the translation-covariant scheme (F(Delta) translation invariant, no F^(1)(P)). There the translation component of the scalar bilinears is (1 - unit/3) D_P O, i.e. P_1(O) = -(1/3) unit {S^(1)(P_b),O}. The term comes entirely from S^(1)(P_b) on the composite A|_V--c line (subset 844 = full, complement 0), and that line exists because (Q^GF)^2 != 0. delta_predictions.json gives c = 0 on the letters. The design's table leaves P_1 unchanged under every freedom it lists, so P_1 != 0 throughout its scheme class and the hypothesis P_1 = 0 is never met. a3 parts 3-4 and a5 show two freedoms missing from the tables. (i) The exact field redefinition phi = kappa S^(1)(Delta) has x-dependent phi^(0) and (s phi)^(0) = {S,S^(1)(Delta)} = 0. It shifts the components along P_b, K_b, Sigma, Sigma^* by -2kappa, +2kappa, -kappa, +kappa times the classical transformation; this is the ad_Delta pattern, and D_1, M_1, R_1 are unchanged. Because it acts the same on every operator, it cannot remove a P_1 that is -1/3 on bilinears and 0 on letters. (ii) Operator finite parts psi' = sum_n (c_n/2){S^(1)(Delta),-} pi_n, with pi_n the projector on n-letter functionals, are admissible by Def c8-renorm. They are reflection compatible for real c_n and not translation covariant. On n-letter operators they shift the components along P, K, Sigma, Sigma^* by -c_n, +c_n, -c_n/2, +c_n/2 times the classical transformation; along odd x there is an extra term ((c_n - c_{n+1})/2){S^(1)(Delta),pi_{n+1}{S^(1)(x),O}}. P_1 = 0 on letters and bilinears needs c_1 = 0 and c_2 = -(1/3) unit. In that scheme K_1, Q_1 and S_1 on the bilinears differ from their covariant-scheme values by -(1/3), +(1/6) and -(1/6) unit times the classical transformation. Hence thm:o-KD's K_1 = (1/4) div v gamma_O O holds only in the psi' scheme. In the covariant scheme the expected value is (1/4) div v gamma_O O + (1/3) unit {S^(1)(K_b),O}, and prop:o-S (ii) gains +(1/3) unit {S^(1)(eta),O}. The diagonal derivations of the conformal algebra (a3 part 3) are only kappa(1,-1,0,0) on (P,K,Delta,M). So a universal P_1 = kappa delta_P forces K_1 to contain -kappa delta_K, and rotations cannot be rescaled. M_1: S^(1)(M) contains (v.A|_V, A^*|_V) and therefore sits on the composite line, so M_1 = 0 is not shown. R_1: v.A|_V = 0, so there is no floating insertion and the covariance argument holds.",
+   "fix": "Replace '(covariant choice, [ch07, prop:c7-cov])' by 'a renormalisation condition: P_1 = 0 fixes operator finite parts psi' = sum_n (c_n/2){S^(1)(Delta),-} pi_n with [s,psi']^(1)(P_b) = -(composite remainder along P_b) on the operators considered'. Add to both freedom tables the rows 'inner coboundary s(kappa S^(1)(Delta))' and 'letter-number finite parts psi'', with the shifts above. State thm:o-KD, prop:o-S (ii), E8 and E10c in the P_1 = 0 scheme and give their covariant-scheme versions: K_1 + (1/3) unit delta_K, S_1 - Q_1(rho(x)eta) + (1/3) unit delta_eta on bilinears. In prop:o-Kconsistent (iii) and E10e use K = P^dagger with the P_1 of the scheme. Rewrite E11: compute the composite remainders along P_b and so(V) on the letters, the scalar bilinears and one three-letter operator, testing c_n = -(n-1)/3 unit; decide whether P_1 = 0 is attainable; record c_n. Keep R_1 = 0 with the no-floating-insertion argument."
+  },
+  {
+   "id": "F2",
+   "severity": "major",
+   "location": "odd_components_design.tex prop:o-arity0; engine_plan.json E3 task E3b; literature/q1_targets F0 ('F_3 in span{H_1,...,H_6}'); inherited from the Part C ansatz of DESIGN_STEP2 and cubic_structure.tex",
+   "claim": "Part C leaves six weight-4 arity-zero directions free: the four beta-directions and ker Q on span{H1..H6} = span{H1-4H3-2H6, H2-2H4}. These are expected to be exactly the arity-zero parts of s phi for the five field countings and of the coupling direction, and E3b is to test 'rank six and image the Part-C directions'.",
+   "evidence": "See a4_cubic_family.py/.json. The cubic degree-0 weight-4 functionals also include H7 = (1/2) int (lambda, rho([A|_V,lambda])) and the Yukawa terms H8p, H8m (two chiralities, with (1/2) int (lambda, rho([A|_Wperp,lambda])) = H8p + H8m). Q H7 = -G5 and Q H8p = Q H8m = 0, both from cubic_structure.tex: prop:s2c-QH gives Q of the full lambda lambda A term as -G5, and the proof of cor:s2c-QI3 says 'the Yukawa part of lambda lambda A is not hit by Q'. On the full cubic space ker Q is 5-dimensional (Part C has 2): H4 - H2/2, -H1/2 + 2H3 + H6, H5 + H7, H8p, H8m. The closed cubic-order freedom {sum beta_i {I_3,B_i} + Q h = 0} is 9-dimensional (8 parity-even), against 6 for the Part-C family. The arity-zero vectors of s(N_V), s(N_W), s(N_lambda+), s(N_lambda-), s(N_c) and S are all closed. Closedness fixes the sign of their cubic parts and works only with Q H7 = -G5, which is itself a check. They have rank 6. All except s(N_c) have H7 or H8 components, so they do not lie in the Part-C family; the intersection is 3-dimensional. H8p + H8m (the gauge-invariant Yukawa term, s-closed at arity zero to all orders) and H5 + H7 are closed and lie outside their span.",
+   "fix": "Extend F_3 to span{H1,...,H6, H7, H8p, H8m}; the Part C solution family then gains H5+H7 and H8. Restate prop:o-arity0: at cubic order the closed non-equivariant arity-zero freedom is 8-dimensional (parity even); the five s phi and the coupling direction span 6 of it. The content of E3b is then that the two remaining directions (the Yukawa term and H5+H7, modulo that span) do not extend to s-closed psl(4|4)-cochains. Replace 'rank six and image the Part-C directions' by this test and correct F0 in q1_targets."
+  },
+  {
+   "id": "F3",
+   "severity": "minor",
+   "location": "odd_components_design.tex prop:o-GB (ii) proof; manuscript ch08 prop:c8-B proof (see CH08 item 4)",
+   "claim": "Averaging over Spin(4) x SU(4) reduces phi^(0) to the field-counting functionals, and no local functional of degree -2 and weight 9/2 exists. The four linear terms of S^(1)(xi), xi in S_+ (x) W, then give a contradiction.",
+   "evidence": "a3 part 2 and a7. S^(1)(Delta) is invariant under the compact groups and x-dependent, and {S^(1)(xi),S^(1)(Delta)} = S^(1)([xi,Delta]) = S^(1)(xi) for every xi in Sigma. With phi^(0) = c S^(1)(Delta) + sum a_f N_f the S_+ (x) W system is solved by c = 1 with all a_f equal. Degree -2, weight 9/2 functionals with explicit x exist: (lambda,c^*) x and (A^*,lambda^*) x (a7). The conclusion still holds. With both blocks of Sigma the system has no solution, and the translation component (s phi)^(1)(P_b) = 2c S^(1)(P_b) must equal G_B^(1)(P_b) = 0, which forces c = 0.",
+   "fix": "First use the translation components. G_B^(1)(P_b) = 0, and {S^(1)(P_b),-} acts on the explicit polynomial x-dependence as -d_b. Induction on the x-degree then replaces phi by phi - s chi with phi translation invariant. After that the weight count and the four-term argument apply. Alternatively, use both odd blocks of Sigma. Exact text for Chapter 8: see CH08 item 4."
+  },
+  {
+   "id": "F4",
+   "severity": "minor",
+   "location": "odd_components_design.tex def:o-B ('induced by ad of diag(1_4,0_4) in gl(4|4)'); literature/q1_targets.tex F5 and q1_targets.json renormalisation_freedom F5 ('ad diag(1_4,0_4)')",
+   "claim": "B is induced by ad diag(1_4,0_4).",
+   "evidence": "a3 part 1, using the block table of ch02 (S_+ (x) W = block (3,1), etc.). ad diag(1_4,0_4) is -1 on S_+ (x) W and on S_- (x) W, and +1 on S_- (x) W^* and on S_+ (x) W^*. That is -B. ad diag(0_4,1_4) = B, as stated in ch08 def:c8-B. The same block table reproduces the ad_Delta eigenvalues of ch02.",
+   "fix": "Write 'induced by ad of diag(0_4,1_4), equivalently minus ad of diag(1_4,0_4) (ch08 def:c8-B)' in def:o-B and in F5."
+  },
+  {
+   "id": "F5",
+   "severity": "minor",
+   "location": "odd_components_design.tex prop:o-GB (iii), eq:o-twistlaws, thm:o-invariants (iii), the G_B rows of both freedom tables, rem:o-alpha, rem:o-GBdagger; prop:o-laws (a) second sentence",
+   "claim": "Under F -> F + hbar a G_B: Q_1 -> Q_1 - a delta_xi on S_+ (x) W, etc.; twisted: Q_1^xi -> Q_1^xi - a Q_0^xi - a[N_R,Q_0^xi] (coupling) and + a[N_R,Q_0^xi] (G_B). Arity-one change under (a): -{{S^(1)(x1),phi^(0)} + (Q+{I,-})phi^(1)(x1),O}.",
+   "evidence": "The design defines Q_1(O) := hbar L_1(O)^(1)(xi) and Q_1^xi := r_xi(hbar L_1), and L_1 -> L_1 - a{G,-} under F -> F + hbar a G. The shifts are therefore -a hbar times the stated operators, as in ch08 prop:c8-laws ('-a hbar {S^(1)(xi),-}'). Separately, with the Def c2-dce rule, (s phi)^(1)(x) = (Q+{I,-})phi^(1)(x) + (-1)^{|phi|(1+|x|)}{S^(1)(x),phi^(0)}, and |phi| = 1, so the sign is minus for even x. This does not matter for the field countings, where {S^(1)(even),N_f} = 0, but it does for phi^(0) = kappa S^(1)(Delta) (F1).",
+   "fix": "Insert hbar in each listed law (or state that a carries hbar), and write the sign (-1)^{1+|x_1|} in prop:o-laws (a)."
+  },
+  {
+   "id": "F6",
+   "severity": "minor",
+   "location": "odd_components_design.tex caption of the table for D_1, K_1, P_1, M_1, R_1 ('for translations, rotations and so(W_R^perp) there is none') and its rows 'arity-one counterterms, s-exact | P_1, M_1, R_1: 0'",
+   "claim": "Degree -2 arity-one primitives phi^(1)(x) exist only for even x with a vector field. For translations, rotations and so(W_R^perp) there are none.",
+   "evidence": "a7 census: (A,c^*) has degree -2 and weight 5, so int (c^*, iota_b A|_V) is the primitive along P_b (value weight 5). int (c^*, iota_{Mx} A|_V) is the primitive along rotations (weight 4). Only so(W_R^perp) has none. The caption also contradicts its own first clause, since a translation is an even generator with vector field b. These primitives change P_1 and M_1 by -{(Q+{I,-})phi^(1)(x),-}: s-exact on gauge-invariant O, nonzero on gauge-variant letters.",
+   "fix": "In the caption, change 'for translations, rotations and so(W_R^perp) there is none' to 'for so(W_R^perp) there is none; for translations and rotations int (c^*, iota_v A|_V) with v = b, Mx'. In the rows, change '0' to 's-exact on gauge-invariant O'."
+  },
+  {
+   "id": "F7",
+   "severity": "minor",
+   "location": "odd_components_design.tex thm:o-invariants (ii) and its proof; D_1 column of the freedom table",
+   "claim": "D_1(O) changes by an s-exact local functional under (a), (d), (e). Proof: the five functionals have weight 4, so {S^(1)(Delta),phi^(0)} = 0.",
+   "evidence": "The statement holds for every Delta-invariant (Weyl weight 4) phi^(0), including S^(1)(Delta) and S^(1)(M), and not only for the five. It fails for phi^(0) that is not weight 4. For example phi = S^(1)(P_b) gives (s phi)^(1)(Delta) = -2 S^(1)(P_b), and D_1 shifts by 2 hbar {S^(1)(P_b),O}: a conjugation, not s-exact. Ch08 def:c8-quant imposes no Weyl-weight condition, while prop:c8-2pt (iii) and thm:c8-invariants (iii) use one. The D_1 column also omits two things. One is the S^(1)(Delta)-component z of F^(1)(Delta): it is Q-closed at two legs (engine A 'z_2', engine B 'b'). It is not a freedom, since delta_theory prop:d-z fixes it at arity two, and by a3 part 3 (z = 0) it must vanish on cohomology. The other is the composite remainder R_O (delta_theory def:d-RO).",
+   "fix": "State the Weyl-weight-4 condition on F and phi (CH08 item 7) and run the proof for weight-4 phi^(0). Add to the D_1 column: 'S^(1)(Delta)-component of F^(1)(Delta): fixed at arity two, zero on cohomology' and 'composite remainder R_O: must be shown s-exact (Part D)'."
+  },
+  {
+   "id": "F8",
+   "severity": "minor",
+   "location": "odd_components_design.tex thm:o-twist hypothesis (H1); remark on the arity-two coefficient; engine_plan.json open_items[2], E0 task 5",
+   "claim": "(H1) is open: the decalage signs for the products in W(P,J) and for the C^bullet-linear extension of L_1 must be fixed in code before -1/2 is quoted for L_1^(2)(xi,xi).",
+   "evidence": "a1 (T1-T4, T6) and a1b. The Def c2-dce shuffle rule, on k+l copies of one odd element, gives binom(k+l,k)(-1)^{kl} for every |g|. a_k = (-1)^{k(k-1)/2}/k! satisfies a_k a_l = a_{k+l} binom (-1)^{kl}, and 1/k! does not. On random cochains of an explicit Lie superalgebra with bigraded BV values, r_xi intertwines the cochain bracket and the shuffle product of functional-valued cochains (6/6 each). d_CE^2 = 0 and r_xi d_CE = 0 hold. The product is associative (10/10). It is graded commutative only if |g| is read as total parity (V1: 10/10; V0 with fermionic values: 5/10). The arity-two sign (-1)^{|x1|} of lem:c2-components and c = -1/2 are rederived. ch08 thm:c8-L (iv) fixes the C^bullet-linear extension, and lem:c8-ev proves the operator part.",
+   "fix": "Replace (H1) by a citation of ch08 lem:c8-ev together with the product rule (CH08 item 5). The coefficient -1/2 of L_1^(2)(xi,xi) then follows."
+  },
+  {
+   "id": "F9",
+   "severity": "minor",
+   "location": "odd_components_design.tex thm:o-twist (iv), remark 'Comparison with the twisted computation'; ch08 remark 'Comparison with the holomorphic twist' (CH08 item 6)",
+   "claim": "The class maps coincide if D lies in C S^xi + C N_{R_xi} S^xi + Im Q_0^xi.",
+   "evidence": "a2 test 9: {psi,f} = {f,psi} for odd psi and even f. Hence N_R S^xi = {S^(1)(R_xi),S^xi} = Q_0^xi(S^(1)(R_xi)), which lies in Im Q_0^xi, and r_xi(G_B)|_{q=1} = -Q_0^xi S^(1)(R_xi) is Q_0^xi-exact.",
+   "fix": "Drop the term C N_{R_xi} S^xi and note that it lies in Im Q_0^xi."
+  },
+  {
+   "id": "F10",
+   "severity": "minor",
+   "location": "odd_components_design.tex thm:o-twist (ii) proof",
+   "claim": "(Q_0^xi)^2 = 1/2 {{S^xi,S^xi},-}",
+   "evidence": "a2 test 8: with the bracket of ch01 def:c1-bracket, ad_f ad_f = -1/2 ad_{{f,f}} for even f (8/8). The conclusion is unchanged because {S^xi,S^xi} = 0. a2 also confirms [ad_S, ad_phi] = -ad_{s phi}, the law of ch08 prop:c8-laws (a), in 17/17 samples.",
+   "fix": "Write -1/2."
+  },
+  {
+   "id": "F11",
+   "severity": "minor",
+   "location": "odd_components_design.tex remark 'Comparison with the twisted computation': '[BK] state that the twisted action carries no coupling [BK, (1.3), (2.22)]'",
+   "claim": "BK state that the twisted action carries no coupling.",
+   "evidence": "The arXiv:2512.07771v3 text (lit_check/bk_pdf) does not contain the word 'coupling'. (1.3) is the expansion Q = Q_free + Q_tree + hbar Q_1-loop + ..., and (2.22) is QO = {I,O}_0 + {I,I,O}_0 + .... The twisted BV action (3.53) has no coupling constant.",
+   "fix": "Write 'the twisted BV action [BK, (3.53)] has no coupling constant and loops are counted by hbar [BK, (1.3)]', marked as an observation."
+  },
+  {
+   "id": "F12",
+   "severity": "minor",
+   "location": "odd_components_design.tex lem:o-Tflow (iv)",
+   "claim": "Sing_eps of every one-loop graph with edges P(eps,T) is independent of T in (0,infty].",
+   "evidence": "ch08 prop:c8-Tindep (i) states the claim for T in (0,infty), and at T = infty only in components whose graphs converge at large distance. The K-route graphs and the (eta_1,eta_2) graphs with Gamma(eta_1,eta_2)|_V != 0 diverge at T = infty (thm:o-ir (ii)-(iv)).",
+   "fix": "Write 'T in (0,infty), and T = infty in the components listed in prop:o-Tsafe (i)'."
+  },
+  {
+   "id": "F13",
+   "severity": "minor",
+   "location": "odd_components_design.tex lem:o-actiontrunc, prop:o-trunc",
+   "claim": "Arity-k values on Sigma^k of degree-0 counterterms vanish for k >= 3, by the minimal weight m(n).",
+   "evidence": "a7 confirms m(n) = 5/2, 4, 13/2, 8, 21/2. It confirms that no translation-invariant contents exist at k = 3, 4, 5, and every target exclusion of prop:o-trunc: only the bc entry at k = 3 has a two-field content, (A,lambda^*), which the W-index count removes. With explicit x the count changes: (lambda^*,c^*) x exists at degree -3 and weight 11/2, and (c^*,c^*) x^2 at degree -4 and weight 6. The argument therefore needs Sigma-components without explicit x. This holds for I^CT by prop:c7-cov and for the schemes of F1, whose Sigma-components are x-independent.",
+   "fix": "State the hypothesis: the Sigma-components of the counterterm and finite-counterterm cochains carry no explicit position dependence (translation equivariance along Sigma)."
+  },
+  {
+   "id": "F14",
+   "severity": "minor",
+   "location": "odd_components_design.tex def:o-K, prop:o-Kclaim and the following remark; engine_plan.json E10",
+   "claim": "Existence along K reduces to the locality of the eps -> 0 limit of the K-route graphs at fixed T. The large-distance terms are log T times O(eps).",
+   "evidence": "Every floating S^(1)(K_b) is a composite A|_V--c line with kernel P*K.P* = K.(P*)^2 + [P*,K.]P*. The first term exists because (Q^GF)^2 != 0, as along Delta and P_b. Along Delta, engine A's Q(Y1a) is nonlocal for single graphs. delta_theory rem:d-Y1a and prop:d-T (iii) show locality only for the complete set of composite graphs. The Q-primitive of the composite line exists only at finite T (prop:d-T (ii)).",
+   "fix": "In prop:o-Kclaim and E10c, read off locality only from the complete set of composite graphs, never graph by graph. Include the composite remainder R_{O,K} in the K_1 comparison, and quote the comparison value in the scheme of F1."
+  },
+  {
+   "id": "F15",
+   "severity": "minor",
+   "location": "odd_components_design.tex def:o-scale and throughout ('F_psl = F_0 + F^(1) + F^(2)', '{S^(1)(x1),F_0}'); q1_targets F0 ('F_2', 'F_3' for quadratic and cubic parts)",
+   "claim": "Notation for the finite counterterm.",
+   "evidence": "Ch08 writes F_psl = hbar F_1 + hbar^2 F_2 + ..., with subscripts for the order in hbar, and F^(0)_psl for the arity-zero part (def:c8-2pt). So the design's F_0 (arity zero) and the targets' F_2, F_3 (number of legs) clash with Ch08's F_1, F_2 (loop order).",
+   "fix": "Use F^(0)_psl(4|4), F^(1), F^(2) for arities and F_{(2)}, F_{(3)} for leg numbers, or write them in words. Reserve F_1 for the order-hbar part as in Ch08."
+  },
+  {
+   "id": "F16",
+   "severity": "minor",
+   "location": "odd_components_design.tex rem:o-alpha; q1_targets F1",
+   "claim": "F1 (a S^(1)(xi) with 2a S^(2)(xi,xi)) acts by Q_1 -> Q_1 + a[N_alpha,Q_0]. The design states the twisted G_B action as Q_1^xi -> Q_1^xi + a[N_R,Q_0^xi] with N_alpha = -N_R.",
+   "evidence": "The targets add a S^(1)(xi) to the action, giving S + (1+a hbar)S^(1) - 1/2(1+2a hbar)S^(2). The design's (e) adds a G_B to F, and since J = I - F - I^CT the action changes by -a hbar (S^(1)(xi) - S^(2)(xi,xi)). The two a's are opposite. rem:o-alpha puts both formulas side by side without saying so.",
+   "fix": "State that the a of F1 equals minus the a of prop:o-laws (e)."
+  }
+ ],
+ "open_issues": [
+  "CH08: def:c8-radial: P_1 = 0 is justified by Proposition c7-cov, but covariance does not imply it; evidence: engine B delta_results.json part2 gives P_1(O) = -(1/3) unit {S^(1)(P_b),O} on the scalar bilinears in the translation-covariant scheme, from the composite A|_V--c line, and delta_predictions.json gives 0 on letters; audit a3, a5; proposed fix: replace 'Assume the local representatives along $P_n$ and $K_n$ exist, with $P_1=0$ (Proposition \\ref{prop:c7-cov}), and put' by 'Assume the local representatives along $P_n$ and $K_n$ exist, in a scheme with $P_1=0$, and put' and add after the display: 'The condition $P_1=0$ is a renormalisation condition and does not follow from Proposition \\ref{prop:c7-cov}: the insertion of $S^{(1)}(P_b)$ on the composite $A|_V$--$c$ line, present because $(Q^{GF})^2\\neq0$ (Remark \\ref{rem:c7-internal}), gives $P_1(O)=-\\tfrac13\\frac{\\hbar\\operatorname{tr}_{\\mathfrak g}(\\mathrm{ad}_X\\mathrm{ad}_Y)}{16\\pi^2(X,Y)}\\{S^{(1)}(P_b),O\\}$ for the scalar bilinears and $0$ for the letters in the translation-covariant scheme. The finite parts $\\psi=\\sum_n\\tfrac{c_n}2\\{S^{(1)}(\\Delta),-\\}\\circ\\pi_n$, with $\\pi_n$ the projection onto local functionals with $n$ letters, change the components along $P_b$, $K_b$, $\\xi$, $\\eta$ of an operator with $n$ letters by $-c_n$, $c_n$, $-\\tfrac{c_n}2$, $\\tfrac{c_n}2$ times the classical transformation; along $\\xi$, $\\eta$ there is in addition $\\tfrac{c_n-c_{n+1}}2\\{S^{(1)}(\\Delta),\\pi_{n+1}\\{S^{(1)}(x),O\\}\\}$ (Proposition \\ref{prop:c8-laws} (b)). With $c_1=0$, $c_2=-\\tfrac13$ units they give $P_1=0$ on letters and scalar bilinears. The exact field redefinition generated by $\\kappa S^{(1)}(\\Delta)$ shifts the components along $P_b$, $K_b$, $\\xi$, $\\eta$ of every operator by $-2\\kappa$, $2\\kappa$, $-\\kappa$, $\\kappa$ times the classical transformation.'",
+  "CH08: thm:c8-adjoint: the hypothesis 'with $P_1=M_1=R_1=0$' reads as automatic; evidence: as for def:c8-radial; S^(1)(x) for x in so(V) has the term (v.A|_V,A^*|_V) and sits on the composite line, while for x in so(W_R^perp) it has none; proposed fix: replace 'the local representatives exist on the operators considered, with $P_1=M_1=R_1=0$;' by 'the local representatives exist on the operators considered, in a scheme with $P_1=M_1=R_1=0$ ($R_1=0$ in every $\\mathfrak{so}(W_{\\mathbb R}^\\perp)$-covariant scheme, since $S^{(1)}(x)$, $x\\in\\mathfrak{so}(W_{\\mathbb R}^\\perp)$, has no insertion on a cycle; $P_1=0$ and $M_1=0$ are conditions on the scheme, Definition \\ref{def:c8-radial});'",
+  "CH08: cor:c8-gram: the K = P^dagger statement is given only for P_1 = 0, which the translation-covariant scheme does not satisfy; evidence: engine B P_1 on bilinears; audit a5; proposed fix: after 'With $P_1=0$ the third relation is the statement $K=P^\\dagger$: $K_1$ along $K_{\\bar b}$ equals $\\hbar\\big[\\{S^{(1)}(K_{\\bar b}),-\\},\\mathrm{Gram}_{\\rm tree}^{-1}\\mathrm{Gram}_{\\rm 1}\\big]$.' add 'In a scheme with $P_1\\neq0$, for instance the translation-covariant one, the third relation determines $K_1$ from $P_1$ and $\\mathrm{Gram}_1$; the finite parts of Definition \\ref{def:c8-radial} are reflection compatible for real $c_n$ and relate the two determinations by the covariance stated below.'",
+  "CH08: prop:c8-B (proof of independence): the averaging argument misses x-dependent invariant primitives; evidence: audit a3 part 2 and a7; $\\phi^{(0)}=S^{(1)}(\\Delta)$ is invariant under the compact groups and satisfies $\\{S^{(1)}(\\xi),S^{(1)}(\\Delta)\\}=S^{(1)}(\\xi)$ for every $\\xi\\in\\Sigma$, so the $S_+\\otimes W$ equation is solvable, and x-dependent functionals of degree $-2$ and weight $\\tfrac92$ exist ($(\\lambda,c^*)x$, $(A^*,\\lambda^*)x$); proposed fix: replace 'Independence: if $G_B=a(S-S^{(2)})+s\\phi$, the arity-one component along $\\xi\\in S_+\\otimes W$ reads $S^{(1)}(\\xi)=\\pm\\{S^{(1)}(\\xi),\\phi^{(0)}\\}$, since the space of local functionals of degree $-2$ and Weyl weight $\\tfrac92$ is zero;' by 'Independence: suppose $G_B=a(S-S^{(2)})+s\\phi$ with $\\phi$ local of degree $-1$. Along a translation, $0=G_B^{(1)}(P_b)=(s\\phi)^{(1)}(P_b)$, so $\\{S^{(1)}(P_b),\\phi^{(0)}\\}$ is $(Q+\\{I,-\\})$-exact; since $\\{S^{(1)}(P_b),-\\}$ acts on the explicit polynomial dependence on the position as $-\\partial_b$, induction on the degree in the position replaces $\\phi$ by $\\phi-s\\chi$, with $\\chi$ local of degree $-2$ and $\\phi$ translation invariant, and $s\\phi$ is unchanged. For translation-invariant $\\phi$ the space of local functionals of degree $-2$ and Weyl weight $\\tfrac92$ is zero, and the arity-one component along $\\xi\\in S_+\\otimes W$ reads $S^{(1)}(\\xi)=\\pm\\{S^{(1)}(\\xi),\\phi^{(0)}\\}$ (the translation step is needed, since $\\phi^{(0)}=S^{(1)}(\\Delta)$ is invariant under the compact groups and $\\{S^{(1)}(\\xi),S^{(1)}(\\Delta)\\}=S^{(1)}(\\xi)$);' and keep the rest.",
+  "CH08: thm:c8-L (iv) and lem:c8-ev: the product of functional-valued cochains, which e^{J/hbar} in eq:c8-IT needs, is not defined, and the sign rule is stated with C^bullet degrees; evidence: audit a1b (with the shuffle rule the product is associative, and graded commutative only when |g| is the total parity; r_xi multiplicative) and a1c (read with the Z-degree, the cochain bracket violates graded symmetry and Jacobi on cochains with fermionic values, 3/8; with total parity 8/8, and d_CE is a derivation); proposed fix: in thm:c8-L (iv) replace 'the sign rule of Definition \\ref{def:c2-dce}; the same rule defines the products of field-independent cochains with local cochains.' by 'the sign rule of Definition \\ref{def:c2-dce}, in which $|\\Lambda^{\\prime}|$, and $|O|$ below, are total parities (degree plus fermion number modulo $2$); the same rule, with the composition replaced by the product of values, defines the product of any two functional-valued cochains, in particular $e^{J/\\hbar}$ in \\eqref{eq:c8-IT}; it is associative and graded commutative.' In lem:c8-ev replace 'and the product of operator-valued cochains of Theorem \\ref{thm:c8-L} (iv) with the composition of their values.' by 'and the products of operator-valued and of functional-valued cochains of Theorem \\ref{thm:c8-L} (iv) with the composition, resp. the product, of their values; hence $r_\\xi W(P(\\varepsilon,T),J)=W(P(\\varepsilon,T),r_\\xi J)$.' (ch02 def:c2-dce needs the same reading of $|g|$.)",
+  "CH08: remark 'Comparison with the holomorphic twist' (after thm:c8-twist): the condition contains a redundant term; evidence: audit a2 test 9, {S^(1)(R_xi),S^xi} = {S^xi,S^(1)(R_xi)} = Q^xi_0 S^(1)(R_xi); proposed fix: replace 'provided the two quantisations differ by an element of $\\mathbb C\\,S^\\xi+\\mathbb C\\,\\{S^{(1)}(R_\\xi),S^\\xi\\}+\\operatorname{Im}Q^\\xi_0$' by 'provided the two quantisations differ by an element of $\\mathbb C\\,S^\\xi+\\operatorname{Im}Q^\\xi_0$, which contains $\\{S^{(1)}(R_\\xi),S^\\xi\\}=Q^\\xi_0S^{(1)}(R_\\xi)$ and $r_\\xi(G_B)|_{q=1}=-Q^\\xi_0S^{(1)}(R_\\xi)$'.",
+  "CH08: def:c8-quant: the finite counterterm carries no Weyl-weight condition, but prop:c8-2pt (iii) and thm:c8-invariants (iii) use one; evidence: audit F7, where phi = S^(1)(P_b) gives (s phi)^(1)(Delta) = -2 S^(1)(P_b) and shifts D_1 by a translation; proposed fix: replace 'A finite counterterm is a local cochain $F_{\\mathfrak{psl}(4|4)}=\\hbar F_1+\\hbar^2F_2+\\cdots$ of degree $0$, independent of $\\varepsilon$.' by 'A finite counterterm is a local cochain $F_{\\mathfrak{psl}(4|4)}=\\hbar F_1+\\hbar^2F_2+\\cdots$ of degree $0$ and Weyl weight $4$, each argument carrying the weight of its conformal Killing data (Proposition \\ref{prop:c7-select}), independent of $\\varepsilon$.'",
+  "CH08: remark 'The existence along K' (after thm:c8-K): the composite-line mechanism is not mentioned; evidence: engine A Q(Y1a) along Delta, nonlocal for single graphs; delta_theory rem:d-Y1a and prop:d-T (ii)-(iii); audit F14; proposed fix: append 'Every insertion of $S^{(1)}(K_b)$ on a cycle is a composite $A|_V$--$c$ line with kernel $P(\\varepsilon,T)\\star K_b.\\,P(\\varepsilon,T)\\star=K_b.\\,(P\\star)^2+[P\\star,K_b.]\\,P\\star$; the first term exists because $(Q^{GF})^2\\neq0$, as along $\\Delta$ and $P_b$, where single composite graphs have nonlocal $Q$-images and only the complete set of composite graphs has a local limit. The existence of $L(O)$ along $K_b$ is a statement about that complete set.'"
+ ],
+ "checks_passed": [
+  "r_xi: decalage coefficients a_k forced; intertwining of d_CE (with 0), of the cochain bracket and of the shuffle product on explicit cochains (a1 T1-T4)",
+  "twisted action: arity-two component sign (-1)^{|x1|} of lem:c2-components re-derived, c = -1/2 (a1 T6); agrees with design lem:o-ev, ch08 lem:c8-ev, and odd_checks E0a",
+  "BV sign identities with the ch01 bracket: graded symmetry, [ad_S,ad_phi] = -ad_{s phi} (ch08 prop:c8-laws (a)), N_gh identity, derivation property of ad_psi for odd psi (N_R), so [N_R,Q_0^xi] = ad_{N_R S^xi} = [N_gh,Q_0^xi] - Q_0^xi (a2)",
+  "coupling direction mu S + S^(1) + mu^{-1} S^(2) and its laws; r_xi(S - S^(2)) = S^xi - S^(1)(xi) + S^(2)(xi,xi); r_xi(G_B) = -N_R S^xi (hand derivation, consistent with ch08 thm:c8-twist proof)",
+  "G_B laws of ch08 prop:c8-laws (c), thm:c8-invariants (ii) and cor:c8-gram (a-bar = -a), including the two-component assignment (upper W index b = +1); B anticommutes with both conjugations; ad_Delta anticommutes with the radial and commutes with the reflection conjugation (a6)",
+  "truncation (a7): m(n), action-side k >= 3 empty, all target exclusions of prop:o-trunc",
+  "two-component realisation of def:c8-twocomp (a6): sigma relations, Fierz identity of prop:o-konishi, 't Hooft identity, Clifford relation of rho on V + W_perp, symmetry of (rho(u)z1,z2), Gamma components, rank-one criterion and the alternative Gamma_kl form of lem:o-rankone, Killing spinor eq:c8-killing, rho(e1e2e3e4) = +1 on S_+ (x) W, R-rotation r = 4/3(w n - 1/4), conjugation of lem:c8-cc",
+  "diagonal derivations of the conformal algebra: only kappa(1,-1,0,0) = -(kappa/2) ad_Delta on (P,K,Delta,M) (a3 part 3), so a universal rescaling of the classical Delta-action (z) or of rotations is excluded by the homotopy representation",
+  "T-framework: P(eps,T) scaling identity (M x 1 + 1 x M)P(eps,T) = 4 eps L_eps - 4 T L_T; prop:o-Tindep = ch08 thm:c8-L (ii); log T coefficient 3/(8 pi^2) and the K tail eq:o-Kir re-derived by hand",
+  "literature spot-check (lit_check/lit_spotcheck.json): CLW 2310.20086 (3.1), Sec 3.1, fn 5 ([32] = Zwiebel hep-th/0511109); BK 2512.07771v3 (3.7)-(3.8), (3.50), (3.51), (3.64), (3.66), fn 22, fn 24; Zwiebel 1111.0083 (2.33)-(2.34); Beisert hep-th/0307015 (1.2), (4.49); EJSS hep-th/0501077 abstract, (99), (101)-(103), fn 13: all confirmed"
+ ],
+ "scripts": {
+  "grass.py": "bigraded supercommutative algebra with odd BV operator; bracket of ch01 def:c1-bracket",
+  "a1_cochain_decalage.py": "cochains on an explicit Lie superalgebra with Def c2-dce signs: decalage, r_xi intertwining, d_CE, product associativity, arity-two sign, c = -1/2 (a1_cochain_decalage.json)",
+  "a1b_product_rule.py": "product sign-rule variants: associativity, graded commutativity, r_xi multiplicativity (a1b_product_rule.json)",
+  "a1c_bracket_rule.py": "cochain bracket with |g| = degree vs total parity, fermionic values: symmetry, Jacobi, d_CE derivation (a1c_bracket_rule.json)",
+  "a2_bv_signs.py": "sign identities of the odd bracket used by prop:o-laws, eq:o-twistlaws, thm:o-twist (a2_bv_signs.json)",
+  "a3_outer_B_freedoms.py": "B versus ad diag; G_B non-exactness system; diagonal derivations; inner-Delta field redefinition shifts (a3_outer_B_freedoms.json)",
+  "a4_cubic_family.py": "full cubic arity-zero freedom incl. H7, H8p, H8m; field-counting and coupling vectors; rank and position relative to Part C (a4_cubic_family.json)",
+  "a5_P1_scheme.py": "what P_1 = 0 costs: letter-number finite parts and the induced shifts of K_1, Q_1, S_1 (a5_P1_scheme.json)",
+  "a6_twocomp.py": "two-component realisation of Def c8-twocomp and the design's two-component formulas (a6_twocomp.json)",
+  "a7_truncation.py": "weight/degree census, with and without explicit x (a7_truncation.json)",
+  "lit_check/": "downloaded arXiv texts (one directory per paper) and lit_spotcheck.json"
+ },
+ "machine": "one python process at a time, each < 70 MB RSS and < 3 s; no Wolfram; nothing written outside step2/qa/odd_rev_audit_algebra (downloads were copied there from the tool-results cache); no process left running"
+}

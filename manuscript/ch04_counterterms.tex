@@ -1,0 +1,946 @@
+\chapter{Counterterms at one loop and the quantum master equation at the UV boundary}
+
+The one-loop counterterm, the analogue on $\mathbb R^4$ at order $\hbar$ of the counterterm of [C07, Thm B] (Remark \ref{rem:c4-thmB}), is fixed by the requirement that the order-$\hbar$ part of the flow $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ have a limit as $\varepsilon\to0$ at generic leg momenta, and it is unique among the translation-invariant and $\mathfrak g$-invariant local functionals with coefficients in the span of $\varepsilon^{-1}$ and $\log\varepsilon$ (Propositions \ref{prop:c4-limit} and \ref{prop:c4-unique}). The regulator, however, cuts every edge at the Schwinger time $\varepsilon$ and breaks the gauge symmetry, so the one-loop counterterm contains the mass terms $\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)$, whose $Q$-variation is nonzero. Transported to the UV boundary by Theorem \ref{thm:c3-uv}, the quantum master equation then fails by a finite local functional, and a finite local counterterm has to be chosen to remove it: this is the first renormalisation condition of the theory. This chapter computes $I^{CT}[\varepsilon]$ in every one-loop sector of superficial degree $\ge0$, identifies its $\log\varepsilon$ part as a rescaling of the fields with vanishing component along the coupling, and evaluates the master equation at the UV boundary in the sector with legs $(c,A|_V)$, where the first finite counterterm appears.
+
+\section{The one-loop counterterm and its boundary form}
+
+Throughout this chapter $\mathfrak g$ is simple. Then the Killing form $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)$ is a multiple of the invariant pairing, and the ratio $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$, for $X,Y\in\mathfrak g$ with $(X,Y)\neq0$, is a number independent of $X$ and $Y$. Every one-loop coefficient of this chapter is a rational multiple of
+\[
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2\,(X,Y)},
+\]
+except the coefficients of the fourth-order adjoint traces of the quartic graphs, which are rational multiples of $\hbar/16\pi^2$. The upper Schwinger limit is $\infty$ (Chapter 3).
+
+The value of a translation-invariant functional with $k$ legs on plane waves $e^{i(p_j,x)}$, $j=1,\dots,k$, with fibre elements as in Definition \ref{def:c1-vertex}, is $(2\pi)^4\delta(p_1+\dots+p_k)$ times a function of $(p_1,\dots,p_k)$ on the subspace where $p_1+\dots+p_k=0$; this function is its plane-wave value. Leg momenta are generic when every leg momentum is nonzero and no sum of the momenta of a nonempty proper subset of the legs vanishes. For $k=1$ the set of generic configurations is empty; for $k\ge2$ it is the complement of finitely many proper linear subspaces of the subspace $p_1+\dots+p_k=0$, an open dense subset. A functional depending on $\varepsilon$ has a limit as $\varepsilon\to0$ at generic leg momenta when the plane-wave values of its Taylor components converge as $\varepsilon\to0$ at every generic configuration of the leg momenta. Every limit of a flow in this chapter is a limit in this sense.
+
+\begin{definition}[One-loop counterterm]
+\label{def:c4-ict}
+For a connected one-particle-irreducible graph $\gamma$ with legs, $b_1(\gamma)=1$ and all vertices labelled by $I$ (Proposition \ref{prop:c3-graphs}), let $w_\gamma(\varepsilon)$ be its value with every edge labelled by $P(\varepsilon,\infty)$ [C07, §15.4]. Every vertex of $\gamma$ lies on its cycle and carries a leg, so at generic leg momenta the momenta of distinct edges of $\gamma$ differ, and by Lemma \ref{lem:c4-local}, as $\varepsilon\to0$, the plane-wave value of $w_\gamma(\varepsilon)$ is the sum of multiples of negative integer powers of $\varepsilon$, a multiple of $\log\varepsilon$, and a function of $\varepsilon$ with a limit; the first two are polynomials in the leg momenta, and $\mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)$ denotes the local functional whose plane-wave value is their sum [CG2, §13.7.2]. The one-loop counterterm is
+\begin{equation}
+I^{CT}[\varepsilon]=\hbar\sum_\gamma\frac{1}{|\operatorname{Aut}\gamma|}\,\mathrm{Sing}_\varepsilon\,w_\gamma(\varepsilon),
+\label{eq:c4-ict}
+\end{equation}
+the sum over the connected one-particle-irreducible graphs $\gamma$ with $b_1(\gamma)=1$ and at least two legs, modulo constants. Its coefficients lie in the span of $\varepsilon^{-1}$ and $\log\varepsilon$ (Proposition \ref{prop:c4-structure}), the one-loop part of the renormalisation scheme $\mathscr A_{<0}$ [C07, Def 1.4.1; CG2, §13.7.2].
+\end{definition}
+
+The $\varepsilon$-dependence of a graph is carried by the lower ends of its Schwinger integrals. By \eqref{eq:c3-dP}, $\frac{d}{d\varepsilon}P(\varepsilon,\infty)=-L_\varepsilon$ with $L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon$.
+
+\begin{proposition}[Boundary form of the scale derivative]
+\label{prop:c4-boundary}
+Let $\gamma$ be a graph with edge set $E(\gamma)$ [C07, §15.5], and let $w_\gamma(\varepsilon)$ be its value with every edge labelled by $P(\varepsilon,\infty)$. Then
+\begin{equation}
+\varepsilon\frac{d}{d\varepsilon}w_\gamma(\varepsilon)=\sum_{e\in E(\gamma)}w_\gamma\big(\text{edge }e\text{ labelled by }-\varepsilon L_\varepsilon,\ \text{the other edges by }P(\varepsilon,\infty)\big).
+\label{eq:c4-boundary}
+\end{equation}
+In the Schwinger form $w_\gamma(\varepsilon)=\int_{[\varepsilon,\infty)^{E(\gamma)}}f_\gamma\prod_{e}dt_e$ of [C07, §15.5], with the edge $e$ carrying $L_{t_e}$, the $e$-th term of \eqref{eq:c4-boundary} is
+\[
+-\varepsilon\int_{[\varepsilon,\infty)^{E(\gamma)\setminus\{e\}}}f_\gamma\big|_{t_e=\varepsilon}\prod_{e'\neq e}dt_{e'} .
+\]
+\end{proposition}
+
+\begin{proof}
+The value $w_\gamma$ is multilinear in the kernels labelling the edges, so the Leibniz rule gives
+\[
+\frac{d}{d\varepsilon}w_\gamma=\sum_e w_\gamma\Big(\text{edge }e\text{ labelled by }\frac{d}{d\varepsilon}P(\varepsilon,\infty)\Big),
+\]
+and $\frac{d}{d\varepsilon}P(\varepsilon,\infty)=-L_\varepsilon$ by \eqref{eq:c3-dP}. In the Schwinger form, $\frac{d}{d\varepsilon}\int_\varepsilon^\infty(\cdots)\,dt_e=-(\cdots)|_{t_e=\varepsilon}$ for each edge.
+\end{proof}
+
+\begin{corollary}[Singular part from the boundary]
+\label{cor:c4-sing}
+At fixed leg momenta, if the right-hand side of \eqref{eq:c4-boundary} equals $-a\,\varepsilon^{-1}+b$ plus a term bounded by a multiple of $\varepsilon$, with $a$, $b$ independent of $\varepsilon$, then
+\[
+w_\gamma(\varepsilon)=a\,\varepsilon^{-1}+b\log\varepsilon+(\text{a function of }\varepsilon\text{ with a limit}),\qquad \mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)=a\,\varepsilon^{-1}+b\log\varepsilon .
+\]
+\end{corollary}
+
+\begin{proof}
+$\frac{d}{d\varepsilon}\big(w_\gamma-a\varepsilon^{-1}-b\log\varepsilon\big)=\varepsilon^{-1}\big(\varepsilon\frac{d}{d\varepsilon}w_\gamma+a\varepsilon^{-1}-b\big)$ is $\varepsilon^{-1}$ times a term bounded by a multiple of $\varepsilon$, hence bounded near $\varepsilon=0$, so $w_\gamma-a\varepsilon^{-1}-b\log\varepsilon$ has a limit and differs from it by a term bounded by a multiple of $\varepsilon$.
+\end{proof}
+
+\fig{diagrams/composite/boundary_Leps_representatives.png}{Boundary graphs. (a), (b): the two terms of \eqref{eq:c4-boundary} for the bubble with two vertices $A|_V(A|_{W_{\mathbb R}^\perp})^2$ and external $A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}$; the shaded edge is pinned at $t=\varepsilon$ and carries $L_\varepsilon=(Q^{GF}\otimes1)K_\varepsilon$. (c)--(e): the same mechanism for a triangle with one insertion of a composite operator.}
+
+The singular coefficients of every graph are therefore computed from graphs with one edge pinned at $t=\varepsilon$. For one-loop graphs with at most two edges, the Schwinger integrals reduce to four elementary ones after a Gaussian integral over the loop momentum.
+
+\begin{lemma}[Gaussian integral over the loop momentum]
+\label{lem:c4-gauss}
+Let $t_1,t_2>0$, $p\in V$, and let the numerator be a polynomial function of $p_1\in V$ of degree at most two. Then
+\[
+\begin{aligned}
+&\int\frac{d^4p_1}{(2\pi)^4}\,e^{-t_1|p_1|^2-t_2|p_1-p|^2}\,(\text{numerator})\\
+&\qquad=\frac{e^{-t_1t_2|p|^2/(t_1+t_2)}}{16\pi^2(t_1+t_2)^2}\Big[\text{numerator}-\frac{1}{4(t_1+t_2)}\big(\text{positive Laplacian of the numerator}\big)\Big]_{p_1=\frac{t_2}{t_1+t_2}p},
+\end{aligned}
+\]
+the positive Laplacian, minus the sum of the second derivatives along an orthonormal basis, being taken in the variable $p_1$.
+For one edge, $\int\frac{d^4p_1}{(2\pi)^4}e^{-t|p_1|^2}=(16\pi^2t^2)^{-1}$.
+\end{lemma}
+
+\begin{proof}
+Completing the square and integrating the Gaussian,
+\[
+\begin{aligned}
+&t_1|p_1|^2+t_2|p_1-p|^2=(t_1+t_2)\Big|p_1-\tfrac{t_2}{t_1+t_2}p\Big|^2+\tfrac{t_1t_2}{t_1+t_2}|p|^2,\\
+&\int\frac{d^4p_1}{(2\pi)^4}e^{-(t_1+t_2)|p_1|^2}=\frac{\pi^2}{(2\pi)^4(t_1+t_2)^2}=\frac1{16\pi^2(t_1+t_2)^2}.
+\end{aligned}
+\] The normalised Gaussian average in the shifted variable has vanishing odd moments, and its second moment sends $(v,p_1)(v',p_1)$ to $(v,v')/(2(t_1+t_2))$ for $v,v'\in V$. A polynomial of degree at most two is its value at the centre plus a linear term plus its quadratic part; the average of the quadratic part is $\frac{1}{4(t_1+t_2)}$ times the sum of the second derivatives along an orthonormal basis, i.e. $-\frac{1}{4(t_1+t_2)}$ times the positive Laplacian of the numerator in $p_1$.
+\end{proof}
+
+\begin{lemma}[Elementary Schwinger integrals]
+\label{lem:c4-integrals}
+For $p\neq0$, modulo functions of $\varepsilon$ with a limit as $\varepsilon\to0$ ($\mathscr A_{\ge0}$ of [C07, Def 1.4.1]),
+\[
+\begin{aligned}
+&\int_\varepsilon^\infty\frac{dt}{t^2}=\varepsilon^{-1},\\
+&\iint_{[\varepsilon,\infty)^2}\frac{e^{-t_1t_2|p|^2/(t_1+t_2)}}{(t_1+t_2)^3}\,dt_1dt_2=\tfrac14\varepsilon^{-1}+\tfrac16|p|^2\log\varepsilon,\\
+&\iint_{[\varepsilon,\infty)^2}\frac{e^{-t_1t_2|p|^2/(t_1+t_2)}}{(t_1+t_2)^2}\,dt_1dt_2=-\log\varepsilon,\\
+&\iint_{[\varepsilon,\infty)^2}\frac{t_1t_2\,e^{-t_1t_2|p|^2/(t_1+t_2)}}{(t_1+t_2)^4}\,dt_1dt_2=-\tfrac16\log\varepsilon.
+\end{aligned}
+\]
+\end{lemma}
+
+\begin{proof}
+The integrands are symmetric in $t_1,t_2$, so by Proposition \ref{prop:c4-boundary} each $\varepsilon\frac{d}{d\varepsilon}$ equals $-2\varepsilon$ times the integral over $t\in[\varepsilon,\infty)$ of the integrand at $t_1=\varepsilon$, $t_2=t$. On the pinned edge the exponent satisfies $0\le\frac{\varepsilon t|p|^2}{\varepsilon+t}\le\varepsilon|p|^2$, so $e^{-\varepsilon t|p|^2/(\varepsilon+t)}$ equals $1-\frac{\varepsilon t|p|^2}{\varepsilon+t}$ plus a remainder between $0$ and $\tfrac12\varepsilon^2|p|^4$, uniformly in $t$. With
+\[
+\begin{aligned}
+&\int_\varepsilon^\infty\frac{dt}{(\varepsilon+t)^2}=\frac1{2\varepsilon},\qquad \int_\varepsilon^\infty\frac{dt}{(\varepsilon+t)^3}=\frac1{8\varepsilon^2},\\
+&\int_\varepsilon^\infty\frac{t\,dt}{(\varepsilon+t)^4}=\int_\varepsilon^\infty\Big(\frac1{(\varepsilon+t)^3}-\frac{\varepsilon}{(\varepsilon+t)^4}\Big)dt=\frac1{8\varepsilon^2}-\frac1{24\varepsilon^2}=\frac1{12\varepsilon^2},
+\end{aligned}
+\]
+the three pinned integrals are, up to terms bounded by a multiple of $\varepsilon$,
+\[
+\begin{aligned}
+2\varepsilon\int_\varepsilon^\infty\frac{e^{-\varepsilon t|p|^2/(\varepsilon+t)}}{(\varepsilon+t)^3}dt&=\frac{1}{4\varepsilon}-\frac{|p|^2}{6},\\
+2\varepsilon\int_\varepsilon^\infty\frac{e^{-\varepsilon t|p|^2/(\varepsilon+t)}}{(\varepsilon+t)^2}dt&=1,\qquad
+2\varepsilon\int_\varepsilon^\infty\frac{\varepsilon t\,e^{-\varepsilon t|p|^2/(\varepsilon+t)}}{(\varepsilon+t)^4}dt=\frac16 .
+\end{aligned}
+\]
+Corollary \ref{cor:c4-sing} with $(a,b)$ equal to $(\tfrac14,\tfrac16|p|^2)$, $(0,-1)$, $(0,-\tfrac16)$ gives the three expansions. The one-edge integral is exact.
+\end{proof}
+
+\begin{lemma}[Singular part of a one-loop graph]
+\label{lem:c4-local}
+Let $\gamma$ be a connected one-particle-irreducible graph with $b_1(\gamma)=1$, so that every vertex lies on the cycle and $|E(\gamma)|=|V(\gamma)|$. Let its vertex functions be polynomials in the momenta, up to a factor depending on the leg momenta alone (such as the Fourier transform of a four-form at minus the total leg momentum, Chapter 5), and let its numerator, the product of the vertex functions and of the polynomial factors of the edge components of $P(\varepsilon,\infty)$ (Proposition \ref{prop:c3-P}), be homogeneous in the loop momentum and the leg momenta; for vertices labelled by $I$ and legs in fixed slots this holds by Lemma \ref{lem:c4-weights}. Its superficial degree is the degree of the numerator plus $4-2|E(\gamma)|$. Let the leg momenta be such that the momenta of any two distinct edges differ by a nonzero vector. Then, at these leg momenta and as $\varepsilon\to0$,
+\[
+w_\gamma(\varepsilon)=\sum_{1\le k\le\frac12(\text{superficial degree})}\varepsilon^{-k}\,a_k+b\,\log\varepsilon+(\text{a function of }\varepsilon\text{ with a limit}),
+\]
+where $a_k$ and $b$ are polynomials in the leg momenta, $a_k$ homogeneous of degree (superficial degree)$-2k$ and $b$ homogeneous of degree equal to the superficial degree, and $\varepsilon\frac{d}{d\varepsilon}$ of the function with a limit tends to $0$. In particular the sum of the terms with $\varepsilon^{-k}$ and $\log\varepsilon$ is the plane-wave value of a local functional, $\mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)$, and it vanishes when the superficial degree is negative.
+\end{lemma}
+
+\begin{proof}
+Let the edge $e\in E(\gamma)$ carry the momentum $p_1-q_e$, with $p_1$ the loop momentum and $q_e$ a sum of leg momenta, so that $q_e\neq q_f$ for $e\neq f$. By Proposition \ref{prop:c3-P}, $w_\gamma(\varepsilon)$ is the integral over $p_1$, with the measure $d^4p_1/(2\pi)^4$, of the numerator times $\prod_ee^{-\varepsilon|p_1-q_e|^2}/|p_1-q_e|^2$, and $e^{-\varepsilon|k|^2}/|k|^2=\int_\varepsilon^\infty e^{-t|k|^2}dt$ introduces a Schwinger time $t_e$ for each edge. By Tonelli's theorem,
+\[
+\int\frac{d^4p_1}{(2\pi)^4}\int_{[\varepsilon,\infty)^{E(\gamma)}}\big|\text{numerator}\big|\,e^{-\sum_et_e|p_1-q_e|^2}\prod_edt_e=\int\frac{d^4p_1}{(2\pi)^4}\,\big|\text{numerator}\big|\prod_e\frac{e^{-\varepsilon|p_1-q_e|^2}}{|p_1-q_e|^2},
+\]
+and the right side is finite: the points $p_1=q_e$ are distinct, near each of them exactly one factor is singular, $|p_1-q_e|^{-2}$ being integrable near $p_1=q_e$ in four dimensions, and the Gaussian factors bound the polynomial numerator at large $|p_1|$. By Fubini's theorem, $w_\gamma(\varepsilon)$ is the integral over $t\in[\varepsilon,\infty)^{E(\gamma)}$ of the integral over $p_1$, with the measure $\prod_edt_e\,d^4p_1/(2\pi)^4$, of $\exp\big(-\sum_et_e|p_1-q_e|^2\big)$ times the numerator. Write $\tau=\sum_et_e$. Completing the square,
+\[
+\sum_et_e|p_1-q_e|^2=\tau\Big|p_1-\sum_e\frac{t_e}{\tau}\,q_e\Big|^2+\tau\cdot\frac12\sum_{e,f}\frac{t_e}{\tau}\frac{t_f}{\tau}|q_e-q_f|^2 ,
+\]
+and the Gaussian integral over $p_1$, with the moments of Lemma \ref{lem:c4-gauss} (each contracted pair of loop momenta gives $(2\tau)^{-1}$ times the metric), gives
+\[
+w_\gamma(\varepsilon)=\sum_{j\ge0}\int_{[\varepsilon,\infty)^{E(\gamma)}}\frac{(\text{numerator})_j}{16\pi^2\,\tau^{2+j}}\,\exp\Big(-\tau\cdot\frac12\sum_{e,f}\frac{t_e}{\tau}\frac{t_f}{\tau}|q_e-q_f|^2\Big)\prod_edt_e ,
+\]
+where $(\text{numerator})_j$, the part with $j$ contracted pairs, is a polynomial in the ratios $t_e/\tau$ and the leg momenta, homogeneous of degree (degree of the numerator)$-2j$, and zero when $2j$ exceeds the degree of the numerator. Put $m_j=j+2-|E(\gamma)|$; then $(\text{numerator})_j\neq0$ implies $2m_j\le$ (superficial degree). The ratios $t_e/\tau$ range over the simplex $\sum_et_e/\tau=1$, and $\prod_edt_e$ is $\tau^{|E(\gamma)|-1}d\tau$ times the Lebesgue measure of the simplex. Since $\sum_{e\neq f}t_et_f/\tau^2=1-\sum_et_e^2/\tau^2\ge1-\max_et_e/\tau$, the factor multiplying $\tau$ in the exponent is at least one half of the smallest of the numbers $|q_e-q_f|^2$, $e\neq f$, times $1-\max_et_e/\tau$, and $\tau(1-\max_et_e/\tau)$ is the sum of the Schwinger times other than the largest.
+
+The region $\tau\ge1$. The integrand of the $j$-th term is bounded by a multiple of $\tau^{-2-j}$ times the exponential of minus a positive multiple of the sum of the Schwinger times other than the largest. Integrating these times against the exponential, and the largest time, which is at least $\tau/|E(\gamma)|\ge1/|E(\gamma)|$, against $\tau^{-2-j}$, gives a bound independent of $\varepsilon$; by dominated convergence this part has a limit as $\varepsilon\to0$.
+
+The region $\tau\le1$. If $m_j<0$, the integrand times $\tau^{|E(\gamma)|-1}$ is bounded by a multiple of $\tau^{-1-m_j}$, which is integrable, and the part has a limit. If $m_j\ge0$, expand the exponential to order $m_j$. The remainder is bounded by $1/(m_j+1)!$ times the $(m_j+1)$-th power of the exponent, so its contribution is bounded by a multiple of $\tau^{-2-j+m_j+1}\tau^{|E(\gamma)|-1}=\tau^0$ and has a limit. The term of order $i\le m_j$ is the integral, over the part of the simplex where $\min_et_e/\tau\ge\varepsilon$, of $(16\pi^2\,i!)^{-1}(\text{numerator})_j$ times the $i$-th power of minus the factor multiplying $\tau$ in the exponent, times
+\[
+\int_{\varepsilon/\min_e(t_e/\tau)}^{1}\tau^{-1-(m_j-i)}\,d\tau=\begin{cases}\dfrac{\varepsilon^{-(m_j-i)}\big(\min_et_e/\tau\big)^{m_j-i}-1}{m_j-i}, & i<m_j,\\[2mm] \log\big(\min_et_e/\tau\big)-\log\varepsilon, & i=m_j.\end{cases}
+\]
+The part of the simplex where $\min_et_e/\tau<\varepsilon$ has measure at most a multiple of $\varepsilon$, the function $(\min_et_e/\tau)^{m_j-i}$ is at most $\varepsilon^{m_j-i}$ there, and $\log(\min_et_e/\tau)$ is integrable on the simplex. Hence the term of order $i<m_j$ is $\varepsilon^{-(m_j-i)}$ times an integral over the whole simplex plus a function with a limit, and the term of order $m_j$ is $-\log\varepsilon$ times an integral over the whole simplex plus a function with a limit. These integrals over the simplex, of polynomials in the ratios and the leg momenta times $(\min_et_e/\tau)^{m_j-i}$, are polynomials in the leg momenta, homogeneous of degree (degree of the numerator)$-2j+2i$, which equals (superficial degree)$-2(m_j-i)$. Collecting the powers $k=m_j-i$ gives the expansion, with $1\le k\le m_j\le\frac12$(superficial degree); for negative superficial degree every $m_j$ with $(\text{numerator})_j\neq0$ is negative, and the singular part vanishes.
+
+Finally, $\varepsilon\frac{d}{d\varepsilon}$ of the function with a limit tends to $0$. That function is the sum, over $j$ and $i$, of the following pieces; in the second and third item the simplex integrand of the term of order $i$ is $(16\pi^2\,i!)^{-1}(\text{numerator})_j$ times the $i$-th power of minus the factor multiplying $\tau$ in the exponent, a polynomial in the ratios and the leg momenta.
+\begin{itemize}
+\item The integrals over $t\in[\varepsilon,\infty)^{E(\gamma)}$ restricted to $\tau\ge1$, those restricted to $\tau\le1$ with $m_j<0$, and the remainders of the expansion of the exponential on $\tau\le1$. By Proposition \ref{prop:c4-boundary}, $\varepsilon\frac{d}{d\varepsilon}$ of each is minus $\varepsilon$ times its integrals over the faces $t_e=\varepsilon$; by the bounds above these face integrals are bounded on $\tau\ge1$ and bounded by a multiple of $1+|\log\varepsilon|$ on $\tau\le1$, the integrand being at most a multiple of $\tau^{1-|E(\gamma)|}$ there.
+\item For the term of order $i<m_j$, with $k=m_j-i$: $-k^{-1}\varepsilon^{-k}h(\varepsilon)$, where $h(\varepsilon)$ is the integral of the simplex integrand times $(\min_et_e/\tau)^k$ over the part of the simplex where $\min_et_e/\tau<\varepsilon$; and $-k^{-1}$ times the integral of the simplex integrand over the part where $\min_et_e/\tau\ge\varepsilon$, which comes from the $-1$ in the integral over $\tau$.
+\item For the term of order $m_j$: $h(\varepsilon)\log\varepsilon$, where $h(\varepsilon)$ is the integral of the simplex integrand over the part where $\min_et_e/\tau<\varepsilon$; and the integral of the simplex integrand times $\log(\min_et_e/\tau)$ over the part where $\min_et_e/\tau\ge\varepsilon$.
+\end{itemize}
+The part of the simplex where $\min_et_e/\tau<s$ is the union over $e$ of the parts where $t_e/\tau<s$. For a function continuous on the part where $\min_et_e/\tau\ge s_0$, its integral over the part where $\min_et_e/\tau\ge s$, $s\ge s_0$, is therefore differentiable in $s$, with derivative minus a sum of integrals of the function over the faces where $\min_et_e/\tau=s$, each face having $(|E(\gamma)|-2)$-dimensional measure at most that of a face of the simplex; the same holds, with the opposite sign and $s_0=0$, for the integral of a function continuous on the simplex over the part where $\min_et_e/\tau<s$, and that integral is at most the maximum of the absolute value of the function there times a multiple of $s$. In the second item the integrand of $h$ is at most a multiple of $\varepsilon^k$ where $\min_et_e/\tau<\varepsilon$, so $h(\varepsilon)$ and $\varepsilon\frac{dh}{d\varepsilon}$ are bounded by multiples of $\varepsilon^{k+1}$, and $\varepsilon\frac{d}{d\varepsilon}\big(\varepsilon^{-k}h(\varepsilon)\big)=-k\varepsilon^{-k}h(\varepsilon)+\varepsilon^{1-k}\frac{dh}{d\varepsilon}$ is bounded by a multiple of $\varepsilon$; $\varepsilon\frac{d}{d\varepsilon}$ of the integral over the part where $\min_et_e/\tau\ge\varepsilon$ is bounded by a multiple of $\varepsilon$. In the third item $h(\varepsilon)$ and $\varepsilon\frac{dh}{d\varepsilon}$ are bounded by multiples of $\varepsilon$, so $\varepsilon\frac{d}{d\varepsilon}\big(h(\varepsilon)\log\varepsilon\big)=h(\varepsilon)+\varepsilon\frac{dh}{d\varepsilon}\log\varepsilon$ is bounded by a multiple of $\varepsilon(1+|\log\varepsilon|)$; and $\log(\min_et_e/\tau)=\log\varepsilon$ on the faces where $\min_et_e/\tau=\varepsilon$, so $\varepsilon\frac{d}{d\varepsilon}$ of the integral over the part where $\min_et_e/\tau\ge\varepsilon$ is bounded by a multiple of $\varepsilon|\log\varepsilon|$. Every piece has $\varepsilon\frac{d}{d\varepsilon}$ tending to $0$.
+\end{proof}
+
+\begin{lemma}[One-loop graphs as trees with a one-loop vertex]
+\label{lem:c4-factor}
+Consider the graphs of Proposition \ref{prop:c3-graphs}, with labelled legs, whose vertices are labelled by Taylor components of $I$, except at most one vertex of valence at least $1$, the marked vertex, labelled by a Taylor component of a further functional (in Chapter 5, the operator $O$). For a connected graph $\Gamma$ with $b_1(\Gamma)=1$, let $\gamma$ be its cycle together with the vertices on the cycle, the remaining half-edges at these vertices being the legs of $\gamma$, and let $T$ be the tree obtained from $\Gamma$ by contracting $\gamma$ to one vertex $s$, whose half-edges are the legs of $\gamma$.
+\begin{itemize}
+\item $\gamma$ is connected and one-particle-irreducible with $b_1(\gamma)=1$. The automorphisms of $T$ fixing the legs are the identity, and so are those of every tree with the given legs whose vertices are labelled as above except one distinguished vertex $s$. Restriction to $\gamma$ is a bijection from the automorphisms of $\Gamma$ fixing the legs to the automorphisms of $\gamma$ fixing the legs of $\gamma$. The value $w_\Gamma$ is $w_T$ with $s$ labelled by the multilinear form $w_\gamma$ in the half-edges of $s$.
+\item The sum of $w_\Gamma/|\operatorname{Aut}\Gamma|$ over the connected graphs $\Gamma$ with $b_1(\Gamma)=1$ and the given legs equals the sum of $w_T/|\operatorname{Aut}T|=w_T$ over the trees $T$ with the given legs and one vertex $s$, labelled by the Taylor component, with legs the half-edges of $s$, of the sum of $w_\gamma/|\operatorname{Aut}\gamma|$ over the connected one-particle-irreducible graphs $\gamma$ with $b_1(\gamma)=1$.
+\item A connected one-particle-irreducible graph with $b_1=1$, one leg and all vertices labelled by $I$ is a cubic vertex of $I$ with one edge from the vertex to itself, and its value is $0$ before any integration over positions or momenta.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+First item. A connected graph with $b_1=1$ contains exactly one cycle. Every vertex of $\gamma$ lies on it, so removing an edge of $\gamma$ leaves $\gamma$ connected, and $b_1(\gamma)=|E(\gamma)|-|V(\gamma)|+1=1$. Contracting the cycle lowers $b_1$ by one, so $T$ is a tree.
+
+Let $T$ be such a tree, with distinguished vertex $s$. An automorphism $\alpha$ of $T$ fixing the legs preserves the labels of the vertices, so it fixes $s$ and the marked vertex. For a vertex $v\neq s$, the vertices beyond $v$ are $v$ and the vertices separated from $s$ by $v$. A vertex beyond $v$ at maximal distance from $s$ has one half-edge towards $s$ and its other half-edges are legs; if it is labelled by $I$ it has at least two legs. Hence the vertices beyond $v$ carry a leg or include the marked vertex. Let $v^{\prime}\neq v$ be a second vertex different from $s$, the two being exchanged if $v$ lies beyond $v^{\prime}$. If $v^{\prime}$ lies beyond $v$ and $v$ is labelled by $I$, then $v$ has, besides its half-edges towards $s$ and towards $v^{\prime}$, a further half-edge, which is a leg or leads to vertices beyond $v$ and not beyond $v^{\prime}$ that carry a leg or include the marked vertex; if $v^{\prime}$ lies beyond $v$ and $v$ is the marked vertex, the vertices beyond $v$ include the marked vertex and those beyond $v^{\prime}$ exclude it; if neither lies beyond the other, the two sets of vertices beyond them are disjoint, and each carries a leg or includes the marked vertex. In every case $v$ and $v^{\prime}$ differ in the set of legs carried by the vertices beyond them or in whether these include the marked vertex. Both data are preserved by $\alpha$, so $\alpha$ fixes every vertex. A tree has no two edges with the same ends and no edge from a vertex to itself, so $\alpha$ fixes every edge, and, with the legs, every half-edge.
+
+An automorphism of $\Gamma$ fixing the legs maps the cycle to itself and therefore induces an automorphism of $T$ fixing the legs, which is the identity. It fixes every vertex outside the cycle and every half-edge outside the edges of the cycle, the legs of $\gamma$ included, so it restricts to an automorphism of $\gamma$ fixing the legs of $\gamma$, and this restriction determines it. Conversely, an automorphism of $\gamma$ fixing its legs extends by the identity to an automorphism of $\Gamma$ fixing the legs.
+
+The value $w_\Gamma$ is the contraction of the tensor product of the vertex functions along the edges of $\Gamma$, with the edge rule of Proposition \ref{prop:c3-graphs}. The contractions along different edges commute [C07, §6.4], so contracting the edges of the cycle first gives $w_\gamma$, a multilinear form in the half-edges of $s$, and the remaining contractions give $w_T$ with $s$ labelled by $w_\gamma$.
+
+Second item. By the first item the half-edges of $s$ are determined by $T$ and its legs, and $\Gamma\mapsto(T,\gamma)$, with the legs of $\gamma$ identified with the half-edges of $s$, is a bijection from the isomorphism classes of connected graphs with $b_1=1$ and the given legs to the pairs consisting of an isomorphism class of trees $T$ with the given legs and a vertex $s$, and an isomorphism class of connected one-particle-irreducible graphs $\gamma$ with $b_1(\gamma)=1$ whose legs are the half-edges of $s$; the inverse glues $\gamma$ into $T$ in place of $s$. With $|\operatorname{Aut}\Gamma|=|\operatorname{Aut}\gamma|$, $|\operatorname{Aut}T|=1$ and the linearity of $w_T$ in the label of $s$,
+\[
+\sum_\Gamma\frac{w_\Gamma}{|\operatorname{Aut}\Gamma|}=\sum_T\sum_\gamma\frac{1}{|\operatorname{Aut}\gamma|}\,w_T\big(s\text{ labelled by }w_\gamma\big)=\sum_T\frac{1}{|\operatorname{Aut}T|}\,w_T\Big(s\text{ labelled by }\sum_\gamma\frac{w_\gamma}{|\operatorname{Aut}\gamma|}\Big).
+\]
+
+Third item. A cycle with $n$ vertices of valence at least three has at least $n$ legs, so one leg forces $n=1$ and a cubic vertex, two of whose slots are joined by the edge. By Definition \ref{def:c1-vertex}, every cubic vertex function of $I$, namely $A\,A\,A$ (which contains $(A|_V)^3$ and $A|_V(A|_{W_{\mathbb R}^\perp})^2$), $\lambda\,\lambda\,A$, $A\,c\,A^*$, $c\,\lambda\,\lambda^*$ and $c\,c\,c^*$, is the form $(X_1,[X_2,X_3])$ in the $\mathfrak g$-factors $X_1,X_2,X_3$ of its three legs, up to sign, times a factor independent of them; by the invariance of $(-,-)$ and the antisymmetry of the bracket, $(X_1,[X_2,X_3])$ is totally antisymmetric. The $\mathfrak g$-factor of every component of $P(\varepsilon,\infty)$ is a multiple of $(-,-)^{-1}$ (Proposition \ref{prop:c3-P}), which is symmetric. The contraction of two arguments of a totally antisymmetric form with a symmetric tensor is $0$, so the vertex with two of its slots joined is the zero functional, before any integration.
+\end{proof}
+
+\begin{proposition}[Existence of the limit]
+\label{prop:c4-limit}
+The order-$\hbar$ part of $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ has a limit as $\varepsilon\to0$ at generic leg momenta.
+\end{proposition}
+
+\begin{proof}
+By Proposition \ref{prop:c3-graphs} with $J=I-I^{CT}[\varepsilon]$, the order-$\hbar$ part is $\hbar$ times the sum of $w_\Gamma/|\operatorname{Aut}\Gamma|$ over the connected graphs $\Gamma$ with $b_1(\Gamma)=1$ and vertices labelled by $I$, plus $\hbar$ times the sum of $w_T/|\operatorname{Aut}T|$ over the trees $T$ with one vertex $s$ labelled by a Taylor component of $-\hbar^{-1}I^{CT}[\varepsilon]$ and the other vertices labelled by $I$. By Lemma \ref{lem:c4-factor} (without marked vertex), $|\operatorname{Aut}T|=1$ for these trees, and the first sum is the sum over the same trees of $w_T$ with $s$ labelled by the sum of $w_\gamma/|\operatorname{Aut}\gamma|$ over the connected one-particle-irreducible graphs $\gamma$ with $b_1(\gamma)=1$. A cycle of vertices of valence at least three carries legs, so every such $\gamma$ has legs; those with one leg have value $0$ (Lemma \ref{lem:c4-factor}), and $I^{CT}[\varepsilon]$ has no Taylor component with one leg (Definition \ref{def:c4-ict}). By \eqref{eq:c4-ict}, the order-$\hbar$ part is therefore $\hbar$ times the sum over the trees $T$ whose vertex $s$ has at least two half-edges of $w_T$ with $s$ labelled by
+\[
+\sum_\gamma\frac{1}{|\operatorname{Aut}\gamma|}\Big(w_\gamma(\varepsilon)-\mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)\Big),
+\]
+the sum over the $\gamma$ whose legs are the half-edges of $s$. For a fixed number of legs this sum is finite: a tree with $r$ vertices labelled by $I$ and a vertex $s$ with $m$ half-edges has $r$ edges and at least $3r+m-2r=r+m$ legs, and a cycle with $m$ legs has at most $m$ vertices.
+
+Fix generic leg momenta. Each edge of $T$ separates $T$ into two parts, and each part carries a leg: in the part without $s$, a vertex at maximal distance from $s$ carries at least two legs; in the part with $s$, the vertex $s$ has, besides the half-edge on the path from $s$ to the edge, a further half-edge, which is a leg or leads to vertices separated from $s$ and from the edge, among which a vertex at maximal distance from $s$ carries at least two legs. Hence the edge carries the sum of the momenta of a nonempty proper subset of the legs, a nonzero momentum $k$, and its edge factor, a polynomial times $e^{-\varepsilon|k|^2}/|k|^2$ (Proposition \ref{prop:c3-P}), converges to the polynomial times $|k|^{-2}$. The half-edges of $s$ carry the sums of the momenta of disjoint nonempty sets of legs, one set for each half-edge. Two distinct edges of the cycle of $\gamma$ cut it into two arcs, each containing a vertex, and every vertex of $\gamma$ carries a leg of $\gamma$; the momenta of the two edges differ by the sum of the momenta entering $\gamma$ along one arc, the sum of the momenta of a nonempty proper subset of the legs of $T$, which is nonzero. By Lemma \ref{lem:c4-local}, with the homogeneity of Lemma \ref{lem:c4-weights}, the plane-wave value of $w_\gamma(\varepsilon)-\mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)$ at these momenta has a limit as $\varepsilon\to0$. The plane-wave value of $w_T$ is the sum, over the components of the internal slots, of the products of the vertex functions of $T$, of its edge factors and of this value, a finite sum of products of functions of $\varepsilon$ with limits.
+\end{proof}
+
+\begin{remark}[Relation with Theorem B]
+\label{rem:c4-thmB}
+[C07, Thm B] constructs, on a compact manifold with a finite upper scale, a counterterm at all orders in $\hbar$, unique among the local functionals with coefficients in $\mathscr A_{<0}$, for which the flow of the interaction minus the counterterm has a limit as $\varepsilon\to0$ as a functional; at one loop, its part with $k$ legs is the singular part of the order-$\hbar$, $k$-leg part of the flow of the interaction minus the counterterms with fewer legs, and it is independent of the upper scale [C07, §1.5]. Definition \ref{def:c4-ict} and Propositions \ref{prop:c4-limit} and \ref{prop:c4-unique} give its analogue on $\mathbb R^4$ with upper scale $\infty$, for the even, local, at least cubic interaction $I$ of \eqref{eq:c1-I}, in the following scope: the order is $\hbar$; the singular parts are computed graph by graph on the one-particle-irreducible graphs, and the one-particle-reducible graphs carry them through their cycles (Lemma \ref{lem:c4-factor}); the limit is the limit of plane-wave values at generic leg momenta; and uniqueness holds among the translation-invariant and $\mathfrak g$-invariant local functionals whose coefficients lie in a space of functions of $\varepsilon$ containing $\varepsilon^{-1}$ and $\log\varepsilon$ in which every function with a limit as $\varepsilon\to0$ is zero.
+\end{remark}
+
+\begin{proposition}[Uniqueness of the one-loop counterterm]
+\label{prop:c4-unique}
+Let $I^{\prime}$ be a local functional of order $\hbar$, without constant term, invariant under translations and under the adjoint action of $\mathfrak g$, whose coefficients lie in a space of functions of $\varepsilon$ containing $\varepsilon^{-1}$ and $\log\varepsilon$ in which every function with a limit as $\varepsilon\to0$ is zero, for instance the span of $\varepsilon^{-1}$ and $\log\varepsilon$, or a complement $\mathscr A_{<0}$ of $\mathscr A_{\ge0}$ containing them [C07, Def 1.4.1]. If the order-$\hbar$ part of $W(P(\varepsilon,\infty),I-I^{\prime})$ has a limit as $\varepsilon\to0$ at generic leg momenta, then $I^{\prime}=I^{CT}[\varepsilon]$.
+\end{proposition}
+
+\begin{proof}
+The vertex functions of $I$ and the components of $P(\varepsilon,\infty)$ are translation invariant, and their $\mathfrak g$-factors are built from the bracket, $(-,-)$ and $(-,-)^{-1}$; so $I^{CT}[\varepsilon]$, and with it the difference $I^{CT}[\varepsilon]-I^{\prime}$, is invariant under translations and under the adjoint action of $\mathfrak g$, with coefficients in the given space of functions. A translation-invariant local functional with one leg is, modulo total derivatives, the integral of a constant linear form on the fibre of the bundle of fields. The fibre is $\mathfrak g$ tensored with a representation of $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ (Chapter 1), so a $\mathfrak g$-invariant linear form on it lies in the tensor product of the invariant linear forms on $\mathfrak g$ with the dual of that representation; the invariant linear forms on $\mathfrak g$ are, through $(-,-)$, the centre of $\mathfrak g$, which is $0$ for $\mathfrak g$ simple. Hence the difference has no Taylor component with one leg, and by hypothesis none without legs.
+
+The order-$\hbar$ parts of $W(P(\varepsilon,\infty),I-I^{\prime})$ and $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ differ by $\hbar$ times the sum of the trees with one vertex labelled by a Taylor component of $\hbar^{-1}(I^{CT}[\varepsilon]-I^{\prime})$ and all other vertices labelled by $I$ (Proposition \ref{prop:c3-graphs}). That vertex has at least two half-edges, so, as in the proof of Proposition \ref{prop:c4-limit}, every edge of such a tree carries a nonzero momentum at generic leg momenta. By the hypothesis and Proposition \ref{prop:c4-limit}, the sum of the trees has a limit at generic leg momenta. Suppose the difference is nonzero, and let $k\ge2$ be the smallest number of legs of its nonzero Taylor components. A tree with $r\ge1$ vertices labelled by $I$, each with at least three half-edges, has $r$ edges, and its vertex labelled by the difference has at least $k$ half-edges, so it has at least $k+3r-2r=k+r$ legs; the $k$-leg part of the sum of the trees is therefore the $k$-leg Taylor component of $\hbar^{-1}(I^{CT}[\varepsilon]-I^{\prime})$ itself, which then has a limit at generic leg momenta. Its plane-wave value is a finite sum of products of linearly independent coefficient functions of $\varepsilon$ with polynomials in $(p_1,\dots,p_k)$ on the subspace where $p_1+\dots+p_k=0$. At a generic configuration this sum is a function of $\varepsilon$ in the given space with a limit, hence zero, and by linear independence every polynomial vanishes there. The generic configurations are dense in the subspace, so the polynomials vanish on it. A polynomial vanishing on that subspace is a combination of the components of $p_1+\dots+p_k$ with polynomial coefficients, the plane-wave value of a total derivative; so the $k$-leg component is zero, a contradiction.
+\end{proof}
+
+\section{Two-point graphs}
+
+A quadratic functional is evaluated on plane waves. For two legs of $A|_V$ the background is $A(p)e^{i(p,x)}+A(-p)e^{-i(p,x)}$ with $A(\pm p)\in V^\vee\otimes\mathfrak g$, and the plane-wave value of a functional is the coefficient of $(2\pi)^4\delta(0)$ in its part bilinear in $A(p)$ and $A(-p)$; for two odd legs the background is $r_1(\cdot)e^{i(p,x)}+r_2(\cdot)e^{-i(p,x)}$ and the plane-wave value is the coefficient of $r_1r_2$, as in Definition \ref{def:c1-vertex}. Since $d$ becomes $i(p,-)$ and $d^*$ becomes $-i\,\iota_p$,
+\begin{equation}
+\begin{aligned}
+\int\mathrm{dvol}\,(A|_V,A|_V)&\mapsto2\,(A(p),A(-p)),\qquad \int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\mapsto2\,(\iota_pA(p),\iota_pA(-p)),\\
+\int\mathrm{dvol}\,(dA|_V,dA|_V)&\mapsto2\,\big(|p|^2(A(p),A(-p))-(\iota_pA(p),\iota_pA(-p))\big),\\
+\int\mathrm{dvol}\,(dc,A^*)&\mapsto i\,(p\,c(-p),A^*(p))\quad\text{for the legs }r_1A^*(p)e^{i(p,x)}+r_2c(-p)e^{-i(p,x)},
+\end{aligned}
+\label{eq:c4-pw}
+\end{equation}
+where $(A(p),A(-p))$ pairs the $V_{10}^\vee$ factors by the metric and the $\mathfrak g$ factors by $(-,-)$, $(p\,c(-p),A^*(p))$ is the fibre pairing of $p\otimes c(-p)\in V\otimes\mathfrak g$ with $A^*(p)$, and the Hodge normalisation of Definition \ref{def:c1-action} gives $((p,-)\wedge A(p),(p,-)\wedge A(-p))=|p|^2(A(p),A(-p))-(\iota_pA(p),\iota_pA(-p))$.
+
+\fig{diagrams/composite/twopoint_AV.png}{The one-loop one-particle-irreducible graphs with external $A|_V,A|_V$; every edge carries $P(\varepsilon,\infty)$. (a), (b): quartic vertex with an $A|_V$, resp. $A|_{W_{\mathbb R}^\perp}$, loop. (c): gauge bubble with $A|_V$ lines. (d): bubble with $A|_{W_{\mathbb R}^\perp}$ lines. (e): gaugino loop. (f): ghost loop of $c$--$A^*$ lines.}
+
+\begin{tabular}{l|c|c|c}
+graph & $1/|\operatorname{Aut}\gamma|$ & $\varepsilon^{-1}$ part & $\log\varepsilon$ part \\
+\hline
+(a) & $\tfrac12$ & $\tfrac32\int\mathrm{dvol}\,(A|_V,A|_V)$ & $0$ \\
+(b) & $\tfrac12$ & $3\int\mathrm{dvol}\,(A|_V,A|_V)$ & $0$ \\
+(c) & $\tfrac12$ & $-\tfrac{9}{16}\int\mathrm{dvol}\,(A|_V,A|_V)$ & $\tfrac{19}{24}\int\mathrm{dvol}\,(dA|_V,dA|_V)-\tfrac18\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ \\
+(d) & $\tfrac12$ & $-\tfrac34\int\mathrm{dvol}\,(A|_V,A|_V)$ & $-\tfrac12\int\mathrm{dvol}\,(dA|_V,dA|_V)$ \\
+(e) & $\tfrac12$ & $-\int\mathrm{dvol}\,(A|_V,A|_V)$ & $-\tfrac43\int\mathrm{dvol}\,(dA|_V,dA|_V)$ \\
+(f) & $1$ & $\tfrac{1}{16}\int\mathrm{dvol}\,(A|_V,A|_V)$ & $\tfrac{1}{24}\int\mathrm{dvol}\,(dA|_V,dA|_V)+\tfrac18\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ \\
+total & & $\tfrac94\int\mathrm{dvol}\,(A|_V,A|_V)$ & $-\int\mathrm{dvol}\,(dA|_V,dA|_V)$ \\
+\end{tabular}
+\tabcaption{Contributions $\hbar|\operatorname{Aut}\gamma|^{-1}\mathrm{Sing}_\varepsilon w_\gamma(\varepsilon)$ of the graphs with external $A|_V,A|_V$ to $I^{CT}[\varepsilon]$, in units of $\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$; the $\varepsilon^{-1}$ part multiplies $\varepsilon^{-1}$ and the $\log\varepsilon$ part multiplies $\log\varepsilon$. The coefficients of $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ cancel between (c) and (f).}
+
+\fig{diagrams/composite/twopoint_AWperp.png}{The one-loop one-particle-irreducible graphs with external $A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}$: (a), (b) quartic vertex with an $A|_V$, resp. $A|_{W_{\mathbb R}^\perp}$, loop; (c) bubble with one $A|_V$ and one $A|_{W_{\mathbb R}^\perp}$ line; (d) gaugino loop with two vertices $\lambda\lambda A|_{W_{\mathbb R}^\perp}$. (e): the gaugino loop with external $A|_V,A|_{W_{\mathbb R}^\perp}$.}
+
+\begin{tabular}{l|c|c|c}
+graph & $1/|\operatorname{Aut}\gamma|$ & $\varepsilon^{-1}$ part & $\log\varepsilon$ part \\
+\hline
+(a) & $\tfrac12$ & $2\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $0$ \\
+(b) & $\tfrac12$ & $\tfrac52\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $0$ \\
+(c) & $1$ & $-\tfrac14\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ \\
+(d) & $\tfrac12$ & $-2\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $-2\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ \\
+total & & $\tfrac94\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $-\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$ \\
+(e) & $\tfrac12$ & $0$ & $0$ \\
+\end{tabular}
+\tabcaption{Contributions of the graphs with external $A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp}$ (rows (a)--(d)) and $A|_V,A|_{W_{\mathbb R}^\perp}$ (row (e)) to $I^{CT}[\varepsilon]$, in the units of the previous table.}
+
+\fig{diagrams/composite/twopoint_lambda_c_Astar.png}{The one-loop one-particle-irreducible graphs with external $\lambda,\lambda$: (a) with an $A|_V$ line, (b) with an $A|_{W_{\mathbb R}^\perp}$ line; and with external $c,A^*|_V$: (c) with one $A|_V$ line and one $c$--$A^*$ line.}
+
+\begin{tabular}{l|c|c|c}
+graph & $1/|\operatorname{Aut}\gamma|$ & $\varepsilon^{-1}$ part & $\log\varepsilon$ part \\
+\hline
+(a) & $1$ & $0$ & $\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$ \\
+(b) & $1$ & $0$ & $3\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$ \\
+total $\lambda,\lambda$ & & $0$ & $4\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)$ \\
+(c) & $1$ & $0$ & $-\int\mathrm{dvol}\,(dc,A^*)$ \\
+\end{tabular}
+\tabcaption{Contributions of the graphs with external $\lambda,\lambda$ and $c,A^*|_V$ to $I^{CT}[\varepsilon]$, in the units of the previous tables.}
+
+Five representative graphs are computed below in five steps: the amplitude, from the one-loop formula (Proposition \ref{prop:c3-oneloop}), the vertex functions of Definition \ref{def:c1-vertex} and the propagator components of Proposition \ref{prop:c3-P}; the numerator algebra; the Schwinger integral, by Lemma \ref{lem:c4-gauss}; the $\varepsilon$-expansion, by Lemma \ref{lem:c4-integrals}; and the local part, by \eqref{eq:c4-pw}. For two legs, the order-$n$ term of \eqref{eq:c3-oneloop} enters through its part bilinear in the legs: for $n=2$,
+\[
+\frac\hbar4\mathrm{STr}\big((\text{one-loop operator})^2\big)\Big|_{\text{bilinear}}=\frac\hbar2\mathrm{STr}\big((\text{part linear in leg }1)(\text{part linear in leg }2)\big),
+\]
+and for $n=1$ it is $\frac\hbar2\mathrm{STr}$ of the part of the one-loop operator bilinear in the legs. In the bubbles the two edges carry the momenta $p_1$ and $p_1-p$, with Schwinger times $t_1$ and $t_2$:
+\[
+\frac{e^{-\varepsilon|p_1|^2}}{|p_1|^2}=\int_\varepsilon^\infty e^{-t_1|p_1|^2}dt_1,\qquad \frac{e^{-\varepsilon|p_1-p|^2}}{|p_1-p|^2}=\int_\varepsilon^\infty e^{-t_2|p_1-p|^2}dt_2 .
+\]
+The colour trace of the loop is $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2})=\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}(X_1,X_2)$ for the $\mathfrak g$-components $X_1,X_2$ of the two legs, and the factor $(X_1,X_2)$ is part of the pairings $(A(p),A(-p))$ and $(\iota_pA(p),\iota_pA(-p))$.
+
+\begin{example}[Gauge bubble, graph (c) of the $A|_V$ two-point function]
+\label{ex:c4-gauge}
+Amplitude. The two vertices are \eqref{eq:c1-AAA} at the incoming momenta $(p,-p_1,p_1-p)$ and $(-p,p_1,p-p_1)$; each edge carries the $A|_V\otimes A|_V$ component $2(-,-)^{-1}\otimes(\text{inverse metric of }V)$ of $P(\varepsilon,\infty)$, times $\frac{e^{-\varepsilon|p_1|^2}}{|p_1|^2}$, resp. $\frac{e^{-\varepsilon|p_1-p|^2}}{|p_1-p|^2}$. The plane-wave value of $\hbar|\operatorname{Aut}\gamma|^{-1}w_\gamma(\varepsilon)$ is
+\[
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{(X,Y)}\int\frac{d^4p_1}{(2\pi)^4}\,\frac{e^{-\varepsilon|p_1|^2}}{|p_1|^2}\,\frac{e^{-\varepsilon|p_1-p|^2}}{|p_1-p|^2}\,(\text{numerator}).
+\]
+Numerator algebra. Contracting the two vertex functions along the two edges (the exchange of the edges is the automorphism counted by $1/|\operatorname{Aut}\gamma|=\tfrac12$),
+\[
+\begin{aligned}
+\text{numerator}={}&-\big(|p_1|^2+|p_1-p|^2+4|p|^2\big)(A(p),A(-p))+2(\iota_pA(p),\iota_pA(-p))\\
+&-5\big[(\iota_{p_1}A(p),\iota_{p_1-p}A(-p))+(\iota_{p_1-p}A(p),\iota_{p_1}A(-p))\big].
+\end{aligned}
+\]
+At $p_1=\frac{t_2}{t_1+t_2}p$, $|p_1|^2+|p_1-p|^2=\big(1-\frac{2t_1t_2}{(t_1+t_2)^2}\big)|p|^2$, and each of the two bracketed pairings equals $-\frac{t_1t_2}{(t_1+t_2)^2}(\iota_pA(p),\iota_pA(-p))$; the positive Laplacian in $p_1$ of the numerator is $36\,(A(p),A(-p))$.
+
+Schwinger integral. By Lemma \ref{lem:c4-gauss} the plane-wave value is
+\[
+\begin{aligned}
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\iint_{[\varepsilon,\infty)^2}\frac{e^{-\frac{t_1t_2|p|^2}{t_1+t_2}}}{(t_1+t_2)^2}\Big[&-\frac{9\,(A(p),A(-p))}{t_1+t_2}+\Big(\frac{2t_1t_2}{(t_1+t_2)^2}-5\Big)|p|^2(A(p),A(-p))\\
+&+\Big(\frac{10t_1t_2}{(t_1+t_2)^2}+2\Big)(\iota_pA(p),\iota_pA(-p))\Big]dt_1dt_2 .
+\end{aligned}
+\]
+$\varepsilon$-expansion. By Lemma \ref{lem:c4-integrals} the double integral of the bracket is, modulo $\mathscr A_{\ge0}$,
+\[
+\begin{aligned}
+&-9\Big(\tfrac14\varepsilon^{-1}+\tfrac16|p|^2\log\varepsilon\Big)(A(p),A(-p))+\Big(-\tfrac13+5\Big)|p|^2\log\varepsilon\,(A(p),A(-p))\\
+&\quad+\Big(-\tfrac{10}6-2\Big)\log\varepsilon\,(\iota_pA(p),\iota_pA(-p))\\
+&\quad=-\tfrac94\varepsilon^{-1}(A(p),A(-p))+\tfrac{19}{6}|p|^2\log\varepsilon\,(A(p),A(-p))-\tfrac{11}{3}\log\varepsilon\,(\iota_pA(p),\iota_pA(-p)).
+\end{aligned}
+\]
+Local part. The plane-wave coefficients are $\tfrac12\cdot(-\tfrac94)=-\tfrac98$, $\tfrac12\cdot\tfrac{19}6=\tfrac{19}{12}$, $\tfrac12\cdot(-\tfrac{11}3)=-\tfrac{11}6$. By \eqref{eq:c4-pw} these are the plane-wave coefficients of
+\[
+\begin{aligned}
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[&-\tfrac9{16}\varepsilon^{-1}\int\mathrm{dvol}\,(A|_V,A|_V)\\
+&+\log\varepsilon\Big(\tfrac{19}{24}\int\mathrm{dvol}\,(dA|_V,dA|_V)-\tfrac18\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\Big)\Big],
+\end{aligned}
+\]
+since $2\cdot(-\tfrac9{16})=-\tfrac98$, $2\cdot\tfrac{19}{24}=\tfrac{19}{12}$ and $2\big(-\tfrac{19}{24}-\tfrac18\big)=-\tfrac{11}{6}$. This is row (c) of the first table.
+\end{example}
+
+\begin{example}[Gaugino loop, graph (e) of the $A|_V$ two-point function]
+\label{ex:c4-gaugino}
+Amplitude. Two vertices $\lambda\lambda A|_V$ (Definition \ref{def:c1-vertex}); each edge carries the $\lambda\otimes\lambda$ component $(-,-)^{-1}\otimes i\rho(\cdot)|_{\Sigma^*\to\Sigma}$ of $P(\varepsilon,\infty)$ at the momentum $p_1$, resp. $p_1-p$; the parity operator in $\mathrm{STr}$ gives the sign of the loop of odd fields. The prefactor and the scalar propagator factors are those of Example \ref{ex:c4-gauge}.
+
+Numerator algebra. The trace over $\Sigma$ of the products of Clifford multiplications, evaluated with $\rho(v)\rho(v')+\rho(v')\rho(v)=2(v,v')$, gives
+\[
+\text{numerator}=-16\big[(p_1,p_1-p)(A(p),A(-p))-(\iota_{p_1}A(p),\iota_{p_1-p}A(-p))-(\iota_{p_1-p}A(p),\iota_{p_1}A(-p))\big],
+\]
+with value $\frac{16t_1t_2}{(t_1+t_2)^2}\big(|p|^2(A(p),A(-p))-2(\iota_pA(p),\iota_pA(-p))\big)$ at the centre and positive Laplacian $64\,(A(p),A(-p))$.
+
+Schwinger integral.
+\[
+\begin{aligned}
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\iint_{[\varepsilon,\infty)^2}\frac{e^{-\frac{t_1t_2|p|^2}{t_1+t_2}}}{(t_1+t_2)^2}\Big[&-\frac{16\,(A(p),A(-p))}{t_1+t_2}+\frac{16t_1t_2}{(t_1+t_2)^2}|p|^2(A(p),A(-p))\\
+&-\frac{32t_1t_2}{(t_1+t_2)^2}(\iota_pA(p),\iota_pA(-p))\Big]dt_1dt_2 .
+\end{aligned}
+\]
+$\varepsilon$-expansion. Modulo $\mathscr A_{\ge0}$, the double integral of the bracket is $-4\varepsilon^{-1}(A(p),A(-p))-\tfrac{16}{3}\log\varepsilon\big(|p|^2(A(p),A(-p))-(\iota_pA(p),\iota_pA(-p))\big)$, the $|p|^2$ terms being $-16\cdot\tfrac16-16\cdot\tfrac16$.
+
+Local part. $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\big[-\varepsilon^{-1}\int\mathrm{dvol}\,(A|_V,A|_V)-\tfrac43\log\varepsilon\int\mathrm{dvol}\,(dA|_V,dA|_V)\big]$: the $\log\varepsilon$ part of the gaugino loop is transverse.
+\end{example}
+
+\begin{example}[Ghost loop, graph (f) of the $A|_V$ two-point function]
+\label{ex:c4-ghost}
+Amplitude. Two vertices $A|_V\,c\,A^*|_V$ (Definition \ref{def:c1-vertex}); the edges carry the components $c\otimes A^*|_V$ and $A^*|_V\otimes c$ of $P(\varepsilon,\infty)$, equal to $-(-,-)^{-1}\,i\,(\text{edge momentum})$ times the scalar factor (Proposition \ref{prop:c3-P}); the parity operator gives the sign of the loop of odd fields.
+
+Numerator algebra. The two orientations of the ghost line contribute
+\[
+\text{numerator}=(\iota_{p_1}A(p),\iota_{p_1-p}A(-p))+(\iota_{p_1-p}A(p),\iota_{p_1}A(-p)),
+\]
+with value $-\frac{2t_1t_2}{(t_1+t_2)^2}(\iota_pA(p),\iota_pA(-p))$ at the centre and positive Laplacian $-4\,(A(p),A(-p))$.
+
+Schwinger integral.
+\[
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\iint_{[\varepsilon,\infty)^2}\frac{e^{-\frac{t_1t_2|p|^2}{t_1+t_2}}}{(t_1+t_2)^2}\Big[\frac{(A(p),A(-p))}{t_1+t_2}-\frac{2t_1t_2}{(t_1+t_2)^2}(\iota_pA(p),\iota_pA(-p))\Big]dt_1dt_2 .
+\]
+$\varepsilon$-expansion. Modulo $\mathscr A_{\ge0}$, the double integral of the bracket is $\tfrac14\varepsilon^{-1}(A(p),A(-p))+\log\varepsilon\big(\tfrac16|p|^2(A(p),A(-p))+\tfrac13(\iota_pA(p),\iota_pA(-p))\big)$.
+
+Local part.
+\[
+\begin{aligned}
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big[&\tfrac1{16}\varepsilon^{-1}\int\mathrm{dvol}\,(A|_V,A|_V)\\
+&+\log\varepsilon\Big(\tfrac1{24}\int\mathrm{dvol}\,(dA|_V,dA|_V)+\tfrac18\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)\Big)\Big],
+\end{aligned}
+\]
+since $2\cdot\tfrac1{16}=\tfrac12\cdot\tfrac14$, $2\cdot\tfrac1{24}=\tfrac12\cdot\tfrac16$ and $2\big(-\tfrac1{24}+\tfrac18\big)=\tfrac12\cdot\tfrac13$. The longitudinal coefficient $\tfrac18$ cancels the $-\tfrac18$ of Example \ref{ex:c4-gauge}.
+\end{example}
+
+\begin{example}[Seagull, graph (a) of the $A|_V$ two-point function]
+\label{ex:c4-seagull}
+Amplitude. One quartic vertex \eqref{eq:c1-AAAA} with two legs and one $A|_V$ edge closed into a loop; the term $n=1$ of \eqref{eq:c3-oneloop}.
+
+Numerator algebra. Contracting two legs of \eqref{eq:c1-AAAA} with $2(-,-)^{-1}\otimes(\text{inverse metric of }V)$ and summing over the pairs of legs gives the numerator $6\,(A(p),A(-p))$, independent of $p_1$.
+
+Schwinger integral. By Lemma \ref{lem:c4-gauss} with one edge,
+\[
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int_\varepsilon^\infty\frac{6\,(A(p),A(-p))}{t^2}\,dt .
+\]
+$\varepsilon$-expansion. The integral equals $6\,\varepsilon^{-1}(A(p),A(-p))$ exactly; its $\varepsilon\frac{d}{d\varepsilon}$ is the graph with the edge pinned at $t=\varepsilon$, $-\varepsilon\cdot6\,\varepsilon^{-2}(A(p),A(-p))$, as in Proposition \ref{prop:c4-boundary}.
+
+Local part. $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\tfrac32\,\varepsilon^{-1}\int\mathrm{dvol}\,(A|_V,A|_V)$, a mass term with vanishing $\log\varepsilon$ part.
+\end{example}
+
+\begin{example}[The graph with external $c,A^*|_V$]
+\label{ex:c4-cAstar}
+Amplitude. Legs $r_1A^*(p)e^{i(p,x)}$ and $r_2c(-p)e^{-i(p,x)}$; two vertices $A|_V\,c\,A^*|_V$; one $A|_V$ edge and one $c$--$A^*$ edge (graph (c) of the third figure).
+
+Numerator algebra. The coefficient of $r_1r_2$ is $2i\,(p\,c(-p),A^*(p))$, independent of $p_1$.
+
+Schwinger integral.
+\[
+\frac\hbar2\,\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\iint_{[\varepsilon,\infty)^2}\frac{e^{-\frac{t_1t_2|p|^2}{t_1+t_2}}}{(t_1+t_2)^2}\,2i\,(p\,c(-p),A^*(p))\,dt_1dt_2 .
+\]
+$\varepsilon$-expansion. Modulo $\mathscr A_{\ge0}$, $-2i\log\varepsilon\,(p\,c(-p),A^*(p))$.
+
+Local part. The plane-wave coefficient is $\tfrac12\cdot(-2i)=-i$, and the plane-wave value of $\int\mathrm{dvol}\,(dc,A^*)$ is $i\,(p\,c(-p),A^*(p))$ by \eqref{eq:c4-pw}; the contribution is $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\big(-\log\varepsilon\big)\int\mathrm{dvol}\,(dc,A^*)$.
+\end{example}
+
+\begin{theorem}[The quadratic counterterm]
+\label{thm:c4-quadratic}
+The part of $I^{CT}[\varepsilon]$ quadratic in the fields is
+\begin{equation}
+\begin{aligned}
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big\{&\tfrac94\,\varepsilon^{-1}\Big[\int\mathrm{dvol}\,(A|_V,A|_V)+\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\Big]\\
+&+\log\varepsilon\Big[-\int\mathrm{dvol}\,(dA|_V,dA|_V)-\int\mathrm{dvol}\,(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})\\
+&\qquad\qquad+4\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)-\int\mathrm{dvol}\,(dc,A^*)\Big]\Big\}.
+\end{aligned}
+\label{eq:c4-quadratic}
+\end{equation}
+The coefficient of $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ is $0$, and every quadratic local functional mixing $A|_V$ with $A|_{W_{\mathbb R}^\perp}$, or $c$ with $A^*|_{W_{\mathbb R}^\perp}$, has coefficient $0$. In terms of the ten-component field $A$,
+\[
+\begin{aligned}
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Big\{&\tfrac94\,\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)\\
+&+\log\varepsilon\Big[-\int\mathrm{dvol}\,(dA,dA)+4\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)-\int\mathrm{dvol}\,(dc,A^*)\Big]\Big\}.
+\end{aligned}
+\]
+\end{theorem}
+
+\begin{proof}
+$I^{CT}[\varepsilon]$ is even and of degree $0$, so by the degrees of Chapter 1 its quadratic part has legs $(A,A)$, $(\lambda,\lambda)$, $(c,A^*)$ or $(c,\lambda^*)$. The regulator is covariant under $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$, since $H=d^*d+dd^*$ and $Q^{GF}$ commute with it, so $I^{CT}[\varepsilon]$ is invariant. The invariant pairings of a vector of $V$ with a vector of $W_{\mathbb R}^\perp$, of a scalar with a spinor, and of a scalar with a vector of $W_{\mathbb R}^\perp$ vanish; this gives the vanishing mixings and the vanishing of the sectors $(c,\lambda^*)$ and $(c,A^*|_{W_{\mathbb R}^\perp})$. The remaining sectors are the sums of the three tables, whose rows are all one-particle-irreducible one-loop graphs with these legs; the representative rows are derived in Examples \ref{ex:c4-gauge}--\ref{ex:c4-cAstar}. The sums are
+\[
+\begin{aligned}
+A|_V:&\quad \tfrac32+3-\tfrac9{16}-\tfrac34-1+\tfrac1{16}=\tfrac94,\qquad \tfrac{19}{24}-\tfrac12-\tfrac43+\tfrac1{24}=-1,\qquad -\tfrac18+\tfrac18=0;\\
+A|_{W_{\mathbb R}^\perp}:&\quad 2+\tfrac52-\tfrac14-2=\tfrac94,\qquad 1-2=-1;\qquad \lambda:\quad 1+3=4;\qquad (c,A^*):\quad -1 .
+\end{aligned}
+\]
+The ten-component form uses $(dA,dA)=(dA|_V,dA|_V)+(dA|_{W_{\mathbb R}^\perp},dA|_{W_{\mathbb R}^\perp})$, the cross term vanishing by the orthogonality of $V$ and $W_{\mathbb R}^\perp$.
+\end{proof}
+
+\begin{remark}[Two properties of the quadratic counterterm]
+\label{rem:c4-quadratic}
+The per-graph entries of the $A|_V$ and $A|_{W_{\mathbb R}^\perp}$ sectors differ, and their totals agree: \eqref{eq:c4-quadratic} is a functional of the ten-component field $A$. The $\log\varepsilon$ part is transverse, the longitudinal coefficients $-\tfrac18$ of the gauge bubble and $+\tfrac18$ of the ghost loop cancelling, and it is a sum of multiples of the three terms of the free action \eqref{eq:c1-free}:
+\[
+\begin{aligned}
+&-\int\mathrm{dvol}\,(dA,dA)+4\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)-\int\mathrm{dvol}\,(dc,A^*)\\
+&\quad=4\Big(-\tfrac14\int\mathrm{dvol}\,(dA,dA)\Big)+8\Big(\tfrac12\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)\Big)-1\cdot\int\mathrm{dvol}\,(dc,A^*).
+\end{aligned}
+\]
+The $\varepsilon^{-1}$ part is a mass term for all ten components of $A$.
+\end{remark}
+
+\section{Cubic and quartic graphs}
+
+The cubic and quartic parts of $I^{CT}[\varepsilon]$ are organised by the Weyl weights of Example \ref{ex:c2-dil}: $A$ has weight $1$, $\lambda$ weight $\tfrac32$, $c$ weight $0$, and the antifields $A^*,\lambda^*,c^*$ the complementary weights $3,\tfrac52,4$, so that each pairing of a field with its antifield has weight $4$. The weight of a local functional $\int\mathrm{dvol}\,(\cdots)$ is the sum of the weights of its fields plus the number of its derivatives, and every term of $S$ has weight $4$. The superficial degree of a graph is $4$ minus the sum of the weights of its legs: $2$ for $(A,A)$, $1$ for $(\lambda,\lambda)$, $(c,A^*)$, $(A|_V,A|_V,A|_V)$, $(A|_V,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, and $0$ for the other cubic and the quartic leg sets below.
+
+\begin{lemma}[Weights of the singular coefficients]
+\label{lem:c4-weights}
+Let $\gamma$ be a one-loop one-particle-irreducible graph with vertices labelled by $I$. Its superficial degree in the sense of Lemma \ref{lem:c4-local} is $4$ minus the sum of the weights of its legs. The coefficient of $\varepsilon^{-k}$ in its singular part is a local functional of weight $4-2k$, and the coefficient of $\log\varepsilon$ a local functional of weight $4$; in particular the coefficient of $\varepsilon^{-1}$ has weight $2$.
+\end{lemma}
+
+\begin{proof}
+In momentum space, a vertex with fields of total weight $4-k$ is a polynomial of degree $k$ in the momenta, since every term of $S$ has weight $4$; an edge component of $P(\varepsilon,\infty)$ between slots of total weight $2+k$ is a polynomial of degree $k$ times $\int_\varepsilon^\infty e^{-t_e|\text{momentum}|^2}dt_e$ (Proposition \ref{prop:c3-P}: degree $0$ for $A\otimes A$, $1$ for $c\otimes A^*$ and $\lambda\otimes\lambda$). Each internal half-edge contributes its weight once to a vertex and once to an edge, so, for legs in fixed slots and every assignment of slots to the internal half-edges, the numerator of $\gamma$ is homogeneous of degree $4|V(\gamma)|-2|E(\gamma)|$ minus the sum of the weights of the legs, in the loop momentum $p_1$ and the leg momenta, which is the homogeneity required in Lemma \ref{lem:c4-local}; with $|E(\gamma)|=|V(\gamma)|$ at one loop, its degree plus $4-2|E(\gamma)|$ is $4$ minus the sum of the weights of the legs. By Lemma \ref{lem:c4-local} the coefficient of $\varepsilon^{-k}$ is a polynomial in the leg momenta, homogeneous of degree (superficial degree)$-2k$, and that of $\log\varepsilon$ is homogeneous of degree equal to the superficial degree. The weight of such a local coefficient is the sum of the leg weights, $4-$(superficial degree), plus its degree in the momenta, which gives $4-2k$ and $4$.
+\end{proof}
+
+\begin{lemma}[Local functionals of weight at most four]
+\label{lem:c4-enumeration}
+Let a local functional of degree $0$, without constant term, have weight at most $4$ and be invariant under $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ and the adjoint action of $\mathfrak g$. If it is even, it is a linear combination of: in weight $2$, $\int\mathrm{dvol}\,(A|_V,A|_V)$ and $\int\mathrm{dvol}\,(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$; in weight $4$, functionals whose monomials have one of the field contents
+\[
+\begin{aligned}
+&(A|_V)^2\ \text{and}\ (A|_{W_{\mathbb R}^\perp})^2\ \text{with two derivatives};\qquad \lambda\lambda\ \text{and}\ c\,A^*|_V\ \text{with one derivative};\\
+&(A|_V)^3\ \text{and}\ A|_V(A|_{W_{\mathbb R}^\perp})^2\ \text{with one derivative};\qquad \lambda\lambda A|_V,\ \lambda\lambda A|_{W_{\mathbb R}^\perp},\\
+&c\,A|_V\,A^*|_V,\ c\,A|_{W_{\mathbb R}^\perp}A^*|_{W_{\mathbb R}^\perp},\ c\,\lambda\,\lambda^*,\ c\,c\,c^*;\qquad (A|_V)^4,\ (A|_V)^2(A|_{W_{\mathbb R}^\perp})^2,\ (A|_{W_{\mathbb R}^\perp})^4,
+\end{aligned}
+\]
+In weights $1$ and $3$ there are none.
+\end{lemma}
+
+\begin{proof}
+As functionals, $c$ has degree $+1$, $A^*$ and $\lambda^*$ degree $-1$, $c^*$ degree $-2$, and $A,\lambda$ degree $0$ (Chapter 1). Degree $0$ requires the number of $c$ to equal the number of $A^*$ and $\lambda^*$ plus twice the number of $c^*$, and weight at most $4$ allows at most one antifield. With $c^*$ (weight $4$): $c\,c\,c^*$. With $A^*$ (weight $3$): one $c$ and weight at most $1$ more, i.e. $c\,A^*$ with one derivative or $c\,A\,A^*$; invariance pairs $A^*|_V$ with the derivative or with $A|_V$, and $A^*|_{W_{\mathbb R}^\perp}$ with $A|_{W_{\mathbb R}^\perp}$. With $\lambda^*$ (weight $\tfrac52$): one $c$ and, by $\mathrm{Spin}(4,\mathbb C)$, one spinor $\lambda$. Without antifields there is no $c$; the monomials are built from $A$, $\lambda$ and derivatives, with an even number of spinors. $\mathrm{Spin}(6,\mathbb C)$ admits invariants of an even number of vectors of $W_{\mathbb R}^\perp$ (the invariant volume form of $W_{\mathbb R}^\perp$ needs six) and $\mathrm{Spin}(4,\mathbb C)$ of an even number of vector indices from $A|_V$ and the derivatives. In weight $2$ this leaves $(A|_V)^2$, $(A|_{W_{\mathbb R}^\perp})^2$; in weight $4$ the listed contents, a single $A$ with three derivatives being a total derivative; in weight $1$ the single $A$, without invariant; in weight $3$ the contents $A^3$, $A\,A$ with one derivative, $c\,A^*$, each with an odd number of vector indices of $V$ or of $W_{\mathbb R}^\perp$, and $\lambda\lambda$, whose components lie in $S_+\otimes S_-$ (a vector of $V$) or in $W\otimes W$, $W^*\otimes W^*$ (without $SL(4,\mathbb C)$-invariant); all of these have vanishing invariants.
+\end{proof}
+
+\begin{proposition}[Structure of the one-loop counterterm]
+\label{prop:c4-structure}
+$I^{CT}[\varepsilon]$ is the sum of $\varepsilon^{-1}$ times the mass term of Theorem \ref{thm:c4-quadratic} and $\log\varepsilon$ times a local functional of weight $4$ with the field contents of Lemma \ref{lem:c4-enumeration}. Its $\log\varepsilon$ part is therefore determined by the one-particle-irreducible one-loop graphs with the leg sets $(A|_V,A|_V)$, $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $(\lambda,\lambda)$, $(c,A^*|_V)$, the eight cubic sets $(A|_V,A|_V,A|_V)$, $(A|_V,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $(\lambda,\lambda,A|_V)$, $(\lambda,\lambda,A|_{W_{\mathbb R}^\perp})$, $(c,A|_V,A^*|_V)$, $(c,A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(c,\lambda,\lambda^*)$, $(c,c,c^*)$, and the three quartic sets $(A|_V)^4$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$.
+\end{proposition}
+
+\begin{proof}
+By Lemmas \ref{lem:c4-local} and \ref{lem:c4-weights}, the singular part of a one-particle-irreducible one-loop graph with vertices labelled by $I$ consists of $\varepsilon^{-k}$ times a local functional of weight $4-2k$, $1\le k\le\frac12(\text{superficial degree})$, and $\log\varepsilon$ times a local functional of weight $4$, and it vanishes when the superficial degree is negative. The slots of every vertex of $I$ have degrees adding to $0$, and so have the two slots joined by every nonzero component of $P(\varepsilon,\infty)$ (Proposition \ref{prop:c3-P}: $A\otimes A$, $c\otimes A^*|_V$, $A^*|_V\otimes c$, $\lambda\otimes\lambda$); hence the legs of every graph have degrees adding to $0$. With the degrees of the proof of Lemma \ref{lem:c4-enumeration}, a set of $n$ legs with degrees adding to $0$ has weight at least $n$: every leg other than $c$ has weight at least $1$, every $c$ has weight $0$ and degree $+1$, and the antifields exceed weight $1$ by $\tfrac32$ per unit of negative degree or more ($A^*$: $3=1+2$, $\lambda^*$: $\tfrac52=1+\tfrac32$, $c^*$: $4=1+\tfrac32\cdot2$), so the weight is at least $n-(\text{number of }c)+\tfrac32(\text{number of }c)\ge n$. The graphs with one leg have value $0$ (Lemma \ref{lem:c4-factor}). Hence the superficial degree, $4$ minus the weight of the legs, is at most $2$, and negative for five or more legs; by Lemma \ref{lem:c4-local} no power $\varepsilon^{-k}$ with $k\ge2$ occurs, and the coefficient of $\varepsilon^{-1}$ has weight $2$. $I^{CT}[\varepsilon]$ is invariant under $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ and the adjoint action of $\mathfrak g$ (proof of Theorem \ref{thm:c4-quadratic}), so by Lemma \ref{lem:c4-enumeration} the coefficient of $\varepsilon^{-1}$ is a combination of the two mass terms, computed in Theorem \ref{thm:c4-quadratic}, and the coefficient of $\log\varepsilon$ has the listed contents.
+\end{proof}
+
+\subsection{Cubic graphs}
+
+Every cubic graph below has vanishing coefficient of $\varepsilon^{-1}$, in accordance with Lemma \ref{lem:c4-weights}. Its $\log\varepsilon$ coefficient, as a multilinear form in the three legs, is a rational multiple of the tree vertex function of Definition \ref{def:c1-vertex} with the same legs; the tables give these multiples, in units of $\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$. The tree vertices are: the $(A|_V)^3$ and $A|_V(A|_{W_{\mathbb R}^\perp})^2$ parts of $\int\mathrm{dvol}\,\big(-\tfrac12(dA,\tfrac12[A\wedge A])\big)$; the $A|_V$ and $A|_{W_{\mathbb R}^\perp}$ parts of $\int\mathrm{dvol}\,\tfrac12(\lambda,({\not d}_A-{\not d})\lambda)$; the $A|_V$ and $A|_{W_{\mathbb R}^\perp}$ parts of $\int\mathrm{dvol}\,([A,c],A^*)$; $\int\mathrm{dvol}\,([c,\lambda],\lambda^*)$; $\int\mathrm{dvol}\,\tfrac12([c,c],c^*)$.
+
+\fig{diagrams/composite/cubic_AV_AV_AV.png}{One-loop one-particle-irreducible graphs with external $(A|_V,A|_V,A|_V)$: triangles with (a) $A|_V$, (b) $A|_{W_{\mathbb R}^\perp}$, (c) $\lambda$ lines, (d), (e) the two orientations of the $c$--$A^*$ loop; bubbles with one quartic vertex and (f)--(h) $A|_V$, (i)--(k) $A|_{W_{\mathbb R}^\perp}$ lines, one for each leg at the cubic vertex.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $(A|_V)^3$, $(A|_V)^3$, $(A|_V)^3$ & $A|_V$, $A|_V$, $A|_V$ & $1$ & $1$ & $\tfrac{13}{4}$ \\
+(b) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $1$ & $2$ \\
+(c) & $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda$, $\lambda$, $\lambda$ & $1$ & $1$ & $\tfrac{16}{3}$ \\
+(d), (e) & $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$ & $c$--$A^*$, $c$--$A^*$, $c$--$A^*$ & $2$ & $1$ & $-\tfrac{1}{12}$ \\
+(f)--(h) & $(A|_V)^3$, $(A|_V)^4$ & $A|_V$, $A|_V$ & $3$ & $\tfrac12$ & $-\tfrac{9}{2}$ \\
+(i)--(k) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $3$ & $\tfrac12$ & $0$ \\
+total & & & & & $6$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(A|_V,A|_V,A|_V)$, as multiples of the tree vertex.}
+
+\fig{diagrams/composite/cubic_AV_AWperp_AWperp.png}{One-loop one-particle-irreducible graphs with external $(A|_V,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$: triangles (a)--(c); bubbles with one quartic vertex (d)--(g).}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $1$ & $\tfrac{3}{2}$ \\
+(b) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $1$ & $1$ \\
+(c) & $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda$, $\lambda$, $\lambda$ & $1$ & $1$ & $8$ \\
+(d) & $(A|_V)^3$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$ & $1$ & $\tfrac12$ & $0$ \\
+(e) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $\tfrac12$ & $0$ \\
+(f), (g) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $1$ & $-\tfrac{9}{2}$ \\
+total & & & & & $6$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(A|_V,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, as multiples of the tree vertex.}
+
+\fig{diagrams/composite/cubic_lambda_lambda_AV.png}{One-loop one-particle-irreducible graphs with external $(\lambda,\lambda,A|_V)$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $(A|_V)^3$, $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $A|_V$, $A|_V$, $\lambda$ & $1$ & $1$ & $3$ \\
+(b) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $\lambda$ & $1$ & $1$ & $3$ \\
+(c) & $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $A|_V$, $\lambda$, $\lambda$ & $1$ & $1$ & $1$ \\
+(d) & $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $\lambda$, $\lambda$ & $1$ & $1$ & $3$ \\
+total & & & & & $10$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(\lambda,\lambda,A|_V)$, as multiples of the tree vertex; the tree vertex pairs the two four-dimensional chiralities $S_+\otimes W$ and $S_-\otimes W^*$ of $\lambda$.}
+
+\fig{diagrams/composite/cubic_lambda_lambda_AWperp.png}{One-loop one-particle-irreducible graphs with external $(\lambda,\lambda,A|_{W_{\mathbb R}^\perp})$; (a), (b) differ by the leg attached to the vertex $A|_V(A|_{W_{\mathbb R}^\perp})^2$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a), (b) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $\lambda$ & $2$ & $1$ & $2$ \\
+(c) & $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A|_V$, $\lambda$, $\lambda$ & $1$ & $1$ & $4$ \\
+(d) & $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$, $\lambda$, $\lambda$ & $1$ & $1$ & $4$ \\
+total & & & & & $10$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(\lambda,\lambda,A|_{W_{\mathbb R}^\perp})$, as multiples of the tree vertex. The tree vertex has two structures, both $\lambda$ in $S_+\otimes W$ or both in $S_-\otimes W^*$ (Proposition \ref{prop:c1-chirality}); the total is $10$ times the tree in each of them.}
+
+\fig{diagrams/composite/cubic_c_AV_AstarV.png}{One-loop one-particle-irreducible graphs with external $(c,A|_V,A^*|_V)$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $(A|_V)^3$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$ & $A|_V$, $A|_V$, $c$--$A^*$ & $1$ & $1$ & $\tfrac{3}{4}$ \\
+(b) & $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$ & $A|_V$, $c$--$A^*$, $c$--$A^*$ & $1$ & $1$ & $\tfrac{1}{4}$ \\
+total & & & & & $1$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(c,A|_V,A^*|_V)$, as multiples of the tree vertex.}
+
+\fig{diagrams/composite/cubic_c_AWperp_AstarWperp.png}{The one-loop one-particle-irreducible graph with external $(c,A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V\,c\,A^*|_V$, $A|_{W_{\mathbb R}^\perp}\,c\,A^*|_{W_{\mathbb R}^\perp}$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $c$--$A^*$ & $1$ & $1$ & $1$ \\
+total & & & & & $1$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficient of the graph with external $(c,A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, as a multiple of the tree vertex.}
+
+\fig{diagrams/composite/cubic_c_lambda_lambdastar.png}{The one-loop one-particle-irreducible graph with external $(c,\lambda,\lambda^*)$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $c\,\lambda\,\lambda^*$, $A|_V\,c\,A^*|_V$, $\lambda\lambda A|_V$ & $A|_V$, $c$--$A^*$, $\lambda$ & $1$ & $1$ & $1$ \\
+total & & & & & $1$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficient of the graph with external $(c,\lambda,\lambda^*)$, as a multiple of the tree vertex, for $\lambda$ in either chirality.}
+
+\fig{diagrams/composite/cubic_c_c_cstar.png}{The one-loop one-particle-irreducible graph with external $(c,c,c^*)$.}
+
+\begin{tabular}{l|l|l|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $\log\varepsilon$ coefficient \\
+\hline
+(a) & $c\,c\,c^*$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$ & $A|_V$, $c$--$A^*$, $c$--$A^*$ & $1$ & $1$ & $1$ \\
+total & & & & & $1$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficient of the graph with external $(c,c,c^*)$, as a multiple of the tree vertex.}
+
+\subsection{Quartic graphs}
+
+For the quartic sets leg $j\in\{1,2,3,4\}$ carries a decomposable fibre element $(v_j,-)\otimes X_j$ with $X_j\in\mathfrak g$, $v_j\in V$ for a leg $A|_V$ and $v_j\in W_{\mathbb R}^\perp$ for a leg $A|_{W_{\mathbb R}^\perp}$; in the set $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ legs $1,2$ are $A|_V$ and legs $3,4$ are $A|_{W_{\mathbb R}^\perp}$. A multilinear form is determined by its values on such legs, and by Lemma \ref{lem:c4-weights} the $\log\varepsilon$ coefficients are independent of the momenta. They are written in the basis of products of a colour factor and a Lorentz factor:
+\begin{itemize}
+\item colour factors: the pairing $([X_1,X_2],[X_3,X_4])$ of the bracket of the colour elements of legs $1,2$ with the bracket of those of legs $3,4$; the pairing $([X_1,X_4],[X_2,X_3])$; and the averaged trace $\tfrac1{24}\sum_{\text{orderings}}\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X_1}\mathrm{ad}_{X_2}\mathrm{ad}_{X_3}\mathrm{ad}_{X_4})$, the fourth-order adjoint trace averaged over the $24$ orderings of $X_1,\dots,X_4$. The third pairing $([X_1,X_3],[X_2,X_4])$ is the sum of the first two, by the Jacobi identity and the invariance of $(-,-)$.
+\item Lorentz factors: $(v_1,v_2)(v_3,v_4)$, $(v_1,v_3)(v_2,v_4)$, $(v_1,v_4)(v_2,v_3)$, products of metric pairings.
+\end{itemize}
+The two bracket pairings carry the unit $\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$, the averaged trace the unit $\hbar/16\pi^2$. On such legs, by the Hodge normalisation of Definition \ref{def:c1-action},
+\[
+\begin{aligned}
+&([A(p_1)\wedge A(p_2)],[A(p_3)\wedge A(p_4)])\\
+&\quad=([X_1,X_2],[X_3,X_4])\big((v_1,v_3)(v_2,v_4)-(v_1,v_4)(v_2,v_3)\big),
+\end{aligned}
+\]
+and similarly for the other two terms of \eqref{eq:c1-AAAA}. With the Jacobi identity in the form
+\[
+([X_1,X_3],[X_2,X_4])=([X_1,X_2],[X_3,X_4])+([X_1,X_4],[X_2,X_3]),
+\]
+the tree vertex function \eqref{eq:c1-AAAA} is
+\begin{equation}
+\begin{aligned}
+-\tfrac12\Big[&([X_1,X_2],[X_3,X_4])\big((v_1,v_2)(v_3,v_4)+(v_1,v_3)(v_2,v_4)-2(v_1,v_4)(v_2,v_3)\big)\\
+&+([X_1,X_4],[X_2,X_3])\big(2(v_1,v_2)(v_3,v_4)-(v_1,v_3)(v_2,v_4)-(v_1,v_4)(v_2,v_3)\big)\Big],
+\end{aligned}
+\label{eq:c4-tree4}
+\end{equation}
+and for $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, where $(v_1,v_3)=(v_1,v_4)=0$, it is
+\[
+-\tfrac12\big[([X_1,X_2],[X_3,X_4])+2([X_1,X_4],[X_2,X_3])\big](v_1,v_2)(v_3,v_4).
+\]
+
+\fig{diagrams/composite/quartic_AV4_boxes.png}{Box graphs with external $(A|_V)^4$. Columns: the three cyclic orders of the legs. Rows: loops of $A|_V$ (a)--(c), $A|_{W_{\mathbb R}^\perp}$ (d)--(f), $\lambda$ (g)--(i), and $c$--$A^*$ in the two orientations (j)--(o).}
+
+\fig{diagrams/composite/quartic_AV4_triangles.png}{Triangle graphs (one quartic vertex) with external $(A|_V)^4$: loops of $A|_V$ (a)--(f) and of $A|_{W_{\mathbb R}^\perp}$ (g)--(l).}
+
+\fig{diagrams/composite/quartic_AV4_bubbles.png}{Bubble graphs (two quartic vertices) with external $(A|_V)^4$: $A|_V$ lines (a)--(c), $A|_{W_{\mathbb R}^\perp}$ lines (d)--(f).}
+
+\begin{tabular}{l|l|l|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ \\
+\hline
+box (a)--(c) & $(A|_V)^3$, $(A|_V)^3$, $(A|_V)^3$, $(A|_V)^3$ & $A|_V$, $A|_V$, $A|_V$, $A|_V$ & $3$ & $1$ \\
+box (d)--(f) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $3$ & $1$ \\
+box (g)--(i) & $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_V$ & $\lambda$, $\lambda$, $\lambda$, $\lambda$ & $3$ & $1$ \\
+box (j)--(o) & $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$, $A|_V\,c\,A^*|_V$ & $c$--$A^*$, $c$--$A^*$, $c$--$A^*$, $c$--$A^*$ & $6$ & $1$ \\
+triangle (a)--(f) & $(A|_V)^3$, $(A|_V)^3$, $(A|_V)^4$ & $A|_V$, $A|_V$, $A|_V$ & $6$ & $1$ \\
+triangle (g)--(l) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $6$ & $1$ \\
+bubble (a)--(c) & $(A|_V)^4$, $(A|_V)^4$ & $A|_V$, $A|_V$ & $3$ & $\tfrac12$ \\
+bubble (d)--(f) & $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $3$ & $\tfrac12$ \\
+\end{tabular}
+\tabcaption{The classes of one-loop graphs with external $(A|_V)^4$; the panel letters refer to the box, triangle and bubble figures of this set.}
+
+\begin{tabular}{l|l|c|c|c|c|c|c|c|c|c|c}
+colour & Lorentz & box (a)--(c) & box (d)--(f) & box (g)--(i) & box (j)--(o) & triangle (a)--(f) & triangle (g)--(l) & bubble (a)--(c) & bubble (d)--(f) & total & $8\times$tree \\
+\hline
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_2)(v_3,v_4)$ & $\tfrac{5}{12}$ & $0$ & $-\tfrac{8}{3}$ & $0$ & $-\tfrac{13}{4}$ & $-2$ & $\tfrac{5}{2}$ & $1$ & $-4$ & $-4$ \\
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_3)(v_2,v_4)$ & $\tfrac{5}{12}$ & $0$ & $-\tfrac{8}{3}$ & $0$ & $-\tfrac{13}{4}$ & $-2$ & $\tfrac{5}{2}$ & $1$ & $-4$ & $-4$ \\
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_4)(v_2,v_3)$ & $-\tfrac{5}{6}$ & $0$ & $\tfrac{16}{3}$ & $0$ & $\tfrac{13}{2}$ & $4$ & $-5$ & $-2$ & $8$ & $8$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_2)(v_3,v_4)$ & $\tfrac{5}{6}$ & $0$ & $-\tfrac{16}{3}$ & $0$ & $-\tfrac{13}{2}$ & $-4$ & $5$ & $2$ & $-8$ & $-8$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_3)(v_2,v_4)$ & $-\tfrac{5}{12}$ & $0$ & $\tfrac{8}{3}$ & $0$ & $\tfrac{13}{4}$ & $2$ & $-\tfrac{5}{2}$ & $-1$ & $4$ & $4$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_4)(v_2,v_3)$ & $-\tfrac{5}{12}$ & $0$ & $\tfrac{8}{3}$ & $0$ & $\tfrac{13}{4}$ & $2$ & $-\tfrac{5}{2}$ & $-1$ & $4$ & $4$ \\
+averaged trace & $(v_1,v_2)(v_3,v_4)$ & $-\tfrac{37}{4}$ & $-12$ & $0$ & $\tfrac{1}{4}$ & $15$ & $24$ & $-6$ & $-12$ & $0$ & $0$ \\
+averaged trace & $(v_1,v_3)(v_2,v_4)$ & $-\tfrac{37}{4}$ & $-12$ & $0$ & $\tfrac{1}{4}$ & $15$ & $24$ & $-6$ & $-12$ & $0$ & $0$ \\
+averaged trace & $(v_1,v_4)(v_2,v_3)$ & $-\tfrac{37}{4}$ & $-12$ & $0$ & $\tfrac{1}{4}$ & $15$ & $24$ & $-6$ & $-12$ & $0$ & $0$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(A|_V)^4$ in the basis of colour and Lorentz factors, summed over each class, with the total and $8$ times the tree vertex \eqref{eq:c4-tree4}. Rows with a bracket pairing are in units of $\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$, rows with the averaged trace in units of $\hbar/16\pi^2$.}
+
+\fig{diagrams/composite/quartic_AV2_AWperp2_boxes.png}{Box graphs with external $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$; (g)--(i): gaugino loops in the three cyclic orders of the legs.}
+
+\fig{diagrams/composite/quartic_AV2_AWperp2_triangles.png}{Triangle graphs (one quartic vertex) with external $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$.}
+
+\fig{diagrams/composite/quartic_AV2_AWperp2_bubbles.png}{Bubble graphs (two quartic vertices) with external $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$.}
+
+\begin{tabular}{l|l|l|c|c|c|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ & $([X_1,X_2],[X_3,X_4])$ $\times\,(v_1,v_2)(v_3,v_4)$ & $([X_1,X_4],[X_2,X_3])$ $\times\,(v_1,v_2)(v_3,v_4)$ & averaged trace $\times\,(v_1,v_2)(v_3,v_4)$ \\
+\hline
+box (a), (b) & $(A|_V)^3$, $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $1$ & $\tfrac{1}{8}$ & $\tfrac{1}{4}$ & $-\tfrac{3}{2}$ \\
+box (c), (f) & $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $1$ & $0$ & $0$ & $0$ \\
+box (d), (e) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $1$ & $\tfrac{1}{6}$ & $\tfrac{1}{3}$ & $-2$ \\
+box (g)--(i) & $\lambda\lambda A|_V$, $\lambda\lambda A|_V$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda$, $\lambda$, $\lambda$, $\lambda$ & $3$ & $1$ & $-4$ & $-8$ & $0$ \\
+triangle (a) & $(A|_V)^3$, $(A|_V)^3$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_V$ & $1$ & $1$ & $-\tfrac{3}{4}$ & $-\tfrac{3}{2}$ & $9$ \\
+triangle (b) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $1$ & $-\tfrac{5}{6}$ & $-\tfrac{5}{3}$ & $10$ \\
+triangle (c) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^4$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $1$ & $-\tfrac{1}{8}$ & $-\tfrac{1}{4}$ & $\tfrac{3}{2}$ \\
+triangle (d), (i)--(l) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $5$ & $1$ & $-\tfrac{5}{6}$ & $-\tfrac{5}{3}$ & $4$ \\
+triangle (e)--(h) & $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $4$ & $1$ & $-\tfrac{5}{4}$ & $-\tfrac{5}{2}$ & $-3$ \\
+bubble (a) & $(A|_V)^4$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$ & $1$ & $\tfrac12$ & $\tfrac{1}{2}$ & $1$ & $-6$ \\
+bubble (b) & $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $1$ & $\tfrac12$ & $\tfrac{5}{6}$ & $\tfrac{5}{3}$ & $-10$ \\
+bubble (c), (d) & $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $2$ & $1$ & $\tfrac{13}{6}$ & $\tfrac{13}{3}$ & $-2$ \\
+total & & & & & $-4$ & $-8$ & $0$ \\
+$8\times$tree & & & & & $-4$ & $-8$ & $0$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ (legs $1,2$ along $V$, legs $3,4$ along $W_{\mathbb R}^\perp$), summed over each class, with the total and $8$ times the tree vertex; units as in the previous table.}
+
+\fig{diagrams/composite/quartic_AWperp4_boxes.png}{Box graphs with external $(A|_{W_{\mathbb R}^\perp})^4$: alternating $A|_V$ and $A|_{W_{\mathbb R}^\perp}$ lines (a)--(f), gaugino loops (g)--(i).}
+
+\fig{diagrams/composite/quartic_AWperp4_triangles.png}{Triangle graphs (one quartic vertex) with external $(A|_{W_{\mathbb R}^\perp})^4$: quartic vertex $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ (a)--(f) and $(A|_{W_{\mathbb R}^\perp})^4$ (g)--(l).}
+
+\fig{diagrams/composite/quartic_AWperp4_bubbles.png}{Bubble graphs (two quartic vertices) with external $(A|_{W_{\mathbb R}^\perp})^4$: $A|_V$ lines (a)--(c), $A|_{W_{\mathbb R}^\perp}$ lines (d)--(f).}
+
+\begin{tabular}{l|l|l|c|c}
+graphs & vertices & lines & number & $1/|\operatorname{Aut}\gamma|$ \\
+\hline
+box (a)--(f) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $6$ & $1$ \\
+box (g)--(i) & $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ & $\lambda$, $\lambda$, $\lambda$, $\lambda$ & $3$ & $1$ \\
+triangle (a)--(f) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$, $A|_{W_{\mathbb R}^\perp}$ & $6$ & $1$ \\
+triangle (g)--(l) & $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$ & $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $6$ & $1$ \\
+bubble (a)--(c) & $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$ & $A|_V$, $A|_V$ & $3$ & $\tfrac12$ \\
+bubble (d)--(f) & $(A|_{W_{\mathbb R}^\perp})^4$, $(A|_{W_{\mathbb R}^\perp})^4$ & $A|_{W_{\mathbb R}^\perp}$, $A|_{W_{\mathbb R}^\perp}$ & $3$ & $\tfrac12$ \\
+\end{tabular}
+\tabcaption{The classes of one-loop graphs with external $(A|_{W_{\mathbb R}^\perp})^4$.}
+
+\begin{tabular}{l|l|c|c|c|c|c|c|c|c}
+colour & Lorentz & box (a)--(f) & box (g)--(i) & triangle (a)--(f) & triangle (g)--(l) & bubble (a)--(c) & bubble (d)--(f) & total & $8\times$tree \\
+\hline
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_2)(v_3,v_4)$ & $\tfrac{1}{6}$ & $-\tfrac{16}{3}$ & $-\tfrac{1}{3}$ & $-2$ & $\tfrac{2}{3}$ & $\tfrac{17}{6}$ & $-4$ & $-4$ \\
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_3)(v_2,v_4)$ & $\tfrac{1}{6}$ & $-\tfrac{16}{3}$ & $-\tfrac{1}{3}$ & $-2$ & $\tfrac{2}{3}$ & $\tfrac{17}{6}$ & $-4$ & $-4$ \\
+$([X_1,X_2],[X_3,X_4])$ & $(v_1,v_4)(v_2,v_3)$ & $-\tfrac{1}{3}$ & $\tfrac{32}{3}$ & $\tfrac{2}{3}$ & $4$ & $-\tfrac{4}{3}$ & $-\tfrac{17}{3}$ & $8$ & $8$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_2)(v_3,v_4)$ & $\tfrac{1}{3}$ & $-\tfrac{32}{3}$ & $-\tfrac{2}{3}$ & $-4$ & $\tfrac{4}{3}$ & $\tfrac{17}{3}$ & $-8$ & $-8$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_3)(v_2,v_4)$ & $-\tfrac{1}{6}$ & $\tfrac{16}{3}$ & $\tfrac{1}{3}$ & $2$ & $-\tfrac{2}{3}$ & $-\tfrac{17}{6}$ & $4$ & $4$ \\
+$([X_1,X_4],[X_2,X_3])$ & $(v_1,v_4)(v_2,v_3)$ & $-\tfrac{1}{6}$ & $\tfrac{16}{3}$ & $\tfrac{1}{3}$ & $2$ & $-\tfrac{2}{3}$ & $-\tfrac{17}{6}$ & $4$ & $4$ \\
+averaged trace & $(v_1,v_2)(v_3,v_4)$ & $-2$ & $16$ & $4$ & $0$ & $-8$ & $-10$ & $0$ & $0$ \\
+averaged trace & $(v_1,v_3)(v_2,v_4)$ & $-2$ & $16$ & $4$ & $0$ & $-8$ & $-10$ & $0$ & $0$ \\
+averaged trace & $(v_1,v_4)(v_2,v_3)$ & $-2$ & $16$ & $4$ & $0$ & $-8$ & $-10$ & $0$ & $0$ \\
+\end{tabular}
+\tabcaption{The $\log\varepsilon$ coefficients of the graphs with external $(A|_{W_{\mathbb R}^\perp})^4$ in the basis of colour and Lorentz factors, with the total and $8$ times the tree vertex \eqref{eq:c4-tree4}; units as in the $(A|_V)^4$ table.}
+
+In each quartic set the averaged traces cancel in the total, so that the total is a combination of the two bracket pairings, and the total equals $8$ times the tree vertex.
+
+\subsection{The logarithmic part as a rescaling of the fields}
+
+Write $\int(A,A^*)$, $\int(\lambda^*,\lambda)$, $\int(c^*,c)$ for the local functionals $e\mapsto\langle e_A,e_{A^*}\rangle$, $\langle e_{\lambda^*},e_\lambda\rangle$, $\langle e_{c^*},e_c\rangle$, the pairing of Definition \ref{def:c1-pairing} applied to the components of the field $e$ in the two slots of a pair, the even member first; the first uses all ten components of $A$. For a monomial in the fields, let $n_A,n_{A^*},n_\lambda,n_{\lambda^*},n_c,n_{c^*}$ denote the numbers of its factors of each kind.
+
+\begin{lemma}[The bracket as a field count]
+\label{lem:c4-count}
+For every monomial $F$ in the fields,
+\[
+\Big\{\int(A,A^*),F\Big\}=(n_A-n_{A^*})F,\qquad \Big\{\int(\lambda^*,\lambda),F\Big\}=(n_{\lambda^*}-n_\lambda)F,\qquad \Big\{\int(c^*,c),F\Big\}=(n_{c^*}-n_c)F .
+\]
+Hence, on every monomial of $S$,
+\[
+\Big\{2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c),\,F\Big\}=\big(2(n_A-n_{A^*})+4(n_\lambda-n_{\lambda^*})+(n_c-n_{c^*})\big)F .
+\]
+\end{lemma}
+
+\begin{proof}
+By Definition \ref{def:c1-bracket}, the kernel $K_0$ pairs each even member $A,\lambda^*,c^*$ with its odd partner $A^*,\lambda,c$ with the coefficient $-\delta(x-y)$ times the inverse fibre pairing, which is the structure $K_0=-\sum(x_i\otimes\xi_i+\xi_i\otimes x_i)$, $\Delta_0=\sum\partial_{x_i}\partial_{\xi_i}$ of [C07, §10.1] for the manifold a point, in the notation of loc. cit.: $x_i$ an even coordinate and $\xi_i$ its odd partner, applied pointwise at each position. For one pair, $x_i\xi_i$ is odd, and
+\[
+\begin{aligned}
+\{x_i\xi_i,x_i\}&=\Delta_0(x_i^2\xi_i)-\Delta_0(x_i\xi_i)\,x_i+x_i\xi_i\,\Delta_0(x_i)=2x_i-x_i=x_i,\\
+\{x_i\xi_i,\xi_i\}&=\Delta_0(x_i\xi_i\xi_i)-\Delta_0(x_i\xi_i)\,\xi_i+x_i\xi_i\,\Delta_0(\xi_i)=-\xi_i .
+\end{aligned}
+\]
+The bracket with a fixed functional is a derivation, because $\Delta_0$ is a second-order operator, so $\{x_i\xi_i,-\}=x_i\partial_{x_i}-\xi_i\partial_{\xi_i}$ counts $x_i$ minus $\xi_i$. The three functionals of the lemma are the sums of $x_i\xi_i$ over the components, with $x_i$ the even member, which gives the three identities; the combination follows by linearity.
+\end{proof}
+
+\begin{theorem}[The logarithmic part of the one-loop counterterm]
+\label{thm:c4-log}
+The $\log\varepsilon$ part of $I^{CT}[\varepsilon]$ is
+\begin{equation}
+\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\,\log\varepsilon\,\big(Q+\{I,-\}\big)\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big).
+\label{eq:c4-log}
+\end{equation}
+Equivalently, it multiplies each monomial of $S$ by $2(n_A-n_{A^*})+4(n_\lambda-n_{\lambda^*})+(n_c-n_{c^*})$: the bracket acts as a weighted field count with weights $2$ for $A$, $4$ for $\lambda$, $1$ for $c$, and the opposite weights for the antifields.
+\end{theorem}
+
+\begin{proof}
+The functional $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ is odd. By Proposition \ref{prop:c1-Q}, $Q$ applied to it equals its bracket with $\tfrac12\langle e,Qe\rangle$, so
+\[
+\begin{aligned}
+\big(Q+\{I,-\}\big)\Big(2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big)&=\Big\{S,\,2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)\Big\}\\
+&=\Big\{2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c),\,S\Big\}
+\end{aligned}
+\]
+by the graded symmetry of Definition \ref{def:c1-bracket}, $S$ being even. By Lemma \ref{lem:c4-count}, this bracket multiplies the terms of $S$ by
+\[
+\begin{aligned}
+&-\tfrac14\int\mathrm{dvol}\,(dA,dA):\ 4,\qquad \tfrac12\int\mathrm{dvol}\,(\lambda,{\not d}\lambda):\ 8,\qquad \int\mathrm{dvol}\,(dc,A^*):\ 1-2=-1,\\
+&\int\mathrm{dvol}\,\big(-\tfrac12(dA,\tfrac12[A\wedge A])\big):\ 6,\qquad \int\mathrm{dvol}\,\tfrac12(\lambda,({\not d}_A-{\not d})\lambda):\ 8+2=10,\\
+&\int\mathrm{dvol}\,([A,c],A^*):\ 2+1-2=1,\qquad \int\mathrm{dvol}\,([c,\lambda],\lambda^*):\ 1+4-4=1,\\
+&\int\mathrm{dvol}\,\tfrac12([c,c],c^*):\ 2-1=1,\qquad \int\mathrm{dvol}\,\big(-\tfrac14(\tfrac12[A\wedge A],\tfrac12[A\wedge A])\big):\ 8 .
+\end{aligned}
+\]
+These are the computed multiples: the quadratic ones by Theorem \ref{thm:c4-quadratic} and Remark \ref{rem:c4-quadratic} (with the coefficient $0$ of $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$, absent from $S$), the cubic ones $6,6,10,10,1,1,1,1$ by the totals of the eight cubic tables, and the quartic ones $8,8,8$ by the totals of the three quartic tables. In the cubic and quartic sets the computed coefficient equals the multiple of the tree vertex as a multilinear form, including the two chirality structures of $(\lambda,\lambda,A|_{W_{\mathbb R}^\perp})$ and of $(c,\lambda,\lambda^*)$. By Proposition \ref{prop:c4-structure} these leg sets carry the whole $\log\varepsilon$ part of $I^{CT}[\varepsilon]$, so the two local functionals coincide.
+\end{proof}
+
+\begin{corollary}[The coupling counterterm vanishes at one loop]
+\label{cor:c4-coupling}
+Suppose the $\log\varepsilon$ part of $I^{CT}[\varepsilon]$ is written as $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\log\varepsilon$ times the sum of $\{S,-\}$ of an element of the span of $\int(A|_V,A^*|_V)$, $\int(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $\int(c^*,c)$ and the two chiral parts of $\int(\lambda^*,\lambda)$, and a multiple of $S$. Then the multiple of $S$ is $0$ and the element is $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$. The same holds with $S$ replaced by its classical part, the terms of $S$ without antifields. Since the coupling constant sits in $(-,-)$ and enters $S$ as an overall factor, the one-loop $\log\varepsilon$ counterterm is a rescaling of the fields with vanishing component along the coupling.
+\end{corollary}
+
+\begin{proof}
+By Lemma \ref{lem:c4-count}, $\{S,-\}$ of an element of the span multiplies each monomial of $S$ by a sum of field counts weighted by the coefficients of the element, additive over the factors of the monomial, and a multiple of $S$ adds the same number to every monomial. The terms of $S$ built from $A|_V$ alone contain $2$, $3$, $4$ factors $A|_V$, with computed multiples $4$, $6$, $8$: an additive weight times $2,3,4$ plus a common constant fits $4,6,8$ with weight $2$ and constant $3\cdot4-2\cdot6=0$. With the constant $0$: the kinetic terms of $A|_{W_{\mathbb R}^\perp}$ and $\lambda$ give the weight $2$ of $A|_{W_{\mathbb R}^\perp}$ and the sum $8$ of the two chiral weights of $\lambda$; the vertex $\lambda\lambda A|_{W_{\mathbb R}^\perp}$, whose two structures have both $\lambda$ of the same chirality, gives each chiral weight $(10-2)/2=4$; the ghost kinetic term $\int\mathrm{dvol}\,(dc,A^*)$ gives the weight $-1+2=1$ of $c$; the remaining eight multiples are then reproduced. For the classical part: by Lemma \ref{lem:c4-count} every term of $S$ containing an antifield has $n_c-n_{c^*}=1$ and every classical term has $n_c=n_{c^*}=0$, so $S$ minus its classical part equals $\{S,-\int(c^*,c)\}$, an element of the span; replacing $S$ by its classical part shifts the element by a multiple of $\int(c^*,c)$ and leaves the multiple unchanged.
+\end{proof}
+
+\begin{remark}[The mass term has nonzero BV variation]
+\label{rem:c4-epsinv}
+The $\varepsilon^{-1}$ part of $I^{CT}[\varepsilon]$, the mass term $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\tfrac94\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)$, has nonzero variation under $Q+\{I,-\}$. Indeed $\{I,\int\mathrm{dvol}\,(A,A)\}$ pairs the $A^*$ of $\int\mathrm{dvol}\,([A,c],A^*)$ with $A$ and is a multiple of $\int\mathrm{dvol}\,([A,c],A)=-\int\mathrm{dvol}\,(c,[A,A])=0$, the bracket $[A,A]$ contracting the symmetric metric with the antisymmetric bracket of $\mathfrak g$. By Proposition \ref{prop:c1-Q}, $Q$ inserts $Qc=-dc$ into the slot of $A|_V$, so
+\[
+\big(Q+\{I,-\}\big)\Big(\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\tfrac94\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)\Big)=-\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\tfrac92\varepsilon^{-1}\int\mathrm{dvol}\,(dc,A|_V).
+\]
+This is the breaking of the gauge symmetry by the regulator. The next section shows how the master equation at the UV boundary absorbs it and what it leaves behind.
+\end{remark}
+
+\section{The quantum master equation at the UV boundary}
+
+\begin{definition}[Defect vertex]
+\label{def:c4-defect}
+For an even functional $J$ with values in $\mathbb C[[\hbar]]$, at least cubic modulo $\hbar$, the defect vertex at scale $\varepsilon$ is the odd functional
+\[
+QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J,
+\]
+with $\Delta_\varepsilon$ and $\{-,-\}_\varepsilon$ of Definition \ref{def:c3-delta}. By Corollary \ref{cor:c3-qme}, its vanishing is the quantum master equation at scale $\varepsilon$.
+\end{definition}
+
+\begin{proposition}[The $Q$-variation at scale $\infty$ is the flow of the defect]
+\label{prop:c4-defectflow}
+On functionals without superconformal ghosts,
+\begin{equation}
+Q\,W(P(\varepsilon,\infty),J)=e^{-W(P(\varepsilon,\infty),J)/\hbar}\,e^{\hbar\partial_{P(\varepsilon,\infty)}}\Big(\big(QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J\big)\,e^{J/\hbar}\Big).
+\label{eq:c4-defectflow}
+\end{equation}
+Thus $Q\,W(P(\varepsilon,\infty),J)$ is the sum of the connected graphs with exactly one vertex labelled by the defect vertex, all other vertices by $J$, and all edges by $P(\varepsilon,\infty)$, with the weights of Proposition \ref{prop:c3-graphs} [C07, §15.4].
+\end{proposition}
+
+\begin{proof}
+For an even $J$, the product rule of Definition \ref{def:c3-delta} gives $(Q+\hbar\Delta_\varepsilon)e^{J/\hbar}=\hbar^{-1}\big(QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J\big)e^{J/\hbar}$, as in the proof of Corollary \ref{cor:c3-qme}. Theorem \ref{thm:c3-uv} without superconformal ghosts gives
+\[
+Q\,e^{\hbar\partial_{P(\varepsilon,\infty)}}e^{J/\hbar}=e^{\hbar\partial_{P(\varepsilon,\infty)}}\big(Q+\hbar\Delta_\varepsilon\big)e^{J/\hbar}=\hbar^{-1}e^{\hbar\partial_{P(\varepsilon,\infty)}}\Big(\big(QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J\big)\,e^{J/\hbar}\Big).
+\]
+The left side is $Q\,e^{W(P(\varepsilon,\infty),J)/\hbar}=\hbar^{-1}\big(Q\,W(P(\varepsilon,\infty),J)\big)e^{W(P(\varepsilon,\infty),J)/\hbar}$, $Q$ being a derivation; multiplying by $\hbar\,e^{-W(P(\varepsilon,\infty),J)/\hbar}$ gives \eqref{eq:c4-defectflow}. Expanding $e^{\hbar\partial_{P(\varepsilon,\infty)}}$ into graphs as in Proposition \ref{prop:c3-graphs}, the right side of \eqref{eq:c4-defectflow} is the sum of the graphs with exactly one vertex labelled by the defect vertex; the factor $e^{-W(P(\varepsilon,\infty),J)/\hbar}$, the exponential of the connected graphs of $J$, removes the components without that vertex, which leaves the connected graphs.
+\end{proof}
+
+With $\Delta_\infty=0$ and $\{-,-\}_\infty=0$, the quantum master equation at scale $\infty$ for the renormalised flow is $Q\lim_{\varepsilon\to0}W(P(\varepsilon,\infty),J)=0$ (Corollary \ref{cor:c3-qme}). Its failure at order $\hbar$ is the order-$\hbar$ part of $\lim_{\varepsilon\to0}Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$. By \eqref{eq:c4-defectflow} it is a sum of graphs with one defect vertex, among them trees of $I$ attached to that vertex; it is the flow to scale $\infty$ of an effective defect vertex, the one-loop obstruction. On a compact manifold with a finite upper scale the obstruction is the local functional of [C07, Prop 12.0.3], closed and independent of $\varepsilon$ by [C07, Lemma 12.0.4]; on $\mathbb R^4$ with upper scale $\infty$ these properties are part of Step 2. In the sector with legs $(c,A|_V)$ no tree of $I$ contributes at order $\hbar$, and the limit computed below is itself local.
+
+\begin{proposition}[The defect vertex at one loop]
+\label{prop:c4-defect1}
+For $J=I-I^{CT}[\varepsilon]$, with $I$ the classical interaction \eqref{eq:c1-I},
+\begin{equation}
+QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J=\tfrac12\big(\{I,I\}_\varepsilon-\{I,I\}\big)+\hbar\Delta_\varepsilon I-Q\,I^{CT}[\varepsilon]-\{I,I^{CT}[\varepsilon]\}_\varepsilon+(\text{terms of order }\hbar^2).
+\label{eq:c4-defect1}
+\end{equation}
+The first term is the bracket built from $\Delta_\varepsilon-\Delta_0=-\partial_{K_\varepsilon-K_0}$, i.e. two vertices of $I$ joined by one special edge carrying
+\[
+K_\varepsilon-K_0=-\int_0^\varepsilon(H\otimes1)K_t\,dt,
+\]
+which in momentum space is $e^{-\varepsilon|p|^2}-1$ times the components of $K_0$; its Schwinger time lies in $[0,\varepsilon]$.
+\end{proposition}
+
+\begin{proof}
+Expanding $QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ with $J=I-I^{CT}[\varepsilon]$ and $I^{CT}[\varepsilon]$ of order $\hbar$: at order $\hbar^0$, $QI+\tfrac12\{I,I\}_\varepsilon$; at order $\hbar$, $-QI^{CT}[\varepsilon]-\tfrac12\big(\{I,I^{CT}[\varepsilon]\}_\varepsilon+\{I^{CT}[\varepsilon],I\}_\varepsilon\big)+\hbar\Delta_\varepsilon I$, where the two brackets of even functionals coincide; the rest is $\tfrac12\{I^{CT}[\varepsilon],I^{CT}[\varepsilon]\}_\varepsilon-\hbar\Delta_\varepsilon I^{CT}[\varepsilon]$, of order $\hbar^2$. The classical master equation (Proposition \ref{prop:c1-cme}) gives $QI=-\tfrac12\{I,I\}$, with $\{-,-\}$ built from $\Delta_0$ (Definition \ref{def:c1-bracket}). From $K_t=(e^{-tH}\otimes1)K_0$, $\frac{d}{dt}K_t=-(H\otimes1)K_t$, and integration from $0$ to $\varepsilon$ gives the special edge; in momentum space $e^{-tH}$ is $e^{-t|p|^2}$.
+\end{proof}
+
+At order $\hbar$, the graphs of \eqref{eq:c4-defectflow} with two legs are: the term $-QI^{CT}[\varepsilon]$ as a vertex; the bubbles formed by the two vertices of $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$, joined by the special edge and one edge $P(\varepsilon,\infty)$; and one-particle-reducible graphs in which a loop closes at a single cubic vertex. The term $\{I,I^{CT}[\varepsilon]\}_\varepsilon$ has at least three legs.
+
+\begin{lemma}[Two-leg sectors of degree one]
+\label{lem:c4-sectors}
+An invariant local functional of degree $1$ with two legs and weight at most $4$ is a combination of $\int\mathrm{dvol}\,(dc,A|_V)$ (weight $2$) and $\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$ (weight $4$). In particular the sectors with legs $(c,A|_{W_{\mathbb R}^\perp})$ and $(c,\lambda)$ vanish.
+\end{lemma}
+
+\begin{proof}
+Degree $1$ with two legs requires one $c$ and one leg of degree $0$, $A$ or $\lambda$. The invariant pairings of a scalar with a spinor and with a vector of $W_{\mathbb R}^\perp$ vanish. With $A|_V$: one derivative in weight $2$, $\int\mathrm{dvol}\,(dc,A|_V)$; three derivatives in weight $4$, where $\int\mathrm{dvol}\,(dc,d^*dA|_V)=\int\mathrm{dvol}\,(d\,dc,dA|_V)=0$ and $\int\mathrm{dvol}\,(dc,dd^*A|_V)=\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$.
+\end{proof}
+
+\fig{diagrams/composite/qme_defect_c_AV.png}{The one-loop graphs of the defect vertex with external $c,A|_V$: the shaded edge is the special edge $K_\varepsilon-K_0$ of $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$, the other edge carries $P(\varepsilon,\infty)$. Special edge between the slots (a) $A|_V$, $A^*|_V$ with an $A|_V$ line; (b) $A|_V$, $A^*|_V$ with a $c$--$A^*$ line; (c) $A|_{W_{\mathbb R}^\perp}$, $A^*|_{W_{\mathbb R}^\perp}$ with an $A|_{W_{\mathbb R}^\perp}$ line; (d) $\lambda^*$, $\lambda$ with a $\lambda$ line; (e) $c^*$, $c$ with a $c$--$A^*$ line.}
+
+\fig{diagrams/composite/qme_defect_c_AV_reducible.png}{The one-particle-reducible graphs of the defect vertex with external $c,A|_V$. Row 1: from $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$, with an edge $P(\varepsilon,\infty)$ closing at one cubic vertex. Row 2: from $\hbar\Delta_\varepsilon I$, a special edge $K_\varepsilon$ closing at one cubic vertex. Each closed loop at a cubic vertex carries the colour factor $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X)=0$.}
+
+\begin{lemma}[Graphs with one special edge]
+\label{lem:c4-special}
+The plane-wave value of each bubble of the first figure is $\varepsilon^{-1}$ times a multiple of $\int\mathrm{dvol}\,(dc,A|_V)$ plus a multiple of $\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$ plus a term bounded by a multiple of $\varepsilon$, with vanishing coefficient of $\log\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+The special edge carries $-\int_0^\varepsilon(\cdots)e^{-t_1|p_1|^2}dt_1$ and the other edge $\int_\varepsilon^\infty(\cdots)e^{-t_2|p_1-p|^2}dt_2$. After the Gaussian integral over $p_1$ (Lemma \ref{lem:c4-gauss}, extended to the polynomial numerators of degree three of these graphs by the same moments), the integrand is $(t_1+t_2)^{-2}e^{-t_1t_2|p|^2/(t_1+t_2)}$ times a sum of terms $(t_1+t_2)^{-m}$, $m\ge0$, with polynomial coefficients in $\frac{t_1}{t_1+t_2}$ and $p$. On $[0,\varepsilon]\times[\varepsilon,\infty)$ the exponent satisfies $0\le\frac{t_1t_2|p|^2}{t_1+t_2}\le t_1|p|^2\le\varepsilon|p|^2$, so its exponential is a power series in $\varepsilon|p|^2$ with uniform remainders. Substituting $\varepsilon t_1$, $\varepsilon t_2$ for $t_1$, $t_2$ maps the region to $[0,1]\times[1,\infty)$, on which $(t_1+t_2)^{-2-m}$ is integrable, and each term becomes an integer power of $\varepsilon$ times a convergent integral. Hence the value is a series in integer powers of $\varepsilon$; by Lemma \ref{lem:c4-sectors} the coefficients of $\varepsilon^{-1}$ and $\varepsilon^0$ are the two listed functionals.
+\end{proof}
+
+\begin{tabular}{l|l|l|c|c}
+graph & special edge $K_\varepsilon-K_0$ & edge $P(\varepsilon,\infty)$ & coefficient of $\varepsilon^{-1}\int\mathrm{dvol}\,(dc,A|_V)$ & coefficient of $\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$ \\
+\hline
+(a) & $A|_V$--$A^*|_V$ & $A|_V$ & $-\tfrac94$ & $-\tfrac58$ \\
+(b) & $A|_V$--$A^*|_V$ & $c$--$A^*$ & $\tfrac18$ & $-\tfrac1{12}$ \\
+(c) & $A|_{W_{\mathbb R}^\perp}$--$A^*|_{W_{\mathbb R}^\perp}$ & $A|_{W_{\mathbb R}^\perp}$ & $-\tfrac92$ & $-\tfrac54$ \\
+(d) & $\lambda^*$--$\lambda$ & $\lambda$ & $2$ & $-\tfrac43$ \\
+(e) & $c^*$--$c$ & $c$--$A^*$ & $\tfrac18$ & $-\tfrac1{12}$ \\
+$-QI^{CT}[\varepsilon]$ & & & $\tfrac92$ & $0$ \\
+total & & & $0$ & $-\tfrac{27}{8}$ \\
+\end{tabular}
+\tabcaption{The one-loop part of $Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ with legs $(c,A|_V)$, graph by graph, in units of $\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$. Each bubble has weight $1$: the $\tfrac12$ of $\tfrac12\{I,I\}$ cancels against the two assignments of the two vertices. Every entry has vanishing $\log\varepsilon$ coefficient.}
+
+\begin{theorem}[The one-loop obstruction in the sector $(c,A|_V)$]
+\label{thm:c4-obstruction}
+The part of $Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ of order $\hbar$ with legs $(c,A|_V)$ has the following $\varepsilon$-expansion: the special-edge bubbles contribute $-\tfrac92\,\varepsilon^{-1}$ times $\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(dc,A|_V)$, the vertex $-QI^{CT}[\varepsilon]$ contributes $+\tfrac92\,\varepsilon^{-1}$ times the same functional, the coefficient of $\log\varepsilon$ is $0$, and the limit is
+\begin{equation}
+-\frac{27}{8}\,\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*dc,d^*A|_V)=\frac{27}{16}\,\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\;Q\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V).
+\label{eq:c4-obstruction}
+\end{equation}
+The sectors $(c,A|_{W_{\mathbb R}^\perp})$ and $(c,\lambda)$ of the one-loop obstruction vanish.
+\end{theorem}
+
+\begin{proof}
+By Proposition \ref{prop:c4-defectflow} and \eqref{eq:c4-defect1}, the order-$\hbar$ part with two legs is the sum of the graphs listed before Lemma \ref{lem:c4-sectors}. The one-particle-reducible graphs vanish: a loop closing at one cubic vertex contracts two legs of a vertex of the form $([X,Y],Z)$ with $(-,-)^{-1}$ and gives $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X)=0$ or the contraction of the antisymmetric bracket with the symmetric $(-,-)^{-1}$, both zero. The same argument gives $\Delta_\varepsilon I=0$: $K_\varepsilon$ pairs a field with its antifield, the vertices of $I$ containing an antifield are $([A,c],A^*)$, $([c,\lambda],\lambda^*)$, $\tfrac12([c,c],c^*)$, and each self-contraction is a trace of $\mathrm{ad}$. The five bubbles are given in the table; their $\varepsilon^{-1}$ coefficients sum to $-\tfrac94+\tfrac18-\tfrac92+2+\tfrac18=-\tfrac92$, and by Lemma \ref{lem:c4-special} they have vanishing $\log\varepsilon$ coefficient. By Theorem \ref{thm:c4-quadratic} and Remark \ref{rem:c4-epsinv}, $-QI^{CT}[\varepsilon]$ restricted to $(c,A|_V)$ is $-\tfrac94\cdot(-2)=\tfrac92$ times $\varepsilon^{-1}\int\mathrm{dvol}\,(dc,A|_V)$ in the unit; its $\log\varepsilon$ part restricted to $(c,A|_V)$ vanishes, because $Q\int\mathrm{dvol}\,(dA,dA)$ contains $d\,dc=0$, $Q\int\mathrm{dvol}\,(dc,A^*)$ restricted to $(c,A|_V)$ is $-\tfrac12\int\mathrm{dvol}\,(dc,d^*dA|_V)=-\tfrac12\int\mathrm{dvol}\,(d\,dc,dA|_V)=0$, and the coefficient of $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ is $0$. The finite parts sum to $-\tfrac58-\tfrac1{12}-\tfrac54-\tfrac43-\tfrac1{12}=-\tfrac{81}{24}=-\tfrac{27}8$. Finally $Q\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)=2\int\mathrm{dvol}\,(d^*A|_V,d^*(-dc))=-2\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$, so $-\tfrac{27}8=\tfrac{27}{16}\cdot(-2)$. The last statement is Lemma \ref{lem:c4-sectors}.
+\end{proof}
+
+\begin{remark}[The obstruction as the longitudinal part of the two-point function]
+\label{rem:c4-selfenergy}
+$Q$ preserves the polynomial degree of functionals, so the part of $Q\,W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$ with legs $(c,A|_V)$ at order $\hbar$ is $Q$ applied to the order-$\hbar$ quadratic part of $W(P(\varepsilon,\infty),I-I^{CT}[\varepsilon])$: the renormalised two-point function, whose limit as $\varepsilon\to0$ at nonzero momentum exists by Theorem \ref{thm:c4-quadratic} and Proposition \ref{prop:c4-limit}. $Q$ annihilates its $(c,A^*)$ part on $(c,A|_V)$, since $\iota_p$ of $|p|^2A|_V-p\,\iota_pA|_V$ is $0$, and its transverse $A|_V$ part, which depends on $A|_V$ through $dA|_V$. Hence the cancellation of $\varepsilon^{-1}$ and the vanishing of $\log\varepsilon$ in Theorem \ref{thm:c4-obstruction} follow from Theorem \ref{thm:c4-quadratic}, and the obstruction is $Q$ of the longitudinal part of the renormalised $A|_V$ two-point function at scale $\infty$. A longitudinal quadratic functional of $A|_V$ is $\int\mathrm{dvol}\,(d^*A|_V,G\,d^*A|_V)$ for a translation-invariant operator $G$ on functions, and $Q$ sends it to $-2\int\mathrm{dvol}\,(d^*dc,G\,d^*A|_V)$; comparing with \eqref{eq:c4-obstruction} shows that $G$ is the constant $\tfrac{27}{16}$ in the unit, so the longitudinal part is the local functional
+\[
+\frac{27}{16}\,\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V).
+\]
+Equivalently, $Q$ applied to the longitudinal parts of the graphs of the $A|_V$ two-point function, with every edge cut off at $\varepsilon$, sums to $-\tfrac92\varepsilon^{-1}$ and $-\tfrac{27}8$ times the functionals of \eqref{eq:c4-obstruction}; there the gauge bubble and the ghost loop carry separate $\log(\varepsilon|p|^2)$ and $\log2$ terms in their longitudinal parts, which cancel in their sum. Theorem \ref{thm:c4-obstruction} is the evaluation of the same quantity through the UV-boundary identity, on graphs with one special edge confined to $[0,\varepsilon]$.
+\end{remark}
+
+\begin{theorem}[The finite counterterm in the sector $(c,A|_V)$]
+\label{thm:c4-finite}
+Replace the renormalised interaction $I-I^{CT}[\varepsilon]$ by
+\begin{equation}
+I-\frac{27}{16}\,\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)-I^{CT}[\varepsilon].
+\label{eq:c4-finite}
+\end{equation}
+Then $I^{CT}[\varepsilon]$ at one loop is unchanged, the order-$\hbar$ part of the flow has a limit at generic leg momenta, and the part with legs $(c,A|_V)$ of the one-loop obstruction vanishes. The added term is local, even, of degree $0$ and weight $4$, independent of $\varepsilon$, and invariant under translations, $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$, the adjoint action of $\mathfrak g$ and the dilatation. Among the quadratic functionals of $A|_V$ of weight $4$ and degree $0$, it is unique up to adding multiples of $\int\mathrm{dvol}\,(dA|_V,dA|_V)$, which is $Q$-closed.
+\end{theorem}
+
+\begin{proof}
+The added term is of order $\hbar$, so at order $\hbar$ it enters the flow as a tree vertex, with a limit as $\varepsilon\to0$, and leaves the one-loop singular parts unchanged. In \eqref{eq:c4-defect1} it adds $-Q$ of itself at order $\hbar$, and $-\{I,\cdot\}_\varepsilon$ of itself, which has at least three legs. By Theorem \ref{thm:c4-obstruction} and $Q\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)=-2\int\mathrm{dvol}\,(d^*dc,d^*A|_V)$, the $(c,A|_V)$ part becomes $-\tfrac{27}{8}+\tfrac{27}{16}\cdot2=0$ in the unit. Invariance under the dilatation holds because the weight is $4$. For uniqueness: by Lemma \ref{lem:c4-enumeration}, the quadratic functionals of $A|_V$ of weight $4$ are spanned by $\int\mathrm{dvol}\,(dA|_V,dA|_V)$ and $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$; the first is $Q$-closed, since $d\,dc=0$, and the second has $Q$-variation $-2\int\mathrm{dvol}\,(d^*dc,d^*A|_V)\neq0$, so the coefficient $\tfrac{27}{16}$ of the second is forced.
+\end{proof}
+
+\begin{remark}[Renormalisation conditions belong to the definition of the theory]
+\label{rem:c4-condition}
+$I^{CT}[\varepsilon]$ is purely singular, and unique among the translation-invariant and $\mathfrak g$-invariant local functionals of Proposition \ref{prop:c4-unique} (the one-loop analogue of [C07, Thm B], in the scope of Remark \ref{rem:c4-thmB}); the finite term of \eqref{eq:c4-finite} is a finite change of the interaction, $I\mapsto I-\tfrac{27}{16}\frac{\hbar\,\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$, of the kind that lifts a theory across a $Q$-exact obstruction in [C07, Lemma 12.0.4]. The order-$\hbar$ part of the regulated flow with $I-I^{CT}[\varepsilon]$ has a finite limit at generic leg momenta (Proposition \ref{prop:c4-limit}) and fails the master equation at scale $\infty$ by a finite local amount; the master equation forces the coefficient $\tfrac{27}{16}$ and leaves the $Q$-closed finite counterterms, such as multiples of $\int\mathrm{dvol}\,(dA,dA)$, free. This choice is a renormalisation condition, and it is part of the definition of the quantum theory: every observable $O[\infty]$ is built from the flow of the interaction, and changes with it. In this program it is the first instance of that statement; the same mechanism recurs for the equivariant counterterms of the superconformal ghosts.
+\end{remark}
+
+\begin{remark}[The cubic sector of the obstruction]
+\label{rem:c4-cubic}
+The one-loop obstruction also has components with three legs: $(c,A|_V,A|_V)$, $(c,A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $(c,\lambda,\lambda)$ and $(c,c,A^*|_V)$. They are sums of triangles and quartic-vertex bubbles with one special edge, of the vertex $-\{I,I^{CT}[\varepsilon]\}_\varepsilon$, and of one-particle-reducible graphs in which $-QI^{CT}[\varepsilon]$ is joined to $I$ by an edge $P(\varepsilon,\infty)$. The finite term of \eqref{eq:c4-finite} changes them by $-\{I,\cdot\}$ of itself, a nonzero functional built from $\int\mathrm{dvol}\,([A,c],A^*)$. The full one-loop master equation, i.e. the vanishing of the obstruction in all sectors after a finite counterterm, is the subject of Step 2.
+\end{remark}
+
+\begin{proposition}[The finite counterterm under special conformal transformations]
+\label{prop:c4-K}
+Let $v$ be the special conformal field $x\mapsto(x,x)v_1-2(v_1,x)x$, $v_1\in V$ (Definition \ref{def:c2-even}), acting on $A|_V$ by the Lie derivative $L_v$ (Definition \ref{def:c2-S1}). The derivative of $\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)$ along $A|_V\mapsto L_vA|_V$ is
+\[
+2\int\mathrm{dvol}\,(d^*A|_V,d^*L_vA|_V)=-8\int\mathrm{dvol}\,(d^*A|_V,\iota_{v_1}A|_V)\neq0,
+\]
+while for translations, rotations and the dilatation $2E$ the derivative vanishes.
+\end{proposition}
+
+\begin{proof}
+For a conformal Killing field $v$ of $V$, the symmetric part of the derivative of $(v,-)$ is $\tfrac14\operatorname{div}v$ times the metric; taking one more divergence, $d^*d$ applied to the components of $v$ is $\tfrac12\operatorname{grad}(\operatorname{div}v)$. The Lie derivative of the one-form $A|_V$ is $v(A|_V)+A|_V\circ(\text{derivative of }v)$, and the divergence of this expression, with the two identities above, is
+\[
+d^*(L_vA|_V)=v(d^*A|_V)+\tfrac12(\operatorname{div}v)\,d^*A|_V+\tfrac12\,\iota_{\operatorname{grad}(\operatorname{div}v)}A|_V .
+\]
+Hence
+\[
+\begin{aligned}
+2\int\mathrm{dvol}\,(d^*A|_V,d^*L_vA|_V)={}&\int\mathrm{dvol}\,v\big((d^*A|_V,d^*A|_V)\big)+\int\mathrm{dvol}\,(\operatorname{div}v)(d^*A|_V,d^*A|_V)\\
+&+\int\mathrm{dvol}\,(d^*A|_V,\iota_{\operatorname{grad}(\operatorname{div}v)}A|_V),
+\end{aligned}
+\]
+and integration by parts cancels the first two terms, since $\int\mathrm{dvol}\,v(\cdot)=-\int\mathrm{dvol}\,(\operatorname{div}v)(\cdot)$. For the special conformal field, $\operatorname{div}v=-8(v_1,x)$ (Chapter 2) and $\operatorname{grad}(\operatorname{div}v)=-8v_1$, which gives the stated value. For translations and rotations $\operatorname{div}v=0$, and for $2E$, $\operatorname{div}v=8$ is constant.
+\end{proof}
+
+The finite counterterm of Theorem \ref{thm:c4-finite} is the Feynman-gauge longitudinal term, and Proposition \ref{prop:c4-K} shows that it breaks the special conformal symmetry. In Step 2 the components of the equivariant counterterms along the special conformal generators have to absorb this variation, or exhibit it as part of an obstruction.
+
+\begin{remark}[Method of computation]
+\label{rem:c4-method}
+Each per-graph coefficient of this chapter is an exact rational number. It is obtained in an explicit realisation of $V_{10}$, $\Sigma$ and $\mathfrak g$ over $\mathbb Q(i)$, with the loop momentum integrated as a Gaussian (Lemma \ref{lem:c4-gauss}) and the $\varepsilon$-expansion taken on the graphs with one pinned edge (Proposition \ref{prop:c4-boundary}), in exact rational arithmetic; for the two-point graphs the polarisations and momenta are symbolic. For the cubic and quartic sets each multilinear form is determined by exact linear algebra on a basis of the $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$-invariant multilinear forms of the given legs, including the parity-odd ones, from evaluations at integer polarisations and momenta drawn uniformly from a finite set of integers. A nonzero polynomial vanishes at such a point with probability at most its total degree divided by the size of the set (Schwartz--Zippel), so the sampled system has full rank with high probability; full rank is then established exactly, and the solution is exact. The colour factors are reduced exactly for a general simple $\mathfrak g$, and the resulting rational multiples of $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$ are the same in the explicit realisations $\mathfrak g=\mathfrak{su}(2)$ and $\mathfrak g=\mathfrak{su}(3)$. The sector $(c,A|_V)$ of the obstruction is also given by $Q$ of the renormalised two-point function (Remark \ref{rem:c4-selfenergy}).
+\end{remark}
