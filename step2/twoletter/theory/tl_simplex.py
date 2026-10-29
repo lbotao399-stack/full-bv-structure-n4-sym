@@ -174,3 +174,109 @@ def special_edge_singular(N, qs, s, kmax=None):
             raise NotImplementedError
         res[k] = sp.expand(tot / k)
     return res
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# additions (resumed run): finite part of a special-edge cycle, Bessel generating functions, shape functions
+# ----------------------------------------------------------------------------------------------------------------------
+def _reduced(N, qs):
+    E = len(qs)
+    al = sp.symbols('a0:%d' % E)
+    c = [sum(al[e] * qs[e][mu] for e in range(E)) for mu in range(4)]
+    Phi = sp.expand(sum(al[e] * dot(qs[e], qs[e]) for e in range(E)) - dot(c, c))
+    Ne = sp.expand(N)
+    degl = sp.Poly(Ne, *L).total_degree() if Ne != 0 else 0
+    nums = []
+    cur = Ne
+    for j in range(degl // 2 + 1):
+        nums.append(sp.expand(cur.subs({L[mu]: c[mu] for mu in range(4)}, simultaneous=True)
+                              / (factorial(j) * 4 ** j)))
+        cur = sp.expand(lap(cur))
+    return nums, Phi, al
+
+
+def F_m(N, qs, m):
+    """F_m(alpha) = sum_{j: m_j >= m} num_j (-Phi)^{m_j - m}/(m_j - m)!,  m_j = j + 2 - E"""
+    nums, Phi, al = _reduced(N, qs)
+    E = len(qs)
+    out = 0
+    for j, nj in enumerate(nums):
+        mj = j + 2 - E
+        if mj >= m:
+            out += nj * (-Phi) ** (mj - m) / factorial(mj - m)
+    return sp.expand(out), al
+
+
+def special_edge_finite(N, qs, s):
+    """eps^0 coefficient (times 16 pi^2) of a cycle whose edge s has Schwinger time in [0, eps] and the other edges in
+    [eps, oo):  - int_{R_s} F_0(alpha) log(alpha_s / min_{f != s} alpha_f) d alpha   (Lemma lem:tl-special).
+    The special numerator (the factor -|l - q_s|^2 of K_eps - K_0 = -int_0^eps H K_t dt) must be included in N.
+    E = 2: exact (sympy); E = 3: mpmath, 30 digits."""
+    E = len(qs)
+    F0, al = F_m(N, qs, 0)
+    others = [f for f in range(E) if f != s]
+    if E == 2:
+        f = others[0]
+        x = sp.Symbol('x', positive=True)
+        integrand = F0.subs({al[s]: x, al[f]: 1 - x}, simultaneous=True)
+        val = -sp.integrate(sp.expand(integrand) * (sp.log(x) - sp.log(1 - x)), (x, 0, sp.Rational(1, 2)))
+        return sp.nsimplify(sp.simplify(val))
+    if E == 3:
+        import mpmath as mp
+        mp.mp.dps = 30
+        fF = sp.lambdify(al, F0, 'mpmath')
+        tot = mp.mpf(0)
+        # R_s = {alpha_s <= alpha_f, alpha_s <= alpha_g}; parametrise alpha_s = x, alpha_f = y, alpha_g = 1 - x - y
+        f, g = others
+
+        def integrand(xx, yy):
+            a = [None] * 3
+            a[s] = xx; a[f] = yy; a[g] = 1 - xx - yy
+            if a[g] < xx or yy < xx:
+                return mp.mpf(0)
+            return fF(*a) * mp.log(xx / min(a[f], a[g]))
+        # region: 0 <= x <= 1/3, x <= y <= 1 - 2x
+        tot = mp.quad(lambda xx: mp.quad(lambda yy: integrand(xx, yy), [xx, (1 - xx) / 2, 1 - 2 * xx]), [0, mp.mpf(1) / 3])
+        return -tot
+    raise NotImplementedError
+
+
+def bessel_series(q, z, order):
+    """(|sigma|/(2 sqrt Phi))^q I_q(|sigma| sqrt Phi) = sum_i (|sigma|^2/4)^{i+q} Phi^i / (i!(i+q)!), returned as a
+    polynomial in (s2 = |sigma|^2, Phi) truncated at total |sigma|-degree <= order;  z = (s2, Phi)"""
+    s2, Ph = z
+    out = 0
+    i = 0
+    while 2 * (i + q) <= order:
+        out += (s2 / 4) ** (i + q) * Ph ** i / (factorial(i) * factorial(i + q))
+        i += 1
+    return sp.expand(out)
+
+
+def genfun_F(m, qs, sigma, order):
+    """Generating function of F_m for the numerator e^{i(sigma,l)} (truncated at |sigma|-degree <= order):
+    F_m^gen = (-1)^{m+E} e^{i(sigma,c)} (|sigma|/(2 sqrt Phi))^{m+E-2} I_{m+E-2}(|sigma| sqrt Phi)  (Prop prop:tl-genfun).
+    sigma: 4-vector of sympy numbers times a formal scale lam (included by the caller)."""
+    E = len(qs)
+    al = sp.symbols('a0:%d' % E)
+    c = [sum(al[e] * qs[e][mu] for e in range(E)) for mu in range(4)]
+    Phi = sp.expand(sum(al[e] * dot(qs[e], qs[e]) for e in range(E)) - dot(c, c))
+    q = m + E - 2
+    if q < 0:
+        return sp.Integer(0), al
+    lam = sp.Symbol('lam')
+    s2 = dot(sigma, sigma)
+    sc = dot(sigma, c)
+    expo = sum((sp.I * sc) ** n / factorial(n) for n in range(order + 1))
+    bes = bessel_series(q, (s2, Phi), order)
+    tot = sp.expand((-1) ** q * expo * bes)
+    # truncate in lam
+    tot = sp.expand(sum(tot.coeff(lam, n) * lam ** n for n in range(order + 1)))
+    return tot, al
+
+
+def bubble_log_closed(a, b, j):
+    """coefficient in the closed form of the scalar bubble log kernel (Prop prop:tl-bubble):
+    (a+j)!(b+j)!/(a! b! (j!)^2 (a+b+2j+1)!)"""
+    return sp.Rational(factorial(a + j) * factorial(b + j), factorial(a) * factorial(b) * factorial(j) ** 2
+                       * factorial(a + b + 2 * j + 1))

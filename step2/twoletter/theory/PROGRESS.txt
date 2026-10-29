@@ -1,0 +1,58 @@
+PROGRESS LOG  step2/twoletter/theory  (R8: universal two-letter kernels, D_1 on all local operators)
+(plain-text log: the Step-2 spec DESIGN_STEP2.md says subagents write .tex/.json/.py/.txt, not .md)
+
+2026-10-29  resumed run (the first run was cut by a network failure)
+
+Audit of the files left by the first run
+  census.json / checks_census.py / census_run.txt : logic checked (slot types, P components AV-AV, AW-AW, lamP-lamM,
+     c-AsV; vertices of eq c1-I; degree formula w1+w2-w_out cross-checked against deg(numerator)+4-2E).  Fixed: the
+     leg-set tables were indexed by letter derivatives and truncated silently above output weight 7, and they listed
+     the k = 0 self-contraction among the log eps leg sets (it has no log eps).  Now indexed by pair weight W <= 7
+     (complete), log sets from k >= 1 only, eps^{-m} sets with max m.  Rerun: 0 degree mismatches, 0 bound violations.
+  tl_simplex.py : formulas checked against Lemma c4-local (min-alpha form = sum over regions R_e), region integrals
+     (cone over the facet from the barycentre, volume 1/E), Dirichlet integrals, special-edge eps^{-k} formula.  Kept;
+     added: special_edge_finite (finite part of a special-edge cycle), F_m, genfun_F (Bessel generating functions),
+     bubble_log_closed.
+  checks_simplex.py : the crash was the normal-equation least-squares fit (A^T A singular at 20 digits with eps^{-3}
+     columns).  Replaced by a residual test r(eps) = eps dw/deps + sum k a_k eps^-k - b -> 0 (40/25 digits), plus
+     special-edge finite parts, generating-function identities, bubble closed form.
+
+Plan (sections of twoletter_theory.tex)
+  S1 counterterm map (definition, T-independence)              [done]
+  S2 decomposition theorem (two-letter kernels, signs, colour)  [done]
+  S3 census                                                     [done]
+  S4 output bound                                               [done]
+  S5 covariance (BRST commutation, Ward identities, reduction)  [done]
+  S6 closed forms (simplex, shape, special edge, generating fns)[done]
+  S7 D_1 and P_1                                                [done]
+  S8 predictions                                                [done]
+  S9 engine specification                                       [done]
+  files: predictions.json, engine_spec.json, checks_colour.py, checks_engines.py, build_predictions.py   [done]
+
+2026-10-29  sections S0-S5 written into twoletter_theory.tex; checks_simplex ALL PASS (residual tests, special-edge finite
+  parts, Bessel generating functions E=1,2,3, bubble closed form); checks_colour ALL PASS (48 cases); census rerun.
+  next: S6 closed forms, S7 D_1, S8 predictions (+ build_predictions.py), S9 engine spec (+ build_engine_spec.py),
+  checks_engines.py, compile.
+
+2026-10-29  all sections S0-S9 written; twoletter_theory.tex compiles (pdflatex, _build/twoletter_theory.pdf, 0 errors,
+  0 undefined references).  checks_engines.py: engine A (step2/engine_a/s2_core.py + engine_a/cliff.py) and engine B
+  (engine_b/loops.py, vertices.py) agree with Ch1/Ch3 (all_pass).  build_predictions.py -> predictions.json (Ch5/6/9
+  values, W1 gates, Beisert spectrum in units, su(2) cyclic spectra L<=8, sl(2) two-site matrix = 2h(j)).
+  build_engine_spec.py -> engine_spec.json (21 pair types, chains, leg sets W<=6, closed forms, tasks T1-T4, routes A/B,
+  gates G1-G10, files to reuse).
+Open (for the engines / next theory round): the composite kernels C2_Delta, C_{P_b} beyond the scalar bilinears
+  (prediction P7: Xi_Delta = -(1/3+theta) u {S1(Delta),-} on cohomology); the matrix-level comparison with B03c (3.14)
+  needs the explicit identification of the letter bases; the reduction Prop prop:tl-reduction (iii) uses only the Koszul
+  argument for A_V legs (ghost and antifield outputs handled by the Ward identities as gates).
+
+2026-10-29  REVISION (qa/disposition.json, 22 findings, all accepted).  twoletter_theory.tex rewritten (v1 kept as
+  twoletter_theory_v1_2026-10-29.tex): notation renamed (w_ab, w^0_ab, y_a, y_b, y_ab, l_0, chi, (-1)^{n_ab}, k+1 edges);
+  Lemma lem:tl-sign (odd-pair sign); Lemma lem:tl-colour (Y_1 nearest X_a, cross-trace and wrap-around rules, graded
+  signs); Table A eps^-1 column and census.json (k=0 only at even W, m = W/2); Prop tl-bound (ii) restricted to the
+  counterterm; two-loop remark; Thm tl-brst proof (pure powers, finite vertex eq tl-finitesp); Prop tl-reduction
+  rewritten (triangular in (r, Q-depth); transversality for depth-0 pairs; independent data incl. (d^alpha c, X));
+  closed-form scope + numerator table; D_1 section: H1 with theta_perp, theta_lambda, theta_V, kappa_V, kappa_lambda;
+  Lemma lem:tl-psi; Thm tl-D1 with T-safety by Prop c8-Tsafe; Prop tl-compbound + checks_census_composite.py;
+  Prop tl-scalarsector (D_1, P_1 on the planar scalar sector from Ch9 inputs); Conjecture P7; Sec arity one (structure,
+  active letters, output bound, scheme dependence); status table.  Compiles: 22 pages, 0 errors, 0 undefined refs.
+  predictions.json, engine_spec.json rebuilt.

@@ -1,0 +1,102 @@
+"""Writes findings.json (referee audit of step2/twoletter/theory/twoletter_theory.tex)."""
+import json, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+F = []
+def add(sev, claim, evidence, fix):
+    F.append(dict(severity=sev, claim=claim, evidence=evidence, fix=fix))
+
+add('major',
+ 'Prop prop:tl-reduction (ii)-(iii) (covariance reduction) is false as stated: homogeneous solutions need not depend on an output A|_V through dA|_V, and the independent data are misidentified.',
+ 'The homogeneous equation of (i) contains K_r(QX_a,X_b)+(-1)^{|X_a|}K_r(X_a,QX_b); for X_a=A|_V, QX_a=-dc (Prop c1-Q), a kernel of the pair (dc,X_b) with the SAME r. (ii) drops it. check_reduction.py: for (A_mu|_V,A_perp,I)->(A_rho|_V(r1),A_perp,J(r2)) at W=2 coupled to K(d_mu c,A_perp,I)->(c(r1),A_perp,J(r2)), the homogeneous system has the family al=+-i t, be=0 with t free, i.e. a delta_{mu rho} (non-transverse) dependence that (ii) excludes. The pair (c,A_perp) at r=2 has an empty equation (Q-inert letters and outputs, no r<2 kernel), so K(dc,A_perp) is not fixed by lower kernels (W1 fixes only K(dA_perp,c)+K(A_perp,dc)). The computed W_0 kernel (engine_a kernels.json invariant forms, AV|AW) is (3/2) d(a,o1)dW(b,o2) [word CC] and (-2) d(a,o1)dW(b,o2) [word Q]: non-transverse in the A|_V output. Engine A notes: the reduction "must include the r = 1 outputs of pairs with an A_V letter". W2 was run by neither engine nor the comparator (compare.json open_issues).',
+ 'Reformulate the reduction as a joint linear system over all pair types at fixed (W,r) that keeps the letter terms K_r(QX_a,X_b) for the Q-active letters (A|_V, A^*, lambda^*, c^*); order it by (r, number of Q-active letters); list the independent data explicitly (they include kernels of pairs with derivative ghost letters d^alpha c, fixed by W1 only in the translation-symmetric combination); prove it; add W2 as a gate in both engines.')
+
+add('major',
+ 'D_1 on all local operators is not established: the composite part C_Delta is neither computed nor bounded beyond the scalar bilinears, the composite cycles lie outside the census, and Prop tl-bound (ii) ("for w_out > W the cycle is convergent and contributes neither to the counterterm nor, through it, to any one-loop component") fails for composite cycles.',
+ 'Thm tl-D1 writes D_1 = 4 lc^natural - {F\'_Delta,-} + C_Delta with C_Delta = C^(2)+C^(1); compare.json open_issues: "P7 (composite part of D_1, C2_Delta, Pi_Delta, C_{P_b}) computed by neither engine". Lemma tl-active / Def tl-chain use only P edges; composite cycles carry the degree -1 kernel 2(P* v. P* (x) 1)K_0 joining c to A|_V with explicit x (Prop c9-composite (i),(ii)). Ch9 composite triangle (Prop c9-triangle): pair of two A_perp letters, W=2, outputs A_perp and A^*_perp (w_out=4), superficial degree 1+4-2-2-3=-2, UV convergent, yet Q of it is the decisive -2u{S^(1)(Delta),O} of D_1. Pi_Delta is known only in the quadratic A_perp sector and contains log|p|^2 in the A|_V, lambda, c sectors (Rem c9-Pi), so neither C^(1) nor C^(2) is a local universal kernel; H1 at >=4 legs is open (Ch9 Rem c9-next).',
+ 'Census of composite cycles through a pair and of Pi_Delta beyond two points (edge set P + one composite edge); derive the output bound for D_1 from locality (H3) and weight counting with explicit position of weight -1 (outputs of the composite cycles carry degree d_ab-1 before Q); compute C_Delta (task T3) at least on the P5/P6 families; restrict the statement of Prop tl-bound (ii) to the counterterm.')
+
+add('major',
+ 'Prop tl-spec (iii) / prediction P7 (Xi_Delta = -(1/3+theta)u{S^(1)(Delta),-} on gauge-invariant cohomology) is unproven and inconsistent with the parametrisation (H1) of the arity-one finite counterterm; the scheme freedom of hbar F_1^(1)(Delta) is incompletely displayed.',
+ 'The proof of Prop tl-spec says (iii) "is a statement to be tested by the engines"; P7 untested (compare.json). H1 fixes F\'_Delta in the quadratic sector to the translation-invariant solution plus theta u int(2E(A_perp)+2A_perp,A^*_perp) only, whereas Thm c9-quadratic (iii) lists further Q-closed directions: -int(2E(lambda)+3lambda,lambda^*), int(2E(A|_V)+2A|_V,A^*|_V)-int(2E(c),c^*), Q int(iota_x A|_V,c^*), Q int(rho(x)lambda^*,lambda^*), all set to 0 without derivation. Under H1 as written, -{F\'_Delta,O} and C_Delta are theta-independent for every O without A_perp / A^*_perp letters (e.g. built from lambda and field strengths), so Xi_Delta cannot equal -(1/3+theta)u{S^(1)(Delta),O} there for theta != -1/3. The one-body values A_V -22/3, lambda -47/3, c -8/3 (compare.json P3) carry no scheme parameter. Ch9 Rem c9-next: theta enters the cubic arity-one equation, so the cubic consistency that could tie the sector coefficients together is not done.',
+ 'Parametrise the s-closed solution family of the arity-one equation along Delta through cubic order; show whether the sector coefficients are forced to one theta multiplying S^(1)(Delta); restate H1, the one-body table and P7 accordingly; move (iii) out of the Proposition into a labelled conjecture/prediction.')
+
+add('major',
+ 'R8 scope gap: the two-body kernels of Q_1, S_1, K_1 from the defect graphs, and the arity-one counterterms of operators along supercharges and K, are absent; the census and the output bound cover only arity-zero chains with P edges.',
+ 'R8 (DESIGN_STEP2) requires "the two-body kernels of Q_1, S_1, K_1 from the defect graphs"; the theory treats D_1 and P_1 only (Sec tl-D1). Arity-one cycles through a pair contain one S^(1)(x) vertex (for x=xi in Sigma its quadratic part -(Gamma(xi,lambda),A^*)+1/2(rho(dA)xi,lambda^*) joins lambda to A^* and A to lambda^* slots, Prop c1-norm) and/or a special edge K_eps-K_0 with field-antifield components, which makes A^*_perp, lambda^*, c^* active; Lemma tl-active calls them spectators "at one loop" on the basis of P alone. No census, bound or kernel formula exists for these cycles.',
+ 'Extend the chain census to arity one (edges: P, special edge with K_0 components, composite kernel; vertices: I and S^(1)(x)); derive the output bound with the degree shift and explicit x; specify the defect-graph kernels of Q_1, S_1, K_1 and their scheme dependence.')
+
+add('minor',
+ 'Table tab:tl-A (epsilon^{-1} column) and Prop tl-bound (iv) list the empty leg set with epsilon^{-1} where the self-contraction gives no epsilon^{-1}.',
+ 'Rows (lambda_+,lambda_-) and (c,A^*|_V) at W_0=3 list the empty set in the epsilon^{-1} column; Lemma tl-k0 gives the single power epsilon^{-(w_a+w_b)/2}, zero for odd W. indep_census.py: 20 rows of census.json (W=3..7 for AV|AV, AW|AW, lamP|lamM, c|AsV) list (none) with m>=1 while epsilon^{-1} is absent (only m=W/2, W even). compare.json census_check predicted_but_zero confirms these zeros in both engines. Otherwise the independent BFS census reproduces every log leg set of census.json, Table tab:tl-B and the k=1 exceptions, and n_out <= W+d_ab holds on all rows.',
+ 'Enter k=0 only at m=W/2 for even W; call the epsilon^{-m} lists upper bounds.')
+
+add('minor',
+ 'Lemma tl-colour (ii)-(iii) omits pairs across traces (multi-trace operators), the cyclic wrap-around pair, and Koszul signs for odd letters moved cyclically.',
+ 'check_colour_indep.py (random gl(N), su(N), N=2,3,4, r<=3) confirms (ii) as stated and (iii) tr_g(ad ad)=2N tr. Not stated: tr(M1 X_a)tr(M2 X_b) -> kappa^{-1} sum_S (-1)^{r-|S|} tr(M1 Y_{S^c}^<- M2 Y_S^->) (traces merge, no N; verified); for the pair (X_n,X_1) of tr(X_1...X_n), i.e. X_b before X_a in trace order, the leading term is +N tr(M1 Y_1...Y_r), not the (-1)^r Y_r...Y_1 replacement of (iii) (verified); cyclic moves of odd letters carry signs not stated.',
+ 'Add the cross-trace rule, the reversed-order rule and the graded cyclicity sign to the lemma and to engine_spec.')
+
+add('minor',
+ 'Remark "Reading of the bound": "At two loops three letters enter" is false.',
+ 'A two-loop figure-eight graph with M at the junction uses four letters; after the one-loop subtractions it leaves -Sing(A)*Sing(B), a local singular product of two one-loop pair kernels (eps^{-m} log eps, log^2 eps), i.e. a factorised four-body two-loop counterterm.',
+ 'State two loops as connected three-body kernels plus factorised products of one-loop pair kernels.')
+
+add('minor',
+ 'Proof of Thm tl-brst treats the special-edge trees as turning eps^{-1} into finite terms; the operator counterterm has eps^{-m} up to m = w_M/2.',
+ 'Prop tl-map (i): m <= w_M/2. eps^{-m}(e^{-eps|p|^2}-1) = -|p|^2 eps^{1-m}+... diverges for m>=2 and leaves finite local terms (-|p|^2)^m ct_m(M)/m!. The log-coefficient conclusion survives (pure powers carry no log eps), but these scheme-specific finite terms enter L_1 (Q_1, S_1, K_1 defect graphs) and are not recorded.',
+ 'Replace the parenthetical by the pure-power argument and record the finite special-edge-tree contributions of ct_m in the component formulas.')
+
+add('minor',
+ 'Thm tl-D1 uses Lemma c6-bvexact for the nonlocal Pi_Delta and states the one-body letter form beyond what is derived.',
+ 'Lemma c6-bvexact is stated for an odd local functional; Pi_Delta contains log|p|^2 in the A|_V, lambda, c sectors (Rem c9-Pi; acknowledged in Thm tl-D1). The one-body value u[-8X+(5/3-theta)v.X] uses only the quadratic parts of Pi_Delta|_perp and F\'_Delta; the multi-output one-body terms from their cubic parts are not given.',
+ 'Extend the lemma to the nonlocal class used or derive C^(1) directly; restrict the stated one-body formula to its one-output part.')
+
+add('minor',
+ 'The sign of odd-pair kernels relative to the Hessian/supertrace representation is not fixed in the theory; the engines fixed it differently and partly empirically.',
+ 'Thm tl-decomp (i) passes from (hbar/2)STr(P_e Pi (delta M)\'\') to hbar d_{P_e} M without a sign for odd M or odd letters. engine_b/NOTES.md: "the naive left-derivative argument gave -1, which reverses all three W1 statements ... with +1 they hold" (fixed by W1, so W1 for (A_perp,c), (A_V,c) is not an independent check in engine B); engine A derived (-1)^{|X_a|+|X_b|} relative to its str value (compare.json R-4).',
+ 'Derive and state the sign in the proof of Thm tl-decomp (i) and in engine_spec Route A/B.')
+
+add('minor',
+ 'Taking T = infinity in Thm tl-D1 for composite cycles of a general operator is not proved safe (R7).',
+ 'Proof of Thm tl-D1 starts "At T = infinity"; the composite kernel is O(|p|^{-3}) at small momentum, |x-y|^{-1} in position space (Prop c9-composite (iv)); Ch9 Rem c9-endpoint proves large-distance convergence only for the bilinear components.',
+ 'Prove convergence of composite cycles through pairs and on legs for general O, or work at finite T and use Thm c8-L (ii).')
+
+add('minor',
+ 'Hypothesis (H2) (psi = 0 together with L_1(O)^(0) = 0) may be unattainable for gauge-invariant O, and the psi-dependence of D_1 is not stated.',
+ 'Rem c5-cocycle: for the scalar bilinears the arity-zero one-loop output can include int omega (dc,A|_V)-type terms that are removed by a finite psi; Thm tl-D1 assumes psi = 0 and L_1(O)^(0) = 0 simultaneously; Prop c8-laws (b) gives the change [s,psi].',
+ 'Allow psi != 0 and state the resulting change of D_1 (zero for weight-preserving psi commuting with {S^(1)(Delta),-}, if that holds).')
+
+add('minor',
+ 'The closed form eq:tl-bubbleclosed is claimed for "a cubic vertex whose momentum factor is carried by the outputs"; explicit chain numerators N_V are given only implicitly.',
+ 'The cubic gauge vertex (eq c1-AAA) carries (p_2-p_1)-type factors involving the cycle momenta whenever two of its legs lie on the cycle; lambda and c-A^* edges carry i rho(p), ip. So the closed form covers essentially the quartic bubbles; the generating functions of Prop tl-genfun need N_V per chain, supplied only by the engines.',
+ 'State the scope, or tabulate N_V for each vertex/edge type in the theory.')
+
+add('minor',
+ 'Notation clashes with reserved and manuscript symbols (DESIGN rule 2; task "no new notation").',
+ 'W = w_a+w_b (pair weight) vs W the multiplicity space reserved by Def c3-W; u = the unit (Sec tl-D1) vs point-splitting vector u (Def tl-cycle, Prop tl-genfun); s = Q+{I,-} vs point-splitting vector s vs scaling parameter of sigma_s; c = ghost vs c(alpha) and the constants c of Lemma tl-colour (iii) and the bilinear example; E = number of edges vs Euler field E (v = 2E); sigma_ab, sigma = u-s, sigma_s, sigma^m; h(alpha) vs h(j).',
+ 'Rename by role (e.g. pair weight, shift vector, edge count) and keep W, u, s, c, E for their manuscript meanings.')
+
+add('minor',
+ 'P5 asserts the full one-loop spectrum on all planar single-trace classes; it is tested only in scalar sectors.',
+ 'compare.json: su(2) cyclic spectra L<=8 and twist-two scalar Tr(D^kZ D^{N-k}Z), N<=8, pass; "fermion / field-strength spectra ... not computed by either engine"; P6b matrix level only for two sites.',
+ 'Label P5 as verified only in these sectors; add a fermion and a field-strength family.')
+
+summary = ('Referee audit of twoletter_theory.tex. Holds under independent checks: the pair decomposition of the operator '
+ 'counterterm (operator-on-tree graphs subtracted by the I^CT trees, no one-body terms, sigma_ab signs), the '
+ 'simplex/shape formulas (shape examples and both special-edge cases reproduced by direct Schwinger quadrature, '
+ 'including a case with eps^-2, eps^-1 poles and a finite part), the self-contraction lemma (sympy), the census '
+ '(independent BFS reproduces every leg set and Table B; n_out <= W+d_ab), the colour lemma as stated, the BRST '
+ 'covariance of lc and W1/W2 as identities, and the D_1/P_1 assembly on the scalar bilinears against Ch9. Fails: the '
+ 'covariance reduction (Prop tl-reduction (ii)-(iii)) is false as stated (explicit homogeneous counterexample; '
+ 'W2 never run); D_1 on general operators rests on an uncomputed, unbounded composite part, and Prop tl-bound (ii) '
+ 'is contradicted by the convergent composite triangle; P7 is unproven and inconsistent with the theta-only-in-A_perp '
+ 'parametrisation (H1), which omits Q-closed directions of Thm c9-quadratic (iii); the Q_1, S_1, K_1 kernels '
+ 'required by R8 are absent. Minor: spurious eps^-1 empty leg sets, missing multi-trace and wrap-around colour '
+ 'rules, false two-loop remark, eps^-m (m>=2) special-edge trees, odd-pair sign not derived, T->infinity safety, '
+ 'notation clashes.')
+audit = dict(verdict='fail', summary=summary, findings=F,
+             checks=dict(indep_census='indep_census.py -> indep_census.json',
+                         simplex='check_simplex_indep.py -> check_simplex_indep.json',
+                         colour='check_colour_indep.py -> check_colour_indep.json',
+                         reduction='check_reduction.py -> check_reduction.json'))
+json.dump(audit, open(os.path.join(HERE, 'findings.json'), 'w'), indent=1)
+print(len(F), 'findings written')

@@ -1,0 +1,76 @@
+ENGINE A, R8 (two-letter kernels), route A -- method and conventions
+(plain text: DESIGN_STEP2.md asks subagents for .tex/.json/.py/.txt; mirrored in out.nosync/notes.txt)
+
+Run:   python3 run_all.py   (single process, about 6 min, < 0.5 GB RSS; code in src.nosync/, outputs kernels.json,
+       gates.json here and in out.nosync/, raw tables out.nosync/kernels_W0_raw.json, log out.nosync/run_all_log.txt)
+Independence: step2/twoletter/engine_b/ not read.  Inputs: DESIGN.md, DESIGN_STEP2.md, theory/twoletter_theory.tex,
+engine_spec.json, predictions.json, manuscript Ch9 statements; Step-1 engine A vertex functions engine_a/r2_core.py,
+engine_a/cliff.py (byte-identical copies in src.nosync/vendor/, sha256 recorded in kernels.json meta).
+
+1. Method
+ (a) Colour stripping.  Every cubic vertex of I is (kinematics) x ([Z1,Z2],Z3); with output Y, cycle slots in/out it
+     reads h3[in,out] (ad_Y t_in, t_out).  The quartic vertex has the two words (ad_Y ad_Y' t_in, t_out) and
+     (ad_Y' ad_Y t_in, t_out).  The colour-stripped blocks are read off exactly from the su(2) Hessians of the Step-1
+     engine (Y = t0 at (t1,t2); quartic Y = t0, Y' = t1 at (t0,t1) and (t1,t0)), 54 + 100 blocks, cached.
+ (b) Chain.  For an ordered output word Y_1..Y_k (Y_1 nearest to letter a) and a block structure (C cubic, Q quartic),
+     T(k) = P_1 S h_1 ... P_k S h_k S P_0 S is a polynomial matrix in the loop momentum k (exact Gaussian integers,
+     2^52 bound asserted); the letter rows/columns give the kernel matrix K[a,b]; letter derivatives multiply by
+     (i p_a)^alpha (i p_b)^beta, p_a = k - P_0, p_b = -k (the theory's p_a = -l, p_b = l + R with l = -k - R).
+     Colour element: sum_gamma t^gamma (x) W(t_gamma), W = ad_{Y_k}...ad_{Y_1}, first factor in the slot of a.
+ (c) Gaussian integral and singular parts: Thm thm:tl-simplex.  num_j = (Lap^j N)(c)/(j! 4^j), c = -sum alpha_i q_i,
+     Phi = sum alpha_i |q_i|^2 - |c|^2; log eps: -int_Delta F_0; eps^{-m}: (1/m) sum_e int_{R_e} alpha_e^m F_m, R_e the
+     cone from the barycentre over the facet alpha_e = 0 (exact: affine map to the standard simplex, Dirichlet
+     integrals); total-time cutoff and special edges (Lemma lem:tl-special, ordered sub-simplices) also implemented.
+     All weights are Fractions; results Gaussian rationals.
+ (d) Intrinsic sign.  The str formula with the operator Hessian gives the coefficient of the delta-vertex Hessian;
+     d_j d_l (delta M) = (-1)^{|M|(|j|+|l|)} delta d_j d_l M, so the kernel of Def def:tl-dressed is
+     (-1)^{|X_a|+|X_b|} times the str value.  Fixed once (ea_kern.kernel); the Ward identities W1 for A_perp and A_V
+     (odd pair functionals) and for lambda, c (even ones) all hold with it.
+ (e) Tables (T1) at the pair weight W_0 of every one of the 21 pair types: every log / eps^{-m} leg set of
+     engine_spec.json at W_0, every ordered word, every block structure; every letter and output component (bases
+     in kernels.json meta); exact homogeneous interpolation in the output momenta (degree W - w_out for log eps,
+     W - w_out - 2m for eps^{-m}), re-checked at an extra generic momentum point (gate G7).
+ (f) Planar reading (Lemma lem:tl-colour (ii),(iii)): an adjacent pair of tr(...X_a X_b...) becomes
+     (-1)^r (value/2) u tr(... Y_1...Y_r ...).  lc^natural = sum over pairs - u sum_letters n_F, n_F = 1,2,4,-2,-4,-1.
+ (g) Cross-check route (ea_explicit.py): explicit su(2) colour, 1/2 str with both orientations of the operator
+     Hessian, odd output signs; equal to (a)-(b) on 9 cases (G4).  Also used for W1 of the antifield letters with the
+     operator {I_T, N} = vertex T with one leg fixed to zeta.
+
+2. Results (exact; units u = hbar tr_g(ad ad)/(16 pi^2 (,)) = -g^2 N/(32 pi^2) unless stated)
+ - Ch5 graph table reproduced: (e) 2O - 2(w1,w2)int(Aperp,Aperp), (f) 2O, (c) -2(w1,w2)int(AV,AV), (d) +2(w1,w2)int(AV,AV),
+   (b) 0; lc = 4O (traceless), -8O (trace); eps^-1 vacuum 2 hbar dim g (w1,w2)/(16 pi^2).  lc^natural: 0, -12.
+ - Planar scalar two-site log kernel: tr(..A_I A_J..) -> u[2 tr(..A_J A_I..) - delta_IJ tr(..A_K A_K..)], i.e.
+   lc^natural = -2u sum_l (1 - P + K/2); su(2) cyclic spectra L <= 8 equal predictions P6.
+   Two-component: (A_ij, A_kl) -> u[2 A_kl A_ij - (1/2) eps_ijkl A^mn A_mn].
+ - Twist two: eig lc^natural on tr(D_n^k Z D_n^{N-k} Z) = -8 h(S) u, S even <= N, N <= 8 (= -2 E_H u, B03c).  The
+   two-letter operator alone gives wrong eigenvalues (N=2: -8/3): the O(A_n) terms of the covariant derivatives
+   contribute through pairs (A_n, Z) with ONE output field (r = 1), which lowers the field number by one.  So the
+   reduction "independent data = minimal cycles" must include the r = 1 outputs of pairs with an A_V letter.
+ - Ward W1 (Prop prop:tl-W1): all eight letter types pass (A_perp, lambda+-, c, A_V exactly in the planar reading;
+   A*_perp, A*_V, lambda*, c* on every multi-field output leg set with multipliers 6, 8, 10, 1, 1, 1).
+ - Closed forms: k = 0 (Lemma lem:tl-k0) verified with up to 5 derivatives; k = 1 bubble closed form eq:tl-bubbleclosed
+   verified for the quartic bubbles to n = 4; Prop prop:tl-genfun (independent sympy Bessel resummation) verified for
+   a k=1 AAA chain, a k=1 fermion bubble and the k=2 gluon exchange to n = 3.
+ - D_1 = 4 lc^natural - {F'_Delta,-} + C_Delta: one-body parts in units: A_V -22/3 X, A_perp -8 X + (5/3 - theta) v.X
+   (local, uses Pi_Delta|perp of Ch9), lambda -47/3 X, c -8/3 X (plus the non-local C^(1)); two-body 4 K^log
+   (computed) + C^(2)_Delta (composite cycles, not computed here).  On the bilinears the assembly gives Ch9's
+   0 / -48 O - (1/3+theta) u {S1(Delta),O}.  P_1 two-body part = C^(2)_{P_b} (composite cycles along P_b); not computed.
+
+3. Conventions recap
+ Euclidean R^4, weight e^{S/hbar}, propagator P(eps,infty), per-edge cutoff t_e >= eps, T = infinity (generic
+ momenta; Prop prop:tl-map (iii)); no dimensional regularisation; no IR regulator.  Engine directions M = 0..3 (V),
+ 4..9 (W_R^perp); two-component index m = M+1, SO(6) index I = M-3 (step2/notation/dictionary.json engine_maps).
+
+4. Open (see gates.json and the summary)
+ - composite two-body kernels C^(2)_Delta, C^(2)_{P_b} (T3) and hence the engine check of prediction P7;
+ - Ward W2 (two-body) not run; W1 one-field outputs of the antifield letters (kinetic multiplier) not run;
+ - explicit tables only at W = W_0 (higher W through the verified closed forms / on demand with ea_kern.kernel);
+ - colour realisations su(3), gl(3) of G4 not run (su(2) explicit only; planar words are realisation independent).
+
+5. Revision 2026-10-29 (qa/disposition.json)
+ - W2 gate (ea_w2.py): s1 A_V = -dc - (A c - c A), s1 A_perp = -(A c - c A), s1 c = c c, s1 lambda = c lambda + lambda c
+   (Prop c1-Q, W1 normalisation, s^2 = 0); s on functionals evaluated on legs: Q(c leg) -> A_V leg of polarisation -i q,
+   gauge merges of adjacent (Y, c) legs; targets reachable from antifield outputs skipped (census.json).
+ - su(1|1) gate (ea_su11.py): psi = exact null vector of (1/2) s[M] sb[N] - t on the five planes, chirality S_+ checked.
+ - D_1 labels: see kernels.json D1 (one-body without C^(1)_Delta outside A_perp; spectra conditional on P7 except the
+   planar scalar sector, theory Prop prop:tl-scalarsector).

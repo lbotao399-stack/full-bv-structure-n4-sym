@@ -147,20 +147,36 @@ def main():
             wout = Fr(r['output_weight'])
             tab[str(wout)].add(' '.join(r['outputs']) if r['outputs'] else '(none)')
         legsets[key] = {wk: sorted(v) for wk, v in sorted(tab.items(), key=lambda kv: Fr(kv[0]))}
-    # output leg sets per pair type and number n of derivatives on the two letters (pair weight Wp = w(t1)+w(t2)+n):
-    # log eps part: output field weight <= Wp; eps^{-m} part: output field weight <= Wp - 2m
-    legsets_n = {}
+    # output leg sets per pair type and pair weight W = w(t1) + w(t2) + n (n = derivatives on the two letters), W <= WMAX:
+    # log eps part: leg sets of the chains with k >= 1 (the k = 0 self-contraction has no log eps, Lemma lem:tl-k0) and
+    # output field weight w_out <= W (the remaining W - w_out units are derivatives on the outputs);
+    # eps^{-m} part: leg sets with w_out <= W - 2m (upper bounds: a listed set may vanish by symmetry); the empty set
+    # (k = 0) enters only for even W and only at m = W/2 (Lemma lem:tl-k0: a single power eps^{-W/2}).  Complete for
+    # W <= WMAX.
+    legsets_W = {}
     for key, rows in census.items():
         a, b = key.split('|')
         d = {}
-        for n in range(0, 5):
-            Wp = W[a] + W[b] + n
-            sets = sorted(set((' '.join(r['outputs']) if r['outputs'] else '(none)', r['output_weight'])
-                              for r in rows if Fr(r['output_weight']) <= Wp))
-            d[str(n)] = dict(pair_weight=str(Wp),
-                             log=[s_ for (s_, w_) in sets],
-                             max_m={s_: str((Wp - Fr(w_)) // 2) for (s_, w_) in sets})
-        legsets_n[key] = d
+        W0 = W[a] + W[b]
+        n = 0
+        while W0 + n <= WMAX:
+            Wp = W0 + n
+            log_sets = sorted(set(' '.join(r['outputs']) for r in rows if r['k'] >= 1 and Fr(r['output_weight']) <= Wp))
+            eps_sets = {}
+            for r in rows:
+                wo = Fr(r['output_weight'])
+                if r['k'] == 0 and Fr(Wp).denominator == 1 and int(Wp) % 2 == 1:
+                    continue
+                if r['k'] == 0 and Fr(Wp).denominator != 1:
+                    continue
+                if wo <= Wp - 2:
+                    s_ = ' '.join(r['outputs']) if r['outputs'] else '(none)'
+                    m_ = int((Wp - wo) // 2)
+                    eps_sets[s_] = max(eps_sets.get(s_, 0), m_)
+            d[str(Wp)] = dict(letter_derivatives=n, log=log_sets, eps_max_m=dict(sorted(eps_sets.items())))
+            n += 1
+        legsets_W[key] = d
+    legsets_n = legsets_W
     # bound check: n_out <= W_pair + D for the log part (W_pair = output weight), all rows
     bound_viol = 0
     for key, rows in census.items():
@@ -185,7 +201,7 @@ def main():
     out = dict(description=__doc__, WMAX=str(WMAX), WMAX_listed=str(WDET), active_letter_types=ACTIVE,
                inert_letter_types=INERT,
                degree_formula_mismatches=deg_check_fail, bound_violations=bound_viol,
-               chains_listed=compact, chain_counts=counts, output_leg_sets_by_letter_derivatives=legsets_n,
+               chains_listed=compact, chain_counts=counts, output_leg_sets_by_pair_weight=legsets_n,
                summary=[dict(pair=f'{a}|{b}', n_chains=n, by_k=bk) for (a, b, n, bk) in summary])
     with open(os.path.join(HERE, 'census.json'), 'w') as f:
         json.dump(out, f, indent=1)

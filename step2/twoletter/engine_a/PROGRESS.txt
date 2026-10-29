@@ -1,0 +1,65 @@
+PROGRESS LOG  step2/twoletter/engine_a  (R8, route A: Schwinger-parameter Gaussian generating functions, exact simplex
+and boundary-face integrals).  Plain text: DESIGN_STEP2.md says subagents write .tex/.json/.py/.txt, not .md.
+Independence: step2/twoletter/engine_b/ is not read.  Inputs read: DESIGN.md, DESIGN_STEP2.md, theory/twoletter_theory.tex,
+theory/engine_spec.json, theory/predictions.json, theory/tl_simplex.py (library named in the spec), engine_a/r2_core.py,
+engine_a/cliff.py (Step-1 engine A vertex functions, verified A1-A4), manuscript Ch9 (D_1/P_1 statements).
+
+2026-10-29  start.  Plan:
+  1 ea_core.py   colour-stripped vertex blocks (extracted exactly from the su(2) Hessians of r2_core), lines, polynomial
+                 matrices in the loop momentum, exact simplex / region integrals (Thm thm:tl-simplex)
+  2 gates        G1 (Ch5 bilinear graph table), G2 (lc^natural), G4 (colour: stripped words vs explicit su(2)),
+                 G5 (shape), G6 (k=0), G7 (output bound), orientation symmetry of the chains
+  3 kernels      all 21 pair types at pair weight W_0 (all ordered leg sets), exact polynomials in the output momenta
+  4 closed forms k=0 (Lemma lem:tl-k0), k=1 (eq:tl-bubbleclosed), k=2 (genfun) vs explicit tables with letter derivatives
+  5 spectra      su(2) sector L<=8, twist-two sl(2) n<=8 from the planar two-body log kernel
+  6 Ward W1      letters A_perp, lambda, c, A_V
+  7 D_1, P_1     assembled per Thm thm:tl-D1 / Prop prop:tl-P1 with theta, theta_P parameters
+2026-10-29  ea_core.py, ea_kern.py, ea_explicit.py written.  Colour-stripped blocks extracted from the su(2) Hessians
+  (cached in out/blocks_cache.pkl).  First checks: Ch5 graph table (e) quartic bubble = 2 O - 2 (w1,w2) int(Aperp,Aperp),
+  (f) triangle (line A_V) = 2 O, triangle (line Aperp) = 0 [t_g1.py];  G4: colour-stripped one-orientation kernels with
+  the word reading W = ad_{Y_k}..ad_{Y_1} agree exactly with the explicit su(2) route (1/2 str, both orientations, odd
+  output signs) on 9 pair/leg cases incl. fermions, ghosts, antifields [t_g4.py].
+2026-10-29  T1 at W_0: ea_tables.py + ea_run_tables.py -> out/kernels_W0_raw.json, all 21 pair types, all W_0 leg sets,
+  all ordered words and block structures (82 s).  Planar machinery ea_ops.py.  Spectra (ea_spectra.py): su(2) two-site
+  matrix from the engine = 2u P (normalised letters) -> lc^natural = -2u sum(1-P); cyclic charpolys L<=6 equal
+  predictions.json P6.  Twist two: with d only (two-field operator) the eigenvalues are wrong (-8/3 at S=2); the
+  gauge completion tr(D^k Z D^{N-k} Z) = two-letter term + O(A_n) three-letter terms is required, because pairs
+  (A_n, Z) have a one-field output Z (r = 1) that lowers the field number.  With it: eig(lc^natural) = -8 h(S), S even
+  <= N, exact, N = 0..6.
+2026-10-29  BUG FIXED in ea_core.Simplex: |c(alpha)|^2 was accumulated wrongly (dict-comprehension overwrite), so Phi was
+  wrong whenever the log/eps coefficients depend on Phi (momentum degree >= 2).  Results obtained before the fix that
+  are unaffected: D<=1 kernels, the su(2) spectra (D=0), the Ward W1 gates (D<=1), G1 (D=0), and the twist-two spectra
+  (null derivatives: Phi enters only with |sigma|^2 = 0).  The W_0 tables are regenerated after the fix (run_all).
+  Delta-parity sign: the str formula gives the coefficient of the delta-vertex Hessian, d_j d_l(delta M) =
+  (-1)^{|M|(|j|+|l|)} delta d_j d_l M; the intrinsic kernel is (-1)^{|X_a|+|X_b|} times the str value (ea_kern.kernel,
+  intrinsic=True).  With it the Ward identities W1 hold for A_perp, lambda+, lambda-, c, A_V (ea_ward.py, exact).
+2026-10-29  Simplex checks: Prop prop:tl-shape bubble/triangle examples and Lemma lem:tl-special example reproduced exactly;
+  independent numerical boundary-face residuals (mpmath) decrease like eps for a triangle and a fermion bubble.
+  G6: k=0 self-contraction = Lemma lem:tl-k0 for (A,A) and (c,A*_V) with up to 4 derivatives (single powers, no log).
+  Closed forms (ea_closed.py): eq:tl-bubbleclosed reproduces the quartic bubbles (AW,AW), (AV,AV), (AV,AW) to n = 3;
+  an independent sympy implementation of the Bessel generating function (Prop prop:tl-genfun) reproduces the k=1 AAA
+  chain, the k=1 fermion bubble (lamP,lamM)->AV and the k=2 gluon exchange to n = 2.
+2026-10-29  Ward W1 complete: letters A_perp, lambda+-, c, A_V (planar, exact) and antifield letters A*_perp, A*_V,
+  lambda*, c* on all multi-field output leg sets (explicit su(2) route with the vertex operator {I_T, N}, multipliers
+  6, 8, 10, 1, 1, 1) -- all pass (ea_ward.py, ea_ward2.py).
+  iCloud evicted engine_a/r2_core.py and cliff.py (dataless, download hangs).  Verbatim copies written to vendor/ from
+  the text read earlier in this run; they reproduce all 154 cached colour-stripped blocks built from the originals
+  exactly, and the Clifford checks pass.  ea_core now imports vendor/.
+2026-10-29  Disk 97% full: iCloud evicts files of this folder minutes after they are written (ea_explicit.py and two test
+  scripts became dataless).  All code moved to engine_a/src.nosync/ and the cache to engine_a/out.nosync/ (".nosync"
+  items are excluded from iCloud sync); ea_explicit.py rewritten there.  vendor copies of r2_core.py / cliff.py are
+  byte-identical to engine_a/ originals (sha256 e0c59d49.., e4a89ad5..) once the originals downloaded.  Top-level
+  outputs (kernels.json, gates.json, notes.txt, run_all.py) are mirrored in out.nosync/.
+2026-10-29  run_all.py end to end: 30/30 gates pass (331 s, 292 MB RSS).  Twist two N <= 8: -8h(S) exact (N=8: -761/35).
+  su(2) cyclic charpolys L <= 8 = predictions P6.  G7 homogeneity 0 failures, output bound 0 violations.
+  Added ea_invariant.py: exact index-free fits of all bosonic W_0 kernels onto O(4) x O(6) invariant structures
+  (verified entry by entry); rerunning run_all with it.
+PROGRESS: complete
+2026-10-29  REVISION (qa/disposition.json).  New: src.nosync/ea_w2.py (gate G3-W2: full BRST covariance
+  lc(sM) = s lc(M) + {L,M} on M = tr(zeta X_a X_b), field letters A_V, A_perp, lambda_+-, c, W_0, W_0+1, selected
+  W_0+2, targets <= 3 field legs not reachable from antifield outputs: 741/741, 232 nontrivial; negative controls
+  G3-W2n: each of 5 flipped conventions detected), src.nosync/ea_su11.py (gate G8f: su(1|1) {Z,psi} two-site
+  lc^natural = -2u(1-Pi) graded on (Z,psi), (Z,Z), (psi,psi); K(Z,psi) -> u(Z psi) + 2u(psi Z), K(psi,psi)|psi psi = 0),
+  src.nosync/ea_revise.py (labels: one-body A_V, lambda, c 'without C^(1)_Delta'; spectra 'conditional on P7';
+  planar scalar sector D_1, P_1 entries).  run_all.py rerun end to end: 34/34 gates, 357 s, 287 MB RSS.
+  W_0 tables regenerated (code unchanged) and recompared with engine B: 389/389 rows (results/compare_rerun).

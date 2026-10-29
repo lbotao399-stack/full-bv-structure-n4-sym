@@ -1,0 +1,295 @@
+{
+ "description": "Checks of the simplex formulas of twoletter_theory.tex (Theorem thm:tl-simplex, Proposition prop:tl-shape,\nLemma lem:tl-special, Proposition prop:tl-genfun, Proposition prop:tl-bubble).\n\n(1) Residual test (replaces the least-squares fit of the interrupted run, which was numerically singular for the\n    eps^{-3} case).  For a cycle with E edges, shifts q_e, numerator N(l), the exact formulas give a_k (eps^{-k}) and\n    b (log eps).  By Proposition c4-boundary,  eps d/deps w = - sum_e eps w(t_e = eps); the residual\n        r(eps) = eps d/deps w + sum_k k a_k eps^{-k} - b\n    must be O(eps log eps).  It is evaluated with mpmath (40 digits for E = 2, 25 for E = 3) at eps = 1e-2, 1e-3, 1e-4\n    and required to decrease and to be small at the smallest eps.  The same for the total-time cutoff tau >= eps and\n    for one special edge t_s in [0, eps].\n(2) Special-edge finite part: exact toy (hand computation in the tex) and a numerical eps -> 0 extrapolation-free\n    test  w(eps) - sum_k a_k eps^{-k} -> c_0.\n(3) Generating functions: F_m for the numerator e^{i(sigma,l)} equals the Bessel closed form, order by order in sigma,\n    for E = 1, 2, 3 (exact).\n(4) Closed form of the scalar bubble log kernel in the derivative numbers (exact).\n(5) Gaussian moments; per-edge vs total-time: equal log, different eps^{-k}.\nWrites checks_simplex_results.json.",
+ "residual_tests": [
+  {
+   "name": "E2: N=1",
+   "E": 2,
+   "exact": {
+    "log": "-1"
+   },
+   "residuals_rel": [
+    0.006813900366433838,
+    0.0006857618580535127,
+    6.862011642688497e-05
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2: N=l0^2+l1 l2",
+   "E": 2,
+   "exact": {
+    "log": "11/1200",
+    "1": "1/8"
+   },
+   "residuals_rel": [
+    0.0009590758914009375,
+    9.678213229854217e-05,
+    9.687008319306909e-06
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2: N=(l.p)^2 + 3 l0^4",
+   "E": 2,
+   "exact": {
+    "log": "-562683/800000",
+    "1": "4299/12800",
+    "2": "3/32"
+   },
+   "residuals_rel": [
+    0.008327761385232257,
+    0.0008389554560409877,
+    8.3957666689675e-05
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2: N=(l.l)^3 (eps^-3, eps^-2, eps^-1, log)",
+   "E": 2,
+   "exact": {
+    "log": "0",
+    "1": "0",
+    "2": "549/1600",
+    "3": "1/4"
+   },
+   "residuals_rel": [
+    0.00415692809900421,
+    0.0004202531303386709,
+    4.207319311576484e-05
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E3: N=l.l",
+   "E": 3,
+   "exact": {
+    "log": "-1"
+   },
+   "residuals_rel": [
+    0.01765618398293408,
+    0.00786387964836242,
+    0.0032045468548516126
+   ],
+   "eps": [
+    0.01,
+    0.0031622776601683794,
+    0.001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E3: N=(l.l)^2 + l0 (l.r)",
+   "E": 3,
+   "exact": {
+    "log": "-57/50",
+    "1": "1/3"
+   },
+   "residuals_rel": [
+    0.00848301627816156,
+    0.004583837581941343,
+    0.0020536010740278858
+   ],
+   "eps": [
+    0.01,
+    0.0031622776601683794,
+    0.001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2 total-time cutoff: N=(l.l)^2",
+   "E": 2,
+   "exact": {
+    "log": "0",
+    "1": "183/100",
+    "2": "3"
+   },
+   "residuals_rel": [
+    3.6368012946448616e-05,
+    3.6467965191882867e-06,
+    3.647799445556907e-07
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E3 total-time cutoff: N=(l.l)^2",
+   "E": 3,
+   "exact": {
+    "log": "-31/25",
+    "1": "3"
+   },
+   "residuals_rel": [
+    0.000180440281512887,
+    5.700261627340023e-05,
+    1.8020034489887814e-05
+   ],
+   "eps": [
+    0.01,
+    0.0031622776601683794,
+    0.001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2 special edge s=0: N=l.l",
+   "E": 2,
+   "exact": {
+    "log": "0",
+    "1": "1/2"
+   },
+   "residuals_rel": [
+    0.0032241361287126285,
+    0.000325268488971588,
+    3.255555826075766e-05
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E2 special edge s=1: N=(l.l)^2+l0^2",
+   "E": 2,
+   "exact": {
+    "log": "0",
+    "1": "-83/800",
+    "2": "3/4"
+   },
+   "residuals_rel": [
+    9.554082962091561e-05,
+    9.60704341001306e-06,
+    9.612356244812753e-07
+   ],
+   "eps": [
+    0.01,
+    0.001,
+    0.0001
+   ],
+   "pass_": true
+  },
+  {
+   "name": "E3 special edge s=1: N=(l.l)^2",
+   "E": 3,
+   "exact": {
+    "log": "0",
+    "1": "1/6"
+   },
+   "residuals_rel": [
+    0.002461537042447303,
+    0.0007860898840614308,
+    0.00024935656473035374
+   ],
+   "eps": [
+    0.01,
+    0.0031622776601683794,
+    0.001
+   ],
+   "pass_": true
+  }
+ ],
+ "special_toy": {
+  "eps_m1": "-1/2",
+  "c0": "-549/800",
+  "expected": [
+   "-1/2",
+   "-549/800"
+  ],
+  "pass_": true
+ },
+ "special_finite": [
+  {
+   "name": "special finite E2: N=-(l.l)(1 + l.r)",
+   "c0": "-29707/80000",
+   "eps_coeffs": {
+    "log": "0",
+    "1": "-21/160"
+   },
+   "deviations": [
+    0.00025671362265679596,
+    2.5682394858768663e-05,
+    2.56835040116101e-06
+   ],
+   "pass_": true
+  },
+  {
+   "name": "special finite E2: N=-|l-p|^2 (l0^2 + l1 l3)",
+   "c0": "103273/2560000",
+   "eps_coeffs": {
+    "log": "0",
+    "1": "-167/2400",
+    "2": "-3/16"
+   },
+   "deviations": [
+    1.6277134425525917e-05,
+    1.6281767444215599e-06,
+    1.6282260147378797e-07
+   ],
+   "pass_": true
+  }
+ ],
+ "genfun": {
+  "E1": true,
+  "E2": true,
+  "E3": true
+ },
+ "bubble_closed_form": true,
+ "scheme_comparison": [
+  {
+   "case": "(l.l)^2 bubble",
+   "per_edge": {
+    "log": "0",
+    "1": "183/800",
+    "2": "1/4"
+   },
+   "total_time": {
+    "log": "0",
+    "1": "183/100",
+    "2": "3"
+   },
+   "log_equal": true,
+   "eps_m1_differ": true
+  },
+  {
+   "case": "(l.l)^2 triangle",
+   "per_edge": {
+    "log": "-31/25",
+    "1": "1/3"
+   },
+   "total_time": {
+    "log": "-31/25",
+    "1": "3"
+   },
+   "log_equal": true,
+   "eps_m1_differ": true
+  }
+ ],
+ "gaussian_moments_ok": true,
+ "all_pass": true
+}

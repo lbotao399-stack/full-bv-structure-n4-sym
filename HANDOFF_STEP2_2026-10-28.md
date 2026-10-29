@@ -89,3 +89,9 @@ composite A_V--c lines give a nonlocal Q-exact remainder (Delta) and a translati
   Q_1, S_1, K_1 two-body kernels from the defect graphs = next workflow.
 - 09:15 first run wf_c061cef0-9fc died (network ECONNRESET, all 8 agents; theory left census.json, tl_simplex.py, checks).
   Relaunched as wf_f959070c-6dd (same script + resume note for theory, PROGRESS.md logs, stop guards).
+- 2026-10-29 16:xx wf_f959070c-6dd COMPLETE: theory (step2/twoletter/theory/twoletter_theory.tex, 22 pp), engines A/B agree
+  389/389 rows; numbers referee: no wrong number (7920+560+3833 entries rechecked); theory referee: 4 major (reduction prop,
+  D_1 on all operators not established, P7 unproven, Q1/S1/K1 two-body absent) — all accepted and addressed by the reviser
+  (results/kernels_final.json, qa/disposition.json). Draft manuscript/ch10_two_letter_kernels.tex + supplements/ch10.tex.
+  Open: composite kernels C2_Delta, C_{P_b} beyond the planar scalar sector (D_1 there conditional on P7); Q1/S1/K1 two-body
+  kernels; W2 with antifields; field-strength families. ch10 referee running -> step2/qa/ch10_review/.

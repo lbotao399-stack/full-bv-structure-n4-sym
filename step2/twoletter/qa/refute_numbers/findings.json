@@ -1,0 +1,181 @@
+{
+ "role": "adversarial referee of the numbers (R8 two-letter kernels)",
+ "verdict": "pass_with_fixes",
+ "method": "referee engine R: vertices read off the Ch1 densities, propagator of Rem tl-P, kernel = hbar Sing <X_a X_b>_e with explicit Koszul reordering of X_a X_b V_1..V_k, own 10d Clifford realisation, Schwinger integrals by the Laplace representation (exact rationals) over [1,oo)^E and the Gamma(delta) pole for log eps -- different from engine A (min-alpha simplex regions) and engine B (pinned faces + Feynman parameters); no DR, T = infinity at generic momenta, per-edge cutoff t_e >= eps",
+ "unit": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2)",
+ "checks": [
+  {
+   "id": "R0",
+   "what": "integration routine (Laplace-exact orthant integrals for eps^{-m}, Gamma(delta)-pole for log eps) on the examples of Prop prop:tl-shape",
+   "result": "per-edge bubble |l|^4: |p|^2/8 eps^-1 + 1/4 eps^-2, log 0; triangle |l|^4: eps^-1 = 1/3",
+   "pass_": true,
+   "script": "t_basic.py"
+  },
+  {
+   "id": "R1",
+   "what": "bosonic W0 kernels, own vertices from eq c1-AAA/c1-AAAA, all letter/output components, symbolic output momenta, vs engine A invariant_forms_bosonic_W0 (AV|AV, AW|AW, AV|AW: C, CC, Q, k=0)",
+   "result": "7920 entries, 0 mismatches",
+   "pass_": true,
+   "script": "t_bos_W0.py"
+  },
+  {
+   "id": "R2",
+   "what": "derivative letters, total derivative number 3 and 4 (W = 5, 6), log, eps^-1, eps^-2 (scheme-specific), quartic bubbles, gluon exchange, A_V letters; k = 0 with derivatives vs Lemma lem:tl-k0",
+   "result": "560 entries, 0 mismatches",
+   "pass_": true,
+   "script": "t_deriv.py"
+  },
+  {
+   "id": "R3",
+   "what": "ghost / antifield pairs (c|A*_V, c|c, A_V|c, A_perp|c, A_V|A*_V, A_perp|A*_V, A*_V|A*_V; odd pairs whose sign engine B fixed empirically), Grassmann signs by explicit Koszul reordering, vs engine A forms incl. eps^-1",
+   "result": "3833 entries, 0 mismatches",
+   "pass_": true,
+   "script": "t_ghost.py"
+  },
+  {
+   "id": "R4",
+   "what": "fermion kernels at component level (referee engine run with engine A Clifford matrices, verified exactly) vs engine A kernel(): lambda|lambda -> A (W = 3, 4, 6 with three derivatives; log, eps^-1, eps^-2), lambda|lambda -> lambda lambda, lambda|lambda -> A A, A|lambda -> lambda (W = 11/2), c|lambda -> c lambda",
+   "result": "14144 entries, 0 mismatches",
+   "pass_": true,
+   "script": "t_ferm_engA.py"
+  },
+  {
+   "id": "R5",
+   "what": "k = 3 chains (E = 4) with derivative letters, log, eps^-1, eps^-2",
+   "result": "120 entries, 0 mismatches",
+   "pass_": true,
+   "script": "t_k3.py"
+  },
+  {
+   "id": "R6",
+   "what": "su(1|1) sector {Z, psi} from scratch (own Clifford realisation, own Wick signs): planar K(Z,psi) = alpha u (Z psi) + beta u (psi Z); Beisert H_12 = 1 - Pi with n_F(A) = 2, n_F(lambda) = 4 requires alpha + beta = 3 (protection of tr Z^{L-1} psi) and beta = 2",
+   "result": "referee: alpha = 1, beta = 2; engine A kernel function: alpha = 1, beta = 2; reversed pair K(psi,Z): identity 1, swap 2",
+   "pass_": true,
+   "script": "t_su11.py, t_su11_engA.py",
+   "two_component": "Z = A_{I=5} + i A_{I=6} (A_ij = A_I Sigma^I_ij), psi the lambda_alpha^i component of R-weights (1/2,1/2,1/2) relative to Z = (0,0,1): K(Z,psi) -> u (Z psi) + 2u (psi Z), i.e. lc^natural = -2u sum_l (1 - Pi_{l,l+1})"
+  },
+  {
+   "id": "R7",
+   "what": "twist two (sl(2) sector) from the referee kernels: K(d_n^a Z, d_n^b Z) -> ZZ and the r = 1 outputs of (A_n, Z), (Z, A_n) in the O(A_n) terms of tr(D^k Z D^{N-k} Z); eig lc^natural vs -8 h(S) u",
+   "result": "N=0: ['0']; N=1: ['0']; N=2: ['-12', '0']; N=3: ['-12', '0']; N=4: ['-50/3', '-12', '0']; N=5: ['-50/3', '-12', '0']; N=6: ['-98/5', '-50/3', '-12', '0']; N=7: ['-98/5', '-50/3', '-12', '0']; N=8: ['-761/35', '-98/5', '-50/3', '-12', '0']",
+   "pass_": true,
+   "script": "t_twist2.py 8",
+   "two_component": "n_{alpha alphadot} = kappa_alpha kappatilde_alphadot, n.D = -1/2 kappa^alpha kappatilde^alphadot D_{alpha alphadot}-type contraction as in compare_report; gamma = 2 eig = g^2 N h(S)/(2 pi^2)"
+  },
+  {
+   "id": "R8",
+   "what": "entry-level: referee two-site sl(2) density and gauge-letter kernels vs engine B two_site.json",
+   "result": "285 sl2_null entries (a+b <= 8) and 72 gauge_letter_kernels, 0 mismatches",
+   "pass_": true,
+   "script": "(inline, see report)"
+  },
+  {
+   "id": "R9",
+   "what": "P6b matrix level (B03c (3.14)): lc^natural v_k = -4 sum H'[k',k] v_k', v_k = O_k/(k!(N-k)!), N <= 8; twist two without the O(A_n) terms; su(2) Heisenberg cyclic spectra L <= 8",
+   "result": "P6b: True; without A-terms eig = 4/(S+1) - 4 (N=2: -8/3); su(2) spectra = predictions P6: True",
+   "pass_": true,
+   "script": "t_p6b_su2.py"
+  },
+  {
+   "id": "R10",
+   "what": "Konishi / 20' / Ch5-Ch6 bilinears from the referee kernels: graph (e) 2O - 2(w1,w2) int(A_perp,A_perp), (f) 2O, (c)+(d) = 0, (b) = 0; lc = 4O, -8O; lc^natural = 0, -12u; gamma_Konishi = -24u = 3 g^2 N/(4 pi^2) with u = -g^2 N/(32 pi^2) > 0 sign check; D_1 = 4 lc^natural = -48u at theta = -1/3 (Ch9 table)",
+   "result": "reproduced (via R1 forms and the colour contraction tr_g(ad_{Y2} ad_{Y1}) = u (Y2,Y1) 16pi^2/hbar)",
+   "pass_": true,
+   "script": "t_bos_W0.py + hand contraction (findings text)"
+  },
+  {
+   "id": "R11",
+   "what": "Ward W1 (full colour) for lambda, c and the one-field part for A_V",
+   "result": "{'W1_lambda': 'True', 'K_cc': '2', 'K_Amu_c': {'0': 'I*r0', '1': 'I*r1', '2': 'I*r2', '3': 'I*r3'}, 'all_ok': True}",
+   "pass_": true,
+   "script": "t_ward1.py"
+  },
+  {
+   "id": "R12",
+   "what": "Ward W2 (run by neither engine): (i) M = tr(zeta A_I A_J): reduces to planar K(c,A_perp) = K(A_perp,c) = 1 unit; (ii) M = tr(zeta A_mu A_I) at two output fields (c, A_perp), one derivative: w + x = (i/2) q1_mu delta_IK with w = K(d_mu c, A_I)|_{(c,A_K)}, x = K(c,A_mu)|_c",
+   "result": "(i) True; (ii) True (w = 3i q1/2, x = -i q1)",
+   "pass_": true,
+   "script": "t_ward2.py, t_ward2b.py"
+  },
+  {
+   "id": "R13",
+   "what": "planar colour reading (Lemma lem:tl-colour (ii),(iii)) with explicit gl(N) matrices, r = 2",
+   "result": "leading term +N tr(M1 Y_1 Y_2) with Y_1 nearest X_a",
+   "pass_": true,
+   "script": "t_colour.py"
+  },
+  {
+   "id": "R14",
+   "what": "theory example after Prop prop:tl-bubble (one derivative on each letter of a quartic bubble)",
+   "result": "holds",
+   "pass_": true,
+   "script": "t_bubble_example.py"
+  },
+  {
+   "id": "R16",
+   "what": "census of log-eps leg sets (Prop prop:tl-census, prop:tl-bound): own chain enumeration from the vertex list of eq c1-I and the four edges, k >= 1, w_out <= W, vs theory/census.json for every pair type and pair weight listed (W <= 7)",
+   "result": "108 cells, 0 differing",
+   "pass_": true,
+   "script": "t_census.py"
+  },
+  {
+   "id": "R15",
+   "what": "finite-eps quadrature without momentum expansion (log Schwinger variables), residual r(eps) = eps w' + sum m a_m eps^-m - b",
+   "result": "{\"E2_quartic_bubble_W5 (mpmath dps 30, linear Schwinger split)\": {\"singular\": {\"log\": \"2*I\"}, \"residuals\": [[0.01, \"-0.05071145319591912j\"], [0.001, \"-0.005132058714741406j\"], [0.0001, \"-0.0005138205309409184j\"]], \"reading\": \"residual ~ eps -> 0: log eps coefficient 2i and vanishing eps^-1 confirmed\"}, \"E3_gluon_exchange_W4 (scipy dblquad, log Schwinger variables)\": {\"singular\": {\"log\": \"554/9\", \"1\": \"1\"}, \"residuals\": [[0.01, [-0.12758736841225016, 0.0]], [0.001, [0.1358371378466785, 0.0]], [0.0001, [0.02881857776911545, 0.0]], [1e-05, [0.0044081902225201475, 0.0]], [1e-06, [0.0005934708234320851, 0.0]]], \"reading\": \"residual -> 0 like eps log^k eps (ratios 4.7, 6.5, 7.4 per decade): log eps = 554/9 and eps^-1 = 1 confirmed\"}}",
+   "pass_": true,
+   "script": "t_numeric.py (E=2), t_numeric_fast.py (E=3)"
+  }
+ ],
+ "findings": [
+  {
+   "id": "N1",
+   "severity": "major",
+   "claim": "R8 asks for D_1 on all local operators; what is computed is only the two-body log kernel (4 lc^natural). The composite two-body kernel C^(2)_Delta and the one-body C^(1)_Delta (A_V, lambda, c) are computed by neither engine, so every D_1 number reported for gauge-invariant families (two_site.json D1_eigenvalues_units, kernels.json D1 'spectrum_at_theta=-1/3_under_P7', P5 eig(D_1) = -8 E_H u) is conditional on the untested prediction P7. On the bilinears the engines take the composite triangle -2u {S^(1)(Delta),O} from Prop c9-triangle; Remark c9-twoeval states that 'this agreement determines both coefficients 8 in the value of the composite triangle', i.e. that input was fixed by consistency, not evaluated. D_1 on the bilinears is therefore an input to R8, not a check of it.",
+   "evidence": "engine_a/kernels.json D1.two_body: 'C^(2)_Delta ... NOT computed by engine A'; engine_b/NOTES.md 'the composite parts ... are not computed by route B'; compare.json open_issues[0]; manuscript ch09 Rem rem:c9-twoeval last sentence. The referee confirms 4 lc^natural (R7, R9, R10) but has no independent value for C_Delta.",
+   "fix": "Evaluate C^(2)_Delta (composite cycles through a pair, composite kernel 2(P* v. P* (x) 1)K_0 of Def c9-composite) directly, first for (A_perp, A_perp) without derivatives (this independently reproduces or refutes Prop c9-triangle), then for the twist-two pairs (d^a Z, d^b Z) and (A_n, Z), to test P7. Until then label every D_1 eigenvalue 'conditional on P7, theta = -1/3' and quote spectra as 2 eig lc^natural = gamma.",
+   "two_component": "D_1 = 4 lc^natural - {F'_Delta,-} + C_Delta; on (A_ij, A_kl) only the term u[8 A_kl A_ij - 2 eps_ijkl A^mn A_mn] (= 4 x two-site log kernel) is computed."
+  },
+  {
+   "id": "N2",
+   "severity": "minor",
+   "claim": "Lemma lem:tl-colour labels the outputs opposite to Def def:tl-cycle and to both engines. With Y_1 at the vertex nearest X_a (the numbering of Def tl-cycle), the chain gives the colour element sum t_gamma (x) ad_{Y_k}...ad_{Y_1} t^gamma, and the planar replacement is Y_1...Y_k. The Lemma writes w = ad_{Y_1}...ad_{Y_r} and 'replaced by Y_r...Y_1' without saying which Y is nearest X_a. Combining the Lemma's order with the Def tl-cycle numbering swaps the swap and identity terms of the planar density: u[2P - K] becomes u[2 - K], which gives lc^natural = 0 on every su(2) state and contradicts the Heisenberg spectrum.",
+   "evidence": "Referee derivation of the colour contraction along the chain (ref_core.py docstring) and t_colour.py (explicit gl(N) matrices): the leading term is +N tr(M1 Y_1 Y_2) with Y_1 nearest X_a. The engines use this reading (kernels.json meta 'tr(... Y_1 ... Y_r ...)'), and the su(2) and twist-two spectra (R7, R9) confirm it.",
+   "fix": "In Lemma lem:tl-colour (i) state 'Y_r adjacent to X_a, Y_1 adjacent to X_b' or rewrite (i)-(iii) with w = ad_{Y_r}...ad_{Y_1} (Y_1 nearest X_a) and 'replaced by Y_1...Y_r'."
+  },
+  {
+   "id": "N3",
+   "severity": "minor",
+   "claim": "Table tab:tl-A lists the self-contraction (empty leg set) in the eps^{-1} column of (lambda_+, lambda_-) and (c, A*|_V) at W_0 = 3. Lemma lem:tl-k0 in the same document makes K^(0) a single power eps^{-W/2}, which vanishes when W is odd, so this entry is identically zero.",
+   "evidence": "compare.json census_check.predicted_but_zero (A_W0 and B_W0: lamP|lamM and c|AsV '(none) eps^-1'); the referee's kernel_k0 returns no singular part for odd W (t_deriv.py k=0 cases agree with the Lemma).",
+   "fix": "Remove the empty set from the eps^{-1} column of those two rows (keep A|_V), or add a footnote that the census lists slot-allowed topologies and that this one vanishes by Lemma lem:tl-k0."
+  },
+  {
+   "id": "N4",
+   "severity": "minor",
+   "claim": "Engine B fixed the overall sign of the odd-pair kernels empirically, by requiring W1 to hold (NOTES.md: the naive left-derivative argument gave -1, with +1 they hold). In engine B the W1 gates for (A_perp, c) and (A_V, c) are therefore not independent tests. The sign is nevertheless correct: the referee's explicit Koszul reordering of <X_a X_b V_1 ... V_k> gives the same odd-pair kernels as engines A and B (R3), and W1 and W2 hold with them (R11, R12).",
+   "evidence": "engine_b/NOTES.md 'Definition computed'; t_ghost.py: A_V|c, A_perp|c, A_V|A*_V, A_perp|A*_V all agree, 0 mismatches; t_ward1.py K(A_mu,c)|_c = i r_mu; t_ward2b.py.",
+   "fix": "Record in engine B the derivation of the sign: K(X_a,X_b) = hbar Sing <X_a X_b>_e with P^{phi psi} the two-point function, first factor first, and Koszul reordering. No number changes."
+  },
+  {
+   "id": "N5",
+   "severity": "minor",
+   "claim": "In two_site.json the 'D1_eigenvalues_units' strings omit u (already compare F-3). They also append '- (1/3+theta) v.', which is the classical dilatation operator and not a number, so the strings mix an operator with eigenvalues. The engine A notes give 'one-body parts in units' A_V -22/3, lambda -47/3, c -8/3; these leave out the nonlocal C^(1)_Delta, and only the sum C^(1)+C^(2) is local.",
+   "evidence": "engine_b/two_site.json twist_two['8'].D1_eigenvalues_units = ['-3044/35 - (1/3+theta) v.', ...]; engine_a/kernels.json D1.one_body_units. Arithmetic checked: -4 n_F - {F'_Delta,-} gives -8+2/3 = -22/3, -16+1/3 = -47/3, -4+4/3 = -8/3, and with Pi_Delta|perp the A_perp value -8 + (5/3 - theta) v.",
+   "fix": "Report eigenvalues as numbers times u (conditional on P7, N1) and keep the classical part separate. Label the A_V, lambda, c one-body numbers 'without C^(1)_Delta (nonlocal)'."
+  },
+  {
+   "id": "N6",
+   "severity": "minor",
+   "claim": "The Ward identity W2 (Cor cor:tl-ward) was run by neither engine nor the comparator. The referee checked two instances, both pass: tr(zeta A_I A_J) at outputs (A_perp, A_perp, c), and tr(zeta A_mu A_I) at outputs (c, A_perp) with one derivative, where w + x = (i/2) q1_mu delta_IK holds with w = 3i q1_mu/2 and x = -i q1_mu. W2 for fermion, ghost and antifield pairs remains untested.",
+   "evidence": "t_ward2.py, t_ward2b.py (out_ward2.json, out_ward2b.json).",
+   "fix": "Add W2 gates in both engines for (lambda_+, lambda_-), (c, A*_V) and (A_V, A_V) with derivatives, at the lowest number of output fields."
+  },
+  {
+   "id": "N7",
+   "severity": "minor",
+   "claim": "The two-engine agreement covers only W <= W_0 + 2; engine B has no tables above that. Higher W and k >= 3 rest on engine A alone. The referee confirms engine A there exactly: bosonic letters at W = 5, 6 (log, eps^-1, eps^-2), fermion pairs with three derivatives (W = 6), A|lambda at W = 11/2, and k = 3 chains, with 0 mismatches.",
+   "evidence": "t_deriv.py, t_ferm_engA.py, t_k3.py; compare.json open_issues[2].",
+   "fix": "Quote the coverage explicitly in the compare report: two engines up to W_0+2, engine A plus referee beyond."
+  }
+ ]
+}

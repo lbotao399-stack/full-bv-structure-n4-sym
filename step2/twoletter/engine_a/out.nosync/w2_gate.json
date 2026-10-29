@@ -1,0 +1,8460 @@
+{
+ "description": "Engine A, gate G-W2: the two-body Ward identity W2 (Cor cor:tl-ward), tested as the full BRST covariance\nlc(sM) = s lc(M) + {L,M} (Thm thm:tl-brst) on two-letter operators M = tr(zeta X_a X_b), zeta a constant traceless\nmatrix, in the planar colour-ordered reading of ea_ops (units u).  Given W1 (gate G3), this identity on all two-letter\nM is equivalent to W2 (proof of Cor cor:tl-ward).\n\nLetter-level BRST images (matrix letters, c odd), fixed by Prop c1-Q, by the W1 gate of ea_ward.py\n({I,N} = -(zeta,[A,c]) and QN = -(zeta,dc) for N = (zeta,A_V)) and by s^2 = 0:\n    s1 A_V = -dc - (A c - c A),   s1 A_perp = -(A c - c A),   s1 c = c c,   s1 lambda = c lambda + lambda c.\nOne-body bracket (Prop prop:tl-W1): {L,X} = u (gauge part of s1 X) for A_perp, lambda, c, and\n{L,A_V} = u (gauge part of s1 A_V) - u (Q part of s1 A_V).\ns acts on functionals from the left with Koszul signs; on a functional F evaluated on ordered legs,\n  (Q F)[..., c(q), ...]  = sign * F[..., A_V(pol = -i q), ...]\n  ({I,F})[..., Y(q1), c(q2), ...] = -sign F[..., Y(q1+q2), ...] for Y = A,   + for Y = lambda,\n  ({I,F})[..., c(q1), Y(q2), ...] = +sign F[..., Y(q1+q2), ...] for Y = A or lambda,  ({I,F})[c(q1), c(q2)] = +sign F[c(q1+q2)],\nsign = (-1)^(parity of the legs to the left).  Targets: output leg sets of field type (A_V, A_perp, lambda, c) on which\nno antifield output of lc(M) can land under s (checked against census.json).",
+ "cases": [
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "none",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-23*i",
+     "rhs": "-23*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "6*i",
+     "rhs": "6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-40",
+     "rhs": "-40",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "-18",
+     "rhs": "-18",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-47/4",
+     "rhs": "-47/4",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "d_a",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "5/6*i",
+     "rhs": "5/6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "d_b",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AW"
+   ],
+   "derivatives": "none",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "-60*i",
+     "rhs": "-60*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "-12",
+     "rhs": "-12",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "72",
+     "rhs": "72",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "-15",
+     "rhs": "-15",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AW"
+   ],
+   "derivatives": "d_a",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AW"
+   ],
+   "derivatives": "d_b",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AV"
+   ],
+   "derivatives": "none",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "-3*i",
+     "rhs": "-3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "18",
+     "rhs": "18",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "15/2",
+     "rhs": "15/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "-36",
+     "rhs": "-36",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "6",
+     "rhs": "6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AV"
+   ],
+   "derivatives": "d_a",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AV"
+   ],
+   "derivatives": "d_b",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AW"
+   ],
+   "derivatives": "none",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "24",
+     "rhs": "24",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "32",
+     "rhs": "32",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AW"
+   ],
+   "derivatives": "d_a",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-21",
+     "rhs": "-21",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "5/6*i",
+     "rhs": "5/6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "-155/2*i",
+     "rhs": "-155/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "18*i",
+     "rhs": "18*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "(34+-23*i)",
+     "rhs": "(34+-23*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "(-19+3*i)",
+     "rhs": "(-19+3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-10/3*i",
+     "rhs": "-10/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "168*i",
+     "rhs": "168*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "(21+10*i)",
+     "rhs": "(21+10*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "(22+24*i)",
+     "rhs": "(22+24*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AW"
+   ],
+   "derivatives": "d_b",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-20/3",
+     "rhs": "-20/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-2",
+     "rhs": "-2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-20/3*i",
+     "rhs": "-20/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "-64*i",
+     "rhs": "-64*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "108*i",
+     "rhs": "108*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "(-5+2*i)",
+     "rhs": "(-5+2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "(5+-2*i)",
+     "rhs": "(5+-2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-16/3*i",
+     "rhs": "-16/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "87*i",
+     "rhs": "87*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "(6+-8*i)",
+     "rhs": "(6+-8*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "(17+5*i)",
+     "rhs": "(17+5*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "c"
+   ],
+   "derivatives": "none",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "-5/2*i",
+     "rhs": "-5/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "-12",
+     "rhs": "-12",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "c"
+   ],
+   "derivatives": "d_a",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "-31/6",
+     "rhs": "-31/6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "1/6*i",
+     "rhs": "1/6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "-51/4*i",
+     "rhs": "-51/4*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "-1/24*i",
+     "rhs": "-1/24*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "c"
+   ],
+   "derivatives": "d_b",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "-17/4",
+     "rhs": "-17/4",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "-95/12*i",
+     "rhs": "-95/12*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "-11/2*i",
+     "rhs": "-11/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "3/2*i",
+     "rhs": "3/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AV"
+   ],
+   "derivatives": "none",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "-1/2*i",
+     "rhs": "-1/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "-3",
+     "rhs": "-3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AV"
+   ],
+   "derivatives": "d_a",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "-61/6",
+     "rhs": "-61/6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "1/8*i",
+     "rhs": "1/8*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "5/2*i",
+     "rhs": "5/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "47/8*i",
+     "rhs": "47/8*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AV"
+   ],
+   "derivatives": "d_b",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "3/2",
+     "rhs": "3/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c c",
+     "lhs": "-1/2*i",
+     "rhs": "-1/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "-5/8*i",
+     "rhs": "-5/8*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "25/24*i",
+     "rhs": "25/24*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "c"
+   ],
+   "derivatives": "none",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "-8",
+     "rhs": "-8",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "c"
+   ],
+   "derivatives": "d_a",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "-12*i",
+     "rhs": "-12*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "c"
+   ],
+   "derivatives": "d_b",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "-35/4*i",
+     "rhs": "-35/4*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "-35/4*i",
+     "rhs": "-35/4*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AW"
+   ],
+   "derivatives": "none",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "-6",
+     "rhs": "-6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AW"
+   ],
+   "derivatives": "d_a",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "49/2*i",
+     "rhs": "49/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "-14*i",
+     "rhs": "-14*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "AW"
+   ],
+   "derivatives": "d_b",
+   "W": "2",
+   "rows": [
+    {
+     "target": "c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW c",
+     "lhs": "-18*i",
+     "rhs": "-18*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c AW",
+     "lhs": "55/4*i",
+     "rhs": "55/4*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "c"
+   ],
+   "derivatives": "none",
+   "W": "0",
+   "rows": [
+    {
+     "target": "c c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "c"
+   ],
+   "derivatives": "d_a",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c c",
+     "lhs": "3*i",
+     "rhs": "3*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "c"
+   ],
+   "derivatives": "d_b",
+   "W": "1",
+   "rows": [
+    {
+     "target": "c c c",
+     "lhs": "-3/2*i",
+     "rhs": "-3/2*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamM"
+   ],
+   "derivatives": "none",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "2/3",
+     "rhs": "2/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-26",
+     "rhs": "-26",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-53/3*i",
+     "rhs": "-53/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "-171/2*i",
+     "rhs": "-171/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "-48",
+     "rhs": "-48",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "74/3*i",
+     "rhs": "74/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(-10+19*i)",
+     "rhs": "(-10+19*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "-12",
+     "rhs": "-12",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamM"
+   ],
+   "derivatives": "d_a",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-5/3*i",
+     "rhs": "-5/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "69/2*i",
+     "rhs": "69/2*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-217/4",
+     "rhs": "-217/4",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(-757/6+71/6*i)",
+     "rhs": "(-757/6+71/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-26/3",
+     "rhs": "-26/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(-11/6+281/12*i)",
+     "rhs": "(-11/6+281/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamM"
+   ],
+   "derivatives": "d_b",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "6*i",
+     "rhs": "6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "12*i",
+     "rhs": "12*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-39",
+     "rhs": "-39",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(-206/3+-155/3*i)",
+     "rhs": "(-206/3+-155/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-2",
+     "rhs": "-2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(301/6+-13/3*i)",
+     "rhs": "(301/6+-13/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamP"
+   ],
+   "derivatives": "none",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "2/3",
+     "rhs": "2/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-17",
+     "rhs": "-17",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-4/3*i",
+     "rhs": "-4/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(-51/2+26*i)",
+     "rhs": "(-51/2+26*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "-38",
+     "rhs": "-38",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-38/3*i",
+     "rhs": "-38/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(107+-184*i)",
+     "rhs": "(107+-184*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "10",
+     "rhs": "10",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "-8",
+     "rhs": "-8",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamP"
+   ],
+   "derivatives": "d_a",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-11*i",
+     "rhs": "-11*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "93/4*i",
+     "rhs": "93/4*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "185/3",
+     "rhs": "185/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(-277/12+67/6*i)",
+     "rhs": "(-277/12+67/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-61/6",
+     "rhs": "-61/6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(37/2+-289/4*i)",
+     "rhs": "(37/2+-289/4*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamP"
+   ],
+   "derivatives": "d_b",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "5/3*i",
+     "rhs": "5/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-5/3*i",
+     "rhs": "-5/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-95/6",
+     "rhs": "-95/6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(773/12+457/6*i)",
+     "rhs": "(773/12+457/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-79/6",
+     "rhs": "-79/6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(41/2+-163/6*i)",
+     "rhs": "(41/2+-163/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamP"
+   ],
+   "derivatives": "none",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "7/2",
+     "rhs": "7/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "27/2",
+     "rhs": "27/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(-1/2+-25/2*i)",
+     "rhs": "(-1/2+-25/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "(17/2+57/2*i)",
+     "rhs": "(17/2+57/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "-32",
+     "rhs": "-32",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "-10",
+     "rhs": "-10",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(10+2*i)",
+     "rhs": "(10+2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "(6+-33*i)",
+     "rhs": "(6+-33*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "16",
+     "rhs": "16",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "16",
+     "rhs": "16",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamP"
+   ],
+   "derivatives": "d_a",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "(3+-105/2*i)",
+     "rhs": "(3+-105/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "(-16/3+-140/3*i)",
+     "rhs": "(-16/3+-140/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(59/12+-161/12*i)",
+     "rhs": "(59/12+-161/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "(-65/6+23/12*i)",
+     "rhs": "(-65/6+23/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "14/3*i",
+     "rhs": "14/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(55/6+-16/3*i)",
+     "rhs": "(55/6+-16/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "(-230/3+129/4*i)",
+     "rhs": "(-230/3+129/4*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "56/3*i",
+     "rhs": "56/3*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamP"
+   ],
+   "derivatives": "d_b",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "335/6*i",
+     "rhs": "335/6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "-38*i",
+     "rhs": "-38*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(827/12+-229/12*i)",
+     "rhs": "(827/12+-229/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "(-35/3+109/6*i)",
+     "rhs": "(-35/3+109/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "-229/3*i",
+     "rhs": "-229/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(-805/12+25/12*i)",
+     "rhs": "(-805/12+25/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "40/3",
+     "rhs": "40/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "106/3*i",
+     "rhs": "106/3*i",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamM"
+   ],
+   "derivatives": "none",
+   "W": "3",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "(15+-10*i)",
+     "rhs": "(15+-10*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(-7+33/2*i)",
+     "rhs": "(-7+33/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "(-5+23/2*i)",
+     "rhs": "(-5+23/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "-6",
+     "rhs": "-6",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "-32",
+     "rhs": "-32",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(39+-29*i)",
+     "rhs": "(39+-29*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "(16+14*i)",
+     "rhs": "(16+14*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "-8",
+     "rhs": "-8",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "4",
+     "rhs": "4",
+     "pass": true,
+     "nontrivial": true
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamM"
+   ],
+   "derivatives": "d_a",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "(-5/2+-8*i)",
+     "rhs": "(-5/2+-8*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "(-54+39/2*i)",
+     "rhs": "(-54+39/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(-37/2+16/3*i)",
+     "rhs": "(-37/2+16/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "125/3",
+     "rhs": "125/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "-42*i",
+     "rhs": "-42*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(-169/4+-125/6*i)",
+     "rhs": "(-169/4+-125/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "11/2",
+     "rhs": "11/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "236/3*i",
+     "rhs": "236/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "lamM"
+   ],
+   "derivatives": "d_b",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c",
+     "lhs": "-5/3*i",
+     "rhs": "-5/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW",
+     "lhs": "(-7+-24*i)",
+     "rhs": "(-7+-24*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "(-421/3+22/3*i)",
+     "rhs": "(-421/3+22/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "(-169/3+21/2*i)",
+     "rhs": "(-169/3+21/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "-8*i",
+     "rhs": "-8*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "(262/3+41/3*i)",
+     "rhs": "(262/3+41/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "(191/3+103*i)",
+     "rhs": "(191/3+103*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "-17/3*i",
+     "rhs": "-17/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "c"
+   ],
+   "derivatives": "none",
+   "W": "3/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP c",
+     "lhs": "8",
+     "rhs": "8",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "c"
+   ],
+   "derivatives": "d_a",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "c"
+   ],
+   "derivatives": "d_b",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "lamM"
+   ],
+   "derivatives": "none",
+   "W": "3/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM c",
+     "lhs": "-12",
+     "rhs": "-12",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "lamM"
+   ],
+   "derivatives": "d_a",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "c",
+    "lamM"
+   ],
+   "derivatives": "d_b",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "lamP"
+   ],
+   "derivatives": "none",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "lamP"
+   ],
+   "derivatives": "d_a",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "lamP"
+   ],
+   "derivatives": "d_b",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AV"
+   ],
+   "derivatives": "none",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AV"
+   ],
+   "derivatives": "d_a",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AV"
+   ],
+   "derivatives": "d_b",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "lamP"
+   ],
+   "derivatives": "none",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c",
+     "lhs": "(6+-6*i)",
+     "rhs": "(6+-6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM",
+     "lhs": "-11*i",
+     "rhs": "-11*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "(18+-3*i)",
+     "rhs": "(18+-3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP AW c",
+     "lhs": "(-52+-24*i)",
+     "rhs": "(-52+-24*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "(13+-18*i)",
+     "rhs": "(13+-18*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "(-6+18*i)",
+     "rhs": "(-6+18*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW lamP",
+     "lhs": "8",
+     "rhs": "8",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP AW",
+     "lhs": "(-52+-32*i)",
+     "rhs": "(-52+-32*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "(8+-4*i)",
+     "rhs": "(8+-4*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "lamP"
+   ],
+   "derivatives": "d_a",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c",
+     "lhs": "(15+8/3*i)",
+     "rhs": "(15+8/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM",
+     "lhs": "(-107/6+35/3*i)",
+     "rhs": "(-107/6+35/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "(26+-58/3*i)",
+     "rhs": "(26+-58/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "(-4/3+-9*i)",
+     "rhs": "(-4/3+-9*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "(-59/3+11*i)",
+     "rhs": "(-59/3+11*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "(-9+-53/2*i)",
+     "rhs": "(-9+-53/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "lamP"
+   ],
+   "derivatives": "d_b",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c",
+     "lhs": "17",
+     "rhs": "17",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM",
+     "lhs": "(83/6+-8/3*i)",
+     "rhs": "(83/6+-8/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "(8+-4/3*i)",
+     "rhs": "(8+-4/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "(1+11/2*i)",
+     "rhs": "(1+11/2*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "(61/3+-42*i)",
+     "rhs": "(61/3+-42*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "(107/3+29/3*i)",
+     "rhs": "(107/3+29/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AW"
+   ],
+   "derivatives": "none",
+   "W": "5/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "(8+-6*i)",
+     "rhs": "(8+-6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP",
+     "lhs": "(3+-11*i)",
+     "rhs": "(3+-11*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "(-18+10*i)",
+     "rhs": "(-18+10*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamM c",
+     "lhs": "(2+6*i)",
+     "rhs": "(2+6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "-10",
+     "rhs": "-10",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM AW c",
+     "lhs": "20",
+     "rhs": "20",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "16",
+     "rhs": "16",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW lamM",
+     "lhs": "(-48+24*i)",
+     "rhs": "(-48+24*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "(-10+-8*i)",
+     "rhs": "(-10+-8*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AW"
+   ],
+   "derivatives": "d_a",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "(-40+-8/3*i)",
+     "rhs": "(-40+-8/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP",
+     "lhs": "-5",
+     "rhs": "-5",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "(-50/3+61/6*i)",
+     "rhs": "(-50/3+61/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "(3+5/6*i)",
+     "rhs": "(3+5/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "(-3+-65/6*i)",
+     "rhs": "(-3+-65/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "(17/6+47/6*i)",
+     "rhs": "(17/6+47/6*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamM",
+    "AW"
+   ],
+   "derivatives": "d_b",
+   "W": "7/2",
+   "rows": [
+    {
+     "target": "lamP c",
+     "lhs": "(2/3+-1*i)",
+     "rhs": "(2/3+-1*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP",
+     "lhs": "(-37/3+13/3*i)",
+     "rhs": "(-37/3+13/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV lamP c",
+     "lhs": "-277/3*i",
+     "rhs": "-277/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP AV c",
+     "lhs": "-11*i",
+     "rhs": "-11*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV lamP",
+     "lhs": "(20/3+-8*i)",
+     "rhs": "(20/3+-8*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP AV",
+     "lhs": "(-25/3+11/3*i)",
+     "rhs": "(-25/3+11/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamM AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "d_a=0 d_b=1",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "1",
+     "rhs": "1",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "d_a=2 d_b=2",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AV"
+   ],
+   "derivatives": "d_a=1 d_b=1",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamM"
+   ],
+   "derivatives": "d_a=1 d_b=3",
+   "W": "5",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-7",
+     "rhs": "-7",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-83/24",
+     "rhs": "-83/24",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "5713/60*i",
+     "rhs": "5713/60*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(-121/12+-48*i)",
+     "rhs": "(-121/12+-48*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "859/120*i",
+     "rhs": "859/120*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(-106/3+1489/12*i)",
+     "rhs": "(-106/3+1489/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "lamP",
+    "lamM"
+   ],
+   "derivatives": "d_a=2 d_b=2",
+   "W": "5",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "2399/30",
+     "rhs": "2399/30",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-28/15",
+     "rhs": "-28/15",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "487/20*i",
+     "rhs": "487/20*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW AW c",
+     "lhs": "(661/8+-2555/12*i)",
+     "rhs": "(661/8+-2555/12*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AW c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "859/15*i",
+     "rhs": "859/15*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AW AW",
+     "lhs": "(-81+758/3*i)",
+     "rhs": "(-81+758/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AW"
+   ],
+   "derivatives": "d_a=0 d_b=0",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-35/3*i",
+     "rhs": "-35/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "-6*i",
+     "rhs": "-6*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "-1/2",
+     "rhs": "-1/2",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "(-104/3+-36*i)",
+     "rhs": "(-104/3+-36*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "(-4+-22/3*i)",
+     "rhs": "(-4+-22/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "-20/3",
+     "rhs": "-20/3",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "(22+40/3*i)",
+     "rhs": "(22+40/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "(46/3+-82/3*i)",
+     "rhs": "(46/3+-82/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AW",
+    "AW"
+   ],
+   "derivatives": "d_a=0 d_b=3",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "lhs": "-7/4*i",
+     "rhs": "-7/4*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "AW c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV",
+     "lhs": "16*i",
+     "rhs": "16*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c AW",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AV c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP lamM c",
+     "lhs": "(-67/3+26/3*i)",
+     "rhs": "(-67/3+26/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamP c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamP c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM lamP c",
+     "lhs": "(-6+-5*i)",
+     "rhs": "(-6+-5*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "lamM lamM c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "lamM c lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AV",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "c lamP lamM",
+     "lhs": "(16/3+22/3*i)",
+     "rhs": "(16/3+22/3*i)",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamP",
+     "lhs": "61/3*i",
+     "rhs": "61/3*i",
+     "pass": true,
+     "nontrivial": true
+    },
+    {
+     "target": "c lamM lamM",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    }
+   ]
+  },
+  {
+   "pair": [
+    "AV",
+    "AW"
+   ],
+   "derivatives": "d_a=1 d_b=2",
+   "W": "4",
+   "rows": [
+    {
+     "target": "c",
+     "lhs": "0",
+     "rhs": "0",
+     "pass": true,
+     "nontrivial": false
+    },
+    {
+     "target": "AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AV c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AV c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW AW c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "AW c AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamP c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamP c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM lamM c",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "lamM c lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AV AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AV",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c AW AW",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamP lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamP",
+     "skipped": "antifield output of lc(M) reaches it"
+    },
+    {
+     "target": "c lamM lamM",
+     "skipped": "antifield output of lc(M) reaches it"
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "tested": 741,
+  "pass": 741,
+  "nontrivial": 232,
+  "skipped": 646,
+  "seconds": 19
+ },
+ "negative_controls": {
+  "flip Q": {
+   "tested": 72,
+   "failed": 3,
+   "detected": true
+  },
+  "flip A": {
+   "tested": 72,
+   "failed": 8,
+   "detected": true
+  },
+  "flip c": {
+   "tested": 72,
+   "failed": 2,
+   "detected": true
+  },
+  "flip lam": {
+   "tested": 72,
+   "failed": 10,
+   "detected": true
+  },
+  "flip oddsign": {
+   "tested": 72,
+   "failed": 7,
+   "detected": true
+  }
+ }
+}

@@ -1,0 +1,166 @@
+{
+ "role": "reviser (R8 two-letter kernels), 2026-10-29",
+ "inputs": [
+  "qa/refute_theory/findings.json (15 findings)",
+  "qa/refute_numbers/findings.json (7 findings)"
+ ],
+ "theory_findings": [
+  {
+   "id": "T1",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Rederived the homogeneous W2 equation: for X_a = A|_V the letter term K_r(QX_a, X_b) = -K_r(dc, X_b) has the same number r of outputs and is dropped in (ii). The referee system (check_reduction.json) has the family al = +-i t, be = 0, t free; the (c, A_perp) equation at r = 2 is empty. The computed W_0 kernel K(A|_V, A_perp)|_{A_V A_perp} carries d(a,o1) (non-transverse).",
+   "fix": "Prop prop:tl-reduction rewritten: W2 at fixed r is triangular in (r, Q-depth of the pair), depth(c)=depth(A_perp)=depth(lambda)=0, depth(A_V)=1, depth(A*_V)=2; the Koszul (transversality) statement is restricted to depth-0 pairs and field outputs; the independent data are listed and include the pairs (d^alpha c, X_b). W2 added as an engine gate (engine A, full identity lc(sM) = s lc(M) + {L,M} on two-letter M): 741 instances, 232 nontrivial, all pass; 5 negative controls detected."
+  },
+  {
+   "id": "T2",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Prop c9-triangle: W = 2, outputs A_perp, A*_perp (w_out = 4), degree -2, convergent, yet its Q-image is -2u{S^(1)(Delta),O}. Prop tl-bound (ii) as stated is false for D_1. C_Delta is not computed by either engine.",
+   "fix": "Prop tl-bound (ii) restricted to the counterterm (cycles with P edges). New composite census (checks_census_composite.py -> census_composite.json: one composite c-A|_V edge, 21 pair types at W_0). New output bound for D_1 under (H3): C^(2)_Delta(X_a,X_b) is local of Weyl weight W with x at weight -1, at most linear in x, n_out <= W + 1 + d_ab; composite cycles enter only with w_out <= W + 3. New Prop: on the planar scalar sector (letters A_perp without derivatives) C^(2)_Delta = -u sum_pairs v.(X_a X_b) modulo cyclically trivial terms, so Xi_Delta = -(1/3+theta_perp) u v. there (input: Thm c9-D1 / Prop c9-triangle). Direct evaluation of C^(2)_Delta beyond that sector: open (engine task T3)."
+  },
+  {
+   "id": "T3",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Thm c9-quadratic (iii) lists the Q-closed directions -int(2E lambda+3lambda,lambda*), int(2E A_V+2A_V,A*_V)-int(2E c,c*), Q int(iota_x A_V,c*), Q int(rho(x)lambda*,lambda*) besides the theta direction; H1 set them to 0. Under H1 the one-body values -22/3, -47/3, -8/3 carry no parameter, so P7 cannot hold for theta != -1/3 on operators without A_perp letters.",
+   "fix": "H1 restated with the full family theta_perp, theta_lambda, theta_V (the three sector pieces S_perp, S_lambda, S_V of S^(1)(Delta) = S_perp + S_lambda + S_V) and kappa_V, kappa_lambda (Q-exact, act s-exactly on cocycles). One-body table with all parameters. Prop tl-spec (iii) / P7 turned into a labelled conjecture; proved part: planar scalar sector (see T2). Whether cubic consistency of the arity-one equation forces theta_perp = theta_lambda = theta_V: open, stated."
+  },
+  {
+   "id": "T4",
+   "severity": "major",
+   "decision": "accept (scope gap stated, structure supplied, numbers open)",
+   "check": "The theory treated D_1 and P_1 only. Arity-one cycles contain S^(1)(x) vertices (for x in Sigma: quadratic part joins lambda to A* and A to lambda*) and special edges with K_0 components, which make A*_perp, lambda*, c* active.",
+   "fix": "New section 'Arity one': structure proposition (one-body + two-body form of every one-loop component L_1(O)^(1)(x)), active letters at arity one, census principles (edges P, special edge K_eps - K_0, composite kernel; vertices of I and S^(1)(x)), output bound with the weight shift -lambda_x/2 and the position degree, scheme dependence. The two-body kernels of Q_1, S_1, K_1 are not computed: open (engine task T7)."
+  },
+  {
+   "id": "T5",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Lemma tl-k0: K^(0) is a single power eps^{-W/2}; it vanishes for odd W. Rows (lambda_+,lambda_-) and (c,A*_V) at W_0 = 3 listed the empty set under eps^{-1}; census.json listed (none) at odd W.",
+   "fix": "checks_census.py: the empty leg set enters only for even W at m = W/2; census.json, census_tables.txt regenerated (Table B unchanged); Table A corrected; eps^{-m} lists labelled upper bounds."
+  },
+  {
+   "id": "T6",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Rederived: for tr(M1 X_a) tr(M2 X_b) the replacement is kappa^{-1} sum_S (-1)^{r-|S|} tr(M1 Y_{S^c}^-> M2 Y_S^<-) (merged traces, no N); for the wrap-around pair (X_1, X_n) of tr(X_1...X_n) the leading term is +N tr(X_2...X_{n-1} Y_r...Y_1).",
+   "fix": "Lemma tl-colour rewritten with w = ad_{Y_r}...ad_{Y_1} (Y_1 nearest X_a), adjacent rule (-1)^r N Y_1...Y_r, cross-trace rule, wrap-around rule, graded signs for odd letters and outputs."
+  },
+  {
+   "id": "T7",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "A two-loop figure-eight with M at the junction uses four letters; after the one-loop subtractions -Sing(A)Sing(B) remains.",
+   "fix": "Remark rewritten: two loops = connected three-body kernels plus factorised products of two one-loop pair kernels."
+  },
+  {
+   "id": "T8",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "eps^{-m}(e^{-eps|p|^2}-1) = sum_{j>=1} (-|p|^2)^j eps^{j-m}/j!: divergent pure powers for j < m and the finite local term (-|p|^2)^m/m! at j = m; no log eps.",
+   "fix": "Proof of Thm tl-brst: the pure-power argument replaces the parenthetical; the finite local terms sum_m ((-1)^m/m!) {-,-}_{H^m} with ct_m are recorded as a formula (they enter L_1 and depend on the scheme)."
+  },
+  {
+   "id": "T9",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Lemma c6-bvexact is stated for local F; Pi_Delta contains log|p|^2 in the A_V, lambda, c sectors (Rem c9-Pi).",
+   "fix": "Thm tl-D1: the identity is used only in the form valid for the tree insertions at generic momenta; C^(1)_Delta is kept as an unseparated part of C_Delta outside A_perp; the stated one-body formula is restricted to its one-output part on A_perp letters; A_V, lambda, c one-body values are labelled 'without C^(1)_Delta'."
+  },
+  {
+   "id": "T10",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "The proof of Thm tl-decomp (i)-(iii) used (1/2)STr(P_e Pi (delta M)'') without stating the sign for odd letters; d_j d_l(delta M) = (-1)^{|delta|(|j|+|l|)} delta d_j d_l M.",
+   "fix": "Lemma 'Sign of the pair kernels' added: K = hbar Sing <X_a X_b>_e (component of P_e with the first factor in the slot of X_a); in Hessian-of-M form the factor (-1)^{|X_a|+|X_b|}; engine A derives this sign, engine B fixed it by W1 and now records the derivation; both agree entrywise."
+  },
+  {
+   "id": "T11",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Prop c8-Tsafe gives convergence at T = infinity of one-loop graphs with composite lines at generic momenta (|p|^{-3} integrable in 4d); the theorem did not cite it and was stated at T = infinity.",
+   "fix": "Thm tl-D1 stated and proved at finite T (composite kernel bounded, Prop c9-composite (iv)); T-independence of the local representative by Thm c8-L (ii); T -> infinity by Prop c8-Tsafe."
+  },
+  {
+   "id": "T12",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Prop c8-laws (b): L_1 -> L_1 + [s, psi']; for psi' omega-linear, translation invariant and weight preserving [v., psi'] = 0.",
+   "fix": "(H2) allows psi != 0: L_1(O)^(0) may be removed by such a psi'; D_1 is unchanged by it; the general change of D_1 under psi' is [{S^(1)(Delta),-}, psi'] (stated)."
+  },
+  {
+   "id": "T13",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "N_V = 1 holds for quartic bubbles; a cubic vertex with two cycle legs carries cycle momenta; lambda and c-A* edges carry numerators.",
+   "fix": "Scope of eq:tl-bubbleclosed stated (constant N_V: quartic bubbles); table of edge numerators and vertex momentum factors added."
+  },
+  {
+   "id": "T14",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "W (pair weight) vs Def c3-W; u (unit) vs point splitting; s (BRST) vs point splitting; c (ghost) vs c(alpha); E (edges) vs Euler field; sigma_ab, sigma.",
+   "fix": "Renamed: pair weight w_ab, its minimum w_ab^0, point splitting y_a, y_b, y_ab = y_b - y_a, Gaussian centre l_0(alpha), number of edges k+1, Koszul sign (-1)^{n_ab}, shape function chi, constants renamed; manuscript symbols keep their meaning."
+  },
+  {
+   "id": "T15",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Verified sectors: su(2) L <= 8 (both engines, referee), scalar twist two N <= 8 (both engines, referee), su(1|1) two-site (referee with engine A's kernel function).",
+   "fix": "P5 labelled as verified on these sectors; su(1|1) two-site density added as a gate in engine A; field-strength family: open."
+  }
+ ],
+ "numbers_findings": [
+  {
+   "id": "N1",
+   "severity": "major",
+   "decision": "accept",
+   "check": "engine_a/kernels.json D1.two_body and engine_b/NOTES.md: C^(2)_Delta not computed; Rem c9-twoeval: the triangle coefficients 8 were fixed by agreement of two evaluations.",
+   "fix": "Every D_1 number outside the planar scalar sector is labelled 'conditional on P7, theta = -1/3'; spectra quoted as gamma = 2 eig lc^natural; on the planar scalar sector D_1 = 4 lc^natural - (1/3+theta_perp) u v. is now derived from Thm c9-D1 (input, not a check). Direct evaluation of C^(2)_Delta: open."
+  },
+  {
+   "id": "N2",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Same as T6 (ordering).",
+   "fix": "Lemma tl-colour with Y_1 nearest X_a and replacement (-1)^r N Y_1...Y_r."
+  },
+  {
+   "id": "N3",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Same as T5.",
+   "fix": "Table A and census.json corrected."
+  },
+  {
+   "id": "N4",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Engine B's ODD_M_SIGN = +1 equals engine A's derived (-1)^{|X_a|+|X_b|} on every odd-pair entry (compare.json); W1 in engine B is then not independent for (A_perp,c), (A_V,c).",
+   "fix": "engine_b/NOTES.md records the derivation (K = hbar Sing <X_a X_b>_e, Koszul order, (-1)^{|X_a|+|X_b|} from d_j d_l(delta M)); no number changes."
+  },
+  {
+   "id": "N5",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "two_site.json D1 strings '-3044/35 - (1/3+theta) v.'; kernels.json D1.one_body_units without the C^(1) label.",
+   "fix": "two_site.json: D1 entries rewritten as numbers times u (conditional on P7) with the classical part separate; kernels.json one-body A_V, lambda, c labelled 'without C^(1)_Delta (nonlocal)'."
+  },
+  {
+   "id": "N6",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Neither engine ran W2.",
+   "fix": "W2 gate in engine A (ea_w2.py, out.nosync/w2_gate.json): field-letter pairs (A_V, A_perp, lambda_+-, c) at W_0, W_0+1 and selected W_0+2, all targets of up to three output legs that no antifield output of lc(M) reaches: 741 pass, 232 nontrivial. Not covered: (A_V, lambda) at every target (c lambda* outputs), derivative (lambda, c), most derivative (A_V, A_V) targets, antifield-letter pairs (c, A*_V): they need s on antifield outputs; open. Engine B: entrywise equality with engine A on the compared tables (compare.json C1/C2) carries W2 over on those entries; recorded as a derived gate, not an independent run."
+  },
+  {
+   "id": "N7",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "compare.json open_issues[2].",
+   "fix": "Coverage stated in results/kernels_final.json and results/summary.md: both engines W <= W_0+2 (<= 2 outputs above W_0); engine A plus referee above."
+  }
+ ],
+ "rejected": []
+}

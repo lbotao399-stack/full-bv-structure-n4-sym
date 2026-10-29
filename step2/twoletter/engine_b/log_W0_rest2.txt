@@ -1,0 +1,24 @@
+lamP|lamP  [AV AV AW] words=6 G7={'n_out': 3, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 141.4s
+lamP|lamP  [AV AW] words=2 G7={'n_out': 2, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 1.5s
+lamP|lamP  [AW] words=1 G7={'n_out': 1, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 0.1s
+lamP|lamP  [AW AW AW] words=6 G7={'n_out': 3, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 185.2s
+lamP|lamP  [lamM lamM] words=2 G7={'n_out': 2, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 0.5s
+lamP|lamP  [lamP lamP] words=2 G7={'n_out': 2, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 0.2s
+lamP|lamM  [AV] words=1 G7={'n_out': 1, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 0.1s
+lamP|lamM  [AV AV] words=2 G7={'n_out': 2, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 1.5s
+lamP|lamM  [AV AV AV] words=6 G7={'n_out': 3, 'bound': '3', 'n_out_ok': True, 'momentum_degrees_ok': True} 158.9s
+Traceback (most recent call last):
+  File "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/twoletter/engine_b/kernels_W0.py", line 86, in <module>
+    run(sys.argv[1:] or None)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/twoletter/engine_b/kernels_W0.py", line 48, in run
+    K = job.kernel()
+  File "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/twoletter/engine_b/tl_engine.py", line 556, in kernel
+    E, curs, words = self.sequence(seq, split=split)
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/twoletter/engine_b/tl_engine.py", line 409, in sequence
+    check_mem()
+    ~~~~~~~~~^^
+  File "/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/twoletter/engine_b/tl_engine.py", line 49, in check_mem
+    raise MemoryError(f'peak RSS {rss:.0f} MB exceeds the cap {MEM_CAP_MB} MB')
+MemoryError: peak RSS 1454 MB exceeds the cap 1400 MB

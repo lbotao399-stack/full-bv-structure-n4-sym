@@ -1,0 +1,94 @@
+[    0.0s] vendor copies {'r2_core.py': True, 'cliff.py': True}
+[    0.0s] blocks ready; wall 0.0 s, cpu 0.2 s, max RSS 113 MB
+[G5] bubble N=|l|^4 per-edge vs total-time (Prop prop:tl-shape example): {'eps^-1': '3/4', 'eps^-2': '1/4', 'log': '0', 'tot eps^-1': '6', 'tot eps^-2': '3'} | target {'eps^-1': '3/4', 'eps^-2': '1/4', 'log': '0', 'tot eps^-1': '6', 'tot eps^-2': '3'} | PASS
+[G5] triangle N=|l|^4: eps^-1 per-edge / total-time: ['1/3', '3'] | target ['1/3', '3'] | PASS
+[G5] special edge E=2 N=-|l|^2 eps^-1 (Lemma lem:tl-special example): -1/2 | target -1/2 | PASS
+[G6] k=0 self-contraction vs Lemma lem:tl-k0 (single power, no log): ['AVAV d() d(): eps^-1 2 (target 2)', 'AVAV d(0,) d(0,): eps^-2 1/2 (target 1/2)', 'AVAV d(1,) d(2,): eps^-2 0 (target 0)', 'AVAV d(0, 0) d(): eps^-2 -1/2 (target -1/2)', 'AVAV d(0, 1) d(0, 1): eps^-3 1/6 (target 1/6)', 'AVAV d(2,) d(2, 3, 3): eps^-3 -1/6 (target -1/6)', 'AVAV d() d(1, 1, 2, 2): eps^-3 1/6 (target 1/6)', 'AWAW d() d(): eps^-1 2 (target 2)', 'AWAW d(0,) d(0,): eps^-2 1/2 (target 1/2)', 'AWAW d(1,) d(2,): eps^-2 0 (target 0)', 'AWAW d(0, 0) d(): eps^-2 -1/2 (target -1/2)', 'AWAW d(0, 1) d(0, 1): eps^-3 1/6 (target 1/6)', 'AWAW d(2,) d(2, 3, 3): eps^-3 -1/6 (target -1/6)', 'AWAW d() d(1, 1, 2, 2): eps^-3 1/6 (target 1/6)', 'c AsV_0 d() d(): eps^-1 0 (target 0)', 'c AsV_0 d(0,) d(): eps^-2 1/4 (target 1/4)', 'c AsV_0 d(1,) d(): eps^-2 0 (target 0)', 'c AsV_0 d(0,) d(1, 1): eps^-3 -1/12 (target -1/12)', 'c AsV_0 d() d(0, 0, 0): eps^-3 1/4 (target 1/4)'] | target Lemma lem:tl-k0 | PASS
+[G1] (e) quartic bubble, outputs A_perp A_perp [O, (w1,w2)int(Ap,Ap)]: ['2', '-2'] | target ['2', '-2'] | PASS
+[G1] (f) triangle (line A_V), outputs A_perp A_perp: ['2', '0'] | target ['2', '0'] | PASS
+[G1] triangle (line A_perp), outputs A_perp A_perp: ['0', '0'] | target ['0', '0'] | PASS
+[G1] (c) quartic bubble, outputs A_V A_V [-, (w1,w2)int(AV,AV)]: ['0', '-2'] | target ['0', '-2'] | PASS
+[G1] (d) triangle (line A_perp), outputs A_V A_V: ['0', '2'] | target ['0', '2'] | PASS
+[G1] (b) cubic, output A_V: colour factor tr_g(ad_Y): 0 (identically, by the colour reading) | target 0 | PASS
+[G1] lc(O) totals (traceless, trace): ['4', '-8'] | target ['4', '-8'] | PASS
+[G2] lc^natural = lc - u{F,O}: 20prime, Konishi: ['0', '-12'] | target ['0', '-12'] | PASS
+[G2] lc^natural on single letters A_perp, A_V, lambda, c (no pair: -u n_F): [-2, -2, -4, -1] | target [-2, -2, -4, -1] | PASS
+[G1] eps^-1 self-contraction of (iota_w1 A, iota_w2 A): coefficient of hbar dim g (w1,w2)/(16 pi^2): 2 | target 2 | PASS
+[G4] colour reading and orientation symmetry: stripped words vs explicit su(2), 9 pair/output cases: ["AW,AW->['AW', 'AW'] -1088/-1088", "AV,lamP->['lamP'] -176*i/-176*i", "AV,lamP->['AV', 'lamP'] -814/-814", "lamP,lamM->['AV'] 248/248", "lamP,lamM->['AV', 'AV'] 28*i/28*i", "c,AsV->['AV'] -15/-15", "AV,c->['c'] 0/0", "lamP,lamP->['AW'] (90+-20*i)/(90+-20*i)", "AV,AsV->['AsV'] 0/0"] | target equal | PASS
+[G3] Ward W1 letters A_perp, lambda+, lambda-, c, A_V (planar, exact): lc(sN) = {L,N}: {'A_perp_pass': True, 'lambda+_pass': True, 'lambda-_pass': True, 'c_pass': True, 'A_V_pass': True} | target all pass | PASS
+A*_perp True nontrivial 11 of 12
+A*_V True nontrivial 12 of 12
+lambda* True nontrivial 9 of 12
+c* True nontrivial 4 of 10
+[G3] Ward W1 antifield letters A*_perp, A*_V, lambda*, c* on multi-field outputs (explicit su(2)): {'A*_perp_pass': True, 'A*_perp_nontrivial': 11, 'A*_V_pass': True, 'A*_V_nontrivial': 12, 'lambda*_pass': True, 'lambda*_nontrivial': 9, 'c*_pass': True, 'c*_nontrivial': 4} | target all pass | PASS
+[CF] k=1 closed form eq:tl-bubbleclosed vs explicit derivative letters (quartic bubbles, n<=4): ['AW,AW n=0 -38', 'AW,AW n=1 2280*i', 'AW,AW n=2 -2332/3', 'AW,AW n=3 0', 'AW,AW n=4 7777/120', 'AV,AV n=0 -8', 'AV,AV n=1 1320*i', 'AV,AV n=2 1148/3', 'AV,AV n=3 -591/2*i', 'AV,AV n=4 2455/24', 'AV,AW n=0 -144', 'AV,AW n=1 18*i', 'AV,AW n=2 130', 'AV,AW n=3 1296*i', 'AV,AW n=4 240009/64'] | target closed form | PASS
+[CF] Bessel generating function Prop prop:tl-genfun (independent sympy) vs explicit, k=1,2, n<=3: ['k=1 cubic AAA n=0 -18*i', 'k=1 cubic AAA n=1 34', 'k=1 cubic AAA n=2 99/2*i', 'k=1 cubic AAA n=3 -43/4', 'k=2 gluon exchange n=0 4', 'k=2 gluon exchange n=1 28*i', 'k=2 gluon exchange n=2 121/6', 'k=2 gluon exchange n=3 -79/4*i', 'k=1 lamP lamM -> AV n=0 -6', 'k=1 lamP lamM -> AV n=1 -6*i', 'k=1 lamP lamM -> AV n=2 132/5', 'k=1 lamP lamM -> AV n=3 282/5*i'] | target genfun | PASS
+[   51.7s] gates stage 1 done; wall 51.7 s, cpu 51.7 s, max RSS 273 MB
+[G5n] numerical boundary-face residual AW AW -> AW AW (cubic-cubic), numerator contracted: ['2.24e+00', '3.00e-01', '3.74e-02'] | target decreasing like eps (O(eps log eps)) | PASS
+[G5n] numerical boundary-face residual lamP lamM -> AV (bubble), numerator contracted: ['1.89e-01', '1.92e-02', '1.92e-03'] | target decreasing like eps (O(eps log eps)) | PASS
+[  124.6s] numeric residuals done; wall 124.6 s, cpu 124.3 s, max RSS 273 MB
+AV|AV leg sets 4 nonzero entries 152 time 0.4
+AV|AW leg sets 2 nonzero entries 120 time 0.43
+AV|lamP leg sets 4 nonzero entries 800 time 1.13
+AV|lamM leg sets 4 nonzero entries 800 time 1.11
+AV|c leg sets 2 nonzero entries 12 time 0.04
+AV|AsV leg sets 6 nonzero entries 352 time 1.3
+AW|AW leg sets 4 nonzero entries 180 time 0.44
+AW|lamP leg sets 3 nonzero entries 912 time 1.12
+AW|lamM leg sets 3 nonzero entries 912 time 1.13
+AW|c leg sets 1 nonzero entries 6 time 0.05
+AW|AsV leg sets 5 nonzero entries 480 time 1.46
+lamP|lamP leg sets 6 nonzero entries 5632 time 15.56
+lamP|lamM leg sets 7 nonzero entries 5696 time 15.86
+lamP|c leg sets 1 nonzero entries 8 time 0.05
+lamP|AsV leg sets 8 nonzero entries 6048 time 41.66
+lamM|lamM leg sets 6 nonzero entries 5632 time 16.27
+lamM|c leg sets 1 nonzero entries 8 time 0.05
+lamM|AsV leg sets 8 nonzero entries 6048 time 40.24
+c|c leg sets 1 nonzero entries 1 time 0.0
+c|AsV leg sets 5 nonzero entries 100 time 2.06
+AsV|AsV leg sets 9 nonzero entries 3068 time 27.36
+total 167.7
+[G7] homogeneity: every W_0 table entry re-evaluated at an extra generic momentum point: 0 | target 0 | PASS
+[G7] output bound n_out <= W + d_ab, ghost number d_out = d_ab, w_out <= W on every W_0 leg set (and log momentum degree W - w_out, eps^-m degree W - w_out - 2m by construction of the interpolation): [] | target [] | PASS
+[G7] index-free form: bosonic W_0 kernels fitted exactly onto O(4) x O(6) invariant structures, fit verified on every component and monomial: 44 of 44 words | target all | PASS
+[  293.0s] tables done; wall 293.0 s, cpu 291.7 s, max RSS 273 MB
+[G8] su(2) two-site planar kernel (units u, normalised letters, basis ZZ,ZX,XZ,XX): [['2', '0', '0', '0'], ['0', '0', '2', '0'], ['0', '2', '0', '0'], ['0', '0', '0', '2']] | target 2u P (H = 1 - P after -2u per letter) | PASS
+[G8] su(2) sector cyclic charpolys of E = lc^natural/(-2u), L <= 8, all magnon numbers: {'L=2,M=0': 'E', 'L=2,M=1': 'E', 'L=3,M=0': 'E', 'L=3,M=1': 'E', 'L=4,M=0': 'E', 'L=4,M=1': 'E', 'L=4,M=2': 'E*(E - 6)', 'L=5,M=0': 'E', 'L=5,M=1': 'E', 'L=5,M=2': 'E*(E - 4)', 'L=6,M=0': 'E', 'L=6,M=1': 'E', 'L=6,M=2': 'E*(E**2 - 10*E + 20)', 'L=6,M=3': 'E*(E - 6)*(E**2 - 10*E + 20)', 'L=7,M=0': 'E', 'L=7,M=1': 'E', 'L=7,M=2': 'E*(E - 6)*(E - 2)', 'L=7,M=3': 'E*(E - 6)*(E - 5)**2*(E - 2)', 'L=8,M=0': 'E', 'L=8,M=1': 'E', 'L=8,M=2': 'E*(E**3 - 14*E**2 + 56*E - 56)', 'L=8,M=3': 'E*(E - 6)*(E - 4)**2*(E**3 - 14*E**2 + 56*E - 56)', 'L=8,M=4': 'E*(E - 6)*(E - 4)**2*(E**3 - 20*E**2 + 116*E - 200)*(E**3 - 14*E**2 + 56*E - 56)'} | target predictions.json P6 | PASS
+[  293.1s] su(2) done; wall 293.1 s, cpu 291.8 s, max RSS 273 MB
+[  293.2s] twist two N=0 ['0'] True
+[  293.3s] twist two N=1 ['0'] True
+[  293.7s] twist two N=2 ['-12', '0'] True
+[  294.3s] twist two N=3 ['-12', '0'] True
+[  296.1s] twist two N=4 ['-50/3', '-12', '0'] True
+[  298.5s] twist two N=5 ['-50/3', '-12', '0'] True
+[  304.5s] twist two N=6 ['-98/5', '-50/3', '-12', '0'] True
+[  312.7s] twist two N=7 ['-98/5', '-50/3', '-12', '0'] True
+[  327.0s] twist two N=8 ['-761/35', '-98/5', '-50/3', '-12', '0'] True
+[G8] twist two: eig(lc^natural) on tr(D^k Z D^{N-k} Z), N <= 8 (gauge completion to O(A_n) included): {0: ['0'], 1: ['0'], 2: ['-12', '0'], 3: ['-12', '0'], 4: ['-50/3', '-12', '0'], 5: ['-50/3', '-12', '0'], 6: ['-98/5', '-50/3', '-12', '0'], 7: ['-98/5', '-50/3', '-12', '0'], 8: ['-761/35', '-98/5', '-50/3', '-12', '0']} | target -8 h(S) units, S even <= N (predictions P5) | PASS
+[G8] twist two N=2 without the O(A_n) terms (two-letter operator only): shows the r=1 outputs are needed: ['-8/3', '0'] | target differs from [-12, 0] | PASS
+[  327.3s] spectra done; wall 327.3 s, cpu 325.8 s, max RSS 273 MB
+[G9] D_1 on scalar bilinears assembled (two-body 4 lc from engine + Ch9 composite/one-body inputs): {'traceless': {'O': '0', 'S1(Delta)': '-theta - 1/3'}, 'trace': {'O': '-48', 'S1(Delta)': '-theta - 1/3'}} | target Ch9 Thm c9-D1: 0 / -48 O, -(1/3+theta){S1(Delta),O} | PASS
+[G9] P_1 on scalar bilinears assembled (Ch9 composite inputs): {'S1(P_b)': '-theta_P - 1/3'} | target -(1/3+theta_P){S1(P_b),O} | PASS
+[  357.1s] revision gates (W2, su(1|1)) done; wall 357.1 s, cpu 354.7 s, max RSS 273 MB
+[RES] resources: wall 357.2 s, cpu 354.7 s, max RSS 273 MB | target < 1.5 GB RSS, one process | PASS
+[  357.2s] GATES: 34 / 34 pass
+[  357.2s] done; wall 357.2 s, cpu 354.7 s, max RSS 273 MB
+      358.07 real       351.53 user         3.33 sys
+           286720000  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               65014  page reclaims
+                 349  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1049  voluntary context switches
+              227364  involuntary context switches
+       5198519641094  instructions retired
+       1279206328499  cycles elapsed
+           225002072  peak memory footprint

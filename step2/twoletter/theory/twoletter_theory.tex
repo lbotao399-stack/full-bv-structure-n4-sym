@@ -1,0 +1,887 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[hidelinks]{hyperref}
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\allowdisplaybreaks
+\emergencystretch=3em
+
+\title{Two-letter kernels: the one-loop counterterm and the one-loop components\\ of all local operators of $N=4$ super Yang--Mills with a UV boundary}
+\author{Step 2, directive R8 (theory), revision of 2026-10-29}
+\date{2026-10-29}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+At one loop a graph meets a local operator in at most two of its letters. For the regularised flow with the heat-kernel cutoff $\varepsilon$ on every edge, the one-loop counterterm of an arbitrary local operator (letters with any number of derivatives, antifields and gauge-variant letters included) is the singular part of a second-order operator, the contraction of two letters with the propagator dressed by the Hessian of the interaction. We classify the cycles through two letters, bound their outputs by Weyl weight and ghost number, prove that the logarithmic part of the counterterm, corrected by the field-counting functional, commutes with $Q+\{I,-\}$, reduce the logarithmic kernels by the two-body Ward identity, give the singular coefficients as polynomial integrals over simplices with Bessel-type generating functions in the point splitting of the two letters, decompose the dilatation and translation components into one-body and two-body kernels, determine them on the planar scalar sector, and state the structure, census and output bound of the one-loop components along every generator.
+\end{abstract}
+
+\tableofcontents
+
+\section{Data}
+\label{sec:tl-data}
+
+All conventions are those of the manuscript (Chapters 1--9). The weight is $e^{+S/\hbar}$, $S=\tfrac12\langle e,Qe\rangle+I$ with $I$ the interaction eq.~c1-I, the BV fields are $(c,A,\lambda,A^*,\lambda^*,c^*)$ with $A=A|_V+A|_{W_{\mathbb R}^\perp}$ and $\lambda\in\Pi\Sigma\otimes\mathfrak g$, $\Sigma=S_+\otimes W\oplus S_-\otimes W^*$. The bracket is $\{f,g\}=\Delta_0(fg)-\Delta_0(f)g-(-1)^{|f|}f\Delta_0(g)$, $\Delta_0=-\partial_{K_0}$ (Def.~c1-bracket), $s:=Q+\{I,-\}$, $s^2=0$ (Prop.~c1-cme). Parities $|f|$ are total parities.
+
+\begin{definition}[Slots, weights, degrees]
+\label{def:tl-slots}
+The slot types, their Weyl weights $w$ (Def.~c6-sigma) and the degrees of their coordinate functionals (Lemma c4-enumeration):
+\[
+\begin{array}{c|cccccc}
+\text{slot} & c & A & \lambda & A^* & \lambda^* & c^*\\\hline
+w & 0 & 1 & \tfrac32 & 3 & \tfrac52 & 4\\
+\deg & +1 & 0 & 0 & -1 & -1 & -2
+\end{array}
+\]
+A \emph{letter} is a factor $\partial^\alpha\varphi$ of a monomial of a local functional, $\varphi$ a component of one slot, $\partial^\alpha$ a multi-derivative along $V$; its Weyl weight is $w(\varphi)+|\alpha|$. A local operator is $O=\int\omega\,(\text{density})$ (Def.~c5-family), the density a polynomial in letters at one point, $\omega\in\Omega^4_c(\mathbb R^4)$; $w_O$ is the sum of the Weyl weights of its letters. For two letters $X_a,X_b$ of weights $w_a,w_b$: the \emph{pair weight} $w_{ab}:=w_a+w_b$, its value $w^0_{ab}$ without derivatives, and the \emph{pair degree} $d_{ab}$, the sum of the degrees of the two coordinate functionals.
+\end{definition}
+
+\begin{remark}[Symbols introduced in this document]
+\label{rem:tl-symbols}
+Besides the manuscript symbols: $w_{ab},w^0_{ab},d_{ab}$ (Def.~\ref{def:tl-slots}); $\mathrm K_\varepsilon$, $\mathrm K^{(k)}_\varepsilon$, $\mathrm K^{\log}$, $\mathrm{ct}_m$, $\mathrm{lc}$, $\mathrm{lc}^\natural$ (Defs.~\ref{def:tl-map}, \ref{def:tl-dressed}, Thm.~\ref{thm:tl-brst}); $(-1)^{n_{ab}}$ the Koszul sign of a pair (Thm.~\ref{thm:tl-decomp}); $A|_\perp$, $\lambda_\pm$, $\lambda^*_\pm$ (Sec.~\ref{sec:tl-census}); the Q-depth (Prop.~\ref{prop:tl-reduction}); $y_a,y_b,y_{ab}$ the point splitting of the two letters, $l_0(\alpha)$, $\Phi(\alpha)$, $\mathrm{num}_j$, $F_m$, $R_e$ (Def.~\ref{def:tl-cycle}); $\chi$ a cutoff shape (Prop.~\ref{prop:tl-shape}); $u$ the unit, $F$ the field-counting functional, $L=u\,sF$ (Rem.~\ref{rem:tl-unit}); $S_\perp,S_\lambda,S_V$ (sector label $\diamond\in\{\perp,\lambda,V\}$), $\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$, $F'_\Delta$, $C_\Delta$, $C^{(1)}_\Delta$, $C^{(2)}_\Delta$, $\Pi_\Delta$, $\Xi_\Delta$ (Sec.~\ref{sec:tl-D1}); $\mathrm K^{(x)}$, $\lambda_x$ (Sec.~\ref{sec:tl-arity1}).
+\end{remark}
+
+\begin{remark}[Propagator and vertices]
+\label{rem:tl-P}
+For $0<\varepsilon<T\le\infty$, $P(\varepsilon,T)=\int_\varepsilon^T(Q^{GF}\otimes1)K_t\,dt$ (Def.~c8-PT) has the nonzero components (Prop.~c3-P), in momentum space, times $\int_\varepsilon^Te^{-t|p|^2}dt$:
+\[
+\begin{aligned}&A\otimes A:\ 2(-,-)^{-1}\otimes(\text{inverse metric of }V_{10}),\qquad c\otimes A^*|_V,\ A^*|_V\otimes c:\ -(-,-)^{-1}\,ip,\\ &\lambda\otimes\lambda:\ (-,-)^{-1}\,i\rho(p)|_{\Sigma^*\to\Sigma}.\end{aligned}
+\]
+$\rho(p)$ exchanges the four-dimensional chiralities (Prop.~c1-chirality), so the $\lambda\otimes\lambda$ component lies in $(S_+\otimes W)\otimes(S_-\otimes W^*)$ and its transpose. The vertices of $I$ (table after eq.~c1-I): $(A|_V)^3$, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ (one derivative each), $\lambda\lambda A|_V$ (one chirality of each $\lambda$), $\lambda\lambda A|_{W_{\mathbb R}^\perp}$ (equal chiralities), $A|_V\,c\,A^*|_V$, $A|_{W_{\mathbb R}^\perp}c\,A^*|_{W_{\mathbb R}^\perp}$, $c\,\lambda\,\lambda^*$, $c\,c\,c^*$, $(A|_V)^4$, $(A|_V)^2(A|_{W_{\mathbb R}^\perp})^2$, $(A|_{W_{\mathbb R}^\perp})^4$. Every vertex has Weyl weight $4$ (fields plus derivatives); an edge between slots of weights $w_1,w_2$ has momentum degree $w_1+w_2-4$ (numerator degree $w_1+w_2-2$).
+\end{remark}
+
+\begin{remark}[The unit and the field-counting functional]
+\label{rem:tl-unit}
+All one-loop coefficients are rational multiples of the unit
+\[
+u:=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\qquad\Big(=-\frac{g^2N}{32\pi^2}\ \text{for}\ \mathfrak g=\mathfrak{su}(N),\ (X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY),\ \text{Rem.~c6-konishi}\Big).
+\]
+$F:=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ (Ch.~6); $L:=u\,sF$ is the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ (Thm.~c4-log); $\{F,-\}$ multiplies a monomial by $n_c+2n_A+4n_\lambda-2n_{A^*}-4n_{\lambda^*}-n_{c^*}$ (Lemma c4-count); $n_F(X)$ denotes this multiplier of a letter $X$.
+\end{remark}
+
+\begin{remark}[Two-component form of the data]
+\label{rem:tl-twocomp0}
+With Def.~c8-twocomp (dictionary entries \texttt{propagator}, \texttt{pairings-fields}, \texttt{CT-log}), times $(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$:
+\[
+\begin{aligned}&\langle A_mA_n\rangle=2(-,-)^{-1}\delta_{mn},\quad \langle A_{ij}A_{kl}\rangle=4(-,-)^{-1}\varepsilon_{ijkl},\\ &\langle cA^*_m\rangle=\langle A^*_mc\rangle=-(-,-)^{-1}ip_m,\quad \langle\lambda_\alpha{}^i\bar\lambda_{\dot\beta j}\rangle=-(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j .\end{aligned}
+\]
+$F=2\int[(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})]-4\int[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})]-\int(c^*,c)$. For $\mathfrak{su}(N)$: $A_m=-igA_m^aT^a$, $A_I=-igA_I^aT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$, $\operatorname{tr}(T^aT^b)=\tfrac12\delta^{ab}$ (dictionary entry \texttt{wick-canonical}); Weinberg's form follows from $\rho(v)=\gamma_W^\mu v_\mu$ on the Dirac column.
+\end{remark}
+
+
+\section{The one-loop counterterm map}
+\label{sec:tl-map}
+
+\begin{definition}[Counterterm map]
+\label{def:tl-map}
+Let $M$ be a local functional of degree $|M|$ (arity zero; letters of all slots, any derivatives) and $\delta$ a square-zero parameter of degree $-|M|$ [CG2, Def 8.3.1.1]. The one-loop counterterm of $M$ is the $\delta$-component of the one-loop counterterm of $I+\delta M$ (Prop.~c5-thmB, Def.~c8-renorm):
+\begin{equation}
+\partial_\delta I^{CT}[\varepsilon](M)=\hbar\sum_{\gamma}\frac{1}{|\operatorname{Aut}\gamma|}\,\mathrm{Sing}_\varepsilon\,w_\gamma(\varepsilon)=\sum_{m\ge1}\varepsilon^{-m}\,\mathrm{ct}_m(M)+\log\varepsilon\;\mathrm{lc}(M),
+\label{eq:tl-map}
+\end{equation}
+the sum over the connected one-particle-irreducible graphs $\gamma$ with $b_1(\gamma)=1$ whose cycle contains the vertex $M$, all other vertices $I$, every edge $P(\varepsilon,T)$; $\mathrm{Sing}_\varepsilon$ keeps the terms $\varepsilon^{-m}$, $m\ge1$, and $\log\varepsilon$ of the expansion of Lemma c4-local [CG2, §13.7.2]. $M(\varepsilon)=M-\partial_\delta I^{CT}[\varepsilon](M)+\hbar\psi(M)$ and $M[T]$ are as in Def.~c8-renorm; with $I_{\mathfrak{psl}(4|4)}$ the same construction gives the counterterm of a local cochain (Def.~c8-quant), whose arity-zero part is \eqref{eq:tl-map}.
+\end{definition}
+
+\begin{proposition}[Structure of the counterterm map]
+\label{prop:tl-map}
+For a homogeneous local functional $M$:
+\begin{itemize}
+\item (i) $\partial_\delta I^{CT}[\varepsilon](M)\in\mathrm{span}\{\varepsilon^{-m}\ (1\le m\le\tfrac12w_M),\ \log\varepsilon\}$; at one loop no $\log^k\varepsilon$, $k\ge2$, and no $\varepsilon^{-m}\log\varepsilon$ occurs.
+\item (ii) $\mathrm{ct}_m(M)$ is local of Weyl weight $w_M-2m$, $\mathrm{lc}(M)$ local of Weyl weight $w_M$ ($\omega$ untouched).
+\item (iii) The singular part of every graph in \eqref{eq:tl-map} is the same for every $T\in(0,\infty]$; at $T<\infty$ it is defined at every configuration of the leg momenta, at $T=\infty$ at generic ones. Hence $\partial_\delta I^{CT}[\varepsilon](M)$ is independent of $T$.
+\item (iv) The map is linear, $\omega$-linear, preserves degree and parity, and is covariant under translations, $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ and the adjoint action of $\mathfrak g$.
+\item (v) Scaling: with $v.$ of Lemma c9-SDelta (i) ($v.M=2(E+w_M)M$ for $M=\int\omega(\cdots)$),
+\begin{equation}
+\Big(v.-4\varepsilon\frac{d}{d\varepsilon}\Big)\partial_\delta I^{CT}[\varepsilon](M)=\partial_\delta I^{CT}[\varepsilon](v.M)-4\,\mathrm{lc}(M).
+\label{eq:tl-scaling}
+\end{equation}
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i), (ii). By Lemma c4-local each graph is $\sum_{1\le k\le D/2}\varepsilon^{-k}a_k+b\log\varepsilon+(\text{a function with a limit})$, $D$ the superficial degree; the singular terms come from the integral over the total Schwinger time $\tau$ of $\tau^{-1-k}$ ($k\ge1$) or $\tau^{-1}$ on $[\varepsilon/\min_e\alpha_e,1]$ (Theorem \ref{thm:tl-simplex}), which produces $\varepsilon^{-k}$ and $\log\varepsilon$ only. By Lemma \ref{lem:tl-degree}, $D=w_{ab}-w_{\rm out}$, so $\varepsilon^{-m}$ has momentum degree $D-2m$ and output weight $w_{ab}-2m$, $\log\varepsilon$ output weight $w_{ab}$; the spectators are untouched (Theorem \ref{thm:tl-decomp}); $w_{\rm out}\ge0$ gives $m\le\tfrac12w_{ab}\le\tfrac12w_M$.
+
+(iii). With edges $P(\varepsilon,T)$ the Schwinger times run over $[\varepsilon,T]^{E(\gamma)}$. For $\tau_0<\min(T,1)$, on $\{\tau\le\tau_0\}$ the domain is independent of $T$ and the proof of Lemma c4-local gives all $\varepsilon^{-k}$ and $\log\varepsilon$. On $\{\tau\ge\tau_0\}$ the integrand after the Gaussian loop integral is bounded by a multiple of $\tau^{-2-j}$; at $T<\infty$ the domain is compact in $\tau$, at $T=\infty$ the factor $e^{-\tau\Phi}$ with $\Phi\ge\tfrac12\min_{e\ne f}|q_e-q_f|^2(1-\max_e\alpha_e)$ gives convergence at generic momenta. This part has a limit by dominated convergence and its $\varepsilon\frac{d}{d\varepsilon}$ (faces $t_e=\varepsilon$, Prop.~c4-boundary) is $O(\varepsilon)$. This is Prop.~c8-Tindep (i) for the vertex $M$.
+
+(iv). Translation invariance and covariance of the vertex functions and of $P(\varepsilon,T)$ (proof of Thm.~c4-quadratic); the singular part is a polynomial in the leg momenta times $\hat\omega$ at minus the total momentum. Every vertex and every component of $P$ has degree $0$ and is even.
+
+(v). Infinitesimal form of Lemma c6-ct: $(\sigma_sM)^{CT}[s^2\varepsilon]=\sigma_s(\partial_\delta I^{CT}[\varepsilon](M))+2\log s\,\sigma_s(\mathrm{lc}(M))$; apply $s\frac{d}{ds}|_{s=1}$, $s\frac{d}{ds}|_{s=1}\sigma_s=\tfrac12v.$ (Lemma c6-data, Lemma c9-SDelta (i)), multiply by $2$:
+\[
+\partial_\delta I^{CT}[\varepsilon](v.M)+4\varepsilon\frac{d}{d\varepsilon}\partial_\delta I^{CT}[\varepsilon](M)=v.\,\partial_\delta I^{CT}[\varepsilon](M)+4\,\mathrm{lc}(M).
+\]
+\end{proof}
+
+
+\section{Decomposition: two letters on the cycle}
+\label{sec:tl-decomp}
+
+\begin{definition}[Hessian and dressed propagator]
+\label{def:tl-dressed}
+Let $e$ be a field configuration (compactly supported, odd components multiplied by odd elements of an auxiliary nilpotent ring, Def.~c1-vertex), $I''_e$ the part of $I(e+f)$ quadratic in the fluctuation $f$ (Prop.~c3-oneloop), $X_e$ its one-loop operator and $P=P(\varepsilon,T)$. The dressed propagator is
+\[
+P_e(\varepsilon,T):=\big((1-X_e)^{-1}P\star\otimes1\big)K_0=\sum_{k\ge0}P\big(I''_e\,P\big)^k ,
+\]
+a formal power series in $e$, even and graded symmetric; its term with $k$ factors $I''_e$ is the sum of the chains of $k$ vertices of $I$, each entered and left through two of its slots and joined by $k+1$ edges $P$, the other slots evaluated at $e$. For letters $X_a=\partial^\alpha\varphi_a$, $X_b=\partial^\beta\varphi_b$ the \emph{two-letter kernel} is
+\begin{equation}
+\mathrm K_\varepsilon(X_a,X_b):=\hbar\,\mathrm{Sing}_\varepsilon\Big[(\partial^\alpha_x\otimes\partial^\beta_y)\,P_e(\varepsilon,T)^{\varphi_a\varphi_b}(x,y)\Big]_{y=x},
+\label{eq:tl-kernel}
+\end{equation}
+$P_e^{\varphi_a\varphi_b}$ the component with first factor in the slot of $\varphi_a$ and second in that of $\varphi_b$ (Def.~c3-P), $\mathrm{Sing}_\varepsilon$ applied to each Taylor component in $e$. It is a local functional of $e$ at $x$ (the \emph{outputs}) with coefficients in $\mathrm{span}\{\varepsilon^{-m},\log\varepsilon\}$; its term with $k$ vertices is $\mathrm K^{(k)}_\varepsilon$, its coefficient of $\log\varepsilon$ is $\mathrm K^{\log}$. The letters not in the pair are the \emph{spectators}.
+\end{definition}
+
+\begin{theorem}[Decomposition]
+\label{thm:tl-decomp}
+Let $M=\int\omega\,X_1X_2\cdots X_n$ be a monomial local functional ($\omega$ possibly $\mathrm{dvol}$ for a translation-invariant $M$ of degree $\ge2$ in the fields).
+\begin{itemize}
+\item (i) The order-$\hbar$, $\delta$-linear part of $W\big(P(\varepsilon,T),I-I^{CT}[\varepsilon]+\delta M(\varepsilon)\big)$ is the sum of (A) the graphs whose cycle passes through $M$, (B) the graphs with $M$ on a tree and a cycle of vertices of $I$, (C) the trees with one vertex $-I^{CT}[\varepsilon]$ and one vertex $M$, (D) the trees with one vertex $-\partial_\delta I^{CT}[\varepsilon](M)$. A cycle passes through $M$ along exactly two of its half-edges, two letters $X_a,X_b$, $a\ne b$; the graphs (A) are the trees of $I$ attached to the legs of $\hbar\,\partial_{P_e(\varepsilon,T)}M|_{e=\text{legs}}$, $\partial_\phi$ the order-two operator of [C07, §6.4].
+\item (ii) (B)$+$(C) has a limit as $\varepsilon\to0$ at generic leg momenta for $T=\infty$, at all leg momenta for $T<\infty$; graphs with $M$ on a tree contribute nothing to $\partial_\delta I^{CT}[\varepsilon](M)$.
+\item (iii) With $n_{ab}:=|X_b|(|X_{a+1}|+\cdots+|X_{b-1}|)$ and $\widehat{X_b}$ omitted,
+\begin{equation}
+\partial_\delta I^{CT}[\varepsilon](M)=\hbar\,\mathrm{Sing}_\varepsilon\,\partial_{P_e(\varepsilon,T)}M\Big|_{e=\text{fields}}
+=\sum_{1\le a<b\le n}(-1)^{n_{ab}}\int\omega\,X_1\cdots X_{a-1}\,\mathrm K_\varepsilon(X_a,X_b)\,X_{a+1}\cdots\widehat{X_b}\cdots X_n :
+\label{eq:tl-decomp}
+\end{equation}
+a sum over unordered pairs of letters of a universal two-letter kernel times the spectators; no one-body terms.
+\item (iv) $\mathrm K^{(0)}_\varepsilon(X_a,X_b)=\hbar(\partial^\alpha\otimes\partial^\beta)P(\varepsilon,\infty)^{\varphi_a\varphi_b}(x,x)$ is a pure power $\varepsilon^{-w_{ab}/2}$ times a number (Lemma \ref{lem:tl-k0}): no $\log\varepsilon$, no finite part.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) By Prop.~c3-graphs at order $\hbar$, the $\delta$-linear part consists of the connected graphs with one vertex $M$ and either one cycle and vertices $I$, or no cycle and one vertex of $-\hbar^{-1}I^{CT}[\varepsilon]$ or of $-\hbar^{-1}\partial_\delta I^{CT}[\varepsilon](M)$: (A)--(D). A cycle passes through a vertex along two half-edges, for $M$ two letters. For (A), by Lemma c4-factor the graph is a tree whose vertex $s$ is labelled by the one-particle-irreducible cycle $\gamma\ni M$; the sum over these cycles is the $\delta$-linear part of the one-loop formula (Prop.~c3-oneloop) for $J=I+\delta M$ at the configuration $e$ of the half-edges of $s$: with $X=X_e+\delta X_M$,
+\[
+\frac\hbar2\sum_{n\ge1}\frac1n\mathrm{STr}\big((X_e+\delta X_M)^n\big)\Big|_{\delta\text{-linear}}=\frac\hbar2\,\mathrm{STr}\big(\delta X_M(1-X_e)^{-1}\big)=\frac\hbar2\,\mathrm{STr}\big(P_e(\varepsilon,T)\star\,\Pi\,(\delta M)''_e\big),
+\]
+by cyclicity ($X_e$, $\delta X_M$ even), $\Pi$ the parity operator. By the first identity in the proof of Prop.~c3-oneloop, $\tfrac12\mathrm{STr}$ of the one-loop operator of a quadratic functional with the even graded-symmetric kernel $\phi$ is $\partial_\phi$ of it; here $\phi=P_e$ and the quadratic functional is the part of $\delta M$ quadratic in the fluctuation at $e$. Hence the cycles through $M$ sum to $\hbar\,\partial_{P_e}(\delta M)|_e=\delta\,\hbar\,\partial_{P_e}M|_e$, $\partial_{P_e}$ being even.
+
+(ii) (B): removing the edge joining the cycle to the part containing $M$ leaves a one-particle-irreducible cycle $\gamma'$ of vertices $I$ (Lemma c4-factor); the trees (C) with $-I^{CT}[\varepsilon]$ in place of $\gamma'$ remove its singular part (Def.~c4-ict). Every edge of the trees carries a nonzero momentum and two distinct edges of $\gamma'$ carry different momenta at generic leg momenta: $M$ carries $\hat\omega$ at minus the total momentum of its legs, momentum is conserved at every other vertex, an edge of a tree separates a part without $M$ which carries a leg (a vertex of $I$ at maximal distance from $M$ in it has at least two legs, or the part contains $\gamma'$, every vertex of which carries a half-edge leading to legs or to $M$, at most one to $M$); for two edges of $\gamma'$ the arc between them not containing the half-edge to $M$ contains a vertex, and the difference of the momenta is the sum of the leg momenta entering along it. Then Lemma c4-local applies to $w_{\gamma'}-\mathrm{Sing}_\varepsilon w_{\gamma'}$ and the tree edges converge to $P(0,\infty)$ at nonzero momentum (Prop.~c4-limit). Cycles $\gamma'$ with one half-edge vanish (Lemma c4-factor). At $T<\infty$ no genericity is needed (Prop.~\ref{prop:tl-map} (iii)).
+
+(iii) (A)$+$(D) has a limit exactly when (D) removes the singular part of the vertex $s$ (Lemma c4-local, Prop.~c5-thmB), which is local; by (i) and uniqueness, $\partial_\delta I^{CT}[\varepsilon](M)=\hbar\mathrm{Sing}_\varepsilon\partial_{P_e}M|_{e=\text{fields}}$. $\partial_\phi=\tfrac12\sum\partial_{\phi''}\partial_{\phi'}$ is of order two; on $X_1\cdots X_n$ it is the sum over the pairs $a<b$ of the term in which $X_b$ is brought next to $X_a$ by Koszul reordering, sign $(-1)^{n_{ab}}$, and the adjacent pair is replaced by the component of $\phi$ in the same order (edge rule of Prop.~c3-graphs), with the derivatives of the letters on the two arguments. Each Taylor component in $e$ is a finite sum of cycles; this is \eqref{eq:tl-kernel}.
+
+(iv) Lemma \ref{lem:tl-k0}.
+\end{proof}
+
+\begin{lemma}[Sign of the pair kernels]
+\label{lem:tl-sign}
+$\mathrm K_\varepsilon(X_a,X_b)=\hbar\,\mathrm{Sing}_\varepsilon\big[\langle X_a(x)X_b(y)\rangle_e\big]_{y=x}$, where $\langle\varphi_a(x)\varphi_b(y)\rangle_e:=P_e^{\varphi_a\varphi_b}(x,y)$ is read with the first factor in the slot of $X_a$ and the Koszul signs of the vertices of $I$ in the order of the chain from $X_a$ to $X_b$. In the Hessian form, with $H^M_{jl}=\partial_j\partial_lM$ (left derivatives) in place of $(\delta M)''$,
+\[
+\partial_j\partial_l(\delta M)=(-1)^{|\delta|(|j|+|l|)}\,\delta\,\partial_j\partial_lM,\qquad |\delta|=|M|,
+\]
+so that for the pair functional $M=\int\omega\,X_aX_b$ the supertrace value with $H^M$ is $(-1)^{|X_a|+|X_b|}$ times $\mathrm K_\varepsilon(X_a,X_b)$; the sign differs from $1$ exactly for the pairs with one odd letter.
+\end{lemma}
+
+\begin{proof}
+The first statement is \eqref{eq:tl-kernel} with the edge rule of Prop.~c3-graphs. For the second, $\delta$ is moved to the left through the two left derivatives; for $M=\int\omega X_aX_b$ the derivatives $\partial_j,\partial_l$ hit the slots of $X_a$, $X_b$, so $|j|+|l|=|X_a|+|X_b|=|M|$ and $(-1)^{|M|^2}=(-1)^{|X_a|+|X_b|}$. The Ward identities (W1) of Proposition \ref{prop:tl-W1} for $(A|_\perp,c)$ and $(A|_V,c)$ hold with this sign and fail with the opposite one; engine A derives the factor, engine B fixed it by (W1), and the two agree on every odd-pair entry.
+\end{proof}
+
+\begin{lemma}[The self-contraction]
+\label{lem:tl-k0}
+Let $S_\varepsilon(x)=\dfrac{1-e^{-|x|^2/4\varepsilon}}{4\pi^2|x|^2}=\displaystyle\sum_{m\ge1}\frac{(-1)^{m+1}}{16\pi^2\,m!\,\varepsilon^m}\Big(\frac{|x|^2}4\Big)^{m-1}$, the scalar factor of $P(\varepsilon,\infty)$ (Prop.~c3-P). For a multi-index $\gamma$ with $|\gamma|=2(m-1)$,
+\[
+(\partial^\gamma S_\varepsilon)(0)=\frac{(-1)^{m+1}}{16\pi^2\,m\,2^{m-1}\,\varepsilon^m}\sum_{\text{pairings of }\gamma}\prod\delta ,
+\]
+and $(\partial^\gamma S_\varepsilon)(0)=0$ for $|\gamma|$ odd. With $\gamma=\alpha+\beta$ and $(\partial^\alpha_x\partial^\beta_yf(x-y))_{y=x}=(-1)^{|\beta|}(\partial^\gamma f)(0)$,
+\[
+\begin{aligned}
+\mathrm K^{(0)}_\varepsilon(\partial^\alpha A,\partial^\beta A)&=2\hbar\,(-,-)^{-1}\otimes(\text{inverse metric of }V_{10})\,(-1)^{|\beta|}(\partial^{\alpha+\beta}S_\varepsilon)(0),\\
+\mathrm K^{(0)}_\varepsilon(\partial^\alpha c,\partial^\beta A^*|_V)&=-\hbar(-,-)^{-1}(-1)^{|\beta|}(\partial^{\alpha+\beta}dS_\varepsilon)(0),\\
+\mathrm K^{(0)}_\varepsilon(\partial^\alpha\lambda,\partial^\beta\lambda)&=\hbar(-,-)^{-1}(-1)^{|\beta|}(\partial^{\alpha+\beta}{\not d}|_{\Sigma^*}S_\varepsilon)(0),
+\end{aligned}
+\]
+each a single power $\varepsilon^{-w_{ab}/2}$, zero when $w_{ab}$ is odd. At $T<\infty$ the additional term $-\frac{1-e^{-|x|^2/4T}}{4\pi^2|x|^2}$ (Def.~c8-PT) is regular in $\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+$1-e^{-z}=\sum_{m\ge1}(-1)^{m+1}z^m/m!$ with $z=|x|^2/4\varepsilon$; $\partial^\gamma(|x|^2)^{m-1}|_0=2^{m-1}(m-1)!\sum_{\text{pairings}}\prod\delta$ for $|\gamma|=2(m-1)$, and $\frac{(m-1)!\,2^{m-1}}{4^{m-1}m!}=\frac1{m\,2^{m-1}}$. $S_\varepsilon$ is entire in $|x|^2$, so every Taylor coefficient is a single power of $\varepsilon$.
+\end{proof}
+
+\begin{example}[The vacuum term of the scalar bilinears]
+For $M=\int\omega(\iota_{w_1}A,\iota_{w_2}A)$, $\mathrm K^{(0)}_\varepsilon$ gives $\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2\varepsilon}\int\omega$, the graph (a) of Prop.~c5-table.
+\end{example}
+
+\begin{lemma}[Colour structure of the kernels]
+\label{lem:tl-colour}
+Number the outputs of a chain $Y_1,\dots,Y_r$ from $X_a$ to $X_b$ ($Y_1$ at the vertex nearest $X_a$, as in Def.~\ref{def:tl-cycle}).
+\begin{itemize}
+\item (i) For a simple $\mathfrak g$, the $\mathfrak g\otimes\mathfrak g$ factor of every Taylor component of $P_e^{\varphi_a\varphi_b}$ is a combination of $C_w:=(1\otimes w)(-,-)^{-1}$, $w=\mathrm{ad}_{Y_r}\cdots\mathrm{ad}_{Y_1}$ (or $\mathrm{ad}_{[Y_i,Y_{i+1}]}$ factors from quartic vertices), the first factor in the colour slot of $X_a$; $r=0$ for $k=0$.
+\item (ii) Let $\mathfrak g=\mathfrak{gl}(N)$ or $\mathfrak{su}(N)$, $(X,Y)=\kappa\operatorname{tr}(XY)$, $(-,-)^{-1}=\kappa^{-1}\sum_AT_A\otimes T^A$, and for bosonic outputs $w(T)=\sum_{S\subseteq\{1..r\}}(-1)^{r-|S|}\,Y_S^{\leftarrow}\,T\,Y_{S^c}^{\to}$, $Y^{\leftarrow}_S$ the product over $S$ in decreasing order, $Y^\to_{S^c}$ over the complement in increasing order. Replacing $X_a\otimes X_b$ by $C_w$ ($\mathfrak{gl}(N)$; $\mathfrak{su}(N)$ when $r\ge1$, since $w$ annihilates $1$):
+\[
+\begin{aligned}
+\text{adjacent:}\quad&\operatorname{tr}(M_1X_aX_b)\mapsto\kappa^{-1}(-1)^rN\operatorname{tr}(M_1Y_1\cdots Y_r)+\kappa^{-1}\sum_{S\ne\emptyset}(-1)^{r-|S|}\operatorname{tr}(Y_S^{\leftarrow})\operatorname{tr}(M_1Y_{S^c}^{\to}),\\
+\text{general position:}\quad&\operatorname{tr}(M_1X_aM_2X_b)\mapsto\kappa^{-1}\sum_S(-1)^{r-|S|}\operatorname{tr}(M_2Y_S^{\leftarrow})\operatorname{tr}(M_1Y_{S^c}^{\to}),\\
+\text{across traces:}\quad&\operatorname{tr}(M_1X_a)\operatorname{tr}(M_2X_b)\mapsto\kappa^{-1}\sum_S(-1)^{r-|S|}\operatorname{tr}(M_1Y_{S^c}^{\to}M_2Y_S^{\leftarrow}).
+\end{aligned}
+\]
+In particular the wrap-around pair $(X_1,X_n)$ of $\operatorname{tr}(X_1X_2\cdots X_n)$ (general position with $M_1=1$, $M_2=X_2\cdots X_{n-1}$) has the leading term $+\kappa^{-1}N\operatorname{tr}(X_2\cdots X_{n-1}Y_r\cdots Y_1)$: the adjacent rule read from $X_b$. For $r=0$ and $\mathfrak{su}(N)$: $\operatorname{tr}(M_1X_aX_b)\mapsto\kappa^{-1}(N-\tfrac1N)\operatorname{tr}M_1$, $\operatorname{tr}(M_1X_aM_2X_b)\mapsto\kappa^{-1}(\operatorname{tr}M_1\operatorname{tr}M_2-\tfrac1N\operatorname{tr}(M_1M_2))$, $\operatorname{tr}(M_1X_a)\operatorname{tr}(M_2X_b)\mapsto\kappa^{-1}(\operatorname{tr}(M_1M_2)-\tfrac1N\operatorname{tr}M_1\operatorname{tr}M_2)$.
+\item (iii) Odd letters and outputs: the same formulas hold with the graded commutator $[Y,T]=YT-(-1)^{|Y||T|}TY$ in the expansion of $w$, the Koszul sign $(-1)^{n_{ab}}$ of \eqref{eq:tl-decomp} for the letters, and $\operatorname{tr}(ZM)=(-1)^{|Z||M|}\operatorname{tr}(MZ)$ for cyclic moves.
+\item (iv) For $\mathfrak{su}(N)$, $\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)=2N\operatorname{tr}(XY)$, so $\hbar N\kappa^{-1}/16\pi^2=\tfrac u2$: an adjacent pair whose kernel is $a\,\hbar/16\pi^2$ times $C_w$, $r\ge1$, contributes $(-1)^r\tfrac a2$ units times the single trace with the pair replaced by $Y_1\cdots Y_r$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) Every component of $P$ has colour factor $(-,-)^{-1}$; a cubic vertex has colour form $(Z_1,[Z_2,Z_3])$ (Def.~c1-vertex), with output $Y$ and cycle slots $Z_2,Z_3$ it is $(\mathrm{ad}_YZ_2,Z_3)$; the quartic vertex (eq.~c5-quartic) gives $\pm(Z,\mathrm{ad}_Y\mathrm{ad}_{Y'}Z')$ or $\pm(Z,\mathrm{ad}_{[Y,Y']}Z')$. Composing along the chain from $X_a$, the vertex nearest $X_a$ acts first: $w=\mathrm{ad}_{Y_r}\cdots\mathrm{ad}_{Y_1}$; invariance moves the word to either factor. (ii) $[Y_r,[\cdots[Y_1,T]]]$ expands to the sum over $S$ ($Y_i$ multiplies from the left if $i\in S$, from the right with a sign otherwise). With $\sum_A(T_A)_{ij}(T^A)_{kl}=\delta_{il}\delta_{jk}$: $\sum_A\operatorname{tr}(PT_AQT^A)=\operatorname{tr}P\operatorname{tr}Q$ and $\sum_A\operatorname{tr}(PT_A)\operatorname{tr}(QT^A)=\operatorname{tr}(PQ)$, which give the three rules; in the adjacent rule $S=\emptyset$ gives $\operatorname{tr}1=N$. For the wrap-around pair, $S^c=\emptyset$ gives $\operatorname{tr}1$ and the factor $\operatorname{tr}(M_2Y_r\cdots Y_1)$ with sign $(-1)^0$. For $\mathfrak{su}(N)$ the completeness relation acquires $-\tfrac1N1\otimes1$. Verified with random matrices for $\mathfrak{gl}(N)$, $\mathfrak{su}(N)$, $N=2,3,4$, $r\le3$ (\texttt{checks\_colour.py}; the cross-trace and wrap-around rules in qa/refute\_theory). (iii) Koszul rule. (iv) $u=\frac{2N\hbar}{16\pi^2\kappa}$.
+\end{proof}
+
+\begin{remark}[Two-component form]
+In the components of Def.~c8-twocomp, \eqref{eq:tl-decomp} reads, for $M=\int\omega\,X_1\cdots X_n$ with $X_j\in\{\partial^\alpha c,\partial^\alpha A_m,\partial^\alpha A_{ij},\partial^\alpha\lambda_\alpha{}^i,\partial^\alpha\bar\lambda_{\dot\alpha i},\partial^\alpha A^*_m,\partial^\alpha A^*_{ij},\partial^\alpha\lambda^{*\alpha}{}_i,\partial^\alpha\bar\lambda^{*\dot\alpha i},\partial^\alpha c^*\}$, as the same sum over pairs, the kernel of a pair being $\hbar\,\mathrm{Sing}_\varepsilon$ of the point-split dressed propagator $\langle X_a(x)X_b(y)\rangle_e$ at $y=x$ (Lemma \ref{lem:tl-sign}), built from Rem.~\ref{rem:tl-twocomp0} and the dictionary entry \texttt{action}. For $\mathfrak{su}(N)$, $X=X^aT^a$, and Lemma \ref{lem:tl-colour} (iv) is the statement that a one-loop kernel on neighbouring letters of $\operatorname{Tr}(\cdots X_aX_b\cdots)$ is planar, with the outputs $Y_1\cdots Y_r$ in the order of the chain.
+\end{remark}
+
+
+\section{Census of the cycles through two letters}
+\label{sec:tl-census}
+
+$A|_\perp:=A|_{W_{\mathbb R}^\perp}$, $A^*|_\perp:=A^*|_{W_{\mathbb R}^\perp}$; $\lambda_+$, $\lambda_-$ the components of $\lambda$ in $S_+\otimes W$, $S_-\otimes W^*$, and $\lambda^*_+$, $\lambda^*_-$ those of $\lambda^*$ in $S_+\otimes W^*$, $S_-\otimes W$ (Prop.~c1-chirality).
+
+\begin{lemma}[Active and spectator letters]
+\label{lem:tl-active}
+A letter of $M$ lies on a cycle of a graph of \eqref{eq:tl-map} only if its slot has a nonzero component of $P(\varepsilon,T)$: $A|_V$, $A|_\perp$, $\lambda_\pm$, $c$, $A^*|_V$ (active). $A^*|_\perp$, $\lambda^*_\pm$, $c^*$ are spectators of the counterterm. The cycle leaves an active letter along
+\[
+A|_V\!-\!A|_V,\qquad A|_\perp\!-\!A|_\perp,\qquad \lambda_+\!-\!\lambda_-,\qquad c\!-\!A^*|_V .
+\]
+\end{lemma}
+
+\begin{proof}
+A half-edge of $M$ on the cycle is contracted with a component of $P(\varepsilon,T)$ (Rem.~\ref{rem:tl-P}); $\rho(p)$ exchanges the chiralities.
+\end{proof}
+
+\begin{definition}[Chains]
+\label{def:tl-chain}
+A chain from an active letter $X_a$ to an active letter $X_b$ is a sequence of $k\ge0$ vertices of $I$, each with an entry and an exit slot, such that the edge of Lemma \ref{lem:tl-active} leaving the slot of $X_a$ ends at the entry slot of the first vertex, consecutive vertices are joined by nonzero components of $P$, and the exit slot of the last vertex is joined to the slot of $X_b$ ($k=0$: the two slots joined directly). The other slots are the outputs. The chains are the Taylor components of $P_e^{\varphi_a\varphi_b}$; a chain and its reverse are the same cycle.
+\end{definition}
+
+\begin{proposition}[Census]
+\label{prop:tl-census}
+\begin{itemize}
+\item (i) For each of the $21$ unordered pairs of active slot types the chains with output field weight $\le7$ are listed in \texttt{census.json}; every chain obeys the conservation of degree, fermion parity and the centre $\mathbb Z/4$ of $SL(4,\mathbb C)$ ($W\mapsto iW$).
+\item (ii) At $w_{ab}=w^0_{ab}$ the $\log\varepsilon$ part of $\mathrm K_\varepsilon(\varphi_a,\varphi_b)$ has its outputs in the leg sets of Table \ref{tab:tl-A}; the $\varepsilon^{-1}$ column lists the leg sets allowed by the slot structure (upper bounds). The empty set ($k=0$) enters only for even $w_{ab}$ and only at $m=w_{ab}/2$.
+\item (iii) $k=0$ occurs exactly for $(A|_V,A|_V)$, $(A|_\perp,A|_\perp)$, $(\lambda_+,\lambda_-)$, $(c,A^*|_V)$; $k=1$ for all pairs except $(A|_\perp,c)$, $(\lambda_\pm,c)$, $(c,c)$, whose shortest chains have $k=2$.
+\end{itemize}
+A listed kernel may vanish by $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$ or colour; both engines find zero on $(A|_\perp,A|_\perp)\to A|_V$ (and on the total of $(A|_\perp,A|_\perp)\to A|_VA|_V$: $+2$ triangle, $-2$ bubble).
+\end{proposition}
+
+\begin{proof}
+Depth-first enumeration with the vertex list of Rem.~\ref{rem:tl-P} and the edges of Lemma \ref{lem:tl-active} (\texttt{checks\_census.py}); conservation laws asserted chain by chain, superficial degree checked against Lemma \ref{lem:tl-degree}. (ii): Lemma \ref{lem:tl-k0}. (iii): a chain of length $1$ from $A|_\perp$ to $c$ needs a vertex with slots $A|_\perp$ and $A^*|_V$, from $\lambda$ to $c$ one with slots $\lambda$, $A^*|_V$, from $c$ to $c$ one with two slots $A^*|_V$; there are none.
+\end{proof}
+
+\begin{table}[h]
+\centering\scriptsize
+\begin{tabular}{l|c|c|l|l}
+pair & $w^0_{ab}$ & $d_{ab}$ & $\log\varepsilon$ leg sets at $w_{ab}=w^0_{ab}$ & $\varepsilon^{-1}$ leg sets at $w_{ab}=w^0_{ab}$\\\hline
+$(A|_V,A|_V)$ & $2$ & $0$ & $A|_V$, ${A|_V}^{2}$, ${A|_\perp}^{2}$ & $\emptyset$\\
+$(A|_V,A|_\perp)$ & $2$ & $0$ & $A|_V\,A|_\perp$, $A|_\perp$ & --\\
+$(A|_V,\lambda_+)$ & $\tfrac{5}{2}$ & $0$ & $A|_V\,\lambda_+$, $A|_\perp\,\lambda_-$, $c\,\lambda^*_-$, $\lambda_+$ & --\\
+$(A|_V,\lambda_-)$ & $\tfrac{5}{2}$ & $0$ & $A|_V\,\lambda_-$, $A|_\perp\,\lambda_+$, $c\,\lambda^*_+$, $\lambda_-$ & --\\
+$(A|_V,c)$ & $1$ & $1$ & $c\,A|_V$, $c$ & --\\
+$(A|_V,A^*|_V)$ & $4$ & $-1$ & $A|_V\,A^*|_V$, $A|_\perp\,A^*|_\perp$, $A^*|_V$, $c\,c^*$, $\lambda_-\,\lambda^*_-$, $\lambda_+\,\lambda^*_+$ & --\\
+$(A|_\perp,A|_\perp)$ & $2$ & $0$ & $A|_V$, ${A|_V}^{2}$, ${A|_\perp}^{2}$ & $\emptyset$\\
+$(A|_\perp,\lambda_+)$ & $\tfrac{5}{2}$ & $0$ & $A|_V\,\lambda_-$, $A|_\perp\,\lambda_+$, $\lambda_-$ & --\\
+$(A|_\perp,\lambda_-)$ & $\tfrac{5}{2}$ & $0$ & $A|_V\,\lambda_+$, $A|_\perp\,\lambda_-$, $\lambda_+$ & --\\
+$(A|_\perp,c)$ & $1$ & $1$ & $c\,A|_\perp$ & --\\
+$(A|_\perp,A^*|_V)$ & $4$ & $-1$ & $A|_V\,A^*|_\perp$, $A|_\perp\,A^*|_V$, $A^*|_\perp$, $\lambda_-\,\lambda^*_+$, $\lambda_+\,\lambda^*_-$ & --\\
+$(\lambda_+,\lambda_+)$ & $3$ & $0$ & ${A|_V}^{2}\,A|_\perp$, $A|_V\,A|_\perp$, $A|_\perp$, ${A|_\perp}^{3}$, ${\lambda_-}^{2}$, ${\lambda_+}^{2}$ & $A|_\perp$\\
+$(\lambda_+,\lambda_-)$ & $3$ & $0$ & $A|_V$, ${A|_V}^{2}$, ${A|_V}^{3}$, $A|_V\,{A|_\perp}^{2}$, ${A|_\perp}^{2}$, $\lambda_+\,\lambda_-$ & $A|_V$\\
+$(\lambda_+,c)$ & $\tfrac{3}{2}$ & $1$ & $c\,\lambda_+$ & --\\
+$(\lambda_+,A^*|_V)$ & $\tfrac{9}{2}$ & $-1$ & ${A|_V}^{2}\,\lambda^*_-$, $A|_V\,A|_\perp\,\lambda^*_+$, $A|_V\,\lambda^*_-$, ${A|_\perp}^{2}\,\lambda^*_-$, $A|_\perp\,\lambda^*_+$, $\lambda_+\,A^*|_V$, $\lambda_-\,A^*|_\perp$, $\lambda^*_-$ & $\lambda^*_-$\\
+$(\lambda_-,\lambda_-)$ & $3$ & $0$ & ${A|_V}^{2}\,A|_\perp$, $A|_V\,A|_\perp$, $A|_\perp$, ${A|_\perp}^{3}$, ${\lambda_-}^{2}$, ${\lambda_+}^{2}$ & $A|_\perp$\\
+$(\lambda_-,c)$ & $\tfrac{3}{2}$ & $1$ & $c\,\lambda_-$ & --\\
+$(\lambda_-,A^*|_V)$ & $\tfrac{9}{2}$ & $-1$ & ${A|_V}^{2}\,\lambda^*_+$, $A|_V\,A|_\perp\,\lambda^*_-$, $A|_V\,\lambda^*_+$, ${A|_\perp}^{2}\,\lambda^*_+$, $A|_\perp\,\lambda^*_-$, $\lambda_-\,A^*|_V$, $\lambda_+\,A^*|_\perp$, $\lambda^*_+$ & $\lambda^*_+$\\
+$(c,c)$ & $0$ & $2$ & ${c}^{2}$ & --\\
+$(c,A^*|_V)$ & $3$ & $0$ & $A|_V$, ${A|_V}^{2}$, ${A|_V}^{3}$, $c\,A^*|_V$ & $A|_V$\\
+$(A^*|_V,A^*|_V)$ & $6$ & $-2$ & ${A|_V}^{2}\,c^*$, $A|_V\,c^*$, $A|_V\,\lambda^*_+\,\lambda^*_-$, $A|_\perp\,{\lambda^*_-}^{2}$, $A|_\perp\,{\lambda^*_+}^{2}$, ${A^*|_V}^{2}$, ${A^*|_\perp}^{2}$, $c^*$, $\lambda^*_+\,\lambda^*_-$ & $c^*$\\
+\end{tabular}
+\caption{Minimal leg sets at $w_{ab}=w^0_{ab}$; degree $=d_{ab}$. $\emptyset$: the self-contraction $k=0$ (even $w^0_{ab}$ only). The $\varepsilon^{-1}$ column: allowed leg sets.}
+\label{tab:tl-A}
+\end{table}
+
+\begin{remark}[Two-component form]
+$A|_V\to A_m$, $A|_\perp\to A_{ij}$, $\lambda_+\to\lambda_\alpha{}^i$, $\lambda_-\to\bar\lambda_{\dot\alpha i}$, $A^*|_V\to A^*_m$, $A^*|_\perp\to A^*_{ij}$, $\lambda^*_+\to\lambda^{*\alpha}{}_i$, $\lambda^*_-\to\bar\lambda^{*\dot\alpha i}$. The four edges of Lemma \ref{lem:tl-active} are $\langle A_mA_n\rangle$, $\langle A_{ij}A_{kl}\rangle$, $\langle\lambda_\alpha{}^i\bar\lambda_{\dot\beta j}\rangle$, $\langle cA^*_m\rangle$; the Yukawa vertices $\tfrac12(\lambda_\alpha{}^j,\varepsilon^{\alpha\beta}[A_{ji},\lambda_\beta{}^i])$, $-\tfrac12(\bar\lambda_{\dot\alpha j},\varepsilon^{\dot\alpha\dot\beta}[A^{ji},\bar\lambda_{\dot\beta i}])$ are $\lambda_+\lambda_+A|_\perp$, $\lambda_-\lambda_-A|_\perp$.
+\end{remark}
+
+
+\section{The output bound}
+\label{sec:tl-bound}
+
+\begin{lemma}[Superficial degree]
+\label{lem:tl-degree}
+A cycle with edges $P$ through $X_a,X_b$ (weights with derivatives) with outputs of total field weight $w_{\rm out}$ has superficial degree $D=w_{ab}-w_{\rm out}$.
+\end{lemma}
+
+\begin{proof}
+With $k$ vertices and $k+1$ edges the numerator degree is $\sum_v(4-\sum_{\text{slots of }v}w)+\sum_e(w_{e,1}+w_{e,2}-2)+|\alpha|+|\beta|$ (Rem.~\ref{rem:tl-P}); internal half-edges cancel, the letters appear in edges only, the outputs in vertices only: $4k-2(k+1)+w_{ab}-w_{\rm out}$, and $D=$ numerator degree $+4-2(k+1)$.
+\end{proof}
+
+\begin{proposition}[Output bound of the counterterm]
+\label{prop:tl-bound}
+In $\mathrm K_\varepsilon(X_a,X_b)$:
+\begin{itemize}
+\item (i) the coefficient of $\varepsilon^{-m}$ is local of Weyl weight $w_{ab}-2m$ in the outputs, that of $\log\varepsilon$ of weight $w_{ab}$; the spectators are untouched;
+\item (ii) $1\le m\le\frac12(w_{ab}-w_{\rm out})$: a chain with edges $P$ contributes to $\partial_\delta I^{CT}[\varepsilon]$ only if $w_{\rm out}\le w_{ab}$, and for $w_{\rm out}>w_{ab}$ it is convergent and contributes nothing to the counterterm;
+\item (iii) every output slot $t$ has $w(t)+\deg(t)\ge1$ (equality exactly for $c$ and $A$), the outputs carry the degree $d_{ab}$, so
+\[
+n_{\rm out}\le w_{\rm out}+d_{ab}\le w_{ab}+d_{ab},\qquad k\le n_{\rm out};
+\]
+\item (iv) for each pair type and $w_{ab}$ there are finitely many leg sets; their numbers for $w_{ab}\le7$ are in Table \ref{tab:tl-B} (lists in \texttt{census.json}, key \texttt{output\_leg\_sets\_by\_pair\_weight}). The $\log\varepsilon$ leg sets are those of the chains with $k\ge1$ and $w_{\rm out}\le w_{ab}$; the $\varepsilon^{-m}$ leg sets are contained in those with $w_{\rm out}\le w_{ab}-2m$, the empty set only at $m=w_{ab}/2$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i), (ii): Lemma \ref{lem:tl-degree} and Lemma c4-local: $\varepsilon^{-m}$ has momentum degree $D-2m$, $\log\varepsilon$ degree $D$, the output weight is $w_{\rm out}$ plus the momentum degree, and the coefficients vanish for $D<0$. (iii): $w+\deg=1,1,\tfrac32,2,\tfrac32,2$ for $c,A,\lambda,A^*,\lambda^*,c^*$; vertices and edges have degree $0$; each vertex has at least three slots, two on the cycle. (iv): finitely many leg sets satisfy (iii); \texttt{census\_tex.py} also checks $n_{\rm out}\le w_{ab}+d_{ab}$ on every entry.
+\end{proof}
+
+\begin{table}[h]
+\centering\scriptsize
+\begin{tabular}{l|cccccccc}
+pair & $w^0_{ab}$ & $w^0_{ab}+1$ & $w^0_{ab}+2$ & $w^0_{ab}+3$ & $w^0_{ab}+4$ & $w^0_{ab}+5$ & $w^0_{ab}+6$ & $w^0_{ab}+7$\\\hline
+$(A|_V,A|_V)$ & 3\,(2) & 7\,(3) & 18\,(4) & 34\,(5) & 67\,(6) & 121\,(7) &  & \\
+$(A|_V,A|_\perp)$ & 2\,(2) & 7\,(3) & 16\,(4) & 32\,(5) & 59\,(6) & 114\,(7) &  & \\
+$(A|_V,\lambda_+)$ & 4\,(2) & 9\,(3) & 20\,(4) & 42\,(5) & 79\,(6) &  &  & \\
+$(A|_V,\lambda_-)$ & 4\,(2) & 9\,(3) & 20\,(4) & 42\,(5) & 79\,(6) &  &  & \\
+$(A|_V,c)$ & 2\,(2) & 4\,(3) & 8\,(4) & 19\,(5) & 35\,(6) & 68\,(7) & 122\,(8) & \\
+$(A|_V,A^*|_V)$ & 6\,(2) & 15\,(3) & 35\,(4) & 73\,(5) &  &  &  & \\
+$(A|_\perp,A|_\perp)$ & 3\,(2) & 6\,(3) & 13\,(4) & 24\,(5) & 48\,(6) & 89\,(7) &  & \\
+$(A|_\perp,\lambda_+)$ & 3\,(2) & 7\,(3) & 16\,(4) & 35\,(5) & 68\,(6) &  &  & \\
+$(A|_\perp,\lambda_-)$ & 3\,(2) & 7\,(3) & 16\,(4) & 35\,(5) & 68\,(6) &  &  & \\
+$(A|_\perp,c)$ & 1\,(2) & 2\,(3) & 7\,(4) & 16\,(5) & 32\,(6) & 59\,(7) & 114\,(8) & \\
+$(A|_\perp,A^*|_V)$ & 5\,(2) & 13\,(3) & 29\,(4) & 67\,(5) &  &  &  & \\
+$(\lambda_+,\lambda_+)$ & 6\,(3) & 12\,(4) & 24\,(5) & 44\,(6) & 84\,(7) &  &  & \\
+$(\lambda_+,\lambda_-)$ & 6\,(3) & 14\,(4) & 26\,(5) & 51\,(6) & 94\,(7) &  &  & \\
+$(\lambda_+,c)$ & 1\,(2) & 4\,(3) & 9\,(4) & 20\,(5) & 42\,(6) & 79\,(7) &  & \\
+$(\lambda_+,A^*|_V)$ & 8\,(3) & 21\,(4) & 46\,(5) &  &  &  &  & \\
+$(\lambda_-,\lambda_-)$ & 6\,(3) & 12\,(4) & 24\,(5) & 44\,(6) & 84\,(7) &  &  & \\
+$(\lambda_-,c)$ & 1\,(2) & 4\,(3) & 9\,(4) & 20\,(5) & 42\,(6) & 79\,(7) &  & \\
+$(\lambda_-,A^*|_V)$ & 8\,(3) & 21\,(4) & 46\,(5) &  &  &  &  & \\
+$(c,c)$ & 1\,(2) & 2\,(3) & 4\,(4) & 8\,(5) & 19\,(6) & 35\,(7) & 68\,(8) & 122\,(9)\\
+$(c,A^*|_V)$ & 4\,(3) & 10\,(4) & 20\,(5) & 41\,(6) & 80\,(7) &  &  & \\
+$(A^*|_V,A^*|_V)$ & 9\,(3) & 22\,(4) &  &  &  &  &  & \\
+\end{tabular}
+\caption{Number of $\log\varepsilon$ leg sets and, in brackets, the largest number of output fields, by $w_{ab}=w^0_{ab}+n$ ($n$ derivatives on the two letters), $w_{ab}\le7$.}
+\label{tab:tl-B}
+\end{table}
+
+\begin{remark}[Reading of the bound; two loops]
+\label{rem:tl-boundread}
+At $w_{ab}=w^0_{ab}$ the bound $n_{\rm out}\le w_{ab}+d_{ab}$ is attained except for $(A|_V,A^*|_V)$, $(A|_\perp,A^*|_V)$ (bound $3$, largest $2$) and $(A^*|_V,A^*|_V)$ (bound $4$, largest $3$). A ghost output has weight $0$ and degree $+1$, compensated by an antifield output or by $d_{ab}$. At two loops the counterterm of an operator contains connected cycles through at most three letters and the factorised terms of the figure-eight with $M$ at the junction: after the one-loop subtractions this graph leaves $-\mathrm{Sing}(\gamma_1)\,\mathrm{Sing}(\gamma_2)$, a product of two one-loop pair kernels acting on four letters. The counting of (iii) applies to each connected kernel with $w_{ab}$ replaced by the weight of its letters.
+\end{remark}
+
+\begin{remark}[Two-component form]
+Weyl weights: $c$: $0$; $A_m$, $A_{ij}$: $1$; $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$: $\tfrac32$; $A^*_m$, $A^*_{ij}$: $3$; $\lambda^{*\alpha}{}_i$, $\bar\lambda^{*\dot\alpha i}$: $\tfrac52$; $c^*$: $4$; $\partial_m$ adds $1$. Example: $(\partial_m\lambda_\alpha{}^i,\bar\lambda_{\dot\alpha j})$ has $w_{ab}=4$, $d_{ab}=0$: at most four output fields, $\varepsilon^{-m}$ with $m\le2$.
+\end{remark}
+
+\section{Covariance: the BRST relations of the kernels}
+\label{sec:tl-cov}
+
+\begin{lemma}[Derivation rule]
+\label{lem:tl-deriv}
+For an odd derivation $d$ of the product of functionals with $d\Delta_0+\Delta_0d=0$, in particular $d=Q$, $\{I,-\}$, $s$:
+\[
+d\{f,g\}=-\{df,g\}-(-1)^{|f|}\{f,dg\},\qquad\text{i.e.}\qquad [d,\{f,-\}]=-\{df,-\}.
+\]
+\end{lemma}
+
+\begin{proof}
+Insert $\{f,g\}=\Delta_0(fg)-(\Delta_0f)g-(-1)^{|f|}f\Delta_0g$ and $d(fg)=(df)g+(-1)^{|f|}f\,dg$ and move $d$ through $\Delta_0$. $[\partial_{K_0},Q]=\partial_{(Q\otimes1+1\otimes Q)K_0}=0$ (Prop.~c1-Q); $\{I,-\}$ is a derivation anticommuting with $\Delta_0$ since $\Delta_0I=0$ (proof of Thm.~c4-obstruction). For odd $f$: $s\{f,g\}-\{f,sg\}=-\{sf,g\}$, the identity of Prop.~c8-laws (a).
+\end{proof}
+
+\begin{theorem}[BRST covariance of the logarithmic coefficient]
+\label{thm:tl-brst}
+For every local functional $M$,
+\begin{equation}
+\mathrm{lc}(sM)=s\,\mathrm{lc}(M)+\{L,M\},\qquad L=u\,sF .
+\label{eq:tl-brst}
+\end{equation}
+Equivalently $\mathrm{lc}^\natural(M):=\mathrm{lc}(M)-u\{F,M\}$ commutes with $s$, and for the operators of Thm.~c6-dil, $2\,\mathrm{lc}^\natural(O)$ is the one-loop anomalous dimension times $O$.
+\end{theorem}
+
+\begin{proof}
+Take $T=\infty$, $J=I-I^{CT}[\varepsilon]+\delta M(\varepsilon)$. By Prop.~c4-defectflow, $Q\,W(P(\varepsilon,\infty),J)$ is the flow of the defect vertex $QJ+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$; it has a limit as $\varepsilon\to0$ at generic momenta (Prop.~c5-thmB; $Q$ multiplies the leg functions by polynomials). Its $\delta$-linear order-$\hbar$ part consists of:
+\begin{itemize}
+\item Tree vertices $-Q\,\partial_\delta I^{CT}[\varepsilon](M)-\{I,\partial_\delta I^{CT}[\varepsilon](M)\}_\varepsilon-\{I^{CT}[\varepsilon],M\}_\varepsilon$. Write $\{-,-\}_\varepsilon=\{-,-\}+\{-,-\}_{\varepsilon}^{\rm sp}$, the second built from $K_\varepsilon-K_0=(e^{-\varepsilon H}-1)K_0$. Since $\varepsilon^{-m}(e^{-\varepsilon H}-1)=\sum_{j\ge1}\frac{(-H)^j}{j!}\varepsilon^{j-m}$ consists of pure powers and $\log\varepsilon\,(e^{-\varepsilon H}-1)\to0$ at a generic momentum, the coefficient of $\log\varepsilon$ of these vertices is $-s\,\mathrm{lc}(M)-\{L,M\}$. Their $\varepsilon^0$ part is the finite local vertex
+\begin{equation}
+-\sum_{m\ge1}\frac{(-1)^m}{m!}\Big(\{I,\mathrm{ct}_m(M)\}_{H^m}+\{\mathrm{ct}_m(I),M\}_{H^m}\Big),
+\label{eq:tl-finitesp}
+\end{equation}
+$\{-,-\}_{H^m}$ the bracket built from $(H^m\otimes1)K_0$ and $\mathrm{ct}_m(I)$ the coefficient of $\varepsilon^{-m}$ in $I^{CT}[\varepsilon]$; it depends on the regularisation scheme and enters $L_1(M)$.
+\item One-loop graphs with the vertex $QM+\{I,M\}_\varepsilon=sM+\{I,M\}^{\rm sp}_\varepsilon$. The cycles through $sM$ have singular part $\partial_\delta I^{CT}[\varepsilon](sM)$, with $\log\varepsilon$ coefficient $\mathrm{lc}(sM)$; those with $M$ on a tree pair with the trees of $-I^{CT}[\varepsilon]$ and have limits (Theorem \ref{thm:tl-decomp} (ii)). The cycles through a special edge have no $\log\varepsilon$ (Lemma \ref{lem:tl-special}); a special edge on a bridge multiplies a singular part by $e^{-\varepsilon|p|^2}-1$ (pure powers, as above).
+\item $\hbar\Delta_\varepsilon M$: contractions through $K_\varepsilon$, whose scalar factor $(4\pi\varepsilon)^{-2}e^{-|x|^2/4\varepsilon}$ has Taylor coefficients that are single powers of $\varepsilon$; no $\log\varepsilon$.
+\item The $\delta$-independent defect: at order $\hbar^0$ the special edge of $\tfrac12\{I,I\}^{\rm sp}_\varepsilon$ on a cycle through $M$ (no $\log\varepsilon$) or on a bridge; at order $\hbar$ the action-level defect joined to $M$ by trees, which has a limit.
+\end{itemize}
+The sum has a limit, so the local vertex formed by the $\log\varepsilon$ coefficients vanishes (injectivity of the tree-level flow, Thm.~c8-L (i)): $\mathrm{lc}(sM)-s\,\mathrm{lc}(M)-\{L,M\}=0$. With Lemma \ref{lem:tl-deriv}, $\{L,M\}=u\{sF,M\}=-u\big(s\{F,M\}-\{F,sM\}\big)$, so $\mathrm{lc}^\natural(sM)=s\,\mathrm{lc}^\natural(M)$. The last statement is Thm.~c6-dil.
+\end{proof}
+
+\begin{corollary}[Ward identities of the kernels]
+\label{cor:tl-ward}
+Let $s_1X$ be the image of a letter under $s$ (a polynomial in letters), $\mathrm K^{\log}(Y_1\cdots Y_q,X_b):=\sum_i\pm Y_1\cdots\mathrm K^{\log}(Y_i,X_b)\cdots Y_q$ (Koszul signs as in \eqref{eq:tl-decomp}) and $\varkappa(Y_1\cdots Y_q):=\sum_{i<j}(-1)^{n_{ij}}Y_1\cdots\mathrm K^{\log}(Y_i,Y_j)\cdots\widehat{Y_j}\cdots Y_q$.
+\begin{itemize}
+\item (W1) For every letter $X$: $\varkappa(s_1X)=\{L,X\}$.
+\item (W2) For every pair of letters: $\mathrm K^{\log}(s_1X_a,X_b)+(-1)^{|X_a|}\mathrm K^{\log}(X_a,s_1X_b)=s\,\mathrm K^{\log}(X_a,X_b)$, $s$ acting on the outputs.
+\end{itemize}
+(W1) and (W2) for all letters are equivalent to \eqref{eq:tl-brst}.
+\end{corollary}
+
+\begin{proof}
+For $N=\int\omega\langle\zeta,X\rangle$, $\mathrm{lc}(N)=0$ and \eqref{eq:tl-brst} is (W1). For $M=\int\omega X_aX_b$, $sM=\int\omega\big((s_1X_a)X_b+(-1)^{|X_a|}X_a\,s_1X_b\big)$; the pairs of $\mathrm{lc}(sM)$ inside $s_1X_a$ or $s_1X_b$ give $\{L,M\}$ by (W1) ($\{L,-\}$ a derivation of degree $1$), the pairs across give the left side of (W2); $s\,\mathrm{lc}(M)=s\,\mathrm K^{\log}(X_a,X_b)$. For $n$ letters the spectators sort in the same way.
+\end{proof}
+
+\begin{proposition}[The one-body identities letter by letter]
+\label{prop:tl-W1}
+$\{L,N\}$ is $u$ times $\{S,N\}=sN$ with every term of $S$ weighted by its multiplier: $-\tfrac14(dA,dA)$: $4$; $\tfrac12(\lambda,{\not d}\lambda)$: $8$; $(dc,A^*)$: $-1$; cubic gauge term: $6$; $\tfrac12(\lambda,({\not d}_A-{\not d})\lambda)$: $10$; $([A,c],A^*)$: $1$; $([c,\lambda],\lambda^*)$: $1$; $\tfrac12([c,c],c^*)$: $1$; quartic: $8$. Hence (W1) reads
+\[
+\begin{aligned}
+X=A|_\perp,\ \lambda,\ c:&\qquad \mathrm{lc}(\{I,N\})=u\,\{I,N\}\quad(\text{pairs }(A|_\perp,c),\ (\lambda,c),\ (c,c);\ QN=0);\\
+X=A|_V:&\qquad \mathrm{lc}(\{I,N\})=u\big(\{I,N\}-QN\big)\quad(\text{pair }(A|_V,c);\ QN=-\textstyle\int\omega\langle\zeta,dc\rangle);\\
+X=A^*|_\perp:&\qquad \mathrm{lc}(\{I,N\})=u\big(4QN+6\{I_{AAA},N\}+8\{I_{AAAA},N\}+10\{I_{\lambda\lambda A},N\}+\{I_{AcA^*},N\}\big),
+\end{aligned}
+\]
+similarly for $A^*|_V$ (multipliers $4,6,8,10,1$, $(dc,A^*)$ absent), $\lambda^*$ ($8,10,1$), $c^*$ ($-1,1,1,1$); $\mathrm{lc}(QN)=0$.
+\end{proposition}
+
+\begin{proof}
+Lemma c4-count: $\{u\,sF,N\}=\{u\{F,S\},N\}$ contracts the letter of $N$ with the partner slot in each term $T$ of $S$, multiplied by the weighted count $m_T$ (proof of Thm.~c4-log). $QN$ is the contraction with the free part, $\{I,N\}$ with $I$.
+\end{proof}
+
+\begin{proposition}[Triangularity of (W2) and the independent data]
+\label{prop:tl-reduction}
+Grade the kernels by the number $r$ of output fields, $\mathrm K^{\log}=\sum_r\mathrm K^{\log}_r$, and split $s_1X=QX+\{I,X\}$: $QX$ is one letter, $\{I,X\}$ has at least two. On the active letters $Q$ acts by $QA|_V=-dc$, $QA^*|_V=$ a letter $A|_V$ with two derivatives (Prop.~c1-Q), and $Qc=QA|_\perp=Q\lambda=0$; the \emph{Q-depth} is $0$ for $c,A|_\perp,\lambda_\pm$, $1$ for $A|_V$, $2$ for $A^*|_V$, and the depth of a pair is the sum.
+\begin{itemize}
+\item (i) (W2) at $r$ output fields reads
+\[
+Q\,\mathrm K^{\log}_r(X_a,X_b)-\mathrm K^{\log}_r(QX_a,X_b)-(-1)^{|X_a|}\mathrm K^{\log}_r(X_a,QX_b)=R_r(X_a,X_b),
+\]
+with $R_r$ built from kernels with fewer than $r$ outputs ($\{I,-\}$ on the outputs of $\mathrm K^{\log}_{<r}$, and $\mathrm K^{\log}$ on pairs with one letter of $\{I,X_a\}$ or $\{I,X_b\}$, the other letters of these being spectators). The pairs $(QX_a,X_b)$, $(X_a,QX_b)$ have depth one less: the system is triangular in $(r,\text{depth})$.
+\item (ii) For a pair of depth $0$ the equation is $Q\,\mathrm K^{\log}_r(X_a,X_b)=R_r$, and the homogeneous solutions are $Q$-closed in the outputs. On a leg set of field outputs ($c$, $A|_V$, $A|_\perp$, $\lambda_\pm$) $Q$ substitutes one output $A|_V$ of momentum $p$ and polarisation $a$ by $-ip\,c$, different outputs giving different leg sets; so a $Q$-closed kernel is annihilated by $a\mapsto p$ in every leg $A|_V$, and by the exactness of the Koszul complex $(\wedge^\bullet V^\vee\otimes\mathbb C[p],\iota_p)$ in positive degree it depends on every output $A|_V$ through $p\wedge a$, i.e. through $dA|_V$.
+\item (iii) For a pair of depth $\ge1$ the homogeneous solutions are not transverse in general: a homogeneous kernel of the depth-$0$ pair $(\partial^\alpha c,X_b)$ sources, through the term $\mathrm K^{\log}_r(QX_a,X_b)$, a non-transverse dependence of $\mathrm K^{\log}_r(\partial^\beta A|_V,X_b)$ on an output $A|_V$. Example: for $(A_\mu|_V,A_I|_\perp)\to(A_\rho|_V,A_J|_\perp)$ at $w_{ab}=2$ coupled to $(\partial_\mu c,A_I|_\perp)\to(c,A_J|_\perp)$, the homogeneous system has the family $t\,\delta_{\mu\rho}\delta_{IJ}$, $\pm i\,t\,r_{1\mu}\delta_{IJ}$, $t$ free; the $(c,A|_\perp)$ equation at $r=2$ is empty.
+\item (iv) Hence the data not fixed by (W2) from fewer outputs are, at each $r$: the $Q$-closed parts of the kernels of all pairs of depth $0$, the pairs $(\partial^\alpha c,X_b)$ with derivative ghosts included (on which (W1) fixes only the combinations entering $\varkappa(s_1\partial^\alpha X)$, e.g. $\mathrm K^{\log}(\partial A|_\perp,c)+\mathrm K^{\log}(A|_\perp,\partial c)$), and the $Q$-closed parts of the kernels of the pairs of depth $\ge1$. The covariant completion of the outputs ($d\to d_A$, $dA\to F_A$) is fixed by (i) from lower $r$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) is the part of (W2) with $r$ output fields; $\{I,-\}$ on a kernel adds one or two fields; in $\mathrm K^{\log}(\{I,X_a\},X_b)$ the letters of $\{I,X_a\}$ other than the paired one are spectators, so the kernel part has fewer outputs; $QX$ is a single letter of the next lower depth (Prop.~c1-Q). (ii) For the depth-$0$ letters $QX_a=QX_b=0$. On field outputs, $Q$ of a functional linear in an output $A|_V$ of polarisation $a$ substitutes $a\mapsto-ip$ times the ghost; vanishing for all ghosts gives $f(p,a)=(a,h(p))$ with $(p,h(p))=0$, and $h=\iota_pg$, $g$ antisymmetric, so $f=g(p,a)$. Antifield outputs are moved by $Q$ into other leg sets ($A^*\to A$, $\lambda^*\to\lambda$, $c^*\to A^*$) and couple the leg sets; (ii) is stated for field outputs. (iii) The referee system \texttt{qa/refute\_theory/check\_reduction.py}; the engine A kernel $\mathrm K(A|_V,A|_\perp)|_{A|_VA|_\perp}$ contains $\delta(a,o_1)$. (iv) Induction on $(r,\text{depth})$ with (i)--(iii).
+\end{proof}
+
+\begin{remark}[The gate W2]
+\label{rem:tl-W2gate}
+Engine A tests \eqref{eq:tl-brst} on two-letter operators $M=\operatorname{tr}(\zeta X_aX_b)$, $\zeta$ a constant matrix, in the planar reading, with $s_1A|_V=-dc-(A|_Vc-cA|_V)$, $s_1A|_\perp=-(A|_\perp c-cA|_\perp)$, $s_1c=cc$, $s_1\lambda=c\lambda+\lambda c$ (fixed by Prop.~c1-Q, by (W1) and by $s^2=0$), on all targets of at most three field outputs that no antifield output of $\mathrm{lc}(M)$ reaches: field-letter pairs at $w^0_{ab}$, $w^0_{ab}+1$ and selected $w^0_{ab}+2$; $741$ instances, $232$ nontrivial, all equal; each of five sign conventions flipped alone is detected. By Cor.~\ref{cor:tl-ward} and (W1) this is (W2) on these entries.
+\end{remark}
+
+\begin{remark}[Two-component form]
+$\{F,-\}$ multiplies $c,A_m,A_{ij},\lambda_\alpha{}^i,\bar\lambda_{\dot\alpha i}$ by $1,2,2,4,4$ and the antifields by $-1,-2,-2,-4,-4$. For $X=A_{ij}$: $s_1A_{ij}$ is the gauge rotation (dictionary entry \texttt{action}: $\tfrac14([A^{ij},c],A^*_{ij})$), and $\mathrm{lc}$ of $\int\omega\,(\zeta^{ij},[A_{ij},c])$ is one unit times itself; for $X=A_m$: $QN=-\int\omega\,(\zeta_m,\partial_mc)$, so the pair $(A_m,c)$ has the one-field output $\partial_mc$ with coefficient one unit. The depths: $c,A_{ij},\lambda_\alpha{}^i,\bar\lambda_{\dot\alpha i}$: $0$; $A_m$: $1$; $A^*_m$: $2$.
+\end{remark}
+
+
+\section{Closed forms: simplex integrals and generating functions}
+\label{sec:tl-closed}
+
+\begin{definition}[Cycle data]
+\label{def:tl-cycle}
+For a chain with $k$ vertices the cycle has $k+1$ edges $e_0,\dots,e_k$; $r_j$ is the total incoming momentum of the outputs of the $j$-th vertex, $R_0=0$, $R_j=r_1+\cdots+r_j$, $R:=R_k$; $e_j$ carries $l+R_j$ ($l$ the loop momentum), so the letters have incoming momenta $p_a=-l$, $p_b=l+R$. Point-split the letters, $\varphi_a(x+y_a)\varphi_b(x+y_b)=\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\partial^\alpha\varphi_a\,\partial^\beta\varphi_b(x)$, which on plane waves is $e^{i(y_a,p_a)+i(y_b,p_b)}=e^{i(y_{ab},l)}e^{i(y_b,R)}$, $y_{ab}:=y_b-y_a$. $N(l)$ is the numerator (vertex functions, edge numerators, polarisations, colour), a polynomial in $l$ and the output momenta. On $\Delta=\{\alpha\in[0,1]^{k+1},\sum_j\alpha_j=1\}$ with the Lebesgue measure $d\alpha$ of $(\alpha_1,\dots,\alpha_k)$:
+\[
+l_0(\alpha)=-\sum_j\alpha_jR_j,\qquad \Phi(\alpha)=\sum_j\alpha_j|R_j|^2-|l_0(\alpha)|^2=\tfrac12\sum_{i,j}\alpha_i\alpha_j|R_i-R_j|^2,
+\]
+\[
+\mathrm{num}_j(\alpha)=\frac{(\Delta_l^{\,j}N)(l_0(\alpha))}{j!\,4^j},\qquad m_j=j+1-k,\qquad F_m(\alpha)=\sum_{j:\,m_j\ge m}\mathrm{num}_j(\alpha)\frac{(-\Phi(\alpha))^{m_j-m}}{(m_j-m)!},
+\]
+$\Delta_l=\sum_\mu\partial^2_{l_\mu}$, and $R_e=\{\alpha\in\Delta:\alpha_e=\min_f\alpha_f\}$ (volume $\frac1{k+1}$ of $\Delta$).
+\end{definition}
+
+\begin{theorem}[Singular coefficients as simplex integrals]
+\label{thm:tl-simplex}
+The cycle value
+\[
+w(\varepsilon)=\int_{[\varepsilon,\infty)^{k+1}}\prod_jdt_j\int\frac{d^4l}{(2\pi)^4}N(l)\prod_je^{-t_j|l+R_j|^2}
+\]
+has, at generic output momenta,
+\begin{equation}
+\begin{aligned}16\pi^2\,[\varepsilon^{-m}]\,w&=\frac1m\int_\Delta\big(\min_e\alpha_e\big)^mF_m\,d\alpha=\frac1m\sum_e\int_{R_e}\alpha_e^mF_m\,d\alpha\quad(m\ge1),\\ 16\pi^2\,[\log\varepsilon]\,w&=-\int_\Delta F_0\,d\alpha .\end{aligned}
+\label{eq:tl-simplex}
+\end{equation}
+The $e$-th summands are the boundary graphs with $e$ carrying $-\varepsilon L_\varepsilon$ (Prop.~c4-boundary). Every coefficient is a polynomial in the output momenta with rational coefficients ($\int_\Delta\prod_e\alpha_e^{n_e}d\alpha=\prod_en_e!/(\sum_en_e+k)!$); every $\log\varepsilon$ coefficient of a two-letter kernel is a rational multiple of $\hbar/16\pi^2$ times its colour and fibre factors.
+\end{theorem}
+
+\begin{proof}
+$\sum_jt_j|l+R_j|^2=\tau|l-l_0|^2+\tau\Phi$, $\tau=\sum_jt_j$, $\alpha_j=t_j/\tau$; the Gaussian integral (Lemma c4-gauss) gives $\int\frac{d^4l}{(2\pi)^4}N(l)e^{-\tau|l-l_0|^2}=\frac{1}{16\pi^2\tau^2}\sum_j\mathrm{num}_j\tau^{-j}$. With $\prod_jdt_j=\tau^kd\tau\,d\alpha$ and the cutoff $\tau\ge\varepsilon/\min_e\alpha_e$, expanding $e^{-\tau\Phi}$ to order $m_j$ and integrating $\tau^{-1-(m_j-i)}$ over $[\varepsilon/\min_e\alpha_e,1]$ gives \eqref{eq:tl-simplex}. Boundary form: $t_f=\varepsilon u_f$, $u_e=1$, $u_f\ge1$, $u\mapsto\alpha=u/\tau_u$ maps $[1,\infty)^k$ onto $R_e$ with $d\alpha=\tau_u^{-k-1}du$, $\tau_u=1/\alpha_e$. The $R_e$ are simplices with rational vertices.
+\end{proof}
+
+\begin{proposition}[Shape independence of the logarithm]
+\label{prop:tl-shape}
+For the Schwinger domain $\{\tau\ge\varepsilon\chi(\alpha)\}$, $\chi>0$ on the interior of $\Delta$, $\log\chi$ integrable ($\chi=1/\min_e\alpha_e$ per edge, $\chi=1$ total time):
+\[
+16\pi^2[\varepsilon^{-m}]w=\frac1m\int_\Delta\chi^{-m}F_m\,d\alpha,\qquad 16\pi^2[\log\varepsilon]w=-\int_\Delta F_0\,d\alpha,\qquad 16\pi^2[\varepsilon^0]w\ni-\int_\Delta F_0\log\chi\,d\alpha .
+\]
+The $\log\varepsilon$ coefficient is independent of $\chi$; the $\varepsilon^{-m}$ coefficients and the finite part depend on it. Example: $k=1$, $N=|l|^4$: per edge $\frac{|p|^2}{8}\varepsilon^{-1}+\frac14\varepsilon^{-2}$, total time $|p|^2\varepsilon^{-1}+3\varepsilon^{-2}$, $\log\varepsilon$ coefficient $0$ in both; triangle with $N=|l|^4$: equal $\log\varepsilon$ coefficients, $\varepsilon^{-1}$ coefficients $\frac13$ and $3$.
+\end{proposition}
+
+\begin{proof}
+$\int_{\varepsilon\chi}^1\tau^{-1-q}d\tau=\frac{(\varepsilon\chi)^{-q}-1}q$ ($q\ge1$), $-\log\varepsilon-\log\chi$ ($q=0$); the other regions have limits independent of $\chi$. Examples exact (\texttt{checks\_simplex.py}).
+\end{proof}
+
+\begin{lemma}[Cycles with one special edge]
+\label{lem:tl-special}
+Let the edge $s$ carry $K_\varepsilon-K_0=-\int_0^\varepsilon(H\otimes1)K_t\,dt$ (Prop.~c4-defect1): $t_s\in[0,\varepsilon]$, factor $-|l+R_s|^2e^{-t_s|l+R_s|^2}$ times the fibre factor of $K_0$, included in $N$; the other edges $P(\varepsilon,\infty)$. Then the value has no $\log\varepsilon$, and
+\[
+16\pi^2[\varepsilon^{-m}]=\frac1m\int_{R_s}\Big[\big(\min_{f\ne s}\alpha_f\big)^m-\alpha_s^m\Big]F_m\,d\alpha,\qquad 16\pi^2[\varepsilon^0]=-\int_{R_s}F_0\,\log\frac{\alpha_s}{\min_{f\ne s}\alpha_f}\,d\alpha ,
+\]
+the remainder tending to $0$. Example ($k=1$, $N=-|l|^2$, edge $l$ special, edge $l-p$): $-\frac1{2\varepsilon}-\frac38|p|^2$, equal to the direct evaluation of $\int\frac{d^4l}{(2\pi)^4}(e^{-\varepsilon|l|^2}-1)\frac{e^{-\varepsilon|l-p|^2}}{|l-p|^2}$.
+\end{lemma}
+
+\begin{proof}
+The domain $\{t_s\le\varepsilon,\ t_f\ge\varepsilon\ (f\ne s)\}$ is the difference of the domains with $\chi_1=1/\min_{f\ne s}\alpha_f$ and $\chi_0=1/\min_f\alpha_f$, which differ on $R_s$ only; Prop.~\ref{prop:tl-shape}. The convergent terms differ by $O(\varepsilon\log\varepsilon)$, the region $\tau\ge1$ by $O(\varepsilon)$. Example: $F_1=-2$, $F_0=|p|^2(1-\alpha_s)(3\alpha_s-1)$, $\int_0^{1/2}(1-a)(3a-1)\log\frac a{1-a}da=\frac38$.
+\end{proof}
+
+\begin{proposition}[Generating functions]
+\label{prop:tl-genfun}
+For the numerator $e^{i(y_{ab},l)}$ (formal power series in $y_{ab}$), with $q=m+k-1$,
+\begin{equation}
+F_m^{\rm gen}(\alpha)=(-1)^{q}\,e^{i(y_{ab},l_0(\alpha))}\Big(\frac{|y_{ab}|}{2\sqrt{\Phi(\alpha)}}\Big)^{q}I_{q}\big(|y_{ab}|\sqrt{\Phi(\alpha)}\big)=(-1)^{q}e^{i(y_{ab},l_0)}\sum_{i\ge0}\frac{(|y_{ab}|^2/4)^{i+q}\,\Phi^i}{i!\,(i+q)!},
+\label{eq:tl-genfun}
+\end{equation}
+$I_q$ the modified Bessel function ($F^{\rm gen}_m=0$ for $q<0$); for $N_V(l)e^{i(y_{ab},l)}$, $F_m=N_V(-i\partial_{y_{ab}})F_m^{\rm gen}$. The generating functions of the singular coefficients of a two-letter kernel are
+\[
+\begin{aligned}
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\,[\varepsilon^{-m}]\mathrm K(\partial^\alpha\varphi_a,\partial^\beta\varphi_b)&=\frac{\hbar}{16\pi^2m}\,e^{i(y_b,R)}\,N_V(-i\partial_{y_{ab}})\int_\Delta(\min_e\alpha_e)^mF_m^{\rm gen}\,d\alpha,\\
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\,[\log\varepsilon]\mathrm K(\partial^\alpha\varphi_a,\partial^\beta\varphi_b)&=-\frac{\hbar}{16\pi^2}\,e^{i(y_b,R)}\,N_V(-i\partial_{y_{ab}})\int_\Delta F_0^{\rm gen}\,d\alpha,
+\end{aligned}
+\]
+$y_{ab}=y_b-y_a$, summed over the chains, $N_V$ the numerator without the letter factors; in position space $iR$ is the derivative acting on the product of the outputs at $x$.
+\end{proposition}
+
+\begin{proof}
+$\Delta_l^je^{i(y_{ab},l)}=(-|y_{ab}|^2)^je^{i(y_{ab},l)}$, so $\mathrm{num}_j=e^{i(y_{ab},l_0)}(-|y_{ab}|^2/4)^j/j!$ and $F_m=(-1)^qe^{i(y_{ab},l_0)}\sum_i\frac{(|y_{ab}|^2/4)^{i+q}\Phi^i}{i!(i+q)!}$, the series of $(x/2)^{-q}I_q(x)$, $x=|y_{ab}|\sqrt\Phi$, times $(|y_{ab}|^2/4)^q$. Each order in $y_{ab}$ is a finite sum; $N_V(-i\partial_{y_{ab}})$ commutes with $\Delta_l$. Checked order by order for $k=0,1,2$ (\texttt{checks\_simplex.py}).
+\end{proof}
+
+\begin{remark}[The chain numerator]
+\label{rem:tl-NV}
+$N_V$ is the product, along the chain, of the edge numerators and the vertex momentum factors:
+\[
+\begin{array}{l|c|l}
+\text{factor} & \text{degree in }l & \text{form}\\\hline
+\text{edge }A\!-\!A & 0 & 2\,(-,-)^{-1}\otimes(\text{inverse metric of }V_{10})\\
+\text{edge }c\!-\!A^*|_V & 1 & -i(l+R_j)_\mu\,(-,-)^{-1}\\
+\text{edge }\lambda\!-\!\lambda & 1 & i\rho(l+R_j)\,(-,-)^{-1}\\
+\text{vertex }(A|_V)^3,\ A|_V(A|_\perp)^2 & \le1 & \text{one leg momentum: }l+R_{j-1},\ l+R_j\text{ or }r_j\\
+\text{vertices }\lambda\lambda A,\ AcA^*,\ c\lambda\lambda^*,\ cc\,c^*,\ \text{quartic} & 0 & \text{constant}
+\end{array}
+\]
+$N_V$ is constant exactly for chains whose edges are $A\!-\!A$ and whose vertices have no momentum factor on the cycle legs: the quartic bubbles ($k=1$) and the cubic gauge vertices with the momentum factor on the output.
+\end{remark}
+
+\begin{proposition}[Explicit forms for $k=0,1,2$]
+\label{prop:tl-bubble}
+\begin{itemize}
+\item $k=0$ ($l_0=0$, $\Phi=0$, $q=m-1$): $F_m^{\rm gen}=(-1)^{m-1}(|y_{ab}|^2/4)^{m-1}/(m-1)!$, $F_0^{\rm gen}=0$: the generating function of $\mathrm K^{(0)}$ is the Taylor series of $P(\varepsilon,\infty)$ at the separation $y_{ab}$, $16\pi^2S_\varepsilon(y_{ab})=\sum_m\varepsilon^{-m}(-1)^{m+1}(|y_{ab}|^2/4)^{m-1}/m!$; no $\log\varepsilon$.
+\item $k=1$ ($\alpha=\alpha_1$, $l_0=-\alpha R$, $\Phi=\alpha(1-\alpha)|R|^2$):
+\[
+\begin{aligned}
+16\pi^2[\log\varepsilon]&=-e^{i(y_b,R)}N_V(-i\partial_{y_{ab}})\int_0^1e^{-i\alpha(y_{ab},R)}I_0\big(|y_{ab}||R|\sqrt{\alpha(1-\alpha)}\big)\,d\alpha,\\
+16\pi^2[\varepsilon^{-m}]&=\frac{(-1)^m}me^{i(y_b,R)}N_V(-i\partial_{y_{ab}})\int_0^1\min(\alpha,1-\alpha)^m\,e^{-i\alpha(y_{ab},R)}\\ &\qquad\cdot\Big(\frac{|y_{ab}|}{2|R|\sqrt{\alpha(1-\alpha)}}\Big)^mI_m\big(|y_{ab}||R|\sqrt{\alpha(1-\alpha)}\big)d\alpha .
+\end{aligned}
+\]
+For constant $N_V$ (Rem.~\ref{rem:tl-NV}), in closed form in the derivative numbers,
+\begin{equation}
+\begin{aligned}16\pi^2[\log\varepsilon]=-\sum_{n_1,n_2,j\ge0}&\big(i(y_a,R)\big)^{n_1}\big(i(y_b,R)\big)^{n_2}\,|y_{ab}|^{2j}\Big(\frac{|R|^2}4\Big)^j\\ &\cdot\frac{(n_1+j)!\,(n_2+j)!}{n_1!\,n_2!\,(j!)^2\,(n_1+n_2+2j+1)!},\end{aligned}
+\label{eq:tl-bubbleclosed}
+\end{equation}
+i.e. the pair $\varphi_a(x+y_a)\varphi_b(x+y_b)$ is replaced by
+\[
+-\frac{\hbar}{16\pi^2}\sum_{n_1,n_2,j}\frac{(n_1+j)!(n_2+j)!}{n_1!n_2!(j!)^2(n_1+n_2+2j+1)!}(y_a,\partial)^{n_1}(y_b,\partial)^{n_2}|y_{ab}|^{2j}(-\tfrac14\square)^j
+\]
+acting on the product of the outputs, times the colour and fibre factors of the chain.
+\item $k=2$ ($l_0=-\alpha_1R_1-\alpha_2R_2$, $\Phi=\alpha_0\alpha_1|R_1|^2+\alpha_0\alpha_2|R_2|^2+\alpha_1\alpha_2|R_1-R_2|^2$):
+\[
+16\pi^2[\log\varepsilon]=e^{i(y_b,R_2)}N_V(-i\partial_{y_{ab}})\int_\Delta e^{i(y_{ab},l_0)}\sum_{i\ge0}\frac{(|y_{ab}|^2/4)^{i+1}\Phi^i}{i!(i+1)!}\,d\alpha ,\]\[16\pi^2[\varepsilon^{-m}]=\frac{(-1)^{m+1}}me^{i(y_b,R_2)}N_V(-i\partial_{y_{ab}})\int_\Delta(\min_e\alpha_e)^me^{i(y_{ab},l_0)}\sum_i\frac{(|y_{ab}|^2/4)^{i+m+1}\Phi^i}{i!(i+m+1)!}d\alpha,
+\]
+with $\int_\Delta\alpha_0^{n_0}\alpha_1^{n_1}\alpha_2^{n_2}d\alpha=\frac{n_0!n_1!n_2!}{(n_0+n_1+n_2+2)!}$.
+\item General $k$: \eqref{eq:tl-genfun}; by Prop.~\ref{prop:tl-bound}, $k\le w_{ab}+d_{ab}$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+Specialise \eqref{eq:tl-genfun}. For \eqref{eq:tl-bubbleclosed}: $e^{i(y_b,R)-i\alpha(y_{ab},R)}=e^{i(1-\alpha)(y_b,R)+i\alpha(y_a,R)}$, multiply by $I_0=\sum_j(|y_{ab}|^2|R|^2\alpha(1-\alpha)/4)^j/(j!)^2$ and use $\int_0^1\alpha^{n_1+j}(1-\alpha)^{n_2+j}d\alpha=\frac{(n_1+j)!(n_2+j)!}{(n_1+n_2+2j+1)!}$. Checked against Theorem \ref{thm:tl-simplex} through order $6$ (\texttt{checks\_simplex.py}) and against the engine A quartic blocks (1350 checks, qa/compare).
+\end{proof}
+
+\begin{example}[The scalar bilinears]
+For the bubble (e) of Prop.~c5-table $N_V$ is constant and \eqref{eq:tl-bubbleclosed} at $n_1=n_2=j=0$ gives $-1$, the coefficient $-\frac1{16\pi^2}$ of Lemma c5-log. With one derivative on each letter the coefficient of $y_a^\mu y_b^\nu$ comes from $(n_1,n_2,j)=(1,1,0)$, $(0,0,1)$ and is $\frac{R_\mu R_\nu}6+\frac{\delta_{\mu\nu}|R|^2}{12}$; with $iR=\partial$ the pair $(\partial_\mu\varphi_a,\partial_\nu\varphi_b)$ of a quartic bubble is replaced by $\frac{\hbar}{16\pi^2}\log\varepsilon\,\big(-\tfrac16\partial_\mu\partial_\nu-\tfrac1{12}\delta_{\mu\nu}\square\big)(\Psi_1\Psi_2)$ times its colour and fibre factor, $\Psi_1,\Psi_2$ the outputs. For the triangle (f), $N_V=n|l|^2+\cdots$, $F_0=2n$, $-\int_\Delta2n\,d\alpha=-n$, the coefficient of Lemma c5-log.
+\end{example}
+
+\begin{remark}[Two-component form]
+In components $N_V$ is built from Rem.~\ref{rem:tl-twocomp0} and the dictionary entry \texttt{action}; a $\lambda$ edge contributes $-(l+R_j)_m\sigma^m_{\alpha\dot\beta}$, which enters $N_V(-i\partial_{y_{ab}})$ as $i\sigma^m_{\alpha\dot\beta}\partial_{y_{ab}^m}$ plus the shift $R_j$. $\varphi(x+y)=\sum_\alpha y^\alpha\partial^\alpha\varphi/\alpha!$ in every component, $(y,\partial)=y^m\partial_m$.
+\end{remark}
+
+
+\section{The dilatation and translation components}
+\label{sec:tl-D1}
+
+Throughout, $v=2E$, $v.$ is the operator of Lemma c9-SDelta, $D_1(O)=\hbar L_1(O)^{(1)}(\Delta)$ (Def.~c8-components), $L(O)^{(1)}(\Delta)=\{S^{(1)}(\Delta),O\}+D_1(O)$. By Example c2-dil and the proof of Lemma c9-SDelta (i), $S^{(1)}(\Delta)=S_\perp+S_\lambda+S_V$ with
+\[
+S_\perp=\int(v.A|_\perp,A^*|_\perp),\qquad S_\lambda=-\int(v.\lambda,\lambda^*),\qquad S_V=\int(v.A|_V,A^*|_V)-\int(v.c,c^*),
+\]
+$S_\perp=\int(2E(A|_\perp)+2A|_\perp,A^*|_\perp)$, $S_\lambda=-\int(2E(\lambda)+3\lambda,\lambda^*)$, $S_V=\int(2E(A|_V)+2A|_V,A^*|_V)-\int(2E(c),c^*)$, the $Q$-closed directions of Thm.~c9-quadratic (iii); $\{S_\diamond,X\}=v.X$ for a field letter $X$ of the sector $\diamond$ ($\perp$: $A|_\perp$; $\lambda$: $\lambda$; $V$: $A|_V$ and $c$) and $0$ for the field letters of the other sectors.
+
+\begin{definition}[Hypotheses and composite data]
+\label{def:tl-H}
+(H1) $\hbar F_1^{(0)}$ solves the arity-zero part of $s(\hbar F_1)=\hbar\,\mathrm{Ob}$ (it contains the finite counterterm of Thm.~c4-finite), and $\hbar F_1^{(1)}(\Delta)$ solves eq.~c9-arity1, $s\,\hbar F_1^{(1)}(\Delta)=\hbar\mathrm{Ob}^{(1)}(\Delta)=4L+(\text{composite part})$ (Prop.~c9-structure (ii)). Write $\hbar F_1^{(1)}(\Delta)=4u\,F+F'_\Delta$, $s\,F'_\Delta=$ composite part. In the quadratic sector (Thm.~c9-quadratic (iii))
+\[
+\begin{aligned}F'_\Delta=\ &u\Big[-\tfrac23\int(A,A^*)+\tfrac13\int(\lambda^*,\lambda)+\tfrac43\int(c^*,c)\Big]+u\big(\theta_\perp S_\perp+\theta_\lambda S_\lambda+\theta_VS_V\big)\\ &+u\,Q\Big(\kappa_V\int(\iota_xA|_V,c^*)+\kappa_\lambda\int(\rho(x)\lambda^*,\lambda^*)\Big)+\cdots,\end{aligned}
+\]
+$\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$ numbers, $\cdots$ further $Q$-closed quadratic directions, if any, and the cubic and higher parts that solve the equation. $\theta_\perp=\theta_\lambda=\theta_V=\theta$ gives $u\theta S^{(1)}(\Delta)$; the manuscript's $\theta$ (eq.~c9-Fperp) is $\theta_\perp$.
+(H2) $O$ is homogeneous, $sO=0$, and $L_1(O)^{(0)}=0$ for a finite part $\psi$ of $O$ that is $\omega$-linear, translation invariant and preserves the Weyl weight (such a $\psi$ removes the outputs of Rem.~c5-cocycle); $D_1$ is independent of it (Lemma \ref{lem:tl-psi}).
+(H3) The local representative $L(O)^{(1)}(\Delta)$ exists (Def.~c8-rep).
+
+The composite graphs of $O$ are the graphs of the linearised flow (eq.~c9-D1a) in which the composite kernel $2(P\star v.P\star\otimes1)K_0$ (a $c$--$A|_V$ line, Prop.~c9-composite (ii)) closes two legs of the tree-level flow of $O$: (a) the cycle passes through two letters $X_a,X_b$ of $O$ (composite cycles through a pair); (b) the cycle closes on the tree attached to one letter (composite two-point functional on a leg). Their singular parts are the arity-one counterterm of $O$ along $\Delta$ and the quadratic part of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ (Prop.~c9-structure (i)).
+\end{definition}
+
+\begin{lemma}[Finite parts]
+\label{lem:tl-psi}
+Under $\psi\mapsto\psi+\psi'$ (Def.~c8-renorm), $L_1\mapsto L_1+[s,\psi']$ (Prop.~c8-laws (b)); the arity-zero part changes by $[Q+\{I,-\},\psi']$ and the component along $\Delta$ by $[\{S^{(1)}(\Delta),-\},\psi']=[v.,\psi']$. For $\psi'$ $\omega$-linear, translation invariant and preserving the Weyl weight, $[v.,\psi']=0$: $D_1$ is unchanged.
+\end{lemma}
+
+\begin{proof}
+$\psi'(\int\omega D)=\int\omega\,\psi'(D)$ with $\psi'(D)$ built from $D$ at the same point, of the same weight, commuting with $\partial$; $v.\int\omega D=\int\omega\,2(x\cdot\partial+w_D)D$ after integration by parts against $\omega$ (Lemma c9-SDelta (i)), and $\psi'$ commutes with $x\cdot\partial$ and with the multiplication by $2w_D$. The first statements are Prop.~c8-laws (b) and the proof of Prop.~c9-scheme.
+\end{proof}
+
+\begin{theorem}[Decomposition of $D_1$]
+\label{thm:tl-D1}
+Under (H1)--(H3), at every $T\in(0,\infty]$,
+\begin{equation}
+D_1(O)=4\,\mathrm{lc}^\natural(O)-\{F'_\Delta,O\}+C_\Delta(O),
+\label{eq:tl-D1}
+\end{equation}
+$C_\Delta(O)$ the local functional whose tree-level flow at scale $T$ is
+\[
+\begin{aligned}C_\Delta(O)[T]=\ &\lim_{\varepsilon\to0}Q\Big(\text{composite graphs of }O-\text{their counterterm trees}\Big)[T]\\ &-\big(\text{tree insertion of the composite part into }O[T]\big).\end{aligned}
+\]
+In terms of letters,
+\[
+\begin{aligned}D_1(O)=\ &\sum_{a<b}(-1)^{n_{ab}}\cdots\Big[4\mathrm K^{\log}(X_a,X_b)+C^{(2)}_\Delta(X_a,X_b)\Big]\cdots\\ &+\sum_a\cdots\Big[-4u\,n_F(X_a)X_a-\{F'_\Delta,X_a\}+C^{(1)}_\Delta(X_a)\Big]\cdots,\end{aligned}
+\]
+$C^{(2)}_\Delta$ the $Q$-image of the renormalised composite cycles through the pair and $C^{(1)}_\Delta(X)=\{\Pi_\Delta,X\}$, $\Pi_\Delta$ the renormalised composite functional on one leg. On letters $A|_\perp$ the quadratic part of $\Pi_\Delta$ is local, $\Pi_\Delta|_\perp=u\big[\tfrac53S_\perp-\tfrac23\int(A|_\perp,A^*|_\perp)\big]$ (Rem.~c9-Pi), and the one-output part of the one-body term on $X=\partial^\alpha A|_\perp$ is $u\big[-8X+(\tfrac53-\theta_\perp)\,v.X\big]$. On $A|_V$, $\lambda$, $c$, $\Pi_\Delta$ contains $\log|p|^2$ and only $C^{(1)}_\Delta+C^{(2)}_\Delta$ is local; the parts of the one-body term without $C^{(1)}_\Delta$ are
+\[
+\begin{array}{l|c}
+X & -4u\,n_F(X)X-\{F'_\Delta,X\}\ \text{(quadratic part of }F'_\Delta)\\\hline
+\partial^\alpha A|_\perp & u\big[-\tfrac{22}3X-\theta_\perp v.X\big]\\
+\partial^\alpha A|_V & u\big[-\tfrac{22}3X-\theta_V v.X\big]-u\kappa_V\{Q\int(\iota_xA|_V,c^*),X\}\\
+\partial^\alpha\lambda & u\big[-\tfrac{47}3X-\theta_\lambda v.X\big]-u\kappa_\lambda\{Q\int(\rho(x)\lambda^*,\lambda^*),X\}\\
+\partial^\alpha c & u\big[-\tfrac83X-\theta_V v.X\big]-u\kappa_V\{Q\int(\iota_xA|_V,c^*),X\}
+\end{array}
+\]
+\end{theorem}
+
+\begin{proof}
+At $T=\infty$, $d_\infty=d_{CE}+Q$ and $d_{CE}$ vanishes on arity zero; by (H2), (H3) the arity-one component along $\Delta$ of $d_\infty O[\infty]=L(O)[\infty]$ is $Q\big(O[\infty]^{(1)}(\Delta)\big)=\big(\{S^{(1)}(\Delta),O\}+D_1(O)\big)[\infty]$, $O[\infty]^{(1)}(\Delta)$ the $\varepsilon\to0$ limit of the $\delta$-part of the linearised flow, at $J=I-I^{CT}[\varepsilon]-\hbar F_1^{(0)}+\delta O(\varepsilon)$, of $S^{(1)}(\Delta)-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)-\hbar F_1^{(1)}(\Delta)-\delta\,(\text{arity-one counterterm of }O)$ (Def.~c9-data). The graph sums converge at $T=\infty$ at generic momenta: a composite line is of order $|p|^{-3}$ at small momentum and the one-loop integrals with external legs at generic momenta converge (Prop.~c8-Tsafe, Prop.~c9-composite (iv)); by Thm.~c8-L (ii) the local representative is the same at every finite $T$.
+
+(1) $S^{(1)}(\Delta)$. By eq.~c9-D1b at $T=\infty$, $Q$ of its linearised flow is $\{S^{(1)}(\Delta),W\}_\varepsilon$ minus the terms with $QW$. $\{S^{(1)}(\Delta),W\}^{\rm sp}_\varepsilon$ on external legs carries $e^{-\varepsilon|p|^2}-1\to0$. By eq.~c9-ward, $\{S^{(1)}(\Delta),W\}=W'_J\big((v.-4\varepsilon\tfrac{d}{d\varepsilon})J\big)+4\varepsilon\frac{d}{d\varepsilon}W$; the last term tends to $0$, $v.I=v.\hbar F_1^{(0)}=0$, $-(v.-4\varepsilon\frac d{d\varepsilon})I^{CT}[\varepsilon]=4L$, and by \eqref{eq:tl-scaling} $(v.-4\varepsilon\frac d{d\varepsilon})O(\varepsilon)=(v.O)(\varepsilon)+4\,\mathrm{lc}(O)$. The $\delta$-part tends to $(v.O)[\infty]+4\,\mathrm{lc}(O)[\infty]+4\,\mathrm{tree}(L,O[\infty])$ (Cor.~c9-CS). In the $QW$ terms, $QW$ is the flow of the arity-zero defect; by (H1) its limit vanishes, by (H2) its $\delta$-part too, and $-\tfrac\hbar2\partial_{\rm comp}(QW_{\rm tree})=Q(\tfrac\hbar2\partial_{\rm comp}W_{\rm tree})$ remains (Prop.~c9-composite (iii)): $Q$ of the composite graphs.
+
+(2) $-\hbar F_1^{(1)}(\Delta)$ enters by tree insertion; by Lemma c6-bvexact with $sO=0$ (local $F$): $-Q\,\mathrm{tree}(\hbar F_1^{(1)}(\Delta),O)=-\mathrm{tree}(s\hbar F_1^{(1)}(\Delta),O)-\{\hbar F_1^{(1)}(\Delta),O\}[\infty]=-4\,\mathrm{tree}(L,O)-\mathrm{tree}(\text{composite part},O)-\{\hbar F_1^{(1)}(\Delta),O\}[\infty]$; $-4\,\mathrm{tree}(L,O)$ cancels the term of (1).
+
+(3) The counterterm vertices remove the singular parts of the composite graphs (Prop.~c9-structure (i), Def.~c8-quant); their $Q$-images complete $Q$ of the composite graphs to $Q$ of the renormalised ones.
+
+Collecting, $\big(\{S^{(1)}(\Delta),O\}+D_1(O)\big)[\infty]=(v.O)[\infty]+4\,\mathrm{lc}(O)[\infty]-\{\hbar F_1^{(1)}(\Delta),O\}[\infty]+C_\Delta(O)[\infty]$, $v.O=\{S^{(1)}(\Delta),O\}$; by (H3) and Thm.~c8-L (i), $D_1(O)=4\,\mathrm{lc}(O)-\{\hbar F_1^{(1)}(\Delta),O\}+C_\Delta(O)$, and $\hbar F_1^{(1)}(\Delta)=4uF+F'_\Delta$ gives \eqref{eq:tl-D1}.
+
+Letters. $4\,\mathrm{lc}$ is two-body (Theorem \ref{thm:tl-decomp}); $\{F,-\}$, $\{F'_\Delta,-\}$ are derivations; composite graphs of kind (a) use two letters, of kind (b) one. For kind (b): the identity of Lemma c6-bvexact is used only for the tree insertions at generic momenta, where its proof (the derivation property of $Q$ and $QP\star+P\star Q=1$ on the tree edges at nonzero momentum) applies to the nonlocal $\Pi_\Delta$; it gives $\{\Pi_\Delta,O\}$, a nonlocal functional unless $\Pi_\Delta$ is local in the sector of the letter. On $A|_\perp$: $\{\int(A,A^*),X\}=X$, $\{S_\perp,X\}=v.X$, $-\{F'_\Delta,X\}=u(\tfrac23X-\theta_\perp v.X)$, and $-4u\cdot2X+\{\Pi_\Delta,X\}=u(-8X+\tfrac53v.X-\tfrac23X)$. The table: $n_F=2,4,1$ for $A,\lambda,c$; $\{\int(A,A^*),X\}=X$, $\{\int(\lambda^*,\lambda),\lambda\}=-\lambda$, $\{\int(c^*,c),c\}=-c$ (Lemma c4-count), $\{S_\diamond,X\}=v.X$ in the sector of $X$.
+\end{proof}
+
+\begin{proposition}[Output bound of the composite part]
+\label{prop:tl-compbound}
+Under (H3), $C^{(2)}_\Delta(X_a,X_b)$ is a local functional of the outputs of Weyl weight $w_{ab}$, the position $x$ counted at weight $-1$, at most linear in $x$, of degree $d_{ab}$ and fermion parity $|X_a|+|X_b|$; its number of output fields is
+\[
+n_{\rm out}\le w_{ab}+1+d_{ab}.
+\]
+A composite cycle through the pair contributes only if its outputs (before $Q$) have total field weight $w_{\rm out}\le w_{ab}+3$; the leg sets at $w^0_{ab}$ are in \texttt{census\_composite.json}, for example
+\[
+\begin{array}{l|l}
+\text{pair} & \text{composite leg sets at }w^0_{ab}\ (\text{fewest vertices})\\\hline
+(A|_\perp,A|_\perp) & A|_\perp A^*|_\perp\ (2),\ A|_VA|_\perp A^*|_\perp\ (2),\ A|_\perp^2A^*|_V\ (3)\\
+(A|_V,A|_\perp) & A^*|_\perp\ (1),\ A|_VA^*|_\perp,\ A|_\perp A^*|_V,\ \lambda_-\lambda^*_+,\ \lambda_+\lambda^*_-\ (2),\dots\\
+(A|_V,A|_V) & A^*|_V\ (1),\ A|_VA^*|_V,\ A|_\perp A^*|_\perp,\ c\,c^*,\ \lambda_\pm\lambda^*_\pm\ (2),\dots\\
+(\lambda_+,\lambda_-) & \lambda_-\lambda^*_-,\ \lambda_+\lambda^*_+\ (2),\ \text{three-output sets}\ (3)\\
+(A|_\perp,c) & A|_VA|_\perp\ (1),\ A|_V^2A|_\perp,\ c\,A^*|_\perp\ (2),\dots\\
+(c,c) & A|_Vc,\ A|_V^2c\ (2),\ c^2A^*|_V\ (3)
+\end{array}
+\]
+\end{proposition}
+
+\begin{proof}
+The composite kernel contains $v.$ once, so the graphs and their $Q$-images are at most linear in $x$. Its $c$--$A|_V$ component obeys the slot-weight rule of Rem.~\ref{rem:tl-P} ($0+1-4=-3$, the order $|p|^{-3}$ of Prop.~c9-composite (iv)) and has degree $-1$; $Q$ has degree $+1$ and preserves the Weyl weight. Lemma \ref{lem:tl-degree} then gives the total weight $w_{ab}$ of the $Q$-image, $x$ at weight $-1$. $Q$ changes one output $t$ into a field of weight $w(t)-\delta_t$ with $\delta_t$ derivatives ($\delta=2$ for $A^*$, $1$ for $\lambda^*$, $c^*$, $A|_V$), and locality of the result requires its momentum degree, $w_{ab}+n_x-w_{\rm out}+\delta_t$, to be $\ge0$: $w_{\rm out}\le w_{ab}+3$. With $w(t)+\deg(t)\ge1$ for every output, $n_{\rm out}\le w_f+d_{ab}$, $w_f\le w_{ab}+1$ the field weight. The table: \texttt{checks\_census\_composite.py}.
+\end{proof}
+
+\begin{proposition}[The planar scalar sector]
+\label{prop:tl-scalarsector}
+Let $\mathfrak g=\mathfrak{su}(N)$ at leading order in $N$, and $O$ a single-trace operator whose letters are $A|_\perp$ without derivatives, with its covariant completion. On the part with outputs $A|_\perp$ only, with the inputs Thm.~c9-D1, Prop.~c9-triangle, Thm.~c9-P1 and Rem.~c9-Pi:
+\begin{itemize}
+\item (i) per adjacent pair, modulo terms whose sum over the cyclic pairs of every trace vanishes,
+\[
+C^{(2)}_\Delta(X_a,X_b)=-u\,v.(X_aX_b),\qquad C^{(2)}_{P_b}(X_a,X_b)=-u\,\partial_b(X_aX_b);
+\]
+\item (ii) $\Xi_\Delta(O):=-\{F'_\Delta,O\}+C_\Delta(O)=-(\tfrac13+\theta_\perp)\,u\,v.O$, so
+\[
+D_1(O)=4\,\mathrm{lc}^\natural(O)-(\tfrac13+\theta_\perp)\,u\,\{S^{(1)}(\Delta),O\},\qquad P_1(O)=-(\tfrac13+\theta_P)\,u\,\{S^{(1)}(P_b),O\};
+\]
+the pair density of $D_1$ is $-8u\,(1-\mathrm P+\tfrac12\mathrm K)-\tfrac12(\tfrac13+\theta_\perp)u\,v.(X_aX_b)$, $\mathrm P$ the exchange and $\mathrm K$ the trace on the two $\mathfrak{so}(6)$ indices;
+\item (iii) at $\theta_\perp=-\tfrac13$ (Thm.~c9-kappa) $D_1=4\,\mathrm{lc}^\natural$ and $\mathrm{Spec}\,D_1$ is twice the spectrum of the anomalous dimensions on this sector; with the finite part $\hbar\psi'=\tfrac a2\{S^{(1)}(\Delta),-\}$, $a=-(\tfrac13+\theta_P)u$ (Prop.~c9-scheme), $P_1=0$ and $D_1$ is unchanged.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(a) Composite cycles. By Prop.~\ref{prop:tl-compbound} and its table, the composite cycles through $(A|_\perp,A|_\perp)$ whose $Q$-image has the two outputs $A|_\perp$ are the two triangles: the vertex $A|_V(A|_\perp)^2$ (entry $A|_\perp$, exit $A|_V$, output $A|_\perp$) and the vertex $([A|_\perp,c],A^*|_\perp)$ (entry $c$, exit $A|_\perp$, output $A^*|_\perp$), joined by the composite line, in either order; a cycle with two outputs has two cubic vertices and the composite line between them (it cannot end on a letter $A|_\perp$). Both vertices act as the identity on the $\mathfrak{so}(6)$ index along the cycle, so each triangle maps $(A_I,A_J)$ to outputs with the indices $(I,J)$ in the order of the letters. The three-output sets $A|_VA|_\perp A^*|_\perp$, $A|_\perp^2A^*|_V$ give the outputs $x\cdot A|_V\,A|_\perp A|_\perp$, the covariant completion of $x\cdot\partial$, and are outside this part.
+
+(b) Form. A local, $\mathrm{Spin}(4)$-invariant density of weight $2$ ($x$ at $-1$), at most linear in $x$, with outputs $A_IA_J$ and no derivatives otherwise, is $b_1A_IA_J+b_2(x\cdot\partial A_I)A_J+b_3A_I(x\cdot\partial A_J)$ (planar adjacent form, Lemma \ref{lem:tl-colour} (iv)).
+
+(c) Normalisation. For the bilinear $\int\omega\,\operatorname{tr}(A_IA_J)$ the single pair is adjacent on both sides: by Lemma \ref{lem:tl-colour} (ii) with $M_1=1$, $r=2$, the terms $S=\emptyset$ and $S=\{1,2\}$ give $N\operatorname{tr}(Y_1Y_2)$ and $N\operatorname{tr}(Y_2Y_1)$ and the others vanish for traceless outputs; so the bilinear receives the density on $(X_1,X_2)$ and on $(X_2,X_1)$: $2b_1O+(b_2+b_3)\sum_lx\cdot\partial X_l$. Prop.~c9-triangle gives $-2u\,v.O=-2u\sum_l(2x\cdot\partial+2)X_l$ for the traceless and the trace parts alike (identity on $\mathfrak{so}(6)$, table of Thm.~c9-D1): $b_1=-4u$, $b_2+b_3=-4u$.
+
+(d) Length $L$. Summing over the $L$ cyclic adjacent pairs, $b_1LO+(b_2+b_3)\sum_lx\cdot\partial X_l=-2u\,v.O$; the part $\tfrac{b_2-b_3}2\big[(x\cdot\partial X_a)X_b-X_a(x\cdot\partial X_b)\big]$ sums to zero, each letter receiving $x\cdot\partial$ once with each sign. So $C^{(2)}_\Delta=-u\,v.(X_aX_b)$ per pair modulo such terms.
+
+(e) One body. Theorem \ref{thm:tl-D1}: $u[\tfrac23X-\theta_\perp v.X]-\tfrac23uX+\tfrac53u\,v.X=u(\tfrac53-\theta_\perp)v.X$ per letter beyond $-4u\,n_F X$; with (d), $\Xi_\Delta=u(\tfrac53-\theta_\perp-2)v.O$. The density: $4\,\mathrm{lc}^\natural$ per pair is $-8u(1-\mathrm P+\tfrac12\mathrm K)$ (engines, gate G8), and $v.O=\tfrac12\sum_{\text{pairs}}v.(X_aX_b)$.
+
+(f) Translations. Prop.~\ref{prop:tl-P1} and Thm.~c9-P1: the composite line along $P_b$ has no explicit position, the density is $b'_2(\partial_bX_a)X_b+b'_3X_a\partial_bX_b$, the bilinear (composite triangle along $P_b$ symmetrised, $-2u\{S^{(1)}(P_b),O\}$) gives $b'_2+b'_3=-2u$, the one-body part is $u(\tfrac53-\theta_P)\partial_bX$; (d) gives $P_1=-(\tfrac13+\theta_P)u\,\partial_bO$. (iii): Thm.~c9-kappa, Prop.~c9-scheme (the change along translations is $\tfrac a2\lambda_{P_b}\{S^{(1)}(P_b),-\}$, $\lambda_{P_b}=-2$, along $\Delta$ zero).
+\end{proof}
+
+\begin{remark}[Status of the inputs]
+\label{rem:tl-inputs}
+Prop.~\ref{prop:tl-scalarsector} derives the sector from the bilinear values of Ch.~9; the two coefficients $8$ of the composite triangle were fixed there by the agreement of the special-edge evaluation with the second evaluation (Rem.~c9-twoeval), so the input is the special-edge table of Thm.~c9-D1. It is a derivation from that input, not an independent evaluation of $C^{(2)}_\Delta$.
+\end{remark}
+
+\begin{proposition}[The translation component]
+\label{prop:tl-P1}
+Under (H1)--(H3) with $P_b$ in place of $\Delta$,
+\[
+P_1(O)=-\{\hbar F_1^{(1)}(P_b),O\}+C_{P_b}(O),
+\]
+$C_{P_b}$ defined as $C_\Delta$ with the composite kernel $2\big(\partial_b(P(\varepsilon,\infty)\star)^2\otimes1\big)K_0$ (Thm.~c9-P1), a $c$--$A|_V$ line of degree $-2$ in momentum and without explicit position; there is no term $4\,\mathrm{lc}$ ($[\partial_b,P(\varepsilon,\infty)\star]=0$). Its two-body part is the $Q$-image of the renormalised composite cycles through a pair along $P_b$, local of weight $w_{ab}+1$. On the scalar bilinears $P_1(O)=-(\tfrac13+\theta_P)u\{S^{(1)}(P_b),O\}$ (Thm.~c9-P1); on the planar scalar sector Prop.~\ref{prop:tl-scalarsector}.
+\end{proposition}
+
+\begin{proof}
+As for Theorem \ref{thm:tl-D1}, with $\partial_b$ in place of $v.$: eq.~c9-ward holds without the scaling term (Sec.~c9 Translations), so step (1) gives $(\partial_bO)[\infty]$ plus the $QW$ terms, and the arity-one equation along $P_b$ has no term $4L$.
+\end{proof}
+
+\begin{proposition}[Spectrum]
+\label{prop:tl-spec}
+Under (H1)--(H3), on the cohomology of $\Lambda^{(0)}=s+\hbar L_1^{(0)}$ in a fixed classical Weyl weight:
+\begin{itemize}
+\item (i) $\mathrm{lc}^\natural$ induces an operator, and $2\,\mathrm{lc}^\natural$ is the one-loop anomalous dimension (Thm.~c6-dil), independent of $\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$, of $\psi$ and of the finite counterterms (Thm.~c8-invariants (iii)).
+\item (ii) $D_1=4\,\mathrm{lc}^\natural+\Xi_\Delta$, $\Xi_\Delta(O)[\infty]=Q\big(\text{renormalised composite graphs of }O-\mathrm{tree}(F'_\Delta,O)\big)$, the $Q$-image of a nonlocal functional of degree $-1$. Its dependence on the parameters is $-u\sum_\diamond\theta_\diamond\{S_\diamond,-\}$; the directions $\kappa_V,\kappa_\lambda$, completed to $s$-exact functionals $sG$ in $F'_\Delta$, contribute $s\{G,O\}$, zero on cohomology.
+\item (iii) On the planar scalar sector $\Xi_\Delta=-(\tfrac13+\theta_\perp)u\{S^{(1)}(\Delta),-\}$ (Prop.~\ref{prop:tl-scalarsector}).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Theorem \ref{thm:tl-brst}, Thm.~c6-dil. (ii) From the proof of Theorem \ref{thm:tl-D1} and the local form of Lemma c6-bvexact for $F'_\Delta$, $-\mathrm{tree}(sF'_\Delta,O)=-Q\,\mathrm{tree}(F'_\Delta,O)+\{F'_\Delta,O\}[\infty]$ for $sO=0$. The $\theta_\diamond$ enter only through $-\{F'_\Delta,-\}$. For $sO=0$, Lemma \ref{lem:tl-deriv} gives $-\{sG,O\}=s\{G,O\}$. (iii) Prop.~\ref{prop:tl-scalarsector}.
+\end{proof}
+
+\begin{conjecture}[P7]
+\label{conj:tl-P7}
+On every family of gauge-invariant cocycles stable under $\Lambda$, the parameter-independent part $-\{F'_\Delta|_{\theta=\kappa=0},-\}+C_\Delta$ of $\Xi_\Delta$ induces $-\tfrac13u\{S^{(1)}(\Delta),-\}$ on cohomology, so that $\Xi_\Delta=-u\big[\tfrac13\{S^{(1)}(\Delta),-\}+\sum_\diamond\theta_\diamond\{S_\diamond,-\}\big]$ there, and at $\theta_\perp=\theta_\lambda=\theta_V=-\tfrac13$, $\mathrm{Spec}\,D_1=\mathrm{Spec}\,4\,\mathrm{lc}^\natural$. Proved on the planar scalar sector (Prop.~\ref{prop:tl-scalarsector}). Whether the cubic part of eq.~c9-arity1, in which $\{I,S_\diamond\}\ne0$ for each sector while $\{I,S^{(1)}(\Delta)\}=0$, forces $\theta_\perp=\theta_\lambda=\theta_V$, and whether the arity-two equation along $(\Delta,P_b)$ (Thm.~c9-kappa) fixes each $\theta_\diamond$ on its families, is open.
+\end{conjecture}
+
+\begin{remark}[Two-component form]
+$\{S^{(1)}(\Delta),O\}=2(E+w_O)O$, $E=x^m\partial_m$; $S_\perp=\tfrac14\int((2E+2)A^{ij},A^*_{ij})$, $S_\lambda=-\int[((2E+3)\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-((2E+3)\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})]$, $S_V=\int((2E+2)A_m,A^*_m)-\int(2E(c),c^*)$ (Rem.~c9-twocompD); the quadratic part of $F'_\Delta$ is $u\{-\tfrac23\int[(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})]+\tfrac13\int[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})]+\tfrac43\int(c^*,c)\}+u(\theta_\perp S_\perp+\theta_\lambda S_\lambda+\theta_VS_V)+\cdots$. The one-body part on $\partial^\alpha A_{ij}$ is $u[-8+(\tfrac53-\theta_\perp)(2E+2+2|\alpha|)]\partial^\alpha A_{ij}$. On the planar scalar sector, with $Z=A_{I=5}+iA_{I=6}$-type letters, $D_1=-8u\sum_l(1-\mathrm P+\tfrac12\mathrm K)_{l,l+1}-(\tfrac13+\theta_\perp)u\,2(E+L)$ on $\operatorname{tr}(A_{I_1}\cdots A_{I_L})$; for the Konishi operator $\tfrac14\int\omega(A^{ij},A_{ij})$ at $\theta_\perp=-\tfrac13$, $D_1=-48u\,O=\tfrac{3g^2N}{2\pi^2}O$, twice $\gamma_{\rm Konishi}=\tfrac{3g^2N}{4\pi^2}$.
+\end{remark}
+
+
+\section{Arity one: the components along every generator}
+\label{sec:tl-arity1}
+
+For $x$ in a homogeneous basis of $\mathfrak{psl}(4|4)$ let $\lambda_x$ be its $\mathrm{ad}_\Delta$ eigenvalue (Rem.~c2-dilatation): $-2$ for $P_b$, $+2$ for $K_b$, $-1$ on $\Sigma$, $+1$ on $\Sigma^*$, $0$ for $\Delta$, $\mathfrak{so}(V)$, $\mathfrak{so}(W_{\mathbb R}^\perp)$; $\deg_x$ the polynomial degree in the position of its vector field or Killing spinor ($0$ for $P_b$, $\Sigma$, $\mathfrak{so}(W_{\mathbb R}^\perp)$; $1$ for $\Delta$, $\mathfrak{so}(V)$, $\Sigma^*$; $2$ for $K_b$). The one-loop components are $L_1(O)^{(1)}(x)$ (Def.~c8-components): $Q_1$ ($x\in\Sigma$), $S_1$ ($x\in\Sigma^*$), $D_1$, $K_1$, $P_1$, $M_1$, $R_1$.
+
+\begin{proposition}[Structure of the one-loop components]
+\label{prop:tl-arity1}
+Let $\hbar F_1^{(1)}(x)$ solve the arity-one equation along $x$, and let $O$ satisfy (H2) and (H3) along $x$. Then
+\[
+\hbar L_1(O)^{(1)}(x)=\sum_{a<b}(-1)^{n_{ab}}\int\omega\cdots\mathrm K^{(x)}(X_a,X_b)\cdots\;+\;\sum_a\int\omega\cdots\mathrm K^{(x)}_1(X_a)\cdots,
+\]
+with $\mathrm K^{(x)}(X_a,X_b)$ depending on the pair and $\mathrm K^{(x)}_1(X)$ on the letter only. $\mathrm K^{(x)}(X_a,X_b)$ is the $\varepsilon\to0$ limit of the local parts of the cycles through the pair that contain exactly one defect insertion: a special edge $K_\varepsilon-K_0$ (from $\{I,O(\varepsilon)\}^{\rm sp}_\varepsilon$ and $\{S^{(1)}(x),O(\varepsilon)\}^{\rm sp}_\varepsilon$), the vertex $S^{(1)}(x)$ on the cycle (for quadratic $S^{(1)}(x)$ the composite line $(P\star v_x.\otimes1+1\otimes P\star v_x.)P$, $v_x$ the action of $x$ on the fields), or the arity-one counterterm vertex of $O$, together with their $Q$-images where the defect is read through Lemma c7-image. $\mathrm K^{(x)}_1$ collects $-\{\hbar F_1^{(1)}(x),X\}$, the trees of the arity-zero finite counterterm with $S^{(1)}(x)$, and the defect or composite two-point functionals on one leg. For $x=\Delta$ this is Theorem \ref{thm:tl-D1}, the scaling Ward identity adding $4\mathrm K^{\log}$ and $-4u\,n_F$; for $x=P_b$ Prop.~\ref{prop:tl-P1}.
+\end{proposition}
+
+\begin{proof}
+By Lemma c8-transfer and Def.~c8-rep the component along $x$ of $L(O)[T]$ is read from the $\varepsilon\to0$ limit of the graphs with one defect vertex linear in $\delta$ and in $x$. At order $\hbar$ such a graph has one cycle or none; a cycle passes through $O$ along two half-edges (two letters) and a tree meets $O$ in one letter per edge; Lemma c4-factor as in Theorem \ref{thm:tl-decomp} (i) separates the cycle through $O$ from the trees attached to it, and the trees carry only the fields of the outputs. The local representative (H3) and Thm.~c8-L (i) transfer the sum to local functionals.
+\end{proof}
+
+\begin{lemma}[Active letters at arity one]
+\label{lem:tl-active1}
+The special edge has the components of $K_0$: $A\otimes A^*$, $\lambda\otimes\lambda^*$, $c\otimes c^*$ and their transposes; for $x\in\Sigma$ the quadratic part of $S^{(1)}(x)$ joins $\lambda$ to $A^*$ and $A$ to $\lambda^*$ (proof of Prop.~c8-Tsafe), for even $x$ it joins a field to its antifield ($(v_x.A,A^*)$). Hence every letter, $A^*|_\perp$, $\lambda^*_\pm$, $c^*$ included, is active at arity one; the cycles have edges $P$, at most one special edge or composite line, and vertices of $I$ and at most one vertex of $S^{(1)}(x)$.
+\end{lemma}
+
+\begin{proof}
+Prop.~c4-defect1, Prop.~c8-Tsafe (proof), Prop.~c9-composite (ii).
+\end{proof}
+
+\begin{proposition}[Output bound along $x$]
+\label{prop:tl-bound1}
+Under (H3) along $x$, $\mathrm K^{(x)}(X_a,X_b)$ is a local functional of Weyl weight $w_{ab}-\tfrac12\lambda_x$, the position at weight $-1$, a polynomial of degree at most $\deg_x$ in the position, of degree $d_{ab}$ and fermion parity $|X_a|+|X_b|+|x|$; its number of output fields is
+\[
+n_{\rm out}\le w_{ab}-\tfrac12\lambda_x+\deg_x+d_{ab}.
+\]
+For each pair type and $w_{ab}$ finitely many leg sets enter.
+\end{proposition}
+
+\begin{proof}
+$\{S^{(1)}(x),-\}$ shifts the Weyl weight by $-\tfrac12\lambda_x$ ($[\Delta,x]=\lambda_xx$) and preserves the ghost number; the defect insertions are built from $S^{(1)}(x)$, $I$, $K_0$ and $P$, each of which obeys the weight rule of Rem.~\ref{rem:tl-P} with the position at weight $-1$, and contain the position at most to the degree $\deg_x$ of the vector field or Killing spinor. Locality and $w(t)+\deg(t)\ge1$ for every output give the bound as in Prop.~\ref{prop:tl-compbound}.
+\end{proof}
+
+\begin{remark}[Scheme dependence]
+\label{rem:tl-scheme1}
+(a) $\hbar F_1^{(1)}(x)$ enters the one-body kernel only, through $-\{\hbar F_1^{(1)}(x),-\}$. (b) $\hbar F_1^{(0)}$ enters through trees, one-body. (c) A finite part $\psi'$ of the operators changes $L_1$ by $[s,\psi']$ (Prop.~c8-laws (b)), the component along $x$ by $[\{S^{(1)}(x),-\},\psi']$; for $\psi'=\tfrac a2\{S^{(1)}(\Delta),-\}$ by $\tfrac a2\lambda_x\{S^{(1)}(x),-\}$ (Prop.~c9-scheme). (d) The cutoff shape enters the finite parts of the special-edge cycles (Prop.~\ref{prop:tl-shape}, Lemma \ref{lem:tl-special}) and the finite vertex \eqref{eq:tl-finitesp}. The spectrum of $D_1$ on cohomology at the values of the $\theta_\diamond$ fixed by the arity-two equations is independent of (a)--(d) (Thm.~c8-invariants (iii)).
+\end{remark}
+
+\begin{remark}[Two-component form]
+$\lambda_x$: $P_m$: $-2$, $K_m$: $+2$, $Q_\alpha{}^i$, $\bar Q_{\dot\alpha i}$: $-1$, $S$, $\bar S$: $+1$. For $Q$ the quadratic part of $S^{(1)}$ joins $\lambda_\alpha{}^i$ to $A^*_m$, $A^*_{ij}$ and $A_m$, $A_{ij}$ to $\lambda^{*\alpha}{}_i$, $\bar\lambda^{*\dot\alpha i}$ (dictionary entry \texttt{action}, $Q$-variations); a two-body kernel of $Q_1$ on $(X_a,X_b)$ has weight $w_{ab}+\tfrac12$ and at most $w_{ab}+\tfrac12+d_{ab}$ output fields.
+\end{remark}
+
+
+\section{Status and predictions}
+\label{sec:tl-pred}
+
+All items are in \texttt{predictions.json} (\texttt{build\_predictions.py}, exact arithmetic); $u=-\frac{g^2N}{32\pi^2}$ for $\mathfrak{su}(N)$, $\frac{g^2N}{8\pi^2}=-4u$.
+
+\begin{center}\scriptsize
+\begin{tabular}{l|l}
+statement & status\\\hline
+Thm.~\ref{thm:tl-decomp}, Lemmas \ref{lem:tl-sign}, \ref{lem:tl-k0}, \ref{lem:tl-colour} & proved; Lemma \ref{lem:tl-k0} and the colour rules checked (both engines, referee)\\
+Prop.~\ref{prop:tl-census}, \ref{prop:tl-bound}, \ref{prop:tl-compbound} (census) & proved; enumerations in \texttt{census.json}, \texttt{census\_composite.json}\\
+Thm.~\ref{thm:tl-simplex}, Prop.~\ref{prop:tl-shape}, Lemma \ref{lem:tl-special}, Prop.~\ref{prop:tl-genfun}, \ref{prop:tl-bubble} & proved; checked exactly and numerically\\
+Thm.~\ref{thm:tl-brst}, Cor.~\ref{cor:tl-ward}, Prop.~\ref{prop:tl-reduction} & proved; (W1) all letters, (W2) Rem.~\ref{rem:tl-W2gate}\\
+kernels at $w^0_{ab}$, all $21$ pair types & computed by two engines, equal entry by entry\\
+kernels at $w^0_{ab}+1$, $w^0_{ab}+2$ (at most two outputs) & two engines; higher: engine A and the referee engine\\
+$\mathrm{lc}^\natural$ spectra (P5, P6, Konishi, $\mathfrak{su}(1|1)$ density) & computed (Sec.~\ref{sec:tl-engine})\\
+$D_1$, $P_1$ on the planar scalar sector & derived from Ch.~9 inputs (Prop.~\ref{prop:tl-scalarsector})\\
+$D_1$ on other families & conditional on Conjecture \ref{conj:tl-P7}\\
+two-body kernels of $Q_1$, $S_1$, $K_1$ & structure and bound proved (Sec.~\ref{sec:tl-arity1}); kernels not computed
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item[P1] Scalar bilinears (Prop.~c5-table, Thm.~c5-Oeps): $\mathrm{lc}(O)=4u\,O$ (traceless), $-8u\,O$ (trace); the $\varepsilon^{-1}$ term $\frac{2\hbar\dim\mathfrak g\,(w_1,w_2)}{16\pi^2}\int\omega$ is the self-contraction. Two-component: $\partial_\delta I^{CT}=u\log\varepsilon[\tfrac14\int\omega(w_1A,w_2A)-\tfrac18w_1^{ij}w_{2ij}\int\omega(A^{kl},A_{kl})]+\hbar\dim\mathfrak g\,w_1^{ij}w_{2ij}/(32\pi^2\varepsilon)\int\omega$.
+\item[P2] $\mathrm{lc}^\natural$: $0$ (the $\mathbf{20'}$), $-12u\,O$ (Konishi $\tfrac14\int\omega(A^{ij},A_{ij})$); letters $A|_\perp$, $A|_V$, $\lambda$, $c$: $-2u$, $-2u$, $-4u$, $-u$; anomalous dimensions twice these: $-24u=\frac{3g^2N}{4\pi^2}$ for Konishi.
+\item[P3] $D_1=4\,\mathrm{lc}^\natural-(\tfrac13+\theta_\perp)u\{S^{(1)}(\Delta),-\}$, $P_1=-(\tfrac13+\theta_P)u\{S^{(1)}(P_b),-\}$ on the bilinears and on the planar scalar sector (Prop.~\ref{prop:tl-scalarsector}).
+\item[P4] (W1) (Prop.~\ref{prop:tl-W1}) and (W2) (Cor.~\ref{cor:tl-ward}), exact and scheme independent.
+\item[P5] Spectrum (B03c (1.1)--(1.3), (2.31)): $\mathrm{eig}(\mathrm{lc}^\natural)=-2E_Hu$, $\gamma=2\,\mathrm{eig}(\mathrm{lc}^\natural)=-4E_Hu=\frac{g^2N}{8\pi^2}E_H$, $E_H$ the eigenvalue of $\sum_lH_{l,l+1}$, $H_{12}=2h(J_{12})$, $h(j)=\sum_{k=1}^j\frac1k$. Verified on: twist two (length $2$, spin $S\le8$ even, $E_H=4h(S)$: $0,-12,-\tfrac{50}3,-\tfrac{98}5,-\tfrac{761}{35}$ units), the $\mathfrak{su}(2)$ sector ($L\le8$), Konishi ($E_H=6$), the two-site $\mathfrak{su}(1|1)$ density ($H_{12}=1-\Pi$ graded). $\mathrm{eig}(D_1)=-8E_Hu$ on the planar scalar sector at $\theta_\perp=-\tfrac13$, elsewhere under Conjecture \ref{conj:tl-P7}.
+\item[P6] $\mathfrak{su}(2)$ sector $\operatorname{Tr}(Z^{L-M}X^M)$: $H=\sum_l(1-\mathrm P_{l,l+1})$; cyclic characteristic polynomials for $L\le8$ in \texttt{predictions.json} (e.g. $L=6,M=2$: $\{0,5\pm\sqrt5\}$). The $\mathfrak{sl}(2)$ two-site matrix of B03c (3.14) has the eigenvalues $2h(j)$; at matrix level on twist two (two sites, $N\le8$) $\mathrm{lc}^\natural=-2(H'_{12}+H'_{21})u$ in the letter basis $D^kZ/k!$ (qa/compare).
+\item[P7] Conjecture \ref{conj:tl-P7}.
+\item[P8] Scheme facts: universality of $\log\varepsilon$ (Prop.~\ref{prop:tl-shape}); special edges without $\log\varepsilon$ (Lemma \ref{lem:tl-special}); the self-contraction (Lemma \ref{lem:tl-k0}); the finite vertex \eqref{eq:tl-finitesp}.
+\end{itemize}
+
+\begin{remark}[Two-component and Srednicki form of P5]
+With $A_m=-igA^a_mT^a$, $A_I=-igA^a_IT^a$, $\operatorname{tr}(T^aT^b)=\frac12\delta^{ab}$, the letters of B03c are $Z=\tfrac1{\sqrt2}(A^5+iA^6)$-type complex scalars built from $A_{ij}$, $F_{mn}$ and $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ with covariant derivatives; P5 compares eigenvalues, so the normalisation of the letters drops out. The $\mathfrak{so}(6)$ density in two-component form: $(A_{ij},A_{kl})\to u[2A_{kl}A_{ij}-\tfrac12\varepsilon_{ijkl}A^{mn}A_{mn}]$; the $\mathfrak{su}(1|1)$ density on $(Z,\psi)$, $\psi$ the component $\lambda_\alpha{}^i$ of $\mathfrak{so}(6)$ weights $(\tfrac12,\tfrac12,\tfrac12)$: $u(Z\psi)+2u(\psi Z)$.
+\end{remark}
+
+\section{Engine specification}
+\label{sec:tl-engine}
+
+The specification is \texttt{engine\_spec.json} (\texttt{build\_engine\_spec.py}); in brief:
+\begin{itemize}
+\item Kernels: the $21$ pair types, every chain of the census with its outputs, the leg sets for $w_{ab}\le6$, counts to $w_{ab}\le7$; coefficients of $\varepsilon^{-m}$ and $\log\varepsilon$ in general colour position ($C_w$, $w=\mathrm{ad}_{Y_r}\cdots\mathrm{ad}_{Y_1}$) and in planar adjacent form ($(-1)^r\frac{a}2$ units, outputs $Y_1\cdots Y_r$).
+\item Closed forms: Lemma \ref{lem:tl-k0}; Prop.~\ref{prop:tl-bubble} and \eqref{eq:tl-bubbleclosed} (constant $N_V$); \eqref{eq:tl-genfun} with Dirichlet integrals.
+\item Tasks: T1 kernels to $w_{ab}\le6$; T2 $\mathrm{lc}^\natural$ and spectra (P5, P6, $\mathfrak{su}(1|1)$; a field-strength family); T3 $C^{(2)}_\Delta$, $C_{P_b}$ and $C^{(1)}_\Delta$ beyond the planar scalar sector, first on the twist-two pairs $(\partial^aZ,\partial^bZ)$, $(A|_V,Z)$ and on a fermion pair, by the special-edge evaluation of Thm.~c9-D1 (cycles through the pair with one special edge and the composite line or $S^{(1)}(\Delta)$ on a letter edge); T4 (W1), (W2); T5 (W2) with $s$ on antifield outputs and on antifield letters ($(c,A^*|_V)$, $(A|_V,\lambda_\pm)$); T6 Conjecture \ref{conj:tl-P7} on the families of T2, T3; T7 the two-body kernels $\mathrm K^{(x)}$ of $Q_1$, $S_1$, $K_1$ (Prop.~\ref{prop:tl-arity1}, census of Lemma \ref{lem:tl-active1}, bound of Prop.~\ref{prop:tl-bound1}).
+\item Route A: Schwinger parameters, Gaussian loop integral, Theorem \ref{thm:tl-simplex}, Prop.~\ref{prop:tl-genfun}, Lemma \ref{lem:tl-special}; vertex and propagator data of \texttt{step2/engine\_a/s2\_core.py} and \texttt{engine\_a/cliff.py}. Route B: momentum-space numerator algebra, pinned-edge expansion, numerical residuals; \texttt{engine\_b/vertices.py}, \texttt{engine\_b/loops.py}, \texttt{step2/engine\_b/fa.py}.
+\item Gates G1--G10 of \texttt{engine\_spec.json}; added: G3-W2 (Rem.~\ref{rem:tl-W2gate}), G8f ($\mathfrak{su}(1|1)$ density: $\mathrm{lc}^\natural=-2u(1-\Pi)$ on $(Z,\psi)$, $(Z,Z)$, $(\psi,\psi)$).
+\end{itemize}
+
+\end{document}

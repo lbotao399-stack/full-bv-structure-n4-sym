@@ -1,0 +1,200 @@
+[
+ {
+  "location": "Lemma lem:c10-special, closing example (also in twoletter_theory.tex, Lemma lem:tl-special)",
+  "severity": "minor",
+  "claim": "For k=1, numerator -|l|^2, the value is -1/(2 eps) - (3/8)|p|^2 plus a function tending to 0, equal to the direct evaluation of int d^4l/(2pi)^4 (e^{-eps|l|^2}-1) e^{-eps|l-p|^2}/|l-p|^2.",
+  "evidence": "The numbers are 16 pi^2 times the value (the lemma's own formulas give 16 pi^2 (coefficient)). Direct Schwinger evaluation of the stated integral at eps = 1e-3, |p|^2 = 1 (scipy dblquad, checks.py): -3.16866078; (-1/(2eps) - 3/8)/(16 pi^2) = -3.16866170; -1/(2eps) - 3/8 = -500.375. The simplex data F_1 = -2, F_0 = |p|^2(1-a)(3a-1) and int_0^{1/2}(1-a)(3a-1)log(a/(1-a))da = 3/8 are confirmed.",
+  "replace": "the value is $-\\frac1{2\\varepsilon}-\\frac38|p|^2$ plus a function tending to $0$, equal to the direct evaluation of",
+  "by": "$16\\pi^2$ times the value is $-\\frac1{2\\varepsilon}-\\frac38|p|^2$ plus a function tending to $0$, equal to $16\\pi^2$ times the direct evaluation of"
+ },
+ {
+  "location": "Proposition prop:c10-shape, statement, the examples",
+  "severity": "markup",
+  "claim": "For k=1 and the numerator |l|^4 the cutoff on every edge gives |p|^2/8 eps^-1 + 1/4 eps^-2 and the cutoff on the total time |p|^2 eps^-1 + 3 eps^-2; for the triangle the coefficients of eps^-1 are 1/3 and 3.",
+  "evidence": "Recomputed exactly (checks.py): per edge 16pi^2[eps^-1] = |p|^2/8, 16pi^2[eps^-2] = 1/4, log 0; total time |p|^2 and 3; triangle F_1 = 6, per edge 6/18 = 1/3, total time 6/2 = 3. The numbers are correct as values of 16 pi^2 times the coefficients (the normalisation of the displayed formulas); the sentence does not say so, and the value itself is 1/(16 pi^2) times these numbers.",
+  "replace": "For $k=1$ and the numerator $|l|^4$ the cutoff on every edge gives",
+  "by": "In units of $\\frac1{16\\pi^2}$, for $k=1$ and the numerator $|l|^4$ the cutoff on every edge gives"
+ },
+ {
+  "location": "Chapter introduction, first paragraph, last sentence",
+  "severity": "major",
+  "claim": "This chapter ... assembles the dilatation component D_1 and the translation component P_1 from them [the pair kernels].",
+  "evidence": "D_1 and P_1 are not functions of the pair kernels alone: by Theorem thm:c10-D1 and Proposition prop:c10-P1 they contain the composite terms C^(2)_Delta, C_{P_b} of the pairs and the composite two-point functionals, which are evaluated only on the planar scalar sector with A_perp outputs (Proposition prop:c10-scalarsector, derived from the Ch9 bilinear table); everywhere else D_1 is conditional on the assumption of Corollary cor:c10-P7 (kernels_final.json D1.two_body.C2_Delta_elsewhere = 'open (task T3)', status.open; disposition N1, T2). The opening sentence claims more than is computed.",
+  "replace": "and assembles the dilatation component $D_1$ and the translation component $P_1$ from them.",
+  "by": "and writes the dilatation component $D_1$ and the translation component $P_1$ as the pair kernels plus composite terms, which it evaluates on the planar scalar sector."
+ },
+ {
+  "location": "Chapter introduction, first paragraph",
+  "severity": "minor",
+  "claim": "every one-loop component of Definition def:c8-components is a sum of a two-body and a one-body operator.",
+  "evidence": "Proposition prop:c10-arity1 proves the two-body plus one-body form under hypotheses (ii) and (iii) of Definition def:c10-hyp along x, in particular the existence of the local representative (Definition def:c8-rep); the introduction states it without the hypothesis.",
+  "replace": "and every one-loop component of Definition \\ref{def:c8-components} is a sum of a two-body and a one-body operator.",
+  "by": "and every one-loop component of Definition \\ref{def:c8-components} with a local representative is a sum of a two-body and a one-body operator."
+ },
+ {
+  "location": "Corollary cor:c10-P7, last sentence of the statement",
+  "severity": "major",
+  "claim": "The assumption [that on the cohomology the composite term minus the bracket with hbar F_1^(1)(Delta) - 4 units times the field-counting functional induces -1/3 units {S^(1)(Delta),-}] holds on the scalar bilinears (Theorem thm:c9-D1) and on the planar scalar sector (Proposition prop:c10-scalarsector).",
+  "evidence": "Theorem thm:c9-D1 is stated 'on the part with two legs A|_perp', and Proposition prop:c10-scalarsector 'on the part with the outputs A|_perp alone'. The trace bilinear has further outputs (A_V,A_V), (c,A*_V) whose membership in the image of Lambda^(0) is an assumption in Corollary cor:c9-ident (iii); for longer traces the composite leg sets A_V A_perp A*_perp, A_perp^2 A*_V are explicitly put 'outside this part' (proof of prop:c10-scalarsector (a)). The assumption is therefore established on the A_perp-output part, not on the cohomology. kernels_final.json labels P7 'conjecture elsewhere'.",
+  "replace": "The assumption holds on the scalar bilinears (Theorem \\ref{thm:c9-D1}) and on the planar scalar sector (Proposition \\ref{prop:c10-scalarsector}), with $\\theta=0$ for the translation-invariant solution.",
+  "by": "The assumption holds on the part with the outputs $A|_{W_{\\mathbb R}^\\perp}$ alone of the scalar bilinears (Theorem \\ref{thm:c9-D1}) and of the planar scalar sector (Proposition \\ref{prop:c10-scalarsector}), with $\\theta=0$ for the translation-invariant solution, and on the cohomology of the scalar bilinears when their parts with the outputs $(A|_V,A|_V)$ and $(c,A^*|_V)$ lie in the image of $\\Lambda^{(0)}$ (Corollary \\ref{cor:c9-ident} (iii))."
+ },
+ {
+  "location": "Proposition prop:c10-spec (iii)",
+  "severity": "minor",
+  "claim": "on the planar scalar sector the difference is -(1/3+theta) units times {S^(1)(Delta),-}.",
+  "evidence": "Proposition prop:c10-scalarsector is restricted to the part with the outputs A|_perp alone; the statement drops the restriction.",
+  "replace": "\\item (iii) on the planar scalar sector the difference is",
+  "by": "\\item (iii) on the part with the outputs $A|_{W_{\\mathbb R}^\\perp}$ alone of the planar scalar sector the difference is"
+ },
+ {
+  "location": "Definition def:c10-hyp (i), sentence on the quadratic sector",
+  "severity": "minor",
+  "claim": "In the quadratic sector it [hbar F_1^(1)(Delta)] is the translation-invariant solution of Theorem thm:c9-quadratic (iii) ... plus a combination of the Q-closed directions listed there.",
+  "evidence": "Theorem thm:c9-quadratic (iii) says that the solutions differ by Q-closed functionals and that 'these include' the listed directions; completeness of the list is open (Remark rem:c10-next: 'together with the completeness of the Q-closed directions of Theorem thm:c9-quadratic (iii)'). As written the sentence reads as a consequence of (i); it is an additional restriction and should be stated as part of the hypothesis.",
+  "replace": "In the quadratic sector it is the translation-invariant solution of Theorem \\ref{thm:c9-quadratic} (iii),",
+  "by": "Its quadratic part is, by hypothesis, the translation-invariant solution of Theorem \\ref{thm:c9-quadratic} (iii),"
+ },
+ {
+  "location": "Proposition prop:c10-compbound, table of composite leg sets, rows (A|_V,A|_perp) and (A|_V,A|_V)",
+  "severity": "minor",
+  "claim": "The table lists for (A_V,A_perp) at two vertices only two-output leg sets, and likewise for (A_V,A_V).",
+  "evidence": "kernels_final.json census.composite_W0: AV|AW also has the three-output leg sets 'AV AV AsW', 'AV AW AsV', 'AW AW AsW' with k_min = 2 (w_out = 5 = w_ab + 3, admitted by the bound of the same proposition); AV|AV also has 'AV AV AsV', 'AV AW AsW', 'AW AW AsV' with k_min = 2. The row (A_perp,A_perp) does list its three-output leg set A_V A_perp A*_perp at two vertices, so the two rows are incomplete by the table's own rule.",
+  "replace": "$(A|_V,A|_{W_{\\mathbb R}^\\perp})$ & $A^*|_{W_{\\mathbb R}^\\perp}$ $(1)$; $A|_V\\,A^*|_{W_{\\mathbb R}^\\perp}$, $A|_{W_{\\mathbb R}^\\perp}A^*|_V$, $\\lambda|_{S_-\\otimes W^*}\\lambda^*|_{S_+\\otimes W^*}$, $\\lambda|_{S_+\\otimes W}\\lambda^*|_{S_-\\otimes W}$ $(2)$\\\\\n$(A|_V,A|_V)$ & $A^*|_V$ $(1)$; $A|_V\\,A^*|_V$, $A|_{W_{\\mathbb R}^\\perp}A^*|_{W_{\\mathbb R}^\\perp}$, $c\\,c^*$, $\\lambda|_{S_+\\otimes W}\\lambda^*|_{S_+\\otimes W^*}$, $\\lambda|_{S_-\\otimes W^*}\\lambda^*|_{S_-\\otimes W}$ $(2)$\\\\",
+  "by": "$(A|_V,A|_{W_{\\mathbb R}^\\perp})$ & $A^*|_{W_{\\mathbb R}^\\perp}$ $(1)$; $A|_V\\,A^*|_{W_{\\mathbb R}^\\perp}$, $A|_{W_{\\mathbb R}^\\perp}A^*|_V$, $\\lambda|_{S_-\\otimes W^*}\\lambda^*|_{S_+\\otimes W^*}$, $\\lambda|_{S_+\\otimes W}\\lambda^*|_{S_-\\otimes W}$, $A|_V^2A^*|_{W_{\\mathbb R}^\\perp}$, $A|_V\\,A|_{W_{\\mathbb R}^\\perp}A^*|_V$, $A|_{W_{\\mathbb R}^\\perp}^2A^*|_{W_{\\mathbb R}^\\perp}$ $(2)$\\\\\n$(A|_V,A|_V)$ & $A^*|_V$ $(1)$; $A|_V\\,A^*|_V$, $A|_{W_{\\mathbb R}^\\perp}A^*|_{W_{\\mathbb R}^\\perp}$, $c\\,c^*$, $\\lambda|_{S_+\\otimes W}\\lambda^*|_{S_+\\otimes W^*}$, $\\lambda|_{S_-\\otimes W^*}\\lambda^*|_{S_-\\otimes W}$, $A|_V^2A^*|_V$, $A|_V\\,A|_{W_{\\mathbb R}^\\perp}A^*|_{W_{\\mathbb R}^\\perp}$, $A|_{W_{\\mathbb R}^\\perp}^2A^*|_V$ $(2)$\\\\"
+ },
+ {
+  "location": "Remark rem:c10-method, second sentence",
+  "severity": "minor",
+  "claim": "A second evaluation ... the two agree on every entry at the pair weight without derivatives and on the entries with one and two derivatives and at most two outputs.",
+  "evidence": "kernels_final.json coverage.two_engines: 'all 21 pair types at w^0_ab (all leg sets); w^0_ab+1 (all pairs) and w^0_ab+2 (AV|AV, AV|AW, AW|AW) with at most 2 outputs'. The two-derivative comparison covers the three bosonic pairs of A|_V and A|_perp only, so the sentence overstates the coverage; it is also an agreement report of the kind FORMAT.md excludes. Replacement states the scope of the second evaluation as a fact about the entries.",
+  "replace": "the two agree on every entry at the pair weight without derivatives and on the entries with one and two derivatives and at most two outputs.",
+  "by": "it gives the same entries at the pair weight without derivatives, at one derivative with at most two outputs, and at two derivatives with at most two outputs for the pairs of the letters $A|_V$ and $A|_{W_{\\mathbb R}^\\perp}$."
+ },
+ {
+  "location": "Proposition prop:c10-checks (iii)",
+  "severity": "minor",
+  "claim": "each of the five sign conventions entering these identities ... reversed alone, violates (ii) on some of these instances.",
+  "evidence": "This is a negative-control report of the engine (kernels_final.json gates.W2.negative_controls: flip Q 3/72, flip A 8/72, flip c 2/72, flip lam 10/72, flip oddsign 7/72 failures). It is accurate, but it is a verification story (FORMAT.md: no audit notes) and nothing in the chapter uses it; the signs are fixed by Lemma lem:c10-sign and the vertex conventions of Chapter 1.",
+  "replace": "\n\\item (iii) each of the five sign conventions entering these identities, the sign of $Q$, of the gauge vertices, of the ghost vertex, of the gaugino vertex and of Lemma \\ref{lem:c10-sign}, reversed alone, violates (ii) on some of these instances.",
+  "by": ""
+ },
+ {
+  "location": "Lemma lem:c10-sign, proof, last sentence",
+  "severity": "minor",
+  "claim": "The identities (W1) of Proposition prop:c10-W1 for the pairs (A|_perp,c) and (A|_V,c) hold with this sign and fail with the opposite one.",
+  "evidence": "The sign is derived in the preceding sentences (the square-zero parameter moved through two left derivatives); the last sentence is a consistency check (disposition N4: engine B's sign was fixed by W1), i.e. a verification story in a proof (FORMAT.md). Delete it.",
+  "replace": " The identities (W1) of Proposition \\ref{prop:c10-W1} for the pairs $(A|_{W_{\\mathbb R}^\\perp},c)$ and $(A|_V,c)$ hold with this sign and fail with the opposite one.",
+  "by": ""
+ },
+ {
+  "location": "Proposition prop:c10-scalarsector (ii), the two-site density of D_1",
+  "severity": "minor",
+  "claim": "on an adjacent pair the two-site density of D_1 is ... - (1/2)(1/3+theta) units . v.tr(... iota_{w1}A iota_{w2}A ...)",
+  "evidence": "v. applied to the whole trace would give, summed over the L adjacent pairs, -(L/2)(1/3+theta) v.O instead of -(1/3+theta) v.O. The density is v. applied to the pair only, -(1/2)(1/3+theta) units v.(X_a X_b) (kernels_final.json D1.planar_scalar_sector.D1_pair_density_units_u; proof step (e): 'v.O is half the sum over the adjacent pairs of v.(X_aX_b)'; Remark rem:c10-twocomp writes it on the pair).",
+  "replace": "-\\tfrac12\\big(\\tfrac13+\\theta\\big)\\,\\text{units}\\cdot v.\\operatorname{tr}(\\cdots\\iota_{w_1}A\\,\\iota_{w_2}A\\cdots);",
+  "by": "-\\tfrac12\\big(\\tfrac13+\\theta\\big)\\,\\text{units}\\cdot\\operatorname{tr}\\big(\\cdots v.(\\iota_{w_1}A\\,\\iota_{w_2}A)\\cdots\\big);"
+ },
+ {
+  "location": "Proposition prop:c10-su11, definition of the letter psi",
+  "severity": "minor",
+  "claim": "let psi be the component of lambda|_{S_+ (x) W} along ...",
+  "evidence": "In the same chapter psi is the finite part of the operators (Definition def:c10-hyp (ii), Lemma lem:c10-psi, Proposition prop:c10-scalarsector (iii) 'hbar psi' = (a/2){S^(1)(Delta),-}', Proposition prop:c10-spec (i) 'of psi', Remark rem:c10-scheme1). The su(1|1) letter psi (also in Remark rem:c10-twocomp, Planar densities) clashes with it. Either rename the letter or state the local meaning.",
+  "replace": "and let $\\psi$ be the component of",
+  "by": "and let $\\psi$, in this proposition a letter and elsewhere in the chapter the finite part of the operators of Definition \\ref{def:c8-renorm}, be the component of"
+ },
+ {
+  "location": "Proposition prop:c10-genfun, display of the generating functions",
+  "severity": "markup",
+  "claim": "sum_{alpha,beta} y_a^alpha y_b^beta/(alpha! beta!)(coefficient ...) = ... int (min_e alpha_e)^m (...) d alpha",
+  "evidence": "In one display alpha is the summation multi-index of the letter derivatives and the integration variable of the simplex (min_e alpha_e, d alpha). The same display also uses i as the summation index of eq:c10-genfun next to the imaginary unit i.",
+  "replace": "summed over the chains, the integrands taken for the generating numerator;",
+  "by": "summed over the chains, the integrands taken for the generating numerator, the simplex variable $\\alpha$ of the integrals being independent of the summation multi-indices $\\alpha,\\beta$;"
+ },
+ {
+  "location": "Proposition prop:c10-genfun, proof, last formula sentence",
+  "severity": "markup",
+  "claim": "which is (x/2)^{-n} I_n(x) with x = |y| sqrt(momentum form) times (|y|^2/4)^n",
+  "evidence": "x is the position throughout the chapter (letters at x + y_a, x + y_b in the same proposition), and y is not defined (it is y_b - y_a).",
+  "replace": "which is $(x/2)^{-n}I_n(x)$ with $x=|y|\\sqrt{\\text{momentum form}}$ times $(|y|^2/4)^n$",
+  "by": "which is $(|y|^2/4)^n(z/2)^{-n}I_n(z)$ with $y=y_b-y_a$ and $z=|y|\\sqrt{\\text{momentum form}}$"
+ },
+ {
+  "location": "Proposition prop:c10-scalarsector, proof step (f)",
+  "severity": "markup",
+  "claim": "the density is b'_2 (partial_b X_a) X_b + b'_3 X_a partial_b X_b ... gives b'_2 + b'_3 = -2 units",
+  "evidence": "In one formula b is the translation direction (partial_b, P_b), the index of the second letter (X_b) and the name of the numbers b'_2, b'_3; the same clash occurs with b_1, b_2, b_3 and X_b in steps (b)-(d).",
+  "replace": "the density is $b'_2(\\partial_bX_a)X_b+b'_3X_a\\partial_bX_b$, the bilinear (the composite triangle along $P_b$ summed over the two orderings, $-2$ units times $\\{S^{(1)}(P_b),O\\}$) gives $b'_2+b'_3=-2$ units",
+  "by": "the density is $\\nu_2(\\partial_bX_a)X_b+\\nu_3X_a\\partial_bX_b$ with numbers $\\nu_2$, $\\nu_3$, the bilinear (the composite triangle along $P_b$ summed over the two orderings, $-2$ units times $\\{S^{(1)}(P_b),O\\}$) gives $\\nu_2+\\nu_3=-2$ units"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after thm:c10-brst",
+  "severity": "minor",
+  "claim": "Twice the map of the theorem is ... the operator counterterm minus the wave-function renormalisation gamma_{A_I} = gamma_{A_m} = g^2N/(8 pi^2), gamma_lambda = g^2N/(4 pi^2), gamma_c = g^2N/(16 pi^2) of the letters.",
+  "evidence": "The map is lc(O) - u{F,O}; for a single letter X = A_I, lc = 0 and twice the map is -2u.2 X = +g^2N/(8 pi^2) X = +gamma_{A_I} X (G2 gate: lc^natural on letters -2u, -2u, -4u, -u). So the letters' wave-function terms enter with a plus sign: twice the map = 2 (log coefficient) + sum of gamma_X. With 'minus', a single field would get -gamma_{A_I}.",
+  "replace": "the operator counterterm minus the wave-function renormalisation",
+  "by": "twice the logarithmic operator counterterm plus the wave-function renormalisation"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after thm:c10-D1",
+  "severity": "minor",
+  "claim": "The one-body terms of the table are gauge-dependent wave-function renormalisations of the letters in Feynman gauge,",
+  "evidence": "The table entry is -4 units (weight) X - {hbar F_1^(1)(Delta) - 4 units F, X}: the first part is twice the wave-function term, the second is the finite arity-one counterterm beyond the field-counting functional (-2/3, 1/3, 4/3 units, Theorem thm:c9-quadratic (iii)), a scheme choice fixed by the composite part, not a wave-function renormalisation.",
+  "replace": "The one-body terms of the table are gauge-dependent wave-function renormalisations of the letters in Feynman gauge,",
+  "by": "The one-body terms of the table are twice the gauge-dependent wave-function renormalisations of the letters in Feynman gauge plus the finite counterterm of the dilatation vertex beyond the field-counting functional,"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after thm:c10-D1",
+  "severity": "minor",
+  "claim": "on the planar scalar sector this difference is -(1/3+theta) units times {S^(1)(Delta),O}",
+  "evidence": "Proposition prop:c10-scalarsector holds on the part with scalar (A|_perp) outputs alone; see the finding on Corollary cor:c10-P7.",
+  "replace": "on the planar scalar sector this difference is",
+  "by": "on the part with scalar outputs of the planar scalar sector this difference is"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after prop:c10-scalarsector",
+  "severity": "minor",
+  "claim": "For tr(A_{I_1}...A_{I_L}) at large N, (1/2)D_1 = (g^2N/8pi^2) sum_l(1 - P + K/2) - ...",
+  "evidence": "Proposition prop:c10-scalarsector gives D_1 on the part with the outputs A|_perp alone; the outputs with gauge fields, ghosts and antifields (covariant completion, composite leg sets A_V A_perp A*_perp, A_perp^2 A*_V) are outside it.",
+  "replace": "For $\\operatorname{tr}(A_{I_1}\\cdots A_{I_L})$ at large $N$,",
+  "by": "For $\\operatorname{tr}(A_{I_1}\\cdots A_{I_L})$ at large $N$, on the part with scalar outputs,"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after cor:c10-beisert",
+  "severity": "markup",
+  "claim": "[B03c, (1.2)] writes the dilatation generator as D(g) = D_0 + (g^2N/8pi^2)H + O(g^3), H = sum_l H_{l,l+1} with H_12 = 2h(J_12)",
+  "evidence": "hep-th/0307015 (text extracted from the arXiv PDF): (1.2) is D(g) = D_0 + g^2N/(8pi^2) H + O(g^3); H = sum H_{k,k+1} and H_12 = 2h(J_12) are (1.3), h(j) is (1.1). The other citations check: (2.12), (2.16) two-body form; Table 1 letters; (2.31) E = 4h(j), deltaD = g^2N/(2pi^2) h(j); (3.14) H'_12 in the basis (a^dagger)^k|0> = (1/k!)D^k Z of (3.1); (4.27)-(4.29) harmonic action with c_{n,0,0} = h(n/2).",
+  "replace": "[B03c, (1.2)] writes the dilatation generator",
+  "by": "[B03c, (1.2), (1.3)] writes the dilatation generator"
+ },
+ {
+  "file": "supplement",
+  "location": "Supplement ch10, Physics notation after lem:c10-colour, last sentence",
+  "severity": "markup",
+  "claim": "With lambda = g^2N the 't Hooft coupling, the unit is -lambda/(32 pi^2).",
+  "evidence": "lambda is the gaugino throughout the manuscript and in this supplement (lambda_alpha^i); reusing it for the 't Hooft coupling is a notation clash.",
+  "replace": "With $\\lambda=g^2N$ the 't Hooft coupling, the unit is $-\\frac{\\lambda}{32\\pi^2}$.",
+  "by": "In terms of the 't Hooft coupling $g^2N$ the unit is $-\\frac{g^2N}{32\\pi^2}$."
+ },
+ {
+  "location": "Remark rem:c10-inputs",
+  "severity": "markup",
+  "claim": "The two coefficients 8 of the composite triangle are fixed in Remark rem:c9-twoeval by the agreement of the special-edge evaluation with the second evaluation, so the input is the special-edge table of Theorem thm:c9-D1, and the proposition is a derivation from that table.",
+  "evidence": "The content (the input of Proposition prop:c10-scalarsector is the special-edge table of Theorem thm:c9-D1; the composite pair kernel C^(2)_Delta is not evaluated independently, disposition N1/T2) is correct and must stay; the 'agreement of two evaluations' phrasing is a verification story (FORMAT.md). State the logical dependence affirmatively.",
+  "replace": "The two coefficients $8$ of the composite triangle are fixed in Remark \\ref{rem:c9-twoeval} by the agreement of the special-edge evaluation with the second evaluation, so the input is the special-edge table of Theorem \\ref{thm:c9-D1}, and the proposition is a derivation from that table.",
+  "by": "Its input is the special-edge table of Theorem \\ref{thm:c9-D1}, which determines the two coefficients $8$ of the composite triangle of Proposition \\ref{prop:c9-triangle} (Remark \\ref{rem:c9-twoeval}); the composite terms of the pairs enter through that table."
+ },
+ {
+  "location": "Proposition prop:c10-P1, statement, last sentence",
+  "severity": "minor",
+  "claim": "On the scalar bilinears P_1(O) = -(1/3+theta_P) units times {S^(1)(P_b),O} (Theorem thm:c9-P1), and on the planar scalar sector Proposition prop:c10-scalarsector applies.",
+  "evidence": "Theorem thm:c9-P1 is stated 'on the part with two legs A|_perp'; the statement drops the restriction (same issue as Corollary cor:c10-P7).",
+  "replace": "On the scalar bilinears $P_1(O)=-(\\tfrac13+\\theta_P)$ units times",
+  "by": "On the part with two legs $A|_{W_{\\mathbb R}^\\perp}$ of the scalar bilinears $P_1(O)=-(\\tfrac13+\\theta_P)$ units times"
+ }
+]
