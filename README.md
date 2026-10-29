@@ -70,8 +70,8 @@ Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/
 
 ## Contributing
 
-Questions, corrections and contributions are welcome: open an issue, or a pull request against `manuscript/`
-or the computation folders. Please keep to the conventions above.
+Questions, corrections and contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first: it gives the rules,
+the current state, the open tracks and the delivery format (fork + pull request, claim a track by an issue).
 
 ## License
 
