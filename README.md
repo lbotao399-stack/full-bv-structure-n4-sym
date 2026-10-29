@@ -69,3 +69,9 @@ Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/
 
 Questions, corrections and contributions are welcome: open an issue, or a pull request against `manuscript/`
 or the computation folders. Please keep to the conventions above.
+
+## License
+
+The manuscript and written material (`manuscript/`, `.tex` and `.md` documents) are licensed under
+[CC BY 4.0](LICENSE-CC-BY-4.0); the code is licensed under the [MIT License](LICENSE).
+Third-party components keep their own licenses (e.g. the vendored KaTeX in the reader app, MIT).
