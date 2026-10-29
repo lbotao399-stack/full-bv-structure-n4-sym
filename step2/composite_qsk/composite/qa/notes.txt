@@ -1,0 +1,28 @@
+PART C QA (referee and comparator) -- composite kernels C^(2)_Delta, C^(2)_{P_b}; D_1, P_1; Conjecture P7
+Outputs: compare.json (entry-by-entry A vs B, off-shell B-at-A runs, QA third method, harmonic action), findings.json
+(10 findings: 2 major, 8 minor; verdict pass_with_fixes), PROGRESS.txt.  Work files and code: work.nosync/.
+
+1. Engines A vs B
+   All 17 two-engine entries agree (GC3; F0 SO(6) density; su(1|1) densities, lc^natural density, spectra L <= 6;
+   twist two S' <= 4: sum C^0, D_1 matrix, lc^natural, P7(b) along n; fermion sl(2) S' <= 3; gluon S' <= 1;
+   symbolic D_1/P_1).  Off shell: engine B (source copied, run read-only with python -B) evaluated at all 24
+   bosonic rows of engine A's kernels_C2.json: exact agreement incl. log2/log3 iff A's vertex-vertex sign kappa = -1.
+
+2. QA third method (work.nosync/scripts/qa_mom*.py)
+   Own Feynman rules (Ch1 vertex functions, Ch3 propagator components, kernel form K_x = (v.(x)1 - 1(x)v.)X with
+   X^{c,A_m} = 2i p_m e^{-2 eps p^2}/p^4, positions by injected momenta; at a letter end the injection enters only
+   the letter derivative factor), eps = 1 by scaling, Taylor expansion in the external momenta, exact angular averages
+   on S^3 and radial integrals (log c from moment-cancelling combinations).  One overall factor F0 = -hbar/2 (sign of
+   the odd skeleton V1 = ([A,c],A*) with K_x on c and the special edge on A*), common to every chain used.
+   Predictions, all exact: (AV,AW)->AW off shell (C_Pb, C^0, eps^-1 pole); GC3 per colour word (-1/3, -8/3);
+   AW|AW off-shell table; twist two S' <= 4 at generic complex null momenta: sum C^0 = -2/3(4+S'),
+   sum C_{P_b} = -1/3 i b.(q1+q2) for b = n and generic b (two-field shell, gauge completion (A_n,Z)->Z included).
+
+3. Harmonic action (work.nosync/scripts/qa_harmonic.py, qa_su11.py), own implementation of [B03c] (4.27)-(4.29):
+   twist two {0,6,25/3,49/5}; gluon 4h(n'+2); one gaugino 4h(n'+1); (F11,psi); psi3 psi4 / Z F11; su(1|1)
+   two-site density 1 - graded Pi and Table tab:cc-su11.  Engine D_1 matrices at theta = -1/3 = -8 (H_12 + H_21)
+   entry by entry in the engines' bases tr(d^k X d^{S'-k} Y).
+
+4. Not checked: fermionic off-shell table rows (spinor bases differ); B-only families beyond the bookkeeping
+   (targets recomputed, D_1 vs harmonic action); GC1, GC2, GC5c, GC6, GC7, GC8, GC12 gl(3), GC13, TC0, TC2.
+   Engine B originals engine_b/realization.py, loops.py: dataless, read timed out (not diffed).

@@ -6,14 +6,30 @@
 })(typeof window !== 'undefined' ? window : null, function (environment) {
   'use strict';
   environment = environment || {};
-  const speechText = environment.speechText || (typeof module === 'object' && module.exports ? require('./speech-text.js') : window.ReaderSpeechText);
+  function speechText() {
+    const helper = environment.speechText || (typeof module === 'object' && module.exports ? require('./speech-text.js') : window.ReaderSpeechText);
+    if (!helper || typeof helper.normalize !== 'function' || typeof helper.version !== 'string') {
+      throw Error('The speech helper did not load. Reload this reader; if the error persists, repair its speech-text.js script installation.');
+    }
+    return helper;
+  }
   let configuration;
   const profileIds = {};
+  const profiles = new Map();
+  let voiceChoice = 'auto';
+  try {
+    const storage = environment.storage || localStorage;
+    const saved = storage.getItem('reader-voice-choice-v2');
+    const legacy = JSON.parse(storage.getItem('reader-voice-choices-v1') || '{}');
+    if (saved) voiceChoice = saved;
+    else if (legacy['zh-CN'] && legacy['zh-CN'] === legacy['en-US'] && legacy['zh-CN'] !== 'default') voiceChoice = legacy['zh-CN'];
+  } catch (_) {}
+  const selected = language => voiceChoice === 'auto' ? (language === 'zh-CN' ? 'saki' : 'satsuki') : voiceChoice;
   const request = (...args) => (environment.fetch || fetch)(...args);
   function localService(value) {
     const url = new URL(value);
-    if (url.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname) || url.username || url.password || url.search || url.hash || !['', '/'].includes(url.pathname)) throw Error('The voice service must use a local loopback address.');
-    return url.origin;
+    if (url.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname) || url.username || url.password || url.search || url.hash || !/^(?:\/|\/voices\/(?:sakiko|satsuki|anon|uika|mai|renako)\/(?:en-US|zh-CN))?$/.test(url.pathname)) throw Error('The voice service must use a local loopback address.');
+    return url.origin + (url.pathname === '/' ? '' : url.pathname);
   }
   async function config() {
     if (!configuration) configuration = (async () => {
@@ -55,22 +71,33 @@
     // The existing source-language/math planner remains authoritative, including
     // newly typed Mandarin in an initially English manuscript.
     const plan = await post('/api/plan', {block}, signal);
-    const spokenSegments = plan.segments?.map(text => speechText.normalize(text));
+    const spokenSegments = plan.segments?.map(text => speechText().normalize(text));
     if (!['en-US', 'zh-CN'].includes(plan.language)) throw Error('The source-language planner did not identify a supported reading language.');
     const configuration = await waitFor(config(), signal);
     checkCancellation(signal);
     const mandarin = plan.language === 'zh-CN';
-    const settings = mandarin ? configuration : configuration?.englishService;
-    if (mandarin ? configuration?.mandarinBackend !== 'kokoro' : settings?.enabled) {
+    const choice = selected(plan.language);
+    let settings = mandarin ? configuration : configuration?.englishService;
+    if (configuration?.choices?.[choice]?.available === false) throw Error('The selected voice model is not installed.');
+    if (configuration?.choices && !configuration.choices[choice]?.[plan.language]) throw Error('The selected voice is unavailable for this language.');
+    if (choice && configuration?.choices?.[choice]?.[plan.language]) settings = configuration.choices[choice][plan.language];
+    const useService = settings?.backend !== 'kokoro' && (mandarin ? configuration?.mandarinBackend !== 'kokoro' || Boolean(choice) : settings?.enabled);
+    if (useService) {
         if (!settings || settings.enabled === false) throw Error('Mandarin narration is not configured. Configure the Mandarin voice service, or explicitly choose the legacy Kokoro Mandarin backend.');
         if (!Array.isArray(plan.segments) || !plan.segments.length) throw Error('This passage has no speech segments.');
         let record;
         let profileId;
         try {
-          const profileResponse = await request(settings.url + '/api/profile', {cache: 'no-store', signal});
-          const profile = await profileResponse.json();
+          settings = {...settings, url: localService(settings.url)};
+          let profile = profiles.get(settings.url);
+          if (!profile || profile.expires < Date.now()) {
+            const profileResponse = await request(settings.url + '/api/profile', {cache: 'no-store', signal});
+            profile = await profileResponse.json();
+            if (!profileResponse.ok || typeof profile.profileId !== 'string' || !profile.profileId.trim()) throw Error(profile.error || 'Unable to identify the configured voice profile.');
+            profile = {...profile, expires: Date.now() + 60000};
+            profiles.set(settings.url, profile);
+          }
           checkCancellation(signal);
-          if (!profileResponse.ok || typeof profile.profileId !== 'string' || !profile.profileId.trim()) throw Error('Unable to identify the configured voice profile.');
           if (profile.language && profile.language !== plan.language) throw Error('The voice service language does not match this passage.');
           const selected = settings.voice === 'saki' ? 'sakiko' : settings.voice;
           if (selected && selected !== 'default' && profile.voice !== selected) throw Error('The voice service does not match the selected character.');
@@ -88,5 +115,10 @@
     const record = await post('/api/prepare', {block: normalizedBlock, background}, signal);
     return {record, jobURL: record.jobId ? '/api/jobs/' + encodeURIComponent(record.jobId) : null};
   }
-  return {start, cacheTag: () => 'source-language-voices-v6-references:' + speechText.version + ':' + JSON.stringify(profileIds)};
+  function selectVoice(voice) {
+    voiceChoice = voice;
+    try { (environment.storage || localStorage).setItem('reader-voice-choice-v2', voice); } catch (_) {}
+    if (typeof window !== 'undefined') window.dispatchEvent(new Event('reader-voice-change'));
+  }
+  return {start, config, select: (_language, voice) => selectVoice(voice), selectVoice, selected, choice: () => voiceChoice, cacheTag: () => 'single-voice-v9:' + speechText().version + ':' + voiceChoice + ':' + JSON.stringify(profileIds)};
 });

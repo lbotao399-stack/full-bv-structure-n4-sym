@@ -329,14 +329,14 @@ async function pollPlayer(){
 const warmedAudio=new Map();
 function nearbyCandidates(id){
  const result=[];let next=id;
- for(let i=0;i<12;i++){next=readableNeighbor(next,1);if(!next)break;result.push(block(next));}
+ for(let i=0;i<20;i++){next=readableNeighbor(next,1);if(!next)break;result.push(block(next));}
  const previous=readableNeighbor(id,-1);if(previous)result.push(block(previous));
  return result;
 }
 function trimWarmedAudio(){
  let bytes=[...warmedAudio.values()].reduce((sum,item)=>sum+item.bytes,0);
  for(const [key,item]of warmedAudio){
-  if(warmedAudio.size<=16&&bytes<=96*1024*1024)break;
+  if(warmedAudio.size<=24&&bytes<=96*1024*1024)break;
   if(audio.getAttribute('src')===item.url)continue;
   URL.revokeObjectURL(item.url);warmedAudio.delete(key);bytes-=item.bytes;
  }
@@ -344,10 +344,14 @@ function trimWarmedAudio(){
 async function warmRecording(snapshot,record,signal){
  if(fingerprint(block(snapshot.id))!==fingerprint(snapshot)||signal.aborted)return;
  const key=asset(record.audio);if(warmedAudio.has(key))return;
- const response=await fetch(key,{signal});if(!response.ok)return;
- const length=Number(response.headers.get('Content-Length'));
- if(length>32*1024*1024){await response.body?.cancel();return;}
- const blob=await response.blob();
+ let blob=await window.ReaderSavedAudio?.get(key);
+ if(!blob){
+  const response=await fetch(key,{signal});if(!response.ok)return;
+  const length=Number(response.headers.get('Content-Length'));
+  if(length>32*1024*1024){await response.body?.cancel();return;}
+  blob=await response.blob();
+  if(!signal.aborted)void window.ReaderSavedAudio?.put(key,blob);
+ }
  if(signal.aborted||blob.size>32*1024*1024||fingerprint(block(snapshot.id))!==fingerprint(snapshot))return;
  if(!warmedAudio.has(key))warmedAudio.set(key,{url:URL.createObjectURL(blob),bytes:blob.size});
  trimWarmedAudio();
@@ -365,7 +369,7 @@ function prepare(b,signal,options={}){
  if(signal?.aborted)return Promise.reject(new DOMException('Aborted','AbortError'));
  b={...clone(b),_readerMode:window.ReaderSemanticNarration?.cacheTag(b)||'guided'};
  const key=narrationFingerprint(b),entry=cache.get(b.id);
- if(!options.refresh&&entry?.key===key&&narrationCurrent(b,entry.record))return Promise.resolve(entry.record);
+ if(!options.refresh&&entry?.key===key&&narrationCurrent(b,entry.record))return (options.background?Promise.resolve():warmRecording(b,entry.record,signal||new AbortController().signal).catch(error=>{if(error.name==='AbortError')throw error;})).then(()=>entry.record);
  return sharedPreparation.prepare(b,signal,options);
 }
 const nearbyNarration=window.ReaderNearbyNarration.create({
@@ -373,15 +377,19 @@ const nearbyNarration=window.ReaderNearbyNarration.create({
  isCurrent:id=>playIntent&&activeId===id&&!audio.paused,
  onReady:warmRecording
 });
+window.addEventListener('reader-voice-change',()=>{nearbyNarration.stop();cache.clear();status('Voice saved. It applies to the next passage you start.');});
 async function requestRecording(b,signal,{background=false,refresh=false}={}){
  const key=narrationFingerprint(b);if(!refresh&&cache.has(b.id)&&cache.get(b.id).key===key&&narrationCurrent(b,cache.get(b.id).record))return cache.get(b.id).record;
  const spoken=window.ReaderNarration?await window.ReaderNarration.resolve(b,{signal,background,refresh}):b;
  const voiceRequest=await window.ReaderVoiceTransport.start(spoken,{signal,background});let record=voiceRequest.record;
- if(record.jobId){const jobId=record.jobId;const started=Date.now();for(;;){if(signal.aborted)throw new DOMException('Aborted','AbortError');const r=await fetch(voiceRequest.jobURL||('/api/jobs/'+encodeURIComponent(jobId)),{signal,cache:'no-store'});record=await r.json();if(!r.ok||record.status==='error')throw Error(record.error||'Narration preparation failed.');if(record.status==='ready'||record.audio||record.result?.audio){record=record.result||record;break;}if(Date.now()-started>600000)throw Error('Narration is taking longer than expected. Try this passage again.');await new Promise((resolve,reject)=>{const t=setTimeout(resolve,550);signal.addEventListener('abort',()=>{clearTimeout(t);reject(new DOMException('Aborted','AbortError'));},{once:true});});}}
+ if(record.jobId&&!record.audio&&!record.result?.audio){const jobId=record.jobId;const started=Date.now();for(;;){if(signal.aborted)throw new DOMException('Aborted','AbortError');const r=await fetch(voiceRequest.jobURL||('/api/jobs/'+encodeURIComponent(jobId)),{signal,cache:'no-store'});record=await r.json();if(!r.ok||record.status==='error')throw Error(record.error||'Narration preparation failed.');if(record.status==='ready'||record.audio||record.result?.audio){record=record.result||record;break;}if(Date.now()-started>600000)throw Error('Narration is taking longer than expected. Try this passage again.');await new Promise((resolve,reject)=>{const t=setTimeout(resolve,550);signal.addEventListener('abort',()=>{clearTimeout(t);reject(new DOMException('Aborted','AbortError'));},{once:true});});}}
+ record=record.result||record;
  if(!record.audio)throw Error('The reading is ready but has no audio file.');
  if(spoken._readerNarration)record={...record,readerNarration:spoken._readerNarration};
  if(!narrationCurrent(block(b.id),record))throw Error('The explanation context changed. Press Play to read the latest source.');
- if(block(b.id)&&fingerprint(block(b.id))===fingerprint(b))cache.set(b.id,{key,record});return record;
+ if(block(b.id)&&fingerprint(block(b.id))===fingerprint(b))cache.set(b.id,{key:narrationFingerprint(b),record});
+ if(!background)try{await warmRecording(b,record,signal);}catch(error){if(error.name==='AbortError')throw error;}
+ return record;
 }
 async function playFrom(id,keepGoing=true,claim=true){
  if(selectionQueue&&!selectionQueue.includes(id))selectionQueue=null;
@@ -545,5 +553,12 @@ window.ReaderDirectEdit?.init({
  merge:(previousId,currentId,patch)=>{if(index(currentId)<0||!block(previousId))return;structuralDirectEdit(previousId,()=>{const result=window.ReaderBlocks.merge(previousId,currentId,patch);for(const changedId of result.changed)cache.delete(changedId);if(result.detached)toast('Merged locally. Other synced copies remain independent of this merge.');});},
  undo:redo=>{const selection=window.ReaderDirectEdit.snapshotSelection();undo(redo);window.ReaderDirectEdit.restoreSelection(selection);}
 });
+window.ReaderWorkspaceEditor={
+ ready:()=>Boolean(doc),documentId:()=>doc?.id,selected:()=>selectedId,block,blocks:()=>doc?.blocks||[],
+ busy:()=>Boolean(dirty||saving||editorId||window.ReaderDirectEdit?.isEditing()),
+ flush:()=>window.ReaderDirectEdit?.flush(),notice:toast,
+ patch:(id,patch)=>{if(!block(id))throw Error('Block was removed.');lastUndo=0;undoPoint();commitDirectBlock(id,patch,{render:true});},
+ insert:(anchor,next)=>{window.ReaderDirectEdit?.flush();const i=index(anchor);if(i<0)throw Error('Select an existing block first.');lastUndo=0;undoPoint();const parent=window.ReaderBlocks?.insertionParent(anchor,doc.blocks[i+1]?.id);if(parent)next.parentId=parent;doc.blocks.splice(i+1,0,next);selectedId=next.id;changed(next.id,{structural:true});return next.id;}
+};
 setInterval(pollPlayer,1000);documentReady=loadDocument();
 })();

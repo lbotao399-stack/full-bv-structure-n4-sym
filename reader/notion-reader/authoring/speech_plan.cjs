@@ -1,11 +1,11 @@
-// Read source prose in its own language. English reviews and Mandarin MathML retain formulas.
+// Source-language prose, natural English mathematical readings, typed technical tokens.
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const readline = require('readline');
 const katex = require('katex');
 const sre = require('speech-rule-engine');
-const mandarinMath = require('./math_speech_zh.cjs');
+const technicalSpeech = require('./technical_speech.cjs');
 const {tagOf,textAnnotations,normalizeMathText}=require('./formula_annotations.cjs');
 const {referenceNumber, references} = require('./math_reading_style.cjs');
 const naturalIndices = require('./natural_indices.cjs');
@@ -39,21 +39,25 @@ function formula(tex, audit, language) {
   const prefix = tag ? (language === 'zh-CN' ? '式 ' : 'Equation ') + referenceNumber(tag.label, language) + (language === 'zh-CN' ? '，' : '. ') : '';
   katex.renderToString(tex,{displayMode:true,throwOnError:true,strict:'ignore',trust:false});
   let text = reviewed()[id];
-  if (text&&language!=='zh-CN') { audit.reviewed++; return prefix+text; }
+  if (text && typeof text === 'object') text = text['en-US'] || text.en || '';
+  if (text && !/[\u3400-\u9fff]/.test(text)) { audit.reviewed++; return prefix+technicalSpeech.mathSpoken(text); }
   const labels=JSON.parse(fs.readFileSync(path.join(__dirname,'formula-labels.json'),'utf8'));
-  const markup = katex.renderToString(textAnnotations(expression,labels), {output: 'mathml', displayMode: true, throwOnError: true, strict:'ignore', trust:false});
+  const markup = katex.renderToString(technicalSpeech.mathTex(textAnnotations(expression,labels)), {output: 'mathml', displayMode: true, throwOnError: true, strict:'ignore', trust:false});
   const rawMath = markup.match(/<math[\s\S]*?<\/math>/)?.[0];
   const math=rawMath&&normalizeMathText(rawMath);
   if (!math) throw new Error('This formula could not be converted to MathML.');
-  if (language === 'zh-CN') { audit.automatic++; return prefix+mandarinMath(math); }
   text = naturalIndices(math, value => sre.toSpeech(value));
+  text = text.replace(/\blamda\b/gi,'lambda').replace(/(?<=[\u3400-\u9fff])\s+(?=[\u3400-\u9fff])/g,'');
+  text = text.replace(/\bSuperscript 2(?= Baseline|$)/g,'squared').replace(/\bSuperscript 3(?= Baseline|$)/g,'cubed');
   if (!text || /\\[A-Za-z]/.test(text)) throw new Error('Please enter a spoken reading for this formula.');
   audit.automatic++;
-  return prefix + text.replace(/\bStartAbsoluteValue\b/g, 'the absolute value of').replace(/\bEndAbsoluteValue\b/g, ', end absolute value,').replace(/\bnormal (?=[A-Za-z]\b)/g, '').replace(/\bupper (?=[A-Za-z]\b)/g, 'capital ').replace(/\bcapital A\b/g, 'capital (A)').replace(/\bBaseline\b/g, ',').replace(/\bStartFraction\b/g, 'the fraction').replace(/\bOver\b/g, 'over').replace(/\bEndFraction\b/g, ', end fraction,').replace(/\bStartRoot\b/g,'the square root of').replace(/\bEndRoot\b/g, ', end root,');
+  text = technicalSpeech.mathSpoken(text);
+  return prefix + technicalSpeech.models(text).replace(/\bStartAbsoluteValue\b/g, 'the absolute value of').replace(/\bEndAbsoluteValue\b/g, ', end absolute value,').replace(/\bnormal (?=[A-Za-z]\b)/g, '').replace(/\bupper (?=[A-Za-z]\b)/g, 'capital ').replace(/\bSuperscript\b/g, 'to the power').replace(/\bBaseline\b/g, ',').replace(/\bStartFraction\b/g, 'the fraction').replace(/\bOver\b/g, 'over').replace(/\bEndFraction\b/g, ', end fraction,').replace(/\bStartRoot\b/g,'the square root of').replace(/\bEndRoot\b/g, ', end root,');
 }
 function decode(s) { return s.replace(/&#(x[0-9a-f]+|\d+);/gi, (_, n) => String.fromCodePoint(n[0].toLowerCase()==='x'?parseInt(n.slice(1),16):Number(n))).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&nbsp;/g,' '); }
 function sourceLanguage(block, fallback) {
   const source=block.type==='image'?(block.caption||block.alt||''):block.source||'';
+  if(block.type==='equation')return /[\u3400-\u9fff]/.test(source)||block._readerNarration?.mode==='guided'&&/[\u3400-\u9fff]/.test(block.speechOverride||'')?'zh-CN':'en-US';
   const prose=block.type==='equation'?'':source.replace(/\$\$[\s\S]*?\$\$|\$`[\s\S]*?`\$|\$[^$]*?\$|\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g,' ').replace(/<[^>]*>/g,' ');
   if (/[\u3400-\u9fff]/.test(prose)) return 'zh-CN';
   if (/[A-Za-z]{2,}/.test(prose)) return 'en-US';
@@ -61,7 +65,10 @@ function sourceLanguage(block, fallback) {
 }
 function plan(block, requestedLanguage) {
   const language=sourceLanguage(block, requestedLanguage);
-  const compatibleOverride=block.speechOverride?.trim() && (language==='zh-CN' ? /[\u3400-\u9fff]/.test(block.speechOverride) : !/[\u3400-\u9fff]/.test(block.speechOverride));
+  const chineseOverride=/[\u3400-\u9fff]/.test(block.speechOverride||'');
+  const compatibleOverride=block.speechOverride?.trim() && (block.type==='equation'
+    ? (!chineseOverride || block._readerNarration?.mode==='guided')
+    : (language==='zh-CN' ? chineseOverride : !chineseOverride));
   const audit = {reviewed:0, automatic:0, override:false};
   let text;
   if (compatibleOverride) { text = speechText.normalize(block.speechOverride.trim()); audit.override = true; }
@@ -74,10 +81,11 @@ function plan(block, requestedLanguage) {
     let html = md.render(protectedSource);
     // Tables are spoken row by row; keep visible header order.
     html = html.replace(/<tr\b[^>]*>/gi,language==='zh-CN'?' 一行： ':' Row: ').replace(/<\/(?:td|th)>/gi,'; ').replace(/<\/tr>/gi,'. ').replace(/<br\s*\/?\s*>/gi,'\n').replace(/<\/(?:p|div|h[1-6]|li|blockquote)>/gi,'\n');
-    text = speechText.normalize(decode(html.replace(/<[^>]*>/g,'')));
+    text = technicalSpeech.prose(speechText.normalize(decode(html.replace(/<[^>]*>/g,''))),language);
     text = text.replace(/MATHSPEECHTOKEN(\d+)END/g, (_, i) => math[Number(i)]);
   }
   text = speechReferences.normalize(text,{equationLabels:equationReferences(),language});
+  text = speechText.normalize(text);
   text = text.replace(/,\s*,/g, ',').replace(/[ \t]+/g,' ').replace(/\s*\n\s*/g,'\n').replace(/;\s*\./g,'.').replace(/\s+([,.!?;:])/g,'$1').replace(/\.{2,}/g,'.').trim();
   if (!text) throw new Error('This block has no text to read.');
   // Timings will come from independently synthesized clauses, never word-count interpolation.
@@ -86,7 +94,8 @@ function plan(block, requestedLanguage) {
     for (const sentence of paragraph.split(language==='zh-CN'?/(?<=[。！？])/u:/(?<=[.!?])\s+(?=[A-Z0-9])/)) {
       if (!sentence.trim()) continue;
       if (sentence.length > (language==='zh-CN'?110:320)) {
-        const clauses=sentence.split(language==='zh-CN'?/(?<=[，；：,.!?:;])/u:/(?<=[;:])\s+/); let part='';
+        // Decimal points inside English formula islands are not clause boundaries.
+        const clauses=sentence.split(language==='zh-CN'?/(?<=[，；：,!?;])|(?<=[.:])(?=\s|$)/u:/(?<=[;:])\s+/); let part='';
         for(const clause of clauses) { if(part && part.length+clause.length>(language==='zh-CN'?110:320)){segments.push(part.trim());part='';} part+=(part?' ':'')+clause; }
         if(part.trim())segments.push(part.trim());
       } else segments.push(sentence.trim());

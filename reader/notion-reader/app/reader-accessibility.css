@@ -1,5 +1,6 @@
 /* Layout and touch targets; colours inherit the current reader theme. */
 .reader-player-heading { display: none; }
+#reader-player-more { display: none; }
 #reader-show-narration { flex-shrink: 0; min-height: 44px; padding: 6px 12px; }
 body:not(.floating):not(.controls-only) .reader-accessible-player {
   bottom: var(--reader-bottom-inset, 0px);
@@ -35,3 +36,19 @@ body.reader-player-expanded .caption-row p { max-height: 8em !important; overflo
   body:not(.floating):not(.controls-only) .reader-accessible-player .player-row { flex-wrap: wrap; row-gap: 6px !important; }
 }
 @media print { #reader-show-narration, .reader-player-backdrop, .reader-accessible-player { display: none !important; } }
+@media (max-width: 600px) {
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player { padding: 4px 10px max(4px, env(safe-area-inset-bottom)) !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player :is(.caption-row,.player-status,.controls-hint,#position,#seek,#follow,#edit-selected,#narration-mode) { display: none !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player .player-row { display: flex !important; flex-wrap: nowrap !important; gap: 4px !important; margin: 0 !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player .transport { gap: 0 !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player :is(button,select) { min-height: 44px !important; min-width: 44px; padding: 4px !important; font-size: 13px !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player .play { width: 44px !important; height: 44px !important; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) .reader-accessible-player #time { flex: 1; font-size: 11px; white-space: nowrap; min-width: 0; }
+  body:not(.floating):not(.controls-only):not(.reader-player-expanded) #reader-player-more { display: block; }
+  body.reader-player-expanded #reader-player-more { display: none; }
+}
+
+.reader-voice-picker select{max-width:220px}
+@media(max-width:600px){body:not(.reader-player-expanded) .reader-voice-picker{display:none!important}}
+.reader-voice-picker { display: inline-flex; align-items: center; gap: 6px; flex: 0 1 auto; min-width: 0; }
+.reader-voice-picker select { max-width: 180px; min-width: 0; text-overflow: ellipsis; }

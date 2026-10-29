@@ -446,7 +446,7 @@ button:hover, a.quiet:hover { background: var(--hover); }
 .position:hover { color: var(--accent); }
 #seek { accent-color: var(--accent); cursor: pointer; }
 #seek:disabled { cursor: default; }
-#speed, .narration-mode {
+#speed, .narration-mode, #reader-voice {
   -webkit-appearance: none;
   appearance: none;
   padding: 3px 24px 3px 11px;
@@ -456,7 +456,7 @@ button:hover, a.quiet:hover { background: var(--hover); }
   color: var(--ink-soft);
   cursor: pointer;
 }
-#speed:hover, .narration-mode:hover { border-color: var(--line-strong); }
+#speed:hover, .narration-mode:hover, #reader-voice:hover { border-color: var(--line-strong); }
 #follow { border-radius: 999px; }
 #follow[aria-pressed="true"] { background: var(--accent-wash); color: var(--accent); }
 .player-status { color: var(--faint); }
@@ -469,6 +469,7 @@ body:not(.floating):not(.controls-only) .player-row { gap: 10px; }
 body:not(.floating):not(.controls-only) .play { width: 32px; height: 32px; font-size: 11px; }
 body:not(.floating):not(.controls-only) .transport .icon { width: 26px; height: 26px; border-radius: 999px; }
 body:not(.floating):not(.controls-only) #speed,
+body:not(.floating):not(.controls-only) #reader-voice,
 body:not(.floating):not(.controls-only) .narration-mode { height: 26px; padding: 2px 22px 2px 10px; font-size: 11px; }
 body:not(.floating):not(.controls-only) .player .quiet { min-height: 26px; padding: 2px 9px; font-size: 11px; }
 body:not(.floating):not(.controls-only) .player-status { font-size: 10px; margin-top: 3px; }
@@ -509,3 +510,7 @@ body:not(.floating):not(.controls-only) .player-status { font-size: 10px; margin
   .block-content h1 { font-size: 20pt; }
   .source-block, .source-block.reading { background: transparent !important; box-shadow: none !important; }
 }
+
+.reader-voice-picker { font: 11px/1.4 var(--font-ui); color: var(--muted); }
+#reader-voice { font-family: var(--font-ui); }
+#reader-voice:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 2px; }

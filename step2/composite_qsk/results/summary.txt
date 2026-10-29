@@ -1,0 +1,90 @@
+STEP 2, COMPOSITE AND ODD TWO-BODY KERNELS -- FINAL (after revision, 2026-10-30)
+Part C: composite kernels C^(2)_Delta, C^(2)_{P_b}; D_1, P_1.   Part QSK: two-body kernels of Q_1, S_1, K_1.
+Files: results/composite_final.json, results/qsk_final.json, disposition.json, composite/theory/composite_theory.tex (+ _build/*.pdf).
+
+0. SETTING
+  regulator   P(eps,T) = int_eps^T (Q^GF (x) 1) K_t dt, cutoff eps on every edge, T = infinity (generic momenta); no DR; no IR regulator but T
+  unit        u = hbar tr_g(ad_X ad_Y) / (16 pi^2 (X,Y)) = -g^2 N / (32 pi^2)
+  letters     index-free  A|_V, A|_perp, lambda_+ = lambda|_{S+ (x) W}, lambda_- = lambda|_{S- (x) W*}, c, antifields
+              two-comp.   A_m, A_ij (6 of SU(4)_R), lambda_alpha^i, lambdabar_{alphadot i}, c; A*_m, A*_ij, lambda*^alpha_i, lambdabar*^{alphadot i}, c*
+              (lambda, lambda*) = (lambda_alpha^i, lambda*^alpha_i) - (lambdabar_{alphadot i}, lambdabar*^{alphadot i})
+
+1. DEFINITIONS (Def cc-kernels, Def cc-sp as revised)
+  X     = ((P*)^2 (x) 1) K_0                       component c (x) A_m : 2 i p_m e^{-2 eps |p|^2} |p|^{-4}
+  K_x   = (v_x. (x) 1 - 1 (x) v_x.) X              K_Delta = 2 (v. (x) 1) X + 4 (eps d_eps + T d_T) X,   K_{P_b} = 2 (d_b (x) 1) X
+  internal vertex   Delta : int((2E+2)A_V, A*_V) = 2 int x^mu (d_mu A_V, A*_V) + 2 int (A_V, A*_V)      [two-comp.: 2 int x_n (d_n A_m, A*_m) + 2 int (A_m, A*_m)]
+                    P_b   : int (d_b A_V, A*_V)                                                       [int (b_n d_n A_m, A*_m)]
+  Z_x(X_a,X_b;eps) = (hbar/2) d_{K_x} d_{K_eps - K_0}(chains X_a -> X_b) = -(hbar/2) d_{K_x}(chains with one bracket-defect vertex)
+                     since {f,g}_eps - {f,g} = -(f, g joined by K_eps - K_0)   (Delta_0 = -d_{K_0}, Def c1-bracket)
+  Koszul sign      s(c,sigma) = (-1)^{ n(<sigma) + n(<c) + [c<sigma] },  n(<j) = # odd outputs before edge j
+  C^(2)_x = [eps^0] Z_x;   (C^(2)_Delta)^b = 2 C^(2)_{P_b};   [C^(2),0_Delta, d_b] = 2 C^(2)_{P_b}  (pair by pair)
+  simplex form     16 pi^2 [eps^0]  = int_{R_sigma} F_0 log( min_{f!=sigma} alpha_f / alpha_sigma ),
+                   16 pi^2 [eps^-m] = (1/m) int_{R_sigma} [ (min_{f!=sigma} alpha_f)^m - alpha_sigma^m ] F_m,    no log eps
+  k = 1            W_0(beta) = (1-beta) log((1-beta)/(2 beta)) - (1 - 3 beta),  beta in [0,1/3];  values in Q + Q log2 + Q log3
+  N(int omega X_1..X_n) = sum_a (2 + |alpha_a|) int omega X_1..X_n
+
+2. CLOSED FORMS AND KERNELS (computed, exact, no fitted constant)
+  bilinear   C^(2)_Delta(A_perp,A_perp)|_{A_perp A_perp} = -(1/3) u v.O - (4/3) u O,  C^(2)_{P_b} = -(1/3) u d_b O,  C^(2),0_Delta = -(8/3) u O
+             two-comp. O = (1/16) int omega w1^ij A_ij w2^kl A_kl :
+             C^(2)_Delta = u [ -(1/3) ((2x.d+2) A_ij) A_kl - (1/3) A_ij (2x.d+2) A_kl - (4/3) A_ij A_kl ]
+             single chain  A_perp -(K_eps - K_0)- ([A_perp,c], A*_perp) -(K_Delta)- A_V (A_perp)^2 -(P)- A_perp           [routes A, B, QA]
+  two-site density (planar adjacent pair; every ordered pair of A_perp, lambda_+, lambda_-; on shell, A_perp also off shell)
+             C^(2),0_Delta = -(4/3) u X_a X_b,   C^(2)_{P_b} = -(1/6) u d_b (X_a X_b)   on the same word;   0 on the exchanged word
+             two-comp. (A_ij,A_kl), (Z,psi), (psi,Z), (psi,psi):  -(4/3) u  and  -(1/6) u b_m d_m                         [A, B]
+  off-shell tables  composite/engine_a/kernels_C2.json: 74 rows, ten field pairs, <= 2 outputs, values in Q + Q log2 + Q log3,
+             value = letter part - vertex-vertex part.  Route B at the same points: 22/22 bosonic and 26/26 fermionic rows equal
+             (word map: A word = B word with reversed indices; exact spinor intertwiner S^T (Mp R_B[M]) S = sb_A[M], M = 0..9).
+             With vertex-vertex sign +1 only 6/22 and 12/26 would agree.
+
+3. FAMILIES (two-field part on the free shell; descendants kept)       P7 (b): sum C^(2)_{P_b} = -(1/3) u d_b     P7 (c): sum C^(2),0_Delta = -(2/3) u N
+  family                         range            (b)  (c)    sum C^(2),0_Delta            D_1 at theta = -1/3 (units u)            routes
+  F0 bilinears, su(2) L <= 8     -                yes  yes    -(4/3) u L                   0, -48; Heisenberg x (-8)                A, B
+  F1 twist two                   S' <= 6 (B: 4)   yes  yes    -(2/3)u(4+S')                0, -48, -200/3, -392/5 = -32 h(S)       A, B, QA
+  F2 su(1|1)                     L <= 6           yes  yes    -(4/3) u L                   -8 E_H (5 +- sqrt5, 2, 6, 8, 10, ...)    A, B
+  F2 fermion sl(2)               S' <= 5          yes  yes    -(2/3)u(4+S')                -48, -200/3, -392/5 = -32 h(n+1)        A, B
+  F2 psi3 psi4 with Z F11        S' <= 2          yes  yes    diag(-(2/3)u(4+S'), -(2/3)u(5+S'))   {0,-48}, {0,-48^3}, {0,-48^4,-200/3}   B
+  F3 gluon sl(2)                 S' <= 2          yes  yes    -(2/3)u(6+S')                -48, -200/3 = -32 h(n+2)                A, B
+  F3 (F11, psi)                  S' <= 4          yes  yes    -(2/3)u(5+S')                -48^2, -200/3^2, -392/5 at S' = 4        B
+  targets: harmonic action [B03c (4.27)-(4.29)], D_1 = -8 u E_H = (g^2 N/(4 pi^2)) E_H, gamma = (g^2 N/(8 pi^2)) E_H, D_1 = 2 gamma.
+  route A ranges after this revision: twist two S' <= 6, fermion sl(2) S' <= 5, gluon sl(2) S' <= 2 (ext_families.py, all pass);
+  route B: twist two S' <= 4, fermion S' <= 5, gluon S' <= 2, psi3psi4/ZF11 S' <= 2, (F11,psi) S' <= 4.
+
+4. D_1, P_1 WITH ALL FREE DIRECTIONS (on cohomology of every family)
+  hbar F_1^(1)(Delta) = 4uF + F^tr + u sum_d theta_d S_d + u Q( kappa_V int(iota_x A_V, c*) + kappa_lambda int(rho(x) lambda*, lambda*) ) + cubic,
+  F^tr = u[ -(2/3) int(A,A*) + (1/3) int(lambda*,lambda) + (4/3) int(c*,c) ],   d in {perp, lambda, V}
+     D_1 = 4 lc^natural - u sum_a ( theta_{d(a)} + 1/3 ) v.X_a ,        P_1 = -u sum_a ( thetaP_{d(a)} + 1/3 ) d_b X_a ,     kappa directions s-exact
+     two-comp.: v.X = (2 x_m d_m + 2 w_X) X;  equal theta: Xi_Delta = D_1 - 4 lc^natural = -(1/3 + theta) u (2 x_m d_m + 2 w_O)
+  arity two (Thm cc-arity2): (D_1)^b = -2u (1/3 + theta_d) d_b  s-exact on a single-sector family  =>  theta_perp = theta_lambda = theta_V = -1/3
+     (Prop cc-theta-sector: twist two -> theta_perp, fermion sl(2) -> theta_lambda, gluon sl(2) -> theta_V)
+  =>  Xi_Delta = 0,  D_1 = 4 lc^natural,  Spec D_1 = -8 u E_H;   P_1 = 0 for thetaP = theta (translation-covariant scheme);
+      otherwise Prop c9-scheme finite part, a = u(theta - theta_P), changes K_1, Sigma, Sigma* components by a, -a/2, +a/2.
+
+5. COMPLETENESS OF THE QUADRATIC DIRECTIONS (TC0, computed exactly)
+  H^{-1}(Q) on Spin(4) x Spin(6)-invariant quadratic functionals, weight 4 (position -1), position degree <= 1:
+     parity even:  span{ S_perp, S_lambda, S_V };   Q-exact: Q int(iota_x A_V, c*),  Q int(rho(x) lambda*, lambda*)
+     dims (structures, closed, exact): perp (2,1,0), lambda (3,2,1), V+c (6,2,1)
+     parity odd adds one class: int(lambda*, rho(v1 v2 v3 v4) lambda) = int[ (lambda_alpha^i, lambda*^alpha_i) + (lambdabar_{alphadot i}, lambdabar*^{alphadot i}) ]
+       (free-gaugino chiral rotation), excluded by the reflection of one V and one W_R^perp direction (Thm c9-quadratic (iii))
+
+6. SIGN CONVENTIONS FIXED BY DERIVATION
+  route A chain T = L_1 S h_1 ... L_n S h_n S L_0 S: special edge (field-antifield, opposite parities) on L_0 gives (-1)^[c<sigma] = -1 at X_b;
+  on interior lines it is explicit:  vertex-vertex sign = -1  (engine_a/notes.txt sec. 2b).   Route B applies s(c,sigma) literally.
+  orientation: lambda_+ of route A (rho(e0 e1 e2 e3) = +1 on Sigma) = lambda_- of route B; parity-even results unaffected.
+
+7. STATUS
+  proved     Lemma cc-kernels, Prop cc-master, Prop cc-position, Lemma cc-canonical, Lemma cc-bracketpos, Prop cc-census/bound,
+             Thm cc-simplex, Prop cc-genfun/k1, Prop cc-arity1 (i),(ii); under their hypotheses Thm cc-arity2, Cor cc-theta, Thm cc-P7,
+             Prop cc-theta-sector, Cor cc-noA
+  outline    Thm cc-local (two-body locality, no one-body term, pole identity, log covariance): consequences checked indirectly
+             (no log eps numerically; bilinear via Prop cc-routes; scalar sector; spectra). Cor cc-D1local and theta = -1/3 rest on its (iv);
+             a uniform missing one-body term t u v. would shift theta -> theta + t and leave the spectra unchanged.
+  computed   P7 (b), (c) on the families of sec. 3 (exact); spectra; TC0; off-shell two-route agreement; GC12 su(2), su(3), gl(3);
+             engine A 26/26 gates; engine B 48 pass, 0 fail, 7 not run
+  open       GC13 (cubic arity-one equation; needs the cubic composite part); GC5c, GC6, GC7, GC8 beyond the bilinear; GC1, GC2;
+             TC2 tables with letter derivatives; tabulation of the plain composite cycles and ct^(1)_x;
+             existence of the arity-two quantisation (hypothesis of Thm cc-arity2; implies P7 (a) given (b));
+             (F11,psi) and psi3 psi4/Z F11 single-route; generic b on non-collinear legs only for twist two;
+             byte diff of route-B vendored realization.py, loops.py (originals dataless; functional regression identical)
+
+8. PART QSK
+  failed upstream: no theory, engine or referee output for Q_1, S_1, K_1; nothing finalised (results/qsk_final.json).

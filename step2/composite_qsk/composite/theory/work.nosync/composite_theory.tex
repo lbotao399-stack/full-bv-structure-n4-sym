@@ -1,0 +1,781 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[hidelinks]{hyperref}
+\numberwithin{equation}{section}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\allowdisplaybreaks
+\emergencystretch=3em
+\newcommand{\Ap}{A|_{\perp}}
+\newcommand{\AV}{A|_V}
+
+\title{Composite kernels of the dilatation and translation components:\\ $C^{(2)}_\Delta$, $C^{(1)}_\Delta$ and $C_{P_b}$ on all local operators}
+\author{Step 2, composite and odd two-body kernels, part C (theory)}
+\date{2026-10-29}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Chapter 10 wrote the one-loop dilatation component $D_1$ and the translation component $P_1$ of an arbitrary local operator as the logarithmic pair kernels plus composite terms, the graphs in which the vertex $S^{(1)}(\Delta)$ or $S^{(1)}(P_b)$ sits on the cycle as a line from a ghost leg to a gauge leg, and evaluated the composite terms on the planar scalar sector only. We define the composite terms as graph sums, prove that $Q$ maps the composite graphs of a cocycle to the composite cycles with one special edge, and deduce that on every $(Q+\{I,-\})$-cocycle the composite term is a sum over pairs of letters of a local two-body kernel, the special-edge composite kernel, with no one-body part: the nonlocal composite two-point functional on a leg cancels against the nonlocal part of the $Q$-image of the composite cycles. We give the census of the special-edge composite cycles by pair type (45 of the 55 pairs of slots carry them, the 10 field pairs of gauge-invariant operators among them), their output bound, their singular coefficients and finite parts as simplex integrals with Bessel generating functions in the point splitting of the two letters, the decomposition of the dilatation kernel into twice the translation kernel times the position plus a translation-invariant kernel, and the arity-one BRST covariance of the arity-one counterterm of an operator. With all free directions $\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$ of $\hbar F_1^{(1)}(\Delta)$ kept, we prove that the arity-two equation along $(\Delta,P_b)$ is equivalent, in a translation-covariant scheme, to $P_1\cong0$ on cohomology, and that it fixes $\theta$ through the translation composite kernel; we restate Conjecture P7 as two matrix identities for the composite kernels on each family, check them on the planar scalar sector, give the scheme-independent spectra of the test families from the harmonic action of [B03c] and specify two independent engine routes with gates. The quadratic free directions listed are complete in a scheme invariant under rotations, $R$-symmetry and the reflection; the arity-two equation fixes each of $\theta_\perp,\theta_\lambda,\theta_V$ on a family of its own sector, so that their equality follows from the translation kernel. The two routes give the two matrix identities exactly on all test families (Section \ref{sec:cc-results}).
+\end{abstract}
+
+\tableofcontents
+
+\section{Data}
+\label{sec:cc-data}
+
+All conventions are those of the manuscript, Chapters 1--10, and of the two-letter theory (\texttt{step2/twoletter/theory/} \texttt{twoletter\_theory.tex}). Weight $e^{+S/\hbar}$, $S=\tfrac12\langle e,Qe\rangle+I$; $s:=Q+\{I,-\}$ on arity zero; edges $P=P(\varepsilon,T)=\int_\varepsilon^T(Q^{GF}\otimes1)K_t\,dt$ (Def c8-PT), $P\star$ the operator it represents; the special edge $K_\varepsilon-K_0=-\int_0^\varepsilon(H\otimes1)K_t\,dt$, $e^{-\varepsilon|p|^2}-1$ times the components of $K_0$ (Prop c4-defect1); $T=\infty$ wherever the graph sums converge at generic momenta (Prop c8-Tsafe), every statement below being independent of $T\in(0,\infty]$ by Thm c8-L (ii). No dimensional regularisation enters in any role; no infrared regulator other than the transfer endpoint $T$ is used. The unit is
+\[
+u=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}=-\frac{g^2N}{32\pi^2}\qquad(\mathfrak g=\mathfrak{su}(N)).
+\]
+
+\begin{remark}[Symbols]
+\label{rem:cc-symbols}
+From the manuscript and the two-letter theory: $\Ap:=A|_{W_{\mathbb R}^\perp}$, $\lambda_+:=\lambda|_{S_+\otimes W}$, $\lambda_-:=\lambda|_{S_-\otimes W^*}$, $\lambda^*_+:=\lambda^*|_{S_+\otimes W^*}$, $\lambda^*_-:=\lambda^*|_{S_-\otimes W}$; letters $X=\partial^\alpha\varphi$, pair weight $w_{ab}$, its value $w^0_{ab}$ without derivatives, pair degree $d_{ab}$ (Def c10-letters); the field-counting functional $F=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ with multipliers $n_F=1,2,4,-2,-4,-1$ on $c,A,\lambda,A^*,\lambda^*,c^*$; the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$, $u\,sF$ (Thm c4-log); $\mathrm{lc}(M)$, the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon](M)$, and $\mathrm{lc}^\natural(M)=\mathrm{lc}(M)-u\{F,M\}$ (Thm c10-brst); $\mathrm K^{\log}(X_a,X_b)$ the logarithmic pair kernel; $v=2E$ along $\Delta$, $v.$ of Lemma c9-SDelta, $\{S^{(1)}(\Delta),M\}=v.M$; the sector parts $S_\perp$, $S_\lambda$, $S_V$ of $S^{(1)}(\Delta)$, the numbers $\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$, $F'_\Delta:=\hbar F_1^{(1)}(\Delta)-4uF$, the composite term $C_\Delta(O)$ (Def c10-hyp), the renormalised composite functional $\Pi_\Delta$ (Rem c9-Pi), $C^{(1)}_\Delta(X):=\{\Pi_\Delta,X\}$, and $\Xi_\Delta:=D_1-4\,\mathrm{lc}^\natural$ (twoletter Sec.~tl-D1). Introduced here, each defined where it first appears: the square kernel $\mathcal X$ and the composite kernels $\mathcal K_\Delta$, $\mathcal K_{P_b}$ (Def.~\ref{def:cc-kernels}); the sector parts $S_\diamond(P_b)$ of $S^{(1)}(P_b)$ (Def.~\ref{def:cc-kernels}); the arity-one counterterm $\mathrm{ct}^{(1)}_x(M)$ of a local functional, its logarithmic coefficient $\mathrm{lc}^{(1)}_x(M)$, and $L^{(1)}(x)$, the logarithmic coefficient of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ (Def.~\ref{def:cc-graphs}); $G_\Delta$, $G_{P_b}$ (Def.~\ref{def:cc-graphs}); the special-edge composite cycles $Z_x(X_a,X_b;\varepsilon)$ and the two-body composite kernel $C^{(2)}_x(X_a,X_b)$ (Def.~\ref{def:cc-sp}); the $Q$-image of the renormalised composite cycles of a pair in the sense of Chapter 10, $\widetilde C^{(2)}_\Delta(X_a,X_b)$ (Def.~\ref{def:cc-sp}); the injected momentum $r$ and the canonical form (Def.~\ref{def:cc-canonical}); the position part $M^b$ and the translation-invariant part $M^0$ of an $\omega$-linear map (Def.~\ref{def:cc-canonical}); $E_H$, an eigenvalue of the one-loop Hamiltonian of [B03c] (Sec.~\ref{sec:cc-families}).
+\end{remark}
+
+\begin{remark}[What Chapter 10 left open]
+\label{rem:cc-open}
+Thm c10-D1 gives, under the hypotheses (H1)--(H3) of Def c10-hyp,
+\begin{equation}
+D_1(O)=4\,\mathrm{lc}^\natural(O)-\{F'_\Delta,O\}+C_\Delta(O),\qquad P_1(O)=-\{\hbar F_1^{(1)}(P_b),O\}+C_{P_b}(O)\ \ \text{(Prop c10-P1)},
+\label{eq:cc-D1}
+\end{equation}
+with $C_\Delta(O)$ the local functional whose tree-level flow is $\lim_{\varepsilon\to0}Q(\text{composite graphs of }O-\text{their counterterm trees})-(\text{tree insertion of the composite part into }O)$, written there as a two-body part $\widetilde C^{(2)}_\Delta$ (the $Q$-image of the renormalised composite cycles through a pair) plus a one-body part $C^{(1)}_\Delta(X)=\{\Pi_\Delta,X\}$, with $\Pi_\Delta$ nonlocal on the letters $\AV$, $\lambda$, $c$. The composite terms were evaluated on the part of the planar scalar sector with outputs $\Ap$ (Prop c10-scalarsector); Conjecture P7 (Cor c10-P7) asserts that on gauge-invariant cohomology $\Xi_\Delta$ induces $-(\tfrac13+\theta)u\{S^{(1)}(\Delta),-\}$. The present document supplies the definitions, the local two-body form, the closed forms, the census, and the reduction of P7 and of $P_1$ to statements about the composite kernels that the engines evaluate.
+\end{remark}
+
+\section{The composite terms as graph sums}
+\label{sec:cc-def}
+
+\subsection{Composite kernels}
+
+Along a translation $P_b$, $b\in V$, write $v.$ for the derivative $\partial_b$ on every slot (Prop c7-cov); along $\Delta$, $v.$ is the operator of Lemma c9-SDelta with $v=2E$. For $x\in\{\Delta,P_b\}$ this is the operator $v_x.$ of the vector field of $x$ (Def c7-vdot).
+
+\begin{definition}[Square kernel, composite kernels, sector parts along $P_b$]
+\label{def:cc-kernels}
+For $0<\varepsilon<T\le\infty$ and $P=P(\varepsilon,T)$, the square kernel is $\mathcal X:=\big((P\star)^2\otimes1\big)K_0$, and the composite kernel along $x\in\{\Delta,P_b\}$ is
+\[
+\mathcal K_x:=\big(P\star\,v_x.\otimes1+1\otimes P\star\,v_x.\big)P,
+\]
+the two legs of $S^{(1)}(x)$ joined, in both orders, to two edges $P$ (Def c9-composite, Thm c9-P1). The sector parts of $S^{(1)}(P_b)$ are $S_\perp(P_b)=\int(\partial_b\Ap,A^*|_\perp)$, $S_\lambda(P_b)=-\int(\partial_b\lambda,\lambda^*)$, $S_V(P_b)=\int(\partial_b\AV,A^*|_V)-\int(\partial_bc,c^*)$; their sum is $S^{(1)}(P_b)$, and $S_\diamond$ is $2\int x^b\,(\text{density of }S_\diamond(P_b))$ plus a translation-invariant functional.
+\end{definition}
+
+\begin{lemma}[Structure of the composite kernels]
+\label{lem:cc-kernels}
+\begin{itemize}
+\item[(i)] $\mathcal K_x=2(P\star\,v_x.\,P\star\otimes1)K_0=(v_x.\otimes1-1\otimes v_x.)\,\mathcal X$.
+\item[(ii)] $(v_x.\otimes1+1\otimes v_x.)\,\mathcal X=-4\big(\varepsilon\partial_\varepsilon+T\partial_T\big)\mathcal X$ for $x=\Delta$ and $=0$ for $x=P_b$. Hence $\mathcal K_\Delta=2(v.\otimes1)\mathcal X+4(\varepsilon\partial_\varepsilon+T\partial_T)\mathcal X$ and $\mathcal K_{P_b}=2(\partial_b\otimes1)\mathcal X$.
+\item[(iii)] $\mathcal X$ and $\mathcal K_x$ have components only in $c\otimes\AV$ and $\AV\otimes c$. As operators, $(P\star)^2$ and $P\star v_x.P\star$ are nonzero only on the slot of $A^*|_V$, with values in the slot of $c$, and on the slot of $c^*$, with values in the slot of $\AV$.
+\item[(iv)] In a graph, $\mathcal K_x$ is the vertex $S^{(1)}(x)$ with both legs on edges $P$. Only the term $\int(v_x.\AV,A^*|_V)$ of $S^{(1)}(x)$ contributes, its leg $\AV$ on the component $A\otimes A$ of $P$ and its leg $A^*|_V$ on the component $A^*|_V\otimes c$: along $\Delta$ the internal vertex is $\int\big((2E+2)\AV,A^*|_V\big)=2\int x^\mu(\partial_\mu\AV,A^*|_V)+2\int(\AV,A^*|_V)$, along $P_b$ it is $\int(\partial_b\AV,A^*|_V)$. The terms of $S^{(1)}(x)$ in the sectors of $\Ap$, $\lambda$ and $c$ have an antifield leg $A^*|_\perp$, $\lambda^*$, $c^*$ on which $P$ has no component.
+\item[(v)] $(Q\otimes1+1\otimes Q)\mathcal K_x=0$; the operator $\partial_{\mathcal K_x}$ is odd and $Q\,\partial_{\mathcal K_x}=-\partial_{\mathcal K_x}Q$.
+\item[(vi)] At $T=\infty$ the component of $\mathcal X$ is $(Q^{GF})^2$ on the slot of $A^*|_V$, $2d^*$ with values in the slot of $c$ (Prop c9-composite (ii)), times $\big(\int_\varepsilon^\infty\!\!\int_\varepsilon^\infty e^{-(s'+s'')|p|^2}ds'ds''\big)=e^{-2\varepsilon|p|^2}|p|^{-4}$ and the factor $(-,-)^{-1}$: a doubled edge with two Schwinger times $s',s''\in[\varepsilon,\infty)$, of momentum degree $-3$, the slot rule $w_1+w_2-4$ for the slots $c$ (weight $0$) and $\AV$ (weight $1$).
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) The first equality is Prop c9-composite (i) for $\Delta$; for $P_b$ the same computation holds with $\partial_b$, which preserves the pairing and commutes with $Q^{GF}$ and $H$ (Prop c7-cov). For the second, $2P\star v_x.P\star=v_x.(P\star)^2+(P\star)^2v_x.$: along $\Delta$ by the commutation of $[v.,P\star]$ (a multiple of $Q^{GF}$ by a function of $H$) with $P\star$ (proof of Prop c9-composite (i)), along $P_b$ since $\partial_b$ commutes with $P\star$. With $X=(P\star)^2$, even, $(v_x.X\otimes1)K_0=(v_x.\otimes1)\mathcal X$ and $(Xv_x.\otimes1)K_0=(X\otimes1)(v_x.\otimes1)K_0=-(X\otimes1)(1\otimes v_x.)K_0=-(1\otimes v_x.)\mathcal X$, by Lemma c9-ops ($v_x.$ even and pairing-preserving).
+
+(ii) $(v_x.\otimes1+1\otimes v_x.)(X\otimes1)K_0=([v_x.,X]\otimes1)K_0$, since $(v_x.\otimes1+1\otimes v_x.)K_0=0$. Along $\Delta$, $X=(Q^{GF})^2g(H)^2$ with $g(H)=\int_\varepsilon^Te^{-tH}dt$, $[v.,Q^{GF}]=-4Q^{GF}$ and $[v.,f(H)]=-4Hf'(H)$ (Prop c7-dil). From $Hg'(H)=-\int_\varepsilon^Tt\,He^{-tH}dt=Te^{-TH}-\varepsilon e^{-\varepsilon H}-g=(\varepsilon\partial_\varepsilon+T\partial_T)g-g$,
+\[
+[v.,X]=-8X-4(Q^{GF})^2H\partial_H(g^2)=-8X-4\big((\varepsilon\partial_\varepsilon+T\partial_T)X-2X\big)=-4(\varepsilon\partial_\varepsilon+T\partial_T)X.
+\]
+Along $P_b$, $[\partial_b,X]=0$. Insert into (i).
+
+(iii) $(Q^{GF})^2$ vanishes on the slots of $c,A,\lambda,\lambda^*$, and on $A^*$ and $c^*$ it is $2d^*(A^*|_V)$ in the slot of $c$ and $-2dc^*$ in the slot of $\AV$ (Prop c9-composite (ii)); $v_x.$ preserves the slots; the components of $K_0$ in $A^*\otimes A$ and $c^*\otimes c$ go to $c\otimes\AV$ and $\AV\otimes c$.
+
+(iv) The kernel $(P\star v_x.P\star\otimes1)K_0$ applied to $A^*\otimes A$ is $A^*\mapsto$ (component $A^*\to A$ of $Q^{GF}$) $\mapsto v_x.$ on the slot of $A$ $\mapsto$ (component $A\to c$ of $Q^{GF}$), the vertex $\int(v_x.\AV,A^*|_V)$ between an $A\otimes A$ and an $A^*|_V\otimes c$ component; the factor $2$ counts the two orientations. $P$ has the components $A\otimes A$, $\lambda\otimes\lambda$, $c\otimes A^*|_V$ only (Prop c3-P). The decomposition of $(2E+2)\AV$ is $2x^\mu\partial_\mu\AV+2\AV$.
+
+(v) Prop c9-composite (iii) along $\Delta$; along $P_b$, $QP\star+P\star Q=e^{-\varepsilon H}-e^{-TH}$ commutes with $\partial_b$ and $\partial_b$ commutes with $Q$, so $Q(P\star\partial_bP\star)=(P\star\partial_bP\star)Q$. Then the identity $[\partial_\phi,Q]=\partial_{(Q\otimes1+1\otimes Q)\phi}$ of Lemma c9-ops gives the graded commutation; $\mathcal K_x$ has degree $-1$, so $\partial_{\mathcal K_x}$ is odd.
+
+(vi) Prop c9-composite (iv) and Def c8-PT; $\big(\int_\varepsilon^\infty e^{-s|p|^2}ds\big)^2=e^{-2\varepsilon|p|^2}|p|^{-4}$.
+\end{proof}
+
+\subsection{Composite graphs, arity-one counterterms and the master identity}
+
+\begin{definition}[Composite graphs and arity-one counterterms]
+\label{def:cc-graphs}
+Let $M$ be a local functional, $\delta$ a square-zero parameter of degree $-|M|$, $x\in\{\Delta,P_b\}$, $P=P(\varepsilon,\infty)$. The composite graphs of $M$ along $x$ are the $\delta$-linear part of $\tfrac\hbar2\partial_{\mathcal K_x}W(P,I+\delta M)_{\rm tree}$: the line $\mathcal K_x$ closes two legs of a tree of vertices $I$ and one vertex $M$. The cycle so formed either
+\begin{itemize}
+\item[(a)] passes through two letters $X_a$, $X_b$ of $M$: the composite cycles through the pair $(X_a,X_b)$, with trees of $I$ on the outputs; or
+\item[(b)] passes through vertices of $I$ alone and is joined to $M$ by a tree through one letter: a composite loop of $I$ on a leg of $M$.
+\end{itemize}
+The arity-one counterterm of $M$ along $x$, $\mathrm{ct}^{(1)}_x(M)$, is $\hbar\,\mathrm{Sing}_\varepsilon$ of the amputated cycles (a), summed over the pairs with the Koszul signs of eq c10-decomp; its coefficient of $\log\varepsilon$ is $\mathrm{lc}^{(1)}_x(M)$. The singular part of the composite loops of $I$ is the arity-one counterterm $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ (Prop c9-structure (i)), with coefficient of $\log\varepsilon$ denoted $L^{(1)}(x)$. By Thm c9-quadratic (i), the quadratic part of $L^{(1)}(\Delta)$ is $u\,QG_\Delta$ and $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ has no $\varepsilon^{-1}$ term in the quadratic sector, with
+\[
+G_\Delta:=\int(\iota_x\AV,c^*)-\tfrac12\int(\rho(x)\lambda^*,\lambda^*),\qquad G_{P_b}:=\int(\iota_b\AV,c^*)-\tfrac12\int(\rho(b)\lambda^*,\lambda^*),
+\]
+$x$ the position; $G_\Delta=x^b\,(\text{density of }G_{P_b})$ integrated, and both have degree $-2$.
+\end{definition}
+
+\begin{proposition}[The master identity]
+\label{prop:cc-master}
+For every local functional $M$, $x\in\{\Delta,P_b\}$ and $0<\varepsilon$, at $T=\infty$:
+\[
+\begin{aligned}
+&Q\big(\text{composite graphs of }M\text{ along }x\big)\\
+&\qquad=-\tfrac\hbar2\,\partial_{\mathcal K_x}\Big[\text{tree-level flow, }\delta\text{-linear, with one vertex }sM\text{ or one special edge}\Big],
+\end{aligned}
+\]
+the special edge joining a vertex $I$ to a letter of $M$ (from $\{I,M\}_\varepsilon-\{I,M\}$) or two vertices $I$ (from $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$). By Def c1-bracket, $\Delta_\varepsilon-\Delta_0=-\partial_{K_\varepsilon-K_0}$, so $\{f,g\}_\varepsilon-\{f,g\}=-\big(f\text{ and }g\text{ joined by one edge }K_\varepsilon-K_0\big)$. For $sM=0$ the right side is therefore $+\tfrac\hbar2\partial_{\mathcal K_x}$ of the trees with exactly one edge $K_\varepsilon-K_0$.
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:cc-kernels} (v), $Q\,\partial_{\mathcal K_x}=-\partial_{\mathcal K_x}Q$. By Prop c4-defectflow at order $\hbar^0$, $Q\,W(P,J)_{\rm tree}$ is the tree-level flow of $QJ+\tfrac12\{J,J\}_\varepsilon$ ($\hbar\Delta_\varepsilon J$ is of order $\hbar$, and its composite closure has two cycles). For $J=I+\delta M$, the classical master equation $QI+\tfrac12\{I,I\}=0$ (Prop c1-cme) leaves $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$ in the $\delta$-independent part and $sM+(\{I,M\}_\varepsilon-\{I,M\})$ in the $\delta$-linear part; $\{-,-\}_\varepsilon-\{-,-\}$ is built from $K_\varepsilon-K_0$ (Prop c4-defect1).
+\end{proof}
+
+\begin{definition}[Special-edge composite cycles and the two-body composite kernel]
+\label{def:cc-sp}
+For two letters $X_a$, $X_b$ of any slots and $x\in\{\Delta,P_b\}$,
+\[
+Z_x(X_a,X_b;\varepsilon):=\tfrac\hbar2\,\partial_{\mathcal K_x}\partial_{K_\varepsilon-K_0}\big(\text{amputated chains of Def c10-chain from }X_a\text{ to }X_b\big),
+\]
+the chains with $k\ge1$ vertices of $I$ in which one edge $e_c$ is the line $\mathcal K_x$, one other edge $e_\sigma$ is the special edge $K_\varepsilon-K_0$ (components: each field slot with its antifield slot, $A\otimes A^*$, $\lambda_\pm\otimes\lambda^*_\pm$, $c\otimes c^*$ and transposes) and every remaining edge is $P(\varepsilon,\infty)$; equivalently, by Prop \ref{prop:cc-master}, minus $\tfrac\hbar2\partial_{\mathcal K_x}$ of the chains with one bracket-defect vertex. Both kernels are odd; a chain is read with the signs of Lemma c10-sign along the chain from $X_a$ times
+\[
+s(c,\sigma)=(-1)^{n(<\sigma)+n(<c)+[c<\sigma]},
+\]
+$n(<j)$ the number of odd outputs at the vertices before $e_j$ and $[c<\sigma]\in\{0,1\}$; the outputs are left open as in Def c10-pair. The two-body composite kernel is
+\[
+C^{(2)}_x(X_a,X_b):=\text{coefficient of }\varepsilon^0\text{ of }Z_x(X_a,X_b;\varepsilon).
+\]
+For comparison with Chapter 10, $\widetilde C^{(2)}_\Delta(X_a,X_b)$ denotes the $Q$-image of the renormalised composite cycles through the pair (composite cycles (a) minus their singular part), the two-body part of $C_\Delta$ in Thm c10-D1, and $C^{(1)}_\Delta(X)=\{\Pi_\Delta,X\}$ its one-body part.
+\end{definition}
+
+By Prop \ref{prop:cc-master}, for $sM=0$ the $Q$-image of the composite cycles through a pair and of the composite loops on the legs is the sum of the $Z_x$ with trees of $I$ on the outputs, together with the composite closures in which the special edge lies on a tree; Theorem \ref{thm:cc-local} identifies the composite term $C_x$ of a cocycle with $\sum_{a<b}\pm C^{(2)}_x(X_a,X_b)$.
+
+\subsection{Census, reachability and output bound}
+
+\begin{proposition}[Reachability and census]
+\label{prop:cc-census}
+\begin{itemize}
+\item[(i)] The line $\mathcal K_x$ joins a slot $c$ to a slot $\AV$. The letters $c$ and $\AV$ reach it directly; the letters $\Ap$, $\lambda_\pm$ and $A^*|_V$ through one vertex ($\AV(\Ap)^2$ entered at $\Ap$, $\lambda_+\lambda_-\AV$ entered at $\lambda_\pm$, $([\AV,c],A^*|_V)$ entered at $c$, each left at $\AV$); the letters $A^*|_\perp$, $\lambda^*_\pm$, $c^*$, on which $P$ and $\mathcal K_x$ have no component, only through the special edge, to a slot $\Ap$, $\lambda_\pm$, $c$.
+\item[(ii)] A chain of Def \ref{def:cc-sp} exists for $45$ of the $55$ unordered pairs of slots; the ten pairs without one are the pairs of two letters among $A^*|_\perp$, $\lambda^*_+$, $\lambda^*_-$, $c^*$, which would need two special edges. Every chain conserves the degree, the fermion parity and the centre $\mathbb Z/4$ of $SL(4,\mathbb C)$, and its outputs carry the pair degree $d_{ab}$ ($\mathcal K_x$ has degree $-1$, the special edge $+1$).
+\item[(iii)] Every chain has $k\ge1$. A chain with $k=1$ has the line $\mathcal K_x$ at one letter and the special edge at the other, so $k=1$ occurs exactly for the pairs with a letter $\AV$ (any partner) and for the pairs $(c,A^*|_V)$, $(c,A^*|_\perp)$, $(c,\lambda^*_\pm)$, $(c,c^*)$; all other pairs, the field pairs $(\Ap,\Ap)$, $(\Ap,\lambda_\pm)$, $(\lambda,\lambda)$ among them, start at $k=2$.
+\item[(iv)] At the pair weight without derivatives the leg sets of the ten field pairs (the pairs of gauge-invariant operators of fields) are those of Table \ref{tab:cc-fieldpairs}; the numbers of leg sets with $n\le3$ derivatives on the two letters for the $21$ active pairs are in Table \ref{tab:cc-counts}.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Lemma \ref{lem:cc-kernels} (iii), Lemma c10-active, the vertex list of Def c1-vertex. (ii), (iv) Enumeration (\texttt{src.nosync/census\_sp.py} $\to$ \texttt{census\_sp.json}): depth-first search over the chains with one line $\mathcal K_x$ and one special edge, the vertices of $I$ and the components of $P$ and $K_0$, up to $k=6$ and output weight $w^0_{ab}+4$; every chain is checked for degree, parity and $\mathbb Z/4$. A pair of two letters among $A^*|_\perp,\lambda^*_\pm,c^*$ needs an edge with a component on each letter; only $K_0$ has one, and a chain has one special edge. (iii) Read off from the enumeration; a chain with $k=0$ would join the two letters by $\mathcal K_x$ and the special edge at once.
+\end{proof}
+
+\begin{center}\scriptsize
+\begin{tabular}{l|c|p{12.2cm}}
+pair & $w^0_{ab}$ & leg sets of $Z_x$ at $w^0_{ab}$ (fewest vertices, number of chains); ${}^\dagger$: position part along $\Delta$ and part along $P_b$ only\\\hline
+$(A|_V,A|_V)$ & $2$ & $A|_V$ (1,1), $A|_V^{2}$ (2,3), $A|_\perp^{2}$ (2,1), $A|_V^{3}{}^{\dagger}$ (2,8), $A|_V\,A|_\perp^{2}{}^{\dagger}$ (2,9), $A^*|_V\,c{}^{\dagger}$ (2,4), $\lambda_-\,\lambda_+{}^{\dagger}$ (2,2)\\
+$(A|_V,A|_\perp)$ & $2$ & $A|_\perp$ (1,1), $A|_V\,A|_\perp$ (2,5), $A|_V^{2}\,A|_\perp{}^{\dagger}$ (2,18), $A|_\perp^{3}{}^{\dagger}$ (2,5), $A^*|_\perp\,c{}^{\dagger}$ (2,4), $\lambda_-^{2}{}^{\dagger}$ (2,1), $\lambda_+^{2}{}^{\dagger}$ (2,1)\\
+$(A|_V,\lambda_+)$ & $\tfrac{5}{2}$ & $\lambda_+$ (1,1), $A|_V\,\lambda_+$ (2,5), $A|_\perp\,\lambda_-$ (2,2), $c\,\lambda^*_-$ (2,4), $A|_V^{2}\,\lambda_+{}^{\dagger}$ (2,15), $A|_V\,A|_\perp\,\lambda_-{}^{\dagger}$ (3,12), $A|_V\,c\,\lambda^*_-{}^{\dagger}$ (3,20), $A|_\perp^{2}\,\lambda_+{}^{\dagger}$ (2,6), $A|_\perp\,c\,\lambda^*_+{}^{\dagger}$ (3,6)\\
+$(A|_V,\lambda_-)$ & $\tfrac{5}{2}$ & $\lambda_-$ (1,1), $A|_V\,\lambda_-$ (2,5), $A|_\perp\,\lambda_+$ (2,2), $c\,\lambda^*_+$ (2,4), $A|_V^{2}\,\lambda_-{}^{\dagger}$ (2,15), $A|_V\,A|_\perp\,\lambda_+{}^{\dagger}$ (3,12), $A|_V\,c\,\lambda^*_+{}^{\dagger}$ (3,20), $A|_\perp^{2}\,\lambda_-{}^{\dagger}$ (2,6), $A|_\perp\,c\,\lambda^*_-{}^{\dagger}$ (3,6)\\
+$(A|_\perp,A|_\perp)$ & $2$ & $A|_\perp^{2}$ (2,1), $A|_V\,A|_\perp^{2}{}^{\dagger}$ (2,6)\\
+$(A|_\perp,\lambda_+)$ & $\tfrac{5}{2}$ & $A|_\perp\,\lambda_+$ (2,2), $A|_V\,A|_\perp\,\lambda_+{}^{\dagger}$ (2,11), $A|_\perp^{2}\,\lambda_-{}^{\dagger}$ (3,4), $A|_\perp\,c\,\lambda^*_-{}^{\dagger}$ (3,8)\\
+$(A|_\perp,\lambda_-)$ & $\tfrac{5}{2}$ & $A|_\perp\,\lambda_-$ (2,2), $A|_V\,A|_\perp\,\lambda_-{}^{\dagger}$ (2,11), $A|_\perp^{2}\,\lambda_+{}^{\dagger}$ (3,4), $A|_\perp\,c\,\lambda^*_+{}^{\dagger}$ (3,8)\\
+$(\lambda_+,\lambda_+)$ & $3$ & $\lambda_+^{2}$ (2,1), $A|_V\,\lambda_+^{2}{}^{\dagger}$ (3,5), $A|_\perp\,\lambda_-\,\lambda_+{}^{\dagger}$ (3,4), $c\,\lambda_+\,\lambda^*_-{}^{\dagger}$ (3,8)\\
+$(\lambda_+,\lambda_-)$ & $3$ & $\lambda_-\,\lambda_+$ (2,2), $A|_V\,\lambda_-\,\lambda_+{}^{\dagger}$ (3,10), $A|_\perp\,\lambda_-^{2}{}^{\dagger}$ (3,4), $A|_\perp\,\lambda_+^{2}{}^{\dagger}$ (3,4), $c\,\lambda_-\,\lambda^*_-{}^{\dagger}$ (3,8), $c\,\lambda_+\,\lambda^*_+{}^{\dagger}$ (3,8)\\
+$(\lambda_-,\lambda_-)$ & $3$ & $\lambda_-^{2}$ (2,1), $A|_V\,\lambda_-^{2}{}^{\dagger}$ (3,5), $A|_\perp\,\lambda_-\,\lambda_+{}^{\dagger}$ (3,4), $c\,\lambda_-\,\lambda^*_+{}^{\dagger}$ (3,8)\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-fieldpairs}: special-edge composite cycles through the ten field pairs at the pair weight without derivatives.\end{center}
+
+\begin{center}\small
+\begin{tabular}{l|cccc}
+pair & $n=0$ & $n=1$ & $n=2$ & $n=3$\\\hline
+$(A|_V,A|_V)$ & 7\,(3) & 18\,(7) & 34\,(18) & 67\,(34)\\
+$(A|_V,A|_\perp)$ & 7\,(2) & 16\,(7) & 32\,(16) & 59\,(32)\\
+$(A|_V,\lambda_+)$ & 9\,(4) & 20\,(9) & 42\,(20) & 79\,(42)\\
+$(A|_V,\lambda_-)$ & 9\,(4) & 20\,(9) & 42\,(20) & 79\,(42)\\
+$(A|_V,c)$ & 4\,(2) & 8\,(4) & 19\,(8) & 35\,(19)\\
+$(A|_V,A^*|_V)$ & 15\,(6) & 35\,(15) & 73\,(35) & 142\,(73)\\
+$(A|_\perp,A|_\perp)$ & 2\,(1) & 7\,(2) & 16\,(7) & 38\,(16)\\
+$(A|_\perp,\lambda_+)$ & 4\,(1) & 12\,(4) & 30\,(12) & 62\,(30)\\
+$(A|_\perp,\lambda_-)$ & 4\,(1) & 12\,(4) & 30\,(12) & 62\,(30)\\
+$(A|_\perp,c)$ & 2\,(1) & 7\,(2) & 16\,(7) & 32\,(16)\\
+$(A|_\perp,A^*|_V)$ & 10\,(2) & 26\,(10) & 64\,(26) & 127\,(64)\\
+$(\lambda_+,\lambda_+)$ & 4\,(1) & 12\,(4) & 28\,(12) & 63\,(28)\\
+$(\lambda_+,\lambda_-)$ & 6\,(1) & 15\,(6) & 36\,(15) & 75\,(36)\\
+$(\lambda_+,c)$ & 4\,(1) & 9\,(4) & 20\,(9) & 42\,(20)\\
+$(\lambda_+,A^*|_V)$ & 17\,(5) & 42\,(17) & 88\,(42) & 173\,(88)\\
+$(\lambda_-,\lambda_-)$ & 4\,(1) & 12\,(4) & 28\,(12) & 63\,(28)\\
+$(\lambda_-,c)$ & 4\,(1) & 9\,(4) & 20\,(9) & 42\,(20)\\
+$(\lambda_-,A^*|_V)$ & 17\,(5) & 42\,(17) & 88\,(42) & 173\,(88)\\
+$(c,c)$ & 2\,(1) & 4\,(2) & 8\,(4) & 19\,(8)\\
+$(c,A^*|_V)$ & 18\,(7) & 34\,(18) & 67\,(34) & 121\,(67)\\
+$(A^*|_V,A^*|_V)$ & 18\,(5) & 52\,(18) & 114\,(52) & 235\,(114)\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-counts}: number of leg sets of $Z_x$ entering the part along $P_b$ (and, in brackets, the translation-invariant part along $\Delta$) for $n$ derivatives on the two letters, $21$ active pairs.\end{center}
+
+\begin{proposition}[Output bound]
+\label{prop:cc-bound}
+\begin{itemize}
+\item[(i)] Every chain of Def \ref{def:cc-sp} with outputs of total Weyl weight $w$ has superficial degree $w_{X_a}+w_{X_b}-w$ before the insertion factor of $S^{(1)}(x)$; the factor $\partial_b$ adds one, the translation-invariant part along $\Delta$ adds none.
+\item[(ii)] $C^{(2)}_{P_b}(X_a,X_b)$ is a translation-invariant local functional of Weyl weight $w_{ab}+1$; $C^{(2)}_\Delta(X_a,X_b)$ is local of Weyl weight $w_{ab}$, the position counted at weight $-1$, at most linear in the position. Both have degree $d_{ab}$ and parity $|X_a|+|X_b|$.
+\item[(iii)] Only chains with $w\le w_{ab}+1$ contribute to $C^{(2)}_{P_b}$ and to the part of $C^{(2)}_\Delta$ linear in the position, only chains with $w\le w_{ab}$ to its translation-invariant part; a chain with $w$ above these bounds has a vanishing $\varepsilon\to0$ limit.
+\item[(iv)] The number of output fields is at most $w_{ab}+1+d_{ab}$ for both kernels; the coefficients of $\varepsilon^{-m}$ of $Z_x$ have Weyl weight $w_{ab}-2m$ (along $\Delta$) and $w_{ab}+1-2m$ (along $P_b$).
+\end{itemize}
+The same bounds hold for the composite cycles (a) of Def \ref{def:cc-graphs} and $\mathrm{ct}^{(1)}_x$, of degree $d_{ab}-1$: the coefficient of $\log\varepsilon$ of $\mathrm{ct}^{(1)}_\Delta(X_aX_b)$ has weight $w_{ab}$ and that of $\mathrm{ct}^{(1)}_{P_b}$ weight $w_{ab}+1$.
+\end{proposition}
+
+\begin{proof}
+(i) Every edge obeys the slot rule $w_1+w_2-4$: $P$ (Prop c3-P), $K_0$ (weights $w$ and $4-w$ of a field and its antifield, momentum degree $0$), and $\mathcal K_x$ (Lemma \ref{lem:cc-kernels} (vi)); the count of Lemma c10-degree applies verbatim. (ii) The coefficient of $\varepsilon^0$ of $Z_x$ is a polynomial in the output momenta of degree equal to the superficial degree (Thm \ref{thm:cc-simplex}); along $\Delta$ the position enters once, through the factor $2x^\mu$ of Lemma \ref{lem:cc-kernels} (iv). Degrees and parities: Prop \ref{prop:cc-census} (ii). (iii) A polynomial of negative degree vanishes; the $\varepsilon\to0$ limit of a chain of negative degree with a special edge is $0$ (Thm \ref{thm:cc-simplex}). (iv) Weyl weight plus degree is at least $1$ for every output (Prop c10-bound (iii)), so $n_{\rm out}\le w+d_{ab}\le w_{ab}+1+d_{ab}$; the enumeration finds no violation. The statements on $\mathrm{ct}^{(1)}_x$ follow in the same way from Lemma c4-local.
+\end{proof}
+
+\begin{remark}[Two-component and physics form of Section 2]
+\label{rem:cc-twocomp1}
+With Def c8-twocomp and Prop c8-twocomp: the internal vertex along $\Delta$ is $\int\big((2E+2)A_m,A^*_m\big)=2\int x_n(\partial_nA_m,A^*_m)+2\int(A_m,A^*_m)$, along $P_b$ it is $\int(b_n\partial_nA_m,A^*_m)$; it sits between $\langle A_mA_n\rangle=2(-,-)^{-1}\delta_{mn}$ and $\langle A^*_m\,c\rangle=-(-,-)^{-1}ip_m$, each times $e^{-\varepsilon|p|^2}|p|^{-2}$ at $T=\infty$. The special edge has the components of $K_0$, $(-,-)^{-1}$ times the inverse fibre pairing of $(A_m,A^*_m)$, $\tfrac14(A^{ij},A^*_{ij})$, $(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})$ and $(c,c^*)$, times $e^{-\varepsilon|p|^2}-1$. In two-component form
+\[
+G_\Delta=\int x_m(A_m,c^*)+i\int x_m\big(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i}\big),\qquad G_{P_b}=\int b_m(A_m,c^*)+i\int b_m\big(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i}\big),
+\]
+by $\int(\rho(x)\lambda^*,\lambda^*)=-2i\int x_m(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i})$ (Rem c9-twocompD). The letters of Table \ref{tab:cc-fieldpairs} are $A_m$ ($\AV$), $A_{ij}$ ($\Ap$, the $\mathbf 6$ of $SU(4)_R$), $\lambda_\alpha{}^i$ ($\lambda_+$, undotted, $\mathbf 4$), $\bar\lambda_{\dot\alpha i}$ ($\lambda_-$, dotted, $\bar{\mathbf 4}$), with antifields $A^*_m$, $A^*_{ij}$, $\lambda^{*\alpha}{}_i$ ($\lambda^*_+$), $\bar\lambda^{*\dot\alpha i}$ ($\lambda^*_-$), $c^*$; ghost numbers $1,0,0,0,-1,-1,-1,-1,-2$ for $c,A_m,A_{ij},\lambda,A^*_m,A^*_{ij},\lambda^*,\bar\lambda^*,c^*$, the gaugino and the antifields of the bosons Grassmann odd, $c$ odd, $c^*$ even. For $\mathfrak{su}(N)$, $(X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY)$ and $u=-\tfrac{g^2N}{32\pi^2}$.
+\end{remark}
+
+\section{Closed forms and locality}
+\label{sec:cc-closed}
+
+\subsection{Canonical form and the position part}
+
+\begin{definition}[Canonical form, position part, translation-invariant part]
+\label{def:cc-canonical}
+A local functional is written in canonical form as $\int\omega\,D$ with $\omega\in\Omega^4_c(\mathbb R^4)$ and $D$ a polynomial in letters, every derivative on a field. An $\omega$-linear map $M$ of local functionals of the form $M(\int\omega D)=\int\omega\,\big(x^bM^b(D)+M^0(D)\big)$, with $M^b$, $M^0$ maps of densities at one point, has position part $M^b$ and translation-invariant part $M^0$. On plane waves, with the momenta of the fields independent and $\omega$ absorbing the total momentum (and the injected momentum $r$ of Def \ref{def:cc-cycle}), a graph has the form $\alpha\,\delta(\cdot)+\beta^b\partial_b\delta(\cdot)$ and $M^0\leftrightarrow\alpha$, $M^b\leftrightarrow i\beta^b$.
+\end{definition}
+
+\begin{lemma}[Translations and the canonical form]
+\label{lem:cc-canonical}
+$M$ is well defined (independent of integrations by parts against $\omega$) exactly when $M^b$ commutes with $\partial$ and $[M^0,\partial_b]=M^b$. Then $[M,\{S^{(1)}(P_b),-\}]$ is the map $\int\omega D\mapsto\int\omega\,M^b(D)$. For $M=v.=\{S^{(1)}(\Delta),-\}$: $v.^b=2\partial_b$, $v.^0=2w_D$; for $M=\{S^{(1)}(P_b),-\}$: position part $0$.
+\end{lemma}
+
+\begin{proof}
+$M(\int\omega\,\partial_bD)$ and $M(-\int(\partial_b\omega)D)=\int\omega\big(M^b(D)+x^\mu\partial_bM^\mu(D)+\partial_bM^0(D)\big)$ agree for all $\omega$ exactly under the two conditions. Then $M(\int\omega\partial_bD)-\{S^{(1)}(P_b),M(\int\omega D)\}=\int\omega\big(M^0(\partial_bD)-\partial_bM^0(D)\big)=\int\omega\,M^b(D)$, since $\{S^{(1)}(P_b),-\}$ acts by $\partial_b$ on the fields and not on the position. Lemma c9-SDelta (i) gives $v.$.
+\end{proof}
+
+\begin{proposition}[Position decomposition]
+\label{prop:cc-position}
+For every pair of letters, $\big(C^{(2)}_\Delta\big)^b=2\,C^{(2)}_{P_b}$; for every local $M$, $\big(\mathrm{ct}^{(1)}_\Delta(M)\big)^b=2\,\mathrm{ct}^{(1)}_{P_b}(M)$, $\big(C_\Delta\big)^b=2\,C_{P_b}$ on cocycles, and $\big(I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)\big)^b=2\,I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(P_b)$. In particular the quadratic part of $L^{(1)}(P_b)$ is $\tfrac12u\,QG_{P_b}$, and the quadratic part of the composite part along $P_b$, $\hbar\,\mathrm{Ob}^{(1)}(P_b)$, vanishes. The translation-invariant part $C^{(2),0}_\Delta$ is computed with the internal vertex $\int\big(2(x-x_O)^\mu\partial_\mu\AV+2\AV,A^*|_V\big)$, $x_O$ the point of the canonical density.
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:cc-kernels} (iv) the internal vertex along $\Delta$ is $2\int x^\mu s_\mu+\int s_0$ with $\int s_\mu$ the internal vertex of $S^{(1)}(P_\mu)$ and $s_0=2(\AV,A^*|_V)$; insert $x^\mu=x_O^\mu+(x-x_O)^\mu$. On plane waves the factor $x^\mu$ is $-i\partial/\partial r^\mu$ of $e^{i(r,x)}$, with $r$ absorbed by $\omega$; its action on the momentum delta function is the position part, equal to $-i$ times the graph with $\int s_\mu$ at $r=0$, i.e. $2\times(-i)$ times the graph along $P_\mu$; its action on the integrand is translation invariant. The same holds graph by graph for the composite cycles, their singular parts, the counterterm trees and the composite loops of $I$. Thm c9-quadratic (i) gives $L^{(1)}(\Delta)$ in the quadratic sector, and $G_\Delta=\int x^b(\text{density of }G_{P_b})$ with $Q$ mapping letters to letters, so $(QG_\Delta)^b=QG_{P_b}$. Thm c9-quadratic (ii): the quadratic composite part along $\Delta$ has no explicit position.
+\end{proof}
+
+\subsection{Simplex integrals}
+
+\begin{definition}[Cycle data with a composite line and a special edge]
+\label{def:cc-cycle}
+For a chain of Def \ref{def:cc-sp} with $k$ vertices of $I$ and edges $e_0,\dots,e_k$ ($e_0$ at $X_a$), let $e_c$ be the line $\mathcal K_x$ and $e_\sigma$, $\sigma\neq c$, the special edge. The cycle has $k+2$ Schwinger times: $t_j\in[\varepsilon,\infty)$ for $j\notin\{c,\sigma\}$, $t_\sigma\in[0,\varepsilon]$, and the two segments $t'_c,t''_c\in[\varepsilon,\infty)$ of $\mathcal K_x$ (Lemma \ref{lem:cc-kernels} (vi)), meeting at the internal vertex of $S^{(1)}(x)$. The edge $e_j$ carries $l+q_j$ ($q_0=0$, $q_j$ the sum of the incoming output momenta of the first $j$ vertices), both segments carry $l+q_c$, and along $\Delta$ a momentum $r$ is injected at the internal vertex and carried by the segment after it and by $e_{c+1},\dots,e_k$ to $X_b$ and $\omega$. The numerator is the product of the vertex functions, the edge factors of Rem c10-numerator, the special-edge factor $-|l+q_\sigma|^2$ times the fibre factor of $K_0$, the segment factors $2(-,-)^{-1}\otimes(\text{metric})$ and $-i(l+q_c)(-,-)^{-1}$, and the insertion: $i(l+q_c)_b$ along $P_b$; $2$ for $s_0$ and $2i(l+q_c)_\mu$ for $s_\mu$ along $\Delta$. With $\alpha=(\alpha_j)_{j\ne c}\cup(\alpha'_c,\alpha''_c)$ on the simplex of dimension $k+1$, the centre, the momentum form and the $m$-th simplex integrand $F_m$ are those of Def c10-cycle for $k+2$ edges, the integrand being
+\[
+F_m=\sum_{j\ge m+k}\frac{\big((\sum_\mu\partial^2_{l_\mu})^j\,\text{numerator}\big)(\text{centre})}{j!\,4^j}\;\frac{(-\text{momentum form})^{\,j-k-m}}{(j-k-m)!}.
+\]
+\end{definition}
+
+\begin{theorem}[Special-edge composite cycles as simplex integrals]
+\label{thm:cc-simplex}
+At generic output momenta and $T=\infty$, with $R_\sigma$ the region of the simplex where $\alpha_\sigma$ is the smallest coordinate,
+\begin{equation}
+\begin{aligned}
+16\pi^2\big(\text{coefficient of }\varepsilon^{-m}\big)&=\frac1m\int_{R_\sigma}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]F_m\,d\alpha\qquad(m\ge1),\\
+16\pi^2\big(\text{coefficient of }\varepsilon^{0}\big)&=\int_{R_\sigma}F_0\,\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\end{aligned}
+\label{eq:cc-simplex}
+\end{equation}
+and there is no $\log\varepsilon$; the remainder tends to $0$. Each coefficient is a polynomial in the output momenta (and in $r$), of degree the superficial degree minus $2m$; for negative superficial degree the limit vanishes. The exact values of the coefficients of $\varepsilon^0$ lie in the span of the integrals of polynomials times $\log$ of ratios of affine functions over rational subsimplices: for $k=1$ in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$ (Prop \ref{prop:cc-k1}).
+\end{theorem}
+
+\begin{proof}
+The domain $\{t_\sigma\le\varepsilon,\ t_f\ge\varepsilon\ (f\ne\sigma)\}$ is the difference of the domains with the cutoff shapes $1/\min_{f\ne\sigma}\alpha_f$ and $1/\min_f\alpha_f$, which differ on $R_\sigma$; apply Prop c10-shape to each with $k+2$ edges (the Schwinger measure is $\tau^{k+1}d\tau\,d\alpha$, which shifts the index $k$ of Def c10-cycle by one) and subtract, as in Lemma c10-special: the two terms in $\log\varepsilon$ cancel, and the finite parts differ by $-\int_{R_\sigma}F_0\log(\alpha_\sigma/\min_{f\ne\sigma}\alpha_f)$. Convergence of the region $\tau\ge1$ at $T=\infty$: the composite line is of order $|p|^{-3}$ at small momentum (Prop c9-composite (iv)) and the other edges carry distinct generic momenta (proof of Thm c10-decomp (ii)), so the integrand is integrable and the measure of $\{\alpha_\sigma\le\varepsilon/\tau\}$ gives $O(\varepsilon)$; the injected momentum enters polynomially at each order in $r$. The degree statement is Prop \ref{prop:cc-bound} (i). For $k=1$ see Prop \ref{prop:cc-k1}.
+\end{proof}
+
+\begin{proposition}[Generating functions in the point splitting]
+\label{prop:cc-genfun}
+With the letters at $x+y_a$, $x+y_b$ and $y=y_b-y_a$, the integrand $F_m$ for the numerator $(\text{chain numerator})\,e^{i(y,l)}$ is the chain numerator with $l$ replaced by $-i\partial_y$ applied to
+\[
+\begin{aligned}
+&(-1)^{m+k}e^{i(y,\text{centre})}\sum_{i\ge0}\frac{(|y|^2/4)^{\,i+m+k}(\text{momentum form})^i}{i!\,(i+m+k)!}\\
+&\qquad=(-1)^{m+k}e^{i(y,\text{centre})}\Big(\frac{|y|}{2\sqrt{\text{momentum form}}}\Big)^{m+k}I_{m+k}\big(|y|\sqrt{\text{momentum form}}\big),
+\end{aligned}
+\]
+and the generating functions of the coefficients of $Z_x$ are
+\[
+\begin{aligned}
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\big[\varepsilon^{-m}\big]Z_x(\partial^\alpha\varphi_a,\partial^\beta\varphi_b)&=\frac{\hbar}{16\pi^2m}\,e^{i(y_b,q_k)}\int_{R_\sigma}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]F_m\,d\alpha,\\
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\,C^{(2)}_x(\partial^\alpha\varphi_a,\partial^\beta\varphi_b)&=\frac{\hbar}{16\pi^2}\,e^{i(y_b,q_k)}\int_{R_\sigma}F_0\,\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\end{aligned}
+\]
+summed over the chains (with the overall sign of Def \ref{def:cc-sp}), $q_k$ including $r$ along $\Delta$; in position space $iq_j$ is the derivative of the product of the outputs at $x$.
+\end{proposition}
+
+\begin{proof}
+As Prop c10-genfun, with $k+2$ edges: the power $\tau^{-1-m}$ of the Gaussian-integrated integrand times $\tau^{k+1}$ fixes $j-i=m+k$, and Thm \ref{thm:cc-simplex} replaces the weight $(\min_e\alpha_e)^m$ by the special-region weights.
+\end{proof}
+
+\begin{proposition}[One vertex in closed form]
+\label{prop:cc-k1}
+Let $k=1$, $\beta:=\alpha_\sigma$, and let $\gamma'$, $\gamma''=1-\beta-\gamma'$ be the coordinates of the two segments. At $r=0$ the centre $-\beta q_\sigma-(1-\beta)q_c$ and the momentum form $\beta(1-\beta)|q_c-q_\sigma|^2$ depend on $\beta$ alone, $R_\sigma=\{\beta\le\gamma',\gamma''\}$ requires $\beta\le\tfrac13$, and
+\[
+\begin{aligned}
+16\pi^2\,C^{(2)}_x&=\int_0^{1/3}F_0(\beta)\,W_0(\beta)\,d\beta,&\qquad W_0(\beta)&=(1-\beta)\log\frac{1-\beta}{2\beta}-(1-3\beta),\\
+16\pi^2\big[\varepsilon^{-m}\big]Z_x&=\int_0^{1/3}F_m(\beta)\,W_m(\beta)\,d\beta,&\qquad W_m(\beta)&=\frac2m\Big[\frac{\big(\tfrac{1-\beta}2\big)^{m+1}-\beta^{m+1}}{m+1}-\beta^m\Big(\frac{1-\beta}2-\beta\Big)\Big].
+\end{aligned}
+\]
+The part linear in $r$ carries one factor $\gamma''$ in $F_m$, and $\int\gamma''(\cdot)\,d\gamma'=\tfrac{1-\beta}2\int(\cdot)\,d\gamma'$ by the symmetry $\gamma'\leftrightarrow\gamma''$ of $R_\sigma$ and of the weights; the coefficients are integrals of $\beta^a(1-\beta)^bW_m(\beta)$ over $[0,\tfrac13]$, in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$.
+\end{proposition}
+
+\begin{proof}
+On $R_\sigma$, $\min_{f\ne\sigma}\alpha_f=\min(\gamma',\gamma'')$ and $\gamma'\in[\beta,1-2\beta]$. By the symmetry about $\gamma'=\tfrac{1-\beta}2$, $\int\log\frac{\min(\gamma',\gamma'')}\beta d\gamma'=2\int_\beta^{(1-\beta)/2}\log\frac{\gamma'}\beta d\gamma'=W_0(\beta)$ and $\frac1m\int\big(\min(\gamma',\gamma'')^m-\beta^m\big)d\gamma'=W_m(\beta)$. At $r=0$ both segments carry $l+q_c$, so the Gaussian data depend on $\beta$ only; along $\Delta$ the derivative in $r$ of $\sum_jt_j|l+q_j|^2$ is $2t''_c(l+q_c)\cdot$, linear in $\gamma''$. The integrals $\int_0^{1/3}\beta^a(1-\beta)^b\log\frac{1-\beta}{2\beta}d\beta$ are rational combinations of $1$, $\log2$, $\log3$ (the endpoint $\beta=\tfrac13$ gives $\log\tfrac23$).
+\end{proof}
+
+\subsection{Locality of the composite term on cocycles}
+
+\begin{theorem}[The composite term is two-body and local]
+\label{thm:cc-local}
+Let $O=\int\omega\,X_1\cdots X_n$ be a local functional with $sO=0$, $x\in\{\Delta,P_b\}$, $T=\infty$, generic momenta, $\hbar F_1^{(0)}$ as in (H1) of Def c10-hyp.
+\begin{itemize}
+\item[(i)] $Z_x(X_a,X_b;\varepsilon)=\sum_{m\ge1}\varepsilon^{-m}z_m(X_a,X_b)+C^{(2)}_x(X_a,X_b)+o(1)$ with local coefficients and no $\log\varepsilon$.
+\item[(ii)] $sL^{(1)}(x)=0$, and $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)=\log\varepsilon\,L^{(1)}(x)$ in every sector.
+\item[(iii)] (Arity-one BRST covariance) $s\,\mathrm{lc}^{(1)}_x(O)=-\{L^{(1)}(x),O\}$, and the poles obey $\sum_{a<b}\pm z_m(X_a,X_b)=s\,\big(\text{coefficient of }\varepsilon^{-m}\text{ in }\mathrm{ct}^{(1)}_x(O)\big)$.
+\item[(iv)] The composite term of Def c10-hyp (along $\Delta$) and of Prop c10-P1 (along $P_b$) is
+\begin{equation}
+C_x(O)=\sum_{a<b}(-1)^{|X_b|(|X_{a+1}|+\cdots+|X_{b-1}|)}\int\omega\,X_1\cdots X_{a-1}\,C^{(2)}_x(X_a,X_b)\,X_{a+1}\cdots\widehat{X_b}\cdots X_n,
+\label{eq:cc-local}
+\end{equation}
+a local two-body functional without one-body term.
+\item[(v)] Hence $\sum_{a<b}\pm\widetilde C^{(2)}_\Delta(X_a,X_b)+\sum_aC^{(1)}_\Delta(X_a)=\sum_{a<b}\pm C^{(2)}_\Delta(X_a,X_b)$: the nonlocal parts of $\{\Pi_\Delta,X_a\}$ on the letters $\AV$, $\lambda$, $c$ ($\log|p|^2$ of the leg momentum, and $(p,a)(p,b)|p|^{-2}$ on $\AV$, Rem c9-Pi) cancel against those of the $Q$-images of the renormalised composite cycles through the pairs containing $X_a$.
+\item[(vi)] For $sO\ne0$ the right side of \eqref{eq:cc-local} acquires the composite graphs of $sO$, $-\tfrac\hbar2\partial_{\mathcal K_x}$ of the trees with one vertex $sO$, renormalised; these contain the nonlocal $\{\Pi_\Delta,-\}$ on the letters of $sO$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(Outline.) By Prop \ref{prop:cc-master}, $Q$ of the composite graphs of $O$ is $+\tfrac\hbar2\partial_{\mathcal K_x}$ of the trees with one edge $K_\varepsilon-K_0$. Sort these by the position of the special edge relative to the cycle closed by $\mathcal K_x$:
+\begin{itemize}
+\item[(A)] on a cycle through two letters: the $Z_x(X_a,X_b;\varepsilon)$ with trees on the outputs;
+\item[(B)] on a tree attached to a cycle through two letters (at an output or at a spectator letter): a factor $e^{-\varepsilon|p|^2}-1$ at a generic momentum times the unrenormalised composite cycle;
+\item[(C)] on a composite loop of $I$ attached to $O$ by a tree: by Prop \ref{prop:cc-master} for $M=0$, read on the amputated loops (the collapse of a tree edge at a leg of the loop by $QP\star+P\star Q=e^{-\varepsilon H}$ gives the bracket with $I$), minus the amputated loops with one special edge is $s$ of the amputated composite loops of $I$, $s\big(\Pi_x+I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)\big)$, $\Pi_x$ the renormalised composite functional along $x$ ($\Pi_\Delta$ of Rem c9-Pi); (C) is its tree insertion into $O$;
+\item[(D)] on the tree joining a composite loop of $I$ to $O$: $e^{-\varepsilon|p|^2}-1$ times the unrenormalised loop.
+\end{itemize}
+The counterterm trees $-\mathrm{tree}\big(I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x),O\big)$ and $-\mathrm{tree}\big(\mathrm{ct}^{(1)}_x(O)\big)$ have, by Prop c4-defectflow and Lemma c6-bvexact (the vertex $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ is odd),
+\[
+\begin{aligned}
+Q\big(-\mathrm{tree}(I^{CT,(1)},O)\big)&=-\mathrm{tree}\big(sI^{CT,(1)},O\big)-\{I^{CT,(1)},O\}+(\text{special edges}),\\
+Q\big(-\mathrm{tree}(\mathrm{ct}^{(1)}_x(O))\big)&=-\mathrm{tree}\big(s\,\mathrm{ct}^{(1)}_x(O)\big)+(\text{special edges}),
+\end{aligned}
+\]
+the special edges joining the counterterm vertex to a vertex $I$. These special edges cancel (B) and (D): the sum is $e^{-\varepsilon|p|^2}-1$ times the renormalised cycle or loop, which has a limit, so it tends to $0$.
+
+(ii) By (C), $s$ of the amputated composite loops of $I$ is minus the loops with one special edge, which contain no $\log\varepsilon$ (Thm \ref{thm:cc-simplex}); its coefficient of $\log\varepsilon$, $sL^{(1)}(x)$, vanishes. The coefficient of $\varepsilon^{-m}$ of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ is a colour-singlet local functional of degree $-1$ and Weyl weight $4-2m$ along $\Delta$ (position at $-1$, at most linear in it) and $5-2m$ along $P_b$ (no position). A colour singlet has at least two adjoint fields, and degree $-1$ needs an antifield of degree $-1$ (weight at least $\tfrac52$) and a field of degree $0$ (weight at least $1$), or $c^*$ and $c$ (weights $4$ and $0$): its field weight is at least $\tfrac72$, its weight at least $\tfrac52$ with one position. Both $4-2m\le2$ and $5-2m\le3$ are below these bounds.
+
+(iii) and (iv). Collect the coefficients. By (C) and (ii), the loops (C) give $\mathrm{tree}(s\Pi_x,O)+\log\varepsilon\,\mathrm{tree}(sL^{(1)}(x),O)=\mathrm{tree}(s\Pi_x,O)$, and $-\mathrm{tree}(sI^{CT,(1)},O)=-\log\varepsilon\,\mathrm{tree}(sL^{(1)}(x),O)=0$; $s\Pi_x$ is the composite part (Rem c9-Pi, Prop c9-structure (ii)), whose tree insertion is subtracted in the definition of $C_x(O)$. What remains is (A) minus $\mathrm{tree}(s\,\mathrm{ct}^{(1)}_x(O))$ minus $\{I^{CT,(1)},O\}$. The left side has a limit (the composite graphs minus their counterterm trees converge, Prop c9-structure (i)); (A) has no $\log\varepsilon$ by (i), so the coefficient of $\log\varepsilon$ gives $-\{L^{(1)}(x),O\}-s\,\mathrm{lc}^{(1)}_x(O)=0$, and the coefficients of $\varepsilon^{-m}$ give the pole identity. At order $\varepsilon^0$, the trees on the outputs of $Z_x$ and of $\varepsilon^{-m}s\,\mathrm{ct}_m$ are the same trees with edges $P(\varepsilon,\infty)$, so after the cancellation of the poles their difference tends to the trees of the coefficient of $\varepsilon^0$ of $Z_x$ with edges $P(0,\infty)$; injectivity of the tree-level flow gives \eqref{eq:cc-local}. Statement (i) is Thm \ref{thm:cc-simplex} for each chain.
+
+(v) Def c10-hyp writes the same limit as $\sum\widetilde C^{(2)}_\Delta+\sum C^{(1)}_\Delta$ (proof of Thm c10-D1, ``Letters''), so the two sums agree on cocycles, and the right side is local. The mechanism: $Q$ applied to a renormalised composite cycle through $(X_a,X_b)$ produces, through $QP\star+P\star Q=e^{-\varepsilon H}$ on the edge at $X_a$, the composite cycles of the letters of $\{I,X_a\}$, and $sO=0$ trades them for the composite loops on the legs, whose renormalised value is $\Pi_\Delta$.
+
+(vi) For $sO\ne0$ Prop \ref{prop:cc-master} keeps the trees with one vertex $sO$; their composite closures are the composite graphs of $sO$, of both kinds (a) and (b), and kind (b) is $\mathrm{tree}(\Pi_\Delta,sO)$ after renormalisation.
+\end{proof}
+
+\begin{remark}[Status of Theorem \ref{thm:cc-local}]
+\label{rem:cc-localstatus}
+Steps (C) and (D) of the proof are not carried out graph by graph. Checked consequences: (i), the absence of $\log\varepsilon$, numerically on $k=1$ chains (route B, $\varepsilon\in[5\cdot10^{-4},10^{-2}]$, $\log\varepsilon$ coefficient $\le8\cdot10^{-5}$ relative); (iv)--(v) on the bilinears through Prop \ref{prop:cc-routes} (Example \ref{ex:cc-bilinear}, both routes and the QA third method) and on the planar scalar sector with the numbers of Rem c9-Pi (Prop \ref{prop:cc-scalar}); the family spectra of Section \ref{sec:cc-families}. Not computed: the pole identity and the logarithmic covariance (iii), $\Pi_\Delta$ on $\AV$, $\lambda$, $c$, and $\widetilde C^{(2)}_\Delta+C^{(1)}_\Delta$ beyond the scalars (gates GC5c, GC6, GC7, GC8). A one-body term $t\,u\,v.$ missing from \eqref{eq:cc-local} would replace $\theta$ by $\theta+t$ in every formula below and leave the spectra unchanged; the value $\theta=-\tfrac13$ rests on (iv).
+\end{remark}
+
+\begin{remark}[What the locality requires]
+\label{rem:cc-requires}
+The proof uses: $sO=0$ exactly, not modulo $s$-exact terms (otherwise (vi)); the classical master equation $QI+\tfrac12\{I,I\}=0$; the anticommutation $Q\partial_{\mathcal K_x}=-\partial_{\mathcal K_x}Q$, which rests on $[v_x.,Q]=0$ and $QP\star+P\star Q=e^{-\varepsilon H}$ (Lemma \ref{lem:cc-kernels} (v)); the absence of $\log\varepsilon$ in cycles with one special edge, a property of the cutoff on every edge (Thm \ref{thm:cc-simplex}); the absence of an $\varepsilon^{-1}$ term in the composite loops of $I$ in the sectors met by the trees (Theorem (ii)); generic momenta at $T=\infty$ for the convergence of the bridges and of the composite loops, which are of order $|p|^{-3}$ (Prop c9-composite (iv)), or any finite $T$, by Thm c8-L (ii); and (H1) only through the terms with $QW$ of Thm c10-D1, which do not enter $C_x$. Gauge invariance enters through $sO=0$: for a functional of the fields $\AV,\Ap,\lambda$ alone, $sO=0$ is the gauge invariance of its density.
+\end{remark}
+
+\begin{corollary}[Local decomposition of $D_1$ and $P_1$]
+\label{cor:cc-D1local}
+Under (H1)--(H3) of Def c10-hyp, for $O=\int\omega X_1\cdots X_n$,
+\[
+\begin{aligned}
+D_1(O)&=\sum_{a<b}\pm\int\omega\cdots\Big[4\,\mathrm K^{\log}(X_a,X_b)+C^{(2)}_\Delta(X_a,X_b)\Big]\cdots\\
+&\qquad+\sum_a\int\omega\cdots\Big[-4u\,n_F(X_a)X_a-\{F'_\Delta,X_a\}\Big]\cdots,\\
+P_1(O)&=\sum_{a<b}\pm\int\omega\cdots C^{(2)}_{P_b}(X_a,X_b)\cdots-\sum_a\int\omega\cdots\big\{\hbar F_1^{(1)}(P_b),X_a\big\}\cdots,
+\end{aligned}
+\]
+every term local; $\Xi_\Delta=\sum_{a<b}\pm C^{(2)}_\Delta-\sum_a\{F'_\Delta,X_a\}$.
+\end{corollary}
+
+\begin{proof}
+Insert \eqref{eq:cc-local} into \eqref{eq:cc-D1}; Thm c10-decomp (iii) for $4\,\mathrm{lc}$, and $\{F,-\}$, $\{F'_\Delta,-\}$, $\{\hbar F_1^{(1)}(P_b),-\}$ are derivations.
+\end{proof}
+
+\begin{proposition}[The two routes]
+\label{prop:cc-routes}
+For $O$ as in Cor \ref{cor:cc-D1local}, the $\varepsilon\to0$ limit of the cycles through pairs of letters of $O$ with one special edge and one vertex $S^{(1)}(\Delta)$ anywhere on the cycle (as $\mathcal K_\Delta$, or with one leg on the special edge), minus the trees of $s\,\mathrm{ct}^{(1)}_\Delta(O)$, the graphs of Lemma c8-transfer (route of the special edges, Thm c9-D1), equals $\sum_{a<b}\pm\big[4\mathrm K^{\log}+C^{(2)}_\Delta\big](X_a,X_b)$.
+\end{proposition}
+
+\begin{proof}
+Both routes compute the local representative $D_1(O)$, which is unique (Thm c8-L (i)). In the route of the special edges the one-body terms are the trees with $-\{\hbar F_1^{(1)}(\Delta),O\}$, the arity-one defect of the action joined to $O$ vanishing by eq c9-arity1 (proof of Thm c9-D1); in Cor \ref{cor:cc-D1local} the one-body terms are $-4u\,n_F-\{F'_\Delta,-\}=-\{\hbar F_1^{(1)}(\Delta),-\}$. The two-body sums therefore agree.
+\end{proof}
+
+\begin{example}[The scalar bilinears]
+\label{ex:cc-bilinear}
+For $O=\int\omega(\iota_{w_1}A,\iota_{w_2}A)$, on the part with two legs $\Ap$, Thm c9-D1 and Rem c9-twoeval give the route-of-special-edges value $4\,\mathrm{lc}(O)-\tfrac43u\,O-\tfrac13u\{S^{(1)}(\Delta),O\}$, so by Prop \ref{prop:cc-routes}
+\[
+C^{(2)}_\Delta(\Ap,\Ap)\big|_{\text{outputs }\Ap\Ap}=-\tfrac13u\,v.\,O-\tfrac43u\,O,
+\]
+for the traceless and the trace parts alike. It comes from the single chain of Table \ref{tab:cc-fieldpairs}: $\Ap\xrightarrow{K_\varepsilon-K_0}\big([\Ap,c],A^*|_\perp\big)\xrightarrow{\mathcal K_\Delta}\AV(\Ap)^2\xrightarrow{P}\Ap$. Its position part is $-\tfrac23u\,\partial_b(\cdots)$, so $C^{(2)}_{P_b}=-\tfrac13u\{S^{(1)}(P_b),O\}$, in agreement with Thm c9-P1 ($-2+\tfrac53$, the composite triangle and the composite two-point functional along $P_b$); its translation-invariant part is $-\tfrac23u\,w_O\,O-\tfrac43u\,O=-\tfrac83u\,O$.
+\end{example}
+
+\begin{remark}[Two-component form of Section 3]
+\label{rem:cc-twocomp2}
+In the components of Def c8-twocomp the injected momentum enters the segment $\langle A^*_m\,c\rangle$ after the vertex $\int((2E+2)A_m,A^*_m)$; the insertion factors are $2$ (for $2\int(A_m,A^*_m)$), $2i(l+q_c)_n$ (for $2\int x_n(\partial_nA_m,A^*_m)$) and $ib_n(l+q_c)_n$ along $P_b$. A gaugino edge enters $F_m$ as $-(-,-)^{-1}(l+q_j)_m\sigma^m_{\alpha\dot\beta}$ (Prop c8-twocomp); the special edge on $(\lambda_\alpha{}^i,\lambda^{*\beta}{}_j)$ carries $-|l+q_\sigma|^2\delta_\alpha^\beta\delta^i_j(-,-)^{-1}$ and on $(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\beta j})$ the opposite sign, from $(\lambda,\lambda^*)=(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})$. Example \ref{ex:cc-bilinear} reads, for $O=\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$: $C^{(2)}_\Delta=u\big[-\tfrac13\big((2E+2)A_{ij}\big)A_{kl}-\tfrac13A_{ij}(2E+2)A_{kl}-\tfrac43A_{ij}A_{kl}\big]$ with the same contraction.
+\end{remark}
+
+\section{The statement to test: Conjecture P7 and the translation component}
+\label{sec:cc-test}
+
+\subsection{The free directions and what the arity-one equations fix}
+
+\begin{definition}[Arity-one finite counterterms along $\Delta$ and $P_b$]
+\label{def:cc-free}
+Write, with $F'^{\rm tr}:=u\big[-\tfrac23\int(A,A^*)+\tfrac13\int(\lambda^*,\lambda)+\tfrac43\int(c^*,c)\big]$ the translation-invariant part of Thm c9-quadratic (iii),
+\[
+\begin{aligned}
+\hbar F_1^{(1)}(\Delta)&=4uF+F'_\Delta,\\
+F'_\Delta&=F'^{\rm tr}+u\sum_\diamond\theta_\diamond S_\diamond+u\,Q\Big(\kappa_V\int(\iota_x\AV,c^*)+\kappa_\lambda\int(\rho(x)\lambda^*,\lambda^*)\Big)+(\text{cubic and higher}),\\
+\hbar F_1^{(1)}(P_b)&=u\sum_\diamond\theta^P_\diamond S_\diamond(P_b)+u\,Q\Big(\kappa^P_V\int(\iota_b\AV,c^*)+\kappa^P_\lambda\int(\rho(b)\lambda^*,\lambda^*)\Big)+(\text{cubic and higher}),
+\end{aligned}
+\]
+$\diamond\in\{\perp,\lambda,V\}$, all coefficients numbers; in a scheme invariant under $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$ and the reflection of Thm c9-quadratic (iii) there are no further quadratic directions (Prop \ref{prop:cc-tc0}). The scheme is translation covariant if $\hbar F_1^{(1)}(\Delta)-2x^b\hbar F_1^{(1)}(P_b)$ has no position part (Def \ref{def:cc-canonical}): $\theta^P_\diamond=\theta_\diamond$, $\kappa^P=\kappa$ and the same for the higher terms.
+\end{definition}
+
+\begin{proposition}[Completeness of the quadratic directions]
+\label{prop:cc-tc0}
+Let $\mathcal F_{-1}$ ($\mathcal F_{-2}$) be the quadratic local functionals of degree $-1$ ($-2$), Weyl weight $4$ with the position at $-1$, at most linear in the position, invariant under $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$. Then
+\[
+\frac{\ker\big(Q|_{\mathcal F_{-1}}\big)}{Q\,\mathcal F_{-2}}\Big|_{\text{parity even}}=\mathrm{span}\{S_\perp,\ S_\lambda,\ S_V\},\qquad Q\,\mathcal F_{-2}=\mathrm{span}\Big\{Q\!\int(\iota_x\AV,c^*),\ Q\!\int(\rho(x)\lambda^*,\lambda^*)\Big\},
+\]
+and without the parity condition the quotient has the one further class $\int(\lambda^*,\rho(v_1v_2v_3v_4)\lambda)$.
+\end{proposition}
+
+\begin{proof}
+By Schur, $\mathcal F_{-1}$ is spanned by $\int(A^*|_V,D\AV)$, $D\in\{1,\ x\cdot\partial,\ x_a\partial_b,\ x_b\partial_a,\ \epsilon_{ab\mu\nu}x^\mu\partial^\nu\}$; $\int(A^*|_\perp,D\Ap)$, $D\in\{1,x\cdot\partial\}$; $\int(\lambda^*,D\lambda)$, $D\in\{1,\ x\cdot\partial,\ \rho(x)\rho(\partial)\}\cdot\{1,\rho(v_1v_2v_3v_4)\}$; $\int(c^*,Dc)$, $D\in\{1,x\cdot\partial\}$; $\mathcal F_{-2}$ by $\int x^\mu(A_\mu,c^*)$, $\int(\lambda^*,\rho(x)\lambda^*)$, $\int(\lambda^*,\rho(v_1v_2v_3v_4)\rho(x)\lambda^*)$. The structures with $\epsilon$ or one factor $\rho(v_1v_2v_3v_4)$ are parity odd. With $Q$ of Prop c1-Q, exact computation of the plane-wave normal forms (\texttt{revise.nosync/tc0/tc0.py}): ranks $\dim\mathcal F_{-1}=2+3+6=11$ (parity even), $\dim\ker Q=1+2+2$, $\dim Q\mathcal F_{-2}=0+1+1$ in the sectors $\perp$, $\lambda$, $V\oplus c$; the kernel is $S_\perp$; $S_\lambda$, $Q\int(\rho(x)\lambda^*,\lambda^*)$; $S_V$, $Q\int(\iota_x\AV,c^*)$. Without parity: $\dim\mathcal F_{-1}=15$, the $\epsilon$-structure is not closed, $\int(\lambda^*,\rho(v_1v_2v_3v_4)\lambda)$ is closed and not exact, and $\int(\lambda^*,\rho(v_1v_2v_3v_4)\rho(x)\lambda^*)=0$.
+\end{proof}
+
+\begin{proposition}[What the arity-one equations fix]
+\label{prop:cc-arity1}
+\begin{itemize}
+\item[(i)] Along $\Delta$ the quadratic part of eq c9-arity1 fixes $F'^{\rm tr}$ (Thm c9-quadratic (iii)) and leaves $\theta_\perp,\theta_\lambda,\theta_V,\kappa_V,\kappa_\lambda$ free. Along $P_b$ the quadratic part of the arity-one obstruction vanishes (Prop \ref{prop:cc-position}), so the quadratic part of $\hbar F_1^{(1)}(P_b)$ is $Q$-closed and every coefficient in Def \ref{def:cc-free} is free; the translation-covariant choice $\hbar F_1^{(1)}(P_b)=\tfrac12\big(\hbar F_1^{(1)}(\Delta)\big)^b$ solves the equation along $P_b$ at every order in the fields.
+\item[(ii)] Two solutions along $\Delta$ differ by an $s$-closed local functional of degree $-1$ and Weyl weight $4$ (position at $-1$). The common shift $\theta_\diamond\mapsto\theta_\diamond+t$ adds $tu\,S^{(1)}(\Delta)$, which is $s$-closed (Lemma c9-SDelta (iii)); the $\kappa$-directions complete to $s\big(\kappa_V\int(\iota_x\AV,c^*)+\kappa_\lambda\int(\rho(x)\lambda^*,\lambda^*)\big)$, $s$-exact; they contribute $s\{G,O\}$ to $D_1(O)$ on cocycles, zero on cohomology.
+\item[(iii)] Since $\{I,S^{(1)}(\Delta)\}=0$ while $\{I,S_\diamond\}\neq0$, the cubic part of eq c9-arity1 depends on the $\theta_\diamond$ through $\delta_\perp\{I_3,S_\perp\}+\delta_\lambda\{I_3,S_\lambda\}$, $\delta_\perp:=\theta_\perp-\theta_V$, $\delta_\lambda:=\theta_\lambda-\theta_V$, $I_3$ the cubic part of $I$. It is solvable exactly when
+\[
+\begin{aligned}
+&\delta_\perp\{I_3,S_\perp\}+\delta_\lambda\{I_3,S_\lambda\}\equiv\big(\text{cubic composite part}\big)-\{I_3,F'^{\rm tr}\}\\
+&\qquad\pmod{Q(\text{cubic local functionals of degree }-1)},
+\end{aligned}
+\]
+the cubic composite part being the cubic part of $s\Pi_\Delta$ (Thm \ref{thm:cc-local}, proof (C)). If the classes of $\{I_3,S_\perp\}$ and $\{I_3,S_\lambda\}$ modulo the $Q$-images of the cubic local functionals of degree $-1$, Weyl weight $4$ and degree at most one in the position are linearly independent, the cubic equation fixes $(\delta_\perp,\delta_\lambda)$; the same holds along $P_b$ with $S_\diamond(P_b)$, and in the translation-covariant scheme the values along $P_b$ are the position parts of those along $\Delta$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Thm c9-quadratic (iii); Prop \ref{prop:cc-position} for $P_b$. For the covariant choice: $s$ maps letters to letters and has no position, so it commutes with taking the position part, and $\big(\hbar\,\mathrm{Ob}^{(1)}(\Delta)\big)^b=2\hbar\,\mathrm{Ob}^{(1)}(P_b)$ by Prop \ref{prop:cc-position} (the term $4u\,sF$ has no position part). (ii) Thm c8-obstruction (iii) restricted to arity one along $\Delta$; Lemma c10-deriv: $\{sG,O\}=-s\{G,O\}$ for $sO=0$ and $G$ of even degree $-2$. (iii) $s(u\sum_\diamond\theta_\diamond S_\diamond)=u\sum_\diamond\theta_\diamond\{I,S_\diamond\}$, and $\sum_\diamond\{I,S_\diamond\}=0$; at cubic order $s(F'_\Delta)$ is $QF'_{\Delta,3}+\{I_3,F'_{\Delta,2}\}$.
+\end{proof}
+
+\subsection{The arity-two equation along $(\Delta,P_b)$}
+
+\begin{theorem}[The position part of $D_1$ is exact]
+\label{thm:cc-arity2}
+Assume a one-loop quantisation through arity two along $\Delta$ and $P_b$ (eq c8-qme modulo $\hbar^2$ in its components of arity at most two along these generators) and local representatives through arity two along $(\Delta,P_b)$ on a space $\mathfrak F$ of local functionals stable under $\Lambda$, with $P_1(\int\omega D)=\int\omega P^b_1(D)$ translation covariant (true when $\hbar F_1^{(1)}(P_b)$ is translation invariant). Then for every $O=\int\omega D\in\mathfrak F$ with $sO=0$,
+\[
+\int\omega\,D_1^b(D)=\big[D_1,\{S^{(1)}(P_b),-\}\big](O)=\pm\,s\big(\hbar L_1(O)^{(2)}(\Delta,P_b)\big):
+\]
+the position part of $D_1$ is $s$-exact on cocycles, with the arity-two component of $O$ as primitive.
+\end{theorem}
+
+\begin{proof}
+By Cor c8-homotopy (ii), $[\Lambda^{(1)}(\Delta),\Lambda^{(1)}(P_b)]+\Lambda^{(1)}([\Delta,P_b])$ is a graded commutator of $\Lambda^{(0)}$ with an operator built from $\Lambda^{(2)}(\Delta,P_b)$. With $[\Delta,P_b]=-2P_b$ (Rem c2-dilatation) and $S^{(2)}(\Delta,P_b)=0$ (Def c2-S2), the order-$\hbar^0$ part of that operator vanishes and the order-$\hbar$ part of the identity reads
+\[
+[D_1,\partial_b]+[v.,P_1]-2P_1=[s,H_1],
+\]
+$\partial_b=\{S^{(1)}(P_b),-\}$, $v.=\{S^{(1)}(\Delta),-\}$, $H_1$ built from $\hbar L_1^{(2)}(\Delta,P_b)$. For translation-covariant $P_1$, $v.(P_1O)=\int\omega\,2(x\cdot\partial+w_D+1)P_1^b(D)$ and $P_1(v.O)=\int\omega\big(2x^\mu P_1^b(\partial_\mu D)+2w_DP_1^b(D)\big)$, so $[v.,P_1]=2P_1$. Lemma \ref{lem:cc-canonical} gives $[D_1,\partial_b]$. On a cocycle $[s,H_1]O=s(H_1O)$.
+\end{proof}
+
+\begin{lemma}[Position part of a bracket]
+\label{lem:cc-bracketpos}
+For a local functional $G=\int\big(x^bg_b+g_0\big)$ in canonical form, the position part of $\{G,-\}$ is $\{\int g_b,-\}$.
+\end{lemma}
+
+\begin{proof}
+The bracket contracts a slot of $g_b$ at $y$ with a letter $\partial^\alpha\varphi$ of $D$ at $x$ through $K_0$, which gives $\partial^\alpha_x\big(x^b\,\cdots\big)$; the term with no derivative on $x^b$ is $x^b$ times the bracket with $\int g_b$, the others have no position.
+\end{proof}
+
+\begin{corollary}[The translation composite kernel fixes $\theta$; the translation component]
+\label{cor:cc-theta}
+Under the hypotheses of Theorem \ref{thm:cc-arity2} and (H1)--(H3), on every cocycle $O\in\mathfrak F$:
+\begin{itemize}
+\item[(i)] $2C_{P_b}(O)-\{(F'_\Delta)^b,O\}$ is $s$-exact, with $(F'_\Delta)^b=2u\sum_\diamond\theta_\diamond S_\diamond(P_b)+u\,Q\big(\kappa_V\int(\iota_b\AV,c^*)+\kappa_\lambda\int(\rho(b)\lambda^*,\lambda^*)\big)+(\text{position parts of the higher terms})$.
+\item[(ii)] If $\theta_\perp=\theta_\lambda=\theta_V=:\theta$, then $C_{P_b}\cong u\theta\,\{S^{(1)}(P_b),-\}$ on the cohomology of $\mathfrak F$. On every family in which $\{S^{(1)}(P_b),O\}=\int\omega\,\partial_bD$ is not exact for some cocycle, the composite translation kernel determines $\theta$.
+\item[(iii)] In the translation-covariant scheme, $D_1^b=2P_1$, and the arity-two equation along $(\Delta,P_b)$ is equivalent to $P_1\cong0$ on cohomology: $P_1(O)=\pm\tfrac12s\big(\hbar L_1(O)^{(2)}(\Delta,P_b)\big)$.
+\item[(iv)] If $\theta^P_\diamond=\theta_P$ for all $\diamond$, then $P_1\cong u(\theta-\theta_P)\{S^{(1)}(P_b),-\}$ on cohomology, and the single finite part $\hbar\psi'=\tfrac a2\{S^{(1)}(\Delta),-\}$, $a=u(\theta-\theta_P)$, of Prop c9-scheme sets $P_1\cong0$ on every family at once, leaving $D_1$, $M_1$, $R_1$ unchanged and changing $K_1$, the components along $\Sigma$ and along $\Sigma^*$ by $a$, $-\tfrac a2$, $\tfrac a2$ times the classical transformation. If $\theta^P_\diamond-\theta_\diamond$ depends on $\diamond$, no multiple of $\{S^{(1)}(\Delta),-\}$ does so on a family whose cocycles mix the sectors; the covariant scheme does.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+(i) By Cor \ref{cor:cc-D1local} and Prop \ref{prop:cc-position}, the position part of $D_1$ is $2\sum\pm C^{(2)}_{P_b}-\{(F'_\Delta)^b,-\}$ ($4\,\mathrm{lc}$ and $4u\{F,-\}$ commute with translations), with Lemma \ref{lem:cc-bracketpos}; Theorem \ref{thm:cc-arity2}. The position part of $S_\diamond$ is $2\int x^b(\text{density of }S_\diamond(P_b))$ (Def \ref{def:cc-kernels}). (ii) For equal $\theta$ the $\theta$-term is $2u\theta S^{(1)}(P_b)$, which is $s$-closed, and needs no higher completion; the $\kappa$-terms are $s$-exact after completion, and $\{sG,O\}=-s\{G,O\}$. (iii) In the covariant scheme $(F'_\Delta)^b=2\hbar F_1^{(1)}(P_b)$ and $P_1=C_{P_b}-\{\hbar F_1^{(1)}(P_b),-\}$ (Cor \ref{cor:cc-D1local}). (iv) $P_1=C_{P_b}-\{\hbar F_1^{(1)}(P_b),-\}\cong u(\theta-\theta_P)\{S^{(1)}(P_b),-\}$ by (ii); Prop c9-scheme with $\lambda_{P_b}=-2$. For sector-dependent differences, $P_1\cong u\sum_\diamond(\theta_\diamond-\theta^P_\diamond)\{S_\diamond(P_b),-\}$ plus higher completions, which is not a multiple of $\{S^{(1)}(P_b),-\}$ on a cocycle with letters of two sectors.
+\end{proof}
+
+\subsection{Conjecture P7 as statements about the composite kernels}
+
+For a monomial $\int\omega\,X_1\cdots X_n$ of field letters $X_a=\partial^{\alpha_a}\varphi_a$ ($\varphi_a\in\{\AV,\Ap,\lambda\}$) let
+\[
+N\Big(\int\omega\,X_1\cdots X_n\Big):=\sum_a\big(2+|\alpha_a|\big)\int\omega\,X_1\cdots X_n,
+\]
+extended linearly; it is defined on canonical forms, and $[N,\{S^{(1)}(P_b),-\}]=\{S^{(1)}(P_b),-\}$ in the sense of Lemma \ref{lem:cc-canonical}.
+
+\begin{lemma}[One-body terms at the point of Conjecture P7]
+\label{lem:cc-onebody}
+For equal $\theta_\diamond=\theta$, $\kappa=0$, and the quadratic part of $F'_\Delta$, the translation-invariant part of $-\{F'_\Delta,X\}$ on a field letter $X=\partial^\alpha\varphi$ is $u\big(c_\varphi-2\theta\,w_X\big)X$ with $c_{\AV}=c_{\Ap}=\tfrac23$, $c_\lambda=\tfrac13$, $c_c=\tfrac43$, and its position part is $-2u\theta\,\partial_bX$. At $\theta=-\tfrac13$ the translation-invariant part is $\tfrac23u\,(2+|\alpha|)X$ for every field slot (and for $c$), so $-\sum_a\{F'_\Delta,X_a\}^0=\tfrac23u\,N$.
+\end{lemma}
+
+\begin{proof}
+$\{\int(A,A^*),X\}=X$, $\{\int(\lambda^*,\lambda),\lambda\}=-\lambda$, $\{\int(c^*,c),c\}=-c$ (Lemma c4-count), and $\{S_\diamond,X\}=v.X$ in the sector of $X$, with $v.^0=2w_X$ and $v.^b=2\partial_b$ (Lemma \ref{lem:cc-canonical}). At $\theta=-\tfrac13$: $\tfrac23+\tfrac23(1+|\alpha|)$, $\tfrac13+\tfrac23(\tfrac32+|\alpha|)$ and $\tfrac43+\tfrac23|\alpha|$ are all $\tfrac23(2+|\alpha|)$.
+\end{proof}
+
+\begin{conjecture}[P7, testable form]
+\label{conj:cc-P7}
+Let $\mathfrak F$ be a family of gauge-invariant cocycles of field letters, stable under $\Lambda$, satisfying (H2)--(H3).
+\begin{itemize}
+\item[(a)] (arity one) The cubic part of eq c9-arity1 forces $\theta_\perp=\theta_\lambda=\theta_V$.
+\item[(b)] (translation kernel) $\sum_{a<b}\pm C^{(2)}_{P_b}(X_a,X_b)\cong-\tfrac13u\,\{S^{(1)}(P_b),-\}$ on the cohomology of $\mathfrak F$.
+\item[(c)] (translation-invariant dilatation kernel) $\sum_{a<b}\pm C^{(2),0}_\Delta(X_a,X_b)\cong-\tfrac23u\,N$ on the cohomology of $\mathfrak F$, $C^{(2),0}_\Delta$ the translation-invariant part of $C^{(2)}_\Delta$.
+\end{itemize}
+\end{conjecture}
+
+\begin{remark}[Dependences among (a)--(c)]
+\label{rem:cc-P7dep}
+(1) Lemma \ref{lem:cc-canonical} applied to $C^{(2)}_\Delta$ and Prop \ref{prop:cc-position} give, pair by pair,
+\[
+\big[C^{(2),0}_\Delta,\partial_b\big]=2\,C^{(2)}_{P_b},\qquad\text{hence}\qquad (c)\text{ on }\mathfrak F\text{ and on }\partial_b\mathfrak F\ \Longrightarrow\ \sum\pm C^{(2)}_{P_b}\cong-\tfrac13u\,[N,\partial_b]=-\tfrac13u\,\partial_b .
+\]
+The content of (b) independent of (c) is in the directions $b$ with $\partial_b\mathfrak F\not\subset\mathfrak F$. (2) The equality of the three coefficients asserted in (a) follows from (b) on three single-sector families and the hypotheses of Theorem \ref{thm:cc-arity2} (Prop \ref{prop:cc-theta-sector}); the cubic arity-one equation is then a consistency condition. (3) (b) and (c) are identities between graph sums and the derivation $N$ at the regulator of Def c8-PT; the numbers $-\tfrac13$, $-\tfrac23$ are finite parts of special-edge cycles, which depend on the cutoff shape (Rem c10-scheme1 (d), Prop c10-shape). The statement independent of the scheme is the spectrum of $D_1$ at the coefficients fixed by the arity-two equation (Rem c10-scheme1).
+\end{remark}
+
+\begin{theorem}[Consequences]
+\label{thm:cc-P7}
+Assume (a), (b) and (c) on $\mathfrak F$.
+\begin{itemize}
+\item[(i)] $\Xi_\Delta\cong-(\tfrac13+\theta)u\,\{S^{(1)}(\Delta),-\}$ on the cohomology of $\mathfrak F$: the assumption of Cor c10-P7.
+\item[(ii)] Under the hypotheses of Theorem \ref{thm:cc-arity2}, and if $\{S^{(1)}(P_b),O\}$ is not exact for some cocycle $O\in\mathfrak F$, $\theta=-\tfrac13$, $\Xi_\Delta\cong0$, $D_1\cong4\,\mathrm{lc}^\natural$, and the spectrum of $D_1$ on $\mathfrak F$ in a fixed classical weight is twice that of the one-loop dilatation coefficients, $-8u\,E_H$ on planar families (Cor c10-beisert).
+\item[(iii)] In the translation-covariant scheme $P_1\cong0$ on $\mathfrak F$; otherwise Cor \ref{cor:cc-theta} (iv).
+\end{itemize}
+Conversely, if $\Xi_\Delta\cong-(\tfrac13+\theta)u\{S^{(1)}(\Delta),-\}$ for equal $\theta_\diamond$, then (b) and (c) hold on $\mathfrak F$.
+\end{theorem}
+
+
+\begin{proof}
+(i) By Cor \ref{cor:cc-D1local}, $\Xi_\Delta=\sum\pm C^{(2)}_\Delta-\sum_a\{F'_\Delta,X_a\}$. Position part: $2\sum\pm C^{(2)}_{P_b}-2u\theta\,\partial_b\cong-\tfrac23u\,\partial_b-2u\theta\,\partial_b=-2(\tfrac13+\theta)u\,\partial_b$ by (b) and Lemma \ref{lem:cc-onebody}. Translation-invariant part: by (c) and Lemma \ref{lem:cc-onebody}, $-\tfrac23uN+\sum_au\big(c_{\varphi_a}-2\theta w_{X_a}\big)=-\tfrac23uN+\tfrac23uN-2(\tfrac13+\theta)u\,w_O$, using $\sum_a(c_{\varphi_a}+\tfrac23w_{X_a})=\tfrac23N$. Together $-(\tfrac13+\theta)u\big(2x\cdot\partial+2w_O\big)=-(\tfrac13+\theta)u\,v.$. (ii) By Theorem \ref{thm:cc-arity2} the position part of $D_1$, $-2(\tfrac13+\theta)u\,\partial_b$ on cohomology, is exact; $\partial_bO$ is not exact for that cocycle, so $\theta=-\tfrac13$; Thm c10-brst, Cor c10-beisert. (iii) Cor \ref{cor:cc-theta} (iii). The converse reverses the two computations of (i).
+\end{proof}
+
+\begin{proposition}[The arity-two equation fixes each sector coefficient]
+\label{prop:cc-theta-sector}
+Assume the hypotheses of Theorem \ref{thm:cc-arity2} and (H1)--(H3). For $\diamond\in\{\perp,\lambda,V\}$ let $\mathfrak F_\diamond$ be a family of gauge-invariant cocycles whose two-field parts have letters of the sector $\diamond$ only, with a cocycle $O$ for which $\partial_bO$ is not exact:
+\[
+\mathfrak F_\perp\ni\operatorname{tr}\big(D_n^kZ\,D_n^{S'-k}Z\big),\qquad \mathfrak F_\lambda\ni\operatorname{tr}\big(D_n^k\psi\,D_n^{S'-k}\psi\big),\qquad \mathfrak F_V\ni\operatorname{tr}\big(D_n^kF_{11}\,D_n^{S'-k}F_{11}\big).
+\]
+If (b) holds on $\mathfrak F_\diamond$, then $\theta_\diamond=-\tfrac13$. In particular (b) on the three families gives $\theta_\perp=\theta_\lambda=\theta_V=-\tfrac13$, the equality asserted in (a), and the cubic part of eq c9-arity1 must then admit the solution $\delta_\perp=\delta_\lambda=0$.
+\end{proposition}
+
+\begin{proof}
+By Cor \ref{cor:cc-D1local}, Prop \ref{prop:cc-position} and Lemma \ref{lem:cc-bracketpos}, the position part of $D_1$ is $2\sum\pm C^{(2)}_{P_b}-\{(F'_\Delta)^b,-\}$. On the two-field part only the quadratic part of $F'_\Delta$ acts, on the two-field part of $O$; as in Lemma \ref{lem:cc-onebody}, $-\{u\theta_{\diamond'}S_{\diamond'},X\}$ has position part $-2u\theta_\diamond\partial_bX$ for $\diamond'=\diamond$ the sector of $X$ and $0$ otherwise, and the $\kappa$-terms are $s$-exact (Prop \ref{prop:cc-arity1} (ii)). With (b), on the cohomology of $\mathfrak F_\diamond$:
+\[
+\big(D_1\big)^b\cong-\tfrac23u\,\partial_b-2u\theta_\diamond\,\partial_b=-2u\big(\tfrac13+\theta_\diamond\big)\partial_b .
+\]
+By Theorem \ref{thm:cc-arity2} the left side is $s$-exact on cocycles, and $\partial_bO$ is not exact, so $\theta_\diamond=-\tfrac13$. The last statement is Prop \ref{prop:cc-arity1} (iii); the existence of the quantisation is a hypothesis of Theorem \ref{thm:cc-arity2}.
+\end{proof}
+
+\begin{corollary}[$D_1$ without assumption (a)]
+\label{cor:cc-noA}
+Under the hypotheses of Prop \ref{prop:cc-theta-sector}, if (b) holds on $\mathfrak F_\perp$, $\mathfrak F_\lambda$, $\mathfrak F_V$ and (b), (c) hold on $\mathfrak F$, then on the cohomology of $\mathfrak F$
+\[
+\Xi_\Delta\cong0,\qquad D_1\cong4\,\mathrm{lc}^\natural,\qquad \operatorname{Spec}D_1=-8u\,E_H\ \text{on planar families},\qquad P_1\cong0\ \text{in the translation-covariant scheme}.
+\]
+\end{corollary}
+
+\begin{proof}
+Prop \ref{prop:cc-theta-sector} gives equal $\theta_\diamond=-\tfrac13$; Theorem \ref{thm:cc-P7} (i)--(iii).
+\end{proof}
+
+\begin{proposition}[The planar scalar sector]
+\label{prop:cc-scalar}
+On the part with outputs $\Ap$ of the planar scalar sector (Prop c10-scalarsector), (b) and (c) hold, as identities modulo terms whose sum over the cyclically adjacent pairs vanishes: per adjacent pair $C^{(2)}_\Delta=-\tfrac16u\,v.(X_aX_b)-\tfrac23u\,X_aX_b$, $C^{(2)}_{P_b}=-\tfrac16u\,\partial_b(X_aX_b)$, so that on $O=\operatorname{tr}(\iota_{w_1}A\cdots\iota_{w_L}A)$, $C_\Delta(O)=-u\big(\tfrac13v.+\tfrac23L\big)O$, $C_{P_b}(O)=-\tfrac13u\,\partial_bO$ and $\sum C^{(2),0}_\Delta=-\tfrac43uL=-\tfrac23uN$. On the bilinears these are exact identities (Example \ref{ex:cc-bilinear}).
+\end{proposition}
+
+\begin{proof}
+Prop c10-scalarsector (i), (e): the composite terms of Chapter 10 are $\widetilde C^{(2)}_\Delta=-v.(X_aX_b)$ units per pair and $C^{(1)}_\Delta(X)=u(\tfrac53v.X-\tfrac23X)$ per letter (Rem c9-Pi); by Thm \ref{thm:cc-local} (v) their sum is $\sum C^{(2)}_\Delta$, and distributing the one-body term over the two adjacent pairs of each letter gives the per-pair density. For $L$ letters without derivatives $N=2L$ and $v.^0=2w_O=2L$: $-\tfrac13u\cdot2L-\tfrac23uL=-\tfrac43uL=-\tfrac23u\cdot2L$. The translation kernel: Thm c9-P1, $-2+\tfrac53=-\tfrac13$.
+\end{proof}
+
+\begin{remark}[The scalar check reaches the one-body terms only through $\theta$]
+\label{rem:cc-scalarcheck}
+Statement (c) is sharp: at $\theta=-\tfrac13$ the scalar sector gives $\Xi^0_\Delta=-\tfrac43uL+\tfrac43uL=0$ letter by letter, the composite kernel cancelling the uniform one-body term $\tfrac23u(2+|\alpha|)$ of Lemma \ref{lem:cc-onebody}. On families with derivatives, field strengths or fermions the one-body term is again $\tfrac23u(2+|\alpha|)$ per letter, so (c) predicts that the translation-invariant composite kernel acts on cohomology as $-\tfrac23u(2+|\alpha_a|)$ per letter summed: for twist two $\operatorname{tr}\big((\iota_nd_{\AV})^kZ(\iota_nd_{\AV})^{S'-k}Z\big)$ the eigenvalue $-\tfrac23u(4+S')$ on the two-field part.
+\end{remark}
+
+\begin{remark}[Two-component form of Section 4]
+\label{rem:cc-twocomp3}
+$S_\perp(P_b)=\tfrac14\int(b_m\partial_mA^{ij},A^*_{ij})$, $S_\lambda(P_b)=-\int\big[(b_m\partial_m\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(b_m\partial_m\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\big]$, $S_V(P_b)=\int(b_m\partial_mA_n,A^*_n)-\int(b_m\partial_mc,c^*)$; $S_\diamond$ as in Rem c10-twocomp with $2E=2x_m\partial_m$. $F'^{\rm tr}=u\big\{-\tfrac23\int[(A_m,A^*_m)+\tfrac14(A^{ij},A^*_{ij})]+\tfrac13\int[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})]+\tfrac43\int(c^*,c)\big\}$. The $\kappa$-directions are $Q\int x_m(A_m,c^*)$ and $Q\int(\rho(x)\lambda^*,\lambda^*)=-2iQ\int x_m(\lambda^{*\alpha}{}_i,\sigma^m_{\alpha\dot\alpha}\bar\lambda^{*\dot\alpha i})$. The derivation $N$ counts $2$ per letter $A_m$, $A_{ij}$, $\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}$ plus one per derivative $\partial_m$ on it; (b) reads $C_{P_b}\cong-\tfrac13u\,b_m\partial_m$ on cohomology. The parity-odd class of Prop \ref{prop:cc-tc0} is $\int\big[(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)+(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\big]$, the rotation $\lambda_\alpha{}^i\mapsto e^{i\varphi}\lambda_\alpha{}^i$, $\bar\lambda_{\dot\alpha i}\mapsto e^{-i\varphi}\bar\lambda_{\dot\alpha i}$ of the free gaugino; the $\kappa$-directions are $Q\int x_m(A_m,c^*)$ and $Q\int(\rho(x)\lambda^*,\lambda^*)$. In Prop \ref{prop:cc-theta-sector}: $\mathfrak F_\perp\ni\operatorname{tr}(D_n^kZ\,D_n^{S'-k}Z)$, $\mathfrak F_\lambda\ni\operatorname{tr}(D_n^k\lambda_1{}^i\,D_n^{S'-k}\lambda_1{}^i)$, $\mathfrak F_V\ni\operatorname{tr}(D_n^kF_{11}\,D_n^{S'-k}F_{11})$, $D_n=n_m(\partial_m+[A_m,-])$. In Srednicki's normalisation ($A_m=-igA^a_mT^a$, $u=-\tfrac{g^2N}{32\pi^2}$), $-\tfrac13u=\tfrac{g^2N}{96\pi^2}$.
+\end{remark}
+
+\section{Families and predictions}
+\label{sec:cc-families}
+
+The scheme-independent targets are spectra. With $E_H$ an eigenvalue of $\sum_lH_{l,l+1}$ of [B03c] (N.~Beisert, hep-th/0307015, (1.1)--(1.3)) on a planar family, Cor c10-beisert gives $\mathrm{lc}^\natural=-2u\,E_H$ on eigenstates, and Theorem \ref{thm:cc-P7} predicts $D_1=-8u\,E_H$ ($v=2E$ doubles the anomalous dimension $\tfrac{g^2N}{8\pi^2}E_H=-4uE_H$). The values of $E_H$ below are exact evaluations of the harmonic action [B03c, (4.27)--(4.29)] on the oscillator letters [B03c, (4.9)] (\texttt{src.nosync/ha\_predict.py}, \texttt{ha\_su11.py} $\to$ \texttt{ha\_predictions.json}, \texttt{ha\_su11.json}); they reproduce [B03c, (2.31)] on twist two ($4h(S)$, $h(S)=\sum_{j\le S}\tfrac1j$) and the values $0^{20}$, $6$ on the scalars without derivatives (the $\mathbf{20'}$ and the Konishi operator), which fixes the conventions of the implementation (central charge $n_a-n_b+n_c-2=0$ per site, Koszul signs of the fermionic oscillators, graded cyclicity).
+
+In every family the letters are written as in Def c8-twocomp: $n_m:=\sigma^m_{1\dot1}=(0,0,1,i)$, a null vector, $D_n:=n_m(\partial_m+[A_m,-])$; $Z$ a complex scalar $\iota_wA$ with $(w,w)=0$ ([B03c] $\Phi_{34}$); $\psi:=\lambda_{1}{}^{i}$ for a fixed $i$ ([B03c] $\Psi$ with one $c^\dagger$); $F_{11}$ the component $\alpha=\beta=1$ of the self-dual field strength $(\sigma^{[m}\bar\sigma^{n]})_\alpha{}^\gamma\varepsilon_{\gamma\beta}F_{mn}$ ([B03c] $\mathcal F=(a^\dagger)^2|0\rangle$), whose two-field part is the letter $d\AV$ and whose three-field part is $[\AV\wedge\AV]$. The projection to cohomology on the two-field part is the evaluation on the free equations of motion ($|p|^2=0$ on scalar legs, the Weyl equation on gaugino legs, transverse on-shell gauge legs), which removes the $s$-exact terms $s(\text{antifield}\times\text{field})$; total derivatives are kept (they are descendants through $\omega$).
+
+\begin{center}\small
+\begin{tabular}{p{2.6cm}|p{5.2cm}|p{4.6cm}|p{3.4cm}}
+family & pairs of letters entering the two-field part & prediction (scheme independent) & matrix level\\\hline
+F0 bilinears & $(\Ap,\Ap)$ & $D_1=0$, $-48u$ (Thm c9-D1) & Ex.~\ref{ex:cc-bilinear}, Prop \ref{prop:cc-routes}\\
+F0 planar scalars & adjacent $(\Ap,\Ap)$ & $-8u\,\times$ spectrum of $\sum(1-\mathrm P+\tfrac12\mathrm K)$ & Prop \ref{prop:cc-scalar}\\
+F0 $\mathfrak{su}(2)$, $L\le8$ & adjacent $(Z,Z')$ & $-8u\,\times$ Heisenberg spectra (Prop c10-su2) & (b), (c)\\
+F1 twist two & $(\partial^aZ,\partial^bZ)$, $(\partial^aA_n,\partial^bZ)\to Z$ & $-32u\,h(S)$, $S$ even $\le S'$ & $D_1=-8u(H'_{12}+H'_{21})$\\
+F2 $\mathfrak{su}(1|1)$, $L\le6$ & adjacent $(Z,\psi)$, $(Z,Z)$, $(\psi,\psi)$ & $-8u\,E_H$, Table \ref{tab:cc-su11} & density $-8u(1-\Pi)$\\
+F2 fermion $\mathfrak{sl}(2)$ & $(\partial^a\psi,\partial^b\psi)$, $(\partial^aA_n,\partial^b\psi)\to\psi$ & $-32u\,h(n'+1)$, $n'$ odd & (b), (c)\\
+F2 $\psi^{[i}\psi^{j]}$ with $ZF_{11}$ & $(\psi,\psi')$, $(Z,F_{11})$, mixed & $0$, $-48u$ at $N=0$ & (b), (c)\\
+F3 gluon $\mathfrak{sl}(2)$ & $(\partial^a d\AV,\partial^b d\AV)$, $(\AV,\cdot)$ completions & $-32u\,h(n'+2)$, $n'$ even & (b), (c)\\
+F3 $(F_{11},\psi)$ & $(\partial^ad\AV,\partial^b\psi)$, completions & $-8uE_H$, $E_H=6,6,\tfrac{25}3,\tfrac{25}3,\tfrac{49}5$ ($N'=0..4$) & (b), (c)\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-families}: test families; $(b)$, $(c)$ refer to Conjecture \ref{conj:cc-P7}, which on each family is a matrix identity for the composite kernels.\end{center}
+
+\begin{proposition}[Spectral targets from the harmonic action]
+\label{prop:cc-targets}
+On the two-site graded cyclic states (single traces of two letters) with $N$ derivatives $D_n$ in total:
+\begin{itemize}
+\item[(i)] scalars $D_n^kZ$: $E_H\in\{4h(S):S\text{ even}\le N\}$ [B03c, (2.31)];
+\item[(ii)] gluons $D_n^kF_{11}$: $E_H\in\{4h(n'+2):n'\text{ even}\le N\}$, so $\operatorname{tr}(F_{11}F_{11})$ has $E_H=6$, the Konishi value;
+\item[(iii)] one gaugino component $D_n^k\psi$: $E_H\in\{4h(n'+1):n'\text{ odd}\le N\}$ ($\operatorname{tr}(\psi\psi)=0$ for one component);
+\item[(iv)] two gaugino components $\psi^{(3)},\psi^{(4)}$ ($c_3^\dagger$, $c_4^\dagger$): the family closes on $\operatorname{tr}(Z F_{11})$ ($Z=\Phi_{34}$), and $E_H\in\{0,6\}$ at $N=0$; $\{0,6^3\}$, $\{0,6^4,\tfrac{25}3\}$, $\{0,6^4,\tfrac{25}3^3\}$, $\{0,6^4,\tfrac{25}3^4,\tfrac{49}5\}$ at $N=1,\dots,4$;
+\item[(v)] $(F_{11},\psi)$: $E_H\in\{6\}$, $\{6^2\}$, $\{6^2,\tfrac{25}3\}$, $\{6^2,\tfrac{25}3^2\}$, $\{6^2,\tfrac{25}3^2,\tfrac{49}5\}$ at $N=0,\dots,4$.
+\end{itemize}
+For $\mathfrak{su}(1|1)$ ($Z$ and $\psi=a_1^\dagger c_4^\dagger$) the two-site harmonic action is $H_{12}=1-\Pi$ with $\Pi$ the graded exchange ($Z\psi\leftrightarrow\psi Z$, $\psi\psi\mapsto-\psi\psi$), in agreement with Prop c10-su11, and the cyclic spectra are those of Table \ref{tab:cc-su11}.
+\end{proposition}
+
+\begin{proof}
+Exact evaluation of [B03c, (4.27)--(4.29)] with $c_{n,0,0}=h(\tfrac n2)$ on the bases of the families, closed under $H_{12}$ (a state leaving the family is detected and none occurs), with the graded swap for $H_{21}$ and the projection to graded cyclic states; exact eigenvalues by \texttt{sympy}.
+\end{proof}
+
+\begin{center}\small
+\begin{tabular}{l|l}
+$(L,M)$ & $E_H$ on graded cyclic states of $\operatorname{tr}(Z^{L-M}\psi^M)$\\\hline
+$M\le1$ & $0$\\
+$(3,2)$, $(3,3)$ & $6$ (Konishi multiplet)\\
+$(4,2)$, $(4,3)$ & $4$\\
+$(5,2)$, $(5,3)$ & $5\pm\sqrt5$\\
+$(5,4)$, $(5,5)$ & $10$\\
+$(6,2)$ & $2$, $6$\\
+$(6,3)$ & $2$, $6$, $8$, $8$\\
+$(6,4)$ & $8$, $8$, $8$\\
+$(6,5)$ & $8$\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-su11}: $\mathfrak{su}(1|1)$ spectra from the harmonic action ($(2,2)$, $(4,4)$, $(6,6)$: no cyclic state); predicted $D_1=-8uE_H$.\end{center}
+
+\begin{proposition}[Matrix-level expectations]
+\label{prop:cc-matrix}
+On the families of Table \ref{tab:cc-families}, under the hypotheses of Theorem \ref{thm:cc-P7}:
+\begin{itemize}
+\item[(i)] (twist two) on the two-field part, in the basis $(D_n)^kZ\,(D_n)^{S'-k}Z/(k!(S'-k)!)$ evaluated on shell, $D_1=4\,\mathrm{lc}^\natural=-8u\,(H'_{12}+H'_{21})$ with $H'_{12}$ of [B03c, (3.14)]; $\sum\pm C^{(2)}_{P_b}\cong-\tfrac13u\,\partial_b$ and $\sum\pm C^{(2),0}_\Delta\cong-\tfrac23u\,(4+S')$, the pairs $(A_n,Z)$ of the covariant derivatives with one output $Z$ included;
+\item[(ii)] ($\mathfrak{su}(1|1)$) per adjacent pair, $4\,\mathrm{lc}^\natural=-8u(1-\Pi)$; on a single trace of $L$ letters without derivatives $\sum\pm C^{(2)}_\Delta$ has position part $\cong-\tfrac23u\,\partial_b$ and translation-invariant part $\cong-\tfrac43u\,L$, i.e. $\Xi_\Delta\cong0$ at $\theta=-\tfrac13$;
+\item[(iii)] (every family) the position identity $(C^{(2)}_\Delta)^b=2C^{(2)}_{P_b}$ pair by pair, the pole identity and the logarithmic covariance of Thm \ref{thm:cc-local} (iii), with $\mathrm{lc}^{(1)}_\Delta(O)-u\{G_\Delta,O\}$ $s$-closed when $L^{(1)}(\Delta)=u\,sG_\Delta$;
+\item[(iv)] (regression) the quadratic data of Thm c9-quadratic, Rem c9-Pi and Prop c9-triangle, and Example \ref{ex:cc-bilinear}.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i), (ii): Theorem \ref{thm:cc-P7} (ii), Prop c10-twist, Prop c10-su11, Cor c10-beisert; the values of (b), (c) are Conjecture \ref{conj:cc-P7} with $N=4+S'$ on the two-field part of twist two and $N=2L$ on letters without derivatives. (iii) Prop \ref{prop:cc-position} and Thm \ref{thm:cc-local}; for (iii) also $\{sG_\Delta,O\}=-s\{G_\Delta,O\}$ (Lemma c10-deriv). (iv) Chapter 9 and Example \ref{ex:cc-bilinear}.
+\end{proof}
+
+\begin{remark}[Which pairs carry the families]
+\label{rem:cc-pairs}
+The two-field part of a gauge-invariant operator with covariant derivatives receives the pairs of its two leading letters with two outputs, and the pairs of a letter $\AV$ from a covariant derivative (or from the three-field part of a field strength) with another letter, with one output (Prop c10-twist and the engine observation of the two-letter theory that without these the twist-two eigenvalues fail, $-\tfrac83$ units at $S'=2$). For $C^{(2)}_x$ these are the leg sets $\Ap$ of $(\AV,\Ap)$ ($k=1$), $\lambda_\pm$ of $(\AV,\lambda_\pm)$ ($k=1$) and $\AV$ of $(\AV,\AV)$ ($k=1$) in Table \ref{tab:cc-fieldpairs}, with derivatives.
+\end{remark}
+
+\begin{remark}[Physics form of Section 5]
+\label{rem:cc-twocomp4}
+The families in Srednicki's normalisation: $Z=\tfrac1{\sqrt2}(A^5+iA^6)$-type complex scalars, $\psi=\lambda_1{}^i$ (left-handed Weyl, $\mathbf4$ of $SU(4)_R$), $F_{11}$ the self-dual field strength with both undotted indices $1$, $D_n=n^\mu D_\mu$ with $n^\mu$ null; the anomalous dimension is $\gamma=\tfrac{g^2N}{8\pi^2}E_H$ and $D_1=2\gamma$ in the normalisation $v=2E$: twist two $\gamma=\tfrac{g^2N}{2\pi^2}h(S)$; $\operatorname{tr}(F_{11}F_{11})$, $\operatorname{tr}(Z\psi\psi)$, $\operatorname{tr}(\psi\psi\psi)$ and the trace scalar bilinear $\gamma=\tfrac{3g^2N}{4\pi^2}$ (Konishi multiplet).
+\end{remark}
+
+\section{Engine specification}
+\label{sec:cc-engine}
+
+The specification is \texttt{engine\_spec.json} (built by \texttt{src.nosync/build\_engine\_spec.py}); in brief.
+
+\begin{itemize}
+\item Objects. For every pair of the census (Prop \ref{prop:cc-census}) and every leg set within the bound of Prop \ref{prop:cc-bound}: $Z_x(X_a,X_b;\varepsilon)$ for $x=P_b$ and $x=\Delta$, its coefficients $z_m$ and $C^{(2)}_x$, in general colour position ($(1\otimes\mathrm{ad}_{Y_r}\cdots\mathrm{ad}_{Y_1})(-,-)^{-1}$, Lemma c10-colour (i)) and in the planar adjacent form (Lemma c10-colour (iv)); along $\Delta$ in canonical form, position part and translation-invariant part separately; the plain composite cycles and $\mathrm{ct}^{(1)}_x(X_aX_b)$; the composite loops of $I$ with two and three legs (for $L^{(1)}(x)$, the composite part, and the cubic equation of Prop \ref{prop:cc-arity1} (iii)).
+\item \sloppy Route A (Schwinger, exact): chains from the vertex and propagator data of \texttt{step2/twoletter/engine\_a} (\texttt{ea\_core}, \texttt{ea\_kern}, vendored Step-1 vertex functions), extended by two edge types: the special edge (components of $K_0$, Schwinger time in $[0,\varepsilon]$, numerator $-|l+q_\sigma|^2$) and the line $\mathcal K_x$ as two segments with the internal vertex of Lemma \ref{lem:cc-kernels} (iv), the position through the injected momentum $r$ (Def \ref{def:cc-cycle}, Prop \ref{prop:cc-position}); Gaussian loop integral and Theorem \ref{thm:cc-simplex} with exact integrals over the ordered subsimplices of $R_\sigma$ (the integrand $F_m$ times $\log(\alpha_f/\alpha_\sigma)$ or $\alpha_f^m-\alpha_\sigma^m$ on $\{\alpha_\sigma\le\alpha_f\le\text{others}\}$, homogenised and integrated by the Laplace representation); letter derivatives through Prop \ref{prop:cc-genfun}; $k=1$ checked against Prop \ref{prop:cc-k1}.
+\item Route B (momentum space, numerical $\varepsilon$-extrapolation): numerator algebra in momentum space with the explicit kernel form $\mathcal K_\Delta=2(v.\otimes1)\mathcal X+4\varepsilon\partial_\varepsilon\mathcal X$, $v.$ acting on Fourier components as $-2(4+p\cdot\partial_p)+2w$ (engine-B convention of the dilatation runs), the special edge as the factor $e^{-\varepsilon|p|^2}-1$, Feynman parameters for the remaining edges and one-dimensional quadrature in the special time; values at $\geq5$ values of $\varepsilon$ and $\geq3$ kinematic points per leg set, fitted to $\sum_m\varepsilon^{-m}z_m+z_0+\varepsilon(a+b\log\varepsilon)$ with the polynomial ansatz of Prop \ref{prop:cc-bound}; extends \texttt{step2/twoletter/engine\_b} (\texttt{tl\_engine}, \texttt{tl\_integrals}) and the composite-line code of \texttt{step2/engine\_b} (\texttt{delta\_*}, the composite triangle and the composite two-point functionals).
+\item Independence. Route A uses the vertex form with the injected momentum, route B the kernel form with the Euler operator on the ghost end; neither reads the other's outputs before the comparison.
+\end{itemize}
+
+\begin{center}\small
+\begin{tabular}{l|p{12.6cm}}
+gate & content\\\hline
+GC1 & quadratic $L^{(1)}(\Delta)=u\,QG_\Delta$, no $\varepsilon^{-1}$ (Thm c9-quadratic (i)); $L^{(1)}(P_b)=\tfrac12u\,QG_{P_b}$ (Prop \ref{prop:cc-position})\\
+GC2 & composite part $u\big[\tfrac13\int(dA,dA)-\tfrac13\int(\lambda,{\not d}\lambda)-\tfrac23\int(dc,A^*)\big]$ (Thm c9-quadratic (ii)); $\Pi_\Delta|_\perp$ (Rem c9-Pi); composite triangle coefficients $8$, $8$ (Prop c9-triangle); composite part along $P_b$ zero\\
+GC3 & bilinears: $C^{(2)}_\Delta(\Ap,\Ap)|_{\Ap\Ap}=-\tfrac13u\,v.-\tfrac43u$, $C^{(2)}_{P_b}=-\tfrac13u\,\partial_b$, both traceless and trace (Example \ref{ex:cc-bilinear}); route of the special edges equal to Thm c9-D1, first row\\
+GC4 & position identity $(C^{(2)}_\Delta)^b=2C^{(2)}_{P_b}$ graph by graph (Prop \ref{prop:cc-position})\\
+GC5 & no $\log\varepsilon$ in $Z_x$; pole identity $\sum z_m=s(\varepsilon^{-m}\text{ part of }\mathrm{ct}^{(1)}_x)$, with $\mathrm{ct}^{(1)}_x$ from the plain composite cycles (Thm \ref{thm:cc-local} (i), (iii))\\
+GC6 & logarithmic covariance $s\,\mathrm{lc}^{(1)}_x(O)=-\{L^{(1)}(x),O\}$ on the cocycles of the families; cubic part of $L^{(1)}(\Delta)$ equal to that of $u\,sG_\Delta$\\
+GC7 & locality (route B): the $Q$-images of the renormalised composite graphs of a cocycle, evaluated with $\Pi_\Delta$ and $\widetilde C^{(2)}_\Delta$ separately, are nonlocal, and their sum equals $\sum C^{(2)}_\Delta$ (Thm \ref{thm:cc-local} (v)) at $\geq3$ kinematic points\\
+GC8 & two routes: Prop \ref{prop:cc-routes} on the bilinears and on twist two with $S'\le2$\\
+GC9 & Conjecture \ref{conj:cc-P7} (b) on each family of Table \ref{tab:cc-families}\\
+GC10 & Conjecture \ref{conj:cc-P7} (c) on each family\\
+GC11 & spectra: $D_1$ at $\theta=-\tfrac13$ against $-8uE_H$ (Prop \ref{prop:cc-targets}, Table \ref{tab:cc-su11}, twist two)\\
+GC12 & colour: $\mathfrak{su}(2)$, $\mathfrak{su}(3)$, $\mathfrak{gl}(3)$ realisations of the planar adjacent rule (Lemma c10-colour)\\
+GC13 & cubic arity-one test: rank of $\{\{I_3,S_\perp\},\{I_3,S_\lambda\}\}$ modulo the $Q$-images of cubic local functionals of degree $-1$, weight $4$, position degree $\le1$ (Prop \ref{prop:cc-arity1} (iii)); completeness of the quadratic $Q$-closed directions of Def \ref{def:cc-free}\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-gates}: gates.\end{center}
+
+\section{Results of the two routes}
+\label{sec:cc-results}
+
+Route A (Schwinger/simplex, vertex form) and route B (momentum space, kernel form) give, exactly and with no fitted constant, in units $u$ (files \texttt{step2/composite\_qsk/results/composite\_final.json}):
+
+\begin{center}\small
+\begin{tabular}{p{4.2cm}|p{6.6cm}|p{4.6cm}}
+family & composite kernels on the two-field part (on shell) & $D_1$ at $\theta=-\tfrac13$\\\hline
+F0 $(\Ap,\Ap)$, off shell & per adjacent pair $C^{(2),0}_\Delta=-\tfrac43$, $C^{(2)}_{P_b}=-\tfrac16\partial_b$; no exchange, no trace (A, B) & $0$, $-48$; $\mathfrak{su}(2)$, $L\le8$: Heisenberg (A, B)\\
+F1 twist two, $S'\le6$ & $\sum C^{(2),0}_\Delta=-\tfrac23(4+S')$, $\sum C^{(2)}_{P_n}=-\tfrac13\partial_n$ (A $S'\le6$, B and QA $S'\le4$); generic $b$: A ($S'\le2$), QA ($S'\le4$) & $\{0,-48,-\tfrac{200}3,-\tfrac{392}5\}=-32h(S)$\\
+F2 $\mathfrak{su}(1|1)$, $L\le6$ & every ordered pair of $Z,\psi$: $-\tfrac43$, $-\tfrac16(\partial_1+\partial_2)$ same word, $0$ exchanged (A, B) & Table \ref{tab:cc-su11} $\times(-8)$\\
+F2 fermion $\mathfrak{sl}(2)$, $S'\le5$ & $-\tfrac23(4+S')$, $-\tfrac13\partial_n$ (A $S'\le5$, B $S'\le5$) & $-48,-\tfrac{200}3,-\tfrac{392}5$\\
+F2 $\psi^{(3)}\psi^{(4)}$ with $ZF_{11}$, $S'\le2$ & $\mathrm{diag}\big(-\tfrac23(4+S'),-\tfrac23(5+S')\big)$, $-\tfrac13\partial_n$ (B) & $\{0,-48\}$, $\{0,-48^3\}$, $\{0,-48^4,-\tfrac{200}3\}$\\
+F3 gluon $\mathfrak{sl}(2)$, $S'\le2$ & $-\tfrac23(6+S')$, $-\tfrac13\partial_n$ (A $S'\le2$, B $S'\le2$) & $-48$, $-\tfrac{200}3$\\
+F3 $(F_{11},\psi)$, $S'\le4$ & $-\tfrac23(5+S')$, $-\tfrac13\partial_n$ (B) & $-48^2,-\tfrac{200}3^2,-\tfrac{392}5$ at $S'=4$\\
+\end{tabular}
+\end{center}
+\begin{center}\small Table \refstepcounter{equation}\theequation\label{tab:cc-results}: (b), (c) of Conjecture \ref{conj:cc-P7} and the spectra; A, B the routes, QA the independent momentum-space recomputation.\end{center}
+
+Conventions fixed by derivation: $Z_x$ of Def \ref{def:cc-sp} with $s(c,\sigma)$; in route A the factor $(-1)^{[c<\sigma]}$ is carried by the chain convention for a special edge at $X_b$ and applied explicitly for a special edge between two vertices of $I$ (vertex--vertex sign $-1$); routes A and B then agree exactly at all shared off-shell points, $22$ bosonic and $26$ fermionic (exact intertwiner of the two realisations of $\Sigma$), and with the opposite vertex--vertex sign only at $6$ and $12$ of them. The two routes orient $V$ oppositely: the letter $\lambda_+$ of route A is the letter $\lambda_-$ of route B. With all free directions kept, on every family
+\[
+D_1\cong4\,\mathrm{lc}^\natural-u\sum_a\big(\theta_{\diamond(a)}+\tfrac13\big)\,v.X_a,\qquad P_1\cong-u\sum_a\big(\theta^P_{\diamond(a)}+\tfrac13\big)\,\partial_bX_a,
+\]
+$\diamond(a)$ the sector of $X_a$, the $\kappa$-directions $s$-exact.
+
+\section{Status}
+\label{sec:cc-status}
+
+\begin{center}\small
+\begin{tabular}{p{8.6cm}|p{7.4cm}}
+statement & status\\\hline
+Lemma \ref{lem:cc-kernels}, Prop \ref{prop:cc-master}, Prop \ref{prop:cc-position}, Lemma \ref{lem:cc-canonical}, \ref{lem:cc-bracketpos} & proved\\
+Prop \ref{prop:cc-census}, \ref{prop:cc-bound} (census, bound) & proved; enumeration \texttt{census\_sp.json}, no bound violation\\
+Thm \ref{thm:cc-simplex}, Prop \ref{prop:cc-genfun}, \ref{prop:cc-k1} (closed forms) & proved\\
+Thm \ref{thm:cc-local} (locality, two-body form, covariance) & outline; consequences checked indirectly (Rem \ref{rem:cc-localstatus}); GC5c, GC6, GC7, GC8 not run\\
+Cor \ref{cor:cc-D1local}, Prop \ref{prop:cc-routes}, Example \ref{ex:cc-bilinear} & conditional on Thm \ref{thm:cc-local} (iv); the example from Thm c9-D1\\
+Prop \ref{prop:cc-arity1} (i), (ii); (iii) structure & proved; the rank in (iii) (GC13) not computed\\
+Prop \ref{prop:cc-tc0} (completeness of the quadratic directions) & computed (exact); TC0\\
+Thm \ref{thm:cc-arity2}, Cor \ref{cor:cc-theta}, Thm \ref{thm:cc-P7}, Prop \ref{prop:cc-theta-sector}, Cor \ref{cor:cc-noA} & proved under the stated hypotheses\\
+Conjecture \ref{conj:cc-P7} (b), (c) & proved on the planar scalar sector with outputs $\Ap$ (Prop \ref{prop:cc-scalar}); computed exactly on the families of Table \ref{tab:cc-results}\\
+Conjecture \ref{conj:cc-P7} (a) & follows from (b) on $\mathfrak F_\perp,\mathfrak F_\lambda,\mathfrak F_V$ (computed) under the hypotheses of Thm \ref{thm:cc-arity2} (Prop \ref{prop:cc-theta-sector}); the cubic arity-one equation itself (GC13, cubic composite part) not computed\\
+Prop \ref{prop:cc-targets} (spectral targets) & exact evaluations of [B03c, (4.27)--(4.29)], reproduced independently by QA\\
+\end{tabular}
+\end{center}
+
+\end{document}

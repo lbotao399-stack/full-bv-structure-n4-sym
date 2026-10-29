@@ -19,6 +19,11 @@
     close.type = 'button'; close.textContent = 'Close';
     close.setAttribute('aria-label', 'Close narration controls');
     heading.append(title, close); player.prepend(heading);
+    const more = document.createElement('button');
+    more.id = 'reader-player-more'; more.type = 'button'; more.textContent = 'More';
+    more.setAttribute('aria-label', 'More narration controls'); more.setAttribute('aria-controls', player.id);
+    more.onclick = () => setExpanded(true);
+    player.querySelector('.player-row')?.append(more);
     const backdrop = document.createElement('div');
     backdrop.className = 'reader-player-backdrop'; backdrop.hidden = true;
     document.body.append(backdrop);

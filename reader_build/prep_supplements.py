@@ -19,7 +19,8 @@ import convert  # noqa: E402
 
 SKILL = Path.home() / '.claude/skills/academic-audio-lecture/scripts'
 NODE = '/Users/libotao/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
-NODE_PATH = '/Users/libotao/Documents/Codex/2026-10-22/new-chat/work/ch33_lecture/notion-reader/node_modules'
+# the Documents/ copy of node_modules is partly evicted by iCloud; the npx cache copy comes first
+NODE_PATH = '/Users/libotao/.npm/_npx/4b4c857f6efdfb61/node_modules:/Users/libotao/Documents/Codex/2026-10-22/new-chat/work/ch33_lecture/notion-reader/node_modules'
 KATEX = ROOT / 'reader/notion-reader/app/vendor/katex/katex.min.js'
 import chapter_ids  # noqa: E402  (live IDs: chapters >= 8 are cN-NNNNN)
 

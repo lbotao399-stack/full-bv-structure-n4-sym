@@ -1,0 +1,83 @@
+{
+ "meta": {
+  "role": "PART C adversarial referee (composite kernels C^(2)_Delta, C^(2)_{P_b}; D_1, P_1; Conjecture P7)",
+  "date": "2026-10-30",
+  "verdict": "pass_with_fixes",
+  "scope_checked": [
+   "engine A vs engine B, every overlapping entry of results.json (31 entries): no disagreement",
+   "engine B evaluated (copied source, read-only) at every bosonic off-shell row of engine A kernels_C2.json: exact agreement with A for kappa = -1",
+   "QA third method (own momentum-space Feynman rules, Taylor expansion in external momenta, exact tensor reduction and radial integrals; one overall factor fixed once): (AV,AW)->AW off shell, GC3, AW|AW off-shell table, twist two S' <= 4 (P7 (b) along n and generic b, P7 (c)) at generic complex null momenta",
+   "QA harmonic action of [B03c] (4.27)-(4.29), own implementation: all spectral targets of Prop prop:cc-targets and Table tab:cc-su11; engine D_1 matrices = -8 (H_12 + H_21) at matrix level",
+   "theory: Lemma lem:cc-kernels (ii), Prop prop:cc-k1 (W_0, W_m), Lemma lem:cc-canonical, Lemma lem:cc-onebody, Thm thm:cc-P7 (i), Thm thm:cc-arity2 (sign of the bracket term), Cor cor:cc-theta, Prop prop:cc-scalar and Ex ex:cc-bilinear against Ch9/Ch10 numbers, units"
+  ]
+ },
+ "findings": [
+  {
+   "severity": "major",
+   "claim": "Conjecture P7 (a) (equal theta_perp = theta_lambda = theta_V from the cubic arity-one equation) and the completeness of the quadratic Q-closed directions are untested, so D_1 ~ 4 lc^natural, P_1 ~ 0 and the -8u E_H spectra are conditional statements.",
+   "evidence": "Gates GC13 and TC0 'not run' in engine_a/gates.json and engine_b/gates.json; Prop prop:cc-arity1 (iii) leaves (delta_perp, delta_lambda) to be fixed by the cubic composite part (the cubic part of s Pi_Delta), which nobody computed. Engine B (results.json D1_P1_free_directions.arity_two) concludes theta_diamond = -1/3 sector by sector from Thm thm:cc-arity2 on single-sector families; if the cubic arity-one equation forces delta_diamond != 0, the arity-two quantisation assumed in Thm thm:cc-arity2 does not exist and the argument fails. Def def:cc-free itself allows 'possibly further Q-closed quadratic directions'.",
+   "fix": "Run GC13: compute the cubic composite part, the rank of {I_3,S_perp}, {I_3,S_lambda} modulo Q of cubic local functionals of degree -1, Weyl weight 4, position degree <= 1, and check that delta_perp = delta_lambda = 0 solves the cubic equation; run TC0 (linear algebra on plane waves). State in Thm thm:cc-P7 that on single-sector families the arity-two equation alone forces each theta_diamond = -1/3, so (a) is a consistency condition for the existence of the arity-two quantisation."
+  },
+  {
+   "severity": "major",
+   "claim": "Thm thm:cc-local (two-body locality with no one-body term, pole identity, logarithmic covariance, cancellation of the nonlocal {Pi_Delta, X} on letters A|_V, lambda, c) is marked 'proved' but its proof is a sketch and none of its directly checkable consequences was computed.",
+   "evidence": "Proof steps (C) ('read on the amputated loops ... gives the bracket with I') and the cancellation of (B), (D) by counterterm special edges are asserted without computation; GC5c (pole identity), GC6 (log covariance), GC7 (locality: sum tilde C^(2) + sum C^(1) = sum C^(2)), GC8 (two routes beyond the bilinear), GC1, GC2 (composite loops of I, Pi_Delta, composite triangle 8/8) are 'not run' in both engines. Support is indirect: GC3 equals the Ch9 special-edge-route value (QA reproduces it independently), the planar scalar sector arithmetic tilde C^(2) + C^(1) = (-2 + 5/3) v. - 4/3 = C^(2) holds with the Rem c9-Pi numbers, and every family D_1 equals -8u H_Beisert at matrix level at theta = -1/3 (a missing one-body term proportional to v. would be absorbed in theta and stay invisible). Title and abstract announce C^(1)_Delta 'on all local operators', but Pi_Delta on A|_V, lambda, c (where it is nonlocal) is never computed.",
+   "fix": "Run GC7 on twist two S' <= 2 (pairs with A_n letters, where Pi_Delta contains log|p|^2) and on (F11, psi) S' = 0; run GC5c and GC6 on the bilinears and on twist two S' = 2; downgrade the status-table entry of Thm thm:cc-local to 'proved in outline, checked indirectly' until then."
+  },
+  {
+   "severity": "minor",
+   "claim": "Def def:cc-sp, read literally, defines Z_x with the sign opposite to the master identity Prop prop:cc-master.",
+   "evidence": "Def c1-bracket and Def c3-delta: Delta_0 = -d_{K_0}, so the bracket vertex {I,M}_eps - {I,M} is minus the tree with an edge K_eps - K_0 (Prop c4-defect1 calls this 'one special edge'). Def def:cc-sp says 'minus (hbar/2) d_{K_x} of the chains ... in which one other edge is the special edge K_eps - K_0'. Engine B (notes.txt sec. 1) uses +(hbar/2) d_{K_x} of the trees with an edge K_eps - K_0; engine A uses a special-edge matrix +|l+q|^2 K_0 (= minus the edge K_eps - K_0 per unit Schwinger time) with global constant +1; both reproduce GC3 = Ex ex:cc-bilinear. The QA third method needs one overall factor -hbar/2 times the plain product of kernel components; it is fixed by GC3 (manuscript value), not derived from the definition.",
+   "fix": "Rewrite Def def:cc-sp as Z_x := -(hbar/2) d_{K_x} of the trees with one bracket defect vertex ({I,M}_eps - {I,M} or (1/2)({I,I}_eps - {I,I})), equivalently +(hbar/2) d_{K_x} d_{K_eps - K_0} of the trees, and state the Koszul sign of the two odd kernels (engine B: s(c,sigma) = (-1)^{n(<sigma) + [c<sigma] + n(<c)})."
+  },
+  {
+   "severity": "minor",
+   "claim": "Engine A's open vertex-vertex sign kappa is -1; A's off-shell tables kernels_C2.json are correct only when read with kappa = -1.",
+   "evidence": "QA ran engine B at all 24 bosonic rows of A's W0 tables (qa/work.nosync/offshell_B_at_A.json): C_{P_beta} and C^0_Delta agree exactly, log2 and log3 coefficients included, for letter + kappa * vertex-vertex with kappa = -1; kappa = +1 fails on every row with a nonzero vertex-vertex part (AV|AV: AV AV, AW AW; AV|AW: AV AW). In the leg sets AsV c and AsW c A's letter and vertex-vertex parts are equal pure log2/log3 numbers and B gives 0, which only kappa = -1 reproduces. A's code default is kappa = +1 (cq_twist.run(kappa=1)). Family results are unaffected (vertex-vertex part zero on shell, F3 N <= 1).",
+   "fix": "Set kappa = -1 in engine A (convention VV_b), regenerate kernels_C2.json as single values, and record the sign derivation (B's s(c,sigma) rule) in notes.txt."
+  },
+  {
+   "severity": "minor",
+   "claim": "Engine A's fermionic sign conventions were chosen by requiring the answer that P7 predicts, so engine A is not an independent test of P7 on fermionic letters.",
+   "evidence": "engine_a/notes.txt sec. 2 and the A summary: the Koszul rule R2 and the intrinsic pair sign were selected because they make the su(1|1) densities universal (the opposite intrinsic sign gives +4/3 on (Z,psi)); no BRST pole or covariance gate fixed them. Independent support exists: engine B derives its signs (STr form) without calibration and agrees with A on every fermionic overlap (su(1|1) densities and spectra, fermion sl(2) N <= 3); the QA harmonic action confirms the spectra. Engine A's fermionic off-shell table rows (AV|lamP, AW|lamP, lamP|lamM, ...) were not cross-checked by QA (the Step-1 spinor bases of the two engines differ).",
+   "fix": "Derive A's fermionic signs from the bracket (as B does) or fix them by a gate that does not assume P7 (pole identity GC5c, or Ward/BRST covariance on an odd-letter cocycle); map A's lambda basis to B's and compare the fermionic W0 table rows."
+  },
+  {
+   "severity": "minor",
+   "claim": "Several family results rest on one engine only and no QA third-method recomputation: gluon S' = 2, fermion sl(2) S' = 4, 5, (F11, psi) S' <= 4, psi3 psi4 / Z F11 S' <= 2 (engine B); generic-beta P7 (b) on twist two and on-shell universality with mixed chirality lambda_+ lambda_- (engine A). The QA third method covers the scalar sector only.",
+   "evidence": "engine_a/results.json runs fermion N <= 3, gluon N <= 1, no (F11,psi) and no psi psi'/Z F11; engine_b/results.json runs no generic-beta fit and no mixed-chirality universality. QA independently recomputed B's targets (-1/3 d_n and -2/3 N in B's cyclic bases, qa_targets_B.json: all equal) and B's D_1 matrices at theta = -1/3 equal -8 (H_12 + H_21) of the harmonic action; these check B's bookkeeping and the two-letter kernels, not B's composite-kernel integrals. The spec asked twist two S' <= 8; both engines stop at S' = 4 (QA third method also S' <= 4).",
+   "fix": "Run engine A on gluon S' = 2, fermion N = 4, 5, (F11, psi) and psi psi'/Z F11 (or extend the QA third method to the gauge and gaugino sectors); run engine B with a generic b on non-collinear legs."
+  },
+  {
+   "severity": "minor",
+   "claim": "P7 (b) along the derivative direction n of a family is not independent of P7 (c); its independent content is in directions b with d_b F not in F, which are barely tested outside twist two.",
+   "evidence": "Lemma lem:cc-canonical gives [C^(2),0_Delta, d_b] = 2 C^(2)_{P_b} pair by pair (verified on every kernel by both engines, GC4c), so (c) on F and on d_n F implies (b) along n. Engine B's other directions nbar, e2, e3 vanish identically on its collinear outputs p_j = t_j nbar (b.nbar = 0), so they test only polarisation structures. Generic b on non-collinear legs: engine A twist two N <= 2, QA twist two S' <= 4 (qa_mom_twist.json: all exact); none for fermion, gluon, (F11,psi), psi psi'/Z F11.",
+   "fix": "Say in Conjecture conj:cc-P7 that (b) along n follows from (c); test (b) with generic b on non-collinear on-shell legs for the fermion, gluon and mixed families."
+  },
+  {
+   "severity": "minor",
+   "claim": "'Statements (b) and (c) contain no scheme parameter' hides their dependence on the regulator.",
+   "evidence": "The values -1/3 and -2/3 N are finite parts of special-edge cycles, which depend on the cutoff shape (Rem c10-scheme1 (d), Prop c10-shape, Lemma c10-special): equal lower Schwinger cutoff eps on every edge, special edge time in [0, eps], composite line as two segments each >= eps. Only the spectrum of D_1 at the theta fixed by the arity-two equation is scheme independent.",
+   "fix": "State that (b) and (c) are identities for this regulator, and that a different cutoff shape shifts the composite kernels by terms compensated by theta (and s-exact terms), leaving the spectrum unchanged."
+  },
+  {
+   "severity": "minor",
+   "claim": "Spec deliverables are incomplete: TC2 component tables, engine B kernels_C2.json, families.json, the plain composite cycles and ct^(1)_x, and the gl(3) colour realisation were not produced.",
+   "evidence": "engine_spec.json outputs_expected lists kernels_C2.json for both engines and families.json; engine B has neither (results.json only); engine A's kernels_C2.json covers letters without derivatives only, at most two outputs (maxout=2) and two random points per word, although the census lists three-output leg sets (Table tab:cc-fieldpairs). Neither engine tabulates the 24 census pairs with a letter A*|_perp, lambda*_pm or c*. GC12 reuses the two-letter su(2), su(3) colour code; gl(3) not run.",
+   "fix": "Produce TC2 (n <= 3 derivatives, all census leg sets, general colour and planar form) from one engine and spot-check it with the other at shared points, as QA did for the bosonic W0 rows."
+  },
+  {
+   "severity": "minor",
+   "claim": "Engine B's vendored copies of the Step-1 modules realization.py and loops.py could not be verified against the originals.",
+   "evidence": "engine_b/notes.txt: the originals were evicted by iCloud and re-created from contents printed earlier in the session. QA's diff attempt (perl alarm 60 s) timed out on engine_b/realization.py and engine_b/loops.py (dataless); vertices.py, tl_integrals.py and colour_rules.py are byte-identical and tl_engine.py differs only in the import path. The vendored copies reproduce engine A's bosonic off-shell values exactly (QA run) and B's su(1|1) regression; the gluon, mixed, psi Z F11, sl(2) and numeps outputs were produced with the originals.",
+   "fix": "When the originals are readable, diff them against src.nosync/vendor/ and rerun the fermionic regression (fermion sl(2) S' = 3) with the vendored copies."
+  }
+ ],
+ "verified_without_finding": [
+  "No disagreement between engines A and B on any overlapping quantity (compare.json entries_static, 17 two-engine entries).",
+  "Off-shell bosonic W0 tables: A (kappa = -1) = B at all 24 rows, exact, including log2/log3 coefficients of k = 2 chains (two independent exact integration methods).",
+  "QA third method with one overall factor F0 = -hbar/2: (AV,AW)->AW C_{P_beta} and C^0_Delta at A's two points, and its eps^-1 pole (a.zeta_a)(e.zeta_b)/12 = engine B's symbolic pole; GC3 per colour word (-1/3 on i b.(p0+p1), -8/3); AW|AW table rows; twist two S' <= 4 at generic complex null momenta: sum C^(2),0_Delta = -2/3 (4+S') and sum C^(2)_{P_b} = -1/3 i b.(q1+q2) for b = n and generic b, exactly; the three-field completion (A_n, Z) -> Z contributes from S' = 2 on.",
+  "Harmonic action (own code): twist two {0, 6, 25/3, 49/5} (S <= 6), gluon 4h(n'+2), single gaugino 4h(n'+1), (F11,psi) and psi3 psi4 / Z F11 lists of Prop prop:cc-targets, su(1|1) two-site density = 1 - graded Pi and Table tab:cc-su11 for L <= 6; engine D_1 matrices at theta = -1/3 equal -8 (H_12 + H_21) entry by entry (twist two S' <= 4, fermion S' <= 5, gluon S' <= 2, (F11,psi) S' <= 4).",
+  "Theory algebra: Lemma lem:cc-kernels (ii) ([v.,X] = -4(eps d_eps + T d_T) X), Prop prop:cc-k1 (W_0 and W_1..W_4 checked symbolically, qa_k1_closedforms.json), Lemma lem:cc-canonical, Lemma lem:cc-onebody (c_A = 2/3, c_lambda = 1/3, c_c = 4/3; 2/3 (2 + |alpha|) at theta = -1/3), Thm thm:cc-P7 (i), the sign of Lambda([Delta,P_b]) in Thm thm:cc-arity2 (functional derivations form an anti-representation, [v., d_b] = 2 d_b), Cor cor:cc-theta (iv) (a, -a/2, a/2), Ex ex:cc-bilinear and Prop prop:cc-scalar against Ch9 (-2 + 5/3 = -1/3) and Ch10 (b_1 = -4, Rem c9-Pi), u = -g^2 N/(32 pi^2), D_1 = 2 gamma."
+ ]
+}

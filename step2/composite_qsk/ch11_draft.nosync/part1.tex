@@ -1,0 +1,168 @@
+\chapter{Composite kernels and the odd two-body kernels}
+
+Chapter 10 wrote the dilatation component $D_1$ and the translation component $P_1$ of a local operator as four times the logarithmic pair kernels, a one-body term and a composite term, the graphs in which $S^{(1)}(\Delta)$ or $S^{(1)}(P_b)$ sits on the cycle as a line from a ghost leg to a gauge leg (Theorem \ref{thm:c10-D1}, Proposition \ref{prop:c10-P1}), and evaluated the composite term on the planar scalar sector. On a general operator the locality of the composite term is a statement to be proved: on the letters $A|_V$, $\lambda$, $c$ the renormalised composite two-point functional contains $\log|p|^2$ of the momentum (Remark \ref{rem:c9-Pi}). This chapter shows that $Q$ maps the composite graphs of a cocycle to cycles with one special edge, so that the composite term is a sum over the pairs of letters of a local kernel, the composite pair kernel; it computes these kernels as simplex integrals and evaluates them on twist two, on the $\mathfrak{su}(1|1)$ sector, on the fermion and gluon $\mathfrak{sl}(2)$ sectors and on two mixed families. On all of them the composite pair kernels satisfy the two identities that Corollary \ref{cor:c10-P7} requires, and with the arity-two equation along $(\Delta,P_b)$ they fix the three sector coefficients of $\hbar F_1^{(1)}(\Delta)$ to $-\tfrac13$ units: $D_1$ is four times the map of Theorem \ref{thm:c10-brst}, with spectrum twice the one-loop anomalous dimensions, and $P_1$ vanishes on cohomology in the translation-covariant scheme. The last section sets up the two-body kernels of $Q_1$, $S_1$ and $K_1$ in the same scheme: their graphs and output bounds, the relations of $S_1$ to $Q_1$ and of $K_1$ to $P_1$, their renormalisation freedom and the comparison with the one-loop differential of the holomorphic twist.
+
+The unit is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, equal to $-\frac{g^2N}{32\pi^2}$ for $\mathfrak g=\mathfrak{su}(N)$ (Remark \ref{rem:c6-konishi}). Edges carry $P(\varepsilon,T)$ of Definition \ref{def:c8-PT}; the special edge is $K_\varepsilon-K_0=-\int_0^\varepsilon(H\otimes1)K_t\,dt$, the factor $e^{-\varepsilon|p|^2}-1$ times the components of $K_0$ (Proposition \ref{prop:c4-defect1}). Every component below is independent of the endpoint $T\in(0,\infty]$ of the transfer (Theorem \ref{thm:c8-L} (ii)) and is evaluated at $T=\infty$, where the graph sums converge at generic momenta (Proposition \ref{prop:c8-Tsafe}); along $K_b$ it is taken at a finite $T$ (Definition \ref{def:c8-K}). On arity zero $s=Q+\{I,-\}$ (Theorem \ref{thm:c8-obstruction}). Letters, the pair weight, the pair degree and the Koszul signs are those of Definition \ref{def:c10-letters} and \eqref{eq:c10-decomp}. The field-counting functional is $2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$, whose bracket multiplies the coordinate functionals of $c$, $A$, $\lambda$, $A^*$, $\lambda^*$, $c^*$ by $1$, $2$, $4$, $-2$, $-4$, $-1$ (Lemma \ref{lem:c6-count}), and the map of Theorem \ref{thm:c10-brst} is the coefficient of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon](O)$ minus the unit times the bracket of $O$ with it (Section 10.7). Along $\Delta$, $v=2E$ and $v.$ is the operator of Lemma \ref{lem:c9-SDelta}, so that $\{S^{(1)}(\Delta),M\}=v.M$; along $P_b$, $v.$ is $\partial_b$ on every slot (Proposition \ref{prop:c7-cov}); for $x\in\{\Delta,P_b\}$, $v_x.$ is the operator of the vector field of $x$ (Definition \ref{def:c7-vdot}). The two-component form of Definition \ref{def:c8-twocomp} of every main formula is in Remark \ref{rem:c11-twocomp}.
+
+\section{The composite term as a sum over pairs}
+
+\begin{definition}[Square kernel and composite kernels]
+\label{def:c11-kernels}
+For $0<\varepsilon<T\le\infty$ and $P=P(\varepsilon,T)$, the square kernel is $\big((P\star)^2\otimes1\big)K_0$, and the composite kernel along $x\in\{\Delta,P_b\}$ is
+\[
+\big(P\star\,v_x.\otimes1+1\otimes P\star\,v_x.\big)P,
+\]
+the two legs of $S^{(1)}(x)$ joined, in both orders, to two edges $P$ (Definition \ref{def:c9-composite}, Theorem \ref{thm:c9-P1}). The sector parts of $S^{(1)}(P_b)$ are
+\[
+\int\big(\partial_b(A|_{W_{\mathbb R}^\perp}),A^*|_{W_{\mathbb R}^\perp}\big),\qquad -\int(\partial_b\lambda,\lambda^*),\qquad \int\big(\partial_b(A|_V),A^*|_V\big)-\int(\partial_bc,c^*);
+\]
+their sum is $S^{(1)}(P_b)$, and each sector part of $S^{(1)}(\Delta)$ of Section 10.8 is $2\int x^\mu$ times the density of the sector part of $S^{(1)}(P_{e_\mu})$ of the same sector, summed over $\mu$, plus a translation-invariant functional, with $e_\mu$ an orthonormal basis of $V$ and $x^\mu$ the coordinates.
+\end{definition}
+
+\begin{lemma}[Structure of the composite kernels]
+\label{lem:c11-kernels}
+\begin{itemize}
+\item (i) The composite kernel along $x$ is $2\big(P\star\,v_x.\,P\star\otimes1\big)K_0=(v_x.\otimes1-1\otimes v_x.)$ applied to the square kernel.
+\item (ii) $(v_x.\otimes1+1\otimes v_x.)$ applied to the square kernel is $-4\big(\varepsilon\partial_\varepsilon+T\partial_T\big)$ of the square kernel for $x=\Delta$ and $0$ for $x=P_b$. Hence the composite kernel along $\Delta$ is $2(v.\otimes1)$ of the square kernel plus $4(\varepsilon\partial_\varepsilon+T\partial_T)$ of it, and the composite kernel along $P_b$ is $2(\partial_b\otimes1)$ of the square kernel.
+\item (iii) The square kernel and the composite kernels have components in $c\otimes A|_V$ and $A|_V\otimes c$ alone: as operators, $(P\star)^2$ and $P\star\,v_x.\,P\star$ map the slot of $A^*|_V$ to the slot of $c$ and the slot of $c^*$ to the slot of $A|_V$, and vanish on the other slots.
+\item (iv) In a graph the composite kernel is the vertex $S^{(1)}(x)$ with both legs on edges $P$. Its term $\int(v_x.A|_V,A^*|_V)$ contributes, with the leg $A|_V$ on the component $A\otimes A$ of $P$ and the leg $A^*|_V$ on the component $A^*|_V\otimes c$. Along $\Delta$ this internal vertex is
+\[
+\int\big((2E+2)A|_V,A^*|_V\big)=2\int x^\mu\big(\partial_\mu(A|_V),A^*|_V\big)+2\int\big(A|_V,A^*|_V\big),
+\]
+along $P_b$ it is $\int(\partial_b(A|_V),A^*|_V)$. The components of $P$ lie in $A\otimes A$, $\lambda\otimes\lambda$, $c\otimes A^*|_V$ and $A^*|_V\otimes c$ (Proposition \ref{prop:c3-P}), so the terms of $S^{(1)}(x)$ in the sectors of $A|_{W_{\mathbb R}^\perp}$, $\lambda$ and $c$, whose antifield legs are $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*$, $c^*$, enter a cycle through the special edge.
+\item (v) $(Q\otimes1+1\otimes Q)$ annihilates the composite kernel; the operator $\partial$ of the composite kernel is odd and anticommutes with $Q$.
+\item (vi) At $T=\infty$ the component of the square kernel is $(Q^{GF})^2$ on the slot of $A^*|_V$, which is $2d^*$ with values in the slot of $c$ (Proposition \ref{prop:c9-composite} (ii)), times $(-,-)^{-1}$ and
+\[
+\int_\varepsilon^\infty\!\!\int_\varepsilon^\infty e^{-(s'+s'')|p|^2}\,ds'\,ds''=e^{-2\varepsilon|p|^2}|p|^{-4}:
+\]
+a doubled edge with two Schwinger times $s',s''\in[\varepsilon,\infty)$, of momentum degree $-3$, which obeys the weight rule of Proposition \ref{prop:c3-P} for the slots $c$ (weight $0$) and $A|_V$ (weight $1$).
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) The first equality is Proposition \ref{prop:c9-composite} (i) along $\Delta$; along $P_b$ the same computation holds, $\partial_b$ preserving the pairing and commuting with $Q^{GF}$ and $H$ (Proposition \ref{prop:c7-cov}). For the second, $2P\star\,v_x.\,P\star=v_x.(P\star)^2+(P\star)^2v_x.$, along $\Delta$ because $[v.,P\star]$ is $Q^{GF}$ times a function of $H$ and commutes with $P\star$ (proof of Proposition \ref{prop:c9-composite} (i)), along $P_b$ because $\partial_b$ commutes with $P\star$. For the even operator $X=(P\star)^2$, $(X\,v_x.\otimes1)K_0=(X\otimes1)(v_x.\otimes1)K_0=-(1\otimes v_x.)(X\otimes1)K_0$ by Lemma \ref{lem:c9-ops}, $v_x.$ being even and pairing preserving.
+
+(ii) Since $(v_x.\otimes1+1\otimes v_x.)K_0=0$, the left side is $([v_x.,X]\otimes1)K_0$. Along $\Delta$, $X=(Q^{GF})^2g(H)^2$ with $g(H)=\int_\varepsilon^Te^{-tH}dt$, $[v.,Q^{GF}]=-4Q^{GF}$ and $[v.,f(H)]=-4Hf'(H)$ (Proposition \ref{prop:c7-dil}). From $Hg'(H)=Te^{-TH}-\varepsilon e^{-\varepsilon H}-g=(\varepsilon\partial_\varepsilon+T\partial_T)g-g$,
+\[
+[v.,X]=-8X-4(Q^{GF})^2H\partial_H\big(g^2\big)=-8X-4\big((\varepsilon\partial_\varepsilon+T\partial_T)X-2X\big)=-4\big(\varepsilon\partial_\varepsilon+T\partial_T\big)X .
+\]
+Along $P_b$, $[\partial_b,X]=0$. Insert into (i).
+
+(iii) $(Q^{GF})^2$ vanishes on the slots of $c$, $A$, $\lambda$, $\lambda^*$; on $A^*$ and $c^*$ it is $2d^*(A^*|_V)$ in the slot of $c$ and $-2dc^*$ in the slot of $A|_V$ (Proposition \ref{prop:c9-composite} (ii)); $v_x.$ preserves the slots, and the components $A^*\otimes A$ and $c^*\otimes c$ of $K_0$ go to $c\otimes A|_V$ and $A|_V\otimes c$.
+
+(iv) Applied to $A^*\otimes A$, the kernel $(P\star\,v_x.\,P\star\otimes1)K_0$ is the component $A^*\to A$ of $Q^{GF}$, then $v_x.$ on the slot of $A$, then the component $A\to c$ of $Q^{GF}$: the vertex $\int(v_x.A|_V,A^*|_V)$ between an $A\otimes A$ and an $A^*|_V\otimes c$ component, the factor $2$ counting the two orientations. On $A|_V$, $L_{2E}A|_V=2x^\mu\partial_\mu(A|_V)+2A|_V$ (Definition \ref{def:c7-vdot}).
+
+(v) Proposition \ref{prop:c9-composite} (iii) along $\Delta$; along $P_b$, $QP\star+P\star Q=e^{-\varepsilon H}-e^{-TH}$ commutes with $\partial_b$, which commutes with $Q$, so $Q(P\star\,\partial_b\,P\star)=(P\star\,\partial_b\,P\star)Q$. The identity $[\partial_\phi,Q]=\partial_{(Q\otimes1+1\otimes Q)\phi}$ of Lemma \ref{lem:c9-ops} gives the anticommutation; the composite kernel has degree $-1$.
+
+(vi) Proposition \ref{prop:c9-composite} (iv) and $\big(\int_\varepsilon^\infty e^{-s|p|^2}ds\big)^2=e^{-2\varepsilon|p|^2}|p|^{-4}$.
+\end{proof}
+
+\begin{definition}[Composite graphs and the arity-one counterterm of an operator]
+\label{def:c11-graphs}
+Let $M$ be a local functional, $\delta$ a square-zero parameter of degree $-|M|$, $x\in\{\Delta,P_b\}$ and $P=P(\varepsilon,\infty)$. The composite graphs of $M$ along $x$ are the $\delta$-linear part of
+\[
+\tfrac\hbar2\,\partial_{\text{composite kernel along }x}\,W(P,I+\delta M)_{\rm tree}:
+\]
+the composite kernel closes two legs of a tree of vertices $I$ and one vertex $M$. The cycle so formed either passes through two letters $X_a$, $X_b$ of $M$, a composite cycle through the pair $(X_a,X_b)$ with trees of $I$ on its outputs, or passes through vertices of $I$ alone and is joined to $M$ by a tree through one letter, a composite loop of $I$ on a leg of $M$. The arity-one counterterm of $M$ along $x$ is $\hbar\,\mathrm{Sing}_\varepsilon$ of the amputated composite cycles through the pairs, summed over the pairs with the Koszul signs of \eqref{eq:c10-decomp}. The singular part of the composite loops of $I$ is $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ (Proposition \ref{prop:c9-structure} (i)); its quadratic part along $\Delta$ is the unit times $\log\varepsilon$ times $Q\big(\int(\iota_xA|_V,c^*)-\tfrac12\int(\rho(x)\lambda^*,\lambda^*)\big)$, with no term in $\varepsilon^{-1}$ (Theorem \ref{thm:c9-quadratic} (i)).
+\end{definition}
+
+\begin{proposition}[The image of the composite graphs under $Q$]
+\label{prop:c11-master}
+For every local functional $M$, $x\in\{\Delta,P_b\}$ and $\varepsilon>0$, at $T=\infty$,
+\[
+Q\big(\text{composite graphs of }M\text{ along }x\big)=-\tfrac\hbar2\,\partial_{\text{composite kernel along }x}\Big[\text{tree-level flow, }\delta\text{-linear, with one vertex }sM\text{ or one special edge}\Big],
+\]
+the special edge joining a vertex $I$ to a letter of $M$, from $\{I,M\}_\varepsilon-\{I,M\}$, or two vertices $I$, from $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$. Since $\Delta_\varepsilon-\Delta_0=-\partial_{K_\varepsilon-K_0}$ (Definition \ref{def:c1-bracket}, Proposition \ref{prop:c4-defect1}), $\{f,g\}_\varepsilon-\{f,g\}$ is minus $f$ and $g$ joined by one edge $K_\varepsilon-K_0$; for $sM=0$ the right side is $\tfrac\hbar2\,\partial_{\text{composite kernel along }x}$ of the trees with exactly one edge $K_\varepsilon-K_0$.
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lem:c11-kernels} (v), $Q$ anticommutes with $\partial$ of the composite kernel. By Proposition \ref{prop:c4-defectflow} at order $\hbar^0$, $Q\,W(P,J)_{\rm tree}$ is the tree-level flow of $QJ+\tfrac12\{J,J\}_\varepsilon$; the term $\hbar\Delta_\varepsilon J$ is of order $\hbar$, and its composite closure has two cycles. For $J=I+\delta M$ the classical master equation $QI+\tfrac12\{I,I\}=0$ (Proposition \ref{prop:c1-cme}) leaves $\tfrac12(\{I,I\}_\varepsilon-\{I,I\})$ in the $\delta$-independent part and $sM+(\{I,M\}_\varepsilon-\{I,M\})$ in the $\delta$-linear part.
+\end{proof}
+
+\begin{definition}[Special-edge composite cycles and the composite pair kernel]
+\label{def:c11-sp}
+For two letters $X_a$, $X_b$ of any slots and $x\in\{\Delta,P_b\}$, the special-edge composite cycles of $(X_a,X_b)$ along $x$ are
+\[
+\tfrac\hbar2\,\partial_{\text{composite kernel along }x}\,\partial_{K_\varepsilon-K_0}\big(\text{amputated chains from }X_a\text{ to }X_b\big):
+\]
+the chains of Definition \ref{def:c10-chain} with $k\ge1$ vertices of $I$ in which one edge $e_c$ is the composite kernel along $x$, one other edge $e_\sigma$ is the special edge, with the components of $K_0$ (each field slot with its antifield slot), which may end at a letter of any slot, and every remaining edge is $P(\varepsilon,\infty)$. By Proposition \ref{prop:c11-master} they are minus $\tfrac\hbar2\,\partial$ of the composite kernel applied to the chains with one bracket-defect vertex. A chain is read with the signs of Lemma \ref{lem:c10-sign} along the chain from $X_a$, times
+\[
+(-1)^{n(<\sigma)+n(<c)+[c<\sigma]},
+\]
+where $n(<j)$ is the number of odd outputs at the vertices before the edge $e_j$, and $[c<\sigma]$ is $1$ if $e_c$ precedes $e_\sigma$ and $0$ otherwise; the outputs are left open as in Definition \ref{def:c10-pair}. The composite pair kernel of $(X_a,X_b)$ along $x$ is the coefficient of $\varepsilon^0$ of its special-edge composite cycles.
+\end{definition}
+
+By Proposition \ref{prop:c11-master}, for $sM=0$ the image under $Q$ of the composite cycles through the pairs and of the composite loops on the legs is the sum of the special-edge composite cycles with trees of $I$ on their outputs, together with the composite closures in which the special edge lies on a tree; Theorem \ref{thm:c11-local} identifies the composite term of a cocycle with the sum over its pairs of letters of the composite pair kernels.
+
+\begin{proposition}[Reachability and census]
+\label{prop:c11-census}
+\begin{itemize}
+\item (i) The composite kernel joins a slot $c$ to a slot $A|_V$. The letters $c$ and $A|_V$ reach it directly; the letters $A|_{W_{\mathbb R}^\perp}$, $\lambda$ and $A^*|_V$ reach it through one vertex, $A|_V(A|_{W_{\mathbb R}^\perp})^2$ entered at $A|_{W_{\mathbb R}^\perp}$, $\lambda|_{S_+\otimes W}\lambda|_{S_-\otimes W^*}A|_V$ entered at $\lambda$, $([A|_V,c],A^*|_V)$ entered at $c$, each left at $A|_V$; the letters $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*$, $c^*$, on which $P$ and the composite kernel have no component, reach it through the special edge, to a slot $A|_{W_{\mathbb R}^\perp}$, $\lambda$, $c$.
+\item (ii) A chain of Definition \ref{def:c11-sp} exists for $45$ of the $55$ unordered pairs of the ten slots; the other ten are the pairs of two letters among $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*|_{S_+\otimes W^*}$, $\lambda^*|_{S_-\otimes W}$, $c^*$, which would need two special edges. Every chain conserves the degree, the fermion parity and the centre $\mathbb Z/4$ of $SL(4,\mathbb C)$, and its outputs carry the pair degree; the composite kernel has degree $-1$ and the special edge $+1$.
+\item (iii) Every chain has $k\ge1$ vertices. A chain with $k=1$ has the composite kernel at one letter and the special edge at the other, so $k=1$ occurs exactly for the pairs with a letter $A|_V$ and for the pairs $(c,A^*|_V)$, $(c,A^*|_{W_{\mathbb R}^\perp})$, $(c,\lambda^*)$, $(c,c^*)$; the other pairs, the field pairs $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$, $(A|_{W_{\mathbb R}^\perp},\lambda)$, $(\lambda,\lambda)$ among them, start at $k=2$.
+\item (iv) At the pair weight without derivatives the leg sets of the ten pairs of field letters are those of Table \ref{tab:c11-fieldpairs}; the numbers of leg sets with $n\le3$ derivatives on the two letters, for the $21$ pairs of the active slots of Lemma \ref{lem:c10-active}, are those of Table \ref{tab:c11-counts}.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Lemma \ref{lem:c11-kernels} (iii), Lemma \ref{lem:c10-active} and the vertices of Definition \ref{def:c1-vertex}. (ii), (iv) Enumeration of the chains with one composite kernel and one special edge, the vertices of $I$ and the components of $P$ and $K_0$, up to six vertices and output weight four above the pair weight; every chain is checked for degree, parity and the centre. A pair of two letters among $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*$, $c^*$ needs an edge with a component on each letter; $K_0$ alone has one, and a chain has one special edge. (iii) A chain with $k=0$ would join the two letters by the composite kernel and the special edge at once; the rest is read off from the enumeration.
+\end{proof}
+
+\begin{tabular}{l|c|l}
+pair & pair weight & leg sets of the special-edge composite cycles, fewest vertices in brackets; ${}^\dagger$: position part along $\Delta$ and part along $P_b$\\
+\hline
+$(A|_V,A|_V)$ & $2$ & $A|_V$ $(1)$, $A|_V^2$ $(2)$, $(A|_{W_{\mathbb R}^\perp})^2$ $(2)$, $A|_V^3{}^\dagger$ $(2)$, $A|_V(A|_{W_{\mathbb R}^\perp})^2{}^\dagger$ $(2)$, $A^*|_V\,c^\dagger$ $(2)$, $\lambda|_{S_-\otimes W^*}\lambda|_{S_+\otimes W}{}^\dagger$ $(2)$\\
+$(A|_V,A|_{W_{\mathbb R}^\perp})$ & $2$ & $A|_{W_{\mathbb R}^\perp}$ $(1)$, $A|_V\,A|_{W_{\mathbb R}^\perp}$ $(2)$, $A|_V^2A|_{W_{\mathbb R}^\perp}{}^\dagger$ $(2)$, $(A|_{W_{\mathbb R}^\perp})^3{}^\dagger$ $(2)$, $A^*|_{W_{\mathbb R}^\perp}c^\dagger$ $(2)$, $(\lambda|_{S_-\otimes W^*})^2{}^\dagger$ $(2)$, $(\lambda|_{S_+\otimes W})^2{}^\dagger$ $(2)$\\
+$(A|_V,\lambda|_{S_+\otimes W})$ & $\tfrac52$ & $\lambda|_{S_+\otimes W}$ $(1)$, $A|_V\,\lambda|_{S_+\otimes W}$ $(2)$, $A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}$ $(2)$, $c\,\lambda^*|_{S_-\otimes W}$ $(2)$, $A|_V^2\lambda|_{S_+\otimes W}{}^\dagger$ $(2)$, $A|_V\,A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}{}^\dagger$ $(3)$, $A|_V\,c\,\lambda^*|_{S_-\otimes W}{}^\dagger$ $(3)$, $(A|_{W_{\mathbb R}^\perp})^2\lambda|_{S_+\otimes W}{}^\dagger$ $(2)$, $A|_{W_{\mathbb R}^\perp}c\,\lambda^*|_{S_+\otimes W^*}{}^\dagger$ $(3)$\\
+$(A|_V,\lambda|_{S_-\otimes W^*})$ & $\tfrac52$ & $\lambda|_{S_-\otimes W^*}$ $(1)$, $A|_V\,\lambda|_{S_-\otimes W^*}$ $(2)$, $A|_{W_{\mathbb R}^\perp}\lambda|_{S_+\otimes W}$ $(2)$, $c\,\lambda^*|_{S_+\otimes W^*}$ $(2)$, $A|_V^2\lambda|_{S_-\otimes W^*}{}^\dagger$ $(2)$, $A|_V\,A|_{W_{\mathbb R}^\perp}\lambda|_{S_+\otimes W}{}^\dagger$ $(3)$, $A|_V\,c\,\lambda^*|_{S_+\otimes W^*}{}^\dagger$ $(3)$, $(A|_{W_{\mathbb R}^\perp})^2\lambda|_{S_-\otimes W^*}{}^\dagger$ $(2)$, $A|_{W_{\mathbb R}^\perp}c\,\lambda^*|_{S_-\otimes W}{}^\dagger$ $(3)$\\
+$(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $2$ & $(A|_{W_{\mathbb R}^\perp})^2$ $(2)$, $A|_V(A|_{W_{\mathbb R}^\perp})^2{}^\dagger$ $(2)$\\
+$(A|_{W_{\mathbb R}^\perp},\lambda|_{S_+\otimes W})$ & $\tfrac52$ & $A|_{W_{\mathbb R}^\perp}\lambda|_{S_+\otimes W}$ $(2)$, $A|_V\,A|_{W_{\mathbb R}^\perp}\lambda|_{S_+\otimes W}{}^\dagger$ $(2)$, $(A|_{W_{\mathbb R}^\perp})^2\lambda|_{S_-\otimes W^*}{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}c\,\lambda^*|_{S_-\otimes W}{}^\dagger$ $(3)$\\
+$(A|_{W_{\mathbb R}^\perp},\lambda|_{S_-\otimes W^*})$ & $\tfrac52$ & $A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}$ $(2)$, $A|_V\,A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}{}^\dagger$ $(2)$, $(A|_{W_{\mathbb R}^\perp})^2\lambda|_{S_+\otimes W}{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}c\,\lambda^*|_{S_+\otimes W^*}{}^\dagger$ $(3)$\\
+$(\lambda|_{S_+\otimes W},\lambda|_{S_+\otimes W})$ & $3$ & $(\lambda|_{S_+\otimes W})^2$ $(2)$, $A|_V(\lambda|_{S_+\otimes W})^2{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}\lambda|_{S_+\otimes W}{}^\dagger$ $(3)$, $c\,\lambda|_{S_+\otimes W}\lambda^*|_{S_-\otimes W}{}^\dagger$ $(3)$\\
+$(\lambda|_{S_+\otimes W},\lambda|_{S_-\otimes W^*})$ & $3$ & $\lambda|_{S_-\otimes W^*}\lambda|_{S_+\otimes W}$ $(2)$, $A|_V\,\lambda|_{S_-\otimes W^*}\lambda|_{S_+\otimes W}{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}(\lambda|_{S_-\otimes W^*})^2{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}(\lambda|_{S_+\otimes W})^2{}^\dagger$ $(3)$, $c\,\lambda|_{S_-\otimes W^*}\lambda^*|_{S_-\otimes W}{}^\dagger$ $(3)$, $c\,\lambda|_{S_+\otimes W}\lambda^*|_{S_+\otimes W^*}{}^\dagger$ $(3)$\\
+$(\lambda|_{S_-\otimes W^*},\lambda|_{S_-\otimes W^*})$ & $3$ & $(\lambda|_{S_-\otimes W^*})^2$ $(2)$, $A|_V(\lambda|_{S_-\otimes W^*})^2{}^\dagger$ $(3)$, $A|_{W_{\mathbb R}^\perp}\lambda|_{S_-\otimes W^*}\lambda|_{S_+\otimes W}{}^\dagger$ $(3)$, $c\,\lambda|_{S_-\otimes W^*}\lambda^*|_{S_+\otimes W^*}{}^\dagger$ $(3)$\\
+\end{tabular}
+\tabcaption{The leg sets of the special-edge composite cycles through the ten pairs of field letters at the pair weight without derivatives. The leg sets without ${}^\dagger$ enter the translation-invariant part along $\Delta$ as well.\label{tab:c11-fieldpairs}}
+
+\begin{tabular}{l|c|c|c|c}
+pair & $n=0$ & $n=1$ & $n=2$ & $n=3$\\
+\hline
+$(A|_V,A|_V)$ & $7\,(3)$ & $18\,(7)$ & $34\,(18)$ & $67\,(34)$\\
+$(A|_V,A|_{W_{\mathbb R}^\perp})$ & $7\,(2)$ & $16\,(7)$ & $32\,(16)$ & $59\,(32)$\\
+$(A|_V,\lambda|_{S_+\otimes W})$ & $9\,(4)$ & $20\,(9)$ & $42\,(20)$ & $79\,(42)$\\
+$(A|_V,\lambda|_{S_-\otimes W^*})$ & $9\,(4)$ & $20\,(9)$ & $42\,(20)$ & $79\,(42)$\\
+$(A|_V,c)$ & $4\,(2)$ & $8\,(4)$ & $19\,(8)$ & $35\,(19)$\\
+$(A|_V,A^*|_V)$ & $15\,(6)$ & $35\,(15)$ & $73\,(35)$ & $142\,(73)$\\
+$(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})$ & $2\,(1)$ & $7\,(2)$ & $16\,(7)$ & $38\,(16)$\\
+$(A|_{W_{\mathbb R}^\perp},\lambda|_{S_+\otimes W})$ & $4\,(1)$ & $12\,(4)$ & $30\,(12)$ & $62\,(30)$\\
+$(A|_{W_{\mathbb R}^\perp},\lambda|_{S_-\otimes W^*})$ & $4\,(1)$ & $12\,(4)$ & $30\,(12)$ & $62\,(30)$\\
+$(A|_{W_{\mathbb R}^\perp},c)$ & $2\,(1)$ & $7\,(2)$ & $16\,(7)$ & $32\,(16)$\\
+$(A|_{W_{\mathbb R}^\perp},A^*|_V)$ & $10\,(2)$ & $26\,(10)$ & $64\,(26)$ & $127\,(64)$\\
+$(\lambda|_{S_+\otimes W},\lambda|_{S_+\otimes W})$ & $4\,(1)$ & $12\,(4)$ & $28\,(12)$ & $63\,(28)$\\
+$(\lambda|_{S_+\otimes W},\lambda|_{S_-\otimes W^*})$ & $6\,(1)$ & $15\,(6)$ & $36\,(15)$ & $75\,(36)$\\
+$(\lambda|_{S_+\otimes W},c)$ & $4\,(1)$ & $9\,(4)$ & $20\,(9)$ & $42\,(20)$\\
+$(\lambda|_{S_+\otimes W},A^*|_V)$ & $17\,(5)$ & $42\,(17)$ & $88\,(42)$ & $173\,(88)$\\
+$(\lambda|_{S_-\otimes W^*},\lambda|_{S_-\otimes W^*})$ & $4\,(1)$ & $12\,(4)$ & $28\,(12)$ & $63\,(28)$\\
+$(\lambda|_{S_-\otimes W^*},c)$ & $4\,(1)$ & $9\,(4)$ & $20\,(9)$ & $42\,(20)$\\
+$(\lambda|_{S_-\otimes W^*},A^*|_V)$ & $17\,(5)$ & $42\,(17)$ & $88\,(42)$ & $173\,(88)$\\
+$(c,c)$ & $2\,(1)$ & $4\,(2)$ & $8\,(4)$ & $19\,(8)$\\
+$(c,A^*|_V)$ & $18\,(7)$ & $34\,(18)$ & $67\,(34)$ & $121\,(67)$\\
+$(A^*|_V,A^*|_V)$ & $18\,(5)$ & $52\,(18)$ & $114\,(52)$ & $235\,(114)$\\
+\end{tabular}
+\tabcaption{The number of leg sets of the special-edge composite cycles entering the part along $P_b$ and, in brackets, the translation-invariant part along $\Delta$, for $n$ derivatives on the two letters.\label{tab:c11-counts}}
+
+\begin{proposition}[Output bound]
+\label{prop:c11-bound}
+\begin{itemize}
+\item (i) A chain of Definition \ref{def:c11-sp} with outputs of total Weyl weight $w$ has superficial degree $w_{X_a}+w_{X_b}-w$ before the insertion factor of $S^{(1)}(x)$; the factor $\partial_b$ adds one, and the translation-invariant part along $\Delta$ adds none.
+\item (ii) The composite pair kernel along $P_b$ is a translation-invariant local functional of Weyl weight $w_{X_a}+w_{X_b}+1$; the composite pair kernel along $\Delta$ is local of Weyl weight $w_{X_a}+w_{X_b}$, the position counted at weight $-1$, at most linear in the position. Both have the pair degree and the parity $|X_a|+|X_b|$.
+\item (iii) Chains with $w\le w_{X_a}+w_{X_b}+1$ contribute to the kernel along $P_b$ and to the part along $\Delta$ linear in the position, chains with $w\le w_{X_a}+w_{X_b}$ to the translation-invariant part along $\Delta$; a chain above these bounds has a vanishing limit as $\varepsilon\to0$.
+\item (iv) The number of output fields is at most $w_{X_a}+w_{X_b}+1$ plus the pair degree for both kernels; the coefficients of $\varepsilon^{-m}$ of the special-edge composite cycles have Weyl weight $w_{X_a}+w_{X_b}-2m$ along $\Delta$ and $w_{X_a}+w_{X_b}+1-2m$ along $P_b$.
+\end{itemize}
+The same bounds hold for the composite cycles through the pair and for the arity-one counterterm, of degree one less than the pair degree: the coefficient of $\log\varepsilon$ of the arity-one counterterm of $X_aX_b$ has Weyl weight $w_{X_a}+w_{X_b}$ along $\Delta$ and $w_{X_a}+w_{X_b}+1$ along $P_b$.
+\end{proposition}
+
+\begin{proof}
+(i) Every edge obeys the weight rule $w_1+w_2-4$: $P$ (Proposition \ref{prop:c3-P}), $K_0$ (a field and its antifield have the weights $w$ and $4-w$, momentum degree $0$) and the composite kernel (Lemma \ref{lem:c11-kernels} (vi)); the count of Lemma \ref{lem:c10-degree} applies. (ii) The coefficient of $\varepsilon^0$ is a polynomial in the output momenta of degree equal to the superficial degree (Theorem \ref{thm:c11-simplex}); along $\Delta$ the position enters once, through the factor $2x^\mu$ of Lemma \ref{lem:c11-kernels} (iv). Degree and parity: Proposition \ref{prop:c11-census} (ii). (iii) A polynomial of negative degree vanishes, and so does the limit of a chain of negative degree with a special edge (Theorem \ref{thm:c11-simplex}). (iv) Weyl weight plus degree is at least $1$ for every output (Proposition \ref{prop:c10-bound}), so the number of outputs is at most $w$ plus the pair degree. The statements on the arity-one counterterm follow in the same way from Lemma \ref{lem:c4-local}.
+\end{proof}
+

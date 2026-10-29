@@ -40,7 +40,7 @@
           ids.add(source.id);
           const block = clone(source);
           wanted.push({ id: block.id, key: fingerprint(block), block });
-          if (wanted.length === 13) break;
+          if (wanted.length === 21) break;
         }
       }
       for (const [id, key] of attempted) {

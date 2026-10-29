@@ -95,3 +95,19 @@ composite A_V--c lines give a nonlocal Q-exact remainder (Delta) and a translati
   (results/kernels_final.json, qa/disposition.json). Draft manuscript/ch10_two_letter_kernels.tex + supplements/ch10.tex.
   Open: composite kernels C2_Delta, C_{P_b} beyond the planar scalar sector (D_1 there conditional on P7); Q1/S1/K1 two-body
   kernels; W2 with antifields; field-strength families. ch10 referee running -> step2/qa/ch10_review/.
+- ch10 refereed (step2/qa/ch10_review/findings.json: 2 major, 15 minor, 7 markup — all applied; pre-fix copies in pre/).
+  Live reader rev 63 (c10 appended) -> 64 (126 supplements re-placed). GitHub pushed via API (scratchpad api_push.py):
+  dab670b (ch10 + step2/twoletter, big engine_b/kernels*.json gitignored), fd67eca (README). Local .git is behind origin.
+
+## 2026-10-29 composite + Q/S/K workflow (user go-ahead)
+- run wf_5e5a15e1-2e4, script .../workflows/scripts/n4-composite-and-odd-two-body-kernels-wf_5e5a15e1-2e4.js; root step2/composite_qsk/
+- theory C (C2_Delta, C1_Delta, C_{P_b}, P7 test) || theory Q (Q_1, S_1, K_1 two-body, twist check) -> composite engines A||B
+  -> QSK engines A||B || composite referee -> QSK referee -> revise -> manuscript/ch11_composite_and_odd_kernels.tex + supplements/ch11.tex
+- 2026-10-30 wf_5e5a15e1-2e4 done for PART C: P7 (b),(c) exact on all families (twist two S'<=6, su(1|1) L<=6, fermion sl(2)
+  S'<=5, gluon S'<=2, psi psi'/Z F11, (F11,psi)); arity two forces theta_perp = theta_lambda = theta_V = -1/3 (conditional on
+  arity-two quantisation + Thm cc-local, outline proof); D_1 = 4 lc^nat, P_1 = 0 in the translation-covariant scheme;
+  spectra -8u E_H. Results step2/composite_qsk/results/composite_final.json; draft manuscript/ch11_composite_and_odd_kernels.tex
+  (11.1-11.5 final draft, 11.6 structure only). PART Q failed (network) -> rerun wf_a7e26f82-275 (script copy
+  step2/composite_qsk/partq_workflow.js, retries on dropped agents), ends by replacing Section 11.6.
+- ch00_overview.tex had been evicted by iCloud (dataless); restored from the byte-identical GitHub copy (sha 7df6c9c).
+- ch11 referee (11.1-11.5) running -> step2/qa/ch11_review/.

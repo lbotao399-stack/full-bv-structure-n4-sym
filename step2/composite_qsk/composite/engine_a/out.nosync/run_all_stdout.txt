@@ -1,0 +1,123 @@
+[    0.3s] stage 1: gates
+[GW1] PASS: finite-part weights int_{R_s} alpha^n log(min_{f!=s} alpha_f/alpha_s) exact vs mpmath (E=3)
+[GW2] PASS: Lemma tl-special example: k=1, N=-|l|^2: eps^-1 and finite part
+[GK1] PASS: Prop cc-k1 (k=1 closed form W_0, W_1 over [0,1/3]) vs the ordered-subsimplex engine
+[GE1] PASS: general core (Gaussian momenta, t-expansion) = integer core on every configuration (finite parts)
+[GE2] PASS: translation-invariant part along Delta: exact t^1 coefficient = finite differences in r (int core)
+[GE3] PASS: pure two-letter log kernel of the general core = ea_kern.kernel (two-letter engine A)
+[GC3] PASS: bilinears: C^(2)_{P_b} = -1/3 u d_b O and C^(2),0_Delta = -8/3 u O (= -1/3 u v.^0 - 4/3 u), traceless and trace, real and null momenta, no free constant
+[GS] PASS: graded symmetry of the composite kernels (chain from X_b with reversed outputs) has the log-kernel ratio, kappa = +1, -1, 0
+[GC4] PASS: position identity (C^(2)_Delta)^b = 2 C^(2)_{P_b} graph by graph (s_mu vertex at r = 0)
+[GC4c] PASS: canonical form (Lemma lem:cc-canonical): C^0(d_b X_a, X_b) + C^0(X_a, d_b X_b) - d_b C^0(X_a, X_b) = (C_Delta)^b = 2 C_{P_b}
+[   25.8s] gates stage 1 done; wall 25.8 s, cpu 25.5 s, max RSS 226 MB
+[   25.8s] stage 2: F0 scalars
+[   26.6s]   SO(6) scalar density: True
+[GC9-F0] PASS: P7(b) planar scalar sector: (A_perp, A_perp) density C_{P_beta} = -1/6 i beta.(q1+q2) (Y_i Y_j), no trace, no exchange (off shell)
+[GC10-F0] PASS: P7(c) planar scalar sector: density C^0 = -4/3 (Y_i Y_j), no trace, no exchange; Xi^0 = 0 per letter at theta = -1/3
+[GC11-F0] PASS: su(2) sector L <= 8: D_1/(-8u) charpolys at theta = -1/3 = Heisenberg (predictions P6)
+[   26.7s] F0 done; wall 26.7 s, cpu 26.5 s, max RSS 226 MB
+[   26.7s] stage 3: F2
+[   27.8s]    su11 pair ('Z', 'psi') word ('Z', 'psi'): d0 = -4/3 (const True), dP = -1/6 q_1 + -1/6 q_2 (exact True)
+[   28.0s]    su11 pair ('Z', 'psi') word ('psi', 'Z'): d0 = 0 (const True), dP = 0 q_1 + 0 q_2 (exact True)
+[   29.7s]    su11 pair ('psi', 'Z') word ('psi', 'Z'): d0 = -4/3 (const True), dP = -1/6 q_1 + -1/6 q_2 (exact True)
+[   30.4s]    su11 pair ('psi', 'Z') word ('Z', 'psi'): d0 = 0 (const True), dP = 0 q_1 + 0 q_2 (exact True)
+[   31.6s]    su11 pair ('Z', 'Z') word ('Z', 'Z'): d0 = -4/3 (const True), dP = -1/6 q_1 + -1/6 q_2 (exact True)
+[   32.8s]    su11 pair ('psi', 'psi') word ('psi', 'psi'): d0 = -4/3 (const True), dP = -1/6 q_1 + -1/6 q_2 (exact True)
+[GC9/10-F2a] PASS: su(1|1) two-site densities on shell: same word d0 = -4/3, dP = -1/6 (q1+q2); exchanged word 0 (all ordered pairs of Z, psi)
+[   33.7s]   su(1|1) cyclic spectra L<=6: True
+[GC11-F2a] PASS: su(1|1) graded cyclic spectra L <= 6 of D_1/(-8u) at theta = -1/3 = harmonic action (ha_su11.json); lc^natural density -2(1-Pi), Xi^0 density 0
+[   33.8s]   fermion sl2 N=1 L: eig {-12: 1} residual 0.0 (0.1s)
+[   39.6s]   fermion sl2 N=1 M0: eig {-10/3: 1} residual 0.0 (5.8s)
+[   41.0s]   fermion sl2 N=1 Pn residual 0.0 (1.4s)
+[   41.0s]   fermion sl2 N=1 D1 eig [-48] target [-48]
+[   41.2s]   fermion sl2 N=2 L: eig {-12: 1} residual 0.0 (0.2s)
+[   51.5s]   fermion sl2 N=2 M0: eig {-4: 1} residual 0.0 (10.3s)
+[   53.0s]   fermion sl2 N=2 Pn residual 0.0 (1.5s)
+[   53.0s]   fermion sl2 N=2 D1 eig [-48] target [-48]
+[   53.9s]   fermion sl2 N=3 L: eig {-12: 1, -50/3: 1} residual 0.0 (0.8s)
+[   95.1s]   fermion sl2 N=3 M0: eig {-14/3: 2} residual 0.0 (41.2s)
+[  100.7s]   fermion sl2 N=3 Pn residual 0.0 (5.6s)
+[  100.7s]   fermion sl2 N=3 D1 eig [-200/3, -48] target [-200/3, -48]
+[GC10-F2b] PASS: fermion sl(2): sum C^(2),0_Delta = -2/3 (4+N) on the two-field part (on shell)
+[GC9-F2b] PASS: fermion sl(2): sum C^(2)_{P_n} = -1/3 u d_n on the two-field part (on shell, exact)
+[GC11-F2b] PASS: fermion sl(2): D_1 eigenvalues at theta = -1/3 = -32 h(n+1), n odd (log kernel eig -8h(n+1) from the general core)
+[  100.7s] F2 done; wall 100.7 s, cpu 99.7 s, max RSS 226 MB
+[  100.7s] stage 4: F1 twist two
+[  101.9s]   twist two N=0 D0 done 1.1s residual 0
+[  102.2s]   twist two N=0 Pn done 0.4s residual 0
+[  102.3s] twist two N=0: P7(c) True P7(b, n) True D1 eig [0] target [0]
+[  105.4s]   twist two N=1 D0 done 3.1s residual 0
+[  106.5s]   twist two N=1 Pn done 1.1s residual 0
+[  106.6s] twist two N=1: P7(c) True P7(b, n) True D1 eig [0] target [0]
+[  116.1s]   twist two N=2 D0 done 9.4s residual 0
+[  119.0s]   twist two N=2 Pn done 2.9s residual 0
+[  119.4s] twist two N=2: P7(c) True P7(b, n) True D1 eig [-48, 0] target [-48, 0]
+[  139.8s]   twist two N=3 D0 done 20.4s residual 0
+[  146.8s]   twist two N=3 Pn done 7.0s residual 0
+[  147.4s] twist two N=3: P7(c) True P7(b, n) True D1 eig [-48, 0] target [-48, 0]
+[  216.4s]   twist two N=4 D0 done 68.9s residual 0
+[  234.9s]   twist two N=4 Pn done 18.5s residual 0
+[  236.7s] twist two N=4: P7(c) True P7(b, n) True D1 eig [-200/3, -48, 0] target [-200/3, -48, 0]
+[  240.7s]   twist two N=1 Pg done 4.0s residual 0
+[  285.8s]   twist two N=2 Pg done 45.1s residual 0
+[GC10-F1] PASS: twist two: sum C^(2),0_Delta = -2/3 (4+N) on the two-field part, N <= 4 (exact, rational)
+[GC9-F1] PASS: twist two: sum C^(2)_{P_n} = -1/3 u d_n exactly (two-field part), N <= 4; generic beta: = -1/3 u d_beta + (q_i^2 terms, EOM)
+[GC11-F1] PASS: twist two: D_1 = 4 lc^natural + sum C^(2)_Delta - sum{F_Delta, X} at theta = -1/3: eigenvalues -32 h(S), S even <= N
+[  285.8s] F1 done; wall 285.8 s, cpu 283.1 s, max RSS 226 MB
+[  285.8s] stage 5: universality
+[  285.8s]   universality AW|AW: True
+[  286.5s]   universality AW|lamP: True
+[  287.0s]   universality AW|lamM: True
+[  288.1s]   universality lamP|AW: True
+[  288.1s]   universality lamP|lamP: True
+[  288.1s]   universality lamM|lamM: True
+[  289.2s]   universality lamP|lamM: True
+[  290.4s]   universality lamM|lamP: True
+[GU] PASS: on-shell planar densities, general polarisations (letter vectors of definite chirality): same word -4/3 / -1/6 i beta.(q1+q2), exchanged word 0, for pairs of A_perp, lambda_+, lambda_-
+[  290.4s] universality done; wall 290.4 s, cpu 287.6 s, max RSS 226 MB
+[  290.4s] stage 6: F3 gluon
+[  290.8s]   gluon N=0 L: letter [[-12]] vv [[0]] exact True (0.4s)
+[  331.2s]   gluon N=0 M0: letter [[-4]] vv [[0]] exact True (40.5s)
+[  337.9s]   gluon N=0 Pn: letter residual zero True, vv zero True (6.6s)
+[  359.6s]   gluon N=0 ward D0: letter zero True, vv zero True
+[  363.2s]   gluon N=0 ward ('Pv', (np.complex128(1+0j), np.complex128(-0-1j), np.complex128(0j), np.complex128(0j))): letter zero True, vv zero True
+[  367.5s]   gluon N=0 ward ('Pv', (1, 2, -1, 3)): letter zero True, vv zero True
+[  367.5s]   gluon N=0 D1: {'kappa=1': {'eigenvalues': ['-48'], 'pass': True}, 'kappa=-1': {'eigenvalues': ['-48'], 'pass': True}, 'kappa=0': {'eigenvalues': ['-48'], 'pass': True}}
+[  368.6s]   gluon N=1 L: letter [[-12]] vv [[0]] exact True (1.1s)
+[  510.9s]   gluon N=1 M0: letter [[-14/3]] vv [[0]] exact True (142.3s)
+[  531.9s]   gluon N=1 Pn: letter residual zero True, vv zero True (21.0s)
+[  609.6s]   gluon N=1 ward D0: letter zero True, vv zero True
+[  621.0s]   gluon N=1 ward ('Pv', (np.complex128(1+0j), np.complex128(-0-1j), np.complex128(0j), np.complex128(0j))): letter zero True, vv zero True
+[  635.0s]   gluon N=1 ward ('Pv', (1, 2, -1, 3)): letter zero True, vv zero True
+[  635.0s]   gluon N=1 D1: {'kappa=1': {'eigenvalues': ['-48'], 'pass': True}, 'kappa=-1': {'eigenvalues': ['-48'], 'pass': True}, 'kappa=0': {'eigenvalues': ['-48'], 'pass': True}}
+[GC10-F3] PASS: gluon sl(2): sum C^(2),0_Delta = -2/3 (6+N) on the two-field part (letter part; vertex-vertex part on shell)
+[GC9-F3] PASS: gluon sl(2): sum C^(2)_{P_n} = -1/3 u d_n on the two-field part (on shell)
+[GC11-F3] PASS: gluon sl(2): D_1 eigenvalues at theta = -1/3 = -32 h(n+2), n even (all kappa)
+[GW-F3] PASS: gauge Ward identity: two-field part with one longitudinal leg vanishes on shell (letter and vertex-vertex parts separately)
+[  635.0s] F3 done; wall 635.0 s, cpu 629.7 s, max RSS 226 MB
+[  635.0s] stage 7: W0 tables
+[  635.2s]   table AV|AV AV: 2 rows, nonzero True
+[  636.5s]   table AV|AV AV AV: 2 rows, nonzero True
+[  637.1s]   table AV|AV AW AW: 2 rows, nonzero True
+[  637.2s]   table AV|AV AsV c: 4 rows, nonzero True
+[  637.4s]   table AV|AV lamM lamP: 4 rows, nonzero True
+[  637.5s]   table AV|AW AW: 2 rows, nonzero True
+[  638.7s]   table AV|AW AV AW: 4 rows, nonzero True
+[  638.8s]   table AV|AW AsW c: 4 rows, nonzero True
+[  638.9s]   table AV|AW lamM lamM: 2 rows, nonzero True
+[  638.9s]   table AV|AW lamP lamP: 2 rows, nonzero True
+[  639.0s]   table AV|lamP lamP: 2 rows, nonzero True
+[  640.0s]   table AV|lamP AV lamP: 4 rows, nonzero True
+[  640.7s]   table AV|lamP AW lamM: 4 rows, nonzero True
+[  641.3s]   table AV|lamP c lamsM: 4 rows, nonzero True
+[  641.4s]   table AV|lamM lamM: 2 rows, nonzero True
+[  642.4s]   table AV|lamM AV lamM: 4 rows, nonzero True
+[  643.0s]   table AV|lamM AW lamP: 4 rows, nonzero True
+[  643.8s]   table AV|lamM c lamsP: 4 rows, nonzero True
+[  644.3s]   table AW|AW AW AW: 2 rows, nonzero True
+[  644.8s]   table AW|lamP AW lamP: 4 rows, nonzero True
+[  645.4s]   table AW|lamM AW lamM: 4 rows, nonzero True
+[  645.9s]   table lamP|lamP lamP lamP: 2 rows, nonzero True
+[  646.9s]   table lamP|lamM lamM lamP: 4 rows, nonzero True
+[  647.5s]   table lamM|lamM lamM lamM: 2 rows, nonzero True
+[  647.6s] ALL DONE: 26/26 gates; wall 647.6 s, cpu 642.2 s, max RSS 226 MB

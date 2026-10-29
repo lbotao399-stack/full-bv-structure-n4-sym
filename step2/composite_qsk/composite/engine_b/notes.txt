@@ -1,0 +1,157 @@
+ROUTE B (ENGINE B), PART C: METHOD AND CONVENTIONS
+step2/composite_qsk/composite/engine_b/   (code src.nosync/, caches and raw outputs out.nosync/)
+Theory: composite_theory.tex, engine_spec.json (not engine A: never read).  Reused verified code: Step-1 engine_b/
+vertices.py, loops.py, realization.py (action on plane waves, propagator numerators, realisation); step2/twoletter/
+engine_b/tl_engine.py (templates, chain propagation, colour words, M-vertex convention ODD_M_SIGN = +1, log kernels
+K^log via tl_engine.Job) and colour_rules.py.  These are vendored unchanged in src.nosync/vendor/ (iCloud evicted the
+originals during the run: reading engine_b/realization.py and loops.py timed out); the only edit is the import path of
+the vendored tl_engine.py.  The vendored copies reproduce every gate of the original run (GB0, GC3, su(1|1)).  No dimensional regularisation, no IR regulator other than T = infinity
+(generic momenta), no Wolfram, no cluster, no browser, no /tmp.  One heavy process at a time, peak RSS < 0.2 GB.
+
+1. OBJECT COMPUTED
+Z_x(X_a,X_b;eps) is taken as the Q-image part of the composite cycles (master identity, Prop prop:cc-master):
+   Z_x = (hbar/2) d_{K_x}( chain trees with one edge K_eps - K_0 ),
+because in the manuscript Delta_0 = -d_{K_0} (Def c1-bracket, Def c3-delta), so the bracket vertex {I,M}_eps - {I,M}
+is MINUS the tree with an edge K_eps - K_0 and Q d_{K_x} = -d_{K_x} Q (Lemma lem:cc-kernels (v)).  This is the
+"minus (hbar/2) d_{K_x} of the chains with the special edge" of Def def:cc-sp when the special edge is read as the
+bracket vertex (Prop c4-defect1 wording); with the special edge read as the plain edge K_eps - K_0 the definition
+would carry the opposite sign.  The sign was not calibrated: GC3 (-1/3, -8/3) is a first-principles result.
+STr form: (hbar/2) d_K closes a tree with weight (hbar/4) STr per edge position (from W_1 = (hbar/2) sum (1/n) STr[(P Pi H)^n]
+and d/dt W_1(P + t dP) = hbar d_{dP} W_0; checked on the toy quadratic model), hence
+   Z_x(X_a,X_b) = (hbar/4) sum_{vertex sequences} sum_{c != sigma} s(c,sigma) STr[E_0 Pi h_1 E_1 ... E_k Pi H_M],
+E_c = K_x, E_sigma = (e^{-eps k^2}-1) k0, others P(eps,oo); s(c,sigma) = (-1)^{n(<sigma) + [c<sigma] + n(<c)}, n(<j) the
+number of odd outputs at the vertices before edge j: coefficient of delta_sigma delta_c (both kernels odd) in front.
+C^(2)_x = coefficient of eps^0; poles z_m = coefficients of eps^{-m}.  Units hbar/(16 pi^2) times the colour words
+C_w = (1 (x) ad_{Y_w1}...ad_{Y_wr})(-,-)^{-1} (X_a on the first factor), as in the twoletter engine.
+
+2. EDGE MATRICES (ce_core.py; all identities checked symbolically, gates GB0)
+Components E^{XY}(k) = d_E(f_X f_Y), row end e^{ikx}, column end e^{-iky} (manuscript Def c3-P); (Y(x)1)E -> y(k)E,
+(1(x)Y)E -> (-1)^{|Y||X|} E y(-k)^T.
+  N(k)  : P(eps,oo) = N e^{-eps k^2}/k^2 (Step-1 loops.prop_numerator);
+  k0    : K_0 = -(fibre pairing)^{-1}: A-A* -1, lambda-lambda* -(Mp^{-1})^T / -(Mp^{-1}), c-c* -1 (Def c1-bracket);
+  qgf(k): Q^GF symbol (Def c3-qgf); q(k): Q symbol (Prop c1-Q);
+  MX(k) = qgf(k) N(k): X = ((P*)^2 (x) 1) K_0 = MX e^{-2 eps k^2}/k^4, components c(x)A_V and A_V(x)c only, MX = 2 i k_m.
+Checked: N = qgf k0; q N + Pi N q(-k)^T = |k|^2 k0 [(Q(x)1+1(x)Q)P = K_eps]; Q^2 = 0; [Q,Q^GF] = |k|^2;
+(Q(x)1+1(x)Q)K_0 = 0; K_0 graded symmetric; MX = qgf^2 k0, graded antisymmetric; (Q(x)1+1(x)Q)K_{P_b} = 0.
+
+3. COMPOSITE LINE IN KERNEL FORM (route B; engine A uses the vertex form)
+  K_{P_b} = (d_b(x)1 - 1(x)d_b) X = 2 i (b.k) MX(k) e^{-2 eps k^2}/k^4, two Schwinger segments t', t'' >= eps.
+  K_Delta = (v.(x)1 - 1(x)v.) X = [2 i k_mu (x + y)^mu + 2(w_row - w_col)] MX e^{-2eps k^2}/k^4,
+x, y the positions of the vertices at the row and column ends.  Canonical form (Def def:cc-canonical): position part
+from x, y -> x_O: (C_Delta)^b = 2 C_{P_b} identically (GC4 structural); translation-invariant part from (x - x_O), (y - x_O):
+  option 3 (default): x + y - 2x_O = (x - y) + 2(y - x_O); (x - y)^mu acting on the line is i d/dk_mu, giving the Euler
+           operator -2(4 + k.d_k)[MX e^{-2eps k^2}/k^4] = (-2 + 8 eps |k|^2) X: a constant -2 X and 8 eps MX e^{-2 eps k^2}/k^2,
+           whose eps^0 part is 8 x [eps^{-1} coefficient] of the graph with the line as ONE segment t >= 2 eps;
+           (y - x_O)^mu = -i d/dh_mu of a momentum h injected at the column-end vertex and absorbed by omega;
+  option 2 (check): injections at both ends (x - x_O) + (y - x_O).
+Options 2 and 3 agree (Lemma lem:cc-kernels (ii); GC4b) on the bilinear and on twist two.
+Letter at an end of the line: when that end is the vertex M, the position factor sits at the letter, and the letter's
+derivatives act on it (d^alpha_x [x^mu (d_mu X)(x-y)]); implemented by letting the injected h enter that letter's
+derivative factor only (injM).  Without this the canonical-form identity [C^0, d_b] = C^b failed on the k = 1 kernels
+(A_n, Z) -> Z and twist two failed at S' = 3; with it the identity holds on every kernel (GC4c).
+
+4. EXACT INTEGRALS (ce_int.py; route B representation)
+After the Gaussian loop integral (centre = sum alpha_p cur_p, Phi = sum alpha_p |cur_p|^2 - |centre|^2,
+num_j = (Lap^j Num)(centre)/(j! 4^j), the special-edge factor -|k_sigma|^2 in Num):
+  [eps^{-m}] = (16 pi^2)^{-1} int_0^1 dv int_{u_f >= c_f} du F_m(alpha) tau^{-n_t-m},  F_m = sum_j num_j (-Phi)^{j+2-n_t-m}/(j+2-n_t-m)!
+(t_sigma = eps v, t_f = eps u_f).  Feynman parameters for the ordinary edges u_f = U beta_f, U >= L(beta) = max_f c_f/beta_f;
+the special time v and U in closed form,
+  I_m(a,b;L) = int_0^1 dv int_L^oo dU v^a U^b (U+v)^{-(a+b+2+m)}  (U = v w, x = w/(1+w)): polynomial in y_L = L/(1+L)
+  (times L^{-m}), plus -B(0) log y_L for m = 0;
+the beta-simplex split by the edge attaining L, the other beta's integrated by the Dirichlet formula on the shifted
+simplex, the last one-dimensional integral exact (w = c + s).  Values in Q + sum_p Q log p.  No log eps arises (bounded
+tau range).  Checked against mpmath quadrature (n_t = 2, 3; rel. diff < 1e-12) and scrambled Sobol QMC (n_t = 4, 5,
+cutoffs 1, 2; rel. diff ~ 1e-5).  log 5 appears in individual monomials for n_t = 5 or cutoff 2 and cancels in every
+kernel used here.
+
+5. NUMERICAL EPS EXTRAPOLATION (ce_numeps.py, GC5b)
+k = 1 chains, finite eps without expansion: tau-integral exact (incomplete gamma), alpha-simplex by mpmath, real
+Euclidean kinematics; eps = 1e-2, 5e-3, 2e-3, 1e-3, 5e-4; exact poles subtracted, fit z0 + eps(a + b log eps) and a fit
+with an extra log eps term (its coefficient must vanish).
+
+6. FAMILIES (collinear on-shell outputs)
+Engine components; n = (1,i,0,0), nbar = (1/2,-i/2,0,0) (twoletter choice), outputs p_j = t_j nbar (w = 0: on shell),
+letter derivatives (n.d)^a via the null generating function (a! b! [ss^a su^b]), output (n.d)^c <-> (i t)^c.
+Letters as charge eigenstates (ce_letters.py, Cartan rotations (45),(67),(89) R and (01),(23) Lorentz; spinor generator
+from rho-equivariance): Z = A_4 + i A_5 (R (1,0,0)); psi = lambda_+ letter of R-weight (1/2,1/2,-1/2) and Lorentz weight
+(1/2,1/2): Z, psi span the su(1|1) sector (Delta = J_1 + J_2 - J_3 in this labelling); its dual state u_psi is on shell
+for p ~ nbar (checked: rho(nbar) u_psi = 0).  Gluon: eps = e_2 - i e_3 (n.eps = nbar.eps = 0), e' = e_2 + i e_3,
+F11 := (1/2) c^{mn} F_{mn}, c = n ^ e' (Lorentz weight (1,1), the chirality of psi psi):
+   F11 = (n.d)(e'.A) - (e'.d)(n.A) + [A_n, A_e'],  on shell F11 -> 2 i t (e'.eps = 2).
+Covariant derivative D = d + [A,-] (A_n letter, n.A); (n.D)^a X = d^a X + sum_r C(a,r+1)[d^r A_n, d^{a-1-r} X] + ...
+Planar reading (Lemma c10-colour (iv)): a kernel term c C_w on the adjacent pair (X_l X_{l+1}) -> (-1)^r (c/2)
+Y_wr...Y_w1 (units u), odd outputs reordered from label order to trace order with the permutation sign, division by 2
+for two outputs of the same field type (labelled form -> functional); graded cyclicity for words with fermions.
+Projection to cohomology on the two-field part: evaluation on the collinear on-shell legs (s-exact terms vanish there,
+descendants kept); for the gluon families the two-field images are decomposed on tr(d^c F11 d^d F11) values; terms with
+an undifferentiated A_e' spectator or output (not of F-form) must cancel and do (gauge invariance check).
+One-body terms (Lemma lem:cc-onebody): -{F'_Delta, X}^0 = u(c_phi - 2 theta_diamond w_X) X, c = 2/3 (A), 1/3 (lambda),
+4/3 (c); position part -2 u theta_diamond d_b X.  kappa directions: -{u Q(kappa_V int(iota_x A_V,c*)), X} acts on A_V letters
+only (A_p -> A_p + x^m d_p A_m type), -{u Q(kappa_lambda int(rho(x) lambda*,lambda*)), lambda} is proportional to
+rho(x) dslash lambda: both are s-exact on cocycles (Prop prop:cc-arity1 (ii)) and vanish on the two-field shell; they
+are kept as symbols in the formulas and drop from every on-shell matrix.
+lc^natural = sum_pairs K^log - u sum_letters n_F (n_F = 2, 4 on A, lambda), K^log from tl_engine.Job in the same letters.
+D_1 = 4 lc^natural + Xi_Delta, Xi_Delta = sum C^(2)_Delta - sum_a {F'_Delta, X_a}; reported translation-invariant
+matrices with theta_perp, theta_lambda, theta_V symbolic; position part (D_1)^b = 2 sum C2_Pb - 2u sum theta d_b.
+P_1 = sum C2_Pb - u sum_a theta^P_diamond d_b X_a (+ kappa^P, s-exact): on every family P_1 = -(1/3 + theta^P) u d_b on the
+two-field shell for equal theta^P; covariant scheme theta^P = theta = -1/3: P_1 = 0.
+
+7. TWO-COMPONENT (WEINBERG-SREDNICKI) FORM OF THE RESULTS
+(engine index map step2/notation/dictionary.json; sigma_E^m = (sigma^1,sigma^2,sigma^3, i))
+ planar adjacent pair, letters without derivatives:
+   (A_ij, A_kl) for general SO(6) letters (all components):  C^(2)_{P_b} = -(1/6) u b_m d_m (A_ij A_kl),
+       C^(2),0_Delta = -(4/3) u A_ij A_kl  (no exchange, no trace structure);
+   (Z,psi), (psi,Z), (psi,psi) on the su(1|1) letters Z = A_{34}-type, psi = lambda_1^4-type: the same two formulas;
+   with derivatives and covariant-derivative / field-strength completions only the sums over the pairs of the family
+   operators are reported (below).
+ sum over pairs on the families: sum C^(2)_{P_b} = -(1/3) u b_m d_m,  sum C^(2),0_Delta = -(2/3) u N,
+   N = sum_letters (2 + number of derivatives), e.g. N = 4 + S' on tr(D_n^k Z D_n^{S'-k} Z) and tr(D^k psi D^{S'-k} psi),
+   N = 6 + S' on tr(D^k F_11 D^{S'-k} F_11), N = 5 + S' on tr(D^k F_11 D^{S'-k} psi), with D_n = n_m D_m, n_m sigma^m rank one;
+ Xi_Delta = -(1/3 + theta) u (2 x_m d_m + 2 w_O) for equal theta (= -(1/3+theta) u {S^(1)(Delta),-});
+ D_1 = 4 lc^natural at theta = -1/3, Spec D_1 = -8 u E_H = (g^2 N/(4 pi^2)) E_H; P_1 = -(1/3 + theta^P) u b_m d_m.
+
+8. RESULTS (out.nosync/, results.json, gates.json)
+ GC3  bilinears: C^(2)_{P_b} = -(1/3) u d_b O, C^(2),0_Delta = -(8/3) u O, hence C^(2)_Delta = -(1/3) u v.O - (4/3) u O
+      (traceless and trace together, w1.w2 != 0), no log, no eps^-1: first principles, no calibration.
+ F0   general SO(6) pair: per adjacent pair identity only (-4/3 u, -1/6 u (d_1 + d_2)): Prop prop:cc-scalar holds exactly;
+      su(2) sector: (b), (c) hold on every state; D_1 = 4 lc^natural at theta = -1/3 (lc^natural from the twoletter engine).
+ F1   twist two S' <= 4: (b), (c) exact matrix identities; D_1(theta=-1/3) eigenvalues 0, -48, -200/3 = -32 u h(S).
+ F2   su(1|1) L <= 6: densities -4/3 id and -1/6(d_1+d_2) on all four letter pairs; Spec D_1 = -8 u E_H (Table tab:cc-su11)
+      for every (L, M); fermion sl(2) S' <= 5: -48, -200/3, -392/5; psi psi' with Z F11, S' <= 2: {0,-48}, {0,-48^3},
+      {0,-48^4,-200/3}, with the cross-sector (psi psi' <-> Z F11) composite kernels included and (c) = diag(-2/3 u (4+S'),
+      -2/3 u (5+S')) exactly.
+ F3   gluon sl(2) S' <= 2: -48, -200/3 (logs of the separate letter kernels cancel in the F11 combinations);
+      (F11, psi) S' <= 4: -48; -48^2; -48^2,-200/3; -48^2,-200/3^2; -48^2,-200/3^2,-392/5.
+ Conjecture P7 (b), (c): hold on every family and every derivative order computed; with Thm thm:cc-P7: Xi_Delta =
+ -(1/3+theta) u {S^(1)(Delta),-} on these families, theta = -1/3 from the arity-two equation, D_1 = 4 lc^natural.
+ P_1 = sum C2_Pb - u sum theta^P_diamond d_b X_a = -(1/3 + theta^P) u d_b on every family (equal theta^P); = 0 in the
+ translation-covariant scheme.
+ Canonical-form identity [C2^0_Delta, d_n] = 2 C2_{P_n} holds on every kernel density (GC4c); Lemma (ii) (options 2 and 3)
+ agree (GC4b); numerical eps extrapolation of k = 1 chains agrees with the exact eps^0 coefficients (GC5b).
+
+9. NOT DONE IN ROUTE B (open)
+ GC1 (quadratic L^(1)), GC2 (composite part, Pi_Delta, composite triangle), GC5c (pole identity with ct^(1)), GC6 (log
+ covariance), GC7 (locality via tilde C^(2) + C^(1)), GC8 (two routes), GC13/TC0 (cubic rank, completeness), Conjecture
+ P7 (a) (the cubic arity-one equation: route B assumes equal theta_diamond only where stated; all matrices are given with
+ theta_perp, theta_lambda, theta_V separate).  Full general-polarisation tables of all 45 pair types (TC2): only the SO(6)
+ scalar pair is tabulated with general letters; the other kernels are tabulated on the family letters (projections) with
+ derivatives.  gl(3) colour realisation not run (su(2), su(3) reused from the twoletter engine).
+
+10. FILES
+ run_all.py (resumable; --force recomputes), gates.json (48 pass, 0 fail, 7 not run), results.json, PROGRESS.txt;
+ src.nosync/: ce_core.py (edge matrices, identities), ce_int.py (+ ce_int_check.py) exact integrals, ce_job.py (chains,
+ kernel form, canonical form), ce_letters.py (charge-eigenstate letters), ce_planar.py (planar reading, graded cyclic
+ words, canonical-form identity check), ce_fam.py, ce_so6.py, ce_su11.py, ce_sl2.py, ce_gluon.py, ce_mixed.py,
+ ce_psiZF.py, ce_numeps.py, ce_gates_basic.py, ce_assemble.py; t_*.py: interactive tests of the run (t_tw2.py: options 2
+ vs 3 on twist two); out.nosync/: pickles of all densities, family json files, logs.
+
+11. REVISION 2026-10-30 (reviser; no route-B code changed)
+ - Vendored realization.py, loops.py: originals still dataless (copy timed out). Functional regression: ce_sl2.py psi 3 rerun with the
+   vendored modules in a copy of src.nosync (step2/composite_qsk/revise.nosync/b_vendor_check): 40/40 family entries and 109/109
+   density entries identical to the 20:27 output made with the original modules.
+ - Orientation: the exact intertwiner with route A's realisation (revise.nosync/ferm_map/spinor_map.py; S^T (Mp R[M]) S = sb_A[M] for
+   M = 0..9, unique up to sign) maps the +1 eigenspace of rho(e0 e1 e2 e3) on Sigma to components 8..15 (label lamM here): this route's
+   lamP is the -1 eigenspace, i.e. the orientation of V opposite to (e0,e1,e2,e3). Parity-even results are unaffected.
+ - Route-B values at route-A points: kernels_C2_at_A_points.json (22 bosonic + 26 fermionic rows, all equal to route A with the
+   derived vertex-vertex sign -1 of route A; A word = B word with reversed indices).
+ - Z_x sign: Def def:cc-sp now reads Z_x = (hbar/2) d_{K_x} d_{K_eps-K_0} with s(c,sigma), i.e. this route's convention.

@@ -41,13 +41,13 @@
   const source=find(doc,id);if(!source)return null;const originals=packet(doc,id),copies=[];
   for(let i=0;i<originals.length;i++){
    const item=originals[i];if(synced)item.syncGroup=item.syncGroup||(i?groupId():newGroup);
-   const next=clone(item);next.id=i?uid():newId;delete next.sourceBlockUrl;if(!synced)delete next.syncGroup;if(i)next.parentId=newId;copies.push(next);
+   const next=clone(item);next.id=i?uid():newId;delete next.sourceBlockUrl;if(!synced){delete next.syncGroup;delete next.librarySync;}if(i)next.parentId=newId;copies.push(next);
   }
   doc.blocks.splice(doc.blocks.indexOf(originals.at(-1))+1,0,...copies);return copies[0];
  }
  function createCopy(doc,id,newId=uid(),newGroup=groupId()){return copyPacket(doc,id,newId,newGroup,true);}
  function duplicate(doc,id,newId=uid()){return copyPacket(doc,id,newId,null,false);}
- function unlink(doc,id){const b=find(doc,id);if(!b?.syncGroup)return false;delete b.syncGroup;return true;}
+ function unlink(doc,id){const b=find(doc,id);if(!b?.syncGroup&&!b?.librarySync)return false;delete b.syncGroup;delete b.librarySync;return true;}
  function move(doc,id,targetId,after=false){
   const source=find(doc,id),target=find(doc,targetId);if(!source||!target||id===targetId)return false;
   const moving=packet(doc,id);if(moving.includes(target))return false;
@@ -96,7 +96,7 @@
   const instances=peers(doc,source),continuationGroup=source.syncGroup?groupId():null;
   assign(source,patch);delete source.speechOverride;
   const changed=[source.id,...syncFrom(doc,id)];
-  for(const current of instances){const continuation=clone(next);if(current.id!==id)continuation.id=uid();delete continuation.sourceBlockUrl;delete continuation.syncGroup;if(continuationGroup)continuation.syncGroup=continuationGroup;if(isContainer(current))continuation.parentId=current.id;else if(current.parentId)continuation.parentId=current.parentId;doc.blocks.splice(doc.blocks.indexOf(current)+1,0,continuation);changed.push(continuation.id);}
+  for(const current of instances){const continuation=clone(next);if(current.id!==id)continuation.id=uid();delete continuation.sourceBlockUrl;delete continuation.syncGroup;delete continuation.librarySync;if(continuationGroup)continuation.syncGroup=continuationGroup;if(isContainer(current))continuation.parentId=current.id;else if(current.parentId)continuation.parentId=current.parentId;doc.blocks.splice(doc.blocks.indexOf(current)+1,0,continuation);changed.push(continuation.id);}
   changed.push(...normalizeStructure(doc));return {changed};
  }
  function merge(doc,previousId,currentId,patch){
@@ -108,6 +108,7 @@
    if(matching)pairs=left.map(b=>[b,doc.blocks[doc.blocks.indexOf(b)+1]]);
    else {detached=Boolean(previous.syncGroup||current.syncGroup);delete previous.syncGroup;delete current.syncGroup;}
   }
+  for(const [left,right]of pairs){if(left.librarySync||right.librarySync){delete left.librarySync;delete right.librarySync;detached=true;}}
   assign(previous,patch);delete previous.speechOverride;
   for(const [left,right]of pairs){for(const child of childList(doc,right.id)){if(isContainer(left)&&!left.parentId)child.parentId=left.id;else delete child.parentId;}}
   const removed=new Set(pairs.map(pair=>pair[1].id));doc.blocks=doc.blocks.filter(b=>!removed.has(b.id));
@@ -146,6 +147,9 @@
   else if(indentCandidate(doc,id))menu.append(button('Move into preceding quote or callout',()=>changeNesting(id)));
   menu.append(button('Move up',()=>moveBy(id,-1),doc.blocks[0]===b),button('Move down',()=>moveBy(id,1),doc.blocks.at(-1)===packet(doc,id).at(-1)));
   menu.append(button('Create synced copy below',()=>{before();const copy=createCopy(doc,id);api.select?.(copy.id);finish(copy.id,{focus:true,message:'Synced copies share text, formulas and colors.'});}));
+  menu.append(button('Share across Library files…',()=>{api.select?.(id);window.ReaderWorkspaceTools?.open('shared');}));
+  menu.append(button('Dictate below…',()=>{api.select?.(id);window.ReaderWorkspaceTools?.open('dictation');}));
+  menu.append(button(b.ink?'Edit handwriting…':'Draw below…',()=>{api.select?.(id);window.ReaderWorkspaceTools?.open('ink');}));
   if(b.syncGroup)menu.append(button('Unlink this copy',()=>{before();unlink(doc,id);finish(id,{focus:true,message:'This block is now independent.'});}));
   menu.append(button('Duplicate independently',()=>duplicateBlock(id)));
   window.ReaderImages?.addMenuItems(menu,id,button);
@@ -216,7 +220,7 @@
   handle.onkeydown=e=>{if(e.altKey&&['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();e.stopPropagation();moveBy(b.id,e.key==='ArrowUp'?-1:1);}else if(e.key==='Escape'){closeMenu({focus:true});}};
   handle.ondragstart=e=>{window.ReaderDirectEdit?.flush();closeMenu();dragId=b.id;e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',b.id);wrap.classList.add('block-dragging');};
   handle.ondragend=()=>{dragId=null;clearDrop();};wrap.append(handle);
-  if(b.syncGroup){wrap.classList.add('synced-block');const badge=document.createElement('button');badge.type='button';badge.className='synced-block-badge';badge.textContent='↔';badge.setAttribute('aria-label','Synced block actions');badge.setAttribute('data-direct-ignore','');badge.onclick=e=>{e.stopPropagation();menuFor(b.id,handle);};wrap.append(badge);}
+  if(b.syncGroup||b.librarySync){wrap.classList.add('synced-block');const badge=document.createElement('button');badge.type='button';badge.className='synced-block-badge';badge.textContent='↔';badge.setAttribute('aria-label','Synced block actions');badge.setAttribute('data-direct-ignore','');badge.onclick=e=>{e.stopPropagation();menuFor(b.id,handle);};wrap.append(badge);}
   wrap.ondragover=e=>{if(!dragId||dragId===b.id)return;e.preventDefault();e.dataTransfer.dropEffect='move';markDrop(e.clientX,e.clientY);if(e.clientY<90)window.scrollBy(0,-18);else if(e.clientY>innerHeight-100)window.scrollBy(0,18);};
   wrap.ondrop=e=>{if(!dragId)return;e.preventDefault();e.stopPropagation();const from=dragId,after=wrap.classList.contains('drop-after'),inside=wrap.classList.contains('drop-inside');dragId=null;clearDrop();if(from!==b.id)reorder(from,b.id,after,inside);};
   for(const image of wrap.querySelectorAll('.block-content img')){

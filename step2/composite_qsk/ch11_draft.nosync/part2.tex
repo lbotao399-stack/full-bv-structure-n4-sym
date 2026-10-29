@@ -1,0 +1,165 @@
+\section{Closed forms and locality}
+
+\begin{definition}[Position part and translation-invariant part]
+\label{def:c11-canonical}
+A local functional is in canonical form if it is written $\int\omega\,D$ with $\omega\in\Omega^4_c(\mathbb R^4)$ and $D$ a polynomial in letters, every derivative on a field. A map $M$ of local functionals, linear in $\omega$, of the form
+\[
+M\Big(\int\omega\,D\Big)=\int\omega\,\big(x^\mu M_\mu(D)+M_0(D)\big),
+\]
+with $M_\mu$, $M_0$ maps of densities at one point and $x^\mu$ the coordinates of $V$ in an orthonormal basis, has the position part $b^\mu M_\mu$ along $b\in V$ and the translation-invariant part $M_0$. A local functional $G=\int\big(x^\mu g_\mu+g_0\big)$ at most linear in the position has the position part $\int b^\mu g_\mu$ along $b$ and the translation-invariant part $\int g_0$. On plane waves, with the momenta of the fields independent and $\omega$ absorbing the total momentum, a graph is $\alpha\,\delta(\cdot)+\beta^\mu\partial_\mu\delta(\cdot)$, and $M_0$ corresponds to $\alpha$, $M_\mu$ to $i\beta^\mu$.
+\end{definition}
+
+\begin{lemma}[Translations and the canonical form]
+\label{lem:c11-canonical}
+$M$ is well defined, independently of integrations by parts against $\omega$, exactly when every $M_\mu$ commutes with the derivatives and $[M_0,\partial_\mu]=M_\mu$. Then $[M,\{S^{(1)}(P_b),-\}]$ is the map $\int\omega\,D\mapsto\int\omega\,b^\mu M_\mu(D)$. For $M=v.=\{S^{(1)}(\Delta),-\}$ the position part is $2\partial_b$ and the translation-invariant part is the multiplication by $2w_D$; $\{S^{(1)}(P_b),-\}$ has position part $0$.
+\end{lemma}
+
+\begin{proof}
+$M(\int\omega\,\partial_\mu D)$ and $M(-\int(\partial_\mu\omega)D)=\int\omega\big(M_\mu(D)+x^\nu\partial_\mu M_\nu(D)+\partial_\mu M_0(D)\big)$ agree for all $\omega$ exactly under the two conditions. Then $M(\int\omega\,\partial_bD)-\{S^{(1)}(P_b),M(\int\omega\,D)\}=\int\omega\,\big(M_0(\partial_bD)-\partial_bM_0(D)\big)=\int\omega\,b^\mu M_\mu(D)$, since $\{S^{(1)}(P_b),-\}$ acts by $\partial_b$ on the fields and leaves the position and $\omega$ untouched. Lemma \ref{lem:c9-SDelta} (i) gives $v.\int\omega\,D=\int\omega\,2(x\cdot\partial+w_D)D$.
+\end{proof}
+
+\begin{proposition}[Position decomposition]
+\label{prop:c11-position}
+\begin{itemize}
+\item (i) For every pair of letters, the position part along $b$ of the composite pair kernel along $\Delta$ is twice the composite pair kernel along $P_b$. For every local functional the position part of its arity-one counterterm along $\Delta$ is twice its arity-one counterterm along $P_b$; on cocycles the position part of the composite term along $\Delta$ is twice the composite term along $P_b$; and the position part of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(\Delta)$ along $b$ is $2I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(P_b)$. In particular the quadratic part of the coefficient of $\log\varepsilon$ in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(P_b)$ is $\tfrac12$ unit times $Q\big(\int(\iota_bA|_V,c^*)-\tfrac12\int(\rho(b)\lambda^*,\lambda^*)\big)$, and the quadratic part of the arity-one obstruction along $P_b$ vanishes.
+\item (ii) The translation-invariant part of the composite pair kernel along $\Delta$ is computed with the internal vertex $\int\big(2(x-x_O)^\mu\partial_\mu(A|_V)+2A|_V,A^*|_V\big)$, $x_O$ the point of the density, and pair by pair its commutator with $\{S^{(1)}(P_b),-\}$ is twice the composite pair kernel along $P_b$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) By Lemma \ref{lem:c11-kernels} (iv) the internal vertex along $\Delta$ is $2\int x^\mu s_\mu+\int s_0$, with $\int s_\mu$ the internal vertex along $P_{e_\mu}$ and $s_0=2(A|_V,A^*|_V)$; insert $x^\mu=x_O^\mu+(x-x_O)^\mu$. On plane waves the factor $x^\mu$ is $-i\partial/\partial r^\mu$ of $e^{i(r,x)}$, with the momentum $r$ injected at the internal vertex and absorbed by $\omega$; its action on the momentum delta function is the position part, $-i$ times the graph with $\int s_\mu$ at $r=0$, which is $2\cdot(-i)$ times the graph along $P_{e_\mu}$; its action on the integrand is translation invariant. The same holds graph by graph for the composite cycles, their singular parts, the counterterm trees and the composite loops of $I$. Theorem \ref{thm:c9-quadratic} (i) gives the quadratic part along $\Delta$, which is $Q$ of $\int x^\mu$ times a density with $Q$ mapping letters to letters; Theorem \ref{thm:c9-quadratic} (ii) gives a quadratic obstruction along $\Delta$ without explicit position. (ii) The first statement is the decomposition of (i); the second is Lemma \ref{lem:c11-canonical} applied to the composite pair kernel along $\Delta$, whose position part is given by (i).
+\end{proof}
+
+\begin{theorem}[Special-edge composite cycles as simplex integrals]
+\label{thm:c11-simplex}
+For a chain of Definition \ref{def:c11-sp} with $k$ vertices of $I$ and edges $e_0,\dots,e_k$, $e_0$ at $X_a$, let $e_c$ be the composite kernel and $e_\sigma$, $\sigma\ne c$, the special edge. The cycle has $k+2$ Schwinger times: $t_j\in[\varepsilon,\infty)$ for $j\notin\{c,\sigma\}$, $t_\sigma\in[0,\varepsilon]$, and $t'_c,t''_c\in[\varepsilon,\infty)$ for the two segments of the composite kernel (Lemma \ref{lem:c11-kernels} (vi)), which meet at the internal vertex of $S^{(1)}(x)$. The edge $e_j$ carries $l+q_j$ as in Definition \ref{def:c10-cycle}, both segments carry $l+q_c$, and along $\Delta$ a momentum $r$ is injected at the internal vertex and carried by the second segment and by $e_{c+1},\dots,e_k$ to $X_b$ and $\omega$. The numerator is the product of the vertex functions, the edge factors of Definition \ref{def:c10-cycle}, the special-edge factor $-|l+q_\sigma|^2$ times the fibre factor of $K_0$, the segment factors $2(-,-)^{-1}$ times the inverse metric and $-i(l+q_c)(-,-)^{-1}$, and the insertion: $i(l+q_c)_b$ along $P_b$; $2$ for $2\int(A|_V,A^*|_V)$ and $2i(l+q_c)_\mu$ for $2\int x^\mu(\partial_\mu(A|_V),A^*|_V)$ along $\Delta$. With the simplex of dimension $k+1$ of the coordinates $\alpha=(\alpha_j)_{j\ne c}\cup(\alpha'_c,\alpha''_c)$, its centre, momentum form and $m$-th simplex integrand as in Definition \ref{def:c10-cycle} with $k+1$ in place of $k$, at generic output momenta and $T=\infty$,
+\begin{equation}
+\begin{aligned}
+16\pi^2\big(\text{coefficient of }\varepsilon^{-m}\big)&=\frac1m\int_{\alpha_\sigma\text{ smallest}}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]\big(m\text{-th simplex integrand}\big)\,d\alpha\qquad(m\ge1),\\
+16\pi^2\big(\text{coefficient of }\varepsilon^0\big)&=\int_{\alpha_\sigma\text{ smallest}}\big(0\text{-th simplex integrand}\big)\,\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\end{aligned}
+\label{eq:c11-simplex}
+\end{equation}
+the coefficient of $\log\varepsilon$ is $0$, and the remainder tends to $0$. Each coefficient is a polynomial in the output momenta and in $r$, of degree the superficial degree minus $2m$, and the limit vanishes for negative superficial degree. The coefficients of $\varepsilon^0$ are integrals of polynomials times logarithms of ratios of affine functions over rational subsimplices; for $k=1$ they lie in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$ (Proposition \ref{prop:c11-k1}).
+\end{theorem}
+
+\begin{proof}
+The domain $\{t_\sigma\le\varepsilon,\ t_f\ge\varepsilon\ (f\ne\sigma)\}$ is the difference of the domains with the cutoff shapes $1/\min_{f\ne\sigma}\alpha_f$ and $1/\min_f\alpha_f$, which differ on the region where $\alpha_\sigma$ is the smallest coordinate. Proposition \ref{prop:c10-shape} applies to each with $k+2$ edges, the Schwinger measure being $\tau^{k+1}d\tau\,d\alpha$, and the difference is taken as in Lemma \ref{lem:c10-special}: the two terms in $\log\varepsilon$ cancel, and the finite parts differ by $-\int F\log(\alpha_\sigma/\min_{f\ne\sigma}\alpha_f)$ over that region, $F$ the $0$-th simplex integrand. The region $\tau\ge1$ converges at $T=\infty$: the composite kernel is of order $|p|^{-3}$ at small momentum (Proposition \ref{prop:c9-composite} (iv)) and the other edges carry distinct generic momenta (proof of Theorem \ref{thm:c10-decomp} (ii)), so the integrand is integrable and the measure of $\{\alpha_\sigma\le\varepsilon/\tau\}$ is of order $\varepsilon$; the injected momentum enters polynomially at each order in $r$. The degree statement is Proposition \ref{prop:c11-bound} (i).
+\end{proof}
+
+\begin{proposition}[Generating functions in the point splitting]
+\label{prop:c11-genfun}
+With the letters at $x+y_a$ and $x+y_b$, $y=y_b-y_a$, the $m$-th simplex integrand for the numerator $(\text{chain numerator})\,e^{i(y,l)}$ is the chain numerator with $l$ replaced by $-i\partial_y$, applied to
+\[
+(-1)^{m+k}e^{i(y,\text{centre})}\sum_{i\ge0}\frac{(|y|^2/4)^{i+m+k}(\text{momentum form})^i}{i!\,(i+m+k)!}=(-1)^{m+k}e^{i(y,\text{centre})}\Big(\frac{|y|}{2\sqrt{\text{momentum form}}}\Big)^{m+k}I_{m+k}\big(|y|\sqrt{\text{momentum form}}\big),
+\]
+and, summed over the chains with the signs of Definition \ref{def:c11-sp},
+\[
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\,\beta!}\big(\text{composite pair kernel of }(\partial^\alpha\varphi_a,\partial^\beta\varphi_b)\text{ along }x\big)=\frac{\hbar}{16\pi^2}\,e^{i(y_b,q_k)}\int_{\alpha_\sigma\text{ smallest}}\big(0\text{-th simplex integrand}\big)\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\]
+with $q_k$ including $r$ along $\Delta$; the coefficients of $\varepsilon^{-m}$ have the same generating function with the weights of \eqref{eq:c11-simplex}. In position space $iq_j$ is the derivative of the product of the outputs at $x$.
+\end{proposition}
+
+\begin{proof}
+As Proposition \ref{prop:c10-genfun}, with $k+2$ edges: the power $\tau^{-1-m}$ of the Gaussian-integrated integrand times $\tau^{k+1}$ fixes the index shift $m+k$, and Theorem \ref{thm:c11-simplex} replaces the weight $(\min_e\alpha_e)^m$ by the weights of the region where $\alpha_\sigma$ is the smallest.
+\end{proof}
+
+\begin{proposition}[One vertex in closed form]
+\label{prop:c11-k1}
+Let $k=1$, $\beta:=\alpha_\sigma$, and let $\gamma'$ and $\gamma''=1-\beta-\gamma'$ be the coordinates of the two segments. At $r=0$ the centre $-\beta q_\sigma-(1-\beta)q_c$ and the momentum form $\beta(1-\beta)|q_c-q_\sigma|^2$ depend on $\beta$ alone, the region where $\beta$ is the smallest coordinate requires $\beta\le\tfrac13$, and
+\[
+\begin{aligned}
+16\pi^2\big(\text{composite pair kernel}\big)&=\int_0^{1/3}\big(0\text{-th simplex integrand}\big)(\beta)\Big[(1-\beta)\log\frac{1-\beta}{2\beta}-(1-3\beta)\Big]d\beta,\\
+16\pi^2\big(\text{coefficient of }\varepsilon^{-m}\big)&=\int_0^{1/3}\big(m\text{-th simplex integrand}\big)(\beta)\,\frac2m\Big[\frac{\big(\tfrac{1-\beta}2\big)^{m+1}-\beta^{m+1}}{m+1}-\beta^m\Big(\frac{1-\beta}2-\beta\Big)\Big]d\beta .
+\end{aligned}
+\]
+The part linear in $r$ carries one factor $\gamma''$ in the simplex integrand, and $\int\gamma''(\cdots)\,d\gamma'=\tfrac{1-\beta}2\int(\cdots)\,d\gamma'$ by the symmetry $\gamma'\leftrightarrow\gamma''$ of the region and of the weights. The coefficients are integrals of $\beta^a(1-\beta)^b$ times these weights over $[0,\tfrac13]$, in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$.
+\end{proposition}
+
+\begin{proof}
+On the region, $\min_{f\ne\sigma}\alpha_f=\min(\gamma',\gamma'')$ and $\gamma'\in[\beta,1-2\beta]$. By the symmetry about $\gamma'=\tfrac{1-\beta}2$,
+\[
+\int\log\frac{\min(\gamma',\gamma'')}\beta\,d\gamma'=2\int_\beta^{(1-\beta)/2}\log\frac{\gamma'}\beta\,d\gamma'=(1-\beta)\log\frac{1-\beta}{2\beta}-(1-3\beta),
+\]
+and $\frac1m\int\big(\min(\gamma',\gamma'')^m-\beta^m\big)d\gamma'$ is the second weight. At $r=0$ both segments carry $l+q_c$, so the Gaussian data depend on $\beta$ alone; along $\Delta$ the derivative in $r$ of $\sum_jt_j|l+q_j|^2$ is $2t''_c(l+q_c)\cdot$, linear in $\gamma''$. The integrals $\int_0^{1/3}\beta^a(1-\beta)^b\log\frac{1-\beta}{2\beta}\,d\beta$ are rational combinations of $1$, $\log2$, $\log3$, the endpoint $\beta=\tfrac13$ giving $\log\tfrac23$.
+\end{proof}
+
+\begin{theorem}[The composite term is two-body and local]
+\label{thm:c11-local}
+Let $O=\int\omega\,X_1\cdots X_n$ be a local functional with $sO=0$, $x\in\{\Delta,P_b\}$, $T=\infty$, generic momenta, and $\hbar F_1^{(0)}$ as in (i) of Definition \ref{def:c10-hyp}.
+\begin{itemize}
+\item (i) The special-edge composite cycles of $(X_a,X_b)$ along $x$ are $\sum_{m\ge1}\varepsilon^{-m}$ times local coefficients, plus the composite pair kernel, plus a remainder tending to $0$; they contain no $\log\varepsilon$.
+\item (ii) $s$ annihilates the coefficient of $\log\varepsilon$ in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, and $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ is $\log\varepsilon$ times that coefficient in every sector.
+\item (iii) (Arity-one BRST covariance.) $s$ of the coefficient of $\log\varepsilon$ in the arity-one counterterm of $O$ along $x$ is minus the bracket of $O$ with the coefficient of $\log\varepsilon$ in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, and the sum over the pairs, with the Koszul signs of \eqref{eq:c10-decomp}, of the coefficients of $\varepsilon^{-m}$ of the special-edge composite cycles is $s$ of the coefficient of $\varepsilon^{-m}$ in the arity-one counterterm of $O$.
+\item (iv) The composite term of $O$ along $\Delta$ (Definition \ref{def:c10-hyp}) and along $P_b$ (Proposition \ref{prop:c10-P1}) is
+\begin{equation}
+\big(\text{composite term of }O\text{ along }x\big)=\sum_{a<b}(-1)^{|X_b|(|X_{a+1}|+\cdots+|X_{b-1}|)}\int\omega\,X_1\cdots X_{a-1}\,\big(\text{composite pair kernel of }(X_a,X_b)\text{ along }x\big)\,X_{a+1}\cdots\widehat{X_b}\cdots X_n,
+\label{eq:c11-local}
+\end{equation}
+a local two-body functional with no one-body term.
+\item (v) Hence the composite terms of the pairs and of the legs of Theorem \ref{thm:c10-D1}, summed, equal the sum over the pairs of the composite pair kernels along $\Delta$: the nonlocal parts of the brackets of the letters $A|_V$, $\lambda$, $c$ with the renormalised composite two-point functional, $\log|p|^2$ of the leg momentum and $(p,a)(p,b)|p|^{-2}$ on $A|_V$ (Remark \ref{rem:c9-Pi}), cancel against those of the images under $Q$ of the renormalised composite cycles through the pairs containing these letters.
+\item (vi) For $sO\ne0$ the right side of \eqref{eq:c11-local} acquires the renormalised composite graphs of $sO$, minus $\tfrac\hbar2\,\partial$ of the composite kernel applied to the trees with one vertex $sO$; these contain the nonlocal bracket with the renormalised composite two-point functional on the letters of $sO$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}[Outline]
+By Proposition \ref{prop:c11-master}, $Q$ of the composite graphs of $O$ is $\tfrac\hbar2\,\partial$ of the composite kernel applied to the trees with one edge $K_\varepsilon-K_0$. Sort them by the position of the special edge relative to the cycle closed by the composite kernel: (A) on a cycle through two letters, the special-edge composite cycles with trees on the outputs; (B) on a tree attached to a cycle through two letters, at an output or at a spectator letter, the factor $e^{-\varepsilon|p|^2}-1$ at a generic momentum times the unrenormalised composite cycle; (C) on a composite loop of $I$ attached to $O$ by a tree: by Proposition \ref{prop:c11-master} for $M=0$, read on the amputated loops, where the collapse of a tree edge at a leg of the loop by $QP\star+P\star Q=e^{-\varepsilon H}$ gives the bracket with $I$, minus the amputated loops with one special edge is $s$ of the amputated composite loops of $I$, that is, $s$ of the renormalised composite functional along $x$ plus $s\,I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, and (C) is its tree insertion into $O$; (D) on the tree joining a composite loop of $I$ to $O$, the factor $e^{-\varepsilon|p|^2}-1$ times the unrenormalised loop. The counterterm trees, with the vertices $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ and the arity-one counterterm of $O$, have by Proposition \ref{prop:c4-defectflow} and Lemma \ref{lem:c6-bvexact} the images under $Q$
+\[
+\begin{aligned}
+Q\big(-\text{tree}(I^{CT,(1)},O)\big)&=-\text{tree}\big(sI^{CT,(1)},O\big)-\{I^{CT,(1)},O\}+(\text{special edges}),\\
+Q\big(-\text{tree}(\text{arity-one counterterm of }O)\big)&=-\text{tree}\big(s(\text{arity-one counterterm of }O)\big)+(\text{special edges}),
+\end{aligned}
+\]
+with $I^{CT,(1)}$ short for $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, an odd vertex, and the special edges joining the counterterm vertex to a vertex $I$. These special edges cancel the singular parts of (B) and (D), whose sums are $e^{-\varepsilon|p|^2}-1$ times a renormalised cycle or loop, which have limits, and tend to $0$.
+
+(ii) By (C), $s$ of the amputated composite loops of $I$ is minus the loops with one special edge, which contain no $\log\varepsilon$ (Theorem \ref{thm:c11-simplex}). The coefficient of $\varepsilon^{-m}$ of $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ is a colour-singlet local functional of degree $-1$ and Weyl weight $4-2m$ along $\Delta$, the position at weight $-1$ and at most linear in it, and $5-2m$ along $P_b$; a colour singlet has at least two adjoint fields, and degree $-1$ requires an antifield of degree $-1$, of weight at least $\tfrac52$, and a field of degree $0$, of weight at least $1$, or $c^*$ and $c$, of weights $4$ and $0$: the field weight is at least $\tfrac72$, and at least $\tfrac52$ with one position, above $4-2m\le2$ and $5-2m\le3$.
+
+(iii), (iv) The loops (C) give the tree insertion of $s$ of the renormalised composite functional, and by (ii) $-\text{tree}(sI^{CT,(1)},O)$ vanishes; $s$ of the renormalised composite functional is the composite part (Remark \ref{rem:c9-Pi}, Proposition \ref{prop:c9-structure} (ii)), whose tree insertion is subtracted in the definition of the composite term. What remains is (A) minus the trees of $s$ of the arity-one counterterm of $O$ minus $\{I^{CT,(1)},O\}$. The left side has a limit, the composite graphs minus their counterterm trees converging (Proposition \ref{prop:c9-structure} (i)), and (A) contains no $\log\varepsilon$ by (i): the coefficient of $\log\varepsilon$ gives (iii), and so do the coefficients of $\varepsilon^{-m}$. At order $\varepsilon^0$ the trees on the outputs of the special-edge composite cycles and of the poles of the arity-one counterterm are the same trees with edges $P(\varepsilon,\infty)$, so after the cancellation of the poles their difference tends to the trees of the composite pair kernels with edges $P(0,\infty)$, and the injectivity of the tree-level flow gives \eqref{eq:c11-local}. Statement (i) is Theorem \ref{thm:c11-simplex} for each chain.
+
+(v) Definition \ref{def:c10-hyp} writes the same limit as the sum of the composite terms of the pairs and of the legs (proof of Theorem \ref{thm:c10-D1}), so the two sums agree on cocycles, and the right side is local. The mechanism: $Q$ of a renormalised composite cycle through $(X_a,X_b)$ produces, through $QP\star+P\star Q=e^{-\varepsilon H}$ on the edge at $X_a$, the composite cycles of the letters of $\{I,X_a\}$, and $sO=0$ trades them for the composite loops on the legs, whose renormalised value is the renormalised composite two-point functional. (vi) For $sO\ne0$, Proposition \ref{prop:c11-master} keeps the trees with one vertex $sO$, whose composite closures are the composite graphs of $sO$ of both kinds.
+\end{proof}
+
+\begin{remark}[What the locality uses and what it fixes]
+\label{rem:c11-local}
+The argument uses $sO=0$ exactly, the classical master equation, the anticommutation of $Q$ with $\partial$ of the composite kernel, which rests on $[v_x.,Q]=0$ and $QP\star+P\star Q=e^{-\varepsilon H}$ (Lemma \ref{lem:c11-kernels} (v)), the absence of $\log\varepsilon$ in cycles with one special edge, a property of the cutoff on every edge (Theorem \ref{thm:c11-simplex}), the absence of a term $\varepsilon^{-1}$ in the composite loops of $I$ (Theorem \ref{thm:c11-local} (ii)), and generic momenta at $T=\infty$ for the convergence of the cycles and of the composite loops, which are of order $|p|^{-3}$ (Proposition \ref{prop:c9-composite} (iv)), or any finite $T$ (Theorem \ref{thm:c8-L} (ii)); (i) of Definition \ref{def:c10-hyp} enters through the terms with $QW$ of the proof of Theorem \ref{thm:c10-D1}, which are outside the composite term. For a functional of the fields $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $\lambda$ alone, $sO=0$ is the gauge invariance of its density. Statement (iv) fixes the one-body part of the composite term: a term $t$ units times $v.X_a$ on every letter, added to the right side of \eqref{eq:c11-local}, would replace each sector coefficient $\theta$ by $\theta+t$ in Sections 11.3--11.5 and leave every spectrum unchanged; the value $\theta=-\tfrac13$ of Proposition \ref{prop:c11-theta-sector} is the value in the normalisation of \eqref{eq:c11-local}.
+\end{remark}
+
+\begin{corollary}[Local two-body form of $D_1$ and $P_1$]
+\label{cor:c11-D1local}
+Under the hypotheses of Definition \ref{def:c10-hyp}, and of the same definition with $P_b$ in place of $\Delta$, for $O=\int\omega\,X_1\cdots X_n$, with the Koszul signs of \eqref{eq:c10-decomp},
+\[
+\begin{aligned}
+D_1(O)=\ &\sum_{a<b}\pm\int\omega\cdots\Big[4\big(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon](X_aX_b)\big)+\big(\text{composite pair kernel of }(X_a,X_b)\text{ along }\Delta\big)\Big]\cdots\\
+&+\sum_a\int\omega\cdots\Big[-4\,\text{units}\cdot(\text{weight of }X_a)\,X_a-\big\{\hbar F_1^{(1)}(\Delta)-4\,\text{units}\cdot(\text{field-counting functional}),X_a\big\}\Big]\cdots,\\
+P_1(O)=\ &\sum_{a<b}\pm\int\omega\cdots\big(\text{composite pair kernel of }(X_a,X_b)\text{ along }P_b\big)\cdots-\sum_a\int\omega\cdots\big\{\hbar F_1^{(1)}(P_b),X_a\big\}\cdots,
+\end{aligned}
+\]
+every term local; $D_1$ minus four times the map of Theorem \ref{thm:c10-brst} is the sum over the pairs of the composite pair kernels along $\Delta$ minus the bracket of $O$ with $\hbar F_1^{(1)}(\Delta)-4$ units times the field-counting functional.
+\end{corollary}
+
+\begin{proof}
+Insert \eqref{eq:c11-local} into Theorem \ref{thm:c10-D1} and Proposition \ref{prop:c10-P1}; four times the coefficient of $\log\varepsilon$ is two-body by Theorem \ref{thm:c10-decomp} (iii), and the brackets with the field-counting functional, with $\hbar F_1^{(1)}(\Delta)$ and with $\hbar F_1^{(1)}(P_b)$ are derivations.
+\end{proof}
+
+\begin{proposition}[The route of the special edges]
+\label{prop:c11-routes}
+For $O$ as in Corollary \ref{cor:c11-D1local}, the limit as $\varepsilon\to0$ of the cycles through the pairs of letters of $O$ with one special edge and one vertex $S^{(1)}(\Delta)$ anywhere on the cycle, as the composite kernel or with one leg on the special edge, minus the trees of $s$ of the arity-one counterterm of $O$, the graphs of Lemma \ref{lem:c8-transfer} used in Theorem \ref{thm:c9-D1}, is the sum over the pairs of four times the coefficient of $\log\varepsilon$ of the pair kernel plus the composite pair kernel along $\Delta$.
+\end{proposition}
+
+\begin{proof}
+Both routes compute the local representative $D_1(O)$, which is unique (Theorem \ref{thm:c8-L} (i)). In the route of the special edges the one-body terms are the trees with $-\{\hbar F_1^{(1)}(\Delta),O\}$, the arity-one defect of the action joined to $O$ vanishing by \eqref{eq:c9-arity1} (proof of Theorem \ref{thm:c9-D1}); in Corollary \ref{cor:c11-D1local} the one-body terms are $-4$ units times the weights minus the bracket with $\hbar F_1^{(1)}(\Delta)-4$ units times the field-counting functional, which is $-\{\hbar F_1^{(1)}(\Delta),-\}$. The two-body sums therefore agree.
+\end{proof}
+
+\begin{example}[The scalar bilinears]
+\label{ex:c11-bilinear}
+For $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)$, on the part with two legs $A|_{W_{\mathbb R}^\perp}$, Theorem \ref{thm:c9-D1} and Remark \ref{rem:c9-twoeval} give the value $4\,(\text{coefficient of }\log\varepsilon\text{ in }\partial_\delta I^{CT}[\varepsilon](O))-\tfrac43\,O-\tfrac13\{S^{(1)}(\Delta),O\}$ units of the route of the special edges, so by Proposition \ref{prop:c11-routes}
+\[
+\big(\text{composite pair kernel of }(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})\text{ along }\Delta\big)\Big|_{\text{outputs }A|_{W_{\mathbb R}^\perp}A|_{W_{\mathbb R}^\perp}}=\Big[-\tfrac13\,v.O-\tfrac43\,O\Big]\ \text{units},
+\]
+for the traceless and the trace parts alike. It is the single chain of Table \ref{tab:c11-fieldpairs},
+\[
+A|_{W_{\mathbb R}^\perp}\xrightarrow{\ K_\varepsilon-K_0\ }\big([A|_{W_{\mathbb R}^\perp},c],A^*|_{W_{\mathbb R}^\perp}\big)\xrightarrow{\ \text{composite kernel}\ }A|_V(A|_{W_{\mathbb R}^\perp})^2\xrightarrow{\ P\ }A|_{W_{\mathbb R}^\perp}.
+\]
+Its position part along $b$ is $-\tfrac23$ units times $\partial_b$, so the composite pair kernel along $P_b$ is $-\tfrac13$ units times $\{S^{(1)}(P_b),O\}$, in agreement with Theorem \ref{thm:c9-P1}, the composite triangle and the composite two-point functional along $P_b$ giving $-2+\tfrac53$; its translation-invariant part is $-\tfrac23\cdot2\,O-\tfrac43\,O=-\tfrac83\,O$ units.
+\end{example}
+

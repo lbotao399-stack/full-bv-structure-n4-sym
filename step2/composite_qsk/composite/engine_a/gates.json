@@ -1,0 +1,1484 @@
+[
+ {
+  "id": "GW1",
+  "what": "finite-part weights int_{R_s} alpha^n log(min_{f!=s} alpha_f/alpha_s) exact vs mpmath (E=3)",
+  "value": [
+   {
+    "exps": [
+     0,
+     0,
+     0
+    ],
+    "s": 0,
+    "exact": "0 + 1/2 log(3/2)",
+    "numeric": 0.20273261374751428,
+    "diff": 5.969343419565121e-08
+   },
+   {
+    "exps": [
+     0,
+     2,
+     1
+    ],
+    "s": 0,
+    "exact": "17/1620 + 1/60 log(3/2)",
+    "numeric": 0.017251579617578727,
+    "diff": 6.552838272000372e-10
+   },
+   {
+    "exps": [
+     2,
+     0,
+     1
+    ],
+    "s": 2,
+    "exact": "-53/12960 + 1/60 log(3/2)",
+    "numeric": 0.0026682464019391894,
+    "diff": 7.729759055052909e-10
+   }
+  ],
+  "target": "|diff| < 1e-6",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GW2",
+  "what": "Lemma tl-special example: k=1, N=-|l|^2: eps^-1 and finite part",
+  "value": {
+   "eps^-1": "-1/2",
+   "finite": "-21/8",
+   "log part": "0"
+  },
+  "target": {
+   "eps^-1": "-1/2",
+   "finite": "-21/8"
+  },
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GK1",
+  "what": "Prop cc-k1 (k=1 closed form W_0, W_1 over [0,1/3]) vs the ordered-subsimplex engine",
+  "value": [
+   {
+    "N": "-|k|^2",
+    "engine_finite": "-log(3/2)",
+    "closed_form_finite": "-log(3/2)",
+    "engine_eps^-1": "0",
+    "closed_form_eps^-1": "0"
+   },
+   {
+    "N": "-|k|^2 (a.k)^2",
+    "engine_finite": "-89/54 - log(3/2)",
+    "closed_form_finite": "-89/54 - log(3) + log(2)",
+    "engine_eps^-1": "-1/8",
+    "closed_form_eps^-1": "-1/8"
+   },
+   {
+    "N": "-|k|^4",
+    "engine_finite": "-11/3 - 6*log(3/2)",
+    "closed_form_finite": "-6*log(3) - 11/3 + 6*log(2)",
+    "engine_eps^-1": "-1/6",
+    "closed_form_eps^-1": "-1/6"
+   }
+  ],
+  "target": "equal",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GE1",
+  "what": "general core (Gaussian momenta, t-expansion) = integer core on every configuration (finite parts)",
+  "value": "12 configs, 0 mismatches",
+  "target": "0 mismatches",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GE2",
+  "what": "translation-invariant part along Delta: exact t^1 coefficient = finite differences in r (int core)",
+  "value": "(-160/27+5/27*i) + (52+236/3*i)*log2 + (-26+-118/3*i)*log3",
+  "target": "(-160/27+5/27*i) + (52+236/3*i)*log2 + (-26+-118/3*i)*log3",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GE3",
+  "what": "pure two-letter log kernel of the general core = ea_kern.kernel (two-letter engine A)",
+  "value": [
+   [
+    "AW",
+    "AW",
+    [
+     "AW",
+     "AW"
+    ],
+    "(16+-112*i)",
+    "(16+-112*i)"
+   ],
+   [
+    "AW",
+    "lamP",
+    [
+     "AW",
+     "lamP"
+    ],
+    "(754+330*i)",
+    "(754+330*i)"
+   ],
+   [
+    "AV",
+    "lamP",
+    [
+     "lamP"
+    ],
+    "(-31+50*i)",
+    "(-31+50*i)"
+   ],
+   [
+    "lamP",
+    "lamP",
+    [
+     "lamP",
+     "lamP"
+    ],
+    "(-562/3+-1635/2*i)",
+    "(-562/3+-1635/2*i)"
+   ],
+   [
+    "AV",
+    "c",
+    [
+     "c"
+    ],
+    "(-10+-10/3*i)",
+    "(-10+-10/3*i)"
+   ],
+   [
+    "AV",
+    "AW",
+    [
+     "AV",
+     "AW"
+    ],
+    "(-201/2+-15*i)",
+    "(-201/2+-15*i)"
+   ]
+  ],
+  "target": "equal",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC3",
+  "what": "bilinears: C^(2)_{P_b} = -1/3 u d_b O and C^(2),0_Delta = -8/3 u O (= -1/3 u v.^0 - 4/3 u), traceless and trace, real and null momenta, no free constant",
+  "value": {
+   "real_traceless": {
+    "C_P1 (units u)": "-I/3",
+    "target -1/3 u d_1 O": "-I/3",
+    "C0_Delta": "-8/3",
+    "target -8/3 u O": "-8/3"
+   },
+   "real_trace": {
+    "C_P1 (units u)": "-2*I/3",
+    "target -1/3 u d_1 O": "-2*I/3",
+    "C0_Delta": "-16/3",
+    "target -8/3 u O": "-16/3"
+   },
+   "null_traceless": {
+    "C_P1 (units u)": "1/3",
+    "target -1/3 u d_1 O": "1/3",
+    "C0_Delta": "-8/3",
+    "target -8/3 u O": "-8/3"
+   },
+   "null_trace": {
+    "C_P1 (units u)": "2/3",
+    "target -1/3 u d_1 O": "2/3",
+    "C0_Delta": "-16/3",
+    "target -8/3 u O": "-16/3"
+   }
+  },
+  "target": "Example ex:cc-bilinear",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GS",
+  "what": "graded symmetry of the composite kernels (chain from X_b with reversed outputs) has the log-kernel ratio, kappa = +1, -1, 0",
+  "value": [
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AW"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AW"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AW"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(-1-0j)"
+    ],
+    "log_ratio": "(-1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "outputs": [
+     "AW",
+     "lamP"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "outputs": [
+     "AW",
+     "lamP"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "outputs": [
+     "AW",
+     "lamP"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "lamP"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "lamP"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "lamP"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "AV",
+     "lamP"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1-0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "AV",
+     "lamP"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "AV",
+     "lamP"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "AV"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "AV"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "outputs": [
+     "lamP",
+     "AV"
+    ],
+    "kappa": 0,
+    "composite_ratios": [],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AV",
+     "AW"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1-0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AV",
+     "AW"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "outputs": [
+     "AV",
+     "AW"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1-0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AV"
+    ],
+    "outputs": [
+     "AV",
+     "AV"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1-0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AV"
+    ],
+    "outputs": [
+     "AV",
+     "AV"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1+0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AV"
+    ],
+    "outputs": [
+     "AV",
+     "AV"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1-0j)",
+     "(1+0j)",
+     "(1+0j)"
+    ],
+    "log_ratio": "(1+0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "outputs": [
+     "AW",
+     "AW"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1+0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "outputs": [
+     "AW",
+     "AW"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "outputs": [
+     "AW",
+     "AW"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1+0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamM"
+    ],
+    "outputs": [
+     "lamM",
+     "lamP"
+    ],
+    "kappa": 1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamM"
+    ],
+    "outputs": [
+     "lamM",
+     "lamP"
+    ],
+    "kappa": -1,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "lamP",
+     "lamM"
+    ],
+    "outputs": [
+     "lamM",
+     "lamP"
+    ],
+    "kappa": 0,
+    "composite_ratios": [
+     "(1+0j)",
+     "(1-0j)",
+     "(1-0j)"
+    ],
+    "log_ratio": "(1-0j)",
+    "pass": true
+   }
+  ],
+  "target": "equal ratios",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC4",
+  "what": "position identity (C^(2)_Delta)^b = 2 C^(2)_{P_b} graph by graph (s_mu vertex at r = 0)",
+  "value": [
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "b": 0,
+    "pos_part": "(-536/81+-16/3*i)",
+    "2C_Pb": "(-536/81+-16/3*i)"
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "b": 3,
+    "pos_part": "(56/81+64/27*i)",
+    "2C_Pb": "(56/81+64/27*i)"
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "b": 0,
+    "pos_part": "(1040/27+-2480/27*i) + (156+-372*i)*log2 + (-78+186*i)*log3",
+    "2C_Pb": "(1040/27+-2480/27*i) + (156+-372*i)*log2 + (-78+186*i)*log3"
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "b": 3,
+    "pos_part": "(52/27+-124/27*i)",
+    "2C_Pb": "(52/27+-124/27*i)"
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "b": 0,
+    "pos_part": "(-20/9+-250/27*i)",
+    "2C_Pb": "(-20/9+-250/27*i)"
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "b": 3,
+    "pos_part": "(20/9+250/27*i)",
+    "2C_Pb": "(20/9+250/27*i)"
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "b": 0,
+    "pos_part": "(220/3+-1450/27*i) + (232+-536*i)*log2 + (-116+268*i)*log3",
+    "2C_Pb": "(220/3+-1450/27*i) + (232+-536*i)*log2 + (-116+268*i)*log3"
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "b": 3,
+    "pos_part": "(-1987/18+304/9*i) + (-2584/3+1672/3*i)*log2 + (1292/3+-836/3*i)*log3",
+    "2C_Pb": "(-1987/18+304/9*i) + (-2584/3+1672/3*i)*log2 + (1292/3+-836/3*i)*log3"
+   }
+  ],
+  "target": "equal",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC4c",
+  "what": "canonical form (Lemma lem:cc-canonical): C^0(d_b X_a, X_b) + C^0(X_a, d_b X_b) - d_b C^0(X_a, X_b) = (C_Delta)^b = 2 C_{P_b}",
+  "value": [
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "b": 0,
+    "[C0,d_b]": "(-536/81+-16/3*i)",
+    "2 C_Pb": "(-536/81+-16/3*i)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "AW"
+    ],
+    "b": 3,
+    "[C0,d_b]": "(56/81+64/27*i)",
+    "2 C_Pb": "(56/81+64/27*i)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "b": 0,
+    "[C0,d_b]": "(1040/27+-2480/27*i) + (156+-372*i)*log2 + (-78+186*i)*log3",
+    "2 C_Pb": "(1040/27+-2480/27*i) + (156+-372*i)*log2 + (-78+186*i)*log3",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "AW"
+    ],
+    "b": 3,
+    "[C0,d_b]": "(52/27+-124/27*i)",
+    "2 C_Pb": "(52/27+-124/27*i)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "b": 0,
+    "[C0,d_b]": "(-20/9+-250/27*i)",
+    "2 C_Pb": "(-20/9+-250/27*i)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AV",
+     "lamP"
+    ],
+    "b": 3,
+    "[C0,d_b]": "(20/9+250/27*i)",
+    "2 C_Pb": "(20/9+250/27*i)",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "b": 0,
+    "[C0,d_b]": "(220/3+-1450/27*i) + (232+-536*i)*log2 + (-116+268*i)*log3",
+    "2 C_Pb": "(220/3+-1450/27*i) + (232+-536*i)*log2 + (-116+268*i)*log3",
+    "pass": true
+   },
+   {
+    "pair": [
+     "AW",
+     "lamP"
+    ],
+    "b": 3,
+    "[C0,d_b]": "(-1987/18+304/9*i) + (-2584/3+1672/3*i)*log2 + (1292/3+-836/3*i)*log3",
+    "2 C_Pb": "(-1987/18+304/9*i) + (-2584/3+1672/3*i)*log2 + (1292/3+-836/3*i)*log3",
+    "pass": true
+   }
+  ],
+  "target": "equal",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC9-F0",
+  "what": "P7(b) planar scalar sector: (A_perp, A_perp) density C_{P_beta} = -1/6 i beta.(q1+q2) (Y_i Y_j), no trace, no exchange (off shell)",
+  "value": {
+   "lambda (same order)": "-I/3",
+   "nu (exchanged)": "0",
+   "mu (trace)": "0",
+   "diagonal = lambda+mu+nu": "-I/3"
+  },
+  "target": "-1/6 u d_beta per adjacent pair",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC10-F0",
+  "what": "P7(c) planar scalar sector: density C^0 = -4/3 (Y_i Y_j), no trace, no exchange; Xi^0 = 0 per letter at theta = -1/3",
+  "value": {
+   "lambda (same order)": "-4/3",
+   "nu (exchanged)": "0",
+   "mu (trace)": "0",
+   "diagonal = lambda+mu+nu": "-4/3"
+  },
+  "target": "-4/3 u per adjacent pair = -2/3 u N",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC11-F0",
+  "what": "su(2) sector L <= 8: D_1/(-8u) charpolys at theta = -1/3 = Heisenberg (predictions P6)",
+  "value": "all (L, M)",
+  "target": "predictions.json P6",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC9/10-F2a",
+  "what": "su(1|1) two-site densities on shell: same word d0 = -4/3, dP = -1/6 (q1+q2); exchanged word 0 (all ordered pairs of Z, psi)",
+  "value": {
+   "('Z', 'psi')->('Z', 'psi')": [
+    "-4/3",
+    "-1/6",
+    "-1/6"
+   ],
+   "('Z', 'psi')->('psi', 'Z')": [
+    "0",
+    "0",
+    "0"
+   ],
+   "('psi', 'Z')->('psi', 'Z')": [
+    "-4/3",
+    "-1/6",
+    "-1/6"
+   ],
+   "('psi', 'Z')->('Z', 'psi')": [
+    "0",
+    "0",
+    "0"
+   ],
+   "('Z', 'Z')->('Z', 'Z')": [
+    "-4/3",
+    "-1/6",
+    "-1/6"
+   ],
+   "('psi', 'psi')->('psi', 'psi')": [
+    "-4/3",
+    "-1/6",
+    "-1/6"
+   ]
+  },
+  "target": "P7 (b), (c) per adjacent pair",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC11-F2a",
+  "what": "su(1|1) graded cyclic spectra L <= 6 of D_1/(-8u) at theta = -1/3 = harmonic action (ha_su11.json); lc^natural density -2(1-Pi), Xi^0 density 0",
+  "value": {
+   "L2_M0": [
+    "0"
+   ],
+   "L2_M1": [
+    "0"
+   ],
+   "L2_M2": [],
+   "L3_M0": [
+    "0"
+   ],
+   "L3_M1": [
+    "0"
+   ],
+   "L3_M2": [
+    "6"
+   ],
+   "L3_M3": [
+    "6"
+   ],
+   "L4_M0": [
+    "0"
+   ],
+   "L4_M1": [
+    "0"
+   ],
+   "L4_M2": [
+    "4"
+   ],
+   "L4_M3": [
+    "4"
+   ],
+   "L4_M4": [],
+   "L5_M0": [
+    "0"
+   ],
+   "L5_M1": [
+    "0"
+   ],
+   "L5_M2": [
+    "sqrt(5) + 5",
+    "5 - sqrt(5)"
+   ],
+   "L5_M3": [
+    "sqrt(5) + 5",
+    "5 - sqrt(5)"
+   ],
+   "L5_M4": [
+    "10"
+   ],
+   "L5_M5": [
+    "10"
+   ],
+   "L6_M0": [
+    "0"
+   ],
+   "L6_M1": [
+    "0"
+   ],
+   "L6_M2": [
+    "6",
+    "2"
+   ],
+   "L6_M3": [
+    "8",
+    "8",
+    "6",
+    "2"
+   ],
+   "L6_M4": [
+    "8",
+    "8",
+    "8"
+   ],
+   "L6_M5": [
+    "8"
+   ],
+   "L6_M6": []
+  },
+  "target": "ha_su11.json",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC10-F2b",
+  "what": "fermion sl(2): sum C^(2),0_Delta = -2/3 (4+N) on the two-field part (on shell)",
+  "value": {
+   "1": [
+    [
+     "-10/3"
+    ]
+   ],
+   "2": [
+    [
+     "-4"
+    ]
+   ],
+   "3": [
+    [
+     "-14/3",
+     "0"
+    ],
+    [
+     "0",
+     "-14/3"
+    ]
+   ]
+  },
+  "target": "-2/3(4+N) identity",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC9-F2b",
+  "what": "fermion sl(2): sum C^(2)_{P_n} = -1/3 u d_n on the two-field part (on shell, exact)",
+  "value": {
+   "1": {
+    "max_abs_residual_vs_-1/3_i_n.dq": 0.0,
+    "pass": true,
+    "seconds": 0.9
+   },
+   "2": {
+    "max_abs_residual_vs_-1/3_i_n.dq": 0.0,
+    "pass": true,
+    "seconds": 1.4
+   },
+   "3": {
+    "max_abs_residual_vs_-1/3_i_n.dq": 0.0,
+    "pass": true,
+    "seconds": 5.4
+   }
+  },
+  "target": "residual 0",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC11-F2b",
+  "what": "fermion sl(2): D_1 eigenvalues at theta = -1/3 = -32 h(n+1), n odd (log kernel eig -8h(n+1) from the general core)",
+  "value": {
+   "1": {
+    "eigenvalues": [
+     "-48"
+    ],
+    "target_-32h(n+1)_n_odd<=N": [
+     "-48"
+    ],
+    "pass": true
+   },
+   "2": {
+    "eigenvalues": [
+     "-48"
+    ],
+    "target_-32h(n+1)_n_odd<=N": [
+     "-48"
+    ],
+    "pass": true
+   },
+   "3": {
+    "eigenvalues": [
+     "-200/3",
+     "-48"
+    ],
+    "target_-32h(n+1)_n_odd<=N": [
+     "-200/3",
+     "-48"
+    ],
+    "pass": true
+   }
+  },
+  "target": "-8 u E_H",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC10-F1",
+  "what": "twist two: sum C^(2),0_Delta = -2/3 (4+N) on the two-field part, N <= 4 (exact, rational)",
+  "value": {
+   "0": [
+    [
+     "-8/3"
+    ]
+   ],
+   "1": [
+    [
+     "-10/3"
+    ]
+   ],
+   "2": [
+    [
+     "-4",
+     "0"
+    ],
+    [
+     "0",
+     "-4"
+    ]
+   ],
+   "3": [
+    [
+     "-14/3",
+     "0"
+    ],
+    [
+     "0",
+     "-14/3"
+    ]
+   ],
+   "4": [
+    [
+     "-16/3",
+     "0",
+     "0"
+    ],
+    [
+     "0",
+     "-16/3",
+     "0"
+    ],
+    [
+     "0",
+     "0",
+     "-16/3"
+    ]
+   ]
+  },
+  "target": "-2/3(4+N)",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC9-F1",
+  "what": "twist two: sum C^(2)_{P_n} = -1/3 u d_n exactly (two-field part), N <= 4; generic beta: = -1/3 u d_beta + (q_i^2 terms, EOM)",
+  "value": {
+   "P_n": true,
+   "generic_beta_matrices": {
+    "1": [
+     [
+      "-4/3"
+     ],
+     [
+      "-4/3"
+     ],
+     [
+      "-4/3"
+     ],
+     [
+      "-4/3"
+     ],
+     [
+      "0"
+     ],
+     [
+      "0"
+     ],
+     [
+      "0"
+     ]
+    ],
+    "2": [
+     [
+      "-4/3",
+      "0"
+     ],
+     [
+      "0",
+      "-8/3"
+     ],
+     [
+      "-4/3",
+      "0"
+     ],
+     [
+      "-4/3",
+      "0"
+     ],
+     [
+      "0",
+      "-8/3"
+     ],
+     [
+      "-4/3",
+      "0"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "0"
+     ],
+     [
+      "-2/3",
+      "2/3"
+     ],
+     [
+      "-2/9",
+      "2/9"
+     ],
+     [
+      "-2/9",
+      "2/9"
+     ],
+     [
+      "-2/3",
+      "2/3"
+     ]
+    ]
+   }
+  },
+  "target": "-1/3 u d_b on cohomology",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC11-F1",
+  "what": "twist two: D_1 = 4 lc^natural + sum C^(2)_Delta - sum{F_Delta, X} at theta = -1/3: eigenvalues -32 h(S), S even <= N",
+  "value": {
+   "0": [
+    "0"
+   ],
+   "1": [
+    "0"
+   ],
+   "2": [
+    "-48",
+    "0"
+   ],
+   "3": [
+    "-48",
+    "0"
+   ],
+   "4": [
+    "-200/3",
+    "-48",
+    "0"
+   ]
+  },
+  "target": "-8u E_H, E_H = 4h(S)",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GU",
+  "what": "on-shell planar densities, general polarisations (letter vectors of definite chirality): same word -4/3 / -1/6 i beta.(q1+q2), exchanged word 0, for pairs of A_perp, lambda_+, lambda_-",
+  "value": {
+   "AW|AW": true,
+   "AW|lamP": true,
+   "AW|lamM": true,
+   "lamP|AW": true,
+   "lamP|lamP": true,
+   "lamM|lamM": true,
+   "lamP|lamM": true,
+   "lamM|lamP": true
+  },
+  "target": "all",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC10-F3",
+  "what": "gluon sl(2): sum C^(2),0_Delta = -2/3 (6+N) on the two-field part (letter part; vertex-vertex part on shell)",
+  "value": {
+   "0": {
+    "letter": [
+     [
+      "-4"
+     ]
+    ],
+    "vv": [
+     [
+      "0"
+     ]
+    ]
+   },
+   "1": {
+    "letter": [
+     [
+      "-14/3"
+     ]
+    ],
+    "vv": [
+     [
+      "0"
+     ]
+    ]
+   }
+  },
+  "target": "-2/3(6+N)",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC9-F3",
+  "what": "gluon sl(2): sum C^(2)_{P_n} = -1/3 u d_n on the two-field part (on shell)",
+  "value": {
+   "0": {
+    "letter_zero": true,
+    "vv_zero": true
+   },
+   "1": {
+    "letter_zero": true,
+    "vv_zero": true
+   }
+  },
+  "target": "residual 0",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GC11-F3",
+  "what": "gluon sl(2): D_1 eigenvalues at theta = -1/3 = -32 h(n+2), n even (all kappa)",
+  "value": {
+   "0": {
+    "matrix(kappa)": [
+     [
+      "-48"
+     ]
+    ],
+    "target_-32h(n+2)_n_even<=N": [
+     "-48"
+    ],
+    "kappa=1": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    },
+    "kappa=-1": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    },
+    "kappa=0": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    }
+   },
+   "1": {
+    "matrix(kappa)": [
+     [
+      "-48"
+     ]
+    ],
+    "target_-32h(n+2)_n_even<=N": [
+     "-48"
+    ],
+    "kappa=1": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    },
+    "kappa=-1": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    },
+    "kappa=0": {
+     "eigenvalues": [
+      "-48"
+     ],
+     "pass": true
+    }
+   }
+  },
+  "target": "-8u E_H",
+  "pass": true,
+  "kind": "gate"
+ },
+ {
+  "id": "GW-F3",
+  "what": "gauge Ward identity: two-field part with one longitudinal leg vanishes on shell (letter and vertex-vertex parts separately)",
+  "value": {
+   "0": {
+    "D0": [
+     true,
+     true
+    ],
+    "('Pv', (np.complex128(1+0j), np.complex128(-0-1j), np.complex128(0j), np.complex128(0j)))": [
+     true,
+     true
+    ],
+    "('Pv', (1, 2, -1, 3))": [
+     true,
+     true
+    ]
+   },
+   "1": {
+    "D0": [
+     true,
+     true
+    ],
+    "('Pv', (np.complex128(1+0j), np.complex128(-0-1j), np.complex128(0j), np.complex128(0j)))": [
+     true,
+     true
+    ],
+    "('Pv', (1, 2, -1, 3))": [
+     true,
+     true
+    ]
+   }
+  },
+  "target": "zero",
+  "pass": true,
+  "kind": "gate"
+ }
+]

@@ -1,0 +1,143 @@
+ENGINE A, PART C (composite kernels C^(2)_Delta, C^(2)_{P_b}; D_1, P_1 on the families; Conjecture P7) -- route A
+(plain text; mirrored in out.nosync/notes.txt.  Theory: step2/composite_qsk/composite/theory/composite_theory.tex,
+engine_spec.json.  engine_b/ not read.)
+
+Run:  python3 run_all.py   (single process, pure Python: fractions, numpy, sympy, mpmath; < 0.5 GB RSS; prints resources)
+Code: src.nosync/  cq_core.py   chains in the full 54-component stripped space, internal vertex blocks, special edge, exact
+                                finite-part simplex weights (integer momenta)
+                   cq_gcore.py  general core: Gaussian-integer (complex null) momenta and a first-order parameter t
+                                (exact r-derivative), GSimplex
+                   cq_gval.py   kernels on legs (sum over block structures, internal-vertex positions, special-edge positions)
+                   cq_eval.py   value arithmetic, integer-momentum evaluator (finite differences in r; used only as a gate)
+                   cq_ops.py, cq_gops.py   planar (bosonic / graded) action on single traces
+                   cq_twist.py (F1), cq_su11.py, cq_fsl2.py (F2), cq_gluon.py (F3), cq_families.py (F0, su(1|1)
+                   spectra, on-shell universality), cq_tables.py (W_0 tables), cq_gates.py (gates); tests/ (development)
+Imports, read-only: step2/twoletter/engine_a/src.nosync/{ea_core, ea_kern, ea_ops, ea_spectra, ea_su11} and the vendored
+Step-1 vertex functions (vendor/r2_core.py, cliff.py) with the cached colour-stripped blocks (out.nosync/blocks_cache.pkl);
+sha256 in results.json meta.
+
+1. Objects and method
+ (a) Special-edge composite chain (Def def:cc-sp).  Letter a - [lines and blocks] - letter b with k vertices of I (cubic
+     blocks with one output, quartic blocks with two outputs, as in the two-letter engine), the internal vertex of S^(1)(x)
+     inserted as a two-leg block between two lines P (the composite line K_x = the two segments A-A and A*|_V-c with the
+     vertex between them), one special edge (line matrix +|l+q|^2 Kn, Kn = -Khat of r2_core: the field-antifield
+     components of K_0; Schwinger time in [0, eps]) not adjacent to the internal vertex, all other lines P(eps, infinity).
+     Chain matrix T = L_1 S h_1 ... L_n S h_n S L_0 S (two-letter engine convention), rows: slot of X_a, columns: slot of X_b.
+     Internal vertex blocks (colour (t_in, t_out)):
+        P_b : int(d_b A|_V, A*|_V):     H[A_M, A*_M] = i (k_j)_b, H[A*_M, A_M] = i (k_l)_b, M < 4
+        s_0 : int 2(A|_V, A*|_V)
+        s_mu: int 2(d_mu A|_V, A*|_V) with the injected momentum r = t e_mu at the vertex (absorbed by omega).
+     Along Delta (Lemma lem:cc-kernels (iv), Prop prop:cc-position): position part = s_mu graph at r = 0 = 2 C_{P_mu};
+     translation-invariant part C^(2),0_Delta = s_0 graph + sum_mu (-i) d/dr_mu (s_mu graph), the r-derivative taken
+     exactly as the t^1 coefficient (all polynomials truncated at t^2; gate GE2 compares with exact finite differences).
+ (b) Loop integral and finite part (Thm thm:cc-simplex).  E = k + 2 Schwinger times (the segments are separate edges),
+     Gaussian integral at the centre c(alpha) = -sum alpha_e q_e, Phi = sum alpha_e q_e.q_e - c.c (bilinear dot: complex
+     momenta by analytic continuation), F_0 = sum_j (Lap^j N)(c)/(j! 4^j) (-Phi)^{j+2-E}/(j+2-E)!, and
+        16 pi^2 [eps^0] = int_{R_s} F_0 log(min_{f != s} alpha_f / alpha_s) d alpha,
+        16 pi^2 [eps^-m] = (1/m) int_{R_s} [(min_{f != s} alpha_f)^m - alpha_s^m] F_m d alpha.
+     Exact integration: R_s = union over the orders of the other edges of the simplices {alpha_s <= alpha_o0 <= ...}; in
+     barycentric coordinates mu of such a simplex log(alpha_o0/alpha_s) = log(1 + c mu_1/mu_0), c = E/(E-1); for a monomial
+     mu^b, int mu^b g(mu_0/(mu_0+mu_1)) = Dirichlet(b) x E_Beta(b_0+1,b_1+1)[g], with E[log x] = H_{b0} - H_{b0+b1+1} and
+     int_0^1 x^n log(c + (1-c)x) dx by the recursion R_m = (1/d)(1/m - c R_{m-1}), R_0 = -(log c)/d, d = 1 - c.
+     Hence every finite part lies in Q + Q log(E/(E-1)) per chain: basis {1, log2, log3, log5, log7} overall
+     (E = 3: log(3/2), 4: log(4/3), 5: log(5/4)).  No log eps occurs (the two cutoff shapes have equal log coefficients).
+ (c) Colour: the internal vertex and the special edge carry no ad factor; the colour word is ad_{Y_r}...ad_{Y_1} of the
+     outputs, planar adjacent rule (-1)^r value/2 units u (Lemma c10-colour (iv)); for two-letter traces both orders
+     (as ea_ops); graded cyclic moves and odd legs in cq_gops (sign of the permutation of the odd legs).
+ (d) Families: evaluation on legs (outputs as plane waves), fits onto the two-field bases with exact sympy least squares
+     and an exact residual check.  On shell: complex null Gaussian momenta; gaugino legs in the kernel of
+     sum_mu q_mu sb[mu] within the right chirality with nonzero overlap with the letter; gluon legs e.q = 0.
+
+2. Conventions fixed by gates (no free constant)
+ - Global normalisation +1 (Z_x = chain value / vertex scales, units hbar/16pi^2): GC3 bilinears give at once
+   C_{P_b} = -1/3 u d_b O and C^0_Delta = -8/3 u O (traceless and trace part, real and null momenta) -- two numbers, one
+   normalisation, no fitted constant.
+ - Koszul rule R2: the internal vertex and the special edge are odd relative to the odd outputs before them in the chain
+   (sign (-1)^{#odd outputs before the vertex + #odd outputs before the special edge}), not relative to each other (the
+   permutation rule including their mutual order makes the bilinear antisymmetric in the outputs).  Intrinsic pair sign
+   (-1)^{|X_a|+|X_b|} as in ea_kern.kernel (delta-vertex Hessian).  With R2 + intrinsic sign the su(1|1) densities are
+   universal on every ordered pair; with the opposite intrinsic sign the odd pairs (Z, psi) get +4/3 instead of -4/3.
+ - Graded symmetry (gate GS): the chain from X_b with reversed outputs equals (ratio) the chain from X_a with exactly the
+   ratio of the two-letter log kernels, for every tested pair, including odd outputs and mixed chiralities, PROVIDED the
+   chains in which the special edge joins two vertices of I (not a letter) carry the direction sign
+   (-1)^{[special edge before the internal vertex]} (convention VV_a).  The overall sign of these "vertex-vertex"
+   configurations is not fixed by any gate run here: results carry C^(2) = (letter part) + kappa (vertex-vertex part),
+   kappa = +1 (VV_a), -1 (VV_b), 0 (VV_0); GS holds for each kappa.  They occur only for pairs with a letter A|_V or c
+   (the internal vertex must sit next to a letter when the special edge is between the two vertices of a k = 2 chain).
+   F0, F1, F2 contain none; in F3 (gluons) the vertex-vertex part vanishes on shell (N = 0, 1), so all family results
+   are kappa independent.  Off shell (tables) both parts are recorded separately.
+
+2b. Revision 2026-10-30: the sign rule derived (reviser)
+ - Definition (Def def:cc-sp as revised): Z_x = +(hbar/2) d_{K_x} d_{K_eps-K_0} of the chains, i.e. the coefficient of
+   delta_sigma delta_c of the tree flow with P -> P + delta_c K_x + delta_sigma (K_eps - K_0); both kernels odd.  A
+   configuration with the composite line at edge c and the special edge at edge sigma carries
+       s(c,sigma) = (-1)^{n(<sigma) + n(<c) + [c<sigma]},
+   n(<j) the number of odd outputs before edge j along the chain from X_a.  (-1)^{n(<sigma)+n(<c)} is rule R2.
+ - The factor (-1)^[c<sigma].  The chain of this engine is T = L_1 S h_1 L_2 S h_2 ... L_n S h_n S L_0 S: the parity matrix S
+   stands on both sides of the last line L_0 (at X_b) and on one side of every other line.  A line P or a segment of the
+   composite line joins two slots of equal parity, so the extra S is the convention factor (-1)^{|X_b|} common to all
+   chains (absorbed in the intrinsic pair sign of ea_kern).  The special edge joins a slot to its antifield slot, of
+   opposite parity; on L_0 the extra S therefore gives -(-1)^{|X_b|}: an additional -1, which is (-1)^[c<sigma] for the
+   special edge at X_b (c < sigma).  For the special edge at X_a (line 1, sigma < c) the factor is +1 and nothing is added.
+   On an interior line (special edge between two vertices of I) no S supplies it, so it is applied explicitly:
+       vertex-vertex configurations: R2 x (-1)^[c<sigma] = - R2 x (-1)^[sigma<c] = -(convention VV_a).
+   Hence C^(2) = letter part - vertex-vertex part (vertex-vertex sign -1; the earlier symbolic kappa = -1).
+ - Checks: (i) B, whose rule s(c,sigma) is applied literally, agrees exactly with this engine at all 24 bosonic off-shell
+   table rows (QA, compare.json) for the sign -1 and fails for +1 on every row with a vertex-vertex part; (ii) the A*_V c and
+   A*_W c leg sets vanish identically for the sign -1 (letter part = vertex-vertex part); (iii) the fermionic rows
+   (revise.nosync/ferm_map/ferm_compare.json, exact spinor intertwiner between the two realisations) agree.
+ - R2 and the intrinsic pair sign are therefore not chosen to obtain P7: R2 is s(c,sigma) without the mutual-order factor,
+   which the chain convention supplies as above; the intrinsic pair sign is the two-letter engine's (ea_kern.kernel).
+   The plain reading (no Koszul signs for the two odd kernels) and the full permutation rule (mutual order counted on
+   top of the S L_0 S factor) both differ from s(c,sigma).
+ - Defaults changed: cq_eval.VV['kappa'] = -1, cq_gval.VVSIGN = -1 (used by gates and families), defaults kappa = -1 in
+   cq_twist.run, cq_fsl2.run, cq_su11.densities; kernels_C2.json rows carry 'value' = letter - vertex_vertex.
+   Every family result is unchanged (the vertex-vertex part vanishes on shell or does not occur).
+
+3. Results (units u; exact)
+ - Bilinears / planar scalars (F0): the (A_perp, A_perp) two-site density is, off shell and for all SO(6) components,
+   C^0 = -4/3 (Y_i Y_j), C_{P_beta} = -1/6 i beta.(q_1 + q_2)(Y_i Y_j): no trace term, no exchange term.  With the
+   one-body term of Lemma cc-onebody, Xi_Delta = 0 per letter at theta = -1/3: D_1 = 4 lc^natural on the scalar sector,
+   su(2) spectra L <= 8 = Heisenberg (predictions P6).
+ - Twist two (F1), N <= 4: sum C^(2),0_Delta = -2/3 (4+N) x identity on the two-field part (exact, rational, pairs (Z,Z)
+   with two outputs plus (A_n, Z) with one output); C_{P_n} = -1/3 u d_n exactly; generic beta (N <= 2): = -1/3 u d_beta
+   plus terms proportional to q_1^2, q_2^2 (free equations of motion); no q_1.q_2 or exchange structure.  D_1 at
+   theta = -1/3 has eigenvalues -32 h(S), S even <= N (= -8u E_H, E_H = 4h(S)).
+ - su(1|1) (F2): densities on shell: d0 = -4/3 and dP = -1/6 (q1+q2) on the same word, 0 on the exchanged word, for all
+   ordered pairs (Z,Z), (Z,psi), (psi,Z), (psi,psi); lc^natural density -2(1 - Pi) (graded); Xi^0 density 0; graded
+   cyclic spectra of D_1/(-8u), L <= 6, = harmonic action (ha_su11.json).
+ - Fermion sl(2) (F2), N <= 3: log kernel eigenvalues -8 h(N+1) (validates the graded reading), sum C^0 = -2/3(4+N),
+   C_{P_n} = -1/3 u d_n exactly, D_1 eigenvalues -32 h(n+1), n odd.
+ - Gluon sl(2) (F3), N <= 1: lc^natural -12 (N = 0), sum C^0 = -2/3 (6+N), C_{P_n} = -1/3 u d_n, D_1 = -32 h(n+2); gauge
+   Ward identity (one longitudinal leg) holds for the letter part and the vertex-vertex part separately.
+ - Density universality on shell (general polarisations, letter vectors of definite chirality): for every ordered pair of
+   A_perp, lambda_+, lambda_- (including the mixed chiralities lambda_+ lambda_-), the planar two-site density is
+   d0 = -4/3 (X_a X_b) and dP_beta = -1/6 i beta.(q_1+q_2) (X_a X_b) on the same word and 0 on the exchanged word.
+   (A first version of the test used random 16-component letter vectors; for lambda the plain dot product pairs S_+ (x) W
+   with S_+ (x) W only, so such a vector is a mixture of a lambda_+ and a lambda_- letter and the "exchanged word" of one
+   piece sits in the "same word" of the other: the test, not the kernel, was wrong.  Weight-basis checks of the 64
+   bilinears tr(lambda_+ lambda_-) on shell give exactly -8/3 O.)
+ - D_1 and P_1 with the free directions symbolic (results.json D1_P1_symbolic): on every family run,
+   D_1 = 4 lc^natural - u sum_a (theta_{d_a} + 1/3) v.X_a and P_1 = -u sum_a (thetaP_{d_a} + 1/3) d_b X_a on cohomology
+   (sector d_a of the letter X_a; kappa directions s-exact), i.e. Xi_Delta = -(1/3 + theta) u v. for equal theta
+   (Theorem thm:cc-P7 (i)); theta = -1/3 gives D_1 = 4 lc^natural and the harmonic-action spectra, thetaP = -1/3 gives
+   P_1 = 0 on cohomology.
+
+4. Not done here (open; see the summary object)
+ - TC0 (completeness of the Q-closed quadratic directions), TC5 / GC13 (cubic arity-one rank test, Conjecture P7 (a)),
+   GC1/GC2 (composite loops of I: L^(1), the composite part, Pi_Delta, composite triangle), GC5 pole identity on cocycles
+   and GC6 log covariance (need s on output functionals), GC7 locality demonstration (route B), GC8 two routes,
+   GC12 colour realisations (the planar rule is inherited from the two-letter engine), TC2 full component tables with
+   letter derivatives n <= 3 (only W_0 spot tables at seeded points), the two-component family psi^(3), psi^(4) with
+   tr(Z F_11) and the mixed family (F_11, psi).
+ - The sign kappa of the vertex-vertex special-edge configurations.
+
+5. Revision 2026-10-30 (reviser): reruns and extended families
+ - run_all.py rerun with the derived vertex-vertex sign -1: 26/26 gates, 617 s, 241 MB RSS; every family result unchanged.
+ - ext_families.py (single process, 2064 s, 147 MB): fermion sl(2) S' = 4: sum C^0 = -16/3, P_n exact, D_1 {-200/3, -48};
+   S' = 5: sum C^0 = -6, P_n exact, D_1 {-392/5, -200/3, -48};  gluon sl(2) S' = 2: sum C^0 (letter) = -16/3, vertex-vertex part 0,
+   P_n letter residual 0, Ward identity, D_1 {-200/3, -48};  twist two S' = 5: D_1 {-200/3, -48, 0}; S' = 6: sum C^0 = -20/3,
+   P_n exact, D_1 {-392/5, -200/3, -48, 0} = -32 h(S).  All pass (results_ext.json, gates_ext.json).
+ - Two-route comparison at shared off-shell points (revise.nosync/word_map/word_compare.py): 22/22 bosonic, 26/26 fermionic rows
+   equal to route B (6/22 and 12/26 with the sign +1).  The colour word of this route (outputs in list order) is route B's word
+   with reversed indices.  The lambda_+ of this route (rho(e0 e1 e2 e3) = +1 on Sigma) is route B's lambda_-.

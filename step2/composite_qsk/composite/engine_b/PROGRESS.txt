@@ -1,0 +1,25 @@
+2026-10-29 19:31:35 engine B (PART C) started; read composite_theory.tex, engine_spec.json, twoletter engine_b, step1 engine_b vertices/loops/realization, ia_engine conventions
+2026-10-29 19:55 ce_core.py: edge matrices N, k0, Q^GF, Q, MX; identities N = qgf k0, (Q(x)1+1(x)Q)P = K_eps, MX in c(x)A_V+A_V(x)c, (Q(x)1+1(x)Q)K_Pb = 0 all TRUE
+2026-10-29 20:00 ce_int.py: exact Feynman-parameter integrals J_m; checked vs mpmath (2-d) and QMC (n_t = 3,4,5, cutoffs 1,2)
+2026-10-29 20:10 ce_job.py: chains with K_x (kernel form) + special edge; bilinear (A_perp,A_perp)->A_perp A_perp: C2_Pb = -(1/3) u d_b O, C2_Delta^0 = -(8/3) u O exactly, no log, no pole (GC3 first-principles PASS)
+2026-10-29 19:57 twist two S'<=2: P7 (b) sum C_Pn = -1/3 d_n and (c) sum C_D0 = -2/3(4+S') exact (options 2 and 3 agree); S'<=4 run started
+2026-10-29 20:16 BUG FIXED: position factor of the composite line at a letter of M must be seen by that letter's derivative (injM); canonical-form identity [M^0,d_b] = M^b (Lemma cc-canonical) now holds on all kernels; twist two S'<=3 P7(b),(c) exact; S'<=4 run restarted
+2026-10-29 20:22 F1 twist two S'<=4: P7 (b) sum C_Pn = -1/3 d_n, (c) sum C_D0 = -2/3(4+S') exact on the two-field shell; IBP identity on all kernels; outputs transverse-free (out.nosync/tw2_S4.pkl)
+2026-10-29 20:25 F2 su(1|1) L<=6: densities D0 = -4/3 id, Pb = -1/6(d_1+d_2) on (Z,Z),(Z,psi),(psi,Z),(psi,psi); P7 (b),(c) pass all; D1(theta=-1/3) spectra = -8u E_H (Table su11) all pass. F0 SO(6): per-word density identity only (no exchange/trace): -4/3, -1/6(d1+d2)
+2026-10-29 20:28 F2 fermion sl(2) S'<=3: P7 (b),(c) pass; D1(-1/3) spectra -48, -200/3 = -8u E_H; lc^natural (tl_engine.Job) -12, -50/3; S'<=5 run started
+2026-10-29 20:35 F2 fermion sl(2) S'<=5: P7 (b),(c) pass; D1(-1/3) = -48, -200/3, -392/5 (E_H 6, 25/3, 49/5)
+2026-10-29 20:50 gluon S'<=1 pass (D1 = -48); S'=2 failed from a derivative truncation of the one-output jobs (E_{b+1},N_k needs S'+1): fixed, rerun started
+2026-10-29 20:57 F3 gluon sl(2) S'<=2: P7 (b),(c) pass (logs cancel in the F combinations); D1(-1/3) = -48, -200/3
+2026-10-29 21:00 F3 (F11,psi) S'<=2: P7 (b),(c) pass; D1(-1/3) = -48; -48^2; -48^2,-200/3
+2026-10-29 21:02 F2 psi psi'/Z F11 S'<=1: P7 (b),(c) pass with cross-sector mixing; D1(-1/3) = {0,-48}, {0,-48^3}
+2026-10-29 21:05 F2 psi psi'/Z F11 S'<=2: pass; D1(-1/3) = {0,-48^4,-200/3}
+2026-10-29 21:07 F1 twist two (ce_sl2 path) S'<=4: P7 pass, IBP 0 violations, D1(-1/3) = 0,-48,-200/3
+2026-10-29 21:19 F3 (F11,psi) S'<=4: pass; D1(-1/3) at S'=4 = -48^2,-200/3^2,-392/5
+2026-10-29 22:16 numeps (mpmath) too slow: 2 points in 55 min (AV|AW: rel err 6.6e-7, 8.8e-6; log-eps coefficient 8e-7, 2.6e-5); killed, rewriting with scipy double precision
+2026-10-29 22:59 GC5b numeps (vectorised Gauss-Legendre): 9 points, 3 leg sets: max rel err 5e-5, log-eps coefficient <= 8e-5 relative
+2026-10-29 23:12 run_all: ce_assemble.py               exit 1  wall    30.5 s  cpu     0.3 s  peak child RSS     59 MB
+2026-10-29 23:16 run_all: ce_su11.py                   exit 0  wall    32.7 s  cpu    32.4 s  peak child RSS    101 MB
+2026-10-29 23:16 run_all: ce_assemble.py               exit 0  wall    12.9 s  cpu    12.7 s  peak child RSS    101 MB
+2026-10-29 23:19 run_all: ce_gates_basic.py            exit 0  wall   182.1 s  cpu   179.8 s  peak child RSS    687 MB
+2026-10-29 23:19 run_all: ce_assemble.py               exit 0  wall    13.0 s  cpu    12.8 s  peak child RSS    687 MB
+2026-10-29 23:20 final: vendored reused modules (iCloud eviction), regression su11 + basic gates pass; run_all assembles gates.json (48 pass, 0 fail, 7 not run), results.json
