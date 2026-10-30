@@ -1,0 +1,697 @@
+{
+ "engine": "B",
+ "method": "position-space Schwinger-time representation of whole graphs: every edge D_eps(r) = int_eps^inf (4 pi t)^-2 exp(-r^2/4t) dt (and derivatives), internal vertices integrated exactly as Gaussians (sympy), overall Schwinger scale integrated exactly (lower incomplete gamma), eps -> 0 asymptotics a log eps + b by Hepp sectors with an exact subtraction of the logarithmic sectors (b as convergent integrals, Gauss-Legendre); SE, QU, B, OC, T in closed form; finite-eps evaluations and least-squares extrapolation as confirmation. No momentum-space bubble reduction, no dimensional regularisation, no IR regulator.",
+ "census": {
+  "table_weights_per_g2_CA_dimg": {
+   "EX V3+V3": {
+    "su(2)": {
+     "graphs": 16,
+     "graphs_with_zero_colour": 0,
+     "S12": -0.0,
+     "A12": -0.0,
+     "T12": -0.0,
+     "fit_residual": 5.57996994245327e-16
+    },
+    "su(3)": {
+     "graphs": 16,
+     "graphs_with_zero_colour": 0,
+     "S12": -0.0,
+     "A12": -0.0,
+     "T12": -0.0,
+     "fit_residual": 5.57996994245327e-16
+    }
+   },
+   "QU V4": {
+    "su(2)": {
+     "graphs": 24,
+     "graphs_with_zero_colour": 8,
+     "S12": 1.0,
+     "A12": 0.0,
+     "T12": -2.0,
+     "fit_residual": 1.0658141036401503e-14
+    },
+    "su(3)": {
+     "graphs": 24,
+     "graphs_with_zero_colour": 8,
+     "S12": 1.0,
+     "A12": 0.0,
+     "T12": -2.0,
+     "fit_residual": 1.0658141036401503e-14
+    }
+   },
+   "SE_bubble V3+V3": {
+    "su(2)": {
+     "graphs": 32,
+     "graphs_with_zero_colour": 0,
+     "S12": 0.0,
+     "A12": 0.0,
+     "T12": 0.0,
+     "fit_residual": 0.0
+    },
+    "su(3)": {
+     "graphs": 32,
+     "graphs_with_zero_colour": 0,
+     "S12": 0.0,
+     "A12": 0.0,
+     "T12": 0.0,
+     "fit_residual": 0.0
+    }
+   },
+   "SE_seagull_V Vs": {
+    "su(2)": {
+     "graphs": 8,
+     "graphs_with_zero_colour": 0,
+     "S12": -8.0,
+     "A12": 0.0,
+     "T12": -0.0,
+     "fit_residual": 2.842170943040401e-14
+    },
+    "su(3)": {
+     "graphs": 8,
+     "graphs_with_zero_colour": 0,
+     "S12": -8.0,
+     "A12": 0.0,
+     "T12": -0.0,
+     "fit_residual": 2.842170943040401e-14
+    }
+   },
+   "SE_seagull_perp V4": {
+    "su(2)": {
+     "graphs": 48,
+     "graphs_with_zero_colour": 16,
+     "S12": -10.0,
+     "A12": 0.0,
+     "T12": -0.0,
+     "fit_residual": 4.263256414560601e-14
+    },
+    "su(3)": {
+     "graphs": 48,
+     "graphs_with_zero_colour": 16,
+     "S12": -10.0,
+     "A12": 0.0,
+     "T12": -0.0,
+     "fit_residual": 4.263256414560601e-14
+    }
+   },
+   "other V3+V3": {
+    "su(2)": {
+     "graphs": 24,
+     "graphs_with_zero_colour": 24,
+     "S12": 0.0,
+     "A12": 0.0,
+     "T12": 0.0,
+     "fit_residual": 0.0
+    },
+    "su(3)": {
+     "graphs": 24,
+     "graphs_with_zero_colour": 24,
+     "S12": 0.0,
+     "A12": 0.0,
+     "T12": 0.0,
+     "fit_residual": 0.0
+    }
+   }
+  },
+  "note": "weights include the vertex coefficients of -S_E, 1/n! and the Lorentz trace of seagull loops; S12/A12/T12 = least-squares flavour coefficients from 6 random flavour sets; EX and SE_bubble sum to 0 here only because their spacetime factors (derivative placements) differ per pattern; the pattern sums are used to build the EX and SE integrands.",
+  "EX_patterns_S12": {
+   "((2, 0), (3, 0))": 1.0,
+   "((2, 0), (3, 1))": -1.0,
+   "((2, 1), (3, 0))": -1.0,
+   "((2, 1), (3, 1))": 1.0
+  },
+  "SE_bubble_patterns_S12": {
+   "((0, 'x'), (1, 'o'))": 2.0,
+   "((0, 'x'), (1, 0))": -2.0,
+   "((0, 1), (1, 'o'))": -2.0,
+   "((0, 1), (1, 0))": 2.0
+  },
+  "EX_integrand_minus_hand_form": "0",
+  "SE_bubble_minus_reduced_kernel": "0",
+  "gamma_trace_max_error": 0.0,
+  "max_A12_coefficient": 0.0,
+  "max_flavour_fit_residual": 4.263256414560601e-14,
+  "vanishing_graphs": "V3 V3 graphs with a cubic vertex carrying both legs of one operator, and V4 / seagull contractions with two legs of one f^{abe} on the same delta: colour zero (counted in graphs_with_zero_colour); Yukawa and ghost vertices cannot sit on scalar lines; -I^CT cubic/quartic vertices and the 27/16 term enter only at higher order or not at all."
+ },
+ "oneloop": {
+  "G1_aux": {
+   "D0": "1/(16*pi**2*epsilon)",
+   "Blog": "-1/(16*pi**2)",
+   "DK_m0": "1/(32*pi**2*epsilon)",
+   "DK_m2": "-3/(128*pi**2)"
+  },
+  "G2_triangle_logs": {
+   "f": "-1/(16*pi**2)",
+   "d": "-1/(4*pi**2)"
+  }
+ },
+ "classes": {
+  "T": {
+   "c_S": "0",
+   "c_T": "0",
+   "d_S": "0",
+   "d_T": "0",
+   "log_eps_S": "0",
+   "log_eps_T": "0",
+   "exact": {
+    "value": "D_eps(x)^2/D_0(x)^2 = (1 - exp(-x^2/4 eps))^2 -> 1 (exponentially)",
+    "note": "tree normalisation 4 hbar dim(g) S12 D_0(x)^2 reproduced: census weight 1 per dim g S12"
+   }
+  },
+  "SE": {
+   "c_S": "-24*log(2) + 8*EulerGamma + 43/2",
+   "c_T": "0",
+   "d_S": "8",
+   "d_T": "0",
+   "log_eps_S": "0",
+   "log_eps_T": "0",
+   "exact": {
+    "c_S": "-24*log(2) + 8*EulerGamma + 43/2",
+    "c_S_float": 9.482192985773576,
+    "decomposition": {
+     "seagulls_minus_their_mass_counterterms": "0 exactly (D_eps(0) = 1/(16 pi^2 eps) exact)",
+     "Laplacian(D^2)_part_with_log_counterterm (both lines)": "8 kappa + 8 log(x^2), kappa = -3*log(2) + EulerGamma + 1",
+     "D K - mass part (both lines)": "27/2 (= -2 * 2 * 9 * (-3/8) in units; exponentially small corrections)",
+     "log_eps_of_graphs_without_counterterm": "-8 S12",
+     "log_eps_of_counterterm_vertex": "+8 S12"
+    },
+    "kappa": "-3*log(2) + EulerGamma + 1"
+   },
+   "numeric": {
+    "IJ_finite_eps": [
+     {
+      "eps": 0.015625,
+      "IJ": 3.5113001923429654,
+      "IJ_dev": -0.14535701423840333,
+      "Lii": -3.3701723555897294,
+      "Lii_dev": 0.00482764441027062
+     },
+     {
+      "eps": 0.00390625,
+      "IJ": 5.01065739384179,
+      "IJ_dev": -0.0322941738594687,
+      "Lii": -3.3749999999251643,
+      "Lii_dev": 7.483573412490278e-11
+     },
+     {
+      "eps": 0.0009765625,
+      "IJ": 6.421371416911711,
+      "IJ_dev": -0.007874511909438595,
+      "Lii": -3.375,
+      "Lii_dev": 3.944304526105059e-31
+     },
+     {
+      "eps": 0.000244140625,
+      "IJ": 7.813583335254614,
+      "IJ_dev": -0.001956954686427172,
+      "Lii": -3.375,
+      "Lii_dev": 3.944304526105059e-31
+     },
+     {
+      "eps": 6.103515625e-05,
+      "IJ": 9.20134613115918,
+      "IJ_dev": -0.0004885199017514735,
+      "Lii": -3.375,
+      "Lii_dev": 3.944304526105059e-31
+     },
+     {
+      "eps": 1.52587890625e-05,
+      "IJ": 10.588006926963521,
+      "IJ_dev": -0.00012208521730050557,
+      "Lii": -3.375,
+      "Lii_dev": 3.944304526105059e-31
+     },
+     {
+      "eps": 3.814697265625e-06,
+      "IJ": 11.974392854791208,
+      "IJ_dev": -3.051850950442324e-05,
+      "Lii": -3.375,
+      "Lii_dev": 3.944304526105059e-31
+     }
+    ],
+    "kappa_from_fit_log_coefficient_fixed": -0.5022258762595383,
+    "kappa_from_free_fit": -0.5024027916789897,
+    "kappa_fit_note": "free fit includes the log coefficient as a parameter (ill-conditioned); the fixed fit uses the exact log coefficient -1 and analytic corrections",
+    "kappa_exact": -0.5022258767783031,
+    "method": "mpmath quad of the exact one-dimensional Schwinger representations at finite eps, least-squares fit -log eps + kappa + eps(...)"
+   }
+  },
+  "QU": {
+   "c_S": "-4*EulerGamma + 12*log(2)",
+   "c_T": "-24*log(2) + 8*EulerGamma",
+   "d_S": "-4",
+   "d_T": "8",
+   "log_eps_S": "4",
+   "log_eps_T": "-8",
+   "exact": {
+    "two_point_weight": "g^2 C_A dim g (S12 - 2 T12) int d^4z D_eps(x-z)^2 D_eps(z)^2 (census)",
+    "I2": "-32*log(epsilon) - 96*log(2) + 32*EulerGamma",
+    "c_S_float": 6.008903507113212,
+    "c_T_float": -12.017807014226424
+   },
+   "numeric": {
+    "I2_exact_1d_representation": [
+     {
+      "eps": 0.00390625,
+      "I2": 128.61029682404802,
+      "dev": -0.764153342392279
+     },
+     {
+      "eps": 0.0009765625,
+      "I2": 173.54750798951605,
+      "dev": -0.18836173276075516
+     },
+     {
+      "eps": 0.000244140625,
+      "I2": 218.0503607602532,
+      "dev": -0.046928517860109306
+     },
+     {
+      "eps": 6.103515625e-05,
+      "I2": 262.44698674434215,
+      "dev": -0.011722089607660172
+     },
+     {
+      "eps": 1.52587890625e-05,
+      "I2": 306.81719849364276,
+      "dev": -0.0029298961435467188
+     },
+     {
+      "eps": 3.814697265625e-06,
+      "I2": 351.18081551070884,
+      "dev": -0.0007324349139423904
+     },
+     {
+      "eps": 9.5367431640625e-07,
+      "I2": 395.54278439517566,
+      "dev": -0.0001831062836639142
+     },
+     {
+      "eps": 2.384185791015625e-07,
+      "I2": 439.9043412808777,
+      "dev": -4.577641811930738e-05
+     }
+    ],
+    "fit_a_b": [
+     -32.00000002495596,
+     -48.07122843770375
+    ],
+    "exact_a_b": [
+     -32.0,
+     -48.071228056905696
+    ],
+    "hepp_b_formula": {
+     "32": {
+      "a": -31.999999999999996,
+      "b": -48.071228056900694
+     },
+     "48": {
+      "a": -32.000000000000064,
+      "b": -48.07122805690496
+     }
+    },
+    "hepp_finite_eps_fit_a_b": [
+     -32.00000005106548,
+     -48.071229469394915
+    ],
+    "hepp_finite_eps_fit_b_with_a_fixed": -48.071228147949064,
+    "method": "three routes: closed form; finite-eps one-dimensional exact representation + fit; Hepp sectors of the whole 4-edge graph (b-formula and finite eps)"
+   }
+  },
+  "EX": {
+   "c_S": "-8 - 4*EulerGamma + 4*log(3) + 8*log(2)",
+   "c_T": "0",
+   "d_S": "-4",
+   "d_T": "0",
+   "log_eps_S": "4",
+   "log_eps_T": "0",
+   "numeric": {
+    "value": -0.3692360604539098,
+    "digits": 11,
+    "Etilde_a": -31.999999999999886,
+    "Etilde_b_rational_part": -15.51701279321771,
+    "Etilde_b_gamma_coefficient": 31.999999999999886,
+    "resolution_N32_vs_N40_difference_of_b": 5.087485988042317e-12,
+    "hepp": {
+     "32": {
+      "a": -31.99999999999997,
+      "b_rat": -15.517012793212622,
+      "b_gamma": 31.99999999999997,
+      "info": {
+       "divergent_sector_terms": 24,
+       "sectors": 120,
+       "min_a": -1,
+       "p_jstar": [
+        1
+       ],
+       "divergent_sets": [
+        [
+         0,
+         2,
+         4
+        ],
+        [
+         1,
+         3,
+         4
+        ]
+       ]
+      }
+     },
+     "40": {
+      "a": -31.999999999999886,
+      "b_rat": -15.51701279321771,
+      "b_gamma": 31.999999999999886,
+      "info": {
+       "divergent_sector_terms": 24,
+       "sectors": 120,
+       "min_a": -1,
+       "p_jstar": [
+        1
+       ],
+       "divergent_sets": [
+        [
+         0,
+         2,
+         4
+        ],
+        [
+         1,
+         3,
+         4
+        ]
+       ]
+      }
+     }
+    },
+    "finite_eps_extrapolation": {
+     "16": {
+      "values": [
+       535.2898317452601,
+       579.6520761207876,
+       624.0136891929352,
+       668.3751583637088,
+       712.7365954520357,
+       757.09801950788,
+       801.4594401678879,
+       845.8208599548152,
+       890.1822795679524,
+       934.5436991370694,
+       978.9051186996062
+      ],
+      "fit4_a_b": [
+       -32.00000071123572,
+       2.9538686205577536
+      ],
+      "fit2_small_eps_a_b": [
+       -32.00000053683023,
+       2.953873225966593
+      ],
+      "fit_b_with_a_fixed_to_minus32": 2.953887025555808
+     },
+     "20": {
+      "values": [
+       535.2899115464985,
+       579.6520504442398,
+       624.0136847884716,
+       668.3751627200571,
+       712.7365956999705,
+       757.0980192615203,
+       801.4594400876937,
+       845.8208599521387,
+       890.1822795786896,
+       934.5436991510536,
+       978.9051187102964
+      ],
+      "fit4_a_b": [
+       -31.999999604498434,
+       2.953899494393467
+      ],
+      "fit2_small_eps_a_b": [
+       -32.00000053425104,
+       2.953873287346424
+      ],
+      "fit_b_with_a_fixed_to_minus32": 2.9538892598030317
+     }
+    },
+    "eps_values": [
+     5.960464477539063e-08,
+     1.4901161193847656e-08,
+     3.725290298461914e-09,
+     9.313225746154785e-10,
+     2.3283064365386963e-10,
+     5.820766091346741e-11,
+     1.4551915228366852e-11,
+     3.637978807091713e-12,
+     9.094947017729282e-13,
+     2.2737367544323206e-13,
+     5.684341886080802e-14
+    ],
+    "pslq_b_rational_part_basis_1_log2_log3": [
+     -1,
+     64,
+     -64,
+     -32
+    ],
+    "pslq_full_b_basis_1_gamma_log2_log3": [
+     -1,
+     64,
+     32,
+     -64,
+     -32
+    ],
+    "pslq_scan": {
+     "tol=1e-09,maxcoeff=100": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -7,
+       21,
+       3,
+       43,
+       -29
+      ]
+     },
+     "tol=1e-09,maxcoeff=1000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -7,
+       21,
+       3,
+       43,
+       -29
+      ]
+     },
+     "tol=1e-09,maxcoeff=10000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -7,
+       21,
+       3,
+       43,
+       -29
+      ]
+     },
+     "tol=1e-10,maxcoeff=100": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -1,
+       64,
+       32,
+       -64,
+       -32
+      ]
+     },
+     "tol=1e-10,maxcoeff=1000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       27,
+       -65,
+       -108,
+       -158,
+       143
+      ]
+     },
+     "tol=1e-10,maxcoeff=10000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       27,
+       -65,
+       -108,
+       -158,
+       143
+      ]
+     },
+     "tol=1e-11,maxcoeff=100": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -1,
+       64,
+       32,
+       -64,
+       -32
+      ]
+     },
+     "tol=1e-11,maxcoeff=1000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -22,
+       177,
+       -1,
+       264,
+       -268
+      ]
+     },
+     "tol=1e-11,maxcoeff=10000": {
+      "b_rational_part": [
+       -1,
+       64,
+       -64,
+       -32
+      ],
+      "b_with_gamma_free": [
+       -22,
+       177,
+       -1,
+       264,
+       -268
+      ]
+     }
+    },
+    "pslq_note": "the 4-element relation for the rational part (EulerGamma coefficient fixed exactly to 32 = -a) is stable over tol 1e-9..1e-11 and maxcoeff up to 1e4; with EulerGamma free (5 elements) the same relation appears for maxcoeff 100 and tol <= 1e-10, while larger maxcoeff admits spurious relations at this precision",
+    "residual_of_identified_b_rational_part": -1.6999734953060397e-12,
+    "identification": "c_S(EX) = -8 - 4*EulerGamma + 4*log(3) + 8*log(2) (NUMERICAL identification by PSLQ; the EulerGamma coefficient -4 and the log eps coefficient 4 are exact consequences of a = -32)",
+    "method": "Etilde = 4096 pi^6 int_[eps,inf)^5 dt U^-2 [P_a P_b/(4U^2) + 2(t1-t2)(t3-t4)/U] exp(-W/(4U)) (Gaussian over z1, z2 from the enumerated vertices); Hepp sectors (120), b as convergent integrals (Gauss-Legendre, y=u^5, N=32 and N=40); relative contribution = -unit S12 Etilde/8"
+   }
+  },
+  "OC": {
+   "c_S": "0",
+   "c_T": "0",
+   "d_S": "0",
+   "d_T": "0",
+   "log_eps_S": "-8",
+   "log_eps_T": "8",
+   "exact": {
+    "value": "-unit log eps [2 alpha S12 + 4 beta T12] with (alpha, beta) = (4, -2) from G2; constant (vacuum) term of O(eps) contributes 0 to the connected function"
+   }
+  },
+  "B": {
+   "c_S": "-8*beta_2",
+   "c_T": "0",
+   "d_S": "0",
+   "d_T": "0",
+   "log_eps_S": "0",
+   "log_eps_T": "0",
+   "exact": {
+    "value": "-F_0 = 4 beta_2 unit x (free scalar action) on each line: D_eps -> D_eps - 4 beta_2 unit D_2eps"
+   }
+  },
+  "F": {
+   "c_S": "0",
+   "c_T": "0",
+   "d_S": "0",
+   "d_T": "0",
+   "log_eps_S": "0",
+   "log_eps_T": "0",
+   "exact": {
+    "value": "minimal scheme: finite parts psi(O_a) = 0"
+   }
+  }
+ },
+ "total": {
+  "c_S": "-8*beta_2 - 4*log(2) + 4*log(3) + 27/2",
+  "c_T": "-24*log(2) + 8*EulerGamma",
+  "d_S": "0",
+  "d_T": "8",
+  "log_eps_S": "0",
+  "log_eps_T": "0",
+  "c_S_float_beta2_0": 15.121860432432657,
+  "c_T_float": -12.017807014226424,
+  "formula": "<O1,O2>(x) = 4 hbar dim(g) D_0(x)^2 [ S12 (1 + unit c_S) + T12 unit (c_T + d_T log(x^2/ell^2)) ], d_S = 0, log eps cancelled",
+  "difference_to_spec_targets": {
+   "c_S": "0",
+   "c_T": "0",
+   "d_T": "0"
+  }
+ },
+ "other_structures": "0: the antisymmetric (a1,a2)(b1,b2)-(a1,b2)(b1,a2) has coefficient <= 0.0e+00 in every class (census flavour fits, residual 4.3e-14); only S12 and T12 occur",
+ "beta_2_dependence": "c_S contains -8 beta_2 (class B only); c_T, d_T independent of beta_2",
+ "conventions": {
+  "action": "S/hbar = -S_E, canonical su(N) fields A = g A^a T_a, (X,Y) = (2 hbar/g^2) X^a Y^a (spec normalisation); S_E = int 1/4 F^2 + 1/2 (D phi)^2 + 1/2 (d.A)^2 + g^2/4 f f phi^4 + 1/2 lambda gammabar^M D_M lambda (10d MW, Pfaffian)",
+  "propagator": "every edge D_eps(r) = (1 - exp(-r^2/4eps))/(4 pi^2 r^2) = int_eps^inf (4 pi t)^-2 exp(-r^2/4t) dt, delta^ab delta_MN; fermion -gamma^m d_m D_eps",
+  "vertices_of_-S_E": "V3 = -g f^{abc} d_m phi^a A^b_m phi^c;  seagull -(g^2/2) f f A A phi phi;  V4 = -(g^2/4) f^{abe} f^{cde} phi^a_I phi^b_J phi^c_I phi^d_J;  Yukawa from (1/2) lambda gammabar^I g f phi_I lambda; fermion loop -(1/2) Tr log -> +(1/4) Tr(G V G V)",
+  "operators": "O_ab = a_I b_J phi^c_I phi^c_J (= manuscript O_ab / (2 hbar)); normalised to the tree 4 hbar dim g S12 D_0^2",
+  "unit": "unit = -g^2 N/(32 pi^2) = -lambda_hat/2, lambda_hat = g^2 N/(16 pi^2); C_A = N",
+  "symmetry_factors": "automatic from the Wick enumeration (1/n! for identical vertices, all contractions)",
+  "singular_part": "terms eps^-k and log eps of the plane-wave value (log eps = log(eps/ell^2), ell = 1), no constant subtracted",
+  "counterterm_vertices": "J = I - F_0 - I^CT[eps], O(eps) = O - d_delta I^CT(O): -I^CT quadratic vertex on each regulated scalar line (both lines), -d_delta I^CT(O_a) as a tree vertex at x resp. 0 joined by two regulated lines; -F_0 = -beta_2 unit int(dA_perp,dA_perp) on each line",
+  "reporting": "|x|^2 = ell^2 = 1 by scaling for the constants; log(x^2/ell^2) from the eps/x^2 dependence of each graph"
+ },
+ "log": [
+  "census: Wick enumeration with su(2), su(3)",
+  "{\"EX V3+V3\": {\"su(2)\": {\"graphs\": 16, \"graphs_with_zero_colour\": 0, \"S12\": -0.0, \"A12\": -0.0, \"T12\": -0.0, \"fit_residual\": 5.57996994245327e-16}, \"su(3)\": {\"graphs\": 16, \"graphs_with_zero_colour\": 0, \"S12\": -0.0, \"A12\": -0.0, \"T12\": -0.0, \"fit_residual\": 5.57996994245327e-16}}, \"QU V4\": {\"su(2)\": {\"graphs\": 24, \"graphs_with_zero_colour\": 8, \"S12\": 1.0, \"A12\": 0.0, \"T12\": -2.0, \"fit_residual\": 1.06 ...",
+  "gamma-matrix trace check: max error 0.0 ; sum_m tr(g^m gb^I g^m gb^J) diag -64.0",
+  "EX integrand (enumeration) - hand form U.U: 0",
+  "SE bubble: enumeration - reduced kernel (pointwise, symmetrised): 0",
+  "one-loop singular parts (G1, G2)",
+  "G1 {'seagull_AV_loop': ('2', '0'), 'seagull_Aperp_loop': ('5/2', '0'), 'bubble_AV_Aperp': ('-1/4', '1'), 'gaugino_loop': ('-2', '-2'), 'total': ('9/4', '-1')}",
+  "G2 {'a': {'vacuum_coefficient_of_hbar_dimg_ab_over_16pi2_eps': '2'}, 'b': {'alpha': '0', 'beta': '0'}, 'e': {'alpha': '2', 'beta': '-2'}, 'f': {'alpha': '2', 'beta': '0', 'triangle_log': '-1/(16*pi**2)'}, 'c': {'coef_ab_AVAV': '-2'}, 'd': {'coef_ab_AVAV': '2', 'triangle_log': '-1/(4*pi**2)'}, 'total': {'alpha': '4', 'beta': '-2', 'coef_ab_AVAV': '0'}}",
+  "DK product identity residual: 0",
+  "SE exact",
+  "SE: c_S = -log(16777216) + 8*EulerGamma + 43/2 ; kappa numeric fit -0.5022258762595383 exact -0.5022258767783031",
+  "QU exact",
+  "QU: I2 fit a, b = [-32.00000002 -48.07122844] exact -32 -48.071228056905696",
+  "QU Hepp: {32: (np.float64(-31.999999999999996), np.float64(-48.071228056900694), np.float64(-66.54212933374974), np.float64(31.999999999999996)), 48: (np.float64(-32.000000000000064), np.float64(-48.07122805690496), np.float64(-66.54212933375405), np.float64(32.000000000000064))} exact b -48.071228056905696",
+  "QU finite-eps Hepp fit (free a): [-32.00000005 -48.07122947]  (a fixed to -32): b = -48.071228147949064",
+  "EX: Hepp sectors of the whole 5-edge graph",
+  "EX N=32: a=-31.999999999999972 b_rat=-15.517012793212622 b_gamma=31.999999999999972 {'divergent_sector_terms': 24, 'sectors': 120, 'min_a': -1, 'p_jstar': [1], 'divergent_sets': [(0, 2, 4), (1, 3, 4)]}",
+  "EX N=40: a=-31.999999999999886 b_rat=-15.517012793217710 b_gamma=31.999999999999886 {'divergent_sector_terms': 24, 'sectors': 120, 'min_a': -1, 'p_jstar': [1], 'divergent_sets': [(0, 2, 4), (1, 3, 4)]}",
+  "PSLQ on b_rat with {1, log 2, log 3}: [-1, 64, -64, -32]",
+  "PSLQ scan: {'tol=1e-09,maxcoeff=100': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-7, 21, 3, 43, -29]}, 'tol=1e-09,maxcoeff=1000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-7, 21, 3, 43, -29]}, 'tol=1e-09,maxcoeff=10000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-7, 21, 3, 43, -29]}, 'tol=1e-10,maxcoeff=100': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-1, 64, 32, -64, -32]}, 'tol=1e-10,maxcoeff=1000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [27, -65, -108, -158, 143]}, 'tol=1e-10,maxcoeff=10000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [27, -65, -108, -158, 143]}, 'tol=1e-11,maxcoeff=100': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-1, 64, 32, -64, -32]}, 'tol=1e-11,maxcoeff=1000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-22, 177, -1, 264, -268]}, 'tol=1e-11,maxcoeff=10000': {'b_rational_part': [-1, 64, -64, -32], 'b_with_gamma_free': [-22, 177, -1, 264, -268]}}",
+  "PSLQ on b with {1, gamma_E, log 2, log 3}: [-1, 64, 32, -64, -32]",
+  "EX finite-eps N=16: fit4 a,b = [-32.00000071   2.95386862] fit2 = [-32.00000054   2.95387323] b (a fixed) = 2.953887025555808 ; b (asymptotic formula) = 2.953888483631278",
+  "EX finite-eps N=20: fit4 a,b = [-31.9999996    2.95389949] fit2 = [-32.00000053   2.95387329] b (a fixed) = 2.9538892598030317 ; b (asymptotic formula) = 2.953888483631278",
+  "TOTAL: {'c_S': '-8*beta_2 - 4*log(2) + 4*log(3) + 27/2', 'c_T': '-24*log(2) + 8*EulerGamma', 'd_S': '0', 'd_T': '8', 'log_eps_S': '0', 'log_eps_T': '0'}",
+  "difference to spec targets: {'c_S': 0, 'c_T': 0, 'd_T': 0}",
+  "G7 Gram: {'hermiticity_defect': 0.0, 'tree_eigenvalues_min': 0.9999999999999996, 'tree_eigenvalues_max': 1.9999999999999991, 'K_20prime_orthogonality_tree': 2.9605947323337506e-16, 'K_20prime_orthogonality_oneloop': 6.695812815695261e-15, 'K_20prime_orthogonality_beta2': 2.3684757858670005e-15, 'dimension': 21, 'rank_traceless': 20}"
+ ],
+ "runtime_seconds": 181.87451124191284
+}

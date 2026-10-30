@@ -1,0 +1,119 @@
+IP0/IP1 specification -- Track A, collaborator smilezzm (2026-10-30)
+=======================================================================
+Scope of this specification: the tree and one-loop two-point functions of the gauge-invariant scalar
+bilinears of N=4 SYM in the UV-boundary (heat-kernel proper-time cutoff) scheme of the manuscript,
+Feynman gauge, minimal scheme for the operators, at the transfer endpoint T = infinity (safe here,
+ch08 prop:c8-2pt (ii)).  Two engines compute the same quantities by different methods and are compared
+per graph class.  NO dimensional regularisation in any role.  No IR regulator.  Exact arithmetic
+wherever possible; numerics only with stated precision and a second-precision confirmation.
+
+1. Theory and conventions (binding; from manuscript ch01, ch03, ch04, ch05, ch08)
+-------------------------------------------------------------------------------
+Fields: A_m (m = 1..4, the 4d connection), A_I (I = 1..6, the six scalars = components of A along
+W_R^perp), the gaugino lambda (16-component Majorana-Weyl spinor of Spin(10), i.e. four 4d Weyl
+fermions), ghost c and the antifields.  Only A_m, A_I and lambda enter IP1 (ghosts do not couple to
+the external scalars at this order; antifields do not propagate).
+The action is the dimensional reduction of 10d N=1 super Yang-Mills (manuscript def:c1-action):
+   S = int dvol ( -1/4 (F_A,F_A) + 1/2 (lambda, dslash_A lambda) + ghost/antifield terms ),
+   F_A = dA + 1/2 [A ^ A], with A the ten-component gauge field, d along R^4 only.
+Weight e^{S/hbar}.  For g = su(N) with (X,Y) = -(4 hbar/g^2) tr(XY), A_m = -i g A_m^a T^a,
+A_I = -i g A_I^a T^a, lambda = -(i g/sqrt2) lambda^a T^a, tr(T^a T^b) = delta^{ab}/2:
+   S/hbar  contains  int d^4x { -1/4 F^a_mn F^a_mn - 1/2 (D_m A_I)^a (D_m A_I)^a + fermion kinetic
+                                 + Yukawa + scalar quartic + ... }
+i.e. the standard Euclidean N=4 Lagrangian with coupling g (ch08 prop:c8-twocomp).  Equivalently:
+the Feynman rules are those of 10d Yang-Mills (coupling g, structure constants f^{abc}) with all
+momenta restricted to R^4 and the 10d metric split as delta_mn (+) delta_IJ; the fermion is a 10d
+Majorana-Weyl spinor, so a closed fermion loop carries 1/2 times the trace over the 16-dim chiral
+spinor space (equivalently: four 4d Weyl fermions with the SU(4) Clebsch-Gordan structure).
+Gauge fixing: Feynman gauge (the manuscript's Q^GF gives propagators proportional to delta_MN).
+
+Regulator (the ONLY regulator): every edge of every graph carries the propagator
+   P(eps, infinity):  momentum space  e^{-eps |p|^2} / |p|^2   times the fibre factor,
+   position space  D_eps(r) = (1 - e^{-r^2/4 eps}) / (4 pi^2 r^2) = int_eps^infinity (4 pi t)^{-2} e^{-r^2/4t} dt,
+for bosons (delta_MN) and the same scalar factor with the usual numerators (p-slash for the fermion).
+Fourier convention: f(x) = int d^4p/(2 pi)^4 e^{i p.x} fhat(p).  D_0(r) = 1/(4 pi^2 r^2).
+Heat kernel K_eps(r) = (4 pi eps)^{-2} e^{-r^2/4 eps}, Khat_eps(p) = e^{-eps p^2};  note
+|p|^2 Dhat_eps(p) = e^{-eps p^2} and (-Laplacian) D_eps = K_eps.
+
+Counterterms (ch04 def:c4-ict, prop:c4-unique; ch05 prop:c5-thmB): graph by graph, the counterterm is
+the SINGULAR PART of the eps -> 0 expansion of the regulated graph: the terms eps^{-k} (k >= 1) and
+log eps, where log eps means log(eps/ell^2) with the unit of length ell = 1, and NO constant is
+subtracted ("minimal subtraction of the eps-singular terms").  The one-loop action counterterm
+I^CT[eps] is the singular part of the 1PI one-loop graphs of the action; the operator counterterm
+partial_delta I^CT[eps](O) is the singular part of the one-loop graphs in which the operator vertex
+lies on the cycle.  The renormalised interaction is J = I - F_0 - I^CT[eps], and the renormalised
+operator is O(eps) = O - partial_delta I^CT[eps](O) (minimal scheme: no finite part).
+F_0 is the arity-zero finite counterterm.  Its forced part (27/16) unit int(d^*A|_V, d^*A|_V) does
+not enter IP1 (no A|_V line in the tree).  Its free quadratic part beta_2 * unit * int dvol (dA_perp, dA_perp)
+(the Q-closed direction in the scalar sector, DESIGN_STEP2 Part C; coefficient beta_2 in units) DOES
+enter through a two-leg insertion on a scalar line: carry beta_2 as a SYMBOL and report its
+contribution as a separate class (B).  beta_3 (fermion sector) does not enter IP1.
+The unit:  unit := hbar tr_g(ad_X ad_Y) / (16 pi^2 (X,Y)) = - g^2 N / (32 pi^2)  for su(N) in the
+normalisation above (ch06 rem:c6-konishi).  Every one-loop coefficient is reported as a multiple of
+the unit.  (A standard loop factor g^2 N/(16 pi^2) equals -2 unit.)
+Plane-wave values of the local functionals used in the gates (ch04 eq:c4-pw): int dvol (A,A) -> 2 (A(p),A(-p));
+int dvol (dA_perp, dA_perp) -> 2 |p|^2 (A_perp(p), A_perp(-p)); for su(N) fields (A(p),A(-p)) = 2 hbar A^a(p).A^a(-p).
+[Corrected 2026-10-30 after the referee's finding R20: the factor 2 of eq:c4-pw was missing; the engines' conversion
+ Sigma_sing = -2 e g^2N/(16 pi^2) per table entry e already accounted for it through the plane-wave value of the quadratic functional.]
+
+2. The operators
+----------------
+O_{ab} := int omega (iota_a A, iota_b A),  a, b in W_R^perp (x) C  (six-vectors; iota_a A = a_I A_I),
+the gauge-invariant scalar bilinears; the trace bilinear K := int omega (A_perp, A_perp) = sum_I O_{e_I e_I}
+(the Konishi operator), the traceless ones are the 20'.  Weyl weight 2, degree 0, even.
+The two-point function (ch08 def:c8-2pt, coefficient of t_2 t_1; for even operators simply the
+connected expectation) of O_1 = O_{a1 b1} at x and O_2 = O_{a2 b2} at 0, at x != 0, as eps -> 0.
+Flavour structures:  S12 := (a1,a2)(b1,b2) + (a1,b2)(b1,a2),   T12 := (a1,b1)(a2,b2).
+Tree level (manuscript normalisation):  <O1,O2>_tree(x) = 4 hbar dim(g) S12 D_0(x)^2.
+REPORTING FORMAT (both engines, exactly this decomposition):
+   <O1,O2>(x) = 4 hbar dim(g) D_0(x)^2 [ S12 (1 + unit c_S) + T12 unit (c_T + d_T log(x^2/ell^2)) + (other structures) ]
+with c_S, c_T, d_T numbers (exact where possible, in the basis {1, gamma_E, log 2, log 3}, plus the
+symbol beta_2), "other structures" to be shown zero, and NO log eps left in the total.
+Existing single derivation (step2/theory/two_point_design.tex thm:t-scalar), to be CONFIRMED OR REFUTED,
+never used as an input:  c_S = 27/2 + 4 log(3/2) - 8 beta_2,  c_T = 8 (gamma_E - 3 log 2),  d_T = 8.
+
+3. Graph classes at relative order unit (the census; each engine must re-derive it from the vertex list)
+---------------------------------------------------------------------------------------------------------
+(T)  tree: the two operator vertices joined by two scalar edges (|Aut| = 2).
+(SE) one of the two scalar lines carries the 1PI one-loop scalar self-energy: the seagull with an A|_V
+     loop, the seagull with an A_perp loop, the bubble with one A|_V and one A_perp line, the gaugino
+     loop, together with the vertex -I^CT[eps] (quadratic scalar part).  Both lines: factor 2.
+(B)  the beta_2 insertion -F_0 on a line (both lines).
+(EX) the A|_V exchange between the two scalar lines (two cubic vertices A|_V A_perp A_perp at z1, z2).
+(QU) the quartic (A_perp)^4 vertex at z joined to each operator by two scalar edges.
+(OC) trees with the vertex -partial_delta I^CT[eps](O_a), a = 1, 2.
+(F)  finite parts hbar psi(O_a): zero in the minimal scheme.
+All other graphs vanish (colour: a cubic vertex with two legs on the same operator; Yukawa/ghost
+vertices cannot sit on the scalar lines; the 27/16 term has no scalar legs).  Each engine must
+verify this from its own vertex tables and record it.
+
+4. Gates (record every value)
+-----------------------------
+G1 (ch04 table, external A_perp A_perp; in units; eps^{-1} part multiplies int(A_perp,A_perp), log eps
+   part multiplies int(dA_perp,dA_perp)):  seagull A|_V loop: 2 eps^{-1};  seagull A_perp loop: 5/2 eps^{-1};
+   bubble A|_V + A_perp: -1/4 eps^{-1} and +1 log eps;  gaugino loop: -2 eps^{-1} and -2 log eps;
+   total: 9/4 eps^{-1} and -1 log eps.  (This fixes the normalisation AND sign of every vertex, in
+   particular of the Yukawa coupling: two conditions for one number.)
+G2 (ch05 thm:c5-Oeps): partial_delta I^CT[eps](O_{ab}) = unit log eps [4 O_{ab} - 2 (a,b) K] + (2 hbar dim g (a,b)/(16 pi^2 eps)) int omega;
+   graph by graph (ch05 prop:c5-table): bubble (e): 2 O - 2 (a,b) K; triangle (f): 2 O (times unit log eps).
+G3 log eps cancels in the total two-point function.
+G4 d_T = 8 (equivalently: no log x^2 on the traceless bilinears; on K the log coefficient is 24 unit,
+   i.e. D_1(K) = -48 unit, the Konishi anomalous dimension 3 g^2 N/(4 pi^2) [ch06 thm:c6-dil]);
+   per class the log x^2 coefficient must equal -1/2 times the two-point tree insertion of D_1.
+G5 gamma_E cancels in c_S (no gamma_E on the 20').
+G6 no tensor structure besides S12 and T12 (in particular the antisymmetric (a1,a2)(b1,b2) - (a1,b2)(b1,a2) is absent).
+G7 (IP0) on the 21-dimensional family {O_{ab}} with the conjugation a -> abar (componentwise on W_R^perp (x) C)
+   the Gram matrix Gram_tree + unit Gram_1 at unit separation, G_{kl} = <O_k-bar, O_l>, is Hermitian,
+   Gram_tree positive definite, Gram_1 Hermitian; and the two blocks (20', K) are orthogonal.
+G8 (colour) the colour factor of every graph is dim(g) (tree) or dim(g) tr_g(ad ad)/(X,Y) (one loop)
+   (ch05 lem:c5-colour); an engine working with su(N) must check that nothing else (e.g. 1/N) appears
+   at this order; optional explicit check with su(2) and su(3) structure constants.
+
+5. Output files (each engine)
+-----------------------------
+results.json: {"engine": ..., "method": ..., "conventions": {...}, "classes": {class: {"c_S": ..., "c_T": ...,
+  "d_T": ..., "log_eps_S": ..., "log_eps_T": ..., "exact": {...} or "numeric": {"value":..., "digits":...,
+  "method":...}}}, "total": {...}, "other_structures": ..., "beta_2_dependence": ...}
+gates.json: {gate_id: {"value": ..., "target": ..., "pass": true/false}}.
+run_all.py: runs everything end to end from a copy of the directory (file-relative paths only),
+pure Python 3 (numpy, sympy, mpmath, fractions), deterministic, < 1.5 GB RSS, and writes the two files.

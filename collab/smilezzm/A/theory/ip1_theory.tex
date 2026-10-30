@@ -1,0 +1,246 @@
+% ip1_theory.tex -- Track A (collaborator smilezzm), stage IP0/IP1: the one-loop two-point functions
+% of the scalar bilinears, the tree and one-loop radial Gram matrices, and the Hermiticity of the one-loop
+% radial form.  Standalone; build: pdflatex ip1_theory.tex (twice).
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\tcolorboxenvironment{proof}{breakable,enhanced,colback=white,colframe=black!35,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt}
+% the unit, written out in full (no new symbol in the rendered text)
+\newcommand{\unit}{\tfrac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}}
+\newcommand{\Wp}{W_{\mathbb R}^\perp}
+\newcommand{\TP}[2]{\big\langle #1,#2\big\rangle}
+\newcommand{\TPz}[2]{\big\langle #1,#2\big\rangle_{\rm tree}}
+\newcommand{\Gt}{\mathrm{Gram}_{\rm tree}}
+\newcommand{\Go}{\mathrm{Gram}_1}
+\title{Track A, stage IP0/IP1: the one-loop two-point functions of the scalar bilinears,\\ the radial Gram matrices, and the Hermiticity of the one-loop radial form}
+\author{Mengyao Zhang (smilezzm)}
+\date{30 October 2026}
+\begin{document}
+\maketitle
+
+\noindent References [chNN, label] are to the chapters of the manuscript; [tp] is \texttt{step2/theory/two\_point\_design.tex}, [ip] is \texttt{step2/theory/inner\_product\_design.tex}. Every symbol is that of Chapter 8 of the manuscript; the unit
+\[
+\unit
+\]
+is written out in full, and for $\mathfrak g=\mathfrak{su}(N)$ with $(X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY)$ it equals $-\tfrac{g^2N}{32\pi^2}$ [ch06, rem:c6-konishi]. The two-point function $\TP{O_1}{O_2}$ is that of [ch08, def:c8-2pt] (the coefficient of $t_2t_1$), its tree part $\TPz{O_1}{O_2}$ the part of lowest order in the unit. The engines are \texttt{collab/smilezzm/A/engine\_a} (exact, momentum space) and \texttt{engine\_b} (position-space Schwinger representation, numerical $\varepsilon$-extrapolation); their outputs are compared in \texttt{qa/}.
+
+\section{Problem and conventions}
+
+The one-loop radial inner product of [ch08, def:c8-inner] on the scalar bilinears rests on two numbers, the minimal-scheme constants of the $\mathbf{20'}$ and of the Konishi operator; each rested on a single derivation [tp, thm:t-scalar]. The three ingredients of the test $Q^\dagger=S$ [ch08, cor:c8-gram] enter through $\Gt^{-1}\Go$, so a wrong constant is absorbed into the free real part of the radial lines instead of being detected [ip, prop:ip-realpart]. This note re-derives the constants by two independent engines, carries the free two-leg direction $\beta_2$ of the arity-zero finite counterterm symbolically, states the tree and one-loop radial Gram matrices of the twenty-one bilinears at the origin, and proves that the one-loop reflection and radial forms are Hermitian in every reflection-compatible scheme, with the converse that in the scalar sector Hermiticity is exactly the reality of $\beta_2$.
+
+\begin{definition}[Setting]
+\label{def:setting}
+Fields, action, propagator and counterterms are those of [ch01, def:c1-action], [ch03, prop:c3-P], [ch04, def:c4-ict, thm:c4-quadratic] and [ch05, prop:c5-thmB]: every edge carries $P(\varepsilon,\infty)$, in momentum space $e^{-\varepsilon|k|^2}/|k|^2$ times the fibre factor, in position space $D_\varepsilon(r)=\frac{1-e^{-r^2/4\varepsilon}}{4\pi^2r^2}=\int_\varepsilon^\infty(4\pi t)^{-2}e^{-r^2/4t}\,dt$; $D_0(r)=\frac1{4\pi^2r^2}$ and $K_\varepsilon(r)=(4\pi\varepsilon)^{-2}e^{-r^2/4\varepsilon}$, $\hat K_\varepsilon(k)=e^{-\varepsilon|k|^2}$, so that $|k|^2\hat D_\varepsilon(k)=\hat K_\varepsilon(k)$ and $-\Delta D_\varepsilon=K_\varepsilon$. The counterterm of a graph is the singular part of its $\varepsilon\to0$ expansion, the terms $\varepsilon^{-m}$ and $\log\varepsilon$ with $\log\varepsilon$ read as $\log(\varepsilon/\ell^2)$, $\ell=1$ the unit of length. The arity-zero finite counterterm is
+\[
+F_0=\unit\Big[\tfrac{27}{16}\int\mathrm{dvol}\,(d^*A|_V,d^*A|_V)+\beta_2\int\mathrm{dvol}\,(dA|_{\Wp},dA|_{\Wp})+\beta_3\int\mathrm{dvol}\,(\lambda,{\not d}\lambda)+\cdots\Big],
+\]
+with $\beta_2,\beta_3$ the coefficients of the $Q$-closed quadratic directions of the scalar and gaugino sectors (DESIGN\_STEP2, Part C), kept as symbols. The operators are the scalar bilinears $O_{ab}:=\int\omega\,(\iota_aA,\iota_bA)$, $a,b\in\Wp\otimes\mathbb C$, with the trace bilinear $K:=\int\omega\,(A|_{\Wp},A|_{\Wp})=\sum_IO_{e_Ie_I}$ for an orthonormal basis $e_I$ of $\Wp$; the minimal scheme $\psi=0$ is used. For two pairs put
+\[
+S_{12}:=(a_1,a_2)(b_1,b_2)+(a_1,b_2)(b_1,a_2),\qquad T_{12}:=(a_1,b_1)(a_2,b_2).
+\]
+Two-component: $\iota_aA=\tfrac14a^{ij}A_{ij}$, $(a,b)=\tfrac14a^{ij}b_{ij}$, $O_{ab}=\tfrac1{16}\int\omega\,(a^{ij}A_{ij},b^{kl}A_{kl})$, $K=\tfrac14\int\omega\,(A^{ij},A_{ij})$; for $\mathfrak{su}(N)$ with $A_I=-igA^a_IT^a$, $O_{ab}=2\hbar\int\omega\,a_Ib_JA^c_IA^c_J$.
+\end{definition}
+
+\begin{lemma}[Tree level and the census]
+\label{lem:census}
+$\TPz{O_{a_1b_1}}{O_{a_2b_2}}(x)=4\hbar\dim\mathfrak g\,S_{12}\,D_0(|x|)^2$. The graphs of relative order one unit are exactly the classes (SE) (one scalar line carries the one-particle-irreducible one-loop scalar self-energy together with the vertex $-I^{CT}[\varepsilon]$), (B) (the vertex $-F_0$ on a scalar line, through $\beta_2$ only), (EX) (an $A|_V$ edge exchanged between the two scalar lines, two cubic vertices $A|_V(A|_{\Wp})^2$), (QU) (one quartic vertex $(A|_{\Wp})^4$ joined to each operator by two scalar edges) and (OC) (the trees with one vertex $-\partial_\delta I^{CT}[\varepsilon](O_a)$); the finite-part class (F) is empty in the minimal scheme. The colour factor is $\dim\mathfrak g$ at tree level and $\dim\mathfrak g\cdot\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(X,Y)$ in every one-loop graph.
+\end{lemma}
+
+\begin{proof}
+The tree is the sum over the two complete pairings of the legs of $O_1$ with those of $O_2$, each pairing giving $(-,-)$ on $(-,-)^{-1}$, i.e. $\dim\mathfrak g$ [ch05, lem:c5-colour], and the two $A|_{\Wp}\otimes A|_{\Wp}$ components $2(-,-)^{-1}\otimes$ (inverse metric) of [ch03, prop:c3-P], contracted with the vertex functions of $O_a$ [ch05, lem:c5-vertices]. At relative order one unit a connected graph with the two operator vertices has one more cycle through vertices of $I$ (one quartic or two cubic vertices) or one vertex of order $\hbar$ in a tree position [ch03, prop:c3-graphs]. The vertices with $A|_{\Wp}$ legs are listed in the table after [ch01, eq:c1-I]: $A|_V(A|_{\Wp})^2$, $\lambda\lambda\,\iota_wA$, $(A|_V)^2(A|_{\Wp})^2$, $(A|_{\Wp})^4$ and $A|_{\Wp}\,c\,A^*|_{\Wp}$. A Yukawa vertex on a scalar line continues along $\lambda$, which no other vertex of the graph can absorb; the ghost vertex needs the slot $A^*|_{\Wp}$, in which $P(\varepsilon,\infty)$ has no component; a cubic vertex with both legs on the same operator carries the colour factor $(Z,[-,-])$ on $(-,-)^{-1}$, which is $0$; the $27/16$ term has no scalar legs. What remains is the list. The colour factors are those of [ch05, lem:c5-colour] and, for the quartic vertex, $([Z_1,Z_3],[Z_2,Z_4])$ on two copies of $(-,-)^{-1}$, equal to $-\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_{X}\mathrm{ad}_{Y})/(X,Y)\cdot\dim\mathfrak g$.
+\end{proof}
+
+\section{Exact evaluation (engine A)}
+
+\begin{lemma}[Schwinger masters with the heat-kernel cutoff]
+\label{lem:masters}
+For $a,b\ge0$, $c\ge0$ integers and $p\ne0$, with $s=t_1+t_2$,
+\[
+M[a,b,c](p):=\iint_{[\varepsilon,\infty)^2}dt_1dt_2\,\frac{t_1^at_2^b}{s^c}\,e^{-t_1t_2|p|^2/s}
+\]
+has an expansion $\varepsilon^{-1}m_{-1}+m_{\log}\log\varepsilon+m_0+o(1)$ whose coefficients are polynomials in $|p|^2$, $\log|p|^2$, $\gamma_E$ and $\log2$ with rational coefficients; in particular
+\[
+\begin{aligned}
+M[0,0,2]&=1-\gamma_E-\log2-\log(\varepsilon|p|^2),\\
+M[0,0,3]&=\tfrac1{4\varepsilon}+|p|^2\Big(\tfrac16\big(\log(\varepsilon|p|^2)+\gamma_E+\log2\big)-\tfrac{25}{72}\Big),\\
+M[1,1,4]&=-\tfrac16\big(\log(\varepsilon|p|^2)+\gamma_E+\log2\big)+\tfrac{13}{72}.
+\end{aligned}
+\]
+\end{lemma}
+
+\begin{proof}
+With $t_1=su$, $t_2=s(1-u)$, $dt_1dt_2=s\,ds\,du$, the region $t_1,t_2\ge\varepsilon$ is $s\ge\varepsilon/m(u)$, $m(u)=\min(u,1-u)$, and
+\[
+M[a,b,c]=\int_0^1du\,u^a(1-u)^b\int_{\varepsilon/m(u)}^\infty s^{a+b-c+1}e^{-s\,w(u)}ds,\qquad w(u)=u(1-u)|p|^2 .
+\]
+The inner integral is $w^{n-1}\Gamma(1-n,w\varepsilon/m)$ with $n=c-a-b-1$, whose expansion at small argument is elementary: for $n\le0$ the limit $\Gamma(1-n)w^{n-1}$, for $n=1$ it is $-\gamma_E-\log(w\varepsilon/m)$, for $n=2$ it is $m/\varepsilon+w(\gamma_E+\log(w\varepsilon/m)-1)$, for $n=3$ it is $m^2/(2\varepsilon^2)-wm/\varepsilon+\tfrac{w^2}2(-\gamma_E-\log(w\varepsilon/m)+\tfrac32)$, each up to terms vanishing as $\varepsilon\to0$. The $u$-integrals of polynomials times $\log u$, $\log(1-u)$, $\log m(u)$ and $m(u)/(u(1-u))$ over $[0,\tfrac12]$ and $[\tfrac12,1]$ are rational combinations of $1$ and $\log2$; the three displayed cases are the output of \texttt{masters.py}, confirmed against direct two-dimensional quadrature at $\varepsilon=10^{-3},10^{-4}$ with differences of order $\varepsilon\log\varepsilon$. The $\varepsilon^{-1}$ and $\log\varepsilon$ coefficients agree with [ch04, lem:c4-integrals].
+\end{proof}
+
+\begin{lemma}[Fourier transforms at $x\ne0$]
+\label{lem:fourier}
+With $f(x)=\int\frac{d^4q}{(2\pi)^4}e^{i(q,x)}\hat f(q)$, at $x\ne0$:
+\[
+\begin{aligned}
+&\int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\log|q|^2=-\frac{1}{\pi^2|x|^4},\qquad \int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\log^2|q|^2=\frac{2}{\pi^2|x|^4}\big(\log|x|^2+2\gamma_E-1-2\log2\big),\\
+&\int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\frac{1}{|q|^2}=\frac{1}{4\pi^2|x|^2},\qquad \int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\frac{\log|q|^2}{|q|^2}=-\frac{\log|x|^2+2\gamma_E-2\log2}{4\pi^2|x|^2},
+\end{aligned}
+\]
+and a polynomial in $q$ transforms to $0$ at $x\ne0$. A momentum-space kernel $h(\varepsilon|q|^2)|q|^{-2k}$, $k\in\{0,1\}$, with $h(y)=\sum_{j\le2}c_j\log^jy+O(y(1+|\log y|)^2)$ at $y\to0$ and of polynomial growth, converges at $x\ne0$, as $\varepsilon\to0$, to the transform of $\sum_jc_j(\log\varepsilon+\log|q|^2)^j|q|^{-2k}$ [tp, lem:t-ft].
+\end{lemma}
+
+\begin{proof}
+The transforms are the Taylor coefficients in $a$ of $\int\frac{d^4q}{(2\pi)^4}e^{i(q,x)}|q|^{2a}=\frac{4^a\Gamma(2+a)}{\pi^2\Gamma(-a)}|x|^{-4-2a}$ and $\int\frac{d^4q}{(2\pi)^4}e^{i(q,x)}|q|^{2a-2}=\frac{4^a\Gamma(1+a)}{4\pi^2\Gamma(1-a)}|x|^{-2-2a}$, the Hankel transforms $\frac{1}{4\pi^2|x|}\int_0^\infty q^{2a+3}\frac{J_1(q|x|)}{q|x|}dq$ in the strip of convergence continued in the exponent $a$ at fixed dimension four. \texttt{fourier.py} expands them and confirms each entry by direct radial quadrature with the Gaussian damping $e^{-\eta|q|^2}$ extrapolated to $\eta\to0$. The last statement is [tp, lem:t-ft]: the remainder $r(y)=h(y)-\sum_jc_j\log^jy$ gives the kernel $\varepsilon^{-2+k}\hat r_k(x/\sqrt\varepsilon)$, which is $O(\varepsilon\log^2\varepsilon)$ at fixed $x\ne0$.
+\end{proof}
+
+\begin{proposition}[The scalar self-energy]
+\label{prop:selfenergy}
+In the Feynman rules of the dimensionally reduced ten-dimensional theory (coupling $g$, $\mathfrak{su}(N)$, weight $e^{-S_E}$, momenta in $\mathbb R^4$, Majorana--Weyl gaugino, so that a closed gaugino loop carries $\tfrac12$ times the trace over the sixteen-dimensional chiral spinor space), the one-particle-irreducible one-loop two-point function of the scalars, in the convention in which the dressed line is $\hat D+\hat D\Sigma\hat D+\cdots$, is $\Sigma^{ab}_{IJ}(p)=\delta^{ab}\delta_{IJ}\,\Sigma(p)$ with
+\[
+\Sigma(p)=\frac{g^2N}{16\pi^2}\Big[-\frac{9}{2\varepsilon}+2|p|^2\log\varepsilon+|p|^2\Big(2\log|p|^2+2\gamma_E+2\log2-\frac{43}8\Big)\Big]+o(1),
+\]
+graph by graph: seagull with an $A|_V$ loop $-4\varepsilon^{-1}$, seagull with an $A|_{\Wp}$ loop $-5\varepsilon^{-1}$, bubble with one $A|_V$ and one $A|_{\Wp}$ line $\tfrac1{2\varepsilon}+|p|^2\big(-2\log(\varepsilon|p|^2)-2\gamma_E-2\log2+\tfrac{13}{8}\big)$, gaugino loop $4\varepsilon^{-1}+|p|^2\big(4\log(\varepsilon|p|^2)+4\gamma_E+4\log2-7\big)$, all in units of $\frac{g^2N}{16\pi^2}$ (the constants $\tfrac{13}8-7=-\tfrac{43}8$). In the manuscript's normalisation, where the plane-wave value of $\int\mathrm{dvol}\,(A,A)$ is $2(A(p),A(-p))$ [ch04, eq:c4-pw] and $(A(p),A(-p))=2\hbar A^a(p)\cdot A^a(-p)$ for $\mathfrak{su}(N)$, the coefficient of $(A(p),A(-p))$ in the plane-wave value of the one-loop quadratic part of the effective interaction is $\Sigma/2$ in units of $g^2N/(16\pi^2)$, i.e. $-\mathrm{unit}\cdot\Sigma/(g^2N/16\pi^2)$. The singular part is the quadratic scalar part of $I^{CT}[\varepsilon]$ of [ch04, thm:c4-quadratic] graph by graph (the table of Chapter 4 with external $A|_{\Wp},A|_{\Wp}$: $2,\tfrac52,-\tfrac14,-2$ for $\varepsilon^{-1}$ and $0,0,1,-2$ for $\log\varepsilon$ in units), and the renormalised self-energy is
+\[
+\Sigma_{\rm ren}(p)=\frac{g^2N}{16\pi^2}|p|^2\Big(2\log|p|^2+2\gamma_E+2\log2-\frac{43}8\Big)=-2\,\unit\,|p|^2\Big(2\log|p|^2+2\gamma_E+2\log2-\frac{43}8\Big).
+\]
+\end{proposition}
+
+\begin{proof}
+The vertex factors are, for incoming momenta, $V_3=ig f^{abc}[\delta_{MN}(k_1-k_2)_P+\delta_{NP}(k_2-k_3)_M+\delta_{PM}(k_3-k_1)_N]$ and $V_4=-g^2[f^{abe}f^{cde}(\delta_{MP}\delta_{NQ}-\delta_{MQ}\delta_{NP})+f^{ace}f^{bde}(\delta_{MN}\delta_{PQ}-\delta_{MQ}\delta_{NP})+f^{ade}f^{bce}(\delta_{MN}\delta_{PQ}-\delta_{MP}\delta_{NQ})]$ with $M,N,\dots$ running over the ten directions. For external scalar legs $I,J$ and momenta in $\mathbb R^4$, the cubic vertex with two scalar legs and one gluon leg reduces to $igf^{abc}\delta_{IK}(k_1-k_2)_m$ and the one with one scalar leg vanishes unless the other two legs are a scalar of the same flavour and a gluon; so the bubble has one $A|_V$ and one $A|_{\Wp}$ line, with numerator $(ig)^2f^{adc}f^{bdc}\delta_{IJ}(p+l)\cdot(-(p+l))=g^2N\delta^{ab}\delta_{IJ}|p+l|^2$. The seagulls are $\tfrac12V_4$ contracted on two legs with $\delta^{cd}\delta_{MM'}$ over the four, resp. six, internal directions, $-g^2N\delta^{ab}\delta_{IJ}\cdot2(4)$ and $-g^2N\delta^{ab}\delta_{IJ}\cdot2(6-1)$, times the tadpole $\int\frac{d^4l}{(2\pi)^4}e^{-\varepsilon|l|^2}/|l|^2=\frac1{16\pi^2\varepsilon}$. The gaugino loop is $(-1)\tfrac12g^2$ times the colour factor $f^{acd}f^{bdc}=-N\delta^{ab}$, times $(-i)^2\operatorname{tr}_{16}(\Gamma^I\Gamma^K\Gamma^J\Gamma^L)l_K(l-p)_L$ with $\operatorname{tr}_{16}(\Gamma^I\Gamma^K\Gamma^J\Gamma^L)=16(\delta^{IK}\delta^{JL}-\delta^{IJ}\delta^{KL}+\delta^{IL}\delta^{KJ})=-16\delta^{IJ}\delta^{KL}$ for $I,J$ internal and $K,L$ in $\mathbb R^4$: $8g^2N\delta^{ab}\delta_{IJ}\,l\cdot(l-p)$. The loop integrals are Gaussian in the Schwinger representation: with $l=l'+\tfrac{t_2}{s}p$, $\int\frac{d^4l'}{(2\pi)^4}e^{-s|l'|^2}=\frac1{16\pi^2s^2}$ and $\langle l'_ml'_n\rangle=\frac{\delta_{mn}}{2s}$, each numerator becomes a polynomial in $t_1,t_2,s^{-1}$ and the integrals are the masters of Lemma \ref{lem:masters}. The singular parts match the table of Chapter 4 entry by entry (the conversion: an entry $e$ of the $\varepsilon^{-1}$ column means $I^{CT}\ni e\cdot\mathrm{unit}\cdot\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)$, whose plane-wave value is $2e\cdot\mathrm{unit}\cdot\varepsilon^{-1}(A(p),A(-p))=4e\cdot\mathrm{unit}\cdot\varepsilon^{-1}\hbar A^a(p)\cdot A^a(-p)$ by [ch04, eq:c4-pw], while the plane-wave value of $\tfrac12\int\Sigma A^aA^a$ is $\Sigma(p)\,A^a(p)\cdot A^a(-p)$; hence $\Sigma_{\rm sing}\ni4e\,\mathrm{unit}\,\varepsilon^{-1}=-2e\,\varepsilon^{-1}\frac{g^2N}{16\pi^2}$, and likewise $-2e'|p|^2\log\varepsilon$ for the $\log\varepsilon$ column); since the gaugino loop has both an $\varepsilon^{-1}$ and a $\log\varepsilon$ entry, the sign and normalisation of the Yukawa vertex and of the fermion loop are tested twice by one number. All of this is \texttt{ip1.py}, gate G1 of \texttt{gates.json}.
+\end{proof}
+
+\begin{lemma}[Localisation of a heat-kernel contact]
+\label{lem:local}
+Let $F_\varepsilon(z)$ be a family of functions on $\mathbb R^4$, smooth away from $z=x$, with $F_\varepsilon(z)=F_0(z)+O(\varepsilon|z-x|^{-6})$ uniformly for $|z-x|\ge\rho$ and $F_0$ smooth near $x$ except for a logarithmic singularity regulated at scale $\sqrt\varepsilon$ of the two forms below. Then:
+\begin{itemize}
+\item[(i)] $\int d^4z_1\,K_\varepsilon(x-z_1)\,D_\varepsilon(z_1)\int d^4z_2\,D_\varepsilon(x-z_2)D_\varepsilon(z_1-z_2)D_\varepsilon(z_2)\ \longrightarrow\ D_0(|x|)\Big[\int d^4z_2\,D_\varepsilon(x-z_2)^2D_\varepsilon(z_2)+D_0(|x|)\,c_{\rm loc}\Big]+o(1)$;
+\item[(ii)] $\int d^4z_1d^4z_2\,D_\varepsilon(x-z_1)D_\varepsilon(x-z_2)K_\varepsilon(z_1-z_2)D_\varepsilon(z_1)D_\varepsilon(z_2)\ \longrightarrow\ \int d^4z\,D_\varepsilon(x-z)^2D_\varepsilon(z)^2+2D_0(|x|)^2c_{\rm loc}+o(1)$;
+\end{itemize}
+where
+\[
+c_{\rm loc}:=\int\frac{d^4k}{(2\pi)^4}\,\frac{e^{-2|k|^2}\big(e^{-|k|^2}-1\big)}{|k|^4}=\frac{1}{16\pi^2}\int_0^\infty\frac{e^{-3v}-e^{-2v}}{v}\,dv=\frac{\log(2/3)}{16\pi^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+(i) Write $T(x,z_1)=\int d^4z_2\,D_\varepsilon(x-z_2)D_\varepsilon(z_1-z_2)D_\varepsilon(z_2)$. Since $K_\varepsilon(x-z_1)$ is a probability density of width $\sqrt\varepsilon$ around $x$, $\int K_\varepsilon(x-z_1)D_\varepsilon(z_1)T(x,z_1)dz_1-D_0(|x|)\int K_\varepsilon(x-z_1)T(x,z_1)dz_1\to0$ ($D_\varepsilon(z_1)-D_0(|x|)=O(|z_1-x|)$ near $x$, and the tails are $O(\varepsilon)$). The difference $T(x,z_1)-T(x,x)$ is concentrated at $|z_2-x|\lesssim|z_1-x|$: for $|z_2-x|\gg\sqrt\varepsilon$ its Gaussian average over $z_1$ is of second order in $z_1-x$, $O(\varepsilon|x-z_2|^{-6})$, whose integral over $|x-z_2|>\rho$ is $O(\varepsilon/\rho^2)$. In the region $|z_2-x|\lesssim\sqrt\varepsilon$, $D_\varepsilon(z_2)=D_0(|x|)+O(\sqrt\varepsilon)$, and with $z_a=x+\sqrt\varepsilon\,w_a$ the measure and the kernels scale out exactly: $K_\varepsilon(x-z_1)d^4z_1=K_1(w_1)d^4w_1$, $D_\varepsilon(x-z_2)D_\varepsilon(z_1-z_2)d^4z_2=D_1(w_2)D_1(w_1-w_2)d^4w_2$. Hence the limit of $\int K_\varepsilon(x-z_1)[T(x,z_1)-T(x,x)]dz_1$ is $D_0(|x|)\int d^4w_1K_1(w_1)\int d^4w_2[D_1(w_2)D_1(w_1-w_2)-D_1(w_2)^2]$, and by Parseval, $\int d^4w_2D_1(w_2)D_1(w_1-w_2)=\int\frac{d^4k}{(2\pi)^4}e^{i(k,w_1)}\hat D_1(k)^2$, $\int K_1(w_1)e^{i(k,w_1)}d^4w_1=e^{-|k|^2}$, so the constant is $\int\frac{d^4k}{(2\pi)^4}\hat D_1(k)^2(e^{-|k|^2}-1)=c_{\rm loc}$; the integral converges at $k\to0$ since $e^{-|k|^2}-1=O(|k|^2)$ and at $k\to\infty$ by the Gaussians. (ii) The integrand is smooth in $(z_1,z_2)$ away from $z_a\in\{x,0\}$, so $K_\varepsilon(z_1-z_2)$ may be replaced by $\delta(z_1-z_2)$ there up to $O(\varepsilon)$; near $z_1,z_2\to x$ the factor $D_\varepsilon(z_1)D_\varepsilon(z_2)\to D_0(|x|)^2$ and the same scaling gives $D_0(|x|)^2\int d^4w_1d^4w_2D_1(w_1)D_1(w_2)[K_1(w_1-w_2)-\delta(w_1-w_2)]=D_0(|x|)^2c_{\rm loc}$; near $z_1,z_2\to0$ likewise. The value of $c_{\rm loc}$ is Frullani's integral in $v=|k|^2$ with $\frac{d^4k}{(2\pi)^4}=\frac{v\,dv}{16\pi^2}$.
+\end{proof}
+
+\begin{theorem}[Two-point functions of the scalar bilinears at one loop]
+\label{thm:result}
+In the minimal scheme, with $F_0$ of Definition \ref{def:setting}, as $\varepsilon\to0$ at $x\ne0$, through relative order one unit,
+\begin{equation}
+\TP{O_{a_1b_1}}{O_{a_2b_2}}(x)=\frac{4\hbar\dim\mathfrak g\,S_{12}}{16\pi^4|x|^4}\Big[1+\unit\Big(\frac{27}2+4\log\frac32-8\beta_2\Big)\Big]+\frac{32\hbar\dim\mathfrak g\,T_{12}}{16\pi^4|x|^4}\,\unit\Big(\log\frac{|x|^2}{\ell^2}+\gamma_E-3\log2\Big),
+\label{eq:result}
+\end{equation}
+with no other tensor structure and no $\log\varepsilon$. Class by class, relative to the tree $4\hbar\dim\mathfrak g\,S_{12}D_0^2$ and in units, with $L:=\log(|x|^2/\ell^2)$ and $\tau:=T_{12}/S_{12}$:
+\[
+\begin{aligned}
+&\text{(SE)}=\tfrac{43}2+8\gamma_E-24\log2+8L,\qquad \text{(B)}=-8\beta_2,\qquad \text{(EX)}=-8-4\gamma_E+8\log2+4\log3-4L+4\log\varepsilon,\\
+&\text{(QU)}=(2\tau-1)\big(4L-4\log\varepsilon+4\gamma_E-12\log2\big),\qquad \text{(OC)}=-8(1-\tau)\log\varepsilon .
+\end{aligned}
+\]
+For the traceless bilinears ($T_{12}=0$) the constant is $\tfrac{27}2+4\log\tfrac32-8\beta_2$ and there is no $\log|x|^2$; for $K$ ($S_{12}=12$, $T_{12}=36$),
+\[
+\TP{K}{K}(x)=\frac{48\hbar\dim\mathfrak g}{16\pi^4|x|^4}\Big[1+\unit\Big(\frac{27}2+4\log\frac32-8\beta_2+24\Big(\log\frac{|x|^2}{\ell^2}+\gamma_E-3\log2\Big)\Big)\Big],
+\]
+and the mixed function of a traceless bilinear with $K$ vanishes. Two-component: $S_{12}=\tfrac1{16}(a_1^{ij}a_{2ij}\,b_1^{kl}b_{2kl}+a_1^{ij}b_{2ij}\,b_1^{kl}a_{2kl})$, $T_{12}=\tfrac1{16}a_1^{ij}b_{1ij}\,a_2^{kl}b_{2kl}$, and $\beta_2\int\mathrm{dvol}\,(dA|_{\Wp},dA|_{\Wp})=\tfrac{\beta_2}4\int d^4x\,(\partial_mA^{ij},\partial_mA_{ij})$.
+\end{theorem}
+
+\begin{proof}
+(SE). The dressed line is $\hat D(k)\Sigma_{\rm ren}(k)\hat D(k)\to\frac{1}{|k|^2}\cdot(-2\,\mathrm{unit})\big(2\log|k|^2+2\gamma_E+2\log2-\tfrac{43}8\big)$ by Proposition \ref{prop:selfenergy}; Lemma \ref{lem:fourier} turns it into $D_0(|x|)\cdot\mathrm{unit}\,\big(\tfrac{43}4+4\gamma_E-12\log2+4L\big)$, and there are two lines. (B). The vertex $-F_0$ contributes $-\beta_2\,\mathrm{unit}\int\mathrm{dvol}\,(dA|_{\Wp},dA|_{\Wp})$, plane-wave value $-2\hbar\beta_2\,\mathrm{unit}\,|k|^2A^a(k)\cdot A^a(-k)$, i.e. $\Sigma_F=-4\beta_2\,\mathrm{unit}\,|k|^2$ in the convention of Proposition \ref{prop:selfenergy}; the line is multiplied by $1-4\beta_2\,\mathrm{unit}$, two lines give $-8\beta_2$. (EX). With the routing $k$ ($O_1z_1$), $q-k$ ($O_1z_2$), $k'$ ($z_1O_2$), $q-k'$ ($z_2O_2$), $k-k'$ ($z_1z_2$) the two cubic vertices give $(ig)^2f^{cde}f^{cde}\,(k+k')\cdot(2q-k-k')\,\delta_{I_1K_1}\delta_{I_2K_2}$, and the sum over the two labelled graphs (the pairing of the legs of $O_1$ with those of $O_2$ through $z_1,z_2$) gives the flavour factor $S_{12}$ and the colour factor $N\dim\mathfrak g$, so that
+\[
+\text{(EX)}(x)=-g^2N\dim\mathfrak g\,S_{12}\int\tfrac{d^4q}{(2\pi)^4}e^{i(q,x)}\iint\tfrac{d^4k\,d^4k'}{(2\pi)^8}\,(k+k')\cdot(2q-k-k')\,\hat D(k)\hat D(q-k)\hat D(k')\hat D(q-k')\hat D(k-k'),
+\]
+$-g^2N=32\pi^2\,\mathrm{unit}$. The identity $(k+k')\cdot(2q-k-k')=2|q|^2-|k|^2-|q-k|^2-|k'|^2-|q-k'|^2+|k-k'|^2$ with $|k|^2\hat D(k)=\hat K_\varepsilon(k)$ splits the integrand exactly into: $2|q|^2$ times the five-line graph, which has superficial degree $-2$ and triangle subgraphs of degree $-2$, so it converges as $\varepsilon\to0$ to a multiple of $|q|^{-2}$ and $2|q|^2$ times it is a function of $\varepsilon|q|^2$ with a constant limit, a contact term at $x\ne0$ by Lemma \ref{lem:fourier}; four graphs with one edge at an operator replaced by $K_\varepsilon$, each equal by Lemma \ref{lem:local} (i) and the symmetries $z_1\leftrightarrow z_2$, $x\leftrightarrow0$ to $D_0(R+D_0c_{\rm loc})$ with $R(x)=\int d^4z\,D_\varepsilon(x-z)^2D_\varepsilon(z)$; and the graph with the $A|_V$ edge replaced by $K_\varepsilon$, which is $J+2D_0^2c_{\rm loc}$ with $J(x)=\int d^4z\,D_\varepsilon(x-z)^2D_\varepsilon(z)^2$ by Lemma \ref{lem:local} (ii). The masters are the transforms of $\hat B(k)^2$ and $\hat B(k)\hat D(k)$, $\hat B(k)=\int\frac{d^4l}{(2\pi)^4}\hat D(l)\hat D(k-l)=\frac{M[0,0,2]}{16\pi^2}$, so by Lemmas \ref{lem:masters} and \ref{lem:fourier}
+\[
+J=\frac{D_0^2}{8\pi^2}\Big(\log\frac{|x|^2}{\varepsilon}+\gamma_E-3\log2\Big),\qquad R=\frac{D_0}{16\pi^2}\Big(\log\frac{|x|^2}{\varepsilon}+1+\gamma_E-3\log2\Big),
+\]
+and (EX)$/\text{tree}=32\pi^2\,\mathrm{unit}\,[J/D_0^2-4R/D_0-2c_{\rm loc}]$ is the stated value. (QU). The quartic vertex on the legs $(a_1,b_1,a_2,b_2)$ with colour $(c,c,d,d)$ is $-g^2N\dim\mathfrak g\,[2T_{12}-S_{12}]$ (the term $f^{abe}f^{cde}$ vanishes on $c=c$), and the two pairs of parallel edges give $\hat B(q)^2$, whose transform is $J$; the symmetry factor is $1$ once the vertex function is symmetrised and the legs of the operators are labelled. (OC). $\partial_\delta I^{CT}[\varepsilon](O_{ab})=\mathrm{unit}\log\varepsilon[4O_{ab}-2(a,b)K]$ plus a constant, derived from the bubble (e) ($\tfrac12V_4(a,b,K,L)A_KA_L$ times $\hat B$, singular part $\mathrm{unit}\log\varepsilon[2O_{ab}-2(a,b)K]$) and the triangle (f) (log coefficient $-1/(16\pi^2)$ of $\int\frac{d^4k}{(2\pi)^4}|k|^2\hat D(k)^3$ times $g^2N(\iota_aA,\iota_bA)$, i.e. $\mathrm{unit}\log\varepsilon\cdot2O_{ab}$), in agreement with [ch05, thm:c5-Oeps]; since the flavour factor of $\TPz{K}{O_2}$ is $\sum_I[(e_I,a_2)(e_I,b_2)+(e_I,b_2)(e_I,a_2)]=2(a_2,b_2)$, the two trees give $-8(S_{12}-T_{12})\log\varepsilon$ in units. The sum of the $\log\varepsilon$ terms is $4+(4-8\tau)-8(1-\tau)=0$; of the $L$ terms $8-4+(8\tau-4)=8\tau$; of $\gamma_E$: $8-4+(8\tau-4)=8\tau$; of $\log2$: $-24+8+(12-24\tau)=-4-24\tau$; of $\log3$: $4$; constants: $\tfrac{43}2-8=\tfrac{27}2$. This is \eqref{eq:result}. The absence of other tensor structures is checked by contracting the vertex tensors with random complex six-vectors (gate G6). All steps are exact in \texttt{engine\_a}; the numbers of [tp, thm:t-scalar] are reproduced.
+\end{proof}
+
+\begin{remark}[What is scheme data and what is invariant]
+The coefficient $8$ of $\log|x|^2$ on $T_{12}$ and its absence on the traceless bilinears are the dilatation data $D_1(K)=-48$ units, $D_1=0$ on the $\mathbf{20'}$ [ch06, thm:c6-dil]; by [tp, thm:t-scaling] the coefficient of $\log|x|^2$ must be $-\tfrac14(D_1C+CD_1^T)/C$ per entry, and with $D_1(O_{ab})=-8\,\mathrm{unit}\,(a,b)K$ this is $8\tau$ for every pair, as found (gate G4). The constants are scheme data of the minimal UV-boundary scheme: $\beta_2$ enters as $-8\beta_2$ on every entry of the $S_{12}$ structure (so both radial constants shift equally, the pattern of the real part of [ip, prop:ip-realpart]); a field rescaling $\phi=a\int(A|_{\Wp},A^*|_{\Wp})$ adds $4a$; a finite part $\hbar\psi(O)=m\,\mathrm{unit}\,O$ adds $2m$; the unit of length moves the reference point $|x|^2=8e^{-\gamma_E}\ell^2$ at which the Konishi logarithm vanishes.
+\end{remark}
+
+\section{The radial Gram matrices of the scalar bilinears (IP0)}
+
+\begin{proposition}[Inversion of the bilinears and the radial Gram matrix at the origin]
+\label{prop:ip0}
+With the inversion $\Theta_I$ of [ch08, prop:c8-C], $(\Theta_IA)|_{\Wp}(x)=(x,x)^{-1}\overline{A|_{\Wp}(I(x))}$ and $F^{\Theta}(e)=F(\Theta e)^{\rm c}$,
+\[
+\big(O_{ab}(x)\big)^{\Theta_I}=(x,x)^{-2}\,O_{\bar a\bar b}\big(I(x)\big),\qquad \overline{a}:=\text{the componentwise conjugate in }\Wp\otimes\mathbb C ,
+\]
+the density at $x$ being conjugated to the density at $I(x)$ with the conformal factor $(x,x)^{-2}$ of weight $2$. Assume the hypotheses of [ip, lem:ip-W] on the family of the twenty-one bilinears (reflection-compatible scheme, local representatives along $P_n$, $K_n$, $\Delta$ and the rotations, the frame $P_1=0$ of [ip, prop:ip-frames (a)], reached through the arity-one finite counterterm along $P_b$, which does not change the arity-zero two-point function; if $P_1=0$ were reached instead through a finite part of the operators, the coefficient below would be multiplied by $1-2a_Pw$ as in [ch08, def:c8-inner]). Then the radial inner product of [ch08, def:c8-inner] on the family at the origin exists, and with $\ell=1$
+\begin{equation}
+\big\langle O_{a_1b_1}(0),O_{a_2b_2}(0)\big\rangle_{\rm rad}=\frac{4\hbar\dim\mathfrak g}{16\pi^4}\Big[\overline S_{12}\Big(1+\unit\Big(\frac{27}2+4\log\frac32-8\beta_2\Big)\Big)+8\,\overline T_{12}\,\unit\,(\gamma_E-3\log2)\Big],
+\label{eq:gram}
+\end{equation}
+where $\overline S_{12}$, $\overline T_{12}$ are $S_{12}$, $T_{12}$ with $(a_1,b_1)$ replaced by $(\overline{a_1},\overline{b_1})$. On the $\mathbf{20'}$, $\Go=\big(\tfrac{27}2+4\log\tfrac32-8\beta_2\big)\frac{\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}\Gt$; on $K$, $\langle K(0),K(0)\rangle_{\rm rad}=\frac{48\hbar\dim\mathfrak g}{16\pi^4}\big[1+\mathrm{unit}\big(\tfrac{27}2+4\log\tfrac32-8\beta_2+24(\gamma_E-3\log2)\big)\big]$; the two blocks are orthogonal. $\Gt$ is Hermitian positive definite: in the basis $e_Ie_J$, $I\le J$, it is diagonal with the entries $\frac{4\hbar\dim\mathfrak g}{16\pi^4}\times2$ for $I=J$ (six times) and $\frac{4\hbar\dim\mathfrak g}{16\pi^4}\times1$ for $I<J$ (fifteen times); it is one half of the Frobenius form on $\mathrm{Sym}^2(\Wp\otimes\mathbb C)$, hence a multiple of the identity in a Frobenius-orthonormal basis. $\Go$ is Hermitian for real $\beta_2$.
+\end{proposition}
+
+\begin{proof}
+The first statement is the formula of [ch08, prop:c8-C] for the two scalar factors, with the coefficients $a,b$ conjugated by the operation ${\rm c}$ and $(\overline{\iota_aA},\overline{\iota_bA})=\overline{(\iota_aA,\iota_bA)}$ on the real slice. By [ip, thm:ip-origin], with $D_1$ diagonal and real on the family ($D_1=0$ on the $\mathbf{20'}$, $-48$ units on $K$, [ch06, thm:c6-dil]), the limit at the origin exists and equals the conjugated two-point coefficient at unit separation: in Theorem \ref{thm:result} at $y=I(x)$ the factor $(x,x)^{-2}|y|^{-4}=1$ and the logarithm $24\,\mathrm{unit}\log|y|^2=-24\,\mathrm{unit}\log(x,x)$ on $K$ is cancelled by the one-loop part $(x,x)^{-\frac12\overline{D_1}}=1+24\,\mathrm{unit}\log(x,x)$ of the conjugation of [ip, eq:ip-W]; on the $\mathbf{20'}$ there is no logarithm. This gives \eqref{eq:gram}. Hermiticity and positivity: $\overline{S}_{12}$ is the Hermitian form $(\overline{a_1},a_2)(\overline{b_1},b_2)+(\overline{a_1},b_2)(\overline{b_1},a_2)$ on $\mathrm{Sym}^2(\Wp\otimes\mathbb C)$, which in the basis $e_Ie_J$ ($I\le J$) is diagonal with entries $2$ for $I=J$ and $1$ for $I<J$, i.e. one half of the Frobenius form $\sum_{ij}\overline{t_{ij}}t'_{ij}$ on the symmetric tensors $t=a\otimes b+b\otimes a$, and $\overline T_{12}=\overline{(a_1,b_1)}\,(a_2,b_2)$ is the rank-one Hermitian form supported on the trace direction $K$; the coefficients are real exactly when $\beta_2$ is. The explicit $21\times21$ matrices, their Hermiticity in the basis $e_Ie_J$ and in a random complex unitary rotation of it, their eigenvalues and the orthogonality of $K$ to the traceless combinations are gate G7 of \texttt{engine\_a/gates.json}.
+\end{proof}
+
+\section{Hermiticity of the one-loop reflection and radial forms}
+
+\begin{proposition}[Hermiticity of the reflection form]
+\label{prop:herm}
+Let the scheme be reflection compatible in the sense of [ch08, thm:c8-adjoint]: $I$, $I^{CT}[\varepsilon]$ and $F_0$ (hence $J$) are $\Theta_n$-invariant, $J^{\Theta_n}=J$, the operator counterterms satisfy $\partial_\delta I^{CT}[\varepsilon](O^{\Theta_n})=\big(\partial_\delta I^{CT}[\varepsilon](O)\big)^{\Theta_n}$ (which holds by the uniqueness of the singular part and [ch08, thm:c8-fields (ii)], the argument of [ch08, thm:c8-fields (iii)]), and the finite parts of the operators satisfy $\psi(O^{\Theta_n})=\psi(O)^{\Theta_n}$, so that $(a^{\Theta_n})(\varepsilon)=a(\varepsilon)^{\Theta_n}$ for every renormalised observable. Let $a,b$ be renormalised local observables supported in the half space $\{(n,x)>0\}$, of total parities $|a|,|b|$. Then, at every order in $\hbar$ at which the regularised theory is reflection invariant (at one loop by [ch08, thm:c8-fields (iii)]),
+\[
+\langle b,a\rangle_n=\overline{\langle a,b\rangle_n},\qquad \langle a,b\rangle_n:=\TP{a^{\Theta_n}}{b}.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $J'=J+t_1a^{\Theta_n}+t_2b$ with square-zero parameters $t_1,t_2$ of the parities of $a,b$, and let ${\rm c}$ conjugate the coefficients, the parameters included, and reverse the order of odd factors. By [ch08, thm:c8-fields (ii)], $W(P(\varepsilon,T),J')^{\Theta_n}=W(P(\varepsilon,T),J'^{\Theta_n})$, and $J'^{\Theta_n}=J+\overline{t_1}\,(a^{\Theta_n})^{\Theta_n}+\overline{t_2}\,b^{\Theta_n}=J+\overline{t_1}\,a+\overline{t_2}\,b^{\Theta_n}$ by $\Theta_n^2=1$. Evaluate both sides at the zero field, which is fixed by $\Theta_n$: the left side is $W(P,J')(0)^{\rm c}$. The coefficient of $t_2t_1$ in $W(P,J')(0)$ is $\langle a,b\rangle_n$ by definition, and ${\rm c}$ maps $t_2t_1\langle a,b\rangle_n$ to $\overline{\langle a,b\rangle_n}\,\overline{t_1}\,\overline{t_2}=(-1)^{|a||b|}\overline{\langle a,b\rangle_n}\,\overline{t_2}\,\overline{t_1}$. On the right side the coefficient of $\overline{t_2}\,\overline{t_1}$ in $W(P,J+\overline{t_1}a+\overline{t_2}b^{\Theta_n})(0)$ is $\TP{a}{b^{\Theta_n}}$ by definition. Hence $\TP{a}{b^{\Theta_n}}=(-1)^{|a||b|}\overline{\langle a,b\rangle_n}$, and by the graded symmetry $\TP{O_2}{O_1}=(-1)^{|O_1||O_2|}\TP{O_1}{O_2}$ [tp, lem:t-elem (iii)], $\langle b,a\rangle_n=\TP{b^{\Theta_n}}{a}=(-1)^{|a||b|}\TP{a}{b^{\Theta_n}}=\overline{\langle a,b\rangle_n}$. Nothing in the argument depends on the order in $\hbar$ beyond the invariance of $J$ and of the finite parts.
+\end{proof}
+
+\begin{theorem}[Hermiticity of the one-loop radial form]
+\label{thm:hermrad}
+Assume, in addition to the hypotheses of Proposition \ref{prop:herm}, that the local representatives along $P_n$ and $K_n$ exist on the observables considered and that the two-point Ward identity of [tp, thm:t-ward] holds along $Y=P_n-K_n$ (hypotheses (H1)--(H4) there, the component along $K_n$ at a finite endpoint $T$ and $T$-independent by [ch08, thm:c8-K]), and that the flow $s\mapsto e^{s\delta^\hbar}$ exists on the renormalised observables considered for $s\in[0,\tfrac\pi4]$, mapping observables supported in the unit ball to observables supported in the half space with the supports of $e^{s\delta^\hbar}a$ and $e^{s\delta^\hbar}b$ disjoint (at order $\hbar^0$ this is the flow of $C^{-1}$, [ch08, prop:c8-C]). Then, modulo $O(\hbar^2)$, for $a,b$ supported in the open unit ball,
+\[
+\langle b,a\rangle_{\rm rad}=\overline{\langle a,b\rangle_{\rm rad}},\qquad \langle a,b\rangle_{\rm rad}=\TP{a^{\Theta_I,\hbar}}{b},\quad a^{\Theta_I,\hbar}=e^{-\frac\pi4\delta^\hbar}\big[(e^{\frac\pi4\delta^\hbar}a)^{\Theta_n}\big],\quad \delta^\hbar=\Lambda^{(1)}(P_n)-\Lambda^{(1)}(K_n).
+\]
+Consequently $\Gt$ and $\Go$ of [ch08, def:c8-inner] are Hermitian, $X^{\rm adj}$ is an adjoint for a Hermitian form, and in [ch08, cor:c8-gram] the relation for $X^\dagger$ is the adjoint of the relation for $X$.
+\end{theorem}
+
+\begin{proof}
+The Ward identity for the even generator $Y=P_n-K_n$ reads $\TP{\Lambda^{(1)}(Y)F}{G}=-\TP{F}{\Lambda^{(1)}(Y)G}$ on the observables considered, with $\Lambda^{(1)}(Y)=\delta^\hbar$, modulo $\Lambda^{(0)}$-exact terms, which have vanishing two-point functions by [tp, cor:t-exact]. Put $g(s)=\TP{e^{-s\delta^\hbar}F}{e^{(s-\sigma)\delta^\hbar}G}$ for fixed $\sigma$; by the existence of the flow and the Ward identity applied to the pair $(e^{-s\delta^\hbar}F,e^{(s-\sigma)\delta^\hbar}G)$, $g'(s)=-\TP{\delta^\hbar e^{-s\delta^\hbar}F}{e^{(s-\sigma)\delta^\hbar}G}-\TP{e^{-s\delta^\hbar}F}{\delta^\hbar e^{(s-\sigma)\delta^\hbar}G}=0$, so $g(\sigma)=g(0)$, that is $\TP{e^{-\sigma\delta^\hbar}F}{G}=\TP{F}{e^{\sigma\delta^\hbar}G}$ (the conformal flow mixes all derivative orders, so the finite identity is obtained from the infinitesimal one by this differential argument, not by a terminating series). Hence
+\[
+\langle a,b\rangle_{\rm rad}=\TP{e^{-\frac\pi4\delta^\hbar}\big[(e^{\frac\pi4\delta^\hbar}a)^{\Theta_n}\big]}{b}=\TP{(e^{\frac\pi4\delta^\hbar}a)^{\Theta_n}}{e^{\frac\pi4\delta^\hbar}b}=\big\langle e^{\frac\pi4\delta^\hbar}a,\ e^{\frac\pi4\delta^\hbar}b\big\rangle_n ,
+\]
+the reflection form of Proposition \ref{prop:herm} (the flow $e^{\frac\pi4\delta^\hbar}$ maps observables supported in the unit ball to observables supported in the half space, by [ch08, prop:c8-C]). Proposition \ref{prop:herm} gives $\overline{\langle e^{\frac\pi4\delta^\hbar}b,e^{\frac\pi4\delta^\hbar}a\rangle_n}$, which by the same chain read backwards is $\overline{\langle b,a\rangle_{\rm rad}}$. The statements on $\Gt$, $\Go$ and $X^{\rm adj}$ are the matrix form of the identity on a basis of a family: $\overline{a}^{\,T}\mathrm{Gram}\,b=\overline{\overline{b}^{\,T}\mathrm{Gram}\,a}=\overline{a}^{\,T}\,\overline{\mathrm{Gram}}^{\,T}b$, so $\mathrm{Gram}=\overline{\mathrm{Gram}}^{\,T}$ order by order; and for a Hermitian form $(X^{\rm adj})^{\rm adj}=X$, so the adjoint of $\overline{X}^{\,T}\mathrm{Gram}=\mathrm{Gram}\,Y$ is $\overline{Y}^{\,T}\mathrm{Gram}=\mathrm{Gram}\,X$, the relation for $X^\dagger$ with $(X^\dagger)^\dagger=X$ [ch08, thm:c8-dag (ii)].
+\end{proof}
+
+\begin{corollary}[Hermiticity in the scalar sector is the reality of $\beta_2$]
+\label{cor:beta2}
+On the family of the scalar bilinears, in the minimal scheme and the frame $P_1=0$, the one-loop radial Gram matrix \eqref{eq:gram} is Hermitian if and only if $\beta_2$ is real; its anti-Hermitian part is $-8i\operatorname{Im}\beta_2\,\mathrm{unit}\,\Gt$. A complex $\beta_2$ is exactly a quadratic finite counterterm that is not reflection invariant, $F_0^{\Theta_n}\ne F_0$, so the gate ``$\Go$ Hermitian'' of [ip, IPC2-10] tests the reflection compatibility of the two-leg part of $F_0$ and nothing else in this sector; the real part of $\beta_2$ is free here and is fixed only by the arity-one equations of the equivariant quantum master equation (Track B).
+\end{corollary}
+
+\begin{proof}
+By Theorem \ref{thm:result}, $\beta_2$ enters only through the term $-8\beta_2\,\mathrm{unit}\,\overline S_{12}$ of \eqref{eq:gram}, i.e. $\hbar\,\Go$ contains $-8\beta_2\,\mathrm{unit}\,\Gt$ with $\Gt$ Hermitian, and all other coefficients are real; the anti-Hermitian part of $\hbar\Go$ is therefore $-8i\operatorname{Im}\beta_2\,\mathrm{unit}\,\Gt$. The functional $\int\mathrm{dvol}\,(dA|_{\Wp},dA|_{\Wp})$ is $\Theta_n$-invariant pointwise, so $(\beta_2F)^{\Theta_n}=\overline{\beta_2}F$, and $F_0^{\Theta_n}=F_0$ exactly when $\beta_2$ is real.
+\end{proof}
+
+\section{Gates, engines and status}
+
+\begin{remark}[Gates]
+The engine gates (\texttt{engine\_a/gates.json}, \texttt{engine\_b/gates.json}) are: G1 the singular parts of the four self-energy graphs and their sum against the table of Chapter 4 (external $A|_{\Wp},A|_{\Wp}$); G2 the operator counterterm against [ch05, thm:c5-Oeps], graph by graph; G3 the cancellation of $\log\varepsilon$; G4 the coefficient of $\log|x|^2$, $0$ on the $\mathbf{20'}$ and $24$ units on $K$ (the Konishi anomalous dimension $3g^2N/(4\pi^2)$); G5 the cancellation of $\gamma_E$ on the $\mathbf{20'}$; G6 the absence of tensor structures other than $S_{12}$, $T_{12}$; G7 the Hermiticity and positivity of the Gram matrices of Proposition \ref{prop:ip0}; G8 the colour factors. Engine A passes all of them exactly.
+\end{remark}
+
+\begin{remark}[Status]
+Established: Theorem \ref{thm:result} by engine A exactly, with the per-class values; Proposition \ref{prop:ip0}; Proposition \ref{prop:herm} at all orders at which the regularised theory is reflection invariant; Theorem \ref{thm:hermrad} under its hypotheses; Corollary \ref{cor:beta2}. The comparison with engine B and the referee's recomputation are recorded in \texttt{qa/} and in \texttt{DELIVERY.json}. Conjectured: nothing. Open: the value of $\operatorname{Re}\beta_2$ (Track B); the fermionic families of IP2 and the weight-3 sector of IP3; the gauge-fixing hypothesis of [tp, prop:t-laws (gauge)].
+\end{remark}
+
+\end{document}

@@ -1,0 +1,35 @@
+Track A -- collaborator smilezzm -- progress log
+2026-10-30  Read CONTRIBUTING, README, DESIGN, DESIGN_STEP2, HANDOFF, FORMAT, ch08 (full), the Track A
+            material (inner_product_design.tex sections 1-2, two_point_design.tex, engine_plan_ip.json,
+            ip_completeness2.json), and the conventions of ch01, ch03, ch04, ch05, ch06.
+            Milestone chosen: IP0/IP1 (scalar bilinears: tree Grams, one-loop two-point constants of the
+            20' and Konishi with beta_2 carried symbolically; gap items IPC2-01, IPC2-10, IPC2-22) and the
+            Hermiticity of the one-loop radial form.  Branch collab/smilezzm/A (local; fork and the
+            claim issue need the collaborator's GitHub credentials).
+            Wrote ip1_spec.txt (shared physics specification for the two engines).
+2026-10-30  Engine A (engine_a/: masters.py, fourier.py, ip1.py, run_all.py) complete; exact (sympy).
+            Result: c_S = 27/2 + 4 log(3/2) - 8 beta_2, c_T = 8 (gamma_E - 3 log 2), d_T = 8; per class
+            SE: 43/2 + 8 gamma_E - 24 log 2 (+8 log x^2), B: -8 beta_2, EX: -8 - 4 gamma_E + 8 log 2 + 4 log 3
+            (-4 log x^2, +4 log eps), QU: S12: -4 gamma_E + 12 log 2 (-4 log x^2, +4 log eps), T12: 8 gamma_E - 24 log 2
+            (+8 log x^2, -8 log eps), OC: S12 -8 log eps, T12 +8 log eps.  Gates G1-G8 pass (gates.json).
+            Engine B (independent, position-space Schwinger representation, numerical eps-extrapolation)
+            being built by a separate agent with no access to engine A.
+2026-10-30  Theory note theory/ip1_theory.tex (setup, masters, Fourier lemma, localisation lemma, self-energy,
+            the theorem with per-class values, IP0 Gram matrices, Hermiticity of the reflection and radial forms,
+            corollary Hermiticity <=> Im beta_2 = 0).  Chapter draft manuscript/ch20_scalar_two_point.tex and
+            supplements/ch20.tex.  reader_build/convert.py: "unresolved": [] with ch20 present (2697 blocks,
+            438 labels).  KaTeX check (qa/katex/, vendored katex.min.js run with the macOS JavaScriptCore shell
+            jsc, since node is not installed): 511/511 math items render, 0 failures.  report.pdf rendered with
+            matplotlib mathtext (no TeX on this machine; pdflatex compilation of the theory note not verified).
+            Referee (independent agent, no access to the engines) launched on a sample of the claims.
+2026-10-30  Engine B (engine_b/, built by an independent agent without access to engine A: canonical su(N) rules
+            from eq:c1-action, explicit Wick enumeration with su(2)/su(3) structure constants, 16x16 chiral gamma
+            matrices for the Majorana-Weyl loop, position-space Schwinger representation with exact Gaussian vertex
+            integration and Hepp-sector extraction of the eps -> 0 asymptotics; the EX constant identified by PSLQ
+            at 12 digits and checked by finite-eps extrapolation to 6 digits) agrees with engine A on all 48
+            per-class entries (qa/comparison.json, max difference 1.8e-15; EX constant: |A exact - B numeric| = 2e-13).
+            Engine B rerun from a copied directory: 210 s, 632 MB RSS, gates G1-G8 pass.
+2026-10-30  Referee verdict partial: every recomputed ingredient confirmed (third method), no fatal/major finding; minor
+            findings R10 (per-graph constants 13/8, -7), R15 (Gram eigenvalues diag(2 x6, 1 x15)), R17/R18 (Hermiticity proof
+            hypotheses and the differential argument for the finite flow), R19 (frame P_1 = 0), R20 (eq:c4-pw factor 2 in the
+            spec) applied to the theory note, chapter 20, spec and report; qa/referee_disposition.json.
