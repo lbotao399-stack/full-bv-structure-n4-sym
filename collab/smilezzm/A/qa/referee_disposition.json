@@ -1,0 +1,556 @@
+{
+ "findings_with_disposition": [
+  {
+   "id": "R1-J",
+   "claim": "J(x)=D0^2/(8pi^2)(log(x^2/eps)+gamma_E-3log2)+o(1)",
+   "method": "direct x-space quadrature (two-centre (r,s) reduction, mpmath dps 20), |x|=1, eps=1e-3..1e-5 (7 values); free fit a log eps+b+c eps log eps+d eps(+eps^2 terms)",
+   "value_found": {
+    "a": "-1.00000000155",
+    "b": "-1.5022258969",
+    "diff_at_eps_1em5": "-6.000280024e-5",
+    "diff_over_eps_at_eps_1em5": "-6.00028"
+   },
+   "value_claimed": {
+    "a": -1,
+    "b": "-1.502225876778303"
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "difference to the claimed asymptotics is -6 eps + O(eps^2 log eps) (smaller than the allowed O(eps log eps)); 6-parameter fit reproduces the constant to 2e-8.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R2-R",
+   "claim": "R(x)=D0/(16pi^2)(log(x^2/eps)+1+gamma_E-3log2)+o(1)",
+   "method": "as R1, also at dps 26 (identical to 18 digits)",
+   "value_found": {
+    "a": "-1.00000000082",
+    "b": "-0.5022258875",
+    "diff_at_eps_1em5": "-4.000160013e-5",
+    "dps26_b": "-0.50222588749993"
+   },
+   "value_claimed": {
+    "a": -1,
+    "b": "-0.5022258767783031"
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "difference is -4 eps + O(eps^2 log eps).",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R3-cloc",
+   "claim": "c_loc=int d^4k/(2pi)^4 e^{-2k^2}(e^{-k^2}-1)/k^4=log(2/3)/(16pi^2)",
+   "method": "radial momentum quadrature and, independently, the x-space form int d^4w D_1(w)[D_2(w)-D_1(w)]",
+   "value_found": {
+    "momentum": "-0.0025676377924492288176",
+    "position": "-0.0025676377924492288176"
+   },
+   "value_claimed": "-0.0025676377924492288176",
+   "agreement": true,
+   "severity": "none",
+   "comment": "agreement to 21 digits.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R4-loc-i",
+   "claim": "Lemma lem:local (i): LHS -> D0[R + D0 c_loc]",
+   "method": "exact reduction LHS-D0R = Term1 + Term2 (heat semigroup K*D_eps = D_2eps; harmonic multipoles l=1,2 of D0 around x, Hobson identity), 2d quadratures, eps=1e-2..1e-5",
+   "value_found": {
+    "rows": [
+     [
+      "1e-2",
+      "-0.00191188316624483",
+      "0.00065575463"
+     ],
+     [
+      "4e-3",
+      "-0.00221266265957323",
+      "0.00035497513"
+     ],
+     [
+      "1e-3",
+      "-0.00244455710897311",
+      "0.00012308068"
+     ],
+     [
+      "4e-4",
+      "-0.0025092473195395",
+      "5.8390473e-5"
+     ],
+     [
+      "1e-4",
+      "-0.00254955094497731",
+      "1.8086847e-5"
+     ],
+     [
+      "4e-5",
+      "-0.00255947704550695",
+      "8.1607469e-6"
+     ],
+     [
+      "1e-5",
+      "-0.00256524681667858",
+      "2.3909758e-6"
+     ]
+    ],
+    "Term1_over_D0sq_at_eps_1em5": "-0.00256763779244923"
+   },
+   "value_claimed": "-0.0025676377924492",
+   "agreement": true,
+   "severity": "none",
+   "comment": "Term1 equals D0^2 c_loc up to exponentially small terms (mean-value property of the harmonic D0); the remainder Term2 ~ -0.02 eps log eps -> 0 (2.4e-6 relative to 2.6e-3 at eps=1e-5). Terms l>=3 of the multipole series are neglected (O(eps^3 log eps)).",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R5-loc-ii",
+   "claim": "Lemma lem:local (ii): LHS -> J + 2 D0^2 c_loc",
+   "method": "LHS-J = <P,(K*P)-P>, P=D(x-z)D(z), symmetric half-space reduction + multipoles l<=2 + heat semigroup; eps=1e-2..1e-5",
+   "value_found": {
+    "rows": [
+     [
+      "1e-2",
+      "-0.0059564010997159",
+      "-0.00082112551"
+     ],
+     [
+      "4e-3",
+      "-0.00567540465390639",
+      "-0.00054012907"
+     ],
+     [
+      "1e-3",
+      "-0.00534430981674221",
+      "-0.00020903423"
+     ],
+     [
+      "4e-4",
+      "-0.00523788987578999",
+      "-0.00010261429"
+     ],
+     [
+      "1e-4",
+      "-0.00516801954300343",
+      "-3.2743958e-5"
+     ],
+     [
+      "4e-5",
+      "-0.00515023656134603",
+      "-1.4960976e-5"
+     ],
+     [
+      "1e-5",
+      "-0.00513971908871823",
+      "-4.4435038e-6"
+     ]
+    ],
+    "fit_limit_with_eps_log2eps": "-0.005136077514"
+   },
+   "value_claimed": "-0.0051352755848985",
+   "agreement": true,
+   "severity": "none",
+   "comment": "difference behaves like eps log^2 eps (-4.4e-6 at eps=1e-5) -> 0.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R6-G1",
+   "claim": "G1: singular parts of the scalar self-energy graphs = ch04 table (2, 5/2, -1/4, -2 for eps^-1; 0, 0, 1, -2 for log eps)",
+   "method": "own Feynman rules: vertex functions by polarisation of -S_E (su(2), su(3)), seagull contractions, 10d chiral trace; singular parts from the direct momentum integrals (free fit); conversion Sigma=-2e g^2N/16pi^2 derived from eq:c4-pw (factor 2) and (X,Y)=-(4hbar/g^2)tr",
+   "value_found": {
+    "seagull_factors": [
+     8.0,
+     10.0
+    ],
+    "bubble": {
+     "inv_eps": "0.5",
+     "log_eps": "-1.99999999362",
+     "const": "-0.915725631602"
+    },
+    "gaugino": {
+     "inv_eps": "4.0",
+     "log_eps": "3.99999999579",
+     "const": "-1.91854865725"
+    },
+    "Sigma_sing_total": {
+     "inv_eps": "-4.5",
+     "log_eps": "2.00000000217"
+    }
+   },
+   "value_claimed": {
+    "Sigma_units_gsqN_16pi2": {
+     "seagull_V": -4,
+     "seagull_perp": -5,
+     "bubble": [
+      0.5,
+      -2
+     ],
+     "gaugino": [
+      4,
+      4
+     ],
+     "total": [
+      -4.5,
+      2
+     ]
+    }
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "all eight singular coefficients agree; total -9/(2 eps) + 2 p^2 log eps = table 9/4, -1.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R7-fermion-sign",
+   "claim": "sign and normalisation of the gaugino loop (Majorana-Weyl factor 1/2 x tr_16)",
+   "method": "tr_16(G^I G^K G^J G^L)=-16 d^IJ d^KL with explicit 32x32 gammas; supersymmetry test: with an identical cutoff on every loop momentum the quadratic divergences must cancel",
+   "value_found": {
+    "chiral_trace_maxdev": 0.0,
+    "quadratic_divergences": [
+     -9.0,
+     1.0,
+     8.0,
+     0.0
+    ]
+   },
+   "value_claimed": "gaugino numerator 8 g^2N l.(l-p)",
+   "agreement": true,
+   "severity": "none",
+   "comment": "seagulls -9, bubble +1, gaugino +8: sum 0 -> sign and factor 1/2 confirmed independently of Euclidean Majorana conventions.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R8-B",
+   "claim": "M[0,0,2]=1-gamma_E-log2-log(eps p^2) (bubble master)",
+   "method": "one-dimensional position-space Hankel transform of D_eps^2, mpmath quadosc, eps=1e-2..1e-6",
+   "value_found": {
+    "diff_rows": [
+     [
+      "1e-2",
+      "0.0074854427"
+     ],
+     [
+      "3e-3",
+      "0.0022486882"
+     ],
+     [
+      "1e-3",
+      "0.00074985419"
+     ],
+     [
+      "3e-4",
+      "0.00022498688"
+     ],
+     [
+      "1e-4",
+      "7.4998542e-5"
+     ],
+     [
+      "3e-5",
+      "2.2499869e-5"
+     ],
+     [
+      "1e-5",
+      "7.4999854e-6"
+     ],
+     [
+      "1e-6",
+      "7.4999985e-7"
+     ]
+    ],
+    "refit_log": "-0.999999999996",
+    "refit_const": "-0.270362845412"
+   },
+   "value_claimed": "-0.27036284546148",
+   "agreement": true,
+   "severity": "none",
+   "comment": "difference = 7.5 eps + O(eps^2) exactly; the constant is confirmed (refit const within 1e-9).",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R9-SigmaRen",
+   "claim": "Sigma_ren(p) = (g^2N/16pi^2) p^2 (2 log p^2 + 2gamma_E + 2log2 - 43/8)",
+   "method": "referee reduction Sigma/(g^2N) = -9 T - 2 p^2 B + 9 C with C exact, plus direct numerical momentum integrals of bubble and gaugino at 8 eps (1e-4..2e-2) and free 7-parameter fit",
+   "value_found": "-5.37499997977",
+   "value_claimed": "-5.375 (= -43/8)",
+   "agreement": true,
+   "severity": "none",
+   "comment": "analytic: 9C = 9/(32pi^2 eps) - 27 p^2/(128 pi^2) + O(eps), -2 p^2 b = p^2(2 log(eps p^2)+2g+2log2-2) -> -2-27/8 = -43/8. Numeric agreement 2e-8.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R10-pergraph",
+   "claim": "Prop prop:selfenergy per-graph finite constants: bubble +167/72, gaugino -13/9 (with the -2/+4 (log(eps p^2)+g+log2) terms)",
+   "method": "direct numerical momentum integrals (R9)",
+   "value_found": {
+    "bubble_const": "-0.915725631602",
+    "gaugino_const": "-1.91854865725",
+    "referee_exact": "bubble 13/8, gaugino -7"
+   },
+   "value_claimed": {
+    "bubble": "-0.221281246479",
+    "gaugino": "3.6370069374"
+   },
+   "agreement": false,
+   "severity": "minor",
+   "comment": "The per-graph constants printed in the proposition are wrong: numerically the bubble constant is 13/8 (=117/72) and the gaugino constant -7, matching the referee reduction (bubble = 2p^2B + C, gaugino = 4(2C - p^2B)). The printed ones sum to 7/8, not to the stated total -43/8 (the -13/9 is only the -8*13/72 part from M[1,1,4]; the 16 M[0,0,3] part -50/9 is missing; 167/72 exceeds 13/8 by 25/36). The total -43/8, which is all the theorem uses, is correct.",
+   "disposition": "accepted and applied: the per-graph finite constants of the bubble and of the gaugino loop in the self-energy proposition are 13/8 and -7 (the printed 167/72 and -13/9 had dropped the M[0,0,3] pieces); the total -43/8, which is all the theorem uses, was and is correct (theory/ip1_theory.tex prop:selfenergy, ch20 prop:c20-selfenergy, report.pdf)"
+  },
+  {
+   "id": "R11-fourier",
+   "claim": "Lemma lem:fourier: FT of log q^2, log^2 q^2, 1/q^2, log q^2/q^2 at x != 0",
+   "method": "4d Hankel transform with exponential (Abel) damping e^{-eta q}, Neville extrapolation eta->0, |x|=1,2,3",
+   "value_found": {
+    "log q^2 @|x|=1.0": "-0.10132361309078",
+    "log q^2 @|x|=2.0": "-0.0063325740954654",
+    "log^2 q^2 @|x|=1.0": "-0.24963696102994",
+    "log^2 q^2 @|x|=2.0": "0.0019558969706485",
+    "1/q^2 @|x|=1.0": "0.025330302155244",
+    "1/q^2 @|x|=2.0": "0.0063325739825015",
+    "log q^2/q^2 @|x|=1.0": "0.0058731835198517",
+    "log q^2/q^2 @|x|=2.0": "-0.0073105217997729",
+    "log q^2 @|x|=3.0": "-0.0012508788092682",
+    "log^2 q^2 @|x|=3.0": "0.0024151006194242",
+    "1/q^2 @|x|=3.0": "0.0028144773234594",
+    "log q^2/q^2 @|x|=3.0": "-0.0055314655037613"
+   },
+   "value_claimed": {
+    "log q^2 @|x|=1.0": "-0.10132118364234",
+    "log q^2 @|x|=2.0": "-0.0063325739776461",
+    "log^2 q^2 @|x|=1.0": "-0.24962764083652",
+    "log^2 q^2 @|x|=2.0": "0.0019558956408884",
+    "1/q^2 @|x|=1.0": "0.025330295910584",
+    "1/q^2 @|x|=2.0": "0.0063325739776461",
+    "log q^2/q^2 @|x|=1.0": "0.0058731591939803",
+    "log q^2/q^2 @|x|=2.0": "-0.0073105217980903",
+    "log q^2 @|x|=3.0": "-0.0012508788103992",
+    "log^2 q^2 @|x|=3.0": "0.0024151006045798",
+    "1/q^2 @|x|=3.0": "0.0028144773233983",
+    "log q^2/q^2 @|x|=3.0": "-0.0055314655035506"
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "agreement to 1e-9..1e-11 at |x|=3, 7e-7..2e-10 at |x|=2; at |x|=1 the extrapolation is less converged (rel. 2e-5..2e-7, consistent with the scatter of the one-point-less extrapolant). The |x| dependence (log x^2 terms) is confirmed by the three radii.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R12-G2",
+   "claim": "ch05 thm:c5-Oeps / prop:c5-table: (e) unit log eps [2O - 2(a,b)K], (f) unit log eps [2O]",
+   "method": "own vertex functions (polarisation of -S_E), explicit su(2), su(3), random complex a,b; least-squares projection on O_ab and (a,b)K over many external legs; log coefficient -(1/16pi^2)",
+   "value_found": {
+    "su2": {
+     "validation": {
+      "V3": 7.553172887309252e-14,
+      "V4_scalar": 1.0345658394727079e-13
+     },
+     "bubble_e": {
+      "O": "(2+1.6551600768211094e-17j)",
+      "abK": "(-1.9999999999999987-1.2718722910606599e-16j)",
+      "max_residual": 2.0097183471152322e-14
+     },
+     "triangle_f": {
+      "O": "(2-2.9990060811147344e-17j)",
+      "abK": "(-1.046229220940303e-16-7.102996362506145e-17j)",
+      "max_residual": 2.5121479338940403e-15
+     },
+     "claimed": {
+      "bubble_e": "2 O - 2 (a,b) K",
+      "triangle_f": "2 O",
+      "total": "4 O - 2 (a,b) K"
+     }
+    },
+    "su3": {
+     "validation": {
+      "V3": 0.0,
+      "V4_scalar": 5.796914039811764e-13
+     },
+     "bubble_e": {
+      "O": "(1.9999999999999987+4.182499096777935e-17j)",
+      "abK": "(-1.9999999999999987-1.824072351056744e-16j)",
+      "max_residual": 4.7664655742347644e-14
+     },
+     "triangle_f": {
+      "O": "(1.9999999999999982+1.3552855928893783e-17j)",
+      "abK": "(-4.1358255895279695e-16-2.6777464607018504e-16j)",
+      "max_residual": 5.126874814344906e-14
+     },
+     "claimed": {
+      "bubble_e": "2 O - 2 (a,b) K",
+      "triangle_f": "2 O",
+      "total": "4 O - 2 (a,b) K"
+     }
+    }
+   },
+   "value_claimed": "(e): O 2, (a,b)K -2; (f): O 2, (a,b)K 0",
+   "agreement": true,
+   "severity": "none",
+   "comment": "agreement to machine precision; colour factor scales as N (no 1/N).",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R13-EX-QU",
+   "claim": "EX and QU vertex, colour, flavour and symmetry factors: EX/tree = -g^2N x [(k+kp).(2q-k-kp) integral]/D0^2 ; QU/tree = -g^2N (2T-S)/S x J/D0^2",
+   "method": "symmetrised vertex functions of O and -S_E contracted with explicit |Aut| (tree 2, EX 2, QU 4), random momenta and flavour vectors, su(2), su(3)",
+   "value_found": {
+    "su2": {
+     "tree_over_4dimS12": "(1-2.1752161133259668e-17j)",
+     "QU_over_tree": "(2.2963691058487603-0.4737040862840283j)",
+     "QU_claimed": "(2.296369105848761-0.4737040862840288j)",
+     "EX_over_tree_over_num": "(-2.000000000000001+3.3723954601217724e-16j)",
+     "EX_claimed": -2
+    },
+    "su3": {
+     "tree_over_4dimS12": "(1.0000000000000002+4.554001082204523e-18j)",
+     "QU_over_tree": "(1.37357714055754+2.1231434126344815j)",
+     "QU_claimed": "(1.3735771405575399+2.1231434126344815j)",
+     "EX_over_tree_over_num": "(-2.999999999999997-2.0568060561989628e-15j)",
+     "EX_claimed": -3
+    }
+   },
+   "value_claimed": {
+    "EX": "-N",
+    "QU": "-N(2T-S)/S"
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "confirms the two labelled exchange graphs give S12 with colour N dim g and relative factor -g^2N; the quartic factor 2T-S and symmetry factor.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R14-assembly",
+   "claim": "thm:result: c_S = 27/2 + 4 log(3/2) - 8 beta_2, c_T = 8(gamma_E - 3log2), d_T = 8; per class values",
+   "method": "assembled from the referee-computed J, R constants, c_loc, Sigma_ren constant (numeric) and the Fourier entries, with the class formulas checked in R13/R6/R12",
+   "value_found": {
+    "SE": "9.48219290485",
+    "EX_const": "-0.369236055185",
+    "QU_const": "-6.00890358762",
+    "c_S_without_beta2": "15.1218604373",
+    "c_S_claimed": "15.1218604324",
+    "c_T": "-12.0178071752",
+    "c_T_claimed": "-12.0178070142",
+    "SE_claimed": "9.48219298577",
+    "EX_claimed": "-0.369236060454",
+    "QU_claimed": "-6.00890350711",
+    "log_eps_coefficients": {
+     "J_fit_a": "-1.000000002",
+     "R_fit_a": "-1.000000001",
+     "EX": "4.0",
+     "QU_times_minus_2tau_plus_1": "-4.000000006",
+     "note": "EX log eps coefficient = 4 a_J - 8 a_R = 4 ; QU: (2tau-1)*4 a_J = -(2tau-1)*4 ; OC: -8(1-tau) (G2) ; sum 0"
+    }
+   },
+   "value_claimed": {
+    "c_S": "27/2+4log(3/2) = 15.1218604324",
+    "c_T": "-12.0178070142",
+    "d_T": 8
+   },
+   "agreement": true,
+   "severity": "none",
+   "comment": "per-class SE, EX, QU constants and log eps cancellation reproduced; beta_2 enters as -8 beta_2 (two lines x -4 beta_2 unit, plane-wave value of int(dA,dA) = 2|p|^2 (A(p),A(-p)) per eq:c4-pw); d_T = 8 from QU log x^2 (8 tau) consistent with the Konishi value 3g^2N/(4pi^2).",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R15-gram-eigs",
+   "claim": "Prop prop:ip0: Gram_tree has eigenvalues (4hbar dim g/16pi^4) x {1 (twenty times), 2 (once, on K/sqrt6)} in the basis e_I e_J",
+   "method": "explicit 21x21 matrix S12 in the basis O_{e_I e_J}, I<=J",
+   "value_found": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0
+   ],
+   "value_claimed": "1 x20, 2 x1",
+   "agreement": false,
+   "severity": "minor",
+   "comment": "In the basis e_I e_J the matrix is diagonal with 2 on the six O_{e_I e_I} and 1 on the fifteen O_{e_I e_J}, I<J (the proof itself says so); the eigenvalues are {1 x15, 2 x6}. K/sqrt6 has norm 2 but so do the five orthonormalised traceless diagonal combinations. Positivity, Hermiticity and the orthogonality of K to the 20-prime (also checked) are unaffected.",
+   "disposition": "accepted and applied: Gram_tree on the basis e_I e_J is diag(2 x6, 1 x15) and is one half of the Frobenius form on Sym^2 (a multiple of the identity in a Frobenius-orthonormal basis); the statement \"eigenvalues 1 (x20), 2 (x1)\" was wrong and is replaced (theory prop:ip0, ch20 prop:c20-gram, report.pdf)"
+  },
+  {
+   "id": "R16-contact",
+   "claim": "2q^2 x (five-line graph) is a contact term at x != 0",
+   "method": "analytic review: no 2-edge cycles, triangle subgraphs and the whole graph are UV convergent (degree -2), so F5_eps(q) = q^-2 f(eps q^2), f(y) = 6 zeta(3)/(16pi^2)^2 + O(y log^k y); lemma fourier (last statement) then gives O(eps log^2 eps) at x != 0",
+   "value_found": "justified",
+   "value_claimed": "contact term",
+   "agreement": true,
+   "severity": "none",
+   "comment": "Not computed numerically; the argument is sound and only needs the remainder bound of [tp, lem:t-ft], which I could not read.",
+   "disposition": "confirmed (no action)"
+  },
+  {
+   "id": "R17-herm",
+   "claim": "Prop prop:herm (Hermiticity of the reflection form)",
+   "method": "line-by-line check against ch08 def:c8-Theta, thm:c8-fields (ii),(iii), def:c8-2pt",
+   "value_found": "valid",
+   "value_claimed": "valid",
+   "agreement": true,
+   "severity": "minor",
+   "comment": "Each step follows from thm:c8-fields (ii) (W^Theta = W(J^Theta) for even J-prime = J + t1 a^Theta + t2 b), Theta^2 = 1, F^Theta(0) = F(0)^c and the order reversal of c. Gap: the two-point function uses the renormalised O(eps) = O - d_delta I^CT(O); reflection compatibility of the OPERATOR counterterms (d_delta I^CT(O^Theta) = d_delta I^CT(O)^Theta) is needed and is not among the stated hypotheses (it follows by the uniqueness/reality argument of thm:c8-fields (iii), but should be stated). The graded symmetry used is [tp, lem:t-elem (iii)], not readable by me.",
+   "disposition": "accepted and applied: the reflection compatibility of the operator counterterms is now listed as a hypothesis, with the justification from thm:c8-fields (ii)-(iii) (uniqueness of the singular part)"
+  },
+  {
+   "id": "R18-hermrad",
+   "claim": "Thm thm:hermrad (Hermiticity of the one-loop radial form)",
+   "method": "line-by-line check against ch08 def:c8-radial, prop:c8-C, def:c8-inner",
+   "value_found": "conclusion follows under its hypotheses; one justification is incorrect as written",
+   "value_claimed": "valid",
+   "agreement": true,
+   "severity": "minor",
+   "comment": "The claim that the formal exponential e^{s delta^hbar} \"terminates on each component of fixed weight\" is not correct: the classical part of P_n - K_n acts on operators at x != 0 as a first-order differential operator mixing all derivative orders (finite conformal flow), so the series in s does not terminate. The needed identity <e^{-s delta}F, G> = <F, e^{s delta}G> follows instead from d/ds <e^{-s delta}F, e^{s delta}G> = 0 using the infinitesimal Ward identity on the flowed observables, PROVIDED the flow exists on renormalised observables and keeps the supports disjoint for s in [0, pi/4] (true classically by prop:c8-C). The Ward identity itself is [tp, thm:t-ward] (H1-H4), and the vanishing of Lambda^(0)-exact two-point functions is [tp, cor:t-exact]; neither could be read by me.",
+   "disposition": "accepted and applied: the \"terminating series\" sentence is replaced by the differential argument d/ds <e^{-s delta} F, e^{(s-sigma) delta} G> = 0 from the infinitesimal Ward identity, with the existence of the flow on renormalised observables with disjoint supports for s in [0, pi/4] added as a hypothesis"
+  },
+  {
+   "id": "R19-ip0-frame",
+   "claim": "Prop prop:ip0: radial Gram matrix = minimal-scheme two-point coefficient at unit separation",
+   "method": "consistency with ch08 def:c8-inner and def:c8-radial",
+   "value_found": "consistent only if the frame P_1 = 0 is reached through the arity-one finite counterterm theta_P = -1/3 (which does not enter the arity-zero two-point function), not through a finite part psi of the operators",
+   "value_claimed": "unconditional",
+   "agreement": null,
+   "severity": "minor",
+   "comment": "def:c8-radial gives P_1(O) = -(1/3 + theta_P) units on the scalar bilinears; if instead P_1 = 0 were imposed by the finite part psi' = (a_P/2){S(Delta),-}, the two-point coefficient would change (remark: a finite part m adds 2m), and in a scheme with P_1 = a_P{S(P_b),-} def:c8-inner multiplies by 1 - 2 a_P w. The proposition defers to [ip, prop:ip-frames (a)] and [ip, thm:ip-origin], which I could not read; this step is unverified.",
+   "disposition": "accepted and applied: the frame P_1 = 0 is now stated to be reached through the arity-one finite counterterm along P_b (which does not change the arity-zero two-point function), with the alternative (finite parts of the operators, factor 1 - 2 a_P w) stated"
+  },
+  {
+   "id": "R20-spec-pw",
+   "claim": "spec section 1: \"int dvol (A,A) -> (A(p),A(-p)) (ch04 eq:c4-pw)\"",
+   "method": "comparison with ch04 eq:c4-pw",
+   "value_found": "eq:c4-pw has 2 (A(p),A(-p))",
+   "value_claimed": "(A(p),A(-p))",
+   "agreement": false,
+   "severity": "minor",
+   "comment": "The spec misquotes eq:c4-pw by a factor 2; the theory note uses a compensating kernel convention, and its final conversions (Sigma_sing = -2e g^2N/16pi^2, Sigma_F = -4 beta_2 unit p^2) agree with the referee derivation from eq:c4-pw. No effect on results, but the convention should be stated once.",
+   "disposition": "accepted and applied: ip1_spec.txt now quotes eq:c4-pw with its factor 2; the engines conversions were already correct and are unchanged; the convention is stated once in ch20 prop:c20-selfenergy"
+  },
+  {
+   "id": "R21-unverified",
+   "claim": "steps resting on documents outside the referee scope",
+   "method": "listing",
+   "value_found": "[tp, lem:t-ft] remainder estimate; [tp, lem:t-elem (iii)]; [tp, thm:t-ward], [tp, cor:t-exact]; [ip, lem:ip-W], [ip, thm:ip-origin], [ip, prop:ip-frames (a)]; ch06 thm:c6-dil values of D_1 (consistent with the remark c6-konishi and with d_T = 8)",
+   "value_claimed": null,
+   "agreement": null,
+   "severity": "none",
+   "comment": "Not verified (not in the allowed reading list). The numerical consequences that could be tested (Fourier remainder via B, J, R convergence) behave as claimed.",
+   "disposition": "noted: the steps resting on [tp] and [ip] (lem:t-ft remainder bound, thm:t-ward, cor:t-exact, lem:t-elem (iii), prop:ip-frames, thm:ip-origin, lem:ip-W) and on ch06 thm:c6-dil are cited, not re-proved here; listed as hypotheses in the PR description"
+  }
+ ],
+ "verdict": {
+  "verdict": "partial",
+  "summary": "Theorem thm:result (c_S = 27/2 + 4 log(3/2) - 8 beta_2, c_T = 8(gamma_E - 3 log 2), d_T = 8, per-class values, no log eps) is CONFIRMED by an independent third method on every recomputed ingredient: J, R, c_loc, Lemma local (i) and (ii), B master, Sigma_ren constant -43/8, G1, G2, Fourier entries, EX/QU combinatorics, fermion-loop sign. No fatal or major error found. Minor errors: (1) the per-graph finite constants of the bubble (167/72) and gaugino (-13/9) in prop:selfenergy are wrong (correct: 13/8 and -7; the printed ones do not sum to the stated total); (2) the eigenvalue statement for Gram_tree in prop:ip0 is wrong ({1 x15, 2 x6} in the basis e_I e_J); (3) thm:hermrad justifies the finite flow by a false termination claim (repairable by an ODE argument); (4) prop:herm should list the reflection compatibility of the operator counterterms; (5) steps resting on [tp], [ip] and the P_1 = 0 frame were not verifiable.",
+  "all_non_minor_agree": true
+ }
+}

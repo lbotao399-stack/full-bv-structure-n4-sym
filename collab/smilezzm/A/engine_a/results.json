@@ -1,0 +1,352 @@
+{
+ "engine": "A",
+ "collaborator": "smilezzm",
+ "track": "A",
+ "stage": "IP0/IP1",
+ "method": "exact momentum-space reduction: Schwinger masters with the heat-kernel cutoff (masters.py), Gaussian loop integration, numerator identity |k|^2 Dhat(k) = e^{-eps k^2}, localisation constant for the K_eps-contact graphs, Fourier lemma (fourier.py); sympy exact arithmetic",
+ "conventions": {
+  "action": "dimensionally reduced 10d YM, su(N), Feynman gauge, weight e^{-S_E}; vertex factors V3, V4 as in ip1.py; Majorana-Weyl gaugino loop = 1/2 x tr_16",
+  "propagator": "delta^{ab} delta_MN e^{-eps k^2}/k^2 on every edge (bosons); fermion with p-slash numerator and the same factor",
+  "unit": "unit = hbar tr_g(ad ad)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2); g^2 N/(16 pi^2) = -2 unit",
+  "self_energy": "Sigma = sum of 1PI graphs with (-S_E) vertices, symmetry factors, (-1) per fermion loop; dressed line Dhat + Dhat Sigma Dhat; counterterm = singular part (eps^{-1}, log eps with ell = 1); Sigma_ren = Sigma - Sing Sigma",
+  "operators": "O_ab = (a.A^c)(b.A^c); tree <O1,O2> = dim g S12 D_0^2 (manuscript: 4 hbar dim g S12 D_0^2); only ratios reported",
+  "two_point": "coefficient of t2 t1 = connected expectation (even operators); T = infinity; x != 0",
+  "beta_2": "F_0 contains beta_2 unit int dvol (dA_perp, dA_perp); enters as -F_0 on a line: Sigma_F = -4 beta_2 unit k^2",
+  "log_eps": "LE = log(eps/ell^2), ell = 1; LX = log(x^2/ell^2)"
+ },
+ "classes": {
+  "SE": {
+   "S12": {
+    "const": {
+     "exact": "-24*log(2) + 8*EulerGamma + 43/2",
+     "numeric": "9.48219298577357545883852580566"
+    },
+    "log_x2": {
+     "exact": "8",
+     "numeric": "8.00000000000000000000000000000"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   }
+  },
+  "B": {
+   "S12": {
+    "const": {
+     "exact": "-8*beta_2",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   }
+  },
+  "EX": {
+   "S12": {
+    "const": {
+     "exact": "-8 - 4*EulerGamma + 4*log(3) + 8*log(2)",
+     "numeric": "-0.369236060454130201507210440974"
+    },
+    "log_x2": {
+     "exact": "-4",
+     "numeric": "-4.00000000000000000000000000000"
+    },
+    "log_eps": {
+     "exact": "4",
+     "numeric": "4.00000000000000000000000000000"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   }
+  },
+  "QU": {
+   "S12": {
+    "const": {
+     "exact": "-4*EulerGamma + 12*log(2)",
+     "numeric": "6.00890350711321227058073709717"
+    },
+    "log_x2": {
+     "exact": "-4",
+     "numeric": "-4.00000000000000000000000000000"
+    },
+    "log_eps": {
+     "exact": "4",
+     "numeric": "4.00000000000000000000000000000"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "-24*log(2) + 8*EulerGamma",
+     "numeric": "-12.0178070142264245411614741943"
+    },
+    "log_x2": {
+     "exact": "8",
+     "numeric": "8.00000000000000000000000000000"
+    },
+    "log_eps": {
+     "exact": "-8",
+     "numeric": "-8.00000000000000000000000000000"
+    }
+   }
+  },
+  "OC": {
+   "S12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "-8",
+     "numeric": "-8.00000000000000000000000000000"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "8",
+     "numeric": "8.00000000000000000000000000000"
+    }
+   }
+  },
+  "F": {
+   "S12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   },
+   "T12": {
+    "const": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_x2": {
+     "exact": "0",
+     "numeric": "0"
+    },
+    "log_eps": {
+     "exact": "0",
+     "numeric": "0"
+    }
+   }
+  }
+ },
+ "total": {
+  "S12": {
+   "const": {
+    "exact": "-8*beta_2 - 4*log(2) + 4*log(3) + 27/2",
+    "numeric": "15.1218604324326575279120524619"
+   },
+   "log_x2": {
+    "exact": "0",
+    "numeric": "0"
+   },
+   "log_eps": {
+    "exact": "0",
+    "numeric": "0"
+   }
+  },
+  "T12": {
+   "const": {
+    "exact": "-24*log(2) + 8*EulerGamma",
+    "numeric": "-12.0178070142264245411614741943"
+   },
+   "log_x2": {
+    "exact": "8",
+    "numeric": "8.00000000000000000000000000000"
+   },
+   "log_eps": {
+    "exact": "0",
+    "numeric": "0"
+   }
+  }
+ },
+ "c_S": {
+  "exact": "-8*beta_2 - 4*log(2) + 4*log(3) + 27/2",
+  "numeric_beta2_0": "15.1218604324326575279120524619"
+ },
+ "c_T": {
+  "exact": "-24*log(2) + 8*EulerGamma",
+  "numeric": "-12.0178070142264245411614741943"
+ },
+ "d_T": {
+  "exact": "8"
+ },
+ "other_structures": "none (gate G6)",
+ "beta_2_dependence": "c_S -> c_S - 8 beta_2 (class B); c_T, d_T independent of beta_2",
+ "self_energy": {
+  "graphs": {
+   "seagull_V": "-g2N/(4*pi**2*eps)",
+   "seagull_perp": "-5*g2N/(16*pi**2*eps)",
+   "bubble": "-LE*g2N*p2/(8*pi**2) - g2N*p2*log(p2)/(8*pi**2) - g2N*p2*log(2)/(8*pi**2) - EulerGamma*g2N*p2/(8*pi**2) + 13*g2N*p2/(128*pi**2) + g2N/(32*pi**2*eps)",
+   "gaugino": "LE*g2N*p2/(4*pi**2) + g2N*p2*log(p2)/(4*pi**2) - 7*g2N*p2/(16*pi**2) + EulerGamma*g2N*p2/(4*pi**2) + g2N*p2*log(2)/(4*pi**2) + g2N/(4*pi**2*eps)"
+  },
+  "total": "LE*g2N*p2/(8*pi**2) + g2N*p2*log(p2)/(8*pi**2) - 43*g2N*p2/(128*pi**2) + EulerGamma*g2N*p2/(8*pi**2) + g2N*p2*log(2)/(8*pi**2) - 9*g2N/(32*pi**2*eps)",
+  "singular": "LE*g2N*p2/(8*pi**2) - 9*g2N/(32*pi**2*eps)",
+  "renormalised": "g2N*p2*log(p2)/(8*pi**2) - 43*g2N*p2/(128*pi**2) + EulerGamma*g2N*p2/(8*pi**2) + g2N*p2*log(2)/(8*pi**2)",
+  "units": "coefficient of delta^{ab} delta_IJ; g2N = g^2 N; p2 = |p|^2"
+ },
+ "masters": {
+  "B_c0": "-log(2)/(16*pi**2) - EulerGamma/(16*pi**2) + 1/(16*pi**2)",
+  "B_c1": "-1/(16*pi**2)",
+  "J_rel": "-LE/(8*pi**2) + LX/(8*pi**2) - 3*log(2)/(8*pi**2) + EulerGamma/(8*pi**2)",
+  "R_rel": "-LE/(16*pi**2) + LX/(16*pi**2) - 3*log(2)/(16*pi**2) + EulerGamma/(16*pi**2) + 1/(16*pi**2)",
+  "c_loc": "-log(3)/(16*pi**2) + log(2)/(16*pi**2)"
+ },
+ "line_correction_over_D0": "-LX*g2N/(8*pi**2) - 43*g2N/(128*pi**2) - EulerGamma*g2N/(8*pi**2) + 3*g2N*log(2)/(8*pi**2)",
+ "checks": {
+  "masters_vs_quadrature": {
+   "(0, 0, 2, '0.001')": [
+    "6.10803876112806415570911688784",
+    "6.106764182458488485798687",
+    0.00020867232829090203
+   ],
+   "(0, 0, 2, '0.0001')": [
+    "8.40947677123807877587128214703",
+    "8.409349275452534169816678",
+    1.5160965302938293e-05
+   ],
+   "(0, 0, 3, '0.001')": [
+    "247.9626401642005350557678377",
+    "247.9628057038589838179126",
+    6.675991929233452e-07
+   ],
+   "(0, 0, 3, '0.0001')": [
+    "2497.31039003721831502832375138",
+    "2497.310406594177337540774",
+    6.6299163646476864e-09
+   ],
+   "(1, 1, 4, '0.001')": [
+    "1.03187765227838082975110888607",
+    "1.031682919298636969855337",
+    0.00018871712098221183
+   ],
+   "(1, 1, 4, '0.0001')": [
+    "1.41546658004396287287967076186",
+    "1.415447101464311250525002",
+    1.3761243060233447e-05
+   ],
+   "(0, 2, 4, '0.001')": [
+    "2.02214172828565124807804395159",
+    "2.021699171930607273044007",
+    0.00021885526066423112
+   ],
+   "(0, 2, 4, '0.0001')": [
+    "2.78927180557507651503056469586",
+    "2.789227536261955834383337",
+    1.587127974842647e-05
+   ],
+   "(1, 0, 3, '0.001')": [
+    "3.05401938056403207787562501126",
+    "3.053382091229244242899343",
+    0.00020867232829090203
+   ],
+   "(1, 0, 3, '0.0001')": [
+    "4.20473838561903938795670765048",
+    "4.204674637726267084908339",
+    1.5160965302938298e-05
+   ]
+  },
+  "fourier_vs_hankel_quadrature": {
+   "('log_q2__over_q2', '1.0')": [
+    "0.0058731081815556669125",
+    "0.0058731591939802823118"
+   ],
+   "('1__over_q2', '1.0')": [
+    "0.025330295910584442861",
+    "0.025330295910584442861"
+   ],
+   "('log_q2__over_1', '1.0')": [
+    "-0.10131995302544330886",
+    "-0.10132118364233777144"
+   ],
+   "('log2_q2__over_q2', '1.0')": [
+    "0.0013614912635535442958",
+    "0.0013617684941225482714"
+   ],
+   "('log_q2__over_q2', '2.0')": [
+    "-0.0073105226022822436011",
+    "-0.007310521798090288973"
+   ],
+   "('1__over_q2', '2.0')": [
+    "0.0063325739776461107152",
+    "0.0063325739776461107153"
+   ],
+   "('log_q2__over_1', '2.0')": [
+    "-0.0063325692139256445247",
+    "-0.006332573977646110715"
+   ],
+   "('log2_q2__over_q2', '2.0')": [
+    "0.0084394937347599289802",
+    "0.008439495400923671421"
+   ]
+  }
+ },
+ "runtime_seconds": 92.9,
+ "peak_rss_MB": 87.7
+}
