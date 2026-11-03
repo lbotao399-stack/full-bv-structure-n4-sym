@@ -1,0 +1,121 @@
+"""QA Part Q: write findings.json (re-runnable)."""
+import os, json
+QA = '/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/step2/composite_qsk/qsk/qa'
+F = [
+ {'id': 'Q1', 'severity': 'fatal', 'target': 'engine A TQ3 (twist entries with beta letters)',
+  'claim': ('Engine A reports betabeta = 0, beta b -> beta dc = 0, beta b -> gamma gamma = 0 (and betagamma = 0) on the twisted letters and '
+            'concludes that b-gamma is the only nonzero twist entry; these zeros are artifacts of silent rounding. Corrected: betabeta, '
+            'beta b -> beta dc and beta b -> gamma gamma are nonzero; betagamma = 0 is genuine.'),
+  'evidence': ('step2/twoletter/engine_a/src.nosync/ea_kern.py contract() converts products of letter components with int(round(.)) '
+               'without a check; A builds the beta letters as dual rows of the weight basis, entries +-1/16, +-i/16, so every term vanishes '
+               '(qa/out.nosync/bisect_A.json: zero whenever the letters are the twisted betas, even with generic xi and outputs). With the '
+               'letters multiplied by 16, A gives betabeta = (2/3) c_gamma + (1/3 - 2 log(3/2)) c_dc per unit letters on gamma^K, '
+               'K the complement of I and J, holomorphic derivatives only, both colour words equal; beta b -> beta dc = -(64/3) c_beta '
+               '(one colour word); beta b -> gamma gamma = (8/3)(c1h1 c2h0 - c1h0 c2h1) (qa/out.nosync/twistA_fixed.json). A with integer '
+               'letters equals B\'s code exactly at four momenta, and B\'s code on A\'s twisted data has the same eps_IJK structure '
+               '(twist_B_on_A2.json). b-gamma is unaffected (gamma and b letters are Gaussian integers; linear in its 1/2-entry outputs).'),
+  'fix': ('Make contract() exact (Fraction arithmetic or an assertion as in qa_core.gq); rerun TQ3 and every A computation whose letter '
+          'vectors are not Gaussian integers; replace the TQ3 summary. Audit the two-letter and Part-C engine A callers of contract() '
+          'for non-integer letters.')},
+ {'id': 'Q2', 'severity': 'major', 'target': 'engine A TQ4 c_Q, results.json two_component',
+  'claim': ('A states {S^(1)(xi),O} = -F1 and c_Q = 2 log(3/2) - theta_perp - p_perp; the classical component is +F1, so the two-body '
+            'part of c_Q is -2 log(3/2) (as engine B) and c_Q = -2 log(3/2) - theta_perp - p_perp.'),
+  'evidence': ('The quadratic functional -(Gamma(xi,lam),A^*) induces lam -> +Gamma(xi,lam) under the reading fixed by Prop c1-Q '
+               '(int(dc,A^*) <-> Qc = -dc); Cor c7-Q states that the classical component replaces A by Gamma(Q_1,lam) and gives the first '
+               'functional F1. Both engines find the engine arrows opposite to Lemma qs-arrows (A: ratio -2 incl. vertex scale; B: finding F1), '
+               'yet A takes the classical sign from that Lemma. Both engines agree on the computed coefficient of F1, -2 log(3/2).'),
+  'fix': 'Set {S^(1)(xi),O} = +F1 in A\'s TQ4 and two-component tables; report c_Q = -2 log(3/2) - theta_perp - p_perp (units u).'},
+ {'id': 'Q3', 'severity': 'major', 'target': 'theory Lemma qs-arrows (and its uses)',
+  'claim': ('Lemma qs-arrows has the wrong overall sign: xi. maps lam -> +Gamma(xi,lam) and A -> +(1/2) rho(dA) xi. The C_xi plane-wave '
+            'component is +i(p,Gamma(xi,lam)|_V), Example qs-cubic should read {S^(1)(xi),A_perp} contains +Gamma(xi,lam)|_perp, and the '
+            'composite line is real (-+2 xi e^{-2 eps|p|^2}/|p|^2), not +-2i as in Rem qs-twocomp.'),
+  'evidence': ('Prop c1-Q reading (free action eq c1-free); engine B gate E0-conv/E0-xi-arrows; engine A E0 ratio -2; Cor c7-Q; both engines '
+               'compute the composite line real with c x lam negative.'),
+  'fix': 'Flip the sign in Lemma qs-arrows, Prop qs-comm (i) plane-wave formula, Example qs-cubic and Rem qs-twocomp.'},
+ {'id': 'Q4', 'severity': 'major', 'target': 'engine B qb_job.DJob.sequences',
+  'claim': ('Route B never places the cubic term T5 with its lam* leg as the output (S3 blocks are generated only at outputs of type A), '
+            'a placement required by Def qs-defect (i) and listed in Rem qs-placements and in B\'s own census (T5b). B\'s published n = 0 '
+            'tables survive (the omitted configurations cancel there), but every n >= 1 leg set with a lam* output is wrong in route B, '
+            'so B cannot serve as the second route for the n >= 1 tables and the derivative-letter twist entries.'),
+  'evidence': ('qb_job.py: "if SLOT[self.outs[j]][0] != \'A\': continue". A-vs-B n=1: (A_V, A_perp) -> (c, lam*) with d_0 on A_V, A = '
+               '(226-206i)(1+2 log(3/2)) [seeded data], B = 0. Emulating the omission inside engine A (T5 restricted to A outputs, '
+               'qa/out.nosync/T5b_emulate.json) reproduces B\'s 0 exactly; the placement split (T5b_split*.json) puts the whole value in '
+               'the T5 configurations with lam* output, whose line and special-edge parts cancel exactly at n = 0 on (A_V,A_V), (A_V,A_perp), '
+               '(A_perp,A_perp) -> (c, lam*); on the three-output lam* leg sets at n = 0 the T5 value comes from A outputs only.'),
+  'fix': 'Add the S3 placement with a lam*_+- output (cycle legs A, A) to DJob.sequences before any n >= 1 run of route B.'},
+ {'id': 'Q5', 'severity': 'major', 'target': 'engine A gate G-R1',
+  'claim': ('A\'s G-R1 pass is obtained with an inconsistent bookkeeping: C = {S^(1)(xi), L_1^(0)(O)} is formed as the difference of the two '
+            'orderings of the even-odd output pair (c, A_V), which forces C = 0, while L_1^(0)(O) itself is formed as their sum and is '
+            'nonzero; it also uses {S,O} = -F1 and A_V <- -Gamma. With one consistent convention the relation still holds.'),
+  'evidence': ('qa/out.nosync/r1_check.json, r1_check2.json: with k the common data factor and L = log(3/2): s(a3 F3) = -2Lk, '
+               'L_1^(0)(F1) = b1 - b2 = -k (two odd outputs), {S^(1)(xi), L_1^(0)(O)} = v1 + v2 = (1+2L)k (A_V -> +Gamma); the sum vanishes '
+               'exactly, separately in the rational and log(3/2) parts. This confirms a3 = 4 log(3/2) relative to the arity-zero kernels.'),
+  'fix': 'Rewrite qa_r1.py with the Grassmann reordering sign of the outputs, {S,O} = +F1 and A_V <- +Gamma(xi,lam)|_V; report the three terms.'},
+ {'id': 'Q6', 'severity': 'major', 'target': 'engine A TQ3 b-gamma reduction; theory Thm qs-twistcheck',
+  'claim': ('A reduces b-gamma "modulo total derivatives" and concludes that both colour orders give (128/3) c_gamma with all log(3/2) terms '
+            'in total derivatives. Total derivatives of local operators are not trivial in the cohomology of Q^xi_0 (O = int omega f with '
+            'arbitrary omega), so this is not a valid comparison with [BK, (3.68)]. Modulo Im Q^xi_0 only (the derivative on dc is the '
+            'u\'-component of the Dirac equation), the two colour words are 64/3 - 128 log(3/2) and 32 + 64 log(3/2) (A normalisation), '
+            'unequal and with log(3/2).'),
+  'evidence': 'engine A results.json TQ3 rows bgamma; q1_targets T6 (BK (3.68) has equal coefficients for the two words).',
+  'fix': ('Reduce only modulo Im Q^xi_0 (exact derivatives u sigma d and the Dirac-equation component), and compare with [BK] only at the '
+          'class level (relations (3.59)-(3.63) through the tree-level psl(3|3) commutant, with the R_1/S_1 terms), as Thm qs-twistcheck (d) requires.')},
+ {'id': 'Q7', 'severity': 'major', 'target': 'both engines: completeness of Part Q',
+  'claim': ('The action side TQ1 (Ob^(1)(xi), particular solution p_V, p_perp, theta_V - theta_perp) is computed by neither engine, so c_Q, '
+            'the trace coefficients and all one-body kernels of Q_1, S_1, K_1 are undetermined; Upsilon_xixi (bc with b = F, bb) is missing; '
+            'A omits the finite special vertices on rows with D >= 2 (its n >= 1 tables are then eps^0 parts, not kernels); relations '
+            'R2-R6, the Konishi relation through D_1, G-R4 twisted closure and the class-level twist comparison were not run.'),
+  'evidence': 'engine notes and results.json open lists of both engines; engine_spec.json tasks TQ1, TQ3 (arity two), TQ8, gates G-Ob, G-R2..R6, G-twist (d).',
+  'fix': 'Run TQ1 first (Prop qs-freexi (ii) needs the cubic part), then the finite special vertices in A, Upsilon_xixi, and the relations on the bilinears after the psi-shift of Q8.'},
+ {'id': 'Q8', 'severity': 'major', 'target': 'theory Prop qs-rel, Rem qs-bilinears; TQ4 trace coefficients',
+  'claim': ('The relations of Prop qs-rel assume L_1^(0) = 0 on the family, but at psi = 0 L_1^(0)(O) = -(2+4 log(3/2)) u (w1,w2) int omega '
+            '(dc, A_V) on the trace bilinear (Rem c5-cocycle type). The finite part that removes it, O -> O + y (w1,w2) int omega (A_V,A_V), '
+            'adds Upsilon_xi(A_V,A_V) to Q_1 of the trace bilinear and changes the reported a2, a3, a4; the values 4 log(3/2) are those of '
+            'a non-cocycle representative. Rem qs-bilinears calls the relations a finite computation with the (A_perp,A_perp), (A_perp,lam) '
+            'kernels only.'),
+  'evidence': 'engine A notes (L_1^(0)(O) value), verified nonzero here (r1_check.json: v1 = v2 != 0); Rem c5-cocycle; Def c10-hyp (ii).',
+  'fix': 'State the psi-shift in Rem qs-bilinears, include the (A_V,A_V) kernels in the trace part, and report a2..a4 in the psi with L_1^(0) = 0.'},
+ {'id': 'Q9', 'severity': 'minor', 'target': 'theory Prop qs-comm (i), Cor qs-edges (i)',
+  'claim': 'C_xi has only the components A*|_V -> lam and lam* -> A|_V besides lam -> c and c* -> lam*; the A*|_perp and A|_perp parts cancel.',
+  'evidence': ('xi.Q^GF a = -rho(d)rho(a) xi and Q^GF xi. a = +rho(d)rho(a) xi for a = A*|_perp (independent check), leaving (d.a) xi on '
+               'A*|_V; engine B finding F2. The variation kernel V_xi then has components lam (x) A_V, A_V (x) lam, c (x) lam*, lam* (x) c.'),
+  'fix': 'Restrict the components to V in Prop qs-comm (i) and Cor qs-edges (i).'},
+ {'id': 'Q10', 'severity': 'minor', 'target': 'theory Prop qs-comm (ii)',
+  'claim': ('eta. is not x^mu xi_mu. + eta^0.: the operator induced by int x^mu S_2(xi_mu) contains the constant antifield arrows Y produced by '
+            'integrating x^mu by parts; [eta.,Q] = 0 holds only with them.'),
+  'evidence': 'engine B gates E0-eta-ep/em (comm_Q without Y fails). The kernels are unaffected (both engines use the functional S^(1)(eta)).',
+  'fix': 'Add Y to the decomposition of eta. and to the formulas for [eta.,Q], [eta.,Q^GF].'},
+ {'id': 'Q11', 'severity': 'minor', 'target': 'theory Prop qs-freexi (last sentence)',
+  'claim': 'Along Sigma^* s_0 is not an independent closed direction; the closed quadratic directions are x.(T1+T3) and x.(T2+T4) + s_0.',
+  'evidence': 'engine B G-TC0-Sigma* (finding F4).',
+  'fix': 'Replace "with the additional direction int s_0" by the two closed directions.'},
+ {'id': 'Q12', 'severity': 'minor', 'target': 'theory eq qs-pole, gate G-pole',
+  'claim': ('For gauge-variant letters the pole identity read pair by pair needs the vacuum-pole x spectator terms (ct_1(AA) from the cubic part of '
+            '{S^(1)(xi),O}, ct1_xi(c,lam_+)|_0 from sO); the gate description "pair by pair" omits them.'),
+  'evidence': 'engine B finding F6 (holds exactly with them on five cases). Only one of B\'s G-pole cases discriminates the overall sign.',
+  'fix': 'Spell out these terms in Thm qs-classes (iv) and in the G-pole specification.'},
+ {'id': 'Q13', 'severity': 'minor', 'target': 'engines A and B: orientation of V',
+  'claim': ('Under the identity on vector indices the engines use opposite orientations: A\'s lam_+ (and A\'s S_+ (x) W) is B\'s lam_- (S_- (x) W^*). '
+            'The scalar results coincide by the mirror symmetry (verified exactly in B\'s code), but the two-component (undotted/dotted) '
+            'labels of one engine are reversed relative to step2/notation/dictionary.json.'),
+  'evidence': ('revise.nosync/ferm_map/spinor_map.json (A_lamP -> B components 8..15); qa/out.nosync/mirror_B.json; B gate E0-orient '
+               'ties its labels to the dictionary orientation.'),
+  'fix': 'Fix A\'s two-component labels against the dictionary orientation (or state A\'s engine-index map to m explicitly).'},
+ {'id': 'Q14', 'severity': 'minor', 'target': 'G-KT (T-independence along K_b)',
+  'claim': ('Neither engine tested T-independence on a K_b defect cycle: B\'s endpoint test is on the T5 cycle along xi, A has it by '
+            'construction. Independently, the mechanism and the manuscript coefficients check: the n = 1 cycle has T-dependence '
+            'eps/(T(T+eps)) and O(eps/T), and the K_b composite line has T d/dT -> -3b/(16 pi^2) (scalar), 3/(8 pi^2) with fibre factors.'),
+  'evidence': 'qa/src.nosync/qq_indep_checks.py output; engine B numT.json.',
+  'fix': 'Run route B at T|p|^2 in {1,4,16} on one K_b intrinsic cycle with the A_V--c line on the cycle.'},
+ {'id': 'Q15', 'severity': 'minor', 'target': 'engine B finding F8 / gate G-closed',
+  'claim': ('The closed form 16 pi^2 [eps^-1] = F/(n_t^2 (n_t-1)(n_t-1)!) is quoted for "every leg set with D = 0", which has no pole; it is the '
+            'simplex weight for a constant F_1 (degree-2 numerator). The eps^0 formula F log(n_t/(n_t-1))/(n_t-1)! is right (n_t = 2: log 2, checked).'),
+  'evidence': 'qq_indep_checks.py (3); Thm qs-simplex with m = 1.',
+  'fix': 'Restate F8 with F_m constant for the pole formula.'},
+ {'id': 'Q16', 'severity': 'minor', 'target': 'process',
+  'claim': ('Engine B exceeded the 1.5 GB RSS rule before its watchdog (peaks 1649-2424 MB); engine A\'s run_all.py with n = 0..3 was not rerun end '
+            'to end; A\'s n = 2, 3 tables use one output ordering per leg set.'),
+  'evidence': 'engine B notes/PROGRESS; engine A PROGRESS.', 'fix': 'Rerun after the fixes above under the watchdog.'},
+]
+json.dump({'role': 'QA Part Q adversarial findings', 'date': '2026-10-30', 'findings': F}, open(os.path.join(QA, 'findings.json'), 'w'), indent=1)
+print(len(F), 'findings written')

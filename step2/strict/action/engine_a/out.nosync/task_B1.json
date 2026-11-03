@@ -1,0 +1,143 @@
+{
+ "results": {
+  "Ob2_Delta_P_2": {
+   "(AW,AsW)": {
+    "basis": [
+     "int(d_b A_perp, A*_perp) = S(P_b)_perp"
+    ],
+    "coef": [
+     "-2/3"
+    ],
+    "beta (position part)": "zero",
+    "poles a_1": [
+     "0"
+    ]
+   },
+   "(AV,AsV)": {
+    "basis": [
+     "int(d_b A_V, A*_V)",
+     "int(d.A_V, b.A*_V)",
+     "int(d_mu (b.A_V), A*_mu)"
+    ],
+    "coef": [
+     "-2/3",
+     "0",
+     "3/2 + (-2)*log2 + (1)*log3"
+    ],
+    "beta (position part)": "zero",
+    "poles a_1": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   "(c,cs)": {
+    "basis": [
+     "int(d_b c, c*)"
+    ],
+    "coef": [
+     "-5/6 + (2)*log2 + (-1)*log3"
+    ],
+    "beta (position part)": "zero",
+    "poles a_1": [
+     "0"
+    ]
+   },
+   "(lamP,lamsP)": {
+    "basis": [
+     "int(d_b lam, lam*)",
+     "int(rho(b) dslash lam, lam*)"
+    ],
+    "coef": [
+     "2/3",
+     "-3/2 + (2)*log2 + (-1)*log3"
+    ],
+    "beta (position part)": "zero",
+    "poles a_1": [
+     "0",
+     "0"
+    ]
+   },
+   "(lamM,lamsM)": {
+    "basis": [
+     "int(d_b lam, lam*)",
+     "int(rho(b) dslash lam, lam*)"
+    ],
+    "coef": [
+     "2/3",
+     "-3/2 + (2)*log2 + (-1)*log3"
+    ],
+    "beta (position part)": "zero",
+    "poles a_1": [
+     "0",
+     "0"
+    ]
+   }
+  },
+  "Ob2_Delta_P_2_zero_sectors": {
+   "(AV,AsW)": "alpha=0, beta=0",
+   "(lamP,lamsM)": "alpha=0, beta=0",
+   "(c,AsV)": "alpha=0, beta=0",
+   "(AV,AV)": "alpha=0, beta=0"
+  },
+  "B1_classes": {
+   "perp": "-2/3",
+   "lambda (lamP)": "-2/3",
+   "lambda (lamP) exact part y": "-3/4 + (1)*log2 + (-1/2)*log3",
+   "Q int(rho(b)lam*,lam*) on (lamP)": [
+    "0",
+    "2"
+   ],
+   "lambda (lamM)": "-2/3",
+   "lambda (lamM) exact part y": "-3/4 + (1)*log2 + (-1/2)*log3",
+   "Q int(rho(b)lam*,lam*) on (lamM)": [
+    "0",
+    "2"
+   ],
+   "V": "-2/3",
+   "V exact part y": "3/2 + (-2)*log2 + (1)*log3",
+   "V consistent (class in span)": true,
+   "Q int(iota_b A_V,c*) on (A_V,A*_V) basis": [
+    "0",
+    "0",
+    "1"
+   ],
+   "... on (c,c*)": [
+    "-1"
+   ]
+  },
+  "theta_Delta": {
+   "theta_perp": "-1/3",
+   "theta_lambda": "-1/3",
+   "theta_V": "-1/3",
+   "rule": "theta^Delta_d = o_d/(2u) (Thm at-theta); o_d = coefficient of [S(P_b)_d] in [Ob^(2)(Delta,P_b)|_2]"
+  }
+ },
+ "gates": [
+  {
+   "id": "X-theta (cross-check)",
+   "value": "-2/3",
+   "target": "o_perp = -2/3",
+   "pass": true,
+   "notes": "cross-check only; theta = o_perp/(2u)"
+  },
+  {
+   "id": "G-pole (Delta,P_b), arity two",
+   "value": "all a_1 zero",
+   "target": "sum a_m = 0",
+   "pass": true,
+   "notes": ""
+  },
+  {
+   "id": "B1 structure",
+   "value": {
+    "beta (position part) zero": true,
+    "lambda chiralities equal": true,
+    "V class in span{S(P_b)_V} + Im Q": true
+   },
+   "target": "class of Ob2(Delta,P_b)|2 in span{[S(P_b)_d]}",
+   "pass": true,
+   "notes": ""
+  }
+ ]
+}

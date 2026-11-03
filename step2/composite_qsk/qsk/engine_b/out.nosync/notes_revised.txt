@@ -1,0 +1,144 @@
+ROUTE B (ENGINE B), PART Q: METHOD AND CONVENTIONS
+step2/composite_qsk/qsk/engine_b/   (code src.nosync/, raw outputs out.nosync/, run_all.py, results.json, gates.json)
+Theory: qsk_theory.tex, engine_spec.json (engine A never read).  Reused verified code (read only, imported in place):
+step2/composite_qsk/composite/engine_b/src.nosync/ce_core.py (54-component slot space; N, k0, qgf, q symbols),
+ce_job.py (templates of the vertices of I, of M and of the edges, colour words), ce_int.py (exact Feynman-parameter
+integrals with one special Schwinger parameter in [0,1]), and its vendor/ folder (Step-1 engine B vertices.py, loops.py,
+realization.py; twoletter engine B tl_engine.py, tl_integrals.py).  New code: qb_*.py.  No dimensional
+regularisation in any role; T = infinity (generic momenta); no Wolfram, no cluster, no browser, no /tmp.
+
+0. REALISATION AND NAMES
+Clifford realisation of realization.py: Sigma components 0..7 = S_+ (x) W (component 4a + A, a in {0,1} the S_+ index,
+A in 0..3 the W index), 8..15 = S_- (x) W^*; Sigma^* 0..7 = S_- (x) W (lamsM), 8..15 = S_+ (x) W^* (lamsP).
+Gamma(Q1,Q2)_M = (rho(e_M) Q1, Q2) = Q1^T Mp R_M Q2, (s, s*) = s^T Mp s*.  Gate E0-orient: rho(e1 e2 e3 e4) = +1 on
+components 0..7 with the dictionary map of engine index 0 to m = 4: lamP = S_+ (x) W = undotted lambda_alpha^i of
+step2/notation/dictionary.json, lamM = lambdabar_alphadot i.  Output strings: Xa[comp], Xb[comp] letter components,
+Y<j>[comp] output polarisations, p<j>_m output momenta (i p_m = d_m on that output), xi<j>, eta<j>, b<m> generator
+data; component names of tl_engine (A_m, A_I1..6, lam_a<a>^<i>, lambar_ad<a>_<i>, lams^a<a>_<i>, lambars^ad<a><i>).
+Units hbar/(16 pi^2); colour words C_w = (1 (x) ad_{Y_w1}...ad_{Y_wr})(-,-)^{-1}, X_a on the first factor; planar
+adjacent pair: (-1)^r a/2 units u = -g^2 N/(32 pi^2), outputs in trace order Y_wr ... Y_w1 (twoletter rule).
+
+1. THE TERMS OF S^(1)(x), WRITTEN ANEW (qb_core.py)
+xi in Sigma (eq c2-S1Q): T1+T2 = -(Gamma(xi,lam), A*), T3+T4 = (1/2)(rho(dA) xi, lam*), rho(F) = (1/2) F_MN rho_M rho_N,
+T5 = (1/2)(rho((1/2)[A^A]) xi, lam*) = (1/4) sum_{MN} ([A_M,A_N], (rho_M rho_N xi, lam*)) with the colour key f of
+vertices.py (acts on the cycle as ad of its output).  eta in Sigma^*: s_0 = -(rho(A|_perp) eta, lam*);
+xi_mu = rho(e_mu) eta.  P_b: (b.dA, A*) - (b.d lam, lam*) - (b.d c, c*) (Def c7-vdot).  K_b intrinsic: see 6.
+Vertex functions as Def c1-vertex (coefficient of the odd parameters in leg order), Hessian blocks of vertices.py.
+
+2. OPERATORS ON PLANE WAVES (E0, qb_e0.py)
+Reading functional <-> operator fixed on the free action: q(k) = Pi K_0 H_free(-k,k) (E0-conv), i.e. F = (1/2)<e,Xe>
+has X = Pi K_0 H_F(-k,k).  With this reading (the convention of Prop c1-Q and Prop c7-susy):
+  xi. : lam -> +Gamma(xi, lam) (slot A), A -> +(1/2) rho(dA) xi (slot lam), A* -> lam*, lam* -> A* by pairing.
+  FINDING: Lemma qs-arrows prints the opposite overall sign (it reads int(Xe,e*) <-> X, which is minus the convention
+  of Prop c1-Q: int(dc,A*) <-> Q c = -dc).  Every statement of Prop qs-comm (i) holds for both signs; the component
+  lam -> c of C_xi is +i(p, Gamma(xi,lam)|_V) and the composite line changes sign with xi..
+  [xi.,Q] = 0, [xi.,H] = 0, pairing preserved; C_xi = [xi., Q^GF] has the components lam_- -> c, A*|_V -> lam_+,
+  lam*_+ -> A|_V, c* -> lam*_- (xi in S_+ (x) W), all of order one; the A*|_perp -> lam and lam* -> A|_perp components
+  cancel between xi.Q^GF and Q^GF xi. (refinement of Prop qs-comm (i)); (C_xi (x) 1)K_0 graded symmetric.
+  Composite line 2(P* xi. P* (x) 1)K_0: components c (x) lam_+ and lam_+ (x) c only, equal to -2 xi e^{-2eps p^2}/p^2
+  (c (x) lam) and +2 xi e^{-2 eps p^2}/p^2 (lam (x) c), xi read as an element of the lam fibre (Rem qs-twocomp guessed
+  +-2i: the multiple is real); P* xi. P* = C_xi Q^GF g^2 - xi.(Q^GF)^2 g^2 and [Q, P* xi. P*] = E(H) C_xi g(H) exact.
+  eta.: the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0 is x^mu xi_mu. (normal ordered field arrows)
+  + eta^0. + Y, with Y the constant antifield arrows lam* -> A* produced by the integration by parts of x^mu
+  (pairing preservation).  FINDING: with Y, [eta.,Q] = sum_mu sigma^mu(Q) xi_mu. + [eta^0. + Y, Q] = 0 exactly; with
+  eta^0. alone (as printed in Prop qs-comm (ii)) the identity fails.  [eta.,H] = 2 xi_mu. d_mu.
+  K_b, Delta: v. = v^mu d_mu + (1/2) omega Sigma + (w/4) div v on every slot (antifield weights 4 - w, spinor generator
+  (1/2) rho_mu rho_nu, checked equivariant and pairing invariant): [v.,Q] = 0; Delta: [v.,Q^GF] = -4 Q^GF, [v.,H] = -4H;
+  K_b: [v.,Q^GF] = 4(b,x) Q^GF + C_K, C_K = 2 sigma^rho(Q^GF)(w b_rho - b_nu Sigma^{rho nu}) of order zero,
+  C_K A_V = -4(b, A_V) (slot c), C_K = 0 on A*|_perp; [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho.
+
+3. THE DEFECT CYCLES (qb_job.py)
+  D_x(X_a,X_b) = +(hbar/2) sum_{ordered vertex sequences, S^(1)(x) at position s} sum_sigma s_x(s,sigma)
+                 STr[E_0 Pi h_1 E_1 ... Pi h_n E_n Pi H_M],
+E_sigma = K_eps - K_0 = (e^{-eps k^2} - 1) k0 (Schwinger time in [0,eps], numerator -|k|^2), other E_j = P(eps, oo);
+h_v the Hessians of I at the outputs and, at position s, the Hessian of the quadratic part of S^(1)(x) (no output) or
+of T5 (one output: A, or, since the revision of 2026-10-30, lam*); H_M the Hessian of M = int omega X_a X_b
+(twoletter convention, ODD_M_SIGN = +1).
+  s_x(s,sigma) = (-1)^{n(<sigma) + |S^(1)(x)| (n(<s) + [s<sigma])}: the Koszul factor of Def qs-defect (ii) without its
+  leading minus (n(<j) = number of odd outputs before j; the parameter of the special edge is moved to the front first).
+  The overall sign is FIXED BY THE GATES: G-pole on (A_perp, lam_+)|_{A_perp} (odd x; it holds with this sign and fails
+  with the opposite one) and G-reg along P_b (even x: the P_b kernel equals the composite kernel C^(2)_{P_b} of
+  composite engine B word by word).  The a-priori estimate -(hbar/2) (hbar/2 from W_1 = (hbar/2) sum (1/n)
+  STr[(P Pi H)^n] differentiated in one edge, minus from {f,g}_eps - {f,g} = -(f, g joined by K_eps - K_0)) is
+  compensated in route B's STr normalisation, as in composite engine B (Z_x = +(hbar/4) sum s(c,sigma) STr).
+  History: the production pass of 03:56-04:45 used -(hbar/2) with the CE coordinate first for even x (v1); v1 = -v2 for
+  odd x and v1 = v2 for even x; the v1 TQ2 files are negated at assembly (field sign_version).
+Exact coefficients: Gaussian loop integral (centre, momentum form, Laplacian series), then for the coefficient of
+eps^-m the integrals J(m; alpha-monomial) of ce_int (special parameter v in [0,1], ordinary u_f >= 1, Feynman
+parameters u = U beta, U and v in closed form, Dirichlet slices): values in Q + Q log 2 + Q log 3 (+ Q log 5 ...).
+No log eps can arise (bounded tau range).  Sequences: all orderings of the output blocks (cubic vertices, quartic pairs
+of A outputs) with S^(1)(x) inserted at every position, and T5 with each A output; every placement of Rem
+qs-placements (on a line, at the special edge, cubic) is produced automatically by the matrix chain.
+Memory: in-loop checks (cap 1000 MB) and, since 05:41, a watchdog thread in every engine process (current RSS polled
+every 0.3 s, exit above 1300 MB).  Before the watchdog several runs overshot the 1.5 GB rule before the in-loop check
+fired (peaks 1649, 1665, 1986, 2424 MB, all aborted, none produced data).  The heavier leg sets were run at the single
+rank-one xi = u (x) e_4 = e_3 with symbolic letters and outputs, which determines the kernel for every xi by
+Spin(4) x SU(4) covariance and linearity (S_+ (x) W irreducible); the three-output leg sets all have superficial
+degree D = 0 and were run at zero output momenta (exact: their coefficients are degree-0 polynomials in the momenta).
+
+4. FINITE SPECIAL VERTICES AND THE POLE IDENTITY (qb_fsp.py)
+At n = 0 on field and ghost pairs: ct_m(X_a X_b) = 0 except ct_1(lam lam) with one A output (weight), ct1_{xi,m} = 0
+(outputs of degree -1 would need weight <= W_0 + 1/2 - 2 < 5/2); hence F_xi = {S^(1)(xi), ct_1}_H only on the gaugino
+pairs and the leg set of one gaugino: the A output of ct_1 replaced by |p|^2 Gamma(xi, lam_out) ((xi. e)_A of E0).
+ct_1 from the twoletter engine B (tl_engine.Job).  Pole identity (eq qs-pole) at m = 1 on the gaugino pairs, leg set
+lam: the vacuum-pole x spectator terms vanish by colour, so [eps^-1] D = {S,ct_1(O)} - ct_1({S,X_a}X_b) +
+ct_1(X_a{S,X_b}), {S, z.lam} = sum c_MN d_M A_N, c_MN = (1/4) z^T(rb_M r_N - rb_N r_M) xi (odd derivation); ct_1 of
+the derivative pairs from tl_engine.Job with deriv ('gen',1).
+
+5. NUMERICAL EPS-EXTRAPOLATION (qb_numeps.py, qb_numT.py)
+Single configurations with n_t <= 3 edges at random rational data (real Euclidean momenta): finite-eps value with the
+tau-integral as an incomplete gamma function (E_n for nonpositive orders) and the alpha-integral by tanh-sinh quadrature
+(22 digits for the n_t = 3 cases, 30 for the endpoint test) on the ordered subregions of {alpha_sigma smallest}; nine
+points eps = 2^-10 .. 2^-18, least-squares fit on 1/eps, 1, log eps, eps, eps log eps, eps^2, eps^3; compared with the
+exact coefficients; the log eps coefficient must vanish.  Endpoint test: ordinary times in [eps, T] at T = 1, 4, 16
+(T|p|^2 = 10.7, 42.8, 171) and T = infinity, quadrature split at the kink eps/alpha_sigma = T/(1 - alpha_sigma); the
+difference value_T - value_infinity is O(eps) (its ratio to eps converges), so the eps^0 and eps^-1 coefficients are
+independent of T (Thm qs-simplex (iii), (iv)).  First fits at eps up to 1/64 were biased by the large |p|^2 (the
+residual itself is O(eps) without log, checked down to eps = 2^-20); the final fits use eps <= 2^-10.
+
+6. INTRINSIC PARTS ALONG eta AND K_b (qb_jobinj.py, qb_etak.py)
+A momentum h is injected at the vertex S^(1)(x) and carried by the following edges to M (absorbed by omega);
+z^mu -> -i d/dh_mu, z^mu z^nu -> -d^2/dh_mu dh_nu at h = 0.  eta: Upsilon^0 = sum_mu (-i d_{h_mu}) D[S^(1)(rho(e_mu)
+eta)] + D[s_0]; G-pos: the h = 0 part equals the kernel along rho(e_mu) eta.  K_b: S^(1)(K_{b,x_O}) = sum z^mu z^nu V_mu nu
++ sum z^mu W_mu, V_mu nu f = (coefficient of z^mu z^nu in v^rho(z) d_rho) f, W_mu f = 2 b_s Sigma^{mu s} f - 2 w b_mu f,
+with the field signs of Def c7-vdot (+ on A, - on lam, - on c), even x sign rule of 3.
+
+7. BILINEARS (qb_bil.py)
+O = int omega (iota_w1 A, iota_w2 A): two-body part = Upsilon_xi(A_perp,A_perp) at za = w1, zb = w2, colour singlet:
+single-output word -> tr(ad_Y) = 0, words (0,1), (1,0) -> the same factor tr(ad_Y0 ad_Y1); decomposed on the classical
+structure (rho(w1)xi, Y1)(w2.Y0) + (w1.Y0)(rho(w2)xi, Y1) = {S^(1)(xi),O} on A_perp lam_+ and the trace structures.
+G-plane at xi = u (x) e_4 on the 3-dimensional space of chiral w (rho(w) xi = 0).
+
+8. RESULTS (results.json, gates.json; findings F1..F9 and open items in results.json)
+ E0: all commutators of Prop qs-comm and the arrows on plane waves exact (15 gates); composite line -2 xi e^{-2eps p^2}/p^2
+     on c (x) lam_+; findings F1-F3.
+ TQ0: Sigma: Q-closed = span{T1+T3, T2+T4} (S^V_2, S^perp_2), no exact; Sigma^*: span{x.(T1+T3), x.(T2+T4) + s_0} (F4).
+ TQ2 (n = 0): all leg sets of the census with output weight <= W_0 + 1/2 for the 15 pairs of field and ghost letters;
+     xi in S_+ (x) W symbolic where memory allowed, else at the rank-one xi = u (x) e_4 (complete by covariance);
+     D = 0 three-output leg sets at zero output momenta (exact: degree-0 polynomials).  Bases 1, log2, log3; no log eps;
+     poles only on the single-A leg sets of (A_V,lam_+), (A_perp,lam_+), (A_V,lam_-), (A_perp,lam_-) (k_I = 0 and T5
+     placements).  Finite special vertices only on the gaugino pairs, leg set one gaugino: F_xi = |p|^2 {S^(1)(xi), ct_1}.
+ G-pole (eq qs-pole, m = 1) exact on five pair/leg-set cases with the general-colour vacuum terms (F6); G-cubic exact;
+ G-swap, G-chirality exact on three pairs each; G-plane exact; G-pos exact on three eta pairs; G-closed exact.
+ TQ3 (n = 0): beta gamma = 0, b c (b <-> lam*_+) = 0, beta beta nonzero (F7).
+ TQ4: two-body part of Q_1 on the scalar bilinears (F9).
+ TQ5, TQ6 (n = 0): intrinsic parts along eta on five pairs and along K_b on five pairs (b symbolic); on the scalar
+     bilinear both vanish on the colour singlet (single-output leg sets only), as Cor c7-S, Cor c7-K require.
+ TQ7: G-reg along P_b.  Numerics: G-num (eps-extrapolation of single configurations), G-KT analogue (T in {1,4,16}).
+ Not done: see results.json 'open'.
+
+
+REVISION 2026-10-30 (reviser of Part Q; qa/findings.json Q4, Q14, Q15, Q16)
+ * T5 placement (Q4): the cubic term T5 = (1/2)(rho((1/2)[A^A]) xi, lam*) is now also placed with its lam* leg as the
+   output (cycle legs A, A): qb_job.s_templates builds the T5 template for each output species ('A', 'lams'),
+   DJob.sequences places S3 at outputs of either species, DJob.config and IJob.config pick the template by species;
+   qb_job.T5_LAMS_OUTPUT = False reproduces the first production pass.  Rerun on every n = 0 leg set of TQ2 with a lam*
+   output and on the n = 1 comparison rows with a lam* output: revision.nosync/out/b_lamstar_n0.json,
+   revision.nosync/out/ab_compare_n1_lamstar.json, ab_compare_n0_lamstar.json (results in results/qsk_final.json).
+ * Closed form F8 (Q15): 16 pi^2 [eps^0] = F_0 log(n_t/(n_t-1))/(n_t-1)! holds for a constant eps^0 integrand F_0 (the
+   leg sets with superficial degree D = 0, which carry no pole); 16 pi^2 [eps^-1] = F_1/(n_t^2 (n_t-1)(n_t-1)!) holds for
+   a constant m = 1 integrand F_1 (superficial degree D = 2).  The gate G-closed evaluated each formula with its own
+   constant integrand; the attribution of the pole formula to the D = 0 leg sets was wrong.
+ * G-KT along K_b (Q14): revision.nosync/rv_gkt.py, the endpoint dependence of the defect cycles of the intrinsic K_b
+   vertex on (A_V, A_V) -> A_V, all placements with n_t <= 3 edges (S^(1)(K_b) on a line included), at T = 1, 4, 16.
+ * Memory (Q16): the reruns of the revision ran one at a time under the watchdog of qb_job (exit above 1300 MB).

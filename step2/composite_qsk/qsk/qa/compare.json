@@ -1,0 +1,230 @@
+{
+ "role": "QA Part Q: entry-by-entry comparison of engines A and B (two-body kernels of Q_1, S_1, K_1), with independent checks",
+ "date": "2026-10-30",
+ "method": "Engine B code (qsk/engine_b/src.nosync, read-only import) run on engine A data mapped by the exact spinor intertwiner S of step2/composite_qsk/revise.nosync/ferm_map/spinor_map.json (u_B = S u_A on Sigma, same vector index; letters S^{-T}, outputs and xi S, Sigma^* by (S^T Mp)^{-1}); S = c S0, c^2 = i/16, powers of c tracked. Colour words matched strictly: A ordering (Y_1..Y_r) = word ad_{Y_r}..ad_{Y_1} = B word [r-1..0] with B outputs in A order. Under S, A's lamP is B's lamM (opposite orientations of V); xi_A in A's S_+ (x) W is in B's S_- (x) W^*.",
+ "entries": [
+  {
+   "item": "TQ2 n=0, all 15 field/ghost pairs, leg sets with <= 2 outputs, all orderings (A seeded data, A xi generic)",
+   "A": "out.nosync/tq2_n0.json",
+   "B": "B code on A data (qa/src.nosync/qq_ab_compare.py)",
+   "rows": 85,
+   "agree": 85,
+   "disagree": [],
+   "status": "agree"
+  },
+  {
+   "item": "TQ2 n=1 (d_0 on X_a; B: coefficient of s0 of the point-splitting generating function, deriv=(gen,1)), leg sets <= 2 outputs",
+   "rows_done": 85,
+   "agree": 83,
+   "disagree": [
+    {
+     "pair_A": [
+      "AV",
+      "AW"
+     ],
+     "leg_set_A": "c lamsM",
+     "ordering_A": [
+      "c",
+      "lamsM"
+     ],
+     "A": "-452*log(2) + 226 + 452*log(3) - 412*I*log(3) - 206*I + 412*I*log(2)",
+     "B": "0"
+    },
+    {
+     "pair_A": [
+      "AV",
+      "AW"
+     ],
+     "leg_set_A": "c lamsM",
+     "ordering_A": [
+      "lamsM",
+      "c"
+     ],
+     "A": "-452*log(2) + 226 + 452*log(3) - 412*I*log(3) - 206*I + 412*I*log(2)",
+     "B": "0"
+    }
+   ],
+   "status": "83/85 agree; the disagreeing rows are explained by route B (see diagnosis)",
+   "diagnosis": "the disagreeing rows are (A_V, A_perp) -> (c, lam*) [A labels]: engine A placement split (out.nosync/T5b_split.json) shows the whole value comes from T5 with its lam* leg as output (S3 line + S3 special); engine B never generates this placement (qb_job.DJob.sequences places T5 only at A outputs). At n=0 the two S3 parts cancel exactly (B zero right by accident), at n=1 they do not: B incomplete, A right."
+  },
+  {
+   "item": "TQ6 intrinsic K_b kernels (A rows (A_perp,lam_+)->lam_-, (A_perp,lam_-)->lam_+; B symbolic polynomials evaluated at mapped A data, b = (1,2,-1,1))",
+   "records": [
+    {
+     "A_pair": [
+      "AW",
+      "lamP"
+     ],
+     "A_leg": "lamM",
+     "B_key": "K AW|lamM -> lamP",
+     "A_value": "1136 + 292*I",
+     "B_value_at_A_data": "1136 + 292*I",
+     "B_parts": {
+      "1": "1136 + 292*I",
+      "log2": "0",
+      "log3": "0"
+     },
+     "agree": true,
+     "agree_with_minus": false
+    },
+    {
+     "A_pair": [
+      "AW",
+      "lamM"
+     ],
+     "A_leg": "lamP",
+     "B_key": "K AW|lamP -> lamM",
+     "A_value": "-64 + 124*I",
+     "B_value_at_A_data": "-64 + 124*I",
+     "B_parts": {
+      "1": "-64 + 124*I",
+      "log2": "0",
+      "log3": "0"
+     },
+     "agree": true,
+     "agree_with_minus": false
+    }
+   ],
+   "status": "agree"
+  },
+  {
+   "item": "TQ6 intrinsic K_b on (A_perp,A_perp) -> A_V and (none)",
+   "A": "0, 0",
+   "B": "{} (zero)",
+   "status": "agree"
+  },
+  {
+   "item": "TQ5 intrinsic eta kernels (B code with A eta mapped: eta_B = SST0 eta_A)",
+   "records": [
+    {
+     "A_pair": [
+      "AW",
+      "AW"
+     ],
+     "A_leg": "lamP",
+     "A_value": "1400 + 2984*I",
+     "B_value_at_A_data": "1400 + 2984*I",
+     "agree": true,
+     "agree_with_minus": false,
+     "seconds": 25.1,
+     "rss_MB": 108.3
+    },
+    {
+     "A_pair": [
+      "AW",
+      "lamP"
+     ],
+     "A_leg": "AV",
+     "A_value": "488 - 632*I",
+     "B_value_at_A_data": "488 - 632*I",
+     "agree": true,
+     "agree_with_minus": false,
+     "seconds": 27.7,
+     "rss_MB": 108.3
+    },
+    {
+     "A_pair": [
+      "AW",
+      "lamM"
+     ],
+     "A_leg": "AW",
+     "A_value": "2506 + 2606*I",
+     "B_value_at_A_data": "2506 + 2606*I",
+     "agree": true,
+     "agree_with_minus": false,
+     "seconds": 30.3,
+     "rss_MB": 108.3
+    },
+    {
+     "A_pair": [
+      "lamP",
+      "lamP"
+     ],
+     "A_leg": "lamM",
+     "A_value": "2476 - 1212*I",
+     "B_value_at_A_data": "2476 - 1212*I",
+     "agree": true,
+     "agree_with_minus": false,
+     "seconds": 32.5,
+     "rss_MB": 108.3
+    }
+   ],
+   "status": "agree"
+  },
+  {
+   "item": "TQ4 scalar bilinears, two-body coefficients on Cor c7-Q functionals (units u)",
+   "A": "a1 = -2 log(3/2) on F1, a2 = a3 = 4 log(3/2), a4 = 0; states {S^(1)(xi),O} = -F1, c_Q = +2 log(3/2) - theta_perp - p_perp",
+   "B": "-2 log(3/2) u {S^(1)(xi),O} with {S^(1)(xi),O} = +F1; trace 4 log(3/2) on A_perp lam_+ and on A_V lam_-; c lam* = 0",
+   "independent": "{S^(1)(xi),O} = +F1: the functional -(Gamma(xi,lam),A^*) induces lam -> +Gamma(xi,lam) by the reading of Prop c1-Q (int(dc,A^*) <-> Qc = -dc) and Cor c7-Q (\"replaces A by Gamma(Q_1,lam) ... gives the first functional\"); both engines find the block arrows opposite to Lemma qs-arrows. Hence the two-body c_Q = -2 log(3/2) (B).",
+   "status": "numbers agree; A interpretation sign wrong"
+  },
+  {
+   "item": "TQ3 twisted entries at n=0 (xi = u (x) z)",
+   "A_reported": "betagamma 0, betabeta 0, bc(lam*) 0, beta b -> beta dc 0, beta b -> gamma gamma 0, gamma gamma 0, b gamma nonzero",
+   "A_after_fix": "beta letters rescaled to Gaussian integers (16 x): betagamma 0; betabeta nonzero, only gamma^K with K the complement of I,J (eps_IJK), holomorphic derivatives only: per unit letters (2/3) c_gamma + (1/3 - 2 log(3/2)) c_dc on (g2,dc_a), both colour words equal; beta b -> beta dc: -(64/3) c_beta on word (beta, dc) only; beta b -> gamma gamma: (8/3)(c1h1 c2h0 - c1h0 c2h1) on (gamma^J, gamma^K), eps structure; b gamma unchanged (linear in its 1/2-entry outputs, checked)",
+   "B": "betagamma 0, bc(lam*) 0, betabeta nonzero eps_IJK gamma^K dc with holomorphic derivatives (projection: out.nosync/bb_projection.json)",
+   "cross_check": "B code on A twisted data (twist_B_on_A2.json) gives eps_IJK structure; A code with 16 x letters equals B code exactly at four momenta (real, complex null, complex generic)",
+   "root_cause": "step2/twoletter/engine_a/src.nosync/ea_kern.py contract(): int(round(.)) of products of letter components, no check; A twist beta letters (dual weight rows) have entries +-1/16, +-i/16 -> every entry with a beta letter evaluated to 0 (bisect_A.json: zero whenever the letters are the twisted betas, for generic xi and outputs too)",
+   "status": "A wrong (bug); B right on betabeta; betagamma = 0 confirmed by both (generic TQ2 too)"
+  },
+  {
+   "item": "G-plane (chiral bilinears along rank-one xi)",
+   "A": "exact zero",
+   "B": "exact zero",
+   "status": "agree"
+  },
+  {
+   "item": "TQ0 along Sigma",
+   "A": "span{T1+T3, T2+T4}, no exact",
+   "B": "same; along Sigma^*: span{x.(T1+T3), x.(T2+T4)+s0}",
+   "status": "agree"
+  },
+  {
+   "item": "E0 commutators",
+   "A": "[xi.,Q]=0, [xi.,H]=0; C_xi components lam->c, A*->lam, lam*->A, c*->lam*; block arrows = -2 x Lemma qs-arrows",
+   "B": "same; refinement: only A*|_V -> lam and lam* -> A|_V (A*|_perp parts cancel); arrows opposite to Lemma qs-arrows; eta. needs Y arrows",
+   "independent": "A*|_perp: xi.Q^GF a = -rho(d)rho(a) xi and Q^GF xi. a = +rho(d)rho(a) xi cancel; A*|_V leaves (d.a) xi (QA derivation, consistent with the proof of Prop c7-susy)",
+   "status": "agree (B finer)"
+  },
+  {
+   "item": "composite line along xi",
+   "A": "(P* xi. P* (x) 1)K_0: c x lam = -xi e^{-2eps k^2}/k^2, lam x c = +xi ...",
+   "B": "2(P* xi. P* (x) 1)K_0 = -+2 xi e^{-2eps p^2}/p^2 (real)",
+   "status": "agree (factor 2 = the two orientations); theory guess +-2i wrong"
+  },
+  {
+   "item": "G-cubic (k_I = 0 T5 cycle at the special edge)",
+   "A": "eps^0/eps^-1 = (3/4)|q|^2",
+   "B": "same",
+   "independent": "16 pi^2 x value = -1/(2 eps) - (3/8)|q|^2 + O(eps), T-dependence eps/(T(T+eps)) and O(eps/T) (qq_indep_checks.py)",
+   "status": "agree"
+  },
+  {
+   "item": "G-reg along Delta and P_b",
+   "A": "Thm c9-D1 row 1 and Thm c9-P1 reproduced; pair by pair 4lc + C2",
+   "B": "P_b word by word = composite engine B",
+   "status": "consistent (B did not run Delta)"
+  },
+  {
+   "item": "G-R1 (Cor c8-homotopy (i)) on the (c, lam) sector of the scalar bilinears",
+   "A": "pass with C = {S^(1)(xi), L_1^(0)(O)} = 0",
+   "independent": "re-derived with consistent signs (r1_check.json, r1_check2.json): with k the common data factor, s(a3 F3) = -2 L k, L_1^(0)(F1) = b1 - b2 = -k (two odd outputs antisymmetrised), {S^(1)(xi), L_1^(0)(O)} = v1 + v2 = (1 + 2L) k (one even output, A_V -> +Gamma), sum = 0 exactly (L = log(3/2)), separately in the rational and log parts. Engine A obtained C = 0 only by antisymmetrising the (c, A_V) output pair, which contradicts its own L_1^(0)(O) = -(2 + 4L)(w1,w2) int omega (dc, A_V) != 0, and used {S,O} = -F1 and A_V <- -Gamma.",
+   "status": "relation holds; A gate bookkeeping inconsistent"
+  },
+  {
+   "item": "K_b composite A_V--c line, log T coefficient (Prop c8-Tsafe, Thm c8-K)",
+   "independent": "angular average at large |y|: scalar integral T d/dT -> -3 b/(16 pi^2); with fibre factors 2(-,-)^{-1} x (-(-,-)^{-1}): 3/(8 pi^2)",
+   "status": "manuscript value confirmed"
+  },
+  {
+   "item": "G-KT (T-independence of Upsilon_{K_b})",
+   "A": "by construction (T-independent coefficients)",
+   "B": "numerical endpoint test on the T5 cycle along xi only",
+   "status": "no K_b defect cycle tested at finite T by either engine"
+  },
+  {
+   "item": "TQ1, finite special vertices (A), Upsilon_xixi, relations R2-R6, twist class comparison, TQ8",
+   "status": "not computed by either engine"
+  }
+ ]
+}

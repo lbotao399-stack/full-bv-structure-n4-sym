@@ -181,3 +181,13 @@ R9. (User, 2026-10-29) Every report also carries physics notation as a supplemen
     gamma); Pi = parity shift (Grassmann-odd fields); 10d spinor indices with upper/lower kept distinct; ghost numbers
     and statistics; su(N) normalisation. In the reader: "Physics notation" callouts inserted after the definitions and
     sections they translate; the existing blocks are never edited.
+R10. (User, 2026-10-30) Strict Costello route for every component. Even where a result looks obvious (D_1 proportional to
+    the log eps counterterm), it must be DERIVED and COMPUTED through Costello's BV construction: the equivariant QME at
+    scale eps, its defect/obstruction Ob along the generator (boundary graphs with special edges K_eps - K_0 and the
+    S^(1)(x) insertions that do not commute with the regulator), the solution s(hbar F_1) = hbar Ob (finite
+    counterterms, with their free directions), the transfer/defect flow of Lemma c8-transfer, and the local
+    representative L(M) of d_T M[T] (Def c8-rep) whose components are D_1, Q_1, S_1, K_1, P_1, M_1, R_1. Shortcuts
+    (the scaling identity / "4 x log coefficient", K = P^dagger, S from Q by the position decomposition, regulator
+    covariance arguments, twist literature) may be used only as cross-checks or as theorems proved FROM the construction,
+    never as definitions or as the source of a number. Same for Q, S, K: each is computed from its own defect graphs and
+    its own action-level obstruction Ob^(1)(x) and F_1^(1)(x), at T = infinity where safe and finite T for K.

@@ -1,0 +1,71 @@
+\section{The twist check and the inner-product test}
+\label{sec:qs-twist}
+
+Throughout this section $\xi=u\otimes z\in S_+\otimes W$ with $z=e_4$, two-component $\xi_\alpha{}^i=u_\alpha\delta^i_4$, $\bar\xi=0$: the generator $Q^4_-$ of [BK, before (3.51)] and [CY13, (2.1)] (q1\_targets, §2.1). Fix $u'\in S_+$ with $u'^\alpha u_\alpha=1$. $\Gamma(\xi,\xi)=0$ in all ten components (Lemma c8-ev).
+
+\begin{definition}[Arity-two kernels along $(\xi,\xi)$]
+\label{def:qs-arity2}
+A defect cycle of the pair $(X_a,X_b)$ along $(\xi,\xi)$ is a chain as in Definition \ref{def:qs-defect} with exactly one special edge and either two vertices given by terms of $S^{(1)}(\xi)$ or one vertex given by $S^{(2)}(\xi,\xi)=-\tfrac12\int\big((\xi,\lambda^*),(\xi,\lambda^*)\big)$ (eq c8-twistaction). $\Upsilon_{\xi\xi}(X_a,X_b)$ is the coefficient of $\varepsilon^0$ of their sum, with the sign of the arity-two component of the flow (Thm c8-L (iv)), plus the finite special vertices of the arity-two counterterm, as in \eqref{eq:qs-finitesp}.
+\end{definition}
+
+\begin{proposition}[The twisted one-loop differential on pairs]
+\label{prop:qs-twist}
+Assume the one-loop equivariant master equation through arity two along $\xi$ (arity three and higher along $\Sigma$ being empty, Lemma o-actiontrunc).
+\begin{itemize}
+\item (i) For every local functional $O$, $\hbar Q^\xi_1(O)=\hbar L_1(O)^{(0)}+Q_1(O)-\tfrac12\hbar L_1(O)^{(2)}(\xi,\xi)-\cdots$ (Def c8-twisted) is a sum over the pairs of letters of the two-body kernel
+\[
+\Upsilon_\xi(X_a,X_b)-\tfrac12\Upsilon_{\xi\xi}(X_a,X_b)+(\text{arity-zero two-body kernel})+\cdots
+\]
+plus one-body terms, $-\{r_\xi(\hbar F_1)|_{q=1},-\}$ restricted to its parts of arity at most two and the arity-zero one-body terms: the untwisted form of the pair rule [BK, (3.7)--(3.8)].
+\item (ii) An arity-$k$ two-body kernel along $(\xi,\dots,\xi)$ of a pair of degree $d$ and weight $W$ has degree $d+1-k$ and Weyl weight $W+\tfrac k2$. For pairs of field letters ($d=0$) with outputs of fields only, $k\le1$; for a pair with one ghost letter and outputs of fields of degree $0$, $k=2$. On the pairs of Table \ref{tab:qs-twistcensus}: $\beta\gamma$, $\beta\beta$, $b\gamma$, $\beta b$, $bb$ are arity-one kernels $\Upsilon_\xi$; $bc$ with $b$ represented by the self-dual field strength is $-\tfrac12\Upsilon_{\xi\xi}$; $bc$ with $b$ represented by $\lambda^*_+$ is $\Upsilon_\xi$.
+\item (iii) $S^{(2)}(\xi,\xi)$ has only legs $\lambda^*_+$ and contributes only to outputs containing $\lambda^*$; the field-only part of $\Upsilon_{\xi\xi}$ comes from cycles with two vertices $S^{(1)}(\xi)$ and one special edge.
+\item (iv) $(Q^\xi_0)^2=0$ and $Q^\xi_0Q^\xi_1+Q^\xi_1Q^\xi_0=0$; the class $[Q^\xi_1]$ on the cohomology of $Q^\xi_0$ is invariant under the changes of Theorem \ref{thm:qs-invariant} (ii) (Thm c8-twist).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Def c8-twisted and Theorem \ref{thm:qs-classes} in arities zero and one; in arity two the same classification applies to the graphs with two arguments $\xi$: a graph of order $\hbar$ meeting $O$ in two letters is a cycle with one special edge and the arguments distributed over the vertices $S^{(1)}(\xi)$, $S^{(1)}(\xi)$ or $S^{(2)}(\xi,\xi)$ on the cycle, or on trees, where they belong to the arity-two flow of $L(O)^{(0)}$ and $L(O)^{(1)}(\xi)$ on the left side of eq c8-rep. (ii) Lemma arity of q1\_targets (Prop c7-select applied once per argument): each argument lowers the degree by one and raises the weight by $\tfrac12$; outputs of fields have degree $\ge0$, with $c$ of degree $1$. The degrees and weights of the entries are those of Table c11-twist. (iii) Lemma S2 of q1\_targets: $P$ has no component on $\lambda^*$, and a graph has one field--antifield pairing. (iv) Thm c8-twist.
+\end{proof}
+
+\begin{proposition}[The exact vanishing on the chiral bilinears]
+\label{prop:qs-plane}
+For $w_1,w_2\in W^\perp_{\mathbb R}\otimes\mathbb C$ with $\rho(w_1)\xi=\rho(w_2)\xi=0$, two-component $w_{a\,ij}z^j=0$, the component along $\xi$ of $O=\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)=\tfrac1{16}\int\omega\,(w_1^{ij}A_{ij},w_2^{kl}A_{kl})$ vanishes, in every scheme equivariant for translations, $\mathfrak{so}(V)$, $\mathfrak{so}(W^\perp_{\mathbb R})$ and $\mathfrak g$ (Prop c11-plane): in kernel form, the sum over the two orderings of $\Upsilon_\xi(\Ap,\Ap)$ on $(w_1,w_2)$, contracted with the colour pairing, minus $\{\hbar F_1^{(1)}(\xi),O\}$, is zero. This is the untwisted form of $Q_1(\gamma^I\gamma^J)=0$ [BK, (3.11), (3.77)].
+\end{proposition}
+
+\begin{proof}
+Prop c11-plane and Theorem \ref{thm:qs-classes} (iii).
+\end{proof}
+
+\begin{theorem}[What the comparison with the holomorphic twist tests]
+\label{thm:qs-twistcheck}
+Let $\Phi$ be the quasi-isomorphism of local-operator complexes from the cohomology of $Q^\xi_0$ to the cohomology of the free holomorphic $Q_0$ on the letters $c,\gamma,\beta,b,\partial_{\dot\alpha}$ of [BK], transported through the equivalence of [ESW, Thm 10.9] (Rem c8-twist), and let $D$ be the difference of the two one-loop quantisations of the twisted theory, the restriction $r_\xi(\hbar F_1)$ of the untwisted equivariant one and the counterterm-free holomorphic one of [BK, (2.42), footnote 22], [W18, Thm 3.4], read through $\Phi$. If $D\in\mathbb C\,S^\xi+\operatorname{Im}Q^\xi_0$, then $\Phi\circ[Q^\xi_1]\circ\Phi^{-1}$ equals the class of the one-loop differential of [BK, (3.7), (3.64)--(3.69)] up to a multiple of $[Q_0]=0$; in particular:
+\begin{itemize}
+\item (a) the one-body terms of $Q^\xi_1$, restricted to the twisted letters, are $a\,Q^\xi_0+[Q^\xi_0,N]$ for a number $a$ and a derivation $N$ of the letters (a field rescaling), which act as $0$ on cohomology;
+\item (b) on the pairs from $\{c,\gamma\}$ and on $(\beta,c)$ the two-body kernels lie, on the twisted letters, in the image of $Q^\xi_0$ plus terms cancelled by the one-body terms on cohomology ([BK, (3.11)]); on $(\gamma,\gamma)$ they vanish exactly (Proposition \ref{prop:qs-plane});
+\item (c) on the pairs $\beta\gamma$, $\beta\beta$, $b\gamma$, $\beta b$, $bb$, $bc$ the two-body kernels, restricted to the twisted letters and reduced modulo $\operatorname{Im}Q^\xi_0$, have the colour structure $(1\otimes\mathrm{ad}_{Y_2}\mathrm{ad}_{Y_1})(-,-)^{-1}$, i.e. $\tfrac12f_{ACD}f_{BCE}$ up to normalisation, and the derivative structure $\partial_{\dot\alpha}(\cdot)\,\partial^{\dot\alpha}(\cdot)$ on the two outputs with $\partial_{\dot\alpha}=u'^\alpha\sigma^m_{\alpha\dot\alpha}\partial_m$, the derivatives $u^\alpha\sigma^m_{\alpha\dot\alpha}\partial_m$ being $Q^\xi_0$-exact on the letters (q1\_targets §2.3);
+\item (d) the six coefficients so obtained satisfy, modulo the finite-part shifts of Proposition \ref{prop:qs-laws} (b), the relations [BK, (3.59)--(3.63)] that follow from the order-$\hbar$ part of $\{Q_1,R_0\}+\{Q_0,R_1\}=0$ for the tree-level $\mathfrak{psl}(3|3)$ commutant of $\xi$ (Target psl33 of q1\_targets), the class-level form of the equality of the factors $\tfrac12$ in [BK, (3.64)--(3.69)];
+\item (e) every class-level statement of [BK], [KvLM], [CL25], [KKLP], [KLLS] about $[Q_1]$ on multi-letter classes is the image under $\Phi$ of $[Q^\xi_1]$ computed by the pair rule from the kernels of (c), with the normalisation of $\hbar$ relative to the unit fixed by $\Phi$.
+\end{itemize}
+If $D\notin\mathbb C\,S^\xi+\operatorname{Im}Q^\xi_0$ the class maps differ by $[\{D,-\}]$, and (a)--(e) become the computation of that class.
+\end{theorem}
+
+\begin{proof}
+Thm o-twist (iv) and Rem c8-twist: two quantisations differing by a $Q^\xi_0$-closed $D$ of degree $0$ have class maps differing by $[\{D,-\}]$, which vanishes for $D\in\mathbb C\,S^\xi+\operatorname{Im}Q^\xi_0$ ($\{S^\xi,-\}=Q^\xi_0$ and $\{Q^\xi_0\chi,-\}=[Q^\xi_0,\{\chi,-\}]$ up to sign). (a): the one-body terms are brackets with local functionals (Theorem \ref{thm:qs-classes} (iii), Proposition \ref{prop:qs-twist} (i)), and the condition on $D$ makes them $aQ^\xi_0$ plus commutators with $Q^\xi_0$ on the twisted letters. (b), (c): the pair rule of [BK, (3.7)--(3.11)], the colour structure of Remark \ref{rem:qs-colour} with two outputs, and the exactness of the antiholomorphic derivatives, $\{Q,\bar Q^1_{\dot\alpha}\}=P_{-\dot\alpha}$ [BK, (2.5)]. (d): the order-$\hbar$ part of Cor c8-homotopy (ii) at $(\xi,R)$ with $[\xi,R]=0$ restricted by $r_\xi$ (Prop o-S (iii)). (e): $[Q^\xi_1]$ is determined by its values on representatives, which are polynomials in the letters, through the pair rule.
+\end{proof}
+
+\begin{remark}[The renormalisation freedom of the twist]
+\label{rem:qs-twistfreedom}
+In terms of Proposition \ref{prop:qs-laws}, the freedoms F0--F5 of q1\_targets §4 are: F0 the arity-zero finite counterterms, whose $s$-exact parts (field countings) act as $Q^\xi_1\mapsto Q^\xi_1+[Q^\xi_0,N_y]$ and whose closed coupling part acts as $-aQ^\xi_0$; F1 the free directions $\theta^\xi_V$, $\theta^\xi_\perp$ of $\hbar F_1^{(1)}(\xi)$, of which the cubic equation leaves the common value $\theta^\xi$, the direction $\theta^\xi S^{(1)}(\xi)=\theta^\xi G_B^{(1)}(\xi)$, which acts as $[Q^\xi_0,\mp\theta^\xi N_{R_\xi}]$ (Thm c8-twist); F2 the arity-two finite counterterm along $(\xi,\xi)$, correlated with F1 by the $(\xi,\xi)$ component of the master equation and entering only outputs with $\lambda^*$ (Proposition \ref{prop:qs-twist} (iii)); F3 the finite parts of the operators, $[Q^\xi_0,\psi']$, which move the individual entries, for example $c_K\mapsto c_K-\kappa_By$; F4 the homotopy data of $\Phi$; F5 the outer direction, $[Q^\xi_0,\mp aN_{R_\xi}]$. Each acts as $0$ on the cohomology of $Q^\xi_0$, so $[Q^\xi_1]$, its kernel, image and rank are scheme independent and the six entries of (c) are scheme dependent; the Konishi entry $c_K$ is not a class quantity since $Q^\xi_0O_\zeta=\kappa_BB_z\neq0$ (Prop o-konishi).
+\end{remark}
+
+\begin{remark}[The relation $S_1=-Q_1^{\rm adj}+\text{Gram terms}$]
+\label{rem:qs-gram}
+By Cor c8-gram, in a reflection-compatible scheme and on a family closed under the generators considered,
+\[
+\begin{aligned}
+&S_1\ \text{along}\ S^\alpha{}_i=-\big(Q_1\ \text{along}\ Q^i_\alpha\big)^{\rm adj}+\hbar\big[\{S^{(1)}(S^\alpha{}_i),-\},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1\big],\\
+&S_1\ \text{along}\ \bar S^{\dot\alpha i}=\big(Q_1\ \text{along}\ \bar Q_{\dot\alpha i}\big)^{\rm adj}+\hbar\big[\{S^{(1)}(\bar S^{\dot\alpha i}),-\},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1\big].
+\end{aligned}
+\]
+With the kernels of this note, $Q_1$ and $S_1$ are computed from the defect cycles along $\xi$ and $\eta$, the position part of $S_1$ being $Q_1$ along $\rho(b)\eta$ (Proposition \ref{prop:qs-posdec} (i)) and the intrinsic part $\Upsilon^0_\eta$ new data; $\mathrm{Gram}_1$ comes from the two-point graphs of Def c8-2pt. On the family formed by a traceless scalar bilinear $O$ at the origin and its descendants $\{S^{(1)}(\xi),O\}$ of Weyl weight $\tfrac52$, where $Q_1(O)=c_Q\{S^{(1)}(\xi),O\}$ (Cor c7-Q) and $S_1$ on the descendants is $c_S$ times the classical transformation back to $O$ (Cor c7-S for the structure), the relation reads $c_S=\bar c_Q+(g_{5/2}-g_2)$ for the unit generators, with $g_w$ the eigenvalue of $\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1$ in weight $w$ on the family; it is the inner-product test of these kernels, to be run once $\mathrm{Gram}_1$ is computed. The outer direction changes $c_Q$ by $-a$ and $c_S$ by $+a$ and preserves the relation exactly when $\bar a=-a$ (Cor c8-gram).
+\end{remark}

@@ -1,0 +1,229 @@
+{
+ "title": "Engine specification, Part Q: one-loop two-body kernels of Q_1 (xi in S_+ (x) W and S_- (x) W^*), S_1 (eta in Sigma^*), K_1 (K_b) on all local operators; action side along Sigma; twist check against [BK, (3.7), (3.64)-(3.69)]",
+ "theory": "step2/composite_qsk/qsk/theory/qsk_theory.tex (+ _build/qsk_theory.pdf); builds on manuscript Ch7-Ch11 (11.1-11.5 final), step2/twoletter/theory/twoletter_theory.tex, step2/composite_qsk/composite/theory/composite_theory.tex, step2/theory/odd_components_design.tex (classes thm o-classes, rechecked with audit findings G3, G5, G7), step2/theory/k_transfer.tex (Lemma ktr-noninv, Prop ktr-composite, Thm ktr-defect)",
+ "conventions": {
+  "manuscript": "Ch1 (fields, pairing Def c1-pairing, Q Prop c1-Q), Ch2 (S^(1), S^(2), eq c2-S1Q, eq c2-S1S, Def c2-S2, Prop c2-special), Ch3 (Q^GF table, Prop c3-P, Prop c3-adjoint), Ch4 (special edge Prop c4-defect1), Ch7 (Def c7-vdot, Prop c7-susy, Prop c7-dil, Prop c7-select, Cor c7-Q/S/K), Ch8 (Def c8-PT, Lemma c8-transfer, Def c8-rep, Thm c8-L, Def c8-components, Cor c8-homotopy, Prop c8-laws, Lemma c8-ev, Def c8-twisted, Thm c8-twist, Prop c8-Tsafe, Def c8-K, Thm c8-K, Cor c8-gram), Ch9 (Prop c9-composite, Prop c9-ward, Thm c9-D1, Prop c9-scheme), Ch10 (letters, pair kernels, Lemma c10-sign, Lemma c10-colour, Thm c10-simplex, Lemma c10-special, Prop c10-genfun, Prop c10-arity1, Prop c10-bound1), Ch11 (Def c11-sp, Thm c11-simplex, Prop c11-k1, Prop c11-position, Prop c11-S, Prop c11-freedom, Prop c11-plane, Rem c11-twist)",
+  "regulator": "Schwinger cutoff t_e >= eps on every edge P(eps,T) = int_eps^T (Q^GF (x) 1) K_t dt; special edge K_eps - K_0 with t in [0, eps] and numerator -|l+q|^2 times the fibre factor of K_0; T = infinity along Sigma, Sigma^*, Delta, P_b, rotations (generic momenta, Prop c8-Tsafe); finite T along K_b (Def c8-K), results T-independent (Thm qs-simplex (iv)); NO dimensional regularisation in any role; no IR regulator other than T",
+  "unit": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2) for su(N); planar adjacent rule of Lemma c10-colour (iv): a term a*hbar/(16 pi^2)*(1 (x) ad_{Y_r}..ad_{Y_1})(-,-)^{-1} gives (-1)^r a/2 units on an adjacent pair, the output of a cubic term of S^(1)(xi) counted among the Y_j (Rem qs-colour)",
+  "names": "xi in Sigma: (xi_alpha^i, xibar_alphadot i) along Q^i_alpha, Qbar_alphadot i; eta in Sigma^*: (eta^alpha_i, etabar^alphadot i) along S^alpha_i, Sbar^alphadot i; K_b: v^m = x^2 b^m - 2(b.x) x^m. Q_1, S_1, D_1, K_1, P_1, M_1, R_1 = one-loop components hbar L_1(O)^(1)(x) (Def c8-components); Q alone = linear BV differential; the spinor parameters of Prop c7-susy are never called Q_1, Q_2 in code output",
+  "terms_of_S1": {
+   "xi in S_+ (x) W": {
+    "T1": "-(Gamma(xi,lam)|_V, A*|_V): slots lamM, AsV, no derivative",
+    "T2": "-(Gamma(xi,lam)|_perp, A*|_perp): slots lamP, AsW",
+    "T3": "1/2 (rho(dA|_V) xi, lam*): slots AV (one derivative), lamsP",
+    "T4": "1/2 (rho(dA|_perp) xi, lam*): slots AW (one derivative), lamsM",
+    "T5": "1/2 (rho(1/2[A^A]) xi, lam*): cubic, slots (AV,AV,lamsP), (AV,AW,lamsM), (AW,AW,lamsP)"
+   },
+   "xi in S_- (x) W^*": "same with lamP <-> lamM, lamsP <-> lamsM",
+   "eta": "S^(1)(eta) = sum_mu int x^mu S^(1)(xi_mu) + int s0, xi_mu = rho(e_mu) eta; s0 = -(rho(A|_perp) eta, lam*), slots (AW, lamsP) for eta in S_+ (x) W^*, (AW, lamsM) for eta in S_- (x) W; two-comp s0 = (A^kj eps_ab eta^b_j, lam*^a_k) - (A_kj eps_bdot adot etabar^adot j, lambar*^bdot k)",
+   "even": "S^(1)(x) = int((v.A,A*) - (v.lam,lam*) - (v.c,c*)), Def c7-vdot; K_b two-comp in Rem qs-twocomp",
+   "realisation": "superconformal/model.py: S1_odd(V, Q, eta), S1_even, S2_odd (realisation of Chapter 2, machine-verified there); route B writes its own from Def c8-twocomp and Rem qs-twocomp"
+  },
+  "sign_rule": "a defect cycle read from X_a with the S^(1)(x) vertex at position s and the special edge e_sigma carries, beyond the sign of Lemma c10-sign, the factor -(-1)^{n(<sigma) + |S1(x)| (n(<s) + [s<sigma])}, |S1(x)| = 0 for odd x, 1 for even x; n(<j) = number of odd outputs before position j. Fix in code against G-cubic, G-pole and G-reg before production (E0).",
+  "canonical_form": "two-leg outputs on plane waves: alpha delta + beta^mu d_mu delta + gamma^{mu nu} d_mu d_nu delta; int omega (x^mu x^nu K_munu + x^mu K_mu + K_0) <-> K_0 = alpha, K_mu = i beta^mu, K_munu = -gamma^munu (Prop qs-K (i), audit G5)"
+ },
+ "definitions": {
+  "defect_cycle": "chain X_a - e_0 - V_1 - ... - V_n - e_n - X_b with vertices of I and EXACTLY ONE term of S^(1)(x) (placements: on a line = both legs on P [T1 along Sigma, (AV,AsV) along even x]; at the special edge = one leg on K_eps - K_0 [any quadratic term]; cubic T5 with two cycle legs, third leg an output), edges P and EXACTLY ONE special edge (Def qs-defect)",
+  "D_x": "D_x(X_a,X_b;eps,T) = sum of the defect cycles of the pair, amputated, outputs open (Def qs-defect (ii))",
+  "finite_special_vertex": "F_x(X_a,X_b) = - sum_{m>=1} ((-1)^m/m!) ( {I, ct1_{x,m}(X_a X_b)}_{H^m} + {S^(1)(x), ct_m(X_a X_b)}_{H^m} ), {,}_{H^m} built from (H^m (x) 1) K_0 (eq qs-finitesp)",
+  "two_body_kernel": "Upsilon_x(X_a,X_b) = [eps^0] D_x(X_a,X_b) + F_x(X_a,X_b) (eq qs-kernel)",
+  "component": "hbar L_1(O)^(1)(x) = sum_{a<b} (Koszul) int omega ... Upsilon_x(X_a,X_b) ... - {hbar F_1^(1)(x), O}, for EVERY local O (gauge-variant included), Thm qs-classes (iii), (v)",
+  "counterterm_cycles": "same chains with one S^(1)(x) on the cycle and no special edge; ct1_x(X_aX_b) = hbar Sing_eps of them; outputs of pair degree minus one (Def qs-ct1)",
+  "commutators": "C_xi = [xi., Q^GF] (components lam->c: d^*(Gamma(xi,lam)|_V) = -i(p,Gamma(xi,lam)|_V); A*->lam; lam*->A; c*->lam*; zero on A, c; every component first order); [eta.,H] = 2 sum_mu xi_mu. d_mu; [v.,Q^GF] = 4(b,x)Q^GF + C_K, C_K = 2 sigma^rho(Q^GF)(w b_rho - b_nu Sigma^{rho nu}), C_K A_V = -4(b,A_V); [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho (Prop qs-comm)",
+  "edges": "variation kernel V_x = (x. (x) 1 + 1 (x) x.)P; along xi V_xi = (C_xi g(H) (x) 1)K_0, components lam(x)A, A(x)lam, c(x)lam*, lam*(x)c; composite line along xi = 2(P* xi. P* (x) 1)K_0, components c(x)lam, lam(x)c, a multiple of xi_alpha^i e^{-2 eps p^2}/p^2 (Rem qs-twocomp); [Q, P* xi. P*] = (e^{-eps H} - e^{-T H}) C_xi g(H) != 0 (Cor qs-edges)",
+  "position_decomposition": "eta: Upsilon_eta = x^mu Upsilon_{rho(e_mu) eta} + Upsilon^0_eta, the intrinsic part = -i d/dr_mu at r = 0 of the cycles with S^(1)(rho(e_mu)eta) and momentum r injected at the S vertex (carried by e_s..e_n to X_b and omega), plus the cycles with s0. K_b: v(x_O + z) = v(x_O) + (-2(b,x_O) z + omega_{x_O} z) + v(z), omega_{x_O} z = 2((x_O,z) b - (b,z) x_O): Upsilon_K = v(x_O)^mu Upsilon_{P_mu} - (b,x_O) Upsilon^0_Delta + Upsilon^0_{M omega} + Upsilon^0_K; z^mu z^nu -> -d^2/dr_mu dr_nu, z^mu -> -i d/dr_mu (Prop qs-posdec)"
+ },
+ "theorems_to_use": {
+  "simplex": "Thm qs-simplex: n vertices (k_I of I + the S vertex), n+1 edges; 16 pi^2 [eps^-m] = (1/m) int_{alpha_sigma smallest} [(min_{f!=sigma} alpha_f)^m - alpha_sigma^m] F_m; 16 pi^2 [eps^0] = int_{alpha_sigma smallest} F_0 log(min_{f!=sigma} alpha_f/alpha_sigma); NO log eps; F_m = sum_{j >= m+n-1} (Lap^j num)(centre)/(j! 4^j) (-Phi)^{j+1-n-m}/(j+1-n-m)!; along K_b the same coefficients at every finite T",
+  "genfun": "Prop qs-genfun: index m+n-1: (-1)^{m+n-1} e^{i(y,centre)} (|y|/(2 sqrt Phi))^{m+n-1} I_{m+n-1}(|y| sqrt Phi), chain numerator with l -> -i d_y",
+  "small": "Prop qs-small: n=1 (S at the special edge, k_I = 0): alpha in [0,1/2], weight log((1-alpha)/alpha), values in Q + Q log2; n=2 with S on a line: Prop c11-k1 verbatim (beta in [0,1/3], W_0(beta) = (1-beta)log((1-beta)/(2beta)) - (1-3beta)), values in Q + Q log2 + Q log3",
+  "cubic_example": "Example qs-cubic: Aperp -P- T5(AW,AW,lamsP) -special- lamP with output Aperp of momentum q: 16 pi^2 value = (-1/(2 eps) - (3/8)|q|^2) x (T5 factor x fibre factors); contribution to Upsilon_xi(Aperp, lamP) on leg set Aperp: +(3/8)(hbar/16pi^2) d^2(output) x factor; its pole pairs with ct_1 of (lamP,lamP) (leg set Aperp, Table c10-legsets) in eq qs-pole",
+  "pole_identity": "eq qs-pole: sum_pairs ([eps^-m] D_x - sum_{j>=1} ((-1)^j/j!)({I, ct1_{x,m+j}}_{H^j} + {S1(x), ct_{m+j}}_{H^j})) = s ct1_{x,m}(O) + {S1(x), ct_m(O)} - ct_m({S1(x),O}) - ct1_{x,m}(sO)",
+  "log_covariance": "eq qs-logcov: lc({S1(x),O}) - {S1(x), lc(O)} = s lc1_x(O) - lc1_x(sO) + {L^(1)(x), O}, L^(1)(x) = log eps coefficient of I^CT_psl[eps]^(1)(x) (no eps^-m along Sigma, Sigma^*, Delta, P_b, K_b)",
+  "relations": "Prop qs-rel (R1)-(R6): s(component) = 0 on cocycles; {Q1(xi),Q0(xi')} + {Q0(xi),Q1(xi')} + P_1([xi,xi']) ~ 0; {Q1(xi),S0(eta)} + {Q0(xi),S1(eta)} + (1/2)(xi,eta) D_1 + M_1 + R_1 ~ 0; twisted closure Q^xi_0 Q^xi_1 + Q^xi_1 Q^xi_0 = 0; (K_b,P_b') and (eta1,eta2) relations; on colour-singlet families without lambda, c letters the right sides are s-exact and their two-field antifield-free parts vanish on free shell (Lemma qs-onshell)",
+  "freedom": "Prop qs-laws, Thm qs-invariant: field redefinitions, closed directions, G_B, free directions of F^(1)(x) -> one-body changes; finite parts psi' of the output weight -> two-body changes (c_K -> c_K - kappa_B y); cutoff shape = combination of these; invariant: representation on cohomology up to iso and e^{-a hbar B}, [Q^xi_1] on H(Q^xi_0), spectra, the relations of Cor c8-homotopy and Cor c8-gram",
+  "twist": "Prop qs-twist, Thm qs-twistcheck: Q^xi_1 = L_1^(0) + Q_1 - (1/2) L_1^(2)(xi,xi), pair rule; entries beta-gamma, beta-beta, b-gamma, beta-b, b-b arity one, b-c arity two (b = self-dual F) or arity one (b = u_alpha lam*^alpha_4); the comparison holds when the two quantisations differ by an element of C S^xi + Im Q^xi_0; checks (a)-(e)"
+ },
+ "census": {
+  "file": "step2/composite_qsk/qsk/theory/src.nosync/census_qsk.json (src.nosync/census_qsk.py on the slot data of tl_census_base.py, sha256 dc565e00...; summary census_qsk_summary.txt; tables src.nosync/tab_census.tex)",
+  "numbers": {
+   "xi": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 250172
+   },
+   "xibar": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 250172
+   },
+   "eta_intrinsic": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 71958
+   },
+   "etabar_intrinsic": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 71958
+   },
+   "even_P": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 347780
+   },
+   "even_0": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 119553
+   },
+   "K_intrinsic": {
+    "pairs": 45,
+    "viol": 0,
+    "chains": 26127
+   }
+  },
+  "summary": "45 of 55 unordered slot pairs carry defect cycles along every generator; the 10 without are pairs of two letters among A*|_perp, lam*_+, lam*_-, c*. k_I = 0 only for the placement at the special edge. Degree, parity (shift = parity of S^(1)(x) + 1), centre Z/4 asserted on every chain; superficial degree formula = direct count; output bound holds; 0 violations.",
+  "twist_pairs": {
+   "beta gamma": "(lamP, AW) n=0 -> lamM lamM: 7 chains, k_I >= 2",
+   "beta beta": "(lamP, lamP) n=0 -> AW lamM: 9 chains, k_I >= 1",
+   "b gamma": "(AV, AW) n=1 -> AW lamM: 15 chains",
+   "beta b": "(lamP, AV) n=1 -> lamP lamM (15), AW AW (11)",
+   "b b": "(AV, AV) n=2 -> AV lamM (8), AW lamP (7)",
+   "b c (b <-> lam*_+)": "(c, lamsP) n=0 -> lamM lamM: 1 chain, k_I = 2, placement T1 on a line",
+   "vanishing": "(AW,AW): AW lamP, AV lamM, c lamsP, lamM; (AW,c): c lamP; (lamP,c): c, AV c; (c,c): none at n=0"
+  }
+ },
+ "tasks": [
+  {
+   "id": "E0",
+   "what": "conventions in code: (a) the arrows of xi. and Q^GF (Lemma qs-arrows) and the commutators of Prop qs-comm on plane waves: [xi.,Q]=0, [xi.,H]=0, C_xi components (lam->c = -i(p,Gamma(xi,lam)|_V)), graded symmetry of (C_xi (x) 1)K_0; [eta.,Q]=0, [eta.,H]=2 xi_mu. d_mu; [v.,Q^GF] = 4(b,x)Q^GF + C_K with C_K A_V = -4(b,A_V), [v.,H] for K_b; (b) the composite line along xi as a multiple of xi e^{-2 eps p^2}/p^2 (fix the multiple, expected +-2i); (c) the sign rule of the defect cycles (conventions.sign_rule) fixed by G-cubic, G-pole, G-reg; (d) the canonical form with gamma^{mu nu}; (e) the twisted coefficient -1/2 and the cochain sign rule of Thm c8-L (iv); (f) colour stripping with the cubic output of T5 among the Y_j",
+   "output": "e0_conventions.json"
+  },
+  {
+   "id": "TQ0",
+   "what": "completeness of the quadratic Q-closed directions along Sigma (Prop qs-freexi (i)): the five covariant structures T1..T4, int((d^*A|_V) xi, lam*); kernel of Q = span{S^V_2(xi) = T1+T3, S^perp_2(xi) = T2+T4}, no exact ones; along eta (position part + intrinsic incl. s0, degree <= 1 in x) and along K_b (degree <= 2 in x); pure linear algebra on plane-wave normal forms, as TC0 of Part C",
+   "output": "tq0_directions.json"
+  },
+  {
+   "id": "TQ1",
+   "what": "action side along xi: quadratic part of Ob^(1)(xi) in the sectors (lam, A|_V), (lam, A|_perp), (c, lam*): the two-leg defect cycles of the action with one S^(1)(xi) and one special edge (all placements) and the counterterm trees; the bracket {S^(1)(xi), hbar F_1^(0)} with F_1^(0) = (27/16) u int(d^*A_V, d^*A_V) + beta_1..4 directions (Thm c4-finite); solve eq qs-arity1xi for the quadratic hbar F_1^(1)(xi): particular solution + theta^xi_V S^V_2 + theta^xi_perp S^perp_2; gate G-Ob (solvable); then the cubic part of eq qs-arity1xi in the sectors needed to fix theta^xi_V - theta^xi_perp (Prop qs-freexi (ii))",
+   "output": "tq1_action_xi.json"
+  },
+  {
+   "id": "TQ2",
+   "what": "Upsilon_xi for xi in S_+ (x) W (and S_- (x) W^* by the chirality swap, checked on 3 pairs) on the ten field/ghost pairs of Table qs-fieldpairs, n <= 3 letter derivatives (route B n <= 2), every leg set of census_qsk.json with output weight <= W_0 + n + 1/2, every chain, general colour and planar adjacent form; poles a_m, eps^0 a_0, finite special vertices F_xi separately; also the counterterm cycles ct1_xi",
+   "output": "tq2_kernels_xi.json"
+  },
+  {
+   "id": "TQ3",
+   "what": "twist pairs at xi = u (x) e_4 (two-comp xi_alpha^i = u_alpha delta^i_4, u'^alpha u_alpha = 1): Upsilon_xi on (lamP,AW) [c_K: coefficient of int omega (lambar_alphadot4, lambar^alphadot_4) in Q_1 of int omega (u'^alpha lam_alpha^i, A_i4)], (lamP,lamP), (AV',AW), (lamP,AV'), (AV',AV'), (c, u_alpha lam*^alpha_4), restricted to the twisted letters gamma^I = A_I4, beta_I = u' lam^I, d_alphadot c = lambar_alphadot4, b; decomposition into the BK structure (1 (x) ad ad)(-,-)^-1 x d_alphadot(.) d^alphadot(.) with d_alphadot = u'^alpha sigma^m_{alpha alphadot} d_m, plus Q^xi_0-exact terms (u^alpha sigma^m d_m derivatives), plus remainder; the arity-two kernel Upsilon_xixi on (AV', c) [b = self-dual F] (route A); the vanishing pairs (gamma gamma) exact, (gamma c), (beta c), (c c) modulo Im Q^xi_0",
+   "output": "tq3_twist.json"
+  },
+  {
+   "id": "TQ4",
+   "what": "scalar bilinears along xi: Q_1(O) = c_Q {S^(1)(xi),O} on the traceless part; the three coefficients of the trace part (types (A_perp,lam), (A_V,lam), (c,lam*), Cor c7-Q); each with its scheme family (G_B: -a; psi' = (a/2) ad S(Delta): -a/2; field countings; theta^xi_V, theta^xi_perp); gates G-plane, G-R1",
+   "output": "tq4_bilinears_xi.json"
+  },
+  {
+   "id": "TQ5",
+   "what": "along eta: G-pos (position part = Upsilon along rho(b) eta, graph by graph); Upsilon^0_eta on (AW,AW) (expected 0 on the bilinear by Cor c7-S), (AW,lamP), (AW,lamM); S_1 on the bilinears and on their weight-5/2 descendants {S^(1)(xi),O}; gate G-R3 (Konishi relation through D_1 on the trace bilinear, 0 on the traceless) and G-R2",
+   "output": "tq5_eta.json"
+  },
+  {
+   "id": "TQ6",
+   "what": "along K_b at finite T: Upsilon^0_K on the field pairs n <= 2 (route A by Thm qs-simplex, T-independent by construction; route B at T|p|^2 in {1,4,16}); K_1 on the scalar bilinears and the letters by eq qs-K1dec; gates G-KT (T-independence; log T coefficient of the defect graphs -> 0 as eps -> 0 at fixed T; the observable log T term (3/8 pi^2) hbar x zero-mode tree reproduced on the bilinears, Prop qs-K (ii)), G-KD (K_1 ~ -(b,x) D_1 on bilinears and letters in the translation-covariant scheme), G-R5, G-R6 (with S_1 of TQ5)",
+   "output": "tq6_K.json"
+  },
+  {
+   "id": "TQ7",
+   "what": "regression along Delta and P_b by the route of the special edges (S^(1)(x) anywhere on the cycle): on the scalar bilinears the first row of the table of Thm c9-D1 (4 lc - (4/3) O - (1/3){S^(1)(Delta),O}) and -(1/3) u d_b O along P_b; sum over pairs of Upsilon_Delta = sum(4 lc + C^(2)_Delta) and of Upsilon_P = sum C^(2)_P on the planar scalar sector (Cor qs-DP), with Part C kernels_C2.json",
+   "output": "tq7_regression.json"
+  },
+  {
+   "id": "TQ8",
+   "what": "(after the two-point functions of Def c8-2pt) the inner-product tests: c_S = conj(c_Q) + (g_{5/2} - g_2) (Rem qs-gram) and K = P^dagger on descendants (Rem qs-KP)",
+   "output": "later"
+  }
+ ],
+ "families": {
+  "F0": "scalar bilinears int omega (iota_w1 A, iota_w2 A), traceless and trace; chiral ones with w_a,ij z^j = 0 (Prop qs-plane)",
+  "F1": "weight-5/2 descendants {S^(1)(xi), O} = (A_perp, lambda) bilinears; the Konishi descendant O_zeta = int omega (u'^alpha lam_alpha^i, A_ij z^j) and the weight-3 singlets B_z, Fbar_z (Prop o-konishi)",
+  "F2": "letters int omega (X, A|_perp), (X, A|_V), (zeta, lambda), (X, c) (gauge variant; Thm qs-classes (v)) for the one-body kernels",
+  "F3": "the BK pairs of Table qs-twistcensus"
+ },
+ "routes": {
+  "A": {
+   "name": "exact simplex integrals (extends step2/twoletter/engine_a and step2/composite_qsk/composite/engine_a)",
+   "method": [
+    "chain numerators: vertex functions of I from two-letter engine A (colour-stripped su(2) blocks), terms of S^(1)(x) from superconformal/model.py or rederived from Table qs-terms; special edge with t in [0,eps], numerator -|l+q_sigma|^2 x K_0 fibre factor",
+    "Gaussian loop integral; Thm qs-simplex with exact Dirichlet-log integrals over the ordered subsimplices of {alpha_sigma smallest}; Prop qs-small for n = 1, 2",
+    "letter derivatives via Prop qs-genfun (Bessel series, index m+n-1)",
+    "eta, K_b: injected momentum r at the S vertex, derivatives in r at r = 0 (Prop qs-posdec)",
+    "finite special vertices from the arity-zero pair-kernel poles ct_m (two-letter engine A kernels.json) and from ct1_{x,m}",
+    "colour (1 (x) ad...)(-,-)^-1 and planar adjacent form; realisations su(2), su(3), gl(3)"
+   ],
+   "output_dir": "step2/composite_qsk/qsk/engine_a/ (code and caches in src.nosync/, out.nosync/)"
+  },
+  "B": {
+   "name": "momentum-space numerator algebra + Feynman parameters + numerical eps-extrapolation (extends step2/twoletter/engine_b and step2/composite_qsk/composite/engine_b)",
+   "method": [
+    "independent realisation of S^(1)(x) from Def c8-twocomp / Rem qs-twocomp (two-component, explicit sigma matrices) and of the vertices of I",
+    "special edge as the explicit factor (e^{-eps p^2} - 1) times the K_0 component; other edges e^{-eps p^2}/p^2 (T = infinity) or (e^{-eps p^2} - e^{-T p^2})/p^2 (K_b)",
+    "Feynman parameters, numerical integration with >= 30 digits (mpmath), eps = eps_0 2^{-j}, Richardson extrapolation of the eps^0 coefficient, poles fitted and compared with route A",
+    "K_b at T |p|^2 in {1, 4, 16}: T-independence",
+    "second evaluation on F0, F1 (Rem c9-twoeval analogue): Q applied to the arity-one part of O[infty] along xi (Lemma c7-image): graphs with S^(1)(xi) on a leg, on the cycle (line, cubic), on a one-loop subgraph of a leg, with their counterterms; the sum must be local and equal eq qs-decomp"
+   ],
+   "output_dir": "step2/composite_qsk/qsk/engine_b/ (code and caches in src.nosync/, out.nosync/)"
+  },
+  "independence": "neither engine reads the other's output before the comparison phase; both may import their own earlier code (twoletter, composite) and the project realisations superconformal/, classical/"
+ },
+ "gates": [
+  "G-E0 commutators of Prop qs-comm and arrows of Lemma qs-arrows on plane waves (exact)",
+  "G-TC0 quadratic free directions along Sigma: kernel of Q on the five structures = span{S^V_2, S^perp_2}, no exact ones (Prop qs-freexi (i)); analogues along eta, K_b",
+  "G-cubic Example qs-cubic: 16 pi^2 x value = -1/(2 eps) - (3/8)|q|^2 times the factor",
+  "G-noLog no log eps in any defect cycle (Thm qs-simplex (i))",
+  "G-pole eq qs-pole and G-log eq qs-logcov pair by pair for n <= 1 on the field pairs",
+  "G-pos position identities of Prop qs-posdec (eta: graph by graph; K_b: v(x_O) part = P-kernel, linear part = -(b,x_O) Delta^0 + rotation^0)",
+  "G-reg Cor qs-DP; first row of the table of Thm c9-D1 on the bilinears; -(1/3) u d_b along P_b",
+  "G-plane Prop qs-plane: exact vanishing of the component along xi = u (x) z on the chiral bilinears",
+  "G-R1 s Q_1(O) = 0 on the scalar bilinears (exact identity of local functionals)",
+  "G-R2 {Q_1(xi), Q_0(xi')} + {Q_0(xi), Q_1(xi')} + P_1(Gamma(xi,xi')|_V) on the bilinears: two-field part on free shell = 0",
+  "G-R3 {Q_1(xi), S_0(eta)} + {Q_0(xi), S_1(eta)} + (1/2)(xi,eta) D_1 on the bilinears: two-field part on free shell = 0, with D_1 = 0 (traceless), -48 u O (trace) at theta = -1/3",
+  "G-R4 twisted closure Q^xi_0 Q^xi_1 + Q^xi_1 Q^xi_0 = 0 on the BK pairs (exact)",
+  "G-R5, G-R6 the (K_b,P_b') and (eta1,eta2) relations on the bilinears on shell",
+  "G-KT independence of T of Upsilon_K (route B at three endpoints); vanishing of the log T coefficient of the defect graphs as eps -> 0 at fixed T; observable log T term (3/8 pi^2) hbar x zero-mode tree on the bilinears",
+  "G-KD K_1 ~ -(b,x) D_1 on the bilinears and letters in the translation-covariant scheme (Prop qs-K (iii)); intrinsic part 0 on Lorentz scalars (Cor c7-K)",
+  "G-twist Thm qs-twistcheck (a)-(d): one-body terms of the form a Q^xi_0 + [Q^xi_0, N] on the letters; BK structure of the six entries modulo Im Q^xi_0; psl(3|3) relations modulo finite-part shifts",
+  "G-Ob quadratic Ob^(1)(xi) lies in the image of eq qs-arity1xi",
+  "G-AB routes A and B agree entry by entry (exact vs >= 25 digits)",
+  "G-colour planar rule in su(2), su(3), gl(3)"
+ ],
+ "outputs_expected": {
+  "engine_a": [
+   "results.json (all tasks; exact strings)",
+   "gates.json (value, target, pass/fail)",
+   "notes.txt",
+   "PROGRESS.txt",
+   "run_all.py"
+  ],
+  "engine_b": [
+   "results.json (same schema; numerics with error estimates)",
+   "gates.json",
+   "notes.txt",
+   "PROGRESS.txt",
+   "run_all.py"
+  ],
+  "schema_note": "kernels per pair / leg set / chain: {pair, n, leg_set, chain(path, placement, term), poles {m: coefficient}, eps0, finite_vertex, Upsilon}; coefficients as strings in Q[i] combinations of {1, log2, log3, ...} in units hbar/(16 pi^2) and in units u (planar); momenta, polarisations and fibre bases as in step2/twoletter/engine_a kernels.json; two-component forms of the reported entries"
+ },
+ "machine": {
+  "memory": "each process < 1.5 GB RSS, one heavy process at a time per agent",
+  "tmp": "never /tmp; code and caches in *.nosync subfolders (iCloud eviction); PROGRESS.txt written incrementally",
+  "language": "pure Python (fractions, sympy, numpy, mpmath) or C; cluster-portable; no Wolfram, no cluster, no browser",
+  "files": "no .md files; .json/.txt/.tex/.py"
+ },
+ "checks_done": {
+  "census": "src.nosync/census_qsk.py -> census_qsk.json (491 s, 96 MB): 45 pair types along every generator, 0 violations",
+  "tex": "qsk_theory.tex compiled with pdflatex into _build (28 pp, 0 errors, 0 undefined references)"
+ }
+}

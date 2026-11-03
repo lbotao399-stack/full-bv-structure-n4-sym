@@ -1,0 +1,83 @@
+\begin{theorem}[Defect cycles as simplex integrals]
+\label{thm:c11-oddsimplex}
+For a defect cycle with $n$ vertices and the edges $e_0,\dots,e_n$, let $q_j$, the centre, the momentum form and the $m$-th simplex integrand $F_m$ be those of Definition \ref{def:c10-cycle} with $n$ in place of $k$, the numerator containing the function of the term of $S^{(1)}(x)$ at $V_s$ (Table \ref{tab:c11-terms}, Definition \ref{def:c7-vdot}) and the special-edge factor $-|l+q_\sigma|^2$ times the fibre factor of $K_0$; along $\eta$ and $K_b$ a momentum $r$ is injected at $V_s$ and carried by $e_s,\dots,e_n$ to $X_b$ and $\omega$. Let $D$ be the superficial degree of Proposition \ref{prop:c11-oddbound}.
+\begin{itemize}
+\item (i) At generic output momenta and $T=\infty$, for $x\in\Sigma\cup\Sigma^*\cup\{\Delta,P_b\}\cup\mathfrak{so}(V)$, the value of the cycle is $\sum_{m\ge1}\varepsilon^{-m}a_m+a_0+o(1)$ with
+\begin{equation}
+\begin{aligned}
+16\pi^2a_m&=\frac1m\int_{\alpha_\sigma\text{ smallest}}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]F_m\,d\alpha\qquad(m\ge1),\\
+16\pi^2a_0&=\int_{\alpha_\sigma\text{ smallest}}F_0\,\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\end{aligned}
+\label{eq:c11-oddsimplex}
+\end{equation}
+and no term in $\log\varepsilon$; $a_m$ is a polynomial of degree $D-2m$ in the output momenta and in $r$, and $a_0=0$ for $D<0$.
+\item (ii) Along $\eta\in\Sigma^*$, at the point $x_O$ of the pair, $\Upsilon_\eta=\sum_\mu x_O^\mu\,\Upsilon_{\rho(e_\mu)\eta}+\Upsilon^0_\eta$: the position part along $b$ is the kernel along $\rho(b)\eta\in\Sigma$, and the translation-invariant part $\Upsilon^0_\eta$ is $-i\sum_\mu\partial_{r_\mu}$ at $r=0$ of \eqref{eq:c11-oddsimplex} with $S^{(1)}(\rho(e_\mu)\eta)$ at $V_s$, plus \eqref{eq:c11-oddsimplex} with $s_0$ at $V_s$.
+\item (iii) Along $K_b$, with $z=x-x_O$,
+\[
+v(x)=v(x_O)+\big(-2(b,x_O)z+\omega_{x_O}z\big)+v(z),\qquad \omega_{x_O}z:=2\big((x_O,z)b-(b,z)x_O\big),
+\]
+and correspondingly
+\begin{equation}
+\Upsilon_{K_b}=v(x_O)^\mu\,\Upsilon_{P_{e_\mu}}-(b,x_O)\,\Upsilon^0_\Delta+\Upsilon^0_{M_{\omega_{x_O}}}+\Upsilon^0_{K_b},
+\label{eq:c11-Kdec}
+\end{equation}
+with $\Upsilon^0_y$ the translation-invariant part along the generator $y$ centred at $x_O$, the rotation $M_{\omega_{x_O}}$ having the vector field $\omega_{x_O}z$; the monomials $z^\mu$ and $z^\mu z^\nu$ of the Killing data act as $-i\partial_{r_\mu}$ and $-\partial_{r_\mu}\partial_{r_\nu}$ at $r=0$. At every finite $T$ the coefficients of the expansion in $\varepsilon$ are given by \eqref{eq:c11-oddsimplex}, and $T\partial_T$ of every defect cycle is $O(\varepsilon)$: $\Upsilon_{K_b}$ is independent of $T$.
+\item (iv) For a cycle with $n_t=n+1$ edges and a constant integrand $F_0$ ($D=0$), $16\pi^2a_0=F_0\log\frac{n_t}{n_t-1}\big/(n_t-1)!$, so that $16\pi^2a_0=\tfrac12F_0\log\tfrac32$ for $n_t=3$ and $\tfrac16F_0\log\tfrac43$ for $n_t=4$; for a constant $F_1$ ($D=2$), $16\pi^2a_1=F_1\big/\big(n_t^2(n_t-1)(n_t-1)!\big)$. For $n=1$, the vertex $V_s$ at the special edge, with $\alpha:=\alpha_\sigma\in[0,\tfrac12]$,
+\[
+16\pi^2a_0=\int_0^{1/2}F_0(\alpha)\log\frac{1-\alpha}\alpha\,d\alpha,\qquad 16\pi^2a_m=\frac1m\int_0^{1/2}\big((1-\alpha)^m-\alpha^m\big)F_m(\alpha)\,d\alpha,
+\]
+in $\mathbb Q+\mathbb Q\log2$ for polynomial numerators; for $n=2$ with $V_s$ on a line between a letter or a vertex of $I$ and the special edge, Proposition \ref{prop:c11-k1} applies, with values in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) The domain $\{t_\sigma\le\varepsilon,\ t_f\ge\varepsilon\ (f\ne\sigma)\}$ is the difference of the domains with the cutoff shapes $1/\min_{f\ne\sigma}\alpha_f$ and $1/\min_f\alpha_f$, which differ on the region where $\alpha_\sigma$ is the smallest coordinate; Proposition \ref{prop:c10-shape} gives for each shape the poles, the same coefficient of $\log\varepsilon$ and the finite part, and the difference is \eqref{eq:c11-oddsimplex}, as in Lemma \ref{lem:c10-special}. The region $\tau\ge1$ converges at $T=\infty$: the edges carry distinct generic momenta (proof of Theorem \ref{thm:c10-decomp} (ii)), the composite line along $\xi$ is of order $|p|^{-2}$ at small momentum (Lemma \ref{lem:c11-lines} (iii)), the composite kernels along $\Delta$, $P_b$ and $\mathfrak{so}(V)$ of order $|p|^{-3}$ (Proposition \ref{prop:c9-composite} (iv)), and along $\eta$ the line carries the spinor $\rho(b)\eta$ in the position part and one derivative in $r$ in the translation-invariant part; the measure of $\{\alpha_\sigma\le\varepsilon/\tau\}$ is of order $\varepsilon$. The coefficient of $\tau^{-1-m}$ after the Gaussian integral is homogeneous of degree $D-2m$. (ii) By \eqref{eq:c11-Seta}, insert $x^\mu=x_O^\mu+(x-x_O)^\mu$ and argue as in Proposition \ref{prop:c11-position} (i): on plane waves the factor $(x-x_O)^\mu$ is $-i\partial/\partial r_\mu$ of the momentum injected at $V_s$ and absorbed by $\omega$, which commutes with the Gaussian integral and the simplex integration; the same holds for the special edges, the counterterm vertices and the finite special vertices. (iii) Expand $(x_O+z,x_O+z)b-2(b,x_O+z)(x_O+z)$; $S^{(1)}$ of Definition \ref{def:c7-vdot} is linear in $v$ with its weight and spin terms, and $\operatorname{div}v(x)=-8(b,x_O)-8(b,z)$, $\operatorname{div}(2z)=8$, $\operatorname{div}(\omega_{x_O}z)=0$. At a finite $T$ the region $\tau\ge\tau_0$ is compact in $\tau$, so the expansion in $\varepsilon$ is that of the region of small $\tau$. $T\partial_T$ replaces one edge $e$ by $TL_T$, of scalar factor $Te^{-T|l+q_e|^2}$, which confines the loop momentum, while the special edge carries $e^{-\varepsilon|l+q_\sigma|^2}-1=O\big(\varepsilon(1+|l|)^2\big)$; the polynomial dependence on the position enters through derivatives in $r$, which preserve these bounds, and the finite special vertices are built from the coefficients $\mathrm{ct}_m$, $\mathrm{ct}^{(1)}_{x,m}$, independent of $T$ (Proposition \ref{prop:c8-Tindep}). (iv) For a constant integrand the integrals of \eqref{eq:c11-oddsimplex} over the region where $\alpha_\sigma$ is the smallest coordinate are elementary; for $n=1$ the simplex is $[0,1]$, the region is $\alpha_\sigma\le\tfrac12$ and $\min_{f\ne\sigma}\alpha_f=1-\alpha_\sigma$, and $\int_0^{1/2}\alpha^a(1-\alpha)^b\log\frac{1-\alpha}\alpha\,d\alpha\in\mathbb Q+\mathbb Q\log2$. Proposition \ref{prop:c11-k1} uses that the two segments adjacent to $V_s$ carry the same momentum at $r=0$ and that the special edge is the third edge.
+\end{proof}
+
+\begin{example}[The cubic term at the special edge]
+\label{ex:c11-cubic}
+The defect cycles with $n=1$ and an output have a cubic term of $S^{(1)}(\xi)$ at the special edge. For $\xi\in S_+\otimes W$ and the pair $(A|_{W_{\mathbb R}^\perp},\lambda|_{S_+\otimes W})$, the cycle
+\[
+A|_{W_{\mathbb R}^\perp}\xrightarrow{\ P\ }T_5\big(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp},\lambda^*|_{S_+\otimes W^*}\big)\xrightarrow{\ K_\varepsilon-K_0\ }\lambda|_{S_+\otimes W},
+\]
+with the output $A|_{W_{\mathbb R}^\perp}$ of momentum $q$, has by Theorem \ref{thm:c11-oddsimplex} (iv) and Lemma \ref{lem:c10-special} the value
+\[
+\frac{\hbar}{16\pi^2}\Big(-\frac1{2\varepsilon}-\frac38|q|^2\Big)
+\]
+times the value of $T_5$ on the fibre elements and colour factors of the letters and of the output, with the fibre factor $2(-,-)^{-1}$ of the edge $A\otimes A$ and the inverse fibre pairing of $(\lambda,\lambda^*)$ on the special edge. Its contribution to $\Upsilon_\xi\big(A|_{W_{\mathbb R}^\perp},\lambda|_{S_+\otimes W}\big)$ on the leg set $A|_{W_{\mathbb R}^\perp}$ is $\tfrac38\frac{\hbar}{16\pi^2}$ times $\partial^2$ of the output times that factor, and its pole enters \eqref{eq:c11-pole} against $\mathrm{ct}_1$ of the pair $(\lambda|_{S_+\otimes W},\lambda|_{S_+\otimes W})$ of the classical transformation $\{S^{(1)}(\xi),A|_{W_{\mathbb R}^\perp}\}=\Gamma(\xi,\lambda)|_{W_{\mathbb R}^\perp}$, whose coefficient of $\varepsilon^{-1}$ has the leg set $A|_{W_{\mathbb R}^\perp}$ (Table \ref{tab:c10-legsets}).
+\end{example}
+
+\begin{proposition}[Output bounds along $\Sigma$, $\Sigma^*$ and $K_b$]
+\label{prop:c11-oddbound}
+A defect cycle of $(X_a,X_b)$ along $x$ whose outputs have total Weyl weight $w$, fields and derivatives, has the superficial degree
+\[
+D=w_{X_a}+w_{X_b}+\delta-w,
+\]
+with $\delta=\tfrac12$ along $\xi\in\Sigma$ and for the position part along $\eta$, $\delta=-\tfrac12$ for $\Upsilon^0_\eta$, and $\delta=1,0,-1$ for the parts of $\Upsilon_{K_b}$ multiplying $v(x_O)$, the first derivatives of $v$ at $x_O$ and its second derivatives. Hence:
+\begin{itemize}
+\item (i) along $\xi\in\Sigma$: $\Upsilon_\xi(X_a,X_b)$ is translation invariant, of Weyl weight $w_{X_a}+w_{X_b}+\tfrac12$, of the pair degree and of parity $|X_a|+|X_b|+1$, with at most $w_{X_a}+w_{X_b}+\tfrac12$ plus the pair degree output fields, as for the second-order operator on pairs of letters of [BK, (3.7)];
+\item (ii) along $\eta\in\Sigma^*$: $\Upsilon_\eta=\sum_\mu x^\mu\,\Upsilon_{\rho(e_\mu)\eta}+\Upsilon^0_\eta$, of parity $|X_a|+|X_b|+1$, with $\Upsilon^0_\eta$ translation invariant of Weyl weight $w_{X_a}+w_{X_b}-\tfrac12$ and at most $w_{X_a}+w_{X_b}-\tfrac12$ plus the pair degree output fields;
+\item (iii) along $K_b$: $\Upsilon_{K_b}$ is a polynomial of degree at most two in the position, of Weyl weight $w_{X_a}+w_{X_b}-1$ with the position at weight $-1$, of the pair degree and of parity $|X_a|+|X_b|$, with at most $w_{X_a}+w_{X_b}+1$ plus the pair degree output fields; $\Upsilon^0_{K_b}$ has Weyl weight $w_{X_a}+w_{X_b}-1$.
+\end{itemize}
+The same bounds hold for the counterterm cycles, whose outputs carry the pair degree minus one, and for the finite special vertices, which are supported on the leg sets with $D\ge2$. These are the bounds of Proposition \ref{prop:c10-bound1} with $\lambda_x=-1,+1,+2$, valid without (iii) of Definition \ref{def:c10-hyp} by Theorem \ref{thm:c11-classes} (v).
+\end{proposition}
+
+\begin{proof}
+Lemma \ref{lem:c10-degree} with one vertex of weight $4+\delta$: every vertex of $I$ has weight $4$, the term of $S^{(1)}(x)$ has weight $4+\delta$ on its fields and derivatives once the Killing data carry the weights of Proposition \ref{prop:c7-select} ($-\tfrac12$ for a constant spinor, $-1$, $0$, $+1$ for the value and the first and second derivatives of a vector field, the position at weight $-1$), every edge $P$ has numerator degree $w_1+w_2-2$, and the special edge, $-|l+q|^2$ over a Schwinger interval $[0,\varepsilon]$, has degree $0=w+(4-w)-4$. The degree of the coefficient of $\varepsilon^0$ is Theorem \ref{thm:c11-oddsimplex} (i). $S^{(1)}(x)$ has degree $-1$ and total parity $0$ for odd $x$ and $1$ for even $x$, the special edge degree $+1$ and parity $1$. Weyl weight plus degree is at least $1$ for every field and antifield, with equality for $c$ and $A$ (Proposition \ref{prop:c10-bound}), which bounds the number of outputs. The position parts are Theorem \ref{thm:c11-oddsimplex} (ii), (iii). On a leg set of degree $D$ the term of $\mathcal F_x$ with $\mathrm{ct}_m$ or $\mathrm{ct}^{(1)}_{x,m}$ contains a coefficient of $\varepsilon^{-m}$, of degree $D-2m\ge0$ in the momenta, and $m\ge1$.
+\end{proof}
+
+\begin{proposition}[Census of the defect cycles]
+\label{prop:c11-oddcensus}
+\begin{itemize}
+\item (i) Every defect cycle conserves the degree and the centre $\mathbb Z/4$ of $SL(4,\mathbb C)$, $W\mapsto iW$, once $x$ carries its charge, $+1$ on $S_+\otimes W$ and on $S_-\otimes W$, $-1$ on $S_-\otimes W^*$ and on $S_+\otimes W^*$, $0$ on the even part; it shifts the total parity by that of $S^{(1)}(x)$ plus one.
+\item (ii) Along every generator, defect cycles exist for $45$ of the $55$ unordered pairs of the ten slots; the other ten are the pairs of two letters among $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*|_{S_+\otimes W^*}$, $\lambda^*|_{S_-\otimes W}$, $c^*$, each of which needs the special edge.
+\item (iii) A defect cycle without vertices of $I$ has $V_s$ at the special edge, letter--$P$--$V_s$--special edge--letter; a cycle without outputs is homogeneous in $\varepsilon$ of degree $-\tfrac D2$ (Lemma \ref{lem:c10-self}), so its coefficient of $\varepsilon^0$ is nonzero at $D=0$ alone.
+\item (iv) Along $\xi\in S_+\otimes W$ the leg sets through the pairs of field and ghost letters without derivatives are those of Table \ref{tab:c11-defectpairs}; the numbers of leg sets with $n\le3$ derivatives on the two letters, along $\xi\in S_+\otimes W$ and for the translation-invariant parts along $\eta\in S_+\otimes W^*$ and along $K_b$, are those of Table \ref{tab:c11-defectcounts}. Along $S_-\otimes W^*$ and $S_-\otimes W$ the tables hold with the chiralities exchanged, and for the position parts with $\delta$ of Proposition \ref{prop:c11-oddbound}.
+\item (v) Along $\xi\in S_+\otimes W$ the pair $(c,c)$ has the empty set of leg sets at the pair weight without derivatives, and the pairs of $c$ with $A|_V$, $A|_{W_{\mathbb R}^\perp}$, $\lambda|_{S_+\otimes W}$, $\lambda|_{S_-\otimes W^*}$ have leg sets with one ghost output.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Each vertex of $I$, each term of $S^{(1)}(x)$ and each component of $P$ and of $K_0$ carries these charges (Table \ref{tab:c11-terms}, Definition \ref{def:c1-vertex}, Proposition \ref{prop:c3-P}). (ii)--(v) Exhaustive enumeration of the chains with up to six vertices on the cycle, exactly one term of $S^{(1)}(x)$ in each of its placements and exactly one special edge, with output weights up to $w_{X_a}+w_{X_b}+3+\delta$; every chain is checked for degree, parity and the centre, and its superficial degree against the count of Lemma \ref{lem:c10-degree}. A letter $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*$ or $c^*$ has no component of $P$ and lies on the special edge, of which a defect cycle has one.
+\end{proof}
+

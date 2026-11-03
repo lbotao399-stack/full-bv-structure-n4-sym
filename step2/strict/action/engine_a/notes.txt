@@ -1,0 +1,92 @@
+ENGINE A (route A), strict Costello route, ACTION SIDE -- method and conventions
+(plain text.  Spec: step2/strict/action/theory/engine_spec.json, theory action_theory.tex.  engine_b/ not read.)
+
+Run:  python3 run_all.py [--only T1,B1] [--force]   (single process, pure Python: fractions, numpy; watchdog 1.4 GB;
+      resumable: out.nosync/task_<id>.json; writes results.json, gates.json here and in out.nosync/, PROGRESS.txt)
+Code: src.nosync/
+  sa_core.py   closed defect cycles: all vertices on the cycle, exactly one special edge K' = K_eps - K_0 (numerator
+               +|l+q|^2 Kn, Schwinger time in [0,eps]), all other edges P(eps, T=infinity); words of insertions with the
+               special line in front, factor 1/2 (Part-C formula (1/2) str[K' S H (P S H)^(n-1)], validated there in
+               0 dimensions); plain cycles (no special edge, factor 1/(2n)) for log eps and eps^-m coefficients.
+               Exact finite part 16 pi^2 a_0 = int_{alpha_s smallest} F_0 log(min_{f!=s} alpha_f/alpha_s) and poles
+               (1/m) int [(min alpha_f)^m - alpha_s^m] F_m (Lemma at-special) via cq_gcore.GSimplex; values in
+               Q(i) x {1, log2, log3, log5, log7}.
+  sa_ob.py     generators and position injection: S(x) = sum_mu y^mu S_mu + S_0; S_mu carries r = t e_mu (first order in
+               t, absorbed by the last leg); canonical density alpha = G_0 - i sum_mu dG_mu/dt, beta^mu = -i G_mu(0).
+  sa_fit.py    exact Q(i) linear algebra, two-leg basis functionals (plane-wave values).
+  sa_mode.py   mode model of the Part-C engine (s2_ga.py, s2_core.py, grass.py: copies from the project's GitHub
+               mirror in src.nosync/gh/, the local originals being iCloud-evicted; byte sizes equal): Q = {S_free,-},
+               the bracket {f,g} = Delta_0(fg) - Delta_0(f)g - (-1)^{|f|} f Delta_0(g) of Def c1-bracket, values.
+  sa_tasks.py  T0, T1, T4, B1;  sa_tasks2.py  T3, T6, B2 (partial), T2 (partial), T5 (tables), T8 (partial).
+Imports (read-only): step2/twoletter/engine_a/src.nosync/{ea_core, vendor/r2_core, vendor/cliff},
+  step2/composite_qsk/composite/engine_a/src.nosync/{cq_core, cq_gcore}, step2/composite_qsk/qsk/engine_a/src.nosync/qa_s1.
+
+1. Conventions (no free constant; every one fixed by a derivation and checked by a regression)
+ - Blocks: colour-stripped vertex blocks of the two-letter engine A (cubic (ad_Y t_in, t_out), quartic words, scaled by
+   2 / 8), S^(1)(x) blocks of qa_s1 (scaled by 2): even x: int((v.A,A*) - (v.lam,lam*) - (v.c,c*)), v. = a.d +
+   (1/2) om Sigma + (w/4) div v at the vertex; xi: T1..T4 quadratic, T5 cubic (output A or lam*); eta: s0 and
+   S(rho(e_mu) eta) at the position factor; M_om (v = Om x): om = Om^T (v.A = L_v A, Def c7-vdot).
+ - Colour: a word meeting the external legs in the order Y_0, Y_1, ... carries tr_g(ad_{Y_m-1} ... ad_{Y_0});
+   n = 2: tr(ad ad) = (Y0,Y1) tr_g(ad_X ad_Y)/(X,Y)  -> the stripped value is the coefficient in units u;
+   n = 3: tr(ad_c ad_b ad_a) = (C/2)(Y_c,[Y_b,Y_a]), reduced to (Y0,[Y1,Y2]) (checked by G-reg0 three legs).
+ - Ghosts on the right (Def at-names (i): {S, S(x) c} = {S,S(x)} c): the interaction is I + S(x) c^x (+ S(y) c^y);
+   c^x odd for even x, commuting for odd x.  Hessian entries carry their odd parameters to the left; a word is
+   brought to the canonical order theta_1 ... theta_n c^y c^x (odd legs in list order) by the permutation sign.
+   Ob^(1)(x) = coefficient of theta.. c^x;  Ob^(2)(x,y) = (-1)^{|x|} coefficient of theta.. c^y c^x (the c^y c^x
+   coefficient of (1/2){J,J}_eps is the special part of {S(x),S(y)}_eps for every parity pair; C07 bracket algebra).
+ - Basis functionals: multilinear plane-wave values (coefficient of the odd leg parameters in leg order), d -> i p,
+   second leg momentum -p; rho(e_M)|_Sigma = sb[M], (u,w) = u^T w, Gamma(xi,lam)^M = xi^T sb[M] lam.
+
+2. Finding on the sign of the Wess-Zumino identity (G-sign, G-WZ1)
+ In the mode model (manuscript bracket of Def c1-bracket, Q = {S_free,-}) the derivation rule is
+     Lambda{a,b} = -{Lambda a, b} - (-1)^{|a|} {a, Lambda b}      (checked: Q{dsds,T1} = -{Q dsds, T1}),
+ the rule of the bracket {f,g}_C = Delta(fg) - Delta(f)g - (-1)^{|f|} f Delta(g), whose symmetry is
+ {g,f} = (-1)^{|f||g|}{f,g}.  Lemma at-sformulas (ii) was derived with the standard odd-bracket rule
+ Lambda{a,b} = {Lambda a,b} + (-1)^{|a|+1}{a,Lambda b} (bracket (-1)^{|f|}{f,g}_C).  With the bracket of Def c1-bracket,
+ s^2 = 0 gives for degree-1 cochains (sG)^(1)(x) = Lambda G^(1)(x) + {G^(0),S(x)}, so the arity-one WZ identity reads
+     Lambda Ob^(1)(x) = -{Ob^(0), S(x)}.
+ The computed Ob^(1)(xi)|_2 satisfies exactly this (also directly: d/dtau of Lambda_tau Ob[I + tau S(xi)] = 0), and
+ violates the printed sign.  Formula (i) of the Lemma (degree 0) and all solvability statements are unaffected.
+
+3. Results (units u; exact) -- see results.json
+ G-reg0: two legs -27/8 int(d*dc,d*A_V) (pole -9/2 eps^-1 int(dc,A_V) = -Q I^CT_2 cancelled); three legs
+   (11/4 + 19/4 L)(G1+G3) + 27/8 G2 + 0 G4 - 9 L G5, L = log(3/2).
+ T1 Ob^(1)(Delta)|_2 = -11/3 int(dA,dA) [A_V and A_perp] + 0 int(d*A_V,d*A_V) + 47/3 int(lam,dslash lam)
+   - 14/3 int(dc,A*); position part 0 (= 2 Ob^(1)(P_b)|_2 = 0, also direct along P_b); poles -9 int(A,A)
+   = (9/4){int(A,A),S(Delta)} ({S_X,F} = +D_X F, Part-D mode model).  Plain cycles: lc^(0)|_2 = u[-1, 4, -1].
+ T4 Ob^(1)(xi)|_2 (both chiralities) = (79/24 - 1/2 log(3/2))(g1 + g3) + 27/8 g2 + 0 g4; poles
+   (9/2)[int(Gamma_V,A_V) + int(Gamma_perp,A_perp)] = (9/4){int(A,A),T1+T2}.  QT1 = -QT3 = -1/2 g1, QT2 = -QT4 =
+   -1/2 g3, QT0 = -g2 - g4, {int(d*A_V,d*A_V),T1} = 2 g2.  Residual with F_1^(0)|_2 = 27/16 int(d*A_V,d*A_V):
+   R^(1)(xi)|_2 = (79/24 - 1/2 log(3/2))(g1 + g3) (closed), F_1^(1)(xi)|_2 = (-79/12 + log(3/2))(T1 + T2) + r0 T0,
+   r0 = 0, + u(theta_V S^V_2 + theta_perp S^perp_2) (free), + beta-shifts {N_f, S_2(xi)}.
+ B1 Ob^(2)(Delta,P_b)|_2: position part 0, no poles; on the p = 0 bases
+   perp: -2/3 int(d_b A_perp, A*_perp);  lambda (both chiralities): 2/3 int(d_b lam,lam*) + (-3/2 + 2 log2 - log3)
+   int(rho(b) dslash lam, lam*);  V: -2/3 int(d_b A_V,A*_V) + 0 int(d.A_V, b.A*_V) + (3/2 - 2log2 + log3)
+   int(d_mu(b.A_V),A*_mu) and (-5/6 + 2log2 - log3) int(d_b c, c*).  Modulo Im Q (Q int(rho(b)lam*,lam*) =
+   2 int(rho(b)dslash lam,lam*), Q int(iota_b A_V,c*) = int(d_mu(b.A_V),A*_mu) - int(d_b c,c*)):
+   o_perp = o_lambda = o_V = -2/3, hence theta^Delta_perp = theta^Delta_lambda = theta^Delta_V = -1/3 (Thm at-theta);
+   no component along other classes.  X-theta (theta = -1/3) agrees (cross-check only).
+
+3b. Further results (units u)
+ T3 R_r: Ob^(1)(R_r) = 0 on every two-leg sector and on three tested three-leg sectors (G-R0).
+    M_om (v = Om x): Ob^(1)(M_om)|_2 = 1/3 Q int Om_{mu nu}(A_mu,A*_nu) [V sector] - 1/12 int(rho(Om) lam, dslash lam)
+    [lambda sector, rho(Om) = sum Om_{mu nu} s[mu] sb[nu]], 0 on (A_perp,A_perp); position part 0.  Hence the spin
+    term of F_1^(1)(M_om)|_2 is 1/3 u int Om_{mu nu}(A_mu,A*_nu) (Prop at-two (iii)).
+ T6 eta (intrinsic, canonical densities, last leg eliminated), both chiralities:
+    (A_V,lam): -5/2 int(eta,lam) d*A_V - 5/2 int(eta,rho(dA_V)lam);  (A_perp,lam): (-3/2 - 3 log(3/2)) int(eta,
+    rho(dA_perp)lam);  (c,lam*): 5/2 int(rho(dc)eta,lam*).  Position part = Ob^(1)(rho(b)eta) (structural in route A).
+ T2 (partial) Ob^(1)(Delta)|_3 on the classical cubic structures (canonical density, last leg eliminated):
+    1/2([c,c],c*), ([A,c],A*) (V and perp), ([c,lam],lam*) (both chiralities): 8/3 each;  1/2(lam,rho([A_V,lam])):
+    116/3 + 6 log2 - 3 log3;  1/2(lam,rho([A_perp,lam])): 116/3 + 8 log2 - 4 log3;  (A_V)^3 and A_V(A_perp)^2 need the
+    full cubic basis (not built).  Ob^(1)(P_b)|_3 != 0 (D = 1 structures; tables only).
+ T5 Ob^(1)(xi)|_3: seeded plane-wave tables (no poles: G-pole three legs).
+ T8 lc^(1)(xi)|_2 = 2u(T1 + T2 - T3 - T4) = {uN, S_2(xi)} exactly, both chiralities.  With the C07 bracket the closed
+    combination is lc^(1)(x) - {uN,S(x)} (same root as sec. 2), which vanishes: l_xi = 0, hence c = a = 0 (two legs).
+ B2 (Delta,xi): Ob^(2)(Delta,xi)|_2 = (8 + log(4/3)) T1 + 8 T2 - 26/3 (T3 + T4) + 0 T0 (both chiralities); flagged:
+    the two-leg WZ2 cannot hold for this log(4/3) pattern (T1 only) for any sign convention -> unverified, not used.
+
+4. Not done (open; see the summary object): T7 (K_b, finite T, second-order position injection), the arity-two pairs
+ with the S^(2) vertex ((xi,xi'), (xi,eta), (eta,eta')) and (K_b,P_b'), (xi,P_b); the full cubic and quartic bases
+ (T2, T5 report fits on the classical cubic structures / seeded tables only), S1 cubic (GC13, Hypothesis at-H at three
+ legs), S2 cubic; colour checks in su(3), gl(3) (G-colour: only the su(2) stripped reduction, validated by G-reg0 three
+ legs); G-AB (comparison phase).

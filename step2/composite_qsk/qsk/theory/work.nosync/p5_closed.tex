@@ -1,0 +1,102 @@
+\section{Closed forms of the two-body kernels}
+\label{sec:qs-closed}
+
+\begin{definition}[Cycle data of a defect cycle]
+\label{def:qs-cycle}
+For a defect cycle with $n$ vertices ($k_I$ of $I$ and $V_s$) and edges $e_0,\dots,e_n$, $e_0$ leaving $X_a$, let $q_j$ be the sum of the incoming momenta of the outputs of the first $j$ vertices, so that $e_j$ carries $l+q_j$ (Def c10-cycle). Along $\eta$ and $K_b$ a momentum $r$ is injected at $V_s$ and carried by $e_s,\dots,e_n$ to $X_b$ and to $\omega$. The Schwinger times are $t_\sigma\in[0,\varepsilon]$ on the special edge and $t_j\in[\varepsilon,T]$ on the other edges; $\tau=\sum_jt_j$, $\alpha_j=t_j/\tau$ on the simplex of dimension $n$. The numerator is the product of the vertex functions of $I$ (Def c1-vertex), the function of the term of $S^{(1)}(x)$ at $V_s$ (Table \ref{tab:qs-terms}, Def c7-vdot), the edge factors of Rem c10-numerator, and the special-edge factor $-|l+q_\sigma|^2$ times the fibre factor of $K_0$ (Lemma c10-special, Rem c11-twocomp); the centre, the momentum form and the $m$-th simplex integrand $F_m$ are those of Def c10-cycle with $n$ in place of $k$.
+\end{definition}
+
+\begin{theorem}[Defect cycles as simplex integrals]
+\label{thm:qs-simplex}
+\begin{itemize}
+\item (i) At generic output momenta and $T=\infty$, for $x\in\Sigma\cup\Sigma^*\cup\{\Delta,P_b,M_\omega\}$, the value of a defect cycle is $\sum_{m\ge1}\varepsilon^{-m}a_m+a_0+o(1)$ with
+\begin{equation}
+\begin{aligned}
+16\pi^2a_m&=\frac1m\int_{\alpha_\sigma\ \text{smallest}}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]F_m\,d\alpha\quad(m\ge1),\\
+16\pi^2a_0&=\int_{\alpha_\sigma\ \text{smallest}}F_0\,\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha ,
+\end{aligned}
+\label{eq:qs-simplex}
+\end{equation}
+and no term $\log\varepsilon$. Each $a_m$ is a polynomial in the output momenta (and in $r$) of degree $D-2m$, $D$ the superficial degree of Proposition \ref{prop:qs-bound}; $a_0=0$ for $D<0$.
+\item (ii) Along $\eta$, the position part along $b$ is the same formula with $S^{(1)}(\rho(b)\eta)$ at $V_s$; the intrinsic part is $-i\sum_\mu\partial_{r_\mu}$ at $r=0$ of the formula with $S^{(1)}(\xi_\mu)$, $\xi_\mu=\rho(e_\mu)\eta$, plus the formula with $s_0$ at $V_s$.
+\item (iii) Along $K_b$, at every finite $T$, the coefficients $a_m$, $a_0$ of the $\varepsilon\to0$ expansion are given by \eqref{eq:qs-simplex}; the parts of Proposition \ref{prop:qs-posdec} (ii) are obtained from the formula along $P_{v(x_O)}$, from the translation-invariant parts along $\Delta$ and $M_{\omega_{x_O}}$, and from the intrinsic vertex $S^{(1)}(K_{b,x_O})$, whose monomials $z^\mu z^\nu$ and $z^\mu$ act as $-\partial_{r_\mu}\partial_{r_\nu}$ and $-i\partial_{r_\mu}$ at $r=0$.
+\item (iv) $T\partial_T$ of every defect cycle is $O(\varepsilon)$ uniformly for $T$ in compact subsets of $(0,\infty)$; hence $\Upsilon_{K_b}$ is independent of $T$, and so are the coefficients $a_m$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) The domain $\{t_\sigma\le\varepsilon,\ t_f\ge\varepsilon\ (f\ne\sigma)\}$ is the difference of the domains with the cutoff shapes $1/\min_{f\ne\sigma}\alpha_f$ and $1/\min_f\alpha_f$ (Lemma c10-special), which differ on the region where $\alpha_\sigma$ is the smallest coordinate. Prop c10-shape gives, for each shape, the poles, the coefficient of $\log\varepsilon$ (the same for both shapes) and the finite part $-\int F_0\log(\text{shape})$ plus a shape-independent remainder; the difference is \eqref{eq:qs-simplex}. The region $\tau\ge1$ converges at $T=\infty$: the edges carry distinct generic momenta (proof of Thm c10-decomp (ii)), the composite line along $x$ is of order $|p|^{-2}$ at small momentum along $\Sigma$ (momentum degree $\tfrac32+0-4+\tfrac12$, Corollary \ref{cor:qs-edges} (iv)), of order $|p|^{-3}$ along $\Delta$, $P_b$, $M_\omega$ (Prop c9-composite (iv)), and of order $|p|^{-3}$ for the position part along $\eta$, and the measure of $\{\alpha_\sigma\le\varepsilon/\tau\}$ is of order $\varepsilon$; the remainder is $O(\varepsilon)$ times convergent integrals, as in Thm c11-simplex. The degree: the coefficient of $\tau^{-1-m}$ after the Gaussian integral is homogeneous of degree $D-2m$. (ii) Proposition \ref{prop:qs-posdec} (i); the derivative in $r$ commutes with the Gaussian integral and the simplex integration, $r$ entering the centre and the momentum form polynomially. (iii) Proposition \ref{prop:qs-posdec} (ii); at finite $T$ the domain is $t_j\in[\varepsilon,T]$, and the region $\tau\ge\tau_0$ is compact in $\tau$, so the $\varepsilon\to0$ expansion is that of the small-$\tau$ region, independent of $T$, plus $O(\varepsilon)$. (iv) $T\partial_T$ replaces one edge $e$ by $TL_T$, of scalar factor $Te^{-T|l+q_e|^2}$, which confines the loop momentum; the special edge carries $e^{-\varepsilon|l+q_\sigma|^2}-1=O(\varepsilon(1+|l|)^2)$, and the polynomial position dependence of the Killing data enters as derivatives in $r$, which preserve the bounds (k\_transfer Thm ktr-defect (ii)). The finite special vertices are local functionals of the coefficients of $\mathrm{ct}_m$, $\mathrm{ct}^{(1)}_{x,m}$, which are independent of $T$ (Prop c8-Tindep (i)).
+\end{proof}
+
+\begin{proposition}[Generating functions in the point splitting]
+\label{prop:qs-genfun}
+With the letters at $x+y_a$, $x+y_b$, $y=y_b-y_a$, the $m$-th simplex integrand of a defect cycle with $n$ vertices for the numerator $(\text{chain numerator})\,e^{i(y,l)}$ is the chain numerator with $l$ replaced by $-i\partial_y$ applied to
+\[
+\begin{aligned}
+&(-1)^{m+n-1}e^{i(y,\text{centre})}\Big(\frac{|y|}{2\sqrt{\text{momentum form}}}\Big)^{m+n-1}I_{m+n-1}\big(|y|\sqrt{\text{momentum form}}\big)\\
+&\qquad=(-1)^{m+n-1}e^{i(y,\text{centre})}\sum_{i\ge0}\frac{(|y|^2/4)^{i+m+n-1}(\text{momentum form})^i}{i!\,(i+m+n-1)!},
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\,\beta!}\,\Upsilon_x\big(\partial^\alpha\varphi_a,\partial^\beta\varphi_b\big)=\ &\frac{\hbar}{16\pi^2}\,e^{i(y_b,q_n)}\sum_{\text{chains}}\int_{\alpha_\sigma\ \text{smallest}}F_0\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha\\
+&+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\,\beta!}\,\mathcal F_x\big(\partial^\alpha\varphi_a,\partial^\beta\varphi_b\big),
+\end{aligned}
+\]
+the integrands taken for the generating numerator; the coefficients of $\varepsilon^{-m}$ have the same generating function with the weights of \eqref{eq:qs-simplex}. In position space $iq_j$ is the derivative of the product of the outputs at $x$.
+\end{proposition}
+
+\begin{proof}
+Prop c10-genfun with $n+1$ edges: the Gaussian integral gives $\tau^{-2}$, the Schwinger measure $\tau^nd\tau\,d\alpha$, so the power $\tau^{-1-m}$ comes from the term $j=i+m+n-1$ of the Laplacian series; Theorem \ref{thm:qs-simplex} replaces the weight $(\min_e\alpha_e)^m$ by the weights of the region where $\alpha_\sigma$ is smallest. The letter derivatives are generated by $e^{-i(y_a,l)+i(y_b,l+q_n)}$.
+\end{proof}
+
+\begin{proposition}[One and two vertices in closed form]
+\label{prop:qs-small}
+\begin{itemize}
+\item (i) $n=1$ ($k_I=0$, $V_s$ at the special edge): with $\alpha:=\alpha_\sigma\in[0,\tfrac12]$, the centre and the momentum form are those of the bubble, $-\alpha q$ and $\alpha(1-\alpha)|q|^2$ for the total output momentum $q$ (nonzero only for a cubic term $T_5$ with its output on the cycle side), and
+\[
+16\pi^2a_0=\int_0^{1/2}F_0(\alpha)\log\frac{1-\alpha}\alpha\,d\alpha,\qquad 16\pi^2a_m=\frac1m\int_0^{1/2}\big((1-\alpha)^m-\alpha^m\big)F_m(\alpha)\,d\alpha ,
+\]
+rational combinations of $1$ and $\log2$ for polynomial numerators. For the numerator $-|l+q|^2$ on the special edge and $1$ on the other edge, $16\pi^2$ times the value is $-\frac1{2\varepsilon}-\frac38|q|^2+o(1)$ (Lemma c10-special).
+\item (ii) $n=2$ with $V_s$ on a line (the composite line along $x$ between $X_a$ or a vertex of $I$ and the special edge): Prop c11-k1 applies verbatim, with $\beta=\alpha_\sigma\in[0,\tfrac13]$, the weights $W_0(\beta)=(1-\beta)\log\frac{1-\beta}{2\beta}-(1-3\beta)$ and $W_m(\beta)$ of Prop c11-k1, and values in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$, the two segments of the line carrying the same momentum at $r=0$.
+\item (iii) In general the coefficients are integrals of polynomials in $\alpha$ times $\log$ of ratios of coordinates over the rational subsimplices $\{\alpha_\sigma\le\alpha_f\le\cdots\}$ of the region where $\alpha_\sigma$ is smallest, evaluated exactly by ordering the coordinates and integrating Dirichlet monomials against $\log$ (the method of the Part-C engines).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) The simplex is $[0,1]$, the region where $\alpha_\sigma$ is smallest is $\alpha_\sigma\le\tfrac12$, and $\min_{f\ne\sigma}\alpha_f=1-\alpha_\sigma$; $\int_0^{1/2}\alpha^a(1-\alpha)^b\log\frac{1-\alpha}\alpha\,d\alpha\in\mathbb Q+\mathbb Q\log2$. The example is the computation of Lemma c10-special with the roles of the edges relabelled. (ii) Prop c11-k1, whose proof uses only that the two segments adjacent to the internal vertex carry the same momentum and that the special edge is the third edge. (iii) Thm c11-simplex and Prop c11-k1.
+\end{proof}
+
+\begin{example}[The cubic term at the special edge]
+\label{ex:qs-cubic}
+The only defect cycles with $k_I=0$ and outputs are those with a cubic term of $S^{(1)}(\xi)$ at the special edge: for $\xi\in S_+\otimes W$ and the pair $(\Ap,\lambda_+)$, the cycle $\Ap\xrightarrow{P}T_5(\Ap,\Ap,\lambda^*_+)\xrightarrow{K_\varepsilon-K_0}\lambda_+$ with the output $\Ap$ of momentum $q$. By Proposition \ref{prop:qs-small} (i) its value is $\frac{\hbar}{16\pi^2}\big(-\frac1{2\varepsilon}-\frac38|q|^2\big)$ times the value of $T_5$ on the fibre elements and colour factors of the two letters and of the output, with the fibre factor $2(-,-)^{-1}$ of the $\Ap\otimes\Ap$ edge and the inverse fibre pairing of $(\lambda_+,\lambda^*_+)$ on the special edge; its contribution to $\Upsilon_\xi(\Ap,\lambda_+)$ on the leg set $\Ap$ is $\frac38\frac{\hbar}{16\pi^2}\,\partial^2$ of the output, times that factor, $|q|^2$ being $-\partial^2$. Its pole $-\frac1{2\varepsilon}$ enters \eqref{eq:qs-pole} against $\mathrm{ct}_1$ of the pair $(\lambda_+,\lambda_+)$ of the classical transformation $\{S^{(1)}(\xi),\Ap\}\ni-\Gamma(\xi,\lambda)|_\perp$, whose coefficient of $\varepsilon^{-1}$ has the leg set $\Ap$ (Table c10-legsets).
+\end{example}
+
+\begin{proposition}[The special conformal component at a finite endpoint]
+\label{prop:qs-K}
+\begin{itemize}
+\item (i) $K_1(O)=\sum_{a<b}\pm\Upsilon_{K_b}(X_a,X_b)-\{\hbar F_1^{(1)}(K_b),O\}$ is the same local functional at every $T\in(0,\infty)$ and in the limit $T\to\infty$ (Thm c8-K), and, at the point $x$ of the density,
+\begin{equation}
+K_1(O)=v(x)^\mu\,P_1(O)\big|_{P_{e_\mu}}-(b,x)\,D^0_1(O)+M^0_1(O)\big|_{\omega_x}+K^0_1(O),
+\label{eq:qs-K1dec}
+\end{equation}
+with $D^0_1$, $M^0_1$ the translation-invariant parts of $D_1$ and of the rotation component along $\omega_x$, and $K^0_1(O)$ the intrinsic part, a translation-invariant local functional of Weyl weight $w_O-1$, in a scheme in which the finite counterterm $\hbar F_1^{(1)}(K_b)$ decomposes as $S^{(1)}(K_b)$ in \eqref{eq:qs-Kdec}. On plane waves the canonical form of Def c11-canonical is extended by $\gamma^{\mu\nu}\partial_\mu\partial_\nu\delta$, and $\int\omega\,x^\mu x^\nu K_{\mu\nu}$ corresponds to $-\gamma^{\mu\nu}$.
+\item (ii) The observables at scale $T$ keep, in their component along $K_b$, the term $\tfrac3{8\pi^2}\hbar\log T$ times $\sum_a\partial_{A|_V=b\otimes X_a}\partial_{c=X^a}$ of the order-$\hbar^0$ part of $O[\infty]$ (Thm c8-K, Prop c8-Tsafe); this term is not part of $K_1$. In the defect graphs at fixed $\varepsilon$ the coefficient of $\log T$ is $\tfrac3{8\pi^2}\hbar$ times $Q$ of the zero-mode tree of $\partial_\delta W(P(\varepsilon,\infty),I+\delta O)$, of order $\varepsilon$ (Remark after Thm c8-K); it vanishes as $\varepsilon\to0$ at fixed $T$.
+\item (iii) In the translation-covariant scheme at $\theta=\theta_\lambda=\theta_V=-\tfrac13$, on the families of Def c11-families, $P_1\cong0$ (Cor c11-D1fam); if moreover $M_1\cong0$ on the family, \eqref{eq:qs-K1dec} gives on cohomology
+\[
+K_1(O)\cong-(b,x)\,D_1(O)+K^0_1(O),
+\]
+the conformal expectation of Rem c7-KDelta ($-(b,x)=\tfrac18\operatorname{div}K_b$) plus the intrinsic part, which vanishes on Lorentz-scalar families (the scalar bilinears and the letters, Cor c7-K) and is in general fixed by the relations of (iv).
+\item (iv) Three relations fix $K^0_1$ on cohomology: the arity-two component of $L\circ L=0$ at $(\eta_1,\eta_2)$ with $\Gamma(\eta_1,\eta_2)|_V=b$, which expresses $K_1$ along $K_b$ through $S_1$ and the classical transformations along $\eta_1$, $\eta_2$ (Remark after Thm c8-K); the relation $K=P^\dagger$ of Cor c8-gram, which in a scheme with $P_1\cong0$ reads $K_1$ along $K_{\bar b}=\hbar\big[\{S^{(1)}(K_{\bar b}),-\},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1\big]$ (Cor c11-K); and the component at $(K_b,\Delta)$, which states that $K_1$ lowers the Weyl weight by one.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Theorem \ref{thm:qs-classes} (v), Theorem \ref{thm:qs-simplex} (iv), Proposition \ref{prop:qs-posdec} (ii), (iii); the one-body terms decompose with $\hbar F_1^{(1)}(K_b)$ in the stated scheme. The canonical form: $\int\omega\,x^\mu x^\nu e^{i(k,x)}$ is $-\partial_{k_\mu}\partial_{k_\nu}$ of $\hat\omega$. (ii) Thm c8-K and the Remark after it. (iii) Cor c11-D1fam and Prop c11-freedom (v) give $P_1\cong0$; $D^0_1$ and the position part of $D_1$ combine with $v(x)^\mu P_1$ to $-(b,x)D_1$ up to $x^2(b,P_1)$, by Prop c11-position (i) (the position part of $D_1$ is twice $P_1$); Cor c7-K excludes the second-derivative term on scalar bilinears and letters. (iv) Cor c8-homotopy (ii) at $(\eta_1,\eta_2)$ with $[\eta_1,\eta_2]=-K_{\Gamma(\eta_1,\eta_2)|_V}$ (Prop c2-special), Cor c8-gram, and Cor c8-homotopy (ii) at $(K_b,\Delta)$ with $[K_b,\Delta]=-2K_b$.
+\end{proof}
+
+\begin{remark}[The K-route and $K=P^\dagger$]
+\label{rem:qs-KP}
+The K-route of Proposition \ref{prop:qs-K} (i) computes $K_1$ from the defect cycles at a finite endpoint; $K=P^\dagger$ computes it from $P_1$ and the one-loop inner product. The two agree when the scheme is reflection compatible and the Ward identity of Thm c8-adjoint holds. On a scalar primary at the origin both sides vanish: $K^0_1=0$ by Cor c7-K, and the commutator $[\{S^{(1)}(K_{\bar b}),-\},\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1]$ annihilates a primary at the origin on which $\mathrm{Gram}_{\rm tree}^{-1}\mathrm{Gram}_1$ is diagonal. On its descendants $\partial_\mu O$ the commutator is the difference of the two-point normalisations at weights $w_O+1$ and $w_O$ times the classical transformation, and the K-route gives the intrinsic kernel on the descendant pairs: this is the cross-check, available once $\mathrm{Gram}_1$ is computed from the two-point graphs of Def c8-2pt.
+\end{remark}

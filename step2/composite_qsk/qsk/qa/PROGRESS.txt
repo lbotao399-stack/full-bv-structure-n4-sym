@@ -1,0 +1,17 @@
+2026-10-30 07:00 QA Part Q started (referee/comparator); read theory qsk_theory.tex, engine notes/results A and B
+2026-10-30 07:15 TQ4 sign: A states {S^(1)(xi),O} = -F1 from Lemma qs-arrows, whose sign both engines found wrong (B F1; A E0 ratio -2); Prop c1-Q reading gives {S^(1)(xi),O} = +F1, so A's c_Q two-body sign is flipped; B's -2log(3/2) is right
+2026-10-30 07:20 beta-beta disagreement: B nonzero (eps_IJK gamma^K dc, holomorphic), A zero; projection of B's output on twisted letters: qa/out.nosync/bb_projection.json
+2026-10-30 07:25 A-vs-B generic TQ2 row (lamP,lamP)->AW lamM: B's code on A's data (intertwiner S) = A exactly (both orderings)
+2026-10-30 07:30 B's code: mirror symmetry and rotation covariance exact (mirror_B.json, cov_B.json); B's code on A's twisted data: nonzero eps_IJK structure (twist_B_on_A2.json)
+2026-10-30 07:33 ROOT CAUSE: ea_kern.contract rounds products of letter components to Gaussian integers without a check; A's beta letters have entries 1/16 -> every A twist entry with a beta letter is spuriously 0 (betabeta, betagamma, betab->beta dc, betab->gamma gamma). bisect_A.json
+2026-10-30 07:34 rerun of A's beta entries with 16 x beta letters started (twistA_fixed.json)
+2026-10-30 07:42 A twist entries recomputed with 16 x beta letters (twistA_fixed.json): betabeta != 0 (eps_IJK gamma^K dc, holomorphic), betagamma = 0 (genuine), beta b -> beta dc != 0, beta b -> gamma gamma != 0; b-gamma linear in its 1/2-entry outputs (unaffected)
+2026-10-30 07:43 A's code with integer letters = B's code exactly on twisted betabeta at 4 momenta (twistA_realmom_scaled run)
+2026-10-30 07:44 independent analytic checks (qq_indep_checks.py): n=1 cycle -1/(2eps)-(3/8)|q|^2, T-dependence O(eps); K_b composite-line log T coefficient -3/(16 pi^2) b (scalar), 3/(8 pi^2) with fibre factors; n_t=2 constant numerator log 2
+2026-10-30 07:47 G-R1 re-derived with consistent signs (r1_check*.json): s(a3 F3) + L1^(0)(F1) + {S1(xi), L1^(0)(O)} = -2Lk - k + (1+2L)k = 0; engine A's own pass used {S,O}=-F1, A_V <- -Gamma and an antisymmetrised (c,A_V) output pair (C forced to 0), inconsistent with its L1^(0)(O) != 0
+2026-10-30 07:49 A-vs-B n=0 TQ2 rows (<=2 outputs) via B's code on A's data: 71/71 strict word agreement so far; n=1 queued
+2026-10-30 07:49 A-vs-B n=0: 85/85 rows agree strictly (ab_strict_summary.json); K_b intrinsic 2/2 agree (K_compare.json)
+2026-10-30 07:52 n=1 comparison running; (A_V,A_perp)->(c,lam*) disagrees: B never places T5 with a lam* output (qb_job sequences); A split T5b_split.json
+2026-10-30 08:20 A-vs-B n=1 (d_0 on X_a): 83/85 strict agreement; the 2 disagreements are (A_V,A_perp)->(c,lam*), explained exactly by route B's missing T5 placement with lam* output (T5b_emulate.json)
+2026-10-30 08:24 eta intrinsic (B code on A data): 4/4 agree; K_b intrinsic 2/2 agree
+2026-10-30 08:25 final: qa/compare.json, qa/findings.json (16 findings: 1 fatal, 7 major, 8 minor); scripts qa/src.nosync, outputs qa/out.nosync

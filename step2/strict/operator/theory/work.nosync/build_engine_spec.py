@@ -1,0 +1,116 @@
+import json, os
+spec = {
+ "title": "Engine specification, strict Costello route (R10), operator side: every one-loop component L_1(O)^(1)(x) on all local operators from the defect flow, for x = Delta, P_b, M_omega in so(V), R in so(W_R^perp), xi in S_+(x)W and S_-(x)W^*, eta in Sigma^*, K_b; arity-zero L_1^(0); arity-two components where the algebra needs them",
+ "theory": "step2/strict/operator/theory/operator_theory.tex (+ _build/operator_theory.pdf, 25 pp., 0 errors, 0 undefined references). Labels below (thm:op-master, ...) are internal to that file; labels c8-..., c11-... are manuscript labels.",
+ "conventions": {
+  "manuscript": "Ch1-Ch11 (Ch8 Lemma c8-transfer, Def c8-rep, Thm c8-L, Def c8-components, Cor c8-homotopy, Prop c8-Tsafe, Def c8-K, Thm c8-K, Thm c8-dag, Thm c8-fields, Def c8-radial, Def c8-2pt, Thm c8-adjoint, Cor c8-gram; Ch9 Lemma c9-ops, Prop c9-composite, Prop c9-conj, Prop c9-Qconj, Prop c9-ward, Thm c9-D1, Thm c9-P1, Prop c9-scheme; Ch10 Def c10-letters, eq c10-decomp, Thm c10-decomp, Thm c10-brst, eq c10-finitesp, Prop c10-bound1, Lemma c10-special, Prop c10-shape; Ch11 Def c11-sp, Thm c11-simplex, Prop c11-genfun, Prop c11-k1, Def c11-defect, Thm c11-classes, Thm c11-oddsimplex, Table c11-terms, Lemma c11-lines, Def c11-families, Prop c11-targets)",
+  "regulator": "P(eps,T) = int_eps^T (Q^GF (x) 1) K_t dt; Schwinger cutoff t >= eps on every edge; special edge K_eps - K_0 = ((e^{-eps H} - 1) (x) 1) K_0 with t in [0,eps]; T = infinity at generic momenta along Delta, P_b, so(V), so(W), Sigma, Sigma^*; finite T along K_b and along (eta_1, eta_2) with Gamma(eta_1,eta_2)|_V != 0. NO dimensional regularisation in any role; no IR datum other than T.",
+  "unit": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2) (code-level name 'unit'; 'units' in text)",
+  "field_counting": "N = 2 int(A,A*) - 4 int(lambda*,lambda) - int(c*,c); bracket multiplies c, A, lambda, A*, lambda*, c* by 1, 2, 4, -2, -4, -1",
+  "natural_log_map": "lc^nat(M) = lc(M) - {u N, M} (map of Thm c10-brst); lc(M), ct_m(M) the log eps and eps^-m coefficients of d_delta I^CT[eps](M)",
+  "two_component": "Def c8-twocomp: Srednicki sigma/sigmabar Wick-rotated, sigma^m = (sigma_vec, i), sigmabar^m = (-sigma_vec, i), eps^12 = eps^{1dot 2dot} = +1; S_+ undotted; W upper index i, W^* lower; xi_alpha^i (Q^i_alpha), xibar_{alphadot i} (Qbar_{alphadot i}), eta^alpha_i (S^alpha_i), etabar^{alphadot i} (Sbar^{alphadot i}); Weinberg via rho(v) = gamma_W^mu v_mu",
+  "sign_rule": "defect cycles read with the sign of Def c11-defect (ii): -(-1)^{n(<sigma) + |S^(1)(x)| (n(<s) + [s<sigma])}; even x: Def c11-sp sign times the special-edge sign; vertex-vertex sign of the composite workflow (value -1) for the composite cycles"
+ },
+ "definitions": {
+  "generators": "Delta (v = 2E, lambda = 0, position degree 1); P_b (v = b, -2, 0); M_omega (v = omega x, 0, 1); R in so(W_R^perp) (0, 0); xi in Sigma (-1, 0); eta in Sigma^* (Killing spinor rho(x) eta, +1, 1); K_b (v = x^2 b - 2(b.x)x, +2, 2)",
+  "variation_kernel": "V_x(eps,T) = (x. (x) 1 + 1 (x) x.) P(eps,T) = ([x., P*] (x) 1) K_0; Delta: -4(eps d_eps + T d_T) P; P_b, M_omega, R: 0; xi: (C_xi g(H) (x) 1) K_0; eta: Lemma op-comm (iv); K_b: Lemma op-comm (v)",
+  "composite_line": "L_x = (P* x. (x) 1 + 1 (x) P* x.) P; exists for Delta, P_b, M_omega, K_b (c -> A_V), xi (T_1, lambda -> c), eta (x^mu T_1(xi_mu)); none for R. [Q, P* x. P*] = E x. P* - P* x. E (even x), = 0 for Delta, P_b, M_omega; != 0 for K_b, xi, eta",
+  "defect_cycle": "chain X_a - e_0 - V_1 - ... - V_n - e_n - X_b: vertices of I and EXACTLY ONE term of S^(1)(x) (on a line / at the special edge / cubic T_5), edges P(eps,T) and EXACTLY ONE special edge",
+  "Upsilon_x": "Upsilon_x(X_a,X_b) = [eps^0] D_x(X_a,X_b;eps,T) + F_x(X_a,X_b), F_x = -sum_{m>=1} ((-1)^m/m!) ({I, ct1_{x,m}(X_a X_b)}_{H^m} + {S^(1)(x), ct_m(X_a X_b)}_{H^m})",
+  "Upsilon_0": "[eps^0] (special-edge cycles of the pair, vertices of I) - sum_m ((-1)^m/m!) {I, ct_m(X_a X_b)}_{H^m}",
+  "master_formula": "hbar L_1(O)^(1)(x) = sum_{a<b} (+-) Upsilon_x(X_a,X_b) - {hbar F_1^(1)(x), O};  hbar L_1(O)^(0) = sum_{a<b} (+-) Upsilon_0(X_a,X_b) - {hbar F_1^(0), O} - sum_m ((-1)^m/m!) {ct_m(I^CT), O}_{H^m}  (Thm op-master; THE source of every number)",
+  "composite_pair_kernel": "C_x(X_a,X_b) = [eps^0] of the special-edge composite cycles (Def c11-sp), x in {Delta, P_b, M_omega}",
+  "Xi": "Xi_x(eps): amputated 1PI composite loops of I; Xi^sigma_x: same with one special edge on the cycle (sign of Prop c11-master); Lemma op-Cid: s Xi_x = Xi^sigma_x; composite part = [eps^0] Xi^sigma_x",
+  "centred_parts": "Upsilon^0_y: kernel at x_O with the Killing data centred (x -> z = x - x_O; z^mu -> -i d/dr_mu, z^mu z^nu -> -d^2/dr_mu dr_nu at r = 0, r injected at V_s)",
+  "cocycle": "delta(x) = map induced on the cohomology H of s on a family by -hbar Lambda^(1)_1(x); rho_0(x) induced by -Lambda^(1)_0(x); delta([x,y]) = [delta(x), rho_0(y)] + [rho_0(x), delta(y)] (Thm op-algebra)"
+ },
+ "theorems_to_use": {
+  "thm:op-master": "classes F, C2, C0, Br, Ac, Ct; master formula; no log eps in defect cycles; poles cancel by eq c11-pole, log eps by eq c11-logcov; I^CT_psl^(1)(x) has no poles along every generator; K_b at finite T, T d_T = O(eps)",
+  "thm:op-ward": "{S^(1)(x), W} = d_delta W(P, J + delta {S^(1)(x),J}) - hbar d_{V_x} W - (1/2)(d_{V_x}(W^2) - 2 W d_{V_x} W) for even x",
+  "thm:op-conj": "second evaluation along Delta, P_b, M_omega, R: hbar L_1(O)^(1)(x) = Var_x(O) + composite term - {hbar F_1^(1)(x), O}, Var_Delta = 4 lc(O), others 0; composite term 0 along R",
+  "thm:op-a": "sum over pairs: Upsilon_Delta = 4 lc + C_Delta; Upsilon_{P_b} = C_{P_b}; Upsilon_{M_omega} = C_{M_omega}; Upsilon_R = 0 (on cocycles with L_1^(0) = 0)",
+  "conj:op-pair": "the same pair by pair (gate G-D1pair)",
+  "thm:op-b": "position decompositions graph by graph: Upsilon_Delta = 2 x_O^mu Upsilon_{P_mu} + Upsilon^0_Delta; Upsilon_{M_omega} = (omega x_O)^mu Upsilon_{P_mu} + Upsilon^0_M; Upsilon_eta = x_O^mu Upsilon_{rho(e_mu) eta} + Upsilon^0_eta; Upsilon_{K_b} = v(x_O)^mu Upsilon_{P_mu} - (b,x_O) Upsilon^0_Delta + Upsilon^0_{M_{omega_{x_O}}} + Upsilon^0_{K_b}, omega_{x_O} z = 2((x_O,z) b - (b,z) x_O)",
+  "thm:op-c": "K_1 along K_bbar = -(P_1 along P_b)^adj + hbar [{S^(1)(K_bbar),-}, Gram_tree^-1 Gram_1] under H1-H3 (cross-check only)",
+  "thm:op-local": "composite term of a cocycle = sum over pairs of C_x; nonlocal {Xi^ren_x, O} cancels between type I and type II; s lc^(1)_x(O) = -eps_Xi {L^(1)(x), O}; pole identity of the special-edge composite cycles",
+  "thm:op-algebra": "R1 local; arity-two relation eq op-Rxy; cocycle on cohomology; scheme changes = coboundaries + outer B",
+  "cor:op-relations": "R2 (xi,xi'), R3 (xi,eta), R4 twist, R5 (K,P), R6 (eta1,eta2), R7 [delta(Delta), rho_0(x)] = 0, R8 Whitehead on so(V)+so(W)",
+  "prop:op-tfix": "free one-body directions acting as -t_x rho_0(x): t additive on nonzero brackets => t = a B + (c/2) lambda; t_Delta = t_so(V) = t_so(W) = 0",
+  "simplex": "Thm c11-oddsimplex: 16 pi^2 [eps^-m] = (1/m) int_{alpha_sigma min} [(min_{f!=sigma} alpha_f)^m - alpha_sigma^m] F_m; 16 pi^2 [eps^0] = int_{alpha_sigma min} F_0 log(min_{f!=sigma} alpha_f / alpha_sigma); n_t = 2: alpha in [0,1/2], weight log((1-alpha)/alpha); constant F_0: F_0 log(n_t/(n_t-1))/(n_t-1)!"
+ },
+ "inputs": {
+  "action_side": "step2/strict/action/ (action_theory.tex and the action engines' results): hbar F_1^(0); hbar F_1^(1)(x) for every generator with its free directions (Hypothesis op-A table) as SYMBOLS (theta, theta_lambda, theta_V, kappa_V, kappa_lambda, theta_P.., theta_M.., R sector coefficients, theta^xi_V, theta^xi_perp, eta directions, K_b directions, a (G_B), coupling); Ob^(2)(y,P_b) and hbar F_1^(2) where the algebra gates need them. Read ONLY through the one-body interface {hbar F_1^(k), -}. If not yet available: carry the one-body terms fully symbolically and report every result as a function of the symbols.",
+  "two_letter": "step2/twoletter/engine_a, engine_b: lc, ct_m pair tables (pair weight <= 6 explicit), vertex functions, colour blocks, sign of the pair kernels",
+  "composite": "step2/composite_qsk/composite/engine_a, engine_b: special-edge composite cycles C_Delta, C_{P_b} (extend to M_omega)",
+  "qsk": "step2/composite_qsk/qsk/engine_a, engine_b: defect cycles along xi, eta, K_b, operators C_xi, Y_eta, C_K, census, finite special vertices (D <= 1 rows done; extend to D >= 2)",
+  "realisation": "superconformal/model.py (S1_odd, S1_even) for route A; an independently written two-component realisation for route B"
+ },
+ "tasks": [
+  {"id": "OP0", "what": "operators x. on all slots for every generator incl. M_omega and R; commutators [x.,Q] = 0, [x.,Q^GF], [x.,H] (Lemma op-comm); variation kernels V_x; composite lines and [Q, P* x. P*] (Lemma op-lines); exact on plane waves", "routes": ["A", "B"]},
+  {"id": "OP1", "what": "defect-cycle tables Upsilon_x for x in {Delta, P_b, M_omega, R, xi (both chiralities), eta (both), K_b}: all 45 slot pairs with defect cycles (F8), every leg set with superficial degree D >= 0, chains <= 6 vertices; poles, [eps^0], finite special vertices F_x INCLUDING the rows D >= 2 with their vacuum-pole terms; route A n <= 3 letter derivatives, route B n <= 1", "routes": ["A", "B"]},
+  {"id": "OP2", "what": "arity-zero kernels Upsilon_0 and hbar L_1^(0) on the families; the finite parts psi that set L_1^(0) = 0 (Def c10-hyp (ii)), in particular the cocycle scheme of Thm c11-bilinears (iii)", "routes": ["A", "B"]},
+  {"id": "OP3", "what": "composite pair kernels C_Delta, C_{P_b}, C_{M_omega} on F8 (special-edge composite cycles) and lc pair kernels (two-letter tables) for gate G-D1pair; route B also by the conjugation evaluation (variation kernel + composite cycles) for G-D1sum", "routes": ["A", "B"]},
+  {"id": "OP4", "what": "position decompositions graph by graph (Thm op-b (i)): Delta, M_omega, eta, K_b; centred parts Upsilon^0 via injected momentum r", "routes": ["A", "B"]},
+  {"id": "OP5", "what": "one-body terms -{hbar F_1^(k)(x), X} on every letter from the action-side input with symbolic free parameters; position decomposition of the one-body terms (eq op-onebodypos) where the arity-two input exists", "routes": ["A"]},
+  {"id": "OP6", "what": "assemble Q_1 (both chiralities), S_1, D_1, P_1, M_1, R_1, K_1 (finite T) and L_1^(0) on the families F0-F7; project to cohomology (Remark op-proj); generic and collinear kinematics (Def op-kin)", "routes": ["A", "B (F0, F3, F4 at least)"]},
+  {"id": "OP7", "what": "one-loop algebra: cocycle identities (R1)-(R8) one-sided on all families; two-sided on F0 with the arity-two components of Prop op-master2 along (Delta,P_b), (xi,xi'), (xi,eta), (K_b,P_b'), (eta_1,eta_2); Prop op-tfix on the symbolic free parameters", "routes": ["A", "B (one-sided)"]},
+  {"id": "OP8", "what": "K_b at finite T: T d_T of every defect cycle O(eps) at T = 1, 4, 16; K_1 identical at the three endpoints; boundary term B_T(K_n) of Lemma op-ward2 on F0 for T = 1, 4, 16, 64", "routes": ["B"]},
+  {"id": "OP9", "what": "locality: Lemma op-Cid (s Xi_x = Xi^sigma_x) on the composite loops of I with two and three legs along Delta, P_b, M_omega; Prop op-typeI on F0 (Q(type I) = A + B - eps_Xi {Xi,O})", "routes": ["A", "B"]},
+  {"id": "OP10", "what": "cross-checks (never a source of numbers): spectra vs [B03c] (Prop c11-targets, Table c11-su11); twist class [Q^xi_1] vs [BK, (3.7), (3.64)-(3.69)] modulo Im Q^xi_0 on F9; K = P^dagger (Thm op-c) with Gram_1 from two-point graphs on F0; Ch9 regression", "routes": ["A", "B"]}
+ ],
+ "families": {
+  "F0": "scalar bilinears int omega (iota_w1 A, iota_w2 A) traceless and trace, descendants d_mu O, {S^(1)(xi),O}, {S^(1)(xi'),{S^(1)(xi),O}}, Konishi weight-3 singlets; chiral-primary bilinears along rank-one xi",
+  "F1": "tr(iota_w1 A ... iota_wL A), su(2) sector L <= 8 (planar)",
+  "F2": "su(1|1): tr(Z^{L-M} psi^M), L <= 6",
+  "F3": "twist two tr(D_n^k Z D_n^{S'-k} Z), S' <= 6, with gauge-completion letters (A_V, Z) one output",
+  "F4": "fermion sl(2): tr(D_n^k psi D_n^{S'-k} psi), S' <= 5",
+  "F5": "tr(D_n^k psi3 D_n^{S'-k} psi4) with tr(D_n^k Z' D_n^{S'-k} F_11), S' <= 4",
+  "F6": "gluon sl(2): tr(D_n^k F_11 D_n^{S'-k} F_11), S' <= 2, with [A_V ^ A_V] part",
+  "F7": "tr(D_n^k F_11 D_n^{S'-k} psi), S' <= 4",
+  "F8": "single-pair functionals int omega X_a X_b, 45 slot pairs, n <= 3 (A) / n <= 1 (B), gauge-variant, antifield and ghost letters",
+  "F9": "holomorphic-twist pair entries along xi = u (x) z (Table c11-twist)"
+ },
+ "kinematics": {
+  "generic": "letter momenta in Q(i)^4, |p_a|^2 != 0, pairwise non-collinear, p_a + p_b != 0; directions b, b' generic with (b,n) != 0, b not in C n; omega with omega n not in C n; xi of rank two (both chiralities) and rank one (twist); eta generic",
+  "on_shell": "complex null momenta pairwise non-collinear; rho(p) lambda = 0; transverse gauge polarisations (projection to cohomology)",
+  "collinear_insufficient_for": ["P_1 and position parts along b not in C n", "M_1 for omega not fixing n", "K_1 and its position parts", "descendants d_b O", "(R5), (R6), eq op-poscoh"]
+ },
+ "weight_cutoffs": {
+  "tables": "45 slot pairs; route A n <= 3, route B n <= 1 letter derivatives; every leg set with superficial degree D = w_Xa + w_Xb + delta_x - w_out >= 0 (delta: Sigma 1/2, eta position 1/2, eta intrinsic -1/2, K_b 1/0/-1, Delta and M position part 1 / intrinsic 0, P_b 1, R 0); chains <= 6 vertices",
+  "arity_zero": "two-letter tables pair weight <= 6 explicit, counts to 7",
+  "families": "Def op-families ranges"
+ },
+ "routes": {
+  "A": {"name": "exact simplex/Schwinger generating functions (extends step2/composite_qsk/qsk/engine_a and step2/composite_qsk/composite/engine_a)", "method": ["chain enumeration with V_s placements (line / at special edge / cubic T_5), vertex functions of I from two-letter engine A, S^(1)(x) from superconformal/model.py", "Gaussian loop integral, eq c11-oddsimplex over ordered subsimplices of {alpha_sigma smallest}, exact Dirichlet-log integrals", "letter derivatives by Prop c11-genfun (Bessel series, index m+n-1)", "position by injected momentum r and derivatives at r = 0", "finite special vertices from ct_m, ct1_{x,m} tables (H^m brackets)", "values on an explicit basis {1, log 2, log 3, ...} over Q(i), units hbar/(16 pi^2) x colour word and u (planar)"], "output_dir": "step2/strict/operator/engine_a/"},
+  "B": {"name": "momentum-space numerator algebra with exact Feynman-parameter integrals plus numerical eps-extrapolation (extends step2/composite_qsk/qsk/engine_b and step2/composite_qsk/composite/engine_b)", "method": ["independently written two-component realisation of S^(1)(x) (Def c8-twocomp) for all generators incl. M_omega, R", "special edge as e^{-eps p^2} - 1, Feynman parameters for P edges, special Schwinger time last", "exact sympy integrals where they close; else mpmath 30 digits at >= 6 values of eps, poles fitted, eps^0 extrapolated, error estimates", "K_b at T = 1, 4, 16", "second evaluation of Thm op-conj (variation kernel + composite cycles) for G-D1sum, independent of the defect cycles"], "output_dir": "step2/strict/operator/engine_b/"},
+  "independence": "neither route reads the other's outputs before the comparison phase; both may import their own earlier code (listed in inputs); vendored files with sha256 in results meta"
+ },
+ "gates": [
+  {"id": "G-reg", "kind": "regression", "statement": "Ch9 bilinears: D_1 = 0 (traceless), -48 u (trace) at theta = -1/3; P_1 = -(1/3 + theta_P) u d_b O; Upsilon^0_Delta = 40/3 O, -104/3 O u; Upsilon_{P_b} = -1/3 u d_b O; Q_1 two-body = -2L B1 + 4L B2 + 4L B3 + 0 B4 u (L = log 3/2); L_1^(0)(O) = -(2+4L) u (w1,w2) int omega (dc, A_V)"},
+  {"id": "G-D1sum", "kind": "theorem", "statement": "Thm op-a on every cocycle family: sum Upsilon_Delta = sum (4 lc + C_Delta); sum Upsilon_P = sum C_P; sum Upsilon_M = sum C_M; sum Upsilon_R = 0; i.e. D_1 = 4 lc^nat + composite + one-body computed both ways"},
+  {"id": "G-D1pair", "kind": "conjecture", "statement": "Conj op-pair pair by pair on F8: Upsilon_Delta = 4 lc + C_Delta, Upsilon_P = C_P, Upsilon_M = C_M, Upsilon_R = 0; report every failing pair with its difference"},
+  {"id": "G-noLog", "kind": "theorem", "statement": "no log eps in any defect cycle or special-edge cycle"},
+  {"id": "G-pole", "kind": "theorem", "statement": "eq c11-pole pair by pair with the vacuum-pole terms of the cubic monomials of {S^(1)(x),O} and sO"},
+  {"id": "G-logcov", "kind": "theorem", "statement": "eq c11-logcov"},
+  {"id": "G-pos", "kind": "theorem", "statement": "Thm op-b (i) graph by graph along Delta, M_omega, eta, K_b"},
+  {"id": "G-KT", "kind": "theorem", "statement": "T d_T of every K_b defect cycle O(eps) at T = 1, 4, 16; K_1 identical"},
+  {"id": "G-Cid", "kind": "theorem", "statement": "Lemma op-Cid: s Xi_x = Xi^sigma_x on the two- and three-leg composite loops; composite part = [eps^0] Xi^sigma_x local"},
+  {"id": "G-typeI", "kind": "theorem", "statement": "Prop op-typeI on F0: Q(type I) = A + B - eps_Xi {Xi_x, O}; nonlocal brackets cancel with type II"},
+  {"id": "G-spec", "kind": "scheme-independent target", "statement": "spectra of D_1 on F1-F7 = -8 u x eigenvalues of sum H_{l,l+1} [B03c] (Prop c11-targets, Table c11-su11) at the free coefficients fixed by (R7) and (Delta,P_b)"},
+  {"id": "G-R", "kind": "theorem", "statement": "(R1)-(R8) one-sided on all families, two-sided on F0; Prop op-tfix: residual freedom t = a B + (c/2) lambda"},
+  {"id": "G-AB", "kind": "comparison", "statement": "routes A and B agree on every overlapping entry (exact vs >= 25 digits)"},
+  {"id": "G-twist", "kind": "cross-check", "statement": "[Q^xi_1] on F9 vs [BK, (3.7), (3.64)-(3.69)] modulo Im Q^xi_0; never a source of numbers"},
+  {"id": "G-KP", "kind": "cross-check", "statement": "Thm op-c on F0: K_1 = -(P_1)^adj + hbar[{S^(1)(K),-}, Gram_tree^-1 Gram_1]; never a definition"},
+  {"id": "G-KPbdry", "kind": "cross-check", "statement": "B_T(K_n) -> 0 as T -> infinity on F0 (expected O(T^{-1/2}))"}
+ ],
+ "outputs_expected": {
+  "each_route": ["results.json (all tasks; exact strings or numerics with error estimates; every one-body term as a function of the action-side symbols)", "gates.json (id, value, target, pass/fail)", "notes.txt (method, conventions, sign rule)", "PROGRESS.txt (incremental, timestamped)", "run_all.py"],
+  "schema_note": "kernels per generator / pair / leg set / chain: {generator, pair, n, leg_set, chain(path, placement, term), poles {m: coeff}, eps0, finite_vertex, Upsilon, centred_part}; components per family: matrices on a basis with the basis listed; two-component forms of every reported entry (Def c8-twocomp)",
+  "status_labels": ["derived-from-construction", "computed by two engines + referee", "conjectured", "open"]
+ },
+ "machine": {"memory": "at most one heavy process per agent, each < 1.5 GB RSS", "tmp": "never /tmp; code and caches in *.nosync subfolders (iCloud eviction); PROGRESS.txt written incrementally; if a read of an evicted file stalls, use the GitHub copy (gh api repos/lbotao399-stack/full-bv-structure-n4-sym/contents/<path>) when its size equals the local size", "language": "pure Python (fractions, sympy, numpy, mpmath) or C; cluster-portable; no Wolfram, no cluster, no browser", "files": "no .md files; .json/.txt/.tex/.py; manuscript/ and reader/ untouched"},
+ "checks_done": {"tex": "operator_theory.tex compiled with pdflatex into _build: 25 pp., 0 errors, 0 undefined references"}
+}
+out = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine_spec.json')
+json.dump(spec, open(out,'w'), indent=1, ensure_ascii=True)
+print(out, os.path.getsize(out))

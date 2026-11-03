@@ -1,0 +1,59 @@
+\section{Census of the defect cycles and the output bound}
+\label{sec:qs-census}
+
+\begin{proposition}[Output bound along $\Sigma$, $\Sigma^*$ and $K_b$]
+\label{prop:qs-bound}
+Let $\delta_x:=-\tfrac12\lambda_x$, the weight of the Killing data of $x$ being counted as in Prop c7-select. A defect cycle of the pair $(X_a,X_b)$ along $x$ whose outputs have total Weyl weight $w$ (fields only) has superficial degree
+\[
+\begin{aligned}
+&D=w_{X_a}+w_{X_b}+\delta-w,\qquad \delta=\tfrac12\ (\xi\in\Sigma,\ \text{and the position part along }\eta),\quad \delta=-\tfrac12\ (\Upsilon^0_\eta),\\
+&\delta=1,0,-1\ (\text{parts of }K_b\text{ multiplying }v(x_O),\ dv(x_O),\ d^2v),
+\end{aligned}
+\]
+and its coefficient of $\varepsilon^0$ is a polynomial of degree $D$ in the output momenta, zero for $D<0$; its coefficients of $\varepsilon^{-m}$ have degree $D-2m$. Hence:
+\begin{itemize}
+\item (i) along $\xi\in\Sigma$: $\Upsilon_\xi(X_a,X_b)$ is translation invariant, of Weyl weight $w_{X_a}+w_{X_b}+\tfrac12$, of the pair degree and of total parity $|X_a|+|X_b|+1$, with at most $w_{X_a}+w_{X_b}+\tfrac12+\deg X_a+\deg X_b$ output fields;
+\item (ii) along $\eta\in\Sigma^*$: $\Upsilon_\eta=\sum_\mu x^\mu\Upsilon_{\rho(e_\mu)\eta}+\Upsilon^0_\eta$, with $\Upsilon^0_\eta$ translation invariant of Weyl weight $w_{X_a}+w_{X_b}-\tfrac12$ and at most $w_{X_a}+w_{X_b}-\tfrac12$ plus the pair degree outputs;
+\item (iii) along $K_b$: $\Upsilon_{K_b}$ is a polynomial of degree at most two in the position, of total Weyl weight $w_{X_a}+w_{X_b}-1$ with the position at weight $-1$, of the pair degree and parity, with at most $w_{X_a}+w_{X_b}+1$ plus the pair degree outputs (the part multiplying $v(x_O)$), and the intrinsic part $\Upsilon^0_{K_b}$ has Weyl weight $w_{X_a}+w_{X_b}-1$.
+\end{itemize}
+The same bounds hold for the counterterm cycles, whose outputs have the pair degree minus one, and for the finite special vertices.
+\end{proposition}
+
+\begin{proof}
+Lemma c10-degree with one vertex of weight $4+\delta$: every vertex of $I$ has weight $4$, the term of $S^{(1)}(x)$ has weight $4+\delta$ on its fields and derivatives once the Killing data carry their weights, every edge of $P$ has numerator degree $w_1+w_2-2$, the special edge $-|l+q|^2$ over a Schwinger interval $[0,\varepsilon]$ has degree $0=w+(4-w)-4$; the count of Lemma c10-degree gives $D$. The degree of the $\varepsilon^0$ coefficient is Theorem \ref{thm:qs-simplex}. Degree and parity: $S^{(1)}(x)$ has degree $-1$ and the special edge $+1$; $S^{(1)}(x)$ has total parity $0$ for odd $x$ and $1$ for even $x$, the special edge $1$. The number of outputs: Weyl weight plus degree is at least $1$ for every field and antifield, with equality for $c$ and $A$ (Prop c10-bound (iii)). For the position parts, Proposition \ref{prop:qs-posdec}.
+\end{proof}
+
+\begin{proposition}[Census]
+\label{prop:qs-census}
+\begin{itemize}
+\item (i) Every defect cycle conserves the degree and shifts the total parity by that of $S^{(1)}(x)$ plus one; the centre $\mathbb Z/4$ of $SL(4,\mathbb C)$, $W\mapsto iW$, is conserved once $x$ is given its charge ($+1$ on $S_+\otimes W$ and $S_-\otimes W$, $-1$ on $S_-\otimes W^*$ and $S_+\otimes W^*$, $0$ on the even part).
+\item (ii) Along every generator, defect cycles exist for $45$ of the $55$ unordered pairs of slots; the ten pairs without are the pairs of two letters among $A^*|_\perp$, $\lambda^*_+$, $\lambda^*_-$, $c^*$, each of which needs the special edge.
+\item (iii) $k_I=0$ (no vertex of $I$ on the cycle) occurs exactly for the placement of $S^{(1)}(x)$ at the special edge, the cycle being letter--$P$--$S^{(1)}(x)$--special edge--letter; such a cycle without outputs contributes only poles.
+\item (iv) The leg sets of the defect cycles along $\xi\in S_+\otimes W$ through the pairs of field and ghost letters without derivatives are those of Table \ref{tab:qs-fieldpairs}; the numbers of leg sets with $n\le3$ derivatives on the two letters, along $\xi$ and for the intrinsic parts along $\eta$ and $K_b$, are those of Table \ref{tab:qs-counts}. Along $S_-\otimes W^*$, $S_-\otimes W$ and for the position parts the tables are the same with the chiralities exchanged and with $\delta$ of Proposition \ref{prop:qs-bound}.
+\item (v) Along $\xi\in S_+\otimes W$ the pair $(c,c)$ carries no defect cycle at the pair weight without derivatives, and the pairs $(c,\AV)$, $(c,\Ap)$, $(c,\lambda_\pm)$ carry only leg sets with one ghost output.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Each vertex of $I$, each term of $S^{(1)}(x)$ and each component of $P$ and $K_0$ has these charges (Table \ref{tab:qs-terms}, Def c1-vertex, Prop c3-P). (ii)--(v) Exhaustive enumeration (\path{src.nosync/census_qsk.py}, on the slot data of the verified census base of Part C): chains with up to six vertices on the cycle, exactly one term of $S^{(1)}(x)$ in each of its placements and exactly one special edge, output weights up to $w_{X_a}+w_{X_b}+3+\delta$; every chain is checked for degree, parity and the centre, and for the agreement of the superficial degree with the direct count $\deg(\text{numerator})+4-2E$ ($0$ violations among $250172$ chains along $\xi$, $71958$ for the intrinsic part along $\eta$, $26127$ for the intrinsic part along $K_b$, $347780$ and $119553$ for the even parts of degree one and zero, the output bound of Proposition \ref{prop:qs-bound} holding on every chain). A letter $A^*|_\perp$, $\lambda^*$ or $c^*$ has no component of $P$ and must lie on the special edge, of which there is one. A cycle without outputs is a vacuum value, homogeneous in $\varepsilon$ of degree $-D/2$ (Lemma c10-self), so it has no $\varepsilon^0$ term unless $D=0$.
+\end{proof}
+
+\input{../src.nosync/tab_census.tex}
+
+\begin{remark}[The pairs of the holomorphic twist]
+\label{rem:qs-twistpairs}
+With the letter dictionary of Rem c11-twist ($\gamma\leftrightarrow A_{ij}z^j$, $\beta\leftrightarrow u'^\alpha\lambda_\alpha{}^i$ modulo $z^i$, $\partial_{\dot\alpha}c\leftrightarrow\bar\lambda_{\dot\alpha i}z^i$, $c\leftrightarrow c$, $b\leftrightarrow u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta$ or a component of $\lambda^*_+$, $\partial_{\dot\alpha}\leftrightarrow u'^\alpha\sigma^m_{\alpha\dot\alpha}D_m$), the pair entries of [BK, (3.64)--(3.69)] are carried by the following pairs and leg sets along $\xi=u\otimes z\in S_+\otimes W$ (Table \ref{tab:qs-twistcensus}); every listed leg set is present in the census, at the output weight $w_{X_a}+w_{X_b}+\tfrac12$ required by Lemma arity of the targets.
+\end{remark}
+
+\begin{longtable}{p{3.2cm}|p{3.4cm}|c|p{4.6cm}|p{2.0cm}}
+entry & pair of slots & $n$ & leg set (output weight $W_0+n+\tfrac12$) & chains, fewest $k_I$\\
+\hline
+$\beta\gamma$ [BK, (3.66)] & $(\lambda_+,\Ap)$ & $0$ & $\lambda_-\lambda_-$ & $7$, $2$\\
+$\beta\beta$ [BK, (3.67)] & $(\lambda_+,\lambda_+)$ & $0$ & $\Ap\lambda_-$ & $9$, $1$\\
+$b\gamma$ [BK, (3.68)] & $(\AV,\Ap)$ & $1$ & $\Ap\lambda_-$ & $15$, $1$\\
+$\beta b$ [BK, (3.69)] & $(\lambda_+,\AV)$ & $1$ & $\lambda_+\lambda_-$; $\Ap\Ap$ & $15$, $2$; $11$, $1$\\
+$bb$ [BK, (3.65)] & $(\AV,\AV)$ & $2$ & $\AV\lambda_-$; $\Ap\lambda_+$ & $8$, $1$; $7$, $1$\\
+$bc$ [BK, (3.64)], $b\leftrightarrow\lambda^*_+$ & $(c,\lambda^*_+)$ & $0$ & $\lambda_-\lambda_-$ & $1$, $2$\\
+$\gamma\gamma$, $\gamma c$, $\beta c$, $cc$ [BK, (3.11)] & $(\Ap,\Ap)$; $(\Ap,c)$; $(\lambda_+,c)$; $(c,c)$ & $0$ & $\Ap\lambda_+$, $\AV\lambda_-$, $c\lambda^*_+$, $\lambda_-$; $c\lambda_+$; $c$, $\AV c$; none & \\
+\end{longtable}
+\begin{center}Table \refstepcounter{table}\thetable\label{tab:qs-twistcensus}: the defect cycles carrying the pair entries of the holomorphic twist. The entry $bc$ with $b$ represented by the self-dual field strength has arity two (Table c11-twist) and is carried by the cycles with two vertices $S^{(1)}(\xi)$ of Section \ref{sec:qs-twist}.\end{center}

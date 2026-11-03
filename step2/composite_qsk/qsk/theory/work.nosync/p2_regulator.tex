@@ -1,0 +1,141 @@
+\section{The generators on the regulator}
+\label{sec:qs-reg}
+
+For an odd generator the operator $x.$ is the odd linear operator on $\mathscr E$ that induces, as in [C07, §6.2], the derivation given by the bracket with the quadratic part of $S^{(1)}(x)$ (Prop c7-susy); for an even generator it is $v.$ of Def c7-vdot. A linear operator $X$ acts on functionals as the derivation induced by $\ell\mapsto\ell\circ X$; $[-,-]$ is the graded commutator; $g(H):=\int_\varepsilon^Te^{-tH}dt$, so that $P\star=Q^{GF}g(H)$ and $QP\star+P\star Q=e^{-\varepsilon H}-e^{-TH}=:E(H)$ (Prop c9-composite (iii)). For a constant-coefficient operator $D$ and a coordinate $x^\mu$, $\sigma^\mu(D):=[D,x^\mu]$ is its symbol along $e_\mu$, a constant-coefficient operator of order one less.
+
+\begin{lemma}[The arrows of $\xi.$ and of $Q^{GF}$]
+\label{lem:qs-arrows}
+For $\xi\in\Sigma$, $\xi.$ maps the slot of $\lambda$ to the slot of $A$ by $\lambda\mapsto-\Gamma(\xi,\lambda)$, the slot of $A$ to the slot of $\lambda$ by $A\mapsto-\tfrac12\rho(dA)\xi$, the slot of $A^*$ to the slot of $\lambda^*$ and the slot of $\lambda^*$ to the slot of $A^*$ (the arrows forced by the preservation of $\langle\,,\rangle$), and vanishes on the slots of $c$ and $c^*$. $Q^{GF}$ maps $A^*\mapsto-2A^*$ (slot of $A$), $A\mapsto-d^*(A|_V)$ (slot of $c$), $c^*\mapsto dc^*$ (slot of $A^*|_V$), $\lambda^*\mapsto-{\not d}|_{\Sigma^*}\lambda^*$ (slot of $\lambda$), and vanishes on $c$ and $\lambda$ (Table c3, Chapter 3).
+\end{lemma}
+
+\begin{proof}
+The terms $-(\Gamma(\xi,\lambda),A^*)$ and $\tfrac12(\rho(dA)\xi,\lambda^*)$ of $S^{(1)}(\xi)$ pair the slots $(\lambda,A^*)$ and $(A,\lambda^*)$; the bracket of a quadratic functional $\int(Xe,e^*)$ with a coordinate functional is the coordinate functional composed with the corresponding arrow (proof of Lemma c9-SDelta (i)), and each pairing term gives one arrow between field slots and the transposed arrow between antifield slots (proof of Prop c7-susy). The table of $Q^{GF}$ is Chapter 3.
+\end{proof}
+
+\begin{proposition}[Commutators with the regulator]
+\label{prop:qs-comm}
+\begin{itemize}
+\item (i) Supercharges. For $\xi\in\Sigma$: $[\xi.,Q]=0$, $[\xi.,H]=0$, and $\xi.$ preserves $\langle\,,\rangle$. The even operator
+\begin{equation}
+C_\xi:=[\xi.,Q^{GF}]=\xi.\,Q^{GF}+Q^{GF}\xi.
+\label{eq:qs-Cxi}
+\end{equation}
+of degree $-1$ has constant coefficients, every component of order exactly one, and the four components
+\[
+\lambda\mapsto d^*\big(\Gamma(\xi,\lambda)|_V\big)\ (\text{slot of }c),\qquad A^*\mapsto\lambda,\qquad \lambda^*\mapsto A,\qquad c^*\mapsto\lambda^*,
+\]
+each nonzero for $\xi\neq0$, and vanishes on the slots of $A$ and $c$. On a plane wave $e^{i(p,x)}$ the first is $\lambda\mapsto-i\big(p,\Gamma(\xi,\lambda)|_V\big)$.
+\item (ii) Special supercharges. For $\eta\in\Sigma^*$, with $\xi_\mu=\rho(e_\mu)\eta$ and $\eta^0.$ the constant operator of order zero induced by $s_0$ of \eqref{eq:qs-Seta} (arrows $\Ap\to\lambda$ and $\lambda^*\to A^*|_\perp$),
+\begin{equation}
+\begin{aligned}
+&\eta.=\sum_\mu x^\mu\,\xi_\mu.+\eta^0.,\qquad [\eta.,Q]=\sum_\mu\sigma^\mu(Q)\,\xi_\mu.+[\eta^0.,Q]=0,\\
+&[\eta.,H]=2\sum_\mu\xi_\mu.\,\partial_\mu,
+\end{aligned}
+\label{eq:qs-etacomm}
+\end{equation}
+\[
+[\eta.,Q^{GF}]=\sum_\mu x^\mu\,C_{\xi_\mu}+C^0_\eta,\qquad C^0_\eta:=\sum_\mu\sigma^\mu(Q^{GF})\,\xi_\mu.+[\eta^0.,Q^{GF}],
+\]
+with $C^0_\eta$ constant-coefficient of order at most one. In particular $\eta.$ commutes with neither $H$ nor $Q^{GF}$, and the second identity of \eqref{eq:qs-etacomm} is the conformal Killing equation of $\rho(x)\eta$ in operator form.
+\item (iii) Conformal Killing fields. For an even generator with conformal Killing field $v$, $\partial_\mu v_\nu=\tfrac14(\operatorname{div}v)\delta_{\mu\nu}+\omega_{\mu\nu}$ with $\omega$ antisymmetric, write $v.=v^\mu\partial_\mu+\tfrac12\omega_{\mu\nu}\Sigma^{\mu\nu}+\tfrac w4\operatorname{div}v$ on a slot of Weyl weight $w$, with $\Sigma^{\mu\nu}$ the rotation generators of the slot ($(\Sigma^{\mu\nu}A)_m=\delta_{m\mu}A_\nu-\delta_{m\nu}A_\mu$ on one-forms). Then $[v.,Q]=0$, and for every rotation-covariant constant-coefficient operator $D$ of weight $-2$ (an operator of order $k$ mapping a slot of weight $w$ to one of weight $w+k-2$), in particular $D=Q^{GF}$,
+\begin{equation}
+[v.,D]=-\tfrac12(\operatorname{div}v)\,D-\tfrac w4\,\sigma^\rho(D)\,\partial_\rho(\operatorname{div}v)-\tfrac12\,\sigma^\rho(D)\,(\partial_\rho\omega_{\mu\nu})\,\Sigma^{\mu\nu},
+\label{eq:qs-vD}
+\end{equation}
+\begin{equation}
+[v.,H]=-\tfrac12(\operatorname{div}v)\,H+\tfrac{w-1}2\,(\partial_\rho\operatorname{div}v)\,\partial_\rho+(\partial_\rho\omega_{\mu\nu})\,\Sigma^{\mu\nu}\partial_\rho .
+\label{eq:qs-vH}
+\end{equation}
+For $v=2E$ these are $[v.,Q^{GF}]=-4Q^{GF}$ and $[v.,H]=-4H$ (Prop c7-dil); for $K_b$, $\operatorname{div}v=-8(b,x)$, $\omega_{\mu\nu}=2(x_\mu b_\nu-x_\nu b_\mu)$, and
+\begin{equation}
+\begin{aligned}
+&[v.,Q^{GF}]=4(b,x)\,Q^{GF}+C_K,\qquad C_K:=2\,\sigma^\rho(Q^{GF})\big(w\,b_\rho-b_\nu\Sigma^{\rho\nu}\big),\\
+&[v.,H]=4(b,x)\,H-4(w-1)(b,\partial)+4\,b_\nu\Sigma^{\rho\nu}\partial_\rho ,
+\end{aligned}
+\label{eq:qs-Kcomm}
+\end{equation}
+$C_K$ of order zero with constant coefficients; on the slot of $A^*|_\perp$, $C_K=0$ and $[v.,Q^{GF}]$ is multiplication by $\operatorname{div}v$ (eq c7-divv); on the slot of $\AV$, $C_K\AV=-4(b,\AV)$ in the slot of $c$.
+\item (iv) For translations, $\mathfrak{so}(V)$ and $\mathfrak{so}(W_{\mathbb R}^\perp)$ all these commutators vanish (Prop c7-cov).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) $[\xi.,Q]=0$, $[\xi.,H]=0$ and the preservation of the pairing are Prop c7-susy (i). By Lemma \ref{lem:qs-arrows}, $\xi.Q^{GF}$ has the arrows $A^*\to A\to\lambda$, $c^*\to A^*|_V\to\lambda^*$, $\lambda^*\to\lambda\to A$, and $Q^{GF}\xi.$ the arrows $\lambda\to A\to c$, $A^*\to\lambda^*\to\lambda$, $\lambda^*\to A^*\to A$; the arrows from $A$ and from $c$ end on slots where the second factor vanishes. On $\lambda$, $C_\xi\lambda=Q^{GF}(-\Gamma(\xi,\lambda))=d^*(\Gamma(\xi,\lambda)|_V)$, and $d^*=-\iota_\partial$ becomes $-i\iota_p$. Each arrow of $\xi.$ and of $Q^{GF}$ has order zero or one and the composites have order one: $Q^{GF}$ has order one from $A$ and from $c^*$, $\lambda^*$ and order zero from $A^*$, $\xi.$ order one from $A$ and from $\lambda^*$ and order zero from $\lambda$ and $A^*$. Nonvanishing: on $\lambda$ the component is nonzero because $\Gamma(\xi,-)|_V$ is nonzero on one chirality of $\lambda$ for $\xi\ne0$; the component $A^*\to\lambda$ is nonzero by Prop c7-susy (ii); the components $\lambda^*\to A$ and $c^*\to\lambda^*$ are the transposes of $A^*\to\lambda$ and $\lambda\to c$ for the pairing, because $\xi.$ preserves the pairing and $Q^{GF}$ has the adjointness of Prop c3-adjoint, so that $(C_\xi\otimes1)K_0$ is graded symmetric.
+
+(ii) By \eqref{eq:qs-Seta} the quadratic part of $S^{(1)}(\eta)$ is $\sum_\mu\int x^\mu\,S_2(\xi_\mu)+\int s_0$, with $S_2$ the quadratic part, which gives the decomposition of $\eta.$. For odd $Q$ and even $x^\mu$, $[x^\mu\xi_\mu.,Q]=x^\mu[\xi_\mu.,Q]+[Q,x^\mu]\xi_\mu.$, and $[\xi_\mu.,Q]=0$ by (i). The vanishing of $[\eta.,Q]$ is the part of polynomial degree two of the arity-one equation $\{S,S^{(1)}(\eta)\}=0$ (Lemma c2-components), as in Prop c7-dil. $H$ is $-\partial^2$ on every component and $[x^\mu,-\partial^2]=2\partial_\mu$; $\eta^0.$ and $\xi_\mu.$ have constant coefficients and commute with $H$ by (i). The formula for $[\eta.,Q^{GF}]$ is the same computation with $Q^{GF}$ in place of $Q$.
+
+(iii) $[v.,Q]=0$ is Prop c7-dil. For the transport term, $[v^\mu\partial_\mu,D]=-\sigma^\nu(D)(\partial_\nu v^\mu)\partial_\mu=-\tfrac14(\operatorname{div}v)D^{(1)}-\sigma^\nu(D)\omega_\nu{}^\mu\partial_\mu$, with $D^{(1)}$ the part of order one; for the spin term, $[\tfrac12\omega_{\mu\nu}\Sigma^{\mu\nu},D]=\tfrac12\omega_{\mu\nu}(\Sigma'^{\mu\nu}D-D\Sigma^{\mu\nu})-\tfrac12\sigma^\rho(D)(\partial_\rho\omega_{\mu\nu})\Sigma^{\mu\nu}$, with $\Sigma'$ the generators of the target slot; rotation covariance of $D$ cancels $-\sigma^\nu(D)\omega_\nu{}^\mu\partial_\mu+\tfrac12\omega_{\mu\nu}(\Sigma'^{\mu\nu}D-D\Sigma^{\mu\nu})$ pointwise; for the weight term, $\tfrac{w'}4(\operatorname{div}v)D-D\tfrac w4(\operatorname{div}v)=\tfrac{w'-w}4(\operatorname{div}v)D-\tfrac w4\sigma^\rho(D)\partial_\rho(\operatorname{div}v)$, and $w'-w=k-2$ gives $-\tfrac14-\tfrac14=-\tfrac12$ on the part of order one and $-\tfrac12$ on the part of order zero. For $H=-\partial^2$: $[v^\mu\partial_\mu,-\partial^2]=2(\partial_\rho v^\mu)\partial_\rho\partial_\mu+(\partial^2v^\mu)\partial_\mu=-\tfrac12(\operatorname{div}v)H+(\partial^2v^\mu)\partial_\mu$, and $\partial^2v_\mu=-\tfrac12\partial_\mu\operatorname{div}v$ for a conformal Killing field of $\mathbb R^4$; $[f,-\partial^2]=2(\partial_\rho f)\partial_\rho+\partial^2f$ for a multiplication operator, $\partial^2\omega=0$ and $\partial^2\operatorname{div}v=0$. For $K_b$, $\partial_\mu v_\nu=2x_\mu b_\nu-2b_\mu x_\nu-2(b,x)\delta_{\mu\nu}$ and $\partial_\rho\omega_{\mu\nu}=2(\delta_{\rho\mu}b_\nu-\delta_{\rho\nu}b_\mu)$, which gives \eqref{eq:qs-Kcomm}. On $A^*|_\perp$, $Q^{GF}=-2$ has order zero and $\sigma^\rho(Q^{GF})=0$; on $\AV$, $Q^{GF}\AV=\partial_\rho A_\rho$, $\sigma^\rho(Q^{GF})Y=Y_\rho$, $w=1$ and $\sigma^\rho(Q^{GF})\Sigma^{\rho\nu}A=3A_\nu$, so $C_K\AV=2(b,\AV)-6(b,\AV)$. (iv) Prop c7-cov.
+\end{proof}
+
+\begin{corollary}[Variation kernels and composite lines]
+\label{cor:qs-edges}
+Let $P=P(\varepsilon,T)$.
+\begin{itemize}
+\item (i) For every generator, $(x.\otimes1+1\otimes x.)K_t=([x.,e^{-tH}]\otimes1)K_0$, and the variation kernel of the propagator is
+\[
+\mathcal V_x(\varepsilon,T):=(x.\otimes1+1\otimes x.)P(\varepsilon,T)=\int_\varepsilon^T\Big(\big([x.,Q^{GF}]\,e^{-tH}+Q^{GF}[x.,e^{-tH}]\big)\otimes1\Big)K_0\,dt .
+\]
+Along $\xi\in\Sigma$, $\mathcal V_\xi=(C_\xi\,g(H)\otimes1)K_0$, graded symmetric, with components in $\lambda\otimes A$, $A\otimes\lambda$, $c\otimes\lambda^*$, $\lambda^*\otimes c$, of momentum degree $-1$. Along $\eta$, $[\eta.,e^{-tH}]=-2t\sum_\mu\xi_\mu.\partial_\mu e^{-tH}$ and $\mathcal V_\eta=\int_\varepsilon^T\big((\sum_\mu x^\mu C_{\xi_\mu}+C^0_\eta)e^{-tH}-2tQ^{GF}\sum_\mu\xi_\mu.\partial_\mu e^{-tH}\big)\otimes1\big)K_0\,dt$. Along $\Delta$, $\mathcal V_\Delta=-4(\varepsilon\partial_\varepsilon+T\partial_T)P$ (Prop c9-ward). Along $K_b$, the parts $4(b,x)Q^{GF}$, $4(b,x)H$ of \eqref{eq:qs-Kcomm} give the endpoint terms $\tfrac18\operatorname{div}v(m)\,(4\varepsilon L_\varepsilon-4TL_T)$, $m$ the midpoint of the two arguments, and $C_K$, $-4(w-1)(b,\partial)$, $4b_\nu\Sigma^{\rho\nu}\partial_\rho$ give bulk terms linear in the separation, present at every $T$ (k\_transfer, Lemma ktr-noninv, which states them component by component on $A\otimes A$, $\Ap\otimes\Ap$ and $c\otimes A^*_m$).
+\item (ii) For every generator whose operator $x.$ preserves the pairing, the composite kernel along $x$, the two legs of the quadratic part of $S^{(1)}(x)$ joined in both orders to two edges $P$, is
+\[
+\big(P\star\,x.\otimes1+1\otimes P\star\,x.\big)P=2\big(P\star\,x.\,P\star\otimes1\big)K_0 .
+\]
+Its components lie in $c\otimes\lambda$ and $\lambda\otimes c$ for odd $x$ (the term $-(\Gamma(\epsilon(y),\lambda)|_V,A^*|_V)$ between a $\lambda\otimes\lambda$ and an $A^*|_V\otimes c$ component, $\epsilon$ the Killing spinor of $x$), and in $c\otimes\AV$, $\AV\otimes c$ for even $x$ (Lemma c11-kernels (iii), (iv)).
+\item (iii) For $\xi\in\Sigma$,
+\[
+P\star\,\xi.\,P\star=C_\xi\,Q^{GF}g(H)^2-\xi.\,(Q^{GF})^2g(H)^2,\qquad \big[Q,\,P\star\,\xi.\,P\star\big]=E(H)\,C_\xi\,g(H)\neq0 ,
+\]
+both terms of the first identity being nonzero ($C_\xi\neq0$, $(Q^{GF})^2\neq0$). Hence $(Q\otimes1+1\otimes Q)$ maps the composite kernel along $\xi$ to $2(E(H)C_\xi g(H)\otimes1)K_0$, the variation kernel $\mathcal V_\xi$ with the factor $e^{-\varepsilon|p|^2}-e^{-T|p|^2}$ in place of $1$: unlike along $\Delta$ and $P_b$ (Lemma c11-kernels (v)), the composite kernel along $\xi$ is not annihilated by $Q\otimes1+1\otimes Q$. Along $\eta$ and $K_b$ the same holds, with the additional terms of (ii), (iii) of Proposition \ref{prop:qs-comm}.
+\item (iv) Weight rule. Every component of $\mathcal V_x$ and of the composite kernel along $x$ between slots of Weyl weights $w_1$, $w_2$ has momentum degree $w_1+w_2-4-\tfrac12\lambda_x$ once the Killing data are given the weights of Prop c7-select ($-\tfrac12$ to a constant spinor, $-1$ to a constant vector field) and the position the weight $-1$; the special edge has momentum degree $w_1+w_2-4=0$.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+(i) As in Prop c7-cov and Prop c7-susy, preservation of the pairing gives $(x.\otimes1+1\otimes x.)K_0=0$ and $K_t=(e^{-tH}\otimes1)K_0$. Along $\xi$, $[\xi.,e^{-tH}]=0$. Along $\eta$, $[\eta.,H]$ commutes with $H$, so $[\eta.,e^{-tH}]=-t[\eta.,H]e^{-tH}$. Along $K_b$, write $v.=-(b,x)\,v_\Delta.+(\text{rest})$ pointwise; the part of \eqref{eq:qs-Kcomm} proportional to $(b,x)$ is $-(b,x)$ times the dilatation commutators, which integrate to the endpoint terms of Prop c9-ward with the factor $\tfrac18\operatorname{div}v$ evaluated at the midpoint by the symmetrisation over the two arguments; the remaining terms are of order zero or one with constant coefficients times the separation (k\_transfer Lemma ktr-noninv, verified symbolically there). (ii) The computation of Prop c9-composite (i) with the Koszul signs of Lemma c9-ops: for odd $x.$, $P\star x.$ is even, $(1\otimes P\star x.)(P\star\otimes1)K_0=(P\star\otimes1)(1\otimes P\star)(1\otimes x.)K_0$, $(1\otimes x.)K_0=-(x.\otimes1)K_0$, $(1\otimes P\star)(x.\otimes1)=-(x.\otimes1)(1\otimes P\star)$ and $(1\otimes P\star)K_0=(P\star\otimes1)K_0$, so both orders give $(P\star x.P\star\otimes1)K_0$. The components follow from Lemma \ref{lem:qs-arrows}: $\lambda^*\to\lambda\to A\to c$ and $c^*\to A^*|_V\to\lambda^*\to\lambda$; the arrows of $P\star$ from $A^*$ and of $\xi.$ from $A$ end on slots where $Q^{GF}$ vanishes. (iii) $[\xi.,P\star]=C_\xi g(H)$ since $[\xi.,g(H)]=0$; then $P\star\xi.P\star=(C_\xi g-\xi.P\star)P\star$. With $E=QP\star+P\star Q$ and $[\xi.,Q]=0$, $Q(P\star\xi.P\star)=E\xi.P\star-P\star Q\xi.P\star=E\xi.P\star+P\star\xi.E-P\star\xi.P\star Q$, so $[Q,P\star\xi.P\star]=E(\xi.P\star+P\star\xi.)=EC_\xi g$, $E$ commuting with $\xi.$. (iv) The count of Lemma c10-degree with the vertex $S^{(1)}(x)$ of weight $4-\tfrac12\lambda_x$ on its fields.
+\end{proof}
+
+\begin{proposition}[Ward identity of the flow along $\xi$]
+\label{prop:qs-ward}
+Let $\xi\in\Sigma$, $\xi.F$ the derivation of functionals induced by $\xi.$, $P=P(\varepsilon,T)$, $J$ even and $W=W(P,J)$. Then
+\begin{equation}
+\xi.\,W=e^{-W/\hbar}e^{\hbar\partial_P}\big((\xi.J)\,e^{J/\hbar}\big)-\hbar\,\partial_{\mathcal V_\xi}W-\tfrac12\big(\partial_{\mathcal V_\xi}(W^2)-2W\,\partial_{\mathcal V_\xi}W\big).
+\label{eq:qs-ward}
+\end{equation}
+The first term is the linearised flow of $\xi.J$, the second the graphs of $W$ with one edge replaced by $\mathcal V_\xi$ on a cycle or a tree, the third two copies of $W$ joined by $\mathcal V_\xi$. For $J=I+\delta M$, $\xi.I=\pm\big(QS_3(\xi)+\{I,S_3(\xi)\}\big)$ by the arity-one equation $QS^{(1)}(\xi)+\{I,S^{(1)}(\xi)\}=0$, $S_3$ the cubic part, with the sign of the bracket conventions.
+\end{proposition}
+
+\begin{proof}
+By Lemma c9-ops, $[\partial_P,\xi.]=\partial_{\mathcal V_\xi}$, and $\partial_{\mathcal V_\xi}$ commutes with $\partial_P$ (constant-coefficient second-order operators). Hence $\partial_P^n\xi.=\xi.\partial_P^n+n\,\partial_{\mathcal V_\xi}\partial_P^{n-1}$ and $\xi.\,e^{\hbar\partial_P}=e^{\hbar\partial_P}\xi.-\hbar\,\partial_{\mathcal V_\xi}e^{\hbar\partial_P}$. Apply to $e^{J/\hbar}$, use $\xi.e^{F/\hbar}=\hbar^{-1}(\xi.F)e^{F/\hbar}$ for the derivation $\xi.$ and the product rule of the odd second-order operator $\partial_{\mathcal V_\xi}$ (proof of Prop c9-conj), and multiply by $\hbar\,e^{-W/\hbar}$. The last statement is the part of polynomial degree at least three of $\{S,S^{(1)}(\xi)\}=0$.
+\end{proof}
+
+\begin{remark}[What the Ward identity shows]
+\label{rem:qs-ward}
+Along $\Delta$ the variation kernel is a total derivative in the endpoints, $\mathcal V_\Delta=-4(\varepsilon\partial_\varepsilon+T\partial_T)P$, so the graphs with one variation edge collapse to the scaling of the flow and produce the term $4\,\mathrm{lc}$ of Thm c10-D1; along the translations, rotations and the R-symmetry $\mathcal V_x=0$. Along $\xi$, $\mathcal V_\xi=(C_\xi g(H)\otimes1)K_0$ is a new edge of the same infrared order as a propagator, joining $\lambda$ to $A$ and $c$ to $\lambda^*$, and no identity reduces the graphs with one variation edge to a scaling. The content of $Q_1$ beyond the classical transformation is therefore carried by the defect cycles of Definition \ref{def:qs-defect} themselves, which the next section isolates.
+\end{remark}
+
+\begin{proposition}[Position decomposition of the Killing data]
+\label{prop:qs-posdec}
+Let $x_O$ be the point of the density of a monomial $O$.
+\begin{itemize}
+\item (i) Along $\eta\in\Sigma^*$, graph by graph, the position part along $b$ (Def c11-canonical) of a graph with the vertex $S^{(1)}(\eta)$ is the same graph with $S^{(1)}(\rho(b)\eta)$, $\rho(b)\eta\in\Sigma$; its translation-invariant part is the graph with $S^{(1)}(\eta)$ at the Killing spinor $\rho(x-x_O)\eta$ together with $\int s_0$ (Prop c11-S (i)). On plane waves, with a momentum $r$ injected at the vertex and absorbed by $\omega$, the factor $(x-x_O)^\mu$ is $-i\,\partial/\partial r_\mu$ acting on the integrand at $r=0$.
+\item (ii) Along $K_b$, with $z=x-x_O$,
+\[
+v(x)=v(x_O)+\big(-2(b,x_O)\,z+\omega_{x_O}z\big)+v(z),\qquad \omega_{x_O}z:=2\big((x_O,z)\,b-(b,z)\,x_O\big),
+\]
+so that, $S^{(1)}$ being linear in the Killing data with its weight terms,
+\begin{equation}
+S^{(1)}(K_b)=S^{(1)}\big(P_{v(x_O)}\big)-(b,x_O)\,S^{(1)}\big(\Delta_{x_O}\big)+S^{(1)}\big(M_{\omega_{x_O},x_O}\big)+S^{(1)}\big(K_{b,x_O}\big),
+\label{eq:qs-Kdec}
+\end{equation}
+where the subscript $x_O$ denotes the generator centred at $x_O$ (vector fields $2z$, $\omega_{x_O}z$, $v(z)$). Graph by graph the corresponding parts are the graphs along the translation $P_{v(x_O)}$, $-(b,x_O)$ times the translation-invariant part along $\Delta$, the translation-invariant part along the rotation $M_{\omega_{x_O}}$, and the intrinsic part along $K_b$, computed with the factor $z^\mu z^\nu$ realised as $-\partial^2/\partial r_\mu\partial r_\nu$ at $r=0$.
+\item (iii) Hence, for the two-body kernels at the point $x_O$ of the pair,
+\[
+\Upsilon_\eta=\sum_\mu x_O^\mu\,\Upsilon_{\xi_\mu}+\Upsilon^0_\eta,\qquad \Upsilon_{K_b}=v(x_O)^\mu\,\Upsilon_{P_{e_\mu}}-(b,x_O)\,\Upsilon^0_\Delta+\Upsilon^0_{M_{\omega_{x_O}}}+\Upsilon^0_{K_b},
+\]
+with $\Upsilon^0_y$ the translation-invariant (intrinsic) part, computed with the generator centred at the point of the pair; $\Upsilon^0_\eta$ has Weyl weight $w_{X_a}+w_{X_b}-\tfrac12$ and $\Upsilon^0_{K_b}$ Weyl weight $w_{X_a}+w_{X_b}-1$, both translation invariant.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Prop c11-S (i), whose argument (Prop c11-position (i)) applies to the special edges, to the vertices $S^{(1)}(\eta)$ on the cycle in each of the three placements, and to the counterterm vertices. (ii) Direct expansion of $(x_O+z,x_O+z)b-2(b,x_O+z)(x_O+z)$; the divergences add, $\operatorname{div}v(x)=-8(b,x_O)-8(b,z)$, with $\operatorname{div}(2z)=8$ and $\operatorname{div}(\omega z)=0$, and $S^{(1)}$ of Def c7-vdot is linear in $v$ including the weight terms $\tfrac w4\operatorname{div}v$ and the spin terms. In a graph the vertex at $y=x_O+z$ carries $z$ polynomially; the argument of (i) applies to each monomial in $z$, the second-order monomials giving second derivatives in $r$. (iii) The kernels are linear in the generator; insert (i), (ii) into Definition \ref{def:qs-defect}, the finite special vertices decomposing in the same way. The weights: Prop c7-select.
+\end{proof}

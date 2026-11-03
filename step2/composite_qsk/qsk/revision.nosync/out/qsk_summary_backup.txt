@@ -1,0 +1,92 @@
+PART Q (Q_1, S_1, K_1): FINAL AFTER REVISION, 2026-10-30
+Units u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2).  L := log(3/2).  Regulator: Schwinger cutoff t >= eps on
+every edge, special edge K_eps - K_0 (t in [0,eps]); T = oo along Sigma, Sigma^*; finite T along K_b.  No DR, no other IR datum.
+Two-component: Def c8-twocomp / Rem qs-twocomp, dictionary orientation (S_+ undotted).
+Sources: qsk/theory/qsk_theory.tex (29 pp., 0 errors, 0 undefined refs), qsk/engine_a, qsk/engine_b, qsk/qa, qsk/disposition.json, results/qsk_final.json.
+
+=== A. PROVED (theory note, revised) ===
+
+A1  Two-body form, every local O (gauge-variant included):
+      hbar L_1(O)^(1)(x) = sum_{a<b} (-1)^{|X_b|(|X_{a+1}|+..+|X_{b-1}|)} int omega X_1..Upsilon_x(X_a,X_b)..^X_b..X_n - {hbar F_1^(1)(x), O}
+      Upsilon_x = [eps^0] D_x + F_x,   F_x = -sum_{m>=1} ((-1)^m/m!) ({I, ct1_{x,m}}_{H^m} + {S^(1)(x), ct_m}_{H^m})
+    D_x: defect cycles = one vertex S^(1)(x) (on a line / at the special edge / cubic T5) + one special edge.
+    Pole identity eq qs-pole (read pair by pair: + vacuum poles of the pairs of the cubic monomials of {S^(1)(x),O} and sO
+    times the third letter); log covariance eq qs-logcov.
+
+A2  Arrows (Lemma qs-arrows, sign corrected):
+      xi.: lambda -> +Gamma(xi,lambda),  A -> +(1/2) rho(dA) xi;   {S^(1)(xi), int omega (iota_w1 A, iota_w2 A)} = +F1
+    two-component: A_ij -> Gamma_ij(xi,lambda) = -2 eps_{jikl} (xi^j lambda^i)  (dictionary), A_m -> i(lambdabar sigmabar^m xi + xibar sigmabar^m lambda).
+
+A3  Commutators (Prop qs-comm, revised), xi in S_+ (x) W:
+      [xi.,Q] = [xi.,H] = 0
+      C_xi = [xi.,Q^GF]:  lambda_- -> c : +i(p, Gamma(xi,lambda)|_V)     [ = -p_m (lambdabar_{alphadot i} sigmabar^{m alphadot alpha} xi_alpha^i) ]
+                          A^*|_V -> lambda_+ : ~ (p, A^*|_V) xi ;  lambda^*_+ -> A|_V ;  c^* -> lambda^*_- ;  A^*|_perp, A|_perp: none
+      eta. = sum_mu x^mu xi_mu. + eta^0. + Y_eta   (Y_eta: constant arrows lambda^* -> A^*);  [eta.,Q] = 0 only with Y_eta;  [eta.,H] = 2 xi_mu. d_mu
+      K_b: [v.,Q^GF] = 4(b,x) Q^GF + C_K, C_K A_V = -4(b,A_V);  [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho
+      V_xi = (C_xi g(H) (x) 1)K_0  in lambda (x) A|_V, c (x) lambda^*
+      composite line  2(P* xi. P* (x) 1)K_0 = -+ 2 xi e^{-2 eps |p|^2}/|p|^2  (real; - on c (x) lambda_+),  [Q, P* xi. P*] = E(H) C_xi g(H) != 0
+
+A4  Simplex form (Thm qs-simplex): 16 pi^2 [eps^0] = int_{alpha_sigma min} F_0 log(min_{f!=sigma} alpha_f / alpha_sigma),
+      16 pi^2 [eps^-m] = (1/m) int [(min alpha_f)^m - alpha_sigma^m] F_m ;  no log eps ;  T d_T = O(eps) along K_b.
+
+A5  Free directions (Prop qs-freexi, revised): Sigma: span{S^V_2 = T1+T3, S^perp_2 = T2+T4}; Sigma^*: {x.(T1+T3), x.(T2+T4) + s0};
+      no exact; one-body change -theta_V {S^V_2,X} - theta_perp {S^perp_2,X} = -theta x (classical arrow).
+
+A6  Lemma qs-cocycle (new): L_1^(0) = 0 on {O, F1}  =>  Q_1(O)|_trace, two-body = a1 F1 + a2 F2 (a3 = a4 = 0);
+      at psi = 0, R1 <=> a3 + 2 kappa - kappa' = 0  (psi(O) = kappa (w1,w2) int omega (A_V,A_V), psi(F1) = kappa' F3).
+
+A7  Thm qs-twistcheck: comparison with [BK] only modulo Im Q^xi_0 (total derivatives kept), under D in C S^xi + Im Q^xi_0.
+
+=== B. COMPUTED (two routes unless stated) ===
+
+B1  E0, TQ0: as A3, A5 (route A gates incl. the fine components of C_xi; route B E0 gates).  Gates: route A 33/33, route B 39/39.
+
+B2  Closed forms: n_t = 2: 16 pi^2 a_0 = int_0^{1/2} F_0 log((1-a)/a) in Q + Q log2;
+      constant F_0 (D = 0): F_0 log(n_t/(n_t-1))/(n_t-1)!;  constant F_1 (D = 2): [eps^-1] = F_1/(n_t^2 (n_t-1)(n_t-1)!)
+      T5 cycle at the special edge on (A_perp, lambda_+) -> A_perp:  16 pi^2 x value = (-1/(2 eps) - (3/8)|q|^2) x factor.
+
+B3  Scalar bilinears O = int omega (iota_w1 A, iota_w2 A) = (1/16) int omega (w1^{ij} A_ij, w2^{kl} A_kl), units u:
+      F1 = {S^(1)(xi),O} = (1/4) int omega [(w1^{kl} A_kl, w2_{ji} xi^{alpha i} lambda_alpha^j) + (1<->2)]
+      F2 = (w1,w2) int omega (rho(A|_perp) xi, lambda) = (1/4) w1^{ij} w2_ij int omega (A_ji, xi^{alpha i} lambda_alpha^j)
+      F3 = (w1,w2) int omega (rho(A|_V) xi, lambda)   = (1/4) w1^{ij} w2_ij int omega i (lambdabar_{alphadot i}, A_m sigmabar^{m alphadot alpha} xi_alpha^i)
+      F4 = (w1,w2) int omega (c, (xi, lambda^*))      = (1/4) w1^{ij} w2_ij int omega (c, xi_alpha^i lambda^{*alpha}_i)
+    psi = 0:   Q_1(O)|_two-body = -2L F1 + 4L F2 + 4L F3 + 0 F4     (both chiralities; no poles)
+               c_Q = -2L - theta_perp - p_perp      [Q_1(O)|_traceless = c_Q {S^(1)(xi),O}]
+    L_1^(0)(O) = -(2+4L) u (w1,w2) int omega (dc, A_V) != 0 ;  L_1^(0)(F1)|_(c,lambda) = 2 s F3
+    cocycle scheme:  psi(O) = -(1+2L) u (w1,w2) int omega (A_V,A_V) = -(1+2L) (1/4) w1^{ij} w2_ij int omega (A_m, A_m),  psi(F1) = -2 u F3
+                     Q_1(O)|_two-body = -2L F1 + 4L F2         (a3: 4L -> 0, a4 = 0)
+
+B4  G-R1 (c, lambda_-), psi = 0:  s(a3 F3) + L_1^(0)(F1) + {S^(1)(xi), L_1^(0)(O)} = -2Lk - k + (1+2L)k = 0  (3 points, exact).
+
+B5  Twist, xi = u (x) z, psi = 0, engine weight-vector normalisation, modulo Im Q^xi_0:
+      betagamma  (lambda_+, A_perp) -> lambda_- lambda_- :  0 identically (both routes);  c_K = 0
+      betabeta   (lambda_+, lambda_+) -> gamma^K dc :  (2/3) d^alphadot gamma^K lambdabar_{alphadot 4}  [K = complement of I,J], both colour orders
+                 (+ (1/3 - 2L) gamma^K d^alphadot lambdabar_{alphadot 4}, Q^xi_0-exact Dirac component)
+      bgamma     -> d gamma . dc :  order (gamma,dc) 64/3 - 128L ;  order (dc,gamma) 32 + 64L
+      beta b -> beta dc :  -64/3 (one order), 0 (other)
+      beta b -> gamma gamma : (8/3)(d_2 gamma^J d_1 gamma^K - d_1 gamma^J d_2 gamma^K) on outputs (gamma^J, gamma^K), both orders
+                 [d_1, d_2: the holomorphic directions u'^alpha sigma^m_{alpha alphadot} d_m, alphadot = 1, 2]
+      bc (b = u_alpha lambda^{*alpha}_4) : 0 ;  gamma gamma : 0 ;  G-plane (chiral bilinears): exact 0
+      [BK (3.64)-(3.69)]: (1/2) f_ACD f_BCE d_alphadot X^D d^alphadot Y^E, equal words.  Entries are scheme dependent; class-level test not done.
+
+B6  Intrinsic parts: eta (A: 10 rows; B agrees 4/4 compared), K_b (A: 6 rows; B agrees 2/2 + zeros); on the bilinears both vanish:
+      S_1(O) = Q_1 along rho(x_O) eta ;  K_1(O) = v(x)^mu P_1 - (b,x) D^0_1 + M^0_1   (~ -(b,x) D_1 if P_1 ~ 0, M_1 ~ 0)
+
+B7  G-reg: Upsilon^0_Delta = 40/3 O (traceless), 40/3 - 48 = -104/3 (trace); position part 2 x^mu (-1/3) d_mu O:
+      = Thm c9-D1 row 1 (44/3 O - 1/3{S^(1)(Delta),O}; -100/3 O - 1/3{S^(1)(Delta),O}) and Thm c9-P1 (-1/3 u d_b O).
+
+B8  TQ2 tables: route A n = 0 (235 rows), 1 (335), 2 (367), 3 (721); route B n = 0 (74 leg sets).
+      A vs B: n = 0 85/85 (strict words); n = 0 lam*-output rows with fixed B: 10/10;  n = 1 lam*-output rows: fixed B 10/10, first-pass B 8/10 (the two (A_V,A_perp) -> (c,lam*) rows).
+      B n = 0 lam*-output tables unchanged by the new T5 placement: 12/12 (configurations added, values cancel exactly at n = 0).   A TQ2 after the exact contraction: all rows of n = 0..3 identical
+
+B9  G-KT along K_b (route B, intrinsic K_b vertex, (A_V,A_V) -> A_V, n_t = 3, line and special-edge placements, T = 1, 4, 16): T dV/dT = O(eps) (ratio 4.0 per factor 4, or 16) in all 12 configurations at the order of the h-derivative:
+      Upsilon^0_{K_b} independent of T.  PASS
+
+=== C. OPEN ===
+  TQ1 action side along xi (p_V, p_perp, theta_V - theta_perp) -> all one-body kernels, c_Q;  F_x in route A (D >= 2 rows);
+  Upsilon_xixi (bb, bc with b = F);  R2-R6 incl. the Konishi relation through D_1 (needs TQ1 and psi beyond two fields);
+  class-level twist comparison (Phi, hypothesis on D, [BK (3.59)-(3.63)]);  M_1;  TQ8 (Gram_1);  TQ0 along K_b;
+  route B n >= 1 tables;  vacuum-pole terms of F_x.
+
+=== D. REVISION (disposition.json): 16 findings checked; accepted 14, accepted in part 1 (Q8: the psi-shift acts by the tree
+commutator [{S^(1)(xi),-}, psi], not by Upsilon_xi(A_V,A_V)), accepted as status 1 (Q7). ===

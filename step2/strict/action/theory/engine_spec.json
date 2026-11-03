@@ -1,0 +1,2090 @@
+{
+ "title": "Engine specification: action-level one-loop equivariant QME along every generator (strict Costello route, R10)",
+ "date": "2026-10-30",
+ "theory": "step2/strict/action/theory/action_theory.tex (pdf in _build/); labels at-*; manuscript labels c*-* refer to manuscript/ch01..ch11",
+ "sector_census": "step2/strict/action/theory/sectors.json (necessary conditions: degree, weight, position degree, centre of Spin(4) x SU(4), >= 2 adjoint legs); generator src.nosync/sectors.py",
+ "hard_rules": [
+  "no dimensional regularisation in any role; no IR regulator other than the transfer endpoint T",
+  "T = infinity except along K_b, (K_b,P_b') and (eta,eta') with Gamma|_V != 0, where finite T (1, 4, 16) is used and T-independence is a gate",
+  "pure Python (fractions, sympy, numpy, mpmath) or C; no Wolfram; no cluster; at most one heavy process, < 1.5 GB RSS, watchdog",
+  "never write to /tmp; code and caches in src.nosync/, out.nosync/; PROGRESS.txt incremental; run_all.py resumable and printing resources",
+  "route A and route B are independent: neither reads the other's step2/strict outputs before the comparison phase",
+  "the scaling identity (4 x log coefficient), K = P^dagger, theta = -1/3, the twist and regulator-covariance arguments are cross-checks only (X-*), never the source of a number",
+  "earlier N=4/QED/SQED/SUSY projects elsewhere on the machine are not read; only this project folder"
+ ],
+ "conventions": {
+  "unit": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2); every output coefficient is a multiple of u (one loop)",
+  "regulator": "P(eps,T) = int_eps^T (Q^GF (x) 1) K_t dt on every edge; special edge K_eps - K_0 = (e^{-eps|p|^2}-1) K_0, Schwinger time in [0,eps]; composite line = 2(P* x. P* (x) 1)K_0 (two segments, times >= eps)",
+  "generators": {
+   "Delta": "v = 2E; S^(1)(Delta) = int((2E A + 2A, A*) - (2E lam + 3 lam, lam*) - (2E c, c*)); lambda_x = 0; position degree 1",
+   "P_b": "v = b; S^(1)(P_b) = int((d_b A, A*) - (d_b lam, lam*) - (d_b c, c*)); lambda_x = -2",
+   "M_omega": "v = omega x, omega in so(V); spin terms (1/4) rho(d(v,-)) on lam, Lie derivative on A|_V; lambda_x = 0; position degree 1",
+   "R_r": "r in so(W_R^perp): acts on A|_perp and lam only; lambda_x = 0",
+   "xi": "xi in S_+ (x) W (two-component xi_alpha^i, xibar = 0) or S_- (x) W^*; S^(1)(xi) = T1+T2+T3+T4+T5 (Table c11-terms, eq at-S1list); lambda_x = -1",
+   "eta": "eta in S_+ (x) W^* (eta^alpha_i) or S_- (x) W; S^(1)(eta) = sum_mu x^mu S^(1)(rho(e_mu) eta) + int s0, s0 = -(rho(A|_perp) eta, lam*); lambda_x = +1",
+   "K_b": "v = (x,x) b - 2(b,x) x, div v = -8(b,x); lambda_x = +2; position degree 2; finite T"
+  },
+  "component_normalisation": "Def at-names (i): equations (eq at-eqs) Lambda F1^(1)(x) + {F1^(0),S(x)} = Ob^(1)(x); Lambda F1^(2)(x,y) + F1^(1)([x,y]) + (-1)^{|x|}({F1^(1)(x),S(y)} + {S(x),F1^(1)(y)}) + {F1^(0),S^(2)(x,y)} = Ob^(2)(x,y); Lambda = Q + {I,-}. The relation between the raw graph sign and this normalisation is fixed by gate G-sign and the regressions G-reg0, G-reg1 (no free constant).",
+  "plane_waves": "legs e^{i(p_j,x)} with independent momenta, the functional integrated against the total-momentum delta; position factors y^mu at the S(x) vertex -> -i d/dr_mu at r = 0, y^mu y^nu -> -d^2/dr_mu dr_nu, r injected at the vertex; canonical densities for intrinsic parts: momentum of the last leg (fixed leg order) eliminated (Def c11-canonical: alpha delta + beta^mu d_mu delta)",
+  "bases": "arity-zero cubic: G1..G5, H1..H6 (Def c9-bases); along xi two legs: g1..g4, T0..T4 (Prop at-xi2); other sectors: exact bases built per leg set on integer plane waves in the realisation of V_10, Sigma over Q(i), g = su(2) (and su(3), gl(3) for colour checks); four-leg colour: products of structure constants and the symmetrised trace str(ad ad ad ad) kept separate",
+  "value_format": "exact strings over Q + Q log2 + Q log3 (+ Q log5, Q log7 if they occur) times u; L := log(3/2); numerical values only where flagged, with >= 30 digits and the integer-relation basis recorded",
+  "parity": "reflection of one V direction with one W_R^perp direction: parity-odd coefficients must vanish (Prop c9-basis); record them as a gate"
+ },
+ "reuse": {
+  "route_A": {
+   "description": "special-edge cycles in simplex / scaled-Schwinger form, exact (Lemma at-special, Prop at-schwinger, Prop at-small)",
+   "modules": [
+    "step2/engine_a/s2_core.py, s2_graphs.py, s2_integrals.py, s2_trees.py: Part C action cycles (cubic/quartic vertices, special edge, master integrals J(n;beta;N) exact in Q+Q log2+Q log3), sign checks in s2_verify0d.py",
+    "step2/engine_a/d4_*.py: Part D two-point graphs along Delta (regression G-reg1)",
+    "step2/twoletter/engine_a/src.nosync/{ea_core, ea_kern, ea_ops, vendor/cliff, vendor/r2_core}: blocks of I, Clifford realisation, colour stripping",
+    "step2/composite_qsk/composite/engine_a/src.nosync/{cq_core, cq_gcore, cq_eval}: chain algebra, Gaussian loop integral, composite lines along Delta, P_b",
+    "step2/composite_qsk/qsk/engine_a/src.nosync/{qa_s1 (vertex blocks of S^(1)(x) for xi, eta, even x), qa_core (placements, contract_exact, sign rule), qa_e0 (operators on plane waves), qa_tq0 (TC0 along xi)}"
+   ],
+   "extension": "replace the chains through two letters by closed cycles: every vertex on the cycle has its external legs; exactly one S^(1)(x) (or S(x),S(y) / S^(2)(x,y) at arity two) in a placement of Lemma at-place; exactly one special edge; sum over cyclic orderings with 1/|Aut|; sign rule of qa_core with the closed-cycle supertrace (s2 formula: hbar (1/2) str[K' S H (P S H)^(n-1)])",
+   "known_rules": "route A orientation: lam_+ = +1 eigenspace of rho(e0 e1 e2 e3) on Sigma (= lam_- of route B); vertex-vertex sign -1 on interior lines (composite/engine_a notes 2b); special edge field-antifield of opposite parities; two-component reading through step2/notation/dictionary.json"
+  },
+  "route_B": {
+   "description": "renormalised arity-one and arity-two amplitudes at generic momenta by momentum-space numerator algebra with exact Feynman-parameter integrals, Q applied to the plane-wave values, local part read off (Thm at-second (i), Prop at-routeB); special-edge cycles checked numerically at finite eps (eps = 2^-k, Richardson), finite T along K_b",
+   "modules": [
+    "step2/engine_b/ia_engine.py, masters.py, delta_engine.py, delta_canon.py, wz.py: Part C/D STr word formula, master integrals, canonical forms",
+    "step2/composite_qsk/qsk/engine_b/src.nosync/{qb_core, qb_numeps, qb_numT, qb_etak, qb_tq0, qb_greg}: odd generators, eta and K_b vertices, numerical eps and T",
+    "step2/composite_qsk/composite/engine_b/src.nosync/{ce_core, ce_int, ce_numeps}: composite lines, Feynman parameters",
+    "step2/twoletter/engine_b/{colour_rules.py, kernels_W0.py}: colour and closed forms"
+   ],
+   "known_rules": "route B applies the Koszul sign s(c,sigma) literally; orientation lam_+(B) = lam_-(A); exact spinor intertwiner between the routes as in composite_qsk/revise.nosync (S^T (Mp R_B[M]) S = sb_A[M])"
+  }
+ },
+ "tasks": [
+  {
+   "id": "T0",
+   "priority": 0,
+   "title": "infrastructure and conventions",
+   "what": "vertex blocks of S^(1)(x) for Delta, P_b, M_omega, R_r, xi_+-, eta_+-, K_b (position monomials by r-injection) and of S^(2)(x,y) for odd pairs (eq c2-S2 at the Killing spinors); closed-cycle enumerator with the placements of Lemma at-place; the component normalisation of Def at-names (i)",
+   "gates": [
+    "G-sign",
+    "G-reg0"
+   ]
+  },
+  {
+   "id": "T1",
+   "priority": 0,
+   "title": "Ob^(1)(Delta) on two legs (strict route)",
+   "what": "all irreducible two-leg defect cycles along Delta (S(Delta) in line, at-special-edge placements; vertices of I cubic and quartic), a_0 and poles; sectors (A_V,A_V), (A_perp,A_perp), (lam_+,lam_-), (c,A*_V) at p = 0, 1",
+   "sectors": [
+    {
+     "legs": [
+      "c",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 3
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 3
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    }
+   ],
+   "targets": "G-reg1: u[-11/3 int(dA,dA) + 47/3 int(lam, dslash lam) - 14/3 int(dc,A*)], coefficient 0 for int(d*A_V,d*A_V) and every explicit-x functional; G-pole: sum a_1 = (9/4) u {int(A,A), S(Delta)}",
+   "route_B": "Q of the renormalised arity-one two-point amplitudes along Delta (composite two-point functional of Rem c9-Pi and S(Delta) on the legs of the one-loop two-point function)"
+  },
+  {
+   "id": "T2",
+   "priority": 1,
+   "title": "Ob^(1)(Delta) and Ob^(1)(P_b) on three, four (and five) legs",
+   "what": "three-leg sectors at p = 0 (intrinsic, weight 4) along Delta and the P_b sectors (weight 5, which are the position parts along b of the Delta sectors); four legs (A^4 types, D = 0 along Delta; D = 1 along P_b); the five-leg (A_V)^5 sector along P_b (D = 0)",
+   "sectors_Delta_p0": [
+    {
+     "legs": [
+      "c",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "c",
+      "c*"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A*_V"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "A*_p"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "lam+",
+      "lam*+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "lam-",
+      "lam*-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "A_p"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "lam+",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam+",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam-",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V",
+      "A_V"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_p",
+      "A_p"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "A_p",
+      "A_p"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    }
+   ],
+   "sectors_P": [
+    {
+     "legs": [
+      "c",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 3
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 3
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "c",
+      "c",
+      "c*"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A*_V"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "A*_p"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "lam+",
+      "lam*+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "lam-",
+      "lam*-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "A_p"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "lam+",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam+",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam-",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "c",
+      "A_V",
+      "c*"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "c",
+      "lam*+",
+      "lam*-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A_V",
+      "A*_V"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A_p",
+      "A*_p"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "lam+",
+      "lam*+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "lam-",
+      "lam*-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "A_p",
+      "A*_V"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "lam+",
+      "lam*-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "lam-",
+      "lam*+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V",
+      "A_V"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_p",
+      "A_p"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "lam+",
+      "lam-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "lam+",
+      "lam+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "lam-",
+      "lam-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "A_p",
+      "A_p"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "lam+",
+      "lam-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V",
+      "A_V",
+      "A_V"
+     ],
+     "n": 5,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V",
+      "A_p",
+      "A_p"
+     ],
+     "n": 5,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "A_p",
+      "A_p",
+      "A_p"
+     ],
+     "n": 5,
+     "p": 0,
+     "D": 0
+    }
+   ],
+   "targets": "G-P2 (two legs along P_b vanish); G-pos (position part of Ob^(1)(Delta) = 2 Ob^(1)(P_b)); G-WZ1; G-pole (no poles beyond two legs)"
+  },
+  {
+   "id": "T3",
+   "priority": 2,
+   "title": "Ob^(1)(M_omega) and Ob^(1)(R_r)",
+   "what": "two and three legs; M_omega: intrinsic parts and the position part along b = Ob^(1)(P_{omega b}); R_r: every sector",
+   "targets": "G-R0 (Ob^(1)(R_r) = 0 and lc^(1)(R_r) = 0, Thm at-second (iii)); G-pos; along M_omega the spin direction int omega_{mu nu}(A_mu,A*_nu) of F_1^(1)(M_omega) from the sector (A_V,A_V)_2 + (c,A*_V)_1 (Prop at-two (iii))"
+  },
+  {
+   "id": "T4",
+   "priority": 0,
+   "title": "Ob^(1)(xi) on two legs (former TQ1)",
+   "what": "both chiralities; basis g1..g4 (Prop at-xi2); all two-leg defect cycles (T1 line; T1, T2 at the special edge; T3, T4 with lam* on the special edge); route B: Q of the renormalised two-point arity-one amplitudes (composite lam--c line, S(xi) on legs, variation kernel C_xi)",
+   "sectors": [
+    {
+     "legs": [
+      "c",
+      "lam*+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    }
+   ],
+   "outputs": "coefficients o1..o4 of Ob^(1)(xi)|_2; the particular solution F_1^(1)(xi)|_2 = (r1/q1) T1 + (r3/q3) T2 + r0 T0 with r from R^(1)(xi)|_2 = Ob^(1)(xi)|_2 - {F_1^(0)|_2, T1}; the beta-dependence; p_V, p_perp of Part Q",
+   "targets": "G-WZ1 (Q Ob^(1)(xi)|_2 = {Ob^(0)|_2, T1}, Ob^(0)|_2 = -27/8 u int(d*dc,d*A_V)); G-pole (sum a_1 = (9/4) u {int(A,A), T1 + T2}); G-AB"
+  },
+  {
+   "id": "T5",
+   "priority": 1,
+   "title": "Ob^(1)(xi) on three and four legs",
+   "what": "cubic and quartic sectors including the cubic placements of T5; the residual R^(1)(xi) with F_1^(0) of Thm c9-F3 (beta_k, kappa_k symbolic)",
+   "sectors": [
+    {
+     "legs": [
+      "c",
+      "lam*+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 2
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "lam*+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "lam*-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "lam+",
+      "A*_p"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "lam-",
+      "A*_V"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam+",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A_V",
+      "lam*+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "A_p",
+      "lam*-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "A_p",
+      "lam*+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_V",
+      "lam-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "A_p",
+      "lam+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "A_p",
+      "lam-"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "A_p",
+      "lam+"
+     ],
+     "n": 4,
+     "p": 0,
+     "D": 0
+    }
+   ],
+   "targets": "G-WZ1 on three legs; solvability modulo the arity-zero classes (Prop at-couplings): the map delta_xi on the kappa and beta directions; report which combinations are fixed"
+  },
+  {
+   "id": "T6",
+   "priority": 2,
+   "title": "Ob^(1)(eta), intrinsic part",
+   "what": "two and three legs at p = 0 (canonical densities), position part along b compared with Ob^(1)(rho(b) eta) from T4/T5",
+   "sectors_p0": [
+    {
+     "legs": [
+      "c",
+      "lam*-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "lam+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "A_V",
+      "lam*-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "c",
+      "A_p",
+      "lam*+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_p",
+      "lam-"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p",
+      "lam+"
+     ],
+     "n": 3,
+     "p": 0,
+     "D": 0
+    }
+   ],
+   "targets": "G-pos; G-WZ1; S1-eta solvability"
+  },
+  {
+   "id": "T7",
+   "priority": 2,
+   "title": "Ob^(1)(K_b), intrinsic part, finite T",
+   "what": "two-leg intrinsic sectors (c,A*_V)_0, (A_V,A_V)_1, (A_perp,A_perp)_1, (lam_+,lam_-)_0; route A by the T-free coefficients of Lemma at-special; route B at T = 1, 4, 16 and eps -> 0",
+   "sectors_p0": [
+    {
+     "legs": [
+      "c",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 0
+    },
+    {
+     "legs": [
+      "A_V",
+      "A_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "A_p"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 0
+    }
+   ],
+   "targets": "G-T (T d/dT = O(eps)); G-pos (first position part = Delta and rotation, second = translation); G-WZ1 with {Ob^(0)|_2, S(K_b)} != 0"
+  },
+  {
+   "id": "T8",
+   "priority": 1,
+   "title": "logarithmic coefficients lc^(1)(x), lc^(2)(x,y)",
+   "what": "coefficients of log eps of the arity-one (and arity-two) counterterms: singular parts of the composite and cubic cycles (no special edge) along every generator, two and three legs",
+   "targets": "G-log (s lc = 0 componentwise); G-logex (lc^(1)(x) + {uN,S(x)} = l_x u S(x) mod Im Lambda, l_x = c lambda_x + a B_x; report c and a; a is the log-eps coefficient along the class [G_B])"
+  },
+  {
+   "id": "S1",
+   "priority": 0,
+   "title": "cohomology tables",
+   "what": "H^{-1}(Q) and H^0(Q) on the quadratic covariant functionals (two legs) at: weight 9/2 p=0 (xi), 7/2 p<=1 (eta), 4 p<=1 (Delta, M), 4 p=0 (R), 5 p=0 (P_b), 3 p<=2 (K_b); arity-two weights: 5 p<=1 (Delta,P_b), 5 p=0 (xi,xi'), 4 p<=1 (xi,eta), 4 p<=2 (K_b,P_b'), 3 p<=2 (eta,eta'), 9/2 p<=1 (Delta,xi), 11/2 p=0 (xi,P_b); reflection-even and full; then the cubic classes [{I_3, S(x)_d}] in H^0(Q)_3 (GC13 along Delta and P_b; the analogues along xi, eta, K_b, M, R) and the extension test of Hypothesis at-H at three legs, including the second-order free symmetries at weight 5 p=1",
+   "targets": "G-H; Prop at-xi2 (H^0 = 0 along xi; kernel span{S^V_2, S^perp_2}); Prop c11-tc0 regression along Delta (dims (2,1,0), (3,2,1), (6,2,1))"
+  },
+  {
+   "id": "S2",
+   "priority": 1,
+   "title": "solve the arity-one equations",
+   "what": "particular solutions F^part(x) exactly, the free directions theta^x_d symbolic, the residual classes; the sector differences fixed by the cubic part (Thm at-cubic); the arity-zero classes fixed along Sigma (Prop at-couplings)",
+   "outputs": "F_1^(1)(x) on two and three legs for every generator with all free directions; the values of theta^x_d - theta^x_{d0}"
+  },
+  {
+   "id": "B1",
+   "priority": 0,
+   "title": "Ob^(2)(Delta,P_b) on two legs",
+   "what": "irreducible arity-two cycles with S(Delta) and S(P_b) on the cycle (line placements adjacent through an A_V (x) A_V edge form the double composite line c--A_V--A_V--c; at-special-edge placements; one in line and one at the special edge) and one special edge; two-leg sectors of degree -1, weight 5, p <= 1",
+   "sectors": [
+    {
+     "legs": [
+      "c",
+      "c*"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "c",
+      "c*"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_V",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_V",
+      "A*_V"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    },
+    {
+     "legs": [
+      "A_p",
+      "A*_p"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "A_p",
+      "A*_p"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam*+"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "lam+",
+      "lam*+"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    },
+    {
+     "legs": [
+      "lam-",
+      "lam*-"
+     ],
+     "n": 2,
+     "p": 0,
+     "D": 1
+    },
+    {
+     "legs": [
+      "lam-",
+      "lam*-"
+     ],
+     "n": 2,
+     "p": 1,
+     "D": 2
+    }
+   ],
+   "outputs": "the coefficients o_d of [S(P_b)_d] in [Ob^(2)(Delta,P_b)|_2] and the components along every other class of S1 at weight 5 p<=1; theta^Delta_d = o_d/(2u) (Thm at-theta)",
+   "targets": "G-pole (sum a_m = 0); G-WZ2; consistency o_d - 2u(theta_d - theta_V) independent of d with the differences from S2; components along the second-order free symmetries vanish; cross-check X-theta: o_perp = -(2/3) u"
+  },
+  {
+   "id": "B2",
+   "priority": 1,
+   "title": "Ob^(2) on the other pairs, two legs (three where feasible)",
+   "pairs": [
+    "(K_b,P_b') finite T",
+    "(xi_+,xi_-)",
+    "(xi_+,xi_+')",
+    "(xi_+,eta_+)",
+    "(xi_+,eta_-)",
+    "(xi,P_b)",
+    "(eta_+,eta_-) finite T",
+    "(eta_+,eta_+')",
+    "(Delta,xi_+-)"
+   ],
+   "sectors": {
+    "Ob^(2)(Delta,P_b)": [
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     }
+    ],
+    "Ob^(2)(K_b,P_b)": [
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 2
+     }
+    ],
+    "Ob^(2)(xi+,xi-)": [
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(xi+,xi+)": [
+     {
+      "legs": [
+       "A_V",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(xi+,eta+)": [
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(xi+,eta-)": [
+     {
+      "legs": [
+       "A_V",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(xi+,P_b)": [
+     {
+      "legs": [
+       "A_V",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_p",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam+",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(eta+,eta-)": [
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "c",
+       "c*"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(eta+,eta+)": [
+     {
+      "legs": [
+       "A_V",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_V",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "A_p",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 2,
+      "D": 1
+     }
+    ],
+    "Ob^(2)(Delta,xi+)": [
+     {
+      "legs": [
+       "A_V",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_V",
+       "lam*+"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "A_p",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 1
+     },
+     {
+      "legs": [
+       "A_p",
+       "lam*-"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 2
+     },
+     {
+      "legs": [
+       "lam+",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam+",
+       "A*_p"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     },
+     {
+      "legs": [
+       "lam-",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 0,
+      "D": 0
+     },
+     {
+      "legs": [
+       "lam-",
+       "A*_V"
+      ],
+      "n": 2,
+      "p": 1,
+      "D": 1
+     }
+    ]
+   },
+   "outputs": "varrho(x,y) of Thm at-fix for every pair; the uniform system for t_Delta, t_P, t_M, t_R, t_xi+-, t_eta+-, t_K; its rank (expected 7 of 9; homogeneous solutions: inner c lambda_x and outer a B_x)",
+   "targets": "G-tDelta; G-zero on the commuting pairs; G-WZ2"
+  }
+ ],
+ "gates": [
+  {
+   "id": "G-sign",
+   "statement": "s(sF) = 0 with the component formulas of Lemma at-sformulas on random two- and three-leg local test cochains of arity 0, 1, 2; the classical components of Lemma c2-components vanish on the realisation (arity 1 and 2, su(2))",
+   "target": "exact 0"
+  },
+  {
+   "id": "G-reg0",
+   "statement": "arity-zero obstruction: two legs -27/8 u int(d*dc,d*A_V) (Thm c4-obstruction); three legs eq at-ob3: (11/4 + 19/4 L)(G1+G3) + 27/8 G2 - 9 L G5, coefficient of G4 and of the parity-odd structure 0",
+   "target": "exact"
+  },
+  {
+   "id": "G-reg1",
+   "statement": "two-leg Ob^(1)(Delta) = u[-11/3 int(dA,dA) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)] from the special-edge cycles alone, coefficient 0 for int(d*A_V,d*A_V) and explicit x",
+   "target": "exact"
+  },
+  {
+   "id": "G-pole",
+   "statement": "eq at-pole: sum of a_1 over the two-leg cycles = (9/4) u {int(A,A), S(x)}; all other pole sums vanish; eq at-local2 at arity two",
+   "target": "exact"
+  },
+  {
+   "id": "G-log",
+   "statement": "no log eps in any special-edge cycle (route B: slope of the eps-dependence); s lc = 0 componentwise",
+   "target": "exact / numerical 1e-20"
+  },
+  {
+   "id": "G-logex",
+   "statement": "Rem at-logexact: lc^(1)(x) + {uN, S(x)} in C u S(x) + Im Lambda; report l_x",
+   "target": "computed statement"
+  },
+  {
+   "id": "G-R0",
+   "statement": "Ob^(1)(R_r) = 0 sector by sector (cycle sums), lc^(1)(R_r) = 0",
+   "target": "exact 0"
+  },
+  {
+   "id": "G-P2",
+   "statement": "Ob^(1)(P_b)|_2 = 0",
+   "target": "exact 0"
+  },
+  {
+   "id": "G-pos",
+   "statement": "Prop at-pos (ii): position parts along b of Ob^(1)(Delta), Ob^(1)(eta), Ob^(1)(M_omega), Ob^(1)(K_b) equal 2 Ob^(1)(P_b), Ob^(1)(rho(b)eta), Ob^(1)(P_{omega b}), and the Delta/rotation and translation parts",
+   "target": "exact"
+  },
+  {
+   "id": "G-WZ1",
+   "statement": "Lambda Ob^(1)(x) = {Ob^(0), S(x)} on two and three legs",
+   "target": "exact"
+  },
+  {
+   "id": "G-WZ2",
+   "statement": "Lambda Ob^(2)(x,y) = Ob^(1)([x,y]) + (-1)^{|x|}{Ob^(1)(x),S(y)} + {S(x),Ob^(1)(y)} + {Ob^(0),S^(2)(x,y)} on two legs",
+   "target": "exact"
+  },
+  {
+   "id": "G-T",
+   "statement": "along K_b, (K_b,P_b'), (eta,eta'): the eps -> 0 values at T = 1, 4, 16 agree; T d/dT of each cycle is O(eps) at fixed T",
+   "target": "agreement to the extrapolation error; ratio 4 per factor 4 in eps"
+  },
+  {
+   "id": "G-AB",
+   "statement": "route A against route B entry by entry (every Ob^(1), Ob^(2), lc, particular solution and class)",
+   "target": "exact equality for exact entries, >= 30 digits otherwise"
+  },
+  {
+   "id": "G-tDelta",
+   "statement": "the determinations of t_Delta from (Delta,P_b), (Delta,xi_+), (Delta,xi_-), (xi_+-,eta_+-) agree; likewise t_M, t_R",
+   "target": "exact"
+  },
+  {
+   "id": "G-zero",
+   "statement": "the classes [R^(2)] on the commuting pairs vanish (automatic under Hypothesis at-H)",
+   "target": "exact 0"
+  },
+  {
+   "id": "G-H",
+   "statement": "Hypothesis at-H at three legs: the sector parts and the free second-order symmetries do not extend through three legs except the full S(z)",
+   "target": "computed ranks"
+  },
+  {
+   "id": "G-colour",
+   "statement": "colour reduction checked in su(2), su(3), gl(3); four-leg sectors keep f f and str(ad^4) separately",
+   "target": "exact"
+  }
+ ],
+ "cross_checks": [
+  {
+   "id": "X-scal",
+   "statement": "Thm at-second (v): Ob^(1)(Delta) = 4 lc^(0) + composite part; two legs u[-4,16,-4] + u[1/3,-1/3,-2/3]",
+   "role": "cross-check only"
+  },
+  {
+   "id": "X-theta",
+   "statement": "theta = -1/3 (Thm c9-kappa, Cor c11-theta) <=> o_perp = -(2/3) u in Thm at-theta",
+   "role": "cross-check only"
+  },
+  {
+   "id": "X-twist",
+   "statement": "r_xi of the solution for rank-one xi (Rem at-twist) against [BK (3.64)-(3.70)] after transport (Thm c8-twist, Rem c8 twist comparison)",
+   "role": "cross-check only"
+  },
+  {
+   "id": "X-KP",
+   "statement": "K = P^dagger (Cor c8-gram) for the special conformal data",
+   "role": "cross-check only"
+  }
+ ],
+ "comparison_phase": "after both routes finish: compare.json entry by entry (task id, sector, basis element, value A, value B, agree); disagreements resolved by a third evaluation (numerical special-edge cycles at finite eps)",
+ "outputs_per_engine": {
+  "results.json": "machine-readable exact strings: Ob1[x][sector][basis] , Ob2[(x,y)][sector][basis], lc1, F1 particular solutions with free symbols, cohomology tables, varrho, theta_d, t-system",
+  "gates.json": "gate id, value, target, pass/fail, notes",
+  "notes.txt": "method, conventions, sign rules, normalisations",
+  "PROGRESS.txt": "timestamped log",
+  "run_all.py": "single entry point, resumable, prints wall time and max RSS"
+ },
+ "order_of_work": [
+  "T0",
+  "S1 (two legs)",
+  "T1",
+  "T4",
+  "B1",
+  "S2 (two legs)",
+  "T8",
+  "T2",
+  "T5",
+  "S1 (cubic)",
+  "S2 (cubic)",
+  "B2",
+  "T3",
+  "T6",
+  "T7"
+ ]
+}

@@ -1,0 +1,575 @@
+{
+ "gates": [
+  {
+   "id": "E0-conv",
+   "value": "Pi K_0 H_free(-k,k) - q(k) = 0",
+   "target": "q(k) = Pi K_0 H_free(-k,k)",
+   "pass_or_fail": "pass",
+   "note": "free action of eq c1-free (kinA, kinlam, kingh of vertices.py); fixes the reading F = (1/2)<e,Xe>",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-orient",
+   "value": "rho(e1e2e3e4) = +1 on comps 0..7: True, -1 on 8..15: True",
+   "target": "lamP = S_+ (x) W = +1 eigenspace for the orientation dx1dx2dx3dx4 of the dictionary (engine m=0 <-> 4)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-xi-arrows-p",
+   "value": {
+    "field_arrows_equal_minus_Lemma": true,
+    "antifield_arrows_by_pairing": true
+   },
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_or_fail": "pass",
+   "note": "FINDING: Lemma qs-arrows prints lam -> -Gamma(xi,lam), A -> -(1/2) rho(dA) xi, i.e. the reading int(Xe,e*) <-> X, which is minus the convention of Prop c1-Q (int(dc,A*) <-> Q c = -dc); all statements of Prop qs-comm (i) hold for both signs, C_xi and the composite line change sign",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-xi-comm-p",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-Cxi-p",
+   "value": {
+    "blocks": [
+     "AV<-lamsP",
+     "c<-lamM",
+     "lamP<-AsV",
+     "lamsM<-cs"
+    ],
+    "order_one": true,
+    "lam_to_c": true,
+    "graded_sym": true
+   },
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_or_fail": "pass",
+   "note": "refinement: only A*|_V -> lam and lam* -> A|_V occur (the A*|_perp -> lam and lam* -> A|_perp components cancel between xi.Q^GF and Q^GF xi.)",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-line-p",
+   "value": {
+    "blocks": [
+     "c<-lamP",
+     "lamP<-c"
+    ],
+    "c_lam": [
+     "-2"
+    ],
+    "lam_c": [
+     "2"
+    ]
+   },
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-xi-arrows-m",
+   "value": {
+    "field_arrows_equal_minus_Lemma": true,
+    "antifield_arrows_by_pairing": true
+   },
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_or_fail": "pass",
+   "note": "FINDING: Lemma qs-arrows prints lam -> -Gamma(xi,lam), A -> -(1/2) rho(dA) xi, i.e. the reading int(Xe,e*) <-> X, which is minus the convention of Prop c1-Q (int(dc,A*) <-> Q c = -dc); all statements of Prop qs-comm (i) hold for both signs, C_xi and the composite line change sign",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-xi-comm-m",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-Cxi-m",
+   "value": {
+    "blocks": [
+     "AV<-lamsM",
+     "c<-lamP",
+     "lamM<-AsV",
+     "lamsP<-cs"
+    ],
+    "order_one": true,
+    "lam_to_c": true,
+    "graded_sym": true
+   },
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_or_fail": "pass",
+   "note": "refinement: only A*|_V -> lam and lam* -> A|_V occur (the A*|_perp -> lam and lam* -> A|_perp components cancel between xi.Q^GF and Q^GF xi.)",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-line-m",
+   "value": {
+    "blocks": [
+     "c<-lamM",
+     "lamM<-c"
+    ],
+    "c_lam": [
+     "-2"
+    ],
+    "lam_c": [
+     "2"
+    ]
+   },
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-eta-ep",
+   "value": {
+    "comm_Q": true,
+    "comm_Q_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsM",
+     "AsW<-lamsP"
+    ],
+    "s0_needed": true,
+    "comm_H": true,
+    "s0_blocks": [
+     "AsW<-lamsP",
+     "lamP<-AW"
+    ]
+   },
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_or_fail": "pass",
+   "note": "FINDING: eta. is x^mu xi_mu. (normal ordered) + eta^0. + Y, with Y the constant antifield arrows lam* -> A*, A* -> lam* produced by the integration by parts of x^mu on the antifield arrows (pairing preservation); with Y, [eta.,Q] = sum sigma^mu(Q) xi_mu. + [eta^0.+Y, Q] = 0 exactly; without Y the identity fails. The constant part C^0_eta of [eta.,Q^GF] includes Y.",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-eta-em",
+   "value": {
+    "comm_Q": true,
+    "comm_Q_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsP",
+     "AsW<-lamsM"
+    ],
+    "s0_needed": true,
+    "comm_H": true,
+    "s0_blocks": [
+     "AsW<-lamsM",
+     "lamM<-AW"
+    ]
+   },
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_or_fail": "pass",
+   "note": "FINDING: eta. is x^mu xi_mu. (normal ordered) + eta^0. + Y, with Y the constant antifield arrows lam* -> A*, A* -> lam* produced by the integration by parts of x^mu on the antifield arrows (pairing preservation); with Y, [eta.,Q] = sum sigma^mu(Q) xi_mu. + [eta^0.+Y, Q] = 0 exactly; without Y the identity fails. The constant part C^0_eta of [eta.,Q^GF] includes Y.",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-spin",
+   "value": {
+    "equivariance": true,
+    "pairing": true
+   },
+   "target": "Sigma^{mu nu} = (1/2) rho_mu rho_nu on Sigma and Sigma^*: rho(Sigma v) = [Sigma, rho(v)], (Sigma s, s*) + (s, Sigma s*) = 0",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-Delta",
+   "value": {
+    "comm_Q": true,
+    "comm_QGF_eq_m4QGF": true,
+    "comm_H_eq_m4H": true
+   },
+   "target": "[v.,Q] = 0, [v.,Q^GF] = -4 Q^GF, [v.,H] = -4H for v = 2E (Prop c7-dil)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "E0-K",
+   "value": {
+    "comm_Q": true,
+    "remainder_constant": true,
+    "C_K_order0": true,
+    "C_K_AV_eq_m4b": true,
+    "C_K_AsW_zero": true,
+    "C_K_formula": true,
+    "comm_H": true,
+    "C_K_blocks": [
+     "AsV<-cs",
+     "c<-AV",
+     "lamM<-lamsP",
+     "lamP<-lamsM"
+    ]
+   },
+   "target": "[v.,Q]=0; [v.,Q^GF] = 4(b,x)Q^GF + C_K, C_K = 2 sigma^rho(Q^GF)(w b_rho - b_nu Sigma^{rho nu}), C_K A_V = -4(b,A_V), C_K = 0 on A*_perp; [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "E0 qb_e0.py"
+  },
+  {
+   "id": "G-TC0-Sigma",
+   "value": [
+    {
+     "T1": "1",
+     "T3": "1"
+    },
+    {
+     "T2": "1",
+     "T4": "1"
+    }
+   ],
+   "target": "kernel of Q on {T1..T4, T5'} = span{T1+T3, T2+T4}; no exact (no degree -2 structure of field weight 9/2)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "TQ0 qb_tq0.py"
+  },
+  {
+   "id": "G-TC0-Sigma*",
+   "value": [
+    {
+     "x.T1": "1",
+     "x.T3": "1"
+    },
+    {
+     "x.T2": "1",
+     "x.T4": "1",
+     "s0": "1"
+    }
+   ],
+   "target": "closed span{x.(T1+T3), x.(T2+T4)+s0} (position degree <= 1)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "TQ0 qb_tq0.py"
+  },
+  {
+   "id": "G-reg (P_b)",
+   "value": {
+    "word [0, 1] eps^-0 1": {
+     "i(b.p0) (a.Y0)(b.Y1)": "0",
+     "i(b.p1) (a.Y0)(b.Y1)": "0",
+     "i(b.p0) (a.Y1)(b.Y0)": "-1/3",
+     "i(b.p1) (a.Y1)(b.Y0)": "-1/3",
+     "i(b.p0) (a.b)(Y0.Y1)": "0",
+     "i(b.p1) (a.b)(Y0.Y1)": "0"
+    },
+    "word [1, 0] eps^-0 1": {
+     "i(b.p0) (a.Y0)(b.Y1)": "-1/3",
+     "i(b.p1) (a.Y0)(b.Y1)": "-1/3",
+     "i(b.p0) (a.Y1)(b.Y0)": "0",
+     "i(b.p1) (a.Y1)(b.Y0)": "0",
+     "i(b.p0) (a.b)(Y0.Y1)": "0",
+     "i(b.p1) (a.b)(Y0.Y1)": "0"
+    }
+   },
+   "target": "composite engine B so6_AWAW.json word by word: -1/3 i(b.p0) - 1/3 i(b.p1) on the exchanged structure",
+   "pass_or_fail": "pass",
+   "note": "calibrates the Koszul ordering for even x: CE coordinate of x first, then the parameter of the special edge",
+   "source": "TQ7 qb_greg.py"
+  },
+  {
+   "id": "G-pole lamP|lamP -> lamP",
+   "value": {
+    "(0,)": "0"
+   },
+   "target": "[eps^-1]D = {S,ct_1(O)} - ct_1({S,X_a}X_b) + ct_1(X_a{S,X_b}) (eq qs-pole, m = 1, leg set lam)",
+   "pass_or_fail": "pass",
+   "note": "with the overall sign of D reversed: holds",
+   "source": "G-pole qb_fsp.py"
+  },
+  {
+   "id": "G-pole lamP|lamM -> lamM",
+   "value": {
+    "(0,)": "0"
+   },
+   "target": "[eps^-1]D = {S,ct_1(O)} - ct_1({S,X_a}X_b) + ct_1(X_a{S,X_b}) (eq qs-pole, m = 1, leg set lam)",
+   "pass_or_fail": "pass",
+   "note": "with the overall sign of D reversed: holds",
+   "source": "G-pole qb_fsp.py"
+  },
+  {
+   "id": "G-pole lamM|lamM -> lamP",
+   "value": {
+    "(0,)": "0"
+   },
+   "target": "[eps^-1]D = {S,ct_1(O)} - ct_1({S,X_a}X_b) + ct_1(X_a{S,X_b}) (eq qs-pole, m = 1, leg set lam)",
+   "pass_or_fail": "pass",
+   "note": "with the overall sign of D reversed: holds",
+   "source": "G-pole qb_fsp.py"
+  },
+  {
+   "id": "G-pole lamM|lamP -> lamM",
+   "value": {
+    "(0,)": "0"
+   },
+   "target": "[eps^-1]D = {S,ct_1(O)} - ct_1({S,X_a}X_b) + ct_1(X_a{S,X_b}) (eq qs-pole, m = 1, leg set lam)",
+   "pass_or_fail": "pass",
+   "note": "with the overall sign of D reversed: holds",
+   "source": "G-pole qb_fsp.py"
+  },
+  {
+   "id": "G-pole AW|lamP -> AW (Example qs-cubic pair)",
+   "value": {
+    "(0,)": "0"
+   },
+   "target": "[eps^-1]D(A_perp,lam_+)|_{A_perp} = -ct_1({S,A_perp} lam_+) - ct_1(A_perp {S,lam_+}) (eq qs-pole, m = 1)",
+   "pass_or_fail": "pass",
+   "note": "with the overall sign of D reversed: fails",
+   "source": "G-pole qb_fsp.py"
+  },
+  {
+   "id": "G-num cubic example (AW,lamP)->AW, T5 at the special edge",
+   "value": [
+    [
+     "[('S3', (0,))]",
+     0,
+     "2.395e-10",
+     "5.7642e-17",
+     "(-1.87251e-11 - 5.75761e-12j)"
+    ],
+    [
+     "[('S3', (0,))]",
+     1,
+     "2.395e-10",
+     "5.7642e-17",
+     "(-1.87251e-11 - 5.75761e-12j)"
+    ]
+   ],
+   "target": "finite-eps quadrature (32 digits), nine points eps = 2^-10..2^-18, fit: eps^0 within 1e-8, eps^-1 within 1e-12 of the exact coefficients, log eps coefficient below 1e-8 (G-noLog numeric)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_numeps.py"
+  },
+  {
+   "id": "G-num (AW,AW)->lamM, T1/T3 at the special edge",
+   "value": [
+    [
+     "[('S2', ()), ('I', (0,))]",
+     0,
+     "1.2427e-10",
+     "2.9908e-17",
+     "(-7.54341e-13 + 1.01363e-11j)"
+    ]
+   ],
+   "target": "finite-eps quadrature (32 digits), nine points eps = 2^-10..2^-18, fit: eps^0 within 1e-8, eps^-1 within 1e-12 of the exact coefficients, log eps coefficient below 1e-8 (G-noLog numeric)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_numeps.py"
+  },
+  {
+   "id": "G-num (lamP,c)->c, n=2 chains",
+   "value": [
+    [
+     "[('S2', ()), ('I', (0,))]",
+     0,
+     "5.0492e-24",
+     "6.0418e-35",
+     "(-7.79776e-39 - 8.97329e-29j)"
+    ]
+   ],
+   "target": "finite-eps quadrature (32 digits), nine points eps = 2^-10..2^-18, fit: eps^0 within 1e-8, eps^-1 within 1e-12 of the exact coefficients, log eps coefficient below 1e-8 (G-noLog numeric)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_numeps.py"
+  },
+  {
+   "id": "G-plane",
+   "value": "all singlet values zero",
+   "target": "Prop qs-plane: Upsilon_xi(A_perp,A_perp) on chiral w1, w2 (rho(w_a) xi = 0, xi = u (x) e_4), colour singlet, every leg set, eps^0 and poles: 0",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "G-plane qb_bil.py"
+  },
+  {
+   "id": "G-pos-eta AW|AW -> lamP",
+   "value": true,
+   "target": "Prop qs-posdec (i): h = 0 part = kernel along rho(e_mu) eta, per word",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_etak.py"
+  },
+  {
+   "id": "G-pos-eta AW|lamP -> AV",
+   "value": true,
+   "target": "Prop qs-posdec (i): h = 0 part = kernel along rho(e_mu) eta, per word",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_etak.py"
+  },
+  {
+   "id": "G-pos-eta AW|lamM -> AW",
+   "value": true,
+   "target": "Prop qs-posdec (i): h = 0 part = kernel along rho(e_mu) eta, per word",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_etak.py"
+  },
+  {
+   "id": "G-KT analogue (endpoint independence, route B numerics)",
+   "value": {
+    "[('S3', (0,))] sigma=0 T=None": {
+     "diff_eps0": "2.395e-10",
+     "diff_eps_m1": "5.764e-17",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=0 T=1": {
+     "diff_eps0": "1.828e-9",
+     "diff_eps_m1": "4.4e-16",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=0 T=4": {
+     "diff_eps0": "4.535e-10",
+     "diff_eps_m1": "1.091e-16",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=0 T=16": {
+     "diff_eps0": "2.847e-10",
+     "diff_eps_m1": "6.851e-17",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=1 T=None": {
+     "diff_eps0": "2.395e-10",
+     "diff_eps_m1": "5.764e-17",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=1 T=1": {
+     "diff_eps0": "1.828e-9",
+     "diff_eps_m1": "4.4e-16",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=1 T=4": {
+     "diff_eps0": "4.535e-10",
+     "diff_eps_m1": "1.091e-16",
+     "O_eps_T_dependence": true
+    },
+    "[('S3', (0,))] sigma=1 T=16": {
+     "diff_eps0": "2.847e-10",
+     "diff_eps_m1": "6.851e-17",
+     "O_eps_T_dependence": true
+    }
+   },
+   "target": "at T|p|^2 = 10.7, 42.8, 171 (T = 1, 4, 16) and T = infinity the fitted eps^0 (to < 1e-8, about 10 significant digits) and eps^-1 (< 1e-12) coefficients of the T5 cycle equal the exact T = infinity values; (value_T - value_infinity)/eps converges (T-dependence O(eps), Thm qs-simplex (iv))",
+   "pass_or_fail": "pass",
+   "note": "quadrature split at the kink eps/alpha_sigma = T/(1 - alpha_sigma)",
+   "source": "qb_numT.py"
+  },
+  {
+   "id": "G-cubic",
+   "value": "eps^0 - (3/4)|q|^2 eps^-1 = 0, eps^0 rational",
+   "target": "Example qs-cubic: 16 pi^2 x value = (-1/(2 eps) - (3/8)|q|^2) x (T5 factor x fibre factors)",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_gmisc.py"
+  },
+  {
+   "id": "G-swap",
+   "value": {
+    "AW|lamP -> AW": true,
+    "AV|lamP -> AV": true,
+    "lamP|lamM -> lamM": true
+   },
+   "target": "Upsilon(X_b,X_a)_w = (-1)^{|X_a||X_b| + |w|} Upsilon(X_a,X_b)_{reversed w} with the letters relabelled",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_gmisc.py"
+  },
+  {
+   "id": "G-chirality",
+   "value": {
+    "AW|AW->['lamM'] vs AW|AW->['lamP']": true,
+    "AV|AV->['lamM'] vs AV|AV->['lamP']": true,
+    "AW|lamM->['AW'] vs AW|lamP->['AW']": true
+   },
+   "target": "kernels along S_- (x) W^* = chirality-swapped kernels along S_+ (x) W (same words, poles, bases and number of terms) on three pairs",
+   "pass_or_fail": "pass",
+   "note": "",
+   "source": "qb_gmisc.py"
+  },
+  {
+   "id": "G-closed (constant numerator)",
+   "value": {
+    "n_t = 2": {
+     "eps0": "0 + (1)*log(2)",
+     "eps_m1": "1/4",
+     "eps0_closed": "log(n_t/(n_t-1))/(n_t-1)!",
+     "eps_m1_closed": "1/(n_t^2 (n_t-1) (n_t-1)!)",
+     "match": true
+    },
+    "n_t = 3": {
+     "eps0": "0 + (-1/2)*log(2) + (1/2)*log(3)",
+     "eps_m1": "1/36",
+     "eps0_closed": "log(n_t/(n_t-1))/(n_t-1)!",
+     "eps_m1_closed": "1/(n_t^2 (n_t-1) (n_t-1)!)",
+     "match": true
+    },
+    "n_t = 4": {
+     "eps0": "0 + (1/3)*log(2) + (-1/6)*log(3)",
+     "eps_m1": "1/288",
+     "eps0_closed": "log(n_t/(n_t-1))/(n_t-1)!",
+     "eps_m1_closed": "1/(n_t^2 (n_t-1) (n_t-1)!)",
+     "match": true
+    },
+    "n_t = 5": {
+     "eps0": "0 + (-1/12)*log(2) + (1/24)*log(5)",
+     "eps_m1": "1/2400",
+     "eps0_closed": "log(n_t/(n_t-1))/(n_t-1)!",
+     "eps_m1_closed": "1/(n_t^2 (n_t-1) (n_t-1)!)",
+     "match": true
+    },
+    "n_t = 6": {
+     "eps0": "0 + (1/120)*log(2) + (1/120)*log(3) + (-1/120)*log(5)",
+     "eps_m1": "1/21600",
+     "eps0_closed": "log(n_t/(n_t-1))/(n_t-1)!",
+     "eps_m1_closed": "1/(n_t^2 (n_t-1) (n_t-1)!)",
+     "match": true
+    }
+   },
+   "target": "J_0(n_t) = log(n_t/(n_t-1))/(n_t-1)!, J_1(n_t) = 1/(n_t^2 (n_t-1)(n_t-1)!), n_t = 2..6 exact",
+   "pass_or_fail": "pass",
+   "note": "revision: the eps^0 formula holds for a constant eps^0 integrand F_0 (D = 0 leg sets, no pole), the eps^-1 formula for a constant m = 1 integrand F_1 (D = 2); each was evaluated with its own constant integrand",
+   "source": "qb_assemble.py (ce_int.J)"
+  },
+  {
+   "id": "REV G-T5lamstar n = 0 lam*-output leg sets unchanged by the T5 lam*-output placement",
+   "value": "12/12",
+   "target": "all (the new configurations cancel at n = 0)",
+   "pass_or_fail": "pass",
+   "note": "revision 2026-10-30",
+   "source": "revision.nosync/rv_b_lamstar.py"
+  },
+  {
+   "id": "REV G-AB n = 0 lam*-output rows, fixed route B vs route A",
+   "value": "10/10",
+   "target": "all agree",
+   "pass_or_fail": "pass",
+   "note": "revision 2026-10-30",
+   "source": "revision.nosync/rv_ab.py"
+  },
+  {
+   "id": "REV G-AB n = 1 lam*-output rows, fixed route B vs route A",
+   "value": "10/10",
+   "target": "all agree (first-pass B: 8/10)",
+   "pass_or_fail": "pass",
+   "note": "revision 2026-10-30",
+   "source": "revision.nosync/rv_ab.py"
+  },
+  {
+   "id": "REV G-KT along K_b",
+   "value": 12,
+   "target": "T dV/dT -> 0 at least linearly in eps (ratio ~4 or ~16 per factor 4) at T = 1, 4, 16 for every configuration (Thm qs-simplex (iv)): the eps^-1, eps^0, log eps coefficients of Upsilon^0_{K_b} are T-independent",
+   "pass_or_fail": "pass",
+   "note": "revision 2026-10-30",
+   "source": "revision.nosync/rv_gkt.py"
+  }
+ ],
+ "n_pass": 39,
+ "n_fail": 0
+}

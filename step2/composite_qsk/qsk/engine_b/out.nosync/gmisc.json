@@ -1,0 +1,100 @@
+{
+ "results": {
+  "G-cubic": {
+   "eps_m1": "o0_4*xi0*za_5*zb_1/2 + o0_4*xi0*za_6*zb_2/2 + I*o0_4*xi0*za_7*zb_0/2 + I*o0_4*xi0*za_8*zb_1/2 + I*o0_4*xi0*za_9*zb_2/2 - o0_4*xi1*za_5*zb_0/2 - o0_4*xi1*za_6*zb_3/2 - I*o0_4*xi1*za_7*zb_1/2 + I*o0_4*xi1*za_8*zb_0/2 - I*o0_4*xi1*za_9*zb_3/2 + o0_4*xi2*za_5*zb_3/2 - o0_4*xi2*za_6*zb_0/2 - I*o0_4*xi2*za_7*zb_2/2 + I*o0_4*xi2*za_8*zb_3/2 + I*o0_4*xi2*za_9*zb_0/2 - o0_4*xi3*za_5*zb_2/2 + o0_4*xi3*za_6* ...",
+   "ratio": "eps^0 / eps^-1 = (3/4)|q|^2",
+   "bases": [
+    "1"
+   ]
+  },
+  "G-swap": {
+   "AW|lamP -> AW": true,
+   "AV|lamP -> AV": true,
+   "lamP|lamM -> lamM": true
+  },
+  "G-chirality": {
+   "AW|AW->['lamM'] vs AW|AW->['lamP']": {
+    "S_plus": [],
+    "S_minus": [],
+    "same_structure": true
+   },
+   "AV|AV->['lamM'] vs AV|AV->['lamP']": {
+    "S_plus": [
+     [
+      "(0,)",
+      0,
+      "1",
+      192
+     ],
+     [
+      "(0,)",
+      0,
+      "log2",
+      192
+     ],
+     [
+      "(0,)",
+      0,
+      "log3",
+      192
+     ]
+    ],
+    "S_minus": [
+     [
+      "(0,)",
+      0,
+      "1",
+      192
+     ],
+     [
+      "(0,)",
+      0,
+      "log2",
+      192
+     ],
+     [
+      "(0,)",
+      0,
+      "log3",
+      192
+     ]
+    ],
+    "same_structure": true
+   },
+   "AW|lamM->['AW'] vs AW|lamP->['AW']": {
+    "S_plus": [],
+    "S_minus": [],
+    "same_structure": true
+   }
+  },
+  "seconds": 39.8
+ },
+ "gates": [
+  {
+   "id": "G-cubic",
+   "pass_": true,
+   "value": "eps^0 - (3/4)|q|^2 eps^-1 = 0, eps^0 rational",
+   "target": "Example qs-cubic: 16 pi^2 x value = (-1/(2 eps) - (3/8)|q|^2) x (T5 factor x fibre factors)"
+  },
+  {
+   "id": "G-swap",
+   "pass_": true,
+   "value": {
+    "AW|lamP -> AW": true,
+    "AV|lamP -> AV": true,
+    "lamP|lamM -> lamM": true
+   },
+   "target": "Upsilon(X_b,X_a)_w = (-1)^{|X_a||X_b| + |w|} Upsilon(X_a,X_b)_{reversed w} with the letters relabelled"
+  },
+  {
+   "id": "G-chirality",
+   "pass_": true,
+   "value": {
+    "AW|AW->['lamM'] vs AW|AW->['lamP']": true,
+    "AV|AV->['lamM'] vs AV|AV->['lamP']": true,
+    "AW|lamM->['AW'] vs AW|lamP->['AW']": true
+   },
+   "target": "kernels along S_- (x) W^* = chirality-swapped kernels along S_+ (x) W (same words, poles, bases and number of terms) on three pairs"
+  }
+ ]
+}

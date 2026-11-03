@@ -1,0 +1,299 @@
+{
+ "meta": {
+  "role": "QA comparator, action side",
+  "date": "2026-10-30",
+  "unit": "u = -g^2 N/(32 pi^2)",
+  "qa_code": "qa/src.nosync: q_bv_toy.py, q_mspin_replay.py, q_dxi.py, q_dxi_fit.py, q_eta.py, q_eta_fit.py, q_lcN.py, q_small.py, write_compare.py, write_findings.py",
+  "qa_data": "qa/q_dxi_fit.json, qa/q_dxi_fit_minus.json, qa/q_eta_fit.json, qa/q_mspin_replay.json, qa/out.nosync/"
+ },
+ "entries": [
+  {
+   "item": "G-reg0, two legs: Ob^(0)|_2",
+   "engine_A": "-27/8 u int(d*dc,d*A_V)",
+   "engine_B": "-27/8 u int(d*dc,d*A_V)",
+   "qa_third": "",
+   "status": "agree",
+   "note": "regression to Thm c4-obstruction / Ch9 table; exact in both"
+  },
+  {
+   "item": "G-reg0, two-leg special-edge pole",
+   "engine_A": "-9/2 eps^-1 int(dc,A_V) (= -Q I^CT_2)",
+   "engine_B": "(9/4) u eps^-1 Q int(A,A)",
+   "qa_third": "consistent: Q int(A,A) = -2 int(dc,A_V) in both normalisations",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "G-reg0, three legs: Ob^(0)|_3",
+   "engine_A": "(11/4 + 19/4 L)(G1+G3) + 27/8 G2 + 0 G4 - 9 L G5, L = log(3/2)",
+   "engine_B": "same; parity-odd coefficient 0",
+   "qa_third": "",
+   "status": "agree",
+   "note": "regression to Thm c9-ob3 (eq c9-ob3)"
+  },
+  {
+   "item": "T1: hbar Ob^(1)(Delta)|_2",
+   "engine_A": "u[-11/3 int(dA,dA) (A_V and A_perp) + 0 int(d*A_V,d*A_V) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)]; position part 0; 5 further sectors zero",
+   "engine_B": "same; parity-odd (lam,dslash rho(vol) lam) coefficient 0; position part 0",
+   "qa_third": "",
+   "status": "agree",
+   "note": "regression to Thm c9-quadratic (ii) reproduced by two independent lineages (A: two-letter engine A + Part-C mode model; B: Step-1 engine B vertices + ce_core/ce_int)"
+  },
+  {
+   "item": "G-pole along Delta (two legs)",
+   "engine_A": "-9 int(A,A) = (9/4){int(A,A),S(Delta)}",
+   "engine_B": "-9 u int(A,A); 0 in (lam,lam), (c,A*)",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "G-P2: Ob^(1)(P_b)|_2",
+   "engine_A": "0 (direct P_b cycles and position part of Delta)",
+   "engine_B": "0 (position part of Delta cycles)",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "X-scal (cross-check only): Ob^(1)(Delta)|_2 = 4 lc^(0) + composite",
+   "engine_A": "lc^(0)|_2 = u[-1, 4, -1] from plain cycles; remainder u[1/3,-1/3,-2/3]",
+   "engine_B": "special-edge placements u[-4,-4,16,-4] = 4 lc^(0); line placements u[1/3,1/3,-1/3,-2/3]",
+   "qa_third": "Q N with engine-B Q and N of Thm c4-log, (lam*,lam) = (lam,lam*) (lam* even): Q N = [-1, 4, -1] = u^-1 lc^(0) of engine A (qa/out.nosync/q_lcN.txt)",
+   "status": "agree",
+   "note": "B states (lam*,lam) = -(lam,lam*); with that reading Q N|_lam = -4, contradicting A; see findings (minor, no effect on B numbers)"
+  },
+  {
+   "item": "T4: Ob^(1)(xi_+-)|_2",
+   "engine_A": "(79/24 - 1/2 log(3/2))(g1+g3) + 27/8 g2 + 0 g4, both chiralities",
+   "engine_B": "same, both chiralities; c-lam* sector 0",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "G-pole along xi",
+   "engine_A": "(9/2)[int(Gamma_V,A_V) + int(Gamma_perp,A_perp)] = (9/4){int(A,A),T1+T2}",
+   "engine_B": "(9/2) u int(A,Gamma(xi,lam)) = (9/4)u{int(A,A),S(xi)}",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "S1 along xi: Q images",
+   "engine_A": "QT1 = -QT3 = -1/2 g1, QT2 = -QT4 = -1/2 g3, QT0 = -g2-g4; {int(d*A_V,d*A_V),T1} = 2 g2",
+   "engine_B": "same; Q g2 = -Q g4; {F1^(0),T1} = 27/8 g2",
+   "qa_third": "",
+   "status": "agree",
+   "note": "B found two Koszul rules passing its G-sign; A (Q = {S_free,-} in the mode model) fixes q1 = -1/2, i.e. B's chosen left rule"
+  },
+  {
+   "item": "S1 along xi: two-leg cohomology",
+   "engine_A": "H^0 = 0; ker Q at degree -1 = span{T1+T3, T2+T4}; no exact",
+   "engine_B": "same (dims 5/4, rank 3, H^0 0, H^-1 2)",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "S2 along xi: residual and particular solution",
+   "engine_A": "R^(1)(xi)|_2 = (79/24 - 1/2 log(3/2))(g1+g3); F1^(1)(xi)|_2 = (log(3/2) - 79/12)(T1+T2) + u(theta^xi_V S^V_2 + theta^xi_perp S^perp_2), r0 = 0",
+   "engine_B": "same",
+   "qa_third": "",
+   "status": "agree",
+   "note": "theta^xi_V, theta^xi_perp remain free (not fixed by any computed equation)"
+  },
+  {
+   "item": "G-WZ1 along xi (two legs)",
+   "engine_A": "holds as Lambda Ob^(1) = -{Ob^(0),S(xi)} (378i vs -378i); fails with printed sign",
+   "engine_B": "holds with the same sign (residual 0 vs 6156)",
+   "qa_third": "derived from Def c2-dce: (sG)^(1)(x) = Lambda G^(1)(x) + {G^(0),S(x)} for |G| = 1; toy BV algebra (q_bv_toy.py) confirms the derivation rule Lambda{a,b} = -{Lambda a,b} - (-1)^{|a|}{a,Lambda b}",
+   "status": "agree",
+   "note": "theory note Lemma at-sformulas (ii) wrong (finding F1)"
+  },
+  {
+   "item": "B1: Ob^(2)(Delta,P_b)|_2, classes",
+   "engine_A": "o_perp = o_lam = o_V = -2/3 u; no other class; position part 0; no poles",
+   "engine_B": "o = -2/3 u in every block; other class (V block) 0; logs cancel in the class",
+   "qa_third": "",
+   "status": "agree",
+   "note": "theta^Delta_d = -1/3 (d = perp, lam, V); X-theta agrees (cross-check only). Normalisation pinned independently of X-theta by the corrected WZ2 along (Delta,xi) (below)"
+  },
+  {
+   "item": "B1: explicit representatives",
+   "engine_A": "perp -2/3 S(P_b)_perp; lam 2/3 int(d_b lam,lam*) + (-3/2+log(4/3)) int(rho(b) dslash lam,lam*); V -2/3 int(d_bA_V,A*_V) + (3/2-log(4/3)) int(d_mu(b.A_V),A*_mu) + (-5/6+log(4/3)) int(d_b c,c*)",
+   "engine_B": "not reported (classes only, p<=1 bases: V 20/9/7/2, perp 3/1/0/1, lam 7/3/2/1)",
+   "qa_third": "QA arithmetic: A representatives = -2/3 S(P_b)_d + (3/2 - log(4/3)) Q int(iota_b A_V,c*) [V], + (-3/4+log 2-1/2 log 3) Q int(rho(b)lam*,lam*) [lam]: consistent with A's exact directions",
+   "status": "A only (representatives); classes agree",
+   "note": ""
+  },
+  {
+   "item": "T3: Ob^(1)(R_r)",
+   "engine_A": "0 on 7 two-leg sectors and 3 three-leg sectors",
+   "engine_B": "0 on 4 two-leg and the same 3 three-leg sectors",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "T3: Ob^(1)(M_omega)|_2, V sector",
+   "engine_A": "1/3 Q int Om_{mu nu}(A_mu,A*_nu)",
+   "engine_B": "+1/3 u Q int omega_{mu nu}(A_mu,A*_nu) (fitted, 3 configs)",
+   "qa_third": "",
+   "status": "agree",
+   "note": ""
+  },
+  {
+   "item": "T3: Ob^(1)(M_omega)|_2, lambda sector",
+   "engine_A": "-1/12 int(rho(Om) lam, dslash lam), rho(Om) = sum Om_{mu nu} s[mu] sb[nu]",
+   "engine_B": "asserted +1/3 u Q int((1/4) omega rho rho lam, lam*) but never fitted (raw lam-lam values stored, candidate list empty)",
+   "qa_third": "replay of B's seed-23 stream (reproduces B's stored V candidates exactly) and fit of B's raw lam-lam values: theory = (1/3) Q(spinor spin part of S(M_omega)) exactly in 3/3 configurations (qa/q_mspin_replay.json)",
+   "status": "agree in magnitude (1/3 x 1/4 = 1/12); B claim now substantiated",
+   "note": "sign map between A's s[mu]sb[nu] basis and B's RB[mu]R[nu] basis not established; both engines give the uniform statement F1^(1)(M_omega)|_2 = 1/3 u S(M_omega)_spin + closed in the V sector, QA confirms it in the lam sector for B"
+  },
+  {
+   "item": "T6: Ob^(1)(eta_+)|_2 intrinsic",
+   "engine_A": "(A_V,lam): -5/2, -5/2; (A_perp,lam): -3/2 - 3 log2 + 3 log3 = -3/2 + 3 log(3/2) [results.json; notes/summary print -3/2 - 3 log(3/2)]; (c,lam*): 5/2; position part nonzero/nonzero/zero",
+   "engine_B": "not computed",
+   "qa_third": "second evaluation with engine B code (q_eta.py, q_eta_fit.py): S(eta) = sum_mu x^mu S(rho(e_mu)eta) + int s0, sign of s0 fixed by Q S_2(eta) = 0 (residual 0 for the printed sign of c11-Seta, 356 for the opposite); intrinsic coefficients on A's bases realised in B's conventions: -5/2, -5/2; -3/2 - 3 log2 + 3 log3; 5/2; no poles; position part nonzero in the A_V and A_perp sectors, zero in (c,lam*)",
+   "status": "agree (A and QA)",
+   "note": "intrinsic parts only (canonical density, last leg eliminated); no solution along eta, no S1-eta cohomology; eta_- not recomputed"
+  },
+  {
+   "item": "T2: Ob^(1)(Delta)|_3 on classical cubic structures",
+   "engine_A": "8/3 (four ghost structures); 116/3 + 6 log2 - 3 log3 [summary prints log(8/27)]; 116/3 + 8 log2 - 4 log3 [summary prints log(16/81)]; (A_V)^3, A_V A_perp^2 unfitted; position parts nonzero",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "A only, partial",
+   "note": "intrinsic parts with nonzero position parts: convention dependent, not usable as cohomology data (see F2 lesson)"
+  },
+  {
+   "item": "T5: Ob^(1)(xi)|_3",
+   "engine_A": "seeded tables; no poles",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "A only, tables",
+   "note": ""
+  },
+  {
+   "item": "T8: lc^(1)(xi)|_2, G-logex",
+   "engine_A": "lc^(1)(xi)|_2 = {uN,S_2(xi)} = 2u(T1+T2-T3-T4); lc^(1) - {uN,S} = 0; l_xi = 0, c = a = 0",
+   "engine_B": "not computed",
+   "qa_third": "consistent with the corrected closed combination lc^(1)(x) - {uN,S(x)} (Def c2-dce + C-bracket rule)",
+   "status": "A only",
+   "note": ""
+  },
+  {
+   "item": "B2: Ob^(2)(Delta,xi_+-)|_2",
+   "engine_A": "intrinsic (p = 0): (8 + log(4/3)) T1 + 8 T2 - 26/3 (T3+T4) + 0 T0, both chiralities; flagged: G-WZ2 fails",
+   "engine_B": "not computed",
+   "qa_third": "third evaluation with engine B's cycle code (q_dxi.py, both chiralities, 65 equations each): intrinsic part identical to A (T1 8 + log(4/3), T2 8, T0 0, T3 -26/3, T4 -26/3); poles 0; position part nonzero, purely log(4/3); rational position part 0; the whole log(4/3) part (intrinsic + position) equals log(4/3) Q[int x^mu (Gamma(xi,lam)^mu,c*) + int x^mu (A*_mu,(xi,lam*))] exactly (rank 4, unique). Hence hbar Ob^(2)(Delta,xi)|_2 = u[8(T1+T2) - 26/3(T3+T4) + log(4/3) Q(psi1+psi2)]",
+   "status": "agree on intrinsic part; A's G-WZ2 failure resolved (artefact)",
+   "note": "corrected WZ2 (Q Ob^(2)(Delta,xi) = Ob^(1)([Delta,xi]) - {Ob^(1)(Delta),S(xi)} + {S(Delta),Ob^(1)(xi)}) holds: Q Ob^(2)|_2 = -25/3 u (g1+g3) = -{Ob^(1)(Delta)|_2,S_2(xi)}; printed sign gives +25/3 (fails)"
+  },
+  {
+   "item": "G-tDelta (two legs): t_Delta from (Delta,xi)",
+   "engine_A": "not computed (value flagged)",
+   "engine_B": "not computed",
+   "qa_third": "R^(2)(Delta,xi)|_2 at theta = 0 = Ob^(2) - {F1_part(Delta),S_2(xi)} = -1/3 u S_2(xi) + log(4/3) u Q(psi1+psi2), with F1_part(Delta)|_2 = u[22/3 int(A,A*) - 47/3 int(lam*,lam) - 8/3 int(c*,c)] (Def c11-free) and {F1_part(Delta),S_2(xi)} = 25/3 u (T1+T2-T3-T4); hence rho(Delta,xi) = -xi/3, t_Delta = -1/3 in the V and perp sectors and both chiralities; with theta^Delta_d = -1/3 the (Delta,xi) equation is solved on two legs by F1^(2)(Delta,xi)|_2 = log(4/3) u (psi1+psi2)",
+   "status": "QA result: pass",
+   "note": "agrees with t_Delta = -1/3 from (Delta,P_b)"
+  },
+  {
+   "item": "(xi,P_b) two-leg class",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "position part of the (Delta,xi) cycles = 2 Ob^(2)(P_b,xi)|_2 (Prop at-pos) is log(4/3) times a Q-exact functional: class 0, but Ob^(2)(xi,P_b)|_2 != 0 (needs F1^(2)(xi,P_b) prop. log(4/3))",
+   "status": "QA inference (via Prop at-pos), not a direct computation",
+   "note": ""
+  },
+  {
+   "item": "arity two (xi_+,xi_-)",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "arity two (xi_+,xi'_+)",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "arity two (xi,eta)",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "arity two (eta,eta')",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "arity two (K_b,P_b')",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "arity two (M,P), (M,xi), (R,xi), (Delta,eta), (Delta,K), ... (pairs absent from the theory table)",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "T7: Ob^(1)(K_b) (finite T), S1-K, G-T",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "S1 along eta, solution along eta",
+   "engine_A": "not computed",
+   "engine_B": "not computed",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "G-H (Hypothesis at-H at three legs), S1-cubic, GC13, G-zero",
+   "engine_A": "not computed",
+   "engine_B": "not computed (B's gate named G-H is the two-leg S1 along Sigma)",
+   "qa_third": "",
+   "status": "neither",
+   "note": ""
+  },
+  {
+   "item": "G-log (numerical finite-eps extrapolation)",
+   "engine_A": "not run",
+   "engine_B": "not run (structural)",
+   "qa_third": "Prop at-small (ii) closed forms verified by Monte Carlo, n_t = 2..5 (n_t = 4 at 4e-4 relative, 40M samples)",
+   "status": "neither (closed forms QA-checked)",
+   "note": ""
+  },
+  {
+   "item": "G-pos",
+   "engine_A": "structural (by construction)",
+   "engine_B": "structural (beta = cycle with S(d_mu v))",
+   "qa_third": "",
+   "status": "untested as an independent identity",
+   "note": ""
+  }
+ ]
+}

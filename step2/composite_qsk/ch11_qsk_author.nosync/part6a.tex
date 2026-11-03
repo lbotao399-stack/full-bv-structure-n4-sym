@@ -1,0 +1,148 @@
+\section{The two-body kernels of $Q_1$, $S_1$ and $K_1$}
+
+For $x$ in a homogeneous basis of $\mathfrak{psl}(4|4)$, $\lambda_x$ is its $\mathrm{ad}_\Delta$ eigenvalue, $-1$ on $\Sigma$, $+1$ on $\Sigma^*$ and $+2$ for $K_b$, and the degree of $x$ in the position is $0$, $1$ and $2$ (Section 10.9). The two-body kernel of a pair of letters along $x$ is the kernel of Proposition \ref{prop:c10-arity1}; this section computes it along the supercharges, the special supercharges and the special conformal fields. Along $\Sigma$ the vertex $S^{(1)}(\xi)$ meets the gauge-fixing operator in a new way: the commutator $[\xi.,Q^{GF}]$ joins the gaugino to the ghost, and $S^{(1)}(\xi)$ sits on a cycle as a line from $\lambda$ to $c$ whose image under $Q$ is nonzero, in contrast to the composite lines along $\Delta$ and $P_b$. The section shows that the component along $x$ of every local functional is nevertheless a sum over its pairs of letters of local two-body kernels, the finite parts of the cycles with one vertex $S^{(1)}(x)$ and one special edge, plus a one-body term; writes these kernels as simplex integrals, independent of the endpoint along $K_b$; computes them on the scalar bilinears, where the two-body part of $Q_1$ on the traceless part is $-2\log\tfrac32$ units times the classical transformation, and derives $S_1$ and $K_1$ there; and evaluates the pair entries of the twisted differential along a rank-one supercharge. Edges carry $P(\varepsilon,\infty)$ along $\Sigma$ and $\Sigma^*$ (Proposition \ref{prop:c8-Tsafe}) and $P(\varepsilon,T)$ at a finite $T$ along $K_b$ (Definition \ref{def:c8-K}). In this section $\psi$ denotes the finite part of the operators of Definition \ref{def:c8-renorm}, and $L:=\log\tfrac32$.
+
+\begin{definition}[The terms of $S^{(1)}(x)$]
+\label{def:c11-terms}
+For $\xi\in S_+\otimes W$ the functional $S^{(1)}(\xi)$ of \eqref{eq:c2-S1Q} is the sum of the seven terms of Table \ref{tab:c11-terms}: the quadratic terms $T_1,\dots,T_4$ and the three cubic terms $T_5$, with $F_A=dA+\tfrac12[A\wedge A]$ reduced to $V$ and $dA|_V$, $dA|_{W_{\mathbb R}^\perp}$ the parts of $dA$ in $\wedge^2V$ and in $V\wedge W_{\mathbb R}^\perp$; $T_3$ and $T_4$ carry one derivative on the leg $A$. For $\xi\in S_-\otimes W^*$ the table holds with $\lambda|_{S_+\otimes W}$ and $\lambda|_{S_-\otimes W^*}$ exchanged and $\lambda^*|_{S_+\otimes W^*}$ and $\lambda^*|_{S_-\otimes W}$ exchanged. The quadratic part of $S^{(1)}(\xi)$ is $S^V_2(\xi)+S^\perp_2(\xi)$, with $S^V_2(\xi):=T_1+T_3$, the part with the legs $(\lambda,A^*|_V)$ and $(A|_V,\lambda^*)$, and $S^\perp_2(\xi):=T_2+T_4$, the part with the legs $(\lambda,A^*|_{W_{\mathbb R}^\perp})$ and $(A|_{W_{\mathbb R}^\perp},\lambda^*)$. For $\eta\in\Sigma^*$ and an orthonormal basis $e_\mu$ of $V$, \eqref{eq:c2-S1S} reads
+\begin{equation}
+S^{(1)}(\eta)=\sum_\mu\int x^\mu s_\mu+\int s_0,\qquad \int s_\mu:=S^{(1)}\big(\rho(e_\mu)\eta\big),\qquad s_0:=-\big(\rho(A|_{W_{\mathbb R}^\perp})\eta,\lambda^*\big);
+\label{eq:c11-Seta}
+\end{equation}
+for $\eta\in S_+\otimes W^*$ the spinors $\rho(e_\mu)\eta$ lie in $S_-\otimes W^*$ and $s_0$ has the legs $A|_{W_{\mathbb R}^\perp}$, $\lambda^*|_{S_+\otimes W^*}$, and for $\eta\in S_-\otimes W$ they lie in $S_+\otimes W$ and $s_0$ has the legs $A|_{W_{\mathbb R}^\perp}$, $\lambda^*|_{S_-\otimes W}$. For an even generator with vector field $v$, $S^{(1)}(x)=\int\big((v.A,A^*)-(v.\lambda,\lambda^*)-(v.c,c^*)\big)$ (Definition \ref{def:c7-vdot}).
+\end{definition}
+
+\begin{tabular}{l|l|l}
+term & functional, $\int\mathrm{dvol}$ understood & legs\\
+\hline
+$T_1$ & $-\big(\Gamma(\xi,\lambda)|_V,A^*|_V\big)$ & $\lambda|_{S_-\otimes W^*}$, $A^*|_V$\\
+$T_2$ & $-\big(\Gamma(\xi,\lambda)|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big)$ & $\lambda|_{S_+\otimes W}$, $A^*|_{W_{\mathbb R}^\perp}$\\
+$T_3$ & $\tfrac12\big(\rho(dA|_V)\xi,\lambda^*\big)$ & $A|_V$, $\lambda^*|_{S_+\otimes W^*}$\\
+$T_4$ & $\tfrac12\big(\rho(dA|_{W_{\mathbb R}^\perp})\xi,\lambda^*\big)$ & $A|_{W_{\mathbb R}^\perp}$, $\lambda^*|_{S_-\otimes W}$\\
+$T_5$ & $\tfrac12\big(\rho(\tfrac12[A\wedge A])\xi,\lambda^*\big)$ & $(A|_V,A|_V,\lambda^*|_{S_+\otimes W^*})$, $(A|_V,A|_{W_{\mathbb R}^\perp},\lambda^*|_{S_-\otimes W})$, $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp},\lambda^*|_{S_+\otimes W^*})$\\
+\end{tabular}
+\tabcaption{The terms of $S^{(1)}(\xi)$ for $\xi\in S_+\otimes W$ and their legs; their two-component forms are in Remark \ref{rem:c11-twocomp}.\label{tab:c11-terms}}
+
+\begin{lemma}[The generators on the regulator and their lines]
+\label{lem:c11-lines}
+For an odd generator $x$, $x.$ is the odd operator on $\mathscr E$ that induces the bracket with the quadratic part of $S^{(1)}(x)$ (Proposition \ref{prop:c7-susy}); for an even one it is $v.$ of Definition \ref{def:c7-vdot}. Let $g(H):=\int_\varepsilon^Te^{-tH}dt$, so that $P\star=Q^{GF}g(H)$ and $QP\star+P\star Q=e^{-\varepsilon H}-e^{-TH}=:E(H)$ (Proposition \ref{prop:c9-composite} (iii)).
+\begin{itemize}
+\item (i) For $\xi\in\Sigma$, $\xi.$ maps the slot of $\lambda$ to the slot of $A$ by $\lambda\mapsto+\Gamma(\xi,\lambda)$, the slot of $A$ to the slot of $\lambda$ by $A\mapsto+\tfrac12\rho(dA)\xi$, the slots of $A^*$ and of $\lambda^*$ to each other by the transposed arrows, and vanishes on the slots of $c$ and $c^*$. In particular
+\[
+\Big\{S^{(1)}(\xi),\int\omega\,(\iota_{w_1}A,\iota_{w_2}A)\Big\}=\int\omega\,\Big[\big(\iota_{w_1}A,(\rho(w_2)\xi,\lambda)\big)+\big(\iota_{w_2}A,(\rho(w_1)\xi,\lambda)\big)\Big].
+\]
+\item (ii) $[\xi.,Q]=0$, $[\xi.,H]=0$, and $C_\xi:=[\xi.,Q^{GF}]$ is an even operator of degree $-1$ with constant coefficients and of order one, with four components, each nonzero for $\xi\neq0$: $\lambda\mapsto-d^*\big(\Gamma(\xi,\lambda)|_V\big)$ in the slot of $c$, on a plane wave $e^{i(p,x)}$ the map $\lambda\mapsto+i\big(p,\Gamma(\xi,\lambda)|_V\big)$; a component from $A^*|_V$ to $\lambda$, a nonzero multiple of $A^*|_V\mapsto(p,A^*|_V)\,\xi$; and their transposes from $\lambda^*$ to $A|_V$ and from $c^*$ to $\lambda^*$. For $\xi\in S_+\otimes W$ these are $\lambda|_{S_-\otimes W^*}\to c$, $A^*|_V\to\lambda|_{S_+\otimes W}$, $\lambda^*|_{S_+\otimes W^*}\to A|_V$ and $c^*\to\lambda^*|_{S_-\otimes W}$. The variation kernel $(\xi.\otimes1+1\otimes\xi.)P(\varepsilon,T)=(C_\xi\,g(H)\otimes1)K_0$ has its components in $\lambda\otimes A|_V$, $c\otimes\lambda^*$ and their transposes.
+\item (iii) The term $T_1$ with both legs on edges $P$, its leg $\lambda$ on the component $\lambda\otimes\lambda$ and its leg $A^*|_V$ on the component $A^*|_V\otimes c$, is the composite line along $\xi$, with the kernel $2(P\star\,\xi.\,P\star\otimes1)K_0$, whose components lie in $c\otimes\lambda$ and $\lambda\otimes c$. For $\xi\in S_+\otimes W$ and $T=\infty$ it is $-2\,\xi\,e^{-2\varepsilon|p|^2}|p|^{-2}(-,-)^{-1}$ on $c\otimes\lambda|_{S_+\otimes W}$ and $+2\,\xi\,e^{-2\varepsilon|p|^2}|p|^{-2}(-,-)^{-1}$ on $\lambda|_{S_+\otimes W}\otimes c$, and
+\[
+P\star\,\xi.\,P\star=C_\xi\,Q^{GF}g(H)^2-\xi.\,(Q^{GF})^2g(H)^2,\qquad \big[Q,P\star\,\xi.\,P\star\big]=E(H)\,C_\xi\,g(H)\neq0 .
+\]
+The terms of $S^{(1)}(\xi)$ with a leg $A^*|_{W_{\mathbb R}^\perp}$ or $\lambda^*$ enter a cycle with that leg on the special edge, and a term $T_5$ also with its leg $\lambda^*$ as an output.
+\item (iv) For $\eta\in\Sigma^*$, with $\xi_\mu:=\rho(e_\mu)\eta$,
+\[
+\eta.=\sum_\mu x^\mu\,\xi_\mu.+\eta^0.+Y_\eta,\qquad [\eta.,Q]=0,\qquad [\eta.,H]=2\sum_\mu\xi_\mu.\,\partial_\mu,
+\]
+where $\eta^0.$ is the constant operator of order zero induced by $s_0$, with the arrows $A|_{W_{\mathbb R}^\perp}\to\lambda$ and $\lambda^*\to A^*|_{W_{\mathbb R}^\perp}$, and $Y_\eta$ is the constant operator of order zero from $\lambda^*$ to $A^*$ produced when the derivative of $T_3$, $T_4$ in $\sum_\mu\int x^\mu\big(S^V_2(\xi_\mu)+S^\perp_2(\xi_\mu)\big)$ is moved off $A$, $\partial_\nu(x^\mu\,\cdot\,)=x^\mu\partial_\nu+\delta^\mu_\nu$. On a cycle $S^{(1)}(\eta)$ forms the line of (iii) at the spinor $\rho(x)\eta$, linear in the position, and $s_0$ enters with its leg $\lambda^*$ on the special edge.
+\item (v) For $K_b$, with $v(x)=(x,x)b-2(b,x)x$ and $\operatorname{div}v=-8(b,x)$, on a slot of Weyl weight $w$ with the rotation generators $\Sigma^{\rho\nu}$, and with $\sigma^\rho(D):=[D,x^\rho]$ for a constant-coefficient operator $D$,
+\[
+\begin{aligned}
+&[v.,Q^{GF}]=4(b,x)\,Q^{GF}+C_K,\qquad C_K:=2\,\sigma^\rho(Q^{GF})\big(w\,b_\rho-b_\nu\Sigma^{\rho\nu}\big),\\
+&[v.,H]=4(b,x)\,H-4(w-1)(b,\partial)+4b_\nu\Sigma^{\rho\nu}\partial_\rho,
+\end{aligned}
+\]
+$C_K$ of order zero with constant coefficients, zero on $A^*|_{W_{\mathbb R}^\perp}$, with $C_KA|_V=-4(b,A|_V)$ in the slot of $c$. $S^{(1)}(K_b)$ forms on a cycle the composite line from $c$ to $A|_V$ with the kernel $P\star\,v.\,P\star=v.(P\star)^2+[P\star,v.]P\star$, quadratic in the position, at a finite $T$ (Definition \ref{def:c8-K}).
+\end{itemize}
+In each case every letter, $A^*|_{W_{\mathbb R}^\perp}$, $\lambda^*$ and $c^*$ included, is active (Lemma \ref{lem:c10-active1}).
+\end{lemma}
+
+\begin{proof}
+(i) The terms $-(\Gamma(\xi,\lambda),A^*)$ and $\tfrac12(\rho(dA)\xi,\lambda^*)$ of \eqref{eq:c2-S1Q} pair the slots $(\lambda,A^*)$ and $(A,\lambda^*)$; the bracket of a quadratic functional with a coordinate functional is the coordinate functional composed with the corresponding arrow (proof of Lemma \ref{lem:c9-SDelta} (i)), and each pairing term gives one arrow between field slots and the transposed arrow between antifield slots (proof of Proposition \ref{prop:c7-susy}). In the reading of Proposition \ref{prop:c1-Q} the term $(dc,A^*)$ of \eqref{eq:c1-free} gives $c\mapsto-dc$; the term $-(\Gamma(\xi,\lambda),A^*)$, whose letter $\lambda$ is odd like $c$, gives $\lambda\mapsto+\Gamma(\xi,\lambda)$, and $[\xi.,Q]=0$ on the slot of $A$, the part of polynomial degree two of $\{S,S^{(1)}(\xi)\}=0$, fixes $A\mapsto+\tfrac12\rho(dA)\xi$. With $\iota_w\Gamma(\xi,\lambda)=(\rho(w)\xi,\lambda)$ [ESW, (28)] the classical component on the bilinear is the first functional of Corollary \ref{cor:c7-Q}.
+
+(ii) $[\xi.,Q]=0$ and $[\xi.,H]=0$ are Proposition \ref{prop:c7-susy}. $Q^{GF}$ maps $A^*\mapsto-2A^*$ into the slot of $A$, $A\mapsto-d^*(A|_V)$ into the slot of $c$, $c^*\mapsto dc^*$ into the slot of $A^*|_V$ and $\lambda^*\mapsto-{\not d}\lambda^*$ into the slot of $\lambda$, and vanishes on $c$ and $\lambda$ (Chapter 3). Hence $\xi.Q^{GF}$ has the arrows $A^*\to A\to\lambda$, $c^*\to A^*|_V\to\lambda^*$, $\lambda^*\to\lambda\to A$, and $Q^{GF}\xi.$ the arrows $\lambda\to A\to c$, $A^*\to\lambda^*\to\lambda$, $\lambda^*\to A^*\to A$; each composite has order one. On $\lambda$, $C_\xi\lambda=Q^{GF}\Gamma(\xi,\lambda)=-d^*\big(\Gamma(\xi,\lambda)|_V\big)$, and $d^*=-\iota_\partial$ is $-i\iota_p$ on plane waves. On $A^*=a\,e^{i(p,x)}$ the two composites to $\lambda$ are opposite multiples of $\rho(p)\rho(a)\xi$ plus, through $\rho(q(p\wedge a))=\rho(p)\rho(a)-(p,a)$ [ESW, (29)] in the first, a multiple of $(p,a)\xi$; for $a\in W_{\mathbb R}^\perp$ the two cancel. The components from $\lambda^*$ and $c^*$ are the transposes, since $\xi.$ preserves the pairing and $Q^{GF}$ has the adjointness of Proposition \ref{prop:c3-adjoint}, so $(C_\xi\otimes1)K_0$ is graded symmetric. $\Gamma(\xi,-)|_V$ is nonzero on one chirality of $\lambda$ for $\xi\neq0$, and the component from $A^*$ to $\lambda$ is nonzero by Proposition \ref{prop:c7-susy}. The variation kernel is the third item of Proposition \ref{prop:c7-susy} with $T$ in place of $\infty$.
+
+(iii) As in Proposition \ref{prop:c9-composite} (i), with the signs of Lemma \ref{lem:c9-ops} for the odd $\xi.$, both orders of the two legs give $(P\star\,\xi.\,P\star\otimes1)K_0$. Since $[\xi.,g(H)]=0$, $[\xi.,P\star]=C_\xi g(H)$, which gives the first identity; with $[\xi.,Q]=0$,
+\[
+Q\,(P\star\xi.P\star)=E\,\xi.P\star-P\star Q\,\xi.P\star=E\,\xi.P\star+P\star\xi.E-P\star\xi.P\star Q,
+\]
+so $[Q,P\star\xi.P\star]=E\,(\xi.P\star+P\star\xi.)=E\,C_\xi g$. The components follow the arrows $\lambda^*\to\lambda\to A\to c$ and $c^*\to A^*|_V\to\lambda^*\to\lambda$. On a plane wave the composite on $c^*$ is a multiple of $\rho(p)\rho(p)\xi=|p|^2\xi$ times $g(H)^2=e^{-2\varepsilon|p|^2}|p|^{-4}$ at $T=\infty$, a scalar line of momentum degree $-2$; the multiple, $-2$ on $c\otimes\lambda$, is the value of both evaluations of Remark \ref{rem:c11-oddmethod}. A leg $A^*|_{W_{\mathbb R}^\perp}$ or $\lambda^*$ has no component of $P$ (Proposition \ref{prop:c3-P}).
+
+(iv) By \eqref{eq:c11-Seta} the field arrows of $\int x^\mu S_2(\xi_\mu)$, $S_2$ the quadratic part, are $x^\mu$ times those of $\xi_\mu.$; its antifield arrows, the transposes, are obtained by integrating by parts the derivative of $T_3$, $T_4$ against $x^\mu\lambda^*$, which gives $x^\mu$ times the antifield arrows of $\xi_\mu.$ plus $Y_\eta$. For the odd $Q$, $[x^\mu\xi_\mu.,Q]=x^\mu[\xi_\mu.,Q]+[Q,x^\mu]\xi_\mu.$, and the vanishing of $[\eta.,Q]$ is the part of polynomial degree two of $\{S,S^{(1)}(\eta)\}=0$ (Lemma \ref{lem:c2-components}); it requires $Y_\eta$. $H$ is $-\partial^2$ on every component, $[x^\mu,-\partial^2]=2\partial_\mu$, and $\eta^0.$, $Y_\eta$ and $\xi_\mu.$ have constant coefficients.
+
+(v) For a conformal Killing field, $\partial_\mu v_\nu=\tfrac14(\operatorname{div}v)\delta_{\mu\nu}+\omega_{\mu\nu}$ with $\omega$ antisymmetric and $v.=v^\mu\partial_\mu+\tfrac12\omega_{\mu\nu}\Sigma^{\mu\nu}+\tfrac w4\operatorname{div}v$; the transport, spin and weight terms and the rotation covariance of a constant-coefficient operator $D$ of weight $-2$ give
+\[
+\begin{aligned}
+&[v.,D]=-\tfrac12(\operatorname{div}v)D-\tfrac w4\sigma^\rho(D)\,\partial_\rho(\operatorname{div}v)-\tfrac12\sigma^\rho(D)(\partial_\rho\omega_{\mu\nu})\Sigma^{\mu\nu},\\
+&[v.,H]=-\tfrac12(\operatorname{div}v)H+\tfrac{w-1}2(\partial_\rho\operatorname{div}v)\partial_\rho+(\partial_\rho\omega_{\mu\nu})\Sigma^{\mu\nu}\partial_\rho,
+\end{aligned}
+\]
+with $\partial^2v_\mu=-\tfrac12\partial_\mu\operatorname{div}v$. For $K_b$, $\omega_{\mu\nu}=2(x_\mu b_\nu-x_\nu b_\mu)$ and $\partial_\rho\omega_{\mu\nu}=2(\delta_{\rho\mu}b_\nu-\delta_{\rho\nu}b_\mu)$. On $A^*|_{W_{\mathbb R}^\perp}$, $Q^{GF}=-2$ has order zero; on $A|_V$, $\sigma^\rho(Q^{GF})Y=Y_\rho$, $w=1$ and $\sigma^\rho(Q^{GF})\Sigma^{\rho\nu}A=3A_\nu$, so $C_KA|_V=2(b,A|_V)-6(b,A|_V)$. The line is Lemma \ref{lem:c11-kernels} (iii), (iv) with this $v$.
+\end{proof}
+
+\begin{definition}[Defect cycles and two-body kernels]
+\label{def:c11-defect}
+Let $x$ be a generator, $X_a$, $X_b$ two letters of any slots and $0<\varepsilon<T\le\infty$.
+\begin{itemize}
+\item (i) A defect cycle of $(X_a,X_b)$ along $x$ is a chain $X_a-e_0-V_1-e_1-\cdots-V_n-e_n-X_b$ of Definition \ref{def:c10-chain} whose vertices are vertices of $I$ and exactly one vertex $V_s$ given by a term of $S^{(1)}(x)$, entered and left through two of its legs, the third leg of a cubic term being an output, and whose edges are components of $P(\varepsilon,T)$ and exactly one special edge $e_\sigma=K_\varepsilon-K_0$, with the components of $K_0$. The vertex $V_s$ is placed on a line, with both legs on edges $P$; at the special edge, with one leg on $e_\sigma$; or cubic, a term $T_5$ with two legs on the cycle.
+\item (ii) $\mathcal D_x(X_a,X_b;\varepsilon,T)$ is the sum of the defect cycles of the pair, amputated, with the outputs left open as in Definition \ref{def:c10-pair}: the $\delta$-linear graphs of arity one along $x$ of the flow of the defect vertex of Lemma \ref{lem:c8-transfer}, applied to $e^{(J+\delta M(\varepsilon))/\hbar}$ with $M=\int\omega\,X_aX_b$, whose cycle is a defect cycle of the pair. A chain read from $X_a$ carries, beyond the signs of Lemma \ref{lem:c10-sign}, the factor
+\[
+-(-1)^{n(<\sigma)+|S^{(1)}(x)|\,(n(<s)+[s<\sigma])},
+\]
+with $n(<j)$ the number of odd outputs at the vertices before the position $j$, $[s<\sigma]=1$ if $V_s$ precedes $e_\sigma$ and $0$ otherwise, and $|S^{(1)}(x)|$ the total parity of $S^{(1)}(x)$, $0$ for odd $x$ and $1$ for even $x$; the leading sign is that of the special edge (Proposition \ref{prop:c11-master}), and for even $x$ the factor is that of Definition \ref{def:c11-sp} times this sign.
+\item (iii) Let $\mathrm{ct}_m(M)$ and $\mathrm{lc}(M)$ be the coefficients of $\varepsilon^{-m}$ and of $\log\varepsilon$ in $\partial_\delta I^{CT}[\varepsilon](M)$, and $\mathrm{ct}^{(1)}_{x,m}(M)$ and $\mathrm{lc}^{(1)}_x(M)$ those of the arity-one counterterm of $M$ along $x$, the $\hbar\,\mathrm{Sing}_\varepsilon$ of the cycles through two letters of $M$ with one vertex $S^{(1)}(x)$ on the cycle and no special edge (Definition \ref{def:c11-graphs} for $x\in\{\Delta,P_b\}$). The finite special vertex of the pair is
+\[
+\mathcal F_x(X_a,X_b):=-\sum_{m\ge1}\frac{(-1)^m}{m!}\Big(\big\{I,\mathrm{ct}^{(1)}_{x,m}(X_aX_b)\big\}_{H^m}+\big\{S^{(1)}(x),\mathrm{ct}_m(X_aX_b)\big\}_{H^m}\Big),
+\]
+with $\{-,-\}_{H^m}$ the bracket of \eqref{eq:c10-finitesp}.
+\item (iv) The two-body kernel of $(X_a,X_b)$ along $x$ is
+\[
+\Upsilon_x(X_a,X_b):=[\varepsilon^0]\,\mathcal D_x(X_a,X_b;\varepsilon,T)+\mathcal F_x(X_a,X_b),
+\]
+with $[\varepsilon^0]$ the coefficient of $\varepsilon^0$ in the expansion of Theorem \ref{thm:c11-oddsimplex}: a local density of the outputs at the point of the pair, with values in the tensor product of the fibres and colour spaces of the two letters.
+\end{itemize}
+For $x\in\{\Delta,P_b\}$ the defect cycles with $V_s$ on a line are the special-edge composite cycles of Definition \ref{def:c11-sp}.
+\end{definition}
+
+\begin{theorem}[Two-body form of the components along every generator]
+\label{thm:c11-classes}
+Let $x$ be a generator and $O=\int\omega\,X_1\cdots X_n$ a monomial local functional, gauge-variant ones included. Let $J=I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-\hbar F_1$ with $\hbar F_1$ a one-loop quantisation through arity one along $x$, that is, \eqref{eq:c8-qme} modulo $\hbar^2$ in arity zero and in arity one along $x$, and let $\psi=0$. The endpoint is $T=\infty$ along $\Sigma$, $\Sigma^*$, $\Delta$, $P_b$ and the rotations, and any $T\in(0,\infty)$ along $K_b$.
+\begin{itemize}
+\item (i) The $\delta$-linear graphs of arity one along $x$ and of order $\hbar$ of the flow of the defect vertex of Lemma \ref{lem:c8-transfer}, applied to $e^{(J+\delta O(\varepsilon))/\hbar}$, form the classes: (F) the one-loop graphs of the vertex $\delta\{S^{(1)}(x),O\}$ and of the vertex $\delta(Q+\{I,-\})O$ with a separate vertex $S^{(1)}(x)$; (C2) the defect cycles of the pairs of letters of $O$, with trees of $I$ on the outputs; (C0) the cycles through two letters of $O$ with the special edge or a contraction through $K_\varepsilon$, with $S^{(1)}(x)$ on a tree; (Br) the graphs with the special edge on a tree; (Ac) the graphs whose cycle passes through vertices of the action alone; (Ct) the trees with one counterterm vertex of order $\hbar$.
+\item (ii) (F) is the one-loop part of the arity-one flow of $sO$, and (C0) with the arity-zero counterterm vertices of (Ct) tends to the trees of $\hbar L_1(O)^{(0)}$ with one vertex $S^{(1)}(x)$, both on the left side of \eqref{eq:c8-rep}; (Br) tends to $0$; (Ac) with the defect vertices of the action tends to $0$ by the master equation in arity zero and in arity one along $x$.
+\item (iii) With the Koszul signs of \eqref{eq:c10-decomp},
+\begin{equation}
+\begin{aligned}
+\hbar L_1(O)^{(1)}(x)=\ &\sum_{1\le a<b\le n}(-1)^{|X_b|(|X_{a+1}|+\cdots+|X_{b-1}|)}\int\omega\,X_1\cdots X_{a-1}\,\Upsilon_x(X_a,X_b)\,X_{a+1}\cdots\widehat{X_b}\cdots X_n\\
+&-\big\{\hbar F_1^{(1)}(x),O\big\},
+\end{aligned}
+\label{eq:c11-decompx}
+\end{equation}
+the two-body kernels of Definition \ref{def:c11-defect} summed over the unordered pairs of letters, and a one-body term, the bracket with the arity-one finite counterterm along $x$.
+\item (iv) The coefficients of $\log\varepsilon$ and of $\varepsilon^{-m}$ cancel. The defect cycles carry no $\log\varepsilon$ (Theorem \ref{thm:c11-oddsimplex}), and the first cancellation is the logarithmic covariance
+\begin{equation}
+\mathrm{lc}\big(\{S^{(1)}(x),O\}\big)-\big\{S^{(1)}(x),\mathrm{lc}(O)\big\}=s\,\mathrm{lc}^{(1)}_x(O)-\mathrm{lc}^{(1)}_x(sO)+\big\{L^{(1)}(x),O\big\},
+\label{eq:c11-logcov}
+\end{equation}
+with $L^{(1)}(x)$ the coefficient of $\log\varepsilon$ in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, which has no term $\varepsilon^{-m}$ along $\Sigma$, $\Sigma^*$, $\Delta$, $P_b$ and $K_b$. The second is the pole identity, for $m\ge1$,
+\begin{equation}
+\begin{aligned}
+&\sum_{a<b}\pm\Big([\varepsilon^{-m}]\,\mathcal D_x(X_a,X_b)-\sum_{j\ge1}\tfrac{(-1)^j}{j!}\Big(\big\{I,\mathrm{ct}^{(1)}_{x,m+j}(X_aX_b)\big\}_{H^j}+\big\{S^{(1)}(x),\mathrm{ct}_{m+j}(X_aX_b)\big\}_{H^j}\Big)\Big)\\
+&\qquad=s\,\mathrm{ct}^{(1)}_{x,m}(O)+\big\{S^{(1)}(x),\mathrm{ct}_m(O)\big\}-\mathrm{ct}_m\big(\{S^{(1)}(x),O\}\big)-\mathrm{ct}^{(1)}_{x,m}(sO),
+\end{aligned}
+\label{eq:c11-pole}
+\end{equation}
+whose right side, for a single pair $O=\int\omega\,X_aX_b$, contains the vacuum poles of the pairs of the cubic monomials of $\{S^{(1)}(x),O\}$ and of $sO$ times their third letter.
+\item (v) \eqref{eq:c11-decompx} holds along $K_b$ at every $T\in(0,\infty)$ with the same right side. Given the master equation through arity one along $x$, the local representative of $L(O)$ exists through arity one along $x$ for every local functional $O$: (iii) of Definition \ref{def:c10-hyp} holds along every generator.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) At order $\hbar$ a graph of the flow has one cycle and vertices of order $\hbar^0$, or no cycle and one vertex of order $\hbar$ (Proposition \ref{prop:c3-graphs}); the part of arity one along $x$ and linear in $\delta$ places $x$ on one vertex and $\delta$ on one vertex. Expand the defect vertex in $\delta$, in the arity and in $\hbar$, with $I_{\mathfrak{psl}(4|4)}=I+S^{(1)}+S^{(2)}$ and $O(\varepsilon)=O-\partial_\delta I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon](O)$. The classical master equation \eqref{eq:c2-mc} leaves at order $\hbar^0$ the vertices $\delta\{S^{(1)}(x),O\}$ and $\delta(Q+\{I,-\})O$ and the special-edge parts of $\{S^{(1)}(x),O\}_\varepsilon$, $\{I,O\}_\varepsilon$, $\{I,S^{(1)}(x)\}_\varepsilon$, $\tfrac12\{I,I\}_\varepsilon$, together with $\delta\hbar\Delta_\varepsilon O$; $\hbar\Delta_\varepsilon S^{(1)}(x)$ vanishes, its quadratic terms pairing a field with the antifield of another field and its cubic terms carrying $\lambda^*$ and no $\lambda$. A cycle through a vertex of the first two kinds is in (F). A cycle with a special edge passes through $O$ along two letters (Theorem \ref{thm:c10-decomp} (i)) or avoids $O$, and the positions of $S^{(1)}(x)$ and of the special edge sort it into (C2), (C0), (Br) or (Ac).
+
+(ii) By Theorem \ref{thm:c8-L} (iv) the left side of \eqref{eq:c8-rep} in arity one along $x$ is $\big(L(O)^{(1)}(x)\big)[T]+\big(L(O)^{(0)}\big)[T]^{(1)}(x)$ with $L(O)=sO+\hbar L_1(O)$; the one-loop part of $(sO)[T]^{(1)}(x)$ consists of the graphs (F) and their counterterm trees. For (C0), the arity-zero analysis of Theorem \ref{thm:c10-decomp}, \eqref{eq:c10-finitesp} and Proposition \ref{prop:c10-arity1} applies with a tree carrying $S^{(1)}(x)$ attached at generic momenta. (Br): a special edge on a tree is $e^{-\varepsilon|p|^2}-1$ at a generic momentum times a renormalised subgraph (Theorem \ref{thm:c8-obstruction} (ii), Proposition \ref{prop:c4-defect1}). (Ac): the cycle and its counterterm vertices form the flow of the defect of the action in arity zero or in arity one along $x$, whose limit is $0$ by Definition \ref{def:c8-ob} and the master equation.
+
+(iii) What remains is (C2) with the arity-one vertices of (Ct), against the tree of $\hbar L_1(O)^{(1)}(x)$ and the counterterm trees of $-\partial_\delta I^{CT}[\varepsilon](\{S^{(1)}(x),O\})$ and $-\mathrm{ct}^{(1)}_x(sO)$ on the left. The vertex $-\{\hbar F_1^{(1)}(x),O\}_\varepsilon$ gives the one-body term, its special-edge part tending to $0$. With $\{f,g\}_\varepsilon-\{f,g\}=\sum_{j\ge1}\frac{(-\varepsilon)^j}{j!}\{f,g\}_{H^j}$, the part of order $\varepsilon^0$ of the special-edge part of $-\varepsilon^{-m}\{f,g_m\}_\varepsilon$ is $-\frac{(-1)^m}{m!}\{f,g_m\}_{H^m}$, which for the vertices $-\{I,\mathrm{ct}^{(1)}_x(O)\}_\varepsilon$ and $-\{S^{(1)}(x),\partial_\delta I^{CT}[\varepsilon](O)\}_\varepsilon$ is the finite special vertex; the terms with $j<m$ are poles, those with $j>m$ tend to $0$, and $\log\varepsilon$ times a special edge tends to $0$. Each defect cycle is a sum of poles, $[\varepsilon^0]\mathcal D_x$ and a vanishing remainder (Theorem \ref{thm:c11-oddsimplex}); the trees on its outputs converge, and Theorem \ref{thm:c8-L} (i) identifies the limit with the tree flow of \eqref{eq:c11-decompx}. The sum over the pairs with the Koszul signs is that of Theorem \ref{thm:c10-decomp} (iii).
+
+(iv) The left side has a limit; collecting the coefficients of $\log\varepsilon$ and of $\varepsilon^{-m}$ of (C2), of the special-edge parts of the (Ct) brackets shifted by $j$, of the brackets without special edge and of the counterterm trees moved from the left side gives \eqref{eq:c11-logcov} and \eqref{eq:c11-pole}. A coefficient of $\varepsilon^{-m}$ in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$ is a colour-singlet local functional of degree $-1$ and total Weyl weight $4-\tfrac12\lambda_x-2m$, the position at weight $-1$ and of degree $p$ at most that of $x$ (Proposition \ref{prop:c10-bound1}); a colour singlet of degree $-1$ contains an antifield of weight at least $\tfrac52$ and a second adjoint field of weight at least $1$, or $c^*$ and $c$, so its density has weight at least $\tfrac72$ and the total weight is at least $\tfrac72-p$. For $m\ge1$ the total weight is at most $\tfrac52$, $\tfrac32$, $2$, $3$, $1$ along $\Sigma$, $\Sigma^*$, $\Delta$, $P_b$, $K_b$, below $\tfrac72$, $\tfrac52$, $\tfrac52$, $\tfrac72$, $\tfrac32$. Read for one pair, the cubic terms of $\{S^{(1)}(x),O\}$ and of $sO$ have pairs with the empty leg set of Theorem \ref{thm:c10-decomp} (iv), whose poles stand on the right with the third letter.
+
+(v) The argument uses $sO$ through (F), which cancels between the two sides, and through the counterterm trees. Along $K_b$ at a fixed finite $T$ the edges $P(\varepsilon,T)$ are bounded uniformly in $T$ and decay as $e^{-|y|^2/4T}$ (Definition \ref{def:c8-PT}); the graphs of (Br) and (Ac) carry at fixed $\varepsilon$ the term $\tfrac{3}{8\pi^2}\hbar\log T$ times a tree with the factor $e^{-\varepsilon|p|^2}-1$ (remark after Theorem \ref{thm:c8-K}), which tends to $0$; $\Upsilon_{K_b}$ is independent of $T$ by Theorem \ref{thm:c11-oddsimplex} (iii), and Theorem \ref{thm:c8-K} gives the independence of the local representative. The classes (C2) and (Ct) have local limits, so Theorem \ref{thm:c8-L} (i) gives the local representative.
+\end{proof}
+

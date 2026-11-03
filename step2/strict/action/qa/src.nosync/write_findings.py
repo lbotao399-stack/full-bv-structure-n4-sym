@@ -1,0 +1,69 @@
+import json, os
+QA = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+F = []
+def f(fid, severity, target, claim, evidence, fix):
+    F.append(dict(id=fid, severity=severity, target=target, claim=claim, evidence=evidence, fix=fix))
+
+f('F1', 'major', 'theory/action_theory.tex: Lemma at-sformulas (ii),(iii); Prop at-log; Rem at-logexact; Thm at-eq1 (iv),(v); Thm at-eq2 (ii),(iii); Prop at-xi2 (v),(vi); Thm at-classes proof (log terms)',
+  'The Wess-Zumino identities and every statement derived with the derivation rule Lambda{a,b} = {Lambda a,b} + (-1)^{|a|+1}{a,Lambda b} carry wrong signs. The bracket of Def c1-bracket ({g,f} = (-1)^{|f||g|}{f,g}) obeys Lambda{a,b} = -{Lambda a,b} - (-1)^{|a|}{a,Lambda b}, and the cochain bracket of Def c2-dce gives, for a degree-1 cochain G, (sG)^(1)(x) = Lambda G^(1)(x) + {G^(0),S(x)} and (sG)^(2)(x,y) = Lambda G^(2)(x,y) - G^(1)([x,y]) - {S(x),G^(1)(y)} + (-1)^{|x|}{G^(1)(x),S(y)} + {G^(0),S^(2)(x,y)}. The degree-0 formulas (i) and eq at-eqs are correct.',
+  'Direct evaluation of the shuffle signs of Def c2-dce with |f| = 0, |g| = 1 (QA); toy BV algebra (qa/src.nosync/q_bv_toy.py): C-rule holds, standard rule fails, s(sF) = 0 at arity two holds with the corrected formula and fails with the printed one; engine A G-WZ1 (Q Ob1 = 378i, {Ob0,T1} = -378i), engine B G-WZ1 (residual 0 with -, 6156 with +); engine A G-logex (printed combination lc1 + {uN,S} = 4u(T1+T2-T3-T4) not closed, corrected lc1 - {uN,S} = 0); QA (Delta,xi): Q Ob2 = -25/3 u (g1+g3) equals the corrected right side and is minus the printed one.',
+  'Replace by: Lambda G^(1)(x) = -{G^(0),S(x)}; Lambda G^(2)(x,y) = G^(1)([x,y]) - (-1)^{|x|}{G^(1)(x),S(y)} + {S(x),G^(1)(y)} - {G^(0),S^(2)(x,y)}; the closed combination of Prop at-log is lc^(1)(x) - {uN,S(x)}; in Thm at-eq1 (iv) the change for G^(0) = Lambda phi is +Lambda{phi,S(x)}, absorbed by F1^(1)(x) -> F1^(1)(x) + {phi,S(x)}; in Prop at-xi2 (vi) {Q N_f,S_2} = -Q{N_f,S_2}; restate the cocycle conditions of Thm at-eq1 (v), at-eq2 (iii) with these signs; state the derivation rule in the proof of Lemma at-sformulas.')
+
+f('F2', 'major', 'engine_a B2 / gate G-WZ2 (Delta,xi); engine_spec G-WZ2',
+  'Engine A\'s failure of G-WZ2 for (Delta,xi) and its statement that the log(4/3) T1 term cannot satisfy the two-leg identity for any sign are wrong: the gate tested Q-closedness of Ob2(Delta,xi)|_2 (which is not required: Q Ob2 = -{Ob1(Delta),S(xi)} != 0), used the printed signs, and dropped the position part. The intrinsic values themselves are correct.',
+  'QA third evaluation with engine B\'s cycle code (qa/src.nosync/q_dxi.py, q_dxi_fit.py; both chiralities, 4 sectors, 65 equations each): intrinsic part identical to A (T1 8 + log(4/3), T2 8, T0 0, T3 -26/3, T4 -26/3); no poles; the position part (census p = 1 rows) is nonzero and purely log(4/3); the complete log(4/3) part equals log(4/3) Q[int x^mu (Gamma(xi,lam)^mu,c*) + int x^mu (A*_mu,(xi,lam*))] exactly (rank 4, unique), the rational position part vanishes. Hence Q Ob2(Delta,xi)|_2 = -25/3 u (g1+g3) = -{Ob1(Delta)|_2,S_2(xi)}, with {Ob1(Delta)|_2,S_2(xi)} = u[-11/3 (2g1+2g3) + 47/3 (g1+g3)] from {int(dA,dA),T1} = 2g1, {int(lam,dslash lam),T3} = 2QT3 = g1 and the perp analogues.',
+  'Withdraw the flag; report hbar Ob2(Delta,xi)|_2 = u[8(T1+T2) - 26/3(T3+T4) + log(4/3) Q(psi1+psi2)] for both chiralities; define G-WZ2 on the full functional (intrinsic plus position part) with the corrected signs of F1; apply the same rule to every position-dependent component (eta, K_b, three-leg Delta).')
+
+f('F3', 'major', 'whole action-side workflow (R10 completeness)',
+  'The strict route is far from complete on the action side. Not computed by either engine: K_b (T7, finite T, S1-K, G-T); the solution and the S1 cohomology along eta (only the intrinsic two-leg obstruction exists, from A, now confirmed by QA with engine-B code; position part not fitted); all pairs with the S^(2) vertex ((xi_+,xi_-), (xi_+,xi\'_+), (xi,eta), (eta,eta\')) and (K_b,P_b\'); three- and four-leg sectors (T2 partial on classical structures with nonzero position parts, T5 tables only, no quartic basis, colour only su(2)); Hypothesis at-H at three legs (G-H, S1-cubic, GC13), G-zero, G-logex beyond xi at two legs. Consequently only t_Delta (= theta^Delta_d = -1/3) is determined; t_P, t_M, t_R, t_xi+-, t_eta+-, t_K and the sector differences along xi (theta^xi_V - theta^xi_perp) are not, and the conclusions of Thm at-fix, Thm at-algebra and Rem at-freetable are not established by computation.',
+  'engine_a/results.json open pairs and notes sec. 4; engine_b/results.json open list; compare.json entries marked neither / A only.',
+  'Build the S^(2) letters and the eta and K_b letters in route B (A has none for S^(2) either), run S1-cubic/G-H, the remaining pairs, finite-T K_b with G-T; report every component with its position part and the explicit solution.')
+
+f('F4', 'minor', 'engine_a notes.txt and summary',
+  'Transcription errors in engine A\'s notes and summary: the (A_perp,lam) coefficient of Ob1(eta)|_2 is printed -3/2 - 3 log(3/2), but results.json and out.nosync/task_T6.json give -3/2 - 3 log2 + 3 log3 = -3/2 + 3 log(3/2); the three-leg Delta coefficients are printed 116/3 + log(8/27) and 116/3 + log(16/81), but results.json gives 116/3 + 6 log2 - 3 log3 = 116/3 + log(64/27) and 116/3 + 8 log2 - 4 log3 = 116/3 + log(256/81).',
+  'engine_a/results.json T6, T2 vs engine_a/notes.txt sec. 3b and the engine summary; the results.json value of the eta coefficient is confirmed by the QA second evaluation (qa/q_eta_fit.json: -3/2 - 3 log2 + 3 log3).',
+  'Correct the notes and summary from results.json; regenerate text from the json.')
+
+f('F5', 'minor', 'engine_b T3 (M_omega, lambda sector)',
+  'Engine B reports Ob1(M_omega)|_2 = +1/3 u Q S(M_omega)_spin including the spinor part, but its code fits only the candidate Q int omega(A_mu,A*_nu); the lam-lam raw values were never fitted (cand = [0,0]). The statement is true.',
+  'QA replay of B\'s seed-23 stream (reproduces B\'s six stored V-sector candidate values) and fit of B\'s stored lam-lam values against Q of the spinor spin part of B\'s S(M_omega) template: theory/candidate = 1/3 exactly in 3/3 configurations (qa/q_mspin_replay.json). Engine A\'s -1/12 int(rho(Om)lam,dslash lam) agrees in magnitude (1/3 x 1/4); the sign map between the two spinor realisations was not established.',
+  'Record the lambda fit in engine B; express A\'s and B\'s lambda results in one basis (e.g. Q of the spin part of S(M_omega)).')
+
+f('F6', 'minor', 'engine_b G-sign comment / pairing convention',
+  'Engine B\'s G-sign text states Q int(lam,lam*) = +int(lam,dslash lam) and (lam*,lam) = -(lam,lam*). Its own code gives Q int(lam,lam*) = -int(lam,dslash lam), and (lam*,lam) = +(lam,lam*) because lam* is even (Def c1-pairing). The two errors compensate in Q N; no reported number of B depends on them.',
+  'qa/src.nosync/q_lcN.py with eb_qb.apply_Q: Q F_lamslam = -F_ldl; with (lam*,lam) = (lam,lam*), Q N = [-1, 4, -1] on [int(dA,dA), int(lam,dslash lam), int(dc,A*)] = u^-1 lc^(0) of engine A (plain cycles), confirming Prop at-log / Thm c4-log across engines; with B\'s stated convention it would be [-1,-4,-1].',
+  'Correct the comment and the convention statement in engine_b notes.txt.')
+
+f('F7', 'minor', 'theory Thm at-fix (ii),(iii) and Table at-census2',
+  'The pair table of Thm at-fix and the census omit the pairs involving M_omega, R_r, (Delta,eta), (Delta,K_b), (K_b,xi), (P_b,eta) etc.; e.g. (M_omega,P_b) gives rho = -t_M P_{omega b} directly, so t_M and t_R are overdetermined beyond what (iii) states. (ii) also omits that translation covariance of F1 (Prop at-pos applied to the solution, the condition used in Def c11-free) identifies t_P = t_Delta and t_eta+- = t_xi-+, which excludes the inner direction t_z = c lambda_z (its field redefinition phi = c u S(Delta) is not translation invariant).',
+  'Thm at-fix table and proof; Def c11-free last sentence (theta_P = theta in a translation covariant scheme); inner direction changes F1(P_b) by 2c u S(P_b) but F1(Delta) by 0.',
+  'Complete the table, recount the consistency relations, and state the covariant solution set (outer direction G_B only).')
+
+f('F8', 'minor', 'theory Prop at-two (iii)',
+  'Prop at-two (iii) treats only the vector sector of M_omega. The lambda sector of the omega-linear two-leg functionals is one-dimensional and Q-exact (int(lam,rho^(3) d lam) is a total derivative), so H^0(Q) = 0 there as well, and the computed spin direction is uniform: F1^(1)(M_omega)|_2 = 1/3 u S(M_omega)_spin + closed.',
+  'Clifford reduction rho_nu rho_mu rho_sigma = rho^(3) + delta terms and symmetry of Gamma; engine A lambda result; QA fit of engine B lambda data (F5).',
+  'Add the lambda sector to Prop at-two (iii) and record the uniform 1/3.')
+
+f('F9', 'minor', 'theory Thm at-theta proof; Table at-census2',
+  'The independence argument in the perp sector discusses images of int f(x)(A*_perp,A*_perp); this functional vanishes identically (A* odd, symmetric pairing, no W-index available), so the perp block has no exact directions at weight 5. The census lists (A*_perp,A*_perp)_0 at p = 1 for F1^(2)(Delta,P_b) and F1^(2)(K_b,P_b) although it is identically zero (the V analogue survives through x wedge b).',
+  'Engine B finding (c) and its block dimensions (perp 3/1/0/1); direct symmetry argument.',
+  'Remove the vacuous step and the zero leg sets.')
+
+f('F10', 'minor', 'gates and their definitions (both engines, engine_spec)',
+  'Several gates do not test what their names say: B\'s "G-H" is the two-leg S1 along Sigma, not Hypothesis at-H at three legs; A redefined G-logex after it failed (PROGRESS 12:03 FAIL, final pass with the opposite sign) - justified by F1 but not reflected in engine_spec; G-pos is structural in both engines (the position part is computed as the cycle with S(d_mu v), so the identity is not tested); G-log (finite-eps extrapolation of Prop at-routeB) was run by neither engine.',
+  'gates.json of both engines; engine_a/PROGRESS.txt; engine_b notes sec. 5. QA checked the closed forms of Prop at-small (ii) by Monte Carlo for n_t = 2..5 (n_t = 4: 0.047946 +- 0.000019 vs log(4/3)/6 = 0.047947) - consistent, but this does not replace G-log.',
+  'Rename B\'s gate; update engine_spec with the corrected G-WZ1/G-WZ2/G-logex; run G-log numerically on at least one special-edge cycle per placement class.')
+
+f('F11', 'minor', 'engine_a T2, T6 and any intrinsic-only report',
+  'Intrinsic parts of position-dependent obstructions (canonical density, last leg eliminated) are convention dependent when the position part is nonzero; A\'s T2 three-leg coefficients (beta nonzero) and T6 (beta nonzero, not computed) cannot be used for cohomology or WZ tests without their position parts (the (Delta,xi) episode, F2, shows a log term of the intrinsic part that is a contact term of an exact position-dependent functional).',
+  'engine_a results T2 (beta: nonzero), T6 (beta nonzero, asserted); QA F2 analysis.',
+  'Report and fit position parts together with intrinsic parts for Delta (three legs), eta and K_b.')
+
+f('F12', 'minor', 'arity-one solutions along Delta and P_b',
+  'Neither engine writes the arity-one solution along Delta or P_b explicitly (R10 asks for the solution with all free directions). With the computed obstruction it is, on two legs, hbar F1^(1)(Delta)|_2 = u[22/3 int(A,A*) - 47/3 int(lam*,lam) - 8/3 int(c*,c)] + u sum_d theta^Delta_d S(Delta)_d + u Q(kappa_V int(iota_x A_V,c*) + kappa_lam int(rho(x)lam*,lam*)), i.e. Def c11-free (4N + [-2/3,1/3,4/3]), with theta^Delta_d = -1/3; along P_b, theta^P_d = -1/3 only in a translation-covariant scheme (F7).',
+  'Q images Q int(A,A*) = -1/2 int(dA,dA) - int(dc,A*)|_V, Q int(lam*,lam) = -int(lam,dslash lam), Q int(c*,c) = -int(dc,A*) (q_lcN.py with B\'s Q) reproduce Ob1(Delta)|_2; Def c11-free.',
+  'Add the explicit two-leg solutions (and three-leg once GC13 is run) to the results.')
+
+json.dump({'meta': {'role': 'QA referee, action side', 'date': '2026-10-30'}, 'findings': F},
+          open(os.path.join(QA, 'findings.json'), 'w'), indent=1)
+print(len(F), 'findings')

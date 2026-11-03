@@ -1,0 +1,183 @@
+{
+ "role": "reviser of Part Q",
+ "date": "2026-10-30",
+ "source": "step2/composite_qsk/qsk/qa/findings.json",
+ "findings": [
+  {
+   "id": "Q1",
+   "severity": "fatal",
+   "decision": "accept",
+   "check": "Code inspection: step2/twoletter/engine_a/src.nosync/ea_kern.py contract() rounds every product of letter components with int(round(.)) and no check; qa_twist.Twist builds beta_z and dc_z as rows of the inverse of the weight-vector matrix (entries +-1/16, +-i/16). Recomputed with an exact contraction: betabeta per unit letters = (2/3) c_gamma + (1/3 - 2 log(3/2)) c_dc on (gamma^K, dc), both colour orders equal, identical to the referee value (16 x 16 scaled run / 256).",
+   "action": "engine A: qa_core.contract_exact (Gaussian-rational components recovered with limit_denominator and an assertion), used by every defect-cycle and arity-zero evaluation of Part Q; TQ3 rerun inside a full rerun of run_all.py; TQ3 summary and two-component forms rewritten. Audit of the inherited callers (read only, not edited): two-letter ea_tables/ea_ops/ea_gates/ea_closed and Part-C cq_eval are called with unit vectors, integer chirality bases, seeded integer vectors or Z = (1, i): Gaussian integers, so the rounding is never reached there; their tables also agree word by word with route B.",
+   "result": {
+    "contractions_with_non_integer_letters_in_TQ3": "qa_core.contract_exact (revision, finding Q1); contractions with non-Gaussian-integer letters in this stage: 29160 of 32020",
+    "betabeta": "(2/3) c_gamma + (1/3 - 2 log(3/2)) c_dc, both colour orders",
+    "betagamma": "0 (genuine)",
+    "beta_b_to_beta_dc": "-(64/3) c_beta, one colour order only",
+    "beta_b_to_gamma_gamma": "(8/3)(c1h1 c2h0 - c1h0 c2h1), both orders",
+    "bgamma": "unchanged",
+    "bc_lamstar": "0",
+    "gammagamma": "0"
+   }
+  },
+  {
+   "id": "Q2",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Cor c7-Q: the classical component replaces A by Gamma(Q_1,lambda) and gives the first functional F1. Engine A E0 with the corrected arrows: block arrows = +2 x (lambda -> +Gamma, A -> +1/2 rho(dA) xi), the factor 2 being the vertex normalisation; route B finds the same arrows with factor 1. Both engines compute a1 = -2 log(3/2) as the coefficient of F1.",
+   "action": "engine A TQ4: {S^(1)(xi),O} = +F1, c_Q two-body part = a1; two-component forms rewritten.",
+   "result": {
+    "c_Q": "-2 log(3/2) - theta_perp - p_perp (units u)"
+   }
+  },
+  {
+   "id": "Q3",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Same evidence as Q2; in addition C_xi(lam -> c) = Q^GF(+Gamma(xi,lam)) = -d^*(Gamma|_V) = +i(p,Gamma(xi,lam)|_V) (engine A gate, corrected formula), composite line real in both engines (A: -+ xi per orientation, B: -+2 xi for 2(P* xi. P* (x) 1)K_0, negative on c (x) lam_+).",
+   "action": "theory: Lemma qs-arrows (sign and the reason: reading of Prop c1-Q for the odd letter lambda, [xi.,Q] = 0 for A), Prop qs-comm (i) and its proof, Example qs-cubic, Rem qs-twocomp (commutator and composite line), and the consequence in Prop qs-freexi (iii) (the free directions add -theta times the classical arrow); recompiled."
+  },
+  {
+   "id": "Q4",
+   "severity": "major",
+   "decision": "accept",
+   "check": "qb_job.DJob.sequences skipped S3 at every output whose species is not A, while T5 has the slots (A, A, lam*).",
+   "action": "engine B: T5 template built for the output species A and lam*, DJob/IJob config pick it by species; flag T5_LAMS_OUTPUT (False = first pass). Reruns: every n = 0 TQ2 leg set with a lam* output (b_lamstar_n0.json) and the A-vs-B comparison of the n = 0 and n = 1 rows with a lam* output (ab_compare_n0/n1_lamstar.json).",
+   "result": {
+    "n1_rows_agree_fixed_B": "10/10",
+    "n1_rows_agree_old_B": "8/10",
+    "n0_rows_agree_fixed_B": "10/10",
+    "n0_tables_unchanged_by_new_placement": "12/12",
+    "n0_stored_tables_reproduced": "12/12"
+   }
+  },
+  {
+   "id": "Q5",
+   "severity": "major",
+   "decision": "accept",
+   "check": "Engine A formed C = {S^(1)(xi), L_1^(0)(O)} as a difference of the two orderings of the even-odd pair (c, A_V) (always 0), formed L_1^(0)(F1) as a sum over the orderings of the odd-odd pair (c, lam), and used {S,O} = -F1. With values that are coefficients of theta_1 theta_2 in chain order (Def c1-vertex), the functional coefficient in a fixed order is v(Y1,Y2) - v(Y2,Y1) for two odd outputs and the sum otherwise; {S^(1)(xi),-} is an odd derivation.",
+   "action": "qa_r1.py rewritten (docstring states the bookkeeping); three points; also the psi-shift of Q8.",
+   "result": {
+    "terms": "A = s(a3 F3) = -2Lk, B = L_1^(0)(F1) = -k, C = {S, L_1^(0)(O)} = (1+2L)k, L = log(3/2), k a data factor (e.g. 504 - 1608 i at the first point); A + B + C = 0 at every point, rational and log parts separately",
+    "all_pass": true
+   }
+  },
+  {
+   "id": "Q6",
+   "severity": "major",
+   "decision": "accept",
+   "check": "O = int omega f with omega arbitrary: a total derivative of a density is a nonzero local operator, and [BK] compares local operators at a point; equality modulo total derivatives is not equality in the cohomology of Q^xi_0.",
+   "action": "engine A TQ3 summary: per output choice and colour order, only the Q^xi_0-exact pieces are dropped (no antiholomorphic derivative occurs; the derivative on a dc output is the holomorphic Dirac component, exact up to antifield terms); theory Thm qs-twistcheck (c) states the reduction. The class-level comparison through the psl(3|3) relations [BK, (3.59)-(3.63)] is not done (open).",
+   "result": {
+    "bgamma": "colour order (gamma, dc): 64/3 - 128 log(3/2); order (dc, gamma): 32 + 64 log(3/2) (engine weight-vector normalisation, coefficient of the derivative on gamma): unequal and with log(3/2)"
+   }
+  },
+  {
+   "id": "Q7",
+   "severity": "major",
+   "decision": "accept (status)",
+   "check": "Engine open lists confirmed: TQ1, finite special vertices of route A on rows with D >= 2, Upsilon_xixi, R2-R6, the Konishi relation through D_1, G-R4 and TQ8 have no computation.",
+   "action": "not computed in this revision (each is a new computation, not a correction); recorded as open in results/qsk_final.json with what each needs. Progress on the prerequisites: G-R1 is now a valid check, the finite part psi with L_1^(0) = 0 on {O, F1} is constructed in the two-field sector (Q8)."
+  },
+  {
+   "id": "Q8",
+   "severity": "major",
+   "decision": "accept in part",
+   "check": "Confirmed: at psi = 0, L_1^(0)(O) = 2 kappa u (w1,w2) int omega (dc, A_V) with kappa = -(1 + 2 log(3/2)), proportional to Q int omega (A_V,A_V) = -2 int omega (dc, A_V) (L_1^(0)(O) has no c d.A_V part, checked at two polarisations), so Prop qs-rel needs a finite part psi. Rejected: the mechanism \"adds Upsilon_xi(A_V,A_V) to Q_1\". psi is an order-hbar finite part of the operators; by Prop c8-laws (b) / Lemma c10-psi it changes the component along xi by the tree-level commutator [{S^(1)(xi),-}, psi], not by a one-loop kernel of (A_V, A_V) (which would be of order hbar^2); the change also needs psi on the descendant F1.",
+   "action": "theory: Lemma qs-cocycle (new) and Rem qs-bilinears; engine A stage G-R1 computes kappa, kappa' and the shifted a3.",
+   "result": {
+    "psi_O": "-(1 + 2 log(3/2)) u (w1,w2) int omega (A_V, A_V)",
+    "psi_F1": "-2 u F3 (two-field sector)",
+    "a3_shifted": "0",
+    "a1": "-2 log(3/2)",
+    "a2": "4 log(3/2)",
+    "a4": "0",
+    "statement": "in the cocycle scheme the trace part of Q_1 is a1 F1 + a2 F2: the gauge-variant term drops out, as R1 requires (Lemma qs-cocycle (i))"
+   }
+  },
+  {
+   "id": "Q9",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Engine A E0 (new fine-component gate): A|_V <- lam* yes, A|_perp <- lam* no, lam <- A*|_V yes, lam <- A*|_perp no, c <- lam on one chirality only; route B blocks AV<-lamsP, c<-lamM, lamP<-AsV, lamsM<-cs.",
+   "action": "theory Prop qs-comm (i) (components, the cancellation on A*|_perp in the proof, chiralities), Cor qs-edges (i), Rem qs-ward."
+  },
+  {
+   "id": "Q10",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Route B gates E0-eta-ep/em: [eta.,Q] = 0 with the constant arrows Y (blocks AsV<-lamsM, AsW<-lamsP) and fails without; the arrows come from moving the derivative of T3, T4 off A against x^mu lam^* in the transposed arrow. Not re-derived in route A.",
+   "action": "theory Prop qs-comm (ii): eta. = sum x^mu xi_mu. + eta^0. + Y_eta, [eta.,Q], C^0_eta with Y_eta; proof."
+  },
+  {
+   "id": "Q11",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Route B TQ0 along Sigma^*: closed basis {x.(T1+T3)}, {x.(T2+T4) + s0}.",
+   "action": "theory: last sentence of Prop qs-freexi replaced by the two closed directions."
+  },
+  {
+   "id": "Q12",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Eq qs-pole is an identity of the full functional; for a two-letter gauge-variant O its right side contains cubic monomials of {S^(1)(x),O} (the [A^A] term of S^(1)(xi) on a letter lam) and of sO, whose pairs carry vacuum poles (empty leg set) times the third letter; route B finding F6 needs them pair by pair.",
+   "action": "theory Thm qs-classes (iv) and the G-pole gate description. The analogous terms in the finite special vertices are not checked (open)."
+  },
+  {
+   "id": "Q13",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Intertwiner revise.nosync/ferm_map/spinor_map.json: A_lamP -> B components 8..15 (B lamM); B ties lamP to the dictionary orientation (E0-orient). Engine A finds identical TQ4 numbers for both chiralities and route B verifies the reflection symmetry exactly.",
+   "action": "engine A two-component forms (qa_twocomp.py) state the orientation and are written in the dictionary orientation; engine-internal labels unchanged (documented)."
+  },
+  {
+   "id": "Q14",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Neither engine had a K_b cycle at finite T.",
+   "action": "route B test revision.nosync/rv_gkt.py: defect cycles of the intrinsic K_b vertex (terms V_01 and W_2) on (A_V, A_V) -> A_V, all configurations with n_t <= 3 (S^(1)(K_b) on a line, i.e. the A_V--c line on the cycle, and at the special edge), numerical injected momentum, T = 1, 4, 16.",
+   "result": {
+    "gate": {
+     "id": "G-KT along K_b (route B numerics): T d/dT of the defect cycles of the intrinsic K_b vertex, at the order of the h-derivative, is O(eps)",
+     "pass_": true,
+     "n_configs": 12,
+     "placements": [
+      "line (A_V--c line on the cycle)",
+      "special edge"
+     ],
+     "target": "T dV/dT -> 0 at least linearly in eps (ratio ~4 or ~16 per factor 4) at T = 1, 4, 16 for every configuration (Thm qs-simplex (iv)): the eps^-1, eps^0, log eps coefficients of Upsilon^0_{K_b} are T-independent"
+    }
+   }
+  },
+  {
+   "id": "Q15",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Thm qs-simplex with n_t = 2: a constant F_0 gives log 2 and no pole; the value 1/4 of the pole formula is int_0^{1/2} (1 - 2 alpha) F_1 with F_1 constant (D = 2).",
+   "action": "engine B notes.txt and results.json (findings F8, closed_forms) restated."
+  },
+  {
+   "id": "Q16",
+   "severity": "minor",
+   "decision": "accept",
+   "check": "Engine PROGRESS files.",
+   "action": "engine A rerun end to end (run_all.py, n = 0..3 in one pass); engine B reruns one at a time under the 1300 MB watchdog; A n = 2, 3 tables keep one output ordering per leg set (recorded).",
+   "result": {
+    "engine_A_gates": "33/33",
+    "engine_A_wall_s": 2236.1,
+    "engine_A_max_rss_MB": 171.0,
+    "TQ2_regression": "TQ2 n = 0..3: all rows identical (eps^0 and poles)"
+   }
+  }
+ ],
+ "additional": [
+  {
+   "id": "R1",
+   "note": "consequence of Q3 found in the revision: Prop qs-freexi (iii) stated that the free directions add +theta times the classical arrow; with the corrected Lemma qs-arrows it is -theta."
+  },
+  {
+   "id": "R2",
+   "note": "the TQ3 summary of engine A keyed the two colour orders of two outputs of the same type by the type string, so one order overwrote the other in the summary (betab_gg); keyed by order index now."
+  }
+ ]
+}

@@ -1,0 +1,326 @@
+{
+ "results": {
+  "xi": {
+   "S_+ (x) W": {
+    "arrows_from_functional": true,
+    "antifield_arrows_from_pairing": true,
+    "preserves_pairing": true,
+    "comm_Q": true,
+    "comm_H": true,
+    "C_xi_blocks": [
+     "AV<-lamsP",
+     "c<-lamM",
+     "lamP<-AsV",
+     "lamsM<-cs"
+    ],
+    "C_xi_order_one": true,
+    "C_xi_lam_to_c": true,
+    "C_xi_K0_graded_symmetric": true,
+    "line_blocks": [
+     "c<-lamP",
+     "lamP<-c"
+    ],
+    "line_c_lam_over_k2_per_xi": [
+     "-2"
+    ],
+    "line_lam_c_over_k2_per_xi": [
+     "2"
+    ],
+    "cor_edges_iii_split": true,
+    "cor_edges_iii_comm": true
+   },
+   "S_- (x) W^*": {
+    "arrows_from_functional": true,
+    "antifield_arrows_from_pairing": true,
+    "preserves_pairing": true,
+    "comm_Q": true,
+    "comm_H": true,
+    "C_xi_blocks": [
+     "AV<-lamsM",
+     "c<-lamP",
+     "lamM<-AsV",
+     "lamsP<-cs"
+    ],
+    "C_xi_order_one": true,
+    "C_xi_lam_to_c": true,
+    "C_xi_K0_graded_symmetric": true,
+    "line_blocks": [
+     "c<-lamM",
+     "lamM<-c"
+    ],
+    "line_c_lam_over_k2_per_xi": [
+     "-2"
+    ],
+    "line_lam_c_over_k2_per_xi": [
+     "2"
+    ],
+    "cor_edges_iii_split": true,
+    "cor_edges_iii_comm": true
+   }
+  },
+  "eta": {
+   "S_+ (x) W^*": {
+    "s0_blocks": [
+     "AsW<-lamsP",
+     "lamP<-AW"
+    ],
+    "comm_Q_zero": true,
+    "comm_Q_zero_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsM",
+     "AsW<-lamsP"
+    ],
+    "Y_solves_pairing": true,
+    "s0_needed": true,
+    "comm_H": true,
+    "C0_blocks": [
+     "AV<-lamsM",
+     "AW<-lamsP",
+     "c<-lamP",
+     "lamM<-AsV",
+     "lamP<-AsW"
+    ],
+    "C0_order_le_one": true
+   },
+   "S_- (x) W": {
+    "s0_blocks": [
+     "AsW<-lamsM",
+     "lamM<-AW"
+    ],
+    "comm_Q_zero": true,
+    "comm_Q_zero_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsP",
+     "AsW<-lamsM"
+    ],
+    "Y_solves_pairing": true,
+    "s0_needed": true,
+    "comm_H": true,
+    "C0_blocks": [
+     "AV<-lamsP",
+     "AW<-lamsM",
+     "c<-lamM",
+     "lamM<-AsW",
+     "lamP<-AsV"
+    ],
+    "C0_order_le_one": true
+   }
+  },
+  "K_b": {
+   "C_K_blocks": [
+    "AsV<-cs",
+    "c<-AV",
+    "lamM<-lamsP",
+    "lamP<-lamsM"
+   ]
+  },
+  "recorded": {
+   "canonical_form": "two-leg outputs on plane waves alpha delta + beta^mu d_mu delta + gamma^{mu nu} d_mu d_nu delta <-> int omega (x^mu x^nu K_munu + x^mu K_mu + K_0): K_0 = alpha, K_mu = i beta^mu, K_munu = -gamma^{munu}; route B computes position factors as -i d/dr (one) and -d^2/dr dr (two) of a momentum r injected at the S vertex and absorbed by omega",
+   "twisted_coefficient": "Q^xi_1 = L_1^(0) + Q_1 - (1/2) L_1^(2)(xi,xi) (Def c8-twisted, Prop qs-twist (i)); used as stated",
+   "colour_T5": "T5 = (1/4) sum_{MN} ([A_M,A_N], (rho_M rho_N xi, lam*)) carries the colour key f of vertices.py and acts on the cycle as ad_Y of its output Y, like a cubic vertex of I (Rem qs-colour)"
+  },
+  "seconds": 134.0
+ },
+ "gates": [
+  {
+   "id": "E0-conv",
+   "value": "Pi K_0 H_free(-k,k) - q(k) = 0",
+   "target": "q(k) = Pi K_0 H_free(-k,k)",
+   "pass_": true,
+   "note": "free action of eq c1-free (kinA, kinlam, kingh of vertices.py); fixes the reading F = (1/2)<e,Xe>"
+  },
+  {
+   "id": "E0-orient",
+   "value": "rho(e1e2e3e4) = +1 on comps 0..7: True, -1 on 8..15: True",
+   "target": "lamP = S_+ (x) W = +1 eigenspace for the orientation dx1dx2dx3dx4 of the dictionary (engine m=0 <-> 4)",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-xi-arrows-p",
+   "value": {
+    "field_arrows_equal_minus_Lemma": true,
+    "antifield_arrows_by_pairing": true
+   },
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_": true,
+   "note": "FINDING: Lemma qs-arrows prints lam -> -Gamma(xi,lam), A -> -(1/2) rho(dA) xi, i.e. the reading int(Xe,e*) <-> X, which is minus the convention of Prop c1-Q (int(dc,A*) <-> Q c = -dc); all statements of Prop qs-comm (i) hold for both signs, C_xi and the composite line change sign"
+  },
+  {
+   "id": "E0-xi-comm-p",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-Cxi-p",
+   "value": {
+    "blocks": [
+     "AV<-lamsP",
+     "c<-lamM",
+     "lamP<-AsV",
+     "lamsM<-cs"
+    ],
+    "order_one": true,
+    "lam_to_c": true,
+    "graded_sym": true
+   },
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_": true,
+   "note": "refinement: only A*|_V -> lam and lam* -> A|_V occur (the A*|_perp -> lam and lam* -> A|_perp components cancel between xi.Q^GF and Q^GF xi.)"
+  },
+  {
+   "id": "E0-line-p",
+   "value": {
+    "blocks": [
+     "c<-lamP",
+     "lamP<-c"
+    ],
+    "c_lam": [
+     "-2"
+    ],
+    "lam_c": [
+     "2"
+    ]
+   },
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-xi-arrows-m",
+   "value": {
+    "field_arrows_equal_minus_Lemma": true,
+    "antifield_arrows_by_pairing": true
+   },
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_": true,
+   "note": "FINDING: Lemma qs-arrows prints lam -> -Gamma(xi,lam), A -> -(1/2) rho(dA) xi, i.e. the reading int(Xe,e*) <-> X, which is minus the convention of Prop c1-Q (int(dc,A*) <-> Q c = -dc); all statements of Prop qs-comm (i) hold for both signs, C_xi and the composite line change sign"
+  },
+  {
+   "id": "E0-xi-comm-m",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-Cxi-m",
+   "value": {
+    "blocks": [
+     "AV<-lamsM",
+     "c<-lamP",
+     "lamM<-AsV",
+     "lamsP<-cs"
+    ],
+    "order_one": true,
+    "lam_to_c": true,
+    "graded_sym": true
+   },
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_": true,
+   "note": "refinement: only A*|_V -> lam and lam* -> A|_V occur (the A*|_perp -> lam and lam* -> A|_perp components cancel between xi.Q^GF and Q^GF xi.)"
+  },
+  {
+   "id": "E0-line-m",
+   "value": {
+    "blocks": [
+     "c<-lamM",
+     "lamM<-c"
+    ],
+    "c_lam": [
+     "-2"
+    ],
+    "lam_c": [
+     "2"
+    ]
+   },
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-eta-ep",
+   "value": {
+    "comm_Q": true,
+    "comm_Q_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsM",
+     "AsW<-lamsP"
+    ],
+    "s0_needed": true,
+    "comm_H": true,
+    "s0_blocks": [
+     "AsW<-lamsP",
+     "lamP<-AW"
+    ]
+   },
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_": true,
+   "note": "FINDING: eta. is x^mu xi_mu. (normal ordered) + eta^0. + Y, with Y the constant antifield arrows lam* -> A*, A* -> lam* produced by the integration by parts of x^mu on the antifield arrows (pairing preservation); with Y, [eta.,Q] = sum sigma^mu(Q) xi_mu. + [eta^0.+Y, Q] = 0 exactly; without Y the identity fails. The constant part C^0_eta of [eta.,Q^GF] includes Y."
+  },
+  {
+   "id": "E0-eta-em",
+   "value": {
+    "comm_Q": true,
+    "comm_Q_without_Y": false,
+    "Y_blocks": [
+     "AsV<-lamsP",
+     "AsW<-lamsM"
+    ],
+    "s0_needed": true,
+    "comm_H": true,
+    "s0_blocks": [
+     "AsW<-lamsM",
+     "lamM<-AW"
+    ]
+   },
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_": true,
+   "note": "FINDING: eta. is x^mu xi_mu. (normal ordered) + eta^0. + Y, with Y the constant antifield arrows lam* -> A*, A* -> lam* produced by the integration by parts of x^mu on the antifield arrows (pairing preservation); with Y, [eta.,Q] = sum sigma^mu(Q) xi_mu. + [eta^0.+Y, Q] = 0 exactly; without Y the identity fails. The constant part C^0_eta of [eta.,Q^GF] includes Y."
+  },
+  {
+   "id": "E0-spin",
+   "value": {
+    "equivariance": true,
+    "pairing": true
+   },
+   "target": "Sigma^{mu nu} = (1/2) rho_mu rho_nu on Sigma and Sigma^*: rho(Sigma v) = [Sigma, rho(v)], (Sigma s, s*) + (s, Sigma s*) = 0",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-Delta",
+   "value": {
+    "comm_Q": true,
+    "comm_QGF_eq_m4QGF": true,
+    "comm_H_eq_m4H": true
+   },
+   "target": "[v.,Q] = 0, [v.,Q^GF] = -4 Q^GF, [v.,H] = -4H for v = 2E (Prop c7-dil)",
+   "pass_": true,
+   "note": ""
+  },
+  {
+   "id": "E0-K",
+   "value": {
+    "comm_Q": true,
+    "remainder_constant": true,
+    "C_K_order0": true,
+    "C_K_AV_eq_m4b": true,
+    "C_K_AsW_zero": true,
+    "C_K_formula": true,
+    "comm_H": true,
+    "C_K_blocks": [
+     "AsV<-cs",
+     "c<-AV",
+     "lamM<-lamsP",
+     "lamP<-lamsM"
+    ]
+   },
+   "target": "[v.,Q]=0; [v.,Q^GF] = 4(b,x)Q^GF + C_K, C_K = 2 sigma^rho(Q^GF)(w b_rho - b_nu Sigma^{rho nu}), C_K A_V = -4(b,A_V), C_K = 0 on A*_perp; [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho",
+   "pass_": true,
+   "note": ""
+  }
+ ]
+}

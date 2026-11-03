@@ -1,0 +1,86 @@
+{
+ "results": {
+  "lc1_xi+_2": {
+   "lc1 on T0..T4": {
+    "T0": "0",
+    "T3": "-2",
+    "T4": "-2",
+    "T2": "2",
+    "T1": "2"
+   },
+   "{N,S2(xi)} on T0..T4": {
+    "T0": "0",
+    "T3": "-2",
+    "T4": "-2",
+    "T2": "2",
+    "T1": "2"
+   },
+   "lc1 + {uN,S(xi)}": {
+    "T0": "0",
+    "T3": "-4",
+    "T4": "-4",
+    "T2": "4",
+    "T1": "4"
+   },
+   "lc1 - {uN,S(xi)}": {
+    "T0": "0",
+    "T3": "0",
+    "T4": "0",
+    "T2": "0",
+    "T1": "0"
+   }
+  },
+  "lc1_xi-_2": {
+   "lc1 on T0..T4": {
+    "T0": "0",
+    "T3": "-2",
+    "T4": "-2",
+    "T2": "2",
+    "T1": "2"
+   },
+   "{N,S2(xi)} on T0..T4": {
+    "T0": "0",
+    "T3": "-2",
+    "T4": "-2",
+    "T2": "2",
+    "T1": "2"
+   },
+   "lc1 + {uN,S(xi)}": {
+    "T0": "0",
+    "T3": "-4",
+    "T4": "-4",
+    "T2": "4",
+    "T1": "4"
+   },
+   "lc1 - {uN,S(xi)}": {
+    "T0": "0",
+    "T3": "0",
+    "T4": "0",
+    "T2": "0",
+    "T1": "0"
+   }
+  },
+  "G-logex": {
+   "l_xi+": "0",
+   "l_xi-": "0",
+   "c (inner)": "0",
+   "a (outer, along [G_B])": "0",
+   "statement": "lc1(xi)|2 = {uN,S_2(xi)} exactly = 2u(T1+T2-T3-T4) (both chiralities); the Lambda-closed combination with the C07 bracket is lc1(x) - {uN,S(x)} (Lambda{a,b} = -{Lambda a,b} - (-1)^{|a|}{a,Lambda b}), which vanishes: l_xi = 0 for xi in S_+ (x) W and in S_- (x) W^*, hence c = a = 0 at two legs; the printed combination lc1 + {uN,S} = 4u(T1+T2-T3-T4) is not closed (Q(T1+T2-T3-T4) = -g1-g3)",
+   "rule": "l_x = c lambda_x + a B_x, lambda_xi = -1, B_xi+ = +1, B_xi- = -1"
+  }
+ },
+ "gates": [
+  {
+   "id": "G-logex (xi, two legs)",
+   "value": {
+    "l_xi+": "0",
+    "l_xi-": "0",
+    "c": "0",
+    "a": "0"
+   },
+   "target": "lc1(x) -/+ {uN,S(x)} = l_x u S(x) mod Im Lambda",
+   "pass": true,
+   "notes": "passes with the C07-consistent sign lc1 - {uN,S(x)} (same root as the WZ sign, notes.txt sec. 2); fails with the printed + sign (not closed)"
+  }
+ ]
+}

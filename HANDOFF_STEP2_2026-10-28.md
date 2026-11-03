@@ -111,3 +111,31 @@ composite A_V--c lines give a nonlocal Q-exact remainder (Delta) and a translati
   step2/composite_qsk/partq_workflow.js, retries on dropped agents), ends by replacing Section 11.6.
 - ch00_overview.tex had been evicted by iCloud (dataless); restored from the byte-identical GitHub copy (sha 7df6c9c).
 - ch11 referee (11.1-11.5) running -> step2/qa/ch11_review/.
+- ch11 refereed (27 findings: 3 major overclaims, all applied; pre-fix copies step2/qa/ch11_review/pre/). Live reader rev 65
+  (c11 appended) -> 66 (136 supplements). GitHub a1f594b (ch11 + step2/composite_qsk), d3e5156 (README/CONTRIBUTING).
+  reader_build prep scripts now put ~/.npm/_npx/4b4c857f6efdfb61/node_modules first in NODE_PATH (the Documents copy of
+  markdown-it is partly evicted); regenerated supplement blocks byte-identical to the live ones.
+- When Part Q (wf_a7e26f82-275) rewrites Section 11.6: referee it, then merge_into_live.py 8787 ch11_blocks.json
+  --replace-prefix c11 and re-run insert_supplements.py 8787; push via scratchpad api_push.py.
+- 2026-10-30 user directive R10 (strict Costello route; DESIGN_STEP2.md). User approved the strict-route workflow, to be
+  launched WHEN Part Q (wf_a7e26f82-275) finishes: script step2/strict_workflow.js (copy of scratchpad strict.js);
+  root step2/strict/ (action/ and operator/ sides); ends by rewriting ch09 §9.2-9.5, ch10 §10.8, all of ch11, and writing
+  manuscript/ch12_strict_construction.tex + supplements/ch12.tex.
+- 2026-10-30 Part Q DONE (wf_a7e26f82-275): referee verdict fail (fatal: engine A rounding bug zeroed twist beta entries;
+  sign of Lemma qs-arrows wrong; route B missed a T5 placement) -> all fixed by the reviser, 79/79 gates
+  (results/qsk_final.json, qsk/disposition.json). Section 11.6 rewritten (24 statements; NOT yet refereed, NOT in reader).
+  Open: TQ1 (action side along xi), F_x on D>=2 rows, Upsilon_xixi, R2-R6, class-level twist comparison.
+- Strict-route workflow launched: wf_5bfa6f93-8f4 (script scratchpad strict.js = step2/strict_workflow.js).
+  Reader/GitHub update for ch09-ch12 after it finishes + referee.
+
+## 2026-10-30 14:xx PAUSED at user request
+- Strict-route run wf_5bfa6f93-8f4 STOPPED during the operator engines. Done and cached: theory-action, theory-operator,
+  engine-action-A/B, refute-action (pass_with_fixes). Action-side results so far (two engines agree exactly):
+  Ob^(1)(Delta)|_2 regression OK; Ob^(1)(xi)|_2 = u[(79/24 - 1/2 log(3/2))(g1+g3) + 27/8 g2]; F_1^(1)(xi)|_2 =
+  (log(3/2) - 79/12)u(T1+T2) + theta^xi_V S^V_2 + theta^xi_perp S^perp_2; Ob^(2)(Delta,P_b)|_2 class -2/3 u per sector
+  => theta = -1/3 COMPUTED at two legs; (Delta,xi) arity two residual class -1/3 u[S(xi)]. Referee: printed WZ signs in
+  the action theory wrong; open: K_b, eta solution, S^(2)-pairs ({Q,Q},{Q,S}), (K_b,P_b'), (xi,P_b), 3-4 leg classes.
+- Script amended (user 2026-10-30): invariant content (class mod Q_0-exact/homotopy, scheme artefacts named), one-body
+  parts from F_1^(1)(x), class-level twist comparison via Phi = high priority; new agent 'action-complete' for the open
+  action items. RESUME: Workflow({scriptPath: "<scratchpad>/strict.js" (copy: step2/strict_workflow.js),
+  resumeFromRunId: "wf_5bfa6f93-8f4"}). Operator engines restart (their files in step2/strict/operator/engine_*/ stay).
