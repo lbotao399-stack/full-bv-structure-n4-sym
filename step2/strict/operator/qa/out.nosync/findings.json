@@ -1,0 +1,189 @@
+{
+ "file": "step2/strict/operator/qa/findings.json",
+ "date": "2026-11-04",
+ "findings": [
+  {
+   "id": "QA-F1",
+   "severity": "major",
+   "claim": "The finite special vertex F_x is counted twice. Def op-defect (iv),(v) set Upsilon_x = [eps^0] D_x + F_x, and the proof of Thm op-master (ii) says the class (Br) tends to 0 after the counterterm partners of the bridges have been moved into (Ct). This is false. A bridge whose special edge is a tree edge next to a divergent cycle is (e^{-eps H} - 1) times the bare cycle, and its limit is sum_m ((-1)^m/m!) {f, sing_m}_{H^m}, which is not 0. Its counterterm partner gives exactly -F_x, so the two cancel. The correct two-body kernel is Upsilon_x = [eps^0] D_x. The same double count appears in the j >= 1 shift terms of eq c11-pole, in the last term of eq op-master0, in the finite special vertices of Prop op-master2, and in eq c10-finitesp (\"it enters L_1(M)\").",
+   "evidence": "Analytic: the bridge and its partner sum to (e^{-eps H} - 1)(cycle - Sing cycle), which tends to 0 at generic p. The bare bridge tends to -p^2 a_1 (toy check, qa/out.nosync/toy_special_cycle.json toy3). Engine A: the pair form holds with [eps^0] D on 646/646 rows with D >= 2, and with F_x added it fails on every one of the 68 single-output rows where F_x != 0. Engine B: with F_x added the pair form fails on every row where F_x != 0, i.e. 10 of its 12 failed gates. The two engines find F_x != 0 on the same 13 rows (n <= 1). Engine A data recomputed here: on 3 single-output D = 4 rows (lamM lamM -> AW, lamP lamM -> AV, lamP lamP -> AW, n = 2) [eps^-1] D = -4 ct_1 and [eps^-2] D = -8 ct_2 hold exactly while ct_2 != 0. The shifted eq c11-pole adds 2(w_Y + D - 4)|q|^2 ct_2 != 0 on the left, and no other term on that component can cancel it.",
+   "fix": "Define Upsilon_x := [eps^0] D_x and Upsilon_0 := [eps^0] (special-edge cycles). Delete F_x from Def op-defect (iv),(v), eq op-master0 and Prop op-master2, and delete the j >= 1 terms from eq c11-pole. Rewrite the (Br) step as in Lemma op-BD (B): each bridge is grouped with its counterterm partner, and the pair tends to 0. Propagate the change to manuscript Def c11-defect (iii)-(iv), Thm c11-classes (ii)-(iii), eq c11-pole, the proof of Thm c10-brst (\"enters L_1(M)\"), qsk_summary A1 and twoletter build_final (finite_special_edge_vertex). Re-derive any arity-zero L_1^(0) entry that added eq c10-finitesp.",
+   "affects": [
+    "theory Def op-defect, Thm op-master, eq op-master0, Prop op-master2, Prop op-famtable (F8 \"F_x\"), G-pole wording",
+    "manuscript ch10/ch11",
+    "qsk theory A1"
+   ],
+   "status": "confirmed (two engines + analytic + data counterexamples); engine numbers already use the corrected definition"
+  },
+  {
+   "id": "QA-F2",
+   "severity": "major",
+   "claim": "S_1 and K_1 are not computed as components. Their one-body parts -{hbar F_1^(1)(eta), -} and -{hbar F_1^(1)(K_b), -} require the action-side particular solution of s(hbar F_1) = hbar Ob along eta and K_b, and no action engine provides one. Thm op-master (v) also asserts that hbar F_1^(1)(K_b) is independent of T without proof.",
+   "evidence": "Engine A notes 4 and 7 and engine B notes 4: eta and K_b are \"not provided by the action side\" and their one-body terms are carried as unknown maps. Engine A components: S_1 and K_1 one-body \"open\". The two-body parts exist only as intrinsic tables (A n <= 1, B n = 0 samples, OP4, OP8) and vanish on the scalar singlet.",
+   "fix": "Solve the arity-one action QME along eta (free directions sum_mu x^mu S^V_2(rho(e_mu) eta), sum_mu x^mu S^perp_2(rho(e_mu) eta) + s_0) and along K_b at finite T. Prove or compute the T-independence of hbar F_1^(1)(K_b). Then assemble S_1 and K_1 on F0-F7 and test (R3), (R5), (R6) and Thm op-c.",
+   "affects": [
+    "R10 completeness",
+    "Cor op-SK",
+    "Thm op-c",
+    "(R3) Konishi relation"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F3",
+   "severity": "major",
+   "claim": "The coverage required by Prop op-famtable and Def op-kin is not reached. Q_1 exists only on F0. M_1 exists only on A_perp letters. P_1 is evaluated only along the collinear direction n on F3-F7, although Def op-kin states that collinear data do not determine P_1 along b not in Cn, M_1, K_1 or (R5), (R6). F5-F7 come from route A alone, so no G-AB check exists for them. Neither route has done G-Cid, G-typeI, G-logcov, the full G-pole, G-KP, G-KPbdry, G-twist or the two-sided (R2)-(R6). The completed locality theorem (Lemma op-Cid, Prop op-typeI, Thm op-local) is therefore untested.",
+   "evidence": "Engine A gates: 86 entries, none of these. Engine B gates: 82 entries, none of these. Engine A open list (notes 7) and engine B \"open\" list agree. F8 n = 3 has not been run, and n >= 2 on the 30 antifield pairs has not been run.",
+   "fix": "Run engine A to completion (n = 3 tables, F5 at S' = 4). Add route B on F5-F7 for G-AB. Evaluate P_1, M_1 at generic b, omega and Q_1 on F1-F7 at generic on-shell kinematics. Implement Xi_x and Xi^sigma_x on two- and three-leg loops for G-Cid. Evaluate the line-class poles against s ct^(1)(O) - ct^(1)(sO) plus the vacuum-pole spectators (full eq c11-pole).",
+   "affects": [
+    "Prop op-famtable",
+    "Def op-kin",
+    "Thm op-local",
+    "Thm op-c",
+    "Cor op-relations"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F4",
+   "severity": "major",
+   "claim": "The twist comparison has not been made at class level. No transport map Phi from the untwisted letters to the holomorphic letters ([ESW, Thm 10.9]) with BK normalisation has been constructed, and the class [Q^xi_1] mod Im Q^xi_0 + C S^xi has not been compared with [BK (3.7), (3.59)-(3.70)]. The available Part Q pair entries (betabeta, bgamma, beta b, ...) contain log(3/2) terms that depend on the colour order, while the BK entries are rational. No statement of agreement with BK is therefore possible, and the individual entries are not comparable.",
+   "evidence": "qsk_summary B5: \"Entries are scheme dependent; class-level test not done\". Engine A: \"G-twist (the Part-Q TQ3 values are not re-derived here)\". Engine B: not computed. q1_targets.json open_items: the BK normalisation, the normalised field map (3.51) and the representative of b are given in no source.",
+   "fix": "Build Phi together with the induced map on letters (gamma, beta, d c, c, b). Compute the cokernel of Q^xi_0 on the arity-two pair outputs. Fit the scheme directions (psi finite parts, theta^xi, a B) and test whether every log(3/2) term lies in Im Q^xi_0 + C S^xi. Only then compare the remaining class with BK (3.64)-(3.69), up to one overall normalisation.",
+   "affects": [
+    "G-twist",
+    "R4 cross-check"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F5",
+   "severity": "minor",
+   "claim": "Neither route derives the overall sign of the defect cycles a priori. Route B fixes it with G-pole along odd x and with Upsilon_P = C_P against the composite engine. Its a-priori sign is -(hbar/2), the opposite of the sign it uses, and the difference is \"compensated in the STr normalisation\". Route A has \"global +1, fixed in Part Q by G-reg and the graded-symmetry gate\". R10 allows such identities only as checks, so the regression values 40/3 and -104/3 are partly calibration in both routes.",
+   "evidence": "Engine B notes 2, and qsk engine B notes (GitHub copy, lines 56-63). Engine A notes 1 (\"Sign rule ... fixed in Part Q by G-reg\"). Mitigating: once the sign is fixed, the one-body terms come from the action side independently, and every F1-F7 spectrum is a genuine prediction.",
+   "fix": "Derive the global factor from Def c11-defect (ii) (leading minus of the special edge, Prop c11-master) and Lemma c10-sign in both routes. Record it as a derived constant and keep G-reg as a check only.",
+   "affects": [
+    "G-reg independence"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F6",
+   "severity": "minor",
+   "claim": "Engine B attributes some failures to the wrong cause. Its reduced G-pole gate (D0, n = 1) and G-D1pair rows fail on lamP|lamP [AV AW], lamP|lamM [AV AV], [AW AW] and lamM|lamM [AV AW], and B lists these under B-F3 (omitted -ct^(1)(sO) terms). They are in fact the four rows whose ESW (spin-weight) block exceeded the memory cap. In the same way, the six n = 0 three-output lambda rows without an EP block report G-D1pair False. Engine A has every one of these 11 rows complete, and the pair form holds there.",
+   "evidence": "qa/out.nosync/cmp_tables.json conj_disagree (11 rows, every one with B has.EP = False or has.ESW = False). The B table files show D0 kernels with only the \"special\" class and log2/log3 residuals linear in the letter momenta.",
+   "fix": "Mark incomplete rows as \"no verdict\" rather than False, and restrict the B-F3 list to the line-class rows (A_V, X) -> X.",
+   "affects": [
+    "engine B gates.json, notes 7"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F7",
+   "severity": "minor",
+   "claim": "Most of G-noLog is not a test. Both routes declare \"no log eps on any row\" structurally, because the simplex and Feynman-parameter formulas cannot produce a log. Only engine A's numerical fit on the E = 2 cubic-T5 configurations, and B's finite-T fits along K_b, test it independently.",
+   "evidence": "Engine A gates: \"G-noLog (structural): ... by construction\". Engine B: \"109/109 rows without log eps (structural)\".",
+   "fix": "Add finite-eps numerical evaluations, by direct Schwinger integration and not by the simplex formula, on a sample of rows with D >= 2 and with derivative letters in each route.",
+   "affects": [
+    "G-noLog"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F8",
+   "severity": "minor",
+   "claim": "The poles of the line placements are not checked by any identity. In engine A's stored totals, the poles equal -4m ct_m (Delta) or 0 (P, M, R) exactly on every pole entry without line placements, and differ on all 204 pole entries with line placements. B finds the same rows (B-F3). Thm op-master (iv) and Thm op-local (iii) claim that these poles cancel against s ct^(1)_{x,m}(O) - ct^(1)_{x,m}(sO) and the vacuum-pole spectator terms, but this has not been computed.",
+   "evidence": "qa/out.nosync/recheck_rowsA.json counts: every Ward-form failure has a line placement (P 140, D0 43, M0 21).",
+   "fix": "Compute ct^(1)_{x,m} on the pair and on the cubic monomials of sO, and test eq c11-pole without the j-shift (QA-F1) on the line rows.",
+   "affects": [
+    "Thm op-master (iv)",
+    "Thm op-local (iii)"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F9",
+   "severity": "minor",
+   "claim": "Remark op-pair (2) does not explain the pair form. It reduces the special-edge placements to x. acting at the two ends of an edge Y = -P(eps, 2 eps). Along Delta, [Delta., Y] = -4 eps dY/deps, and a cycle with one Y edge has no log eps, so this mechanism alone gives no eps^0 term proportional to lc. The factor 4 lc must come from the vertex and letter terms of the end actions, which the remark does not treat. Conj op-pair therefore rests only on G-D1pair.",
+   "evidence": "Hand computation: Y = (K_eps - K_0)* P* = -P(eps, 2 eps)*, [Delta., P(eps, T)*] = -4(eps d_eps + T d_T) P, hence [Delta., Y] = -4 eps dY/deps, and the cycle with one Y edge is log-free by the simplex form. G-D1pair holds on all complete rows in both routes (A: 5280 rows recomputed here from raw numbers; B: n = 0 141 and n = 1 98 complete rows).",
+   "fix": "Either prove the pair form, e.g. via Thm op-conj for the non-cocycle M = int omega X_a X_b (Rem op-pair (3)), or keep it as a computed identity and remove the mechanism sentence.",
+   "affects": [
+    "Rem op-pair",
+    "Conj op-pair"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F10",
+   "severity": "minor",
+   "claim": "Prop op-tfix assumes that every free direction of hbar F_1^(1)(x) acts as -t_x rho_0(x). Along xi the two directions theta^xi_V S^V_2 and theta^xi_perp S^perp_2 act differently on lambda letters (through rho(dA_V) and rho(dA_perp)), so on F2, F4, F5, F7 the difference theta^xi_V - theta^xi_perp is not covered. The two-parameter result t = aB + (c/2) lambda holds only on families whose letters lie in one sector, or at theta^xi_V = theta^xi_perp.",
+   "evidence": "Hypothesis op-A table (xi row) and Part Q A5. Prop op-tfix was verified here by hand and by engine A for the block system.",
+   "fix": "Extend Prop op-tfix by the sector-difference direction, or state the restriction explicitly. Determine theta^xi_V - theta^xi_perp from (R2) or (R3) on a family containing lambda letters (Part Q TQ1).",
+   "affects": [
+    "Prop op-tfix",
+    "scheme-independent content of Q_1"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F11",
+   "severity": "minor",
+   "claim": "Engine B's (R7) test along P_b on F0 is weak. It uses a single numeric point, which fixes only one combination of the two target coefficients (38/3, -16). Engine A has no matrix (R7) along P_b on F0. Along the other generators, (R7) has been tested only for su(2) (B) and for xi on F0 (A).",
+   "evidence": "Engine B results OP7_relations (R7_P_on_F0): the evaluation is a numeric point. Recomputed here: D_1(S'+1) d_n = d_n D_1(S') holds exactly on F3 0..6 and F4 1..5 (B matrices) and on F5 0..3 and F7 0..4 (A matrices), and B's Upsilon_Pn = -1/3 d_n on every step.",
+   "fix": "Test (R7) along P_b on F0 at two independent points, or symbolically. Test it along Q, S and K on F3-F7 once Q_1, S_1, K_1 exist there.",
+   "affects": [
+    "G-R"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F12",
+   "severity": "minor",
+   "claim": "Engine A read the F5 letter Z' from its own output (the A_perp output of Upsilon^0_Delta(psi3, psi4)) and not from Def c11-families. The SO(6) weight of psi3 psi4 fixes Z' = A^{34} up to normalisation, so the spectrum is unaffected. The off-diagonal entries of the F5 D_1 matrix (8 and 64) depend on this normalisation.",
+   "evidence": "Engine A notes 6 (F5) and twocomp_fam (Z' = A^{34}).",
+   "fix": "Fix Z' a priori from Def c11-families and record the normalisation of the Z' F_11 basis vector.",
+   "affects": [
+    "F5 representative"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F13",
+   "severity": "minor",
+   "claim": "The evidence for K_b at finite T is thin. G-KT exists only in route B (OP8, 12 configurations of the intrinsic K_b vertex on (A_V, A_V) -> A_V at T = 1, 4, 16, agreement 4e-4). No family-level K_1 has been compared across T. Toy check: T dG/dT = O(eps) at fixed T, but with the position weights of K_b it grows like T^{k-1}, so T-independence holds only at fixed finite T, and the eps -> 0 limit must be taken first.",
+   "evidence": "Engine B OP8_Kb_finite_T. qa/out.nosync/toy_special_cycle.json toy2.",
+   "fix": "Run G-KT in route A, using the exact simplex expansion at finite T (Thm c11-oddsimplex (iii)), on all K0 rows. Compare K^0_1 on F0 and F3 at two values of T.",
+   "affects": [
+    "Thm op-master (v)",
+    "Prop op-KT"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F14",
+   "severity": "minor",
+   "claim": "Two action-side inputs remain unresolved. phi_c is 8/3 in one reading and 14/3 in the other (it depends on the sign of the Q-image of int(A, A*) on the ghost line). The lambda spin coefficient of hbar F_1^(1)(M_Om) is 1/3 in action engine B and -1/12 in action engine A (without the preimage normalisation). Both enter the one-body terms on ghost or gauge-variant letters and on lambda letters along M. M_1 is a coboundary on cohomology (R8), but the representative is ambiguous.",
+   "evidence": "Engine A onebody stage (FLAGGED). Here, c_c = 4/3 was rederived from the s(N) table, giving phi_c = 4 - 4/3 = 8/3, which agrees with engine B.",
+   "fix": "Resolve on the action side. Engine B's own S(M)_spin normalisation (1/3 on both A and lambda) is the only one that carries a preimage normalisation.",
+   "affects": [
+    "one-body terms on c, lambda along M"
+   ],
+   "status": "open"
+  },
+  {
+   "id": "QA-F15",
+   "severity": "minor",
+   "claim": "The process rule was broken in engine B. Two failing row attempts reached ru_maxrss 1501 and 1521 MB, above the 1.5 GB limit, before the watchdog stopped them. No completed row exceeded about 1.13 GB.",
+   "evidence": "Engine B notes 7.",
+   "fix": "Keep the lowered caps (1250 / 1400 MB) and a 0.1 s watchdog poll.",
+   "affects": [
+    "process"
+   ],
+   "status": "open"
+  }
+ ],
+ "confirmed_results": [
+  "Engine A and engine B agree on every overlapping entry. F0: Upsilon^0_Delta = 40/3, -104/3; D_1 = -4 theta - 4/3, -4 theta - 148/3, i.e. 0 and -48 at theta = -1/3; Upsilon_P = -1/3 d_b O; Upsilon_R = Upsilon^0_M = Upsilon^0_K = 0; Q_1 two-body a1..a4 in both chiralities; L_1^(0) coefficient -(2 + 4 log(3/2)). F3 (S' <= 6) and F4 (S' <= 5): the sum Upsilon^0_Delta matrices are equal entry by entry, and so are the D_1 eigenvalues and Upsilon_Pn. On the F8 tables the superficial degrees agree on 152/152 P rows, the sets of rows with F_x != 0 are identical, and the G-D1pair verdicts agree on every row that is complete in both routes.",
+  "Independent targets computed here: su(2) Heisenberg cyclic spectra for L <= 8 and su(1|1) graded free-fermion spectra for L <= 6 agree with both engines. The psu(2,2|4) harmonic-sum targets -32 h(J) with the L = 2 selection rule agree with every family spectrum (F3, F4, F6, F7). The F5 and F7 eigenvalues were recomputed exactly from engine A's matrices."
+ ]
+}

@@ -1,0 +1,159 @@
+{
+ "file": "step2/strict/results/operator_final.json",
+ "date": "2026-11-04",
+ "units": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2); L = log(3/2)",
+ "two_component_conventions": "Weinberg-Srednicki two-component (Def c8-twocomp; sigma^m = (vec sigma, i), sigmabar^m = (-vec sigma, i), eps^12 = eps^{dot1 dot2} = 1); A^{ij} = (1/2) eps^{ijkl} A_kl",
+ "sources": [
+  "step2/strict/operator/theory/operator_theory.tex (revised, 27 pp)",
+  "step2/strict/operator/engine_a (86/86 gates)",
+  "step2/strict/operator/engine_b (gates_revised.json: 70 pass, 8 withdrawn, 4 open)",
+  "step2/strict/operator/qa",
+  "step2/strict/revise.nosync/onebody_F0.json"
+ ],
+ "master_formula": {
+  "statement": "hbar L_1(O)^(1)(x) = sum_{a<b} (+-) Upsilon_x(X_a,X_b) - {hbar F_1^(1)(x), O};  hbar L_1(O)^(0) = sum_{a<b} (+-) Upsilon_0(X_a,X_b) - {hbar F_1^(0), O};  Upsilon_x := [eps^0] D_x (defect cycles), Upsilon_0 := [eps^0] (special-edge cycles)",
+  "revision": "the finite special vertex F_x and the vacuum-pole term of eq op-master0 are cancelled by the bridges (special edge on a tree adjacent to a divergent cycle): bridge + partner = (e^{-eps H} - 1)(cycle - Sing cycle) -> 0 (QA-F1)",
+  "evidence": "engine A: pair form with [eps^0] D on 646/646 D>=2 rows, fails on all 68 F_x != 0 single-output rows when F_x is added; engine B same 13 rows with F_x != 0",
+  "status": "derived-from-construction; computed by two engines + referee"
+ },
+ "F0_scalar_bilinears": {
+  "operator": "O = int omega (iota_w1 A, iota_w2 A) = (1/16) int omega w1^{ij} w2^{kl} (A_ij, A_kl)",
+  "B_functionals_two_component": {
+   "B1 = {S^(1)(xi),O}": "(1/4) int omega [(w1^{kl} A_kl, w2_{ji} xi^{alpha i} lambda_alpha^j) + (1<->2)]",
+   "B2": "(1/4) w1^{ij} w2_ij int omega (A_ji, xi^{alpha i} lambda_alpha^j)",
+   "B3": "(1/4) w1^{ij} w2_ij int omega i (lambdabar_{alphadot i}, A_m sigmabar^{m alphadot alpha} xi_alpha^i)",
+   "B4": "(1/4) w1^{ij} w2_ij int omega (c, xi_alpha^i lambda*^alpha_i)"
+  },
+  "Q1": {
+   "representative": "Q_1(O) = (79/12 - 3L - t_xi) B1 + 4L B2 + 4L B3 + 0 B4 (both chiralities, psi = 0)",
+   "two_body": "-2L B1 + 4L B2 + 4L B3",
+   "one_body": "-(L - 79/12 + t_xi) B1",
+   "arity_zero": "hbar L_1(O)^(0) = -(2 + 4L) u (w1,w2) int omega (dc, A_V)",
+   "c_Q": "79/12 - 3L - t_xi",
+   "status": "computed by two engines + referee (two-body, both engines); one-body derived-from-construction from action numbers"
+  },
+  "S1": {
+   "representative": "S_1(O) = (79/12 - 3L - t_eta) {S^(1)(eta),O} + x_O^mu (4L B2 + 4L B3)(rho(e_mu) eta); intrinsic part 0 on F0",
+   "c_S": "79/12 - 3L - t_eta",
+   "status": "derived-from-construction (one-body from action F1(eta)); two-body position part = Thm op-b, intrinsic zero computed by two engines + referee"
+  },
+  "D1": {
+   "representative": "D_1(O) = -4 t_Delta - 4/3 (traceless), -4 t_Delta - 148/3 (trace); sum Upsilon^0_Delta = 40/3, -104/3; one-body -44/3 - 4 t_Delta",
+   "value": "0 (traceless), -48 u = 3 g^2 N/(2 pi^2) (trace) at t_Delta = -1/3",
+   "status": "computed by two engines + referee"
+  },
+  "P1": {
+   "representative": "P_1(O) = -(1/3 + t_P) u d_b O",
+   "status": "computed by two engines + referee"
+  },
+  "M1_R1": {
+   "representative": "Upsilon_R = 0, Upsilon^0_M = 0 on F0; R_1 = -{hbar F_1^(1)(R),O} = 0 (t_R = 0)",
+   "status": "computed by two engines + referee"
+  },
+  "K1": {
+   "representative": "K_1(O) = v(x_O)^mu P_1-part - (b,x_O) D^0_1 + M^0_1 + K^0_1 (Thm op-b); one-body -{F1(K_b)|_2,O} = (44/3) u int omega (b,x)(iota_w1 A, iota_w2 A) - theta^K_perp u {S^(1)(K_b)_perp,O} - sum_j kappa^K_j {G^K_j,O}; intrinsic K^0_1 = 0 on F0",
+   "status": "derived-from-construction (one-body); G^K_j action on A_perp letters and t_K open"
+  },
+  "invariants": {
+   "scheme_independent": "D_1 = 0 (traceless), -48 u (trace, Konishi 2 gamma_K, gamma_K = 3 g^2 N/(4 pi^2))",
+   "free_direction_invariant_at_psi0": {
+    "c_Q(xi+) + c_Q(xi-) - p_1": "27/4 - 8 log(3/2)",
+    "c_Q(xi+) + c_S(eta+) - D_1(traceless)/4": "27/4 - 8 log(3/2)",
+    "note": "independent of t_Delta, t_P, t_xi, t_eta, inner and outer directions (action relations); NOT invariant under operator finite parts psi' (coboundaries); the operator relations (R2), (R3) on F0 need the weight-5/2 level components and the arity-two kernels: open"
+   },
+   "scheme_artefacts": [
+    "c_Q alone, c_S alone",
+    "every log(3/2) coefficient (a1, a2, a3, -(2+4L))",
+    "P_1 = -(1/3 + t_P)",
+    "L_1^(0)(O) (removed by psi(O) = -(1+2L) u (w1,w2) int omega (A_V,A_V))",
+    "M_1, R_1 (coboundaries)",
+    "individual pair kernels"
+   ]
+  }
+ },
+ "families_spectra": {
+  "F1 su(2) tr(Z^{L-M} X^M)": {
+   "D1": "-8 u sum_l (1 - P_{l,l+1}) = (g^2 N/(4 pi^2)) E_Heisenberg, L <= 8",
+   "status": "computed by two engines + referee"
+  },
+  "F2 su(1|1) tr(Z^{L-M} psi^M)": {
+   "D1": "-8 u sum_l (1 - Pi_{l,l+1}) exact matrix identity on 22 sectors, L <= 6",
+   "status": "computed by two engines + referee"
+  },
+  "F3 twist two tr(D_n^k Z D_n^{S'-k} Z)": {
+   "D1": "Spec = {-32 h(j) u = (g^2 N/pi^2) h(j): j even <= S'}, S' <= 6: {0}, {0}, {-48,0}, {-48,0}, {-200/3,-48,0}, {-200/3,-48,0}, {-392/5,-200/3,-48,0}",
+   "status": "computed by two engines + referee"
+  },
+  "F4 fermion sl(2)": {
+   "D1": "Spec = {-32 h(j+1) u: j odd <= S'}, S' <= 5",
+   "status": "computed by two engines + referee"
+  },
+  "F5 gaugino pair + Z'F_11": {
+   "D1": "S'=0: [[-32,8],[64,-16]] eigenvalues 0, -48; S'=1: 0, -48 (3x); S'=2: 0, -48 (4x), -200/3; S'=3: 0, -48 (4x), -200/3 (3x)",
+   "note": "Z' = iota_w' A, w' = e4 - i e5 (A^{34}); off-diagonal entries depend on the normalisation of Z'F_11",
+   "status": "computed by one engine + referee"
+  },
+  "F6 gluon sl(2)": {
+   "D1": "S'=0,1: -48; S'=2: -200/3, -48",
+   "status": "computed by one engine + referee"
+  },
+  "F7 F_11 psi mixed": {
+   "D1": "S'=0: -48; 1: -48, -48; 2: -200/3, -48, -48; 3: -200/3 (2x), -48 (2x); 4: -392/5, -200/3 (2x), -48 (2x)",
+   "status": "computed by one engine + referee"
+  },
+  "P_1 on F3-F7": {
+   "statement": "sum Upsilon_{P_n} = -1/3 d_n; P_1 = -(1/3 + t_P) u d_n",
+   "status": "computed by two engines + referee on F3, F4; computed by one engine + referee on F5-F7"
+  },
+  "(R7) along P_n": {
+   "statement": "D_1^(S'+1) d_n = d_n D_1^(S') exact matrix identity on F3 (0..6), F4 (1..5), F5 (0..3), F7 (0..4)",
+   "status": "computed by two engines + referee (referee recomputation)"
+  },
+  "scheme_independent": "all spectra above; rational (log 2, log 3 cancel in the pair sums)"
+ },
+ "F8_tables": {
+  "pair_form": "Upsilon_Delta = 4 lc + C_Delta, Upsilon_P = C_P, Upsilon_M = C_M, Upsilon_R = 0 pair by pair (Conj op-pair)",
+  "evidence": "engine A 4634/4634 rows D<2 and 646/646 rows D>=2 (n <= 2); engine B every complete row n <= 1; 11 engine-B rows incomplete (no verdict); referee 5280/5280 from engine A raw numbers",
+  "status": "conjectured (proved on (A_perp,A_perp)); computed by two engines + referee on the tables",
+  "G_noLog": "structural in both routes",
+  "G_pole_line_rows": "open"
+ },
+ "twist": {
+  "class_level_check": "rank-one xi = u (x) w, w_a in the three-plane of w: Q_1(O) = 0 identically on O = int omega (iota_w1 A, iota_w2 A) (untwisted tr gamma^(I gamma^J)), arity-two (xi,xi) has no two-letter output: n = 2 case of [BK Sec 3.4.1, (3.77)], independent of all free directions, psi and the normalisation of Phi",
+  "status_check": "derived-from-construction from computed Q_1 on F0",
+  "transport_map_Phi": "open: BK normalisation of b, beta, gamma, d c and the field map (3.51) in no source; (xi,xi) operator kernels for k = 2 entries (bc, bb) not enumerated",
+  "class_comparison_BK_3.7_3.59-3.70": "open",
+  "note": "Part Q pair entries carry colour-order-dependent log(3/2) terms; individual entries are not comparable"
+ },
+ "relations": {
+  "R1": "computed in Part Q (both routes) on F0, G-R1",
+  "R2 [Q,Q]=P": "open two-sided (action-side version computed)",
+  "R3 {Q,S}=D+M+R": "open two-sided (action-side version computed)",
+  "R4 twist": "open",
+  "R5 [K,P]": "open",
+  "R6 {S,S}=K": "open",
+  "R7 [delta(Delta),rho_0(x)]=0": "computed by two engines + referee one-sided along P_n (F3-F7), su(2) (F1); along Q, S, K open",
+  "R8 Whitehead": "derived-from-construction"
+ },
+ "K_equals_P_dagger": {
+  "status": "cross-check only; untested (G-KP, G-KPbdry open; hypothesis H3)"
+ },
+ "former_shortcuts": {
+  "4 lc / scaling": "Thm op-ward (i), Thm op-a: theorems; G-D1sum, G-D1pair computed identities",
+  "theta = -1/3": "action-side computed input",
+  "S from Q": "Thm op-b, S_1 from own defect cycles + action F1(eta) one-body",
+  "K = P^dagger": "cross-check only",
+  "twist": "cross-check only",
+  "regulator covariance": "Lemma op-comm, Thm op-ward (ii)"
+ },
+ "open": [
+  "G-Cid, G-typeI (locality theorem untested), G-logcov, full G-pole on line rows",
+  "Q_1, S_1, M_1, K_1, generic-b P_1 on F1-F7 at generic kinematics; route B on F5-F7",
+  "arity-two operator kernels; two-sided (R2)-(R6)",
+  "G-KP, G-KPbdry; G-KT in route A",
+  "twist transport map Phi and class comparison",
+  "a priori overall sign of defect cycles (gate-fixed)",
+  "engine A n=3 tables and F5 at S'=4 (resumable)",
+  "manuscript propagation of QA-F1 (Def c11-defect, Thm c11-classes, eq c11-pole, eq c10-finitesp): author action"
+ ]
+}

@@ -1,0 +1,160 @@
+OPERATOR ENGINE B (ROUTE B), STRICT COSTELLO ROUTE (R10): METHOD, CONVENTIONS, SIGN RULES
+step2/strict/operator/engine_b/   code src.nosync/, raw rows and caches out.nosync/, run_all.py, results.json, gates.json
+Theory read: step2/strict/operator/theory/operator_theory.tex, engine_spec.json; manuscript ch10 (eq c10-finitesp, Thm c10-brst).
+engine_a (operator side) never read.  Action side read only through the one-body inputs (Hypothesis op-A).
+No dimensional regularisation in any role; T = infinity for every exact coefficient (generic momenta); finite T = 1, 4, 16
+in the K_b endpoint gate; no Wolfram, cluster, browser, /tmp.  One engine process at a time (the numerical/OP0 checks
+of a few minutes overlapped the row worker twice, both < 400 MB); RSS watchdog in every engine process (section 7).
+Master copies of this file and of run_all.py: src.nosync/notes_master.txt, src.nosync/run_all_master.py (iCloud evicts
+the top-level files; copies of results.json, gates.json in out.nosync/final/).
+
+0. REUSED CODE (vendored, src.nosync/vendor, sha256 in vendor_sha256.txt and results.json meta)
+ composite engine B: ce_core (54-slot space, N(k), K_0, Q^GF, Q symbols), ce_job (templates of the vertices of I, of
+ M = int omega X_a X_b, edges; CJob = composite cycles in kernel form), ce_int (exact Feynman-parameter integrals J with
+ one special parameter in [0,1]), ce_planar, ce_fam, ce_sl2, ce_su11 (planar reading, null-mode letters, F2 letters);
+ qsk engine B: qb_core (terms of S^(1)(xi), s_0, P_b), qb_job (defect-cycle chains, sign rule, RSS watchdog),
+ qb_jobinj (h-injection, K_b templates V_{mu nu}, W_mu), qb_e0 (operators on plane waves), qb_etak; twoletter engine B:
+ tl_engine, tl_integrals; Step-1 engine B: vertices, loops, realization.  Edits: import paths only, and in qb_job the
+ memory cap and watchdog limit read from OB_MEMCAP_MB, OB_WATCHDOG_MB.  New code: ob_gen (generator templates), ob_job
+ (one chain job for defect / counterterm / arity-zero cycles with placement classes and h-injection), ob_rows/ob_queue/
+ ob_worker (production), ob_asm (generator contractions), ob_fsv (theory finite special vertex), ob_tables, ob_f0,
+ ob_xif0, ob_fam, ob_conj, ob_pos, ob_r7, ob_numT/ob_kt (finite eps, finite T), ob_e0 (OP0), ob_sl2, ob_su11 (families
+ F2-F4 in the null mode), ob_assemble.
+
+1. GENERATORS ON THE REGULATOR (ob_gen; Def op-gens, Def c7-vdot)
+ v. = v^mu d_mu + (1/2) Om_{mn} Sigma^{mn} + (w/4) div v on every slot, Om_{mn} = (1/2)(d_m v_n - d_n v_m), Sigma^{mn} =
+ (1/2) rho_m rho_n on spinors, (Sigma^{mn} A)_P = delta_{Pm} A_n - delta_{Pn} A_m on vectors; antifields of weight 4 - w.
+ S^(1)(x) = int (x.A, A*) - (x.lam, lam*) - (x.c, c*), parity 1 (odd CE coordinate in front) for even x.
+ Centred Killing data at the point x_O of the density (z = x - x_O):
+   Delta:  2 z.d + 2 w            (orbital: z^mu x P-template at c = 2 e_mu; weight: spin-weight template, kap = 2)
+   M_w:    (w z).d + spin, Om_{mn} = w_{nm}   (orbital: P-template at c_n = w_{n mu}; spin: SW template)
+   R:      (1/2) R_{MN} Sigma^{MN}, M, N in 4..9 (SW template, W block)
+   K_b:    v(z) = z^2 b - 2(b.z) z: z^mu z^nu x P-template at the coefficient vector; z^mu W_mu with
+           Om^{(mu)}_{mn} = 2(delta_{m mu} b_n - b_m delta_{n mu}), kap = -2 b_mu (div v/4 = -2 b.z)
+   xi:     T1+T2 = -(Gamma(xi,lam), A*), T3+T4 = (1/2)(rho(dA) xi, lam*), T5 cubic (qb_core)
+   eta:    sum_mu z^mu S^(1)(rho(e_mu) eta) + s_0, s_0 = -(rho(A_perp) eta, lam*)
+ Position factors: a momentum h is injected at the S vertex and absorbed by omega; z^mu -> -i d/dh_mu, z^mu z^nu ->
+ -d^2/dh_mu dh_nu at h = 0.  The position parts (Thm op-b (i)) are the h^0 parts of the same rows:
+ Upsilon_Delta = 2 x_O^mu Upsilon_{P_mu} + Upsilon^0_Delta, Upsilon_M = (w x_O)^mu Upsilon_{P_mu} + Upsilon^0_M,
+ Upsilon_eta = x_O^mu Upsilon_{rho(e_mu) eta} + Upsilon^0_eta, Upsilon_K = v(x_O)^mu Upsilon_{P_mu} - (b.x_O) Upsilon^0_Delta
+ + Upsilon^0_{M_{w_xO}} + Upsilon^0_K.  OP0 checks (exact, plane waves): [x.,Q] = 0 for every generator, [x.,Q^GF], [x.,H],
+ the variation kernels (zero along P_b, M_w, R; -4(eps d_eps + T d_T) P along Delta) and the composite lines ([Q, P* x. P*]
+ = 0 along Delta, P_b, M_w for any g(H); = [v.,P*]E - [v.,E]P* != 0 along K_b; P* R. P* = 0: no line along R); the
+ opposite spin sign along M_w fails [v.,Q] = 0 (fixes Om_{mn} = w_{nm}).
+
+2. THE DEFECT CYCLES (ob_job.OJob, mode 'defect'; conventions of qsk engine B, verified there by G-pole, G-reg)
+ D_x(X_a,X_b) = +(hbar/2) sum_{ordered vertex sequences, S at position s} sum_sigma s_x(s,sigma) STr[E_0 Pi h_1 E_1 ... Pi h_n E_n Pi H_M],
+ E_sigma = K_eps - K_0 = (e^{-eps k^2} - 1) k0 (Schwinger time in [0,eps], numerator -|k|^2), other E_j = P(eps,oo);
+ s_x(s,sigma) = (-1)^{n(<sigma) + |S^(1)(x)| (n(<s) + [s<sigma])} x (reordering sign of the odd outputs), n(<j) = number
+ of odd outputs before edge j (Def c11-defect (ii) without its leading minus; the overall sign is the calibrated route-B
+ STr normalisation).  Placement classes: 'line' (both legs of S on edges P: the special-edge composite cycles, whose eps^0
+ coefficient is C_x), 'special' (one leg on the special edge, including S on a letter), 'cubic-*' (T5).
+ Arity-zero special-edge cycles (Upsilon_0): the same without S (mode 'defect', vertex None).  Counterterm cycles (ct_m,
+ lc; arity one ct^(1)_{x,m}): all edges P, pinned-edge formula of the twoletter engine (mode 'ct'); OJob reproduces
+ tl_engine.Job exactly (three leg sets, gate in PROGRESS).  Exact coefficients: Gaussian loop integral, Feynman
+ parameters, special time in [0,1] (ce_int.J): values in Q(i) + Q(i) log 2 + Q(i) log 3; no log eps can arise.
+ Rows with three or four outputs, and two-output rows whose symbolic polynomials exceed the memory cap, are evaluated at
+ fixed Gaussian-integer output polarisations (and, as a last resort, letters) with deterministic seeds; the evaluation
+ point is recorded in the row and in the table; all kinds of one leg set use the same point.
+
+3. FINDING B-F1 (finite special vertex)
+ Def op-defect (iii) adds to [eps^0] D_x the finite special vertex F_x = -sum_m ((-1)^m/m!)({I, ct^(1)_{x,m}}_{H^m} +
+ {S^(1)(x), ct_m}_{H^m}).  The (Br) graphs whose special edge joins an output of the bare pair cycle to S^(1)(x) (or to a
+ vertex of I) and the special part of the counterterm brackets sum to (e^{-eps H} - 1) x (renormalised cycle) -> 0, so the
+ pieces cancel; the theory keeps one of them.  Computed: on (lamP,lamM) -> A_V (n = 0), [eps^0] D^special_Delta = 4 lc
+ exactly and [eps^0] D_{P,M,R} = 0, so Upsilon = [eps^0] D obeys Conj op-pair and the second evaluation; Upsilon + F
+ misses both by F_Delta = 6 H ct_1, F_P = H d_b ct_1.  The engine uses Upsilon_x = [eps^0] D_x; F_x is tabulated (key F).
+ The pole identity in its reduced form, [eps^-m] D^0_Delta = -4m ct_m (scaling: {S(Delta), ct_m(O)} - ct_m({S(Delta),O})
+ = 2(W - 2m) - 2W) and [eps^-m] D_{P,M,R} = 0 (covariance), holds on the rows where -ct^(1)_{x,m}(sO), s ct^(1)_{x,m}(O)
+ and the vacuum-pole x spectator terms vanish (finding B-F3 lists the others).
+
+4. ONE-BODY INPUTS (Hypothesis op-A; action engines A and B agree on every number used)
+ Delta: hbar F_1^(1)(Delta)|_2 = 4u N + F_comp + u(theta S_perp(Delta) + theta_lam S_lam(Delta) + theta_V S_V(Delta)) + kappa;
+   Q F_comp = composite part u[1/3 int(dA,dA) - 1/3 int(lam,dslash lam) - 2/3 int(dc,A*)] (Ob1(Delta)|_2 = u[-11/3, 47/3,
+   -14/3] minus 4 s(uN) = u[-4, 16, -4]); with s(N_A) = [-1, 0, -2], s(N_lam) = [0, 4, 0], s(N_c) = [0, 0, 1] on
+   [int(dA,dA), int(lam,dslash lam), int(dc,A*)]:  -{F_comp, X} = c_X u X, c_A = 2/3, c_lam = 1/3, c_c = 4/3 (antifields
+   -2/3, -1/3, -4/3); -{4uN, X} = -4 n_X u X, n = 2, 4, 1 (A, lam, c), -2, -4, -1 on antifields;
+   -{theta S(Delta), X} = -theta u (2 x.d + 2 w_X) X in the sector of X; kappa directions s-exact.
+   Per field letter of Weyl weight w at theta = -1/3: -4n + c + (2/3) w, e.g. A_perp: -20/3, d A_perp: -6.
+ P_b: Ob1(P_b)|_2 = 0: -{F_1(P_b), X} = -theta_P u d_b X (sector coefficients theta_P, theta_{P,lam}, theta_{P,V}).
+ M_w: F_1^(1)(M_w)|_2 = (1/3) u S(M_w)_spin + theta_M sector parts; S(M_w)_spin = int w_{mn}(A_m, A*_n) + int((1/4) w_{mn}
+   rho_m rho_n lam, lam*) is the spin part of S^(1)(M_w) for v = w x (L_v A_m = v.dA_m + w_{nm} A_n):
+   -{F_1(M_w), X} = -(1/3) u (spin part of M_w.X) - theta_M u M_w.X.
+ R: Ob1(R) = 0: -theta_R u R.X.   xi: F_1^(1)(xi)|_2 = (L - 79/12)(T1 + T2) + u(theta^xi_V S^V_2 + theta^xi_perp S^perp_2),
+   L = log(3/2): T1+T2 act on A letters (A -> Gamma(xi, lam)), T3+T4 on lam letters.
+ eta, K_b: no particular solution from the action side: carried as symbols.
+
+5. COLOUR AND PLANAR READING
+ Kernels per colour word C_w = (1 (x) ad_{Y_w1}...ad_{Y_wr})(-,-)^{-1}.  Colour-singlet bilinears: the two-output words
+ [0,1], [1,0] both give tr(ad_Y0 ad_Y1) and the singlet value in units u is their sum; single-output words give tr(ad_Y)
+ = 0.  Planar adjacent pair in a single trace: a C_w -> (-1)^r a/2 units u, outputs in trace order Y_wr ... Y_w1, and the
+ labelled multilinear form of two outputs of the same field type divided by 2.
+
+6. RESULTS (results.json; gates.json)
+ OP0: all checks exact (23 gates).
+ OP1/OP3 (n = 0, 15 field/ghost pairs; n = 1 family pairs): tables of Upsilon_{P_b}, Upsilon^0_Delta, Upsilon^0_{M_w},
+   Upsilon_R, Upsilon^0_{K_b} per class (line = C_x, special), poles, F_x (theory), ct_m and lc; xi (both chiralities)
+   and the intrinsic eta parts on the rows with <= 2 (<= 1) outputs.  G-noLog structural; G-D1pair per row in both readings.
+ Second evaluation (ob_conj): C_{P_b}, C^0_Delta by the composite kernel form of CJob (independent method) equal the
+   line classes, and Upsilon_P = C_P, Upsilon^0_Delta = 4 lc + C^0_Delta on the rows checked.
+ F0 (scalar bilinears O = (1/16) int omega w1^{ij} w2^{kl}(A_ij, A_kl)): Upsilon^0_Delta = u[(40/3) O - 16 (w1,w2)(Y0,Y1)]
+   (traceless 40/3, trace -104/3), line class C^0_Delta = -(8/3) u O, special class 4 lc = u[16 O - 16 (w1,w2)(Y0,Y1)];
+   Upsilon_{P_b} = C_{P_b} = -(1/3) u b^m d_m O; D_1 = 0 (traceless), -48 u = 3 g^2 N/(2 pi^2) (trace) at theta = -1/3,
+   position part -2(1/3 + theta) u x_O^m d_m O; P_1 = -(1/3 + theta_P) u b^m d_m O; Upsilon_R = 0; Upsilon^0_M = 0;
+   Upsilon^0_K = 0 on the singlet (Cor op-SK).  Two-component: (w1,w2) = (1/4) w1^{ij} w2_ij, (Y0,Y1) = (1/4) Y0^{ij} Y1_ij,
+   O(Y0,Y1) = iota_{w1}Y0 iota_{w2}Y1 + iota_{w1}Y1 iota_{w2}Y0, iota_w Y = (1/4) w^{ij} Y_ij, w^{ij} = (1/2) eps^{ijkl} w_kl.
+ F0 odd and arity zero (ob_xif0): two-body Q_1 = -2L F1 + 4L F2 + 4L F3 + 0 F4 (L = log(3/2)) in both chiralities;
+   L_1^(0)(O) = -(2 + 4L) u (w1,w2) int omega (dc, A_V); Upsilon^0_eta(A_perp,A_perp) singlet = 0 (both chiralities).
+ F1 (su(2), Z = A_4 + i A_5, X = A_6 + i A_7): planar D_1 density at theta = -1/3 is -8 u (1 - P_{l,l+1}) exactly, hence
+   Spec D_1 = -8 u E_H = (g^2 N/(4 pi^2)) E_H on tr(Z^{L-M} X^M) (spectra L <= 8 listed); (R7) along su(2) exact.
+ OP8: 12 configurations of the intrinsic K_b vertex on (A_V, A_V) -> A_V (all placements): 16 pi^2 a_0 at T = 1, 4, 16
+   equals the exact T = infinity coefficient within 4e-4 (values -7/6 + 42 log(2/3), -14 + 84 log(2/3) on the line
+   placements, 0 on the special placements), (V(eps,T) - V(eps,1))/eps bounded: T d_T = O(eps).
+ OP4: Upsilon^0_{K_b} assembled from the P and SW pieces equals the vendored evaluation with the independently written
+   V_{mu nu}, W_mu templates on the rows checked.
+
+7. RESUME 2026-11-03/04: completion of the production, strict route on F2-F4
+ Memory: the in-process cap and the RSS watchdog of vendor/qb_job.py read OB_MEMCAP_MB, OB_WATCHDOG_MB (defaults
+ 1000/1300 MB as before).  Queue p1 resumed (40 rows never attempted, one SIGTERM row) at 1350/1450 MB: 135/135 rows.
+ p4: 15 rows that had failed at the 1000 MB cap retried (numeric letters) at 1350/1450, then at 1250/1400 MB after two
+ failing attempts reached ru_maxrss 1501 and 1521 MB (above the 1.5 GB rule for < 1 s, before the watchdog, polled
+ every 0.3 s, stopped them; no completed row above 1.13 GB): 125/129; the four ESW n = 1 rows (lamP|lamM) [AV AV],
+ [AW AW], (lamP|lamP) [AV AW], (lamM|lamM) [AV AW] stay above the cap.  p3: the six EP rows of the lambda pairs with
+ three outputs stay TIMEOUT (2400 s at numeric letters); these leg sets have no EP row and no G-D1pair verdict.
+ Inputs: the action engines' results.json copied to out.nosync/inputs/ (engine_b/results.json was iCloud-evicted; read
+ with an alarm); every number used in the one-body terms agrees between the two engines (action QA compare.json); the
+ action QA finding F1 (derivation-rule signs of the action-side theory) changes no one-body coefficient used here.
+ NEW ob_sl2.py: NJob = OJob in the null derivative mode, collinear on-shell outputs p_j = t_j nbar, n = (1,i,0,0),
+ nbar = (1/2,-i/2,0,0) (engine components); rows EP (S^(1)(P_c)) and EK (weight piece of S^(1)(Delta): spin-weight
+ template at Om = 0, kap) for (X,X) -> XX at null order <= S' and (A_n,X), (X,A_n) -> X at order <= S' - 1;
+ Upsilon^0_Delta = sum_mu (-2i)[c_mu h_mu] EP + 2[kap] EK, Upsilon_{P_n} = sum_r n_r [c_r] EP.  'Fast' rows use the
+ numeric c = e_mu with h = eta e_mu (one job per mu) and c = n; validated equal to the symbolic-c rows on Z at order 2
+ (18 kernel keys, exact).  Planar reading by the vendored ce_planar (twoletter colour rule), gauge completion of
+ (n.D)^k by ce_sl2.two_field_image.  D_1 = M[Upsilon^0_Delta] + one-body u(-4 n_X + c_X - 2 theta (w_X + k)) per
+ letter (n.d)^k X.  ob_su11.py: the same at order 0 on the ordered pairs of (Z, psi).
+ Results (units u, theta = -1/3; D_1 from the defect cycles alone):
+   F3 tr((n.D)^k Z (n.D)^{S'-k} Z), S' <= 6: Spec D_1 = {-32 h(j): j even <= S'}: S' = 0,1 {0}; 2,3 {-48, 0};
+      4,5 {-200/3, -48, 0}; 6 {-392/5, -200/3, -48, 0}.
+   F4 tr((n.D)^k psi (n.D)^{S'-k} psi), S' <= 5: Spec D_1 = {-32 h(j+1): j odd <= S'}: 1,2 {-48}; 3,4 {-200/3, -48};
+      5 {-392/5, -200/3, -48}.
+   F2 tr(Z^{L-M} psi^M), L <= 6: D_1 = -8 u sum_l (1 - Pi_{l,l+1}) (graded permutation) as matrices on all 22 sectors.
+   On every sector: special-edge class = 4 lc (twoletter job, same letters), line class = -(2/3)(4 + S') (F3, F4),
+   -(4/3) L (F2) = P7 (c) target; line class of Upsilon_{P_n} = -1/3 d_n, special class 0, P_1 = -(1/3 + theta_P) u d_n;
+   no transcendental planar entries.  Two-component reading: Z = A_4 + i A_5 is a complex component of the scalar A^{ij}
+   (W_R^perp = Lambda^2 W; engine-to-two-component names in results.json meta.component_names), psi the lambda_+ letter of
+   charges (1/2,1/2,-1/2; 1/2,1/2), one component lambda_alpha^i of the undotted gaugino, n.D a null component of
+   sigma^m_{alpha alphadot} D_m; with u = -g^2 N/(32 pi^2): -32 h(j) u = (g^2 N/pi^2) h(j).
+ (R7) along P_b on F0: the n = 1 rows of (A_perp,A_perp) -> A_perp A_perp are at a fixed numeric point (letters and
+   polarisations); the gate tests the target i(p0+p1)_nu (38/3 O - 16 T) at that point: residual 0 for nu = 0..3
+   (D_1(d_nu O) = d_nu D_1(O): 0 traceless, -48 trace at theta = -1/3; one point fixes one combination of 38/3, -16).
+ Tables n = 0 (109 leg sets, 43 with EP, ESW and LC rows): G-D1pair passes on every complete row along Delta, P_b, M_w,
+   R; the reduced G-pole fails only along P_b on (A_V, X) -> X (finding B-F3).
+ Tables n = 1 (ob_tables, resumable: a table written after its rows is reused; a table that exceeds the 1400 MB
+   watchdog is marked .inprogress and skipped on the next attempt): only Upsilon_{P_b} and Upsilon^0_Delta are built at
+   n = 1 for the tables rebuilt on 2026-11-04 (M_w, R, K_b at n = 1 kept only where the earlier pass had them); the
+   table (lamM|lamM) -> lamP lamP at n = 1 exceeded the cap and is reported as not built.
+ Gates (gates.json, 82): 70 pass.  The 12 failures are all of two known kinds: (a) the reading Upsilon = [eps^0] D + F_x
+   with the theory finite special vertex (finding B-F1: fails on every row with F_x != 0, while [eps^0] D alone passes
+   G-D1pair on every complete row: n = 0 D0 43/43, P 35/35, M0 37/37, R 26/26; n = 1 D0 38/38, P 28/28, M0 25/25,
+   R 7/7); (b) the reduced pole form on the rows (A_V, X) -> X and their n = 1 analogues where -ct^(1)_{x,m}(sO) does not
+   vanish (finding B-F3; the full eq c11-pole is open).

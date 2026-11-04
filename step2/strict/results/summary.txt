@@ -1,0 +1,125 @@
+STRICT COSTELLO ROUTE (R10), ACTION AND OPERATOR SIDES: FINAL AFTER REVISION, 2026-11-04
+Units u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2).  L := log(3/2).  Cutoff eps on every edge, T = oo except along K_b.
+No dimensional regularisation; no IR datum except T.  Status tags:
+  [D]  derived from the construction (theory notes)        [C2] computed by two engines + referee
+  [C1] computed by one engine + referee                     [Cj] conjectured      [O] open      [X] cross-check only
+Two-component (WS): Def c8-twocomp, sigma^m = (vec sigma, i), sigmabar^m = (-vec sigma, i), eps^12 = eps^{dot1 dot2} = 1.
+Files: results/action_final.json, results/operator_final.json, disposition.json (27 findings, all accepted after own checks),
+       action/theory/action_theory.tex (28 pp), operator/theory/operator_theory.tex (27 pp), both 0 errors, 0 undefined refs.
+
+=== 0. CONVENTIONS FIXED IN THIS REVISION ===
+[D]  {f,g} = (-1)^|f| {f,g}_std  (Def c1-bracket)   =>   D{a,b} = -{Da,b} - (-1)^|a| {a,Db}   (D = Q, {I,-}, Lambda, {F,-}, |F| = 0)
+[D]  Lambda F1^(0) = Ob^(0)
+     Lambda F1^(1)(x) + {F1^(0),S(x)} = Ob^(1)(x)
+     Lambda F1^(2)(x,y) + F1^(1)([x,y]) + (-1)^|x| ({F1^(1)(x),S(y)} + {S(x),F1^(1)(y)}) + {F1^(0),S^(2)(x,y)} = Ob^(2)(x,y)
+[D]  Wess-Zumino (corrected):  Lambda Ob^(1)(x) = -{Ob^(0),S(x)}
+                               Lambda Ob^(2)(x,y) = Ob^(1)([x,y]) - (-1)^|x| {Ob^(1)(x),S(y)} + {S(x),Ob^(1)(y)} - {Ob^(0),S^(2)(x,y)}
+[C2] checked on every computed entry; the earlier printed signs fail on every entry where tested.
+[D]  I^CT[eps] = (9/4) u eps^-1 int(A,A) + log(eps) lc ;  s lc = 0 ;  lc^(0) = u Lambda N ,  N = 2 int(A,A*) - 4 int(lam*,lam) - int(c*,c)
+     closed combination lc^(1)(x) - {uN,S(x)}
+[C2] odd-odd generating cochain J = I + c S(xi) + c' S(xi') - c c' S^(2)(xi,xi') ;  Q S^(2)_2 + S_2(P_{Gamma|V}) - {S_2(xi),S_2(xi')} = 0
+[D]  operator side:  hbar L_1(O)^(1)(x) = sum_{a<b} (+-) Upsilon_x(X_a,X_b) - {hbar F_1^(1)(x),O} ,  Upsilon_x := [eps^0] D_x
+                     hbar L_1(O)^(0)    = sum_{a<b} (+-) Upsilon_0(X_a,X_b) - {hbar F_1^(0),O}
+     (finite special vertex F_x and vacuum-pole term deleted: bridge + partner = (e^{-eps H} - 1)(cycle - Sing cycle) -> 0)
+
+=== 1. ACTION SIDE, ARITY ONE, TWO LEGS ===
+[C2] hbar Ob^(0)|_2 = -27/8 u int(d*dc, d*A_V)                     WS: -27/8 u int d^4x (d^2 c, d_m A_m)
+     F1^(0)|_2      = 27/16 u int(d*A_V, d*A_V)                    WS:  27/16 u int d^4x (d_m A_m, d_n A_n)
+[C2] Delta: hbar Ob^(1)(Delta)|_2 = u[-11/3 int(dA,dA) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)]
+       WS: u int{ -11/3[1/2 (F^lin_mn,F^lin_mn) + 1/4 (d_m A^{ij}, d_m A_ij)] + 94/3 i (lambdabar_{adot i}, sigmabar^{m adot a} d_m lambda_a^i) - 14/3 (d_m c, A*_m) }
+     hbar F1^(1)(Delta)|_2 = u[22/3 int(A,A*) - 47/3 int(lam*,lam) - 8/3 int(c*,c)] + u sum_d theta^Delta_d S(Delta)_d
+                             + kappa_V u Q int(iota_x A_V, c*) + kappa_lam u Q int(rho(x) lam*, lam*)
+       WS: (A,A*) = (A_m,A*_m) + 1/4 (A_ij,A*^ij),  (lam*,lam) = (lambda_a^i, lambda*^a_i) - (lambdabar_{adot i}, lambdabar*^{adot i})
+[C2] P_b:  Ob^(1)(P_b)|_2 = 0 ;  F1^(1)(P_b)|_2 = u sum_d theta^P_d S(P_b)_d + exact
+[C2] M_omega: hbar Ob^(1)(M_omega)|_2 = 1/3 u Q S(M)_spin ,  S(M)_spin = int omega_mn (A_m,A*_n) + int((1/4) omega_mn rho_m rho_n lam, lam*)
+     F1^(1)(M_omega)|_2 = 1/3 u S(M)_spin + u sum_d theta^M_d S(M_omega)_d      (lambda sector: engine B data + referee replay)
+[C2] R_r:  Ob^(1)(R_r) = 0 (two legs, three tested three-leg sectors) ;  F1^(1)(R_r)|_2 = u sum_d theta^R_d S(R_r)_d
+[C2] xi (both chiralities):  hbar Ob^(1)(xi)|_2 = u[(79/24 - L/2)(g1 + g3) + 27/8 g2 + 0 g4]
+     Q T1 = -Q T3 = -1/2 g1,  Q T2 = -Q T4 = -1/2 g3,  Q T0 = -(g2 + g4) ;  H^0(Q)|_2 = 0
+     hbar F1^(1)(xi)|_2 = u(L - 79/12)(T1 + T2) + u theta^xi_V S^V_2(xi) + u theta^xi_perp S^perp_2(xi)     (S^V_2 = T1+T3, S^perp_2 = T2+T4)
+       WS: T1 = -i int(lambdabar_{adot i} sigmabar^{m adot a} xi_a^i, A*_m),  T2 = -1/2 int eps_{jikl}(xi_a^j eps^{ab} lambda_b^i, A*^{kl}),
+           T3 = -1/4 int((d_m A_n - d_n A_m) sigma^m sigmabar^n xi, lambda*),  T4 = -i/2 int(eps^{ab} xi_b^j sigma^m_{a adot} d_m A_ij, lambdabar*^{adot i})
+     lc^(1)(xi)|_2 = {uN,S_2(xi)} = 2u(T1 + T2 - T3 - T4)  =>  l_xi = 0
+[C2] eta (both chiralities, p <= 1):
+     hbar Ob^(1)(eta)|_2 = x^mu hbar Ob^(1)(rho(e_mu)eta)|_2 + u[-5/2 int(eta,lam) d*A_V - 5/2 int(eta,rho(dA_V)lam) + (-3/2 + 3L) int(eta,rho(dA_perp)lam) + 5/2 int(rho(dc)eta,lam*)] + Q(.)
+     hbar F1^(1)(eta)|_2 = sum_mu x^mu u(L - 79/12)(T1+T2)(rho(e_mu)eta) - (3L - 3/2) u s0 - 5/2 u u0 + u theta^eta_V S^V(eta) + u theta^eta_perp S^perp(eta)
+       u0 = int(rho(A_V)eta,lam*);  WS: s0 = int(A^{kj} eps_{ab} eta^b_j, lambda*^a_k),  u0 = -i int(A_m eta^a_i sigma^m_{a adot}, lambdabar*^{adot i})
+     H^0(Q) = 1 (residual orthogonal to it); kernel at degree -1 = span{S^V(eta), S^perp(eta)}
+[C2] K_b (p <= 2):
+     hbar F1^(1)(K_b)|_2 = u int (b,x){-22/3 (A,A*) + 16 (lam,lam*) + 8/3 (c,c*)} + 2/3 u int{(iota_b A)(iota_x A*) - (iota_x A)(iota_b A*)}
+                           - 1/3 u int b_mu x_nu (lam, rho_mu rho_nu lam*) + u sum_d theta^K_d S(K_b)_d + sum_{j=1..4} kappa^K_j G^K_j
+       x-linear part = -(b,x) F1part(Delta) + spin term (16 - 1/3 = 47/3): translation covariant
+       WS: rho_mu rho_nu -> sigma^mu sigmabar^nu on undotted, sigmabar^mu sigma^nu on dotted components
+     H^0 = 4, H^-1 = 7 (three S(K_b)_d, four second-order free-field symmetries G^K_j);  T-independence structural only
+
+=== 2. ACTION SIDE, ARITY TWO, TWO LEGS  [C2] ===
+  (Delta,P_b)      o_d = -2/3 u  =>  theta^Delta_perp = theta^Delta_lam = theta^Delta_V = -1/3
+  (Delta,xi_pm)    solvable  <=>  theta^Delta_d = -1/3 (all d);  hbar Ob^(2)(Delta,xi)|_2 = u[8(T1+T2) - 26/3(T3+T4) + log(4/3) Q(psi1+psi2)]
+                   psi1 = int x^mu (Gamma(xi,lam)^mu, c*),  psi2 = int x^mu (A*_mu,(xi,lam*));  F1^(2)(Delta,xi)|_2 = log(4/3) u (psi1+psi2) + closed
+  (xi_+,xi_-)      theta^P_d = theta^{xi+}_V + theta^{xi-}_V - 27/4 - 2L ,  theta^{xi+}_V + theta^{xi-}_V = theta^{xi+}_perp + theta^{xi-}_perp
+  (xi_pm,xi'_pm)   theta^xi_V = theta^xi_perp
+  (xi_pm,P_b)      Ob^(2) = (1/4) log(4/3) Q(.) ;  theta^P_V = theta^P_perp = theta^P_lam
+  (xi_+,eta_-)     theta^xi_V - theta^xi_perp = theta^eta_V - theta^eta_perp
+  (xi_+,eta_+)     theta^R_d = tau ,  theta^Delta_d = theta^M_d = tau - 1/3 ,  theta^xi_d + theta^eta_d = tau + 77/12 + 2L
+  =>  t_Delta = -1/3 ,  t_M = t_Delta ,  t_R = t_Delta + 1/3 = 0 ,
+      t_xi+ + t_xi- - t_P = 27/4 + 2 log(3/2) ,  t_xi+ + t_eta+ - t_Delta = 27/4 + 2 log(3/2)
+  one-loop algebra: [D,P], [D,Q], [Q,P], [Q,Q] = P, {Q,S} = D+M+R  computed;  [K,P], {S,S}: [O]
+  scheme independent: the five relations above + sector uniformity of t_P, t_xi, t_eta, t_M, t_R
+     (invariant under inner t_z -> t_z + c lambda_z, lambda = -1,+1,-2,+2,0 on Sigma, Sigma*, P, K, even rest; outer t_xi+- -> t_xi+- +- a, t_eta+- -> t_eta+- -+ a)
+  translation-covariant scheme: t_P = -1/3  =>  t_xi+ + t_xi- = 77/12 + 2 log(3/2) ,  t_eta+ = t_xi-
+  scheme artefacts: individual t_xi, t_eta, t_P, t_K, theta^K, kappa's; all log(3/2) particular parts; every representative F1^(k)
+
+=== 3. OPERATOR SIDE, F0  O = int omega (iota_w1 A, iota_w2 A) = (1/16) int omega w1^{ij} w2^{kl} (A_ij, A_kl), psi = 0 ===
+  B1 = {S^(1)(xi),O} = (1/4) int omega [(w1^{kl} A_kl, w2_{ji} xi^{a i} lambda_a^j) + (1<->2)]
+  B2 = (1/4) w1^{ij} w2_ij int omega (A_ji, xi^{a i} lambda_a^j) ,  B3 = (1/4) w1^{ij} w2_ij int omega i(lambdabar_{adot i}, A_m sigmabar^{m adot a} xi_a^i)
+  B4 = (1/4) w1^{ij} w2_ij int omega (c, xi_a^i lambda*^a_i)
+[C2+D] Q_1(O) = (79/12 - 3L - t_xi) B1 + 4L B2 + 4L B3 + 0 B4        (two-body -2L B1 [C2]; one-body -(L - 79/12 + t_xi) B1 [D])
+       hbar L_1(O)^(0) = -(2 + 4L) u (w1,w2) int omega (dc, A_V)
+[C2+D] S_1(O) = (79/12 - 3L - t_eta) {S^(1)(eta),O} + x_O^mu (4L B2 + 4L B3)(rho(e_mu)eta);  intrinsic part 0 on F0
+[C2]   D_1(O) = -4 t_Delta - 4/3 (traceless),  -4 t_Delta - 148/3 (trace)  ->  0 ,  -48 u = 3 g^2 N/(2 pi^2)  (Konishi: 2 gamma_K, gamma_K = 3 g^2 N/(4 pi^2))
+[C2]   P_1(O) = -(1/3 + t_P) u d_b O ;   R_1 = 0 ;  Upsilon^0_M = 0
+[D]    K_1 one-body = (44/3) u int omega (b,x)(iota_w1 A, iota_w2 A) - theta^K_perp u {S^(1)(K_b)_perp,O} - sum_j kappa^K_j {G^K_j,O}
+  scheme independent: D_1 = 0, -48 u.
+  invariant under all action-side free directions at psi = 0 (not under operator finite parts):
+       c_Q(xi+) + c_Q(xi-) - p_1 = c_Q(xi+) + c_S(eta+) - D_1(traceless)/4 = 27/4 - 8 log(3/2)      (p_1 = -(1/3 + t_P))
+  scheme artefacts: c_Q alone, c_S alone, every log(3/2) term, P_1, L_1^(0)(O), M_1, R_1, individual pair kernels
+
+=== 4. OPERATOR SIDE, FAMILIES (spectra are scheme independent) ===
+[C2] F1 su(2):    D_1 = -8u sum_l (1 - P_{l,l+1}) = (g^2 N/(4 pi^2)) E_Heisenberg ,  L <= 8
+[C2] F2 su(1|1):  D_1 = -8u sum_l (1 - Pi_{l,l+1})  (22 graded-cyclic sectors, L <= 6)
+[C2] F3 twist two:  Spec D_1 = {-32 h(j) u = (g^2 N/pi^2) h(j) : j even <= S'} ,  S' <= 6
+[C2] F4 fermion sl(2):  Spec D_1 = {-32 h(j+1) u : j odd <= S'} ,  S' <= 5
+[C1] F5 (S' <= 3): 0, -48, -200/3 ;  F6 (S' <= 2): -48, -200/3 ;  F7 (S' <= 4): -48, -200/3, -392/5   (= -8 x Prop c11-targets)
+[C2] sum Upsilon_{P_n} = -1/3 d_n on F3, F4 ([C1] F5-F7);  (R7) D_1^(S'+1) d_n = d_n D_1^(S') exact on F3-F7
+[C2] F8 tables: pair form Upsilon_Delta = 4 lc + C_Delta, Upsilon_P = C_P, Upsilon_M = C_M, Upsilon_R = 0 on every complete row
+     (route A 5280 rows n <= 2; route B n <= 1; 11 route-B rows incomplete: no verdict)  -> Conj op-pair [Cj], proved on (A_perp,A_perp)
+
+=== 5. TWIST  [X] ===
+[D] rank-one xi = u (x) w, w_a in the three-plane of w:  Q_1(O) = 0 identically on O = int omega (iota_w1 A, iota_w2 A)  (untwisted tr gamma^(I gamma^J));
+    arity-two (xi,xi) component has no two-letter output (weight count 7/2 > 3).  Class-level n = 2 case of [BK Sec 3.4.1, (3.77)];
+    independent of every free direction, of psi and of the normalisation of Phi.
+[O] transport map Phi with BK normalisation; class of Q^xi_1 mod Im Q^xi_0 + C S^xi against [BK (3.7), (3.59)-(3.70)];
+    (xi,xi) operator kernels for the k = 2 entries (bc, bb).  Individual entries (Part Q, colour-order-dependent log(3/2)) are not comparable.
+
+=== 6. FORMER SHORTCUTS ===
+  theta = -1/3                       -> computed from the construction twice: (Delta,P_b) and (Delta,xi_pm) [C2]; Thm c9-kappa = cross-check
+  "D_1 = 4 x log coefficient"        -> Thm at-second (v), Thm op-ward (i), Thm op-a: theorems [D]; G-D1sum/G-D1pair computed identities [C2];
+                                        X-scal holds placement class by placement class (special edge u[-4,16,-4], line u[1/3,-1/3,-2/3])
+  K = P^dagger                       -> cross-check only (Thm op-c, H1-H3), untested [X][O]
+  S from Q by position decomposition -> Thm op-b [D]; F1(eta) and S_1 computed from their own cycles, position part a computed gate (G-pos eta) [C2]
+  regulator covariance (P, M, R)     -> Lemma op-comm, Thm op-ward (ii) [D]; Ob1(P_b)|2 = 0, Ob1(R) = 0 computed by direct cycles [C2]
+  twist                              -> cross-check only [X]
+
+=== 7. REVISION RECORD (disposition.json) ===
+  accepted after own checks: WZ signs (rerun q_bv_toy.py; analytic derivation), (Delta,xi) gate artefact (action/complete), F_x double count
+  (analytic bridge argument + engine data), transcription errors (task_T6.json), engine-B G-sign text (rerun q_lcN.py: QN = [-1,4,-1]),
+  M_omega lambda fit (replay ratio 1/3), (A*_perp,A*_perp) = 0, gate renames, explicit solutions, at-fix completion, op-tfix hypothesis now
+  established along Sigma, Sigma*; phi_c = 8/3 (G-F1Delta both routes).  No numerical value of any engine changed.
+  Not edited (role): manuscript/ (Def c11-defect (iii)-(iv), Thm c11-classes, eq c11-pole, eq c10-finitesp carry the F_x double count).
+
+=== 8. OPEN ===
+  action: (K_b,P_b'), (eta,eta'), (xi_-,eta_pm); three/four-leg classes (S1-cubic, Hypothesis at-H, GC13, cubic couplings, (A_V)^5);
+          G^K_j and SU(4)-15 classes; G-log numeric; G-T numeric; arity-three formula of s written out.
+  operator: G-Cid, G-typeI (locality theorem untested), G-logcov, full pole identity on line rows; Q_1, S_1, M_1, K_1, generic-b P_1 on F1-F7;
+          route B on F5-F7; arity-two operator kernels and two-sided (R2)-(R6); G-KP, G-KPbdry, G-KT in route A; twist Phi and class comparison;
+          a priori global sign of the defect cycles; engine A n = 3 tables and F5 at S' = 4 (resumable).

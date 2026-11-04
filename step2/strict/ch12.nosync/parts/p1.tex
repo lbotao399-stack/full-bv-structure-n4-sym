@@ -1,0 +1,308 @@
+\chapter{The one-loop equivariant structure from the quantum master equation}
+
+Chapters 9--11 computed the one-loop components of local operators from two-body kernels, and several inputs of that computation were identities read off the structure of the regulator: the dilatation component as four times the logarithmic coefficient, the coefficient $\theta=-\tfrac13$ from the arity-two component of $L\circ L=0$, the special supercharges from the supercharges by the position decomposition, $K=P^\dagger$, and the comparison with the holomorphic twist. This chapter derives every one-loop component from the equivariant quantum master equation at scale $\varepsilon$: the obstruction of Definition \ref{def:c8-ob} along each generator is computed from the graphs with one special edge, the equation $s(\hbar F_1)=\hbar\,\mathrm{Ob}$ is solved arity by arity with all its free directions, and the components on local operators follow from the defect flow of Lemma \ref{lem:c8-transfer} through the local representative of Definition \ref{def:c8-rep}. The construction needs new input at three places: along the supercharges the composite line has a nonzero image under $Q$, so the obstruction is a finite sum of regulator graphs computed graph by graph; the free directions of the arity-one solution are fixed by the arity-two equations, which therefore carry the coefficient $\theta$; and the finite counterterm vertices of Chapters 10 and 11 cancel against the bridges, so that the two-body kernels are the finite parts of the defect cycles themselves. The former shortcuts become theorems of the construction or cross-checks, and every component is stated as a representative together with its class, the part that is independent of the scheme.
+
+The unit is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, equal to $-\frac{g^2N}{32\pi^2}$ for $\mathfrak g=\mathfrak{su}(N)$ (Remark \ref{rem:c6-konishi}), and a number followed by ``units'' is that number times the unit. Edges carry $P(\varepsilon,T)$ of Definition \ref{def:c8-PT}; the special edge is $K_\varepsilon-K_0=-\int_0^\varepsilon(H\otimes1)K_t\,dt$, the factor $e^{-\varepsilon|p|^2}-1$ times the components of $K_0$ (Proposition \ref{prop:c4-defect1}). The endpoint $T$ is the endpoint of the transfer of [C07]; every component below is independent of it (Theorem \ref{thm:c8-L} (ii)), and it is taken as $T=\infty$ where the graph sums converge at generic momenta (Proposition \ref{prop:c8-Tsafe}) and finite along $K_b$ and along the pairs $(K_b,P_{b'})$ and $(\eta,\eta')$ with $\Gamma(\eta,\eta')|_V\neq0$ (Definition \ref{def:c8-K}). The bracket is that of Definition \ref{def:c1-bracket}, and $s=d_{CE}+\{S_{\mathfrak{psl}(4|4)},-\}$ on cochains (Theorem \ref{thm:c8-obstruction}). We write $\mathcal N:=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ for the field-counting functional of Chapter 6, whose bracket multiplies the coordinate functionals of $c$, $A$, $\lambda$, $A^*$, $\lambda^*$, $c^*$ by $1$, $2$, $4$, $-2$, $-4$, $-1$ (Lemma \ref{lem:c6-count}). Every number of this chapter is computed by the two independent evaluations of Remark \ref{rem:c12-method}, unless a statement says otherwise; the two-component forms of Definition \ref{def:c8-twocomp} of the main formulas are collected in Remark \ref{rem:c12-twocomp}.
+
+\section{The component equations of the quantum master equation}
+
+\begin{definition}[Generators, their data and the sector parts]
+\label{def:c12-gens}
+For a homogeneous generator $x$ of $\mathfrak{psl}(4|4)$ let $\lambda_x$ be its $\mathrm{ad}_\Delta$ eigenvalue (Remark \ref{rem:c2-dilatation}), $p_x$ the degree of its Killing data in the position and $|x|$ its parity. The functional $S^{(1)}(x)$ of Definition \ref{def:c2-S1} has degree $-1$ and Weyl weight $4-\tfrac12\lambda_x$, the position counted at weight $-1$. We write $\xi_+\in S_+\otimes W$ and $\xi_-\in S_-\otimes W^*$ for the two chiralities of $\xi\in\Sigma$, $\eta_+\in S_+\otimes W^*$ and $\eta_-\in S_-\otimes W$ for those of $\eta\in\Sigma^*$, $M_\omega$ for the rotation of $V$ with $\omega\in\mathfrak{so}(V)$ and $R_r$ for the rotation of $W_{\mathbb R}^\perp$ with $r\in\mathfrak{so}(W_{\mathbb R}^\perp)$, acting on $\lambda$ by its spin lift.
+
+\begin{tabular}{l|c|c|c|l|l}
+$x$ & $\lambda_x$ & $p_x$ & $|x|$ & terms of $S^{(1)}(x)$ & endpoint\\
+\hline
+$\Delta$, $v=2E$ & $0$ & $1$ & even & quadratic & $T=\infty$\\
+$P_b$, $v=b$ & $-2$ & $0$ & even & quadratic & $T=\infty$\\
+$M_\omega$, $v=\omega x$ & $0$ & $1$ & even & quadratic & $T=\infty$\\
+$R_r$ & $0$ & $0$ & even & quadratic, on $A|_{W_{\mathbb R}^\perp}$ and $\lambda$ & $T=\infty$\\
+$\xi\in\Sigma$ & $-1$ & $0$ & odd & $T_1,\dots,T_4$ quadratic, $T_5$ cubic & $T=\infty$\\
+$\eta\in\Sigma^*$ & $1$ & $1$ & odd & $\sum_\mu x^\mu S^{(1)}(\rho(e_\mu)\eta)+\int s_0$ & $T=\infty$\\
+$K_b$, $v=(x,x)b-2(b,x)x$ & $2$ & $2$ & even & quadratic & $T<\infty$\\
+\end{tabular}
+\tabcaption{The generators and their data; $T_1,\dots,T_5$ are the terms of Table \ref{tab:c11-terms} and $s_0=-(\rho(A|_{W_{\mathbb R}^\perp})\eta,\lambda^*)$ is the term of \eqref{eq:c11-Seta}.\label{tab:c12-gens}}
+
+For even $x$ with vector field $v$ the sector parts of $S^{(1)}(x)$ are
+\[
+S^{(1)}(x)_\perp:=\int\big(v.A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp}\big),\qquad S^{(1)}(x)_\lambda:=-\int(v.\lambda,\lambda^*),\qquad S^{(1)}(x)_V:=\int\big(v.A|_V,A^*|_V\big)-\int(v.c,c^*),
+\]
+each $Q$-closed, $v.$ commuting with $Q$ (Propositions \ref{prop:c7-cov}, \ref{prop:c7-dil}); along $R_r$ the sector $V$ is absent. For $\xi\in\Sigma$ the sector parts are $S^V_2(\xi)=T_1+T_3$ and $S^\perp_2(\xi)=T_2+T_4$ (Definition \ref{def:c11-terms}); for $\eta\in\Sigma^*$ they are
+\[
+S^V(\eta):=\sum_\mu\int x^\mu S^V_2(\rho(e_\mu)\eta),\qquad S^\perp(\eta):=\sum_\mu\int x^\mu S^\perp_2(\rho(e_\mu)\eta)+\int s_0,
+\]
+whose sum is the quadratic part of $S^{(1)}(\eta)$ (Proposition \ref{prop:c11-freexi} (iv)). The index $d$ of a sector runs over $\{\perp,\lambda,V\}$ for even $x$ and over $\{V,\perp\}$ for odd $x$. The quadratic part of a solution $\hbar F_1^{(1)}(x)$ contains $\sum_d\theta^x_d$ units times the sector parts; $\theta^\Delta_\perp$, $\theta^\Delta_\lambda$, $\theta^\Delta_V$ are $\theta$, $\theta_\lambda$, $\theta_V$ of Definition \ref{def:c11-free} and $\theta^{P_b}_d$ are $\theta_P$, $\theta_{P,\lambda}$, $\theta_{P,V}$. When the $\theta^x_d$ are equal, their common value $t_x$ is the uniform coefficient: the coefficient, in units, of $S^{(1)}(x)$ with its cubic part.
+\end{definition}
+
+\begin{definition}[Components of cochains, of the obstruction and of the logarithmic coefficient]
+\label{def:c12-comp}
+A local cochain $f$ of $C^\bullet(\mathfrak{psl}(4|4),\mathscr O_l(\mathscr E))$ has components $f^{(k)}(x_1,\dots,x_k)$ (Definition \ref{def:c2-cochains}), normalised as in Lemma \ref{lem:c2-components}: the arity-one component of $d_{CE}f+\tfrac12\{f,f\}$ at $f=S_{\mathfrak{psl}(4|4)}$ is $\{S,S^{(1)}(x)\}$, and its arity-two component is $\{S,S^{(2)}(x,y)\}+S^{(1)}([x,y])+(-1)^{|x|}\{S^{(1)}(x),S^{(1)}(y)\}$. $\mathrm{Ob}^{(k)}$ and $\hbar F_1^{(k)}$ are the components of the one-loop obstruction of Definition \ref{def:c8-ob} and of the finite counterterm $\hbar F_1$ of Definition \ref{def:c8-quant} in this normalisation. The counterterm cochain $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$ has the coefficient of $\log\varepsilon$ written $L$, with components $L^{(0)}$, $L^{(1)}(x)$, $L^{(2)}(x,y)$; $L^{(0)}$ is the coefficient of $\log\varepsilon$ in $I^{CT}[\varepsilon]$ and $L^{(1)}(x)$ that in $I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]^{(1)}(x)$, as in Theorem \ref{thm:c11-classes} (iv).
+\end{definition}
+
+\begin{lemma}[The derivation rule of the bracket]
+\label{lem:c12-deriv}
+Let $\{f,g\}_{\rm std}$ be the odd bracket with $\Delta_0(fg)=\Delta_0(f)g+(-1)^{|f|}f\Delta_0(g)+(-1)^{|f|}\{f,g\}_{\rm std}$. Then the bracket of Definition \ref{def:c1-bracket} is $\{f,g\}=(-1)^{|f|}\{f,g\}_{\rm std}$, and every derivation $\mathcal D$ of degree $1$ of $\{,\}_{\rm std}$, in particular $Q$, $\{I,-\}$, $Q+\{I,-\}$ and $\{F,-\}$ for $F$ of degree $0$, satisfies
+\begin{equation}
+\mathcal D\{a,b\}=-\{\mathcal Da,b\}-(-1)^{|a|}\{a,\mathcal Db\}.
+\label{eq:c12-deriv}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Definition \ref{def:c1-bracket} gives $\{f,g\}=\Delta_0(fg)-\Delta_0(f)g-(-1)^{|f|}f\Delta_0(g)$, which is $(-1)^{|f|}\{f,g\}_{\rm std}$. A derivation of degree $1$ satisfies $\mathcal D\{a,b\}_{\rm std}=\{\mathcal Da,b\}_{\rm std}+(-1)^{|a|+1}\{a,\mathcal Db\}_{\rm std}$; multiplying by $(-1)^{|a|}$ and using $|\mathcal Da|=|a|+1$,
+\[
+\mathcal D\{a,b\}=(-1)^{|a|}(-1)^{|a|+1}\{\mathcal Da,b\}-\{a,\mathcal Db\}_{\rm std}=-\{\mathcal Da,b\}-(-1)^{|a|}\{a,\mathcal Db\}.
+\]
+\end{proof}
+
+\begin{lemma}[Components of the defect vertex of the action]
+\label{lem:c12-defect}
+Let $J=I_{\mathfrak{psl}(4|4)}-I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]-\hbar F_1$ and let $\mathfrak d:=(d_{CE}+Q)J+\tfrac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ be the defect vertex of Lemma \ref{lem:c8-transfer}. Write $\{f,g\}_\varepsilon=\{f,g\}+\{f,g\}^\sigma_\varepsilon$, the second term being minus $f$ and $g$ joined by one special edge, and $I^{CT}:=I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]$. Modulo $\hbar^2$ and constants,
+\begin{equation}
+\begin{aligned}
+\mathfrak d^{(0)}={}&\tfrac12\{I,I\}^\sigma_\varepsilon-Q\,I^{CT,(0)}-\{I,I^{CT,(0)}\}_\varepsilon-\hbar\big(QF_1^{(0)}+\{I,F_1^{(0)}\}_\varepsilon\big),\\
+\mathfrak d^{(1)}(x)={}&\{I,S^{(1)}(x)\}^\sigma_\varepsilon+\hbar\Delta_\varepsilon S^{(1)}(x)-Q\,I^{CT,(1)}(x)-\{I,I^{CT,(1)}(x)\}_\varepsilon-\{I^{CT,(0)},S^{(1)}(x)\}_\varepsilon\\
+&-\hbar\big(QF_1^{(1)}(x)+\{I,F_1^{(1)}(x)\}_\varepsilon+\{F_1^{(0)},S^{(1)}(x)\}_\varepsilon\big),\\
+\mathfrak d^{(2)}(x,y)={}&(-1)^{|x|}\{S^{(1)}(x),S^{(1)}(y)\}^\sigma_\varepsilon+\{I,S^{(2)}(x,y)\}^\sigma_\varepsilon-\Big[Q\,I^{CT,(2)}(x,y)+\{I,I^{CT,(2)}(x,y)\}_\varepsilon+I^{CT,(1)}([x,y])\\
+&+(-1)^{|x|}\big(\{I^{CT,(1)}(x),S^{(1)}(y)\}_\varepsilon+\{S^{(1)}(x),I^{CT,(1)}(y)\}_\varepsilon\big)+\{I^{CT,(0)},S^{(2)}(x,y)\}_\varepsilon\Big]-\hbar\big[\text{the same with }F_1\text{ in place of }I^{CT}\big],
+\end{aligned}
+\label{eq:c12-defect}
+\end{equation}
+with $\hbar\Delta_\varepsilon I=0$, $\hbar\Delta_\varepsilon S^{(1)}(x)$ a constant for even $x$ and $0$ for odd $x$, and $\hbar\Delta_\varepsilon S^{(2)}(x,y)=0$.
+\end{lemma}
+
+\begin{proof}
+The part of order $\hbar^0$ without special edge is $d_{CE}I_{\mathfrak{psl}(4|4)}+\tfrac12\{I_{\mathfrak{psl}(4|4)},I_{\mathfrak{psl}(4|4)}\}$, which vanishes by \eqref{eq:c2-mc}; its arity components are those of Lemma \ref{lem:c2-components}, and the remainder is the special-edge part of each bracket. The terms linear in $I^{CT}$ and in $F_1$ are the linearisation of the same component formulas at $S_{\mathfrak{psl}(4|4)}$ (Lemma \ref{lem:c12-wz} (i)), with the bracket at scale $\varepsilon$. $\Delta_\varepsilon$ contracts a field with its own antifield inside one monomial: in $I$ it gives $\operatorname{tr}\mathrm{ad}=0$ (proof of Theorem \ref{thm:c4-obstruction}); in $S^{(1)}(x)$ for even $x$ the terms $(v.e,e^*)$ give the field-independent supertrace of $v.\,e^{-\varepsilon H}$; the quadratic terms of $S^{(1)}(\xi)$ and $S^{(1)}(\eta)$ pair $\lambda$ with $A^*$ and $A$ with $\lambda^*$, the cubic terms have the legs $A$, $A$, $\lambda^*$, and $s_0$ the legs $A|_{W_{\mathbb R}^\perp}$, $\lambda^*$; the terms of $S^{(2)}$ in \eqref{eq:c2-S2} have the legs $(\lambda^*,\lambda^*)$ and $(A,c^*)$.
+\end{proof}
+
+\begin{definition}[Arity components of the obstruction and residuals]
+\label{def:c12-ob}
+With $F_1=0$, $\mathrm{Ob}$ is the local cochain of degree $1$ of Definition \ref{def:c8-ob}: its tree-level flow with edges $P(0,T)$ is the coefficient of $\hbar$ of the $\varepsilon\to0$ limit of the connected graphs with one vertex $\mathfrak d$, the other vertices from $J$ and edges $P(\varepsilon,T)$. In the normalisation of Definition \ref{def:c12-comp} the equation $s(\hbar F_1)=\hbar\,\mathrm{Ob}$ of Theorem \ref{thm:c8-obstruction} (ii) reads, arity by arity,
+\begin{equation}
+\begin{aligned}
+&(Q+\{I,-\})\hbar F_1^{(0)}=\hbar\,\mathrm{Ob}^{(0)},\qquad (Q+\{I,-\})\hbar F_1^{(1)}(x)+\big\{\hbar F_1^{(0)},S^{(1)}(x)\big\}=\hbar\,\mathrm{Ob}^{(1)}(x),\\
+&(Q+\{I,-\})\hbar F_1^{(2)}(x,y)+\hbar F_1^{(1)}([x,y])+(-1)^{|x|}\Big(\big\{\hbar F_1^{(1)}(x),S^{(1)}(y)\big\}+\big\{S^{(1)}(x),\hbar F_1^{(1)}(y)\big\}\Big)+\big\{\hbar F_1^{(0)},S^{(2)}(x,y)\big\}=\hbar\,\mathrm{Ob}^{(2)}(x,y).
+\end{aligned}
+\label{eq:c12-eqs}
+\end{equation}
+Given a solution of the first equation, the arity-one residual is $\mathcal R^{(1)}(x):=\hbar\,\mathrm{Ob}^{(1)}(x)-\{\hbar F_1^{(0)},S^{(1)}(x)\}$; given also a solution of the second, the arity-two residual $\mathcal R^{(2)}(x,y)$ is $\hbar\,\mathrm{Ob}^{(2)}(x,y)$ minus the terms of the third equation that contain $F_1^{(1)}$ and $F_1^{(0)}$. $\mathrm{Ob}^{(1)}(x)$ is local of degree $0$ and Weyl weight $4-\tfrac12\lambda_x$, $\mathrm{Ob}^{(2)}(x,y)$ of degree $-1$ and weight $4-\tfrac12(\lambda_x+\lambda_y)$, and $\hbar F_1^{(1)}(x)$, $\hbar F_1^{(2)}(x,y)$ have degrees $-1$, $-2$ and the same weights. The arity-one equation with $\hbar F_1^{(0)}$ in the form of \eqref{eq:c11-arity1xi} is the second equation, $\{\hbar F_1^{(0)},S^{(1)}(x)\}=\{S^{(1)}(x),\hbar F_1^{(0)}\}$ for $F_1^{(0)}$ even of degree $0$.
+\end{definition}
+
+\begin{lemma}[Component formulas of $s$ and the Wess--Zumino identities]
+\label{lem:c12-wz}
+\begin{itemize}
+\item (i) For a cochain $F$ of degree $0$, $(sF)^{(0)}=(Q+\{I,-\})F^{(0)}$, $(sF)^{(1)}(x)=(Q+\{I,-\})F^{(1)}(x)+\{F^{(0)},S^{(1)}(x)\}$, and $(sF)^{(2)}(x,y)$ is the left side of the third equation of \eqref{eq:c12-eqs} with $F$ in place of $\hbar F_1$.
+\item (ii) For a cochain $G$ of degree $1$, $(sG)^{(1)}(x)=(Q+\{I,-\})G^{(1)}(x)+\{G^{(0)},S^{(1)}(x)\}$ and
+\[
+(sG)^{(2)}(x,y)=(Q+\{I,-\})G^{(2)}(x,y)-G^{(1)}([x,y])+(-1)^{|x|}\{G^{(1)}(x),S^{(1)}(y)\}-\{S^{(1)}(x),G^{(1)}(y)\}+\{G^{(0)},S^{(2)}(x,y)\}.
+\]
+\item (iii) (Wess--Zumino.) Since $s\,\mathrm{Ob}=0$ (Theorem \ref{thm:c8-obstruction} (i)),
+\begin{equation}
+\begin{aligned}
+&(Q+\{I,-\})\mathrm{Ob}^{(0)}=0,\qquad (Q+\{I,-\})\mathrm{Ob}^{(1)}(x)=-\big\{\mathrm{Ob}^{(0)},S^{(1)}(x)\big\},\\
+&(Q+\{I,-\})\mathrm{Ob}^{(2)}(x,y)=\mathrm{Ob}^{(1)}([x,y])-(-1)^{|x|}\big\{\mathrm{Ob}^{(1)}(x),S^{(1)}(y)\big\}+\big\{S^{(1)}(x),\mathrm{Ob}^{(1)}(y)\big\}-\big\{\mathrm{Ob}^{(0)},S^{(2)}(x,y)\big\},
+\end{aligned}
+\label{eq:c12-wz}
+\end{equation}
+and the residuals are closed: $(Q+\{I,-\})\mathcal R^{(1)}(x)=0$ when the arity-zero equation holds, and $(Q+\{I,-\})\mathcal R^{(2)}(x,y)=0$ when the equations of arity zero and one hold.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) Differentiate the component formulas of Lemma \ref{lem:c2-components} along $S_{\mathfrak{psl}(4|4)}+tF$, with $\tfrac d{dt}\tfrac12\{f,f\}=\{f,\dot f\}$ for even $f$. (ii) The components of $sG$ are universal expressions $(Q+\{I,-\})G^{(2)}+\alpha\,G^{(1)}([x,y])+\beta\{G^{(1)}(x),S^{(1)}(y)\}+\gamma\{S^{(1)}(x),G^{(1)}(y)\}+\delta\{G^{(0)},S^{(2)}(x,y)\}$ and $(Q+\{I,-\})G^{(1)}(x)+\delta_1\{G^{(0)},S^{(1)}(x)\}$, and $s^2=0$ fixes the coefficients on the exact cochains $G=sF$, with the derivation rule \eqref{eq:c12-deriv} and $(Q+\{I,-\})S^{(1)}(x)=0$. For $F=F^{(0)}$: $G^{(1)}(x)=\{F^{(0)},S^{(1)}(x)\}$ and $(Q+\{I,-\})\{F^{(0)},S^{(1)}(x)\}=-\{(Q+\{I,-\})F^{(0)},S^{(1)}(x)\}$, so $\delta_1=1$. For $F=F^{(1)}$: $G^{(2)}=F^{(1)}([x,y])+(-1)^{|x|}(\{F^{(1)}(x),S^{(1)}(y)\}+\{S^{(1)}(x),F^{(1)}(y)\})$ and, with $|S^{(1)}(x)|\equiv1+|x|$,
+\[
+(Q+\{I,-\})G^{(2)}=(Q+\{I,-\})F^{(1)}([x,y])-(-1)^{|x|}\{(Q+\{I,-\})F^{(1)}(x),S^{(1)}(y)\}+\{S^{(1)}(x),(Q+\{I,-\})F^{(1)}(y)\},
+\]
+so $\alpha=\gamma=-1$ and $\beta=(-1)^{|x|}$. For $F=F^{(0)}$ at arity two, $(Q+\{I,-\})S^{(2)}(x,y)=-S^{(1)}([x,y])-(-1)^{|x|}\{S^{(1)}(x),S^{(1)}(y)\}$ (Lemma \ref{lem:c2-components}) and the derivation rule for $\{F^{(0)},-\}$ cancel every term except $(\delta-1)\{(Q+\{I,-\})F^{(0)},S^{(2)}(x,y)\}$, so $\delta=1$. (iii) Insert $G=\mathrm{Ob}$ and $G=\hbar\,\mathrm{Ob}-s(\hbar F_1)$, whose lower components vanish.
+\end{proof}
+
+\begin{proposition}[Pole structure of the counterterm cochain]
+\label{prop:c12-poles}
+At one loop
+\begin{equation}
+I^{CT}_{\mathfrak{psl}(4|4)}[\varepsilon]=\tfrac94\,\varepsilon^{-1}\int\mathrm{dvol}\,(A,A)\ \text{units}+\log\varepsilon\cdot L,
+\label{eq:c12-poles}
+\end{equation}
+with $L$ a local cochain of degree $0$: the components of arity one and two have no pole.
+\end{proposition}
+
+\begin{proof}
+The coefficient of $\varepsilon^{-m}$ of $I^{CT,(k)}(x_1,\dots,x_k)$ is a colour-singlet local functional of degree $-k$, total Weyl weight $4-\tfrac12\sum_i\lambda_{x_i}-2m$ and position degree at most $\sum_ip_{x_i}$ (Proposition \ref{prop:c10-bound1}). A colour singlet of degree $-1$ has an antifield and a second adjoint field, field weight at least $4$, or $\tfrac72$ with the legs $(A,\lambda^*)$ when the generator supplies a spinor; one of degree $-2$ has field weight at least $5$, or $\tfrac{11}2$ with an odd number of spinor legs. The total weight is at least the field weight minus the position degree, and for $m\ge1$ the inequality fails in every case:
+\[
+\begin{aligned}
+&\Delta:\ 4-2m<3,\quad P_b:\ 5-2m<4,\quad M_\omega:\ 4-2m<3,\quad R_r:\ 4-2m<4,\quad \Sigma:\ \tfrac92-2m<\tfrac72,\quad \Sigma^*:\ \tfrac72-2m<\tfrac52,\quad K_b:\ 3-2m<2,\\
+&(\Delta,P_b):\ 5-2m<4,\quad (K_b,P_{b'}):\ 4-2m<3,\quad (\xi,\xi'):\ 5-2m<5,\quad (\xi,\eta):\ 4-2m<4,\\
+&(\xi,P_b):\ \tfrac{11}2-2m<\tfrac{11}2,\quad (\eta,\eta'):\ 3-2m<3,\quad (\Delta,\xi):\ \tfrac92-2m<\tfrac92 .
+\end{aligned}
+\]
+In arity zero the weight $4-2m$ with $m\ge1$ leaves the legs $(A,A)$ at weight $2$, the term of Theorem \ref{thm:c4-quadratic}. One loop gives integer powers of $\varepsilon$ and the first power of $\log\varepsilon$ (Lemma \ref{lem:c4-local}).
+\end{proof}
+
+\begin{proposition}[The logarithmic coefficient is $s$-closed]
+\label{prop:c12-log}
+$sL=0$. In components, $(Q+\{I,-\})L^{(0)}=0$, $(Q+\{I,-\})L^{(1)}(x)+\{L^{(0)},S^{(1)}(x)\}=0$, and the arity-two formula of Lemma \ref{lem:c12-wz} (i) applied to $L$ vanishes. With $L^{(0)}=(Q+\{I,-\})\mathcal N$ units (Theorem \ref{thm:c4-log}),
+\begin{equation}
+L^{(1)}(x)-\big\{\mathcal N,S^{(1)}(x)\big\}\ \text{units}
+\label{eq:c12-closedlog}
+\end{equation}
+is $(Q+\{I,-\})$-closed of degree $-1$.
+\end{proposition}
+
+\begin{proof}
+By [C07, Thm B] and Definition \ref{def:c8-quant} the flow $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)}-I^{CT})$ has a limit; $Q$ acts on plane-wave values by polynomial substitutions, so the flow of $\mathfrak d$ has a limit (Lemma \ref{lem:c8-transfer}). In this flow at order $\hbar$ the coefficient of $\log\varepsilon$ comes from the trees of the counterterm vertices of \eqref{eq:c12-defect}: their parts without special edge give $-\log\varepsilon\,(sL)$, their special-edge parts carry $(e^{-\varepsilon|p|^2}-1)\log\varepsilon\to0$; the cycles with a special edge have no $\log\varepsilon$ (Lemma \ref{lem:c12-special}), and the subgraphs of the reducible graphs are of these two kinds. The tree-level flow is injective on local cochains (Theorem \ref{thm:c8-L} (i)), so $sL=0$. For the last statement, \eqref{eq:c12-deriv} with $(Q+\{I,-\})S^{(1)}(x)=0$ gives $(Q+\{I,-\})\{\mathcal N,S^{(1)}(x)\}=-\{(Q+\{I,-\})\mathcal N,S^{(1)}(x)\}$, which is $-\{L^{(0)},S^{(1)}(x)\}=(Q+\{I,-\})L^{(1)}(x)$ in units.
+\end{proof}
+
+\section{The arity-one obstruction from the defect cycles}
+
+\begin{lemma}[Placements of a vertex $S^{(1)}(x)$ on a cycle]
+\label{lem:c12-place}
+The propagator has the components $A\otimes A$, $c\otimes A^*|_V$, $A^*|_V\otimes c$ and $\lambda\otimes\lambda$ (Proposition \ref{prop:c3-P}), and a special edge joins a field slot to its antifield slot. On a cycle with exactly one special edge a vertex $S^{(1)}(x)$ occurs in the placements of the following table and in no other.
+
+\begin{tabular}{l|l|l|l}
+$x$ & on a line & at the special edge & cubic\\
+\hline
+$\Delta$, $P_b$, $M_\omega$, $K_b$ & $\int(v.A|_V,A^*|_V)$, a line from $c$ to $A|_V$ & the five slot pairs & none\\
+$R_r$ & none & $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})$, $(\lambda,\lambda^*)$ & none\\
+$\xi$ & $T_1$, a line from $\lambda$ to $c$ & $T_1,\dots,T_4$ & $T_5$\\
+$\eta$ & $x^\mu T_1(\rho(e_\mu)\eta)$ & $x^\mu T_{1},\dots,x^\mu T_4$ at $\rho(e_\mu)\eta$, and $s_0$ & $x^\mu T_5(\rho(e_\mu)\eta)$\\
+\end{tabular}
+\tabcaption{The placements of the terms of $S^{(1)}(x)$ on a cycle with one special edge. At the special edge one leg of the term lies on $K_\varepsilon-K_0$ and the other on an edge $P$; a cubic term has two legs $A$ on the cycle and its third leg external.\label{tab:c12-place}}
+
+A vertex $S^{(2)}(x,y)$ has no line placement; its legs $\lambda^*$, $c^*$ lie on the special edge or are external.
+\end{lemma}
+
+\begin{proof}
+A vertex on a cycle uses two of its legs on cycle edges. The legs $\lambda^*$, $c^*$ and $A^*|_{W_{\mathbb R}^\perp}$ have no component of $P$, so they lie on the special edge or are external; $A^*|_V$ lies on $c\otimes A^*|_V$. For even $x$ the term with the leg $A^*|_V$ is $\int(v.A|_V,A^*|_V)$, and $v.$ vanishes on $A|_V$ and $c$ along $R_r$; for $\xi$ it is $T_1$ (Table \ref{tab:c11-terms}); along $\eta$ the terms are those of \eqref{eq:c11-Seta}. For $S^{(2)}$ the legs are those of \eqref{eq:c2-S2}.
+\end{proof}
+
+\begin{lemma}[Special-edge lemma]
+\label{lem:c12-special}
+Let $\mathcal C$ be a cycle all of whose vertices lie on it, with external legs at generic momenta, $n_t$ edges, one special edge $e_\sigma$ and the other edges $P(\varepsilon,T)$, possibly one composite line, with vertices from $I$ and from $S^{(1)}(x)$ and $S^{(1)}(y)$ or $S^{(2)}(x,y)$; along $\eta$, $\Delta$, $M_\omega$ and $K_b$ the position factors at the vertex $S^{(1)}(x)$ are realised by derivatives in a momentum $r$ injected there, at $r=0$. Let $D$ be its superficial degree and $F_m$ the $m$-th simplex integrand of Definition \ref{def:c10-cycle}. At $T=\infty$
+\begin{equation}
+\mathcal C(\varepsilon)=\sum_{m\ge1}\varepsilon^{-m}a_m+a_0+o(1),\qquad 16\pi^2a_m=\frac1m\int_{\alpha_\sigma\ \text{smallest}}\Big[\big(\min_{f\ne\sigma}\alpha_f\big)^m-\alpha_\sigma^m\Big]F_m\,d\alpha,\qquad 16\pi^2a_0=\int_{\alpha_\sigma\ \text{smallest}}F_0\log\frac{\min_{f\ne\sigma}\alpha_f}{\alpha_\sigma}\,d\alpha,
+\label{eq:c12-special}
+\end{equation}
+with no term in $\log\varepsilon$; $a_m$ is a polynomial of degree $D-2m$ in the external momenta and in $r$, and $a_0$ a polynomial of degree $D$, zero for $D<0$. At finite $T$ the coefficients are the same and $T\partial_T\mathcal C(\varepsilon)=O(\varepsilon)$ at fixed $T$.
+\end{lemma}
+
+\begin{proof}
+As in Theorems \ref{thm:c11-simplex} and \ref{thm:c11-oddsimplex}: the Schwinger domain $\{t_\sigma\le\varepsilon\le t_f\}$ is the difference of the domains with the cutoff shapes $1/\min_{f\ne\sigma}\alpha_f$ and $1/\min_f\alpha_f$, which differ on the region where $\alpha_\sigma$ is the smallest coordinate. Proposition \ref{prop:c10-shape} applies to each; the coefficients of $\log\varepsilon$ cancel and the finite parts differ by the stated integral. The region of large total Schwinger time converges at $T=\infty$ because the external momenta are generic and a composite line is of order $|p|^{-3}$ (Proposition \ref{prop:c9-composite} (iv)); the injected momentum enters polynomially. At finite $T$, $T\partial_T$ replaces one edge by $(Q^{GF}\otimes1)K_T$, which confines the loop momentum to $|l|^2\lesssim T^{-1}$, where the special edge is $O(\varepsilon|l|^2)$; the position factors grow at most as $T^{p_x/2}$ and are compensated by the decay of the other edges (Theorem \ref{thm:c8-K}).
+\end{proof}
+
+\begin{theorem}[Graph classes and the local formula for the arity-one obstruction]
+\label{thm:c12-classes}
+Fix a generator $x$ and $n\ge2$. At order $\hbar$, with $F_1=0$, the part with $n$ legs of the arity-one component along $x$ of the flow of $\mathfrak d$ is the sum of the following classes of connected graphs with edges $P(\varepsilon,T)$, one vertex from \eqref{eq:c12-defect} and one vertex carrying $x$:
+\begin{itemize}
+\item (C) irreducible defect cycles: every vertex on the cycle, exactly one special edge, exactly one vertex $S^{(1)}(x)$ in a placement of Table \ref{tab:c12-place}, the other vertices cubic or quartic vertices of $I$ with their external legs; the special edge joins $S^{(1)}(x)$ to $I$ (placement at the special edge) or two vertices of $I$ (line and cubic placements);
+\item (Rd) reducible graphs: a subgraph of type (C) with fewer legs, or a one-loop subgraph of the arity-zero defect, joined by edges $P(\varepsilon,T)$ to trees of vertices of $I$ and $S^{(1)}(x)$;
+\item (Br) graphs whose special edge is a bridge;
+\item (Ct) trees with one counterterm vertex of \eqref{eq:c12-defect} of order $\hbar$, with the parts without and with special edge of each bracket;
+\item (K) the constant $\hbar\Delta_\varepsilon S^{(1)}(x)$.
+\end{itemize}
+As $\varepsilon\to0$, (Br) with the special-edge parts of (Ct) tends to $0$; (Rd) tends to the trees of the components of $\mathrm{Ob}$ with fewer legs; the $\log\varepsilon$ terms of (Ct) cancel identically (Proposition \ref{prop:c12-log}) and (C) has none; the poles satisfy
+\begin{equation}
+\sum_{\mathcal C\in(C),\,n=2}a_1(\mathcal C)=\tfrac94\Big\{\int(A,A),S^{(1)}(x)\Big\}\ \text{units},\qquad \sum_{\mathcal C\in(C),\,n}a_m(\mathcal C)=0\quad(m\ge2\ \text{or}\ n\ge3),
+\label{eq:c12-pole}
+\end{equation}
+and
+\begin{equation}
+\hbar\,\mathrm{Ob}^{(1)}(x)\big|_{n\ \text{legs}}=\sum_{\mathcal C\in(C),\,n\ \text{legs}}a_0(\mathcal C),
+\label{eq:c12-local1}
+\end{equation}
+a local functional independent of $T$. With an arity-zero finite counterterm included the same graphs give $\mathcal R^{(1)}(x)$.
+\end{theorem}
+
+\begin{proof}
+At order $\hbar$ a connected graph has one cycle and vertices of order $\hbar^0$, or no cycle and one vertex of order $\hbar$ (Proposition \ref{prop:c3-graphs}); arity one places $x$ on one vertex. The marked vertices of order $\hbar^0$ in $\mathfrak d^{(1)}(x)$ and $\mathfrak d^{(0)}$ are special-edge parts, so the special edge lies on the cycle, on a bridge, or on a tree attached to the cycle, which again makes it a bridge. A graph with the special edge on the cycle is the cycle with trees attached; if a tree is attached through an edge the graph is reducible, otherwise it is in (C). (Br): removing the bridge separates a one-loop subgraph at a generic momentum $p$; with the counterterm trees of the subgraph and the special-edge part of the counterterm bracket across the same edge, the edge carries $e^{-\varepsilon|p|^2}-1$ times the renormalised subgraph, which has a limit (Definition \ref{def:c8-quant}), so the sum tends to $0$; along $\eta$ and $K_b$ the derivatives in the injected momentum act on $e^{-\varepsilon|p+r|^2}-1$ and on a function of class $C^2$ at $p\neq0$. (Rd): the subgraph equals the corresponding component of the obstruction plus $o(1)$ after its counterterm trees are included (induction on the number of legs; the arity-zero two-leg subgraphs are Theorem \ref{thm:c4-obstruction}). (Ct): by Proposition \ref{prop:c12-poles} the only pole is $-\varepsilon^{-1}\tfrac94\{\int(A,A),S^{(1)}(x)\}$ units in $-\{I^{CT,(0)},S^{(1)}(x)\}_\varepsilon$, which has two legs, $\{\int(A,A),T_5\}=0$ since $T_5$ has no leg $A^*$. The flow has a limit (proof of Proposition \ref{prop:c12-log}), so the poles of (C) cancel this term, which is \eqref{eq:c12-pole}, and Lemma \ref{lem:c12-special} gives the finite parts. The tree-level flow of the arity-one part of $\mathrm{Ob}$ with $n$ legs is $\mathrm{Ob}^{(1)}(x)|_n$ plus trees of the components with fewer legs, the limits of (Rd); this gives \eqref{eq:c12-local1}, and $T$-independence is Definition \ref{def:c8-ob} with Lemma \ref{lem:c12-special}.
+\end{proof}
+
+\begin{proposition}[Composite lines and the commutators with the regulator]
+\label{prop:c12-composite}
+Let $P\star=Q^{GF}g(H)$, $g(H)=\int_\varepsilon^Te^{-tH}dt$, $E(H)=e^{-\varepsilon H}-e^{-TH}$, so that $QP\star+P\star Q=E(H)$. The line placement of $S^{(1)}(x)$ is the composite kernel $2(P\star\,x.\,P\star\otimes1)K_0$, with
+\begin{equation}
+P\star\,x.\,P\star=x.\,(P\star)^2-[x.,Q^{GF}]\,g(H)\,P\star-Q^{GF}[x.,g(H)]\,P\star ,
+\label{eq:c12-line}
+\end{equation}
+and the variation kernel $\mathcal V_x:=(x.\otimes1+1\otimes x.)P(\varepsilon,T)$ is $([x.,P\star]\otimes1)K_0$. Generator by generator:
+\begin{itemize}
+\item (i) $P_b$, $M_\omega$, $R_r$: the commutators with $Q^{GF}$ and $H$ vanish, $\mathcal V_x=0$, the kernel is $2(x.(P\star)^2\otimes1)K_0$, zero along $R_r$, and $[Q,P\star x.P\star]=0$;
+\item (ii) $\Delta$: $[v.,Q^{GF}]=-4Q^{GF}$, $[v.,H]=-4H$, $\mathcal V_\Delta=-4(\varepsilon\partial_\varepsilon+T\partial_T)P(\varepsilon,T)$, and $[Q,P\star v.P\star]=0$ (Proposition \ref{prop:c9-composite});
+\item (iii) $\xi$: $C_\xi:=[\xi.,Q^{GF}]$, $[\xi.,H]=0$, $P\star\xi.P\star=C_\xi Q^{GF}g^2-\xi.(Q^{GF})^2g^2$, $\mathcal V_\xi=(C_\xi g(H)\otimes1)K_0$, and $[Q,P\star\xi.P\star]=E(H)C_\xi g(H)\neq0$ (Lemma \ref{lem:c11-lines} (ii), (iii));
+\item (iv) $\eta$: $\eta.=\sum_\mu x^\mu\xi_\mu.+\eta^0.+Y_\eta$ with $\xi_\mu=\rho(e_\mu)\eta$, $[\eta.,H]=2\sum_\mu\xi_\mu.\partial_\mu$ and
+\[
+[\eta.,P\star]=\sum_\mu x^\mu C_{\xi_\mu}g(H)+\sum_\mu[x^\mu,Q^{GF}]\,\xi_\mu.\,g(H)+[\eta^0.+Y_\eta,Q^{GF}]\,g(H)+2\,Q^{GF}\sum_\mu\xi_\mu.\,\partial_\mu\,g'(H)
+\]
+(Lemma \ref{lem:c11-lines} (iv));
+\item (v) $K_b$: $[v.,Q^{GF}]=4(b,x)Q^{GF}+C_K$, $[v.,H]=4(b,x)H-4(w-1)(b,\partial)+4b_\nu\Sigma^{\rho\nu}\partial_\rho$ on a slot of Weyl weight $w$ (Lemma \ref{lem:c11-lines} (v)), and $[Q,P\star v.P\star]=[v.,P\star]E(H)-[v.,E(H)]P\star\neq0$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+$P\star x.P\star=x.P\star P\star+[P\star,x.]P\star$ with $[P\star,x.]=-[x.,Q^{GF}]g-Q^{GF}[x.,g]$, graded. For $x.$ preserving the pairing, $(1\otimes x.)K_0=-(-1)^{|x|}(x.\otimes1)K_0$ up to the Koszul sign of Lemma \ref{lem:c9-ops}, which gives $\mathcal V_x$. For even $x.$ with $[x.,Q]=0$, $Q\,P\star x.P\star=E\,x.P\star-P\star x.E+P\star x.P\star Q$ by $QP\star+P\star Q=E$; for $P_b$, $M_\omega$, $R_r$ and $\Delta$ the first two terms cancel, $x.$ commuting with $E$ and $P\star$ up to the scaling of (ii), and for $K_b$ they equal $[v.,P\star]E-[v.,E]P\star$, using $EP\star=P\star E$. The commutators are those of the cited statements; for $\eta$, $[x^\mu\xi_\mu.,Q^{GF}]=x^\mu C_{\xi_\mu}+[x^\mu,Q^{GF}]\xi_\mu.$ and $[\eta.,f(H)]=2\sum_\mu\xi_\mu.\partial_\mu f'(H)$.
+\end{proof}
+
+\begin{theorem}[Second evaluation: $Q$ of the renormalised arity-one amplitudes]
+\label{thm:c12-second}
+Let $W^{(1)}(x)$ be the arity-one component along $x$ of $W(P(\varepsilon,T),I_{\mathfrak{psl}(4|4)}-I^{CT})$, the linearised flow of $S^{(1)}(x)-I^{CT,(1)}(x)$ at $I-I^{CT,(0)}$, and $W^{(1)}_{\rm ren}(x)$ the $\varepsilon\to0$ limit of its coefficient of $\hbar$ at generic momenta.
+\begin{itemize}
+\item (i) At $T=\infty$ the tree-level flow of $\hbar\,\mathrm{Ob}^{(1)}(x)$ is $Q\,W^{(1)}_{\rm ren}(x)$, the action of $Q$ on plane-wave values commuting with the limit; at finite $T$ add $\{W^{(0)},W^{(1)}(x)\}_T+\hbar\Delta_TW^{(1)}(x)$. $\hbar\,\mathrm{Ob}^{(1)}(x)|_n$ is the part of $Q\,W^{(1)}_{\rm ren}(x)$ with $n$ legs minus the trees of the components with fewer legs.
+\item (ii) (Conjugation.) With $D_x$ the derivation induced by $P\star x.$, $D^{(3)}_x$ the first-order operator given by the cubic term of $S^{(1)}(x)$ with one leg $A$ joined by $P$ to the argument, $\partial^{(3)}_x$ the second-order operator with both legs $A$ joined by $P$, and $\mathcal K_x=2(P\star x.P\star\otimes1)K_0$,
+\begin{equation}
+e^{\hbar\partial_P}\,S^{(1)}(x)\,e^{-\hbar\partial_P}=S^{(1)}(x)+\hbar\big(D_x+D^{(3)}_x\big)+\tfrac{\hbar^2}2\big(\partial_{\mathcal K_x}+\partial^{(3)}_x\big),
+\label{eq:c12-conj}
+\end{equation}
+and the series terminates; the composite cycles $\tfrac12\partial_{\mathcal K_x}W_0$ and the cubic cycles $\tfrac12\partial^{(3)}_xW_0$ carry the singular part $I^{CT,(1)}(x)$.
+\item (iii) $R_r$: $I^{CT,(1)}(R_r)=0$ and $\mathrm{Ob}^{(1)}(R_r)=0$.
+\item (iv) $P_b$, $M_\omega$: $\hbar\,\mathrm{Ob}^{(1)}(x)$ is $Q$ of the renormalised composite cycles minus $(Q+\{I,-\})I^{CT,(1)}(x)$, the composite part along $x$.
+\item (v) $\Delta$: $\hbar\,\mathrm{Ob}^{(1)}(\Delta)=4L^{(0)}+(\text{composite part along }\Delta)$ in every sector in which the arity-zero obstruction is removed.
+\item (vi) $\xi$: $\hbar\,\mathrm{Ob}^{(1)}(\xi)$ is $Q$ of the renormalised composite and cubic cycles minus $(Q+\{I,-\})I^{CT,(1)}(\xi)$, plus the one-loop graphs of $W$ with one edge of the cycle replaced by $\mathcal V_\xi$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Lemma \ref{lem:c8-transfer} at arity one; $d_{CE}$ vanishes on arity zero. (ii) $\mathrm{ad}_{\partial_P}$ applied to the multiplication by the quadratic part gives $D_x$ (Lemma \ref{lem:c9-SDelta} (iv), whose proof applies to every quadratic $S^{(1)}(x)$ whose legs have no common component of $P$); applied twice it gives $\partial_{\mathcal K_x}$ by \eqref{eq:c9-commutator}, a constant-coefficient operator commuting with $\partial_P$. For the cubic term, $\partial_PT_5=0$, the contraction of its two legs $A$ giving $[X_a,X^a]=0$; $\mathrm{ad}_{\partial_P}T_5=D^{(3)}_x$, $\mathrm{ad}^2_{\partial_P}T_5=\partial^{(3)}_x$, whose coefficient $\lambda^*$ has no component of $P$, so $\mathrm{ad}^3_{\partial_P}T_5=0$. (iii) $v.$ commutes with $Q$, $Q^{GF}$, $H$, preserves the pairing, annihilates $I$ and the $\mathfrak{so}(W_{\mathbb R}^\perp)$-invariant counterterms, and $\mathcal K_{R_r}=0$; the one-loop part of the linearised flow is $D_xW_1$, whose singular part is that of $W_1$ with $P\star v.$ on a leg, removed by $I^{CT,(0)}$. Then $QW^{(1)}=[Q,D_x]W_1+D_xQW_1$; $[Q,D_x]$ is the derivation by $E(H)v.$, whose action on $W_1$ tends to $v.W_{1,\rm ren}=0$, and $D_xQW_1$ is a tree of $\mathrm{Ob}^{(0)}$ with $S^{(1)}(x)$. (iv) The same with $\mathcal K_x\neq0$ and $[Q,\mathcal K_x]=0$ (Proposition \ref{prop:c12-composite} (i)). (v) Proposition \ref{prop:c9-structure} (ii), whose proof uses \eqref{eq:c9-D1b} and \eqref{eq:c9-ward}, both identities of the flow; Lemma \ref{lem:c12-obeven} below gives the same statement from Theorem \ref{thm:c12-ward}. (vi) $[Q,P\star\xi.]=E(H)\xi.$ and $[Q,\mathcal K_\xi]=2(EC_\xi g\otimes1)K_0$ (Proposition \ref{prop:c12-composite} (iii)).
+\end{proof}
+
+\begin{proposition}[Position parts at the level of the action]
+\label{prop:c12-pos}
+For a local functional $G$ with polynomial dependence on the position, the position part along $b$ is $-\{S^{(1)}(P_b),G\}$ (Lemma \ref{lem:c11-canonical}). Graph by graph, with the momentum injection of Lemma \ref{lem:c12-special}, the position part along $b$ of a cycle along $\Delta$ is twice the same cycle along $P_b$, along $M_\omega$ the cycle along $P_{\omega b}$, along $\eta$ the cycle along $\rho(b)\eta\in\Sigma$, and along $K_b$ the cycle along the generator with the Killing field $\partial_{b'}v$, which is $(b,b')\Delta$ plus the rotation $x\mapsto2(b,x)b'-2(b',x)b$ (Remark \ref{rem:c7-KDelta}). Hence
+\begin{equation}
+-\{S^{(1)}(P_b),\mathrm{Ob}^{(1)}(\Delta)\}=2\,\mathrm{Ob}^{(1)}(P_b),\qquad -\{S^{(1)}(P_b),\mathrm{Ob}^{(1)}(\eta)\}=\mathrm{Ob}^{(1)}(\rho(b)\eta),\qquad -\{S^{(1)}(P_b),\mathrm{Ob}^{(1)}(M_\omega)\}=\mathrm{Ob}^{(1)}(P_{\omega b}),
+\label{eq:c12-pos}
+\end{equation}
+with the analogous identities along $K_b$, and the same for $I^{CT,(1)}$ and $L^{(1)}$. The intrinsic part of $\mathrm{Ob}^{(1)}(x)$ is $\mathrm{Ob}^{(1)}(x)$ minus a lift $\int x^\mu o_\mu$ of its position parts, translation invariant and fixed by the canonical densities of Definition \ref{def:c11-canonical}.
+\end{proposition}
+
+\begin{proof}
+As Proposition \ref{prop:c11-position} (i): the factor $x^\mu$ at the vertex $S^{(1)}(x)$ is $-i\partial/\partial r_\mu$ of $e^{i(r,x)}$; its action on the momentum delta function is the position part, $-i$ times the graph with the vertex differentiated along $e_\mu$. The derivative of the Killing data of $\Delta$ along $e_\mu$ is $2e_\mu$, that of $\eta$ is $\rho(e_\mu)\eta$, that of $M_\omega$ is $\omega e_\mu$ and that of $K_b$ is $\partial_\mu v$. The special edge, the edges $P$ and the vertices of $I$ are translation invariant, and the obstruction is the sum \eqref{eq:c12-local1}. Finally $-\{S^{(1)}(P_b),\int x^\mu o_\mu\}=\int b^\mu o_\mu$.
+\end{proof}
+
+\begin{theorem}[Sector bound]
+\label{thm:c12-bound}
+$\mathrm{Ob}^{(1)}(x)$ is a colour-singlet local functional of degree $0$, Weyl weight $4-\tfrac12\lambda_x$, degree at most $p_x$ in the position, linear in the Killing data of $x$, of fermion parity $|x|$, equivariant for $\mathrm{Spin}(4)\times\mathrm{Spin}(6)$ and the adjoint action of $\mathfrak g$, and invariant under the reflection of one direction of $V$ together with one of $W_{\mathbb R}^\perp$ (Proposition \ref{prop:c9-basis}). A leg set with field weight $w_f$ and $D$ derivatives occurs at position degree $p$ only if $D=4-\tfrac12\lambda_x+p-w_f\ge0$, the numbers $n_\pm$ of $S_\pm$-indices and $n_V$ of $V$-indices (legs $A|_V$, $A^*|_V$, derivatives, positions and the vectors $b$, $\omega$ of the data) satisfy $n_++n_V\equiv n_-+n_V\equiv0$ modulo $2$, and the $SU(4)$ charges ($W$: $+1$, $W^*$: $-1$, $W_{\mathbb R}^\perp$: $2$) add to $0$ modulo $4$. The same rules hold for $\mathrm{Ob}^{(2)}(x,y)$ with degree $-1$ and weight $4-\tfrac12(\lambda_x+\lambda_y)$, and for $\hbar F_1^{(1)}$, $\hbar F_1^{(2)}$ with degrees $-1$, $-2$. At position degree $0$ the number of legs of $\mathrm{Ob}^{(1)}(x)$ is at most $4$ along $\Delta$, $M_\omega$, $R_r$ and $\Sigma$, at most $5$ along $P_b$ (the leg sets $(A|_V)^5$, $(A|_V)^3(A|_{W_{\mathbb R}^\perp})^2$, $A|_V(A|_{W_{\mathbb R}^\perp})^4$ without derivatives) and at most $3$ along $\Sigma^*$; the intrinsic part along $K_b$ has two legs; the arity-two obstruction has at most three legs at position degree $0$, four along $(\xi,P_b)$, and none at position degree $0$ along $(\eta,\eta')$. The two-leg leg sets at position degree $0$ are those of Table \ref{tab:c12-legs}.
+\end{theorem}
+
+\begin{tabular}{l|c|l|l}
+$x$ & weight & $\mathrm{Ob}^{(1)}(x)$, two legs & $\hbar F_1^{(1)}(x)$, two legs\\
+\hline
+$\Delta$, $M_\omega$, $R_r$ & $4$ & $(c,A^*|_V)_1$, $(A|_V,A|_V)_2$, $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})_2$, $(\lambda_+,\lambda_-)_1$ & $(c,c^*)_0$, $(A|_V,A^*|_V)_0$, $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})_0$, $(\lambda_\pm,\lambda^*_\pm)_0$\\
+$P_b$ & $5$ & $(c,A^*|_V)_2$, $(A|_V,A|_V)_3$, $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})_3$, $(\lambda_+,\lambda_-)_2$ & $(c,c^*)_1$, $(A|_V,A^*|_V)_1$, $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})_1$, $(\lambda_\pm,\lambda^*_\pm)_1$\\
+$\xi_+$ & $\tfrac92$ & $(c,\lambda^*_+)_2$, $(A|_V,\lambda_-)_2$, $(A|_{W_{\mathbb R}^\perp},\lambda_+)_2$ & $(A|_V,\lambda^*_+)_1$, $(A|_{W_{\mathbb R}^\perp},\lambda^*_-)_1$, $(\lambda_+,A^*|_{W_{\mathbb R}^\perp})_0$, $(\lambda_-,A^*|_V)_0$\\
+$\eta_+$ & $\tfrac72$ & $(c,\lambda^*_-)_1$, $(A|_V,\lambda_+)_1$, $(A|_{W_{\mathbb R}^\perp},\lambda_-)_1$ & $(A|_V,\lambda^*_-)_0$, $(A|_{W_{\mathbb R}^\perp},\lambda^*_+)_0$\\
+$K_b$ & $3$ & $(c,A^*|_V)_0$, $(A|_V,A|_V)_1$, $(A|_{W_{\mathbb R}^\perp},A|_{W_{\mathbb R}^\perp})_1$, $(\lambda_+,\lambda_-)_0$ & none at $p=0$; at $p=1$: $(c,c^*)_0$, $(A|_V,A^*|_V)_0$, $(A|_{W_{\mathbb R}^\perp},A^*|_{W_{\mathbb R}^\perp})_0$, $(\lambda_\pm,\lambda^*_\pm)_0$\\
+\end{tabular}
+\tabcaption{The two-leg leg sets at position degree $0$ allowed by Theorem \ref{thm:c12-bound}, $(\cdots)_D$ with $D$ derivatives; here $\lambda_+$, $\lambda_-$ are the components of $\lambda$ in $S_+\otimes W$ and $S_-\otimes W^*$, and $\lambda^*_+$, $\lambda^*_-$ those of $\lambda^*$ in $S_+\otimes W^*$ and $S_-\otimes W$. For $\xi_-$, $\eta_-$ exchange the chiralities. The parts of higher position degree are fixed by Proposition \ref{prop:c12-pos}.\label{tab:c12-legs}}
+
+\begin{proof}
+Weight and degree: Definition \ref{def:c12-ob}. A local functional with $D$ derivatives has the weight of its legs plus $D$ minus the position degree. The centres of $SU(2)\times SU(2)$ and of $SU(4)$ act on each leg and datum by the stated signs and charges, and an invariant exists exactly when they act trivially. A one-loop graph with external legs in the adjoint has at least two of them. Equivariance is Propositions \ref{prop:c7-cov} and \ref{prop:c7-select}. The leg sets are the enumeration of the multisets of at most six legs; along $K_b$ the cubic leg sets of the intrinsic part pair a symmetric kinematic factor with the antisymmetric colour factor, or are parity odd, and vanish.
+\end{proof}
+
+\begin{proposition}[Endpoint]
+\label{prop:c12-T}
+The components $\mathrm{Ob}^{(1)}(x)$, $\mathrm{Ob}^{(2)}(x,y)$, $L^{(k)}$ and the solutions $\hbar F_1^{(k)}$ are independent of $T$. Along $K_b$, $(K_b,P_{b'})$ and $(\eta,\eta')$ with $\Gamma(\eta,\eta')|_V\neq0$ the defect cycles are evaluated at a finite $T$, with the same limit at every $T$; the coefficient $\tfrac3{8\pi^2}\hbar\log T$ of the composite insertions along $K_b$ (Proposition \ref{prop:c8-Tsafe}) sits in the flows and in the trees of the observables, and the obstruction is free of it.
+\end{proposition}
+
+\begin{proof}
+Definition \ref{def:c8-ob} and Proposition \ref{prop:c8-Tindep} give the $T$-independence of the singular parts and of the obstruction, Lemma \ref{lem:c12-special} that of the finite parts of the cycles, and Proposition \ref{prop:c8-Tsafe} the convergence at $T=\infty$ along the other generators. By Theorem \ref{thm:c8-K}, the coefficient of $\log T$ in a defect graph carries a special edge on a tree at a generic momentum and is $O(\varepsilon)$.
+\end{proof}
+

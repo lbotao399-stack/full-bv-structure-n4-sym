@@ -1,0 +1,254 @@
+[
+ {
+  "id": "G-reg0",
+  "value": {
+   "two legs": {
+    "int(d*dc,d*A_V)": "-27/8"
+   },
+   "two-leg pole (cycles)": {
+    "Q int(A,A)": "9/4"
+   },
+   "three legs": {
+    "cAVAV": {
+     "G1": "11/4 + (-19/4)*log2 + (19/4)*log3",
+     "G2": "27/8"
+    },
+    "cApAp": {
+     "G3": "11/4 + (-19/4)*log2 + (19/4)*log3"
+    },
+    "clamlam": {
+     "G5": "(9)*log2 + (-9)*log3",
+     "parity-odd": "0"
+    },
+    "ccAsV": {}
+   }
+  },
+  "target": "-27/8 u int(d*dc,d*A_V); (11/4+19/4 L)(G1+G3)+27/8 G2-9L G5, G4 0, parity-odd 0",
+  "status": "pass",
+  "notes": "special-edge cycles of I alone; pole of (c,A_V) = (9/4) Q int(A,A) (counterterm)"
+ },
+ {
+  "id": "G-reg1",
+  "value": {
+   "AVAV": {
+    "int(d*A_V,d*A_V)": "0",
+    "int(dA_V,dA_V)": "-11/3"
+   },
+   "ApAp": {
+    "int(dA_perp,dA_perp)": "-11/3"
+   },
+   "lamlam": {
+    "int(lam,dslash lam)": "47/3",
+    "int(lam,dslash rho(vol) lam) [parity odd]": "0"
+   },
+   "cAsV": {
+    "int(dc,A*)": "-14/3"
+   }
+  },
+  "target": "u[-11/3 int(dA,dA) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)], 0 for int(d*A,d*A) and explicit x",
+  "status": "pass",
+  "notes": "all four sectors exact; raw (left CE coordinate) values are -1 times these"
+ },
+ {
+  "id": "G-P2",
+  "value": "position part of Ob1(Delta)|_2 = 2 Ob1(P_b)|_2: all entries 0",
+  "target": "exact 0",
+  "status": "pass",
+  "notes": ""
+ },
+ {
+  "id": "G-pole (Delta)",
+  "value": {
+   "AVAV": {
+    "int(A,A)": "-9"
+   },
+   "ApAp": {
+    "int(A,A)": "-9"
+   },
+   "lamlam": {},
+   "cAsV": {}
+  },
+  "target": "(9/4) u {int(A,A),S(Delta)} = -9 u int(A,A) ({F,S(Delta)} = F'[v.phi], Def c1-bracket); 0 in (lam,lam), (c,A*)",
+  "status": "pass",
+  "notes": ""
+ },
+ {
+  "id": "G-pole (xi)",
+  "value": {
+   "xi+ c_lams+": "0",
+   "xi+ AV_lam-": {
+    "int(Gamma_V,A_V)": "9/2"
+   },
+   "xi+ Ap_lam+": {
+    "int(Gamma_perp,A_perp)": "9/2"
+   },
+   "xi- c_lams-": "0",
+   "xi- AV_lam+": {
+    "int(Gamma_V,A_V)": "9/2"
+   },
+   "xi- Ap_lam-": {
+    "int(Gamma_perp,A_perp)": "9/2"
+   }
+  },
+  "target": "(9/4)u{int(A,A),S(xi)} = (9/2) u int(A, Gamma(xi,lam)) (computed bracket ratio 2)",
+  "status": "pass",
+  "notes": ""
+ },
+ {
+  "id": "G-sign (two legs)",
+  "value": {
+   "rule": "Q acts leg by leg (c->A_V, A->A*, A*->c*, lam->lam*, symbol q(k) of Prop c1-Q) with sign (-1)^{number of odd legs before}; Q int(lam,lam*) = +int(lam,dslash lam), i.e. Q int(lam*,lam) = -int(lam,dslash lam) with (lam*,lam) = -(lam,lam*)",
+   "candidates": [
+    {
+     "alpha": 0,
+     "beta": 1,
+     "eta": [
+      -1,
+      1,
+      -1,
+      -1
+     ]
+    },
+    {
+     "alpha": 1,
+     "beta": 0,
+     "eta": [
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "Q_SPb_closed": {
+    "V": true,
+    "perp": true,
+    "lam": true
+   }
+  },
+  "target": "Q^2 = 0, Q S_2(x) = 0, images of Thm c9-quadratic (iii)",
+  "status": "pass",
+  "notes": "two rules pass: left derivation (chosen: Q = {S,-} acts from the left, Def c1-bracket) and its right-derivation image (differs by (-1)^{parity of the image})",
+  "revised": "convention text corrected (finding F6): the code gives Q int(lam,lam*) = -int(lam,dslash lam), and (lam*,lam) = +(lam,lam*) since lam* is even; Q N = [-1,4,-1] (rerun of qa q_lcN.py)"
+ },
+ {
+  "id": "G-WZ1 (xi, two legs)",
+  "value": {
+   "max_abs_Q_Ob1_plus_bracket": 0.0,
+   "max_abs_Q_Ob1_minus_bracket": 6156.0
+  },
+  "target": "Lambda Ob1(x) = {Ob0,S(x)} (Lemma at-sformulas (ii) as printed)",
+  "status": "pass with sign: Lambda Ob1(x) = -{Ob0,S(x)}",
+  "notes": "the component formula of Def c2-dce for a degree-1 cochain gives (sG)^(1)(x) = Lambda G^(1)(x) + {G^(0),S(x)} (checked: Lambda{F0,T1} = -{Lambda F0,T1}), so the printed identity has the opposite sign; magnitude 27/8 and the absence of g4 confirmed",
+  "revised": "passes with Lambda Ob1(x) = -{Ob0,S(x)}, the corrected Lemma at-sformulas (ii)"
+ },
+ {
+  "id": "G-R0",
+  "value": {
+   "AVAV": true,
+   "ApAp": true,
+   "lamlam": true,
+   "cAsV": true,
+   "c_Ap_Asp": true,
+   "AV_Ap_Ap": true,
+   "Ap_lam_lam": true
+  },
+  "target": "Ob1(R_r) = 0 sector by sector",
+  "status": "pass",
+  "notes": "two legs: four sectors; three legs: (c,A_perp,A*_perp), (A_V,A_perp,A_perp), (A_perp,lam,lam); poles 0"
+ },
+ {
+  "id": "B1 o_d (and X-theta)",
+  "value": {
+   "V": {
+    "V": "-2/3",
+    "other_classes": [
+     "0"
+    ]
+   },
+   "P": {
+    "P": "-2/3",
+    "other_classes": []
+   },
+   "L": {
+    "L": "-2/3",
+    "other_classes": []
+   }
+  },
+  "target": "o_perp = -(2/3) u (cross-check X-theta, theta = -1/3)",
+  "status": "pass",
+  "notes": "logs (present in raw cycle sums) cancel in the class; components along the other class of the V block (second-order free symmetry) 0"
+ },
+ {
+  "id": "G-H (two legs along Sigma: Prop at-xi2)",
+  "value": {
+   "xi+": {
+    "H0": 0,
+    "Hm1": 2,
+    "kernel": [
+     [
+      "0",
+      "1",
+      "0",
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0",
+      "1",
+      "0",
+      "1"
+     ]
+    ]
+   },
+   "xi-": {
+    "H0": 0,
+    "Hm1": 2,
+    "kernel": [
+     [
+      "0",
+      "1",
+      "0",
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0",
+      "1",
+      "0",
+      "1"
+     ]
+    ]
+   }
+  },
+  "target": "H^0 = 0; kernel span{T1+T3, T2+T4}",
+  "status": "pass",
+  "notes": "",
+  "id_revised": "G-S1xi2 (two-leg cohomology along Sigma, Prop at-xi2)",
+  "revised": "renamed (finding F10): not Hypothesis at-H at three legs"
+ },
+ {
+  "id": "G-cyc",
+  "value": {
+   "G-cyc arity one (A_V,A_V), Vdir": true,
+   "G-cyc arity two (c,A*_V), (V0,P_b)": true
+  },
+  "target": "cyclic reduction of the word sum exact",
+  "status": "pass",
+  "notes": ""
+ },
+ {
+  "id": "G-masters",
+  "value": 1.3002727013935711e-15,
+  "target": "exact J = quadrature to < 1e-10",
+  "status": "pass",
+  "notes": ""
+ },
+ {
+  "id": "G-log (finite-eps extrapolation)",
+  "status": "not run",
+  "revised": "structural only"
+ }
+]

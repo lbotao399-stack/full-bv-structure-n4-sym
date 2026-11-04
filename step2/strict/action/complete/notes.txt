@@ -1,0 +1,125 @@
+ACTION-SIDE COMPLETION (strict Costello route, R10) -- method, conventions, results
+step2/strict/action/complete/   code: src.nosync/   raw and fit outputs: out.nosync/   results.json, gates.json, PROGRESS.txt
+Units u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2); every coefficient below is a multiple of u. L := log(3/2).
+No dimensional regularisation, no IR regulator other than T; pure Python (fractions, numpy, sympy); one heavy process at a time.
+
+0. Two routes (both used for every loop entry, agreement recorded entry by entry in results.json)
+ route A = engine A code path (step2/strict/action/engine_a/src.nosync, read-only): closed defect cycles sa_core.cycle_sum
+   (exact simplex integrals cq_gcore.GSimplex, special line in front, factor 1/2), position injection sa_ob, the exact
+   Grassmann mode model sa_mode (Q = {S_free,-}, bracket of Def c1-bracket), realisation cliff.py (rho|_Sigma = sb, pairing u^T w).
+ route B = engine B code path (step2/strict/action/engine_b/src.nosync, read-only): word formula eb_cycle.evaluate (STr on the
+   simplex grid, exact interpolation, ce_int.J), injection eb_pos.position_split, Q eb_qb.apply_Q, realisation
+   realization.py (R, Rb, pairing Mp).
+ The two routes share no loop code and use different Clifford realisations; results are compared on realisation-independent
+ data (conditions on the free coefficients, coefficients of named functionals T_i, s0, u0, S(x)_d, S^(2) pieces).
+ Common infrastructure written here: candidate bases (bilin.py: covariant contractions in any realisation, sector
+ projections), exact linear algebra (fitlib.py: pivots mod p = 10^9+9, exact Fraction solve, exact verification on all
+ rows), canonical data with position degree <= 2 (dtree.py: alpha, beta, gamma of Def c11-canonical, the rule of eb_pos,
+ checked against integration by parts), density-level Q and brackets in each realisation (dtree.Tree).
+
+1. New conventions fixed by derivation and gates (no free constant)
+ (a) Arity-two odd-odd generating function: J = I + c S(xi) + c' S(xi') - c c' S^(2)(xi,xi') (commuting CE coordinates);
+     the sign -1 is forced by the classical master equation: the c c' coefficient of (d_CE+Q)J + 1/2{J,J} vanishes only
+     for -S^(2) (with {S,S^(2)} = {S(xi),S(xi')} - S(Gamma|_V), gate GB-S2/GA-S2). Theory component
+     Ob2(xi,xi') = -(c c' coefficient) = -raw(two letters) + raw(S^(2) letter), both routes.
+ (b) Mixed parity (xi, P_b): engine-A rule Ob2(x,y) = (-1)^{|x|} coefficient of theta.. c^y c^x (ghosts on the right):
+     route A theory = -raw_A; route B (c_P in front: c_P S(P) = -S(P) c^P, odd legs passed) theory = (-1)^{n_odd} raw_B = raw_B
+     (n_odd even in every sector). (Delta,xi): route A theory = raw_A, route B theory = -raw_B (QA rule, re-derived).
+ (c) Brackets on plane-wave densities (dtree.Tree / cb_tree): {G,F} for quadratic translation-invariant G is the leg
+     derivation M_G(p) = -K_0 H_G(p,-p)^T (Pi M for odd G; Koszul (-1)^{n_odd before} for even G). Calibrated and checked:
+     M_{S_free} = q (Prop c1-Q), M_{T1} = engine-B map_T1, {N,S_free} = Q N, derivation rule Q{N,F} = -{QN,F} - (-1)^{|N|}{N,QF}
+     (bracket of Def c1-bracket, finding F1); in route A's realisation equal to the mode-model bracket (even and odd G).
+ (d) Wess-Zumino signs: the corrected forms of finding F1 are used throughout:
+     Lambda G^(1)(x) = -{G^(0),S(x)};  Lambda G^(2)(x,y) = G^(1)([x,y]) - (-1)^{|x|}{G^(1)(x),S(y)} + {S(x),G^(1)(y)} - {G^(0),S^(2)(x,y)}.
+     Residuals (eq at-eqs, correct as printed): R2 = Ob2 - F1([x,y]) - (-1)^{|x|}({F1(x),S(y)} + {S(x),F1(y)}) - {F1^(0),S^(2)}.
+     {F1^(0)|_2, S^(2)} = 0 (S^(2) has no A*, F1^(0)|_2 = 27/16 u int(d*A_V,d*A_V) no antifield).
+ (e) [xi,eta] for xi in Sigma, eta in Sigma^*: c_D Delta + M_omega + R_r with c_D = (xi,eta)/2, omega_{nu mu} =
+     Gamma(xi,rho(e_mu)eta)^nu - (xi,eta) delta (eq c2-oddodd, Prop c2-special); the W_perp rotation r used in S(R_r) =
+     int(rA_perp,A*_perp) - int(1/4 r_IJ rho_I rho_J lam, lam*) is minus the matrix elements (rho_I rho_J xi, eta) as
+     transcribed here. Fixed by the exact fit of S([xi,eta]) = {S(xi),S(eta)} - Q S^(2)(xi,rho(x)eta) onto S(Delta),
+     S(M_omega), S(R_r) (gate G-bracket); [xi_+, eta_-] = 0 is reproduced.
+ (f) Two-component forms: T0..T4, g1..g4, s0, u0 := int(rho(A_V)eta,lam*), S(Delta)_d, S(P_b)_d, N as in theory Rem at-twocomp.
+     S^(2)(Q1,Q2) = int{ 1/4 (Gamma(Q1,Q2), Gamma(lam*,lam*)) - 1/2 (Q1,lam*)(Q2,lam*) - (iota_{Gamma(Q1,Q2)}A, c*) } with,
+     for Q1 = xi_alpha^i, Q2 = xibar_{alpha-dot i}: Gamma|_V^m = i xibar_{alpha-dot i} sigmabar^{m alpha-dot alpha} xi_alpha^i,
+     Gamma|_perp = 0; for Q1, Q2 both in S_+ (x) W: Gamma|_V = 0, (Gamma|_perp)_{kl} = 2 eps_{jikl} xi1_alpha^j eps^{alpha beta} xi2_beta^i
+     (the Gamma_perp formula of Rem at-twocomp with lam -> xi2).
+
+2. Results (both routes agree on every entry listed; values exact)
+ 2.1 (xi_+, xi_-), (xi_+, xi'_+), (xi_-, xi'_-) on two legs (weight 5, degree -1, p = 0). Bases complete by the
+     representation count (pm: V 5, perp 2, lam 8; pp/mm: mixed-A 4, lam 6). Ob2 in span, sum of poles 0, Q Ob2|_2 = 0 and
+     G-WZ2 with the corrected sign of -{Ob0,S^(2)} (the right side cancels: 27/8{g2-brackets} = {Ob0,S^(2)}).
+     H^{-1}(Q) (route B targets): pm V 1 [S(P_G)_V], perp 1 [S(P_G)_perp], lam 3 ([S(P_G)_lam] and two SU(4)-15 free classes
+     int(r^mu d_mu lam, lam*), one per chirality); pp, mm: 1 + 1.
+     Conditions for [R2] = 0, with F1(xi)|_2 = (L - 79/12)(T1 + T2) + th^xi_V S^V_2(xi) + th^xi_perp S^perp_2(xi),
+     F1(P_b)|_2 = sum_d th^P_d S(P_b)_d (+ exact):
+        (xi_+,xi_-):  th^P_V = th^P_perp = th^P_lam = th^{xi+}_V + th^{xi-}_V - 27/4 - 2L,   th^{xi+}_V + th^{xi-}_V = th^{xi+}_perp + th^{xi-}_perp
+        (xi_+,xi'_+): th^{xi+}_V - th^{xi+}_perp = -(th^{xi'+}_V - th^{xi'+}_perp)  (and = + from the A block)  =>  th^{xi+}_V = th^{xi+}_perp
+        (xi_-,xi'_-): th^{xi-}_V = th^{xi-}_perp.
+     Hence the sector differences along Sigma are fixed at arity two (not only by the cubic part, Thm at-cubic):
+        th^{xi}_V = th^{xi}_perp =: t_xi (both chiralities), and   t_P - t_{xi+} - t_{xi-} = -27/4 - 2 log(3/2).
+ 2.2 (xi_+-, P_b) (weight 11/2, p = 0, basis 13 complete): Ob2(xi,P_b)|_2 = (1/4) log(4/3) x [Q-exact functional] (no
+     rational part, no pole), Q Ob2 = 0, exact image of int(xi,rho(b)lam) c* and int(b.A*,(xi,lam*)).
+     [R2(xi,P_b)] = 0  <=>  th^P_V = th^P_perp = th^P_lam  (uniform translation coefficient t_P).  G-zero holds.
+ 2.3 (Delta, xi_+-) (weight 9/2, p <= 1, basis 18): the residual with F1(Delta)|_2 = 22/3 int(A,A*) - 47/3 int(lam*,lam)
+     - 8/3 int(c*,c) + sum_d th^D_d S(Delta)_d (Q F1part(Delta) = Ob1(Delta)|_2 recomputed, gate G-F1Delta) gives
+        [R2(Delta,xi)] = 0  <=>  th^D_perp = th^D_lam = th^D_V = -1/3,  th^xi free,
+     an independent determination of t_Delta = -1/3 (the same value as (Delta,P_b), Thm at-theta) from [D,Q].
+     The arity-two solution F1^(2)(Delta,xi)|_2 = log(4/3) [int x^mu (xi, rho(e_mu) lam) c*-structure + int x^mu (A*_mu,(xi,lam*))]
+     + closed degree -2 directions (psi_exact in results.json, identical labels and coefficients in both routes).
+ 2.4 eta_+- arity one, two legs, p <= 1 (degree 0 basis 13, degree -1 basis 11): Ob1(eta)|_2 in span, no pole,
+     Q S_2(eta) = 0, position part = Ob1(rho(e_mu)eta)|_2 = (79/24 - L/2)(g1+g3) + 27/8 g2 (computed), G-WZ1 with the
+     corrected sign (printed sign fails); H^0(Q) = 1 at weight 7/2, p <= 1 (one class in the (A_perp, lam) sector), the
+     component of R1(eta)|_2 along it vanishes; solution (both chiralities, both routes):
+        F1(eta)|_2 = sum_mu x^mu (L - 79/12)(T1 + T2)(rho(e_mu)eta) + (3L - 3/2) int x^mu (T2 + T4)(rho(e_mu)eta) - 5/2 u0
+                     + th^eta_V S^V(eta) + th^eta_perp S^perp(eta),
+     free directions exactly S^V(eta) = x.(T1+T3)(rho eta), S^perp(eta) = x.(T2+T4)(rho eta) + s0. Equivalently
+        F1(eta)|_2 = sum_mu x^mu F1part(rho(e_mu)eta) - (3L - 3/2) s0 - 5/2 u0 + th'_V S^V(eta) + th'_perp S^perp(eta),
+     i.e. the position part of the solution is the xi-solution at rho(b)eta (translation covariance holds automatically).
+ 2.5 (xi_+, eta_+-) on two legs, p <= 1 (eta and S^(2)(xi, rho(x)eta) by injection). [xi_+,eta_+] = (xi,eta)/2 Delta
+     + M_omega + R_r, [xi_+,eta_-] = 0 (gate G-bracket). F1([xi,eta]) uses F1(Delta)|_2 (2.3), F1(M_omega)|_2 = 1/3 S(M_omega)_spin
+     + sum_d th^M_d S(M_omega)_d (engines A, B task T3, finding F8), F1(R_r)|_2 = sum_d th^R_d S(R_r)_d (Ob1(R) = 0), F1(eta)|_2 of 2.4.
+     The candidate basis of the (lam, lam*) position sectors is incomplete by one structure per chirality (14 expected,
+     13 generated), so [R2] = 0 is decided directly on the value vectors (40 configurations x 5 canonical numbers): R2 = Q psi
+     with psi in the span of the degree -2 candidates x(A,c*), x(lam*,lam*); unknowns split into Q + Q log2 + Q log3.
+        (xi_+,eta_-):  th^xi_V - th^xi_perp = th^eta_V - th^eta_perp - 3L + 3/2
+        (xi_+,eta_+):  th^R_perp = th^R_lam =: tau;  th^D_d = th^M_d = tau - 1/3 (every d);
+                       th^xi_V + th^eta_V = tau + 77/12 + 2L;  th^xi_perp + th^eta_perp = tau + 95/12 - L.
+     With th^xi_V = th^xi_perp (2.1) both give th^eta_V - th^eta_perp = 3L - 3/2: in the parametrisation of 2.4 the total
+     coefficients of x.T3 and x.T4 in F1(eta) coincide, i.e. the position part of F1(eta) is x.F1(rho(e)eta) with one
+     uniform t_eta := th^eta_V. With th^D = -1/3 (2.3): tau = 0, t_R = 0, t_M = -1/3, t_{xi+} + t_{eta+} = 77/12 + 2L.
+ 2.6 K_b arity one, two legs, position degree <= 2 (canonical data alpha, beta, gamma; second-order injection):
+     G-K-closed (Q S_2(K_b) = 0 for the vertex built from v = (x,x)b - 2(b,x)x, div v = -8(b,x), d(v,-) = 4 x^b),
+     Ob1(K_b)|_2 in span, G-pole: sum a_1 = (9/4){int(A,A),S(K_b)} on the full canonical data, G-WZ1 corrected sign
+     (printed fails), R1 = Ob1 - {F1^(0),S(K_b)} closed, solvable. H^0(Q) = 4 at weight 3, p <= 2 (R1 has no component on it).
+     Solution (identical in route A and route B):
+        F1(K_b)|_2 = int (b,x){ -22/3 (A,A*) + 16 (lam,lam*) + 8/3 (c,c*) } + 2/3 int{(b.A)(x.A*) - (x.A)(b.A*)}
+                     - 1/3 int b_mu x_nu (lam, rho_mu rho_nu lam*)  + sum_d th^K_d S(K_b)_d + 4 further closed directions,
+     the x-linear part being -(b,x) F1part(Delta) plus the spin term 1/3 S(M)_spin of the rotation part of d_{b'} v
+     (16 - 1/3 = 47/3), i.e. the solution is translation covariant. H^{-1}(Q) at weight 3, p <= 2 is 7-dimensional:
+     S(K_b)_perp, S(K_b)_lam, S(K_b)_V and 4 second-order free-field symmetries (xx(c,c*)/xx(A,A*) and two xx(lam,lam*)
+     structures, not Q-exact: rank test with the images of xx(A_V,c*), xx(lam*,lam*)); these are not fixed on two legs.
+     T-independence: structural (Lemma at-special); the eps^0 coefficients are the T-independent simplex coefficients.
+
+3. One-loop algebra relations established as computed identities (invariant content)
+ [D,P] (Delta,P_b; engines A, B earlier) and [D,Q] (Delta,xi, here): t_Delta = -1/3 in every sector.
+ [Q,P] = 0 (xi,P_b): the translation coefficient is sector-uniform, Ob2 exact.
+ [Q,Q] = P (xi_+,xi_-) with (xi,xi') of equal chirality: sector-uniform t_xi and t_{xi+} + t_{xi-} - t_P = 27/4 + 2 log(3/2),
+     invariant under the inner (t_z -> t_z + c lambda_z: -1 - 1 + 2 = 0) and outer (t_{xi+-} -> t_{xi+-} +- a) directions.
+     In a translation-covariant scheme t_P = t_Delta = -1/3: t_{xi+} + t_{xi-} = 77/12 + 2 log(3/2).
+ {Q,S} containing D_1 (xi_+,eta_+): t_M = t_Delta, t_R = t_Delta + 1/3 (with F1part(M) = 1/3 S(M)_spin, F1part(R) = 0),
+     sector-uniform t_D, t_M, t_R, t_eta, and t_{xi+} + t_{eta+} - t_Delta = 27/4 + 2 log(3/2), the same constant as in [Q,Q]
+     (t_{xi+} + t_{xi-} - t_P); invariant under the common shift of (t_D, t_M, t_R, t_xi + t_eta) (eq at-tshift).
+     Together with t_P = t_Delta = -1/3: t_{eta+} = t_{xi-}, t_M = -1/3, t_R = 0 (t_{eta-} = t_{xi+} by the same equation
+     for the opposite chiralities, not run). [Q,S] = 0 for (xi_+,eta_-): equal sector differences of xi and eta.
+ [K,P] = (b,b') Delta + M: not computed (pair (K_b,P_b') open); F1(K_b)|_2 is available for it.
+
+4. Open / not done in this run
+ - Ob2(K_b,P_b'), Ob2(eta,eta') (position degree 2 at arity two, finite T): not run ([K,P] relation open).
+ - three- and four-leg classes: S1-cubic / Hypothesis at-H at three legs (GC13 along Delta, P_b; the analogues along xi,
+   eta, K_b, M, R), Ob1 on three/four legs, cubic counterterm couplings (Prop at-couplings): not run.
+ - fixing the 4 extra closed directions of F1(K_b)|_2 and the SU(4)-15 classes (free-field symmetries) needs three legs.
+ - G-pole along eta and (xi,eta): only the intrinsic (alpha) part of the pole was stored and checked.
+ - G-T along K_b: structural only (no numerical finite-T comparison); G-log (finite-eps extrapolation): not run.
+ - route A closed/H dimensions for (xi,xi') with equal chiralities use a target set that misses the mixed sectors
+   (closed dims 4/6 instead of 2/3); the conditions use only the exact images and agree with route B.
+ - (xi_-, eta_+-) not run (expected by the chirality exchange).

@@ -1,0 +1,500 @@
+{
+ "gates": [
+  {
+   "id": "OP0 E0-conv",
+   "value": "Pi K_0 H_free(-k,k) - q(k) = 0",
+   "target": "q(k) = Pi K_0 H_free(-k,k)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-orient",
+   "value": "rho(e1e2e3e4) = +1 on comps 0..7: True, -1 on 8..15: True",
+   "target": "lamP = S_+ (x) W = +1 eigenspace for the orientation dx1dx2dx3dx4 of the dictionary (engine m=0 <-> 4)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-xi-arrows-p",
+   "value": "{'field_arrows_equal_minus_Lemma': True, 'antifield_arrows_by_pairing': True}",
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-xi-comm-p",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-Cxi-p",
+   "value": "{'blocks': ['AV<-lamsP', 'c<-lamM', 'lamP<-AsV', 'lamsM<-cs'], 'order_one': True, 'lam_to_c': True, 'graded_sym': True}",
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-line-p",
+   "value": "{'blocks': ['c<-lamP', 'lamP<-c'], 'c_lam': ['-2'], 'lam_c': ['2']}",
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-xi-arrows-m",
+   "value": "{'field_arrows_equal_minus_Lemma': True, 'antifield_arrows_by_pairing': True}",
+   "target": "xi. induced by S_2(xi) in the convention of Prop c1-Q / Prop c7-susy (F = (1/2)<e,Xe>): lam -> +Gamma(xi,lam), A -> +(1/2) rho(dA) xi; antifield arrows from the pairing",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-xi-comm-m",
+   "value": "pairing True, [xi.,Q]=0 True, [xi.,H]=0 True",
+   "target": "Prop qs-comm (i)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-Cxi-m",
+   "value": "{'blocks': ['AV<-lamsM', 'c<-lamP', 'lamM<-AsV', 'lamsP<-cs'], 'order_one': True, 'lam_to_c': True, 'graded_sym': True}",
+   "target": "components lam->c (= +i(p,Gamma(xi,lam)|_V) with xi. of Prop c7-susy), A*->lam, lam*->A, c*->lam*, order one, zero on A, c; (C_xi (x) 1)K_0 graded symmetric",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-line-m",
+   "value": "{'blocks': ['c<-lamM', 'lamM<-c'], 'c_lam': ['-2'], 'lam_c': ['2']}",
+   "target": "Cor qs-edges (ii),(iii): composite line in c (x) lam, lam (x) c; multiple of xi e^{-2eps p^2}/p^2",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-eta-ep",
+   "value": "{'comm_Q': True, 'comm_Q_without_Y': False, 'Y_blocks': ['AsV<-lamsM', 'AsW<-lamsP'], 's0_needed': True, 'comm_H': True, 's0_blocks': ['AsW<-lamsP', 'lamP<-AW']}",
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-eta-em",
+   "value": "{'comm_Q': True, 'comm_Q_without_Y': False, 'Y_blocks': ['AsV<-lamsP', 'AsW<-lamsM'], 's0_needed': True, 'comm_H': True, 's0_blocks': ['AsW<-lamsM', 'lamM<-AW']}",
+   "target": "[eta.,Q] = 0 and [eta.,H] = 2 xi_mu. d_mu for the operator induced by S_2(eta) = int x^mu S_2(xi_mu) + int s_0; eta^0. arrows A_perp -> lam, lam* -> A*_perp",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-spin",
+   "value": "{'equivariance': True, 'pairing': True}",
+   "target": "Sigma^{mu nu} = (1/2) rho_mu rho_nu on Sigma and Sigma^*: rho(Sigma v) = [Sigma, rho(v)], (Sigma s, s*) + (s, Sigma s*) = 0",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-Delta",
+   "value": "{'comm_Q': True, 'comm_QGF_eq_m4QGF': True, 'comm_H_eq_m4H': True}",
+   "target": "[v.,Q] = 0, [v.,Q^GF] = -4 Q^GF, [v.,H] = -4H for v = 2E (Prop c7-dil)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 E0-K",
+   "value": "{'comm_Q': True, 'remainder_constant': True, 'C_K_order0': True, 'C_K_AV_eq_m4b': True, 'C_K_AsW_zero': True, 'C_K_formula': True, 'comm_H': True, 'C_K_blocks': ['AsV<-cs', 'c<-AV', 'lamM<-lamsP', 'lamP<-lamsM']}",
+   "target": "[v.,Q]=0; [v.,Q^GF] = 4(b,x)Q^GF + C_K, C_K = 2 sigma^rho(Q^GF)(w b_rho - b_nu Sigma^{rho nu}), C_K A_V = -4(b,A_V), C_K = 0 on A*_perp; [v.,H] = 4(b,x)H - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho",
+   "pass_": true
+  },
+  {
+   "id": "OP0 M_w commutators",
+   "value": "{'comm_Q': True, 'comm_QGF': True, 'comm_H': True, 'opposite_spin_sign_commutes': False}",
+   "target": "[v.,Q] = [v.,Q^GF] = [v.,H] = 0 for v = w x with Om_{mn} = d_m v_n = w_{nm}; the opposite spin sign fails",
+   "pass_": true
+  },
+  {
+   "id": "OP0 M_w variation kernel and line",
+   "value": "{'var_zero': True, 'line_Q_closed': True}",
+   "target": "V_M = 0; [Q, P* M. P*] = 0 (g arbitrary)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 P_b",
+   "value": "{'commutators': True, 'var_zero': True, 'line_Q_closed': True}",
+   "target": "[P.,Q] = [P.,Q^GF] = [P.,H] = 0, V_P = 0, [Q, P* P. P*] = 0",
+   "pass_": true
+  },
+  {
+   "id": "OP0 Delta variation kernel and line",
+   "value": "{'var_eq_m4QGF_g_plus_Hgprime': True, 'g_plus_Hgp_eq_scaling': True, 'line_Q_closed': True}",
+   "target": "[v.,P*] = -4 Q^GF (g + H g') = -4 (eps d_eps + T d_T) P*; [Q, P* v. P*] = 0 (g arbitrary)",
+   "pass_": true
+  },
+  {
+   "id": "OP0 K_b line",
+   "value": "{'identity': True, 'nonzero': True}",
+   "target": "[Q, P* v. P*] = [v.,P*] E - [v.,E] P* != 0 along K_b (Lemma op-lines (ii))",
+   "pass_": true
+  },
+  {
+   "id": "OP0 R",
+   "value": "{'commutators': True, 'equivariance': True, 'pairing': True, 'cubic_vertex_invariant': True, 'P_R_P_zero': True}",
+   "target": "R. commutes with Q, Q^GF, H; rho(R v) = [sigma(R), rho(v)]; pairing and (lam, rho(A) lam) invariant; P* R. P* = 0: no composite line along R",
+   "pass_": true
+  },
+  {
+   "id": "OP0 M_w spin on the cubic vertex",
+   "value": "True",
+   "target": "(lam, rho(A) lam) invariant under the spin part (1/2) Om Sigma, Om_{mn} = w_{nm}",
+   "pass_": true
+  },
+  {
+   "id": "G-noLog (n=0)",
+   "pass_": true,
+   "value": "109/109 rows without log eps",
+   "target": "no log eps in any defect cycle (structural: bounded special parameter)"
+  },
+  {
+   "id": "G-D1pair D0 (n=0)",
+   "pass_": true,
+   "value": "43/43 complete rows pass",
+   "target": "Upsilon^0_Delta = 4 lc + C^0_Delta pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair D0 with the theory finite vertex F_x (n=0, rows with F != 0)",
+   "pass_": false,
+   "value": "0/3 pass; failing: ['lamP|lamP [AW]', 'lamP|lamM [AV]', 'lamM|lamM [AW]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form D0 (n=0)",
+   "pass_": true,
+   "value": "55/55 rows",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair P (n=0)",
+   "pass_": true,
+   "value": "35/35 complete rows pass",
+   "target": "Upsilon_{P_b} = C_{P_b} pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair P with the theory finite vertex F_x (n=0, rows with F != 0)",
+   "pass_": false,
+   "value": "0/3 pass; failing: ['lamP|lamP [AW]', 'lamP|lamM [AV]', 'lamM|lamM [AW]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form P (n=0)",
+   "pass_": false,
+   "value": "52/56 rows; not satisfied (omitted -ct^(1)(sO) terms, finding B-F3): ['AV|AV [AV]', 'AV|AW [AW]', 'AV|lamP [lamP]', 'AV|lamM [lamM]']",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair M0 (n=0)",
+   "pass_": true,
+   "value": "37/37 complete rows pass",
+   "target": "Upsilon^0_{M_w} = C^0_{M_w} pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair M0 with the theory finite vertex F_x (n=0, rows with F != 0)",
+   "pass_": false,
+   "value": "2/3 pass; failing: ['lamP|lamM [AV]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form M0 (n=0)",
+   "pass_": true,
+   "value": "43/43 rows",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair R (n=0)",
+   "pass_": true,
+   "value": "26/26 complete rows pass",
+   "target": "Upsilon_R = 0 pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair R with the theory finite vertex F_x (n=0, rows with F != 0)",
+   "pass_": false,
+   "value": "1/3 pass; failing: ['lamP|lamP [AW]', 'lamM|lamM [AW]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form R (n=0)",
+   "pass_": true,
+   "value": "26/26 rows",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-noLog (n=1)",
+   "pass_": true,
+   "value": "43/43 rows without log eps",
+   "target": "no log eps in any defect cycle (structural: bounded special parameter)"
+  },
+  {
+   "id": "G-D1pair D0 (n=1)",
+   "pass_": true,
+   "value": "38/38 complete rows pass",
+   "target": "Upsilon^0_Delta = 4 lc + C^0_Delta pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair D0 with the theory finite vertex F_x (n=1, rows with F != 0)",
+   "pass_": false,
+   "value": "0/10 pass; failing: ['AV|AV [AV]', 'AV|AW [AW]', 'AV|lamP [lamP]', 'AV|lamM [lamM]', 'AW|AW [AV]', 'AW|lamP [lamM]', 'AW|lamM [lamP]', 'lamP|lamP [AW]', 'lamP|lamM [AV]', 'lamM|lamM [AW]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form D0 (n=1)",
+   "pass_": false,
+   "value": "34/42 rows; not satisfied (omitted -ct^(1)(sO) terms, finding B-F3): ['AV|AV [AV]', 'AV|AW [AW]', 'AV|lamP [lamP]', 'AV|lamM [lamM]', 'lamP|lamP [AV AW]', 'lamP|lamM [AV AV]', 'lamP|lamM [AW AW]', 'lamM|lamM [AV AW]']",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair P (n=1)",
+   "pass_": true,
+   "value": "28/28 complete rows pass",
+   "target": "Upsilon_{P_b} = C_{P_b} pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair P with the theory finite vertex F_x (n=1, rows with F != 0)",
+   "pass_": false,
+   "value": "0/5 pass; failing: ['AV|AV [AV]', 'AV|AW [AW]', 'AV|lamP [lamP]', 'AV|lamM [lamM]', 'AW|AW [AV]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form P (n=1)",
+   "pass_": false,
+   "value": "18/28 rows; not satisfied (omitted -ct^(1)(sO) terms, finding B-F3): ['AV|AV [AV]', 'AV|AV [AV AV]', 'AV|AW [AV AW]', 'AV|AW [AW]', 'AV|lamP [AV lamP]', 'AV|lamP [AW lamM]', 'AV|lamP [lamP]', 'AV|lamM [AV lamM]', 'AV|lamM [AW lamP]', 'AV|lamM [lamM]']",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair M0 (n=1)",
+   "pass_": true,
+   "value": "25/25 complete rows pass",
+   "target": "Upsilon^0_{M_w} = C^0_{M_w} pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair M0 with the theory finite vertex F_x (n=1, rows with F != 0)",
+   "pass_": false,
+   "value": "1/5 pass; failing: ['AV|AV [AV]', 'AV|lamP [lamP]', 'AV|lamM [lamM]', 'AW|AW [AV]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form M0 (n=1)",
+   "pass_": false,
+   "value": "21/26 rows; not satisfied (omitted -ct^(1)(sO) terms, finding B-F3): ['AV|AV [AV]', 'AV|AW [AW]', 'AV|lamP [lamP]', 'AV|lamM [lamM]', 'lamP|lamP [AV AW]']",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-D1pair R (n=1)",
+   "pass_": true,
+   "value": "7/7 complete rows pass",
+   "target": "Upsilon_R = 0 pair by pair (Conj op-pair), Upsilon = [eps^0] D"
+  },
+  {
+   "id": "G-D1pair R with the theory finite vertex F_x (n=1, rows with F != 0)",
+   "pass_": false,
+   "value": "2/3 pass; failing: ['AV|AW [AW]']",
+   "target": "same identity with Upsilon = [eps^0] D + F_x (Def op-defect (iii)); finding B-F1"
+  },
+  {
+   "id": "G-pole reduced form R (n=1)",
+   "pass_": true,
+   "value": "7/7 rows",
+   "target": "[eps^-m] D^0_Delta = -4m ct_m; [eps^-m] D_{P,M,R} = 0"
+  },
+  {
+   "id": "G-reg Upsilon0_Delta",
+   "value": "{'traceless': '40/3', 'trace': '-104/3'}",
+   "target": "Upsilon^0_Delta = 40/3 O (traceless), -104/3 O (trace) units",
+   "pass_": true
+  },
+  {
+   "id": "G-D1pair (A_perp,A_perp)->A_perp A_perp Delta",
+   "value": "{'special': ['16', '-16'], 'four_lc': ['16', '-16'], 'C0': ['-8/3', '0']}",
+   "target": "special-edge placements = 4 lc (16 O - 16 T), line placements = C^0_Delta = -8/3 O",
+   "pass_": true
+  },
+  {
+   "id": "G-reg D_1",
+   "value": "{'traceless': '0', 'trace': '-48'}",
+   "target": "D_1 = 0 (traceless), -48 units (trace) at theta = -1/3",
+   "pass_": true
+  },
+  {
+   "id": "G-reg Upsilon_P and P_1",
+   "value": "{'total': ['-1/3', '0'], 'line': ['-1/3', '0'], 'special': ['0', '0'], 'P_1': '-(1/3 + theta_P) u d_b O'}",
+   "target": "Upsilon_{P_b} = -1/3 u d_b O = C_{P_b}; P_1 = -(1/3 + theta_P) u d_b O",
+   "pass_": true
+  },
+  {
+   "id": "Thm op-a (d) on F0: Upsilon_R = 0",
+   "value": "{'line': '0', 'special': '0', 'coefficient_of_RO': {'line': '[0]', 'special': '[0]'}, 'R_1': '-theta_R u R.O (one-body) + two-body above'}",
+   "target": "Upsilon_R(A_perp,A_perp) = 0",
+   "pass_": true
+  },
+  {
+   "id": "Upsilon^0_M on scalar letters",
+   "value": "{'line': '0', 'special': '0'}",
+   "target": "Upsilon^0_{M_w}(A_perp,A_perp)->A_perp A_perp = 0 (no vector index)",
+   "pass_": true
+  },
+  {
+   "id": "Cor op-SK: Upsilon^0_K(A_perp,A_perp) singlet",
+   "value": "{'line': '0', 'special': '0'}",
+   "target": "Upsilon^0_{K_b} on the scalar bilinear vanishes on the colour singlet (Prop c11-SKbil (ii))",
+   "pass_": true
+  },
+  {
+   "id": "G-reg Q_1 two-body XIP",
+   "value": "{'a1': '-log(9/4)', 'a2': 'log(81/16)', 'a3': 'log(81/16)', 'a4': '0'}",
+   "target": "-2L F1 + 4L F2 + 4L F3 + 0 F4, L = log(3/2) (Thm c11-bilinears)",
+   "pass_": true
+  },
+  {
+   "id": "G-reg Q_1 two-body XIM",
+   "value": "{'a1': '-log(9/4)', 'a2': 'log(81/16)', 'a3': 'log(81/16)', 'a4': '0'}",
+   "target": "-2L F1 + 4L F2 + 4L F3 + 0 F4, L = log(3/2) (Thm c11-bilinears)",
+   "pass_": true
+  },
+  {
+   "id": "G-reg L_1^(0)",
+   "value": "['-4*log(3) - 2 + 4*log(2)', '0']",
+   "target": "hbar L_1^(0)(O) = -(2+4L) u (w1,w2) int omega (dc, A_V)",
+   "pass_": true
+  },
+  {
+   "id": "Cor op-SK ETP: Upsilon^0_eta(A_perp,A_perp) singlet",
+   "value": "['[0]']",
+   "target": "single-output leg set only: colour singlet value tr(ad_Y) = 0",
+   "pass_": true
+  },
+  {
+   "id": "Cor op-SK ETM: Upsilon^0_eta(A_perp,A_perp) singlet",
+   "value": "['[0]']",
+   "target": "single-output leg set only: colour singlet value tr(ad_Y) = 0",
+   "pass_": true
+  },
+  {
+   "id": "G-spec F1 (su(2) sector)",
+   "pass_": true,
+   "value": "planar density of D_1 at theta = -1/3 equals -8 (1 - P) on {ZZ, ZX, XZ, XX}",
+   "target": "Spec D_1 = -8 u E_H on tr(Z^{L-M} X^M) (Prop c11-targets, [B03c]); spectra for L <= 8 listed"
+  },
+  {
+   "id": "G-D1sum second evaluation (pair rows)",
+   "value": "{'AW|AW [AW AW]': [True, True], 'AW|AW [AV]': [True, True], 'AW|AW [AV AV]': [True, True], 'AV|AV [AV]': [True, True], 'AV|AV [AV AV]': [True, True], 'AV|AV [AW AW]': [True, True], 'lamP|lamM [AV]': [True, True], 'AV|c [c]': [True, True], 'AV|AW [AW]': [True, True], 'AW|lamP [lamM]': [True, True], 'AV|lamP [lamP]': [True, True]}",
+   "target": "Upsilon_{P_b} (defect cycles) = C_{P_b} (composite kernel form, CJob); Upsilon^0_Delta = 4 lc (arity-zero counterterm) + C^0_Delta (CJob)",
+   "pass_": true
+  },
+  {
+   "id": "OP3 composite kernels: line placements = kernel form",
+   "value": "{'AW|AW [AW AW]': [True, True], 'AW|AW [AV]': [True, True], 'AW|AW [AV AV]': [True, True], 'AV|AV [AV]': [True, True], 'AV|AV [AV AV]': [True, True], 'AV|AV [AW AW]': [True, True], 'lamP|lamM [AV]': [True, True], 'AV|c [c]': [True, True], 'AV|AW [AW]': [True, True], 'AW|lamP [lamM]': [True, True], 'AV|lamP [lamP]': [True, True]}",
+   "target": "line-placement class of the defect cycles along P_b, Delta = C_{P_b}, C^0_Delta of CJob",
+   "pass_": true
+  },
+  {
+   "id": "G-pos K_b (vertex decomposition, two template sets)",
+   "value": "{'AV|AV [AV]': True, 'AW|AW [AV]': True, 'AW|lamP [lamM]': True, 'lamP|lamP [AW]': True, 'AV|c [c]': True}",
+   "target": "Upsilon^0_{K_b} from the P/SW generator pieces = Upsilon^0_{K_b} from the vendored V_{mu nu}, W_mu templates",
+   "pass_": true
+  },
+  {
+   "id": "G-KT (K_b, finite T)",
+   "value": "{'P special sigma=0': {'1': 1.4147280139261224e-06, '4': 9.90001203792465e-09, '16': 8.39168665790522e-08}, 'P special sigma=1': {'1': 2.25044421776199e-05, '4': 4.643202014473898e-06, '16': 1.991868052561948e-06}, 'P line sigma=2': {'1': 0.0004485435067067556, '4': 0.00020622833413952435, '16': 0.00020126287235910922}, 'P line sigma=0': {'1': 0.00044854350672096643, '4': 0.00020622833414662978, '16': 0.0002012628723520038}, 'P special sigma=2': {'1': 1.4147280139090013e-06, '4': 9.90001200368258e-09, '16': 8.391686700707806e-08}, 'SW special sigma=0': {'1': 0.0002701111419366725, '4': 3.85619",
+   "target": "16 pi^2 a_0 at T = 1, 4, 16 equal to the exact eps^0 coefficient (J-integrals, T-independent) within 1e-3 x max(1,|value|) (fit on eps = 2^-6..2^-12, double precision)",
+   "pass_": true
+  },
+  {
+   "id": "(R7) along P_b on F0 (one-sided)",
+   "value": "{'0': 'D_1(d_nu O) = d_nu D_1(O) at the evaluation point', '1': 'D_1(d_nu O) = d_nu D_1(O) at the evaluation point', '2': 'D_1(d_nu O) = d_nu D_1(O) at the evaluation point', '3': 'D_1(d_nu O) = d_nu D_1(O) at the evaluation point'}",
+   "target": "D_1(d_nu O) = d_nu D_1(O): 0 (traceless), -48 (trace) at theta = -1/3, from the n = 1 defect cycles",
+   "pass_": true
+  },
+  {
+   "id": "(R7) along su(2) on F1 (one-sided)",
+   "value": "True",
+   "target": "[D_1 density, J (x) 1 + 1 (x) J] = 0 for J in su(2) acting on {Z, X}",
+   "pass_": true
+  },
+  {
+   "id": "G-spec F3 (strict: D_1 from the defect cycles, theta = -1/3)",
+   "pass_": true,
+   "value": "7/7 sectors (sl2_Z_S6.json)",
+   "target": "Spec D_1 = -8 u E_H, E_H = 4 h(j) (scalars) / 4 h(j+1) (fermions) on the sl(2) primaries"
+  },
+  {
+   "id": "F3: G_D1pair_family",
+   "pass_": true,
+   "value": "7/7 sectors",
+   "target": "special-edge class = 4 lc (Conj op-pair, summed on the family)"
+  },
+  {
+   "id": "F3: P7c_line_equals_target",
+   "pass_": true,
+   "value": "7/7 sectors",
+   "target": "line class = sum C^0_Delta = P7 (c) target"
+  },
+  {
+   "id": "F3: P7b_line_equals_minus_third_dn",
+   "pass_": true,
+   "value": "7/7 sectors",
+   "target": "line class of Upsilon_{P_n} = -1/3 d_n (P7 (b))"
+  },
+  {
+   "id": "F3: Upsilon_Pn_special_zero",
+   "pass_": true,
+   "value": "7/7 sectors",
+   "target": "special class of Upsilon_{P_n} = 0 (finding B-F2)"
+  },
+  {
+   "id": "G-spec F4 (strict: D_1 from the defect cycles, theta = -1/3)",
+   "pass_": true,
+   "value": "5/5 sectors (sl2_psi_S5.json)",
+   "target": "Spec D_1 = -8 u E_H, E_H = 4 h(j) (scalars) / 4 h(j+1) (fermions) on the sl(2) primaries"
+  },
+  {
+   "id": "F4: G_D1pair_family",
+   "pass_": true,
+   "value": "5/5 sectors",
+   "target": "special-edge class = 4 lc (Conj op-pair, summed on the family)"
+  },
+  {
+   "id": "F4: P7c_line_equals_target",
+   "pass_": true,
+   "value": "5/5 sectors",
+   "target": "line class = sum C^0_Delta = P7 (c) target"
+  },
+  {
+   "id": "F4: P7b_line_equals_minus_third_dn",
+   "pass_": true,
+   "value": "5/5 sectors",
+   "target": "line class of Upsilon_{P_n} = -1/3 d_n (P7 (b))"
+  },
+  {
+   "id": "F4: Upsilon_Pn_special_zero",
+   "pass_": true,
+   "value": "5/5 sectors",
+   "target": "special class of Upsilon_{P_n} = 0 (finding B-F2)"
+  },
+  {
+   "id": "G-spec F2 (strict: D_1 from the defect cycles, theta = -1/3)",
+   "pass_": true,
+   "value": "22/22 sectors (su11_L6.json)",
+   "target": "D_1 = -8 u sum_l (1 - Pi_{l,l+1}) (graded permutation) as a matrix on the graded-cyclic basis"
+  },
+  {
+   "id": "F2: G_D1pair_family",
+   "pass_": true,
+   "value": "22/22 sectors",
+   "target": "special-edge class = 4 lc (Conj op-pair, summed on the family)"
+  },
+  {
+   "id": "F2: P7c_line_equals_target",
+   "pass_": true,
+   "value": "22/22 sectors",
+   "target": "line class = sum C^0_Delta = P7 (c) target"
+  },
+  {
+   "id": "F2: P7b_line_equals_minus_third_dn",
+   "pass_": true,
+   "value": "22/22 sectors",
+   "target": "line class of Upsilon_{P_n} = -1/3 d_n (P7 (b))"
+  },
+  {
+   "id": "F2: Upsilon_Pn_special_zero",
+   "pass_": true,
+   "value": "22/22 sectors",
+   "target": "special class of Upsilon_{P_n} = 0 (finding B-F2)"
+  }
+ ],
+ "counts": {
+  "passed": 70,
+  "failed": 12
+ }
+}

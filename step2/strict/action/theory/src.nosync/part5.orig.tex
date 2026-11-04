@@ -1,0 +1,109 @@
+
+\section{Closed forms and methods}
+\label{sec:at-closed}
+
+\begin{proposition}[Scaled Schwinger form of a defect cycle]
+\label{prop:at-schwinger}
+For a cycle of Lemma \ref{lem:at-special} with $n_t$ edges, external momenta $p_1,\dots,p_n$ and superficial degree $D$, substitute $t_e=\varepsilon\tau_e$, $\tau_\sigma\in[0,1]$ for the special edge and $\tau_e\in[1,\infty)$ for the others (both segments of a composite line included), and integrate the loop momentum against the Gaussian. With $\tau=\sum_e\tau_e$, $\alpha_e=\tau_e/\tau$, the coefficient of $\varepsilon^{j-D/2}$ of the Taylor expansion in the external momenta is the order-$j$ Taylor coefficient of the Gaussian-integrated integrand integrated over the scaled region; for $j<D$ odd orders vanish by Lorentz parity and even orders give the poles $a_{(D-j)/2}$, the order $j=D$ gives $a_0$, and the orders $j>D$ give $O(\varepsilon^{1/2}\log\varepsilon)$ or smaller. Each $a_0$ is a finite sum of master integrals
+\[
+J(n_t;\beta;N)=\int_0^1d\tau_\sigma\int_{[1,\infty)^{n_t-1}}\prod_{e\ne\sigma}d\tau_e\;\tau^\beta\,\tau^{-N},
+\]
+($\tau^\beta$ a monomial in the $\tau_e$), convergent when $N>|\beta|+n_t-1$, with values in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$ for $n_t\le3$; on the simplex this is the formula of Lemma \ref{lem:at-special}.
+\end{proposition}
+
+\begin{proof}
+Theorem c9-sing (i) and its proof, which applies to every cycle with one special edge; the master integrals are those of the Part-C engine of Step 2 (route A), evaluated exactly and confirmed at $50$ digits.
+\end{proof}
+
+\begin{proposition}[Small closed forms]
+\label{prop:at-small}
+With $F_m$ the $m$-th simplex integrand:
+\begin{itemize}
+\item (i) $n_t=2$: $16\pi^2a_0=\int_0^{1/2}F_0(\alpha)\log\frac{1-\alpha}\alpha\,d\alpha$, $\alpha=\alpha_\sigma$; for constant $F_0$ this is $F_0\log2$;
+\item (ii) constant $F_0$ ($D=0$), any $n_t$: $16\pi^2a_0=F_0\,\frac{1}{(n_t-1)!}\log\frac{n_t}{n_t-1}$; constant $F_1$ ($D=2$): $16\pi^2a_1=\frac{F_1}{n_t^2(n_t-1)\,(n_t-1)!}$;
+\item (iii) one vertex of $I$ and a composite line ($k=1$, Proposition c11-k1): $16\pi^2a_0=\int_0^{1/3}F_0(\beta)\big[(1-\beta)\log\frac{1-\beta}{2\beta}-(1-3\beta)\big]d\beta$, in $\mathbb Q+\mathbb Q\log2+\mathbb Q\log3$;
+\item (iv) triangles of cubic vertices with the special edge: values in $\mathbb Q+\mathbb Q\log\tfrac32$ (the table of Section 9.1).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) For $n_t=2$ the region where $\alpha_\sigma$ is the smaller coordinate is $\alpha\le\tfrac12$ and $\min_{f\ne\sigma}\alpha_f=1-\alpha$; $\int_0^{1/2}\log\frac{1-\alpha}\alpha d\alpha=\log2$. (ii) By symmetry the region where $\alpha_\sigma$ is smallest is $1/n_t$ of the simplex, of volume $1/(n_t-1)!$; the logarithmic average over it is $\log\frac{n_t}{n_t-1}$ (Part Q, closed forms B2). (iii) Proposition c11-k1. (iv) Theorem c9-sing and the table of Section 9.1.
+\end{proof}
+
+\begin{proposition}[Position factors and Killing data]
+\label{prop:at-inject}
+For $x\in\{\Delta,\mathfrak{so}(V),\eta,K_b\}$, a vertex $S(x)$ at the point $y$ carries a polynomial of degree $p_x$ in $y$. With a momentum $r$ injected at that vertex and absorbed by the plane wave of the functional, $y^\mu\mapsto-i\partial/\partial r_\mu$ and $y^\mu y^\nu\mapsto-\partial^2/\partial r_\mu\partial r_\nu$ at $r=0$, acting on the integrand and on the momentum delta function. The action on the delta function gives the position parts of Proposition \ref{prop:at-pos}; the action on the integrand gives the intrinsic part for the chosen canonical densities (Definition c11-canonical: all momenta but one held fixed). The $\varepsilon^0$ coefficient is polynomial in $r$, so exact Lagrange interpolation on integer $r$ reproduces the derivatives.
+\end{proposition}
+
+\begin{proof}
+$\int\mathrm{dvol}\,y^\mu e^{i(r,y)}(\cdots)=-i\partial_{r_\mu}\int\mathrm{dvol}\,e^{i(r,y)}(\cdots)$; Lemma \ref{lem:at-special} gives polynomiality.
+\end{proof}
+
+\begin{proposition}[Second route: renormalised amplitudes]
+\label{prop:at-routeB}
+For each generator and each sector, the renormalised arity-one amplitude $W^{(1)}_{\rm ren}(x)$ of Theorem \ref{thm:at-second} is a sum of one-loop integrals with propagators $e^{-\varepsilon|q|^2}|q|^{-2}$ (and $e^{-2\varepsilon|q|^2}|q|^{-4}$ times the numerator of $(Q^{GF})^2$ on composite lines), minus the trees of $\ICT$. Their finite parts at $\varepsilon\to0$ are Feynman-parameter integrals of rational functions times logarithms of the external invariants; $Q$ acts on the plane-wave value by replacing one leg by its image under the substitutions of Proposition c1-Q, and the nonlocal terms ($\log$ of momenta, ratios $(p,a)(p,b)|p|^{-2}$) cancel in $Q\,W^{(1)}_{\rm ren}(x)$ up to the trees of the components with fewer legs. A third evaluation of each special-edge cycle at finite $\varepsilon$ (numerical, $\varepsilon=2^{-k}$, Richardson extrapolation of $\varepsilon\,\mathcal C$ and $\mathcal C-\sum_m\varepsilon^{-m}a_m$) checks the absence of $\log\varepsilon$ and the value of $a_0$.
+\end{proposition}
+
+\begin{proof}
+Theorem \ref{thm:at-second} (i); the Feynman-parameter form follows from the Schwinger form by the substitution $t_e=\tau\alpha_e$ and integration over $\tau$; Lemma \ref{lem:at-special} gives the expansion used in the extrapolation.
+\end{proof}
+
+\begin{remark}[Theorems of the construction used as cross-checks]
+\label{rem:at-cross}
+The following identities are consequences of the construction and are used only as cross-checks of the two routes: Theorem \ref{thm:at-second} (v), $\Ob^{(1)}(\Delta)=4\lc^{(0)}+(\text{composite part})$, whose two-leg form is $u[-4,16,-4]+u[\tfrac13,-\tfrac13,-\tfrac23]$ on $\int(dA,dA)$, $\int(\lambda,\dslash\lambda)$, $\int(dc,A^*)$ (X-scal); the value $\theta=-\tfrac13$ of Theorem c9-kappa (X-theta); the twisted obstruction of Remark \ref{rem:at-twist} against the twist literature (X-twist); and $K=P^\dagger$ (Corollary c8-gram) for the special conformal data (X-KP). None of them is used to produce a number.
+\end{remark}
+
+\section{Engines and gates}
+\label{sec:at-engines}
+
+The specification is \texttt{engine\_spec.json} in this folder. Two independent routes compute every item; neither reads the other's outputs before the comparison.
+\begin{itemize}
+\item Route A (special-edge cycles in simplex form): enumerates the irreducible defect cycles of Theorems \ref{thm:at-classes} and Proposition \ref{prop:at-classes2} sector by sector, evaluates $a_m$ and $a_0$ exactly by Lemma \ref{lem:at-special} and Proposition \ref{prop:at-schwinger}, decomposes on exact bases of the target sectors by evaluation on integer plane waves in the explicit realisations of $V_{10}$, $\Sigma$ over $\mathbb Q(i)$ and $\mathfrak g=\mathfrak{su}(2)$, $\mathfrak{su}(3)$, $\mathfrak{gl}(3)$, and solves the equations by exact linear algebra. It extends the cycle enumerator of the Part-C action engine (step2/engine\_a, s2\_*) and the defect-chain code of Part Q (step2/composite\_qsk/qsk/engine\_a, qa\_core, qa\_s1) from chains through two letters to closed cycles.
+\item Route B (renormalised amplitudes and $Q$): computes $W^{(1)}_{\rm ren}(x)$ and $W^{(2)}_{\rm ren}(x,y)$ by momentum-space numerator algebra with exact Feynman-parameter integrals, applies $Q$, reads the local part, and checks the special-edge cycles numerically at finite $\varepsilon$. It extends step2/engine\_b (ia\_engine, delta\_engine) and step2/composite\_qsk/qsk/engine\_b (qb\_core, qb\_numeps, qb\_numT).
+\end{itemize}
+Gates (regressions and identities of the construction): G-sign (the component formulas of Lemma \ref{lem:at-sformulas} and $s^2=0$ on random test cochains); G-reg0 (the arity-zero two-leg obstruction $-\tfrac{27}8u\int(d^*dc,d^*\AV)$ and the cubic obstruction \eqref{eq:at-ob3}); G-reg1 (\eqref{eq:at-reg2}); G-pole (\eqref{eq:at-pole} and \eqref{eq:at-local2}); G-log (no $\log\varepsilon$ in any cycle; $s\,\lc=0$); G-logex (Remark \ref{rem:at-logexact}); G-R0 ($\Ob^{(1)}(R_r)=0$ cycle sum); G-P2 ($\Ob^{(1)}(P_b)|_2=0$); G-pos (Proposition \ref{prop:at-pos}); G-WZ1, G-WZ2 (Lemma \ref{lem:at-sformulas} (iii) on two and three legs); G-T (finite $T$ along $K_b$: $T\partial_T=O(\varepsilon)$); G-AB (route A against route B, entry by entry); G-tDelta (the determinations of $t_\Delta$ agree); G-zero (the classes on the commuting pairs vanish); G-H (Hypothesis \ref{hyp:at-H} at three legs). Cross-checks: X-scal, X-theta, X-twist, X-KP (Remark \ref{rem:at-cross}). Regression values:
+\begin{equation}
+\hbar\Ob^{(0)}\big|_3=u\Big[\big(\tfrac{11}4+\tfrac{19}4\log\tfrac32\big)(G_1+G_3)+\tfrac{27}8G_2-9\log\tfrac32\,G_5\Big]\quad(\text{Theorem c9-ob3}).
+\label{eq:at-ob3}
+\end{equation}
+
+\section{Two-component forms}
+\label{sec:at-twocomp}
+
+\begin{remark}[Two-component forms of the objects of this note]
+\label{rem:at-twocomp}
+With Definition c8-twocomp ($\sigma^m=(\sigma^1,\sigma^2,\sigma^3,i)$, $\bar\sigma^m=(-\sigma^1,-\sigma^2,-\sigma^3,i)$, $\varepsilon^{12}=\varepsilon^{\dot1\dot2}=+1$), for $\xi\in S_+\otimes W$ with components $\xi_\alpha{}^i$ ($\bar\xi=0$), $\eta\in S_+\otimes W^*$ with components $\eta^\alpha{}_i$ ($\bar\eta=0$), and the pairing of $\mathfrak g$ written as $(-,-)$ around the components:
+\[
+\begin{aligned}
+&\Gamma_V^m=\Gamma(\xi,\lambda)|_V^m=i\,\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i,\qquad (\Gamma_\perp)_{kl}=2\varepsilon_{jikl}\,\xi_\alpha{}^j\varepsilon^{\alpha\beta}\lambda_\beta{}^i,\qquad (\xi,\lambda^*)=\xi_\alpha{}^i\lambda^{*\alpha}{}_i,\\
+&T_0=-\int d^4x\,\big(\partial_mA_m,\ \xi_\alpha{}^i\lambda^{*\alpha}{}_i\big),\qquad T_1=-i\int d^4x\,\big(\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\xi_\alpha{}^i,A^*_m\big),\qquad T_2=-\tfrac12\int d^4x\,\varepsilon_{jikl}\big(\xi_\alpha{}^j\varepsilon^{\alpha\beta}\lambda_\beta{}^i,A^{*kl}\big),\\
+&T_3=-\tfrac14\int d^4x\,\big((\partial_mA_n-\partial_nA_m)\,\sigma^m_{\alpha\dot\alpha}\bar\sigma^{n\dot\alpha\beta}\xi_\beta{}^i,\ \lambda^{*\alpha}{}_i\big),\qquad T_4=-\tfrac i2\int d^4x\,\big(\varepsilon^{\alpha\beta}\xi_\beta{}^j\sigma^m_{\alpha\dot\alpha}\partial_mA_{ij},\ \bar\lambda^{*\dot\alpha i}\big),\\
+&g_1=\int d^4x\,\big(\Gamma_V^n,\ -\partial^2A_n+\partial_n\partial_mA_m\big),\quad g_2=-\int d^4x\,\big(\Gamma_V^n,\partial_n\partial_mA_m\big),\quad g_3=-\tfrac14\int d^4x\,\big((\Gamma_\perp)_{kl},\partial^2A^{kl}\big),\quad g_4=-\int d^4x\,\big(\partial^2c,\ \xi_\alpha{}^i\lambda^{*\alpha}{}_i\big),\\
+&s_0=\int d^4x\,\big(A^{kj}\varepsilon_{\alpha\beta}\eta^\beta{}_j,\ \lambda^{*\alpha}{}_k\big),\qquad \int(\rho(\AV)\eta,\lambda^*)=-i\int d^4x\,\big(A_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha},\ \bar\lambda^{*\dot\alpha i}\big),
+\end{aligned}
+\]
+with $A^{ij}=\tfrac12\varepsilon^{ijkl}A_{kl}$, $d^*=-\iota_\partial$, $d^*d\AV=-\partial^2A_n+\partial_n\partial_mA_m$ and $d^*d$ on the scalars equal to $-\partial^2$. The sector parts are
+\[
+\begin{aligned}
+&S(\Delta)_\perp=\tfrac14\int d^4x\,\big((2x_n\partial_n+2)A_{ij},A^{*ij}\big),\qquad S(\Delta)_V=\int d^4x\,\Big\{\big((2x_n\partial_n+2)A_m,A^*_m\big)-\big(2x_n\partial_nc,c^*\big)\Big\},\\
+&S(\Delta)_\lambda=-\int d^4x\,\Big\{\big((2x_n\partial_n+3)\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i\big)-\big((2x_n\partial_n+3)\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i}\big)\Big\},
+\end{aligned}
+\]
+and $S(P_b)_d$ the same with $2x_n\partial_n+2w$ replaced by $b_n\partial_n$. The field-counting functional is $N=2\int(A,A^*)-4\int(\lambda^*,\lambda)-\int(c^*,c)$ with $\int(A,A^*)=\int d^4x\{(A_m,A^*_m)+\tfrac14(A_{ij},A^{*ij})\}$ and $\int(\lambda^*,\lambda)=\int d^4x\{(\lambda_\alpha{}^i,\lambda^{*\alpha}{}_i)-(\bar\lambda_{\dot\alpha i},\bar\lambda^{*\dot\alpha i})\}$. The regression \eqref{eq:at-reg2} reads
+\[
+\hbar\Ob^{(1)}(\Delta)\big|_2=u\int d^4x\Big\{-\tfrac{11}3\Big[\tfrac12(F^{\rm lin}_{mn},F^{\rm lin}_{mn})+\tfrac14(\partial_mA^{ij},\partial_mA_{ij})\Big]+\tfrac{94}3\,i\big(\bar\lambda_{\dot\alpha i},\bar\sigma^{m\dot\alpha\alpha}\partial_m\lambda_\alpha{}^i\big)-\tfrac{14}3\big(\partial_mc,A^*_m\big)\Big\},
+\]
+$F^{\rm lin}_{mn}=\partial_mA_n-\partial_nA_m$, and $G_1,\dots,G_5$ of \eqref{eq:at-ob3} are given in Remark c9-twocomp3. On the Dirac column $(\lambda_\alpha{}^i,\bar\lambda^{\dot\alpha}{}_i)$, $\rho(v)=\gamma_W^\mu v_\mu$ gives Weinberg's form of each line (Proposition c8-twocomp).
+\end{remark}
+
+\section{Status of the statements}
+\label{sec:at-status}
+
+\begin{itemize}
+\item Derived from the construction (proofs above): Lemmas \ref{lem:at-defect}, \ref{lem:at-sformulas}, \ref{lem:at-place}, \ref{lem:at-special}; Propositions \ref{prop:at-poles}, \ref{prop:at-log}, \ref{prop:at-composite}, \ref{prop:at-pos}, \ref{prop:at-T}, \ref{prop:at-xi2}, \ref{prop:at-classes2}; Theorems \ref{thm:at-classes}, \ref{thm:at-second}, \ref{thm:at-bound}, \ref{thm:at-eq1}, \ref{thm:at-cubic}, \ref{thm:at-eq2}; Theorems \ref{thm:at-H}, \ref{thm:at-fix}, \ref{thm:at-theta}, \ref{thm:at-algebra} under Hypothesis \ref{hyp:at-H}.
+\item To be computed by the two engine routes (numbers): $\Ob^{(1)}(x)$ on two, three and four legs along $\Delta$, $\Sigma$, $\Sigma^*$, $K_b$, $P_b$, $\mathfrak{so}(V)$, $\mathfrak{so}(W^\perp_{\mathbb R})$; the cohomology tables of Propositions \ref{prop:at-two} (ii), (iv), (v) and the cubic classes of Theorem \ref{thm:at-cubic}; the particular solutions and the residual classes; $\Ob^{(2)}$ on the seven pairs and their partners on two legs and, where feasible, three; the values $o_d$ of Theorem \ref{thm:at-theta} and $\varrho(x,y)$ of Theorem \ref{thm:at-fix}.
+\item Hypothesis: Hypothesis \ref{hyp:at-H} (classical symmetries at the listed weights), tested at three legs by G-H.
+\item Former shortcuts, now cross-checks: the scaling identity ``$4$ times the logarithmic coefficient'' (Theorem \ref{thm:at-second} (v)); $\theta=-\tfrac13$ from the operator-level arity-two relation (Remark \ref{rem:at-thetacheck}); the twist (Remark \ref{rem:at-twist}); $K=P^\dagger$.
+\end{itemize}
+
+\end{document}

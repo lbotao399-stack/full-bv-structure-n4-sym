@@ -39,7 +39,8 @@ integrals J).  No dimensional regularisation; T = infinity (all items computed h
  rule satisfies Q^2 = 0, Q(T1+T3) = Q(T2+T4) = 0, Q S(P_b)_d = 0 and the images of Thm c9-quadratic (iii); the only other
  rule passing is its right-derivation image (differs by (-1)^{parity of the image}).  {T1,-}: same rule with the slot
  substitution A_V <- d_l T1/d A* = +Gamma(xi,lam)|_V.  Pairing convention: int(lam,lam*) = lam^T Mp lam*, Q of it =
- +int(lam,dslash lam); hence the theory's (lam*,lam) = -(lam,lam*).
+ -int(lam,dslash lam) (as the code gives; corrected 2026-11-04, finding F6); the theory's (lam*,lam) = +(lam,lam*)
+ (lam* even, Def c1-pairing).  With these, Q N = u^-1 lc0 = [-1, 4, -1] (qa q_lcN.py rerun).
 
 4. FINDINGS
  F1. Lemma at-sformulas (ii)/(iii) (Wess-Zumino) as printed, Lambda G^(1)(x) = {G^(0),S(x)}, has the wrong sign: the
@@ -55,3 +56,10 @@ integrals J).  No dimensional regularisation; T = infinity (all items computed h
 5. NOT DONE IN THIS RUN: T2, T5, T6, T7, T8, B2, S1 at the other weights, S2 beyond two legs along Sigma, numerical
    finite-eps extrapolation (G-log is structural here).  The engine handles them (letters for eta, K_b and S^(2) still to
    be written; three-leg sectors cost about 1-10 min per configuration).
+
+
+REVISION 2026-11-04 (reviser): (i) G-sign convention text corrected (finding F6; no number depends on it, the two
+ stated errors compensated in Q N). (ii) M_omega lambda sector (finding F5): the lambda-lambda data of task T3 fitted by
+ qa/src.nosync/q_mspin_replay.py against Q of the spinor part (1/4) omega rho rho lam of S(M_omega)_spin: ratio 1/3 exactly on
+ 3/3 configurations; hence Ob1(M_omega)|_2 = 1/3 u Q S(M_omega)_spin in all sectors (V fitted here, lambda by the replay).
+ (iii) gate 'G-H' renamed G-S1xi2 in gates_revised.json (finding F10).

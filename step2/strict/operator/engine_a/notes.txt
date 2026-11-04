@@ -1,0 +1,193 @@
+ENGINE A (route A), OPERATOR SIDE, strict Costello route (R10) -- method, conventions, findings
+(plain text.  Spec: step2/strict/operator/theory/engine_spec.json; theory operator_theory.tex.  engine_b/ of the operator
+side not read.  Action side read only through the one-body interface, see section 4.)
+
+Run:  python3 run_all.py [--quick] [--only STAGE,..] [--force]
+      single process, pure Python (fractions, numpy, sympy, mpmath); watchdog thread aborts above 1.45 GB RSS;
+      resumable: out.nosync/stage_<name>.json per stage, out.nosync/tables/<gen>_n<n>_<pair>.json per table chunk;
+      writes results.json, gates.json here and in out.nosync/, appends to PROGRESS.txt, prints resources.
+Stages: OP0, tables (n = 0, 1, all 45 pairs, all generators), tables_summary, F0, F1, F2, pos, nolog, GS, tfix, twist,
+        fsl2, components, twocomp, tables_ext (n = 2, 3 on the 15 field/ghost pairs), tables_summary_final.
+Code: src.nosync/
+  op_common.py   paths, read-only imports, exact value arithmetic (5 Gaussian rationals on {1, log2, log3, log5, log7},
+                 units hbar/(16 pi^2), su(2)-stripped colour word), seeded data, letter derivatives
+  op_kern.py     the generators as term lists of S^(1)(x)-vertex blocks; Upsilon_x = [eps^0] of the defect cycles with
+                 the placement split; C_x (line placements); lc, ct_m (plain two-letter cycles); arity-zero special-edge
+                 cycles; position monomials z^mu -> -i d/dr_mu as the exact t^1 coefficient of the injected momentum,
+                 z^mu z^nu -> -d/dr_nu of it by exact Lagrange interpolation
+  op_tables.py   OP1/OP3 tables over the census of step2/composite_qsk/qsk/theory/src.nosync/census_qsk.json (45 pairs,
+                 every leg set with D >= 0), G-D1pair per row, pole-variation check, finite special vertices (diagnostic)
+  op_runtables.py  the table driver (chunk cache)
+  op_ops.py      OP0: Weyl-algebra operators exact on plane waves
+  op_onebody.py  OP5: one-body terms from the action side, free directions as sympy symbols
+  op_fam.py      OP6/OP7 on the families (F0 bilinears and descendants, F1 scalars, F2 su(1|1), F3 twist two, F4 fermion
+                 sl(2)), with the composite-engine family code re-routed to Upsilon (monkeypatched cq_gval.kernel)
+  op_pos.py      OP4 / G-pos at x_O = (1,-1,2,0)
+  op_nolog.py    G-noLog numerical check (mpmath, 30 digits, E = 2 configurations)
+Imports (read-only, sha256 in results.json meta): step2/twoletter/engine_a/src.nosync/{ea_core, ea_kern, ea_ops,
+ea_spectra, vendor/r2_core, vendor/cliff}, step2/composite_qsk/composite/engine_a/src.nosync/{cq_core, cq_gcore,
+cq_eval, cq_gval, cq_ops, cq_gops, cq_twist, cq_fsl2, cq_su11, cq_families}, step2/composite_qsk/qsk/engine_a/
+src.nosync/{qa_s1, qa_core, qa_e0, qa_twocomp}.
+
+1. Method (route A)
+ Master formula (Thm thm:op-master (iii)):  hbar L_1(O)^(1)(x) = sum_{a<b} +- Upsilon_x(X_a,X_b) - {hbar F_1^(1)(x), O}.
+ Upsilon_x(X_a,X_b) is computed as the coefficient of eps^0 of the defect cycles of the pair: chains X_a - e_0 - V_1 - ...
+ - V_n - e_n - X_b with vertices of I (cubic: one output, quartic: two A outputs), EXACTLY ONE term of S^(1)(x) (two-leg
+ block at any gap, or the cubic T5 with one output), EXACTLY ONE special line K_eps - K_0 (numerator -|l+q|^2 Khat,
+ Schwinger time in [0, eps]), all other lines P(eps, infinity) -- every placement enumerated (qa_core.structures/configs).
+ Gaussian loop integral, F_m, and the exact simplex weights (Thm c11-oddsimplex):
+   16 pi^2 [eps^0] = int_{alpha_s smallest} F_0 log(min_{f != s} alpha_f / alpha_s),
+   16 pi^2 [eps^-m] = (1/m) int_{alpha_s smallest} [(min_{f != s} alpha_f)^m - alpha_s^m] F_m,
+ exact Dirichlet-log integrals (values in Q(i) + Q(i) log(E/(E-1)) per chain).  Letter derivatives: polynomial factors on
+ the letter momenta (d_mu -> i p_mu), directions d1 = (1,2,-1,1), d2 = (2,-1,1,3), d3 = (-1,1,2,1): n = 1: d1 on X_a;
+ n = 2: d1 on X_a, d2 on X_b; n = 3: d1 d2 on X_a, d3 on X_b.  Data: seeded Gaussian-integer letters of definite
+ chirality, integer momenta, recorded per row.
+ Generators (fixed generic data, recorded in results.json): P_b, b = (1,-2,1,3); Delta (intrinsic part at x_O = 0:
+ dv = 8, transport a = 2z); M_Om, v = Om x, Om = [[0,1,-2,1],[-1,0,1,2],[2,-1,0,-1],[-1,-2,1,0]] (om = Om^T: the
+ antisymmetric part of d_m v_n; transport a = Om z); R in so(W_R^perp) (a generic 6x6 antisymmetric integer matrix on
+ A|_perp, spin lift on lambda); xi in S_+ (x) W and xibar in S_- (x) W^* (engine lam_+ / lam_- bases, coefficients
+ (1,2,-1,1,0,1,-2,1)); eta in S_+ (x) W^* and etabar in S_- (x) W (lams_+ / lams_-, coefficients (2,-1,1,0,1,1,-1,2)),
+ intrinsic part s0 + sum_mu (-i d/dr_mu) S^(1)(rho(e_mu) eta); K_b intrinsic part: linear Taylor terms (om^(rho),
+ dv^(rho) = -8 b_rho) with -i d/dr_rho, quadratic terms (a^(rho sigma)) with -d^2/dr_rho dr_sigma.
+ Sign rule (no free constant): per configuration (-1)^{n(<sigma) + |S^(1)(x)| (n(<s) + [s<sigma])} (-1)^{[sigma = e_n]},
+ the intrinsic pair sign (-1)^{|X_a|+|X_b|}, global +1 (qa_core, Def c11-defect (ii) relative to Lemma c10-sign; fixed in
+ Part Q by G-reg and the graded-symmetry gate; re-checked here by G-reg, R7, the spectra and GS).
+ Positions: z^mu -> -i d/dr_mu with r injected at the S vertex and absorbed by omega (exact as the t^1 coefficient of
+ r = t e_mu, cq_gcore), z^mu z^nu -> -d/dr_nu [t^1 coefficient at r = j e_nu] (exact Lagrange interpolation in j,
+ 2h + 1 points, h = (D + 3)//2).
+
+2. Finding on the finite special vertices (Def def:op-defect (iii), Thm thm:op-master (ii)-(iii))
+ On every table row with D >= 2 the eps^0 coefficient of the defect cycles alone satisfies the pair form of Conj
+ op-pair (Upsilon^0_Delta = 4 lc + C^0_Delta, Upsilon_P = C_P, Upsilon^0_M = C^0_M, Upsilon_R = 0), while the finite
+ special vertex F_x = -sum_m ((-1)^m/m!) ({I, ct1_{x,m}}_{H^m} + {S^(1)(x), ct_m}_{H^m}) is nonzero there.  Closed form
+ on a single output Y (weight w_Y, momentum q): {S^(1)(Delta), ct_m}_{H^m} = 2 (w_Y + D) |q|^{2m} ct_m (Euler, ct_m of
+ degree D - 2m), {S^(1)(P_b), ct_m}_{H^m} = i (b.q) |q|^{2m} ct_m; e.g. (lam_+, lam_+) -> A_perp along Delta:
+ ct_1 = -69 - 115 i, [eps^-1] of the defect cycles = 276 + 460 i = -4 ct_1, eps^0 = 4 lc exactly, F_Delta = 6|q|^2 ct_1.
+ Mechanism: the brackets that define F_x are the counterterm partners of the class (Br) graphs whose special edge lies on
+ a tree edge ADJACENT to the divergent cycle through the pair (from the action defect vertex (a): {I,I}^sigma, {S(x),I}^sigma);
+ (special edge) x (cycle - its counterterm) -> 0, so the bare (Br) graphs have the nonvanishing limit
+ sum_m ((-1)^m/m!) |p|^{2m} (pole coefficient) and cancel F_x exactly.  The statement "(Br) tends to 0" of the proof of
+ Thm op-master (ii) holds for (Br) together with these partners; F_x must then not be added again in (iii).  This engine
+ therefore uses Upsilon_x := [eps^0] D_x and reports F_x separately (rows 'F_x_single_output', 'conj_holds_with_F').
+ Consequence for the theory note: Def op-defect (iv), eq c10-finitesp-type finite vertices in eq op-master and the
+ "vacuum-pole terms" of G-pole should be revisited; the arity-zero analogue (the last term of eq op-master0) is affected
+ in the same way.  Evidence: G-D1pair at D >= 2 (all rows), and the summed identity of Thm op-a on F0 / spectra.
+ Pole identity in Ward form (computed, pair by pair): [eps^-m] of the placements other than the line = -4 m ct_m along
+ Delta and 0 along P_b, M, R (the regulator variation of Thm op-ward applied to the poles).
+
+3. Results (units u; exact) -- see results.json, gates.json
+ OP0  (op_ops.py; Weyl algebra x^alpha A(d), exact on plane waves): [x., Q] = 0 for P_b, Delta, M_Om, R, K_b (formula
+      operators of Def c7-vdot with weights w and 4 - w on fields/antifields, spin and its dual), xi, xibar (block
+      operators of S^(1)(xi) normalised to the formula field arrows, factor +2), eta, etabar (eta. = x^mu xi_mu. + eta^0
+      + Y_eta, eta^0 = sum_mu D_mu(antifield rows of xi_mu.), Y_eta = s0 block; without eta^0 the commutator fails);
+      Lemma op-comm (i)-(v): [Delta.,Q^GF] = -4 Q^GF, [Delta.,H] = -4H; [x.,Q^GF] = [x.,H] = 0 for P, M, R;
+      C_xi = [xi.,Q^GF] even, first order, components c<-lam, lam<-A*, A<-lam*, lam*<-c*; [eta.,H] = 2 xi_mu. d_mu;
+      C_K = [K_b.,Q^GF] - 4(b,x)Q^GF position independent (components A*<-c*, c<-A, lam<-lam*), [K_b.,H] = 4(b,x)H
+      - 4(w-1)(b,d) + 4 b_nu Sigma^{rho nu} d_rho on every slot; Var_Delta = -4(eps d_eps + T d_T)P, the Delta line
+      Q-closed, QP* + P*Q = E (sympy); the S^(1) blocks of the tables equal the formula operators on the field rows with
+      one uniform factor (-2: vertex scale 2 and the reading sign) for every even generator.
+ OP1  tables (see tables_summary in results.json; compact rows out.nosync/tables_compact.json).
+ F0   Upsilon^0_Delta on (A_perp, A_perp) -> A_perp A_perp per ordered word: same -8/3, exchanged 16, trace -8:
+      40/3 O (traceless), -104/3 O (trace); D_1 = -4 theta_perp - 4/3 (traceless), -4 theta_perp - 148/3 (trace),
+      = 0 and -48 at theta_perp = -1/3 (action side); Upsilon_P = -1/3 d_b O, P_1 = -(1/3 + thetaP_perp) d_b O;
+      Upsilon^0_M = Upsilon_R = 0; Q_1 two-body (both chiralities) = -2L F1 + 4L F2 + 4L F3 + 0 F4, L = log(3/2);
+      Q_1|_traceless = (79/12 - 3 log(3/2) - theta^xi_perp) {S^(1)(xi),O} with the action-side particular solution
+      (log(3/2) - 79/12)(T1+T2); L_1^(0)(O) = -(2 + 4L)(w1,w2) int omega (dc, A_V) at psi = 0, cocycle scheme
+      psi(O) = -(1 + 2L) u (w1,w2) int omega (A_V, A_V).
+      R7 on the descendants F1 = {S^(1)(xi), O} (pairs (A_perp, lam_+)): sum Upsilon^0_Delta = 64/3 F1 - 16 F2, one-body
+      -(22/3 - 2/3) - (47/3 - 1) = -64/3, so D_1(F1) = 0 F1 - 16 F2 = {S^(1)(xi), D_1 O} exactly (traceless 0, trace -48):
+      this tests the gaugino one-body constant 47/3 derived from the action side independently of the bilinears.
+ F1   scalar D_1 density = -8u (1 - P + K/2) (Minahan-Zarembo); su(2) cyclic spectra L <= 8 = Heisenberg.
+ F2   su(1|1) on shell: two-site Upsilon^0_Delta densities (planar 1/2, normalised): (Z,Z) 20/3; (Z,psi) same 8/3, exchanged
+      8; (psi,psi) -4/3; with the one-body terms D_1 = -8u(1 - Pi) (graded); spectra L <= 6 = harmonic action.
+ F3   twist two (gauge completion, two-field part): D_1 eigenvalues -32 h(S), S even <= N; sum Upsilon^0_Delta = 4 lc^nat
+      + 16 - 2/3(4+N) (G-D1sum); Upsilon_{P_n} = -1/3 d_n.
+ F4   fermion sl(2) on shell: D_1 eigenvalues -32 h(n+1), n odd <= N.
+ G-pos at x_O = (1,-1,2,0), graph sums on sample rows: Delta, M, eta (linearity in the Killing data) and K_b (the Killing
+      data of K_b at x_O computed from v(x) directly versus v(x_O).P - (b,x_O) Delta^0 + M^0_{omega_xO} + K^0).
+ G-noLog: numerically (mpmath, 30 digits, eps = 1e-3 .. 1e-5, fit A/eps + B + C log eps + D eps + E eps log eps + F eps^2)
+      on the E = 2 configurations (cubic T5 at the special edge): C = 0 to 1e-6 relative, A and B equal to the simplex pole
+      and eps^0 (A to 1e-11, B to 1e-8 relative).
+ Prop op-tfix: the linear system t_[x,y] = t_x + t_y on the block brackets of psl(4|4) has the two-dimensional solution
+      space span{B, lambda}, t_Delta = t_so(V) = t_so(W) = 0.
+
+4. One-body input (op_onebody.py docstring has the derivation)
+ Delta: phi_A = 22/3, phi_lam = 47/3 (from Ob^(1)(Delta)|_2 = 4 s(uN) + u[1/3,-1/3,-2/3], Q N|_2 = [-1,4,-1]),
+        theta_perp = theta_lam = theta_V = -1/3 (Ob^(2)(Delta,P_b), both action engines).  phi_c = 8/3 depends on the sign
+        of the Q-image of int(A,A*) on the ghost line (alternative 14/3): flagged, not used on gauge-invariant families.
+ P_b:   theta_P free (Ob^(1)(P_b)|_2 = 0).   R: theta_R free (Ob^(1)(R) = 0, both engines).
+ M_Om:  1/3 u int Om(A_mu, A*_nu) spin term (both engines); lambda spin coefficient: engine B states the full
+        S(M)_spin (A and lambda with the same coefficient 1/3), engine A reports -1/12 int(rho(Om) lam, dslash lam) for the
+        lambda sector without the normalisation of its preimage: FLAGGED (both kept); not used here (M_1 evaluated only on
+        A_perp letters).
+ xi:    particular (log(3/2) - 79/12)(T1+T2) (both engines), theta^xi_V, theta^xi_perp free, beta-shifts, outer a B.
+ eta, K_b: not provided by the action side (open): S_1, K_1 one-body terms are left as unknown maps.
+
+5. Not done here (open)
+ G-Cid / G-typeI (composite loops of I, Xi^sigma = s Xi), G-logcov, the general finite special vertices with
+ {I, ct1_{x,m}} on multi-output rows (superseded by the finding of section 2, but the explicit cancellation against the
+ (Br) graphs is shown only through the pair-form identity), arity-two components and the two-sided relations (R2)-(R6),
+ K = P^dagger (G-KP, G-KPbdry), G-KT (route B), G-twist (the Part-Q TQ3 values are not re-derived here), M_1 and generic-b
+ P_1 on F3-F7, families F5, F6, F7, tables n = 2, 3 for eta, K_b and the antifield pairs, G-AB (comparison phase).
+
+6. Continuation (2026-11-03/04): stages completed after the interruption, and new stages
+ The run of 2026-10-30 stopped inside stage gluon (N = 1); run_all.py resumed from the stage/chunk caches.  New code:
+ src.nosync/op_fam2.py (families F5, F7); run_all.py stages twocomp_fam, f7, f5, gluon_ext, fsl2_ext, twist_ext,
+ spec_desc, f7_ext, f5_ext, fsl2_ext2, twist_ext2, spec_desc_ext, tables_ext3 (eta0, etabar0, K0 at n = 2 and xi, xibar,
+ M0, R at n = 3 on the 15 field/ghost pairs).  Every family stage caches per N (out.nosync/partial_<stage>.json).
+ Order: families with the smaller cutoffs first, then the n = 1 tables, then the larger family cutoffs, then n = 2, 3.
+ F6   gluon sl(2) N = 0, 1 (stage gluon): D_1 = -48 at N = 0, 1 (-32 h(2)); Ward (one longitudinal leg) zero for D0, P_n,
+      P_b generic; sum Upsilon_{P_n} = -1/3 d_n.  Upsilon^0_Delta letter part -36 (N = 0), -110/3 (N = 1), vertex-vertex 0.
+ F7   tr(D_n^k F_11 D_n^{S'-k} psi) (op_fam2.f7): basis tr(d^j f d^{S'-j} psi) + gauge completion (three-field part of F_11
+      and of D_n on both letters), j = 0..S'; legs (A_V transverse, lambda_+ Weyl in the R-weight space of psi); fit exact
+      on S' + 3 leg sets; one-body -(phi_A + phi_lam + 2 theta (7/2 + S')) = -(23 - 2/3 (7/2 + S')).  Results (units u):
+      S' = 0: sum Upsilon^0 = -82/3, D_1 = -48;  S' = 1: D_1 = -48 1;  S' = 2: eigenvalues -200/3, -48, -48;
+      S' = 3: -200/3, -200/3, -48, -48;  = -8 x Prop c11-targets (v).  sum Upsilon_{P_n} = -1/3 d_n exactly.
+      (R7) along P_n as a matrix identity D_1^(S'+1) d_n = d_n D_1^(S'), d_n tr(d^j X d^k Y) = tr(d^{j+1}X d^k Y) + tr(d^j X d^{k+1} Y).
+ F5   tr(D_n^k psi3 D_n^{S'-k} psi4) with tr(D_n^k Z' D_n^{S'-k} F_11) (op_fam2.f5): psi3, psi4 = the lambda_1 components of SO(6)
+      weights (-,+,+), (+,-,+) (psi = (-,-,-)); Z' read off from the engine: Upsilon^0_Delta(psi3, psi4) on (A_perp e_i, A_V)
+      is nonzero only on e_4, e_5 with ratio (1, -i): Z' = iota_{w'} A, w' = e_4 - i e_5 (the scalar with the SO(6) weight of
+      psi3 psi4); legs: (lambda_+, lambda_+) in the dual R-weight spaces, (A_perp conj(w'), A_V transverse).  One-body
+      -(2 phi_lam + 2 theta (3 + S')) on the psi block, -(2 phi_A + 2 theta (3 + S')) on the Z' F block.  Results (units u):
+      S' = 0: sum Upsilon^0 = [[-8/3, 8], [64, -10/3]], D_1 = [[-32, 8], [64, -16]], eigenvalues 0, -48;
+      S' = 1: 0, -48 (3x);  S' = 2: 0, -48 (4x), -200/3;  = -8 x Prop c11-targets (iv).  sum Upsilon_{P_n} = -1/3 d_n; (R7) along
+      P_n as above on both blocks.
+ Every D_1 matrix of F5, F7 is rational: the log 2, log 3 parts of the Upsilon^0_Delta fits cancel in the sums over pairs.
+ Running time: the kernel evaluation is dominated by exact Fraction arithmetic of the simplex weights (cq_gcore._weights);
+ F7 S' = 3 took 22 min, F5 S' = 2 21 min; the factor per unit S' is about 3.5-4.
+ F6   N = 2 (stage gluon_ext): sum Upsilon^0_Delta letter part [[-136/3, 8], [32/3, -48]] (basis B_0, B_1 of cq_gluon), vertex-vertex
+      part 0; one-body -(2 phi_A + 2 theta (4 + N)) = -32/3; D_1 = [[-56, 8], [32/3, -176/3]], eigenvalues -200/3, -48 = -32 h(4),
+      -32 h(2); Ward and P_n gates pass.
+ F4   N = 4 (stage fsl2_ext): sum Upsilon^0_Delta eigenvalues -40, -64/3; D_1 eigenvalues -200/3, -48 = -32 h(4), -32 h(2).
+ F3   N = 5 (stage twist_ext): D_1 eigenvalues -200/3, -48, 0 = -32 h(4), -32 h(2), -32 h(0); G-D1sum and P_n pass.
+ (R7) along P_n, spectral form (stage spec_desc): spec D_1(S') inside spec D_1(S'+1) on F3 (0..5), F4 (1..4), F6 (0..2).
+ OP1 tables, n <= 1 complete (stages tables, tables_ext, tables_summary_n1): all 45 slot pairs, 9 generator keys (P, D0, M0, R,
+      xi, xibar, eta0, etabar0, K0), 8077 rows; G-D1pair 3732/3732 (D < 2) and 390/390 (D >= 2, Upsilon = [eps^0] D_x);
+      G-pole (Ward form) 410/410; finite special vertices on single-output D >= 2 rows: 116 rows, nonzero on 47, the pair form
+      with F_x added holds exactly on the 69 rows with F_x = 0 (finding of section 2 confirmed at n = 1); Upsilon_R = 0 on all
+      735 R rows; no log eps on any row.
+ F7   S' = 4 (stage f7_ext): D_1 eigenvalues -392/5, -200/3, -200/3, -48, -48 = -8 x (49/5, 25/3, 25/3, 6, 6): the spec cutoff
+      S' <= 4 reached; (R7) along P_n matrix identity 3 -> 4 holds; M0 fit 58 min.
+ F5   S' = 3 (stage f5_ext): D_1 eigenvalues 0, -48 (4x), -200/3 (3x) = -8 x (0, 6 (4x), 25/3 (3x)); (R7) along P_n 2 -> 3 holds;
+      M0 fit 44 min.  S' = 4 not run (estimated 3-4 h with the present exact arithmetic): resumable as stage f5_ext with Ns [0..4].
+ F4   S' = 5 (stage fsl2_ext2): D_1 eigenvalues -392/5, -200/3, -48 = -32 h(6), -32 h(4), -32 h(2): the spec cutoff S' <= 5 reached.
+ F3   S' = 6 (stage twist_ext2): D_1 eigenvalues -392/5, -200/3, -48, 0 = -32 h(6), -32 h(4), -32 h(2), 0; G-D1sum and P_n pass:
+      the spec cutoff S' <= 6 reached.  (R7) along P_n, spectral form (stage spec_desc_ext): F3 0..6, F4 1..5, F6 0..2.
+ OP1 tables, n = 2 on the 15 field/ghost pairs for R, xi, xibar, P, D0, M0 (stage tables_ext2, stopped before its n = 3 part;
+      summary stage tables_summary_final): totals over n <= 2: 9969 rows; G-D1pair 4634/4634 (D < 2), 646/646 (D >= 2);
+      G-pole 703/703; single-output finite special vertices 149 rows, nonzero on 68, pair form with F_x added on exactly the 81
+      rows with F_x = 0; Upsilon_R = 0 on every row.
+ Gates: 86/86 pass (gates.json; the three tables_summary* stages repeat the table gates at n <= 0, 1, 2).
+
+7. Open after this continuation (resumable by python3 run_all.py: every finished stage, family N and table chunk is cached)
+ - tables: n = 3 for P, D0 (rest of stage tables_ext2); stage tables_ext3 (eta0, etabar0, K0 at n = 2; xi, xibar, M0, R at n = 3);
+   n = 2, 3 on the 30 antifield pairs.  Estimated 4-6 h with the present Fraction arithmetic of cq_gcore._weights.
+ - F5 at S' = 4 (estimated 3-4 h).  F6 reached S' = 2, F7 S' = 4, F4 S' = 5, F3 S' = 6 (spec cutoffs).
+ - as in section 5: G-Cid, G-typeI, G-logcov (route A has the log coefficients of the plain cycles with one S(x) block,
+   op_kern.plain1, only for generators without position monomials), arity-two components Upsilon_{x,y} (S^(2) vertex and two
+   S^(1) vertices on one cycle: not enumerated by qa_core) and the two-sided relations (R2)-(R6), K = P^dagger (G-KP,
+   G-KPbdry), G-KT (route B), G-twist at class level on F9, M_1 and generic-b P_1 on F3-F7, the one-body terms along eta
+   and K_b (not provided by the action side: S_1, K_1 carried as unknown one-body maps), G-AB (comparison phase).
+ - flagged action-side inputs (both kept, unchanged): phi_c = 8/3 versus 14/3 (ghost one-body, not used on the
+   gauge-invariant families); lambda spin coefficient of hbar F_1^(1)(M_Om) (engine B 1/3 with S(M)_spin, engine A -1/12
+   without the preimage normalisation; not used, M_1 evaluated on A_perp letters only).

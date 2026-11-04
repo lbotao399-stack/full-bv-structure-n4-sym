@@ -1,0 +1,212 @@
+{
+ "file": "step2/strict/results/action_final.json",
+ "date": "2026-11-04",
+ "units": "u = hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2); L = log(3/2)",
+ "sources": [
+  "step2/strict/action/theory/action_theory.tex (revised, 28 pp, _build/action_theory.pdf)",
+  "step2/strict/action/engine_a, engine_b (gates_revised.json)",
+  "step2/strict/action/complete (results.json, gates.json 73/73)",
+  "step2/strict/action/qa (compare.json, findings.json)",
+  "step2/strict/disposition.json"
+ ],
+ "conventions": {
+  "bracket": {
+   "statement": "{f,g} = Delta0(fg) - Delta0(f)g - (-1)^|f| f Delta0(g) = (-1)^|f| {f,g}_std (Def c1-bracket); a degree-1 derivation D (Q, {I,-}, Lambda, {F,-} with |F| = 0) obeys D{a,b} = -{Da,b} - (-1)^|a| {a,Db}",
+   "status": "derived-from-construction"
+  },
+  "component_equations": {
+   "statement": "Lambda F1^(0) = Ob^(0);  Lambda F1^(1)(x) + {F1^(0),S(x)} = Ob^(1)(x);  Lambda F1^(2)(x,y) + F1^(1)([x,y]) + (-1)^|x| ({F1^(1)(x),S(y)} + {S(x),F1^(1)(y)}) + {F1^(0),S^(2)(x,y)} = Ob^(2)(x,y)",
+   "status": "derived-from-construction"
+  },
+  "Wess_Zumino": {
+   "statement": "Lambda Ob^(1)(x) = -{Ob^(0),S(x)};  Lambda Ob^(2)(x,y) = Ob^(1)([x,y]) - (-1)^|x| {Ob^(1)(x),S(y)} + {S(x),Ob^(1)(y)} - {Ob^(0),S^(2)(x,y)}  (revised 2026-11-04; the earlier printed signs fail on every computed entry)",
+   "status": "derived-from-construction; checked: computed by two engines + referee"
+  },
+  "odd_odd_generating_cochain": {
+   "statement": "J = I + c S(xi) + c' S(xi') - c c' S^(2)(xi,xi'), sign forced by the classical master equation: Q S^(2)_2 + S_2(P_{Gamma|V}) - {S_2(xi),S_2(xi')} = 0",
+   "status": "computed by two engines + referee"
+  },
+  "log_coefficient": {
+   "statement": "I^CT[eps] = (9/4) u eps^-1 int(A,A) + log(eps) lc;  s lc = 0;  lc^(0) = u Lambda N, N = 2 int(A,A*) - 4 int(lam*,lam) - int(c*,c);  closed combination lc^(1)(x) - {uN,S(x)}",
+   "status": "derived-from-construction"
+  }
+ },
+ "arity_one": {
+  "Ob0": {
+   "value": "hbar Ob^(0)|_2 = -27/8 u int(d*dc, d*A_V);  hbar Ob^(0)|_3 = u[(11/4 + 19/4 L)(G1+G3) + 27/8 G2 - 9 L G5]",
+   "two_component": "-27/8 u int d^4x (d^2 c, d_m A_m)",
+   "status": "computed by two engines + referee"
+  },
+  "F1_0": {
+   "representative": "F1^(0)|_2 = 27/16 u int(d*A_V, d*A_V) + s-closed arity-zero directions (coupling, beta directions)",
+   "two_component": "27/16 u int d^4x (d_m A_m, d_n A_n)",
+   "status": "computed by two engines + referee"
+  },
+  "Delta": {
+   "Ob1": "hbar Ob^(1)(Delta)|_2 = u[-11/3 int(dA,dA) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)], position part 0",
+   "Ob1_two_component": "u int d^4x { -11/3 [1/2 (F^lin_mn,F^lin_mn) + 1/4 (d_m A^{ij}, d_m A_ij)] + 94/3 i (lambdabar_{alphadot i}, sigmabar^{m alphadot alpha} d_m lambda_alpha^i) - 14/3 (d_m c, A*_m) }",
+   "F1_representative": "u[22/3 int(A,A*) - 47/3 int(lam*,lam) - 8/3 int(c*,c)] + u sum_d theta^Delta_d S(Delta)_d + kappa_V u Q int(iota_x A_V,c*) + kappa_lam u Q int(rho(x)lam*,lam*)",
+   "F1_two_component": "u int d^4x {22/3[(A_m,A*_m) + 1/4 (A_ij,A*^ij)] - 47/3[(lambda_alpha^i,lambda*^alpha_i) - (lambdabar_{alphadot i},lambdabar*^{alphadot i})] - 8/3 (c*,c)} + u sum_d theta^Delta_d S(Delta)_d + kappa-directions",
+   "free_directions": [
+    "theta^Delta_perp, theta^Delta_lam, theta^Delta_V (fixed: -1/3 each)",
+    "kappa_V, kappa_lam (Q-exact, scheme)",
+    "parity-odd class excluded by reflection"
+   ],
+   "pole": "(9/4) u {int(A,A),S(Delta)} = -9 u int(A,A)",
+   "status": "computed by two engines + referee"
+  },
+  "P_b": {
+   "Ob1": "hbar Ob^(1)(P_b)|_2 = 0 (direct cycles)",
+   "F1_representative": "u sum_d theta^P_d S(P_b)_d + exact; theta^P uniform (= t_P) by (xi,P_b); t_P = t_Delta = -1/3 in a translation-covariant scheme",
+   "status": "computed by two engines + referee"
+  },
+  "M_omega": {
+   "Ob1": "hbar Ob^(1)(M_omega)|_2 = 1/3 u Q S(M_omega)_spin, S(M_omega)_spin = int omega_{mu nu}(A_mu,A*_nu) + int((1/4) omega_{mu nu} rho_mu rho_nu lam, lam*); 0 on (A_perp,A_perp)",
+   "F1_representative": "1/3 u S(M_omega)_spin + u sum_d theta^M_d S(M_omega)_d; theta^M uniform = t_M = t_Delta = -1/3",
+   "two_component": "S(M)_spin = int d^4x {omega_mn (A_m,A*_n) + 1/4 omega_mn [(lambda*^alpha_i (sigma^m sigmabar^n)_alpha^beta lambda_beta^i) - (dotted block with sigmabar^m sigma^n)]}",
+   "status": "computed by two engines + referee (lambda sector: engine B data fitted by the referee replay; engine A in its own realisation, magnitude 1/3 x 1/4)"
+  },
+  "R_r": {
+   "Ob1": "Ob^(1)(R_r) = 0 on all two-leg sectors and three tested three-leg sectors",
+   "F1_representative": "u sum_d theta^R_d S(R_r)_d; theta^R uniform = t_R = t_Delta + 1/3 = 0",
+   "status": "computed by two engines + referee"
+  },
+  "xi": {
+   "Ob1": "hbar Ob^(1)(xi)|_2 = u[(79/24 - L/2)(g1 + g3) + 27/8 g2 + 0 g4] (both chiralities); pole (9/2)[int(Gamma_V,A_V) + int(Gamma_perp,A_perp)] = (9/4){int(A,A),S(xi)}",
+   "Q_images": "Q T1 = -Q T3 = -1/2 g1, Q T2 = -Q T4 = -1/2 g3, Q T0 = -(g2 + g4); {int(d*A_V,d*A_V),T1} = 2 g2; H^0(Q)|_2 = 0; ker Q at degree -1 = span{S^V_2 = T1+T3, S^perp_2 = T2+T4}",
+   "F1_representative": "F1^(1)(xi)|_2 = u(L - 79/12)(T1 + T2) + u theta^xi_V S^V_2(xi) + u theta^xi_perp S^perp_2(xi) (+ beta-shifts {N_f,S_2(xi)}); no T0 term",
+   "F1_two_component": "T1 = -i int (lambdabar_{alphadot i} sigmabar^{m alphadot alpha} xi_alpha^i, A*_m), T2 = -1/2 int eps_{jikl}(xi_alpha^j eps^{alpha beta} lambda_beta^i, A*^{kl}), T3 = -1/4 int ((d_m A_n - d_n A_m) sigma^m sigmabar^n xi, lambda*), T4 = -i/2 int (eps^{alpha beta} xi_beta^j sigma^m_{alpha alphadot} d_m A_ij, lambdabar*^{alphadot i})",
+   "free_directions": "theta^xi_V = theta^xi_perp =: t_xi forced by (xi_pm, xi'_pm); t_xi+ + t_xi- = t_P + 27/4 + 2L; individual t_xi free (inner and outer directions)",
+   "log_coefficient": "lc^(1)(xi)|_2 = 2u(T1 + T2 - T3 - T4) = {uN,S_2(xi)}; l_xi = 0 on two legs",
+   "status": "computed by two engines + referee"
+  },
+  "eta": {
+   "Ob1": "hbar Ob^(1)(eta)|_2 = x^mu hbar Ob^(1)(rho(e_mu)eta)|_2 + u[-5/2 int(eta,lam) d*A_V - 5/2 int(eta,rho(dA_V)lam) + (-3/2 + 3L) int(eta,rho(dA_perp)lam) + 5/2 int(rho(dc)eta,lam*)] + Q(.) (canonical density)",
+   "F1_representative": "sum_mu x^mu u(L - 79/12)(T1+T2)(rho(e_mu)eta) - (3L - 3/2) u s0 - 5/2 u u0 + u theta^eta_V S^V(eta) + u theta^eta_perp S^perp(eta); u0 = int(rho(A_V)eta,lam*); S^V(eta) = x.(T1+T3)(rho eta), S^perp(eta) = x.(T2+T4)(rho eta) + s0",
+   "cohomology": "H^0(Q) = 1 at weight 7/2, p <= 1 ((A_perp,lam) sector); residual has no component on it; kernel at degree -1 = span{S^V(eta), S^perp(eta)}",
+   "free_directions": "theta^eta_V = theta^eta_perp =: t_eta (forced by (xi,eta) with theta^xi uniform); t_xi+ + t_eta+ = t_Delta + 27/4 + 2L",
+   "two_component": "s0 = int (A^{kj} eps_{alpha beta} eta^beta_j, lambda*^alpha_k), u0 = -i int (A_m eta^alpha_i sigma^m_{alpha alphadot}, lambdabar*^{alphadot i})",
+   "status": "computed by two engines + referee"
+  },
+  "K_b": {
+   "Ob1": "in the span of canonical data with position degree <= 2; pole sum (9/4){int(A,A),S(K_b)}; WZ1 corrected sign holds",
+   "F1_representative": "u int (b,x){-22/3 (A,A*) + 16 (lam,lam*) + 8/3 (c,c*)} + 2/3 u int{(iota_b A)(iota_x A*) - (iota_x A)(iota_b A*)} - 1/3 u int b_mu x_nu (lam, rho_mu rho_nu lam*) + u sum_d theta^K_d S(K_b)_d + sum_{j=1..4} kappa^K_j G^K_j",
+   "two_component": "u int d^4x { (b.x)[-22/3((A_m,A*_m) + 1/4 (A_ij,A*^ij)) + 16((lambda_alpha^i,lambda*^alpha_i) - (lambdabar,lambdabar*)) + 8/3 (c,c*)] + 2/3 [(b_m A_m)(x_n A*_n) - (x_m A_m)(b_n A*_n)] - 1/3 b_m x_n [rho_m rho_n -> sigma^m sigmabar^n on undotted, sigmabar^m sigma^n on dotted] }",
+   "cohomology": "H^0 = 4 (residual has no component), H^-1 = 7: S(K_b)_perp, S(K_b)_lam, S(K_b)_V and four second-order free-field symmetries G^K_j (not exact, not fixed on two legs)",
+   "structure": "x-linear part = -(b,x) F1part(Delta) + spin term of the rotation part of d_b' v (16 - 1/3 = 47/3): translation covariant",
+   "T_independence": "structural (Lemma at-special: eps^0 simplex coefficients); no numerical finite-T run",
+   "status": "computed by two engines + referee"
+  }
+ },
+ "arity_two_two_legs": {
+  "(Delta,P_b)": {
+   "Ob2": "perp: -2/3 int(d_b A_perp, A*_perp); lam: 2/3 int(d_b lam,lam*) + (-3/2 + log(4/3)) int(rho(b) dslash lam, lam*); V: -2/3 int(d_b A_V,A*_V) + (3/2 - log(4/3)) int(d_mu(b.A_V),A*_mu) + (-5/6 + log(4/3)) int(d_b c,c*); no position part, no pole",
+   "class": "o_d = -2/3 u for d = perp, lam, V",
+   "condition": "theta^Delta_d = o_d/(2u) = -1/3",
+   "status": "computed by two engines + referee"
+  },
+  "(Delta,xi_pm)": {
+   "Ob2": "hbar Ob^(2)(Delta,xi)|_2 = u[8(T1+T2) - 26/3(T3+T4) + log(4/3) Q(psi1 + psi2)], psi1 = int x^mu (Gamma(xi,lam)^mu, c*), psi2 = int x^mu (A*_mu,(xi,lam*))",
+   "condition": "solvable iff theta^Delta_perp = theta^Delta_lam = theta^Delta_V = -1/3; theta^xi free",
+   "F1_2": "F1^(2)(Delta,xi)|_2 = log(4/3) u (psi1 + psi2) + closed degree -2 directions",
+   "status": "computed by two engines + referee (engine A flag lifted: gate artefact, finding F2)"
+  },
+  "(xi_+,xi_-)": {
+   "condition": "theta^P_d = theta^{xi+}_V + theta^{xi-}_V - 27/4 - 2L (every d); theta^{xi+}_V + theta^{xi-}_V = theta^{xi+}_perp + theta^{xi-}_perp",
+   "H_minus1": "V 1, perp 1, lam 3 (incl. two SU(4)-15 free classes)",
+   "status": "computed by two engines + referee"
+  },
+  "(xi_pm,xi'_pm)": {
+   "condition": "theta^xi_V = theta^xi_perp",
+   "status": "computed by two engines + referee"
+  },
+  "(xi_pm,P_b)": {
+   "Ob2": "(1/4) log(4/3) x Q-exact functional, no rational part, no pole",
+   "condition": "theta^P_V = theta^P_perp = theta^P_lam",
+   "status": "computed by two engines + referee"
+  },
+  "(xi_+,eta_-)": {
+   "condition": "theta^xi_V - theta^xi_perp = theta^eta_V - theta^eta_perp (parametrisation of arity_one.eta)",
+   "status": "computed by two engines + referee"
+  },
+  "(xi_+,eta_+)": {
+   "condition": "theta^R_perp = theta^R_lam =: tau; theta^Delta_d = theta^M_d = tau - 1/3; theta^xi_d + theta^eta_d = tau + 77/12 + 2L (d = V, perp)",
+   "bracket": "[xi,eta] = (xi,eta)/2 Delta + M_omega + R_r (gate G-bracket)",
+   "status": "computed by two engines + referee (basis of (lam,lam*) position sectors one short per chirality: solvability decided on value vectors; pole checked on intrinsic part)"
+  },
+  "(K_b,P_b')": {
+   "status": "open"
+  },
+  "(eta,eta')": {
+   "status": "open"
+  },
+  "(xi_-,eta_pm)": {
+   "status": "open (expected by chirality exchange)"
+  }
+ },
+ "one_loop_algebra_relations": {
+  "[D,P] = -2P": {
+   "statement": "t_Delta = -1/3 (all sectors)",
+   "status": "computed by two engines + referee"
+  },
+  "[D,Q] = -Q": {
+   "statement": "t_Delta = -1/3 (all sectors), independent determination",
+   "status": "computed by two engines + referee"
+  },
+  "[Q,P] = 0": {
+   "statement": "t_P sector-uniform; Ob2(xi,P_b) exact",
+   "status": "computed by two engines + referee"
+  },
+  "[Q,Q] = P": {
+   "statement": "t_xi+ + t_xi- - t_P = 27/4 + 2 log(3/2); t_xi sector-uniform",
+   "status": "computed by two engines + referee"
+  },
+  "{Q,S} = D + M + R": {
+   "statement": "t_M = t_Delta, t_R = t_Delta + 1/3, t_xi+ + t_eta+ - t_Delta = 27/4 + 2 log(3/2); sector uniformity of t_Delta, t_M, t_R, t_eta",
+   "status": "computed by two engines + referee"
+  },
+  "[K,P] = D + M": {
+   "status": "open"
+  },
+  "{S,S} = K": {
+   "status": "open"
+  }
+ },
+ "invariant_content": {
+  "scheme_independent": [
+   "t_Delta = theta = -1/3 (fixes D_1 on operators)",
+   "t_M - t_Delta = 0",
+   "t_R - t_Delta = 1/3",
+   "t_xi+ + t_xi- - t_P = 27/4 + 2 log(3/2)",
+   "t_xi+ + t_eta+ - t_Delta = 27/4 + 2 log(3/2)",
+   "sector uniformity of t_P, t_xi, t_eta, t_M, t_R",
+   "pole structure (9/4) u eps^-1 int(A,A), no poles at arity >= 1",
+   "s lc = 0, l_xi = 0 on two legs"
+  ],
+  "invariance_group": "inner direction t_z -> t_z + c lambda_z (lambda = -1, +1, -2, +2 on Sigma, Sigma*, P, K; 0 on Delta, so(V), so(W_perp)); outer direction G_B: t_xi+- -> t_xi+- +- a, t_eta+- -> t_eta+- -+ a",
+  "scheme_artefacts": [
+   "individual t_xi+-, t_eta+-, t_P, t_K, theta^K_d, kappa^K_j, kappa_V, kappa_lam",
+   "particular parts with log(3/2) (L - 79/12, 3L - 3/2, -3/2 + 3L, ...)",
+   "every representative F1^(k)",
+   "the split intrinsic/position part (density convention)"
+  ],
+  "translation_covariant_scheme": "t_P = t_Delta = -1/3 => t_xi+ + t_xi- = 77/12 + 2L, t_eta+ = t_xi-"
+ },
+ "former_shortcuts": {
+  "theta = -1/3": "now computed from the construction twice ((Delta,P_b), (Delta,xi_pm)); operator-level derivation Thm c9-kappa is a cross-check (X-theta agrees)",
+  "scaling identity Ob1(Delta) = 4 lc0 + composite": "Thm at-second (v), a theorem of the construction; cross-check X-scal holds placement class by placement class (special-edge u[-4,16,-4], line u[1/3,-1/3,-2/3])",
+  "K = P^dagger": "cross-check only, not used, not tested on the action side",
+  "twist": "cross-check only (Rem at-twist)",
+  "S from Q by position decomposition": "F1(eta) computed from its own defect cycles; its position part equals x.F1(rho(e)eta) as a computed gate (G-pos eta)",
+  "regulator covariance": "Ob1(R) = 0 and the P_b/M_omega statements are computed (direct cycles), consistent with Thm at-second"
+ },
+ "open": [
+  "(K_b,P_b'), (eta,eta'), (xi_-,eta_pm) at two legs",
+  "three- and four-leg classes: S1-cubic, Hypothesis at-H (G-H), GC13 along Delta and P_b and analogues, cubic couplings (Prop at-couplings), the (A_V)^5 sector along P_b",
+  "the four closed directions G^K_j and the SU(4)-15 free classes (need three legs)",
+  "G-log finite-eps extrapolation; G-T numerical finite-T run",
+  "arity-three formula of s (Thm at-eq2 (iii)) written by the forcing argument only",
+  "colour beyond su(2) stripped words",
+  "Thm at-cubic numerically untested"
+ ]
+}

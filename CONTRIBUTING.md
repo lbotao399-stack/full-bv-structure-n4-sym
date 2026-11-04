@@ -80,10 +80,10 @@ The holomorphic twist is never an input. It is only a check.
   D₁ = 2cO − (1/3+θ)u{S⁽¹⁾(Δ),O}.
 - **Chapter 10**: the counterterms of all local operators as universal two-letter kernels, with closed forms. They are
   checked against the su(2) Heisenberg spectra and the twist-two harmonic sums −8h(S)u.
-- **Chapter 11, §11.1–11.5**: the composite kernels, and D₁, P₁ on all operators (results in
-  `step2/composite_qsk/results/composite_final.json`).
-- **In progress by the owner's Claude** (do not duplicate): the two-body kernels of Q₁, S₁, K₁ and the comparison with
-  the holomorphic twist, which will replace §11.6 (`step2/composite_qsk/qsk/`).
+- **Chapters 11–12**: composite kernels; D₁, P₁ on all operators; Q₁, S₁, K₁ two-body kernels; and the strict
+  construction from the QME (directive R10 in `DESIGN_STEP2.md`: every component is derived through the obstruction, the
+  equation sF₁ = Ob, the defect flow and the local representative; shortcuts are cross-checks only). Results in
+  `step2/strict/results/`. Open items are listed in Remark c12-next.
 
 ## 4. Tracks
 

@@ -139,3 +139,21 @@ composite A_V--c lines give a nonlocal Q-exact remainder (Delta) and a translati
   parts from F_1^(1)(x), class-level twist comparison via Phi = high priority; new agent 'action-complete' for the open
   action items. RESUME: Workflow({scriptPath: "<scratchpad>/strict.js" (copy: step2/strict_workflow.js),
   resumeFromRunId: "wf_5bfa6f93-8f4"}). Operator engines restart (their files in step2/strict/operator/engine_*/ stay).
+
+## 2026-11-03 resumed (user)
+- Disk 98% full (11 GB free); iCloud had evicted 10 manuscript files: 8 restored from byte-identical GitHub copies,
+  ch11 + supplements/ch11 downloaded by reading them. Strict-route run resumed: wf_5bfa6f93-8f4 (task wov0e7nzm).
+- GitHub push script now persistent: tools.nosync/github_api_push.py LIST MSG (scratchpad copy was lost).
+  Backup push of qsk results + 11.6 draft + step2/strict in progress.
+- User 2026-10-31: cluster allowed for this project when helpful (budget shared with the fortuity session, which owns
+  the cluster jobs; coordinate). Candidates: operator engines to high weight, eta intrinsic kernel (memory), 2-loop.
+- 2026-11-04 strict-route run wf_5bfa6f93-8f4 COMPLETE (12 agents). theta = -1/3 computed twice from action-level arity two
+  ((Delta,P_b) and (Delta,xi)); F_1^(1) along Delta, xi, eta, K_b on two legs; invariant relations
+  t_xi+ + t_xi- - t_P = 27/4 + 2log(3/2) = t_xi+ + t_eta+ - t_Delta, t_M = t_Delta, t_R = t_Delta + 1/3; D_1 from defect
+  cycles alone on F2-F7 = Beisert spectra; finite-special-vertex double count found and removed; WZ signs corrected.
+  Chapters 9-11 rewritten (rewrite_log.json), ch12_strict_construction.tex new. Open: (K_b,P_b'), (eta,eta'), 3-4-leg
+  classes, Q/S/M/K_1 beyond F0, G-Cid/G-typeI (locality), Phi. Referee of ch09-12 running -> step2/qa/ch09_12_review/.
+- 2026-11-04 ch09-12 refereed (31 findings: 8 major overclaims/leftovers, all applied; pre-fix copies
+  step2/qa/ch09_12_review/pre/). Live reader rev 71 (c9/c10/c11 replaced, c12 appended, 156 supplements);
+  reader_build/update_ch9_12.sh PORT does the whole sequence. README/CONTRIBUTING updated; GitHub push of ch09-12 +
+  step2/strict running (tools.nosync/github_api_push.py).

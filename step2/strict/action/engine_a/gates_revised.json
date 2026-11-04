@@ -1,0 +1,268 @@
+[
+ {
+  "id": "G-reg0 (two legs)",
+  "value": "-27/8",
+  "target": "-27/8",
+  "pass": true,
+  "notes": "arity-zero special-edge cycles (c, A_V); pole -9/2 = -(9/2), cancelled by -Q I^CT_2",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-reg0 (three legs)",
+  "value": {
+   "G1": "11/4 + (-19/4)*log2 + (19/4)*log3",
+   "G2": "27/8",
+   "G3": "11/4 + (-19/4)*log2 + (19/4)*log3",
+   "G4": "0",
+   "G5": "(9)*log2 + (-9)*log3"
+  },
+  "target": "(11/4+19/4 L)(G1+G3) + 27/8 G2 - 9 L G5, L = log(3/2)",
+  "pass": true,
+  "notes": "cubic special-edge cycles, colour (Y0,[Y1,Y2]) from tr(ad ad ad) = (C/2)(Y_c,[Y_b,Y_a])",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-sign",
+  "value": "Lambda{a,b} = -{Lambda a,b} - (-1)^{|a|}{a,Lambda b} (C07 bracket of Def c1-bracket); Q S^V_2(xi) = Q S^perp_2(xi) = 0",
+  "target": "component formulas consistent with s^2 = 0",
+  "pass": true,
+  "notes": "with this rule s^2 = 0 forces (sG)^(1)(x) = Lambda G^(1)(x) + {G^(0),S(x)} for degree-1 G, i.e. Lambda Ob^(1)(x) = -{Ob^(0),S(x)}; Lemma at-sformulas (ii) prints +{G^(0),S(x)} (derived with the derivation rule of the standard bracket (-1)^{|f|}{f,g}).  Degree-0 formula (i) is unaffected.",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-reg1",
+  "value": {
+   "int(dA,dA)": "-11/3 (A_V), -11/3 (A_perp)",
+   "int(d*A_V,d*A_V)": "0",
+   "int(lam,dslash lam)": "47/3",
+   "int(dc,A*)": "-14/3",
+   "explicit x": "zero"
+  },
+  "target": "u[-11/3 int(dA,dA) + 47/3 int(lam,dslash lam) - 14/3 int(dc,A*)], 0 for int(d*A_V,d*A_V) and x",
+  "pass": true,
+  "notes": "special-edge cycles only; component normalisation Def at-names (i), ghost of Delta on the right",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-pole (Delta, two legs)",
+  "value": [
+   [
+    "-9"
+   ],
+   [
+    "-9"
+   ]
+  ],
+  "target": "(9/4){int(A,A),S(Delta)} = (9/4) v.int(A,A) = -9 int(A,A)",
+  "pass": true,
+  "notes": "{S_X,F} = +D_X F measured in the Part-D mode model (d4_signs), so {int(A,A),S(Delta)} = -4 int(A,A); lambda and ghost sectors: pole 0",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-P2",
+  "value": {
+   "(AV,AV)": "alpha=0, beta=0",
+   "(AW,AW)": "alpha=0, beta=0",
+   "(lamP,lamM)": "alpha=0, beta=0",
+   "(c,AsV)": "alpha=0, beta=0"
+  },
+  "target": "Ob^(1)(P_b)|_2 = 0",
+  "pass": true,
+  "notes": "direct cycles along P_b; also beta(Delta) = 0 (position part = 2 Ob(P_b))",
+  "original_pass": true,
+  "pass_revised": true,
+  "revised": "direct P_b cycles computed (not structural)"
+ },
+ {
+  "id": "X-scal (cross-check)",
+  "value": {
+   "lc0": {
+    "int(dA,dA)": "-1",
+    "int(lam,dslash lam)": "4",
+    "int(dc,A*)": "-1"
+   },
+   "Ob1(Delta)|2 - 4 lc0": "composite part"
+  },
+  "target": "Ob1(Delta)|2 = 4 lc0 + u[1/3, -1/3, -2/3]",
+  "pass": true,
+  "notes": "cross-check only (Thm at-second (v)); lc0 from the plain arity-zero cycles (log eps coefficient)",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-WZ1 (xi+, two legs)",
+  "value": {
+   "Q Ob1|2 on (c,lam)": "378*i",
+   "{Ob0|2,T1}": "-378*i"
+  },
+  "target": "Lambda Ob1(x) = -{Ob0,S(x)} (C07 bracket; the printed Lemma at-sformulas sign gives +)",
+  "pass": true,
+  "notes": "printed-sign version holds: False",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-pole (xi+, two legs)",
+  "value": {
+   "int(Gamma_V,A_V)": "9/2",
+   "int(Gamma_perp,A_perp)": "9/2"
+  },
+  "target": "(9/4){int(A,A),T1+T2} = (9/2)[int(Gamma_V,A_V) + int(Gamma_perp,A_perp)]",
+  "pass": true,
+  "notes": "{int(A,A),T1} = 2 int(Gamma_V,A_V) (mode model)",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-WZ1 (xi-, two legs)",
+  "value": {
+   "Q Ob1|2 on (c,lam)": "189/2*i",
+   "{Ob0|2,T1}": "-189/2*i"
+  },
+  "target": "Lambda Ob1(x) = -{Ob0,S(x)} (C07 bracket; the printed Lemma at-sformulas sign gives +)",
+  "pass": true,
+  "notes": "printed-sign version holds: False",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-pole (xi-, two legs)",
+  "value": {
+   "int(Gamma_V,A_V)": "9/2",
+   "int(Gamma_perp,A_perp)": "9/2"
+  },
+  "target": "(9/4){int(A,A),T1+T2} = (9/2)[int(Gamma_V,A_V) + int(Gamma_perp,A_perp)]",
+  "pass": true,
+  "notes": "{int(A,A),T1} = 2 int(Gamma_V,A_V) (mode model)",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "X-theta (cross-check)",
+  "value": "-2/3",
+  "target": "o_perp = -2/3",
+  "pass": true,
+  "notes": "cross-check only; theta = o_perp/(2u)",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-pole (Delta,P_b), arity two",
+  "value": "all a_1 zero",
+  "target": "sum a_m = 0",
+  "pass": true,
+  "notes": "",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "B1 structure",
+  "value": {
+   "beta (position part) zero": true,
+   "lambda chiralities equal": true,
+   "V class in span{S(P_b)_V} + Im Q": true
+  },
+  "target": "class of Ob2(Delta,P_b)|2 in span{[S(P_b)_d]}",
+  "pass": true,
+  "notes": "",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-R0",
+  "value": {
+   "two legs": {
+    "(AV,AV)": "alpha=0, beta=0",
+    "(AW,AW)": "alpha=0, beta=0",
+    "(lamP,lamM)": "alpha=0, beta=0",
+    "(c,AsV)": "alpha=0, beta=0",
+    "(AW,AV)": "alpha=0, beta=0",
+    "(lamP,lamP)": "alpha=0, beta=0",
+    "(lamM,lamM)": "alpha=0, beta=0"
+   },
+   "three legs": {
+    "('c', 'AW', 'AsW')": "0",
+    "('AW', 'lamP', 'lamP')": "0",
+    "('AV', 'AW', 'AW')": "0"
+   }
+  },
+  "target": "Ob^(1)(R_r) = 0",
+  "pass": true,
+  "notes": "cycle sums per sector",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "M_omega two legs",
+  "value": {
+   "V sector (A_V,A_V)_2 + (c,A*_V)_1": {
+    "basis": "Q int Om_{mu nu}(A_mu, A*_nu)",
+    "coef": "1/3"
+   },
+   "other sectors": {
+    "(AW,AW)": "alpha=0, beta=0",
+    "(AV,AW)": "alpha=0, beta=0"
+   },
+   "lambda sector (lam_+,lam_-)_1": {
+    "basis": [
+     "int(rho(Om) lam, dslash lam), rho(Om) = sum Om_{mu nu} s[mu] sb[nu]",
+     "int(lam, dslash lam)"
+    ],
+    "coef": [
+     "-1/12",
+     "0"
+    ]
+   },
+   "position part (beta) on two legs": "zero (= Ob(P_{Om b})|_2 = 0)"
+  },
+  "target": "Ob1(M)|2 in the V sector = k Q int Om(A,A*); 0 elsewhere",
+  "pass": true,
+  "notes": "",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-WZ2 (Delta,xi+-), two legs",
+  "value": "Q Ob2|2 = (-25/3 - log2 + 1/2 log3) g1 - 25/3 g3 (both chiralities)",
+  "target": "Lambda Ob2 = Ob1([x,y]) + brackets (two legs)",
+  "pass": false,
+  "notes": "log pattern incompatible with the identity for every sign convention; value flagged, not used for t_Delta",
+  "original_pass": false,
+  "revised": "replaced: the gate demanded Q-closedness of Ob2 and dropped the position part (finding F2). Corrected gate on the full functional: Q Ob2(Delta,xi)|_2 = -25/3 u(g1+g3) = -{Ob1(Delta)|_2,S(xi)} (WZ2 with corrected signs), the log(4/3) part = log(4/3) Q(psi1+psi2); pass in qa/q_dxi_fit.json and in action/complete routes A and B (Ob2(Delta,xi+-): solvable, theta^Delta_d = -1/3).",
+  "pass_revised": true
+ },
+ {
+  "id": "G-pole (xi, three legs)",
+  "value": "all zero",
+  "target": "no poles beyond two legs",
+  "pass": true,
+  "notes": "",
+  "original_pass": true,
+  "pass_revised": true
+ },
+ {
+  "id": "G-logex (xi, two legs)",
+  "value": {
+   "l_xi+": "0",
+   "l_xi-": "0",
+   "c": "0",
+   "a": "0"
+  },
+  "target": "lc1(x) -/+ {uN,S(x)} = l_x u S(x) mod Im Lambda",
+  "pass": true,
+  "notes": "passes with the C07-consistent sign lc1 - {uN,S(x)} (same root as the WZ sign, notes.txt sec. 2); fails with the printed + sign (not closed)",
+  "original_pass": true,
+  "revised": "closed combination lc1(x) - {uN,S(x)} (corrected sign, finding F1); the printed + fails; consistent with the revised Prop at-log",
+  "pass_revised": true
+ },
+ {
+  "id": "G-log (finite-eps extrapolation)",
+  "pass_revised": "not run",
+  "revised": "neither action engine ran it; closed forms of Prop at-small checked by Monte Carlo in qa (does not replace it)"
+ }
+]

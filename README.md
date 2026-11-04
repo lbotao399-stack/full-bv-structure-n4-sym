@@ -46,8 +46,14 @@ freedom shown explicitly.
    local two-body kernel. On every family computed (twist two, su(1|1), fermion and gluon sl(2), mixed families) the
    dilatation identities hold exactly, so, given the arity-two quantisation, θ = −1/3, D₁ = 4 × the natural counterterm
    kernel, P₁ = 0 in the translation-covariant scheme, and Spec D₁ is the spectrum of Beisert's dilatation operator.
-8. **In progress / open**: the two-body kernels of Q₁, S₁, K₁ and the twist comparison (§11.6), the proof of the
-   two-body locality theorem, the cubic arity-one consistency condition, and the inner-product test Q† = S.
+8. **The strict construction** (Ch. 12; Ch. 9–11 rewritten on it): every component is derived from the equivariant
+   QME — the action-level obstructions Ob⁽¹⁾ along Δ, Σ, Σ*, K_b and their solutions F₁⁽¹⁾ with all free directions,
+   the arity-two obstructions (which give θ = −1/3 twice and the one-loop forms of [Q,Q], [D,Q] and part of {Q,S}),
+   scheme-independent relations such as t_{ξ+} + t_{ξ−} − t_P = 27/4 + 2 log(3/2), and D₁ from the defect cycles alone,
+   which reproduces Beisert's spectra on all families computed.
+9. **Open**: [K,P] at arity two, three- and four-leg classes, Q₁, S₁, M₁, K₁ beyond the scalar bilinears, the computed
+   checks of the locality theorem, the class-level twist comparison through the transport map Φ, and the inner-product
+   test Q† = S.
 
 Each chapter carries "Physics notation" supplements that translate the index-free notation into the
 Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/SO(6) R-symmetry indices, γ-matrices).
@@ -56,7 +62,7 @@ Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/
 
 | Path | Content |
 |---|---|
-| `manuscript/` | LaTeX chapters `ch00`–`ch11` (theorem form), `supplements/` (physics-notation remarks), `FORMAT.md` |
+| `manuscript/` | LaTeX chapters `ch00`–`ch12` (theorem form), `supplements/` (physics-notation remarks), `FORMAT.md` |
 | `DESIGN.md`, `DESIGN_STEP2.md` | binding design rules and research directives |
 | `HANDOFF_STEP2_*.md`, `STORY.md` | running log of what has been done and what is open |
 | `step2/` | Step-2 work: theory notes (`theory/`), independent computation engines (`engine_a/`, `engine_b/`), audits (`qa/`), two-letter kernels (`twoletter/`) |

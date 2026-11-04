@@ -1,0 +1,47 @@
+{
+ "units": "u = -g^2 N/(32 pi^2); L = log(3/2)",
+ "Q1_F0_traceless": {
+  "form": "Q_1(O) = c_Q {S^(1)(xi),O}  (F2,F3,F4 vanish on traceless: (w1,w2) = 0)",
+  "c_Q(xi+)": "-t_xi+ - log(27/8) + 79/12",
+  "c_Q(xi-)": "-t_xi- - log(27/8) + 79/12"
+ },
+ "Q1_F0_general": {
+  "two_body": "a1 F1 + a2 F2 + a3 F3 + a4 F4",
+  "a": [
+   "-2*log(3/2)",
+   "4*log(3/2)",
+   "4*log(3/2)",
+   "0"
+  ],
+  "one_body": "-(L - 79/12 + t_xi) F1",
+  "total_F1_coefficient": "-t_xi - log(27/8) + 79/12",
+  "arity_zero": "L_1^(0)(O) = -(2 + 4L) u (w1,w2) int omega (dc, A_V) at psi = 0"
+ },
+ "S1_F0_traceless": {
+  "form": "S_1(O) = c_S {S^(1)(eta),O}; position part x_O^mu Q_1 along rho(e_mu) eta; intrinsic part 0 on F0",
+  "c_S(eta+)": "-t_eta+ - log(27/8) + 79/12",
+  "c_S(eta-)": "-t_eta- - log(27/8) + 79/12"
+ },
+ "D1_F0": {
+  "traceless": "-4*t_Delta - 4/3",
+  "trace": "-4*t_Delta - 148/3",
+  "at_t_Delta=-1/3": [
+   "0",
+   "-48"
+  ]
+ },
+ "P1_F0": "-t_P - 1/3 u d_b O",
+ "K1_F0_onebody": "-{F1(K_b)|_2, O} = (44/3) u int omega (b,x)(iota_w1 A, iota_w2 A) - u theta^K_perp {S(K_b)_perp, O} - sum_j kappa^K_j {G^K_j, O}; x-linear part = -(b,x_O) x (one-body of D^0_1 from F1part(Delta)) (translation covariance)",
+ "free_direction_invariants_at_psi0": {
+  "c_Q(xi+) + c_Q(xi-) - p_1": "t_P - t_xi+ - t_xi- - log(729/64) + 27/2",
+  "value": "log(256/6561) + 27/4",
+  "c_Q(xi+) + c_S(eta+) - D_1(traceless)/4": "t_Delta - t_eta+ - t_xi+ - log(729/64) + 27/2",
+  "value_2": "log(256/6561) + 27/4"
+ },
+ "checks": {
+  "inv1 independent of t_xi, t_P": true,
+  "inv2 independent of t_xi, t_eta, t_Delta": true,
+  "t_xi+ + t_xi- - t_P invariant": true,
+  "t_xi+ + t_eta+ - t_Delta invariant": true
+ }
+}

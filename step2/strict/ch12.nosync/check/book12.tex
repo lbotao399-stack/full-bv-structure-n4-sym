@@ -1,0 +1,51 @@
+% Full book: N=4 super Yang--Mills in Costello's formalism, Step 1.
+% Build: cd manuscript/build && TEXINPUTS=..: xelatex N4_Costello_BV_Step1.tex (two passes)
+\documentclass[11pt]{report}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{../../}{../}}
+\usepackage{adjustbox}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\title{$\mathcal N=4$ super Yang--Mills theory in Costello's formalism\\[4pt]\large Step 1: one-loop counterterms, local operators and their dilatation at the UV boundary}
+\date{}
+
+% numbered statements per chapter
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{External input}
+\numberwithin{equation}{chapter}
+
+% Proof and Example in restrained, breakable framed boxes
+\tcolorboxenvironment{proof}{breakable,enhanced,colback=white,colframe=black!35,boxrule=0.4pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=6pt,after skip=8pt}
+\tcolorboxenvironment{example}{breakable,enhanced,colback=black!2,colframe=black!45,boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=6pt,after skip=8pt}
+
+% \fig{path}{caption}
+\newcommand{\fig}[2]{\begin{center}\includegraphics[width=0.8\linewidth]{#1}\\[2pt]{\small #2}\end{center}}
+% \tabcaption{caption}
+\newcommand{\tabcaption}[1]{\par\smallskip\noindent\centerline{\parbox{0.92\linewidth}{\small #1}}\par\medskip}
+
+% every tabular is centred and shrunk to the text width if necessary
+\let\origtabular\tabular
+\let\endorigtabular\endtabular
+\renewenvironment{tabular}{\par\smallskip\noindent\begin{adjustbox}{max width=\linewidth,center}\origtabular}{\endorigtabular\end{adjustbox}\par}
+
+% math in chapter and section titles: plain text in the PDF outline
+\pdfstringdefDisableCommands{\def\mathfrak#1{#1}\def\varepsilon{eps}\def\mathcal#1{#1}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\setcounter{chapter}{11}
+\input{ch12_strict_construction.tex}
+\end{document}
