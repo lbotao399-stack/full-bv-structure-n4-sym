@@ -51,9 +51,18 @@ freedom shown explicitly.
    the arity-two obstructions (which give θ = −1/3 twice and the one-loop forms of [Q,Q], [D,Q] and part of {Q,S}),
    scheme-independent relations such as t_{ξ+} + t_{ξ−} − t_P = 27/4 + 2 log(3/2), and D₁ from the defect cycles alone,
    which reproduces Beisert's spectra on all families computed.
-9. **Open**: [K,P] at arity two, three- and four-leg classes, Q₁, S₁, M₁, K₁ beyond the scalar bilinears, the computed
-   checks of the locality theorem, the class-level twist comparison through the transport map Φ, and the inner-product
-   test Q† = S.
+9. **Foundation being rebuilt** (`hk2/`): the Feynman-gauge operator of Chapter 3 violates two of Costello's axioms
+   ((Q^GF)² ≠ 0). A gauge-fixing operator with (Q^GF)² = 0 satisfying all axioms (antighost pair, Feynman gauge forced) is
+   built and machine-checked; the old construction embeds in it, so arity-zero results carry over, the composite lines
+   along D, P, M, R disappear, and the affected parts are being recomputed.
+10. **What the one-loop components mean** (`dr_track/freedom/`): the twisted Q₁ is defined exactly up to cohomology (its
+   class matches Budzik–Kulp in all eight pair channels up to one constant); generic Q, S, K only up to one correction
+   shared by all generators; the one-loop D₁ matrix is canonical; numbers containing log(3/2) are regulator artefacts.
+11. **Dimensional regularization inside BV** (`dr_track/`): a critical study of high-loop DR/DRED/BMHV works (supersymmetry
+   Ward identities for composite operators have never been checked in any DR-type scheme) and a BV formulation of DR for
+   N=4 with the superconformal ghosts; the one-loop Q₁, K₁, D₁ and the algebra are being computed there.
+12. **Open**: [K,P] at arity two, three- and four-leg classes, Q₁, S₁, M₁, K₁ beyond the scalar bilinears in the valid
+   gauge fixing, the locality checks, and the inner-product test Q† = S.
 
 Each chapter carries "Physics notation" supplements that translate the index-free notation into the
 Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/SO(6) R-symmetry indices, γ-matrices).
@@ -68,6 +77,8 @@ Weinberg–Srednicki two-component notation (dotted and undotted spinors, SU(4)/
 | `step2/` | Step-2 work: theory notes (`theory/`), independent computation engines (`engine_a/`, `engine_b/`), audits (`qa/`), two-letter kernels (`twoletter/`) |
 | `classical/`, `superconformal/`, `engine_a/`, `engine_b/`, `compare/`, `qa/` | Step-1 checks: classical algebra, superconformal closure, one-loop counterterm engines and audits |
 | `diagrams/` | graph census and diagrams |
+| `hk2/` | the rebuild on a gauge fixing with (Q^GF)² = 0 |
+| `dr_track/` | renormalization-freedom theory, DR literature study, DR formulated inside BV |
 | `reader_build/` | scripts that turn the manuscript into an interactive reader |
 
 ## Conventions and rules of the project
