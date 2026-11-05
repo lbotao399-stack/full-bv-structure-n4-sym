@@ -1,0 +1,76 @@
+GAUGE-FIXING FOUNDATION FOR THE HEAT-KERNEL REBUILD (N=4 SYM, Costello, R^4, UV boundary eps, endpoint T)
+Folder: /Users/libotao/N4_BV_HK2/gf      Date: 2026-11-05
+Files: gf.tex/.pdf (design report), ch03_revised.tex (replacement of Chapter 3, FORMAT.md style; compile check
+ch03_preview.tex -> build/ch03_preview.pdf with ch01, ch02 and ch04-ch12 of the manuscript: 0 undefined refs),
+checks.py -> checks.json (130 entries, exact sympy, all pass; NEG controls fail as required), migration_plan.json (84 items), PROGRESS.txt.
+Code: realization.py, freecx.py, gfsolve.py, firstorder.py, bvjet.py (jet BV engine, manuscript bracket), models.py,
+ops.py, test_*.py, make_migration_plan.py.
+
+1. RECOMMENDED FORMULATION: (A), non-minimal second order, reduced antighost pair, Feynman gauge, gauge-fermion frame.
+   Fields: E (+) {cbar (deg +1, Weyl 2), cbar^* (deg 0, Weyl 2)}, pairing <cbar^*, cbar> = int (cbar^*, cbar).
+   S' = S - 1/4 int (cbar^*, cbar^*)      (= trivial pair (cbar,b) + int (b,cbar^*) with b integrated along kappa int(cbar,b), kappa=-1)
+   Psi = int (cbar, d^*A|_V);  Phi_Psi: A^*|_V -> A^*|_V - d cbar,  cbar^* -> cbar^* + d^*A|_V  (symplectic iff the two signs are opposite)
+   S_Psi = S(c,A,lambda; c^*, A^* - d cbar, lambda^*) - 1/4 int (cbar^* + d^*A|_V, cbar^* + d^*A|_V)
+   QGF : A^* -> -2A^* (A),  lambda^* -> -dslash lambda^* (lambda),  cbar^* -> cbar^* (c),  c^* -> -c^* (cbar);  0 on fields.
+   Propagator x e^{-eps p^2}/p^2 : A(x)A = 2(-,-)^{-1} g^{-1},  lambda(x)lambda as before,  c(x)cbar = -(-,-)^{-1},  cbar(x)c = +(-,-)^{-1}.
+   Reasons: (i) unique: among all local, covariant, order<=1, scale-free operators with [Q,G]=|p|^2 and adjointness, the family in the
+   gauge parameter alpha has G^2 ∝ (2alpha+1)^2/(4alpha): G^2=0 iff Feynman, and then G = QGF; (ii) all axioms, no IR scale;
+   (iii) two extra slots only, b enters no vertex; (iv) arity zero = former theory pulled back exactly; (v) composite lines along
+   Delta, P, M, R vanish; the remaining gauge-fixing variations are local vertices.
+   (B) first order: the unique scale-free H=p^2 operator has (QGF)^2 != 0 (A^*->A->c); Costello's Hermitian adjoint has
+       (Qdag)^2=0 but H|_B = (k_As p^2 + 4k_Bs)/k_B (mass mu^2 = 4k_Bs/k_B) and B->A first-order mixing: IR scale. psl(4|4) extends to B
+       consistently (B - F_+ an auxiliary weight-2 self-dual form; delta_xi B = -(d_A Gamma(xi,lambda)|_V)_+), nothing gained.
+   (C) minimal second order: unique H=p^2 operator = the former one, (QGF)^2 != 0, Im Q cap Im QGF != 0 (ranks 27+28>54);
+       covariant xi != 1, Landau, Hermitian adjoint of the second-order Q: H non-scalar or order 4; holomorphic gauge excluded by R2.
+
+2. VERIFIED (checks.json):
+   Q^2=0, (QGF)^2=0, adjointness of Q and QGF (opposite), order<=1, H=[Q,QGF]=d^*d+dd^*=|p|^2 on all 56 components per colour (momentum and
+   position space), (5) at p != 0: ranks (28,28,56), Ker QGF = Im QGF = field slots (Lagrangian), Ker Q = Im Q; scale-infinity form of
+   [C07, Lemma 6.5.1]: QP+PQ=1, P^2=0, PQP=P, QPQ=Q, complementary projectors (P = QGF/|p|^2 on moment-free sections); zero-mode classes = those
+   of the minimal complex (cbar pair contractible: cbar^* -> -1/2 cbar^* invertible at p=0); real slice: A-block -1/2|p|^2 x 1_10
+   (former: longitudinal zero eigenvalue, NEG). Propagator, graded symmetry, K0 = identity. Engine: {S_0,l} = l o Q on every coordinate in
+   frames min/C/Psi; su(2) {S_Psi,S_Psi}=0 (3 NEG controls fail).
+
+3. RELATION TO THE FORMER CHAPTER 3 (exact):
+   j_Psi = pr o Phi_Psi : (c,A,lambda,cbar; c^*,A^*,lambda^*,cbar^*) -> (c,A,lambda; c^*, A^*-d cbar, lambda^*) is a chain map,
+   j j^dag = 1 => (j x j)K_t = K_t;  j QGF j^dag = former QGF => (j x j)P_Psi(eps,T) = P_former(eps,T);  I_Psi = I o j.
+   Hence W(P_Psi, J o j) = W(P_former, J) o j graph by graph. Former QGF = compression pr QGF_C iota of the square-zero Costello-frame
+   operator QGF_C = Phi QGF Phi^{-1}; (QGF_former)^2 = - pr QGF_C pi_cbar QGF_C iota (the missing antighost intermediate states).
+   Costello frame satisfies (1),(3),(4),(5) and has an order-two entry cbar -> cbar^* (-2 d^*d); the gauge-fermion frame satisfies all.
+
+4. EQUIVARIANT STRUCTURE:
+   cbar, cbar^* weight 2: v.cbar = v(cbar) + 1/2 div v cbar; so(W), Sigma, Sigma^* act trivially on them.
+   S^(1)_Psi(v) = S^(1)(v) o j - int (v.cbar, cbar^* + d^*A|_V);  S^(1)_Psi(x) = S^(1)(x) o j for x in so(W)+Sigma+Sigma^*;
+   S^(2)_Psi(x1,x2) = S^(2)(x1,x2) o j - int (cbar, u12(cbar)),  u12(x) = Gamma(eps1(x),eps2(x))|_V   (coefficient -1 unique).
+   Classical equivariant master equation: proved (decoupled antighost sector + symplectic, ghost-independent Phi_Psi) and checked:
+   abelian, all fields, 26 components (arity 1: P,M,Delta,K,K',R,xi,xi',eta,eta'; arity 2: even-even, even-odd, odd-odd incl. R) in frames
+   min/C/Psi; NEG: dropping the cbar cbar vertex fails exactly the 4 odd-odd components; antighost sector arities 1-4; (cbar,b) version with
+   S2_tp = -int(u.cbar, b^*) reduces exactly.
+   s_x Psi vertices (antifield-free part of S^(1)_Psi(x)):
+     s_v Psi = -1/2 int (cbar, iota_{grad div v} A|_V):  0 for P, M, Delta;  4 int (cbar, iota_b A|_V) for K_b;  0 for R;
+     s_eps Psi = int (Gamma(eps,lambda)|_V, d cbar)  (lambda-cbar vertex), two-component i int (lambdabar sigmabar eps + epsbar sigmabar lambda, d cbar).
+   [x., QGF]: 0 for P, M, R; -4 QGF for Delta; conformal Killing v: -1/2 div v QGF + 1/4 rho(d div v)|_{lambda^*->lambda} + [(s_v Psi).,QGF]
+     (K_b: last term A->-4 iota_b A (c), cbar->-8(b,-)cbar (A_V), A^*_V->-8 iota_b A^* (cbar^*), c^*->4(b,-)c^* (A^*_V));
+     odd: Prop c7-susy part (A^*->lambda, lambda^*->A) + [(s_eps Psi).,QGF] (lambda->c, cbar->lambda, lambda^*->cbar^*, c^*->lambda^*).
+   (P*)^2 = (QGF)^2 G^2 = 0 for every generator; line kernel P* x. P* = P* [x.,QGF] G = P* (s_x Psi). P*:
+     0 for P, M, Delta, R; lambda-c line for Q, S (identical to the former composite line, pullback); A_V-c line through 4 iota_b for K.
+   Two descriptions equivalent: W(P_C, J) o Phi = W(P_Psi, J o Phi); P_C*[x.',QGF_C]G = Phi P_Psi*(s_x Psi).P_Psi* Phi^{-1}.
+   No gauge fixing is Q-, S- or K-invariant: the linear gauge function is kappa d^*A|_V, and its variations along Sigma, Sigma^*, K are nonzero
+   for every action on cbar.
+   Gauge parameter: G_alpha = 1/2 int (cbar^*+d^*A)^2 = -s int (cbar^*+d^*A, cbar) (checked) => Nielsen: u-derivative BV-exact; spectra and
+   twist classes u-independent; at u != 0 H has symbol |p|^2 - 2u p iota_p (axioms single out Feynman).
+
+5. MIGRATION (migration_plan.json):
+   UNCHANGED (pullback along j, identical graph by graph): all of arity zero (I^CT 9/4 eps^-1 (A,A) + log terms; log class s(N o j);
+     coupling 0; Ob2 = -27/8 (d^*dc,d^*A); F2 = 27/16 (d^*A,d^*A) [= -27/16((cbar^*)^2 + 2(cbar^*,d^*A)) mod s-exact]; Ob3, F3 family, WZ);
+     O(eps) of letters and scalar bilinears; all two-letter counterterm kernels and the map of Thm c10-brst (Beisert spectra);
+     arity one along Sigma, Sigma^*, so(W) (defect cycles, Ob^(1)(xi), Ob^(1)(eta), two-body parts of Q_1, S_1);
+     the twisted theory along square-zero xi (twist classes, BK comparison).
+   DISAPPEARS: composite kernels 2P*v.P* ∝ (QGF)^2 along Delta, P_b, so(V) (Def/Prop c9-composite, Rem c9-Pi, composite triangle,
+     Ch11 composite pair kernels and their locality), theta_P, the finite part psi' imposing P_1=0, Rem c7-internal.
+   RECOMPUTE (R10): arity one along Delta, P_b, so(V), K_b (new placements of -(v.cbar, cbar^*+d^*A); composite part of Ob^(1)(Delta)
+     [1/3(dA,dA)-1/3(lam,dslash lam)-2/3(dc,A^*)] gone, special-edge part 4 x log coefficient kept); theta and all t_x (Thm c9-theta2,
+     c12-fix, c12-ar2, Cor c12-inv); D_1, P_1, M_1, K_1 representatives; arity two along pairs with u12 != 0 and (Delta,P), (K,P), (v,eps);
+     log T along K (former 3/(8 pi^2)); reflection Theta_n on cbar.
+   INVARIANT, MUST AGREE: Konishi gamma = 3g^2N/(4pi^2) (D_1 = -48 units on the trace), 20' = 0, families D_1 = -8 units x E_H,
+     dilatation coefficients 0 / -24, twist classes, one-loop algebra on cohomology.

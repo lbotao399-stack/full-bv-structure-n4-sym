@@ -1,0 +1,618 @@
+{
+ "file": "step2/next/twist/results.json",
+ "date": "2026-11-05",
+ "task": "class-level comparison of the one-loop twisted differential Q^xi_1 (xi = u (x) z, z = e_4) with [BK] (3.7), (3.59)-(3.70) and with the All-loop article (7.4)",
+ "conventions": {
+  "units_ours": "engine A: hbar/(16 pi^2), colour word (1 (x) ad_Y2 ad_Y1)(-,-)^-1 of the chain order (Y1 next to the first input)",
+  "structure": "S[U,V] = F[d_1 U, d_2 V] - F[d_2 U, d_1 V], d_k = holomorphic null vectors (weights (0,1), (-1,0)); <-> [BK] f_ACD f_BCE dU^D . dV^E up to one common factor",
+  "BK_normal_form": "coefficient of f_ACD f_BCE d_alphadot U^D d^alphadot V^E with U attached to the first input, as printed in [BK] (3.64)-(3.69) (factor 1/2 of fn 23 included)",
+  "flavour_labels": "ours (0,1,2) <-> BK (1,2,3); beta_(i) pairs with gamma_(i)",
+  "Q_xi_1": "sum over arities k = 0,1,2 of two-body defect kernels with k vertices S^(1)(xi) (coefficient 1 each, Lemma c8-ev) + one-body terms (do not enter the channels below)"
+ },
+ "Phi": {
+  "free_twisted_differential": "Q + xi. + (1/2) xi xi^T (lam <- lam*): nilpotent only for the coefficient 1/2 = the term -1/2 S^(2)(xi,xi)",
+  "letters": {
+   "c": "c",
+   "gamma^I": "iota_{w_I} A, rho(w_I) xi = 0  [WS: A_{I4}]",
+   "beta_I": "u-component of lam_+ along (u;tau_I) (coefficient of u in lam|_{S_+ (x) W})  [WS: u'^alpha lam_alpha^I]",
+   "d_k c": "lam_- along (s_k; -z) ~ d_k c  [WS: lambar_{alphadot 4} ~ u'^alpha sigma^m_{alpha alphadot} d_m c]",
+   "b": "1/2 F(d_1,d_2) + (u' (x) z, lam*)  [WS: u'^alpha F_mn (sigma^m sigmabar^n)_alpha^beta u'_beta + kappa_b u'_alpha lam*^alpha_4]",
+   "d_k X": "d_k of the representative (sectors one-dimensional)",
+   "note": "u' in S_+ with u'^alpha u_alpha = 1; d_1, d_2 = null vectors of u' (x) S_-; numerical constants refer to the engine-A realisation (weight vectors W[k], dual rows); invariant content: the ratios r_E"
+  },
+  "relations": {
+   "d_1 c": "32 i [lambar_(1)]",
+   "d_2 c": "-32 i [lambar_(0)]",
+   "antiholomorphic d c": "exact",
+   "WS": "Q^xi(u'^alpha sigma^m_{alpha alphadot} A_m) = d_alphadot c + 2 i lambar_{alphadot 4}  =>  d_alphadot c == -2 i lambar_{alphadot 4}",
+   "(xi, lam*)": "its completion by (i/2)(d.A)-terms is Q^xi_free-exact: not a representative of b (manuscript Rem c11-twist, Table c11-twistentries row bc)"
+  },
+  "class_coordinates_of_derivative_letters": {
+   "c_d1": "32*I",
+   "gamma0_d1": "2*I",
+   "beta0_d1": "2*I",
+   "gamma1_d1": "2*I",
+   "beta1_d1": "2*I",
+   "gamma2_d1": "2*I",
+   "beta2_d1": "2*I",
+   "c_d2": "-32*I",
+   "gamma0_d2": "2*I",
+   "beta0_d2": "2*I",
+   "gamma1_d2": "2*I",
+   "beta1_d2": "2*I",
+   "gamma2_d2": "2*I",
+   "beta2_d2": "2*I"
+  },
+  "tree_level_Q0": {
+   "coefficients": {
+    "c_0;12": "-1/2",
+    "c_1;02": "-I/2",
+    "c_2;01": "I/2",
+    "d_00": "-16*I",
+    "d_11": "16",
+    "d_22": "16"
+   },
+   "check": "d_i c_{i;jk}/eps_{ijk} = 8i for i = 0,1,2 (one coefficient of sum_I [gamma^I, beta_I] in Q0 b)",
+   "Phi_constants": {
+    "a_c": "1",
+    "a_gamma": "1 (s_t normalisation)",
+    "a_beta": [
+     "-1/2",
+     "i/2",
+     "i/2"
+    ],
+    "a_b": "-8i"
+   },
+   "residual_freedom": "s_t: gamma -> t gamma, beta -> t^2 beta, b -> t^3 b; preserves Q0, multiplies Q1 by t^-3 (normalisation of hbar_tw)"
+  },
+  "user_vs_BK": {
+   "map": "C_BK = i C_user: c_BK = -g c, gamma_BK = i gamma, beta_BK = -i beta, b_BK = b/g",
+   "result": "All-loop (7.4) = (1/(32 pi^2)) x transported BK (3.64)-(3.69) in all 14 channels; All-loop (7.6), (7.7) reproduced",
+   "user_entries_x64pi2": {
+    "gamma1 beta1": {
+     "c.c": "-g**2/(64*pi**2)"
+    },
+    "beta1 gamma1": {
+     "c.c": "-g**2/(64*pi**2)"
+    },
+    "beta1 beta2": {
+     "c.gam3": "-I*g/(64*pi**2)",
+     "gam3.c": "I*g/(64*pi**2)"
+    },
+    "b c": {
+     "c.c": "g**2/(64*pi**2)"
+    },
+    "b gamma1": {
+     "c.gam1": "g**2/(64*pi**2)",
+     "gam1.c": "-g**2/(64*pi**2)"
+    },
+    "beta1 b": {
+     "c.beta1": "g**2/(64*pi**2)",
+     "gam2.gam3": "I*g/(64*pi**2)",
+     "gam3.gam2": "-I*g/(64*pi**2)",
+     "beta1.c": "g**2/(64*pi**2)"
+    },
+    "b b": {
+     "c.b": "g**2/(64*pi**2)",
+     "gam1.beta1": "g**2/(64*pi**2)",
+     "gam2.beta2": "g**2/(64*pi**2)",
+     "gam3.beta3": "g**2/(64*pi**2)",
+     "beta3.gam3": "-g**2/(64*pi**2)",
+     "beta2.gam2": "-g**2/(64*pi**2)",
+     "beta1.gam1": "-g**2/(64*pi**2)",
+     "b.c": "-g**2/(64*pi**2)"
+    },
+    "gamma1 gamma2": {},
+    "c c": {},
+    "beta1 c": {},
+    "gamma1 c": {},
+    "beta1 gamma2": {}
+   }
+  }
+ },
+ "invariance": {
+  "class": "[Q^xi_1] in H(End F, ad Q^xi_0) = Hom(H(Q^xi_0), H(Q^xi_0)); invariant under field redefinitions, finite parts of all orders, free directions t_xi (theta^xi_V, theta^xi_perp), F_1^(0), F_1^(2), coupling direction, G_B, homotopy data; C Q^xi_0 = [Q^xi_0, -N_t] is contained in Im ad Q^xi_0",
+  "entries": "in one-loop-local (order <= 2, covariant) schemes each pair entry (X,Y) -> (dU, dV), U,V in {c,gamma,beta,b}, is invariant: psi_{2->1}(XY) would be a dotted triplet d_(a d_b) X', spectators survive in psi Q0; finite parts of order >= 3 move entries (Konishi: -3y under psi(W) = y tr dc.dc)"
+ },
+ "entries_raw_code_basis": {
+  "betagamma_00_d1d2": {
+   "UX": "64*I",
+   "VX": "-64*I",
+   "by_arity_part": {
+    "k0:-": [
+     "64*I",
+     "-64*I"
+    ],
+    "k1:-": [
+     "0",
+     "0"
+    ]
+   }
+  },
+  "betabeta_01_c_g2_d1d2": {
+   "UX": "2",
+   "VX": "2",
+   "by_arity_part": {
+    "k0:F": [
+     "4/3",
+     "4/3"
+    ],
+    "k1:F": [
+     "2/3",
+     "2/3"
+    ]
+   }
+  },
+  "bgamma_0_c_g0_d1d2": {
+   "UX": "64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F": [
+     "64*L + 128/3",
+     "64*L + 32"
+    ],
+    "k0:lam*": [
+     "16/3 - 96*L",
+     "64/3"
+    ],
+    "k1:F": [
+     "32*L + 16",
+     "32/3 - 64*L"
+    ]
+   }
+  },
+  "betab_0_b0_c_d1d2": {
+   "UX": "-64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F": [
+     "-64*L - 128/3",
+     "128/3"
+    ],
+    "k0:lam*": [
+     "64*L - 32/3",
+     "64/3"
+    ],
+    "k1:F": [
+     "-32/3",
+     "0"
+    ]
+   }
+  },
+  "betab_0_g1_g2_d1d2": {
+   "UX": "-2",
+   "VX": "-2",
+   "by_arity_part": {
+    "k0:lam*": [
+     "-2/3",
+     "-2/3"
+    ],
+    "k1:F": [
+     "-4/3",
+     "-4/3"
+    ]
+   }
+  },
+  "betagamma_00_d2d1": {
+   "UX": "-64*I",
+   "VX": "64*I",
+   "by_arity_part": {
+    "k0:-": [
+     "-64*I",
+     "64*I"
+    ],
+    "k1:-": [
+     "0",
+     "0"
+    ]
+   }
+  },
+  "betabeta_01_c_g2_d2d1": {
+   "UX": "2",
+   "VX": "2",
+   "by_arity_part": {
+    "k0:F": [
+     "4/3",
+     "4/3"
+    ],
+    "k1:F": [
+     "2/3",
+     "2/3"
+    ]
+   }
+  },
+  "bgamma_0_c_g0_d2d1": {
+   "UX": "64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F": [
+     "64*L + 128/3",
+     "64*L + 32"
+    ],
+    "k0:lam*": [
+     "16/3 - 96*L",
+     "64/3"
+    ],
+    "k1:F": [
+     "32*L + 16",
+     "32/3 - 64*L"
+    ]
+   }
+  },
+  "betab_0_b0_c_d2d1": {
+   "UX": "-64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F": [
+     "-64*L - 128/3",
+     "128/3"
+    ],
+    "k0:lam*": [
+     "64*L - 32/3",
+     "64/3"
+    ],
+    "k1:F": [
+     "-32/3",
+     "0"
+    ]
+   }
+  },
+  "betab_0_g1_g2_d2d1": {
+   "UX": "2",
+   "VX": "2",
+   "by_arity_part": {
+    "k0:lam*": [
+     "2/3",
+     "2/3"
+    ],
+    "k1:F": [
+     "4/3",
+     "4/3"
+    ]
+   }
+  },
+  "bc_c_c_d1d2": {
+   "UX": "-1024",
+   "VX": "1024",
+   "by_arity_part": {
+    "k0:F": [
+     "-512*L - 1280/3",
+     "512*L + 1280/3"
+    ],
+    "k0:lam*": [
+     "512*L - 256/3",
+     "256/3 - 512*L"
+    ],
+    "k1:F": [
+     "1024*L - 1024*log2 - 512",
+     "-1024*L + 1024*log2 + 512"
+    ],
+    "k1:lam*": [
+     "-1024*L + 1024*log2",
+     "1024*L - 1024*log2"
+    ],
+    "k2:F": [
+     "0",
+     "0"
+    ]
+   }
+  },
+  "bc_c_c_d2d1": {
+   "UX": "1024",
+   "VX": "-1024",
+   "by_arity_part": {
+    "k0:F": [
+     "512*L + 1280/3",
+     "-512*L - 1280/3"
+    ],
+    "k0:lam*": [
+     "256/3 - 512*L",
+     "512*L - 256/3"
+    ],
+    "k1:F": [
+     "-1024*L + 1024*log2 + 512",
+     "1024*L - 1024*log2 - 512"
+    ],
+    "k1:lam*": [
+     "1024*L - 1024*log2",
+     "-1024*L + 1024*log2"
+    ],
+    "k2:F": [
+     "0",
+     "0"
+    ]
+   }
+  },
+  "bb_c_b_d1d2": {
+   "UX": "64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F-lam*": [
+     "32/3",
+     "0"
+    ],
+    "k0:lam*-F": [
+     "0",
+     "32/3"
+    ],
+    "k0:lam*-lam*": [
+     "0",
+     "0"
+    ],
+    "k1:F-F": [
+     "64*L + 32",
+     "64*L + 32"
+    ],
+    "k1:F-lam*": [
+     "8",
+     "32/3 - 64*L"
+    ],
+    "k1:lam*-F": [
+     "32/3 - 64*L",
+     "8"
+    ],
+    "k2:F-F": [
+     "8/3",
+     "8/3"
+    ]
+   }
+  },
+  "bb_b0_g0_d1d2": {
+   "UX": "64*I",
+   "VX": "64*I",
+   "by_arity_part": {
+    "k0:F-lam*": [
+     "64*I/3",
+     "64*I/3"
+    ],
+    "k0:lam*-F": [
+     "64*I/3",
+     "64*I/3"
+    ],
+    "k1:F-F": [
+     "64*I/3",
+     "64*I/3"
+    ]
+   }
+  },
+  "bb_c_b_d2d1": {
+   "UX": "64",
+   "VX": "64",
+   "by_arity_part": {
+    "k0:F-lam*": [
+     "32/3",
+     "0"
+    ],
+    "k0:lam*-F": [
+     "0",
+     "32/3"
+    ],
+    "k0:lam*-lam*": [
+     "0",
+     "0"
+    ],
+    "k1:F-F": [
+     "64*L + 32",
+     "64*L + 32"
+    ],
+    "k1:F-lam*": [
+     "8",
+     "32/3 - 64*L"
+    ],
+    "k1:lam*-F": [
+     "32/3 - 64*L",
+     "8"
+    ],
+    "k2:F-F": [
+     "8/3",
+     "8/3"
+    ]
+   }
+  },
+  "bb_b0_g0_d2d1": {
+   "UX": "-64*I",
+   "VX": "-64*I",
+   "by_arity_part": {
+    "k0:F-lam*": [
+     "-64*I/3",
+     "-64*I/3"
+    ],
+    "k0:lam*-F": [
+     "-64*I/3",
+     "-64*I/3"
+    ],
+    "k1:F-F": [
+     "-64*I/3",
+     "-64*I/3"
+    ]
+   }
+  },
+  "bc_c_c_d1d2_check": {
+   "UX": "-1024",
+   "VX": "1024",
+   "by_arity_part": {
+    "k0:F": [
+     "-512*L - 1280/3",
+     "512*L + 1280/3"
+    ],
+    "k0:lam*": [
+     "512*L - 256/3",
+     "256/3 - 512*L"
+    ],
+    "k1:F": [
+     "1024*L - 1024*log2 - 512",
+     "-1024*L + 1024*log2 + 512"
+    ],
+    "k1:lam*": [
+     "-1024*L + 1024*log2",
+     "1024*L - 1024*log2"
+    ],
+    "k2:F": [
+     "0",
+     "0"
+    ]
+   }
+  }
+ },
+ "entries_flavour_checks": {
+  "betagamma_11": {
+   "UX": "64",
+   "VX": "-64"
+  },
+  "betagamma_22": {
+   "UX": "64",
+   "VX": "-64"
+  },
+  "betagamma_01": {
+   "UX": "0",
+   "VX": "0"
+  },
+  "betabeta_12_c_g0": {
+   "UX": "-2*I",
+   "VX": "-2*I"
+  },
+  "betabeta_12_c_g0_d2d1": {
+   "UX": "-2*I",
+   "VX": "-2*I"
+  },
+  "bgamma_1": {
+   "UX": "64",
+   "VX": "64"
+  },
+  "gammagamma_01_c_c": {
+   "UX": "0",
+   "VX": "0"
+  },
+  "betac_0": {
+   "UX": "0",
+   "VX": "0"
+  }
+ },
+ "homotopy_check_reversed_complement_on_db": {
+  "bb_c_b_d1d2_revp": {
+   "UX": "64",
+   "VX": "64"
+  },
+  "bb_c_b_d2d1_revp": {
+   "UX": "64",
+   "VX": "64"
+  }
+ },
+ "comparison": {
+  "rule": "r_E = o_E a_U a_V / (a_X a_Y) / b_E with o_E the coefficient of S[U,V] in derivative letters",
+  "table": [
+   {
+    "entry": "beta gamma (Konishi) [BK 3.66]",
+    "pair": "beta_(0) gamma_(0)",
+    "channel": "S[c,c]",
+    "o": "i/16",
+    "b_BK": "1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "beta gamma",
+    "pair": "beta_(1) gamma_(1), beta_(2) gamma_(2)",
+    "channel": "S[c,c]",
+    "o": "1/16",
+    "b_BK": "1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "beta beta [BK 3.67]",
+    "pair": "beta_(0) beta_(1)",
+    "channel": "S[c,gamma_(2)] ; S[gamma_(2),c]",
+    "o": "-1/32 ; 1/32",
+    "b_BK": "1/2 ; -1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "beta beta",
+    "pair": "beta_(1) beta_(2)",
+    "channel": "S[c,gamma_(0)]",
+    "o": "i/32",
+    "b_BK": "1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "b c [BK 3.64]",
+    "pair": "b c",
+    "channel": "S[c,c]",
+    "o": "-1",
+    "b_BK": "1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "b gamma [BK 3.68]",
+    "pair": "b gamma_(0), b gamma_(1)",
+    "channel": "S[c,gamma] ; S[gamma,c]",
+    "o": "-1 ; 1",
+    "b_BK": "1/2 ; -1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "beta b -> d beta d c [BK 3.69]",
+    "pair": "beta_(0) b",
+    "channel": "S[beta,c] ; S[c,beta]",
+    "o": "-1 ; -1",
+    "b_BK": "1/2 ; 1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "beta b -> d gamma d gamma [BK 3.69]",
+    "pair": "beta_(0) b",
+    "channel": "S[gamma_(1),gamma_(2)] ; S[gamma_(2),gamma_(1)]",
+    "o": "1/2 ; -1/2",
+    "b_BK": "1/2 ; -1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "b b -> d c d b [BK 3.65]",
+    "pair": "b b",
+    "channel": "S[c,b] ; S[b,c]",
+    "o": "-1 ; 1",
+    "b_BK": "1/2 ; -1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "b b -> d beta d gamma [BK 3.65]",
+    "pair": "b b",
+    "channel": "S[beta_(0),gamma_(0)] ; S[gamma_(0),beta_(0)]",
+    "o": "-16i ; 16i",
+    "b_BK": "1/2 ; -1/2",
+    "r": "-i/4"
+   },
+   {
+    "entry": "zero entries [BK 3.11], (3.77)",
+    "pair": "gamma_(0) gamma_(1), beta_(0) c, beta_(0) gamma_(1)",
+    "o": "0",
+    "b_BK": "0"
+   }
+  ],
+  "verdict": "agreement with [BK] (3.64)-(3.69) and with All-loop (7.4) in all eight channels with one common constant r = -i/4 (engine units, a_gamma = 1; -i/(4 t^3) under s_t); no genuine mismatch; every log(3/2) cancels",
+  "Konishi": "nonzero, delta_I^J, BK colour and dotted structure; entirely from the arity-zero kernel L_1^(0) with output lambar . d c (ghost derivative), d c == -2i lambar",
+  "arity_two": "Upsilon_xixi: 0 on (F,c) -> (lambar,lambar); 8/3 (of 64) in b b -> d c d b, needed for r = -i/4"
+ },
+ "manuscript_findings": [
+  "Table c11-twistentries / Thm c11-twistentries (i)-(iii): the listed arity-one values are reproduced (b <-> F(d1,d2)); the class-level entries need in addition the arity-zero kernels with ghost-derivative outputs and the term (u (x) z, lam*) of the representative of b; with them the Konishi entry is nonzero and the log(3/2) terms and colour-order asymmetries cancel",
+  "b <-> (xi, lam*) = u_alpha lam*^alpha_4 (Rem c11-twist, Tables c11-twist, c11-twistentries) is not a representative of b: (xi, lam*) + (i/2)(d.A)-terms is Q^xi_free-exact; the antifield term of b is (u' (x) z, lam*) = u'_alpha lam*^alpha_4",
+  "Thm c11-twistcheck (b),(c),(e) hold with these entries; Prop c11-plane (gamma gamma = 0) confirmed"
+ ],
+ "open": [
+  "absolute value of the common constant (t^3 of s_t; hbar_tw versus unit): needs the transported BV pairing on Dolbeault components (ESW Thm 10.9 on full fields, All-loop (B.1)); not computed",
+  "entries with input derivatives (BK (B.5)); three-letter classes and lifting statements; psl(3|3) one-loop generators R_1",
+  "second engine (B) not run on the arity-zero and arity-two kernels; cross-checks used: BK-pattern consistency in 8 channels with one constant, d_i c_i/eps uniform, flavour covariance, reversed homotopy complement on the d b sector, two interpolation routes for b c, reproduction of the arity-one values of Table c11-twistentries, holomorphic side (7.6), (7.7)"
+ ],
+ "provenance": {
+  "env.py": "dbc30fa8f627158f",
+  "freeq.py": "aab9db41461567e9",
+  "sector.py": "730b4fbdfe1b45c2",
+  "twdriver.py": "500d77d51b44b676",
+  "qa2.py": "b7b67d38a63f20d8",
+  "q0tree.py": "720f264baa8e8fbe",
+  "holo.py": "1c6333194aea0d06",
+  "run_entries.py": "a3c2352f7068f6a3",
+  "run_bb.py": "0cc0951d0341f417",
+  "run_flav.py": "ef8cddb40574b3e3",
+  "breakdown.py": "3363362e329b3262"
+ }
+}

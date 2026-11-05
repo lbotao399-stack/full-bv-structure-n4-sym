@@ -1,0 +1,64 @@
+RECORD FORMAT (shared by all part writers)
+
+One record per work. For each work write TWO files in the section directory parts/<dir>/ (S1ab, S1cde, S23, S45, S6):
+  <ID>.json   one JSON object (UTF-8, valid JSON, no comments)
+  <ID>.txt    the same content as readable text
+
+ID pattern: S<sec>.<two-digit index>_<ShortName><Year>   e.g.  S1.03_FSSZ2008
+  sec 1 = high-loop SUSY computations; subsections 1a N=4 spectrum via Feynman/supergraphs, 1b integrability-based high-loop spectrum, 1c correlator integrands, 1d amplitudes/UV divergences, 1e N=1 beta functions; IDs S1a.xx_..., S1b.xx_..., etc.
+  sec 2 = DRED consistency / FDH / HV / epsilon-scalars
+  sec 3 = BMHV (incl. SUSY applications)
+  sec 4 = algebraic renormalization of SUSY gauge theories with constant ghosts (+ SUSY-restoring counterterms)
+  sec 5 = Standard Model >= 3 loops and gamma5
+  sec 6 = supporting literature for the synthesis (QAP/BV in DR, conformal symmetry in d != 4)
+Index order inside a section = logical/chronological reading order.
+
+JSON keys (all required; use "" or [] when empty):
+{
+ "id": "",
+ "section": "",                      e.g. "1a N=4 spectrum via Feynman/supergraphs"
+ "authors": "",
+ "title": "",
+ "year": 0,
+ "arxiv": "",                        e.g. "0712.3522" or "hep-ph/0503129" or "none (pre-arXiv)"
+ "journal": "",
+ "claim": "",                        what the work claims, own words
+ "loop_order": "",
+ "theory": "",
+ "scheme": "",                       exact regularization + subtraction + gamma5/epsilon-scalar treatment
+ "symmetry_argument": "",            which argument is used for SUSY / BRST / (super)conformal protection
+ "symmetry_status": {
+     "proved": [],                   established inside this work (state precisely what)
+     "assumed": [],                  assumed without proof
+     "checked_partially": []         checked only for some quantities / some orders / numerically
+ },
+ "evidence": [],                     section / equation / table numbers with one-line content each
+ "red_flags": [],
+ "cross_checks": [],                 agreement/disagreement with other works (give their IDs or arXiv ids)
+ "source_access": "",                "abstract only" | "full text via ar5iv" | "full text via arxiv.org/html" | "full text via PDF" | "secondary: cited in <arXiv id>"
+ "confidence": "",                   high | medium | low  (in the correctness of THIS record)
+ "notes": ""
+}
+
+TXT layout:
+[ID] Authors -- Title (Year)
+  arXiv: ...   Journal: ...
+  Section: ...
+  Claim: ...
+  Loop order / theory: ...
+  Scheme: ...
+  Symmetry argument: ...
+  Proved: ...
+  Assumed: ...
+  Checked partially: ...
+  Evidence: ...
+  Red flags: ...
+  Cross-checks: ...
+  Access / confidence: ...
+  Notes: ...
+
+RULES
+- Primary sources only for claims (arXiv abstract + full text). If an equation or section number was not seen in the text, write "eq. no. not verified" instead of guessing.
+- Own words; any quote < 15 words, in quotation marks, at most one per record.
+- Never write to /tmp. Never download files to disk (no curl/wget); use WebFetch on arxiv.org/abs/<id>, ar5iv.labs.arxiv.org/html/<id>, arxiv.org/html/<id>, arxiv.org/pdf/<id>.
+- Write each record as soon as it is done (network drops). Append one line per finished record to parts/<dir>_PROGRESS.txt.

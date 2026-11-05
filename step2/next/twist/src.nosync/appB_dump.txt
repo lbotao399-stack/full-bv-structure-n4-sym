@@ -1,0 +1,127 @@
+index 1560
+[b-01001] paragraph  | <p>Most of the calculation details of the iterative reduction is in this appendix.</p>
+
+[local-e295c397-8131-49f0-9ba1-dde68807af55] paragraph  | <p>Sections <a href="#sec-B-propagators">B.1</a>–<a href="#sec-B-kernel">B.3</a> review the propagators, the \(\mathcal N=4\) superfield and the reduction of the bracket graphs to current integrals &#91;5; 7; 8; 1; 16&#93;; the remaining sections reduce these integrals as electrical networks.</p> 
+
+[sec-B-propagators] heading sec:B-propagators | <p><span>B.1 Pairing and propagators in holomorphic twist</span><br> </p>
+
+[b-01003] paragraph  | <p>For vertices $v,w$ of a graph of the brackets <a href="#eq-A-28">(3.1)</a>, the inverse BV pairing contracts a $\mathsf c$ field at one vertex with a $\mathsf b$ field at the other, or a $\gamma$ field with a $\beta$ field. </p>
+
+[sentence-4f8b917aa64a58f9f2614feb] paragraph  | <p>Its fibre part is the operator</p> 
+
+[eq-A-20] equation eq:A.20 | \begin{aligned} \Delta_{vw}={}& \frac{\partial_L}{\partial\mathsf b_{A,v}} \frac{\partial_L}{\partial\mathsf c_w^A} + \frac{\partial_L}{\partial\mathsf c_v^A} \frac{\partial_L}{\partial\mathsf b_{A,w}} \\ &- \frac{\partial_L}{\partial\beta_v^i} \frac{\partial_L}{\partial\gamma_{i,w}} - \frac{\partial_L}{\partial\gamma_{i,v}} \frac{\partial_L}{\partial\beta_w^i}. \end{aligned}\tag{B.1}
+
+[b-01005] paragraph  | <p>Dolbeault gauge fixing uses $Q^{\mathrm{GF}}=\bar\partial^*$ and $H=\{\bar\partial,Q^{\mathrm{GF}}\}$ [5]. </p>
+
+[sentence-4641b8d1df9c3416c6a01690] paragraph  | <p>With $\omega_E^{-1}$ the distributional inverse BV pairing, define the heat kernel $K_t$ by</p> 
+
+[eq-propagator] equation eq:propagator | K_t=(e^{-tH}\otimes1)\omega_E^{-1},\qquad 0<\varepsilon<L.\tag{B.2}
+
+[b-01007] paragraph  | For two Euclidean spacetime points $x_1,x_2$, the heat kernel is
+
+[eq-C-heat-spatial] equation eq:C-heat-spatial | [K_t(x_1,x_2)]_\Omega =-\frac{e^{-|x_1-x_2|_E^2/(2t)}}{32\pi^2t^2}  d(x_1-x_2)^{-\dot+}\wedge d(x_1-x_2)^{-\dot-}.\tag{B.3}
+
+[b-01009] paragraph  | The propagator $P_{\varepsilon,L}$ is the Schwinger-time integral
+
+[eq-C-heat-homotopy] equation eq:C-heat-homotopy | \begin{aligned} P_{\varepsilon,L} &=\int_\varepsilon^L(Q^{\mathrm{GF}}\otimes1)K_t\,dt,\\ (\bar\partial\otimes1+1\otimes\bar\partial)P_{\varepsilon,L} &=-\int_\varepsilon^L\partial_tK_t\,dt =K_\varepsilon-K_L. \end{aligned}\tag{B.4}
+
+[b-01011] paragraph  | <p>The free BV differential raises antiholomorphic form degree by one, turning a degree-one propagator into a degree-two heat kernel, the regularized delta function. </p>
+
+[sentence-4c4db1d84095fe5889334749] paragraph  | <p>These are the heat-kernel conventions of [5; 7].</p> 
+
+[b-01012] paragraph  | <p>Intuitively, applying the free differential $\bar\partial$ to a graph replaces one propagator by a heat kernel. </p>
+
+[sentence-4712476683c62ef4315b4ace] paragraph  | <p>Figure <a href="#fig-Q-graphs">26</a> shows this operation for the segment, triangle and two-loop fan.</p> 
+
+[fig-Q-graphs] image fig:Q-graphs | figures/figures-feynarts-fa_Q_graphs.png
+
+[b-01014] paragraph  | <p>A holomorphic displacement $z_{v,i}$ generates derivatives of the $i$th field at vertex $v$, as needed when computing $Q(\beta\,\partial_{+\dot a}\gamma)$. </p>
+
+[sentence-9daabb33fd0d8f1d0337ee6f] paragraph  | <p>Translating the field to $x_v+z_{v,i}$, differentiating in $z_{v,i}$, and setting $z_{v,i}=0$ gives its holomorphic derivatives. </p>
+
+[sentence-201a216d2758ea1efe8f4a1b] paragraph  | <p>In a contraction between fields at $v$ and $w$, the propagator therefore has argument $x_v-x_w+z_e$, with $z_e=z_{v,i}-z_{w,j}$. </p>
+
+[sentence-4c7b43b00c89a4c91462bc9c] paragraph  | <p>For example, on the oriented edge $(1,3)$,</p> 
+
+[eq-input-displacement] equation eq:input-displacement | \left.\partial_{3,+\dot a} [P_{\varepsilon,L;13}(x_1-x_3+z_{13})]_\Omega\right|_{z_{13}=0} =\left.2\frac{\partial}{\partial z_{13}^{+\dot a}} [P_{\varepsilon,L;13}(x_1-x_3+z_{13})]_\Omega\right|_{z_{13}=0}.\tag{B.5}
+
+[sec-N4-superfield] heading sec:N4-superfield | B.2 The $\mathcal N=4$ superfield
+
+[b-01017] paragraph  | <p>Most of our examples use $\mathcal N=4$ Yang–Mills theory, the gauge theory of the best-studied example of the AdS/CFT correspondence. </p>
+
+[sentence-08148a7b5aff042a7ff980a3] paragraph  | <p>Its three adjoint chiral multiplets have fields $(\gamma^I)_A,(\beta_I)^A$, $I=1,2,3$, and the adjoint generators are $(t_A^{\mathrm{adj}})^B{}_C=iC^B{}_{AC}$. </p>
+
+[sentence-ec7d3d463d2880e5905f392e] paragraph  | <p>The holomorphic twist uses $Q_-^4$. </p>
+
+[sentence-b9eb2e319a28adbea27cd177] paragraph  | <p>The supercharges $Q_+^I$, $I=1,2,3$, act as translations in the odd coordinates $\theta_I$, with $\int d^3\theta\,\theta_1\theta_2\theta_3=1$ and $\theta_I\bar\partial=-\bar\partial\theta_I$. </p>
+
+[sentence-939ec0bcfa10e0194b4017d9] paragraph  | <p>The fields of the holomorphic twist combine into one superfield [1], [16, Equation (3.52)], up to rescaling of the components,</p> 
+
+[eq-A-13] equation eq:A.13 | C^A(\theta)=ig\,\mathsf c^A+\theta_I\delta^{AB}(\gamma^I)_B-\frac12\varepsilon^{IJK}\theta_I\theta_J(\beta_K)^A+\frac{\theta_1\theta_2\theta_3}{ig}\delta^{AB}\mathsf b_B,\tag{B.6}
+
+[b-01019] paragraph  | <p>where $\varepsilon^{123}=\varepsilon_{123}=1$ and the component order is $\theta_IX$. </p>
+
+[sentence-68c827e5eaf5c9b21a5fa3ea] paragraph  | <p>The supersymmetry action is represented by left differentiation, $Q_+^IC^A(\theta)=\partial_LC^A(\theta)/\partial\theta_I$. </p>
+
+[sentence-345be4da308decd2f77ab471] paragraph  | <p>In this convention the action and classical differential take the form</p> 
+
+[eq-A-15] equation eq:A.15 | \begin{aligned} S_{\mathrm{tw}} &=\int_{\mathbb C^2}\Omega\wedge \left[\int d^3\theta\left( \frac12\delta_{AB}C^A\bar\partial C^B +\frac{i}{3!}C_{ABC}C^AC^BC^C\right)\right]_{(0,2)},\\ Q_0C^A&=\frac i2C^A{}_{BC}C^BC^C. \end{aligned}\tag{B.7}
+
+[b-01021] paragraph  | and the superpotential is
+
+[b-01022] equation  | \bar W(\gamma,0)=\frac i{3!}\varepsilon_{IJK}C_{ABC} \delta^{AD}\delta^{BE}\delta^{CF}(\gamma^I)_D(\gamma^J)_E(\gamma^K)_F.\tag{B.8}
+
+[b-01023] paragraph  | <p>The single cubic interaction thus contains the gauge, matter and superpotential vertices of <a href="#eq-B-10">(3.6)</a>. </p>
+
+[sentence-3c310196e5c373b6c19b2d73] paragraph  | <p>At a fixed spacetime point, the fibre derivative dual to $C$ is</p> 
+
+[eq-A-16] equation eq:A.16 | \begin{aligned} \frac{\delta}{\delta C^A(\theta)} ={}&\frac{\theta_1\theta_2\theta_3}{ig} \frac{\partial_L}{\partial\mathsf c^A} -\frac12\varepsilon^{IJK}\theta_J\theta_K \frac{\partial}{\partial(\gamma^I)_A} -\theta_I\frac{\partial_L}{\partial(\beta_I)^A} -ig\frac{\partial}{\partial\mathsf b_A},\\ \frac{\delta C^B(\theta^{(2)})}{\delta C^A(\theta^{(1)})} ={}&\delta_A{}^B\prod_{I=1}^3 (\theta_I^{(1)}-\theta_I^{(2)}). \end{aligned}\tag{B.9}
+
+[b-01025] paragraph  | and its contraction reproduces the component pairing:
+
+[eq-A-17] equation eq:A.17 | \Delta_{vw}=-\delta^{DE}\int d^3\theta\,\frac{\delta}{\delta C_v^D(\theta)}\frac{\delta}{\delta C_w^E(\theta)} .\tag{B.10}
+
+[b-01027] paragraph  | For the superfield pairing, the odd factor on an oriented edge $(v,w)$ is $\delta_{vw}=\prod_{I=1}^3(\theta_I^{(v)}-\theta_I^{(w)})$.
+
+[sec-B-kernel] heading sec:B-kernel | B.3 The kernel in Schwinger times and edge currents
+
+[b-01029] paragraph  | <p>Let $\Gamma_0=\{1,\ldots,k\}$ be the vertices and $\Gamma_1=(e_1,\ldots,e_{2n+1})$ the ordered edges of a graph. </p>
+
+[sentence-51015ce9ed95ba21995d659b] paragraph  | <p>Fix the insertion at $x_k=0$ and set $\lambda_k=-\sum_{v<k}\lambda_v$. </p>
+
+[sentence-569a432d4b6f1f180de929d6] paragraph  | <p>Each edge kernel has argument $x_{e(0)}-x_{e(1)}+z_e$, and $t_e>0$ is the Schwinger time of edge $e$. </p>
+
+[sentence-70d8e54ae961142e9bdd7c5c] paragraph  | <p>For $k=n+2$, the kernel is the lower-boundary sum at fixed $L>0$; summing over the heat edge turns it into an integral over the UV boundary of the Schwinger cube, as in [8, Equations (2.12)–(2.14)] and [7, Lemma 2, Proposition 9]:</p> 
+
+[eq-1-7] equation eq:1.7 | \begin{aligned} \mathcal I_\Gamma^{\mathrm{raw\ cut}}(\lambda;z) ={}&(-8\pi^2)^n\lim_{\varepsilon\downarrow0} \sum_{j=1}^{2n+1}(-1)^{j-1} \int_{(\mathbb C^2)^{k-1}} \left(\bigwedge_{v<k}\Omega_v\right) e^{\sum_{v<k}\lambda_{v,+\dot a}x_v^{+\dot a}}\\ &\times\left(\bigwedge_{a<j}[P_{\varepsilon,L;e_a}]_\Omega\right) \wedge[K_{\varepsilon;e_j}]_\Omega \wedge\left(\bigwedge_{a>j}[P_{\varepsilon,L;e_a}]_\Omega\right)\\ ={}&(-8\pi^2)^n\lim_{\varepsilon\downarrow0} \int_{(\mathbb C^2)^{k-1}} \left(\bigwedge_{v<k}\Omega_v\right) e^{\sum_{v<k}\lambda_{v,+\dot a}x_v^{+\dot a}}\, \bar\partial\left(\bigwedge_{a=1}^{2n+1}[P_{\varepsilon,L;e_a}]_\Omega\right)\bigg|_{\mathrm{UV}}\\ ={}&(-1)^n(-8\pi^2)^n\lim_{\varepsilon\downarrow0} \int_{(\mathbb C^2)^{k-1}} \left(\bigwedge_{v<k}\Omega_v\right) e^{\sum_{v<k}\lambda_{v,+\dot a}x_v^{+\dot a}}\\ &\times\int_{\partial_{\mathrm{UV}}[\varepsilon,L]^{2n+1}} \bigwedge_{a=1}^{2n+1}\Bigl([K_{t_{e_a};e_a}]_\Omega -dt_{e_a}\wedge[(Q^{\mathrm{GF}}\otimes1)K_{t_{e_a};e_a}]_\Omega\Bigr), \end{aligned}\tag{B.11}
+
+[eq-UV-boundary] equation eq:UV-boundary | \partial_{\mathrm{UV}}[\varepsilon,L]^{2n+1} =\bigcup_{j=1}^{2n+1}\bigl\{t_{e_j}=\varepsilon,\ \ \varepsilon\le t_{e_a}\le L\ (a\ne j)\bigr\},\tag{B.12}
+
+[b-01032] paragraph  | <p>with the facet $t_{e_j}=\varepsilon$ oriented by $(-1)^{j-1}\bigwedge_{a\ne j}dt_{e_a}$. </p>
+
+[sentence-a1e3f33fa80b3f659a84b252] paragraph  | <p>In the second line $\bar\partial$ acts from the left on the whole product of propagators. </p>
+
+[sentence-046c121a96efd6a583658f3c] paragraph  | <p>By <a href="#eq-C-heat-homotopy">(B.4)</a> each $\bar\partial P_{\varepsilon,L}$ gives $K_\varepsilon-K_L$; the restriction $|_{\mathrm{UV}}$ keeps the lower limits $K_\varepsilon$, and $(-1)^{j-1}$ is the sign of passing $\bar\partial$ through $j-1$ one-form propagators. </p>
+
+[sentence-284ff58bd775f5a9a72be9ee] paragraph  | <p>The $K_L$ terms combine with the scale-$L$ BV bracket and Laplacian in Appendix <a href="#sec-quantum-transfer">C</a>. In the third line each propagator is the Schwinger-time integral <a href="#eq-C-heat-homotopy">(B.4)</a>. </p>
+
+[sentence-57848bb5cb53a953ef91ab0d] paragraph  | <p>On the facet $t_{e_j}=\varepsilon$ the edge $e_j$ carries $K_\varepsilon$ and every other edge carries $-dt_e\wedge[(Q^{\mathrm{GF}}\otimes1)K_{t_e;e}]_\Omega$; collecting the $2n$ Schwinger differentials in front of the $2n$ one-form factors gives $(-1)^{n(2n-1)}=(-1)^n$.</p> 
+
+[b-01033] paragraph  | <p>Each uncontracted field is an output letter. </p>
+
+[sentence-01234dced1ee369247bd68c8] paragraph  | <p>At vertex $v$, the external holomorphic momentum $\lambda_v$ differentiates the product of all output letters there. </p>
+
+[sentence-91d3a5329d320d9511971684] paragraph  | <p>Thus, after evaluating the kernel, we substitute</p> 
+
+[eq-1-2] equation eq:1.2 | \lambda_{v,+\dot a}\longmapsto \frac{\partial}{\partial x_v^{+\dot a}} =-\frac12\partial_{v,+\dot a},\tag{B.13}
+
+[b-01035] paragraph  | <p>We then set the vertex positions to the origin. </p>
+
+[sentence-39374db687c9c500b3ff8bbe] paragraph  | <p>A fully contracted vertex has $\lambda_v=0$. </p>
+
+[sentence-e782487a2b30d89e11c7d8ec] paragraph  | <p>Figure <a href="#fig-N1-sources">27</a> illustrates the two operations in $\mathcal N=1$ Yang–Mills theory: differentiating $z_{13}$ accounts for a derivative on an input $\mathsf b$, while $\lambda_1,\lambda_2$ act on the surviving $\mathsf b,\mathsf c$.</p> 
+
+[fig-N1-sources] image fig:N1-sources | figures/figures-feynarts-fa_N1_sources.png
+
+[b-01037] paragraph  | <p>The $j$th term of the first line of <a href="#eq-1-7">(B.11)</a> places $K_{\varepsilon;e_j}$ on edge $e_j$ and $P_{\varepsilon,L}$ on every other edge. </p>
+

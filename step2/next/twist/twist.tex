@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Qx}{Q^{\xi}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\WS}{\textup{WS}}
+\title{The one-loop twisted differential along a rank-one supercharge\\ compared with the holomorphic twist at the level of classes}
+\author{}\date{2026-11-05}
+\begin{document}
+\maketitle
+
+\noindent Sources: [BK] arXiv:2512.07771v3, (3.1)--(3.70); [ESW] arXiv:2002.10517, Thm 10.9; [AL] the All-loop article (reader \texttt{127.0.0.1:8778}, Appendix B, blocks \texttt{b-01003}--\texttt{b-01027}; (3.1) \texttt{eq-A-28}, (3.2) \texttt{eq-1-1}, (3.5) \texttt{eq-B-8}, (3.6) \texttt{eq-B-10}, (7.1) \texttt{eq-2-3}, (7.4) \texttt{eq-Qnzero}, (7.6) \texttt{eq-2-26}, (7.7) \texttt{eq-2-27}, (B.1) \texttt{eq-A-20}, (B.6) \texttt{eq-A-13}, (B.7) \texttt{eq-A-15}, (B.9) \texttt{eq-A-16}). Manuscript: Lemma \texttt{c8-ev}, Def \texttt{c8-twisted}, Thm \texttt{c8-twist}, Rem \texttt{c11-twist}, Thm \texttt{c11-twistentries}, Thm \texttt{c11-twistcheck}, Rem \texttt{c12-twistcmp}. Code: \texttt{step2/next/twist/src.nosync}. ``\WS'' marks the Weinberg--Srednicki two-component form (Definition \texttt{c8-twocomp}, $\sigma^m=(\vec\sigma,i)$, $\bar\sigma^m=(-\vec\sigma,i)$, $\varepsilon^{12}=\varepsilon^{\dot1\dot2}=1$).
+
+\section{Setup}
+
+\begin{definition}[Supercharge, twisted differential]
+$\xi=u\otimes z\in S_+\otimes W$, $u'\in S_+$ with $(u',u)=1$, $z=e_4$; \WS: $\xi_\alpha{}^i=u_\alpha z^i$, $\bar\xi=0$, $u'^\alpha u_\alpha=1$.
+\[
+\Qx=r_\xi(\Lambda)|_{q=1}=\Qx_0+\hbar\Qx_1,\qquad \Qx_0=\{S^\xi,-\},\qquad S^\xi=S+S^{(1)}(\xi)-\tfrac12S^{(2)}(\xi,\xi),
+\]
+\[
+\hbar\Qx_1=\hbar L_1^{(0)}+\hbar L_1^{(1)}(\xi)-\tfrac12\hbar L_1^{(2)}(\xi,\xi)=\sum_{k=0}^{2}\Upsilon^{(k)}+(\text{one-body terms}),
+\]
+$\Upsilon^{(k)}$ the $\varepsilon^0$ coefficients of the defect cycles with one special edge $K_\varepsilon-K_0$ and $k$ vertices $S^{(1)}(\xi)$, each with coefficient $1$ (Lemma \texttt{c8-ev}: $r_\xi W(P,J)=W(P,r_\xi J)$; the $-\tfrac12$ of arity two is the $\tfrac1{2!}$ of two vertices at distinct chain positions times the sign $(-1)^{k(k-1)/2}$). $S^{(2)}(\xi,\xi)$ has two $\lambda^*$ legs and sits on no cycle.
+\end{definition}
+
+\begin{definition}[Holomorphic side]
+[AL, (B.6)], [AL, (B.7)], [AL, (7.4)] at $n=1$:
+\[
+C^A=ig\,\mathsf c^A+\theta_I\gamma^{IA}-\tfrac12\varepsilon^{IJK}\theta_I\theta_J\beta_K^A+\tfrac{\theta_1\theta_2\theta_3}{ig}\mathsf b^A,\qquad Q_0C^A=\tfrac i2C^A{}_{BC}C^BC^C,
+\]
+\[
+Q_1\big|_{\rm jets=0}=\frac{1}{128\pi^2}\int d^3\theta\;C_{ADR}C_{BRE}\,(\partial_{+\dot a}C^D)(\partial_+{}^{\dot a}C^E)\,\frac{\delta}{\delta C^A(\theta)}\frac{\delta}{\delta C^B(\theta)} .
+\]
+[BK, (3.52)]: $C_{BK}=\mathsf c+\theta_I\gamma^I+\tfrac12\varepsilon^{IJK}\theta_I\theta_J\beta_K+\theta_1\theta_2\theta_3\mathsf b$, $Q_0C_{BK}=\tfrac12[C_{BK},C_{BK}]$, entries [BK, (3.64)--(3.69)] with the factor $\tfrac12$ of [BK, fn 23].
+\end{definition}
+
+\begin{definition}[Normal form of a pair entry]
+For letters $X^A,Y^B$ and outputs $U,V$: $\langle U\cdot V\rangle:=f_{ACD}f_{BCE}\,\partial_{\dot\alpha}U^D\partial^{\dot\alpha}V^E$ ($U$ attached to $X$). In the engine, a chain order $(Y_1,Y_2)$ carries $(1\otimes\ad_{Y_2}\ad_{Y_1})(-,-)^{-1}$; with $\partial_k:=d_k\cdot\partial$ ($d_1,d_2$ the null vectors of $u'\otimes S_-$),
+\[
+\mathcal S[U,V]:=F[\partial_1U,\partial_2V]-F[\partial_2U,\partial_1V],
+\]
+$F[P,R]$ the functional of chain order ($P$ next to $X$). $\mathcal S[U,V]\leftrightarrow\langle U\cdot V\rangle$ up to one factor common to all entries. \WS: $\partial_{\dot\alpha}=u'^\alpha\sigma^m_{\alpha\dot\alpha}\partial_m$, $\langle U\cdot V\rangle=f_{ACD}f_{BCE}\,\varepsilon^{\dot\alpha\dot\beta}\partial_{\dot\alpha}U^D\partial_{\dot\beta}V^E$.
+\end{definition}
+
+\section{The transport map}
+
+\begin{lemma}[Free twisted differential]\label{lem:free}
+On plane waves, $\Qx_{\rm free}=Q+\xi.+\kappa\,\xi\xi^{T}|_{\lambda\leftarrow\lambda^*}$ is nilpotent iff $\kappa=\tfrac12$, i.e. $\{-\tfrac12S^{(2)}(\xi,\xi),-\}$ with $S^{(2)}(\xi,\xi)=-\tfrac12\int((\xi,\lambda^*),(\xi,\lambda^*))$.
+\WS: $-\tfrac12S^{(2)}=\tfrac14\int(u_\alpha z^i\lambda^{*\alpha}{}_i,u_\beta z^j\lambda^{*\beta}{}_j)$.
+\end{lemma}
+\begin{proof}
+$Q^2=0$, $Q\,\xi.+\xi.\,Q=0$ (gate E0), $(\xi.)^2+\kappa(Q S_2+S_2Q)=0$ solved entrywise: unique $\kappa=\tfrac12$ (\texttt{freeq.py}).
+\end{proof}
+
+\begin{proposition}[Single-letter cohomology]\label{prop:letters}
+Let $t=d+2w$ (degree $d$, Weyl weight $w$) and fix the charges of $\mathfrak{so}(V)\oplus\mathfrak{so}(W_{\mathbb R}^\perp)$ modulo the weight $q_\xi$ of $\xi$. In each sector below $H(\Qx_{\rm free})$ is one-dimensional, with the representatives
+\[
+\begin{array}{llll}
+\toprule
+\text{letter}&\text{index-free (engine realisation)}&\text{\WS}&(w,d)\\\midrule
+\mathsf c&c&c&(0,1)\\
+\gamma^I&\iota_{w_I}A,\ \rho(w_I)\xi=0&A_{I4}&(1,0)\\
+\beta_I&(u\otimes\tau_I)\text{-component of }\lambda|_{S_+\otimes W}&u'^\alpha\lambda_\alpha{}^I&(\tfrac32,0)\\
+\partial_k\mathsf c&\lambda|_{S_-\otimes W^*}\text{ along }(s_k;-z)\ \sim\ \partial_kc&\bar\lambda_{\dot\alpha4}\ \sim\ u'^\alpha\sigma^m_{\alpha\dot\alpha}\partial_mc&(\tfrac32,0)\sim(1,1)\\
+\mathsf b&\tfrac12F(d_1,d_2)+(u'\otimes z,\lambda^*)&u'^\alpha F_{mn}(\sigma^m\bar\sigma^n)_\alpha{}^\beta u'_\beta+\kappa_{\mathsf b}\,u'_\alpha\lambda^{*\alpha}{}_4&(2,0)+(\tfrac52,-1)\\
+\partial_k X&\partial_k(\text{rep of }X)&u'^\alpha\sigma^m_{\alpha\dot\alpha}\partial_m(\cdots)&\\\bottomrule
+\end{array}
+\]
+with the relations (exact, engine realisation; $\lambda$-components on dual weight rows)
+\[
+\Qx_{\rm free}(\iota_{d_1}A)=-\partial_1c+32i\,\bar\lambda_{(1)},\qquad \Qx_{\rm free}(\iota_{d_2}A)=-\partial_2c-32i\,\bar\lambda_{(0)},
+\]
+so $\partial_1c\equiv32i\,\bar\lambda_{(1)}$, $\partial_2c\equiv-32i\,\bar\lambda_{(0)}$; antiholomorphic derivatives of $c$ are exact. \WS: $\Qx(u'^\alpha\sigma^m_{\alpha\dot\alpha}A_m)=\partial_{\dot\alpha}c+2i\bar\lambda_{\dot\alpha4}$, i.e. $\partial_{\dot\alpha}c\equiv-2i\,\bar\lambda_{\dot\alpha i}z^i$.
+The element $(\xi,\lambda^*)$ (\WS: $u_\alpha\lambda^{*\alpha}{}_4$) completed by $\tfrac i2(\partial\cdot A)$-terms is $\Qx_{\rm free}$-exact; it does not represent $\mathsf b$.
+\end{proposition}
+\begin{proof}
+Exact linear algebra on the charge sectors (\texttt{sector.py}, \texttt{t3.py}, \texttt{t4.py}, \texttt{t8.py}): the $\mathsf b$ sector $(\chi_{\mathsf b},t=4)$, $\chi_{\mathsf b}=d_1+d_2$, has basis $\{y_{-d_1}\iota_{d_2}A,\ y_{-d_2}\iota_{d_1}A,\ (u'\otimes z,\lambda^*)\}$, $t-1$ part empty, and kernel spanned by $i\,y_{-d_1}\iota_{d_2}A-i\,y_{-d_2}\iota_{d_1}A+(u'\otimes z,\lambda^*)=\tfrac12F(d_1,d_2)+(u'\otimes z,\lambda^*)$ ($\partial_{n_w}\leftrightarrow2i\,y_{-w}$). The charge-$0$, $t=4$ sector has $\dim Z=\dim B=1$, $Z\ni(\xi,\lambda^*)+\tfrac i2(\cdots)$.
+\end{proof}
+
+\begin{remark}
+[AL, (3.3)] (\texttt{eq-field-form-dictionary}): $\mathsf b_A=\tfrac14\delta_{AB}f^B_{++}-\tfrac i2\lambda^{\ddagger-}_A+\cdots$, the same structure (field strength of the $u'u'$ component plus the gaugino antifield along $u'$); [AL, fn 16]: $[\bar\lambda_{\dot a}]=\tfrac12[\partial_{+\dot a}\mathsf c]$, the analogue of $\partial_{\dot\alpha}c\equiv-2i\bar\lambda_{\dot\alpha4}$.
+\end{remark}
+
+\begin{proposition}[Tree level]\label{prop:tree}
+In the vector-field convention of $\Qx_{\rm free}$, $\Qx_0\lambda=[c,\lambda]+\tfrac12\rho(F_A)\xi$ and $\Qx_0\lambda^*\ni{\not d}_A\lambda$. On the representatives,
+\[
+\Qx_0\beta_{(i)}=[c,\beta_{(i)}]+c_{i;jk}[\gamma_{(j)},\gamma_{(k)}],\qquad (c_{0;12},c_{1;02},c_{2;01})=(-\tfrac12,-\tfrac i2,\tfrac i2),
+\]
+\[
+\Qx_0\mathsf b\ni[c,\mathsf b]+\textstyle\sum_id_i[\gamma_{(i)},\beta_{(i)}],\qquad (d_0,d_1,d_2)=(-16i,16,16),\qquad \frac{d_i\,c_{i;jk}}{\varepsilon_{ijk}}=8i\ \ (i=0,1,2).
+\]
+Hence $\Phi$ intertwines $\Qx_0$ with [BK, (3.49)--(3.50)],
+\[
+\begin{gathered}\mathsf c_{BK}=c,\qquad\gamma^{I}_{BK}=\gamma_{(I-1)},\qquad \beta_{(i)}=a_i\,\beta_{BK,i+1},\quad (a_0,a_1,a_2)=(-\tfrac12,\tfrac i2,\tfrac i2),\\ \mathsf b=-8i\,\mathsf b_{BK},\qquad \partial_k\mapsto\partial_{\dot\alpha=k},\end{gathered}
+\]
+up to the one-parameter rescaling $s_t:\gamma\mapsto t\gamma,\ \beta\mapsto t^2\beta,\ \mathsf b\mapsto t^3\mathsf b$, which preserves $Q_0$ and rescales $Q_1$ by $t^{-3}$ (the normalisation of $\hbar_{\rm tw}$). The uniform value of $d_ic_{i;jk}/\varepsilon_{ijk}$ is the statement $Q_0\mathsf b=[\mathsf c,\mathsf b]-\sum_I[\gamma^I,\beta_I]$ with one coefficient.
+\WS: $\Qx_0(u'^\alpha\lambda_\alpha{}^I)=[c,u'^\alpha\lambda_\alpha{}^I]+\tfrac14[A^{Ik},A_{k4}]$, $\Qx_0\bar\lambda_{\dot\alpha i}=[c,\bar\lambda_{\dot\alpha i}]+\tfrac i2u^\alpha\sigma^m_{\alpha\dot\alpha}D_m(A_{ij}z^j)$.
+\end{proposition}
+\begin{proof}
+$F_{MN}=[A_M,A_N]$ on $W_{\mathbb R}^\perp$ and $d_A=d+[A,-]$ give the quadratic parts from the free arrows; the gauge terms follow from ${(\Qx_0)}^2=0$ ($\Qx_0c=\tfrac12[c,c]$). Projection on $\beta_{(i)}$ and on $(u'\otimes z,\lambda^*)$ (\texttt{q0tree.py}). Labels: $\Qx_0\beta_{(i)}\ni[\gamma_{(j)},\gamma_{(k)}]$ only for $\{j,k\}=\{0,1,2\}\setminus\{i\}$, and $\beta_{(i)}\gamma_{(j)}$ has the charge of $\partial_1\mathsf c\,\partial_2\mathsf c$ (mod $q_\xi$) only for $i=j$ (\texttt{t5.py}).
+\end{proof}
+
+\begin{proposition}[User normalisation versus BK]\label{prop:userBK}
+With $C_{BK}=i\,C$ (so $\mathsf c_{BK}=-g\mathsf c$, $\gamma_{BK}=i\gamma$, $\beta_{BK}=-i\beta$, $\mathsf b_{BK}=\mathsf b/g$), $[AL,(7.4)]=\tfrac1{32\pi^2}\,\Phi_{AL}^*\big([BK,(3.64)\text{--}(3.69)]\big)$ entry by entry; in particular $[AL,(7.6)]$, $[AL,(7.7)]$ are reproduced by the Grassmann evaluation of $[AL,(7.4)]$:
+{\small
+\[
+\begin{array}{lll}
+\toprule
+\text{pair}&[AL,(7.4)]:\ C_{A'PR}C_{B'RQ}W_1^P\!\cdot W_2^Q,\ \times64\pi^2&[BK]\ \langle\cdot\rangle\\\midrule
+\gamma^1\beta_1&\mathsf c.\mathsf c:\ -g^2&\tfrac12\ \mathsf c\mathsf c\\
+\beta_1\beta_2&\mathsf c.\gamma^3:\ -ig,\quad \gamma^3.\mathsf c:\ ig&\tfrac12\varepsilon(\mathsf c\gamma-\gamma\mathsf c)\\
+\mathsf b\mathsf c&\mathsf c.\mathsf c:\ g^2&\tfrac12\\
+\mathsf b\gamma^1&\mathsf c.\gamma^1:\ g^2,\quad\gamma^1.\mathsf c:\ -g^2&\tfrac12(\mathsf c\gamma-\gamma\mathsf c)\\
+\beta_1\mathsf b&\mathsf c.\beta_1,\ \beta_1.\mathsf c:\ g^2;\quad\gamma^2.\gamma^3:\ ig,\ \gamma^3.\gamma^2:\ -ig&\tfrac12(\beta\mathsf c+\mathsf c\beta+\varepsilon\gamma\gamma)\\
+\mathsf b\mathsf b&\mathsf c.\mathsf b:\ g^2,\ \mathsf b.\mathsf c:\ -g^2,\ \gamma^I.\beta_I:\ g^2,\ \beta_I.\gamma^I:\ -g^2&\tfrac12(\mathsf c\mathsf b-\mathsf b\mathsf c+\beta\gamma-\gamma\beta)\\
+\gamma\gamma,\ \mathsf c\mathsf c,\ \beta\mathsf c,\ \gamma\mathsf c,\ \beta_1\gamma^2&0&0\\\bottomrule
+\end{array}
+\]
+}
+\end{proposition}
+\begin{proof}
+\texttt{holo.py}: Grassmann algebra on $\theta_{1,2,3}$ and the component letters, $\delta/\delta C^A$ of [AL, (B.9)], $\int d^3\theta\,\theta_1\theta_2\theta_3=1$. Under $C_{BK}=iC$, $Q_0C=\tfrac i2C^A{}_{BC}C^BC^C$ becomes $\tfrac12[C_{BK},C_{BK}]$; the transported BK coefficient of each entry is $b_E\,\rho_U\rho_V/(\rho_X\rho_Y)$ with $(\rho_{\mathsf c},\rho_\gamma,\rho_\beta,\rho_{\mathsf b})=(-g,i,-i,1/g)$ and $f_{ACD}f_{BCE}=-f_{APR}f_{BRQ}$; the ratio to [AL] is $1/(32\pi^2)$ in all fourteen channels.
+\end{proof}
+
+\section{What is invariant}
+
+\begin{theorem}[Class]\label{thm:class}
+Let $\mathcal F$ be the space of local operators, graded by the charges of the commutant of $\xi$ (finite-dimensional sectors). Then:
+\begin{itemize}
+\item[(i)] $[\Qx_0,\Qx_1]=0$, and the class $[\Qx_1]\in H\big(\mathrm{End}\,\mathcal F,\ad_{\Qx_0}\big)\cong\mathrm{Hom}\big(H(\Qx_0),H(\Qx_0)\big)$ is invariant under: the field redefinitions and conjugations of Prop \texttt{c8-laws} (a); the finite parts $\psi$ of the operators of every order (Def \texttt{c8-renorm}), including their arity components; the action-side free directions ($\theta^\xi_V,\theta^\xi_\perp$ of $\hbar F^{(1)}_1(\xi)$, $\hbar F^{(0)}_1$, $\hbar F^{(2)}_1(\xi,\xi)$); the coupling direction; the outer direction $G_B$; the homotopy data $(p,h)$ of the transport.
+\item[(ii)] $\mathbb C\,\Qx_0\subset\mathrm{Im}\,\ad_{\Qx_0}$: $\Qx_0=-[\Qx_0,N_t]$ with $N_t$ the derivation counting $t$. Hence ``modulo $\mathbb C\,S^\xi$'' is contained in ``modulo $\mathrm{Im}\,\Qx_0$''.
+\item[(iii)] Two quantisations of the twisted theory differing by a $\Qx_0$-closed degree-$0$ local functional $D$ have $[\Qx_1]$ differing by $[\{D,-\}]$; it vanishes for $D\in\mathbb C S^\xi+\mathrm{Im}\,\Qx_0$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+(i) Theorem \texttt{c8-twist}: each change is $\Qx_1\mapsto\Qx_1+[\Qx_0,\phi]$ or $\Qx_1-a\Qx_0$; for $\psi$ of arbitrary order, $r_\xi$ of the conjugation by $1+\hbar\psi$ gives $[\Qx_0,r_\xi\psi]$; the free directions enter through $-\{\hbar F^{(k)}_1,-\}$, brackets with $\Qx_0$-closed functionals, which are $[\Qx_0,\{\chi,-\}]$ for exact ones and are the listed directions otherwise; two choices of homotopy data give transferred differentials related by an $L_\infty$ quasi-isomorphism, $\tilde Q_1\mapsto\tilde Q_1+[\tilde Q_0,\phi_h]$. Over $\mathbb C$, $H(\mathrm{End}\,K)\cong\mathrm{End}\,H(K)$ for each finite complex $K$. (ii) $[N_t,\Qx_0]=\Qx_0$. (iii) $\{S^\xi,-\}=\Qx_0$, $\{\Qx_0\chi,-\}=\pm[\Qx_0,\{\chi,-\}]$.
+\end{proof}
+
+\begin{theorem}[Entries in one-loop-local schemes]\label{thm:entries}
+Restrict the changes of Theorem \ref{thm:class} to those whose operator parts act on at most two letters (finite parts $\psi$ of order $\le2$, so$(V)\oplus$so$(W_{\mathbb R}^\perp)$-covariant), as all one-loop graphs do. For each pair $(X,Y)$ of holomorphic letters and outputs $\partial U,\partial V$, $U,V\in\{\mathsf c,\gamma,\beta,\mathsf b\}$, the coefficient of $\langle U\cdot V\rangle$ in the transported $\Qx_1(XY)$ is invariant. Under a finite part of order $\ge3$ it is not (Rem \texttt{c11-twist}: $\psi(W)=y\,\mathrm{tr}\,\partial\mathsf c\cdot\partial\mathsf c$ moves the Konishi coefficient by $-3y$).
+\end{theorem}
+\begin{proof}
+On holomorphic letters $\tilde Q_0$ is $1\to2$. For a two-body $\tilde\psi$, $[\tilde Q_0,\tilde\psi]_{2\to2}=\tilde Q_0\tilde\psi_{2\to1}-\tilde\psi_{2\to1}\tilde Q_0$ ($\tilde\psi_{3\to2}=0$; the perturbation-lemma terms $p\,\psi hQ_{\rm int}i$, $p\,Q_{\rm int}h\psi\,i$ have $\ge3$ outputs on two inputs). $\tilde\psi_{2\to1}(XY)$ must carry the charges of $XY$: $t$, $H_1=3\#\partial+2s$ ($s(\mathsf c,\gamma,\beta,\mathsf b)=(0,1,2,3)$), SU$(3)$ and the dotted $J_R$; the only letters with the first three are $\partial_{(\dot\alpha}\partial_{\dot\beta)}X'$, dotted triplets, while $XY$ is a dotted singlet. $\tilde\psi_{2\to1}\tilde Q_0(XY)$ keeps an undifferentiated spectator in $\{\mathsf c,\gamma,\beta,\mathsf b\}$, absent from $\partial U\,\partial V$; one-body changes keep a spectator. Charges $(t,H_1)$: $\mathsf c(1,0)$, $\gamma(2,2)$, $\beta(3,4)$, $\mathsf b(4,6)$, $\partial(2,3)$.
+\end{proof}
+
+\section{The comparison}
+
+\begin{theorem}[Pair entries]\label{thm:main}
+In the scheme $\psi=0$ with the computed $\hbar F_1$, the transported entries of $\Qx_1$ (all arities, $\mathsf b=\tfrac12F(d_1,d_2)+(u'\otimes z,\lambda^*)$, outputs projected by $p$) are, in units $\hbar/(16\pi^2)$ and the structures $\mathcal S$ (engine realisation, flavour labels $(0,1,2)\leftrightarrow(1,2,3)$):
+\[
+\begin{array}{llccc}
+\toprule
+\text{entry}&\text{channel}&\text{ours }o_E&[BK]\ b_E&r_E=o_E\,\frac{a_Ua_V}{a_Xa_Y}\,b_E^{-1}\\\midrule
+\beta_{(0)}\gamma_{(0)}\ [BK\,(3.66)]&\mathcal S[\mathsf c,\mathsf c]&\tfrac i{16}&\tfrac12&-\tfrac i4\\
+\beta_{(1)}\gamma_{(1)},\ \beta_{(2)}\gamma_{(2)}&\mathcal S[\mathsf c,\mathsf c]&\tfrac1{16},\ \tfrac1{16}&\tfrac12&-\tfrac i4\\
+\beta_{(0)}\gamma_{(1)}&&0&0&\\
+\beta_{(0)}\beta_{(1)}\ [BK\,(3.67)]&\mathcal S[\mathsf c,\gamma_{(2)}],\ \mathcal S[\gamma_{(2)},\mathsf c]&-\tfrac1{32},\ \tfrac1{32}&\tfrac12,\ -\tfrac12&-\tfrac i4\\
+\beta_{(1)}\beta_{(2)}&\mathcal S[\mathsf c,\gamma_{(0)}]&\tfrac i{32}&\tfrac12&-\tfrac i4\\
+\mathsf b\mathsf c\ [BK\,(3.64)]&\mathcal S[\mathsf c,\mathsf c]&-1&\tfrac12&-\tfrac i4\\
+\mathsf b\gamma_{(0)},\ \mathsf b\gamma_{(1)}\ [BK\,(3.68)]&\mathcal S[\mathsf c,\gamma],\ \mathcal S[\gamma,\mathsf c]&-1,\ 1&\tfrac12,\ -\tfrac12&-\tfrac i4\\
+\beta_{(0)}\mathsf b\ [BK\,(3.69)]&\mathcal S[\beta_{(0)},\mathsf c],\ \mathcal S[\mathsf c,\beta_{(0)}]&-1,\ -1&\tfrac12,\ \tfrac12&-\tfrac i4\\
+&\mathcal S[\gamma_{(1)},\gamma_{(2)}],\ \mathcal S[\gamma_{(2)},\gamma_{(1)}]&\tfrac12,\ -\tfrac12&\tfrac12,\ -\tfrac12&-\tfrac i4\\
+\mathsf b\mathsf b\ [BK\,(3.65)]&\mathcal S[\mathsf c,\mathsf b],\ \mathcal S[\mathsf b,\mathsf c]&-1,\ 1&\tfrac12,\ -\tfrac12&-\tfrac i4\\
+&\mathcal S[\beta_{(0)},\gamma_{(0)}],\ \mathcal S[\gamma_{(0)},\beta_{(0)}]&-16i,\ 16i&\tfrac12,\ -\tfrac12&-\tfrac i4\\
+\gamma_{(0)}\gamma_{(1)},\ \beta_{(0)}\mathsf c&&0&0&\\\bottomrule
+\end{array}
+\]
+with $a_{\mathsf c}=a_\gamma=1$, $a_{\beta_{(i)}}=a_i$, $a_{\mathsf b}=-8i$ (Proposition \ref{prop:tree}). Hence
+\[
+\Phi\circ\Qx_1\circ\Phi^{-1}=-\tfrac i4\,\frac{\hbar}{16\pi^2}\,\mathcal N\;Q_1^{BK}
+\]
+on every pair of holomorphic letters without derivatives, $\mathcal N$ the common conversion $\mathcal S\leftrightarrow\langle\cdot\rangle$, $\partial_k\leftrightarrow\partial_{\dot\alpha}$; under $s_t$ the factor becomes $-\tfrac i{4t^3}$. Every $\log\tfrac32$ cancels; every entry has the colour-order and dotted structure of [BK].
+\end{theorem}
+\begin{proof}
+For each output class the sector basis and $p$ (Proposition \ref{prop:letters}); for each pair of output basis elements with $p\ne0$, the arity $k=2(w_{\rm out}-w_{\rm in})$ is fixed per term of the input representatives, and the kernel is evaluated exactly (engine A defect cycles, $k=0$: no vertex $S^{(1)}(\xi)$; $k=1$; $k=2$: two vertices, \texttt{qa2.py}), both chain orders, polynomial in the output null coordinates by exact interpolation (\texttt{twdriver.py}). The class bases are converted by $\partial_1\mathsf c\equiv32i[\bar\lambda_{(1)}]$, $\partial_2\mathsf c\equiv-32i[\bar\lambda_{(0)}]$, $\partial_kX=2i\,y_{-d_k}X$. Contributions in the class bases of \texttt{twdriver.projection} ($d_1d_2$ component; pairs: chain order $(U,V)$; $(V,U)$; $L=\log\tfrac32$, $\ell=\log2$; $F$, $\lambda^*$ the two terms of $\mathsf b$):
+\[
+\begin{array}{lll}
+\toprule
+\text{entry}&\text{arity, part}&(U,V);\ (V,U)\\\midrule
+\beta_{(0)}\gamma_{(0)}\to\mathsf c\,\mathsf c&0&64i;\ -64i\\
+&1&0;\ 0\\
+\beta_{(0)}\beta_{(1)}\to\mathsf c\,\gamma_{(2)}&0&\tfrac43;\ \tfrac43\\
+&1&\tfrac23;\ \tfrac23\\
+\mathsf b\mathsf c\to\mathsf c\,\mathsf c&0,\ F&-512L-\tfrac{1280}3;\ 512L+\tfrac{1280}3\\
+&0,\ \lambda^*&512L-\tfrac{256}3;\ \tfrac{256}3-512L\\
+&1,\ F&1024(L-\ell)-512;\ -1024(L-\ell)+512\\
+&1,\ \lambda^*&-1024(L-\ell);\ 1024(L-\ell)\\
+&2,\ F&0;\ 0\\
+\mathsf b\gamma_{(0)}\to\mathsf c\,\gamma_{(0)}&0,\ F&64L+\tfrac{128}3;\ 64L+32\\
+&0,\ \lambda^*&\tfrac{16}3-96L;\ \tfrac{64}3\\
+&1,\ F&32L+16;\ \tfrac{32}3-64L\\
+\beta_{(0)}\mathsf b\to\beta_{(0)}\,\mathsf c&0,\ F&-64L-\tfrac{128}3;\ \tfrac{128}3\\
+&0,\ \lambda^*&64L-\tfrac{32}3;\ \tfrac{64}3\\
+&1,\ F&-\tfrac{32}3;\ 0\\
+\beta_{(0)}\mathsf b\to\gamma_{(1)}\gamma_{(2)}&0,\ \lambda^*&-\tfrac23;\ -\tfrac23\\
+&1,\ F&-\tfrac43;\ -\tfrac43\\
+\mathsf b\mathsf b\to\mathsf c\,\mathsf b&0,\ F\lambda^*\ |\ \lambda^*F&\tfrac{32}3;\ 0\ \ |\ \ 0;\ \tfrac{32}3\\
+&1,\ FF\ |\ F\lambda^*\ |\ \lambda^*F&64L+32;\ 64L+32\ \ |\ \ 8;\ \tfrac{32}3-64L\ \ |\ \ \tfrac{32}3-64L;\ 8\\
+&2,\ FF&\tfrac83;\ \tfrac83\\
+\mathsf b\mathsf b\to\beta_{(0)}\gamma_{(0)}&0,\ F\lambda^*\ |\ \lambda^*F&\tfrac{64i}3;\ \tfrac{64i}3\ \ |\ \ \tfrac{64i}3;\ \tfrac{64i}3\\
+&1,\ FF&\tfrac{64i}3;\ \tfrac{64i}3\\\bottomrule
+\end{array}
+\]
+The arity-one rows with $\mathsf b\to F$ (doubled, $\mathsf b\leftrightarrow F(d_1,d_2)$) are the entries of Table \texttt{c11-twistentries}: $\beta\beta$: $\tfrac23$; $\mathsf b\gamma$: $32+64L$, $\tfrac{64}3-128L$; $\beta\mathsf b\to\beta\,\partial\mathsf c$: $-\tfrac{64}3$, $0$; $\beta\mathsf b\to\gamma\gamma$: $\mp\tfrac83$; $\beta\gamma$: $0$. The sums are the table of the theorem.
+\end{proof}
+
+\begin{corollary}[Classes]\label{cor:classes}
+In one-loop-local schemes the comparison is entry by entry (Theorem \ref{thm:entries}) and agrees with [BK, (3.64)--(3.69)] and with [AL, (7.4)] in all eight channels, with one constant. The Konishi entry is nonzero:
+\[
+\Qx_1(\beta_I\gamma^J)=\delta_I^J\,\big(-\tfrac i4\mathcal N\big)\tfrac{\hbar}{16\pi^2}\cdot\tfrac12f_{ACD}f_{BCE}\,\partial_{\dot\alpha}\mathsf c^D\partial^{\dot\alpha}\mathsf c^E ,
+\]
+\WS: $\Qx_1\big((u'^\alpha\lambda_\alpha{}^I)(A_{J4})\big)\ni\delta^I_J\,\bar\lambda_{\dot\alpha4}\bar\lambda^{\dot\alpha}{}_4$ through the arity-zero output $\bar\lambda_{\dot\alpha4}\,u'^\alpha\sigma^m_{\alpha}{}^{\dot\alpha}\partial_mc$ and $\partial_{\dot\alpha}c\equiv-2i\bar\lambda_{\dot\alpha4}$. No entry is a genuine mismatch. The eight channels satisfy the relations [BK, (3.59)--(3.63)] with the same constant, so $\Qx_1$ and $\Phi^{-1}Q_1^{BK}\Phi$ agree, up to that constant, on all pairs of underived letters; the entries with input derivatives [BK, (B.5)] are not computed here.
+\end{corollary}
+
+\begin{remark}[Manuscript Table \texttt{c11-twistentries}]
+The table lists the arity-one kernels on one representative of each output. The arity-zero kernels with outputs $\partial_k c$ (ghost derivative) and, for $\mathsf b$, the term $(u'\otimes z,\lambda^*)$ of the representative are absent there. With them: the Konishi entry is $\tfrac i{16}\mathcal S[\mathsf c,\mathsf c]$, not $0$; the $\log\tfrac32$ terms and the colour-order asymmetries of $\mathsf b\gamma$ and $\beta\mathsf b\to\beta\,\partial\mathsf c$ cancel; the row ``$\mathsf b\mathsf c$, $\mathsf b\leftrightarrow(\xi,\lambda^*)$'' is the entry of an exact element. Thm \texttt{c11-twistentries} (i)--(iii) are statements about these representatives; Proposition \texttt{c11-plane} ($\gamma\gamma$) stands.
+\end{remark}
+
+\begin{remark}[Checks]
+(a) Bilinearity and flavour covariance: $\beta_{(i)}\gamma_{(i)}$, $i=0,1,2$, and $\beta_{(0)}\beta_{(1)}$, $\beta_{(1)}\beta_{(2)}$, $\mathsf b\gamma_{(0)}$, $\mathsf b\gamma_{(1)}$ give the same $r_E$ (the flavour normalisation enters only through $c_{i;jk}$). (b) Normalisation-free test: $r_{\beta\beta}r_{\mathsf b\gamma}=r_{\beta\gamma}r_{\beta\mathsf b\to\gamma\gamma}$ (letters balanced). (c) The arity-two kernels: $0$ on $(F,\mathsf c)\to(\bar\lambda,\bar\lambda)$, $\tfrac83$ of $64$ in $\mathsf b\mathsf b\to\partial\mathsf c\,\partial\mathsf b$, required for $r=-\tfrac i4$. (d) Independent interpolation route (\texttt{assemble3}) reproduces $\mathsf b\mathsf c$. (e) Homotopy data: with the complement of $Z$ in the $\partial\mathsf b$ sector reversed ($\partial\mathsf b$ read through $\partial F$ instead of $\partial\lambda^*$, other kernels and arities), $\mathsf b\mathsf b\to\partial\mathsf c\,\partial\mathsf b$ is again $64;\ 64$ in both dotted components. (g) The arity-one rows reproduce Table \texttt{c11-twistentries}. (f) Holomorphic side: [AL, (7.6)], [AL, (7.7)] reproduced by the Grassmann evaluation of [AL, (7.4)].
+\end{remark}
+
+\begin{remark}[Open]
+The absolute value of the common constant (the factor $t^3$ of $s_t$, i.e. $\hbar_{\rm tw}$ against $\hbar\,\mathrm{tr}(\ad\ad)/(16\pi^2(-,-))$) requires the transported BV pairing on the Dolbeault components ([ESW, Thm 10.9] on full fields, [AL, (B.1)]); not computed. Entries with input derivatives ([BK, (B.5)]), three-letter classes and the lifting statements, and a second engine for the arity-zero and arity-two kernels, remain.
+\end{remark}
+
+\end{document}

@@ -1,0 +1,41 @@
+step2/next/twist -- class-level comparison of Q^xi_1 with [BK] and with the All-loop article (2026-11-05)
+
+Files
+  twist.tex / twist.pdf      theorem-form note (6 pp, pdflatex clean)
+  results.json               Phi, invariance statements, raw and normalised entries, checks, open items, provenance
+  src.nosync/                code (engine A imported read-only from step2/composite_qsk/qsk/engine_a/src.nosync)
+    freeq.py      free twisted differential Q + xi. + (1/2) xi xi^T on plane waves; coefficient fixed by nilpotency
+    sector.py     exact single-letter cohomology of Q^xi_free in charge sectors (mod q_xi), projections p
+    q0tree.py     tree-level Q^xi_0 on the twisted letters: c_{i;jk}, d_i
+    qa2.py        arity-two defect cycles (two vertices S^(1)(xi), one special edge, all placements)
+    twdriver.py   twisted entries: arities 0,1,2 per term of the input representatives, outputs projected by p,
+                  exact interpolation (assemble2: lattice degree <= 2; assemble3: targeted, any degree)
+    holo.py       Grassmann evaluation of All-loop (7.4) with (B.6), (B.9)
+    run_entries.py, run_bb.py, run_flav.py, breakdown.py; data: entries*.json, breakdown.json, holo_entries.json,
+    deriv_coords.json, q0tree.json; bk.txt (BK text), allloop_doc.json (GET /api/document, read-only)
+
+Method
+  Q^xi_1 = sum_k Upsilon^(k), k vertices S^(1)(xi) on a defect cycle (coefficient 1 each, Lemma c8-ev).  For an entry
+  (X,Y) -> (dU,dV): inputs on closed representatives; for every output pair of untwisted basis letters with p != 0 the
+  arity is k = 2(w_out - w_in), per term of the input representative.  Outputs reduced by p (sector cohomology).
+  Class bases converted to derivative letters: d_1 c = 32i [lambar_(1)], d_2 c = -32i [lambar_(0)], d_k X = 2i y X.
+  Phi fixed by Q0 (BK (3.49)-(3.50)) up to s_t; flavour phases from c_{i;jk} (needed: raw beta_(i) bases differ by i).
+
+Results
+  b representative: 1/2 F(d1,d2) + (u' (x) z, lam*); (xi, lam*) is exact up to (i/2)(d.A)-terms.
+  All eight BK channels (3.64)-(3.69): r_E = -i/4 (engine units, a_gamma = 1) for every channel and flavour; logs
+  cancel; Konishi entry nonzero (from the arity-zero kernel with ghost-derivative output); arity-two kernel nonzero only
+  in bb -> dc db (8/3 of 64).  All-loop (7.4) = BK x 1/(32 pi^2) under C_BK = i C_user.
+  Invariant: [Q^xi_1] in Hom(H(Q0),H(Q0)); in one-loop-local covariant schemes also the reduced pair entries.
+
+Differences from the user's normalisation (All-loop App. B)
+  Holomorphic letters: All-loop superfield (B.6) C = ig c + theta gamma - 1/2 eps theta theta beta + theta^3 b/(ig),
+  Q0 C = (i/2) C C C; BK: C_BK = i C.  Phi here is written to BK letters; to the user's letters compose with
+  c = -c_BK/g, gamma = -i gamma_BK, beta = i beta_BK, b = g b_BK.  The common constant relative to the user's (7.4) is
+  then -i/4 x 32 pi^2 x (common conversion S <-> <.>, d_k <-> d_{+a}) and the s_t factor; not fixed absolutely here.
+  User's dictionary (3.3): b = 1/4 f_++ - (i/2) lam^{dd -} has the same structure as 1/2 F(d1,d2) + (u' (x) z, lam*);
+  fn 16 [lambar] = 1/2 [d_+ c] versus here d_alphadot c == -2i lambar_{alphadot 4}: different spinor phase conventions.
+
+Caveats
+  Absolute normalisation of hbar_tw (t^3) open; derivative entries (BK (B.5)) and multi-letter classes not computed;
+  engine B not run on arities 0 and 2.  Engine A's arity-zero kernels are the same code path as gate G-R1.

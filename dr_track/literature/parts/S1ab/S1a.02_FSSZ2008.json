@@ -1,0 +1,58 @@
+{
+ "id": "S1a.02_FSSZ2008",
+ "section": "1a N=4 spectrum via Feynman/supergraphs",
+ "authors": "F. Fiamberti, A. Santambrogio, C. Sieg, D. Zanon",
+ "title": "Anomalous dimension with wrapping at four loops in N=4 SYM",
+ "year": 2008,
+ "arxiv": "0806.2095",
+ "journal": "Nucl. Phys. B805 (2008) 231",
+ "claim": "Full details of the four-loop Konishi-descendant computation: gamma = 4 + 12 lambda - 48 lambda^2 + 336 lambda^3 + lambda^4 (-2496 + 576 zeta(3) - 1440 zeta(5)), lambda = g^2 N/(16 pi^2). Non-wrapping (range 1-4) contributions are taken from the asymptotic four-loop dilatation operator D_4; range-5 terms are subtracted at the level of chiral functions; all wrapping supergraphs are computed explicitly.",
+ "loop_order": "4 (planar)",
+ "theory": "planar N=4 SYM written in N=1 superspace, SU(N) gauge group (tr T_a T_b = delta_ab), SU(2) sector",
+ "scheme": "N=1 superspace (conventions of Superspace, Gates-Grisaru-Rocek-Siegel), supersymmetric Fermi-Feynman gauge (<VV> = -1/p^2). D-algebra on supergraphs; resulting integrals in dimensional regularization (poles in 1/eps), MS scheme. Pole parts of four-loop propagator-type integrals by the Gegenbauer polynomial x-space technique (GPXT), checked by uniqueness and by MINCER for three-loop subintegrals. IR: external momentum set to zero and an IR cutoff R on the radial x-space integration, also used for the subdivergences (an IR-rearrangement argument: pole parts of log-divergent subtracted integrals are momentum independent). Anomalous dimension from the 1/eps pole: gamma = lim eps g d/dg log Z.",
+ "symmetry_argument": "Manifest N=1 superspace; a power-counting/Euler-formula lemma (Sec. 2.1) shows only supergraphs whose spinor derivatives stay inside loops can diverge, which removes most graphs. Supersymmetry of the regulator itself is not discussed beyond working in superspace with D-algebra in 4d. Multiplicative renormalizability of tr(phi Z phi Z - phi phi Z Z) is stated to hold to all orders (exact eigenvector of the mixing).",
+ "symmetry_status": {
+  "proved": [
+   "Sec. 2.1 lemma (eqs. (2.14)-(2.17)): divergent contributions require all spinor derivatives to remain in loops (combinatorial, regulator independent)",
+   "Appendix A: non-maximal range-5 interactions do not contribute, so the range-5 subtraction can be read off from D_4 (eq. (3.7))"
+  ],
+  "assumed": [
+   "the asymptotic SU(2) four-loop dilatation operator D_4 of eq. (3.1), taken from the literature, with dressing-phase coefficient beta = 4 zeta(3) (integrability input, not a Feynman-graph result)",
+   "DR applied after 4d D-algebra preserves supersymmetry at four loops for this quantity",
+   "IR cutoff prescription does not change pole parts after subtraction of subdivergences (argued, Sec. 4.2)",
+   "GPXT applicability: authors state they cannot prove it in general at higher loops (Sec. 4.2)"
+  ],
+  "checked_partially": [
+   "range-5 part of D_4 recomputed by explicit supergraphs (Appendix B); yields MS values eps_3a=-4, eps_3b=-4i/3, eps_3c=4i/3 (eq. (3.8))",
+   "rational part corrected after mismatch with an independent result (footnote to eq. (4.8))"
+  ]
+ },
+ "evidence": [
+  "eq. (1.1): lambda = g^2 N/(16 pi^2)",
+  "eq. (1.2)-(1.3): gamma(O) = lim_{eps->0}[eps g d/dg log Z_O], O_ren = Z_O O_bare",
+  "eq. (2.1): N=4 action in N=1 superspace; eq. (2.5): superfield propagators",
+  "Sec. 2.1, eqs. (2.14)-(2.17): spinor-derivative lemma",
+  "Sec. 3, eq. (3.1): asymptotic D_4 with similarity-transformation parameters eps_3a..eps_3d and beta = 4 zeta(3) from the dressing phase",
+  "eq. (3.8): MS values of eps_3a, eps_3b, eps_3c from explicit range-5 graphs (Appendix B)",
+  "eq. (3.14): subtracted asymptotic part 4(121 + 12 zeta(3)) M on the L=4 basis",
+  "Sec. 4.2: GPXT, IR cutoff R, MINCER and uniqueness checks",
+  "eq. (4.12)-(4.13): wrapping dilatation operator, -8(17/2 + 18 zeta(3) - 30 zeta(5)) M",
+  "eq. (5.3)-(5.4): gamma_4 = -2496 + 576 zeta(3) - 1440 zeta(5)",
+  "Table C.8: pole parts of the twelve four-loop integrals I_1..I_12"
+ ],
+ "red_flags": [
+  "hybrid result: about half of the four-loop number comes from an integrability-based asymptotic dilatation operator; a complete Feynman-graph evaluation was not done",
+  "two corrections between versions: missing symmetry factor 2 found only after comparison with an independent result (footnote 1, p. 15) and a sign change in the chi(1) wrapping term (footnote 2, p. 18)",
+  "scheme statement is only implicit (MS with 1/eps poles after 4d D-algebra); no discussion of eps-scalars/evanescent issues or of the Siegel inconsistency",
+  "only the 1/eps pole of log Z is used; consistency of higher poles is a check but not reported in full",
+  "GPXT applicability at higher loops not proven (Sec. 4.2)"
+ ],
+ "cross_checks": [
+  "agrees with Bajnok-Janik Luscher computation 0807.0399 (S1b.01)",
+  "agrees with Velizhanin component computation 0808.3832 (S1a.06)",
+  "disagrees with Keeler-Mann 0801.1661 (S1a.03), whose component calculation the authors say still differs after fixing a trivial error"
+ ],
+ "source_access": "full text via PDF (pp. 1-18 and Table C.8 read)",
+ "confidence": "high",
+ "notes": "Reference [31] for D_4 not opened; it is presumably Beisert-McLoughlin-Roiban (four-loop dressing phase), which in turn fixed beta using the four-loop cusp anomalous dimension computed in DR (BCDKS hep-th/0610248). The superspace D-algebra is done in 4d before continuing integrals, i.e. Siegel-type supersymmetric DR; the paper does not discuss its consistency."
+}

@@ -1,0 +1,39 @@
+PROGRESS (gauge-fixing foundation, ~/N4_BV_HK2/gf)
+2026-11-05 20:50  started. Read DESIGN.md, DESIGN_STEP2.md (R0-R12), ch01-03, ch08, ch04 (counterterms, 27/16), ch07 (v., covariance),
+                  ch09 (composite kernel along Delta), survey, old check_qgf.py / qgf_costello_audit.md, SQED check logs (py files iCloud-evicted).
+Key structural findings (to be machine-checked):
+  F1  Frame Psi (gauge-fermion frame), reduced non-minimal pair (cbar, cbar*) with -1/4 (cbar*+d*A, cbar*+d*A): all 5 axioms.
+  F2  Old Feynman Q^GF = compression p Q^GF_C iota of the new (Costello-frame) nilpotent operator; arity-0 theory identical via chain map j.
+  F3  Composite lines along Delta,P,M,R cancel iff cbar has Weyl weight 2 and transforms; along Q,S unchanged (pullback); along K local vertex.
+  F4  Arity-two cbar cbar vertex S^(2)_nm = gamma2 (cbar, v12(cbar)).
+Plan: realization.py, freecx.py (momentum space), bvjet.py (jet BV engine), checks.py driver -> checks.json; then tex.
+2026-11-05 21:30  VERIFIED (sympy, freecx.py/gfsolve.py/firstorder.py):
+  - realization (Clifford V10, symmetry, chirality, 't Hooft) PASS
+  - minimal: unique H=p^2 operator = old QGF, (QGF)^2 != 0  [no-go]
+  - first-order: unique scale-free H=p^2 operator has (QGF)^2 != 0 [no-go]; Costello Hermitian adjoint: (Qdag)^2=0
+    but H|_B = (k_As p^2 + 4 k_Bs)/k_B (mass term) and B->A first-order mixing => IR scale.
+  - reduced nonminimal (cbar,cbar*), Phi=1+N, N: cbar -> -d cbar (A*_V), A_V -> d^*A (cbar*): symplectic iff n1=-n2.
+    General ansatz: one-parameter family (alpha) with H=p^2, selfadjoint; (QGF)^2 ∝ (2alpha+1)^2 => alpha=-1/2 (Feynman), unique:
+    A*->-2A*, lam*->-dslash lam*, cbar*->+cbar* (c slot), c*->-c* (cbar slot).
+  - b kept: for every frame parameter kappa a unique solution with all axioms; at kappa=-1 antifields->fields.
+  - chain map j=p o Phi: j Q_Psi = Q j, j j^dag = 1, j QGF_Psi j^dag = QGF_old; frame C: QGF_C^2=0, H=p^2, but cbar->cbar* entry -2p^2 (order 2);
+    QGF_old = compression p QGF_C iota; (QGF_old)^2 = - p QGF_C pi_nm QGF_C iota.
+  - propagator (frame Psi): AA: 2, lam lam: as before, c(x)cbar: -1, cbar(x)c: +1 (times (-,-)^{-1} e^{-eps p^2}/p^2); nothing else.
+2026-11-05 21:45  VERIFIED (bvjet engine, conventions calibrated: {S0,l} = l o Q on every coordinate, all frames):
+  - abelian equivariant MC, 26 components (arity 1 all generator types; arity 2 even-even, even-odd, odd-odd incl. R):
+      min (old) PASS; C (transforming cbar w=2, gamma2=-1) PASS; Psi PASS; Psi inert cbar, gamma2=0 PASS (valid, = old);
+      NEG: gamma2=0 with transforming cbar fails exactly the 4 odd-odd components; inert + gamma2=-1 fails same.
+  - gamma2 = -1 : S2_nm(x1,x2) = - int (cbar, u12(cbar)), u12 = Gamma(eps1,eps2)|_V
+  - su(2) gauge sector frame Psi {S,S}=0 PASS; 3 negative controls fail as expected
+  - operators: H=-d^2 all slots; composite QGF x. QGF = 0 for P,M,Delta,R; !=0 for K,xi,eta; = QGF V_x QGF always
+    [x.,QGF]=0 (P,M,R); [Delta.,QGF]=-4QGF; [v.,QGF] = -1/2 div v QGF + 1/4 rho(d div v)|lam* + [V_v,QGF]
+  - s_vPsi = -1/2 (cbar, iota_{grad div v} A|_V) (K_b: 4 (cbar, iota_b A|_V)); s_epsPsi = (Gamma(eps,lambda)|_V, d cbar)
+  - (cbar,b) pair: S_tp=(b,cbar*), S1_tp=-(v.cbar,cbar*)+(v.b,b*), S2_tp=-(u.cbar,b*); elimination of b along kappa=-1
+    reproduces the reduced pair and its equivariant extension exactly.
+2026-11-05 21:55  checks.py driver written; --fast mode all PASS (22 s); full run (with 6 x 26-component equivariant runs) started -> checks.json
+                  Next: migration_plan.json, gf.tex, ch03_revised.tex (+ ch03_preview.tex wrapper), summary.txt
+2026-11-05 22:05  final checks.json written (383 s); ch03_revised.tex compiles inside the full manuscript (ch03_preview.tex, pdflatex,
+                  0 undefined refs, all 22 c3-labels used by later chapters present); migration_plan.json (84 items). Next: gf.tex, summary.txt
+2026-11-05 22:15  DONE. checks.json (130 entries, all pass, NEG controls fail as required, runtime 385 s, written 22:12);
+                  gf.tex -> gf.pdf (pdflatex, 0 undefined refs); ch03_revised.tex compiles in ch03_preview.tex with ch01-ch12 (0 undefined refs);
+                  migration_plan.json (84 items); summary.txt.

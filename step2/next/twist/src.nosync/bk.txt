@@ -1,0 +1,1793 @@
+                                          Loop Corrected Supercharges from Holomorphic
+                                          Anomalies
+
+
+
+
+                                          Kasia BudzikQ0 and Justin KulpQ1
+                                          Q0
+                                               Center for the Fundamental Laws of Nature, Harvard University, Cambridge, MA 02138, USA
+                                          Q1
+                                               Simons Center for Geometry and Physics, Stony Brook University, Stony Brook, NY 11794, USA
+                                               Yang Institute for Theoretical Physics, Stony Brook University, Stony Brook, NY 11794, USA
+
+                                               E-mail: kbudzik@fas.harvard.edu, jkulp@scgp.stonybrook.edu
+
+                                          Abstract: We describe the loop corrections to supercharges in supersymmetric quantum
+
+
+
+
+arXiv:2512.07771v3 [hep-th] 20 Jul 2026
+                                          field theories using the holomorphic twist formalism. We begin by reviewing the relation
+                                          between supercharge corrections and the “twice-generalized” Konishi anomaly, which corrects
+                                          the semi -chiral ring. In the holomorphic twist, these corrections appear as BRST anomalies
+                                          and are computed using the higher operations of an underlying L∞ conformal algebra. We
+                                          then apply this formalism to obtain the complete one-loop corrections to the supercharge of
+                                          four-dimensional Lagrangian supersymmetric gauge theories, including N = 4 SYM, where
+                                          it admits a remarkably compact expression in terms of superfields.
+Contents
+
+1 Introduction and Summary                                                               1
+
+2 The Holomorphic Twist and Corrections to Q from Anomalies                              6
+  2.1 Semi-Chiral Superfields and Q-Cohomology                                           6
+  2.2 Corrections to Q from Anomalies                                                    8
+      2.2.1 Warmup: The Generalized Konishi Anomaly and the Chiral Ring                  8
+      2.2.2 Anomalies as Higher Operations                                              10
+  2.3 Computing Loop Corrections in the Holomorphic Twist                               12
+
+3 Lagrangian SUSY Gauge Theories                                                        16
+  3.1 One-Loop Supercharge                                                              17
+  3.2 N = 1 Super Yang-Mills                                                            20
+  3.3 N = 2 Super Yang-Mills                                                            21
+  3.4 N = 4 Super Yang-Mills                                                            22
+      3.4.1 Loop Corrections in the Planar Limit                                        24
+
+A The One-Loop Master Integral                                                          25
+
+B One-Loop Supercharges on Derivatives                                                  27
+
+C Combinatorial Manipulations                                                           28
+
+
+
+
+1   Introduction and Summary
+
+The tractability of Supersymmetric Quantum Field Theories (SQFTs) comes from the ex-
+istence of Q-closed local operators, i.e. those annihilated by the action of some (set of)
+supercharge(s)
+                                          QO = 0 .                                   (1.1)
+Such operators are useful for understanding SUSY vacua [1, 2], deformations and non-
+renormalization theorems [3–6], and for matching across supersymmetric and holographic
+dualities [7–13]. Thus, to understand the space of Q-closed operators is to understand the
+“superdata” of an SQFT.
+    In this paper, we consider the most general set of such operators in (3+1)d SQFTs: the
+semi-chiral operators. By definition, semi-chiral operators are annihilated by one (minimal
+
+
+
+
+                                           –1–
+rank) nilpotent supercharge, say1
+                                                 Q := Q1− .                                              (1.2)
+Correlation functions of semi-chiral operators are regular and insensitive to changes by Q-
+exact quantities in SUSY vacua. Consequently, it is useful to pass to Q-cohomology, turning
+our attention to the “semi-chiral ring” of the SQFT – a holomorphic generalization of the
+chiral ring.
+    In this note, we describe a systematic procedure for computing the quantum corrected
+semi-chiral ring of interacting SQFTs using a perturbative expansion:
+
+                           Q = Qfree + Qtree + ℏQ1-loop + ℏ2 Q2-loop + . . . ,                           (1.3)
+
+based on the holomorphic twist formalism of [16–19].
+     Before discussing SQFTs, it is instructive to consider an analog of these ideas in Confor-
+mal Field Theory (CFT). In CFTs, the scaling dimensions ∆i and three-point functions Cijk
+of primary local operators make up the entirety of the conformal data. By the state-operator
+correspondence, understanding the space of local operators also tells us about all states in the
+(vacuum sector of the) QFT, so enumerating the space of local operators is as complicated
+as computing the partition function of the CFT on S 1 × S d .
+     Quantum corrections to the action of the dilatation operator D on local operators are
+described by anomalies/anomalous dimensions. In perturbation theory, we construct com-
+posite local operators from normal ordered product of free fields, i.e. given fields ϕ1 and ϕ2 ,
+we can construct the normal-ordered primary :ϕ1 ϕ2 :, and so on with derivatives. The free
+dilatation operator Dfree acts on normal-ordered products by the Leibniz rule, so :ϕ1 ϕ2: has
+classical free scaling dimension ∆1 + ∆2 . However, in the interacting quantum theory we can
+have multiple Wick contractions, leading to loop diagrams and thus anomalous dimensions
+
+                                 D :ϕ1 ϕ2: = (∆1 + ∆2 + γ12 (ℏ)) :ϕ1 ϕ2: ,                               (1.4)
+
+i.e., operator renormalization generically prevents D from acting by the Leibniz rule.
+      The connection between modified actions of generators, anomalies, and quantum cor-
+rected equations of motion is neither exotic nor limited to D. Even the action of translations
+on operators can receive quantum corrections. For example, any symmetry current J µ is clas-
+sically conserved Pµ J µ = 0 using the equations of motion, but can be non-conserved quantum
+mechanically. For chiral fermions in a representation R, the action of Pµ on the current J5µ
+famously receives corrections at one-loop
+                                                      2C(R)
+                                     Pµ J5µ = g 2 ℏ          tr Fµν F̃ µν .                              (1.5)
+                                                       16π 2
+   As with D and Pµ , the quantum corrections to the action of Q in (1.3) are understood as
+“Konishi anomalies.” [20, 21]. Indeed, it has long been known that the “generalized Konishi
+   1
+    The precise choice of supercharge is immaterial [14–16], so long as the rank is minimal. Our formalism
+extends straightforwardly to other dimensions and twists, as described in [17]. However, the main focus of this
+note concerns loop corrections to Q in (3+1)d gauge theories.
+
+
+
+
+                                                      –2–
+anomaly” modifies identities in the chiral ring of N = 1 theories [2], giving corrections to
+Q – briefly reviewed in Section 2.2. In [16] and in this paper, we compute modifications to
+identities in the semi-chiral ring, thereby giving a “twice-generalized Konishi anomaly.”
+     A general prescription for computing the perturbative corrections to the supercharge was
+proposed in [16, 18] using the holomorphic twist formalism (further developed in [17, 19, 22]).
+In this approach, one adds Q to the BRST charge of a supersymmetric gauge theory, pro-
+ducing a simplified theory with holomorphic dependence on spacetime coordinates. For
+Lagrangian SQFTs, the twisted theory can be further mapped to vastly simpler holomor-
+phic βγ-bc systems [15, 23, 24]. The twisted theories also possess an L∞ conformal alge-
+bra structure, generated by algebraic operations called higher λ-brackets, and can admit
+infinite-dimensional symmetries generalizing Virasoro and Kac-Moody symmetries to higher
+dimensions [16, 19, 25–31].
+     The aforementioned λ-brackets provide a controlled perturbative expansion for the holo-
+morphic BRST anomalies of the free theory under deformations. In particular, the higher
+λ-brackets provide an explicit formula for the n-loop corrections to the supercharge
+                                                  1
+                                     Qn O =            {I, . . . , I , O} ,                              (1.6)
+                                               (n + 1)! | {z }
+                                                             n+1
+
+where I is an interaction term and the precise definition of the higher bracket is given in
+Section 2.2 [16–18, 22]. As we explain later, the corrections Qn can act on n + 1 letters,
+and therefore the quantum corrected supercharge does not satisfy the Leibniz rule on local
+operators in this scheme.
+     The higher-loop bracket (1.6) and the twice-generalized Konishi anomaly were already
+employed in [16] in the context of pure N = 1 SYM with gauge group SU (N ). There it was
+observed that the tree-level Q-cohomology receives quantum corrections both in the planar
+limit and at finite N . In the planar limit, the tree-level cohomology can be computed using
+homological algebra methods (the Loday-Quillen-Tsygan theorem [32, 33]), and is generated
+by three infinite towers of operators:2
+
+                       An = Tr bn ,      Bn,α̇ = Tr bn ∂α̇ c ,   Cn = Tr bn ∂α̇ c∂ α̇ c ,                (1.7)
+
+and their holomorphic derivatives ∂z α̇ . At one-loop, Q1 pairs these towers non-trivially, with
+
+                              Q1 An ∼ ∂ α̇ Bn,α̇     and    Q1 Bn,α̇ ∼ ∂α̇ Cn .                          (1.8)
+
+Consequently, the An and Bn,α̇ towers are no longer closed and the derivative towers ∂ α̇ Bn,α̇
+and ∂α̇ Cn become Q1 -exact. The paired towers are lifted from the classical cohomology,
+leaving only the Cn tower (without derivatives) in the quantum-corrected cohomology.3 In
+   2
+     As reviewed in Section 3, b can be identified with the holomorphic field strength F++ and ∂α̇ c with the
+gauginos λ̄α̇ .
+   3
+     At N = 2, there are additional operators in the Q1 -cohomology besides the Cn tower, indicating that the
+phenomenon of fortuity (discussed later) may also arise after loop corrections. It was further conjectured that
+the “one-loop fortuitous” operators in this example are lifted by a non-perturbative differential Qnp [16].
+
+
+
+
+                                                    –3–
+this example, the twice-generalized Konishi anomaly manifests as the failure of the stress
+tensor B1,α̇ = Tr b∂α̇ c to be closed under the 1-loop supercharge Q1 [16].
+     The study of Q-cohomology has recently experienced a resurgence in interest due to its
+relevance in the construction of BPS black hole microstates. In SCFTs, the Q-cohomology
+classes are in one-to-one correspondence with 1/4 N -BPS states.4 In N = 4 SYM at finite N ,
+two classes of 1/16-BPS operators were recently identified: “monotone” operators, which are
+BPS at all values of N ; and “fortuitous” operators, which become BPS only at special finite
+values of N due to trace relations [34–41] (see also [42–47] for other examples). Recently, it
+was observed that the classical 1/16-BPS spectrum of N = 4 SYM with SO(7) gauge group
+also receives loop corrections [48, 49], violating non-renormalization conjectures [34, 50]. The
+one-loop corrections have been found to lift two operators from the tree-level Q-cohomology
+[49]: one fortuitous (identified in [48, 51]) and one monotone (identified in [48]).
+     In this note, using the holomorphic twist formalism, we compute the full one-loop correc-
+tions to the supercharge in four-dimensional Lagrangian theories whose field content consists
+of a vector multiplet, an arbitrary number of chiral multiplets, and a superpotential W . In
+particular, we apply our results to N = 4 SYM and present the complete one-loop supercharge
+(Section 3.1 and Appendix B), one term of which was computed in [49].
+     In the case of N = 4 SYM, we find an interesting reorganization of the one-loop result.
+The 1/16-BPS fields can be combined into a superfield C(z, θ) on the superspace C2|3 and
+the classical action of the supercharge can be written as [52]
+                                                1
+                                       Q0 C(θ) = [C(θ), C(θ)] .                                        (1.9)
+                                                2
+Remarkably, we observe that the one-loop corrections can also be reorganized into the compact
+form5
+                            1
+   Q1 (C A (θ)C B (θ′ )) = − fACD fBCE (θ1 − θ1′ )(θ2 − θ2′ )(θ3 − θ3′ )∂α̇ C D (θ)∂ α̇ C E (θ′ ) .   (1.10)
+                            2
+A similar simplification also occurs for N = 1 and N = 2 pure SYM, see Sections 3.2 and
+3.3.6
+     The operator (1.9) is the standard Lie algebra cohomology differential. It would be
+interesting to understand the mathematical structure corresponding to the deformation (1.10).
+     It is an open problem whether the loop corrections to the supercharge computed in
+this note modify the classical BPS spectrum of N = 4 SYM with gauge group SU (N );
+  4
+     1/4N -BPS operators are by definition annihilated by one Q and S = Q† . In each Q-cohomology class
+there is a unique representative that is also annihilated by S.
+   5
+     The full action of Q1 includes also the action on fields with derivatives, as recorded in Appendix B.
+   6
+     The one-loop correction to the BRST operator in the chiral algebra subsector of N = 4 SYM [53] was
+computed in [54] and also admits a similar repackaging
+                                    B ′                    ′         ′
+                          Q2d  A                                          C
+                           1 (C (θ)C (θ )) = −2fABC (θ1 − θ1 )(θ2 − θ2 )∂C (θ) .                      (1.11)
+
+
+
+
+                                                   –4–
+equivalently, whether the SU (N ) Q1 -cohomology is isomorphic to the Q0 -cohomology. We
+present an argument that the one-loop corrections do not modify the infinite-N single-trace
+cohomology. At finite N , it is natural to ask whether the fortuitous operators can be lifted.
+One can rule out by computer search [48] and by directly computing the one-loop action [37]
+that the lowest SU (2) fortuitous cohomology [34, 35] survives.
+     In the approach developed in [16, 18] and studied in this note, higher loop corrections
+(1.6) are necessarily present, which can be seen e.g. by checking that Q1 does not square to
+zero7
+
+                                          Q21 + {Q0 , Q2 } = 0 ,                                     (1.12)
+
+and thus a non-trivial Q2 has to be present.8 The higher λ-brackets, and hence the operators
+Qn , depend on the choice of scheme. Nevertheless, the lifting of cohomology classes from the
+final perturbative cohomology (as in the examples [16, 49]) is scheme independent.9 It remains
+an interesting problem whether the higher loop corrections to the supercharge modify the BPS
+spectrum and whether they could be removed using a different (theory-specific) scheme.
+
+Outline
+The outline of the rest of the paper is as follows.
+
+ §.2. In Section 2 we review the algebraic structures we will use in the remainder of the paper.
+      In Section 2.1 we start by defining the semi-chiral ring and the holomorphic twist. Then,
+      in Section 2.2, we review how quantum corrections to Q can be understood as a BRST
+      anomaly given by the L∞ -algebra brackets
+                                                        1
+                                    QO = {I, O}0 +         {I, I, O}0 + . . . .                      (1.13)
+                                                        2!
+       Finally, in Section 2.3 we explain an explicit scheme to compute the brackets, and thus
+       the corrections to Q in holomorphic QFTs, by evaluating a master integral I [λ; z].
+
+ §.3. In Section 3 we consider the holomorphic twist of Lagrangian SUSY gauge theories
+      with arbitrary gauge group vector multiplet, and any number of chiral multiplets and
+      superpotential. In Section 3.1 we use our scheme to obtain the explicit one-loop super-
+      charge Q1 acting on products of fields and their derivatives. We then apply this to the
+      examples of N = 1 (Section 3.2), N = 2 (Section 3.3), and N = 4 (Section 3.4) Super
+      Yang-Mills theories respectively and show the repackaging of the one-loop supercharge
+      as a local expression on superspace.
+   7
+     Note that Q1 does square to zero on the Q0 -cohomology, so the prescription of taking Q1 -cohomology on
+the Q0 -cohomology is well defined.
+   8
+     However, one can prove by graph combinatorics that for an operator of length n the possible corrections
+truncate at at most Qn+1 , but based on computing explicit integrals we expect them to truncate at Qn−1 .
+   9
+     Under the assumption that non-perturbative corrections to the supercharge may only further reduce the
+cohomology.
+
+
+
+
+                                                   –5–
+    A . In Appendix A we give the explicit computation of the universal 4d holomorphic (theory-
+        independent) one-loop anomaly integral that we employ in the rest of the paper.
+
+    B. In Appendix B we record the explicit action of the one-loop supercharge on operators
+       built from fields with derivatives. We show the derivation in Appendix C.
+
+2        The Holomorphic Twist and Corrections to Q from Anomalies
+
+In this section we define the basic objects that we will use in the next section of the paper. In
+Section 2.1, we introduce semi-chiral superfields and the holomorphic twist used for computa-
+tions in the rest of the paper. In Section 2.2, we explain how corrections to the action of Q on
+local operators should be understood as a “twice generalized Konishi anomaly,” by reviewing
+the famous Konishi anomaly corrections to the chiral ring [2] and then the extension to the
+semi-chiral ring via the holomorphic twist developed in [16–18]. After reviewing this back-
+ground and justifying the relationship to anomalies, we explain the extremely constrained
+form of loop corrections in cohomological holomorphic(-topological) QFTs, and thus to the
+action of Q on operators, in Section 2.3.
+
+2.1       Semi-Chiral Superfields and Q-Cohomology
+We consider N -extended supersymmetric theories in (3+1)d Euclidean spacetime. We define
+our supercharges so that
+
+                                     {Qiα , Q̄jβ̇ } = δ ij Pαβ̇ ,                                  (2.1)
+                                     {Qiα , Qjβ } = {Q̄iα̇ , Q̄jβ̇ } = 0 ,                         (2.2)
+
+where i, j = 1, . . . , N , the Pαβ̇ are translations, and we have used the two-component spinor
+notation.10 Without loss of generality [14, 15], we define our supercharge to be:
+
+                                                 Q := Q1− .                                        (2.3)
+
+This choice explicitly breaks the left SU (2)− symmetry of Spin(4) ∼
+                                                                   = SU (2)− × SU (2)+ and
+distinguishes holomorphic and anti-holomorphic coordinates on spacetime R4 ∼ = C2 by
+
+                                      z α̇ := x+α̇ ,     z̄ α̇ := x−α̇ .                           (2.4)
+
+We note that the anti-holomorphic translations P−α̇ are Q-exact, in the sense that
+
+                                            {Q, Q̄1α̇ } = P−α̇ .                                   (2.5)
+
+         The semi-chiral operators are defined as the local operators O(0) annihilated by Q, i.e.
+
+                                              [Q, O(0) ] = 0 .                                     (2.6)
+    10
+     There are also R-symmetries depending on N and possible superconformal extensions. However, since we
+are only interested in computing Q-cohomology, the existence and details of twisting homomorphisms and/or
+rigid SUGRA backgrounds is immaterial.
+
+
+
+
+                                                    –6–
+In a SUSY vacuum, any Q-exact term vanishes in correlation functions, implying that corre-
+lation functions only depend on the Q-cohomology class of local operators. The collection of
+Q-closed semi-chiral operators modulo Q-exact semi-chiral operators defines the semi-chiral
+ring. We define the “holomorphic twist” of an SQFT to be the cohomological holomorphic
+QFT obtained by passing to Q-cohomology in the original SQFT.
+     Naively, by (2.5), we might have expected the correlation functions of semi-chiral oper-
+ators to be holomorphic and diverge as local operators become close in zij  α̇ → 0. However,
+
+Hartogs’ theorem implies that holomorphic correlation functions on Cd>1 are actually free
+from singularities. As a corollary, this theorem then implies that the singular part of the
+OPE of Q-closed operators in a (3+1)d SQFT must actually be Q-exact, i.e. vanishing in
+cohomology. In order to have interesting correlation functions, and compute corrections to Q,
+it is necessary to consider correlation functions of Q-closed operators with supersymmetric
+descendants of O(0) . In the cohomological theory, this is captured by cohomological descent.
+     To understand this, it is useful to introduce a superspace formalism for the N = 1
+superalgebra generated by the Q1α and Q̄1α̇ , as they are distinguished by our choice of Q. In
+particular, given any local operator O(0) , i.e. semi-chiral or not, we can define a reduced
+N = 1 superfield
+                                     α̇ 1
+                           O := eidz̄ Q̄α̇ O(0) =: O(0) + O(1) + O(2) .                   (2.7)
+This superfield is a generating function for the Q̄1α̇ -descendants of O(0) . Instead of introducing
+Grassmann variables, we have used anti-holomorphic forms dz̄ α̇ on C2 to organize the super-
+field components.11 In other words, the superfield is a Dolbeault form O ∈ Ω0,• (C2 ), and the
+superscript denotes an operator’s anti-holomorphic form degree or depth in the N = 1 SUSY
+multiplet.
+     Now we define the Dolbeault differential and supercovariant derivative respectively by:
+
+                                   ∂¯ = dz̄ α̇ ∂z̄ α̇   and   D− = Q + ∂¯ .                               (2.8)
+
+A straightforward calculation shows that the superfield components satisfy descent relations
+                                              ¯ (k−1) = (QO)(k) .
+                                      QO(k) + ∂O                                                          (2.9)
+
+A special role is played by generating functions/superfields built from semi-chiral operators:
+a superfield O whose bottom component O(0) is semi-chiral satisfies
+                                                      ¯ (k−1) ,
+                                             QO(k) = −∂O                                                (2.10)
+                  ¯ = 0; we call these semi-chiral superfields. Cohomology classes of Q are
+i.e. D− O = (Q + ∂)O
+                                                                        ¯
+in one-to-one correspondence with semi-chiral superfields modulo (Q + ∂)-exact  superfields.
+     Returning to our original point, the descent relations highlight the importance of the
+cohomological nature of the holomorphic twist: even though the singular part of the OPE of
+  11
+     Traditionally, this is done by introducing Grassmann odd coordinates (θα , θ̄α̇ ) on R4 , making R4 ⇝ R4|4
+so that the Q1α and Q̄α̇
+                       1
+                          act by Grassmann derivatives on spacetime. Instead, we have noted that θ̄α̇ transforms
+like an anti-holomorphic one-form and so replaced θ̄α̇ ⇝ idz̄ α̇ on C2 . See e.g. [16, 19, 55].
+
+
+
+
+                                                        –7–
+Q-closed operators O(0) is Q-exact (and thus trivial in Q-cohomology), correlation functions
+involving descendants O(k) of Q-closed operators are non-trivial. In the holomorphic twist,
+these are described by the higher-form components of superfields on C2 , and the usual OPE
+is generalized by integrating the higher-form fields around surfaces. It is therefore important
+to understand operations on these form-valued fields to extract perturbative corrections to
+Q, as we will now explain.
+
+2.2     Corrections to Q from Anomalies
+In the previous section, we explained how semi-chiral operators and their descendants are
+described by a cohomological holomorphic QFT, obtained as the Q-cohomology of the original
+theory. Here, we will explain how corrections to Q can be understood as anomalies in SQFTs,
+and how these anomalies are neatly captured (and very rigidly constrained) by the “higher
+operations” of the holomorphic twist, see also [16, 17, 19, 22, 56].
+
+2.2.1    Warmup: The Generalized Konishi Anomaly and the Chiral Ring
+One of the most well-known examples of quantum corrections to Q comes from considering
+the chiral ring in supersymmetric gauge theories, and the modification of equivalence relations
+by the Konishi anomaly [2, 20, 21].
+     By definition, a chiral operator O(0) is annihilated by all N = 1 supercharges of one
+chirality
+                                       [Q1α , O(0) ] = 0 .                               (2.11)
+This is a specialization of our previously defined semi-chiral operator. In a SUSY vacuum,
+correlation functions of chiral operators are position independent
+                                  (0)                              (0)
+                               ⟨O1 (x1 ) · · · O(0)                     (0)
+                                                n (xn )⟩ = ⟨O 1 · · · O n ⟩ ,                           (2.12)
+
+and, in a clustering vacuum, decompose into products of one-point functions [2, 57, 58]. Thus,
+we usually only consider operators in the chiral ring modulo Q1α -exact terms, which vanish in
+SUSY vacua.12 Physically, the Q1α -closed chiral operators modulo Q1α -exact chiral operators
+have the same vev in the same SUSY vacuum, and so characterize the vevs/vacuum structure
+of the supersymmetric theory, called the chiral ring.
+     Classically, the chiral ring is generated by (gauge invariant) words in the chiral super-
+fields. Quantum mechanically, the action of the Qiα receive perturbative and non-perturbative
+corrections e.g. due to loop and instanton effects, (generically) thinning out the list of chiral
+operators, and modifying the vacuum structure of the classical theory. For example, in pure
+SYM, the classical chiral ring is generated by the single-trace glueball superfields
+                                                              α̇
+                                              C = Tr W α̇ W ,                                           (2.13)
+  12
+    It is actually somewhat subtle to correctly characterize these operators in a cohomological way, unlike the
+holomorphic twist. One putative definition is that chiral ring consists of all operators in the semi-chiral ring
+which are SU (2)− singlets [16].
+
+
+
+
+                                                    –8–
+subject to the relation C h = 0, where h is the dual Coxeter number of G [2, 59–61]. In pure
+SYM, quantum corrections are perturbatively absent but instanton corrections are known to
+give a vev ⟨C h ⟩ = cΛ3h to the glueballs [2, 57] (see VII.2.2 of [62] for the exact prefactor).
+     In theories with matter fields, the story changes in a number of interesting ways. First,
+and most obviously, we have a larger space of free fields to build gauge-invariant chiral words
+from, see e.g. [2, 63, 64] for a list of generators and relations between them. Second, non-trivial
+superpotentials modify classical equations of motion, giving interactions which correct the free
+supercharge(s). And third, the equations of motion are modified quantum mechanically by
+the Konishi anomaly. Of course, there can be non-perturbative corrections as well, which we
+anticipate from matching of dualities (see e.g. [65] and references within).
+     Let us unpack how these corrections to Q1α are connected to the Konishi anomaly. In its
+most fundamental form, a Konishi anomaly is any supersymmetrized version of a one-loop
+triangle diagram, where (schematically)
+                                                                 α̇
+                                       Tr Fµν F̃ µν ⇝ Tr W α̇ W .                                   (2.14)
+
+For example, the usual chiral anomaly (1.5) is supersymmetrized in N = 1 SU (N ) SQCD
+with zero superpotential to
+
+                                                    2C(R)           α̇
+                                    D2 J¯ = g 2 ℏ        2
+                                                           Tr W α̇ W ,                              (2.15)
+                                                     16π
+linking the glueball superfield C to the (non-)conservation of the current J¯ = Tr ΦeV Φ̄, which
+generates rescalings δ Φ̄ = ϵΦ̄ of chiral fields.
+     This has important consequences for the chiral ring. Since the left-hand side of (2.15) is
+  1
+Qα -exact, the Konishi anomaly implies C ∼ 0 at one-loop in the chiral ring of SQCD with
+zero superpotential. More generally, one can add a non-trivial superpotential W and consider
+even more general holomorphic variations in field space, e.g. δn Φ̄ = ϵΦ̄n , modifying (2.15) to
+[2, 65]:
+                                       ∂W           n        α̇
+                          D2 J¯n = Φ̄n       + g2ℏ     2
+                                                         Tr W W α̇ Φ̄n−1 .                 (2.16)
+                                        ∂Φ         16π
+This is interpreted as both classical and one-loop quantum corrections to the action of super-
+charges, sometimes called the “generalized Konishi anomaly.”
+     Let us note one important example of the Konishi anomaly changing the semi -chiral
+ring in this classical language.13 At minimum, any local SQFT admits an S-supermultiplet
+containing the SUSY current Sµα and stress tensor Tµν [66]. In particular, we define
+                                              (0)
+                                             Sα̇ := S+α̇,+ ,                                        (2.17)
+                                                    (1)
+whose N = 1 chiral one-form component Sα̇ includes the holomorphic part of the physical
+stress tensor (see e.g. [16, 19, 28] or [67–69] for classical SUSY language), and generates the
+  13
+    As another example, in [49], the Konishi anomaly was shown to lift a fortuitous cohomology in the semi-
+chiral ring and a monotone cohomology in the chiral ring of N = 4 SYM with gauge group SO(7).
+
+
+
+
+                                                    –9–
+surviving rotations, translations, etc. of C2 in the holomorphic twist. In theories with a
+U (1)R symmetry, this field is semi-chiral and thus is in the Q-cohomology. Without a U (1)R
+symmetry, only ∂ α̇ Sα̇ is semi-chiral and in Q-cohomology.
+    As a result, if a theory is scale-invariant/superconformal, then there is a U (1)R symmetry,
+and Sα̇ is semi-chiral
+                                                    ¯ α̇ = 0 .
+                                     D− Sα̇ = (Q + ∂)S                                    (2.18)
+Oftentimes, a theory is classically scale invariant and has a U (1)R symmetry, but this is
+broken by loop corrections14
+                                                                 µ
+                       Tµµ ∝ β(g 2 ) Tr F ∧ ⋆F       and     ∂µ jR ∝ C(R) Tr F ∧ F .                     (2.19)
+In terms of superfields, this is a Konishi anomaly (2.14). Consequently, we expect one-loop
+corrections to Q to lift the semi-chiral superfield Sα̇ from cohomology when classical scaling
+symmetry is broken.
+     An even stronger result called “holomorphic confinement” occurs in pure SYM [16]. Pure
+SYM is classically scale invariant and has a U (1)R symmetry, but both of these are broken
+by one-loop corrections. Consequently, Sα̇ is in the classical Q0 -cohomology, but only ∂ α̇ Sα̇
+is expected in the quantum cohomology. As it turns out, ∂ α̇ Sα̇ is not just Q1 -closed, but
+Q1 -exact, leaving the holomorphic twist of pure SYM completely topological.
+
+2.2.2    Anomalies as Higher Operations
+Obtaining corrections to the action of Q from anomalies is made even more precise in the
+holomorphic twist. The twisted theory describing the semi-chiral subsector can be considered
+as a local QFT in its own right, with form-valued superfields and a stress-tensor. A prof-
+itable viewpoint is to regard the theory as one where anti-holomorphic translations are gauge
+symmetries, having set15
+                                         QBRST := Q ,                                   (2.20)
+then Wess-Zumino consistency conditions demand Q2BRST = 0. Computing anomalous cor-
+rections to Q is understood as solving the Wess-Zumino consistency conditions order-by-order
+in perturbation theory, preventing a “holomorphic anomaly.”
+     To this end, we consider a cohomologically holomorphic theory T 0 (usually, but not
+necessarily, free) – obtained as the twist of our original SQFT – with nilpotent BRST charge
+Qfree . Turning on interactions in the original SQFT deforms the twisted theory T 0 by an
+interaction I = g i I i , i.e.16                   Z
+                                       ST 0 ⇝ ST 0 + g i          d2 z I i .                             (2.21)
+                                                             C2
+We then study how the interaction deforms the semi-chiral ring of the free-theory.17 The
+  14
+     There is an apparent tension because corrections to the β-function persist beyond one-loop, but the triangle
+anomaly for the R-symmetry is one-loop exact. The resolution to this is neatly explained in [70].
+  15
+     Or adding Q to QBRST if gauge symmetries were already present.
+  16
+     This process should be compared to how we compute anomalous scaling dimensions to an operator in
+conformal perturbation theory. Indeed, they are directly related, as recently emphasized by [71].
+  17
+     This is an example of homotopy transfer, see Appendix D of [16].
+
+
+
+
+                                                    – 10 –
+action of the quantum corrected differential in the deformed theory on the Qfree -cohomology
+is given by
+                                                      ℏ
+                                  QO = {I, O}0 + {I, I, O}0 + . . . .                       (2.22)
+                                                     2!
+     The brackets { · , . . . , ·}0 are the “higher operations” of the original free cohomological
+field theory (defined below), and encode anomalies for the twisted theory in the form of
+(generalized) OPEs. For example, the 2-ary bracket of two superfields is
+
+                                                       d2 z
+                                                I
+                                  {O1 , O2 }0 =             2
+                                                              O1 (z)O2 (0) ,                (2.23)
+                                                 S 3 (2πi)
+
+where we use Wick contractions to produce a pole which is extracted by the S 3 contour
+integral. More generally, we can extract higher order poles or derivatives by integrating
+against elements ρ ∈ H 0,• (C2 − 0) in (2.23); this can produce higher dimensional analogues
+of Virasoro and Kac-Moody symmetries [16, 19, 25–31].
+     These brackets generalize the OPE in two important ways. First, the inputs are nec-
+essarily form-valued fields from the cohomological theory. As previously emphasized, the
+OPE of Q-closed operators is regular, so superfields are required for the integral (2.23) to be
+both valid and non-trivial. Thus this 2-ary product includes the “descent” or “secondary”
+products of the theory, see e.g. [72–77]. Second, there are interesting higher k-ary opera-
+tions { · , . . . , ·}0 which encode the failure of associativity of the OPE.18 We could already
+anticipate the need for these higher products when we noted that the OPE of two Q-closed
+operators is Q-exact, and thus invisible to Q-cohomology. Together, the brackets form the
+structure of a (shifted) L∞ -algebra, and (2.22) is the appropriate Maurer-Cartan equation en-
+suring “flatness” of Q [17, 78]. On C2 , the precise derivation of (2.22) in perturbation theory
+shows that the (ℓ + 2)-ary operation corresponds to the ℓ-loop correction to the supercharge,
+i.e.
+                                                1
+                               {I, · }0 = Q0 ,     {I, I, · }0 = Q1 , etc.                 (2.24)
+                                                2!
+The Maurer-Cartan equation Q2 = 0 applied order by order imposes
+                                            X
+                                                  Qn1 Qn2 = 0 .                            (2.25)
+                                        n1 +n2 =n
+
+For example,
+
+                              {Q0 , Q1 } = 0 ,      Q21 + {Q0 , Q2 } = 0 .                         (2.26)
+
+In particular, Q1 does not square to zero on the Qfree -cohomology, but does square to zero
+on the Q0 -cohomology. In practice, we compute the corrected cohomology step by step
+using homotopy transfer (see Appendix D of [16]): first we compute Q0 -cohomology on Qfree -
+cohomology, then Q1 -cohomology on Q0 -cohomology, and so on.
+  18
+    Readers familiar with higher-group symmetries in QFT will recognize the Jacobiator as a triple bracket
+which encodes the failure of the Jacobi identity in Lie 2-algebras.
+
+
+
+
+                                                 – 11 –
+     For the purposes of this paper, we will define the (even more general) higher λ-brackets
+of an L∞ -conformal algebra by
+                                       " k                 #
+                                XZ       Y d2 zv
+  {O1 λ1 · · · Ok λk Ok+1 }0 :=                     eλv ·zv Qfree WΓ [O1 (z1 ) · · · Ok (zv )Ok+1 (0)] .
+                                    C2k      (2πi)2
+                                Γ        v=1
+                                                                                                   (2.27)
+        P
+Here, Γ is a sum over Feynman diagrams, WΓ denotes the appropriate Wick contractions
+in T 0 , and λv are holomorphic momenta flowing in at the vertex v, satisfying kv=1 λv =:
+                                                                                             P
+
+−λk+1 , which act as a generating function for the positive modes i.e. more singular terms of
+the (generalized) OPEs. In practice, formula (2.27) is derived by “pulling down operators”
+from the interaction term when treating a theory in perturbation theory, and the anomalous
+corrections to Q come from composite operator renormalization introducing extra terms which
+do not vanish as regulators go to 0, i.e. they are literally perturbative anomalies [17]. As we
+will discuss in the next section, the collection of Feynman diagrams contributing to (2.27) are
+highly restricted and computable.
+     The L∞ -brackets, and thus action of Qn on local operators, are generically scheme de-
+pendent beyond first-order in perturbation theory. In principle, one may find a scheme where
+the brackets (and thus Qn ) vanish at some order in perturbation theory; this can depend
+sensitively on the particular theory (e.g., gauge groups and matter content). However, our
+computational procedure described here leaves integrands manifestly UV and IR finite and
+reproduces many known non-renormalization theorems in holomorphic-topological theories
+[17, 18, 79, 80]. The equivalence between different schemes, with different higher-brackets,
+can be expressed by finding an explicit quasi-isomorphism of the associated L∞ -conformal
+algebras [16, 17, 79].
+
+2.3       Computing Loop Corrections in the Holomorphic Twist
+Our interest concerns cohomological holomorphic field theories on C2 , obtained by holomor-
+phically twisting an SQFT, written in a first-order formulation
+                                  Z
+                                                 ¯ + I(Φ) .
+                                      d2 z (Φ, ∂Φ)
+                                                          
+                             S=                                                       (2.28)
+                                                C2
+
+I is a general interaction term, obtained by twisting an interaction of the original SQFT
+(see Section 3). Φ is a master (0, •)-superfield containing all the fields ϕa of the holomorphic
+theory                                   X
+                                   Φ :=      ϕa va , va ∈ V ,                             (2.29)
+                                                     a
+and V is an auxiliary super vector space whose elements va are used to combine all fields ϕa
+together into Φ.19
+    The superspace propagator is obtained by inverting the equation of motion
+                                                         ¯ = 0.
+                                                         ∂ϕ                                                    (2.30)
+  19
+       This trick to organize all the fields into one master field will be familiar to string field theory aficionados.
+
+
+
+
+                                                         – 12 –
+The inverse is the Bochner-Martinelli kernel, the (0, 1)-form20
+                                                        z̄ 2 dz̄ 1 − z̄ 1 dz̄ 2
+                                         P (z, z̄) :=                           ,                    (2.31)
+                                                                  |z|4
+satisfying
+                                         ¯ (z, z̄) = π 2 δ (4) (z) d2 z̄ .
+                                         ∂P                                                          (2.32)
+The non-degenerate pairing ( · , · ) on V gives the matrix element ηab = (va , vb ). Thus the
+final propagator is
+                     P ab (z12 , z̄12 ) := ⟨ϕa (z1 , z̄1 )ϕb (z2 , z̄2 )⟩ = η ab P (z12 , z̄12 ) .   (2.33)
+Since the propagator is a (0, 1)-form, the overall sign of the products depends sensitively on
+the order of multiplication, and it is important to consider graphs as directed graphs with a
+fixed edge labelling [18, 81].
+     In the previous section, we argued that perturbative corrections to Q in the SQFT are
+given by a sum over generalized Konishi anomaly/OPE brackets in the twisted theory, as in
+(2.22). As shown in (2.27), these (perturbative) brackets are obtained by contracting (fields
+in) operators in the free theory. Thus, in principle, all that’s left to do is (very carefully)
+perform Wick contractions on our form-valued fields, find the resulting graphs appearing
+in (2.27), and compute the resulting Feynman integrals. The goal of the remainder of this
+section will be to give an operational description of this procedure before applying it to general
+Lagrangian SQFTs.
+
+Wick Contracting Superfields
+The entries to a bracket in (2.27) are superfields O, described in perturbation theory as
+(linear combinations of) normal-ordered products of free semichiral superfields ϕa and their
+holomorphic derivatives ∂1n1 ∂2n2 ϕa . In other words, O is a word of the form
+                                                    m
+                                                           ni    ni
+                                                    Y
+                                    O(0, 0) = :           ∂1 1 ∂2 2 ϕai (0, 0) : .                   (2.34)
+                                                    i=1
+
+Normal-ordering is defined by subtracting all self-contractions of fields, it is associative and
+supercommutative on letters. Crucially, symmetry operators of the free theory act by the
+Leibniz rule on normal ordered products of fields; this is obviously not true in an interacting
+theory, as emphasized by the familiar example of scaling dimensions D.21
+    It is helpful to collect the derivatives of fields ϕa appearing in (2.34) in a generating
+function in a shifted position w, i.e. we write
+                                              ∞
+                                              X (w1 )m (w2 )n m n a
+                            ϕa (w, 0) =                      ∂1 ∂2 ϕ (0, 0) .                        (2.35)
+                                                    m!n!
+                                            m,n=0
+  20
+     Going forward, we write −̇, +̇ = 1, 2 for ease of notation.
+  21
+     As explained in footnote 28 of [16], one cannot generically find a composite operator renormalization
+scheme which is associative in the constituent operators and the interacting Q acts by Leibniz rule. The
+ability to find such a scheme is effectively a one-loop non-renormalization theorem.
+
+
+
+
+                                                        – 13 –
+Then, we can write propagators with a holomorphic shift along each edge in the graph
+
+                      ⟨ϕa (z1 + w1 , z̄1 )ϕb (z2 + w2 , z̄2 )⟩ = P ab (z12 + w12 , z̄12 ) ,          (2.36)
+
+while integrating over the vertex positions zi in expressions like (2.27). Considering these w-
+shifted propagators in Feynman diagrams lets us easily extract the action of Q on operators
+with derivatives from a single master integral formula. We note that the shift wv,i could be
+different for fields ϕa at the same vertex Ov , representing arbitrarily complicated derivatives
+in words (2.34).
+     As always in perturbation theory, we should now perform all Wick contractions over fields
+inside the operators Ov in (2.27), replacing pairs of fields with the propagator (2.36) in the
+string
+                                O1 (z1 , z̄1 ) · · · Ok (zk , z̄k )Ok+1 (0, 0) .          (2.37)
+Note: many legs will generically be uncontracted; this is sensible since the brackets compute
+perturbative (i.e. local) anomalies, and thus are maps from the space of interactions/local
+operators to the space of local operators. Now we can consider the effect of Qfree on our
+partially contracted string
+
+                               WΓ [O1 (z1 , z̄1 ) · · · Ok (zk , z̄k )Ok+1 (0, 0)] .                 (2.38)
+
+The operator Qfree acts on the uncontracted superfields by the Leibniz rule on letters. Since
+all letters in (2.34) are semi-chiral superfields, Qfree acts by −∂,          ¯ which can be integrated by
+parts to act on the propagators P ab (z + w, z̄) within the graph Γ, i.e.
+                                                                                                 
+                                                                           Y
+        Qfree WΓ [O1 (z1 , z̄1 ) · · · Ok (zk , z̄k ) Ok+1 (0, 0)] 7→ ∂¯    P ab (ze + we , z̄e ) . (2.39)
+                                                                        e∈Γ1
+
+
+Applying ∂¯ gives a sum over all ways to “cut” one of the propagators in Γ. Naively, the cut
+propagator ∂P¯ ab will give 0 (modulo contact singularities from the δ-function), and the action
+of Q reduces to its classical answer with Leibniz rule. Quantum mechanically, the integral
+over internal graph vertices needs to be regulated, as we review next, which leads to the
+anomalies and thus the modified action of Q. We also note that the integrals are generally
+weighted by some external holomorphic momenta eλn ·zn which acts as a generating functional
+for less singular terms in the OPE.
+     Before discussing the graphs, the integrals, and their regularization, let us note an im-
+portant computational fact: the integrals required to compute the action of Q on general
+operators are universal, not depending on theory dependent combinatorial data such as η ab .
+Given some uncontracted shifted (to include derivatives) superfields ϕa within an operator
+O, we can move the fields to the origin, leaving it completely independent of the integration
+variable z                                  Y
+                              O(z, 0) ⊃ :       ez·∂wi ϕai (wi , 0) : .                   (2.40)
+                                               uncontracted
+
+
+
+
+                                                     – 14 –
+These factors ez·∂wi can then be combined with the eλn ·zn terms, turning a general integral
+IΓ [λ; w] into a theory-independent differential operator, describing the contribution of the
+graph Γ to Q, and acting by
+                                                 Pm′                 Y                Y Y
+   {O1 λ1 · · · Ok λk Ok+1 }0       = IΓ [λv +    i=1 ∂wv,i ; we ]          η ae be              ϕav,i (wv,i , 0) .   (2.41)
+                                Γ                                    e∈Γ1             v∈Γ0 un.
+
+Laman Graphs, Operatope, and Bootstrap
+Quantum mechanically, the expression (2.27) requires regularization. In order to regulate the
+graph integrals, we rewrite the Bochner-Martinelli kernel in a Schwinger parametrization t,
+with UV cutoffs on the Schwinger times t ∈ [ϵ, ∞), replacing all propagators in Γ by
+
+                                      P (z + w, z̄) ⇝ Pϵ (z + w, z̄, t) .                                             (2.42)
+
+This leads to non-trivial integrals and the anomalous action of Q.
+     It is possible to define a combined propagator P(z, z̄; t) which evaluates to Pϵ or ∂P    ¯ ϵ on 1
+                                                                                   |Γ1 |−1
+and 0 cycles respectively in the real projective space of Schwinger times RP               (see [17, 18]
+              22
+for details). With such a rewriting, we can recast the master integral IΓ [λ; w] in the form:
+                                   " k               #                                 
+                   Z                Y d2 zv             Y
+       IΓ [λ; w] =                          2
+                                              eλv ·zv    P ϵ (ze(0) − ze(1) + we ; te ) .       (2.43)
+                     2k
+                    C ×RP>
+                           |Γ1 |−1     (2πi)
+                                      v=1                    e∈Γ1
+
+    It was shown in [18] (see also [17, 81–83]) that the relevant graphs contributing (in
+principle) to the computation of any ℓ-loop, i.e. (ℓ + 2)-entry, λ-bracket are necessarily the ℓ-
+loop Laman graphs [84–86] (or 2-Laman graphs in the language of arbitrary HT twists). This
+essentially follows from a careful study of the form degree of integrands in (2.43). The first
+few Laman graphs are depicted in Figure 1. Crucially, at tree-level we have the propagator,
+and at one-loop there is only the triangle diagram.
+    The propagator master integral can be easily obtained by direct evaluation:
+
+                                            I [λ; z] = e−λ1 ·z12 .                                                    (2.44)
+
+The one loop-master integral (2.43) was computed in [18], and we repeat the computation for
+completeness in Appendix A. The result is:
+
+                                                                   e−λ1 ·Z           eλ2 ·Z
+                                                                                               
+                                                    1
+ I [λ; z] = −e−λ1 ·z13 −λ2 ·z23 (λ1 ∧ λ2 )                   +                +                   .
+                                             (λ1 · Z)(λ2 · Z) (λ1 · Z)(λ3 · Z) (λ2 · Z)(λ3 · Z)
+                                                                                             (2.45)
+  22
+    With a judicious change of variables, mimicking Fulton-MacPherson-Kontsevich compactification tech-
+niques for the Schwinger variables te , the integral can be brought to a manifestly UV (and IR finite form).
+Consequently, the holomorphic theories are finite and do not require counterterms. Even more surprisingly,
+manipulating graphs reveals that all loop integrals in theories with ≥ 2 topological directions vanish [17, 80],
+providing a non-renormalization theorem for general holomorphic-topological QFTs.
+
+
+
+
+                                                    – 15 –
+Figure 1. Laman graphs are the only graphs which can appear in the computation of brackets
+{ · , . . . , · }0 in a theory with action (2.28). Even then, the contributions of some of these graphs to
+the action of Q may be ruled out by the interaction I. The propagator, the one-loop, the two-loop,
+and 3 three-loop Laman graphs are drawn above.
+
+
+where Z = z12 + z23 − z13 and λ1 + λ2 + λ3 = 0 (for more details we refer to the appendix).
+Since we wish to convert this to a differential operator, as in (2.41), it is helpful to expand in
+the z variables
+                                                      ∞
+                     −λ1 ·z13 −λ2 ·z23
+                                                      X      1     (λ2 · Z)n − (−λ1 · Z)n
+      I [λ; z] = e                       (λ1 ∧ λ2 )                                                   (2.46)
+                                                          (n + 1)!       (λ1 + λ2 ) · Z
+                                                      n=0
+                                                       ∞ X∞
+                                                      X              1
+               = e−λ1 ·z13 −λ2 ·z23 (λ1 ∧ λ2 )                               (−λ1 · Z)n (λ2 · Z)m .   (2.47)
+                                                                (n + m + 2)!
+                                                      n=0 m=0
+
+Let us also note
+                                                         1
+                                               I [λ; 0] = λ1 ∧ λ2 .                                   (2.48)
+                                                         2
+     In practice, we do not need to compute (2.43) beyond the one-loop order. The Wess-
+Zumino consistency condition Q2BRST = 0 implies a series of nested relations on the brackets
+when expanded in terms of (2.22), generalizing the Jacobi identity for our L∞ conformal
+algebra. Then, realizing the contribution of a graph to the action of Q as a differential
+operator, as in (2.41), we obtain a series of integral identities on graphs and their associated
+integrals, which can be solved order-by-order to bootstrap higher-loop master integrals, at
+least up to three-loops [18].
+
+3   Lagrangian SUSY Gauge Theories
+
+In this section, we consider four-dimensional N = 1 Lagrangian theories with gauge Lie
+algebra g, chiral multiplets in a representation R of g, and a chiral superpotential W . The
+holomorphic twist of the N = 1 vector multiplet (Aµ , λα ) gives rise to a holomorphic bc
+system, and the chiral multiplet (ϕ, ψα ) gives rise to a holomorphic βγ system [15, 87, 88].
+The resulting twisted theory is therefore a 4d holomorphic BF theory coupled to βγ systems
+with a holomorphic superpotential W [γ].
+
+
+
+
+                                                          – 16 –
+      The BV action takes the form
+                    Z                       
+                          2        ¯  1            ¯ I + cγ I + W [γ] ,
+                                                             
+                         d z Tr b ∂c + [c, c] + βI ∂γ                                                        (3.1)
+                      C2              2
+
+where the BV fields are collected into superfields
+
+  b = b(0) + b(1) + b(2) ∈ Ω0,• (C2 , g∨ ) ,              c = c(0) + c(1) + c(2) ∈ Ω0,• (C2 , g)[1] ,        (3.2)
+          (0)     (1)      (2)
+  βI = βI + βI + βI              ∈ Ω0,• (C2 , R∨ )[1] ,   γ I = γ I(0) + γ I(1) + γ I(2) ∈ Ω0,• (C2 , R) .   (3.3)
+
+The tree-level differential is
+                                          1
+                                 Q0 c = [c, c] ,          Q0 b = [c, b] − µ(β, γ)                            (3.4)
+                                          2
+                                 Q0 γ I = cγ I ,          Q0 βI = βI c + ∂γ I W ,                            (3.5)
+
+where µ(β, γ) is the moment map generating the symmetry gauged by the bc system.
+    The tree-level BRST cohomology of the twisted theory can be mapped to the classical
+supercharge cohomology by [24]
+
+                γ ∼ ϕ̄ ,         β ∼ ψ+ ,        ∂α̇ c ∼ λ̄α̇ ,    b ∼ F++ ,        ∂α̇ ∼ D+α̇ .             (3.6)
+
+      In the next section, we will present the one-loop differential which governs the quantum
+corrections to the above tree-level cohomology. Then, we apply these results to pure N = 1
+SYM (Section 3.2), N = 2 SYM (Section 3.3) and N = 4 SYM (Section 3.4). In these cases,
+all fields are in the adjoint representation and the one-loop differential admits compact local
+expressions in terms of superfields, see (3.37), (3.46), and (3.70).
+
+3.1    One-Loop Supercharge
+Now we turn to compute the one-loop differential in theories with first-order BV action of
+the form (3.1).
+     As can be seen from the triangle diagrams in Section 2.3 and Appendix A, the one-loop
+differential Q1 acts on a pair of fields and outputs a pair of uncontracted fields coming from
+the cubic interaction vertices. For operators of length n > 2, the action of Q1 is obtained by
+summing over its action on every distinct pair of fields fi fj :
+                                X
+            Q1 (f1 · · · fn ) =     (−1)ϵij Q1 (fi fj )f1 · · · fi−1 fi+1 · · · fj−1 fj+1 · · · fn , (3.7)
+                                 1≤i<j≤n
+
+with appropriate signs arising from the anticommutation of fermionic fields:
+                                           X               X
+                               ϵij = |fi |   |fk | + |fj |   |fk | ,                                         (3.8)
+                                                  k<i              k<j
+                                                                   k̸=i
+
+where |fi | ∈ Z2 denotes the fermion parity of fi .
+
+
+
+
+                                                        – 17 –
+     We express the action of Q1 on fields and their derivatives in a compact form using the
+generating function trick (2.35). The action of Q1 on fields with derivatives can then be
+obtained by expanding formulas as power series in the shift variables. The explicit formulas
+for the action of Q1 on fields with derivatives are listed in Appendix B.
+     All one-loop actions are proportional to the triangle integral I [λ; z]. As explained in
+Section 2.3, the integral I [λ; z] is a power series in λα̇ , which keeps track of derivatives on
+the uncontracted fields output from the bracket. We use the following notation to denote
+the differential operator form of the master integral I [λ; 0, −w, −z] (i.e. with shifts z12 =
+0, z23 = −w, z13 = −z) acting on the two uncontracted fields coming from the interaction
+vertices:
+                   ∞
+                   X          1
+    Dw,z (f, g) :=                    ez·∂ ((w − z) · ∂)n ∂α̇ f (y) ew·∂ ((z − w) · ∂)m ∂ α̇ g(y)     ,
+                       (n + m + 2)!                                                               y=0
+                  m,n=0
+                                                                                                 (3.9)
+where z · ∂ = z 1 ∂y1 + z 2 ∂y2 , i.e. the derivatives differentiate only the fields f, g and not the
+shifts z, w. We also note:
+                                                1
+                                   D0,0 (f, g) = ∂α̇ f ∂ α̇ g .                                 (3.10)
+                                                2
+    The action of Q1 on pairs of fields that do not appear below is zero, i.e.:
+                            Q1 (cc) = Q1 (γγ) = Q1 (γc) = Q1 (βc) = 0 .                         (3.11)
+Vector Multiplet
+The twist of the vector multiplet is described by the holomorphic bc system. The one-loop
+corrections to the supercharge in the 4d holomorphic BF theory were computed in [16]. Here
+we review them for completeness.
+     We use conventions for the adjoint representation of the Lie algebra g so that generators
+are normalized with respect to the Killing form, i.e. the components can be raised and lowered
+using δ AB :
+                 [tA , tB ] = fAB C tC ,     bA = δ AB bB ,      fABC = δCD fAB D .             (3.12)
+    There are two triangle diagrams involving b and c:
+                            bA (z)cB (w)                           bA (z)bB (w)
+
+
+
+
+                    1              1                       1              1
+                    2 Tr b[c, c]   2 Tr b[c, c]            2 Tr b[c, c]   2 Tr b[c, c]
+
+Respectively, they contribute:
+                 Q1 (bA (z)cB (w)) = fACD fBCE Dw,z (cD , cE ) ,                                (3.13)
+                 Q1 (bA (z)bB (w)) = fACD fBCE Dw,z (cD , bE ) − Dw,z (bD , cE ) .
+                                                                               
+                                                                                                (3.14)
+
+
+
+
+                                                  – 18 –
+Vector + Chiral Multiplet
+The twist of the chiral multiplet in a representation R is described by a holomorphic βγ
+system. We use the following convention:
+
+                                       βI cγ I = (βI )i cA (TA )ij (γ I )j .                                (3.15)
+
+Here, i, j, . . . are R representation indices and I, J, . . . are the flavour indices.
+    There are two triangle diagrams involving β and γ:
+
+                            (βI )i (z)(γ J )j (w)                    (βI )i (z)(βJ )j (w)
+
+
+
+
+                         βL cγ L         βK cγ K                  W [γ]           βK cγ K
+
+They contribute:
+
+  Q1 ((βI )i (z)(γ J )j (w)) = − δIJ (TB TA )ji Dw,z (cA , cB ) ,                                           (3.16)
+  Q1 ((βI )i (z)(βJ )j (w)) = − (TA )ki Dw,z (cA , ∂γ Ik ∂γ Jj W ) − (TA )kj Dw,z (∂γ Ii ∂γ Jk W, cA ) .    (3.17)
+
+    The new interaction also gives a contribution to the Q1 (bb) action:
+
+                                                      bA (z)bB (w)
+
+
+
+
+                                             βJ cγ J            βI cγ I
+
+    This modifies (3.14) to
+
+      Q1 (bA (z)bB (w)) = fACD fBCE Dw,z (cD , bE ) − Dw,z (bD , cE )
+                                                                     
+                                                                                                            (3.18)
+                            + (TB TA )ij Dw,z ((γ I )j , (βI )i ) − (TA TB )ij Dw,z ((βI )i , (γ I )j ) .
+
+    We also get five additional diagrams:
+
+                             bA (z)(γ I )i (w)                            bA (z)(γ I )i (w)
+
+
+
+
+                                       1
+                         βJ cγ J       2 Tr b[c, c]                βK cγ K           βJ cγ J
+
+
+
+
+                                                       – 19 –
+           (βI )i (z)bA (w)                             (βI )i (z)bA (w)                   (βI )i (z)bA (w)
+
+
+
+
+                     1
+       βJ cγ J       2 Tr b[c, c]                  βK cγ K          βJ cγ J            W [γ]            βJ cγ J
+
+      They contribute
+
+       Q1 (bA (z)(γ I )i (w)) = fABC (TB )ij Dw,z (cC , (γ I )j ) − (TB TA )ij Dw,z ((γ I )j , cB ) ,             (3.19)
+       Q1 ((βI )i (z)bA (w)) = −fABC (TB )ji Dw,z ((βI )j , cC ) + (TA TB )ji Dw,z (cB , (βI )j )
+                                                                                                                  (3.20)
+                                    + (TA )jk Dw,z (∂γ Ii ∂γ Jj W, (γ J )k ) .
+
+Vector + Adjoint Matter
+We summarize the results in the special case when R is the adjoint representation, i.e.
+            B
+(TA )B
+     C = fAC :
+
+                 Q1 (bA (z)cB (w)) = fACD fBCE Dw,z (cD , cE ) ,                                                  (3.21)
+                 Q1 (bA (z)bB (w)) = fACD fBCE Dw,z (cD , bE ) − Dw,z (bD , cE )
+                                               
+                                                                                                                  (3.22)
+                                          +Dw,z ((βI )D , (γ I )E ) − Dw,z ((γ I )D , (βI )E ) ,
+                                                                                              
+
+       Q1 ((βI )A (z)(γ J )B (w)) = δIJ fACD fBCE Dw,z (cD , cE ) ,                                               (3.23)
+       Q1 ((βI )A (z)(βJ )B (w)) = − fACD Dw,z (cD , ∂γ IC ∂γ JB W )
+                                       
+                                                                                                                  (3.24)
+                                   +fBCE Dw,z (∂γ IA ∂γ JC W, cE ) ,
+                                                                    
+
+           Q1 (bA (z)(γ I )B (w)) = fACD fBCE Dw,z (cD , (γ I )E ) − Dw,z ((γ I )D , cE ) ,
+                                                                                        
+                                                                                                                  (3.25)
+           Q1 ((βI )A (z)bB (w)) = fACD fBCE Dw,z ((βI )D , cE ) + Dw,z (cD , (βI )E )
+                                                                                        
+                                                                                                                  (3.26)
+                                          − fBCE Dw,z (∂γ IA ∂γ KC W, (γ K )E ) .
+
+Specializing to W [γ] = Tr γ 1 [γ 2 , γ 3 ], which is the N = 4 SYM case, (3.22), (3.24) and (3.26)
+give:
+
+           Q1 (bA (z)bB (w)) = fACD fBCE Dw,z (cD , bE ) − Dw,z (bD , cE )
+                                        
+                                                                                                                  (3.27)
+                              +Dw,z ((βI )D , (γ I )E ) − Dw,z ((γ I )D , (βI )E ) ,
+                                                                                  
+                                                                                                                  (3.28)
+   Q1 ((βI )A (z)(βJ )B (w)) = εIJK fACD fBCE Dw,z (cD , (γ K )E ) − Dw,z ((γ K )D , cE ) ,
+                                                                                        
+                                                                                                                  (3.29)
+       Q1 ((βI )A (z)bB (w)) = fACD fBCE Dw,z ((βI )D , cE ) + Dw,z (cD , (βI )E )
+                                          
+                                                                                                                  (3.30)
+                              + εIJK Dw,z ((γ J )D , (γ K )E ) .
+                                                              
+                                                                                                                  (3.31)
+
+3.2    N = 1 Super Yang-Mills
+The holomorphic twist of pure N = 1 SYM is the four-dimensional holomorphic BF theory
+[15, 23, 87, 88]. This example has been studied extensively in [16], where, in particular the
+
+
+
+
+                                                          – 20 –
+tree-level and one-loop cohomologies were computed for SU (N ) at infinite-N , and studied
+numerically at N = 2, 3.
+     The BV fields of the holomorphic BF theory can be conveniently combined into a single
+superfield valued in C[z 1 , z 2 , θ] ⊗ g:
+
+                                               C = c + θb .                                          (3.32)
+
+Then the BV action takes the form of a Chern-Simons theory on C2|1
+                             Z                            
+                           1                        1
+                                  d2 z dθ Tr C ¯∂C + [C, C] ,                                        (3.33)
+                           2 C2|1                   3
+
+and the tree-level differential can be written as
+                                                  1
+                                            Q0 C = [C, C] .                                          (3.34)
+                                                  2
+This is the standard Lie algebra cohomology differential.
+     The one-loop differential Q1 was computed in [16] and reviewed in Section 3.1. We write
+it below for vanishing shifts z = w = 0:23
+                                    1
+                       Q1 (bA cB ) = fACD fBCE ∂α̇ cD ∂ α̇ cE ,                                      (3.35)
+                                    2
+                                    1
+                       Q1 (bA bB ) = fACD fBCE ∂α̇ cD ∂ α̇ bE − ∂α̇ bD ∂ α̇ cE .
+                                                                             
+                                                                                                     (3.36)
+                                    2
+We observe that the one-loop action can be equivalently expressed using the superfield (3.32)
+as
+                                         1
+                Q1 (C A (θ)C B (θ′ )) = − fACD fBCE (θ − θ′ )∂α̇ C D (θ)∂ α̇ C E (θ′ ) . (3.37)
+                                         2
+This is the simplest example where we can rewrite the one-loop differential using the superfield
+notation.
+
+3.3    N = 2 Super Yang-Mills
+The holomorphic twist of pure N = 2 SYM is the four-dimensional holomorphic BF theory
+coupled to a single adjoint βγ system [15, 88].
+    In this case, the BV fields can be combined into two superfields valued in C[z1 , z2 , θ] ⊗ g
+and C[z1 , z2 , θ] ⊗ g∨ :
+
+                                    C = c + θγ ,        B = β + θb .                                 (3.38)
+
+Then the BV action takes the form
+                           Z                           
+                                   2          ¯  1
+                                  d zdθ Tr B ∂C + [C, C] ,                                           (3.39)
+                             C2|1                2
+  23
+     We thank Jiyoo Park for pointing out a missing factor of 1/2 in formulas for z = w = 0 in Sections 3.2,
+3.3, 3.4.
+
+
+
+
+                                                  – 21 –
+and the tree-level differential can be written as
+                                          1
+                                    Q0 C = [C, C] ,               Q0 B = [C, B] .                       (3.40)
+                                          2
+      The one-loop differential computed in Section 3.1 for vanishing shifts z = w = 0 is
+                  1
+   Q1 (bA cB ) = fACD fBCE ∂α̇ cD ∂ α̇ cE ,                                                             (3.41)
+                  2
+                  1
+   Q1 (b b ) = fACD fBCE ∂α̇ cD ∂ α̇ bE − ∂α̇ bD ∂ α̇ cE + ∂α̇ β D ∂ α̇ γ E − ∂α̇ γ D ∂ α̇ β E ,
+         A B
+                                                                                             
+                                                                                                        (3.42)
+                  2
+                  1
+   Q1 (β A γ B ) = fACD fBCE ∂α̇ cD ∂ α̇ cE ,                                                           (3.43)
+                  2
+                  1
+   Q1 (b γ ) = fACD fBCE ∂α̇ cD ∂ α̇ γ E − ∂α̇ γ D ∂ α̇ cE ,
+         A B
+                                                         
+                                                                                                        (3.44)
+                  2
+                  1
+   Q1 (β b ) = fACD fBCE ∂α̇ β D ∂ α̇ cE + ∂α̇ cD ∂ α̇ β E .
+         A B
+                                                         
+                                                                                                        (3.45)
+                  2
+We again find that the one-loop action can be recast using the superfields (3.38) as
+                               1
+      Q1 (B A (θ)C B (θ′ )) = − fACD fBCE (θ − θ′ )∂α̇ C D (θ)∂ α̇ C E (θ′ )                             (3.46)
+                               2
+                               1
+      Q1 (B A (θ)B B (θ′ )) = − fACD fBCE (θ − θ′ ) ∂α̇ B D (θ)∂ α̇ C E (θ′ ) + ∂α̇ C D (θ)∂ α̇ B E (θ′ ) .
+                                                                                                        
+                               2
+                                                                                                         (3.47)
+
+3.4     N = 4 Super Yang-Mills
+Finally, we consider N = 4 SYM, in which case the twisted theory is the 4d holomorphic BF
+theory with three adjoint βγ systems and the superpotential
+                                                        1
+                        W [γ] = Tr γ 1 [γ 2 , γ 3 ] =      εIJK fABC (γ I )A (γ J )B (γ K )C .          (3.48)
+                                                        3!
+The tree-level differential is
+                                1
+                          Q0 c = [c, c] ,          Q0 b = [c, b] − [γ I , βI ] ,                        (3.49)
+                                2
+                                                                     1
+                          Q0 γI = [c, γI ] ,       Q0 βI = [c, βI ] + εIJK [γ J , γ K ] .               (3.50)
+                                                                     2
+    The tree-level cohomology is isomorphic to the classical supercharge cohomology in the
+untwisted theory. For the choice of twisting supercharge Q := Q4− , the fields are identified by
+
+          γ I ∼ Φ4I ,       βI ∼ ΨI+ ,          ∂α̇ c ∼ Ψ̄4α̇ ,       b ∼ F++ ,        ∂α̇ ∼ D+α̇ ,     (3.51)
+
+where ΦIJ , I, J = 1, . . . , 4 are the six real scalars, and ΨI α̇ , Ψ̄Iα̇ are the four chiral and four
+anti-chiral fermions.
+     We again collect the BV fields into a superfield valued in C[z1 , z2 , θ1 , θ2 , θ3 ] ⊗ g [52]:
+                                                1
+                                C = c + θI γ I + εIJK θI θJ βK + θ1 θ2 θ3 b .                           (3.52)
+                                                2
+
+
+
+                                                        – 22 –
+The BV action takes the form of a Chern-Simons theory on C2|3
+                             Z                            
+                           1                        1
+                                  d z d θ Tr C ¯
+                                   2   3
+                                                ∂C + [C, C] ,                                                  (3.53)
+                           2 C2|3                   3
+and the action of the tree-level differential can be written as
+                                                              1
+                                                        Q0 C = [C, C] .                                        (3.54)
+                                                              2
+     In case of N = 4 SYM, we can use the residual psl(3|3) algebra, which is the subalgebra
+of the psl(4|4) superconformal algebra that commutes with Q = Q4− , to fix the one-loop
+corrections knowing only one term e.g. Q1 (bc).
+     The (tree-level24 ) action of the psl(3|3) can be conveniently represented by super vector
+fields acting on the superspace [27]:
+
+                            QI+ ∼ ∂θI ,       SI+ ∼ θI z α̇ ∂α̇ + θJ ∂θJ ,
+                                                                        
+                                                                                         (3.55)
+                                   Q̃I α̇ ∼ θI ∂α̇ ,        S̃ I α̇ ∼ z α̇ ∂θI .                               (3.56)
+
+In particular, we will use
+
+   QI+ :    c 7→ γ I ,   γ J 7→ −εIJK βK                 βJ 7→ δJI b ,                      b 7→ 0 ,           (3.57)
+   SI+ :    c 7→ 0 ,     γ   J
+                                 7→ −δIJ z α̇ ∂α̇ c ,                              α̇
+                                                         βJ 7→ −εIJK (1 + z ∂α̇ )γ ,    K
+                                                                                            b 7→ −(2 + zα̇ ∂α̇ )βI .
+                                                                                                                (3.58)
+
+       Now we can fix the loop corrections starting from Q1 (bc):
+
+                                   Q1 (bγ I ) = −QI+ Q1 (bc) ,                                                 (3.59)
+                                                 1
+                                   Q1 (bβI ) = εIJK QJ+ Q1 (bγ K ) ,                                           (3.60)
+                                                 2
+                                     Q1 (bb) = −QI+ Q1 (bβI ) ,                                                (3.61)
+                                                   1
+                                  Q1 (βI γ J ) = − SI+ Q1 (bγ J ) ,                                            (3.62)
+                                                   2
+                                                 1 +                1
+                                  Q1 (βI βJ ) = SI Q1 (bβJ ) − εIJK Q1 (bγ K ) .                               (3.63)
+                                                 2                  2
+We arrive at
+                              1
+               Q1 (bA cB ) = fACD fBCE ∂α̇ cD ∂ α̇ cE ,                                                        (3.64)
+                              2
+                              1
+               Q1 (bA bB ) = fACD fBCE ∂α̇ cD ∂ α̇ bE − ∂α̇ bD ∂ α̇ cE
+                                           
+                              2                                                                                (3.65)
+                                             +∂α̇ (βI )D ∂ α̇ (γ I )E − ∂α̇ (γ I )D ∂ α̇ (βI )E ,
+                                                                                               
+
+                              1
+        Q1 ((βI )A (γ J )B ) = δIJ fACD fBCE ∂α̇ cD ∂ α̇ cE ,                                                  (3.66)
+                              2
+  24
+    The tree-level action of psl(3|3) might also receive loop corrections, however the one-loop differential Q1
+(anti)commutes with the tree-level generators R0 of psl(3|3) on Q0 -cohomology, i.e. {Q1 , R0 } + {Q0 , R1 } = 0.
+
+
+
+
+                                                             – 23 –
+                              1
+         Q1 ((βI )A (βJ )B ) = εIJK fACD fBCE ∂α̇ cD ∂ α̇ (γ K )E − ∂α̇ (γ K )D ∂ α̇ cE ,
+                                                                                      
+                                                                                                      (3.67)
+                              2
+                              1
+             Q1 (b (γ ) ) = fACD fBCE ∂α̇ cD ∂ α̇ (γ I )E − ∂α̇ (γ I )D ∂ α̇ cE ,
+                  A I B
+                                                                                
+                                                                                                      (3.68)
+                              2
+                              1
+             Q1 ((βI )A bB ) = fACD fBCE ∂α̇ (βI )D ∂ α̇ cE + ∂α̇ cD ∂ α̇ (βI )E
+                                          
+                              2                                                                       (3.69)
+                                            +εIJK ∂α̇ (γ J )D ∂ α̇ (γ K )E ,
+                                                                           
+
+which matches the formulas in Section 3.1. The formulas including derivatives can be found
+in Appendix B. The correction (3.66) was computed also in [49].
+    Finally, we observe that the above one-loop differential can be written in a compact
+superfield form analogous to the N = 1 and N = 2 cases:
+                            1
+   Q1 (C A (θ)C B (θ′ )) = − fACD fBCE (θ1 − θ1′ )(θ2 − θ2′ )(θ3 − θ3′ )∂α̇ C D (θ)∂ α̇ C E (θ′ ) .   (3.70)
+                            2
+3.4.1      Loop Corrections in the Planar Limit
+Here, we discuss the one-loop corrections presented in the previous section in the planar limit
+of N = 4 SYM with gauge group SU (N ).25
+    Due to the Lie algebra factors fACD fBCE , the one-loop supercharge Q1 can join and split
+traces. To illustrate this, write one term in the Q1 action schematically as
+
+                                    Q1 (X A Y B ) ∼ fACD fBCE U D V E .                               (3.71)
+
+For simplicity, X, Y, U are bosonic and V is fermionic.
+     Now we consider the action of Q1 on neighbouring and non-neighbouring letters X, Y
+inside an example single-trace:
+
+                    Q1 Tr(XY AB) ∼ −N Tr(U V AB) − Tr(U V ) Tr(AB)                                    (3.72)
+                                        + Tr(U ) Tr(V AB) + Tr(V ) Tr(U AB) + . . .                   (3.73)
+                    Q1 Tr(XAY B) ∼ Tr(U A) Tr(V B) + Tr(U B) Tr(V A)                                  (3.74)
+                                        − Tr(A) Tr(U V B) − Tr(B) Tr(U AV ) + . . . ,                 (3.75)
+
+where the ellipses denote terms where Q1 acts on other pairs of letters. We see that Q1 acting
+on neighboring letters in a single-trace can produce a single-trace output and a multi-trace
+output. Similarly, Q1 can join traces. Acting on X in the first trace and Y in the second
+trace gives
+
+                      Q1 (Tr(XA) Tr(Y B)) ∼ Tr(U AV B) + Tr(AU BV )
+                                                − Tr(U ABV ) − Tr(AU V B) + . . . .                   (3.76)
+
+    We would like to study the action of Q1 on the infinite-N single-trace tree-level cohomol-
+ogy, which is in one-to-one correspondence with the 1/16-BPS spectrum of N = 4 SYM. The
+ 25
+      We thank Davide Gaiotto for discussions on this point.
+
+
+
+
+                                                   – 24 –
+cohomology classes, computed in [52], can be represented by traces of symmetrized products
+of γ I ,
+
+                                                 Tr γ (I1 γ I2 . . . γ In ) ,                            (3.77)
+
+and their psl(3|3) descendants.
+     We first show that these classes are Q1 -closed at any N . It is straightforward to see
+that Q1 (γ I γ J ) = 0 since there are no triangle diagrams that could contribute to this term.
+Therefore, Q1 vanishes on the representatives (3.77). Since Q1 also (anti)commutes with the
+(tree-level) psl(3|3) symmetry generators (on Q0 -cohomology), as discussed in the preceding
+section, we conclude that all psl(3|3) descendants of (3.77) are Q1 -closed.
+     At infinite-N , we can restrict the action of Q1 to the part that maps single-traces to
+single-traces (as split into single- and multi-traces is well-defined at infinite-N ). Since Q1
+vanishes on all infinite-N single-trace cohomologies, the image of Q1 is zero and no such
+classes can be Q1 -exact. We therefore conclude that the part of Q1 action that maps single-
+traces to single-traces does not lift the infinite-N tree-level single-trace cohomology classes.26
+Analyzing the part of Q1 which can split and join traces is more subtle and we leave it for
+future work.
+
+Acknowledgments
+
+We would like to thank Davide Gaiotto and Xi Yin for useful discussions and comments
+on the draft. We also thank Chi-Ming Chang, Anirudh Deb, Alexandre Homrich, Eunwoo
+Lee, Ying-Hsuan Lin, Jiyoo Park, Surya Raghavendran, Matteo Sacchi, Aiden Suter, Pedro
+Vieira and Jingxiang Wu for helpful discussions. The work of JK is supported by the NSERC
+PDF program. The work of KB was supported by the Simons Collaboration on Celestial
+Holography.
+
+A       The One-Loop Master Integral
+
+For completeness, we reproduce the computation of the master integral (2.43) associated to
+the triangle diagram (A.1) from [18].
+
+                                                            λ3
+
+
+                                                                                .                        (A.1)
+                                                  z23                z13
+
+                                                           z12
+                                            λ2                             λ1
+
+      We define the oriented loop variable Z = z12 + z23 − z13 and the holomorphic momenta
+λi , satisfying λ1 + λ2 + λ3 = 0. We also define λ ∧ λ′ = λ1 λ′2 − λ2 λ′1 , λ · z = λ1 z 1 + λ2 z 2 ,
+  26
+       In the pure SYM example, Q1 acts non-trivially on the infinite-N tree-level single-trace cohomology [16].
+
+
+
+
+                                                          – 25 –
+|x|2 = |x1 |2 + |x2 |2 , and the combined propagator on spacetime and the space of Schwinger
+parameters (see [17, 18]):
+
+                                                dt 2 1
+                             P(x, x̄; t) :=       (x̄ dx̄ − x̄1 dx̄2 )Kt (x) + d2 x̄ Kt (x) ,                                          (A.2)
+                                                t
+                                                                         2
+where Kt (x) is the heat-kernel Kt (x) := t−2 e−|x| /t .
+   We start from the integral over spacetime and Schwinger parameters:
+ Z
+          d2 x1 d2 x2 eλ1 ·x1 +λ2 ·x2 +λ3 ·x3 P(x1 −x2 +z12 ; t1 )P(x2 −x3 +z23 ; t2 )P(x1 −x3 +z13 ; t3 )
+   C4 ×RP2>
+                                                                                                                                       (A.3)
+                         Z
+  = e−λ1 ·z13 −λ2 ·z23                d2 x1 d2 x2 eλ1 ·x1 +λ2 ·x2 P(x1 −x2 +Z; t1 )P(x2 ; t2 )P(x1 ; t3 )                              (A.4)
+                           C4 ×RP2>
+                             Z                                                                                      
+                                                                             dt1 dt2 dt2 dt3 dt3 dt1                         1
+  = −e−λ1 ·z13 −λ2 ·z23                  d2 x1 d2 x2 d2 x̄1 d2 x̄2                  +       +                                          (A.5)
+                              C4 ×RP2>                                        t1 t2   t2 t3   t1 t3                      t21 t22 t23
+                                                            − t1 x1 ·x̄1 − t1 x2 ·x̄2 − t1 (x1 −x2 +Z)·(x̄1 −x̄2 )
+              × eλ1 ·x1 +λ2 ·x2 (x̄21 x̄12 − x̄11 x̄22 )e      3             2         1                             .                 (A.6)
+
+The spacetime integrals are Gaussian, after evaluating them we get
+                                 Z                              
+    −λ1 ·z13 −λ2 ·z23                    dt1 dt2 dt2 dt3 dt3 dt1        t1 t2 t3      t λ ·Z−t2 λ2 ·Z
+                                                                                     − 3 t1 +t +t
+  e                   (λ1 ∧ λ2 )                +       +                           e     1 2 3       .
+                                  RP2>    t1 t2   t2 t3   t1 t3    (t1 + t2 + t3 )3
+                                                                                                    (A.7)
+
+Next, we do the integral over the Schwinger parameters on the region t1 + t2 + t3 = 1:
+     Z
+         (t3 dt1 dt2 + t1 dt2 dt3 + t2 dt3 dt1 ) e−(t3 λ1 ·Z−t2 λ2 ·Z)                 (A.8)
+       RP2>
+
+                           1                 e−λ1 ·Z                   eλ2 ·Z
+              =−                    +                        +                         .                                               (A.9)
+                    (λ1 · Z)(λ2 · Z) (λ1 · Z)((λ1 + λ2 ) · Z) (λ2 · Z)((λ1 + λ2 ) · Z)
+
+Together, we get
+
+  I [λ; z] = − e−λ1 ·z13 −λ2 ·z23 (λ1 ∧ λ2 )                                            (A.10)
+                                             e−λ1 ·Z                eλ2 ·Z
+                                                                                   
+                         1
+             ×                       −                    −                           , (A.11)
+                 (λ1 · Z)(λ2 · Z) (λ1 · Z)((λ1 + λ2 ) · Z) (λ2 · Z)((λ1 + λ2 ) · Z)
+
+which can also be written as
+                                                                       e−λ1 ·Z           eλ2 ·Z
+                                                                                                   
+                  −λ1 ·z13 −λ2 ·z23                     1
+ I [λ; z] = −e                        (λ1 ∧ λ2 )                 +                +                   .
+                                                 (λ1 · Z)(λ2 · Z) (λ1 · Z)(λ3 · Z) (λ2 · Z)(λ3 · Z)
+                                                                                                (A.12)
+
+
+
+
+                                                                   – 26 –
+B    One-Loop Supercharges on Derivatives
+
+In this appendix, we present the explicit action of the one-loop supercharge Q1 on fields with
+derivatives, in a form convenient for symbolic implementation e.g. in Mathematica.
+    In Section 3.1, we computed the one-loop supercharge action on the generating func-
+tions (2.35), using shifted Feynman diagrams (A.1). The generating functions encode all
+holomorphic derivatives and the action of Q1 on fields with derivatives can be obtained by
+expanding both sides of formulas in Section 3.1 as a power series in the shifts z = (z 1 , z 2 )
+and w = (w1 , w2 ).
+    Here, we present the explicit formulas for the action of the one-loop supercharge on
+expressions of the form f ∂1m ∂2n g, where f, g are two elementary fields. Then, the action on
+derivatives of the first field can be obtained recursively by
+
+                              Q1 (∂α̇ f g) = ∂α̇ Q1 (f g) − Q1 (f ∂α̇ g) ,                          (B.1)
+
+since Q1 commutes with derivatives.
+    We expand
+                                           ∞
+                                           X      1
+                    Q1 (f (0)g(w)) =                  (w1 )m (w2 )n Q1 (f ∂1m ∂2n g) .              (B.2)
+                                                 m!n!
+                                         m,n=0
+
+     To match the coefficients of (w1 )m (w2 )n , we expand the integrals (2.47) in power series
+as
+                                                          ∞
+                                                          X
+                       I [λ; 0, −w, 0] = (λ1 ∧ λ2 )              Cmn (w1 )m (w2 )n ,                (B.3)
+                                                         m,n=0
+
+where after many combinatorial manipulations (see the next appendix), one can show that
+                           m X n            
+                    1     X          1      m n
+     m!n!Cmn =                                       (λ1 )k1 (λ1 )l2 (λ2 )m−k
+                                                                          1   (λ2 )n−l
+                                                                                   2   . (B.4)
+                m+n+2            k+l+1 k          l
+                               k=0 l=0
+
+We use this to write
+                                                           m X n         
+                                                1         X         1   m n
+        Q1 (bA ∂1m ∂2n cB ) = fACD fBCE
+                                           m+n+2                  k+l+1 k  l
+                                                          k=0 l=0                                   (B.5)
+                                                           
+                        · ∂1k ∂2l ∂α̇ cD ∂1m−k ∂2n−l ∂ α̇ cE ,
+                                                m X
+                                                  n        
+                                            1   X     1   m n
+        Q1 (bA ∂1m ∂2n bB ) = fACD fBCE
+                                          m+n+2     k+l+1 k  l
+                                                        k=0 l=0
+                         
+                        · ∂1k ∂2l ∂α̇ cD ∂1m−k ∂2n−l ∂ α̇ bE − ∂1k ∂2l ∂α̇ bD ∂1m−k ∂2n−l ∂ α̇ cE
+                                                                                    (B.6)
+                                                                                       
+                           k l           D m−k n−l α̇ I E k l        I D m−k n−l α̇  E
+                        + ∂1 ∂2 ∂α̇ (βI ) ∂1 ∂2 ∂ (γ ) − ∂1 ∂2 ∂α̇ (γ ) ∂1 ∂2 ∂ (βI ) ,
+
+
+
+
+                                                  – 27 –
+                                                               m X n         
+                                                    1         X         1   m n
+ Q1 ((βI )A ∂1m ∂2n (γ J )B ) = δIJ fACD fBCE
+                                               m+n+2                  k+l+1 k  l
+                                                              k=0 l=0                                          (B.7)
+                                                             
+                          · ∂1k ∂2l ∂α̇ cD ∂1m−k ∂2n−l ∂ α̇ cE ,
+                                                        m X
+                                                          n        
+                                                    1   X     1   m n
+ Q1 ((βI )A ∂1m ∂2n (βJ )B ) = εIJK fACD fBCE
+                                                  m+n+2     k+l+1 k  l
+                                                                 k=0 l=0
+                                                                                   
+                             k l       D m−k n−l α̇ K E k l        K D m−k n−l α̇ E
+                          · ∂1 ∂2 ∂α̇ c ∂1 ∂2 ∂ (γ ) − ∂1 ∂2 ∂α̇ (γ ) ∂1 ∂2 ∂ c ,
+                                                                                                               (B.8)
+                                                          m X
+                                                            n               
+                                                 1        X            1   m n
+    Q1 (bA ∂1m ∂2n (γ I )B ) = fACD fBCE
+                                               m+n+2                 k+l+1 k  l
+                                                          k=0 l=0
+                                                                                                             (B.9)
+                          · ∂1k ∂2l ∂α̇ cD ∂1m−k ∂2n−l ∂ α̇ (γ I )E − ∂1k ∂2l ∂α̇ (γ I )D ∂1m−k ∂2n−l ∂ α̇ cE ,
+                                                     m X
+                                                       n        
+                                                 1   X     1   m n
+    Q1 ((βI )A ∂1m ∂2n bB ) = fACD fBCE
+                                               m+n+2     k+l+1 k  l
+                                                          k=0 l=0
+                           
+                          · ∂1k ∂2l ∂α̇ (βI )D ∂1m−k ∂2n−l ∂ α̇ cE + ∂1k ∂2l ∂α̇ cD ∂1m−k ∂2n−l ∂ α̇ (βI )E   (B.10)
+                                                                              
+                                     k l        J D m−k n−l α̇ K E
+                          + εIJK ∂1 ∂2 ∂α̇ (γ ) ∂1 ∂2 ∂ (γ ) ,
+
+for adjoint matter with cubic superpotential W [γ] = Tr γ 1 [γ 2 , γ 3 ], and analogously for other
+representations.
+
+C    Combinatorial Manipulations
+
+We summarize the combinatorial manipulations needed to arrive at (B.4). We expand the
+integral (2.47):
+                                            ∞ X
+                                              ∞
+                                    λ2 ·w
+                                            X            1
+    I [λ; 0, −w, 0] = (λ1 ∧ λ2 )e                                (λ1 · w)k (−λ2 · w)j                          (C.1)
+                                                    (k + j + 2)!
+                                            k=0 j=0
+                                    ∞         ∞ X ∞
+                                    X 1      X                    1
+                     = (λ1 ∧ λ2 )                    (−1)j                (λ1 · w)k (λ2 · w)j+p                (C.2)
+                                          p!                 (k + j + 2)!
+                                    p=0  k=0 j=0
+                                    ∞             ∞              r
+                                    X
+                                               k
+                                                 X
+                                                              r
+                                                                X            1           1
+                     = (λ1 ∧ λ2 )     (λ1 · w)       (λ2 · w)       (−1)j                                      (C.3)
+                                                                          (r − j)! (k + j + 2)!
+                                  k=0            r=0            j=0
+                                   ∞              ∞
+                                  X              X                        1
+                     = (λ1 ∧ λ2 )     (λ1 · w)k      (λ2 · w)r                         .                       (C.4)
+                                                                (r + k + 2)r!(k + 1)!
+                                  k=0            r=0
+
+
+
+
+                                                    – 28 –
+In the last line, we used the following combinatorial identity:
+                       r
+                       X                1          1                   1
+                             (−1)j                         =                       .             (C.5)
+                                     (r − j)! (k + j + 2)!   (r + k + 2)r!(k + 1)!
+                       j=0
+
+    We can group the terms in (C.4) with the same powers of (w1 )m (w2 )n as
+                             m   n
+                 1   XX    1       1                         1
+  (λ1 ∧ λ2 )                           (λ1 )k1 (λ1 )l2                  (λ2 )m−k
+                                                                             1   (λ2 )n−l
+                                                                                      2   . (C.6)
+               m+n+2    k + l + 1 k!l!                 (m − k)!(n − l)!
+                         k=0 l=0
+
+
+References
+
+ [1] N. Seiberg, Exact results on the space of vacua of four-dimensional SUSY gauge theories, Phys.
+     Rev. D 49 (1994) 6857–6863, [hep-th/9402044].
+ [2] F. Cachazo, M. R. Douglas, N. Seiberg, and E. Witten, Chiral rings and anomalies in
+     supersymmetric gauge theory, JHEP 12 (2002) 071, [hep-th/0211170].
+ [3] M. F. Sohnius and P. C. West, Conformal Invariance in N=4 Supersymmetric Yang-Mills
+     Theory, Phys. Lett. B 100 (1981) 245.
+ [4] B. de Wit, P. G. Lauwers, and A. Van Proeyen, Lagrangians of N=2 Supergravity - Matter
+     Systems, Nucl. Phys. B 255 (1985) 569–608.
+ [5] N. Seiberg, Supersymmetry and Nonperturbative beta Functions, Phys. Lett. B 206 (1988)
+     75–80.
+ [6] N. Seiberg, Naturalness versus supersymmetric nonrenormalization theorems, Phys. Lett. B 318
+     (1993) 469–475, [hep-ph/9309335].
+ [7] D. Kutasov, A Comment on duality in N=1 supersymmetric nonAbelian gauge theories, Phys.
+     Lett. B 351 (1995) 230–234, [hep-th/9503086].
+ [8] D. Kutasov and A. Schwimmer, On duality in supersymmetric Yang-Mills theory, Phys. Lett. B
+     354 (1995) 315–321, [hep-th/9505004].
+ [9] D. Kutasov, A. Schwimmer, and N. Seiberg, Chiral rings, singularity theory and electric -
+     magnetic duality, Nucl. Phys. B 459 (1996) 455–496, [hep-th/9510222].
+[10] S. Lee, S. Minwalla, M. Rangamani, and N. Seiberg, Three point functions of chiral operators in
+     D = 4, N=4 SYM at large N, Adv. Theor. Math. Phys. 2 (1998) 697–718, [hep-th/9806074].
+[11] O. Aharony, S. S. Gubser, J. M. Maldacena, H. Ooguri, and Y. Oz, Large N field theories,
+     string theory and gravity, Phys. Rept. 323 (2000) 183–386, [hep-th/9905111].
+[12] C. Romelsberger, Calculating the Superconformal Index and Seiberg Duality, arXiv:0707.3702.
+[13] F. A. Dolan and H. Osborn, Applications of the Superconformal Index for Protected Operators
+     and q-Hypergeometric Identities to N=1 Dual Theories, Nucl. Phys. B 818 (2009) 137–178,
+     [arXiv:0801.4947].
+[14] R. Eager, I. Saberi, and J. Walcher, Nilpotence varieties, Annales Henri Poincare 22 (2021),
+     no. 4 1319–1376, [arXiv:1807.03766].
+
+
+
+
+                                                    – 29 –
+[15] C. Elliott, P. Safronov, and B. R. Williams, A taxonomy of twists of supersymmetric
+     Yang–Mills theory, Selecta Math. 28 (2022), no. 4 73, [arXiv:2002.10517].
+[16] K. Budzik, D. Gaiotto, J. Kulp, B. R. Williams, J. Wu, and M. Yu, Semi-chiral operators in 4d
+     N = 1 gauge theories, JHEP 05 (2024) 245, [arXiv:2306.01039].
+[17] D. Gaiotto, J. Kulp, and J. Wu, Higher operations in perturbation theory, JHEP 05 (2025) 230,
+     [arXiv:2403.13049].
+[18] K. Budzik, D. Gaiotto, J. Kulp, J. Wu, and M. Yu, Feynman diagrams in four-dimensional
+     holomorphic theories and the Operatope, JHEP 07 (2023) 127, [arXiv:2207.14321].
+[19] P. Bomans, N. Garner, B. R. Williams, and J. Wu, Unravelling the Holomorphic Twist II:
+     Anomalies and Extended Supersymmetry, arXiv:2509.16737.
+[20] K. Konishi, Anomalous Supersymmetry Transformation of Some Composite Operators in
+     SQCD, Phys. Lett. B 135 (1984) 439–444.
+[21] K.-i. Konishi and K.-i. Shizuya, Functional Integral Approach to Chiral Anomalies in
+     Supersymmetric Gauge Theories, Nuovo Cim. A 90 (1985) 111.
+[22] Z. Gui, M. Wang, and B. R. Williams, Higher-dimensional Chiral Algebras in the Jouanolou
+     Model, arXiv:2510.26608.
+[23] K. Costello, Supersymmetric gauge theory and the Yangian, arXiv:1303.2632.
+[24] I. Saberi and B. R. Williams, Twisted characters and holomorphic symmetries, Lett. Math.
+     Phys. 110 (2020), no. 10 2779–2853, [arXiv:1906.04221].
+[25] G. Faonte, B. Hennion, and M. Kapranov, Higher kac–moody algebras and moduli spaces of
+     g-bundles, Advances in Mathematics 346 (2019) 389–466, [arXiv:1701.01368].
+[26] O. Gwilliam and B. R. Williams, Higher Kac–Moody algebras and symmetries of holomorphic
+     field theories, Adv. Theor. Math. Phys. 25 (2021), no. 1 129–239, [arXiv:1810.06534].
+[27] I. Saberi and B. R. Williams, Superconformal Algebras and Holomorphic Field Theories,
+     Annales Henri Poincare 24 (2023), no. 2 541–604, [arXiv:1910.04120].
+[28] P. Bomans and J. Wu, Unravelling the Holomorphic Twist: Central Charges, Commun. Math.
+     Phys. 405 (2024), no. 12 290, [arXiv:2311.04304].
+[29] B. R. Williams, The local cohomology of vector fields, arXiv:2405.05174.
+[30] J. Scheinpflug, The semi-chiral ring of supersymmetric ϕ4 theory as a representation,
+     arXiv:2410.12980.
+[31] H. Chen and J. Liniado, Infinite Dimensional Topological-Holomorphic Symmetry in
+     Three-Dimensions, arXiv:2507.01858.
+[32] J.-L. Loday and D. G. Quillen, Cyclic homology and the lie algebra homology of matrices,
+     Commentarii Mathematici Helvetici 59 (1984) 565–591.
+[33] B. L. Tsygan, The homology of matrix lie algebras over rings and the hochschild homology,
+     Russian Mathematical Surveys 38 (1983) 198 – 199.
+[34] C.-M. Chang and Y.-H. Lin, Words to describe a black hole, JHEP 02 (2023) 109,
+     [arXiv:2209.06728].
+
+
+
+
+                                              – 30 –
+[35] S. Choi, S. Kim, E. Lee, and J. Park, The shape of non-graviton operators for SU(2), JHEP 09
+     (2024) 029, [arXiv:2209.12696].
+[36] S. Choi, S. Kim, E. Lee, S. Lee, and J. Park, Towards quantum black hole microstates, JHEP
+     11 (2023) 175, [arXiv:2304.10155]. [Erratum: JHEP 03, 091 (2025)].
+[37] K. Budzik, H. Murali, and P. Vieira, Following Black Hole States, arXiv:2306.04693.
+[38] J. Choi, S. Choi, S. Kim, J. Lee, and S. Lee, Finite N black hole cohomologies, JHEP 12 (2024)
+     029, [arXiv:2312.16443].
+[39] C.-M. Chang and Y.-H. Lin, Holographic covering and the fortuity of black holes,
+     arXiv:2402.10129.
+[40] R. de Mello Koch, M. Kim, S. Kim, J. Lee, and S. Lee, Brane-fused black hole operators, JHEP
+     07 (2025) 216, [arXiv:2412.08695].
+[41] A. Gaikwad, T. Kibe, S. van Leuven, and K. Mathieson, To gauge or to double gauge? Matrix
+     models, global symmetry, and black hole cohomologies, arXiv:2512.02103.
+[42] C.-M. Chang, Y. Chen, B. S. Sia, and Z. Yang, Fortuity in SYK models, JHEP 08 (2025) 003,
+     [arXiv:2412.06902].
+[43] Y. Chen, Fortuity with a single matrix, arXiv:2511.00790.
+[44] C.-M. Chang, Y.-H. Lin, and H. Zhang, Fortuity in the D1-D5 system, arXiv:2501.05448.
+[45] S. Kim, J. Lee, S. Lee, and H. Oh, BPS phases and fortuity in higher spin holography,
+     arXiv:2511.03105.
+[46] C.-M. Chang and H. Zhang, Fortuity and R-charge concentration in the D1-D5 CFT,
+     arXiv:2511.23294.
+[47] A. Belin, P. Singh, R. Vadala, and A. Zaffaroni, Fortuity in ABJM, arXiv:2512.04146.
+[48] C.-M. Chang and Y.-H. Lin, Violation of S-duality in classical Q-cohomology,
+     arXiv:2510.24008.
+[49] J. Choi and E. Lee, Konishi lifts a black hole, arXiv:2511.09519.
+[50] L. Grant, P. A. Grassi, S. Kim, and S. Minwalla, Comments on 1/16 BPS Quantum States and
+     Classical Configurations, JHEP 05 (2008) 049, [arXiv:0803.4183].
+[51] A. Gadde, E. Lee, R. Raj, and S. Tomar, Probing Non-Graviton Spectra in N = 4 SYM via
+     BMN truncation and S-Duality, arXiv:2506.13887.
+[52] C.-M. Chang and X. Yin, 1/16 BPS states in N = 4 super-Yang-Mills theory, Phys. Rev. D 88
+     (2013), no. 10 106005, [arXiv:1305.6314].
+[53] C. Beem, M. Lemos, P. Liendo, W. Peelaers, L. Rastelli, and B. C. van Rees, Infinite Chiral
+     Symmetry in Four Dimensions, Commun. Math. Phys. 336 (2015), no. 3 1359–1433,
+     [arXiv:1312.5344].
+[54] C.-M. Chang, Y.-H. Lin, and J. Wu, On 81 -BPS black holes and the chiral algebra of N = 4
+     SYM, Adv. Theor. Math. Phys. 28 (2024), no. 7 2431–2489, [arXiv:2310.20086].
+[55] S. Axelrod and I. M. Singer, Chern-Simons perturbation theory, in
+     International Conference on Differential Geometric Methods in Theoretical Physics, pp. 3–45,
+     1991. hep-th/9110056.
+
+
+
+
+                                              – 31 –
+[56] B. R. Williams, Renormalization for holomorphic field theories, Communications in
+     Mathematical Physics 374 (2020), no. 3 1693–1742, [arXiv:1809.02661].
+[57] V. A. Novikov, M. A. Shifman, A. I. Vainshtein, and V. I. Zakharov, Instanton Effects in
+     Supersymmetric Theories, Nucl. Phys. B 229 (1983) 407.
+[58] K. Hori, S. Katz, A. Klemm, R. Pandharipande, R. Thomas, C. Vafa, R. Vakil, and E. Zaslow,
+     Mirror symmetry, vol. 1 of Clay mathematics monographs. AMS, Providence, USA, 2003.
+[59] E. Witten, Chiral ring of Sp(N) and SO(N) supersymmetric gauge theory in four-dimensions,
+     hep-th/0302194.
+[60] P. Etingof and V. Kac, On the Cachazo-Douglas-Seiberg-Witten conjecture for simple Lie
+     algebras, math/0305175.
+[61] M. Cederwall and G. Ferretti, The Chiral Ring of D=4, N=1 SYM with Exceptional Gauge
+     Groups, Fortsch. Phys. 72 (2024), no. 5 2400027, [arXiv:2311.12119].
+[62] N. Dorey, T. J. Hollowood, V. V. Khoze, and M. P. Mattis, The Calculus of many instantons,
+     Phys. Rept. 371 (2002) 231–459, [hep-th/0206063].
+[63] R. Argurio, G. Ferretti, and R. Heise, An Introduction to supersymmetric gauge theories and
+     matrix models, Int. J. Mod. Phys. A 19 (2004) 2015–2078, [hep-th/0311066].
+[64] N. Seiberg, Adding fundamental matter to ‘Chiral rings and anomalies in supersymmetric gauge
+     theory’, JHEP 01 (2003) 061, [hep-th/0212225].
+[65] Y. Tachikawa, Lectures on 4d N=1 dynamics and related topics, arXiv:1812.08946.
+[66] T. T. Dumitrescu and N. Seiberg, Supercurrents and Brane Currents in Diverse Dimensions,
+     JHEP 07 (2011) 095, [arXiv:1106.0031].
+[67] C. Closset, T. T. Dumitrescu, G. Festuccia, and Z. Komargodski, The Geometry of
+     Supersymmetric Partition Functions, JHEP 01 (2014) 124, [arXiv:1309.5876].
+[68] C. Closset, T. T. Dumitrescu, G. Festuccia, and Z. Komargodski, From Rigid Supersymmetry to
+     Twisted Holomorphic Theories, Phys. Rev. D 90 (2014), no. 8 085006, [arXiv:1407.2598].
+[69] T. T. Dumitrescu, An introduction to supersymmetric field theories in curved space, J. Phys. A
+     50 (2016), no. 44 443005, [arXiv:1608.02957].
+[70] K. Yonekura, Notes on Operator Equations of Supercurrent Multiplets and Anomaly Puzzle in
+     Supersymmetric Field Theories, JHEP 09 (2010) 049, [arXiv:1004.1296].
+[71] J. Scheinpflug, M. Schnabl, and J. Vošmera, Observables of boundary RG flows from string field
+     theory, arXiv:2510.07155.
+[72] E. Witten and B. Zwiebach, Algebraic structures and differential geometry in 2-D string theory,
+     Nucl. Phys. B 377 (1992) 55–112, [hep-th/9201056].
+[73] B. H. Lian and G. J. Zuckerman, New perspectives on the BRST algebraic structure of string
+     theory, Commun. Math. Phys. 154 (1993) 613–646, [hep-th/9211072].
+[74] E. Getzler, Batalin-Vilkovisky algebras and two-dimensional topological field theories, Commun.
+     Math. Phys. 159 (1994) 265–285, [hep-th/9212043].
+
+
+
+
+                                              – 32 –
+[75] C. Beem, D. Ben-Zvi, M. Bullimore, T. Dimofte, and A. Neitzke, Secondary products in
+     supersymmetric field theory, Annales Henri Poincare 21 (2020), no. 4 1235–1310,
+     [arXiv:1809.00009].
+[76] J. Oh and J. Yagi, Poisson vertex algebras in supersymmetric field theories, Lett. Math. Phys.
+     110 (2020), no. 8 2245–2275, [arXiv:1908.05791].
+[77] N. Garner and N. M. Paquette, Mathematics of String Dualities, PoS TASI2021 (2023) 007,
+     [arXiv:2204.01914].
+[78] D. Gaiotto, G. W. Moore, and E. Witten, Algebra of the Infrared: String Field Theoretic
+     Structures in Massive N = (2, 2) Field Theory In Two Dimensions, arXiv:1506.04087.
+[79] M. Kontsevich, Deformation quantization of Poisson manifolds. 1., Lett. Math. Phys. 66 (2003)
+     157–216, [q-alg/9709040].
+[80] P.-H. Balduf and D. Gaiotto, Combinatorial proof of a non-renormalization theorem, JHEP 05
+     (2025) 120, [arXiv:2408.03192].
+[81] M. Wang, Feynman Graph Integrals on Cd , Commun. Math. Phys. 406 (2025), no. 5 116,
+     [arXiv:2401.08113].
+[82] M. Wang and B. R. Williams, Factorization algebras from topological-holomorphic field theories,
+     arXiv:2407.08667.
+[83] M. Wang and J. Yan, Feynman Graph Integrals on Kähler Manifolds, arXiv:2507.09170.
+[84] L. Henneberg, Die graphische Statik der starren Systeme, vol. 31. BG Teubner, 1911.
+[85] H. Pollaczek-Geiringer, Über die gliederung ebener fachwerke, ZAMM-Journal of Applied
+     Mathematics and Mechanics/Zeitschrift für Angewandte Mathematik und Mechanik 7 (1927),
+     no. 1 58–72.
+[86] G. Laman, On graphs and rigidity of plane skeletal structures, Journal of Engineering
+     mathematics 4 (1970), no. 4 331–340.
+[87] A. Johansen, Twisting of N = 1 SUSY gauge theories and heterotic topological theories, Int. J.
+     Mod. Phys. A 10 (1995) 4325–4358, [hep-th/9403017].
+[88] K. J. Costello, Notes on supersymmetric and holomorphic field theories in dimensions 2 and 4,
+     Pure Appl. Math. Quart. 09 (2013), no. 1 73–165, [arXiv:1111.4234].
+
+
+
+
+                                              – 33 –
+

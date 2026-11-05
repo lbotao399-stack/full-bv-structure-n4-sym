@@ -1,0 +1,1248 @@
+{
+ "basis": [
+  "New data: E' = E (+) (cbar, cbar^*), frame Psi: S_Psi = S(A^* -> A^* - d cbar) - 1/4 int (cbar^* + d^*A|_V, cbar^* + d^*A|_V); QGF: A^* -> -2A^*, lambda^* -> -dslash lambda^*, cbar^* -> cbar^* (slot c), c^* -> -c^* (slot cbar); propagator A(x)A, lambda(x)lambda as before, c(x)cbar = -(-,-)^{-1}, cbar(x)c = +(-,-)^{-1} times e^{-eps|p|^2}/|p|^2 (checks C_propagator).",
+  "Pullback theorem (checks C_frames): j = p o Phi : (E', Q_Psi) -> (E, Q), j(c,A,lambda,cbar,c^*,A^*,lambda^*,cbar^*) = (c,A,lambda,c^*,A^*-d cbar,lambda^*), is a chain map with (j x j)K_t = K_t and (j x j)P_Psi(eps,T) = P_former(eps,T); I_Psi = I o j. Hence for every functional J of the minimal fields W(P_Psi, J o j) = W(P_former, J) o j graph by graph, the counterterms are I^CT o j, the QME defect is the former defect o j, Delta_eps and {,}_eps commute with o j.",
+  "Equivariant data: S^(1)_Psi(x) = S^(1)(x) o j + S^(1)_nm(x) o Phi with S^(1)_nm(v) = -(v.cbar, cbar^*) (v conformal Killing, cbar of Weyl weight 2), S^(1)_nm = 0 on Sigma, Sigma^*, so(W); S^(2)_Psi(x1,x2) = S^(2)(x1,x2) o j - int (cbar, Gamma(eps1,eps2)|_V (cbar)) (checks E).",
+  "Consequently: (a) everything at arity zero is a pullback; (b) arity one along xi in Sigma, eta in Sigma^* and along so(W_R^perp) is a pullback (identical graphs, the former composite lambda-c lines are the lambda-cbar vertex lines of frame Psi); (c) arity one along Delta, P_b, so(V), K_b changes by the vertex -(v.cbar, cbar^* + d^*A|_V), which cancels the composite A|_V-c lines exactly for Delta, P_b, so(V) and leaves the local vertex 4 int (cbar, iota_b A|_V) along K_b; (d) arity two changes along every pair whose bracket has a nonzero V-part (new cbar cbar vertex, new S^(1)_nm of the bracket); (e) the twisted theory along a square-zero xi (Gamma(xi,xi) = 0) is a pullback."
+ ],
+ "status_legend": {
+  "unchanged_pullback": "identical graph by graph through the chain map j (outputs with A^*|_V rewritten as A^*|_V - d cbar); no recomputation",
+  "rewritten_no_new_computation": "statement changes form (new fields, new QGF); proved in ch03_revised.tex / gf.tex without new loop computations",
+  "disappears": "object vanishes in the new gauge fixing",
+  "recompute": "changes; must be derived anew by the strict Costello route (R10)",
+  "invariant_must_agree": "gauge- and scheme-independent; recompute as a check, must agree with the former value"
+ },
+ "items": [
+  {
+   "chapter": 3,
+   "labels": [
+    "def:c3-qgf",
+    "prop:c3-axioms"
+   ],
+   "result": "gauge-fixing operator and Costello axioms",
+   "old_value": "(3) and (5) failed",
+   "status": "rewritten_no_new_computation",
+   "reason": "replaced by the frame-Psi operator on E'; all five axioms hold ((5) at every p != 0, zero modes separately)",
+   "action": "ch03_revised.tex, Definition c3-qgf, Theorem c3-axioms"
+  },
+  {
+   "chapter": 3,
+   "labels": [
+    "prop:c3-H",
+    "prop:c3-adjoint",
+    "rem:c3-names"
+   ],
+   "result": "H = |p|^2 on every slot; adjointness",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "same statements on E' (checks C_axioms (1),(4))",
+   "action": "ch03_revised.tex"
+  },
+  {
+   "chapter": 3,
+   "labels": [
+    "rem:c3-feynman"
+   ],
+   "result": "Feynman-gauge covariance",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "the Feynman term -1/4 int (d^*A|_V, d^*A|_V) is now part of S_Psi; <A,QA> = -1/2 int (A, HA) negative definite on all ten components",
+   "action": "ch03_revised.tex"
+  },
+  {
+   "chapter": 3,
+   "labels": [
+    "def:c3-K",
+    "prop:c3-heat",
+    "def:c3-P",
+    "prop:c3-QP",
+    "rem:c3-two",
+    "def:c3-delta",
+    "def:c3-W",
+    "thm:c3-uv",
+    "cor:c3-qme",
+    "prop:c3-graphs",
+    "prop:c3-oneloop",
+    "rem:c3-oneloop",
+    "rem:c3-class"
+   ],
+   "result": "heat kernel, propagator, UV-boundary identity, graph expansion, one-loop formula",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "proofs use only Q^2 = 0, H = [Q,QGF], [Q,H] = 0 and adjointness; they hold verbatim on E'",
+   "action": "ch03_revised.tex (same labels)"
+  },
+  {
+   "chapter": 3,
+   "labels": [
+    "prop:c3-P"
+   ],
+   "result": "components of the propagator",
+   "old_value": "c(x)A^*|_V = -(-,-)^{-1} i p e^{-eps|p|^2}/|p|^2",
+   "status": "rewritten_no_new_computation",
+   "reason": "c(x)A^*|_V and A^*|_V(x)c are replaced by c(x)cbar and cbar(x)c; A(x)A and lambda(x)lambda unchanged; no field-antifield component",
+   "action": "ch03_revised.tex Proposition c3-P"
+  },
+  {
+   "chapter": 3,
+   "labels": [
+    "thm:c3-acyclic",
+    "cor:c3-functionals",
+    "rem:c3-story"
+   ],
+   "result": "acyclicity at scale infinity, zero-mode classes",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "now with (P*)^2 = 0, P(0,inf)* the inverse of Q : Im QGF -> Im Q on moment-free sections ([C07, Lemma 6.5.1]); the zero-mode classes are the former ones, the pair (cbar, cbar^*) adds none",
+   "action": "ch03_revised.tex Theorem c3-acyclic"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "def:c4-ict",
+    "prop:c4-boundary",
+    "cor:c4-sing",
+    "lem:c4-gauss",
+    "lem:c4-integrals",
+    "lem:c4-local",
+    "lem:c4-factor",
+    "prop:c4-limit",
+    "prop:c4-unique"
+   ],
+   "result": "one-loop counterterm, boundary form, existence of the limit, uniqueness",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "thm:c4-quadratic",
+    "rem:c4-quadratic",
+    "ex:c4-gauge",
+    "ex:c4-gaugino",
+    "ex:c4-ghost",
+    "ex:c4-seagull",
+    "ex:c4-cAstar"
+   ],
+   "result": "quadratic counterterm",
+   "old_value": "9/4 eps^{-1} int (A,A) + log eps [-(dA,dA) + 4(lambda,dslash lambda) - (dc,A^*)] units; new: (dc,A^*) -> (dc, A^* - d cbar)",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "lem:c4-weights",
+    "lem:c4-enumeration",
+    "prop:c4-structure"
+   ],
+   "result": "structure of the cubic and quartic counterterms",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "lem:c4-count",
+    "thm:c4-log"
+   ],
+   "result": "logarithmic class",
+   "old_value": "unit log eps (Q+{I,-}) N, N = 2(A,A^*) - 4(lambda^*,lambda) - (c^*,c); new: N o j = N - 2 int (A|_V, d cbar)",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "cor:c4-coupling"
+   ],
+   "result": "vanishing coupling counterterm",
+   "old_value": "0",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "rem:c4-epsinv"
+   ],
+   "result": "BV variation of the mass term",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "def:c4-defect",
+    "prop:c4-defectflow",
+    "prop:c4-defect1",
+    "lem:c4-sectors",
+    "lem:c4-special"
+   ],
+   "result": "defect vertex and its graphs",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "thm:c4-obstruction",
+    "rem:c4-selfenergy"
+   ],
+   "result": "two-leg obstruction",
+   "old_value": "-27/8 units int (d^*dc, d^*A|_V)",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "thm:c4-finite",
+    "rem:c4-condition"
+   ],
+   "result": "finite counterterm",
+   "old_value": "27/16 units int (d^*A|_V, d^*A|_V) (+ Q-closed directions)",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation; in frame Psi the finite counterterm is equivalent, modulo the s-exact G = 1/2 int (cbar^*+d^*A|_V)^2, to -(27/16) units int ((cbar^*,cbar^*) + 2 (cbar^*, d^*A|_V)), a finite renormalisation of the gauge-fixing sector"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "prop:c4-K"
+   ],
+   "result": "K-variation of the finite counterterm",
+   "old_value": "-8 int (d^*A|_V, iota_b A|_V)",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation; in frame Psi the finite counterterm is equivalent, modulo the s-exact G = 1/2 int (cbar^*+d^*A|_V)^2, to -(27/16) units int ((cbar^*,cbar^*) + 2 (cbar^*, d^*A|_V)), a finite renormalisation of the gauge-fixing sector"
+  },
+  {
+   "chapter": 4,
+   "labels": [
+    "rem:c4-cubic"
+   ],
+   "result": "cubic sector list",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: pullback along j (graph by graph, identical values)",
+   "action": "no recomputation"
+  },
+  {
+   "chapter": 5,
+   "labels": [
+    "def:c5-family",
+    "def:c5-Oeps",
+    "prop:c5-thmB",
+    "prop:c5-local",
+    "rem:c5-content",
+    "rem:c5-cocycle"
+   ],
+   "result": "observables O(eps), O[infinity]",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "definitions are frame independent; for O built from minimal fields O(eps), O[inf] are pullbacks",
+   "action": ""
+  },
+  {
+   "chapter": 5,
+   "labels": [
+    "lem:c5-colour",
+    "lem:c5-vertices",
+    "lem:c5-cycle",
+    "lem:c5-log",
+    "prop:c5-letters"
+   ],
+   "result": "tools, single letters O(eps) = O",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback",
+   "action": ""
+  },
+  {
+   "chapter": 5,
+   "labels": [
+    "def:c5-bilinear",
+    "prop:c5-census",
+    "prop:c5-table",
+    "thm:c5-Oeps"
+   ],
+   "result": "O(eps) of the scalar bilinears",
+   "old_value": "log eps [4 O - 2 (w1,w2) sum_w ...] units + 2 dim g (w1,w2) eps^{-1} int omega",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback, graph by graph",
+   "action": ""
+  },
+  {
+   "chapter": 6,
+   "labels": [
+    "def:c6-sigma",
+    "lem:c6-data",
+    "prop:c6-scaling",
+    "lem:c6-ct"
+   ],
+   "result": "scaling covariance of the regulator",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "requires the Weyl weight 2 of cbar, cbar^*: then [Delta., QGF] = -4 QGF and [Delta., H] = -4H on every slot of E' (checks F)",
+   "action": "ch03_revised.tex Proposition c3-generators"
+  },
+  {
+   "chapter": 6,
+   "labels": [
+    "def:c6-tree",
+    "thm:c6-CS",
+    "lem:c6-count",
+    "lem:c6-bvexact",
+    "cor:c6-fieldredef",
+    "rem:c6-reading"
+   ],
+   "result": "Callan-Symanzik form, field redefinition",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "built from log eps coefficients (pullbacks) and the scaling covariance",
+   "action": "N replaced by N o j in the field-redefinition statements"
+  },
+  {
+   "chapter": 6,
+   "labels": [
+    "thm:c6-dil",
+    "rem:c6-konishi",
+    "rem:c6-AV",
+    "cor:c6-dilcomp"
+   ],
+   "result": "dilatation coefficients",
+   "old_value": "0 (20 traceless), -24 units = 3 g^2 N/(4 pi^2) (Konishi)",
+   "status": "invariant_must_agree",
+   "reason": "log eps coefficients are pullbacks, so the coefficients are literally unchanged; they are also the invariants checked later",
+   "action": ""
+  },
+  {
+   "chapter": 6,
+   "labels": [
+    "prop:c6-Leps",
+    "ex:c6-bilinear",
+    "ex:c6-letter",
+    "prop:c6-classical",
+    "rem:c6-step2"
+   ],
+   "result": "graphs with an L_eps edge",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback",
+   "action": ""
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "def:c7-vdot",
+    "lem:c7-weights"
+   ],
+   "result": "action v. of even generators on all slots",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "extended to cbar, cbar^*: v.cbar = v(cbar) + 1/2 div v cbar, v.cbar^* = v(cbar^*) + 1/2 div v cbar^*",
+   "action": "ch03_revised.tex"
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "prop:c7-cov",
+    "cor:c7-equiv",
+    "cor:c7-schur"
+   ],
+   "result": "covariance under translations, so(V), so(W)",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "[v., QGF] = 0, [v., Q] = 0 on E' (checks F); corollaries unchanged",
+   "action": ""
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "prop:c7-dil"
+   ],
+   "result": "[v., QGF] for Delta and K",
+   "old_value": "[v.,QGF] e = (div v) e on A^*|_W",
+   "status": "rewritten_no_new_computation",
+   "reason": "Delta: [v.,QGF] = -4 QGF on every slot (unchanged statement); general conformal Killing v: [v.,QGF] = -1/2 div v QGF + 1/4 rho(d div v)|_{lambda^*->lambda} + [V_v, QGF], V_v the operator of -1/2 int (cbar, iota_{grad div v} A|_V)",
+   "action": ""
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "prop:c7-susy"
+   ],
+   "result": "[Q_1., QGF] != 0",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "still nonzero; in frame Psi Q_1. contains the lambda-cbar vertex V_xi",
+   "action": ""
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "rem:c7-internal"
+   ],
+   "result": "internal insertions along P, so(V), so(W) (composite kernels (P*)^2)",
+   "old_value": "",
+   "status": "disappears",
+   "reason": "P* v. P* = P* V_v P* = 0 for P, so(V), so(W), Delta (checks F: composite QGF x. QGF = 0)",
+   "action": "theta_P disappears"
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "rem:c7-ir"
+   ],
+   "result": "large distance along K_b",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "the K-insertion on a cycle is the local vertex 4 int (cbar, iota_b A|_V) between an A(x)A and a cbar(x)c edge: |y|^{-2}|y|^{-2}, still log T; coefficient changes",
+   "action": ""
+  },
+  {
+   "chapter": 7,
+   "labels": [
+    "def:c7-component",
+    "lem:c7-image",
+    "rem:c7-content",
+    "prop:c7-select",
+    "cor:c7-Q",
+    "cor:c7-S",
+    "cor:c7-K",
+    "rem:c7-KDelta"
+   ],
+   "result": "components, selection rules",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "structural; independent of the gauge fixing",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "def:c8-twocomp",
+    "prop:c8-twocomp"
+   ],
+   "result": "two-component form of action and propagator",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "add the frame-Psi terms -(D_m c, d_m cbar), -1/4 (cbar^* - d_m A_m)^2; propagator <c cbar>, <cbar c> replace <c A^*_m>",
+   "action": "ch03_revised.tex Remark c3-twocomp"
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "def:c8-PT",
+    "lem:c8-transfer",
+    "def:c8-quant",
+    "prop:c8-Tindep",
+    "def:c8-ob",
+    "def:c8-renorm",
+    "def:c8-dT",
+    "lem:c8-flow",
+    "def:c8-rep",
+    "thm:c8-L",
+    "def:c8-components",
+    "cor:c8-homotopy",
+    "prop:c8-laws",
+    "thm:c8-invariants"
+   ],
+   "result": "definitions and well-posedness",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "abstract; hold for the new data verbatim",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "thm:c8-obstruction",
+    "def:c8-B",
+    "prop:c8-B"
+   ],
+   "result": "one-loop obstruction theory, H^0 classes",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "unchanged; the new s-closed directions supported on (cbar, cbar^*) are s-exact (e.g. G = 1/2 int (cbar^*+d^*A)^2 = -s int (cbar^*+d^*A, cbar))",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "lem:c8-ev",
+    "def:c8-twisted",
+    "thm:c8-twist"
+   ],
+   "result": "twisted differential along square-zero xi",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "S^(1)_nm(xi) = 0 and Gamma(xi,xi) = 0 give r_xi(I_Psi) = r_xi(I) o j: the twisted theory is a pullback",
+   "action": "twist classes identical"
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "prop:c8-Tsafe"
+   ],
+   "result": "where the endpoint may be removed",
+   "old_value": "3/(8 pi^2) hbar times the cut tree",
+   "status": "recompute",
+   "reason": "composite A|_V-c lines along Delta, P_b, so(V) are gone; along K_b the line is local; the log T coefficient 3/(8 pi^2) of the former composite K line must be recomputed",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "def:c8-K",
+    "thm:c8-K"
+   ],
+   "result": "K_1 at finite T, T-independence",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "structure of the proof survives; the log T term (cut tree) changes",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "lem:c8-cc",
+    "def:c8-dag",
+    "thm:c8-dag"
+   ],
+   "result": "conjugations of psl(4|4)",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "algebraic",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "def:c8-Theta",
+    "thm:c8-fields",
+    "prop:c8-C"
+   ],
+   "result": "reflection of the fields",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "extend Theta_n to cbar, cbar^* and re-check compatibility with the new QGF and S_Psi (expected: (Theta_n cbar)(x) = conj cbar(r_n x), (Theta_n cbar^*)(x) = -conj cbar^*(r_n x))",
+   "action": ""
+  },
+  {
+   "chapter": 8,
+   "labels": [
+    "def:c8-radial",
+    "prop:c8-primary",
+    "def:c8-2pt",
+    "prop:c8-2pt",
+    "def:c8-inner",
+    "thm:c8-adjoint",
+    "cor:c8-gram"
+   ],
+   "result": "inner product of gauge-invariant operators",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "tree and one-loop two-point functions of operators built from minimal fields are pullbacks",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "def:c9-bases",
+    "lem:c9-legs",
+    "prop:c9-basis",
+    "prop:c9-maps",
+    "cor:c9-completions",
+    "lem:c9-QG",
+    "prop:c9-classes",
+    "prop:c9-limits",
+    "thm:c9-sing"
+   ],
+   "result": "cubic sector set-up",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback (G_4, H_3, H_4 with A^*|_V -> A^*|_V - d cbar)",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-ob3"
+   ],
+   "result": "cubic obstruction",
+   "old_value": "(11/4 + 19/4 log 3/2)(G1+G3) + 27/8 G2 - 9 log 3/2 G5 units",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-F3",
+    "thm:c9-wz"
+   ],
+   "result": "cubic finite counterterm and Wess-Zumino condition",
+   "old_value": "F2rep: 27/16 (d^*A,d^*A) + (11/8 + 19/8 log 3/2)(dA,dA) - 9/2 log 3/2 (lambda, dslash lambda) units",
+   "status": "unchanged_pullback",
+   "reason": "arity zero pullback",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "lem:c9-ops",
+    "prop:c9-ward",
+    "cor:c9-CS"
+   ],
+   "result": "operator lemma, scaling Ward identity, CS form at finite T",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "use only [v.,QGF] = -4 QGF, [v.,H] = -4H",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "lem:c9-SDelta"
+   ],
+   "result": "brackets with S^(1)(Delta)",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "S^(1)(Delta) acquires -(2E(cbar)+2cbar, cbar^*); (i)-(iv) hold; P has no cbar^* component",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "def:c9-composite",
+    "prop:c9-composite"
+   ],
+   "result": "composite kernel along Delta",
+   "old_value": "(QGF)^2 (int e^{-tH})^2, of order |p|^{-3}",
+   "status": "disappears",
+   "reason": "2 P* v. P* = v.(P*)^2 + (P*)^2 v. = 0 since (QGF)^2 = 0",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "prop:c9-conj",
+    "prop:c9-Qconj"
+   ],
+   "result": "graphs with one vertex S^(1)(Delta)",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "the composite term drops: e^{hbar d_P} S^(1)(Delta) = (S^(1)(Delta) + hbar P* v.) e^{hbar d_P}",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "def:c9-data",
+    "lem:c9-sform",
+    "prop:c9-structure"
+   ],
+   "result": "arity-one data along Delta",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "line placements of S^(1)(Delta) are gone; add placements of -(v.cbar, cbar^*)",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-quadratic"
+   ],
+   "result": "arity-one counterterm, obstruction and solution along Delta (two legs)",
+   "old_value": "-11/3 (dA,dA) + 47/3 (lambda,dslash lambda) - 14/3 (dc,A^*) units",
+   "status": "recompute",
+   "reason": "the composite part [1/3 (dA,dA) - 1/3 (lambda,dslash lambda) - 2/3 (dc,A^*)] units disappears; the special-edge part [-4(dA,dA) + 16(lambda,dslash lambda) - 4(dc,A^*)] (= 4 x the log eps coefficient) is a pullback; add the graphs of -(v.cbar, cbar^*)",
+   "action": "recompute by R10"
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "rem:c9-Pi"
+   ],
+   "result": "renormalised composite two-point functional (log |p|^2)",
+   "old_value": "",
+   "status": "disappears",
+   "reason": "no composite kernel",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-theta2",
+    "rem:c9-twocompD"
+   ],
+   "result": "theta = -1/3 from the arity-two equation (Delta, P_b)",
+   "old_value": "theta = -1/3",
+   "status": "recompute",
+   "reason": "the composite contributions that theta compensated are absent; the sector coefficients are re-fixed by the new arity-two equations",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-D1"
+   ],
+   "result": "D_1 on the scalar bilinears",
+   "old_value": "D_1 = -(1/3+theta){S1(Delta),O} (traceless), -48 O - (1/3+theta){...} (trace)",
+   "status": "recompute",
+   "reason": "Upsilon_Delta loses the composite pair kernel -4/3 O - 1/3 {S^(1)(Delta),O}; F_1^(1)(Delta) re-solved",
+   "action": "recompute by R10; spectrum must agree"
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "prop:c9-triangle",
+    "rem:c9-twoeval"
+   ],
+   "result": "composite triangle",
+   "old_value": "Q(composite triangle) = -2 units {S^(1)(Delta),O}",
+   "status": "disappears",
+   "reason": "composite kernel = 0",
+   "action": ""
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-kappa",
+    "cor:c9-ident"
+   ],
+   "result": "multiple of the classical transformation; dilatation coefficients as components",
+   "old_value": "",
+   "status": "invariant_must_agree",
+   "reason": "D_1 eigenvalues on cohomology: 0 (20 traceless), -48 units (trace)",
+   "action": "recompute; must agree"
+  },
+  {
+   "chapter": 9,
+   "labels": [
+    "thm:c9-P1",
+    "prop:c9-scheme",
+    "rem:c9-endpoint"
+   ],
+   "result": "translation component, finite part removing P_1",
+   "old_value": "P_1 = -(1/3 + theta_P) units {S^(1)(P_b),O}",
+   "status": "disappears",
+   "reason": "the composite contribution -1/3 d_b O vanishes; P_1 = -t_P d_b O with t_P a free direction, 0 in a translation-covariant scheme; the finite part psi' is not needed",
+   "action": ""
+  },
+  {
+   "chapter": 10,
+   "labels": [
+    "def:c10-letters",
+    "prop:c10-map",
+    "def:c10-pair",
+    "thm:c10-decomp",
+    "lem:c10-sign",
+    "lem:c10-self",
+    "lem:c10-colour",
+    "lem:c10-active",
+    "def:c10-chain",
+    "lem:c10-degree",
+    "prop:c10-bound",
+    "prop:c10-census",
+    "lem:c10-deriv",
+    "thm:c10-brst",
+    "cor:c10-ward",
+    "prop:c10-W1",
+    "prop:c10-reduction",
+    "prop:c10-checks",
+    "def:c10-cycle",
+    "thm:c10-simplex",
+    "prop:c10-shape",
+    "lem:c10-special",
+    "prop:c10-genfun",
+    "prop:c10-bubble",
+    "prop:c10-W0",
+    "cor:c10-bilinear"
+   ],
+   "result": "two-letter kernels of the counterterm map (all local operators)",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero: the pair kernels are pullbacks (the dressed ghost line c-A^* is the c-cbar line with d cbar)",
+   "action": ""
+  },
+  {
+   "chapter": 10,
+   "labels": [
+    "prop:c10-so6",
+    "prop:c10-su2",
+    "prop:c10-su11",
+    "prop:c10-twist",
+    "cor:c10-beisert"
+   ],
+   "result": "spectra on the planar families (Beisert)",
+   "old_value": "D_1 = -8 units x E (E eigenvalue of sum H_{l,l+1})",
+   "status": "invariant_must_agree",
+   "reason": "built from log eps coefficients (pullbacks): literally unchanged",
+   "action": ""
+  },
+  {
+   "chapter": 10,
+   "labels": [
+    "def:c10-hyp",
+    "lem:c10-psi",
+    "thm:c10-D1",
+    "prop:c10-compbound",
+    "prop:c10-scalarsector"
+   ],
+   "result": "D_1 = 4 x map + composite term",
+   "old_value": "on tr(A...A): -8 units sum(1 - exchange + 1/2 trace) - (1/3+theta) 2(E+L)",
+   "status": "recompute",
+   "reason": "composite term = 0; D_1 = 4 x (map of thm:c10-brst) - (new sector coefficient) {S^(1)(Delta),-}",
+   "action": "recompute the sector coefficient by R10"
+  },
+  {
+   "chapter": 10,
+   "labels": [
+    "prop:c10-P1",
+    "prop:c10-spec",
+    "cor:c10-P7"
+   ],
+   "result": "P_1 and composite term along P_b",
+   "old_value": "",
+   "status": "disappears",
+   "reason": "composite term = 0",
+   "action": ""
+  },
+  {
+   "chapter": 10,
+   "labels": [
+    "prop:c10-arity1",
+    "lem:c10-active1",
+    "prop:c10-bound1",
+    "rem:c10-scheme1"
+   ],
+   "result": "arity-one counterterms of operators",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "along even generators the cbar vertex enters; along Sigma, Sigma^*, so(W) pullback",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "def:c11-kernels",
+    "lem:c11-kernels",
+    "def:c11-graphs",
+    "prop:c11-master",
+    "def:c11-sp",
+    "prop:c11-census",
+    "prop:c11-bound",
+    "def:c11-canonical",
+    "lem:c11-canonical",
+    "prop:c11-position",
+    "thm:c11-simplex",
+    "prop:c11-genfun",
+    "prop:c11-k1",
+    "def:c11-Xi",
+    "lem:c11-Cid",
+    "lem:c11-trees",
+    "prop:c11-typeI",
+    "thm:c11-local",
+    "rem:c11-local",
+    "cor:c11-D1local",
+    "prop:c11-routes"
+   ],
+   "result": "composite kernels along Delta and P_b, their pair kernels and locality",
+   "old_value": "",
+   "status": "disappears",
+   "reason": "P* x. P* = 0 for x in {Delta, P_b, so(V), so(W)}",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "def:c11-free",
+    "prop:c11-tc0",
+    "prop:c11-arity1",
+    "thm:c11-arity2",
+    "lem:c11-bracketpos",
+    "cor:c11-theta",
+    "def:c11-P7",
+    "thm:c11-P7",
+    "prop:c11-theta-sector",
+    "cor:c11-noA"
+   ],
+   "result": "finite counterterms along Delta, P_b; the arity-two equation fixing -1/3",
+   "old_value": "sector coefficients -1/3",
+   "status": "recompute",
+   "reason": "composite contributions absent; new cbar vertex",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "lem:c11-onebody",
+    "prop:c11-scalar",
+    "def:c11-families",
+    "prop:c11-targets"
+   ],
+   "result": "one-body terms, families, spectra from the harmonic action",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity zero / definitions",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "thm:c11-families",
+    "cor:c11-D1fam"
+   ],
+   "result": "composite pair kernels on the families; D_1, P_1 on the families",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "composite pair kernels vanish; D_1 on the families must have spectrum -8 units x E_H",
+   "action": "recompute; spectrum must agree"
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "def:c11-terms",
+    "lem:c11-lines"
+   ],
+   "result": "terms of S^(1)(x), generators on the regulator and their lines",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "lines: none along Delta, P_b, so(V), so(W); lambda-cbar vertex (Gamma(eps,lambda)|_V, d cbar) along Sigma, Sigma^* (the former lambda-c composite line); 4 int (cbar, iota_b A|_V) along K_b",
+   "action": "ch03_revised.tex Proposition c3-sxpsi"
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "def:c11-defect",
+    "thm:c11-classes",
+    "thm:c11-oddsimplex",
+    "ex:c11-cubic",
+    "prop:c11-oddbound",
+    "prop:c11-oddcensus"
+   ],
+   "result": "defect cycles along every generator",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "master formula survives; along Sigma, Sigma^*, so(W) the cycles are pullbacks; along even generators the placements change",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "prop:c11-freexi",
+    "prop:c11-oddsol"
+   ],
+   "result": "arity-one obstruction and solution along Sigma, Sigma^*",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity one along odd generators is a pullback",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "thm:c11-oddar2",
+    "prop:c11-freedom",
+    "lem:c11-cocycle"
+   ],
+   "result": "arity-two equations on two legs, uniform coefficients, freedom of Q_1, S_1, K_1",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "arity two along (xi,xi'), (xi,eta), (eta,eta') contains the cbar cbar vertex and S^(1)_nm of the bracket",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "thm:c11-bilinears"
+   ],
+   "result": "Q_1 on the scalar bilinears",
+   "old_value": "(79/12 - 3 log 3/2 - t_xi) B_1 + 4 log 3/2 (B_2 + B_3)",
+   "status": "recompute",
+   "reason": "two-body part (defect cycles along xi) is a pullback: 4 log 3/2 B_2 + 4 log 3/2 B_3 and -2 log 3/2 B_1 unchanged; the one-body coefficient depends on t_xi, re-fixed by the new arity-two equations",
+   "action": "class must agree"
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "prop:c11-SKbil",
+    "cor:c11-K",
+    "prop:c11-S"
+   ],
+   "result": "S_1 and K_1 on the scalar bilinears",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "S_1 two-body part pullback; K_1 recompute (local K vertex)",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "cor:c11-DPdefect",
+    "prop:c11-masterfam",
+    "cor:c11-F0",
+    "prop:c11-relations"
+   ],
+   "result": "D_1, P_1 from defect cycles; relations at order hbar",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "even generators changed",
+   "action": ""
+  },
+  {
+   "chapter": 11,
+   "labels": [
+    "prop:c11-plane",
+    "rem:c11-twist",
+    "thm:c11-twistentries",
+    "thm:c11-twistcheck"
+   ],
+   "result": "chiral bilinears along a rank-one supercharge; holomorphic-twist comparison",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "twisted theory is a pullback",
+   "action": "twist classes identical"
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "def:c12-gens",
+    "def:c12-comp",
+    "lem:c12-deriv",
+    "lem:c12-defect",
+    "def:c12-ob",
+    "lem:c12-wz",
+    "prop:c12-poles",
+    "prop:c12-log",
+    "lem:c12-place",
+    "lem:c12-special",
+    "thm:c12-classes"
+   ],
+   "result": "strict construction: set-up, poles, log class, placements",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "placements: add the cbar vertex for even generators; remove composite-line placements along Delta, P_b, so(V)",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "prop:c12-composite",
+    "thm:c12-second",
+    "prop:c12-pos"
+   ],
+   "result": "composite lines and commutators with the regulator; second evaluation",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "composite lines exist only along Sigma, Sigma^*, K_b as the local vertices V_x; P* x. P* = P* V_x P*",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "thm:c12-bound",
+    "prop:c12-T"
+   ],
+   "result": "sector bound, endpoint",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "structural",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "thm:c12-eq1",
+    "prop:c12-xi2"
+   ],
+   "result": "arity-one equation; two legs along Sigma",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "arity one along Sigma is a pullback",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "prop:c12-two",
+    "thm:c12-ob1",
+    "thm:c12-sol",
+    "thm:c12-cubic",
+    "prop:c12-couplings",
+    "def:c12-cs",
+    "thm:c12-H"
+   ],
+   "result": "arity-one obstructions and solutions on two legs, all generators",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "along Delta, P_b, so(V), K_b: cbar vertex and no composite lines; along Sigma, Sigma^*, so(W): pullback",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "prop:c12-classes2",
+    "thm:c12-eq2",
+    "thm:c12-fix",
+    "thm:c12-theta",
+    "thm:c12-ar2",
+    "cor:c12-inv",
+    "thm:c12-algebra",
+    "rem:c12-thetacheck"
+   ],
+   "result": "arity-two equations, the cocycle varrho, t-values and scheme-independent combinations",
+   "old_value": "t_Delta = -1/3, t_M - t_Delta = 0, t_R - t_Delta = 1/3, t_xi+ + t_xi- - t_P = 27/4 + 2 log 3/2, t_xi+ + t_eta+ - t_Delta = 27/4 + 2 log 3/2",
+   "status": "recompute",
+   "reason": "new cbar cbar vertex and S^(1)_nm of brackets; theta-type composite compensations absent",
+   "action": "re-derive t_Delta, t_M, t_R, t_P, t_xi, t_eta; the scheme-independent algebra relations must hold"
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "def:c12-kernel",
+    "lem:c12-dv",
+    "lem:c12-bridge",
+    "thm:c12-master",
+    "rem:c12-finitesp",
+    "thm:c12-ward",
+    "lem:c12-obeven",
+    "thm:c12-conj"
+   ],
+   "result": "defect flow and master formula; Ward identity along even generators",
+   "old_value": "",
+   "status": "rewritten_no_new_computation",
+   "reason": "survive with the new placements",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "thm:c12-D1",
+    "rem:c12-pair",
+    "def:c12-centred",
+    "thm:c12-pos",
+    "cor:c12-SK",
+    "prop:c12-KT",
+    "def:c12-Xi",
+    "lem:c12-Cid",
+    "lem:c12-BD",
+    "prop:c12-typeI",
+    "thm:c12-local",
+    "rem:c12-localM"
+   ],
+   "result": "D_1, P_1, M_1 from the defect flow; position decompositions; composite term locality",
+   "old_value": "",
+   "status": "recompute",
+   "reason": "composite terms along even generators vanish; K_b local vertex",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "def:c12-class",
+    "thm:c12-F0"
+   ],
+   "result": "components on the scalar bilinears (representatives)",
+   "old_value": "D_1 = (-4 t_Delta - 4/3) O (traceless), (-4 t_Delta - 148/3) O (trace); P_1 = -(1/3 + t_P) d_b O; M_1 = -(1/3 + t_M){...}",
+   "status": "recompute",
+   "reason": "D_1, P_1, M_1, K_1 representatives change (no composite parts); Q_1, S_1 two-body parts are pullbacks",
+   "action": ""
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "cor:c12-F0inv",
+    "prop:c12-spectra",
+    "rem:c12-specref"
+   ],
+   "result": "classes and spectra on the scalar bilinears and families",
+   "old_value": "0 (20), -48 units = 3 g^2 N/(2 pi^2) = 2 gamma_K (trace); families -8 units x E_H",
+   "status": "invariant_must_agree",
+   "reason": "scheme- and gauge-independent",
+   "action": "recompute as a check"
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "prop:c12-twist",
+    "rem:c12-twistcmp"
+   ],
+   "result": "twisted differential on the chiral bilinears",
+   "old_value": "",
+   "status": "unchanged_pullback",
+   "reason": "pullback (twist)",
+   "action": "twist classes identical"
+  },
+  {
+   "chapter": 12,
+   "labels": [
+    "prop:c12-master2",
+    "thm:c12-opalg",
+    "cor:c12-rel",
+    "prop:c12-tfix",
+    "lem:c12-ward2",
+    "rem:c12-KP",
+    "rem:c12-shortcuts",
+    "prop:c12-closed"
+   ],
+   "result": "one-loop algebra on operators, relations on cohomology, K = P^dagger",
+   "old_value": "",
+   "status": "invariant_must_agree",
+   "reason": "the induced representation of psl(4|4) on cohomology is invariant up to the automorphisms of Theorem c8-invariants; representatives recompute",
+   "action": "recompute; relations must hold"
+  }
+ ],
+ "invariants_that_must_agree": [
+  {
+   "quantity": "Konishi anomalous dimension",
+   "value": "3 g^2 N/(4 pi^2) (D_1 = -48 units on the trace bilinear, 2 gamma_K)",
+   "why": "spectrum of Lambda^(1)(Delta) on cohomology (Theorem c8-invariants (iii)); log eps coefficients are pullbacks"
+  },
+  {
+   "quantity": "20' (traceless scalar bilinears)",
+   "value": "0",
+   "why": "same"
+  },
+  {
+   "quantity": "spectra on the planar families",
+   "value": "-8 units x E_H, E_H the eigenvalues of sum_l H_{l,l+1} [B03c]",
+   "why": "same; built from log eps coefficients"
+  },
+  {
+   "quantity": "twist classes [Q^xi_1] along square-zero xi",
+   "value": "as before (Konishi channel, chiral bilinears)",
+   "why": "twisted theory is a pullback; Theorem c8-twist"
+  },
+  {
+   "quantity": "one-loop algebra relations on cohomology",
+   "value": "[D,P]=-2P, [D,Q]=-Q, [Q,P]=0, [Q,Q]=P, {Q,S}=D+M+R at order hbar",
+   "why": "Corollary c8-homotopy"
+  },
+  {
+   "quantity": "arity-zero data",
+   "value": "I^CT (9/4, log class), 27/16, Ob_3, F_3 directions",
+   "why": "literally identical (pullback), not only invariant"
+  }
+ ],
+ "gauge_parameter_independence": {
+  "statement": "Family alpha = -1/2 + u of the reduced pair: S_u = S_Psi + u G, G = 1/2 int (cbar^* + d^*A|_V, cbar^* + d^*A|_V). G = -s( int (cbar^* + d^*A|_V, cbar) ), s = Q_Psi + {I_Psi, -} (exact, classical; Lemma c4-count applied to the cbar count). With u treated as a formal parameter (u G quadratic, kept in the interaction so that Q, QGF, H stay those of u = 0), the u-derivative of a family of one-loop quantisations is s-closed and its class lies in C(S - S^(2)) + C G_B + Im s; hence the spectrum of Lambda^(1)(Delta) on cohomology and the classes [Q^xi_1] are u-independent (Theorems c8-invariants (iii), c8-twist).",
+  "gauge_parameter_in_axioms": "H = [Q, QGF] = |p|^2 with QGF of order <= 1 forces alpha = -1/2 (checks B: (QGF)^2 proportional to (2 alpha + 1)^2); other alpha lie outside [C07, Def 4.3.3] and enter only as the formal deformation u G.",
+  "gauge_fermion_shape": "Psi -> Psi + u Psi_1 (Psi_1 local of degree -1 in cbar) changes S_Psi by u{S_Psi, Psi_1} + O(u^2): BV-exact, same conclusion."
+ }
+}

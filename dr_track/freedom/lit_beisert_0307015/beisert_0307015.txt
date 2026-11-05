@@ -1,0 +1,2111 @@
+                                                                                                          hep-th/0307015
+                                                                                                            AEI 2003-056
+
+
+
+
+                                     The Complete One-Loop Dilatation Operator
+                                         of N = 4 Super Yang-Mills Theory
+
+
+
+
+arXiv:hep-th/0307015v5 27 Feb 2011
+                                                                  Niklas Beisert
+
+                                                     Max-Planck-Institut für Gravitationsphysik
+                                                              Albert-Einstein-Institut
+                                                    Am Mühlenberg 1, D-14476 Golm, Germany
+                                                                nbeisert@aei.mpg.de
+
+
+
+
+                                                                      Abstract
+
+                                     We continue the analysis of hep-th/0303060 in the one-loop sector and
+                                     present the complete psu(2, 2|4) dilatation operator of N = 4 Super Yang-
+                                     Mills theory. This operator generates the matrix of one-loop anomalous
+                                     dimensions for all local operators in the theory. Using an oscillator repre-
+                                     sentation we show how to apply the dilatation generator to a generic state.
+                                     By way of example, we determine the planar anomalous dimensions of all
+                                     operators up to and including dimension 5.5, where we also find some ev-
+                                     idence for integrability. Finally, we investigate a number of subsectors of
+                                     N = 4 SYM in which the dilatation operator simplifies. Among these we
+                                     find the previously considered so(6) and su(2) subsectors, a su(2|4) subsector
+                                     isomorphic to the BMN matrix model at one-loop, a su(2|3) supersymmetric
+                                     subsector of nearly eighth-BPS states and, last but not least, a non-compact
+                                     sl(2) subsector whose dilatation operator lifts uniquely to the full theory.
+1       Introduction and conclusions
+The AdS/CFT correspondence [1] and some of its recent advances involving plane waves
+and spinning string solutions [2–4] have attracted attention to the investigation of anoma-
+lous dimensions in N = 4 Super Yang-Mills theory [5]. The virtue of this particular the-
+ory is that it has a conformal phase which is not spoiled by quantum effects [6]. In fact,
+supersymmetry merges with conformal symmetry to the symmetry group PSU(2, 2|4).
+Composite local operators of the N = 4 gauge theory therefore arrange into multiplets or
+modules of the algebra psl(4|4) 1 [7]. The modules are characterised by a set of numbers
+which determine the transformation properties under psl(4|4). All of these numbers are
+(half-)integer valued, except the scaling dimension, which may receive corrections due to
+quantum effects, the so-called anomalous dimensions.
+    In the free theory, the action of the algebra on the space of local operators closes in a
+rather trivial manner. When quantum corrections are switched on, however, the trans-
+formation properties of operators change in such a way that the closure of the algebra is
+preserved. This puts tight constraints on consistent deformations of the algebra genera-
+tors. In fact, these constraints have been employed to determine the first few anomalous
+dimensions [8]. A similar technique has later on been applied to obtain a remarkable
+all-loop result for an anomalous dimension [9]. There is some hope that consistency re-
+quirements uniquely fix the deformations to a one-parameter family representing different
+values of the coupling constant gYM .
+    One way to obtain a consistent and interesting deformation of generators clearly is to
+evaluate the deformations due to loop effects in N = 4 SYM. In a perturbative quantum
+field theory this is however a non-trivial issue as scaling dimensions are superficially fixed
+to their free theory values due to an absence of a compensating scale. Nevertheless, this
+scale must be introduced in any attempt to regulate the divergencies of quantum field
+theories. In the regularised theory, the infinities give rise to logarithms, which can be
+interpreted as small shifts of scaling dimensions. In that sense anomalous dimensions
+are intimately related to divergencies. Although the divergencies are the source for
+anomalous dimensions, they are also a major complication in higher loop computations.
+    The first few anomalous dimensions that have been calculated directly in N = 4 SYM
+and up to two-loops [10] turned out to be zero: The considered operators were BPS op-
+erators whose scaling dimensions are required to be protected in a psl(4|4) symmetric
+theory, thus confirming the superconformal nature of N = 4 SYM. Besides the BPS
+operators there are further operators for which exceptional non-renormalisation theo-
+rems have been found [11]. Non-vanishing anomalous dimensions up to two-loops have
+subsequently been calculated for the most simple, non-protected operator, the Konishi
+operator [12, 11]. The obtained anomalous dimension was in agreement with the earlier,
+purely algebraic results. The complete tower of twist-two operators of which the Konishi
+operator is the lowest example was investigated in [13]. Their one-loop scaling dimensions
+    1
+   The conjugation property of the algebras will not be relevant here and we will always consider the
+complex versions. When we consider unitarity bounds, we will tacitly refer to the real form psu(2, 2|4).
+
+
+                                                   2
+                        2
+were found to be 2n + (gYM N/2π 2 )h(2n), where h(j) are the harmonic numbers
+                                      j
+                                      X 1
+                            h(j) :=           = Ψ (j + 1) − Ψ (1),                     (1.1)
+                                      k=1
+                                          k
+
+which can also be expressed in terms of the digamma function Ψ (x) = ∂ log Γ (x)/∂x.
+Using methods of QCD deep inelastic scattering, the DGLAP and BFKL equations, as
+well as by means of computer algebra systems developed for higher loop computations
+in the standard model, this result has been generalised to two-loops [14]. Systematic
+means to obtain anomalous dimensions involving four-point functions and superspace
+techniques were worked out in, e.g. [15, 16]. Finally, multi-trace operators and operators
+which mix in a non-trivial way have been investigated in [17, 18].
+    With the advent of the BMN correspondence [3] the attention has been shifted away
+from lower dimensional operators to operators with a large number of fields [19–21].
+There, the complications are mostly of combinatorial nature. It was therefore desirable
+to develop efficient methods to determine anomalous dimensions without having to deal
+with artefacts of the regularisation procedure. In a purely algebraic way the dilatation
+operator [22, 23] generates the matrix of one-loop anomalous dimensions for any set of
+operators which are made out of the six scalars of N = 4 SYM. What is more, the matrix
+of anomalous dimensions can be obtained exactly for all gauge groups and, in particular,
+for groups SU(N ) with finite N . Even two or higher-loop calculations of anomalous
+dimensions, which are generelly plagued by multiple divergencies, are turned into a
+combinatorial excercise! Using the dilatation generator techniques many of the earlier
+case-by-case studies of anomalous dimensions were easily confirmed. They furthermore
+enabled a remarkable all-genus comparison between BMN gauge theory and plane-wave
+string theory [24].
+    Much progress has been made in recent months due to integrable structures dis-
+covered in planar gauge theory and free string theory. Minahan and Zarembo realised
+that the planar one-loop dilatation operator for scalar operators is isomorphic to the
+Hamiltonian of a so(6) integrable spin chain [25]. Furthermore, there are indications
+that this remarkable result generalises to higher loops [23] potentially giving rise to a
+novel type of integrable model. Using the Bethe ansatz [25] is was possible to find states
+whose anomalous dimension can only be expressed in terms of elliptic functions [26].
+Astonishingly, corresponding string states of the same energy could be found using semi-
+classical methods [27]. This matching might be related to an integrable structure found
+for free strings on AdS5 × S 5 [28]. It represents one of the strongest confirmations of the
+AdS/CFT correspondence so far.
+    Most investigations of anomalous dimensions have focussed on operators made out
+of scalars. For these the Feynman diagrams are comparatively easy to calculate. In a
+few exceptions [29–31] scalars with covariant derivatives have been considered. These
+calculations are notoriously difficult due to the complex index structures and terms that
+are required by conformal covariance of the correlators. Calculations involving fermions
+and field strengths have mostly been avoided, however, with the aid of computer algebra
+they are feasible [14]. All in all not much is known about such operators, except maybe
+by means of supersymmetry arguments [32].
+
+                                               3
+   In the current work we would like to address the issue of generic operators of N = 4
+SYM and their one-loop anomalous dimensions. We derive the complete one-loop non-
+planar dilatation operator of N = 4 SYM (2.22). For simplicity we will refer to this as
+the Hamiltonian 2 H and define
+                                                2
+                                               gYM N
+                                D(g) = D0 +          H + O(g 3 ).                             (1.2)
+                                                8π 2
+First of all we will investigate the form of generic local operators and how the Hamilto-
+nian acts on them. Considering the structure of one-loop Feynman diagrams it is easy to
+see that the Hamiltonian acts on no more than two fields within the operator at the same
+time. We could now go ahead and calculate these Feynman diagrams for all combinations
+of two fields. Most of these calculations would turn out to be redundant once supercon-
+formal symmetry is taken into account. We therefore first investigate the independent
+coefficients of a generic superconformally invariant function of two fields. These are in
+one-to-one correspondence to the irreducible multiplets in the tensor product of two field
+multiplets. The irreducible multiplets can be distinguished by their ‘total spin’ j. We
+claim that the ‘Hamiltonian density’ H12 representing the Hamiltonian H restricted to
+two fields 1, 2 is given by 3
+                                                          L
+                                                          X
+                             H12 = 2h(J12 ),         H=         Hk,k+1 .                      (1.3)
+                                                          k=1
+
+where J12 is an operator that measures the total spin j of the two fields and where h(j)
+is defined in (1.1). The above mentioned anomalous dimensions of twist-two operators
+are a trivial consequence of this.
+    In principle this result allows the computation of all one-loop anomalous dimensions in
+N = 4 SYM: For every pair of fields within the operator, we decompose into components
+of definite total spin j. Each component we multiply by the harmonic number 2h(j) and
+add up all contributions. For non-planar corrections, in addition we have to compute
+the colour structure dictated by Feynman diagrammatics. In an explicit calculation
+this procedure has the drawback that the projection to total spin j is rather involved.
+Nevertheless, there is an alternative method to evaluate the action of the Hamiltonian
+density 2h(J12 ) which we will name the harmonic action. To describe the harmonic action
+we will represent fields of N = 4 in terms of excitations of a supersymmetric harmonic
+oscillator, see [34]. There is a natural way to do this such that each excitation corresponds
+to a spinor index of the field. The harmonic action describes how to shuffle the oscillators
+(or spinor indices) between the two involved fields in order to obtain 2h(J12 ). We will
+demonstrate the action in terms of a simple example and, as an application, we determine
+the spectrum of planar anomalous dimensions for single-trace operators of N = 4 SYM
+up to and including classical dimension 5.5, see Tab. 3. Here, we also see some signs of
+integrability of the complete planar dilatation generator. The issue of integrability will,
+however, not be discussed in detail in this work; this is discussed in [35].
+   2
+    On the background R × S 3 it is in fact the one-loop part of the Hamiltonian.
+   3
+    Similar Hamiltonians have appeared in the context of QCD energies (BFKL kernel) and one-loop
+anomalous dimensions (DGLAP kernel), see e.g. [33]. Note, however, that here the total spin operator
+J12 corresponds to the quadratic Casimir of psl(4|4) instead of sl(2).
+
+
+                                                 4
+    Still, the harmonic action in its most general form requires some work to be applied.
+On the other hand, when we restrict to the so(6) subsector of operators made out of scalar
+fields only, the action should simplify to the effective vertex of [20]. This vertex consists
+of only two terms and is straightforwardly applied. In the minimal su(2) subsector it
+was even possible to derive the two-loop contribution to the dilatation generator [23].
+It would therefore be desirable to investigate further subsectors within which the action
+of the dilatation generator closes. Here, one should distinguish between exactly closed
+subsectors (e.g. su(2)) and subsectors closed only at one-loop (e.g. so(6)). We will find
+a criterion for exactly closed subsectors and determine all such sectors. Among these
+we find the subsectors relevant to quarter-BPS and eighth-BPS operators. These are
+the above su(2) sector and a new su(2|3) sector. We also find a simple condition (5.13)
+for quarter-BPS and eighth-BPS operators which we use to determine the lowest-lying
+eighth-BPS operator. Among the one-loop subsectors we find the above so(6) subsector,
+a non-compact so(4, 2) brother and a su(2|4) subsector in which the Hamiltonian agrees
+fully with the one-loop Hamiltonian of the BMN matrix model [3, 36].
+    Probably the most interesting exactly closed subsector is the non-compact brother
+of the su(2) subsector, the sl(2) subsector. The main difference between the two is that
+in the su(2) sector there are only two fields, Z and φ, while in the sl(2) sector there
+are infinitely many, Dn Z. At first sight these sectors seem quite different, in terms of
+representations this is however not the case. In the complex form both algebras are the
+same, the fields Z, φ transform in the fundamental spin 21 representations, whereas the
+fields Dn Z transform in the spin − 12 representation. In this new subsector we are able
+to compute the dilatation generator (3.14) by field theoretic means. To demonstrate the
+usefulness of this simplified Hamiltonian we apply it to find a few anomalous dimensions,
+see Tab. 2. Finally, we will show that the Hamiltonian lifts uniquely to the full psl(4|4)
+Hamiltonian, i.e. it fixes all independent coefficients of the most general psl(4|4) invariant
+form.
+    This paper is organised as follows. We start by determining the most general form
+of the dilatation generator compatible with sl(4|4) invariance in Sec. 2. In Sec. 3 we
+investigate the sl(2) subsector, determine the Hamiltonian and show that it lifts uniquely
+to the full Hamiltonian. We then introduce the oscillator representation of fields and work
+out the action of the Hamiltonian in Sec. 4. Sec. 5 contains an investigation of various
+subsectors within N = 4 SYM. We give an outlook in Sec. 6.
+
+
+2     The form of the dilatation generator
+We start by investigating the general form of the one-loop dilatation generator. We will
+see that representation theory of the symmetry group as well as Feynman diagrammat-
+ics puts tight constraints on the form. What remains is a sequence of undetermined
+coefficients, one for each value of ‘total spin’, which will turn out to be the harmonic
+series.
+
+
+
+
+                                              5
+Letters and operators. Local operators O are constructed as gauge invariant com-
+binations of ‘letters’ (irreducible covariant fields) WA 4
+
+                              O = Tr W∗ · · · W∗ Tr W∗ · · · W∗ . . .                            (2.1)
+
+The letters of N = 4 are the scalars, fermions and field strengths as well as their covariant
+derivatives. Here, traces and antisymmetries in derivative indices are excluded; such
+fields can be reexpressed as reducible products of letters via the equations of motion or
+Jacobi identities. The index A in WA enumerates all such letters.
+    An alternative way of representing local operators is to use the state-operator map for
+N = 4 SYM on R×S 3 , which is conformally equivalent to flat R4 . When decomposing the
+fundamental fields into spherical harmonics on S 3 one gets as irreducible states precisely
+the same spectrum of letters WA . In this picture the dilatation generator maps to the
+generator of shifts along R, i.e. the Hamiltonian.
+
+Tree-level algebra. Under the superconformal algebra psl(4|4), c.f. App. A, consist-
+ing of the generators J0 , the letters transform among themselves
+
+                                       J0 WA = (J0 )B A WB .                                     (2.2)
+
+Classically, the local operators O transform in tensor product representations of (2.2).
+A generator J0 of psl(4|4) at tree-level can thus be written in terms of its action (J0 )B A
+on a single letter WA as
+
+                J0 WA · · · WB = (J0 )C A WC · · · WB + . . . + (J0 )C B WA · · · WC .           (2.3)
+
+Using a notation for variation with respect to fields [23]
+
+                                                δ        δ
+                                     W̌ A :=       = Ta                                          (2.4)
+                                               δWA      δWAa
+
+we can also write the tree-level generators as5
+
+                                     J0 = (J0 )B A Tr WB W̌ A .                                  (2.5)
+
+The variation will pick any of the letters within an operator and replace it by the trans-
+formed letter. In particular the tree-level dilatation generator is
+                                   X
+                             D0 =        dim(WA ) Tr WA W̌ A .                       (2.6)
+                                           A
+   4
+     For convenience we will restrict to the gauge group U(N ). The letters WA are N ×N matrices, which
+can be parametrised by the generators T a in the fundamental representation of U(N ) as WA = T a WAa .
+Nevertheless, all results generalise straightforwardly to arbitrary gauge groups.
+   5
+     Note the fusion and fission rules Tr X W̌ A Tr Y WB = δBA
+                                                               Tr XY , Tr X W̌ A Y WB = δB
+                                                                                         A
+                                                                                           Tr X Tr Y .
+
+
+
+
+                                                  6
+               a            b             c                             a0   b0          c0
+         Figure 1: One-loop diagrams contributing to the anomalous dimension. The
+         lines correspond to any of the fundamental fields of the theory.
+
+
+Interacting algebra. When quantum corrections are turned on, the transformation
+properties of operators change. In perturbation theory we will therefore write the full
+generators J as a series in the coupling constant g,6
+                                                       ∞
+                                                       X
+                                              J(g) =         g k Jk .                              (2.7)
+                                                       k=0
+
+In this work we will concentrate on the first correction to the dilatation generator, D2 .
+It must be invariant under the tree-level algebra J0 . This follows from the interacting
+algebra identity
+
+        [D(g), J(g)] = [D0 , J0 + gJ1 + g 2 J2 ] + g 2 [D2 , J0 ] + O(g 3 ) = dim(J) J(g)          (2.8)
+
+for every operator J of the superconformal group. In perturbation theory the bare
+dimension D0 of all generators Jk must be conserved
+
+                                         [D0 , Jk ] = dim(J) Jk .                                  (2.9)
+
+Eq. (2.8) then implies for all J0
+                                               [J0 , D2 ] = 0.                                    (2.10)
+In other words D2 is invariant under classical superconformal transformations. It will
+turn out that D2 is invariant under another, nontrivial generator B0 of the algebra
+sl(4|4) = gl(1) n psl(4|4), see e.g. [37]. We will refer to this additional gl(1) hypercharge
+generator as ‘chirality’. It is conserved at the one-loop level, but at higher loops it
+is broken due to the Konishi anomaly. In what follows we will therefore consider the
+classical sl(4|4) algebra of generators J0 ; the one-loop anomalous dilatation generator
+D2 will be considered an independent object, the Hamiltonian H,
+                                                2
+                                               gYM N
+         J(g) = J + O(g),           D(g) = D +     2
+                                                     H + O(g 3 ),             [J, H] = 0.         (2.11)
+                                                8π
+
+Generic form. The Hamiltonian has the following generic form
+
+                                H = (Ca )AB            C          D
+                                         CD :Tr[WA , W̌ ][WB , W̌ ]:
+                                                               C     D
+                                    + (Cb )AB
+                                           CD :Tr[WA , WB ][W̌ , W̌ ]:
+                                                       a   a    B
+                                    + (Cc )A
+                                           B :Tr[WA , T ][T , W̌ ]:.                              (2.12)
+  6
+      The odd powers of g are due to normalisation: Propagators are O(g 0 ), three-vertices are O(g).
+
+                                                       7
+                           field     ∆0       sl(2) × sl(2)       sl(4)      B
+                           Dk F     k+2      [k + 2, k     ]     [0, 0, 0]   +1
+                           Dk Ψ     k + 32   [k + 1, k     ]     [0, 0, 1]   + 12
+                           Dk Φ     k+1      [k     ,k     ]     [0, 1, 0]   ±0
+                           Dk Ψ̄    k + 32   [k     , k + 1]     [1, 0, 0]   − 21
+                           Dk F̄    k+2      [k     , k + 2]     [0, 0, 0]   −1
+
+            Table 1: Components WA of the N = 4 SYM field strength multiplet
+
+
+These terms correspond to the three basic types of Feynman diagrams that arise at the
+one-loop level, see Fig. 1. The diagrams a,b,c correspond to bulk interactions, where
+the covariant derivatives D = ∂ − igA within the fields WA are reduced to a partial
+derivative. The boundary interactions a0 ,b0 ,c0 arise when one covariant derivative emits
+a gauge field, see also [29, 30]. Algebraically they have the same form as their bulk
+counterparts. Diagrams with two emitted gauge fields have no logarithmic dependence
+and do not contribute to the dilatation generator. We can transform the term of type c
+by means of gauge invariance, see [23] for a detailed description of the procedure. The
+generator of gauge transformations is
+
+                                        Ga = Tr[WA , W̌ A ]T a                                 (2.13)
+
+and it annihilates gauge invariant operators, Ga b
+                                                 = 0. Therefore we can write
+
+     Ga Tr[WA , W̌ B ]T a = :Tr[WC , W̌ C ][WA , W̌ B ]: + :Tr[WA , T a ][T a , W̌ B ]: =
+                                                                                        b 0,   (2.14)
+
+which allows us to write the term of type c as a term of type a. Furthermore the term
+of type b can be transformed by means of a Jacobi-identity. We combine all coefficients
+into a single one of type a
+          AB                                       1 A       B          A B
+              = −N (Ca )AB          AB        AB                 1
+                                                                            
+         CCD              CD + (Cb )CD − (Cb )DC − 2 δC (Cc )D − 2 (Cc )C δD .   (2.15)
+
+The total Hamiltonian is
+
+                            H = −N −1 CCD
+                                       AB
+                                          :Tr[WA , W̌ C ][WB , W̌ D ]:.                        (2.16)
+
+                                             AB
+Symmetry. The combined coefficient CCD          must be invariant under the tree-level su-
+perconformal algebra. Its independent components can be obtained by investigating the
+irreducible modules in the tensor product of two multiplets of fields. We list all letters
+and their transformation properties in Tab. 1. We have split up the fermions and field
+strengths into their chiral (Ψ, F) and antichiral parts (Ψ̄ , F̄); the scalars (Φ) are self-dual.
+In the table ∆0 is the bare dimension and refers the gl(1) of dilatations, sl(2) × sl(2) is
+the Lorentz algebra and sl(4) is the flavour algebra. These are the manifestly realised
+parts of the full symmetry algebra psl(4|4). We have also included the chirality B of
+the extended algebra sl(4|4). In sl(4|4) all letters WA combine into one single, infinite-
+dimensional module which we will denote by VF . The corresponding representation is
+also referred to as the ‘singleton’ representation. Its primary weight
+
+                     wF = [∆0 ; s1 , s2 ; q1 , p, q2 ; B, L] = [1; 0, 0; 0, 1, 0; 0, 1]        (2.17)
+
+                                                     8
+corresponds to one of the six scalars at unit dimension. Here, [q1 , p, q2 ] are the Dynkin
+labels for a weight of sl(4) and [s1 , s2 ] are twice the spins of sl(2)2 . The label L refers to
+the number of fields. This will be of importance later on, here it equals one by definition.
+   The tensor product of two VF is given by 7
+                                                            ∞
+                                                            X
+                                           VF × VF =              Vj                            (2.18)
+                                                            j=0
+
+where Vj are the modules with primary weights
+
+                                w0 = [2; 0, 0; 0, 2, 0; 0, 2],
+                                w1 = [2; 0, 0; 1, 0, 1; 0, 2],
+                                wj = [j; j − 2, j − 2; 0, 0, 0; 0, 2].                          (2.19)
+
+Let (Pj )AB
+         CD project two field-strengths WA , WB to the module Vj . Then the most general
+invariant coefficients can be written as 8
+                                                  ∞
+                                                  X
+                                         AB
+                                        CCD =           Cj (Pj )AB
+                                                                CD .                            (2.20)
+                                                  j=0
+
+In N = 4 SYM we propose that the coefficients are given by the harmonic numbers h(j)
+or equivalently by the digamma function Ψ
+                                              j
+                                              X 1
+                            Cj = h(j) :=                = Ψ (j + 1) − Ψ (1).                    (2.21)
+                                              k=1
+                                                    k
+
+The one-loop dilatation generator of N = 4 (2.11),(2.16) can thus be written as
+                    2 X∞
+                   gYM
+         D(g) = D − 2     h(j) (Pj )AB            C         D        3
+                                    CD :Tr[WA , W̌ ][WB , W̌ ]: + O(g ).                        (2.22)
+                   8π j=0
+
+This is the principal result of this work. In Sec. 4 we will explain how to compute the
+action of D in practice.
+
+Planar limit. At this point we can take the planar limit of (2.16) and act on a single-
+trace operator of L fields
+                                L
+                                X
+                          H=           Hk,k+1 ,         Hk,k+1 = 2Cj Pk,k+1,j ,                 (2.23)
+                                 k=1
+
+where Pk,k+1,j projects the fields at positions k, k + 1 to the module Vj . We see that
+all coefficients Cj can be read off from this Hamiltonian. Therefore the Hamiltonian
+   7
+     This statement can be proved by counting arguments using Polya theory (see e.g. [38]).
+   8
+     In general, one might also consider Feynman diagrams in which two or three fields are transformed
+into one or vice versa. These terms, however, cannot contribute to the leading order Hamiltonian, which
+is psl(4|4) invariant, because VF is not included in VF × VF and VF × VF × VF .
+
+
+                                                        9
+density H12 generalises uniquely to the non-planar Hamiltonian H in (2.16),(2.20). In
+what follows we can safely restrict ourselves to the investigation of H12 . The proposed
+Hamiltonian density according to (2.22) is
+                                              ∞
+                                              X
+                                    H12 =            2h(j) P12,j .                 (2.24)
+                                              j=0
+
+
+Spin functions. To simplify some expressions, we define functions f (J12 ) of the total
+spin J12 as
+                                        ∞
+                                        X
+                             f (J12 ) =   f (j) P12,j .                          (2.25)
+                                                   j=0
+
+In other words f (J12 ) is a psl(4|4) invariant operator which acts on Vj as
+
+                                     f (J12 ) Vj = f (j) Vj .                      (2.26)
+
+An arbitrary state with a dimension bounded by ∆0 belongs to the direct sum of modules
+Vj with j = 0, . . . , ∆0 . The action of f (J12 ) on such a state may be represented by
+                                             2                                  2
+a polynomial in the quadratic Casimir J12      , see (A.7). The eigenvalues of J12 , where
+J12 = J1 + J2 is the action of psl(4|4) on the tensor product VF × VF , are then given by
+                                      2
+                                     J12 Vj = j(j + 1)Vj .                         (2.27)
+
+This can be proved using the methods of Sec. 4.1. Note that all modules Vj can be
+distinguished by the value of the quadratic Casimir. We can therefore represent f (J12 )
+                                              2
+explicitly by an interpolating polynomial in J12
+                                    ∆0            ∆0      2
+                                    X             Y     J12 − k(k + 1)
+                       f (J12 ) =         f (j)                           .        (2.28)
+                                    j=0           k=0
+                                                      j(j + 1) − k(k + 1)
+                                                  k6=j
+
+                                                                                        2
+We note that this action also preserves chirality B, because the quadratic Casimir J12
+does. Therefore any psl(4|4) invariant function acting on VF × VF also conserves sl(4|4).
+Clearly, this will not be the case for higher-loop corrections to the dilatation generator
+which act on more than two fields at the same time. At higher loops the Konishi
+anomaly mixes operators of different chirality. The same points also hold for the length
+L of a state. Nevertheless it makes perfect sense to speak of the leading order chirality
+and length to describe a state. Mixing with states of different chiralities or lengths is
+subleading, because the one-loop dilatation generator conserves these. Using the short
+notation the Hamiltonian density becomes simply
+
+                                          H12 = 2h(J12 ).                          (2.29)
+
+Examples. A straightforward exercise is to determine the spectrum of operators of
+length L = 2. These so-called twist-two operators can be conveniently written as
+
+                      Oj,AB = (Pj )CD
+                                   AB Tr WC WD ∼ P12,j Tr W1 W2 .                  (2.30)
+
+                                                    10
+This operator vanishes for odd j due to antisymmetry. Using (2.22),(2.23) or (2.29) we
+find
+                                             g2 N        g2 N
+                       E = 4h(j),     δD = YM 2 E = YM 2 h(j)                       (2.31)
+                                              8π          2π
+in agreement with the results of [13]. In fact the result of [13] could be used to fix the
+even coefficients C2k (2.21).
+
+
+3         The non-compact sl(2) closed subsector
+In this section we will consider a closed subsector of states in N = 4 SYM. We derive the
+relevant part of the Hamiltonian H 0 and show that it uniquely lifts to the full Hamiltonian
+H of N = 4 SYM. Finally, we apply the Hamiltonian within this subsector and obtain
+a few anomalous dimensions.
+
+Letters and operators. Let us consider single-trace operators in the planar limit
+which saturate the bound ∆0 ≥ L + n, where n and L are the charges with respect
+to rotations in the spacetime 12-plane and flavour 56-plane, respectively. The operators
+consist only of the scalar field Φ5+i6 = Φ5 +iΦ6 = Φ34 and derivatives D1+i2 = D1 +iD2 =
+D11 acting on it.9 A letter for the construction of operators is thus
+                                          1
+                                       (a† )n |0i =
+                                             (D1+i2 )n Φ5+i6 .                    (3.1)
+                                          n!
+This subsector is closed, its operators do not mix with any of the other operators in
+N = 4 SYM. This is similar to the subsector considered in [23] where both charges
+belong to sl(4). We have collected further interesting subsectors in Sec. 5. The weight
+of a state with a total number of n excitations (derivatives) is given by
+                                      w = [L + n; n, n; 0, L, 0; 0, L].                             (3.2)
+For n 6= 0 this weight is beyond the unitarity bounds and therefore it cannot be primary.
+The corresponding primary weight is
+                              w = [L + n − 2; n − 2, n − 2; 0, L − 2, 0; L].                        (3.3)
+
+Symmetry. The subsector is invariant under an sl(2) subalgebra of the superconformal
+algebra (note that L1 1 = L̇1 1 = 12 D − 21 L in this sector)
+                         J+0 = P11 = P1+i2 ,
+                         J−0 = K 11 = K 1+i2 ,
+                          J30 = 12 D + 12 δD + 12 L1 1 + 21 L̇1 1 = D + 12 δD − 12 L.               (3.4)
+Here, the dilatation generator D is part of the algebra. At higher loops, one should keep
+in mind that only half of the anomalous piece appears. The sl(2) subalgebra follows from
+the relations in App. A
+                                 [J+0 , J−0 ] = −2J30 ,        [J30 , J±0 ] = ±J±0 .                (3.5)
+    9
+        Depending on the situation, we take the freedom to use either spinor or vector index notation.
+
+
+                                                          11
+It has the quadratic Casimir operator
+
+                                       J 0 2 = J30 2 − 21 {J+0 , J−0 }.                          (3.6)
+
+    The algebra may be represented by means of oscillators a, a†
+
+                          J−0 = a,     J30 = 12 + a† a,         J+0 = a† + a† a† a.              (3.7)
+
+We define the canonical commutator as
+
+                                                 [a, a† ] = 1                                    (3.8)
+
+and assume that the vacuum state |0i is annihilated by a. Under this algebra the set
+of letters (a† )n |0i transforms in the infinite dimensional spin j = − 21 representation VF0
+with highest weight
+                                       wF0 = [2j] = [−1].                               (3.9)
+The Hamiltonian density H12 0
+                              acts on two fields (a†1 )k (a†2 )l |00i. Of particular interest is
+therefore the tensor product of two VF0 , it splits into modules of spin −1 − j.
+                                       ∞
+                                       X
+                         VF0 × VF0 =         Vj0 ,         with wj0 = [−2 − 2j].                (3.10)
+                                       j=0
+
+                                                                      0
+The algebra acting on this tensor product is given by the generators J12 = J10 + J20 . The
+quadratic Casimir reads
+                          02
+                         J12 = −(a†1 − a†2 )2 a1 a2 + (a†1 − a†2 )(a1 − a2 ).                   (3.11)
+
+The highest weight state of Vj0 , which is annihilated by J12,−
+                                                           0
+                                                                , is
+
+                                        |ji = (a†1 − a†2 )j |00i.                               (3.12)
+
+the eigenvalue of the quadratic Casimir in that representation is
+                                          02 0
+                                         J12 Vj = j(j + 1)Vj0 ,                                 (3.13)
+
+which intriguingly matches the psl(4|4) counterpart (2.27).
+
+The Hamiltonian. Using point splitting regularisation we find the action of the
+Hamiltonian density
+                              n                                           
+                            X                                   δk6=k0              0         0
+     0   † k † n−k
+                                                                             (a†1 )k (a†2 )n−k |00i,
+                                                          
+   H12 (a1 ) (a2 ) |00i =         δk=k0 h(k) + h(n − k) −              0
+                            k0 =0
+                                                              |k − k |
+                                                                                                 (3.14)
+                                                                         0
+see App. B for details. It is straightforward to verify that this H12 is invariant under the
+              0                                                                            0
+generators J12  . In analogy to (2.24) it is therefore clear that we can write H12           as
+                                                     ∞
+                                                     X
+                                          0
+                                         H12 =             2Cj0 P12,j
+                                                                 0
+                                                                      .                         (3.15)
+                                                     j=0
+
+
+                                                      12
+        0
+where P12,j projects a state (a†1 )k (a†2 )n−k |00i to the module Vj0 . The coefficients Cj0 are
+                        0
+found by acting with H12  on the highest weight states |ji. Using the sum
+                            n
+                            X (−1)a+k+1 a!(n − a)!
+                                                             = h(n) − h(a)                   (3.16)
+                            k=a+1
+                                     k!(n − k)!(k − a)
+
+we can show that
+                                    2Cj0 |ji = H12
+                                                0
+                                                   |ji = h(j) |ji.                           (3.17)
+Note that the Hamiltonian density (3.15) has precisely the right eigenvalues (3.17) for
+total spin −1 − j in order to be integrable [39]. Thus we have found that the planar
+Hamiltonian in this subsector is the Hamiltonian of the XXX−1/2 Heisenberg spin chain.
+This is investigated in further detail in [35].
+
+Lift to psl(4|4). The interesting feature of this subsector is that there is a one-to-
+one correspondence between the modules Vj (2.19) and Vj0 . The Hamiltonian in this
+subsector lifts to the full N = 4 Hamiltonian! Clearly, as sl(2) is a subalgebra of
+psl(4|4), the module Vj0 is a submodule of some Vj 0 . Here, it turns out, that j 0 = j and
+                                                Vj0 ⊂ Vj .                                   (3.18)
+In the psl(4|4) algebra the state |ji has weight
+                                    wj0 = [j + 2; j, j; 0, 2, 0; 0, 2].                      (3.19)
+For j = 0 this is the primary weight of the current multiplet w0 = [2; 0, 0; 0, 2, 0; 0, 2].
+For j > 0 the weight is beyond the unitarity bounds and cannot be primary. The corre-
+sponding primary weights are wj = [j; j − 2, j − 2; 0, 0, 0; 0, 2] or w1 = [2; 0, 0; 1, 0, 1; 0, 2],
+respectively. These are exactly the primary weights of the modules Vj in (2.19). Using
+the fact that the two Hamiltonians must agree within the subsector we find
+                                                 0
+                            2Cj |ji = H12 |ji = H12 |ji = 2h(j) |ji.                         (3.20)
+This shows that Cj = h(j) in (2.20) and proves the claim (2.21).
+
+Examples. The expression (3.14) can be used to calculate any one-loop anomalous
+dimension within this subsector. The generalisation to the non-planar sector is straight-
+forward: We know that the structure of the non-planar Hamiltonian is given by (2.16).
+We can therefore act with the Hamiltonian density Hkl also on non-neighbouring sites
+k, l. The non-planar structure is then evaluated according to (2.16).
+     We go ahead and find some eigenstates of the Hamiltonian, see Tab. 2. Especially
+for the ‘two-body’ problems with two sites or two excitations (derivatives) one should be
+able to find exact eigenstates. For L = 2 we know the answer already, it is Tr |ji, where
+the trace projects to cyclic states, effectively removing states with odd j. The spectrum
+is given by (2.31). Indeed, also for n = 2 we find exact eigenstates
+                                                L
+                             πn      † 2
+                                               X       πn(2p − 1)
+              OnL = 2 cos       Tr (a1 ) |Li +     cos            Tr a†1 a†p |Li,            (3.21)
+                            L+1                p=2
+                                                         L+1
+
+                                                    13
+    ∆0   L   n δ∆P [gYM  2
+                           N/π 2 ]       ∆0 L n δ∆P [gYM 2
+                                                            N/π 2 ]
+                  +                                    3
+    4    2   2 34                        8 6 2 (64x − √    112x2 + 56x − 7)+
+    5    3   2 12
+                  −                              1
+                                            5 3 32 (25 ± 37)±
+                        √                          ±
+    6    4   2 18 (5 ± 5)+                  4 4 23
+                                                24
+                                                     , (768x3 − 2336x2 + 2212x − 637)+
+                   ±                               ±
+         3   3 15                           3 5 35
+                                                32
+                16                                 +
+         2   4 25
+                   +
+                                            2 6 49
+                24
+                  −    −
+                                                40       √       −
+    7    5   2 14 , 43                   9 7 2 14 (2 ± 2)− , 12
+         4   3 34
+                  ±                         6 3 (256x3 −√608x2 + 459x −√   108)±
+         3   4 34
+                  −                         5 4 16 (13 ± √41) , 96 (97 ± 7 5)±
+                                                 1             − 1
+                                                 1
+                                            4 5 96 (105 ± 385)±
+                                                   − 227 ±
+                                            3 6 11
+                                                12
+                                                     , 160
+
+         Table 2: The first few states within the sl(2) subsector. The weights of the cor-
+         responding primaries are [L + n − 2; n − 2, n − 2; 0, L − 2, 0; 0, L]. Cubic polyno-
+         mials indicate three states with energies given by the roots of the cubic equation.
+
+
+which are precisely the BMN operators with two symmetric-traceless vector indices [32,
+30]. Their energy is
+                                                          2
+                                       πn                gYM  N       πn
+                         E = 8 sin2       ,       δD =       2
+                                                                sin2     .                      (3.22)
+                                      L+1                  π         L+1
+In analogy to the special, unpaired three-impurity states found in [23], we might hope
+to find special states of three sites or with three excitations. It turns out, that there are
+no unpaired states of three excitations, but there are some for L = 3. Empirically we
+find exactly one unpaired state for 2k excitations. This state has energy
+                                                          2
+                                                         gYM N
+                                E = 4h(k),        δD =         h(k).                            (3.23)
+                                                          2π 2
+and weight [2k + 3; 2k, 2k; 0, 3, 0; 0, 3]. The corresponding superconformal primary has
+weight
+                            [2k + 1; 2k − 2, 2k − 2; 0, 1, 0; 0, 3].               (3.24)
+Interestingly, the spectrum comprises all harmonic numbers h(k), whereas the L = 2
+spectrum (2.31) consists only of the even ones h(2k).
+
+
+4        The oscillator picture
+In the last section we have made use of an oscillator representation for a subsector of
+operators in N = 4 SYM. In this section we will show how to represent a generic operator
+of N = 4 SYM in terms of excitations of (different) oscillators, see also [34]. We will
+then describe the action of the Hamiltonian on these states explicitly.
+
+
+
+
+                                                 14
+4.1      Oscillator representations
+Let us explain the use of oscillators for fields and generators in terms of the algebra
+gl(N ): We write10
+                        J a b = a†b aa ,  with a, b = 1, . . . , N.                (4.1)
+Using the commutators
+                                [aa , a†b ] = δba ,          [aa , ab ] = [a†a , a†b ] = 0                (4.2)
+it is a straightforward exercise to show that J satisfies the gl(N ) algebra.
+
+The gl(N ) invariant vacuum. Let us introduce a state |0i defined by
+                                       aa |0i = 0            for a = 1, . . . , N.                        (4.3)
+Then the states
+                                                      a†a1 . . . a†ak |0i                                 (4.4)
+transform in the totally symmetrised product of k fundamental representations of sl(N )
+and have gl(1) central charge k.
+
+A gl(N ) breaking vacuum. Another state |ni can be defined by
+                aa |ni = 0,      a†a0 |ni = 0            for a = 1, . . . , n,     a0 = n + 1, . . . N.   (4.5)
+In this case it is more convenient to write
+      bȧ = a†ȧ+n ,   b†ȧ = −aȧ+n ,      for ȧ = 1, . . . , n0 = N − n with [bȧ , b†ḃ ] = δḃȧ     (4.6)
+
+and consider the subalgebra sl(n) × sl(n0 ), J a b = a†b aa , J ȧ ḃ = b†ḃ bȧ , under which |ni is
+invariant. Now as the off-diagonal part Jȧb = a†b b†ȧ of the generator J consists of only
+creation operators, the state |ni transforms in an infinite-dimensional representation. In
+a generic state
+                                  a†a1 . . . a†ak b†ḃ . . . b†ḃ 0 |ni                         (4.7)
+                                                                1           k
+                                   a        ȧ                  0       0
+the gl(1) central charge J a − J ȧ is k − k − n and it labels irreducible modules of
+sl(N ). The gl(1) dilatation charge (dimension) n0 J a a + nJ ȧ ȧ contained in sl(N ) equals
+kn0 + k 0 n + nn0 . Within each irreducible module there is a state with lowest dimension,
+it has either k = 0 or k 0 = 0 depending on the value of the central charge.
+
+Fermionic oscillators. Instead of the bosonic commutators (4.2) we might choose
+fermionic oscillators with anticommutators
+                              {aa , a†b } = δba ,          {aa , ab } = {a†a , a†b } = 0.                 (4.8)
+In this case it is also straightforward to show that the algebra of gl(N ) is satisfied.
+The oscillator representation J a b splits into N + 1 totally antisymmetric products of the
+fundamental representation of gl(N ). This will also be the case for a gl(N ) breaking
+vacuum, though not manifestly.
+  10
+     Strictly speaking, the oscillators a and a† are independent. Only in one of the real forms of gl(N )
+they would be related by conjugation.
+
+
+                                                             15
+4.2     A representation of gl(4|4)
+Keeping all this in mind, let us now have a look at Tab. 1. All representations of
+sl(2) × sl(2) are symmetric tensor products of the fundamental representation, while
+the representations of sl(4) are antisymmetric. Using two bosonic oscillators (aα , a†α ),
+(bα̇ , b†α̇ ) with α, α̇ = 1, 2 and one fermionic oscillator (ca , c†a ) with a = 1, 2, 3, 4 we can
+thus write [34]
+
+                                 Dk F b= (a† )k+2 (b† )k (c† )0 |0i,
+                                 Dk Ψ b= (a† )k+1 (b† )k (c† )1 |0i,
+                                 Dk Φ b= (a† )k (b† )k (c† )2 |0i,
+                                       = (a† )k (b† )k+1 (c† )3 |0i,
+                                 Dk Ψ̄ b
+                                       = (a† )k (b† )k+2 (c† )4 |0i.
+                                 Dk F̄ b                                                          (4.9)
+
+Each of the oscillators a†α , b†α̇ , c†a carries one of the sl(2)2 , sl(4) spinor indices of the fields,
+for example
+                                 Dαβ̇ Dγ δ̇ Φab = a†α a†γ b†β̇ b†δ̇ c†a c†b |0i.                 (4.10)
+The statistics of the oscillators automatically symmetrises the indices in the desired way.
+The non-vanishing commutators of oscillators are taken to be
+
+                                               [aα , a†β ] = δβα ,
+                                              [bα̇ , b†β̇ ] = δβ̇α̇ ,
+                                              {ca , c†b } = δba .                                (4.11)
+
+The canonical forms for the generators of the two sl(2) and sl(4) are
+
+                                      Lα β = a†β aα − 21 δβα a†γ aγ ,
+                                      L̇α̇ β̇ = b†β̇ bα̇ − 12 δβ̇α̇ b†γ̇ bγ̇ ,
+                                      Ra b = c†b ca − 14 δba c†c cc .                            (4.12)
+
+Under these the fields (4.9) transform canonically. We write the corresponding three
+gl(1) charges as
+
+                                D = 1 + 12 a†γ aγ + 12 b†γ̇ bγ̇ ,
+                                C = 1 − 12 a†γ aγ + 12 b†γ̇ bγ̇ − 12 c†c cc ,
+                                B=             a a − 12 b†γ̇ bγ̇ .
+                                              1 † γ
+                                              2 γ
+                                                                                                 (4.13)
+
+Assuming that the oscillators (a, b† , c) and (a† , b, c† ) transform in fundamental and con-
+jugate fundamental representations of gl(4|4) we write down the remaining off-diagonal
+generators according to (4.1)
+
+                                  Qa α = a†α ca ,             S α a = c†a aα ,
+                                  Q̇α̇a = b†α̇ c†a ,          Ṡ α̇a = bα̇ ca ,                  (4.14)
+                                  Pαβ̇ = a†α b†β̇ ,          K   αβ̇        α
+                                                                        =a b .   β̇
+
+
+
+                                                        16
+Quite naturally the algebra gl(4|4) is realised by the generators (4.12),(4.13)11 ,(4.14).
+We have written this in a sl(2)2 × sl(4) covariant way. In fact one combine the indices a
+and α into a superindex and obtain a manifest sl(2) × sl(2|4) notation. The generators
+with two lower or two upper indices, P, Q̇, K, Ṡ, together with the remaining charges
+complete the gl(4|4) algebra.
+   First, we note that all fields (4.9) are uncharged with respect to the central charge
+C, it can therefore be dropped leading to sl(4|4). Furthermore, in sl(4|4) the generator
+B never appears in commutators and can be projected out, this algebra is psl(4|4). The
+generators (4.12),(4.13),(4.14) form a specific irreducible representation of psl(4|4). As
+they transform the fields (4.9) of N = 4 SYM among themselves, this representation has
+primary weight (2.17)
+                                 wF = [1; 0, 0; 0, 1, 0; 0, 1].                      (4.15)
+As an aside, in this representation it can be explicitly shown that the value of the
+quadratic Casimir operator (A.7) is zero
+
+                                             J 2 VF = 0.                                     (4.16)
+
+In the same manner it can be shown that the value of the quadratic Casimir in the
+module Vj , (2.27), is j(j + 1).
+
+Physical vacuum. As in the case of the conformal subalgebra sl(4) we can split the
+flavour sl(4) into sl(2) × sl(2). In that case we define
+
+                         d†1 = c3 ,   d†2 = c4 ,        d1 = c†3 ,   d2 = c†4 ,              (4.17)
+
+and use a vacuum |Zi annihilated by a1,2 , b1,2 , c1,2 , d1,2 . It is related to |0i by
+
+                                          |Zi = c†3 c†4 |0i.                                 (4.18)
+
+The benefit of this vacuum is that it is not charged under the central charge C and
+thus physical. It corresponds to the primary weight [1; 0, 0; 0, 1, 0; 0, 1] of the module
+VF . Furthermore it is the vacuum used in the BMN correspondence [3] and one of the
+Bethe ansätze in [35]. The drawback is that it is not invariant under the full sl(4)
+flavour algebra, but only under a subgroup sl(2) × sl(2). The expressions for the gl(4|4)
+generators thus complicate. However, if the indices (a, α) and (ȧ, α̇) are combined in two
+superindices, we have a manifest psl(2|2) × psl(2|2) covariance.
+
+Weights and excitations. In this context it is useful to know how to represent an
+operator with a given weight
+
+                                 w = [∆0 ; s1 , s2 ; q1 , p, q2 ; B, L]                      (4.19)
+
+in terms of excitations of the oscillators. We introduce a vacuum operator |0, Li which
+is the tensor product of L vacua |0i. The oscillators a†s,α , b†s,α̇ , c†s,a . now act on site s,
+  11
+    Note that a shift of B by a constant (−1) does not modify the algebra. Then the 1 in D, C, B can
+be absorbed into 1 + 21 b†γ̇ bγ̇ = 12 bγ̇ b†γ̇ to yield a canonical form.
+
+
+                                                   17
+where commutators of two oscillators vanish unless the sites agree. A generic state is
+written as
+                              (a† )na (b† )nb (c† )nc |0, Li                    (4.20)
+By considering the weights of the oscillators as well as the central charge constraint, we
+find the number of excitations
+            1      1      1     1
+                                                 1        1     1     1
+                                                                               
+             2
+               ∆0 + 2
+                      B −  2
+                             L + 2
+                                    s 1             2
+                                                      ∆0 −  2
+                                                              B − 2
+                                                                    L + 2
+                                                                           s 2
+      na =   1                            , nb =                                 .  (4.21)
+               ∆ + 12 B − 12 L − 21 s1
+             2 0
+                                                    1
+                                                      ∆ − 12 B − 12 L − 21 s2
+                                                    2 0
+
+and
+                                         1     1     3       1
+                                    1                             
+                                   2
+                                     L − 2
+                                           B − 2
+                                                 p − 4
+                                                       q 1 − 4
+                                                               q 2
+                                  1 L − 1 B − 1 p + 1 q1 − 1 q2 
+                                   2
+                            nc =  1
+                                        2     2     4       4     .                          (4.22)
+                                         1     1     1       1
+                                   2
+                                     L − 2
+                                           B + 2
+                                                 p + 4
+                                                       q 1 − 4
+                                                               q 2
+                                                                   
+                                   1     1     1     1       3
+                                   2
+                                     L − 2 B + 2 p + 4 q1 + 4 q2
+If the physical vacuum |Zi is used instead of the sl(4) invariant vacuum, the numbers of
+excitations of the sl(4) oscillators are given by
+        1      1      1       3       1
+                                                      1      1      1      1       1
+                                                                                           
+          2
+            L − 2
+                   B − 2
+                          p −  4
+                                 q 1 − 4
+                                         q 2            2
+                                                          L +  2
+                                                                 B −  2
+                                                                        p −  4
+                                                                               q 1 + 4
+                                                                                       q 2
+  nc =    1                                    , nd =                                        . (4.23)
+          2
+            L − 21 B − 12 p + 14 q1 − 41 q2             1
+                                                        2
+                                                          L + 12 B − 12 p − 14 q1 − 43 q2
+
+4.3     The harmonic action
+The psl(4|4) invariant Hamiltonian density H12 is given by some function of J12 , see
+(2.25)
+                                   H12 = 2h(J12 ).                            (4.24)
+We will now describe explicitly how H12 acts on a state of two-sites.
+
+Invariant action. We will investigate the action of a generic function f (J12 ) on two
+oscillator sites. As the dimension of any explicit state is a finite number, we can express
+f (J12 ) as a polynomial in the quadratic Casimir, (2.28). Let us introduce a collective
+oscillator A†A = (a†α , b†α̇ , c†a ). A general state in VF × VF can be written as
+
+                             |s1 , . . . , sn ; Ai = A†s1 ,A1 . . . A†sn ,An |00i              (4.25)
+
+subject to the central charge constraints C1 |Xi = C2 |Xi = 0. The label sk = 1, 2 de-
+termines the site on which the k-th oscillator acts. It is easily seen that the Casimir
+           2
+operator J12 conserves the number of each type of oscillator; it can however move oscil-
+lators between both sites. Therefore the action of f (J12 ) is
+                                               X
+               f (J12 )|s1 , . . . , sn ; Ai =   cs,s0 ,A δC1 ,0 δC2 ,0 |s01 , . . . , s0n ; Ai (4.26)
+                                               s01 ,...s0n
+
+
+with some coefficients cs,s0 ,A . The sums go over the sites 1, 2 and δC1 ,0 , δC2 ,0 project to
+states where the central charge at each site is zero. In view of the fact that oscillators
+represent indices of fields, see (4.10), a generic invariant operators f (J12 ) acts on two
+fields by moving indices between them.
+
+                                                        18
+Harmonic action. The action of the harmonic numbers within the Hamiltonian den-
+sity H12 = 2h(J12 ) turns out to be particularly simple. It does not depend on the types
+of oscillators Ak , but only on the number of oscillators which change the site
+                                            X
+                H12 |s1 , . . . , sn ; Ai =   cn,n12 ,n21 δC1 ,0 δC2 ,0 |s01 , . . . , s0n ; Ai. (4.27)
+                                                   s01 ,...s0n
+
+Here n12 , n21 count the number of oscillators hopping from site 1 to 2 or vice versa. The
+coefficients cn,n12 ,n21 are given by
+                                         1                      1
+                                                                                
+                             1+n12 n21 Γ 2 (n12 + n21 ) Γ 1 + 2 (n − n12 − n21 )
+          cn,n12 ,n21 = (−1)                                                       . (4.28)
+                                                       Γ 1 + 12 n
+                                                                  
+
+In the special case of no oscillator hopping we find
+                                                      cn,0,0 = h( 12 n),                                           (4.29)
+which can be regarded as a regularisation of (4.28). We will refer to this action given by
+(4.27),(4.28),(4.29) as the ‘harmonic action’.
+
+Proof. To prove that H12 is given by (4.27),(4.28),(4.29) it suffices to show
+                                     [J12 , H12 ] = 0,            H12 Vj = 2h(j)Vj .                               (4.30)
+The invariance of H12 under the subalgebra sl(2) × sl(2|4) given by the generators
+L̇, L, R, D, Q, S is straightforward: These generators only change the types of oscilla-
+tors, whereas the harmonic action does not depend on that. In contrast, the remaining
+generators K, P, Q̇, Ṡ change the number of oscillators by two.
+     Let us act with P12,αβ̇ on a generic state
+                 P12,αβ̇ |s1 , . . . , sn ; Ai = |1, 1, s1 , . . . , sn ; A0 i + |2, 2, s1 , . . . , sn ; A0 i,    (4.31)
+
+and get a state with two new oscillators, A0 = (α, β̇, A). The action of the Hamiltonian
+density (4.27) yields eight terms. In two of these terms both new oscillators end up at
+site 1
+            cn+2,n12 ,n21 |1, 1, s01 , . . . , s0n ; A0 i + cn+2,n12 ,n21 +2 |1, 1, s01 , . . . , s0n ; A0 i. (4.32)
+Here n12 , n21 refer only to the hopping of the old oscillators. Eq. (4.28) can be used to
+combine the two coefficients in one
+                                    cn+2,n12 ,n21 + cn+2,n12 ,n21 +2 = cn,n12 ,n21 .                               (4.33)
+We pull the additional two oscillators out of the state and get
+   cn+2,n12 ,n21 + cn+2,n12 ,n21 +2 |1, 1, s01 , . . . , s0n ; A0 i = P1,αβ̇ cn,n12 ,n21 |s01 , . . . , s0n ; Ai
+                                   
+                                                                                                                   (4.34)
+Summing up all contributions therefore yields P1,αβ̇ H12 |s1 , . . . , sn ; Ai. If both new oscil-
+lators end up at site 2 we get an equivalent result. It remains to be shown that the other
+four terms cancel. Two of these are
+           cn+2,n12 ,n21 +1 |1, 2, s01 , . . . , s0n ; A0 i + cn+2,n12 +1,n21 |1, 2, s01 , . . . , s0n ; A0 i.     (4.35)
+
+                                                                 19
+We see that the absolute values in (4.28) match for cn+2,n12 ,n21 +1 and cn+2,n12 +1,n21 , we
+sum up the signs
+
+     (−1)1+n12 n21 +n12 + (−1)1+n12 n21 +n21 = (−1)1+n12 n21 (−1)n12 + (−1)n21 .
+                                                                              
+                                                                                      (4.36)
+
+Now, oscillators always hop in pairs due to the central charge constraint. One of the new
+oscillators has changed the site, so the number of old oscillators changing site must be
+odd. The above two signs must be opposite and cancel in the sum. The same is true for
+the remaining two terms. This concludes the proof for [P12,αβ̇ , H12 ] = 0 and similarly,
+for invariance under Q̇. To prove invariance under K, Ṡ we note that these generators
+remove two oscillators from one of the two sites. Assume it will remove the first two
+oscillators from a state (for each two oscillators that are removed, the argument will be
+the same). Now, the argument is essentially the same as the proof for P12,αβ̇ read in the
+opposite direction.
+    To prove that the eigenvalues of H12 are given by 2h(j) we act on a special state
+within Vj . We define
+
+                                    (a†1,1 )k+2 (b†1,1 )k (a†2,1 )j−k+2 (b†2,1 )j−k
+                       |j + 2, ki =                                                 |00i                          (4.37)
+                                       (k + 2)!k!(j − k + 2)!(j − k)!
+
+which corresponds to Dk F Dj−k F. Then
+                                                 j
+                                                 X
+                                       |j + 2i =   (−1)k |j + 2, ki                                               (4.38)
+                                                      k=0
+
+is a representative of Vj+2 . It is therefore an eigenstate of H12 and we can choose to
+calculate only the coefficient of |j + 2, 0i in H12 |j + 2i. Using some combinatorics we
+find the coefficient
+                        j
+                      2 X
+                      X                         δk+l6=0     2         j!
+       h(j + 2) +                (−1)1+k+l                                   = 2h(j + 2),                         (4.39)
+                       l=0 k=0
+                                                 k + l l!(2 − l)! k!(j − k)!
+
+where l represents the number of oscillators a†1,2 hopping to site 1. For j = 0, 1 we define
+the states
+
+         |j = 0i = a†1,1 a†1,1 a†2,1 a†2,1 |00i + a†2,1 a†2,1 a†1,1 a†1,1 |00i − 2a†1,1 a†2,1 a†1,1 a†2,1 |00i,
+         |j = 1i = a†1,1 a†1,1 a†2,1 a†2,1 |00i − a†2,1 a†2,1 a†1,1 a†1,1 |00i.                                   (4.40)
+
+It is a straightforward exercise to show that H12 |j = 0i = 0 and H12 |j = 1i = 2|j = 1i.
+This concludes the proof of (4.30).
+
+Physical vacuum. We can also describe the harmonic action using the primary vac-
+uum |Zi. Then the collective oscillator is A†A = (a†α , b†α̇ , c†a , d†ȧ ). A generic state in
+VF × VF is defined in analogy to (4.25). Interestingly, we find that the action of the
+Hamiltonian density is obtained using exactly the same expressions (4.27),(4.28),(4.29).
+
+                                                            20
+Invariance of H12 can be shown as above and the proof for the eigenvalues is very similar.
+We might use the states
+
+                                (a†1,1 )k (b†1,1 )k (a†2,1 )j−k (b†2,1 )j−k
+                       |j, ki =                                             |ZZi,         (4.41)
+                                              k!2 (j − k)!2
+
+which correspond to the state k!(j − k)!(a†1 )k (a†2 )j−k |00i of Sec. 3. Then
+                                            j
+                                            X
+                                      |ji =   (−1)k |j, ki                                (4.42)
+                                              k=0
+
+corresponds to j! |ji of (3.12) and belongs to the module Vj . As above we consider only
+the coefficient of |j, 0i in H12 |ji. It is given by
+                                        j
+                                        X (−1)1+k j!
+                               h(j) +                        = 2h(j),                     (4.43)
+                                        k=1
+                                            k k!(j − k)!
+
+which proves that H12 = 2h(J12 ).
+
+4.4    Some examples
+We will now determine the planar anomalous dimension of a couple of operators to
+demonstrate how to apply the above Hamiltonian.
+
+Konishi. The Konishi operator has weight [2; 0, 0; 0, 0, 0; 0, 2]. Using (4.21),(4.22) we
+find that we have to excite each of the four oscillators c once. There must be two oscilla-
+tors on each site due to the central charge constraint and the three distinct configurations
+are
+                           |2112i = c†2,1 c†1,2 c†1,3 c†2,4 |00i = Tr X̄X,
+                           |1212i = c†1,1 c†2,2 c†1,3 c†2,4 |00i = Tr Ȳ Y,               (4.44)
+                           |1122i = c†1,1 c†1,2 c†2,3 c†2,4 |00i = Tr Z̄Z.
+These can also be written in terms of three complex scalars X, Y, Z of N = 4 SYM and
+their conjugates. We can define them as
+
+                        X = c†1 c†4 |0i, Y = c†2 c†4 |0i, Z = c†3 c†4 |0i,
+                                                                                          (4.45)
+                        X̄ = c†2 c†3 |0i, Ȳ = c†3 c†1 |0i, Z̄ = c†1 c†2 |0i.
+
+Let us now act with H12 on these states, we find
+
+        H12 |1122i = c4,0,0 |1122i + c4,1,1 |1221i + c4,1,1 |1212i
+                     + c4,1,1 |2121i + c4,1,1 |2112i + c4,2,2 |2211i
+                   = 23 |1122i + 12 |1221i + 12 |1212i + 12 |2121i + 21 |2112i − 12 |2211i
+                   = |2112i + |1212i + |1122i                                              (4.46)
+
+
+                                                  21
+using (4.27),(4.28),(4.29) and cyclicity of the trace. Evaluating the Hamiltonian for the
+remaining two states |1212i and |1221i we find the energy matrix
+                                                    
+                                             2 2 2
+                                   H =  2 2 2 ,                                  (4.47)
+                                             2 2 2
+the factor of 2 is due to H = H12 + H21 . One eigenstate is
+               K = |2112i + |1212i + |1122i = Tr X̄X + Tr Ȳ Y + Tr Z̄Z.               (4.48)
+with energy
+                                                2         2
+                                              gYM  N   3gYM  N
+                          E = 6,         δ∆ = E ×  2
+                                                     =      2
+                                                                                (4.49)
+                                                8π       4π
+which clearly corresponds to the Konishi operator. The other two, |2112i − |1122i and
+|1212i − |1122i, have vanishing energy and correspond to half-BPS operators.
+
+Physical vacuum. Let us repeat this example using the physical vacuum |Zi. Here,
+we can define
+               X = c†1 d†1 |Zi, Y = c†2 d†1 |Zi, Z = |Zi,
+                                                                             (4.50)
+               X̄ = d†2 c†2 |Zi, Ȳ = c†1 d†2 |Zi, Z̄ = c†1 c†2 d†2 d†1 |Zi.
+The three states are
+                         |12120 i = c†1,1 c†2,2 d†1,1 d†2,2 |ZZi = Tr X̄X,
+                         |12210 i = c†1,1 c†2,2 d†2,1 d†1,2 |ZZi = Tr Ȳ Y,            (4.51)
+                         |11110 i = c†1,1 c†1,2 d†1,1 d†1,2 |ZZi = − Tr Z̄Z.
+In the same way as above we get the energy matrix
+                                                  
+                                       2    2 −2
+                             H= 2          2 −2  .                                   (4.52)
+                                      −2 −2      2
+The eigenstates and energies are the same as above, e.g.
+              K = |12120 i + |12210 i − |11110 i = Tr X̄X + Tr Ȳ Y + Tr Z̄Z.          (4.53)
+
+Pseudovacua. In the previous paragraph we have worked with the physical vacuum
+made from the scalar field |Zi. This vacuum is the ground state, it is a protected half-
+BPS state with zero energy. There are, however, similar configurations where we assume
+the same field at each site. We find three possible fields to choose (including the above)
+                  |Zi = c†3 c†4 |0i,      |Ψ i = a†1 c†4 |0i,     |Fi = a†1 a†1 |0i.   (4.54)
+In each case the states of two sites |ZZi, |Ψ Ψ i, |FFi are eigenstates of the Hamilto-
+nian density, the corresponding eigenvalues are 0, 2, 3. Thus the energies of the vacua
+|Z, Li, |Ψ, Li, |F, Li constructed from L such fields are
+                           EZ = 0,          EΨ = 2L,            EF = 3L,               (4.55)
+
+                                                  22
+where |Ψ, Li exists only for odd L. The sl(4|4) weights of these vacua and the corre-
+sponding primaries are given by
+   wZ = [L; 0, 0; 0, L, 0; 0, L],      wZ,0 = [L; 0, 0; 0, L, 0; 0, L],
+   wΨ = [ 2 L; L, 0; 0, 0, L; 2 L, L], wΨ,0 = [ 32 L − 52 ; L − 3, 0; 0, 0, L − 3; 12 L − 32 , L − 1],
+          3                   1
+
+   wF = [2L; 2L, 0; 0, 0, 0; L, L], wF ,0 = [2L − 2; 2L − 4, 0; 0, 0, 0; L − 2, L].
+                                                                                                  (4.56)
+Of these three states, only |Z, Li is stable, it does not receive corrections at higher loops.
+The other two states are expected to receive corrections to their form; to determine their
+higher-loop energy becomes a non-trivial issue.
+
+Spectrum of operators with a low dimension. We have used the harmonic ac-
+tion to compute the planar one-loop spectrum of low-lying states in N = 4 SYM. First
+of all we have determined the primary states using the algorithm proposed in [38]. In
+analogy to the sieve of Eratostene the algorithm subsequently removes descendants from
+the set of all states. What remains, are the primary states. For the primaries we have
+determined the number of oscillator excitations using (4.21),(4.22),(4.23). Next we have
+spread the oscillators on the sites in all possible distinct ways. The harmonic action
+(4.27),(4.28),(4.29) then yields an energy matrix that was subsequently diagonalised.
+For all the descendants that were removed in the sieve algorithm, we remove the corre-
+sponding energy eigenvalue. The remaining eigenvalue is the one-loop planar anomalous
+dimension of the primary operator.
+    The single-trace superconformal primaries of N = 4 SYM for ∆0 ≤ 5.5 and their
+planar one-loop anomalous dimensions are given in Tab. 3.12 For a given primary weight
+we write the anomalous dimensions along with a parity P . Here, parity is defined such
+that for a SO(N ) or Sp(N ) gauge group the states with negative parity are projected
+out.13 Parity P = ± indicates a pair of states with opposite parity but degenerate
+energy. Furthermore, we have indicated states with conjugate representations for which
+the order of sl(2)2 and sl(4) labels as well as the chirality B is inverted.
+    There are two important points to note looking at the energies in Tab. 3. Firstly,
+we note the appearance of paired states with P = ±. As was argued in [23] this is an
+indication of integrability. Indeed, not only the planar so(6) Hamiltonian of Minahan
+and Zarembo [25] is integrable, but also the complete planar sl(4|4) Hamiltonian [35]!
+Secondly, we find some overlapping primaries in Tab. 2,4, clearly their energies do agree.
+What is more, we find that a couple   √    of energies repeatedly
+                                                       √          occur. These are for ex-
+         3 5 5 9                1              1
+ample, 4 , 4 , 8 , 8 , but also 8 (5 ± 5) and 16 (13 ± 41). As these states are primaries
+transforming in different representations, they cannot be related by sl(4|4). Of course,
+these degeneracies could merely be a coincidence of small numbers. Nevertheless the
+  12
+     The table was computed as follows. A C++ programme was used to determine all superconformal
+primary operators up to and including classical dimension 5.5 as well as their descendants. For the details
+of the implementation of the sieve algorithm see [40]. In a Mathematica programme all operators with
+a given number of excitations of the oscillators were collected; this involved up to hundreds of states
+for ∆0 = 5.5. In a second step, the harmonic action was applied to all these operators to determine the
+matrix of anomalous dimensions; this took a few minutes. The relevant eigenvalue corresponding to the
+primary operator was sorted out by hand.
+  13
+     Therefore, our definition of parity differs from the one of [23] by a factor of (−1)L .
+
+
+                                                    23
+             ∆0 sl(2)2      sl(4)      B   L    δ∆P [gYM
+                                                      2
+                                                         N/π 2 ]
+              2 [0, 0]     [0, 2, 0]   0   2    0+
+                                                3+
+                 [0, 0]    [0, 0, 0]   0   2    4
+                                                  −
+              3 [0, 0]     [0, 3, 0]   0   3    0
+                                                1−
+                 [0, 0]    [0, 1, 0]   0   3    2
+                                                  +
+              4 [0, 0]     [0, 4, 0]   0   4    0     √
+                                                1
+                 [0, 0]    [0, 2, 0]   0   4    8
+                                                  (5 ± 5)+
+                                                3−
+                 [0, 0]    [1, 0, 1]   0   4    4       √
+                                                1
+                 [0, 0]    [0, 0, 0]   0   4    16
+                                                   (13 ± 41)+
+                                                9−
+                 [2, 0]    [0, 0, 0]   1   3    8
+                                                              + conj.
+                                                15 ±
+                 [1, 1]    [0, 1, 0]   0   3    16
+                                                25 +
+                 [2, 2]    [0, 0, 0]   0   2    24
+                                                  −
+              5 [0, 0]     [0, 5, 0]   0   5    0
+                                                1− 3−
+                 [0, 0]    [0, 3, 0]   0   5    4
+                                                    ,4
+                                                5±
+                 [0, 0]    [1, 1, 1]   0   5    8       √
+                                                1
+                 [0, 0]    [0, 0, 2]   0   5    8
+                                                  (7 ± 13)+ √+ conj.
+                                                5− 5− 1
+                 [0, 0]    [0, 1, 0]   0   5    4
+                                                    , 4 , 8 (5 ± 5)−
+                                                5−
+                 [2, 0]    [0, 0, 2]   1   4    4       √ +      + conj.
+                                                1
+                 [2, 0]    [0, 1, 0]   1   4    8
+                                                  (8 ± 2)        + conj.
+                                                3±
+                 [1, 1]    [0, 2, 0]   0   4    4
+                                                5± 5±
+                 [1, 1]    [1, 0, 1]   0   4    8
+                                                    ,4
+                                                9±
+                 [1, 1]    [0, 0, 0]   0   4    8
+                                                3−
+                 [2, 2]    [0, 1, 0]   0   3    4
+                                       1          ±
+             5.5 [1, 0]    [0, 2, 1]   2
+                                           5    1     √            + conj.
+                                       1        1         ±
+                 [1, 0]    [1, 1, 0]   2
+                                           5    8
+                                                  (8 ± 2)
+                                                        √     + conj.
+                                       1        1           ±
+                 [1, 0]    [0, 0, 1]   2
+                                           5    32
+                                                   (35 ± 5) + conj.
+                                       1        9±
+                 [2, 1]    [0, 1, 1]   2
+                                           4    8       √ ± + conj.
+                                       1        1
+                 [2, 1]    [1, 0, 0]   2
+                                           4    32
+                                                   (37 ± 37) + conj.
+                                       1        5±
+                 [3, 2]    [0, 0, 1]   2
+                                           3    4
+                                                              + conj.
+
+Table 3: All one-loop planar anomalous dimensions of primary operators with
+∆0 ≤ 5.5. Positive parity P indicates a state that survives the projection to
+gauge groups SO(N ), Sp(N ), parity ± indicates a degenerate pair. The label
+‘+conj.’ indicates conjugate states with sl(2)2 , sl(4) labels reversed and opposite
+chirality B.
+
+
+
+
+                                           24
+                       1
+                              √
+reappearance of e.g. 16  (13 ± 41) is striking. This could hint at a further symmetry
+enhancement of the planar one-loop Hamiltonian. It might also turn out to be a conse-
+quence of integrability. Furthermore, one might speculate that it is some remnant of the
+broken higher spin symmetry of the free theory, see e.g. [41] and references in [38].
+
+
+5     Subsectors
+Especially in view of some recent advances of the AdS/CFT correspondence [3, 4] it has
+become interesting to determine anomalous dimensions of specific operators in N = 4
+SYM. In principle, the Hamiltonian (2.22),(2.24) provides the answer, but it is hard
+to apply. The harmonic action (4.27),(4.28),(4.29) is more explicit, but still requires a
+reasonable amount of combinatorics to be applied. Nevertheless, some operators corre-
+sponding to stringy states have special quantum numbers and often one can restrict to
+certain subsectors of N = 4, see e.g. [26]. For instance, in Sec. 3 we have investigated
+a subsector of N = 4 SYM. Within this subsector the number of letters as well as the
+symmetry algebra is reduced. This reduction of complexity leads to a simplification of
+the Hamiltonian (3.14) within the subsector. Thus, restricting to subsectors one can
+efficiently compute anomalous dimensions.
+    To construct subsectors, we note that the number of excitations in the oscillator pic-
+ture, (4.21),(4.22), naturally puts constraints on the weights of operators. Certainly,
+there cannot be negative excitations. Furthermore, the oscillators c† are fermionic.
+Therefore there can only be one excitation on each site. In total we find twelve bounds
+
+                       na ≥ 0,    nb ≥ 0,     nc ≥ 0,     L − nc ≥ 0.                (5.1)
+
+At the one-loop level all these excitation numbers are conserved. We can therefore
+construct ‘one-loop subsectors’ by considering operators for which several of these bounds
+are met. In certain cases these subsectors remain closed even at higher loops, we will
+refer to these as ‘closed subsectors’.
+
+5.1    Closed subsectors
+Let us demonstrate this procedure for a rather trivial subsector. We will consider the
+subsector of operators with
+
+                           na12 = nb† = nc12 = 0,        nc34 = L.                   (5.2)
+                                      12
+
+
+In conventional language these operators consist only of the fields
+
+                     Z = c†3 c†4 |0i = |Zi = Φ34 = Φ5+i6 = Φ5 + iΦ6 .                (5.3)
+
+These are the half-BPS operators Tr Z L and its multi-trace cousins. The Hamiltonian
+within this subsector vanishes identically, as required by protectedness of BPS operators.
+Using (4.21),(4.22) the constraints (5.2) allows only the weight
+
+                                 w = [L; 0, 0; 0, L, 0; 0, L].                       (5.4)
+
+                                              25
+So far we know only that this subsector is closed at one-loop. To prove closure at higher
+loops we consider a strictly positive combination of the bounds
+
+              na1 + na2 + nb1 + nb2 + nc1 + nc2 + (L − nc3 ) + (L − nc4 ) = 0.                   (5.5)
+
+Together with the bounds (5.1) this implies that each of the individual terms is zero as
+in (5.2). Using (4.21),(4.22) this combination implies
+
+                                              ∆0 = p.                                            (5.6)
+
+The label p as well as the bare dimension ∆0 is preserved in perturbation theory.14
+Therefore the condition (5.6) restricts to this subsector at all orders in perturbation
+theory which means that this subsector is exactly closed. We also have that L = p, which
+implies that the length is protected even at higher loops. Equivalently, the chirality is
+exactly zero.
+    Let us investigate all closed subsectors. For a closed subsector we need to find a
+positive linear combination of the bounds that is independent of B and L. Put differently,
+it must be independent of L − B and L + B. The number of excitations nb involves
+the combination −B − L. This can only be cancelled by B + L in L − nc . Therefore,
+we can remove oscillators of type b only iff we also fully excite oscillators of type c.
+Equivalently, we can remove oscillators of type a only iff we also remove oscillators of
+type c. We find the following cases:
+
+    • If no oscillator is removed we get the full theory.
+    • If we set nb2 = 0 and nci = L, i = k + 1, . . . , 4, the remaining symmetry algebra
+      will be u(1, 2|k). The non-compact form of the algebra is meant to indicate that
+      there are infinitely many letters within this subsector. Furthermore, B + L can be
+      expressed in terms of p, q1 , q2 , it is therefore conserved.
+    • If we set nb1,2 = 0 then we should only set nc4 = L in order to get a nontrivial
+      subsector. The remaining symmetry algebra is su(2|3) and will be discussed in
+      Sec. 5.3. It has conserved B + L.
+    • If we set na2 = nb2 = nci = 0, i = 1, . . . k, and ncj = L, j = l + 1, . . . 4, the
+      remaining symmetry algebra will be u(1, 1|l − k). Here, B and L are conserved.
+      For k = l = 2 we get the subsector considered in Sec. 3. For k = l = 1, 3 we get a
+      similar subsector in which the spin of the letters equals −1 instead of − 21 .
+    • If we set na2 = nb1,2 = nci = 0, i = 1, . . . k, and nc4 = L the remaining symmetry
+      algebra will be u(1|3 − k). Here, B and L are conserved.
+    • If we set na1,2 = nb1,2 = nc1 = 0, and nc4 = L the remaining symmetry algebra
+      will be su(2). Here, B and L are conserved. This subsector will be discussed in
+      Sec. 5.2.
+  14
+    The scaling dimension is obviously not preserved. The bare dimension is, however, for mixing occurs
+only among operators of equal bare dimension.
+
+
+
+
+                                                  26
+5.2    The nearly quarter-BPS su(2) subsector
+In Sec. 5.1 we have found that we can express the half-BPS condition ∆0 = p in terms of
+the excitation numbers of oscillators. We can do the same for the quarter BPS condition
+                                         ∆0 = p + q1 + q2 .                                         (5.7)
+This is equivalent to
+                        na1 + na2 + nb1 + nb2 + 2nc1 + 2(L − nc4 ) = 0,                             (5.8)
+which implies that this subsector is closed. The letters of this subsector are
+                                   Z = c†3 c†4 |0i,        φ = c†2 c†4 |0i.                         (5.9)
+The weights are
+                              w = [L + δ∆; 0, 0; n, L − 2n, n; 0, L],                             (5.10)
+where n counts the number of φ’s. The length can be expressed in terms of sl(4) charges,
+L = p + q1 + q2 , it is therefore protected within the subsector. The residual symmetry
+is su(2) × u(1). The su(2) factor transforms Z and φ in the fundamental representation,
+whereas u(1) measures the anomalous dimension δ∆. A state with δ∆ = 0 is (at least)
+quarter-BPS, a generic state, however, will not be protected. Then the weight w is
+beyond the unitarity bounds and cannot be primary. The corresponding primary weight
+is (assuming a highest weight state of the residual su(2))
+                   w0 = [L − 2 + δ∆; 0, 0; n − 2, L − 2n, n − 2; 0, L − 2],                       (5.11)
+    This su(2) subsector was studied in [23], where also the two-loop contribution to the
+dilatation operator was found
+                 g2
+       δD(g) = − YM2 :Tr[φ, Z][φ̌, Ž]:
+                 8π
+                     2 2 
+                 1 gYM                                                                    
+               −              :Tr   [φ, Z], Ž   [ φ̌, Ž], Z   : + :Tr  [φ, Z], φ̌  [ φ̌, Ž], φ :
+                 2 8π 4
+                                                                        
+                                    + :Tr [φ, Z], T a [φ̌, Ž], T a : + O(g 6 ).
+                                                         
+                                                                                                    (5.12)
+
+Using this, the first few states and their planar anomalous dimensions were found, we
+list the one-loop part in Tab. 4.
+    Furthermore, it was confirmed that the quarter-BPS operators found in [17, 42] are
+annihilated by the two-loop anomalous dilatation operator δD(g). Here, we make the
+observation that they are indeed annihilated by the much simpler operator Q (which
+takes values in the gauge algebra, Q = T a Qa )
+                                             Q = [Ž, φ̌].                                        (5.13)
+As all terms of δD(g) contain this operator, it is clear that δD(g) annihilates those
+quarter-BPS operators. We conjecture that all quarter-BPS operators are in the kernel
+of Q
+                                  Q O1/4−BPS = 0.                              (5.14)
+
+                                                      27
+          L n δ∆P [gYM  2
+                          N/π 2 ]           L n δ∆P [gYM  2
+                                                            N/π 2 ]
+                 +
+          4 2 34                            8 2 (64x − 112x2 + 56x − 7)+
+                                                       3
+                 −                                 ±    −
+          5 2 12                              3 12 , 43
+                       √
+          6 2 18 (5 ± 5)+                     4 (64x3 − 160x2 + 116x − 25)+
+                                                         √       −
+            3 34
+                 −
+                                            9 2 14 (2 ± 2)− , 12
+                                                                              ±
+                 −
+          7 2 14 , 34
+                      −                       3 (512x3 − 1088x      2
+                                                             √ − + 720x − 147)
+                                                 5± 1
+            3 58
+                 ±                            4 8 , 4 (3 ± 3)
+
+      Table 4: The first few states within the su(2) subsector [23]. The weights of
+      the corresponding primaries are [L − 2; 0, 0; n − 2, L − 2n, n − 2; 0, L − 2]. Cubic
+      polynomials indicate three states with energies given by the roots of the cubic
+      equation.
+
+
+This should simplify the search for quarter BPS operators drastically. We furthermore
+conjecture that Q is an essential part in the first correction to the superboosts,
+
+                           δS(g) ∼ g Tr Ψ Q,          δ Ṡ(g) ∼ g Tr Ψ̄ Q.                   (5.15)
+
+These generators would join the quarter-BPS multiplet at primary weight w with three
+semi-short multiplets into the long interacting multiplet at primary weight w0 . In the
+case of the a quarter-BPS operator, this does not happen and the multiplet remains
+short [7, 43].
+
+5.3    The nearly eighth-BPS su(2|3) subsector
+In analogy to Sec. 5.2 we investigate the sector of nearly eighth-BPS operators. One of
+the two eighth-BPS conditions is (the other one would lead to a similar subsector)
+
+                                       ∆0 = p + 12 q1 + 32 q2 .                              (5.16)
+
+This is equivalent to
+                                   nb1 + nb2 + 2(L − nc4 ) = 0,                              (5.17)
+which again implies that this subsector is closed. The letters of this subsector are
+
+               φa = c†a c†4 |0i,      ψα = a†α c†4 |0i,      (a = 1, 2, 3, α = 1, 2)         (5.18)
+
+These transform in the fundamental representation of su(2|3). We also note that, al-
+though L and B are not protected in this subsector, the combination L + B = ∆0 is.
+The weights are
+
+                 w = [L + B + δ∆; s, 0; 2B + 2L − 2p − 3q2 , p, q2 ; B, L],                  (5.19)
+
+where the numbers of individual letters are given by
+                                            
+                        p + 2q2 − 2B − L,                    1
+                                                                    
+                                                          B +    s,
+               nφ =  L − p − q2 ,                 nψ =       2                              (5.20)
+                                                          B − 12 s.
+                                             
+                        L − q2 ,
+
+                                                 28
+This subsector has only finitely many letters. The Hamiltonian would therefore have
+only a few terms and it could be applied easily. Also an investigation of the two-loop
+contribution to the dilatation operator along the lines of [23] seems feasible. Such an
+investigation would be very interesting for two reasons. On the one hand one could see
+effects of the Konishi anomaly. The O(g 3 ) (‘3/2-loop’) contribution to the dilatation
+operator transforms three scalars εabc φa φb φc into two fermions εαβ ψα ψβ or vice versa.
+In other words it changes the length of the operator. On the other hand, this sector
+contains the subsector of Sec. 5.2. In [23] evidence for the integrability of the planar
+two-loop dilatation operator was found. Possibly the two-loop integrability extends to
+this subsector and maybe to the full theory.
+    The lowest-dimensional eighth-BPS operator is expected to be a triple-trace operator
+with weight
+                                w = [6; 0, 0; 0, 0, 4; 0, 6].                       (5.21)
+We find this operator, it is
+
+                 O1/8−BPS = εabc εdef N (N 2 − 3) Tr φa φd Tr φb φe Tr φc φf
+                                     
+
+                                       + 6(N 2 − 1) Tr φa φd Tr φb φc φe φf
+                                       − 12N Tr φa φb φc φd φe φf
+                                       + 8N Tr φa φd φb φe φc φf
+                                                                  
+                                       + 4 Tr φa φb φc Tr φd φe φf .               (5.22)
+
+It is annihilated by the generalisation of (5.13)
+
+                                        Qa = εabc [φ̌b , φ̌c ]                     (5.23)
+
+which implies that it is protected at one-loop. It is also annihilated by the operator
+
+                           D3 ∼ εabc εαβ Tr ψα [φ̌a , [φ̌b , [φ̌c , ψβ ]]].        (5.24)
+
+An investigation of diagrams shows that the relevant 3/2-loop contribution to the dilata-
+tion generator should be proportional to this operator. This supports the claim that the
+operator (5.22) is eighth-BPS.
+
+5.4    The so(6) subsector
+This is the subsector where the scalars are the only letters
+
+                                        na12 = nb12 = 0.                           (5.25)
+
+The allowed weights are
+                                 w = [L; 0, 0; q1 , p, q2 ; 0, L].                 (5.26)
+The residual symmetry is sl(4) = so(6). This subsector is a one-loop subsector. All
+bounds na , nb have a negative coefficient of L. Therefore all positive combinations of
+bounds involve L, which is broken at higher loops.
+
+
+                                                 29
+    We will investigate the non-planar Hamiltonian in this sector. Two scalars Φp , Φq
+can be symmetrised in three different ways, symmetric-traceless, antisymmetric and sin-
+glet. These correspond to the modules V0 , V1 , V2 , respectively. The projectors to these
+representations are
+                                         1 p q     1 p q
+                               (P0 )pq                       1      pq
+                                    mn = 2 δm δn + 2 δn δm − 6 δmn δ ,
+                               (P1 )pq   1 p q     1 p q
+                                    mn = 2 δm δn − 2 δn δm ,
+                               (P2 )pq   1      pq
+                                    mn = 6 δmn δ ,                                                  (5.27)
+
+The coefficient (2.20) of the Hamiltonian using the harmonic eigenvalues (2.21) is
+                    pq
+                   Cmn = 0 · (P0 )pq         1 p q     1 p q       3     1      pq
+                                  mn + 1 · ( 2 δm δn − 2 δn δm ) + 2 · ( 6 δmn δ )                  (5.28)
+
+We substitute this in the Hamiltonian (2.16) and get
+
+  H = N −1 − 12 :Tr[Φm , Φ̌m ][Φn , Φ̌n ]: + 12 :Tr[Φm , Φ̌n ][Φn , Φ̌m ]: − 14 :Tr[Φm , Φ̌n ][Φm , Φ̌n ]:
+                                                                                                           
+
+    = N −1 − 12 :Tr[Φm , Φn ][Φ̌m , Φ̌n ]: − 41 :Tr[Φm , Φ̌n ][Φm , Φ̌n ]: .
+                                                                          
+                                                                                                      (5.29)
+                            2
+After multiplication with gYM N/8π 2 this is exactly the effective vertex found in [20] and
+yields the dilatation generators in [25, 22, 23].
+
+5.5     The so(4, 2) subsector
+One might choose to set
+                                        nc12 = 0,      nc34 = L,                                    (5.30)
+or, more conveniently, nc12 = nd12 = 0 using the primary vacuum. This is a generalisation
+of the subsector discussed in Sec. 3, which is, however, closed only at one-loop. In this
+subsector the letters are the scalars Z with any number of the four spacetime derivatives
+acting
+                             (a†1 )k1 (a†2 )k2 (b†1 )l1 (b†2 )k1 +k2 −l1 |Zi.      (5.31)
+The weight of a state is given by
+
+                                     w = [∆0 ; s1 , s2 ; 0, L, 0; 0, L]                             (5.32)
+
+where the total numbers of excitations are
+
+      k1 = 21 ∆0 − 21 L + 12 s1 ,   k2 = 21 ∆0 − 12 L − 12 s1 ,    l1 = 12 ∆0 − 21 L + 12 s2 .      (5.33)
+
+This sector might be useful to investigate semiclassical strings spinning on one circle in
+S 5 and two circles in AdS 5 .
+
+5.6     The su(2|4) one-loop BMN matrix model
+The BMN matrix model [3] in the one-loop approximation [36] is obtained by setting
+
+                                                nb12 = 0.                                           (5.34)
+
+                                                    30
+Again, this yields only a one-loop subsector. The letters WA00 of the matrix model are
+
+                                     c†a c†b |0i,   a†α c†b |0i,   a†α a†β |0i                      (5.35)
+
+corresponding to the so(6) vectors, fermions and so(3) vectors. The residual symmetry
+is su(2|4). The multiplet of letters VF00 is given by the primary weight
+
+                                      VF00 = [q1 , p, q2 ]∆            1
+                                                          s = [0, 1, 0]0 .
+                                                            0
+                                                                                                    (5.36)
+
+The irreducible modules of two multiplets of letters are
+
+                                       VF00 × VF00 = V000 + V100 + V200                             (5.37)
+
+with
+                        V000 = [0, 2, 0]20 ,    V100 = [1, 0, 1]20 ,   V200 = [0, 0, 0]20 .         (5.38)
+In sl(2) × sl(4) these modules split into
+
+         V000 = [0, 2, 0]20 + [0, 1, 1]2.5          3            3            3.5          4
+                                       1 + [0, 1, 0]2 + [0, 0, 2]0 + [0, 0, 1]1 + [0, 0, 0]0 ,
+         V100 = [1, 0, 1]20 + [0, 1, 1]2.5          2.5            3            3          3
+                                       1 + [1, 0, 0]1 + [0, 0, 2]2 + [0, 1, 0]2 + [0, 1, 0]0
+                + [0, 0, 1]3.5             3.5          4
+                            3 + [0, 0, 1]1 + [0, 0, 0]2 ,
+         V200 = [0, 0, 0]20 + [1, 0, 0]2.5          3            3.5            4
+                                       1 + [0, 1, 0]2 + [0, 0, 1]3 + [0, 0, 0]4 .                   (5.39)
+
+In [36] it was found that the one-loop spectrum for the matrix model in the so(6) vector
+sector matches the so(6) sector of N = 4 SYM. The complete set of modules Vj00 of
+the full su(2|4) matrix model is already realised in the so(6) subsector. Therefore the
+so(6) subsector lifts uniquely to the full su(2|4) matrix model. Thus the restriction of
+the one-loop N = 4 SYM dilatation operator to this subsector agrees with the complete
+matrix model Hamiltonian. In other words the matrix model Hamiltonian H 00 = M D00 /2
+is given by
+                        4
+ D00 (1/M ) = D000 −           00 AB    3    00 AB
+                                                     :Tr[WA00 , W̌ 00 C ][WB00 , W̌ 00 D ]:+O(M −4 ), (5.40)
+                                                   
+                          3
+                            (P 1 ) CD + 2
+                                          (P 2 )CD
+                       M
+                                          00
+where the precise form of the projectors P1,2 remains to be evaluated. Alternatively, the
+Hamiltonian density could be determined using (4.27),(4.28),(4.29).
+
+
+6      Outlook
+Here we have constructed the highly intricate, first radiative corrections to the (trivial)
+classical dilatation operator. One might also investigate radiative corrections to the
+other generators of psl(4|4). The generators that receive corrections are the momenta
+and boosts, P, K, Q, Q̇, S, Ṡ. The closure of the algebra, see App. A, should put tight
+constraints on these as well as on the dilatation generator. In fact, these might determine
+the dilatation operator at one-loop or even higher! Let us demonstrate this using the
+related issue of multiplet splitting at the unitarity bounds [43]: We have constructed H as
+an invariant operator under the classical psl(4|4). In the classical psl(4|4), long multiplets
+
+                                                        31
+at the unitarity bounds split up. In the interacting theory these multiplets must rejoin.
+This is, however, only possible if all submultiplets have degenerate anomalous dimensions.
+For instance, we find the following three energies for the Konishi submultiplets
+
+                               E = 4C2 = 6C1 = 6C1 − 2C0 ,                              (6.1)
+
+where we have left the independent coefficients (2.20) unfixed. This consistency require-
+ment determines C0 , C1 , C2 up to an overall constant. A similar argument was used in [8]
+to determine some anomalous dimensions. One might hope that an investigation of the
+twist-two operators (2.30) might constrain all independent coefficients to Cj = c h(j). If
+this works out, all one-loop anomalous dimensions can be obtained purely algebraically
+without evaluating a single Feynman diagram up to one overall constant! This constant
+can finally be fixed by a different consistency argument [8], which merely requires com-
+puting the quotient of two tree-level diagrams. In that spirit it would be very interesting
+to find out if these consistency arguments or, more generally, the closure of the interact-
+ing algebra, can be used to fix the higher-loop contributions to the dilatation generator
+as well. This is not inconceivable, given that the N = 4 action is known to be unique.
+    It would be great to obtain higher-loop contributions to the dilatation generator. If
+the one-loop contribution turns out to be completely fixed by symmetry, only higher-loop
+anomalous dimensions could provide truly dynamical information about N = 4 SYM and
+the dynamical AdS/CFT correspondence. Even better, one might find that all radiative
+corrections are somehow fixed by symmetry and thus kinematical. Also the question of
+higher-loop integrability raised in [23] could be addressed. As a starting point, one might
+restrict to the su(2|3) subsector of Sec. 5.3 or the non-compact sl(2) subsector of Sec. 3 to
+simplify the computations. Eventually a treatment of the complete dilatation generator
+at two-loops would be desirable. This might be feasible using computer algebra packages
+developed for higher-loop calculations within QCD.
+    The idea of investigating the dilatation operator can be generalised to a wider range
+of QFT’s. For instance, a few theories with N = 2 supersymmetry are conformal at
+the quantum level. For these the determination of the dilatation generator might shed
+some light on holographic dualities correspondence away from the well-studied case of
+AdS5 × S 5 . Even in a QFT without conformal invariance the techniques developed
+in [22, 23] can be used to investigate logarithmic corrections to two-point functions and
+scattering amplitudes in a systematic way. In particular in QCD at large Nc and deep in-
+elastic scattering, similar techniques are at use (see e.g. [33]). There, following pioneering
+work of Lipatov [44], methods of integrability have also had much impact.
+    An intriguing feature of Tab. 2,3,4 is that several states have degenerate energies, al-
+though they are not related by sl(4|4) symmetry, see the discussion at the end of Sec. 4.4.
+The occurrence of parity pairs provides some evidence for integrability. Integrability of
+the full planar theory at one-loop and the corresponding Bethe ansatz equations are
+presented in [35], reproducing the anomalous dimensions in the above tables. Apart
+from these, we find more examples of degeneracies. Could this be the result of a further
+symmetry enhancement due to or beyond integrability?
+
+
+
+
+                                             32
+Acknowledgements
+The author benefited from interesting discussions with Thomas Klose, Stefano Kovacs,
+Charlotte Kristjansen, Pedro Liendo, Joe Minahan, Francisco Morales, Jan Plefka and
+Kostya Zarembo. Furthermore, I would like to thank Gleb Arutyunov for sharing his
+insights in superconformal symmetry and for reading the manuscript. In particular I
+am grateful to Matthias Staudacher, for constant interest, general support, and helpful
+remarks regarding this project. I would like to thank the Laboratori Nazionali di Frascati
+and the Department of Theoretical Physics in Uppsala for their hospitality during the
+early stages of this project. Ich danke der Studienstiftung des deutschen Volkes für die
+Unterstützung durch ein Promotionsförderungsstipendium.
+
+
+A     The algebra gl(4|4)
+The algebra gl(4|4) consists of the generators J = (Q, S, Q̇, Ṡ, P, K, L, L̇, R, D, C, B).
+These are the (super)translations Q, Q̇, P , the (super)boosts S, Ṡ, K, the sl(2) × sl(2)
+rotations L, L̇, the sl(4) rotations R as well as the dilatation generator D, central charge
+C and chirality B.
+   Under the rotations L, L̇, R, the indices of any generator J transform canonically
+according to
+                [Lα β , Jγ ] = δγα Jβ − 21 δβα Jγ , [Lα β , J γ ] = −δβγ J α + 21 δβα J γ ,
+                [L̇α̇ β̇ , Jγ̇ ] = δγ̇α̇ Jβ̇ − 12 δβ̇α̇ Jγ̇ , [L̇α̇ β̇ , J γ̇ ] = −δβ̇γ̇ J α̇ + 12 δβ̇α̇ J γ̇ ,   (A.1)
+                 [Ra b , Jc ] = δca Jb − 14 δba Jc ,           [Ra b , J c ] = −δbc J a + 14 δba J c .
+The charges D, C, B of the generators are given by
+                 [D, J] = dim(J) J,                    [C, J] = 0,                [B, J] = chi(J) J               (A.2)
+with non-vanishing dimensions
+    dim(P ) = − dim(K) = 1,               dim(Q) = dim(Q̇) = − dim(S) = − dim(Ṡ) = 12                            (A.3)
+and non-vanishing chiralities
+                          chi(Q) = −chi(Q̇) = −chi(S) = chi(Ṡ) = 12 .                                            (A.4)
+The translations and boosts commuting into themselves are given by
+
+                          [S α a , Pβ γ̇ ] = δβα Q̇γ̇a ,            [K αβ̇ , Q̇γ̇c ] = δγ̇β̇ S α c ,
+                          [Ṡ α̇a , Pβ γ̇ ] = δγ̇α̇ Qa β ,         [K αβ̇ , Qc γ ] = δγα Ṡ β̇c ,                 (A.5)
+                        {Q̇α̇a , Qb β } = δab Pβ α̇ ,              {Ṡ α̇a , S β b } = δba K β α̇ ,
+while the translations and boosts commuting into rotations are given by
+
+                         [K αβ̇ , Pγ δ̇ ] = δδ̇β̇ Lα γ + δγα L̇β̇ δ̇ + δγα δδ̇β̇ D,
+                        {S α a , Qb β } = δab Lα β + δβα Rb a + 12 δab δβα (D − C),
+                        {Ṡ α̇a , Q̇β̇b } = δba L̇α̇ β̇ − δβ̇α̇ Ra b + 12 δba δβ̇α̇ (D + C).                      (A.6)
+
+                                                             33
+The chirality B never appears on the right hand side, it can be dropped. Furthermore,
+the central charge can be set to zero. The resulting algebra is psl(4|4).
+   The quadratic Casimir of gl(4|4) is
+                   J 2 = 21 D2 + 21 Lγ δ Lδ γ + 12 L̇γ̇ δ̇ L̇δ̇ γ̇ − 21 Rc d Rd c
+                           − 21 [Qc γ , S γ c ] − 12 [Q̇γ̇c , Ṡ γ̇c ] − 12 {Pγ δ̇ , K γ δ̇ } − BC.   (A.7)
+For psl(4|4) the last term BC is absent.
+
+
+B      Calculation of diagrams
+The two-point function of operators with vector indices is restricted by conformal sym-
+metry to
+                                           δab (Na + g 2 Na0 )
+     Oa,µ1 ...µm (x) Ob,ν1 ...νn (y) =                         Jµ ν Jµ ν δµ µ δν ν . . . .            (B.1)
+                                          (x − y)2∆0 +2g2 δ∆a i1 i1 i2 i2 i3 i3 i4 i4
+The symbols
+                                           (x − y)µ (x − y)ν
+                                    Jµν = δµν − 2                                  (B.2)
+                                               (x − y)2
+relate conformal tangent spaces at different space-time points. The vectors x − y with
+open indices do not carry essential information, they can be discarded and reconstructed
+later by replacing δµν by Jµν where appropriate. Also the corrections to the normal-
+isation constants N 0 are irrelevant to the anomalous dimension at one-loop. Before
+diagonalisation we thus expect the correlator to have the following structure
+                  Nac (δbc + g 2 δ∆c b log |x − y|−2 )
+                                                       δµi1 νi1 δµi2 νi2 δµi3 µi3 δνi4 νi4 . . .      (B.3)
+                             (x − y)2∆0
+We use the letters
+                                         1
+                            Zk = (a† )k |0i =
+                                           (D1 + iD2 )k (Φ5 + iΦ6 ).              (B.4)
+                                        k!
+The expansion of the covariant derivative D = ∂ − igA can move one ‘bulk’ vertex to
+the position of the field and become a ‘boundary’ vertex. At one-loop there can only be
+one boundary vertex, the contribution from two boundary vertices has no logarithmic
+behaviour. The relevant part of the letter Zk is thus
+                                       k
+                            1 k       X        1
+                        Zk = ∂ Φ − ig                [∂ j−1 A, ∂ k−j Φ].                              (B.5)
+                            k!        j=1
+                                          j!(k − j)!
+
+    We go ahead and calculate the relevant parts of the correlator
+                                 Zk (x1 ) Zn−k (x2 ) Z̄k0 (x3 ) Z̄n−k0 (x4 ) .                        (B.6)
+We restrict to the planar sector and use point splitting regularisation. The matrix of
+anomalous dimensions δ∆ is generated by the Hamiltonian, we which we assume the
+generic form
+                                          n
+                                                           0         0
+                        † k † n−k
+                                         X
+                  H12 (a1 ) (a2 ) |00i =    cn,k,k0 (a†1 )k (a†2 )n−k |00i.     (B.7)
+                                                       k0 =0
+
+
+                                                         34
+Each diagram contributes a set of constants cn,k,k0 , which we will list below. We list the
+contributions separately, they can be reused for a calculation within a different theory.
+   The diagrams Fig. 1a with an intermediate gluon (up to terms where one scalar line
+has been collapsed to a point by the equations of motion) yield the vertex
+                                                  0            0
+                        2
+                       gYM N  ∂1k ∂2n−k ∂3k ∂4n−k   (r − s) Φ(r, s)
+                                                                    ,                (B.8)
+                           2             0
+                       32π k!(n − k)!k !(n − k )! 0     x213 x224
+
+where r, s are the conformal cross ratios
+
+                                       x212 x234                   x214 x223
+                                  r=             ,         s=                .       (B.9)
+                                       x213 x224                   x213 x224
+
+We use the expansion [15] of Φ in the limit x2 → x1 , x4 → x3 (r → 0, s → 1)
+                                ∞
+                                X       (n + m)!2
+                Φ(r, s) = −                          rn (1 − s)m log r + . . .      (B.10)
+                               n,m=0
+                                     m!(1 + 2n + m)!
+
+and obtain the coefficient
+                              1                                       δk6=k0
+                                    + δk=k0 21 h(k) + 12 h(n − k) −
+                                                                 
+               cn,k,k0 =                                                        .   (B.11)
+                           2(n + 1)                                 2|k − k 0 |
+
+Diagram Fig. 1a with a four-point interaction is given by
+                                                           0        0
+                               2
+                              gYM N  ∂1k ∂2n−k ∂3k ∂4n−k   Φ(r, s)
+                                                                                    (B.12)
+                              32π k!(n − k)!k !(n − k )! x213 x224
+                                  2             0        0
+
+
+and the corresponding coefficient is
+                                                          1
+                                      cn,k,k0 = −               .                   (B.13)
+                                                       2(n + 1)
+
+Diagrams Fig. 1a with an intermediate gluon where one scalar line has been collapsed
+to a point by the equations of motion is given by
+                                       0      0
+                  2
+                 gYM N    ∂1k ∂2n−k ∂3k ∂4n−k     (s0 − r0 )Φ(r0 , s0 )
+                                                                        + 3 perm.   (B.14)
+                 32π 2 k!(n − k)!k 0 !(n − k 0 )!      x213 x224
+
+with
+                                       0 x212                 x214
+                                                               0
+                                      r = 2 ,              s = 2                    (B.15)
+                                         x24                  x24
+and the corresponding coefficient is
+                                                      δk6=k0
+            cn,k,k0 = δk=k0 − 12 h(k + 1) − 12 h(n − k + 1) +
+                                                           
+                                                    2|k − k 0 |
+                        δk>k0    δk<k0      δk<k0            δk>k0
+                    −         −        −             −              .               (B.16)
+                      4(k + 1) 4(k + 1) 4(n − k + 1) 4(n − k 0 + 1)
+                                  0
+
+
+
+                                                      35
+Diagrams Fig. 1a0 yields
+          k               0
+                                   !                               0
+                                                                                  !
+    2
+   gYM N X         ∂1k−j ∂3k   1       ∂1j−1 (∂1 + 2∂2 )∂2n−k ∂4n−k Φ(r0 , s0 )
+                                                                                      + 3 perm.   (B.17)
+   32π 2 j=1      (k − j)!k x213
+                             0             j!(n − k)!(n − k 0 )!      x224
+
+and the corresponding coefficient is
+                   δk6=k0     δk>k0   δk<k0     δk<k0        δk>k0
+   cn,k,k0 = −              +       +       +           +               .                         (B.18)
+                 |k − k | 4(k + 1) 4(k + 1) 4(n − k + 1) 4(n − k 0 + 1)
+                          0            0
+
+
+The contributions from diagrams Fig. 1c with an intermediate gluon, with intermediate
+fermions and the contributions from Fig. 1c’, respectively, are given by
+
+          cn,k,k0 = −δk=k0 ,
+          cn,k,k0 = 2δk=k0 ,
+          cn,k,k0 = δk=k0 12 h(k) + 21 h(n − k) + 21 h(k + 1) + 12 h(n − k + 1) − 1 .
+                                                                                   
+                                                                                                  (B.19)
+
+The sum of all coefficients is
+                                                            δk6=k0
+                         cn,k,k0 = δk=k0 h(k) + h(n − k) −            .                           (B.20)
+                                                           |k − k 0 |
+
+
+References
+ [1] J. M. Maldacena, “The large N limit of superconformal field theories and supergravity”,
+     Adv. Theor. Math. Phys. 2, 231 (1998), hep-th/9711200. • E. Witten, “Anti-de Sitter
+     space and holography”, Adv. Theor. Math. Phys. 2, 253 (1998), hep-th/9802150. •
+     S. S. Gubser, I. R. Klebanov and A. M. Polyakov, “Gauge theory correlators from
+     non-critical string theory”, Phys. Lett. B428, 105 (1998), hep-th/9802109.
+ [2] R. R. Metsaev, “Type IIB Green-Schwarz superstring in plane wave Ramond-Ramond
+     background”, Nucl. Phys. B625, 70 (2002), hep-th/0112044.
+ [3] D. Berenstein, J. M. Maldacena and H. Nastase, “Strings in flat space and pp waves
+     from N = 4 Super Yang Mills”, JHEP 0204, 013 (2002), hep-th/0202021.
+ [4] S. S. Gubser, I. R. Klebanov and A. M. Polyakov, “A semi-classical limit of the
+     gauge/string correspondence”, Nucl. Phys. B636, 99 (2002), hep-th/0204051. • S. Frolov
+     and A. A. Tseytlin, “Semiclassical quantization of rotating superstring in AdS5 × S 5 ”,
+     JHEP 0206, 007 (2002), hep-th/0204226.
+ [5] F. Gliozzi, J. Scherk and D. I. Olive, “Supersymmetry, Supergravity theories and the dual
+     spinor model”, Nucl. Phys. B122, 253 (1977). • L. Brink, J. H. Schwarz and J. Scherk,
+     “Supersymmetric Yang-Mills Theories”, Nucl. Phys. B121, 77 (1977).
+ [6] M. F. Sohnius and P. C. West, “Conformal invariance in N = 4 Supersymmetric
+     Yang-Mills Theory”, Phys. Lett. B100, 245 (1981). • P. S. Howe, K. S. Stelle and
+     P. K. Townsend, “Miraculous ultraviolet cancellations in supersymmetry made
+     manifest”, Nucl. Phys. B236, 125 (1984). • L. Brink, O. Lindgren and B. E. W. Nilsson,
+     “N = 4 Yang-Mills theory on the light cone”, Nucl. Phys. B212, 401 (1983).
+
+                                                  36
+ [7] V. K. Dobrev and V. B. Petkova, “All positive energy unitary irreducible representations
+     of extended conformal supersymmetry”, Phys. Lett. B162, 127 (1985).
+ [8] D. Anselmi, M. T. Grisaru and A. Johansen, “A Critical Behaviour of Anomalous
+     Currents, Electric-Magnetic Universality and CFT4 ”, Nucl. Phys. B491, 221 (1997),
+     hep-th/9601023. • D. Anselmi, “The N = 4 quantum conformal algebra”,
+     Nucl. Phys. B541, 369 (1999), hep-th/9809192.
+ [9] A. Santambrogio and D. Zanon, “Exact anomalous dimensions of N = 4 Yang-Mills
+     operators with large R charge”, Phys. Lett. B545, 425 (2002), hep-th/0206079.
+[10] E. D’Hoker, D. Z. Freedman and W. Skiba, “Field theory tests for correlators in the
+     AdS/CFT correspondence”, Phys. Rev. D59, 045008 (1999), hep-th/9807098. •
+     S. Penati, A. Santambrogio and D. Zanon, “Two-point functions of chiral operators in
+     N = 4 SYM at order g 4 ”, JHEP 9912, 006 (1999), hep-th/9910197. • S. Penati,
+     A. Santambrogio and D. Zanon, “More on correlators and contact terms in N = 4 SYM
+     at order g 4 ”, Nucl. Phys. B593, 651 (2001), hep-th/0005223.
+[11] G. Arutyunov, B. Eden, A. C. Petkou and E. Sokatchev, “Exceptional
+     non-renormalization properties and OPE analysis of chiral four-point functions in N = 4
+     SYM4 ”, Nucl. Phys. B620, 380 (2002), hep-th/0103230.
+[12] M. Bianchi, S. Kovacs, G. Rossi and Y. S. Stanev, “On the logarithmic behavior in
+     N = 4 SYM theory”, JHEP 9908, 020 (1999), hep-th/9906188. • M. Bianchi, S. Kovacs,
+     G. Rossi and Y. S. Stanev, “Anomalous dimensions in N = 4 SYM theory at order g 4 ”,
+     Nucl. Phys. B584, 216 (2000), hep-th/0003203.
+[13] A. V. Kotikov and L. N. Lipatov, “NLO corrections to the BFKL equation in QCD and
+     in supersymmetric gauge theories”, Nucl. Phys. B582, 19 (2000), hep-ph/0004008. •
+     A. V. Kotikov and L. N. Lipatov, “DGLAP and BFKL evolution equations in the N = 4
+     supersymmetric gauge theory”, hep-ph/0112346. • F. A. Dolan and H. Osborn,
+     “Superconformal symmetry, correlation functions and the operator product expansion”,
+     Nucl. Phys. B629, 3 (2002), hep-th/0112251.
+[14] A. V. Kotikov and L. N. Lipatov, “DGLAP and BFKL equations in the N = 4
+     supersymmetric gauge theory”, Nucl. Phys. B661, 19 (2003), hep-ph/0208220. •
+     A. V. Kotikov, L. N. Lipatov and V. N. Velizhanin, “Anomalous dimensions of Wilson
+     operators in N = 4 SYM theory”, Phys. Lett. B557, 114 (2003), hep-ph/0301021.
+[15] G. Arutyunov, S. Frolov and A. C. Petkou, “Operator product expansion of the lowest
+     weight CPOs in N = 4 SYM4 at strong coupling”, Nucl. Phys. B586, 547 (2000),
+     hep-th/0005182.
+[16] S. Penati and A. Santambrogio, “Superspace approach to anomalous dimensions in
+     N = 4 SYM”, Nucl. Phys. B614, 367 (2001), hep-th/0107071.
+[17] A. V. Ryzhov, “Quarter BPS operators in N = 4 SYM”, JHEP 0111, 046 (2001),
+     hep-th/0109064.
+[18] M. Bianchi, B. Eden, G. Rossi and Y. S. Stanev, “On operator mixing in N = 4 SYM”,
+     Nucl. Phys. B646, 69 (2002), hep-th/0205321. • G. Arutyunov, S. Penati, A. C. Petkou,
+     A. Santambrogio and E. Sokatchev, “Non-protected operators in N = 4 SYM and
+     multiparticle states of AdS5 SUGRA”, Nucl. Phys. B643, 49 (2002), hep-th/0206020.
+[19] C. Kristjansen, J. Plefka, G. W. Semenoff and M. Staudacher, “A new double-scaling
+     limit of N = 4 super Yang-Mills theory and PP-wave strings”,
+
+                                             37
+    Nucl. Phys. B643, 3 (2002), hep-th/0205033. • D. J. Gross, A. Mikhailov and
+    R. Roiban, “Operators with large R charge in N = 4 Yang-Mills theory”,
+    Annals Phys. 301, 31 (2002), hep-th/0205066. • N. R. Constable, D. Z. Freedman,
+    M. Headrick, S. Minwalla, L. Motl, A. Postnikov and W. Skiba, “PP-wave string
+    interactions from perturbative Yang-Mills theory”, JHEP 0207, 017 (2002),
+    hep-th/0205089.
+[20] N. Beisert, C. Kristjansen, J. Plefka, G. W. Semenoff and M. Staudacher, “BMN
+     Correlators and Operator Mixing in N = 4 Super Yang-Mills Theory”,
+     Nucl. Phys. B650, 125 (2003), hep-th/0208178.
+[21] N. R. Constable, D. Z. Freedman, M. Headrick and S. Minwalla, “Operator mixing and
+     the BMN correspondence”, JHEP 0210, 068 (2002), hep-th/0209002.
+[22] N. Beisert, C. Kristjansen, J. Plefka and M. Staudacher, “BMN Gauge Theory as a
+     Quantum Mechanical System”, Phys. Lett. B558, 229 (2003), hep-th/0212269.
+[23] N. Beisert, C. Kristjansen and M. Staudacher, “The Dilatation Operator of N = 4
+     Conformal Super Yang-Mills Theory”, Nucl. Phys. B664, 131 (2003), hep-th/0303060.
+[24] M. Spradlin and A. Volovich, “Note on plane wave quantum mechanics”,
+     Phys. Lett. B565, 253 (2003), hep-th/0303220.
+[25] J. A. Minahan and K. Zarembo, “The Bethe-ansatz for N = 4 super Yang-Mills”,
+     JHEP 0303, 013 (2003), hep-th/0212208.
+[26] N. Beisert, J. A. Minahan, M. Staudacher and K. Zarembo, “Stringing Spins and
+     Spinning Strings”, JHEP 0309, 010 (2003), hep-th/0306139.
+[27] S. Frolov and A. A. Tseytlin, “Rotating string solutions: AdS/CFT duality in
+     non-supersymmetric sectors”, Phys. Lett. B570, 96 (2003), hep-th/0306143.
+[28] I. Bena, J. Polchinski and R. Roiban, “Hidden symmetries of the AdS5 × S 5
+     superstring”, Phys. Rev. D69, 046002 (2004), hep-th/0305116.
+[29] U. Gürsoy, “Vector operators in the BMN correspondence”, JHEP 0307, 048 (2003),
+     hep-th/0208041.
+[30] T. Klose, “Conformal Dimensions of Two-Derivative BMN Operators”,
+     JHEP 0303, 012 (2003), hep-th/0301150.
+[31] C.-S. Chu, V. V. Khoze and G. Travaglini, “BMN operators with vector impurities, Z2
+     symmetry and pp-waves”, JHEP 0306, 050 (2003), hep-th/0303107.
+[32] N. Beisert, “BMN Operators and Superconformal Symmetry”,
+     Nucl. Phys. B659, 79 (2003), hep-th/0211032.
+[33] L. D. Faddeev and G. P. Korchemsky, “High-energy QCD as a completely integrable
+     model”, Phys. Lett. B342, 311 (1995), hep-th/9404173. • V. M. Braun, S. E. Derkachov
+     and A. N. Manashov, “Integrability of three-particle evolution equations in QCD”,
+     Phys. Rev. Lett. 81, 2020 (1998), hep-ph/9805225. • A. V. Belitsky, A. S. Gorsky and
+     G. P. Korchemsky, “Gauge/string duality for QCD conformal operators”,
+     Nucl. Phys. B667, 3 (2003), hep-th/0304028.
+[34] M. Günaydin and N. Marcus, “The spectrum of the S 5 compactification of the chiral
+     N = 4, D = 10 supergravity and the unitary supermultiplets of U (2, 2|4)”,
+     Class. Quant. Grav. 2, L11 (1985).
+
+
+                                            38
+[35] N. Beisert and M. Staudacher, “The N = 4 SYM Integrable Super Spin Chain”,
+     Nucl. Phys. B670, 439 (2003), hep-th/0307042.
+[36] N. Kim, T. Klose and J. Plefka, “Plane-wave Matrix Theory from N = 4 Super
+     Yang-Mills on R × S3”, Nucl. Phys. B671, 359 (2003), hep-th/0306054.
+[37] K. A. Intriligator, “Bonus symmetries of N = 4 super-Yang-Mills correlation functions
+     via AdS duality”, Nucl. Phys. B551, 575 (1999), hep-th/9811047.
+[38] M. Bianchi, J. F. Morales and H. Samtleben, “On stringy AdS5 × S 5 and higher spin
+     holography”, JHEP 0307, 062 (2003), hep-th/0305052.
+[39] L. D. Faddeev, “How Algebraic Bethe Ansatz works for integrable model”,
+     hep-th/9605187, in: “Relativistic gravitation and gravitational radiation”, ed.:
+     J.-A. Marck and J.-P. Lasota, Cambridge University Press, Cambridge.
+[40] N. Beisert, M. Bianchi, J. F. Morales and H. Samtleben, “On the Spectrum of AdS/CFT
+     beyond Supergravity”, JHEP 0402, 001 (2004), hep-th/0310292.
+[41] S. E. Konshtein and M. A. Vasiliev, “Massless representations and admissibility
+     condition for higher spin superalgebras”, Nucl. Phys. B312, 402 (1989). • B. Sundborg,
+     “Stringy gravity, interacting tensionless strings and massless higher spins”,
+     Nucl. Phys. Proc. Suppl. 102, 113 (2001), hep-th/0103247. • E. Sezgin and P. Sundell,
+     “Doubletons and 5D higher spin gauge theory”, JHEP 0109, 036 (2001),
+     hep-th/0105001. • A. Mikhailov, “Notes on higher spin symmetries”, hep-th/0201019.
+[42] E. D’Hoker, P. Heslop, P. Howe and A. V. Ryzhov, “Systematics of quarter BPS
+     operators in N = 4 SYM”, JHEP 0304, 038 (2003), hep-th/0301104.
+[43] L. Andrianopoli, S. Ferrara, E. Sokatchev and B. Zupnik, “Shortening of primary
+     operators in N-extended SCFT4 and harmonic-superspace analyticity”,
+     Adv. Theor. Math. Phys. 4, 1149 (2000), hep-th/9912007.
+[44] L. N. Lipatov, “High-energy asymptotics of multicolor QCD and exactly solvable lattice
+     models”, JETP Lett. 59, 596 (1994), hep-th/9311037.
+
+
+
+
+                                              39
+

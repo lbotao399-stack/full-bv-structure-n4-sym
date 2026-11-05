@@ -1,0 +1,518 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=2.0cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,longtable}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black]{hyperref}
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\pl}{\mathfrak{psl}(4|4)}
+\newcommand{\E}{\mathfrak E}
+\newcommand{\V}{\mathcal V}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\Ob}{\mathrm{Ob}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\Lt}{\log\tfrac32}
+\newcommand{\Wp}{W_{\mathbb R}^\perp}
+\newcommand{\lf}{\mathfrak l}
+\newcommand{\uu}{\mathsf u}
+\newcommand{\ee}{\mathsf e}
+\newcommand{\tg}{\mathrm{tg}}
+\title{One-loop superconformal components of $\mathcal N=4$ SYM in the Costello BV construction:\\ freedoms, transformation laws, invariants}
+\author{}
+\date{2026-11-05}
+\begin{document}
+\maketitle
+
+\noindent References. [M]: the manuscript of \texttt{N4\_Costello\_BV\_2026-10-27} (labels as in its sources, chapters 2--12). [C07]: K.~Costello, arXiv:0706.1533 (Def~4.3.3 gauge fixing axioms (1)--(5); \S11 families of gauge fixings; Thm~B, Thm~C). [CG2]: K.~Costello, O.~Gwilliam, \emph{Factorization algebras in QFT} vol.~2. [ESW]: arXiv:2002.10517. [BK]: arXiv:2512.07771. [B03c]: N.~Beisert, hep-th/0307015. [B03d]: N.~Beisert, hep-th/0310252. [BBH]: G.~Barnich, F.~Brandt, M.~Henneaux, hep-th/0002245. [HB]: \texttt{Higher\_brackets\_from\_Costello\_2026-10-06}, Remark \texttt{rem:scheme}. [TW]: \texttt{step2/next/twist/twist.tex} (2026-11-05). [GF]: \texttt{\~{}/N4\_BV\_HK2/gf/PROGRESS.txt} (2026-11-05). [SQ]: \texttt{sqed\_Q1\_biletters.tex}. Checks: \texttt{checks.py}, \texttt{checks.json} (blocks C1--C9). Unit $=\frac{\hbar\operatorname{tr}_{\mathfrak g}(\ad_X\ad_Y)}{16\pi^2(X,Y)}=-\frac{g^2N}{32\pi^2}$, $L:=\Lt$.
+
+\section{The object}
+
+\begin{definition}[Data]\label{def:data}
+Fixed: the classical equivariant action $S_{\pl}=S+S^{(1)}+S^{(2)}$ [M, Def c2-action]; a gauge-fixing operator $Q^{GF}$; a regularisation (Definition \ref{def:profile}); the counterterm convention (singular parts in $\operatorname{span}\{\varepsilon^{-m}\log^k\varepsilon\}_{(m,k)\ne(0,0)}$). A one-loop scheme is a pair $(\hbar F_1,\psi)$: $sF_1=\Ob$ [M, Thm c8-obstruction (ii)], $\psi$ as in [M, Def c8-renorm]. $L=d_{CE}+\Lambda$ is the local representative [M, Def c8-rep, Thm c8-L], $L=s+\hbar L_1+O(\hbar^2)$, $\Lambda_1:=L_1$. The components are [M, Def c8-components]
+\[
+\begin{gathered}
+Q_1(O)=\hbar L_1(O)^{(1)}(\xi),\qquad S_1(O)=\hbar L_1(O)^{(1)}(\eta),\qquad D_1(O)=\hbar L_1(O)^{(1)}(\Delta),\\
+K_1,\ P_1,\ M_1,\ R_1\ \text{the same along }K_b,\ P_b,\ M_\omega,\ R_r;\qquad \hbar L_1(O)^{(0)},\qquad \hbar L_1(O)^{(2)}(x,y).
+\end{gathered}
+\]
+\end{definition}
+
+\begin{definition}[Operator cochains]\label{def:E}
+$\E$ := the $C^\bullet(\pl)$-linear operators $X$ on local cochains, independent of $\varepsilon$ and $T$, preserving the Weyl weight of [M, Def c8-quant], local to local. $\E^n$: total degree $n$. $X=\sum_{k\ge0}X^{(k)}$, $X^{(k)}$ raising the arity by $k$. $[X,Y]$: graded commutator. $\partial X:=[s,X]$.
+\end{definition}
+
+\begin{lemma}\label{lem:def}
+(i) $\partial^2=0$. (ii) $L\circ L=0$ mod $\hbar^2$ $\Leftrightarrow$ $\partial L_1=0$. (iii) For $U=1+\hbar\mathfrak u$, $\mathfrak u\in\E^0$: $U^{-1}LU=s+\hbar(L_1+\partial\mathfrak u)+O(\hbar^2)$. (iv) $\psi\in\E^0$; $\ad_\phi:=\{\phi,-\}\in\E^0$ for $\phi$ local of degree $-1$; $\ad_G\in\E^1$, $\partial\,\ad_G=\pm\ad_{sG}$ for $G$ of degree $0$.
+\end{lemma}
+\begin{proof}
+(i) $[d_{CE},X]$ is $C^\bullet$-linear for $C^\bullet$-linear $X$; $s^2=0$. (ii) $L\circ L=s^2+\hbar(sL_1+L_1s)+O(\hbar^2)$. (iii) $(1-\hbar\mathfrak u)(s+\hbar L_1)(1+\hbar\mathfrak u)=s+\hbar(L_1+s\mathfrak u-\mathfrak us)$. (iv) [M, Def c8-renorm, Def c2-dce]; [M, Lemma c12-deriv].
+\end{proof}
+
+\begin{definition}[Point operators]\label{def:V}
+$\V$ := degree-$0$ cohomology of $\Lambda_0^{(0)}=Q+\{I,-\}$ on local functionals with density at the origin, Killing data centred there [M, Def c12-centred]. $\V=\bigoplus_w\V_w$ by classical Weyl weight, $\dim\V_w<\infty$. $\rho_0(x)$ := map induced by $-\Lambda_0^{(1)}(x)$ [M, Def c12-class]; $\rho_0(\Delta)|_{\V_w}=-2w$ [M, Lemma c9-SDelta (i)]. $\lf:=\mathfrak{so}(V)\oplus\mathfrak{so}(\Wp)\oplus\mathbb C\Delta$, $\mathfrak n_-:=V\oplus\Sigma$ ($P_b$, $\xi$), $\mathfrak n_+:=\Sigma^*\oplus V$ ($\eta$, $K_b$); $\rho_0(x)\V_w\subset\V_{w-\lambda_x/2}$. $\End(\V)_0$: weight-preserving endomorphisms; $\End(\V)_{\rm h}$: homogeneous ones.
+\end{definition}
+
+\begin{hypothesis}\label{hyp:H0}
+(H0) $L_1^{(0)}$ vanishes on a set of representatives of $\V$.
+\end{hypothesis}
+
+\begin{remark}
+(H0) is reached by $\psi$ when $[\Lambda_1^{(0)}]:\V\to H^1(\Lambda_0^{(0)})$ vanishes [M, Def c10-hyp (ii)]; on local functions at a point $H^1(\Lambda_0^{(0)})=0$ for semisimple gauge algebra (ghost classes are $\operatorname{tr}c^{2r-1}$, $r\ge2$ [BBH]).
+\end{remark}
+
+\begin{definition}[Induced cocycle]\label{def:delta}
+Under (H0), $\delta(x)$ := map induced by $-\hbar\Lambda_1^{(1)}(x)$ on $\V$. Then $\rho_0+\delta$ is a representation of $\pl$ on $\V\otimes\mathbb C[\hbar]/\hbar^2$:
+\[
+\delta\in Z^1\big(\pl;\End(\V)_{\rm h}\big),\qquad \delta([x,y])=[\delta(x),\rho_0(y)]+[\rho_0(x),\delta(y)]
+\]
+[M, Cor c8-homotopy, Thm c12-opalg (iii)]. Anomalous dimension: $\rho_0(\Delta)+\delta(\Delta)=-2(w+\gamma)$, i.e. $\delta(\Delta)=-D_1$, $D_1=2\gamma$ on eigenvectors.
+\end{definition}
+
+\section{The freedoms}
+
+\begin{theorem}[Complete list]\label{thm:list}
+The inputs of $L_1$ beyond $S_{\pl}$ are exactly:
+\begin{itemize}
+\item[(a)] $\hbar F_1\in F^{\rm ref}+Z^0$, $Z^0:=\{G\ \text{local cochain},\ \deg0,\ \text{weight }4,\ \text{quantum numbers of [M, Thm c12-bound]},\ sG=0\}$. Inside $Z^0$:
+\begin{itemize}
+\item[(a1)] $B^0=s(\Phi^{-1})$, $\Phi^{-1}$ := local cochains of degree $-1$, weight $4$; $\phi=\phi^{(0)}+\phi^{(1)}+\phi^{(2)}+\cdots$. $\phi^{(0)}$: field redefinitions, among them the field countings $\mathcal N_f$, $f\in\{A|_V,A|_{\Wp},\lambda,c\}$ (quadratic parts $Q\mathcal N_f$: the $Q$-closed directions $\beta_1,\dots,\beta_4$ of $\hbar F_1^{(0)}|_2$), the inner direction $S^{(1)}(\Delta)$, and $S^{(1)}(y)$, $y\in\mathfrak{so}(V)\oplus\mathfrak{so}(\Wp)$ (non-covariant). $\phi^{(1)}(x)$: $x$-dependent redefinitions; $(Q+\{I,-\})\phi^{(1)}(x)$ are the $Q$-exact directions of $\hbar F_1^{(1)}(x)$ ($\kappa_V,\kappa_\lambda$ along $\Delta$ and their parts along $P_b$). $\phi^{(2)}(x,y)$: exact directions of $\hbar F_1^{(2)}$.
+\item[(a2)] $Z^0/B^0=H^0(s)\supseteq\mathbb C[S-S^{(2)}]\oplus\mathbb C[G_B]$ [M, Thm c8-obstruction (iv), Prop c8-B].
+\item[(a3)] Closed directions of $\hbar F_1^{(1)}(x)$ at fixed $\hbar F_1^{(0)}$: $H^{-1}(Q+\{I,-\})$ classes (uniform $t_xS^{(1)}(x)$; on two legs the sector parts $S^{(1)}(x)_d$; along $K_b$ also $G^K_1,\dots,G^K_4$). The arity-two equations restrict $t$ to a diagonal derivation, $t\in\mathbb C\lambda\oplus\mathbb C B$ (C1a: the diagonal derivations of $\pl$ on the nine blocks form a $2$-dimensional space spanned by $\lambda$ and $B$).
+\end{itemize}
+\item[(b)] $\psi^{(0)}$: finite parts of every local operator, gauge-variant ones included: single letters, ghost composites $c\cdot X$, antifield composites, composites of any length; non-derivation (second order on words).
+\item[(c)] $Q^{GF}\in\mathcal G$, $\mathcal G$ := operators satisfying [C07, Def 4.3.3] (1)--(5), covariant under translations, $\mathfrak{so}(V)$, $\mathfrak{so}(\Wp)$, scaling; only path components of $\mathcal G$ enter (Theorem \ref{thm:gf}).
+\item[(d)] The regularisation: profile $\varpi\in\{\varpi\ \text{smooth, rapidly decreasing on }[0,\infty),\ \varpi(0)=1\}$ (Definition \ref{def:profile}), the unit of length in $\log\varepsilon$, or any other regularisation of the one-loop graphs (point splitting, Pauli--Villars, DR, BMHV, DRED) completed by finite local counterterms to the equivariant QME.
+\item[(e)] Labels: (e1) tree-level automorphisms $U_0$ of local cochains with $[U_0,s]=0$; (e2) the normalisation of $\hbar$ against the unit; (e3) relative normalisation of operators of different length.
+\item[(f)] $\psi^{(k)}$, $k\ge1$: arity-raising components of $\psi$ (e.g. a finite part of $c\cdot X$ with a component linear in $\xi$), the homotopies of the $L_\infty$ morphism $\pl\to\End$ within its class.
+\end{itemize}
+\end{theorem}
+\begin{proof}{}[M, Def c8-quant, c8-renorm, c8-rep] use $S_{\pl}$, $Q^{GF}$, the regularisation, the counterterm convention, $F_{\pl}$, $\psi$, the unit and the classical labels; $L$ is $T$-independent [M, Thm c8-L (ii)]. Solutions of $sF_1=\Ob$: affine over $Z^0$ [M, Thm c8-obstruction (iii)]. A change of the counterterm convention or of the unit of $\varepsilon$ is a finite local counterterm [C07, Thm C], included in (a), (b) by Theorem \ref{thm:reg}. (a3): [M, Thm c12-eq1 (iii), Thm c12-fix (ii)]; C1a.
+\end{proof}
+
+\begin{lemma}[Locality of scheme differences]\label{lem:loc}
+Let $R,R'$ be two regularisations of the one-loop graphs with the same vertices and the same limit propagator $P(0,T)$, each followed by subtraction of local singular parts. For every one-loop graph $G$ of superficial degree $D$ at generic external momenta $p$,
+\[
+G^{\rm ren}_{R'}(p)-G^{\rm ren}_R(p)\ \in\ \text{polynomials of degree}\le D\ \text{in }p\quad(\text{tree flow of a local functional}).
+\]
+\end{lemma}
+\begin{proof}
+$\partial_p^{D+1}$ annihilates the subtracted parts (polynomials of degree $\le D$, [C07, Thm B], [M, Lemma c4-local]); $\partial_p^{D+1}G_R\to\partial_p^{D+1}G$, an absolutely convergent integral, for every $R$ (dominated convergence for multiplicative edge regulators $0\le\varpi\le1$; continuity in $d$ at $d=4$ for DR). One loop: no subdivergence.
+\end{proof}
+
+\begin{theorem}[Regularisations]\label{thm:reg}
+Let $R,R'$ be as in Lemma \ref{lem:loc}, with the same valid $Q^{GF}$, each with the equivariant QME restored by finite local counterterms and local operator counterterms. There are a local cochain $\Gamma$ of degree $0$ and $\psi_{RR'}\in\E^0$ with
+\[
+\Ob^{R'}=\Ob^R+s\Gamma,\qquad F^{R'}:=F^R+\Gamma,\qquad L_1^{R'}\big(F^R+\Gamma,\psi+\psi_{RR'}\big)=L_1^R(F^R,\psi).
+\]
+Hence the set of one-loop structures $L_1$ is the same for $R$ and $R'$.
+\end{theorem}
+\begin{proof}
+Lemma \ref{lem:loc} on the graphs of the action: $W^{\rm ren}_{R'}=W^{\rm ren}_R+\mathrm{tree}(\Gamma)$; the order-$\hbar$ QME defect of $\mathrm{tree}(\Gamma)$ is $\mathrm{tree}(s\Gamma)$; injectivity of the tree flow [M, Thm c8-L (i)]. On graphs with one vertex $\delta O$: $O[T]_{R'}=O[T]_R+\mathrm{tree}(\psi_{RR'}(O))$ plus the insertion of $\Gamma$; $L$ is fixed by $d_TO[T]=L(O)[T]$ and is unique.
+\end{proof}
+
+\begin{theorem}[Gauge fixing]\label{thm:gf}
+Let $Q^{GF}_\tau$, $\tau\in[0,1]$, be a smooth family satisfying [C07, Def 4.3.3] (1)--(5), covariant under translations, $\mathfrak{so}(V)$, $\mathfrak{so}(\Wp)$ and scaling. Assume (Hc): the one-loop equivariant QME and local representatives exist for the family over $\Omega^\bullet([0,1])$ [C07, \S11]. Then
+\[
+L_1(1)=L_1(0)+\partial\mathfrak u-\textstyle\sum_ia_i\,\ad_{G_i},\qquad \mathfrak u=\int_0^1\chi_1(\tau)\,d\tau\in\E^0,\quad [G_i]\in H^0(s).
+\]
+\end{theorem}
+\begin{proof}
+Family representative $\tilde L=L(\tau)+d\tau\,\chi(\tau)$; $(d_\tau+\tilde L)^2=0$ gives $\partial_\tau L=[L,\chi]$. $s$ is independent of $\tau$ ($S_{\pl}$ does not contain $Q^{GF}$), so $\chi=\hbar\chi_1+O(\hbar^2)$ and $\partial_\tau L_1=\partial\chi_1$. The family solution at $\tau=1$ differs from the chosen $F_1(1)$ by $Z^0$: Lemma \ref{lem:def} (iii), (iv).
+\end{proof}
+
+\begin{theorem}[Reduction]\label{thm:red}
+Every change in (a)--(f) acts as
+\[
+L_1\ \longmapsto\ U_0^{-1}\Big(L_1+\partial\mathfrak u-\textstyle\sum_ia_i\,\ad_{G_i}\Big)U_0,\qquad \mathfrak u\in\E^0,\ [G_i]\in H^0(s),\ U_0\ \text{of (e1)},
+\]
+with $\mathfrak u=\ad_\phi$ for (a1), $\mathfrak u=\psi'$ for (b), (f), $\mathfrak u$ of Theorem \ref{thm:gf} for (c), $(\Gamma,\psi_{RR'})$ of Theorem \ref{thm:reg} for (d); (e2) rescales $L_1$.
+\end{theorem}
+\begin{proof}{}[M, Prop c8-laws (a)--(c)]; Theorems \ref{thm:reg}, \ref{thm:gf}.
+\end{proof}
+
+\begin{corollary}[Homotopy class]\label{cor:hclass}
+The class
+\[
+[L_1]\ \in\ H^1(\E,\partial)\big/\operatorname{span}\{[\ad_G]:[G]\in H^0(s)\}
+\]
+is invariant under (a)--(d), (f), and transforms under (e1) by $U_0$. It is the $L_\infty$-homotopy class of the one-loop deformation of the classical equivariant structure $s$ on local cochains: the cocycle condition is $L\circ L=0$ mod $\hbar^2$ (Lemma \ref{lem:def} (ii)), the coboundaries are the conjugations $1+\hbar\mathfrak u$ (Lemma \ref{lem:def} (iii)).
+\end{corollary}
+
+\section{Transformation laws}
+
+\begin{theorem}[Chain level]\label{thm:laws}
+For $\mathfrak u=\sum_k\mathfrak u^{(k)}\in\E^0$, the change $\partial\mathfrak u$ has the arity components
+\[
+\begin{aligned}
+(\partial\mathfrak u)^{(0)}&=[\Lambda_0^{(0)},\mathfrak u^{(0)}],\\
+(\partial\mathfrak u)^{(1)}&=[\Lambda_0^{(0)},\mathfrak u^{(1)}]+[\Lambda_0^{(1)},\mathfrak u^{(0)}],\\
+(\partial\mathfrak u)^{(2)}&=[\Lambda_0^{(0)},\mathfrak u^{(2)}]+[\Lambda_0^{(1)},\mathfrak u^{(1)}]+[\Lambda_0^{(2)},\mathfrak u^{(0)}]+[d_{CE},\mathfrak u^{(1)}],
+\end{aligned}
+\]
+components by the sign rule of [M, Thm c8-L (iv)]; $[d_{CE},\mathfrak u^{(0)}]=0$. For $\mathfrak u=\ad_\phi$: $\partial\ad_\phi=-\ad_{s\phi}$ with $(s\phi)^{(0)}=\Lambda_0^{(0)}\phi^{(0)}$, $(s\phi)^{(1)}(x)=\Lambda_0^{(0)}\phi^{(1)}(x)+\{\phi^{(0)},S^{(1)}(x)\}$, $(s\phi)^{(2)}$ by [M, Lemma c12-wz (i)]. For $G=S-S^{(2)}$: $\big(-a\Lambda_0^{(0)},\,0,\,+a\,\ad_{S^{(2)}}\big)$. For $G=G_B$: $\big(0,\,-a\,b_x\ad_{S^{(1)}(x)},\,-a\,\ad_{S^{(2)}(B\cdot,\cdot)+S^{(2)}(\cdot,B\cdot)}\big)$, $b_x$ the $B$-eigenvalue. Per generator, in arity one:
+\[
+\begin{array}{lll}
+\toprule
+\text{freedom}&\text{change of }\hbar L_1(\,\cdot\,)^{(1)}(x)&\text{on }\V\\\midrule
+\psi'=\mathfrak u^{(0)}\ \text{(b)}&\hbar[\Lambda_0^{(1)}(x),\psi']&[\rho_0(x),\ee]\\
+\mathfrak u^{(1)}\ \text{(f)}&\hbar[\Lambda_0^{(0)},\mathfrak u^{(1)}(x)]&0\\
+\phi^{(0)}\ \text{(a1)}&-\hbar\,\ad_{\{\phi^{(0)},S^{(1)}(x)\}}&[\rho_0(x),\ee]\\
+\phi^{(1)}\ \text{(a1)}&-\hbar\,\ad_{\Lambda_0^{(0)}\phi^{(1)}(x)}&0\\
+t=c\lambda+aB\ \text{(a3)}&-\hbar\,t_x\ad_{S^{(1)}(x)}&c\,[\rho_0(x),\rho_0(\Delta)]=-c\lambda_x\rho_0(x)\ \text{(inner)},\ -a\,\rho_0(Bx)\\
+S-S^{(2)}\ \text{(a2)}&0&0\\
+G_B\ \text{(a2)}&-a\hbar\,b_x\ad_{S^{(1)}(x)}&-a\,\rho_0(Bx)\\
+\bottomrule
+\end{array}
+\]
+$b_x=+1$ on $S_+\otimes W\subset\Sigma$, $S_-\otimes W\subset\Sigma^*$; $-1$ on $S_-\otimes W^*\subset\Sigma$, $S_+\otimes W^*\subset\Sigma^*$; $0$ on even $x$. Along $Q,S,D,K,P,M,R$: $x=\xi,\eta,\Delta,K_b,P_b,M_\omega,R_r$.
+\end{theorem}
+\begin{proof}
+$s=d_{CE}+\Lambda_0^{(0)}+\Lambda_0^{(1)}+\Lambda_0^{(2)}$, $\Lambda_0^{(k)}$ and $\mathfrak u^{(k)}$ raising the arity by $k$, $d_{CE}$ by $1$; collect $[s,\mathfrak u]$ by arity. $\mathfrak u^{(0)}$ acts on the $\mathfrak{psl}$-free factor only. [M, Prop c8-laws, Lemma c12-wz]. The cohomology column: Corollary \ref{cor:coh}; inner: $\{S^{(1)}(\Delta),S^{(1)}(x)\}\equiv\lambda_xS^{(1)}(x)$ mod exact [M, Thm c12-fix (ii) proof].
+\end{proof}
+
+\begin{corollary}[Cohomology]\label{cor:coh}
+Assume (H0) before and after the change. Then
+\[
+\delta\ \longmapsto\ \delta+[\rho_0,\ee]-a\,\rho_0\circ B,\qquad \ee\in\End(\V)_0,
+\]
+the coupling direction and all arity-two changes act as $0$ on $\delta$, and $\Lambda_1^{(0)}$ changes by $\Lambda_0^{(0)}$-exact terms on cocycles.
+\end{corollary}
+\begin{proof}
+$U^{-1}LU$: arity zero $(U^{(0)})^{-1}\Lambda^{(0)}U^{(0)}$; arity one on a cocycle $o$: $\Lambda^{(1)}+\hbar([\Lambda_0^{(1)},\mathfrak u^{(0)}]+\Lambda_0^{(0)}\mathfrak u^{(1)}\pm\mathfrak u^{(1)}\Lambda_0^{(0)})$, the last two exact resp. $0$ on $o$. Hence $(U^{(0)})^{-1}$ intertwines the induced representations; with lifts $\iota,\iota'$ of $\V$ satisfying (H0), $1+\hbar\ee:=\iota'^{-1}(U^{(0)})^{-1}\iota$ mod $\hbar^2$, weight-preserving since $\mathfrak u$ is. $G_B$, coupling: Theorem \ref{thm:laws}.
+\end{proof}
+
+\section{Invariants of the action on BRST cohomology}
+
+\begin{theorem}[$D_1$ is canonical]\label{thm:D1}
+Assume (H0) and (Hs): $H^0(s)=\mathbb C[S-S^{(2)}]\oplus\mathbb C[G_B]$ at weight $4$ (classical symmetry condition [M, Def c12-cs] and rigidity of the couplings [M, Prop c12-couplings]). Then $\delta(\Delta)\in\End(\V)_0$, equivalently $D_1$ at the origin, is independent of every choice in (a)--(f), of valid gauge fixing (under (Hc)) and of the regularisation; $[\delta(\Delta),\rho_0(x)]=0$ for all $x\in\pl$ (R7). On an isotypic component $V\otimes\mathbb C^m$, $V$ an indecomposable summand with $\End_{\pl}(V)=\mathbb C$, $\delta(\Delta)=\mathrm{Id}_V\otimes\mathsf M$: the one-loop mixing matrix $\mathsf M$, its eigenvectors and eigenvalues are canonical.
+\end{theorem}
+\begin{proof}
+Corollary \ref{cor:coh}: $[\rho_0(\Delta),\ee]=0$ ($\ee$ weight-preserving, $\rho_0(\Delta)$ scalar on $\V_w$); $B\Delta=0$; Theorems \ref{thm:reg}, \ref{thm:gf}. (R7): the cocycle identity at $(\Delta,x)$, $\lambda_x\delta(x)=[\delta(\Delta),\rho_0(x)]+[\rho_0(\Delta),\delta(x)]$, with $[\rho_0(\Delta),\delta(x)]=\lambda_x\delta(x)$ by homogeneity. Schur.
+\end{proof}
+
+\begin{corollary}\label{cor:Dpos}
+Off the origin, $D_1$ on $\int\omega f$ at $x_O$ has the position part $2x_O^\mu P_1|_{e_\mu}$ [M, Thm c12-pos], which depends on the scheme through $P_1$.
+\end{corollary}
+
+\begin{proposition}[The outer cocycle]\label{prop:B}
+(i) $\rho_0\circ B\in Z^1(\pl;\End(\V)_{\rm h})$. (ii) On every direct summand $V\subset\V$ that is simple and generated by its lowest-weight $\lf$-component $V_{\rm top}$ ($\mathfrak n_+V_{\rm top}=0$), $\rho_0\circ B|_V=[\mathsf b_V,\rho_0]$, $\mathsf b_V\in\End_{\lf}(V)_0$ the $B$-grading of $V$. (iii) On a non-split extension $0\to N\to E\to C\to0$ of such modules with $\dim\Ext^1_{(\pl,\lf)}(C,N)=1$, $\rho_0\circ B|_E$ is a coboundary.
+\end{proposition}
+\begin{proof}
+(i) $B$ is a derivation. (ii) $\theta_t:=e^{tB}$ fixes the even part pointwise and preserves $\Sigma$, $\Sigma^*$; $V^{\theta_t}:=(V,\rho_0\circ\theta_t)$ is simple with the same top, so $V^{\theta_t}\cong V$ by a unique $\Phi_t$ with $\Phi_t|_{V_{\rm top}}=1$; uniqueness gives $\Phi_{s+t}=\Phi_s\Phi_t$, $\Phi_t=e^{t\mathsf b_V}$; $\rho_0(\theta_tx)\Phi_t=\Phi_t\rho_0(x)$ at $t=0$: $\rho_0(Bx)=[\mathsf b_V,\rho_0(x)]$. (iii) $\theta_t$ acts on the line $\Ext^1$ by a character $e^{tb}$; $\Phi^E_t:=\Phi^C_t\oplus e^{-tb}\Phi^N_t$ in an $\lf$-splitting intertwines.
+\end{proof}
+
+\begin{remark}
+Proposition \ref{prop:B} corrects [M, Thm c12-opalg (iv)] (``a cocycle that on $\pl$ is not a coboundary''): $B$ outer in $\pl$ does not make $\rho_0\circ B$ non-trivial in $H^1(\pl;\End\V)$; on simple summands $G_B$ acts by a coboundary.
+\end{remark}
+
+\begin{theorem}[The class]\label{thm:class}
+Under (H0), (Hs), (Hc): $[\delta]\in H^1(\pl;\End(\V)_{\rm h})/\mathbb C[\rho_0\circ B]$ is invariant under (a)--(d), (f); (e1) acts by conjugation, (e2) by rescaling. Equivalently: the $\mathbb C[\hbar]/\hbar^2$-module $\V\otimes\mathbb C[\hbar]/\hbar^2$ with $\rho_0+\delta$, up to isomorphism reducing to $1$ mod $\hbar$ and up to the twist $e^{-a\hbar B}$, is invariant. On the parts of Proposition \ref{prop:B} (ii), (iii) the quotient by $\mathbb C[\rho_0\circ B]$ is not needed.
+\end{theorem}
+\begin{proof}
+Corollary \ref{cor:coh}; Proposition \ref{prop:B}.
+\end{proof}
+
+\begin{theorem}[Blocks of different anomalous dimension]\label{thm:blocks}
+Let $\delta(\Delta)$ be semisimple, $\V=\bigoplus_\gamma\V^{(\gamma)}$ its eigenspaces (submodules for $\rho_0$ by (R7)). If the structure exists modulo $\hbar^3$ with $\delta_2$ homogeneous, then for $\gamma\ne\gamma'$
+\[
+\delta_{\gamma'\gamma}(x)=\big[\rho_0(x),\ (\gamma'-\gamma)^{-1}\delta_2(\Delta)_{\gamma'\gamma}\big],
+\]
+a coboundary: the invariant content of $\delta$ is block-diagonal.
+\end{theorem}
+\begin{proof}
+Order $\hbar^2$ of $[\rho(\Delta),\rho(x)]=\lambda_x\rho(x)$ with homogeneous $\delta_2$: $[\delta(\Delta),\delta(x)]+[\delta_2(\Delta),\rho_0(x)]=0$; block $(\gamma',\gamma)$: $(\gamma'-\gamma)\delta_{\gamma'\gamma}(x)=[\rho_0(x),\delta_2(\Delta)_{\gamma'\gamma}]$.
+\end{proof}
+
+\begin{theorem}[Rigidity of simple summands; protection]\label{thm:rigid}
+Let $V\subset\V$ be a $\rho_0$-direct summand, simple, generated by $V_{\rm top}$ with $\mathfrak n_+V_{\rm top}=0$. Under (H0):
+\begin{itemize}
+\item[(i)] $\delta(\Delta)|_V=-2\gamma\,\mathrm{Id}_V$.
+\item[(ii)] If $\gamma=0$, then $\delta_{VV}=[\rho_0,\ee]$, $\ee\in\End(V)_0$, and $\ee\in\End_{\lf}(V)_0$ when $\delta|_{\mathfrak{so}\oplus\mathfrak{so}}=0$: every one-loop component on $V$ is removed by one finite part.
+\item[(iii)] If $\xi\in\Sigma$ and a highest vector $v_0\in V_{\rm top}$ satisfy $\rho_0(\xi)v_0=0$, and the $\lf$-type of $\xi\otimes v_0$ does not occur in $V_{w_0+1/2}$, then $\gamma=0$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+Whitehead's lemma for $\mathfrak{so}(V)\oplus\mathfrak{so}(\Wp)$ on each $\End(\V_w)$ gives $\ee_1\in\End(\V)_0$ with $\delta|_{\mathfrak{so}\oplus\mathfrak{so}}=[\rho_0,\ee_1]$; $\delta':=\delta-[\rho_0,\ee_1]$ vanishes on $\mathfrak{so}\oplus\mathfrak{so}$, $\delta'(\Delta)=\delta(\Delta)$, and is $\lf$-equivariant (cocycle identity with $y\in\lf$, homogeneity). (i) Schur and (R7). (ii) $\gamma=0$: $\delta'_{VV}$ is a relative cocycle; $E:=V\oplus V$, $\rho_E=\begin{pmatrix}\rho_0&\delta'\\0&\rho_0\end{pmatrix}$ is a module, $\lf$-split. $W:=0\oplus V_{\rm top}$ is killed by $\mathfrak n_+$ (no lower weights), $E':=U(\mathfrak n_-)W$ is a submodule mapping onto $E/(V\oplus0)\cong V$. If $E'\supset V\oplus0$ then $E'=E$ and $E_{w_0}=W$, false ($E_{w_0}=V_{\rm top}\oplus V_{\rm top}$). So $E'\cap(V\oplus0)=0$, $E'=\{(\ee'v,v)\}$ with $\ee'$ $\lf$-equivariant, weight-preserving, and $\rho_E$-invariance gives $\delta'=-[\rho_0,\ee']$. (iii) Cocycle identity at $(\xi,\bar\xi)$, $[\xi,\bar\xi]=\tfrac12(\xi,\bar\xi)\Delta+M+R$ [M, Prop c2-special], on $v_0$: $\delta'(\bar\xi)v_0\in V_{w_0-1/2}=0$, $\rho_0(\xi)v_0=0$, $\delta'(\xi)v_0=0$ by $\lf$-equivariance and the multiplicity condition, $\rho_0(\bar\xi)v_0=0$; hence $\tfrac12(\xi,\bar\xi)(-2\gamma)v_0=0$, $(\xi,\bar\xi)>0$ [M, Lemma c8-cc].
+\end{proof}
+
+\begin{corollary}[The traceless bilinears]\label{cor:20}
+Assume the classical module generated by $\int\omega(\iota_{w_1}A,\iota_{w_2}A)$, $(w_1,w_2)=0$, is a simple direct summand $V_{20'}$ of $\V$ (half-BPS $[0,2,0]$). The null components of $Q^i_\alpha\otimes[0,2,0]=(\tfrac12,0)\otimes([1,2,0]\oplus[0,1,1])$, $60+20=80$, and of $\bar Q_{\dot\alpha i}\otimes[0,2,0]=(0,\tfrac12)\otimes([0,2,1]\oplus[1,1,0])$ are $[1,2,0]$, $[0,2,1]$, absent from $V_{5/2}$. Hence $\gamma=0$ and $\delta|_{V_{20'}}=[\rho_0,\ee]$: $Q_1,S_1,P_1,K_1,M_1,R_1,D_1$ on $V_{20'}$ are one coboundary. On $V_{20'}$, with $\ee=f_X$ on the $\lf$-isotypic line of $X$,
+\[
+c_Q(\xi_+)+c_Q(\xi_-)-p_1=f_O-f_{QO}-f_{\bar QO}+f_{\partial O}\qquad(\text{C5}),
+\]
+so the value $\tfrac{27}4-8L$ of [M, Cor c12-F0inv (iii)] at $\psi=0$ is the value of a coboundary.
+\end{corollary}
+\begin{proof}
+Theorem \ref{thm:rigid}. Dimensions: $\dim[p,q,r]=\frac{(p+1)(q+1)(r+1)(p+q+2)(q+r+2)(p+q+r+3)}{12}$: $[1,2,0]=60$, $[0,1,1]=20$. $c_Q$, $p_1$ as coefficients of $[\rho_0(\xi),\ee]O$, $[\rho_0(P_b),\ee]O$.
+\end{proof}
+
+\begin{theorem}[Joining and lifting]\label{thm:lift}
+Let $E\subset\V$ be a $\rho_0$-direct summand, a non-split extension $0\to N\to E\to C\to0$ of simple modules of the type of Theorem \ref{thm:rigid}, $C\not\cong N$, with $N_w=0$ for $w\le w_0$ ($w_0$ the weight of $C_{\rm top}$). In an $\lf$-equivariant weight-preserving splitting $E=C\oplus N$,
+\[
+\rho_0=\begin{pmatrix}\rho_C&0\\ \beta&\rho_N\end{pmatrix},\qquad \delta=\begin{pmatrix}\delta_{CC}&\kappa\\ \delta_{NC}&\delta_{NN}\end{pmatrix},\qquad \beta\in Z^1(\pl,\lf;\Hom(C,N)),\ [\beta]\ne0 .
+\]
+Under (H0), after the normalisation $\delta|_{\mathfrak{so}\oplus\mathfrak{so}}=0$:
+\begin{itemize}
+\item[(i)] $\delta(\Delta)|_E=-2\gamma\,\mathrm{Id}_E$ (all submultiplets share $\gamma$).
+\item[(ii)] $\kappa\in Z^1(\pl,\lf;\Hom(N,C))$; $[\kappa]$ is invariant under every covariant coboundary, under $G_B$ and the coupling; under the tree-level rescaling $n\mapsto\mu n$ of a basis of $N$: $\beta\mapsto\mu^{-1}\beta$, $\kappa\mapsto\mu\kappa$, $\kappa\beta$ fixed.
+\item[(iii)] $d_\rho\delta_{CC}=\kappa\smile\beta$, $(\kappa\smile\beta)(x,y):=\kappa(x)\beta(y)-(-1)^{|x||y|}\kappa(y)\beta(x)$, $(d_\rho f)(x,y):=f([x,y])-[f(x),\rho_C(y)]-[\rho_C(x),f(y)]$. With $\tilde c(\Delta):=\mathrm{Id}_C$, $\tilde c|_{\mathfrak{so}\oplus\mathfrak{so}\oplus\mathfrak n_\pm}:=0$ and $\tg_C:=[d_\rho\tilde c]\in H^2(\pl,\lf;\End C)$:
+\[
+-2\gamma\;\tg_C=[\kappa\smile\beta]\quad\text{in }H^2(\pl,\lf;\End C).
+\]
+\item[(iv)] For $\xi\in\Sigma$, $\eta\in\Sigma^*$, a highest vector $c_0\in C_{\rm top}$ with $\rho_C(\xi)c_0=0$, $n_0:=\beta(\xi)c_0\ne0$, the $\lf$-type of $\xi\otimes c_0$ absent from $C_{w_0+1/2}$:
+\[
+\kappa(\eta)\,\beta(\xi)\,c_0=-\gamma\,(\xi,\eta)\,c_0 .
+\]
+\item[(v)] General direction ($\rho_C(\xi)c_0$ possibly $\ne0$, $\lf$-types of $\xi\otimes c_0$ in $C_{w_0+1/2}$ and of $c_0$ in $C_{w_0}$ of multiplicity one): with $\rho_0([\xi,\eta])c_0=\mu c_0$, $\delta_{CC}(\xi)c_0=a_\xi\,\rho_C(\xi)c_0$, $\delta_{CC}(\eta)\rho_C(\xi)c_0=a'_\eta\,\mu\,c_0$,
+\[
+(a_\xi+a'_\eta)\,\mu\,c_0+\kappa(\eta)\beta(\xi)c_0=-\gamma\,(\xi,\eta)\,c_0 ;
+\]
+under a covariant coboundary $a_\xi\mapsto a_\xi+f_{w_0}-f_{w_0+1/2}$, $a'_\eta\mapsto a'_\eta+f_{w_0+1/2}-f_{w_0}$: $a_\xi+a'_\eta$ is invariant. (iv) is $\mu=0$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+(i) $\End_{\pl}(E)=\mathbb C$: $\Hom(N,C)=\Hom(C,N)=0$ and non-splitness; (R7). (ii) The $CN$ block of $\rho_0$ vanishes, so the $CN$ block of the cocycle identity contains $\rho_C,\rho_N,\kappa$ only; $\kappa|_{\lf}=0$. Covariant $\ee$: $\kappa\mapsto\kappa+\rho_C\ee_{CN}-\ee_{CN}\rho_N$; $\rho_0\circ B$ has zero $CN$ block. (iii) $CC$ block: $(\delta\rho_0)_{CC}=\delta_{CC}\rho_C+\kappa\beta$, $(\rho_0\delta)_{CC}=\rho_C\delta_{CC}$. Write $\delta_{CC}=-2\gamma\tilde c+\delta'$, $\delta'$ relative; $d_\rho\tilde c$ is relative. (iv) The $CC$ block of the identity at $(\xi,\eta)$ on $c_0$: $\delta_{CC}([\xi,\eta])c_0=\tfrac12(\xi,\eta)(-2\gamma)c_0$; on the right $\rho_C(\eta)c_0=0$, $\beta(\eta)c_0\in N_{w_0-1/2}=0$, $\delta_{CC}(\eta)c_0\in C_{w_0-1/2}=0$, $\rho_C(\xi)c_0=0$, $\delta_{CC}(\xi)c_0=0$ (multiplicity condition); remaining $\kappa(\eta)\beta(\xi)c_0$. (v) The same identity with $\rho_C(\eta)\delta_{CC}(\xi)c_0=a_\xi\rho_C(\eta)\rho_C(\xi)c_0=a_\xi\mu c_0$ ($\rho_C(\eta)c_0=0$) and $\delta_{CC}(\eta)\rho_C(\xi)c_0=a'_\eta\mu c_0$; coboundary: $[\rho_C(\xi),\ee]c_0=(f_{w_0}-f_{w_0+1/2})\rho_C(\xi)c_0$, $[\rho_C(\eta),\ee]\rho_C(\xi)c_0=(f_{w_0+1/2}-f_{w_0})\mu c_0$.
+\end{proof}
+
+\begin{corollary}[Norms]\label{cor:norm}
+Under the hypotheses of [M, Thm c8-adjoint] and of Theorem \ref{thm:lift} (iv) with $\eta=\bar\xi$:
+\[
+\big\|\rho(\xi)c_0\big\|^2_{\rm rad}=(\xi,\bar\xi)\,\gamma\,\|c_0\|^2_{\rm rad}+O(\hbar^2).
+\]
+The one-loop norm of the classical null descendant is fixed by $\gamma$; positivity requires $\gamma\ge0$ ($\gamma_K=\tfrac{3g^2N}{4\pi^2}$).
+\end{corollary}
+\begin{proof}
+$\xi^\dagger=-\bar\xi$ [M, Thm c8-dag (i)]; $\langle\rho(\xi)c_0,\rho(\xi)c_0\rangle=-\langle c_0,\rho(\bar\xi)\rho(\xi)c_0\rangle=-\langle c_0,\rho([\xi,\bar\xi])c_0\rangle$ ($\rho(\bar\xi)c_0=0$) $=\big((\xi,\bar\xi)(w_0+\gamma)-m\big)\|c_0\|^2$, $m$ the eigenvalue of $\rho(M+R)$; order $\hbar^0$ on the null direction: $(\xi,\bar\xi)w_0=m$.
+\end{proof}
+
+\begin{theorem}[Relations]\label{thm:rel}
+Under (H0) the order-$\hbar$ parts of $[D,J]=\lambda_JJ$, $[Q,Q]=P$, $\{Q,S\}=D+M+R$, $[K,P]=D+M$, $\{S,S\}=K$ and $Q^2=0$ (rank one) are the components (R7), (R2), (R3), (R5), (R6), (R4) of the cocycle identity [M, Cor c12-rel]. They hold in every scheme, gauge fixing and regularisation, exactly on $\V$, and on representatives modulo $\Lambda^{(0)}(\chi_{x,y}(O))$ [M, Thm c12-opalg (ii)], with $\chi_{x,y}$ transforming by the arity-two row of Theorem \ref{thm:laws}. Coboundaries and $\rho_0\circ B$ satisfy them identically; a relation verified in one scheme is verified in all. The individual terms are scheme-dependent except $\delta(\Delta)$.
+\end{theorem}
+\begin{proof}{}[M, Thm c12-opalg (ii), (iii)]; $[\rho_0,\ee]$ and $\rho_0\circ B$ are cocycles.
+\end{proof}
+
+\section{The twisted differential}
+
+Let $\xi=u\otimes z\in S_+\otimes W$, $[\xi,\xi]=0$, $Q^\xi=r_\xi(\Lambda)|_{q=1}=Q^\xi_0+\hbar Q^\xi_1+O(\hbar^2)$ [M, Lemma c8-ev, Def c8-twisted]:
+\[
+\hbar Q^\xi_1=\hbar L_1^{(0)}+Q_1-\tfrac12\hbar L_1^{(2)}(\xi,\xi)-\tfrac16\hbar L_1^{(3)}(\xi,\xi,\xi)-\cdots,\qquad E_1:=H(Q^\xi_0),\qquad d_1:=[Q^\xi_1]:E_1\to E_1 .
+\]
+$N:=\{S^{(1)}(R_\xi),-\}$, $[R_\xi,\xi]=\xi$; $N_t$ := the operator multiplying a local functional of degree $d$ and Weyl weight $w$ by $t=d+2w$.
+
+\begin{theorem}[Twisted class]\label{thm:tw}\leavevmode
+\begin{itemize}
+\item[(i)] $d_1^2=0$.
+\item[(ii)] Under $L_1\mapsto L_1+\partial\mathfrak u$: $Q^\xi_1\mapsto Q^\xi_1+[Q^\xi_0,r_\xi(\mathfrak u)|_{q=1}]$, $r_\xi(\mathfrak u)|_{q=1}=\mathfrak u^{(0)}+\mathfrak u^{(1)}(\xi)-\tfrac12\mathfrak u^{(2)}(\xi,\xi)-\cdots$. Under the coupling: $-a(Q^\xi_0+[N,Q^\xi_0])$; under $G_B$: $+a[N,Q^\xi_0]$.
+\item[(iii)] $Q^\xi_0=-[Q^\xi_0,N_t]$: every multiple of $Q^\xi_0$ is $\ad_{Q^\xi_0}$-exact in $\End$. This is the precise sense of ``$\mathbb C\,S^\xi\subset\operatorname{Im}Q^\xi_0$'' ($\ad_{S^\xi}=Q^\xi_0$); $S^\xi\in Q^\xi_0(\text{local functionals})$ is a different statement, not implied ($N_t$ is not of the form $\ad_\phi$: $t(f)+t(f^*)=7$).
+\item[(iv)] Hence, under (Hs), (Hc): $Q^\xi_1$ is determined modulo $\{[Q^\xi_0,h]\}+\mathbb CQ^\xi_0$, and $d_1\in\Hom(E_1,E_1)$ is invariant under (a)--(d), (f), including finite parts of every order and arity, $\hbar F_1^{(0)}$, the admissible $t$, $\hbar F_1^{(2)}$, the coupling, $G_B$, the profile, valid gauge fixings, and the homotopy data of a transfer to $H(Q^\xi_{\rm free})$; (e1) conjugates, (e2) and the rescaling $s_t$ of [TW, Prop.~Tree level] multiply $d_1$ by a constant. The higher differentials $d_r$, $r\ge2$, are invariant likewise.
+\item[(v)] The arity-one $Q_1$ alone is not invariant on $E_1$: $\mathfrak u^{(1)}$ changes it by $\hbar[\Lambda_0^{(0)},\mathfrak u^{(1)}(\xi)]$, compensated in $Q^\xi_1$ only together with $-\tfrac12\hbar[\Lambda_0^{(1)},\mathfrak u^{(1)}]^{(2)}(\xi,\xi)$ and $[\Lambda_0^{(1)}(\xi),\mathfrak u^{(0)}]$.
+\item[(vi)] On $H(\rho_0(\xi);\V)$ (gauge-invariant point operators), $[\delta(\xi)]$ is canonical: $\{\rho_0(\xi),\delta(\xi)\}=0$ (R4), $[\rho_0(\xi),\ee]$ and $\rho_0(B\xi)=\rho_0(\xi)$ induce $0$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+(i) Order $\hbar^2$ of $(Q^\xi)^2=0$ [M, Thm c8-twist]: $(Q^\xi_1)^2+[Q^\xi_0,Q^\xi_2]=0$. (ii) $r_\xi$ is multiplicative and kills $d_{CE}$ [M, Lemma c8-ev], so $r_\xi(U^{-1}LU)=r_\xi(U)^{-1}r_\xi(L)r_\xi(U)$; coupling and $G_B$: $r_\xi(S-S^{(2)})|_{q=1}=S^\xi+NS^\xi$, $r_\xi(G_B)|_{q=1}=-NS^\xi$, $\ad_{NS^\xi}=[N,Q^\xi_0]$ [M, Thm c8-twist proof]. (iii) $Q^\xi_0$ raises $t$ by $1$: $\Lambda_0^{(0)}$: $(\Delta d,\Delta w)=(1,0)$; $\{S^{(1)}(\xi),-\}$: $(0,\tfrac12)$; $\{S^{(2)}(\xi,\xi),-\}$: $(-1,1)$. So $[N_t,Q^\xi_0]=Q^\xi_0$. $\ad_\phi$ for $\phi=\sum y_f\int(f,f^*)$ multiplies $f$ by $y_f$ and $f^*$ by $-y_f$; $t(f)+t(f^*)=-1+2\cdot4$. (iv) (ii), (iii), Theorems \ref{thm:red}, \ref{thm:reg}, \ref{thm:gf}; a closed $G$ with $G^{(0)}=G^{(1)}=0$ is exact under (Hs); homotopy data: two transfers are related by an $L_\infty$ quasi-isomorphism, $\tilde Q_1\mapsto\tilde Q_1+[\tilde Q_0,\phi_h]$; $d_r$: spectral sequence of the $\hbar$-filtration, invariant under filtered conjugations. (v) Theorem \ref{thm:laws}. (vi) Corollary \ref{cor:coh}, (R4).
+\end{proof}
+
+\begin{theorem}[Pair entries]\label{thm:entries}
+After transfer to the cohomology $H(Q^\xi_{\rm free})$ the letters are $\mathsf c,\gamma,\beta,\mathsf b$ and holomorphic derivatives [TW, Prop.~Single-letter cohomology]. On these letters $\tilde Q_0$ raises the word length by one and adds no derivative ($\tilde Q_0C=\tfrac12[C,C]$ [BK, (3.49)--(3.50)], [TW, Prop.~Tree level]). For $\tilde{\mathfrak u}$ write $\tilde{\mathfrak u}_{n\to m}$ for its component from $n$-letter to $m$-letter words. Then on two-letter words
+\[
+[\tilde Q_0,\tilde{\mathfrak u}]_{2\to2}=\tilde Q_0\,\tilde{\mathfrak u}_{2\to1}-\tilde{\mathfrak u}_{3\to2}\,\tilde Q_0 .
+\]
+For underived letters $X,Y$ and the structure $\langle U\cdot V\rangle=f_{ACD}f_{BCE}\,\varepsilon^{\dot\alpha\dot\beta}\partial_{\dot\alpha}U^D\partial_{\dot\beta}V^E$:
+\begin{itemize}
+\item[(i)] $\tilde Q_0\tilde{\mathfrak u}_{2\to1}(XY)$ has no component along $\langle U\cdot V\rangle$;
+\item[(ii)] $(\tilde{\mathfrak u}_{2\to1}\otimes1)\tilde Q_0(XY)$ and all one-body terms keep an underived spectator, hence no component along $\langle U\cdot V\rangle$;
+\item[(iii)] only a genuinely three-letter $\tilde{\mathfrak u}_{3\to2}$ moves the coefficient of $\langle U\cdot V\rangle$ in $\tilde Q_1(XY)$.
+\end{itemize}
+Field redefinitions, the coupling, $G_B$, the admissible $t$, finite parts acting on at most two letters and their arity components, profile changes and the homotopy data have no genuinely three-letter part. Hence the reduced pair entries of [TW, Thm.~Pair entries] are invariant in this class (no rotation covariance needed), are independent of the profile, and are rational in the heat-kernel scheme (Corollary \ref{cor:rat}): every $\log\tfrac32$ cancels, as found in [TW]. A finite part on three letters moves them ([M, Rem c11-twist]: $\psi(W)=y\operatorname{tr}\partial\mathsf c\,\partial\mathsf c$, shift $-3y$ of the Konishi entry). For derived inputs (ii) fails (a spectator may carry the derivative).
+\end{theorem}
+\begin{proof}
+$\tilde Q_0$ is $n\to n+1$, so $(\tilde Q_0\tilde{\mathfrak u})_{2\to2}=\tilde Q_0\tilde{\mathfrak u}_{2\to1}$, $(\tilde{\mathfrak u}\tilde Q_0)_{2\to2}=\tilde{\mathfrak u}_{3\to2}\tilde Q_0$. (i) $\tilde{\mathfrak u}_{2\to1}(XY)$ is one letter $Z$; a component along two first derivatives needs $Z=\partial_{\dot\alpha}\partial_{\dot\beta}Z'$, symmetric; $\tilde Q_0Z=\partial_{\dot\alpha}\partial_{\dot\beta}\tilde Q_0Z'$ contributes $\partial_{(\dot\alpha}U\partial_{\dot\beta)}V$ only, killed by $\varepsilon^{\dot\alpha\dot\beta}$. (ii) $\tilde Q_0(XY)$ is a sum of three underived letters. (iii) (i), (ii). Transfer: terms $p\,\mathfrak u\,h\,Q_{\rm int}\,i$, $p\,Q_{\rm int}\,h\,\mathfrak u\,i$ with $Q_{\rm int}$ $1\to2$ and $h$ one-body have no $3\to2$ part beyond $(\mathfrak u_{2\to1}\otimes1)$; field redefinitions and $N$ are one-body; $Q^\xi_0$ is $n\to n+1$; the regularisation change $\psi_{RR'}$ comes from one-loop graphs, which meet an operator in at most two letters [M, R8]; profile: Theorem \ref{thm:reg}.
+\end{proof}
+
+\begin{remark}[On {[TW, Thms.~Class, Entries]}]\label{rem:tw}
+(A) [TW, Thm.~Class] (i)--(iii) holds with: free directions of $\hbar F_1$ = elements of $Z^0$ (all arities imposed); $t_\xi$ alone and $\theta^\xi_V$, $\theta^\xi_\perp$ separately are not free ([M, Thm c12-ar2]); admissible $t$ act by $c[\rho_0,\rho_0(\Delta)]$ and $-a\rho_0\circ B$, which induce $0$ on $E_1$ through $r_\xi$ (Theorem \ref{thm:tw} (ii)); $\hbar F_1^{(2)}$ directions are $s$-exact under (Hs); ``$\mathbb C\,S^\xi\subset\operatorname{Im}Q^\xi_0$'' in the operator sense of Theorem \ref{thm:tw} (iii). Added: profiles and valid gauge fixings (Theorems \ref{thm:reg}, \ref{thm:gf}). (B) [TW, Thm.~Entries] holds; Theorem \ref{thm:entries} needs no rotation covariance, only the absence of genuinely three-letter components after transfer. The Konishi entry is carried by $\hbar L_1^{(0)}$ (arity-zero kernel with output $\partial c$) [TW, Rem.~on Tab.~c11-twistentries], which is Theorem \ref{thm:tw} (v): the arity-one $Q_1$ alone misses it.
+\end{remark}
+
+\begin{proposition}[No analogue for generic $Q$, $S$, $K$]\label{prop:contrast}
+Let $x\in\{\xi\ (\Gamma(\xi,\xi)|_V\ne0),\ \eta,\ K_b\}$. $\rho_0(x)$ has a word-length-preserving part $\rho_0(x)_{1\to1}$ on letters (the free transformation), so for a two-body finite part $[\rho_0(x),\ee]_{2\to2}=[\rho_0(x)_{1\to1},\ee_{2\to2}]+\cdots\ne0$ in general: e.g. $\ee=f_O$ on $O=\int\omega(\iota_{w_1}A,\iota_{w_2}A)$ and $f_{\mathcal B}$ on $\mathcal B_1=\{S^{(1)}(\xi),O\}$ shifts $c_Q$ by $f_O-f_{\mathcal B}$. No $Q_0$-cohomology exists ($\rho_0(\xi)^2=\tfrac12\rho_0([\xi,\xi])\ne0$, a translation). The two-body kernels of $Q_1,S_1,K_1$ are not invariant even in one-loop-local schemes; their invariant content is Theorems \ref{thm:class}--\ref{thm:rel}. Along $\Delta$, $[\rho_0(\Delta),\ee]=0$: $D_1$ with its kernels is invariant (Theorem \ref{thm:D1}).
+\end{proposition}
+
+\section{Profiles}
+
+\begin{definition}[Profiles]\label{def:profile}
+A profile is a smooth $\varpi:[0,\infty)\to\mathbb R$, $\varpi(0)=1$, rapidly decreasing; $P_\varpi(\varepsilon,T):=(Q^{GF}\otimes1)\big((\varpi(\varepsilon H)-\varpi(TH))H^{-1}\otimes1\big)K_0$, $K^\varpi_t:=(\varpi(tH)\otimes1)K_0$, special edge $K^\varpi_\varepsilon-K_0$. Heat kernel: $\varpi_1(\uu)=e^{-\uu}$. Family $\varpi_k(\uu):=e^{-\uu^k}$, $k\in\mathbb Z_{\ge1}$. $\vartheta:=\uu\,\tfrac{d}{d\uu}$; $c_E[\varpi]:=\int_0^\infty\frac{d\uu}{\uu}\varpi^E(\varpi-1)$.
+\end{definition}
+
+\begin{lemma}\label{lem:prof}
+$(Q\otimes1+1\otimes Q)P_\varpi(\varepsilon,T)=K^\varpi_\varepsilon-K^\varpi_T$; [M, Lemma c8-transfer] and the constructions of [M, ch.~8, 12] hold with $K^\varpi$ in place of $K$.
+\end{lemma}
+\begin{proof}
+$[Q,Q^{GF}]=H$, $Q$ commutes with functions of $H$; the proof of [M, Lemma c8-transfer] uses only $[\partial_\phi,Q]=\partial_{(Q\otimes1+1\otimes Q)\phi}$.
+\end{proof}
+
+\begin{lemma}[Mellin form]\label{lem:mellin}
+For a one-loop defect cycle (special edge, edges $P_\varpi$, possibly one composite line, injected momentum $r$) of superficial degree $D$, the coefficient of $\varepsilon^0$ is
+\[
+a_0=\frac1{16\pi^2}\int_0^\infty\frac{d\uu}{\uu}\,\Phi(\uu),\qquad \Phi\in\mathbb Q(i)[p,r]_D\otimes\mathbb Q[\varpi,\vartheta\varpi,\vartheta^2\varpi,\dots],
+\]
+the coefficients independent of $\varpi$, each monomial containing the special-edge factor $\varpi-1$ or $\vartheta^m\varpi$, $m\ge1$.
+\end{lemma}
+\begin{proof}
+$l=l'/\sqrt\varepsilon$: $\varepsilon$ enters only through $\varpi\big((l'+\sqrt\varepsilon q)^2\big)$; the order-$D$ Taylor term in $\sqrt\varepsilon q$ is homogeneous of degree $0$; $(\uu^m\varpi^{(m)})(\uu)=\prod_{i=0}^{m-1}(\vartheta-i)\varpi$; angular averages rational; $\int d^4l'=\pi^2\int\uu\,d\uu$; the special-edge factor vanishes at $\uu=0$, rapid decay at $\infty$; the remainder is $o(1)$ by dominated convergence.
+\end{proof}
+
+\begin{theorem}[Profile dependence]\label{thm:prof}
+For a monomial $\mathcal M$ with $m(\mathcal M)$ $\vartheta$'s,
+\[
+\int_0^\infty\frac{d\uu}{\uu}\mathcal M[\varpi_k]=k^{m(\mathcal M)-1}\int_0^\infty\frac{d\uu}{\uu}\mathcal M[\varpi_1],\qquad \int\frac{d\uu}{\uu}\mathcal M[\varpi_1]\in\begin{cases}\textstyle\sum_j\mathbb Q\log j,&m=0,\\ \mathbb Q,&m\ge1.\end{cases}
+\]
+Hence every coefficient $X$ obtained from the $a_0$'s by a $\varpi$-independent $\mathbb Q(i)$-linear map (obstructions, $\hbar F_1$ in a fixed basis with fixed reference parts, kernels $\Upsilon_x$, one-body terms, components on fixed representatives) satisfies
+\[
+X(k)=\frac{\Lambda_X}k+\sum_{j\ge0}k^jR_{X,j},\qquad \Lambda_X\in\textstyle\sum_j\mathbb Q(i)\log j\ \ (\text{the log part of }X(1)),\quad R_{X,j}\in\mathbb Q(i).
+\]
+\end{theorem}
+\begin{proof}
+$\vartheta(f\circ\uu^k)=k(\vartheta f)\circ\uu^k$, $\frac{d\uu}{\uu}=\frac1k\frac{d\mathsf v}{\mathsf v}$. $m=0$: $\int\frac{d\uu}{\uu}P(e^{-\uu})$, $P(1)=0$, Frullani: $-\sum p_j\log j$. $m\ge1$: $\vartheta^me^{-\uu}=\uu\,q_m(\uu)e^{-\uu}$, $\int\uu^{a-1}e^{-b\uu}d\uu=\Gamma(a)b^{-a}\in\mathbb Q$. $1,\log2,\log3,\dots,\log p$ ($p$ prime) are $\mathbb Q(i)$-independent (Lindemann--Weierstrass and unique factorisation).
+\end{proof}
+
+\begin{corollary}[Rationality criterion]\label{cor:rat}
+(i) If $\Lambda_X\ne0$, $X$ depends on the profile: $X(2)-X(1)=-\tfrac12\Lambda_X+\mathbb Q(i)\ne0$. (ii) If $X$ is profile-independent, then $\Lambda_X=0$, $R_{X,j}=0$ ($j\ge1$), $X(1)\in\mathbb Q(i)$, and $X$ equals its single-$\vartheta$ part, which is universal: $\int\frac{d\uu}{\uu}(\vartheta\varpi)G(\varpi)=\int_1^0G(y)\,dy$ for every profile.
+\end{corollary}
+
+\begin{corollary}[The claimed combinations]\label{cor:claims}
+$t_{\xi_+}+t_{\xi_-}-t_P=\tfrac{27}4+2L$, $t_{\xi_+}+t_{\eta_+}-t_\Delta=\tfrac{27}4+2L$ [M, Thm c12-ar2], $c_Q(\xi_+)+c_Q(\xi_-)-p_1=c_Q(\xi_+)+c_S(\eta_+)-\tfrac14D_1|_{\rm traceless}=\tfrac{27}4-8L$ [M, Cor c12-F0inv] (C3), $c_Q=\tfrac{79}{12}-3L-t_\xi=-2L-\theta_\perp-p_\perp$ (C4), $\hbar\Ob^{(1)}(\xi)|_2\ni(\tfrac{79}{24}-\tfrac12L)$, every coefficient with a $\log\tfrac32$ part: profile-dependent. Under $\varpi_k$ the log parts become $\tfrac2kL$, $\tfrac2kL$, $-\tfrac8kL$, $-\tfrac3kL$, $-\tfrac1{2k}L$. Rational numbers ($t_\Delta=-\tfrac13$, $\tfrac{27}{16}$, $-\tfrac52$) are not decided by Theorem \ref{thm:prof}.
+\end{corollary}
+
+\begin{example}[Second profile, C7]\label{ex:C7}
+\[
+J_0(q)=\frac4\pi\int_0^\infty l^3dl\int_0^\pi\sin^2\!\nu\,d\nu\,\frac{(\varpi(l^2)-1)\,\varpi(|l+q|^2)}{l^2\,|l+q|^2}\ \xrightarrow{q\to0}\ c_1[\varpi],
+\]
+\[
+J_2(q):=\big(J_0\text{ without the factor }l^{-2}\big)=A+Bq^2+O(q^4),
+\]
+\[
+A=\int_0^\infty d\uu\,(\varpi-1)\varpi,\qquad B=\tfrac12\int_0^\infty d\uu\,\uu\,\varpi''(\uu)\,(\varpi(\uu)-1):
+\]
+\[
+\begin{array}{lcccc}
+\toprule
+&c_1[\varpi]&A&B&B\ \text{(general }k)\\\midrule
+\varpi_1&-\log2&-\tfrac12&-\tfrac38&-\tfrac k8-\tfrac14\\
+\varpi_2&-\tfrac12\log2&-\tfrac{\sqrt\pi}2\big(1-\tfrac1{\sqrt2}\big)&-\tfrac12&\\
+\text{numerics}&-0.6925,\ -0.3474\ (q=0.05)&-0.5000003,\ -0.2595694&-0.37495,\ -0.50008&\\
+\bottomrule
+\end{array}
+\]
+$D=0$: log part $\propto1/k$; $D=2$: rational part linear in $k$.
+\end{example}
+
+\section{Field countings and the action-side relations}
+
+\begin{proposition}[Field countings]\label{prop:count}
+For $\phi_y=\sum_fy_f\mathcal N_f$ ($y_{A|_V}=y_{A|_{\Wp}}=y_A$), $\hbar F_1+a\hbar\,s\phi_y$ is a one-loop quantisation for all $a$. With $\hbar F_1^{(1)}(\xi)|_2=p(T_1+T_2)+t_\xi(T_1+T_2+T_3+T_4)$ [M, Thm c12-sol] and the arrow rule of [M, Prop c11-freedom (i)] ($T_1,T_2$: $A\to\lambda$; $T_3,T_4$: $\lambda\to A$):
+\[
+t_{\xi_\pm}\mapsto t_{\xi_\pm}+\sigma a(y_A-y_\lambda),\qquad p\mapsto p-2\sigma a(y_A-y_\lambda),\qquad t_P,\ t_\Delta,\ p_1,\ D_1\ \text{unchanged},
+\]
+\[
+c_Q(\xi_\pm)\mapsto c_Q(\xi_\pm)+\sigma a(y_A-y_\lambda),\qquad (t_{\xi_+}+t_{\xi_-}-t_P),\ (c_Q(\xi_+)+c_Q(\xi_-)-p_1)\ \mapsto\ +2\sigma a(y_A-y_\lambda),
+\]
+$\sigma=\pm1$ the bracket sign (C2). Both combinations take every value on the solution space at fixed regulator, gauge fixing and $\psi=0$.
+\end{proposition}
+\begin{proof}
+$s\phi_y\in B^0$. $\{\phi_y,S^{(1)}(\xi)\}$ multiplies the arrow $f\to f'$ by $\pm(y_{f'}-y_f)$; $S^{(1)}(P_b)$, $S^{(1)}(\Delta)$ preserve the species. $c_Q=-2L-(\text{coefficient of }T_2)$ [M, Thm c12-F0 proof]. C2.
+\end{proof}
+
+\begin{corollary}[What the action-side relations are]\label{cor:act}
+The relations [M, eq.~(c12-t), Cor c12-inv] are invariant exactly under the subgroup generated by the inner direction, $G_B$, the coupling and the admissible $t$, at fixed $\hbar F_1^{(0)}|_2=\tfrac{27}{16}\int(d^*A|_V,d^*A|_V)$ units, fixed reference particular parts and fixed regularisation; [M, eq.~(c12-F0inv)] in addition at $\psi=0$. They move under field countings (Proposition \ref{prop:count}), finite parts (C5), profiles (Corollary \ref{cor:claims}) and gauge fixing. Their invariant content: solvability of the arity-two equations ($\varrho=\partial$ of a diagonal cochain [M, Thm c12-fix]); on $V_{20'}$, $[\delta]=0$ (Corollary \ref{cor:20}).
+\end{corollary}
+
+\section{Answer: defined up to cohomology?}
+
+\begin{theorem}\label{thm:answer}
+Under (H0), (Hs), (Hc), at one loop:
+
+\noindent{\upshape\begin{tabular}{>{\raggedright\arraybackslash}p{2.3cm}>{\raggedright\arraybackslash}p{6.0cm}>{\raggedright\arraybackslash}p{7.4cm}}
+\toprule
+generator&representative is defined modulo&canonical content\\\midrule
+twisted $Q$ ($\xi$ rank one)&$[Q^\xi_0,h]+\mathbb CQ^\xi_0$, $h$ local, for the combination $Q^\xi_1=L_1^{(0)}+L_1^{(1)}(\xi)-\tfrac12L_1^{(2)}(\xi,\xi)+\cdots$&$d_1\in\Hom(E_1,E_1)$, its kernel, image, $E_2$; pair entries on underived letters in one-loop-local schemes; rational. ``Up to cohomology'': yes, exactly.\\
+$Q$ along rank-one $\xi$, arity one alone&$\hbar[\Lambda_0^{(0)},\mathfrak u^{(1)}(\xi)]+\hbar[\Lambda_0^{(1)}(\xi),\mathfrak u^{(0)}]$, $-a\rho_0(\xi)$&$[\delta(\xi)]$ on $H(\rho_0(\xi);\V)$ only\\
+generic $Q$, $S$&chain: homotopy $[\Lambda_0^{(0)},\mathfrak u^{(1)}(x)]$; on $\V$: $[\rho_0(x),\ee]$ with one $\ee$ for all generators, $\mp a\rho_0(x)$&no $Q_0$-cohomology; content in $[\delta]$: lifting classes $[\kappa]$, $\kappa(\eta)\beta(\xi)=-\gamma(\xi,\eta)$, norms, (R2), (R3)\\
+$K$&as $S$; finite $T$, $T$-independent&(R5) with $D_1$; $[\kappa]$ components along $K$\\
+$D$&chain: homotopy; on $\V$: nothing&$\delta(\Delta)$ itself: matrix, spectrum, eigenvectors; position part $2x_O\cdot P_1$ is scheme\\
+$P$&$[\rho_0(P_b),\ee]$&none on simple summands; $P_1=0$ is a renormalisation condition\\
+$M$, $R$&$[\rho_0(x),\ee]$&none (Whitehead): pure gauge\\
+\bottomrule
+\end{tabular}}
+\end{theorem}
+\begin{proof}
+Theorems \ref{thm:laws}, \ref{thm:D1}, \ref{thm:class}, \ref{thm:rigid}, \ref{thm:lift}, \ref{thm:tw}, \ref{thm:entries}, Corollary \ref{cor:norm}, Proposition \ref{prop:contrast}; $P$, $M$, $R$: [M, Cor c12-rel (R8)] and Theorem \ref{thm:rigid} (ii).
+\end{proof}
+
+\section{The computed numbers}
+
+Status: [I] invariant (theorem), [A] artefact (moved by the freedom named), [C] coordinate (fixed by a convention), all from the old gauge fixing (Remark \ref{rem:old}).
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{1.0cm}>{\raggedright\arraybackslash}p{8.2cm}}
+\toprule
+quantity&status&reason\\\midrule
+$D_1=0$ (20 traceless), $-48$ units (trace) $=\tfrac{3g^2N}{2\pi^2}=2\gamma_K$&[I]&Thm \ref{thm:D1}; rational (Cor \ref{cor:rat}); C9\\
+spectra: $-8\sum(1-P)$, $-8\sum(1-\Pi)$, $-32h(j)$&[I]&Thm \ref{thm:D1}; rational; = [B03c]\\
+$t_\Delta=-\tfrac13$, $\theta^\Delta_d$, two-body/one-body split of $D_1$&[C]&gauge fixing: composite lines along $\Delta$ cancel for the valid $Q^{GF}$ [GF, F3]\\
+$t_{\xi_+}+t_{\xi_-}-t_P=t_{\xi_+}+t_{\eta_+}-t_\Delta=\tfrac{27}4+2L$&[C]&Prop \ref{prop:count}, Cor \ref{cor:claims}\\
+$c_Q=\tfrac{79}{12}-3L-t_\xi$, $c_S=\tfrac{79}{12}-3L-t_\eta$&[A]&coboundary, $G_B$, field counting, profile\\
+$c_Q(\xi_+)+c_Q(\xi_-)-p_1=\tfrac{27}4-8L$&[A]&value of a coboundary on $V_{20'}$ (Cor \ref{cor:20}); profile; field counting\\
+$4L(\mathcal B_2+\mathcal B_3)$ in $Q_1$ (trace)&[A]&two-body kernel (Prop \ref{prop:contrast}); profile\\
+$\hbar L_1^{(0)}(O)=-(2+4L)(w_1,w_2)\int\omega(dc,A|_V)$&[A]&removed by $\psi$ [M, Cor c12-F0inv (iv)]\\
+$P_1=-(\tfrac13+t_P)\partial_b$, $M_1=-(\tfrac13+t_M)\rho_0(M)$, $R_1=0$&[A]&pure gauge (Thm \ref{thm:answer})\\
+$K_1$ one-body $\tfrac{44}3$, $\theta^K_d$, $\kappa^K_j$&[C]/[A]&position part of $D^0_1$; open directions\\
+$\hbar F_1^{(1)}(\eta)\ni-\tfrac52u_0$, $u_0=\int(\rho(A|_V)\eta,\lambda^*)$&[C]&gauge sector: pairs with $\int(\eta,\lambda)d^*A|_V$, $\int(\rho(dc)\eta,\lambda^*)$; rational, not decided by Thm \ref{thm:prof}; same value $-\tfrac52$ on $V\lambda^\ddagger\bar\alpha^\#$ at gauge parameter $1$ in the earlier N=4 project (survey): consistent with a common Feynman-gauge origin, no invariant meaning\\
+$\hbar\Ob^{(1)}(\xi)|_2$, $\tfrac{27}{16}$, $\hbar F_1^{(1)}(\xi)|_2$ particular&[C]&regulator representative (Thm \ref{thm:reg})\\
+$L^{(1)}(\xi)|_2=2(T_1+T_2-T_3-T_4)$ units&[C]&log coefficient: profile-universal, gauge-fixing dependent; $=\{\mathcal N,S^{(1)}_2(\xi)\}$ units, generator of the $\varepsilon$-unit freedom\\
+$Q^\xi_1=0$ on chiral bilinears [M, Prop c12-twist]&[I]&class level (Thm \ref{thm:tw}); [BK, (3.77)] $n=2$\\
+twisted pair entries [TW, Thm.~Pair entries]: $-\tfrac i4\mathcal N\,Q_1^{BK}$ in 8 channels&[I]&in one-loop-local schemes (Thm \ref{thm:entries}); rational\\
+arity-one entries of [M, Tab c11-twistentries] ($\tfrac{64}3-128L$, $32+64L$, \dots)&[A]&arity one alone (Thm \ref{thm:tw} (v)); Konishi entry needs the arity-zero kernel [TW, Rem.~on Tab.~c11-twistentries]\\
+SQED: $-\tfrac1{12}-\tfrac32\log2+\tfrac32\log3$ [SQ]&[A]&composite finite part $(c\phi_+)^{\rm fin}_{\rm CT}$ = (b)/(f)\\
+\bottomrule
+\end{longtable}
+
+\section{Beisert and Budzik--Kulp}
+
+\begin{proposition}[Dictionary with {[B03d]}, {[B03c]}]\label{prop:beisert}\leavevmode
+\begin{itemize}
+\item Similarity transformations $J(g)\mapsto T(g)J(g)T(g)^{-1}$ [B03d, (4.4)]: the gauge group $1+\hbar\mathfrak u$ (b), (f), (a1). Tree level $e^{2i\beta_1H_0+i\beta_2L}$ [B03d, (3.39)]: $\beta_1$ $\leftrightarrow$ inner direction ($\ee\propto\rho_0(\Delta)$); $\beta_2$ (length) $\leftrightarrow$ (e3). Order $g^2$: $T_2$ from the structures of $H_2$, $\gamma_{1..4}$ [B03d, \S4.2] $\leftrightarrow$ $\ee\in\End(\V)_0$.
+\item Prediagonalisation $[H_0,H(g)]=0$ [B03d, (3.18)] $\leftrightarrow$ weight-preserving schemes (homogeneity of $\delta$).
+\item ``Gauge transformations'' (structures vanishing on cyclic states, $\delta_{1,2}$ [B03d, (3.6)]) $\leftrightarrow$ $\Lambda^{(0)}$-exact terms and homotopies.
+\item Coupling redefinition $g\mapsto\alpha_1g+\alpha_3g^3$, $H_4\mapsto\alpha_1^4H_4+2\alpha_1\alpha_3H_2$ [B03d, (4.9)--(4.10)] $\leftrightarrow$ $S-S^{(2)}$ (invisible on $\delta$ at one loop; at two loops shifts $\delta_2(\Delta)$ by a multiple of $\delta(\Delta)$) and (e2).
+\item $[J_0,D_2]=0$ [B03c, (2.10)], [B03d, (3.22)] $\leftrightarrow$ (R7), Theorem \ref{thm:D1}; normalisation constants irrelevant at one loop [B03c, App.~B] $\leftrightarrow$ Theorem \ref{thm:D1}.
+\item Equal energy shifts of submultiplets at $O(g^{2\ell})$, joining at $O(g^{2\ell+1})$ [B03d, \S3.7], Konishi submultiplets $E=4C_2=6C_1=6C_1-2C_0$ [B03c, (6.1)] $\leftrightarrow$ Theorem \ref{thm:lift} (i).
+\item $c_9c_{10}=\tfrac12c_1$ [B03d, (3.38)], $c_9\propto\alpha_1e^{i(\beta_1+\beta_2)}$, $c_{10}\propto\alpha_1e^{-i(\beta_1+\beta_2)}$ (C9): the product of the normalised $Q_1,S_1$ is fixed by $H_2$ $\leftrightarrow$ Theorem \ref{thm:lift} (iv), Corollary \ref{cor:norm}. In the BV normalisation $\beta$ is classical ($O(1)$) and $\kappa$ one-loop; in Beisert's normalisation both are $O(g)$.
+\item Hypercharge $B_0$, conserved by $D_2$ [B03c, after (2.10)] $\leftrightarrow$ Proposition \ref{prop:B}.
+\end{itemize}
+\end{proposition}
+
+\begin{remark}[{[BK]} and {[HB]}]
+[BK] define $Q_1$ on $H(Q_0)$ of the holomorphic theory with relations [BK, (3.59)--(3.63)] for the commutant $\mathfrak{psl}(3|3)$; these are (R)-relations at $(\xi,R)$ restricted by $r_\xi$ [M, Thm c11-twistcheck (d)]. Theorem \ref{thm:tw} gives the invariance stated as open in [HB, Rem scheme]: at one loop $d_1$ is canonical in the equivariant construction, under every freedom of Theorem \ref{thm:list}. The comparison $\Phi\circ d_1\circ\Phi^{-1}=\text{const}\cdot[Q_1^{BK}]$ [TW, Thm.~Pair entries] is a comparison of canonical objects; the constant is the normalisation of $\hbar_{\rm tw}$ ($s_t$). The cancellation of all $\log\tfrac32$ is forced by Theorem \ref{thm:entries} and Corollary \ref{cor:rat}.
+\end{remark}
+
+\section{Gauge fixing of the data; open}
+
+\begin{remark}[Old gauge fixing]\label{rem:old}
+The data of [M] use a $Q^{GF}$ with $(Q^{GF})^2\ne0$ and $\operatorname{Im}Q\cap\operatorname{Im}Q^{GF}\ne0$, outside [C07, Def 4.3.3] (3), (5). Theorems \ref{thm:laws}--\ref{thm:rel}, \ref{thm:tw}, \ref{thm:entries}, \ref{thm:prof} use only an $L$ with $L\circ L=0$ and the transfer lemma, and apply to the old data as data. Theorem \ref{thm:gf} does not apply to the old $Q^{GF}$: no theorem identifies old invariants with those of the valid gauge fixing of [GF] (frame $\Psi$, pair $(\bar c,\bar c^*)$, propagator $AA$, $\lambda\lambda$, $c\otimes\bar c$, $\bar c\otimes c$; arity-zero theory identical through the chain map $j$ [GF, F2]). Survives as prediction: the [I] rows (to be recomputed; spectra already equal [B03c]); the twisted class (rational, equal to [BK]). Not inferable: every [C], [A] row, in particular every number with a $\log\tfrac32$ part (Corollary \ref{cor:claims}) and $t_\Delta=-\tfrac13$ (composite lines along $\Delta,P,M,R$ cancel for the valid $Q^{GF}$ [GF, F3]).
+\end{remark}
+
+\begin{remark}[Open]
+(1) The Konishi block: $\kappa$, $\beta$ and Theorem \ref{thm:lift} (iv) on the trace bilinear (needs $S_1$ on weights $\tfrac52,3$ and the arity-two kernels); Corollary \ref{cor:norm} with $\mathrm{Gram}_1$. (2) $V_{20'}$ a simple direct summand of the classical interacting module (hypothesis of Corollary \ref{cor:20}). (3) (Hs) at three and four legs; $G^K_j$. (4) (Hc) local representatives in families. (5) DR inside BV: Slavnov--Taylor identity with operator insertions, so that Theorem \ref{thm:reg} applies. (6) Twisted entries with derived inputs; normalisation of $\hbar_{\rm tw}$. (7) Two-loop $\delta_2$ for Theorem \ref{thm:blocks}. (8) All [I] rows in the valid gauge fixing.
+\end{remark}
+
+\end{document}

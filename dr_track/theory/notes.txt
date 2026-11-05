@@ -1,0 +1,140 @@
+N4_BV_DR / theory -- working notes (plain text; primary-source summaries, decisions, open points)
+================================================================================================
+
+[S05] D. Stoeckinger, "Regularization by dimensional reduction: consistency, quantum action principle, and
+      supersymmetry", JHEP 0503 (2005) 076, hep-ph/0503129 (read in full, text in src_pdf/stockinger2005/).
+  - Sec 2: hierarchy QDS c Q4S, Q4S = QDS (+) QepsS; metrics g = ghat + gtilde, g.g = 4, ghat.ghat = D,
+    gtilde.gtilde = eps := 4 - D (NB his eps = 4-D, not 2eps); ghat.gtilde = 0. Q4S infinite-dimensional
+    ("index counting is not possible": five Q4S indices may all differ). Dirac algebra {g^mu,g^nu}=2g^{mu nu}
+    in Q4S; Fierz identities NOT valid. Strictly 4-dim DRED inconsistent (Siegel PLB 94 (1980) 37):
+    0 = D(D-1)(D-2)(D-3)(D-4) from eps-tensor + D-dim g.
+  - gamma5 options: (i) anticommuting with all Q4S gammas (usual DRED) -> Tr(gamma5 x any gammas) = 0 for
+    non-integer D (footnote 1: (4-D)Tr(g5 ghat^4)=0 etc.); (ii) gamma5bar = i g0g1g2g3 (HVBM-like) with extra
+    projectors gbar (gbar.gbar=4) and g~~ (g~~.g~~ = 0): {g5bar, g^mu} = 2 g5bar g~~^mu ; with gamma5bar SUSY and
+    gauge invariance broken already at one loop "like DREG" (eq. 4.5).
+  - Charge conjugation C constructed in Q4S; usual flip relations (2.10)-(2.11) valid.
+  - Sec 3: QAP holds in DRED; proof = BM proof; two ingredients: D_ij P_jk = i delta_ik at regularized level
+    and vanishing of scaleless integrals.
+  - Sec 4.2: S(Gamma_DRED) = i [S(Gamma_cl)] . Gamma_DRED (eq 4.3). With anticommuting gamma5, S(Gamma_cl) =
+    int (Delta_gauge + Delta_fix + Delta_matter + Delta_pot + Delta_Yg + Delta_Yc + Delta_Ypsi), all
+    four-fermion-type or Y-dependent, all vanishing in 4d by Fierz; Delta_fix = 0;
+    Delta_gauge = (i/2) g f_abc (epsbar gamma^mu g_a)(gbar_b gamma_mu g_c).
+  - Sec 4.3: topology rules (4.10): insertion vanishes if the gamma-string B of the closed fermion loop has
+    <= 4 (topology a, gaugino loop), <= 2 (b), <= 3 (c) gammas. Results: propagator ST identity (4.6) and
+    SUSY-transformation identity (4.7) valid to TWO loops in DRED; phi^4 identity (4.8) valid at ONE loop,
+    possibly violated at two loops; at higher orders restoring counterterms "might be necessary".
+  - App A: Q4S built as QDS (+) QepsS, each a Wilson/Collins formal space; gammas via block construction
+    from DREG gammas; Tr defined with Tr 1 = 4.
+
+[G17] C. Gnendiger, A. Signer, D. Stoeckinger et al., "To d, or not to d, that is the question", EPJC 77 (2017)
+      471, arXiv:1705.01827, eq. (2.3): QS[ds] = QS[d] (+) QS[n_eps], S[4] c QS[d]; (3.1): QS[ds] =
+      S[4] (+) QS[-2eps] (+) QS[n_eps]. For DRED/FDH ds = 4. => hierarchy 4S c QDS c Q4S used in bv_dr.tex.
+
+[BIMS20] H. Belusca-Maito, A. Ilakovac, M. Madjor-Bozinovic, D. Stoeckinger, JHEP 08 (2020) 024,
+      arXiv:2004.14398 (BMHV, chiral YM + scalars, one loop).
+  - Sec 2: LIM_{d->4}: d->4 then evanescent objects -> 0, after reduction to a unique normal form
+    (cyclic traces valid in BMHV).
+  - Sec 3.3: s_d S_0 = s_d S_0,evan = Deltahat (3.39a); regularized ST identity S_d(S_0) = Deltahat (3.39b);
+    for chiral fermions Deltahat = int (g T_R) c psibar (i dslash-hat P_R + ...) psi (3.40): evanescent.
+  - (3.44)-(3.46): linearized ST operator b_d; NOT nilpotent (b_d^2 != 0) because S_0 is not invariant.
+  - (4.4): counterterm structure S_sct,inv + S_sct,evan + S_fct,inv + S_fct,restore + S_fct,evan.
+  - (6.3) S_d(Gamma_DReg^(1)) = S_d(Gamma^(1)) + b_d S_sct^(1) + b_d S_fct^(1); (6.5) regularized QAP
+    S_d(Gamma^(1)) = Deltahat . Gamma^(1); (6.6) restoring condition
+    0 = LIM( [Deltahat.Gamma^(1)]_div + b_d S_sct^(1) + [Deltahat.Gamma^(1)]_fin + b_d S_fct,restore^(1) ).
+  - Sec 6.2 Bonneau identity (6.14): [N[Ohat].Gamma_Ren]^(1) = LIM( - r.s.p. [Ocheck . Gamma]^(1) )|_{gcheck=0},
+    r.s.p. = residue of simple pole in nu = 4-d; Ocheck: evanescent metric ghat replaced by gcheck with
+    gcheck^mu_mu = 1, gcheck.gbar = 0. Finite breaking = local, from UV poles only.
+
+[MPW96] N. Maggiore, O. Piguet, S. Wolf, NPB 458 (1996) 403 [Err. 469 (1996) 513], hep-th/9507045.
+  - (2.3): generalized BRST with constant ghosts eps (SUSY, commuting), xi^mu (translations, odd),
+    eta (R): s cbar = b - i xi.d cbar, s b = -2i eps sigma^mu epsbar d_mu cbar - i xi.d b,
+    s xi^mu = -2 eps sigma^mu epsbar.  => homotopy on the trivial pair (cbar,b) at quadratic order in
+    the SUSY ghosts; with a xi_GF b^2 term this gives the arity-two cbar cbar vertex.
+  - (2.8): S_gf = s int cbar d.A = int b d.A + dcbar (Dc + eps sigma lambdabar + lambda sigma epsbar):
+    lambda-cbar vertex along SUSY (Landau gauge there).
+  - (2.10): S_ext contains terms quadratic in external sources (lambda* lambda*, psi* psibar*) because s is
+    nilpotent only on shell: the analogue of S^(2) in the HK project.
+  - (2.12)-(2.15): SST identity S(Sigma) = 0, linearized B_Sigma nilpotent.
+
+DECISIONS (2026-11-05, before writing bv_dr.tex)
+ D1 dimension symbol: D (as in [S05]); never 'd' (HK uses d = exterior derivative) and never 'eps' (HK heat-kernel
+    boundary). Expansion variable 4-D; Gamma((4-D)/2) ~ 2/(4-D).
+ D2 spaces: [S05]/[G17] hierarchy 4S c QDS c Q4S, QDS = 4S (+) Q(D-4)S, Q4S = QDS (+) Q(4-D)S; restrictions
+    written with HK's '|_' (A|_{QDS} etc.), no ghat/gbar symbols in formulas.
+ D3 DRED scheme: V_10 -> Q4S (+) W_R^perp (formal "10"), fields depend on QDS coordinates; Clifford algebra
+    abstract with totally anticommuting formal chirality (Sigma/Sigma^* kept), Gamma_11-odd traces = 0.
+ D4 BMHV scheme: V_10 -> QDS (+) W_R^perp, 4d spinor structure explicit on 4S, evanescent Clifford factor
+    formal; Majorana map J (SO(4)_R real structure on W) needed for the evanescent kinetic term; no-go:
+    no BMHV kinetic operator on Pi Sigma (x) g alone preserves gauge invariance and SU(4)_R.
+ D5 non-minimal pair (cbar, b), gauge fermion Psi = int (cbar, -d^*A|_QDS + xi_GF b); with HK's pairing
+    normalisation xi_GF = 1 is Feynman gauge (gauge term -(hbar/2 xi_GF)(d.A^a)^2). Gauge parameter named
+    xi_GF (HK ch08 uses xi for spinor parameters). Translation/special-conformal parameters written v_1
+    (HK ch02 notation), because b is the Nakanishi-Lautrup field.
+ D6 gauge-fixed equivariant action S_Psi := exp({Psi,-}) S_nm: MC preserved; Deltahat_Psi = exp({Psi,-})Deltahat;
+    vertices {Psi, S^(1)(x)} (lambda-cbar along xi, eta; V-cbar along K with coefficient 2(D-2) of (cbar,iota_{v_1}A));
+    arity-two cbar cbar vertex from the homotopy on the trivial pair, prop. to xi_GF.
+ D7 Weyl weights in D dims: 4d geometric weights (A:1, lambda:3/2, c:0, cbar:2, b:2), antifields D-w.
+    => Deltahat^(1)(v) = (4-D) int sigma_v L_0 for every even v (sigma = div v / D).
+ D8 DR obstruction: Ob := LIM( Deltahat.Gamma^(1) - b_D I^CT,(1) ); one-loop finite parts of evanescent
+    insertions = -2 d/dD of the normal-form residue polynomial at D=4 (Bonneau-type).
+
+RESULTS RECORDED IN bv_dr.tex (2026-11-05, 25 pp; parts/ holds the section sources, bv_dr.tex is their concatenation)
+ R1 Schemes as BV theories. Scheme D = 10d reduction with V10 -> Q4S + W_perp (formal 10), momenta in QDS, E = Q(4-D)S + W_perp
+    (10-D scalars), totally anticommuting formal chirality. Scheme B = BMHV with QDS = 4S + Q(D-4)S, explicit 4S two-component
+    structure, evanescent kinetic term (1/2)(lambda, rho_J(d_hat) lambda), rho_J(vhat) = i gamma_5 (J (x) tau(vhat)), J = delta.
+    Prop nogo: a BMHV kinetic operator on Pi Sigma (x) g alone needs J: W -> W* (none SU(4)-invariant) -> choose SO(4)_R.
+ R2 Gauge fixing: non-minimal (cbar,b), Psi = int(cbar, -d^*A + xi_GF b) (xi_GF=1 Feynman in HK normalisation),
+    S_Psi = exp({Psi,-}) S_nm (canonical); Deltahat_Psi = exp({Psi,-}) Deltahat. Vertices: xi.Psi = -int(dcbar, Gamma(xi,lambda)|_QDS)
+    (lambda-cbar), v.Psi = (4-D) int sigma_v (cbar, d.A + xi_GF b) + (2-D) int (cbar, iota_{grad sigma_v} A) (K: 2(D-2) int(cbar, iota_v1 A),
+    = 4 int(cbar,iota_v1 A) at D=4), arity two kappa xi_GF int([x1,x2].cbar, cbar). Sign kappa and convention xi.A = -Gamma(xi,lambda)
+    to be fixed by gate G1b.
+ R3 Classical breaking (Thm breakD): Deltahat^(0)=0; even v: (4-D) int sigma_v L_0; xi: Fierz cubic term F(xi) = (1/2) int(lambda,
+    rho([xi.A, lambda])); eta: x-moment of F + (4-D) N(eta), N(eta) = -(1/2) int (rho(F_A) eta, lambda) (from the QDS sandwich
+    coefficients D-4, D-2, D; s_0 over E compensates 2 and 4). Arity two: zero with an even argument (D); Fierz-null on odd pairs.
+    Scheme B adds R-breaking on su(4) minus so(4)_J and field-counting E(xi).
+ R4 Quantum: Delta_0 F = 0 (delta(0)=0) => QME = CME; DR transfer identity => regularised QAP S_D(Gamma_D) = [d_D].Gamma_D;
+    Ob = LIM([Deltahat.Gamma]^(1) - b_D I^CT(1)) = -LIM d_D R_Deltahat |_{D=4} - LIM b_1 [Gamma^(1)]_{(4-D)^-1} (Bonneau-type),
+    s Ob = 0, s F_1 = Ob. Exact in both schemes: Ob^(0) = 0, Ob^(1)(P), Ob^(1)(M) = 0; R exact in D.
+ R5 Operators: [O]_R, QAP for insertions, L(O) via S_Gamma[M]_R = [L(M)]_R; master formula eq:masterD; corollary: hbar L_1^(0) = 0
+    (BRST on operators uncorrected at one loop), P_1 = M_1 = 0 (both), R_1 = 0 (D).
+ R6 D_1 = -2 LIM R(O) - {F_1^(1)(Delta), O} + [s, phi_O]; on cohomology D_1 = 2 gamma, gamma = -mu d/dmu log Z (with [O]_R = Z O_D).
+    Contributions: operator breaking 2(4-D)O_D -> +2R, counterterm commutator -> -2R, action breaking 2(4-D)S_0 with the counting
+    identity (vertices - propagators = -1 on one-loop graphs through O) -> -2R.
+ R7 K_1 = -(v1,x_O) D_1 + K_1^0 (P_1 = M_1 = 0); K_1^0 = special conformal anomaly kernel from the first y-moment of the
+    weighted insertions; IR hypothesis tested by gate G9b; (K,P) relation gives [delta(K), rho_0(P)] = (v1,v1') delta(Delta).
+ R8 One loop: no power divergences, no self-contraction; residue = 2 int F_0 dalpha / 16pi^2 (F_0 polynomial in the momentum form);
+    finite part with psi(n+1) + log 4pi - log m; Bessel-K generating function; bubble closed form (coefficient of ya^mu yb^nu:
+    (1/6) d_mu d_nu + (1/12) delta d^2 times 2/(4-D) hbar/16pi^2).
+ R9 Algebra: L.L = hbar ad_{Ob - sF_1}; exactness table: Scheme D MS-exact for gauge, P, M, R; tests T1/T2 along xi and (xi,xi');
+    F needed along Delta, K, eta (field counting, conformal); Scheme B needs F along xi, eta, R outside so(4)_J.
+ R10 Prop: no evanescent couplings in Scheme D (so(E) exact, E = Q(4-D)S + W_perp).
+
+OPEN / TO BE DECIDED (for the coordinator/user)
+ O1 sign kappa of the trivial-pair homotopy and the overall sign convention of x.A for odd x: fixed by gate G1b (MC at D=4).
+ O2 which W_perp triple anticommutes with rho_J in Scheme B: fixed by gate G0c.
+ O3 the 10d analogue of Stoeckinger's topology rules (min number of rho's in a closed loop for a surviving Fierz insertion in the
+    formal Q4S + W_perp algebra) decides T1 at one loop and the first loop order of Fierz breaking (literature: ACV1981/JJ1997
+    give 5-index antisymmetrised delta, d(d-1)(d-2)(d-3)(d-4), first possible N=1 propagator violation at 4 loops).
+ O4 the hypothesis of Thm inv (H^0(s) spanned by coupling direction, G_B and Im s) is the bridge for all cross-track comparisons;
+    the freedom/ classification (N4_BV_DR/freedom) reports G_B acting by coboundaries on simple summands and D_1 canonical on
+    cohomology -- to be reconciled with Thm inv (ii)-type statements.
+ O5 Scheme B alternative (sterile partner keeping SU(4)_R but breaking gauge BRST evanescently) not pursued; recorded in the no-go Prop.
+
+REVISION 2 (2026-11-05, after coordinator messages 2 and 3)
+ - Literature synthesis (literature/synthesis.txt): QAP in DRED is argued, not proved ([S05 Sec 3]) -> External input ax:qapD,
+   tested by gate G3b. Barnich hep-th/9807210 Sec 2.8 (eqs 129-132): DR breaking coupled to a global source plays the role of
+   the BV Laplacian -> Remark after Thm qap. DHKS 0712.1223 (25),(27): Deltahat(Delta), Deltahat(K) are their eps x Lagrangian
+   variations -> cited in Thm breakD (ii); K_1 defined through it (Thm K1).
+ - Section 7 rewritten by Q1-Q9 of the synthesis (loop orders in each Problem and in engine_spec targets_Q1_Q9).
+ - Freedom note (freedom/freedom.tex): the hypothesis of the old Thm inv is (Hs) of [FR]; Definition def:targets lists the
+   invariants I1-I6 ([FR] Thm 4.1, 4.7, 4.9, 5.1, 8.1, Prop 4.3, Cor 4.10) as what DR must reproduce; Thm inv now uses
+   [FR, Thm 2.3] (regulators with restored QME shift Ob by s Gamma, F by Gamma, psi by psi_RR'); the DR gauge fixing is valid
+   in the sense of [FR, Thm 2.4]. Correction absorbed: rho_0 o B is a coboundary on simple summands ([FR, Prop 4.3]), so the
+   "e^{-a hbar B} twist" matters only off simple summands.
+ - Consequence recorded (Remark rem:twistDR): in DR, hbar L_1^(0) = 0, so the twisted Konishi entry (in L_1^(0) in the heat-kernel
+   track) sits in L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi); Q_1 != 0 on Konishi in every restored DR scheme (by I2, I4 with gamma_K != 0).
+   Hence the synthesis question Q1(b) "A_O = B_Gamma C_O on Konishi" is reformulated: A_O = coboundary + non-removable lifting kappa
+   with kappa(eta) beta(xi) c0 = -gamma_K (xi,eta) c0; the open part is the coboundary (finite operator counterterm e).
+ - New relation (R11) = [FR Thm 4.9 (iv)] / Beisert c9 c10 = c1/2 (hep-th/0310252 eq 3.36); new gates G13 (lifting/Beisert),
+   G14 (composite-operator breaking, Q1), G15 (two-loop [K^(0),D^(2)] = [D^(1),K^(1)], Q4b); G12 now compares only I1-I6 with the
+   heat-kernel track rebuilt on a valid gauge fixing.

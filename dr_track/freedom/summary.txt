@@ -1,0 +1,76 @@
+FREEDOMS AND INVARIANTS OF THE ONE-LOOP SUPERCONFORMAL COMPONENTS (N=4 SYM, Costello BV) -- 2026-11-05
+Files: freedom.tex / freedom.pdf (10 pp, pdflatex, 0 undefined refs), checks.py -> checks.json (17/17 PASS), PROGRESS.txt.
+[M] = manuscript N4_Costello_BV_2026-10-27; [TW] = step2/next/twist/twist.tex; [GF] = ~/N4_BV_HK2/gf. Unit u = -g^2N/(32pi^2), L = log(3/2).
+
+0. OBJECT
+  L = s + hbar L_1 (local representative); L o L = 0  <=>  [s, L_1] = 0 in E = C^.(psl(4|4))-linear, weight-preserving, local operators.
+  On BRST cohomology at a point V (classical, interacting): delta(x) induced by -hbar Lambda_1^(1)(x) is a 1-cocycle of psl(4|4) in End(V).
+
+1. FREEDOMS (Thm 2.1)            space                                           action on L_1 (Thm 2.5, 3.1)
+  (a1) field redefinitions        B^0 = s(local cochains deg -1, wt 4), all arities: conjugation by 1+hbar ad_phi
+       incl. field countings N_f (= the Q-closed beta-directions of F_1^(0)), inner S^(1)(Delta), x-dependent phi^(1) (kappa_V, kappa_lam)
+  (a2) closed classes             H^0(s) = C[S - S^(2)] + C[G_B] (under Hs)       -a ad_G ; coupling invisible on delta; G_B: -a rho_0 o B
+  (a3) closed dirs of F_1^(1)(x)  H^-1 classes; arity two forces t in C lambda + C B (C1a)
+  (b)  finite parts psi^(0)       any weight-preserving map of local operators, incl. single letters, c.X ghost composites,
+                                  antifield composites (second order)       conjugation by 1+hbar psi'
+  (c)  gauge fixing               valid Q^GF (C07 Def 4.3.3 (1)-(5)); paths   conjugation + H^0 shift (Thm 2.4, hyp. Hc)
+  (d)  regulator                  profile varpi(eps p^2), eps-unit, PV, point splitting, DR/BMHV/DRED with restored QME:
+                                  Ob -> Ob + s Gamma, F -> F + Gamma, psi -> psi + psi_RR' (Lemma 2.2, Thm 2.3)
+  (e)  labels                     tree automorphisms U_0, normalisation of hbar, relative normalisation of lengths
+  (f)  homotopies                 arity-raising parts psi^(k), k>=1         chain homotopies [Lambda_0^(0), u^(1)(x)]
+  Net (Thm 2.5): L_1 -> U_0^{-1}(L_1 + [s,u] - sum a_i ad_{G_i})U_0. Invariant: [L_1] in H^1(E,[s,-]) / ad H^0(s) (Cor 2.6).
+  On V (Cor 3.2): delta -> delta + [rho_0, e] - a rho_0 o B,  e weight-preserving; arity-two data invisible.
+
+2. INVARIANTS
+  D_1 at a point: canonical as a MATRIX (mixing matrix, eigenvectors, spectrum) -- [rho_0(Delta), e] = 0 (Thm 4.1); commutes with rho_0 (R7).
+  [delta] in H^1(psl(4|4); End V) mod C[rho_0 o B]; rho_0 o B is a coboundary on every simple summand (Prop 4.3) -> corrects
+       [M, Thm c12-opalg (iv)].
+  Blocks of different gamma: off-diagonal parts are coboundaries given the two-loop extension (Thm 4.4).
+  Simple summands (protection): if gamma = 0 every component is ONE coboundary; BPS shortening forces gamma = 0 (Thm 4.7).
+       20' bilinears: Q_1,S_1,P_1,K_1,M_1,R_1,D_1 all removable by one finite part; c_Q(xi+)+c_Q(xi-)-p_1 = f_O - f_QO - f_QbarO + f_dO.
+  Joining/lifting (Thm 4.9): 0 -> N -> E -> C -> 0 classical (beta), one-loop lifting kappa: N -> C; [kappa] invariant;
+       -2 gamma tg_C = [kappa cup beta];  null direction: kappa(eta) beta(xi) c0 = -gamma (xi,eta) c0  ("c_Q c_S = gamma");
+       general direction: (a_xi + a'_eta) mu + kappa(eta)beta(xi) = -gamma (xi,eta)  (additive Konishi relation, coboundary invariant).
+  Norms (Cor 4.10): ||rho(xi)c0||^2_rad = (xi,xibar) gamma ||c0||^2 + O(hbar^2): normalised structure constants fixed by gamma.
+  Relations (R2)-(R7): hold in every scheme; scheme-independent as statements, terms scheme-dependent except delta(Delta).
+
+3. TWISTED Q (Sec 5)
+  Q^xi_1 = L_1^(0) + L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi) + ... is defined modulo [Q^xi_0, h] + C Q^xi_0; d_1 = [Q^xi_1] on E_1 = H(Q^xi_0)
+  canonical under ALL freedoms incl. profile and valid gauge fixing (Thm 5.1). "C S^xi in Im Q^xi_0" true only as Q0 = -[Q0, N_t].
+  Arity-one Q_1 alone is NOT invariant (the Konishi entry sits in L_1^(0), as [TW] found).
+  [TW] claim (A) proved (free directions = Z^0); claim (B) proved in sharper form (Thm 5.2): on H(Q_free) Q0 raises word length by 1,
+  so [Q0,u]_{2->2} = Q0 u_{2->1} - u_{3->2} Q0; only genuinely three-letter finite parts move the reduced pair entries; no covariance needed.
+  Profile changes are one-loop-local -> pair entries profile independent -> rational: the log(3/2) cancellation of [TW] is forced.
+  Generic Q, S, K: rho_0(x) has a 1->1 part, two-body finite parts move two-body kernels (c_Q) even in one-loop-local schemes (Prop 5.3).
+
+4. "UP TO COHOMOLOGY?" (Thm 8.1)
+  twisted Q: yes, exactly (mod [Q0,h] + C Q0); canonical d_1 on H(Q0).
+  Q along rank-one xi, arity one alone: only [delta(xi)] on H(rho_0(xi); V).
+  generic Q, S: no; up to [rho_0(x), e] with ONE e for all generators and -/+ a rho_0(x); content only in [delta] (liftings, (R2),(R3)).
+  K: as S (finite T, T-independent); tied to D_1 by (R5).   D: no ambiguity on cohomology at a point (position part = 2 x_O.P_1 scheme).
+  P: pure coboundary on simple summands; P_1 = 0 is a renormalisation condition.   M, R: pure gauge (Whitehead).
+
+5. PROFILE (Sec 6)
+  Mellin lemma: eps^0 coefficients = int du/u Phi(varpi, theta varpi, ...), theta = u d/du. For varpi_k = exp(-u^k):
+  X(k) = Lambda_X/k + sum_j k^j R_j, Lambda_X = log part at k=1. => anything with a log(3/2) part is profile dependent;
+  invariants are rational (= universal single-theta part). Numerical second-profile test C7: D=0 log part -log2 -> -log2/2;
+  D=2 rational part -3/8 -> -1/2 (B(k) = -k/8 - 1/4).
+  Claimed invariants 27/4 + 2L (action), 27/4 - 8L (operator): NOT invariant: moved by field countings (Prop 7.1, shift 2 sigma a (y_A - y_lam)),
+  by finite parts (coboundary values), by profiles (log part -> 2L/k, -8L/k), by gauge fixing. Invariant only under inner, G_B, coupling,
+  admissible t at fixed F_1^(0)|_2 = 27/16 term, fixed reference particular parts, fixed regulator (and psi = 0).
+
+6. STATUS OF THE PROJECT NUMBERS (old gauge fixing (QGF)^2 != 0: data only)
+  [I] D_1 = 0 (20'), -48u = 2 gamma_K; Heisenberg / su(1|1) / harmonic-sum spectra; twisted class on chiral bilinears; [TW] pair entries.
+  [C] t_Delta = -1/3, 27/4 + 2L relations, 27/16, Ob and F_1 particular parts, -5/2 u_0 (gauge sector; coincidence with old -5/2 = Feynman-gauge origin).
+  [A] c_Q, c_S, 27/4 - 8L, 4L(B2+B3), L_1^(0)(O), P_1, M_1, R_1, arity-one twist entries with L, SQED -1/12-(3/2)log2+(3/2)log3.
+  Survives the change to the valid gauge fixing only as prediction: [I] rows. Not inferable: all [C],[A], every log(3/2) number.
+
+7. BEISERT / BK
+  Beisert's similarity T(g) = conjugations; beta_1 ~ inner, beta_2 ~ length normalisation (e3); gauge transformations (3.6) ~ exact terms;
+  coupling redefinitions ~ S - S^(2) (+e2); [J_0, D_2] = 0 ~ R7/Thm 4.1; c9 c10 = c1/2 ~ Thm 4.9 (iv); B_0 ~ Prop 4.3.
+  BK: d_1 canonical => [TW] comparison is between canonical objects; constant = normalisation of hbar_tw.
+
+8. OPEN
+  Konishi block kappa, beta (needs S_1 on weights 5/2, 3 and arity-two kernels); 20' as simple summand of the classical interacting module;
+  (Hs) at 3-4 legs, G^K_j; (Hc) local representatives in families; DR inside BV (ST identity with operator insertions);
+  twisted entries with derived inputs, hbar_tw normalisation; two-loop delta_2; all [I] rows in the valid gauge fixing.

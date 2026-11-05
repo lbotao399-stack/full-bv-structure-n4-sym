@@ -1,0 +1,249 @@
+SYNTHESIS -- DR-type regularization versus supersymmetry, BRST and (super)conformal symmetry at high loop order
+Status 2026-11-05. [Sx.yy] = record IDs in dr_survey.txt / dr_survey.json (aliases are listed there).
+Labels:  E = the symmetry identity itself was evaluated in the regulated theory and holds (stated quantity, stated order)
+         C = agreement between independent frameworks (e.g. DR eigenvalue = integrability eigenvalue); not a Ward-identity test
+         A = assumed            X = earlier claim withdrawn or corrected            O = open
+
+======================================================================================================
+1. THE "9 LOOPS" (AND HIGHER) CLAIMS
+======================================================================================================
+1.1 Nine-loop planar Konishi dimension: quantum spectral curve; first quoted from a 2013 talk (cited in 1402.0871),
+    superseded in print by 10 loops (1411.4758) and 11 loops (1812.09238, App. A.2).  Integrability; no regulator,
+    no Feynman graphs.  [S1b.08, S1b.09, S1b.10]
+1.2 Nine-loop six-gluon MHV amplitude and three-point stress-tensor form factor, planar N=4 (Sep 2026): symbol/function
+    bootstrap (hexagon functions with extended Steinmann relations, antipodal duality, origin behaviour, pentagon-OPE
+    boundary data); Anthropic research post of 25 Sep 2026, validation by L. Dixon; concurrent nine-loop symbols by
+    He-Jing-Li (Zenodo).  Not on arXiv when surveyed; 3,821 of about 1.02 million symbol coordinates known only modulo
+    primes.  DR enters only through the BDS-like IR normalization.  [S1b.17, S1b.18; antecedents S1b.19, S1b.20]
+1.3 Integrands at 9-12 loops: four-point correlator f-graphs (hence four-point and five-point amplitude integrands) through
+    10 loops, nine loops fixed by the triangle rule applied at ten loops [S1c.06]; 11 loops [S1c.07]; 12 loops
+    (619,981,403 f-graphs, all but 3 coefficients fixed by the double-triangle rule) [S1c.08].  Strictly 4d rational
+    integrands fixed by S_{4+l} symmetry plus graphical rules; no regulator.  From 8 loops individual pseudoconformal
+    integrals diverge even off-shell and no symmetry-compatible regulator is specified [S1c.05].
+1.4 Highest DR-type Feynman-graph spectral computation: L = 11 loops for beta-deformed single-impurity operators at
+    critical wrapping, N=1 superspace with D-algebra in 4d and scalar integrals in D = 4 - 2 eps [S1a.04].  Only simple
+    poles of subdivergence-free integrals enter (eq. 2.15); the non-wrapping part is imported from an all-loop formula
+    (eq. 1.5).  Not a stress test of the scheme.
+1.5 Outside SUSY: Broadhurst-Kreimer phi^4 counterterms "up to 9 loops" [S1b.21].
+1.6 Common structure: no spectral number at >= 6 loops is a regulated-QFT computation.  Regulator-dependent input enters
+    indirectly: the BES dressing phase was selected against the four-loop cusp anomalous dimension extracted from
+    FDH-regulated IR poles [S1d.02]; amplitude bootstraps rely on the DR IR structure (BDS) and on the anomalous dual
+    conformal Ward identity derived in DRED [S1d.12].
+
+======================================================================================================
+2. WHERE SUSY / SUPERCONFORMAL PROTECTION OF A DR-TYPE SCHEME IS ESTABLISHED, AND TO WHAT ORDER
+======================================================================================================
+2.1 Consistency of the scheme
+    - DRED with 4d index algebra inside a d<4 space is inconsistent [S2.02].  The quasi-4-dimensional space
+      Q4S = QdS (+) Q(4-d)S with contraction rules only (no index counting, no Fierz identities) is consistent
+      [S2.10 Sec. 2, App. A].  Price: the SUSY variation of the regulated action is a non-zero, Fierz-vanishing
+      insertion; Slavnov-Taylor breaking S(Gamma_DRED) = i [S(Gamma_cl)].Gamma_DRED  [S2.10 eqs. 34, 35a-35h].
+    - Quantum action principle (QAP): proved for DREG/BMHV [S3.02]; for DRED argued by analogy, combinatorics not
+      worked out [S2.10 Sec. 3] (A).
+    - eps-scalar (evanescent) couplings must be renormalized independently outside SUSY: identifying them with g is wrong
+      from three loops (beta, gamma_m) [S2.11]; FDH with identified couplings is non-unitary at NNLO and singular at
+      N3LO [S2.15, S2.16]; the three-loop DR-bar beta of [S2.14] corrected in [S2.11].  Inside SUSY theories they track g:
+      Z_s = Z_e to two loops by counting and at three loops for several vertices [S1e.07]; beta_e = beta_s at three
+      loops in SYM [S1e.05 eq. 15]; four loops O.
+2.2 Identities verified in DRED / FDH (E unless stated)
+    1 loop : gamma-counting rule for insertions of the Fierz-vanishing breaking [S2.10 eqs. 41a-41d, 42]; SQED and SQCD:
+             no SUSY-restoring counterterm for the identities considered [S3.05, S3.06]; DREG needs them
+             (delta m_Psi - delta m_phi = (5/3)(alpha/4pi) m; photino-vertex shift -(1/6)(alpha/4pi)
+             [S3.05 eqs. 158-159, 175, 182-186]; gluino-quark-squark vertex (alpha_s/4pi)[(2/3)C(A) - (1/2)C(F)]
+             [S3.06 eq. 42]).  Subset of identities only.
+    2 loops: phi-psi propagator identity and SUSY-transformation identity [S2.10 eqs. 37, 38]; the phi^4 identity
+             (quartic coupling vs gauge and superpotential couplings) only at 1 loop [S2.10 eq. 39]; MSSM Higgs-sector
+             identity, gaugeless limit [S2.21]; FDH gg -> gg SUSY Ward identities: N=1 as eps -> 0 with O(eps)
+             violations flagged as a three-loop risk, N=2 to all orders in eps [S2.14 Sec. 7].
+    3 loops: one Slavnov-Taylor identity (quartic Higgs coupling vs electroweak gauge couplings), MSSM, gaugeless limit,
+             O(alpha_t alpha_s^2, alpha_t^2 alpha_s, alpha_t^3), zero external momenta [S2.22 eqs. 37-41].
+             beta-function equalities: SUSY-QCD, all alpha_s-type vertices incl. quark-squark-gluino, and
+             gamma_gluino,n = (n+1) beta_n [S1e.07 eq. 19]; SYM beta_e = beta_s [S1e.05 eq. 15]; gauge = Yukawa beta for
+             N=1, 2, 4 SYM [S1a.19 (v5, 2026), S1a.20]; N=4 beta = 0 [S1a.15, S1a.16].
+    4 loops: N=4 beta = 0 from ghost-gluon and Yukawa vertices, about 726,000 diagrams [S1a.11 eq. 11; S1a.20 eq. 16];
+             N=1 SYM gauge = Yukawa beta [S1a.20 eq. 16].  The four-loop DR-bar SYM gauge beta that matches the
+             NSVZ-derived prediction [S1e.05 eq. 21, S1e.06] comes from four-loop MS-bar plus three-loop conversion, not
+             from four-loop DRED graphs; agreement with NSVZ up to a coupling redefinition is a scheme statement, not a
+             SUSY test [S1e.03, S1e.10].
+    >= 5 loops: nothing.
+2.3 Composite operators of N=4 (the anomalous-dimension case)
+    - No Slavnov-Taylor / SUSY Ward identity for composite operators has been evaluated in DRED or superspace DR at any
+      loop order (none found).
+    - Eigenvalue agreements (C): three-loop SU(2)-sector dilatation operator from pure superspace graphs, higher poles of
+      ln Z cancel [S1a.07 eq. 2.4, App. D]; four-loop Konishi from component DRED with no integrability input
+      [S1a.06 eq. 5], from superspace with the asymptotic part imported [S1a.02 eqs. 3.1, 5.4], from Luescher [S1b.01];
+      five-loop critical wrapping for length 5 [S1a.05]; five-loop Konishi from the 4d correlator integrand with a
+      measure-only continuation d^4x -> mu^{2eps} d^{4-2eps}x (not DRED; one non-planar constant fitted to a Feynman-graph
+      result) [S1c.03 Sec. 3.1, eq. 4.38], matching TBA [S1b.02-S1b.04].
+    - BPS protection in superspace DR: Tr Phi^3 two-point function through g^4, 1/eps poles only [S6.18 eqs. 4.6-4.21];
+      20' (Delta_0 = 4) at g^2, g^4 [S1a.21]; protected Konishi-descendant combination at two loops in SSDR, with the
+      would-be anomaly coefficient divergent beyond one loop [S1a.22 Sec. 3.3, eq. 65].
+    - In N=1 superspace treatments of N=4 only SU(3)xU(1) and four supercharges are manifest; SU(4)_R and the other
+      twelve supercharges are realized non-linearly [S6.18 Sec. 2] and are what such a scheme could break.
+    - Deformed theories: conformality fails inside DR through running induced double-trace couplings (gamma_i
+      deformation, SU(N) prewrapping) [S1a.08-S1a.10].
+2.4 Earliest order at which DRED can fail
+    - Pure SYM propagator Ward identity: the Fierz-vanishing variation (g/2) f^{abc} epsbar gamma^mu lambda^a
+      lambdabar^b gamma_mu lambda^c [S2.09 eq. 29] inserted into graphs gives 48 delta^{[mu1..mu5]}_{[nu1..nu5]}, trace
+      48 d(d-1)(d-2)(d-3)(d-4); needs >= 4 loops [S2.04 via S2.09 eqs. 36-38].  No four-loop breaking ever computed.
+    - N=4 gauge vs Yukawa beta: first chiral flavour (Levi-Civita) trace, six Z matrices in one trace, at five loops;
+      topological count, not a computation [S1a.20 Fig. 3].
+    - Conflicting secondary estimates attributed to Avdeev / Avdeev-Chochia-Vladimirov for N=4: five loops for
+      propagator-type graphs [S1a.11 Introduction] versus ten loops for propagators and eight for three-point vertices
+      [S1a.19 Introduction]; the primary PLB 105 text was not accessed.
+    - X: "DRED breaks SUSY at three loops" [S2.05]: N=1 error noted in 2006 [S2.11]; N=2 mismatch traced to dropped
+      Levi-Civita terms in flavour and Pauli traces [S1a.20 eqs. 8-15]; Velizhanin erratum/v5 [S1a.19].  The fix uses an
+      ad hoc Levi-Civita prescription justified at three loops only; N=2 at four loops blocked by gamma5 [S1a.20].
+2.5 Manifestly supersymmetric non-DR regulators (the only all-order protection proofs with an explicit SUSY regulator)
+    - N=1 higher covariant derivatives + Pauli-Villars: NSVZ for RG functions defined in terms of bare couplings
+      [S1e.11] (given its eq. 27); four-loop SQED check [S1e.12].
+    - N=2 harmonic-superspace higher derivatives + PV: N=2 non-renormalization; N=4 finite to all orders
+      [S6.16 eqs. 33, 40, 45-46].  Earlier N=2/N=4 finiteness proofs assumed such a regulator [S6.16 Introduction].
+    - Algebraic all-order theorems are conditional on a scheme with a QAP and, where used, on a supersymmetric scheme:
+      [S4.03] (no SUSY anomaly beyond the supersymmetrized gauge anomaly, App. B), [S4.11] (complete cohomology; extra
+      candidates with abelian factors, eqs. 7.9-7.15), [S6.17] (N=1 finiteness), [S4.12] (N=4, 9 of 16 supercharges),
+      [S4.02] (superconformal cohomology claim, not audited).
+
+======================================================================================================
+3. WHERE PROTECTION IS ASSUMED (WITH THE PRECISE ASSUMPTION)
+======================================================================================================
+    - N=4 Feynman-graph spectra: DRED / superspace DR taken to be adequate; eps-scalar sector not described [S1a.06];
+      Siegel issue not discussed, GPXT applicability unproved, asymptotic dilatation operator (dressing phase
+      beta = 4 zeta3) imported [S1a.02]; only 1/eps poles of ln Z used [S1a.02, S1a.04]; finiteness of the chiral
+      self-energy imported [S1a.07].
+    - KLOV three-loop twist-two: maximal transcendentality replaces a SUSY-scheme computation [S1a.18]; KLV two loops:
+      MS-bar -> DR-bar conversion with reading-point gamma5 and Larin-type finite renormalization for polarized operators
+      [S1a.17].
+    - Algebraic dilatation operators: a perturbatively deformed, closing superconformal algebra on renormalized operators
+      with O(g) length-changing supercharges [S1a.24-S1a.26]; DRED preserving SUSY at two loops [S6.14 Sec. 4.1].
+    - Amplitudes: FDH preserving SUSY beyond two loops [S1d.01-S1d.03]; D-dimensional validity of integrands only partly
+      checked (mu-terms dropped [S1d.01]; measure replacement [S1d.04 eq. 20]); UV poles at non-integer D_c = 11/2, 26/5
+      computed in the continued 16-supercharge theory, SUSY argued from 10d state sums [S1d.04, S1d.06]; in supergravity,
+      evanescent operators shift DR pole coefficients without physical effect and the N=4 SUGRA four-loop divergence is
+      tied to a U(1) anomaly [S1d.08, S1d.10, S1d.11].
+    - Correlators: exact superconformal symmetry and the unregulated 4d Lagrangian insertion
+      d/dg^2 <O...O> = int d^4x <L O...O> [S1c.01 eqs. 2.12, 2.20]; sufficiency of graphical rules empirical
+      [S1c.05, S1c.06 Sec. 5, S1c.08 Sec. II.1].
+    - Dual conformal Ward identity: exact in D dims given the assumed all-loop divergence structure [S1d.12 eqs. 14, 20, 41].
+    - Algebraic renormalization: QAP for the constant-ghost ST identity [S4.03]; absence of SUSY anomalies in the MSSM
+      with its abelian factor [S4.07 Sec. 3.3]; one-loop beta = 0 as input [S4.12].
+    - With local coupling the constant-ghost ST identity carries a genuine one-loop anomaly, r_eta = C(G)/(8 pi^2) in N=1
+      SYM, not removable by local counterterms [S4.09 eqs. 31-32, 38; S4.10 eq. 24]; absent in the N=2 case
+      [S4.10 Sec. 7].
+
+======================================================================================================
+4. STANDARD MODEL AT >= 3 LOOPS AND GAMMA5
+======================================================================================================
+    3 loops : SM gauge, Yukawa, quartic beta functions unambiguous: gamma5-odd traces cancel by anomaly cancellation or
+              give only simple poles [S5.08 Sec. II.4, S5.09 eq. 20, S5.10 eqs. 9-10].
+    4 loops : g_s beta: 72 diagrams with two gamma5-odd traces (Goldstone Yukawa vertices); reading-point dependence
+              R (16/3 + 32 zeta3) T_F^2 a_s^2 a_t^2, R in {1, 2, 3} [S5.11 eqs. 8, 9, 14, 18]; R = 1 first adopted,
+              note added favours R = 3 without proof [S5.12]; R = 3 from transversality, C-parity and Fierz arguments
+              [S5.11] and from Weyl consistency conditions (WCC): g199 = y304/6, g200 = y305/6, g201 = y306/6,
+              g202 = y307/3 [S5.17 eqs. 3.4, 4.1-4.4].
+              Full four-loop SM gauge beta: gamma5-odd parts not computed, reconstructed from WCC [S5.19]; general
+              4-3-2 set with gamma5-odd gauge structures predicted by WCC [S5.21]; open at 5-4-3 [S5.21 Sec. 4].
+    Assumed in the WCC fix: WCC hold in the semi-naive / reading-point scheme actually used (not a consistent
+              regularization of chiral gauge theories); the three-loop Yukawa gamma5-odd inputs are unambiguous [S5.17].
+              No BMHV computation of these four-loop terms found.
+    Reading point: KKS [S5.01]; Kreimer's symmetric reading point and the admission that a suitable reading point may not
+              exist (Fig. 9) [S5.02]; critique [S5.03]; bare ABJ equation fails at O(alpha_s^2) without a non-BRST-exact
+              counterterm Z_JK = -(1/2) n_f C_F alpha_s^2 [S5.07 eq. 22]; g5anchor claimed to two loops, case of gamma5-odd
+              loops inside overall-divergent 1PI graphs (the four-loop beta situation) open [S5.23].
+    Larin    : finite Z5 fixed by imposing the anomaly equation (Adler-Bardeen as input) [S5.04]; four-loop singlet
+              [S5.05, S5.06].
+    BMHV     : abelian chiral gauge theory complete to four loops, finite restoring counterterms only Abar d^2 Abar,
+              (Abar^2)^2, psibar i dslashbar P_R psi [S3.14 eqs. 4.14, 4.16, 4.31]; non-abelian SU(2) two loops with a new
+              source term [S3.13 eqs. 4.15-4.22]; full SM one loop in R_xi [S3.15]; non-unique evanescent continuations
+              change Deltahat and the counterterms [S3.12 eq. 2.39]; applied to SUSY only in one-loop SQED [S3.05]; HVBM
+              gamma5 breaks R-invariance and, in DRED, SUSY at one loop [S3.07, S2.10 eq. 36]; nothing for N=4.
+
+======================================================================================================
+5. QUESTIONS A BV / QME FORMULATION CAN SETTLE
+======================================================================================================
+Setting.  S = classical BV action with constant ghosts (gauge c, SUSY eps (commuting spinor), translation xi^mu; optionally
+dilatation omega_D, special conformal omega_K^mu, R-symmetry), antifields Phi*, and the terms quadratic in Phi* required by
+on-shell closure [S4.03 eq. 2.7; S4.11 eq. 2.24].  In DR the BV-Laplacian term vanishes (delta(0) = 0) and the quantum part
+of the QME is the evanescent breaking: with Delta_reg := (1/2)(S_reg, S_reg) (ghost number 1) the QAP gives
+
+        (1/2)(Gamma, Gamma) = [Delta_reg . Gamma]                     [S6.01 Sec. 2.8 eqs. 129-132; S3.02; S2.10 eq. 34]
+
+A symmetry is maintained at order n iff  lim_{eps->0} [Delta_reg . Gamma]^(n)_fin = B_Gamma C^(n)  with C^(n) local
+(-C^(n) = finite restoring counterterm); a non-B-exact remainder is an anomaly.
+    Delta_DRED : Fierz-vanishing terms [S2.09 eq. 29; S2.10 eqs. 35a-35h]; for N=4 obtained from 10d, the failure of the
+                 10d Fierz identity in a quasi-10-dimensional Clifford algebra.
+    Delta_BMHV : evanescent kinetic / vertex pieces, ghost-linear [S3.08 eqs. 3.39-3.40; S3.12 eq. 2.39], plus the
+                 d-vs-4 vector-component mismatch specific to SUSY [S3.05].
+    Delta_conf : -(2 eps/(g^2 mu^{2eps})) omega_D int d^Dx L  -  (4 eps/(g^2 mu^{2eps})) omega_K^nu int d^Dx x_nu L
+                 (variation of S_eps = (1/(g^2 mu^{2eps})) int d^Dx L; BV form of [S1d.12 eqs. 23, 25, 27]; the factor i
+                 in [S1d.12 eq. 27] comes from the weight exp(i S_eps)).
+
+Q1  One loop, N=4 composite operators, DRED.  For a gauge-invariant operator O with source u_O (and eps-descendant sources)
+    define A_O^(1) := lim_{eps->0} d/du_O [Delta_DRED . Gamma]^(1).  Decide:
+      (a) A_O^(1) = 0 for every O in the stress-tensor multiplet (and other 1/2-BPS multiplets);
+      (b) for the Konishi multiplet A_O^(1) = B_Gamma C_O with C_O local;
+      (c) C_O = 0 (no finite restoring counterterm, as for elementary fields at one loop [S3.05, S3.06]) or C_O != 0.
+    The gamma-counting rules [S2.10 eqs. 41a-41d, 42] select the contributing graphs; operators with fermion bilinears
+    lambdabar Gamma^(k) lambda lengthen the gamma strings and are the candidates for A_O^(1) != 0.  C_O != 0 shifts the
+    finite part of Z_O and hence two-loop mixing coefficients, e.g. the Konishi-anomaly coefficient, scheme dependent
+    beyond one loop [S1a.22 Sec. 3.3, eq. 65].
+Q2  One loop, N=4, BMHV / DREG (d-dimensional gauge field, no eps-scalars, gamma5 in the SU(4)_R-chiral Yukawa couplings).
+      (a) A^(1) != 0 already for elementary functions; the N=4 analogues of [S3.05 eqs. 158-159, 175] and [S3.06 eq. 42]
+          (gauge-Yukawa and gauge-quartic relations) are computable at one loop;
+      (b) explicit C^BMHV for the 20' and Konishi operators;
+      (c) prediction to check: with C^BMHV the two-loop dilatation operator equals the DRED one up to a similarity
+          transformation; without it 20' acquires a non-zero two-loop anomalous dimension;
+      (d) with background SU(4)_R gauge fields the only non-B-exact class must be the 't Hooft anomaly
+          (proportional to (N^2-1) d^{abc}); every other breaking, including the spurious R-breaking of HVBM [S3.07],
+          must be B-exact.
+Q3  One loop, superconformal closure on operators.  The O(g) length-changing supercharges used in [S1a.25, S1a.26],
+    (Q_1)^a_alpha = c_9 eps_{alpha beta} eps^{abc} {beta; bc},  (S_1)^alpha_a = c_10 eps_{abc} eps^{alpha beta} {bc; beta}
+    [S1a.25 eq. 3.32], are classical: antifield-linear terms of S with composite-operator sources.  The one-loop
+    dilatation generator H_2 (normalization c_1) is the finite part of [Delta_conf . Gamma]^(1) (eps x 1/eps); its form is fixed
+    by [Q_0, H_2] = 0 [S1a.25 eqs. 3.29-3.30] and its normalization by the O(g^2) closure of {Q, S},
+    c_9 c_10 = (1/2) c_1 [S1a.25 eq. 3.36].  Statement: the O(hbar) QME on operator sources reproduces
+    c_9 c_10 = (1/2) c_1 with c_9, c_10 from the tree-level BV action and c_1 from the one-loop counterterm; decide
+    whether it holds in DRED, and in BMHV only after the C^(1) of Q2.  This converts the identification of the deformed
+    algebra with renormalized N=4 operators (H = D, eq. 2.30, up to similarity transformations) assumed in
+    [S1a.24-S1a.26] into a computation.
+Q4  One loop, conformal breaking and restoration at d != 4.  N=4 in d = 4 - 2 eps has no interacting critical point
+    (beta_d(a) = -2 eps a) [S6.10 red flag; S6.14 eq. 4.6]; conformal symmetry is broken by Delta_conf for every eps != 0.
+      (a) Dilatation: lim eps [int L . Gamma_O]^(1) reproduces D = lim 2 eps lambda d ln Z/d lambda [S1a.07 eq. 2.4]
+          (normalization check);
+      (b) special conformal: the finite part of eps [int x^nu L . Gamma_O]^(1) defines the one-loop special-conformal
+          anomaly K^(1) on operators; constraint [K^(0), D^(2)] = [D^(1), K^(1)] (analogue of [S6.10 eqs. 88-91], used in
+          [S6.13, S6.14]) fixes the non-conformal part of the two-loop dilatation operator; in DRED the scheme c-number
+          proportional to (4 - N) vanishes for N=4 [S6.14 eq. 5.54];
+      (c) decide whether in BMHV/DREG K^(1) acquires the extra term [K^(0), C^(1)] from the SUSY-restoring C^(1) of Q2,
+          i.e. whether conformal covariance and SUSY restoration need the same finite counterterm;
+      (d) compare with the axial-operator case in Larin's scheme, where conformal covariance requires a finite
+          renormalization kernel [S6.12].
+Q5  Two loops, phi^4 identity.  The identity tying the quartic scalar vertex to g^2 and to the Yukawa vertex is known in
+    DRED only at one loop [S2.10 eq. 39] and at three loops in a restricted MSSM limit [S2.22].  For N=4: is
+    [Delta_DRED . Gamma]^(2) on the four-scalar function B-exact with C^(2) = 0?
+Q6  Four and five loops, onset of DRED breaking.  Claim to test: [Delta_DRED . Gamma] on the N=4 Yukawa vertex vanishes
+    through four loops; the first possibly non-zero graphs are the five-loop ones with six Z matrices in one flavour trace
+    [S1a.20 Fig. 3]; for the pure-SYM propagator identity, four-loop graphs with the five-index structure
+    [S2.09 eqs. 36-38].  The BV form reduces each test to the finite set of graphs with one Delta_DRED insertion and long
+    enough gamma/flavour strings, and settles the conflicting 5 vs 8/10-loop estimates [S1a.11, S1a.19].  A five-loop
+    component-DRED Konishi computation would test DRED at that order against the integrability value [S1c.03 eq. 1.1].
+Q7  Local coupling and the Lagrangian insertion.  The correlator bootstrap and BPS non-renormalization use
+    d/dg^2 <...> = int <L ...> in strictly 4d [S1c.01 eq. 2.12].  With g promoted to a background field the
+    constant-ghost ST identity can carry a non-removable one-loop anomaly [S4.09 eq. 38]; it is absent in the N=2 case
+    [S4.10 Sec. 7].  Statement to verify: in N=4 the one-loop local-coupling anomaly vanishes in an N=2-covariant BV
+    formulation, as for the N=2 case of [S4.10]; compute its coefficient in the N=1 Wess-Zumino-gauge formulation
+    (DRED, vector + three adjoint chirals).  A non-zero value means the Lagrangian
+    insertion formula holds up to a local term at coincident points, relevant only in OPE limits (where [S1c.03] uses a
+    measure-only continuation).
+Q8  Deformed theories.  For beta/gamma_i-deformed N=4 the local deformation complex must contain double-trace couplings;
+    their one-loop beta functions (non-zero for gamma_i [S1a.08]) are the obstruction to the conformal QME at one loop;
+    U(N) versus SU(N) changes the cohomology by the abelian factor (extra candidates for abelian factors [S4.11 eqs.
+    7.9-7.15]).
+Q9  SM gamma5.  Statement: with BMHV plus symmetry-restoring counterterms (one-loop SM [S3.15]) the gamma5-odd four-loop
+    g_s coefficient equals R = 3 [S5.11, S5.17]; equivalently, the WCC hold in the restored BMHV scheme with the
+    three-loop Yukawa gamma5-odd inputs.  Smallest intermediate test: a chiral gauge-Yukawa model with scalars in BMHV
+    [S3.12] at the order where two gamma5-odd traces first meet in a divergent graph, compared with the reading-point
+    prescriptions A/B/C of [S5.11].
+
+Source limits: pre-1985 papers via INSPIRE abstracts and the secondary sources named in each record; abstract-only and
+truncated full-text records are marked in source_access.

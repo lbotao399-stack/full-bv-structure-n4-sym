@@ -157,3 +157,50 @@ composite A_V--c lines give a nonlocal Q-exact remainder (Delta) and a translati
   step2/qa/ch09_12_review/pre/). Live reader rev 71 (c9/c10/c11 replaced, c12 appended, 156 supplements);
   reader_build/update_ch9_12.sh PORT does the whole sequence. README/CONTRIBUTING updated; GitHub push of ch09-12 +
   step2/strict running (tools.nosync/github_api_push.py).
+
+## 2026-11-05 (user: "continue, don't stop")
+- Three background agents (local compute): step2/next/action2 ([K,P], (eta,eta'), (xi-,eta+-), three/four-leg classes),
+  step2/next/operator2 (Q/S/M/K_1 on F1-F7, generic-b P_1, route B on F5-F7, locality gates, (R2)-(R6)),
+  step2/next/twist (transport map Phi, class-level BK comparison, Upsilon_xixi).
+- Supplements ch01/ch03: [X] slot notation replaced by (Qe)_X; functional side sA_m = -d_m c (substitution rule of
+  Prop c9-maps proof; common +d_m c is c -> -c). Reader rev 115 (targeted reader_build/update_one_supplement.py keeps
+  learner highlights; the user now highlights supplement blocks, so insert_supplements.py refuses -> use the targeted
+  script). The reader server at 8787 is started on demand by the library (8840); start_reader.py --port 8787 if down.
+- 2026-11-05 later: user directive R11 (DESIGN_STEP2.md). New agents (outputs in ~/N4_BV_DR): freedom/ (classification of
+  renormalization freedom, meaning of Q_1 etc.), literature/ (critical high-loop DR study), theory/ (BV formulation of
+  DR for N=4 with constant ghosts, one-loop Q_1/K_1/D_1 plan). Survey of the user's earlier projects -> step2/next/survey/.
+  Twist agent told to use the user's map (All-loop article Appendix B, reader :8778 from b-01003).
+  Diagnosis given to user: Step-1 Q^GF violates Costello axioms (3),(5) (Ch.3) -> composite-line layer; survey checks
+  whether earlier projects used a Q^GF with (Q^GF)^2 = 0.
+- 2026-11-05 evening: user R12 -> rebuild on (Q^GF)^2 = 0. Stopped step2/next/action2, operator2 (old-GF data kept).
+  Gauge-fixing design agent -> ~/N4_BV_HK2/gf/ (formulations A non-minimal (cbar,b) / B first-order; machine-checked axioms;
+  equivariant extension; [x.,Q^GF] per generator; migration plan; draft revised Chapter 3). Twist agent continues.
+- 2026-11-05 twist agent DONE (step2/next/twist/: twist.tex/pdf, results.json, src.nosync/qa2.py for Upsilon_xixi):
+  Phi = projection onto single-letter H(Q + xi. + 1/2 xi xi^T), BK normalisation via the user's All-loop map;
+  class of Q_1^xi mod Im Q_0^xi agrees with BK (3.64)-(3.69) in all 8 pair channels with ONE common constant (-i/4 engine
+  units); log(3/2) cancels; Konishi entry nonzero (arity-zero kernel); needs arity-0, arity-2 (Upsilon_xixi) and the
+  lambda* term of b. Manuscript Table c11-twistentries incomplete as a class statement (fix in rebuild).
+  PROVISIONAL: old gauge fixing; engine B not run on arity-0/2; absolute constant open. -> gate for the rebuild.
+- 2026-11-05 DR literature study DONE: ~/N4_BV_DR/literature/ (dr_survey.txt/json 174 works, synthesis.txt + PDF in build/).
+  Key: no ">=6-loop" spectral number is a regulated-QFT computation (QSC, bootstrap, 4d integrands); DRED SUSY identities
+  verified only partially (1-4 loops, beta-function equalities, few identities); NO composite-operator SUSY Ward identity
+  ever evaluated in DRED/SSDR/BMHV; SM 4-loop g_s term reading-point dependent, R=3 via Weyl consistency. Q1-Q9 testable
+  BV-DR questions in synthesis.txt (forwarded to the BV-DR theory agent).
+- 2026-11-05 BV-DR theory note (first pass) DONE: ~/N4_BV_DR/theory/bv_dr.tex/pdf (25 pp), engine_spec.json (26 gates,
+  routes A residues/QAP, B direct Green functions). DRED (Stoeckinger Q4S, V10 -> Q4S + W_perp) and BMHV-type (J = delta,
+  keeps SO(4)_R); non-minimal (cbar,b), Psi = int(cbar, d.A + xi_GF b) Feynman at xi_GF = 1; QME = CME in DR, defect =
+  evanescent breaking (QAP); D_1 = 2 gamma via RG; K_1 = -(v1,x_O) D_1 + K_1^0; relations fail exactly by Ob - sF_1.
+  Agent resumed to add the literature Q1-Q9 targets. Downloaded papers in theory/src_pdf (never push).
+- 2026-11-05 freedom note DONE: ~/N4_BV_DR/freedom/freedom.pdf (10 pp, 17/17 checks). Ch12 "invariant relations" with
+  log(3/2) are NOT invariant; Thm c8-invariants (iii) understated (whole D_1 matrix canonical); Thm c12-opalg (iv) fixed by
+  Prop 4.3. Corrections agent -> ~/N4_BV_DR/manuscript_fixes/fixes.json (apply, then reader c8/c11/c12 + GitHub).
+- 2026-11-05 BV-DR theory final (27 pp; invariants I1-I6 from the freedom note; Q1-Q9 targets; 29 gates; in DR the
+  one-loop BRST correction on operators is zero, so the twisted Konishi entry sits in Q_1 + arity-two). DR engines
+  launched: ~/N4_BV_DR/engines.nosync/route_a (residues/QAP) and route_b (direct Green functions, no QAP).
+- 2026-11-05/06 NEW GAUGE FIXING DONE: ~/N4_BV_HK2/gf/ (gf.pdf, ch03_revised.tex, checks.py 130/130, migration_plan.json
+  84 items). Formulation A: antighost cbar, cbar* (weight 2), S' = S - 1/4 int(cbar*,cbar*), Psi = int(cbar, d*A|_V);
+  Q^GF: A*->-2A*, lambda*->-dslash lambda*, cbar*->cbar* (into c), c*->-c* (into cbar); Feynman gauge forced by (Q^GF)^2=0;
+  all 5 axioms; old Q^GF = compression via chain map j: (cbar, A*) -> A* - d cbar => arity-zero results (I^CT, 27/16, Ob3,
+  F3) are pullbacks. Composite lines vanish along Delta, P, M, R; remain along K (4 iota_b A_V-c) and Q, S (lambda-cbar,
+  identical to old). Recompute: arity one along Delta, P, M, K; theta, t_x; D1/P1/M1/K1 representatives; arity two with
+  V-part brackets; log T along K; Theta_n on cbar. Referee -> ~/N4_BV_HK2/gf_review/; engine A -> ~/N4_BV_HK2/engine_a/.

@@ -1,0 +1,388 @@
+
+\section{The quantum theory: BV with dimensional regularisation}
+\label{sec:quantum}
+
+In the heat-kernel track the quantum master equation fails at scale $\varepsilon$ through the special edges $K_\varepsilon-K_0$ and $\hbar\Delta_\varepsilon$ [HK, def:c8-ob]. In dimensional regularisation the BV Laplacian vanishes on local functionals and the bracket is exact, so the whole defect is the classical evanescent breaking $\widehat\Delta$; its loop insertions produce the local one-loop obstruction through $(4-D)\times$pole terms. This section sets up the DR forms of the transfer identity, the obstruction, the restoring counterterms, the renormalised insertions and the local representative.
+
+\subsection{The BV Laplacian and the regularised quantum action principle}
+
+\begin{lemma}[The BV Laplacian in DR]
+\label{lem:lap}
+For every local functional $F$ on $\mathscr E_D$, $\Delta_0F=0$.
+\end{lemma}
+
+\begin{proof}
+$\Delta_0=-\partial_{K_0}$ contracts a field with its antifield inside one monomial with the kernel $-\delta^{(D)}(x-y)$ times the inverse fibre pairing [HK, def:c1-bracket]; with derivatives of the two letters the result is $\int\mathrm{dvol}_D\,(\cdots)\,\partial^\alpha_x\partial^\beta_y\delta^{(D)}(x-y)|_{y=x}=\int\mathrm{dvol}_D(\cdots)\int\frac{d^Dp}{(2\pi)^D}(ip)^\alpha(-ip)^\beta$, the integral of a polynomial, which vanishes (Axiom \ref{ax:spaces}).
+\end{proof}
+
+\begin{theorem}[Quantum master equation in DR]
+\label{thm:qme}
+For a local cochain $J$ of degree $0$, $(d_{CE}+Q)J+\frac12\{J,J\}+\hbar\Delta_0J=(d_{CE}+Q)J+\frac12\{J,J\}$. The regularised quantum master equation is the classical Maurer--Cartan equation, and its defect for $J=S_{\Psi,\mathfrak{psl}}-S_{\rm free}$ is $\widehat\Delta$ of Definition \ref{def:breaking}.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:lap}.
+\end{proof}
+
+\begin{definition}[Regularised generating functionals]
+\label{def:WD}
+For a local cochain $J$ (interaction with counterterms), $W_D(J):=\hbar\log\big(e^{\hbar\partial_{P_D}}e^{J/\hbar}\big)$: the connected graphs with vertices $J$, edges $P_D$ of Lemma \ref{lem:canon} and $D$-dimensional loop integrals; $\Gamma_D(J)$ is its one-particle-irreducible part, a functional of fields and antifields with values in $C^\bullet(\mathfrak{psl}(4|4))$ [HK, thm:c8-L (iv) for the products]. $S_D(\Gamma):=d_{CE}\Gamma+\frac12(\Gamma,\Gamma)$ is the regularised Slavnov--Taylor operator, $(\,,)$ the bracket of [HK, def:c1-bracket] on the effective fields.
+\end{definition}
+
+\begin{theorem}[DR transfer identity; regularised quantum action principle]
+\label{thm:qap}
+Graph by graph in DR,
+\begin{equation}
+(d_{CE}+Q)\,e^{\hbar\partial_{P_D}}=e^{\hbar\partial_{P_D}}\,(d_{CE}+Q+\hbar\Delta_0),
+\label{eq:transferD}
+\end{equation}
+hence $(d_{CE}+Q)e^{W_D(J)/\hbar}=e^{\hbar\partial_{P_D}}\big(\hbar^{-1}\mathfrak d_D\,e^{J/\hbar}\big)$ with the defect vertex
+\[
+\mathfrak d_D:=d_{CE}J+QJ+\tfrac12\{J,J\},
+\]
+and in one-particle-irreducible form
+\begin{equation}
+S_D(\Gamma_D(J))=[\mathfrak d_D]\cdot\Gamma_D(J),
+\label{eq:qapD}
+\end{equation}
+the generating functional of the graphs with one vertex $\mathfrak d_D$ [BM77], [S05, §3, (4.3)], [BIMS20, (6.5)]. For $J=I_{\Psi,\mathfrak{psl}}$ (no counterterms), $\mathfrak d_D=\widehat\Delta$.
+\end{theorem}
+
+\begin{proof}
+By [HK, lem:c8-transfer], $[\partial_\phi,Q]=\partial_{(Q\otimes1+1\otimes Q)\phi}$, and $(Q\otimes1+1\otimes Q)P_D=K_0$ (Lemma \ref{lem:canon}) gives $Q\partial_{P_D}=\partial_{P_D}Q+\Delta_0$; summing the exponential series gives \eqref{eq:transferD}; $d_{CE}$ commutes with $\partial_{P_D}$. On $e^{J/\hbar}$, $(Q+\hbar\Delta_0)e^{J/\hbar}=\hbar^{-1}\big(QJ+\frac12\{J,J\}+\hbar\Delta_0J\big)e^{J/\hbar}$, and $\Delta_0J=0$ (Lemma \ref{lem:lap}). The analytic content is that every manipulation is valid for $D$-dimensional integrals: shifts of loop momenta, the identity kinetic operator $\times P_D=\delta$ at the regularised level, and the vanishing of scaleless integrals; these are the two ingredients of the proof of the quantum action principle in [BM77]. In Scheme B the statement is [BM77]. In Scheme D it is External input \ref{ax:qapD}. The Legendre transform at fixed antifields turns the connected form into \eqref{eq:qapD}.
+\end{proof}
+
+\begin{axiom}[Quantum action principle in Scheme D, {[S05, §3]}]
+\label{ax:qapD}
+[S05, §3] verifies in the consistent quasi-four-dimensional construction the two analytic ingredients of [BM77] (kinetic operator $\times$ propagator $=\delta$ for $D$-dimensional momenta and $\gamma$-matrices of $Q4S$; vanishing of scaleless integrals) and states that the combinatorial part of the proof of [BM77] carries over; the combinatorics is not written out there [LIT, §2.1]. Theorem \ref{thm:qap} in Scheme D rests on this input; gate G3b tests \eqref{eq:qapD} graph by graph at one loop.
+\end{axiom}
+
+\begin{remark}[The breaking as the BV Laplacian of DR]
+In [Bar98, §2.8, (129)--(132)] the evanescent breaking of the regularised master equation is coupled to a global odd source $\rho^*$, and $(\tau/(-i\hbar))\,\partial^L/\partial\rho^*$ takes the place of the BV Laplacian, whose formal term vanishes because $\delta^{(D)}(0)=0$. Theorem \ref{thm:qap} is this statement in the conventions of [HK], with $\widehat\Delta$ in the role of the source term.
+\end{remark}
+
+\begin{remark}[Dictionary with the heat-kernel defect]
+\label{rem:dict}
+\mbox{}\par\smallskip\noindent{\small\begin{tabular}{p{0.44\textwidth}|p{0.5\textwidth}}
+heat kernel [HK] & dimensional regularisation\\
+\hline
+special edge $K_\varepsilon-K_0$, $\hbar\Delta_\varepsilon$ & none: $\Delta_0F=0$, exact bracket\\
+defect vertex $(d_{CE}+Q)J+\frac12\{J,J\}_\varepsilon+\hbar\Delta_\varepsilon J$ & $\mathfrak d_D=d_{CE}J+QJ+\frac12\{J,J\}$; classical part $\widehat\Delta$, evanescent\\
+$\varepsilon^{-m}$, $\log\varepsilon$ & poles $(4-D)^{-1}$ only at one loop\\
+$[\varepsilon^0]$ of cycles with one special edge & $\mathrm{LIM}$ of cycles with one evanescent vertex (Lemma \ref{lem:bonneau})\\
+bridge $+$ counterterm partner $\to0$ & evanescent tree vertex $\times$ subtracted subgraph $\to0$\\
+endpoint $T$, $\log T$ along $K$ & no endpoint; residues are infrared safe (Proposition \ref{prop:irsafe})\\
+$(Q^{GF})^2\neq0$, composite lines & $(Q^{GF})^2=0$; vertices $\{\Psi,S^{(1)}(x)\}$, $\{\Psi,S^{(2)}\}$\\
+\end{tabular}}\par\smallskip
+
+The correspondence is structural; numbers are computed separately in each track.
+\end{remark}
+
+\subsection{Renormalisation, the renormalised Slavnov--Taylor identity and the obstruction}
+
+\begin{definition}[Counterterms and renormalised effective action]
+\label{def:ren}
+The minimal counterterms $I^{CT}_D$ are, order by order in $\hbar$ with lower-order counterterms inserted, the pole parts in $4-D$ of the one-particle-irreducible graphs, as local cochains in normal form; at one loop $I^{CT,(1)}_D=(4-D)^{-1}\,[\Gamma^{(1)}_D]_{(4-D)^{-1}}$. A finite counterterm is a local cochain $F=\hbar F_1+\hbar^2F_2+\cdots$ of degree $0$ and Weyl weight $4$ (counted as in [HK, def:c8-quant]), given with a $D$-dimensional lift. With $J:=I_{\Psi,\mathfrak{psl}}-I^{CT}_D-F$,
+\[
+\Gamma_{\rm ren}:=\mathrm{LIM}\,\Gamma_D(J),\qquad S(\Gamma):=d_{CE}\Gamma+\tfrac12(\Gamma,\Gamma)\ \text{(four-dimensional)}.
+\]
+\end{definition}
+
+\begin{theorem}[Renormalised Slavnov--Taylor identity]
+\label{thm:rst}
+\[
+S(\Gamma_{\rm ren})=\mathrm{LIM}\Big([\mathfrak d_D]\cdot\Gamma_D(J)\Big),\qquad \mathfrak d_D=\widehat\Delta-b_D\big(I^{CT}_D+F\big)+\tfrac12\{I^{CT}_D+F,I^{CT}_D+F\}.
+\]
+At one loop
+\begin{equation}
+S(\Gamma_{\rm ren})=\hbar\,\big(\mathrm{Ob}-sF_1\big)+O(\hbar^2),\qquad \mathrm{Ob}:=\mathrm{LIM}\Big([\widehat\Delta\cdot\Gamma_D]^{(1)}-b_DI^{CT,(1)}_D\Big),
+\label{eq:Ob}
+\end{equation}
+with $s=d_{CE}+\{S_{\Psi,\mathfrak{psl}},-\}$ at $D=4$ and $[\widehat\Delta\cdot\Gamma_D]^{(1)}$ the one-loop graphs with one vertex $\widehat\Delta$, the factor $\hbar$ removed.
+\end{theorem}
+
+\begin{proof}
+Theorem \ref{thm:qap} with $\mathfrak d_D$ expanded at $J=I_{\Psi,\mathfrak{psl}}-I^{CT}_D-F$: the order-$\hbar^0$ part is $\widehat\Delta$, the linear terms are $-b_D(I^{CT}_D+F)$. The left side has a limit; so does the right side, and the order-$\hbar$ part is the tree insertion of $\widehat\Delta$ (with $\mathrm{LIM}\,\widehat\Delta=0$), the one-loop graphs with one $\widehat\Delta$, and $-b_DI^{CT,(1)}_D-\hbar b_DF_1$. $\mathrm{LIM}(b_DF_1)=sF_1$ because $F_1$ is finite and $b_D\to s$; the double insertions $\widehat\Delta\otimes F_1$ are of order $\hbar^2$. This is [BIMS20, (6.3)--(6.6)] in BV form.
+\end{proof}
+
+\begin{lemma}[Finite parts of evanescent insertions; Bonneau-type identity]
+\label{lem:bonneau}
+Let $X_D$ be a local vertex whose normal form is polynomial in $D$, and write the sum of the one-loop graphs with one vertex $X_D$ (other vertices from $I_{\Psi,\mathfrak{psl}}$) as $(4-D)^{-1}\mathcal R_X(D)+\mathcal F_X(D)$, with $\mathcal R_X(D)$ local and polynomial in $D$ (Theorem \ref{thm:res}) and $\mathcal F_X$ analytic at $D=4$. If $\mathrm{LIM}\,X_D=0$, then $\mathrm{LIM}\,\mathcal R_X(4)=0$, $\mathrm{LIM}\,\mathcal F_X(4)=0$, and
+\[
+\mathrm{LIM}\Big((4-D)^{-1}\mathcal R_X(D)+\mathcal F_X(D)\Big)=-\,\mathrm{LIM}\,\partial_D\mathcal R_X(D)\big|_{D=4}.
+\]
+\end{lemma}
+
+\begin{proof}
+In normal form every structure of a graph with an evanescent vertex is either explicitly multiplied by a trace of the projections onto $Q(D{-}4)S$ or $Q(4{-}D)S$, i.e. by $\pm(D-4)$, or carries an uncontracted evanescent component, or (Scheme D) a Fierz-null combination; each is annihilated by $\mathrm{LIM}$ at $D=4$. Hence $\mathcal R_X(D)=(D-4)\mathcal R'_X+\mathcal R^{\rm ev}_X+O((D-4)^2)$ with $\mathrm{LIM}\,\mathcal R^{\rm ev}_X=0$, and the same for $\mathcal F_X$; $(4-D)^{-1}(D-4)\mathcal R'_X=-\mathcal R'_X$. In Scheme B with $X_D$ proportional to the evanescent metric this is [Bon80], [BIMS20, (6.14)]; in Scheme D the Fierz-null case uses that the four- and ten-dimensional evaluation of each normal-form coefficient at $D=4$ is a computation in the strictly finite-dimensional algebra, where the vertex vanishes.
+\end{proof}
+
+\begin{theorem}[One-loop obstruction theory in DR]
+\label{thm:obs}
+\mbox{}\begin{itemize}
+\item[(i)] $\mathrm{Ob}$ is a local cochain of degree $1$. With $b_D=b_0+(4-D)b_1+O((4-D)^2)$ (explicit $D$-dependence of the regulated classical cochain),
+\[
+\mathrm{Ob}=-\mathrm{LIM}\,\partial_D\mathcal R_{\widehat\Delta}(D)\big|_{D=4}-\mathrm{LIM}\,b_1\big[\Gamma^{(1)}_D\big]_{(4-D)^{-1}}.
+\]
+\item[(ii)] $s\,\mathrm{Ob}=0$ (Wess--Zumino consistency).
+\item[(iii)] $\hbar F_1$ is a one-loop quantisation, $S(\Gamma_{\rm ren})=O(\hbar^2)$, exactly when $sF_1=\mathrm{Ob}$.
+\item[(iv)] One-loop quantisations form an affine space over the $s$-closed local cochains of degree $0$; differences $s\phi$ are field redefinitions; the classes of $H^0(s)$ include the coupling direction $S-S^{(2)}$ and the outer direction $G_B$ [HK, thm:c8-obstruction (iii), (iv), prop:c8-B]. An anomaly is a nonzero class $[\mathrm{Ob}]\in H^1(s)$; a change of the $D$-dimensional lifts of $S^{(k)}_D$, $\Psi$ or $F$ by evanescent local functionals changes $\mathrm{Ob}$ by an $s$-exact cochain.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) Laurent orders in \eqref{eq:Ob}: the pole parts of $[\widehat\Delta\cdot\Gamma_D]^{(1)}$ and of $b_DI^{CT,(1)}_D=(4-D)^{-1}b_D[\Gamma^{(1)}_D]_{(4-D)^{-1}}$ cancel because the left side of Theorem \ref{thm:rst} is finite; the order $(4-D)^0$ of the first is Lemma \ref{lem:bonneau} for $X_D=\widehat\Delta$, of the second $b_1[\Gamma^{(1)}_D]_{(4-D)^{-1}}$. Both are local. (ii) For every functional $\Gamma$ of degree $0$, $d_{CE}S(\Gamma)+(\Gamma,S(\Gamma))=0$ by $d_{CE}^2=0$, the derivation property of $d_{CE}$ and the Jacobi identity; at order $\hbar$ with $S(\Gamma_{\rm ren})=\hbar\,\mathrm{Ob}$ ($F_1=0$) and $d_{CE}+(\Gamma_{\rm ren},-)=s+O(\hbar)$ this is $s\,\mathrm{Ob}=0$. (iii) Theorem \ref{thm:rst}. (iv) The first statements are four-dimensional and are those of [HK, thm:c8-obstruction]. For a change $E$ of a lift, $\widehat\Delta\mapsto\widehat\Delta+b_DE+\frac12\{E,E\}$, and by \eqref{eq:qapD} applied to the insertion of $E$, $\mathrm{LIM}[b_DE\cdot\Gamma_D]^{(1)}=s\,\mathrm{LIM}[E\cdot\Gamma_D]^{(1)}+O(\hbar)$, where $\mathrm{LIM}[E\cdot\Gamma_D]^{(1)}$ is local by Lemma \ref{lem:bonneau}; the change of $I^{CT}$ is the pole part of the same graphs.
+\end{proof}
+
+\begin{theorem}[Restoring counterterms: what vanishes in each scheme]
+\label{thm:restore}
+\mbox{}\begin{itemize}
+\item[(i)] In both schemes $\mathrm{Ob}^{(0)}=0$: the gauge Slavnov--Taylor identity holds without finite counterterm, and $F^{(0)}_1$ can be taken $s$-closed.
+\item[(ii)] $\mathrm{Ob}^{(1)}(x)=0$ for $x=P_{v_1},M_\omega$ in both schemes and for $x=R_r$ in Scheme D and on $\mathfrak{so}(4)_J$ in Scheme B.
+\item[(iii)] Along $\Delta$: $\mathrm{Ob}^{(1)}(\Delta)=\mathrm{LIM}\big(2(4-D)[S_{0,D}\cdot\Gamma_D]^{(1)}\big)-\mathrm{LIM}\,b_1[\Gamma^{(1)}_D]_{(4-D)^{-1}}$, where the first term is $s$-exact and $b_1$ is the explicit $(4-D)$-term $-2\{\Psi,-\}$ of $S^{(1)}_\Psi(\Delta)=S^{(1)}_D(\Delta)-2(4-D)\Psi$ (Proposition \ref{prop:gfvert} (iii)). A component outside $\operatorname{Im}s$ along $\int(F_A,F_A)$ would be a trace-anomaly class (gate G4).
+\item[(iv)] Along $\xi$, $\eta$, $K_{v_1}$, along $R_r$ with $r\notin\mathfrak{so}(4)_J$ (Scheme B) and in arity two, $\mathrm{Ob}$ is given by (i) of Theorem \ref{thm:obs} with the vertices of Theorems \ref{thm:breakD}, \ref{thm:breakB}; the restoring counterterms solve the arity components of $sF_1=\mathrm{Ob}$, [HK, eq:c12-eqs], with all free directions.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) $\widehat\Delta^{(0)}=0$ (Theorems \ref{thm:breakD} (i), \ref{thm:breakB} (i)) and the arity-zero part of $b_D$ has no explicit $D$-dependence: the ghost, gauge-fixing and antifield terms of $S_{\Psi}$ carry $D$-independent coefficients. Theorem \ref{thm:obs} (i) gives $\mathrm{Ob}^{(0)}=0$. (ii) $\widehat\Delta^{(1)}(x)=0$, $\widehat\Delta^{(0)}=0$ and the arity-one part of $b_D$ along $x$ is $D$-independent; the arity-one component of $[\widehat\Delta\cdot\Gamma_D]$ along $x$ contains only $\widehat\Delta^{(0)}$ and $\widehat\Delta^{(1)}(x)$. (iii) $\widehat\Delta^{(1)}(\Delta)=2(4-D)S_{0,D}$. The full action inserted into a one-loop one-particle-irreducible graph multiplies it by (vertices $-$ propagators) $=0$, so $[S_{0,D}\cdot\Gamma_D]^{(1)}=-[(S_\Psi-S_{0,D})\cdot\Gamma_D]^{(1)}$. At arity zero $S_\Psi-S_{0,D}=e^{\{\Psi,-\}}\{N,S_{\rm nm}\}=\{e^{\{\Psi,-\}}N,S_\Psi\}$ with $N=\int(c^*,c)-\int(\bar c^*,\bar c)$ up to signs, because every antifield term of $S_{\rm nm}$ has ghost-minus-antighost count one more than its antifield count; by Lemma \ref{lem:qapO} the insertion of $s_D(e^{\{\Psi,-\}}N)$ is $S_{\Gamma_D}$ of the insertion of $e^{\{\Psi,-\}}N$ plus a double insertion with $\widehat\Delta$, and $(4-D)$ times the latter has $\mathrm{LIM}=0$ by Lemma \ref{lem:bonneau}. Hence the first term is $s\big(-2\,\mathrm{LIM}\,\mathcal R(e^{\{\Psi,-\}}N\cdot\Gamma_D)\big)$. (iv) Definitions.
+\end{proof}
+
+\subsection{The gauge parameter}
+
+\begin{theorem}[Nielsen identity in DR-BV]
+\label{thm:nielsen}
+Adjoin to the cochains an even parameter $\xi_{\rm GF}$ of degree $0$ and an odd constant $\chi$ of degree $1$, with differential $d_{CE}+\chi\partial_{\xi_{\rm GF}}$. Then
+\[
+S_{\rm ext}:=S_{\Psi,\mathfrak{psl}}+\chi\,\partial_{\xi_{\rm GF}}\Psi,\qquad \partial_{\xi_{\rm GF}}\Psi=\int\mathrm{dvol}_D(\bar c,b),
+\]
+satisfies $(d_{CE}+\chi\partial_{\xi_{\rm GF}})S_{\rm ext}+\frac12\{S_{\rm ext},S_{\rm ext}\}=\widehat\Delta$, with no $\chi$-component. The $\chi$-component of the regularised identity \eqref{eq:qapD} is
+\[
+\partial_{\xi_{\rm GF}}\Gamma_D=\pm\big(\Gamma_D,\Gamma_{D,\chi}\big)+\big[\widehat\Delta\otimes\partial_{\xi_{\rm GF}}\Psi\big]\cdot\Gamma_D,\qquad \Gamma_{D,\chi}:=\big[\partial_{\xi_{\rm GF}}\Psi\big]\cdot\Gamma_D,
+\]
+and after renormalisation with the $\chi$-components of $F_1$ chosen by the $\chi$-component of $sF_1=\mathrm{Ob}$, $\partial_{\xi_{\rm GF}}\Gamma_{\rm ren}=\pm(\Gamma_{\rm ren},\Gamma_{{\rm ren},\chi})$: a change of $\xi_{\rm GF}$ is a canonical transformation of the renormalised theory. Consequently every quantity of Theorem \ref{thm:inv} is independent of $\xi_{\rm GF}$, while representatives such as the entries of $Q_1$ depend on it through law (a) of Proposition \ref{prop:lawsD}.
+\end{theorem}
+
+\begin{proof}
+$\partial_{\xi_{\rm GF}}e^{\{\Psi,-\}}=\{\partial_{\xi_{\rm GF}}\Psi,-\}e^{\{\Psi,-\}}$ because $\{\Psi,\partial_{\xi_{\rm GF}}\Psi\}=0$ (both contain fields only); so $\chi\partial_{\xi_{\rm GF}}S_{\Psi,\mathfrak{psl}}=\chi\{\partial_{\xi_{\rm GF}}\Psi,S_{\Psi,\mathfrak{psl}}\}$, which cancels the $\chi$-linear part of $\frac12\{S_{\rm ext},S_{\rm ext}\}$ by graded symmetry, $\chi^2=0$ and $d_{CE}\partial_{\xi_{\rm GF}}\Psi=0$. Theorem \ref{thm:qap} applies to the extended complex. At one loop the double insertion is local in the limit by Lemma \ref{lem:bonneau}, and its $s$-closedness follows from Theorem \ref{thm:obs} (ii) in the extended complex. A canonical transformation generated by $\delta\xi_{\rm GF}\,\Gamma_{{\rm ren},\chi}$ conjugates the quantum differential of Definition \ref{def:SGamma}.
+\end{proof}
+
+\subsection{Renormalised insertions and the local representative}
+
+\begin{definition}[Renormalised insertions]
+\label{def:insert}
+For a local cochain $M$ of degree $|M|$, a lift $M_D$ ($\mathrm{LIM}\,M_D=M$), a scheme $\psi$ for operators [HK, def:c8-renorm] and a square-zero parameter $\delta$ of degree $-|M|$,
+\[
+M(D):=M_D-\partial_\delta I^{CT}_D(M)+\hbar\,\psi(M),\qquad [M]_R:=\mathrm{LIM}\,\partial_\delta\Gamma_D\big(J+\delta M(D)\big),
+\]
+$\partial_\delta I^{CT}_D(M)$ being the pole part of the graphs through the vertex $\delta M$. $\psi=0$ is minimal subtraction; MS-bar is $\psi$ equal to $(\log4\pi-\gamma_E)$ times the residue map at one loop.
+\end{definition}
+
+\begin{definition}[Quantum differential]
+\label{def:SGamma}
+$S_\Gamma:=d_{CE}+(\Gamma_{\rm ren},-)$ on functionals of the effective fields; $S_\Gamma^2=0$ when $S(\Gamma_{\rm ren})=0$.
+\end{definition}
+
+\begin{lemma}[Quantum action principle for insertions]
+\label{lem:qapO}
+\[
+S_{\Gamma_D}\big(\partial_\delta\Gamma_D(J+\delta M(D))\big)=\big[b_DM(D)\big]\cdot\Gamma_D+\big[\mathfrak d_D\otimes M(D)\big]\cdot\Gamma_D,
+\]
+with $S_{\Gamma_D}=d_{CE}+(\Gamma_D,-)$ and the double insertion of the action defect and of $M(D)$; in the limit
+\[
+S_\Gamma[M]_R=\mathrm{LIM}\Big([b_DM(D)]\cdot\Gamma_D+[\mathfrak d_D\otimes M(D)]\cdot\Gamma_D\Big).
+\]
+\end{lemma}
+
+\begin{proof}
+The $\delta$-linear part of \eqref{eq:qapD} for the family $J+\delta M(D)$, whose defect vertex is $\mathfrak d_D+\delta\,b_DM(D)$ up to the sign of $\delta$ [HK, lem:c8-flow].
+\end{proof}
+
+\begin{definition}[Local representative and components in DR]
+\label{def:comp}
+A local representative of $M$ is a local cochain $L(M)$ of degree $|M|+1$ with
+\begin{equation}
+S_\Gamma[M]_R=[L(M)]_R .
+\label{eq:repD}
+\end{equation}
+For a local functional $O$ write $L(O)=\sum_kL(O)^{(k)}$ by arity and $L=s+\hbar L_1+\cdots$. The one-loop components are, as in [HK, def:c8-components],
+\[
+\begin{aligned}
+&Q_1(O)=\hbar L_1(O)^{(1)}(\xi),\quad S_1(O)=\hbar L_1(O)^{(1)}(\eta),\quad D_1(O)=\hbar L_1(O)^{(1)}(\Delta),\\
+&K_1(O)=\hbar L_1(O)^{(1)}(K_{v_1}),\quad P_1(O)=\hbar L_1(O)^{(1)}(P_{v_1}),
+\end{aligned}
+\]
+$M_1(O)$, $R_1(O)$ along $\mathfrak{so}(4S)$, $\mathfrak{so}(W^\perp_{\mathbb R})$, the BRST correction $\hbar L_1(O)^{(0)}$ and the arity-two values $\hbar L_1(O)^{(2)}(x_1,x_2)$. Two-component: $Q_1(O)=\xi_\alpha{}^iQ_1(O)^\alpha{}_i+\bar\xi_{\dot\alpha i}\bar Q_1(O)^{\dot\alpha i}$ along $Q^i_\alpha$, $\bar Q_{\dot\alpha i}$, and $S_1(O)=\eta^\alpha{}_iS_1(O)_\alpha{}^i+\bar\eta^{\dot\alpha i}\bar S_1(O)_{\dot\alpha i}$ along $S^\alpha{}_i$, $\bar S^{\dot\alpha i}$ [HK, def:c8-twocomp].
+\end{definition}
+
+\begin{theorem}[Well-posedness]
+\label{thm:wellposed}
+Assume $S(\Gamma_{\rm ren})=O(\hbar^2)$.
+\begin{itemize}
+\item[(i)] If $[N]_R=0$ for a local cochain $N$ then $N=0$; $L(M)$ is unique.
+\item[(ii)] At one loop $L(M)$ exists for every local $M$, and $L(M)=sM+\hbar L_1(M)$ with $\hbar L_1$ given by Theorem \ref{thm:master}.
+\item[(iii)] $L\circ L=0$; with $\Lambda=L-d_{CE}$ this is the Maurer--Cartan equation $d_{CE}\Lambda+\Lambda d_{CE}+\Lambda\Lambda=0$ of [HK, thm:c8-L (iv)], and $x\mapsto-\Lambda^{(1)}(x)$ is a representation of $\mathfrak{psl}(4|4)$ on the cohomology of $\Lambda^{(0)}$ [HK, cor:c8-homotopy].
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+(i) The tree-level part of $[N]_R$ is the tree flow of $N$, injective by the leg-counting induction of [HK, thm:c8-L (i)]. (ii) Theorem \ref{thm:master}. (iii) $S_\Gamma^2=0$ and (i).
+\end{proof}
+
+\begin{definition}[Operator breaking]
+\label{def:opbreak}
+For a local functional $O$ with lift $O_D$ and a generator $x$, $\widehat\Delta_O(x):=\{S^{(1)}_D(x),O_D\}-(\{S^{(1)}(x),O\})_D$, an evanescent local functional; $\widehat\Delta_O:=s_DO_D-(sO)_D$ in arity zero. For $O=\int\mathrm{dvol}_D\,f\,\Phi$ with $\Phi$ a product of letters of total weight $w_\Phi$ and $f$ a test function, $\{S^{(1)}_D(v),O_D\}=\int\Phi\,\big(-v(f)+(w_\Phi-D)\sigma_vf\big)$ for even $v$, hence
+\[
+\widehat\Delta_O(v)=(4-D)\int\mathrm{dvol}_D\,\sigma_v\,f\,\Phi .
+\]
+\end{definition}
+
+\begin{theorem}[DR master formula at one loop]
+\label{thm:master}
+Let $O=\int\omega\,X_1\cdots X_n$ have degree $0$, $\psi=0$, and $\hbar F_1$ solve $sF_1=\mathrm{Ob}$ in arity zero and in arity one along $x$. Then
+\begin{equation}
+\begin{aligned}
+\hbar L_1(O)^{(1)}(x)&=\sum_{a<b}\pm\Upsilon^D_x(X_a,X_b)+\sum_a\Upsilon^D_x(X_a)-\{\hbar F^{(1)}_1(x),O\},\\
+\hbar L_1(O)^{(0)}&=\sum_{a<b}\pm\Upsilon^D_0(X_a,X_b)-\{\hbar F^{(0)}_1,O\},
+\end{aligned}
+\label{eq:masterD}
+\end{equation}
+with the Koszul signs of [HK, eq:c12-pairsum] and the two-body kernel
+\[
+\Upsilon^D_x(X_a,X_b):=-\hbar\,\mathrm{LIM}\,\partial_D\Big(\mathcal R^{\rm cyc}_x(X_a,X_b)+\mathcal R^{\rm op}_x(X_a,X_b)\Big)\Big|_{D=4}+\hbar\,\mathrm{LIM}\,\mathcal C_x(X_a,X_b),
+\]
+where $\mathcal R^{\rm cyc}_x$ is the residue polynomial of the one-loop cycles through the pair with exactly one vertex from $\widehat\Delta^{(1)}(x)$ on the cycle, $\mathcal R^{\rm op}_x$ that of the cycles through the pair of $\widehat\Delta_{X_aX_b}(x)$, and
+\[
+\mathcal C_x(X_a,X_b):=(4-D)^{-1}\Big(\big\{S^{(1)}_D(x),\mathcal R(X_aX_b)\big\}-\mathcal R\big(\{S^{(1)}(x),X_aX_b\}\big)_D\Big)-\partial_\delta I^{CT,(1)}_D(X_aX_b)(x)
+\]
+is the commutator of the classical transformation with the counterterm map, $\mathcal R(M):=[\partial_\delta I^{CT}_D(M)]_{(4-D)^{-1}}$, together with the arity-one counterterm of the pair; $\Upsilon^D_x(X_a)$ is the same construction for the one-letter part of $\widehat\Delta_O(x)$, and $\Upsilon^D_0$ the arity-zero analogue.
+\end{theorem}
+
+\begin{proof}
+Lemma \ref{lem:qapO} with $M=O$ at order $\hbar$, $\delta$-linear, arity one along $x$. The graphs fall into the classes of [HK, thm:c12-master (i)], with the special edge replaced by an evanescent vertex: (F) one-loop graphs of the vertices $\{S^{(1)}_D(x),O_D\}$, $s_DO_D$, which with the counterterm trees of the lifts of $\{S^{(1)}(x),O\}$, $sO$ form their renormalised insertions; (C2) cycles through two letters of $O$ with one vertex of $\widehat\Delta^{(1)}(x)$; (Cop) cycles through two letters of $\widehat\Delta_O(x)$; (Br) an evanescent vertex on a tree attached to a subtracted subgraph, whose limit is $\mathrm{LIM}$ of a finite quantity times an evanescent tree, zero; (Ac) cycles of $J$ alone, whose limit is the tree flow of $\hbar(\mathrm{Ob}-sF_1)=0$ through arity one along $x$; (Ct) the counterterm vertices $-\{S^{(1)}_D(x),\partial_\delta I^{CT}_D(O)\}$, $-\partial_\delta I^{CT,(1)}_D(O)(x)$, $-\{I^{CT,(1)}_D(x)+\hbar F_1^{(1)}(x),O\}$. The poles cancel because the left side of Lemma \ref{lem:qapO} has a limit; the finite parts of (C2), (Cop) are Lemma \ref{lem:bonneau}; the finite part of (Ct) is $\mathcal C_x$; $\{I^{CT,(1)}_D(x),O\}$ is a pole term cancelling against (C2). At one loop the cycle through $O$ uses exactly two letters and a tree uses one [HK, thm:c10-decomp], which gives the pair sum and the one-body terms. Injectivity (Theorem \ref{thm:wellposed} (i)) identifies $L$.
+\end{proof}
+
+\begin{corollary}[Exact components]
+\label{cor:exact}
+With covariant lifts $O_D$, $\psi=0$ and $F^{(0)}_1=F^{(1)}_1(P_{v_1})=F^{(1)}_1(M_\omega)=F^{(1)}_1(R_r)=0$:
+\begin{itemize}
+\item $\hbar L_1(O)^{(0)}=0$ on every local $O$ in both schemes: the BRST differential on operators is uncorrected at one loop;
+\item $P_1=M_1=0$ in both schemes; $R_1=0$ in Scheme D, and in Scheme B on $\mathfrak{so}(4)_J$.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+For these $x$, $\widehat\Delta^{(1)}(x)=0$, $\widehat\Delta_O(x)=0$ for covariant lifts, and the counterterm map commutes with the $D$-independent classical transformation, so $\mathcal C_x=0$; arity zero likewise with $\widehat\Delta^{(0)}=0$.
+\end{proof}
+
+\subsection{The dilatation from the renormalisation group}
+
+\begin{theorem}[$D_1$ in DR]
+\label{thm:D1}
+For $O$ of degree $0$ with covariant lift and $\psi=0$,
+\[
+D_1(O)=-2\,\mathrm{LIM}\,\mathcal R(O)-\{\hbar F^{(1)}_1(\Delta),O\}+[s,\varphi_O],
+\]
+where $\mathcal R(O)=[\partial_\delta I^{CT}_D(O)]_{(4-D)^{-1}}$ is the residue of the one-particle-irreducible pair kernels (Theorem \ref{thm:res}), $\hbar F^{(1)}_1(\Delta)$ solves the arity-one equation along $\Delta$ (a field-counting functional plus free directions, Theorem \ref{thm:restore} (iii)) and $\varphi_O$ is a local functional. On the cohomology of $\Lambda^{(0)}$, in particular on gauge-invariant $O$, $D_1=-2\times$(the residue of the complete one-loop counterterm of $O$, the self-energies of its letters included), independent of $\xi_{\rm GF}$. Equivalently, with $[O]_R=Z_O\,O_D$ the dilatation Ward identity of Theorem \ref{thm:qap} along $\Delta$ is the Callan--Symanzik equation
+\[
+\tfrac12D_1=\gamma_O=-\mu\partial_\mu\log Z_O\big|_{(4-D)^0},
+\]
+where $\mu\partial_\mu$ of the bare pairing at fixed renormalised pairing is $(D-4)$ times the coupling derivative, and $\beta=0$ at one loop in both schemes. Evanescent counterterms $(4-D)^{-1}E$, $\mathrm{LIM}\,E=0$, contribute $-2\,\mathrm{LIM}\,E=0$ at one loop; at two loops their finite renormalisation enters and changes $\gamma^{(2)}$ on the physical block by a commutator $[\gamma^{(1)},r]$ with the finite one-loop mixing $r$ of [DG91], [HN95], so the two-loop spectrum is independent of it when $\beta=0$.
+\end{theorem}
+
+\begin{proof}
+Theorem \ref{thm:master} along $\Delta$. (Cop) By Definition \ref{def:opbreak}, $\widehat\Delta_O(\Delta)=2(4-D)O_D$, whose cycles give $2(4-D)\cdot(4-D)^{-1}\mathcal R(O)=2\mathcal R(O)$. (Ct) $\{S^{(1)}_D(\Delta),\int f\mathcal R(\Phi)\}-\mathcal R(\{S^{(1)}(\Delta),O\})_D=2(4-D)\mathcal R(O)$, entering with the sign of $-\partial_\delta I^{CT}$: $-2\mathcal R(O)$. (C2) $\widehat\Delta^{(1)}(\Delta)=2(4-D)S_{0,D}$: the full action inserted into a one-loop graph through $O$ multiplies it by (vertices of $I$ $-$ propagators) $=-1$, so $2(4-D)[S_{0,D}\otimes O]^{(1)}\to-2\mathcal R(O)-2\,\mathcal R\big((S_\Psi-S_{0,D})\otimes O\big)$; $S_\Psi-S_{0,D}$ is $s$-exact at arity zero (proof of Theorem \ref{thm:restore} (iii)), and by Lemma \ref{lem:qapO} its insertion, together with the explicit vertex $-2(4-D)\Psi$ of $S^{(1)}_\Psi(\Delta)$, contributes $[s,\varphi_O]$. Total $-2\mathcal R(O)$, plus $-\{\hbar F_1^{(1)}(\Delta),O\}$. On cohomology $[s,\varphi_O]$ vanishes, and the self-energies of the letters enter through $F_1^{(1)}(\Delta)$; $\xi_{\rm GF}$-independence is Theorem \ref{thm:nielsen}. The Callan--Symanzik form: $(4-D)\int\sigma_v\mathscr L_0$ is $(4-D)$ times the coupling derivative of the action at fixed fields, and the bare coupling has dimension $D-4$ in the pairing. At two loops: [DG91], [HN95].
+\end{proof}
+
+\begin{remark}[Normalisation check]
+For the Konishi bilinear $\sum_I(A_I,A_I)$ the scheme-independent value is $\gamma=\frac{3g^2N}{4\pi^2}$, i.e. $D_1=2\gamma=-48$ units, and $D_1=0$ on the traceless bilinears (the $\mathbf{20}'$); these are gates G5, G6 of Section \ref{sec:engines}.
+\end{remark}
+
+\subsection{Special conformal transformations from the \texorpdfstring{$D$}{D}-dimensional conformal Ward identity}
+
+\begin{theorem}[$K_1$ in DR]
+\label{thm:K1}
+Let $O$ sit at $x_O$ ($f$ supported near $x_O$). Along $K_{v_1}$, $\sigma=-2(v_1,x)$ and
+\[
+\widehat\Delta^{(1)}(K_{v_1})=-2(4-D)\int\mathrm{dvol}_D(v_1,x)\mathscr L_0,\qquad \widehat\Delta_O(K_{v_1})=-2(4-D)\int\mathrm{dvol}_D(v_1,x)f\Phi,
+\]
+plus the $D$-dependent gauge-fixing vertex $2(D-2)\int(\bar c,\iota_{v_1}A)$ in $b_D$. Writing $x=x_O+y$,
+\[
+K_1(O)=-(v_1,x_O)\,D_1(O)+K^0_1(O),
+\]
+where $K^0_1(O)$ is \eqref{eq:masterD} with the insertions weighted by $-2(4-D)(v_1,y)$, i.e. by the first $y$-moment of the inserted vertex, computed as $v_1\cdot\partial_q$ at $q=0$ of the graphs with $\mathscr L_0$ (resp. $f\Phi$) injecting momentum $q$ (with the factor $\pm i$ of the Fourier convention of [HK, ch.~1]), and with the term $-2\,\mathrm{LIM}\,b_1$ of the gauge-fixing vertex; its two-body kernel is the special conformal anomaly. Under the hypothesis that the one-loop graphs with the $q$-derivative of a zero-momentum insertion are infrared finite at generic external momenta (checked by gate G9b), $K^0_1$ is local, two-body plus one-body, and independent of any infrared prescription. The component $(K_{v_1},P_{v_1'})$ of $L\circ L=0$ gives $[\delta(K_{v_1}),\rho_0(P_{v_1'})]=(v_1,v_1')\delta(\Delta)$ on cohomology, since $\delta(P)=\delta(M)=0$ (Corollary \ref{cor:exact}).
+\end{theorem}
+
+\begin{proof}
+Theorem \ref{thm:breakD} (ii), Definition \ref{def:opbreak} and Proposition \ref{prop:gfvert} (iii). The decomposition: $(v_1,x)=(v_1,x_O)+(v_1,y)$; the first part reproduces the dilatation computation of Theorem \ref{thm:D1} with the factor $-(v_1,x_O)$ ($\sigma_\Delta=2$, $\sigma_K=-2(v_1,x)$). A position factor $y^\mu$ at a vertex is $\pm i\,\partial/\partial q_\mu$ of the momentum injected there. Residues are polynomial in the momenta, so the $q$-derivative at $q=0$ of the residue is defined; infrared poles at $D=4$ would come from doubled lines with vanishing momentum, absent at generic momenta under the stated hypothesis. The last statement: [HK, cor:c12-rel (R5)].
+\end{proof}
+
+\begin{proposition}[Infrared safety of residues]
+\label{prop:irsafe}
+The residue $[\cdot]_{(4-D)^{-1}}$ of a one-loop graph is the coefficient of the ultraviolet region of its Schwinger integral and is a polynomial in the masses and momenta; adding a common mass $m^2$ to all lines changes it by a polynomial in $m^2$ whose $m^2$-independent part is the massless residue.
+\end{proposition}
+
+\begin{proof}
+Theorem \ref{thm:res}: the residue is $\int\mathcal F_0\,d\alpha$ with $\mathcal F_0$ polynomial in the momentum form, which becomes momentum form $+m^2$.
+\end{proof}
+
+\subsection{Supercharges}
+
+\begin{proposition}[$Q_1$ and $S_1$ in DR]
+\label{prop:QS}
+$Q_1$ is \eqref{eq:masterD} along $\xi$ with $\widehat\Delta^{(1)}(\xi)=\mathfrak F(\xi)$ (Scheme D) or $\mathfrak F^{\rm B}(\xi)+\mathcal E(\xi)$ (Scheme B) on the cycles; $\widehat\Delta_O(\xi)=0$ for lifts that transform letters by $S^{(1)}_D(\xi)$. Along $\eta$, since $S^{(1)}_D(\eta)=\sum_\mu\int x^\mu S^{(1)}_D(\rho(e_\mu)\eta)_x-\int(\rho(A|_E)\eta,\lambda^*)$ holds exactly in $D$ dimensions,
+\[
+S_1(O)\ \text{along}\ \eta=Q_1(O)\ \text{along}\ \rho(x_O)\eta+S^0_1(O),
+\]
+with $S^0_1$ from the $y$-moment of the Fierz vertex, the term $(4-D)\mathcal N(\eta)$ and the cycles of $-(\rho(A|_E)\eta,\lambda^*)$. The gauge-fixing $\lambda$--$\bar c$ vertex of Proposition \ref{prop:gfvert} (ii) enters through the arity-one counterterm $\partial_\delta I^{CT,(1)}_D(O)(\xi)$ in $\mathcal C_\xi$.
+\end{proposition}
+
+\begin{proof}
+Theorem \ref{thm:master}, Theorem \ref{thm:breakD} (iii)--(iv), and the position decomposition of $S^{(1)}(\eta)$ [HK, def:c12-gens] transcribed by T2--T3.
+\end{proof}
+
+\subsection{Scheme laws and invariant content}
+
+\begin{proposition}[Laws in DR]
+\label{prop:lawsD}
+Under the following changes $L_1$ changes as stated:
+\begin{itemize}
+\item[(a)] field redefinition $F\mapsto F+\hbar s\phi$: $L_1\mapsto L_1-\mathrm{ad}_{s\phi}$ (conjugation by $1+\hbar\,\mathrm{ad}_\phi$);
+\item[(b)] finite parts $\psi\mapsto\psi+\psi'$, including MS $\to$ MS-bar and evanescent changes of the lifts $O_D$: $L_1\mapsto L_1+[s,\psi']$;
+\item[(c)] closed directions $F\mapsto F+\hbar aG$, $sG=0$: $L_1\mapsto L_1-a\,\mathrm{ad}_G$, with the cases $G=S-S^{(2)}$, $G=G_B$ of [HK, prop:c8-laws];
+\item[(d)] the gauge parameter: (a) by Theorem \ref{thm:nielsen};
+\item[(e)] evanescent finite counterterms ($\mathrm{LIM}\,F^{\rm ev}=0$) and evanescent lifts of $S^{(k)}_D$, $\Psi$: no change at one loop up to (a); a change of the two-loop data;
+\item[(f)] the choice of scheme (D or B, $J$ in Scheme B): two one-loop quantisations of the same four-dimensional theory, related by (a)--(c).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(a)--(c) as [HK, prop:c8-laws], the proofs using only \eqref{eq:repD}, the derivation rules of the bracket and Lemma \ref{lem:qapO}. (d) Theorem \ref{thm:nielsen}. (e) Theorem \ref{thm:obs} (iv) and Lemma \ref{lem:bonneau}: $\mathrm{LIM}[E\cdot\Gamma]^{(1)}$ is a finite local cochain, absorbed in $F_1$ or $\psi$. (f) Both $\Gamma_{\rm ren}$ solve $S(\Gamma_{\rm ren})=O(\hbar^2)$ with the same tree level; their difference at order $\hbar$ is an $s$-closed local cochain modulo field redefinitions and finite parts.
+\end{proof}
+
+\begin{definition}[What the DR computation must reproduce]
+\label{def:targets}
+With the hypotheses (H0) (local representatives on the families), (Hs) ($H^0(s)=\mathbb C[S-S^{(2)}]\oplus\mathbb C[G_B]$ at weight $4$) and (Hc) of [FR], the invariant one-loop data are:
+\begin{itemize}
+\item[(I1)] the dilatation matrix $\delta(\Delta)$ at a point, i.e. $D_1$ at the origin on every family: the whole mixing matrix, its eigenvectors and eigenvalues [FR, Thm 4.1];
+\item[(I2)] the twisted one-loop differential $d_1=[Q^\xi_1]$ on $E_1=H(Q^\xi_0)$, $Q^\xi_1=L_1^{(0)}+L_1^{(1)}(\xi)-\frac12L_1^{(2)}(\xi,\xi)+\cdots$, defined modulo $[Q^\xi_0,h]+\mathbb C\,Q^\xi_0$, and its reduced pair entries [FR, Thm 5.1, Thm 8.1];
+\item[(I3)] for generic $Q$, $S$, $K$: the class $[\delta]\in H^1(\mathfrak{psl}(4|4);\operatorname{End}\mathbb V)/\mathbb C[\rho_0\circ B]$, i.e. $\delta$ modulo $[\rho_0,e]$ with one weight-preserving $e$ shared by all generators; on simple summands $\rho_0\circ B$ is itself a coboundary [FR, Thm 8.1, Prop 4.3];
+\item[(I4)] on non-split extensions $0\to N\to E\to C\to0$ (joining of multiplets, the Konishi case): the lifting class $[\kappa]$, the identity $\kappa(\eta)\beta(\xi)c_0=-\gamma(\xi,\eta)c_0$ and, in a general direction, $(a_\xi+a'_\eta)\mu c_0+\kappa(\eta)\beta(\xi)c_0=-\gamma(\xi,\eta)c_0$ with $a_\xi+a'_\eta$ invariant [FR, Thm 4.9]; the one-loop norms $\|\rho(\xi)c_0\|^2_{\rm rad}=(\xi,\bar\xi)\gamma\|c_0\|^2_{\rm rad}$ [FR, Cor 4.10];
+\item[(I5)] protection: on a simple summand with $\gamma=0$ every one-loop component is one coboundary $[\rho_0,e]$ [FR, Thm 4.7], in particular on the $\mathbf{20}'$ bilinears;
+\item[(I6)] $P$, $M$, $R$: pure gauge on simple summands [FR, Thm 8.1].
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[DR reproduces the invariants; comparison of the tracks]
+\label{thm:inv}
+Assume (H0), (Hs), (Hc). Scheme D and Scheme B, each with its quantum master equation restored by the finite counterterms of Theorem \ref{thm:restore}, are regularisations in the sense of [FR, Thm 2.3]: relative to any other such regularisation with the same valid gauge fixing, $\mathrm{Ob}\mapsto\mathrm{Ob}+s\Gamma$, $F\mapsto F+\Gamma$, $\psi\mapsto\psi+\psi_{RR'}$, and the set of one-loop structures $L_1$ is the same. Hence the data (I1)--(I6) computed in Scheme D, in Scheme B and in the heat-kernel track on a valid gauge fixing coincide. In DR, (I6) holds at the level of representatives: $P_1=M_1=0$, and $R_1=0$ in Scheme D (Corollary \ref{cor:exact}).
+\end{theorem}
+
+\begin{proof}
+Theorem 2.3 of [FR] applies: its proof uses Lemma [FR, Lem.\ locality of scheme differences], which holds for DR by continuity in $D$ at $D=4$ of the convergent derivatives $\partial_p^{\,\deg+1}G$, and the injectivity of the tree flow, Theorem \ref{thm:wellposed} (i). The gauge fixing of Definition \ref{def:gf} is valid in the sense of [FR, Thm 2.4]: $(Q^{GF})^2=0$, $[Q,Q^{GF}]=H$, covariance under translations, $\mathfrak{so}(4S)$, $\mathfrak{so}(W^\perp)$ and scaling ($\bar c$ of weight $2$), Lemma \ref{lem:canon}. The invariance of (I1)--(I6) under these changes is [FR, Thm 4.1, 4.7, 4.9, 5.1, 8.1, Prop 4.3, Cor 4.10]. The last statement is Corollary \ref{cor:exact}.
+\end{proof}
+
+\begin{remark}[Where the twisted Konishi entry sits in DR]
+\label{rem:twistDR}
+In the heat-kernel track the Konishi entry of $d_1$ is carried by $\hbar L_1^{(0)}$ [FR, §5]. In DR, $\hbar L_1^{(0)}=0$ (Corollary \ref{cor:exact}), so the same class is carried by $L_1^{(1)}(\xi)-\frac12L_1^{(2)}(\xi,\xi)$: the arity-one $Q_1$ and the arity-two kernel along $(\xi,\xi)$. In particular $Q_1\neq0$ on the Konishi multiplet in every DR scheme with restored master equation, by (I2) and (I4) with $\gamma_K\neq0$.
+\end{remark}

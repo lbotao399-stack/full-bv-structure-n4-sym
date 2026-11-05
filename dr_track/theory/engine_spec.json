@@ -1,0 +1,403 @@
+{
+  "name": "N4_BV_DR one-loop engines: dimensional regularisation inside BV, psl(4|4) constant ghosts",
+  "version": "2026-11-05 (rev. 2: literature synthesis Q1-Q9, freedom invariants)",
+  "theory_reference": "/Users/libotao/N4_BV_DR/theory/bv_dr.tex (definition/theorem labels quoted as in the source)",
+  "root": "/Users/libotao/N4_BV_DR/engines.nosync",
+  "hard_rules": [
+    "pure Python 3 (standard library; sympy and mpmath allowed); no Wolfram, no compiled extensions",
+    "exact arithmetic: fractions.Fraction, Gaussian rationals Q(i), polynomials in D and momenta with rational coefficients; floating point only in clearly labelled cross-checks",
+    "at most one heavy process at a time; every process checks its own RSS (resource.getrusage, ru_maxrss) and aborts above 1.4 GB, writing MEMABORT.json",
+    "never write to /tmp; all outputs under engines.nosync/<route>/out/",
+    "no heat-kernel number (Desktop/N4_Costello_BV_2026-10-27) is read as input; cross-track comparison only through scheme-independent data (gate G12)",
+    "no file of the blocked SUSY_3p1d_foundations or susy-anomaly-program material is read",
+    "Routes A and B are written independently: no shared module except the frozen input file classical_input.json written twice by hand (A from the index-free formulas, B from the two-component formulas) and compared in gate G0d",
+    "every number in a report states the scheme (D or B), the gauge parameter xi_GF, the subtraction (MS or MS-bar) and the evanescent scheme"
+  ],
+  "conventions": {
+    "dimension": "D (bv_dr.tex Remark names); Laurent variable 4-D; Gamma((4-D)/2) = 2/(4-D) - gamma_E + O(4-D)",
+    "spaces": "4S c QDS c Q4S; QDS = 4S + Q(D-4)S; Q4S = QDS + Q(4-D)S; traces 4, D, 4, D-4, 4-D (Axiom ax:spaces)",
+    "scheme_D": "V10 -> Q4S + W_perp (formal trace 10), momenta in QDS, internal space E = Q(4-D)S + W_perp (trace 10-D), totally anticommuting formal chirality, chirality-odd traces = 0, no Fierz identities (Definition def:schemeD)",
+    "scheme_B": "V10 -> QDS + W_perp, 4S two-component structure explicit (sigma^m = (vec sigma, i), sigmabar^m = (-vec sigma, i)), evanescent factor M with tau^mhat, rho_J(vhat) = (+-i) J (x) tau(vhat), J = delta (SO(4)_R) (Definition def:schemeB)",
+    "gauge_fixing": "non-minimal pair (cbar, b), Psi = int (cbar, -d^*A|_QDS + xi_GF b); xi_GF = 1 Feynman gauge; S_Psi = exp({Psi,-}) S_nm (Definitions def:nm, def:gf, Lemma lem:canon)",
+    "weights": "A:1 (all components), lambda:3/2, c:0, cbar:2, b:2; antifields D minus weight (transcription T3)",
+    "unit": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2) for su(N)",
+    "two_component": "Weinberg-Srednicki dictionary of [HK, def:c8-twocomp]: (xi,eta) = xi_a^i eta^a_i - xibar_ad i etabar^ad i; S_+ undotted; rho(v) = -i gamma_S.v = gamma_W.v on the Dirac column",
+    "LIM": "Definition def:lim: coefficient of (4-D)^0 of the normal form, then D=4, evanescent components -> 0, four- and ten-dimensional identities allowed"
+  },
+  "routes": {
+    "A": {
+      "name": "Residue route: regularised quantum action principle + Bonneau-type finite parts, position-space two-letter kernels",
+      "principle": "Every one-loop component is LIM of graphs with exactly one evanescent vertex (Theorem thm:master); finite parts = -d/dD of normal-form residue polynomials at D=4 (Lemma lem:bonneau); residues from simplex integrals (Theorem thm:res)",
+      "modules": {
+        "A1_clifford": "abstract Clifford algebras: (D) formal Cl(Q4S + W_perp) in the antisymmetrised basis rho(q(e^{M1}^...^e^{Mk})) with index classes {QDS, Q(4-D)S, W_perp} and contraction traces D, 4-D, 6; trace with tr_Sigma 1 = 16, chirality-odd part 0; (B) explicit 4S two-component matrices over Q(i) tensor formal hat factor with tau-traces tr_M 1 = 1",
+        "A2_colour": "colour by trace rules [HK, lem:c10-colour] with N symbolic, plus explicit su(2), su(3), gl(3) realisations for checks",
+        "A3_action": "index-free vertices of S_Psi,psl in D dimensions: S_D, S^(1)_D, S^(2)_D, gauge-fixing vertices of Proposition prop:gfvert, breaking components Deltahat (Theorems thm:breakD, thm:breakB) generated symbolically, not typed in",
+        "A4_census": "one-loop chains from a pair of letters (X_a, X_b): k <= output-weight bound (Proposition prop:active); placements of one evanescent vertex",
+        "A5_residue": "Theorem thm:res and Proposition prop:genD: exact simplex integrals, generating functions in the letter positions y_a, y_b, chain numerators in normal form with explicit D",
+        "A6_lim": "normal form -> R(D) polynomial; LIM via -dR/dD at D=4 then evanescent projection; Bonneau check against A5 at two values of the evanescent-scheme parameter b",
+        "A7_solve": "exact sparse linear algebra for s F_1 = Ob arity by arity ([HK, eq:c12-eqs]) on bases fixed by representation counts; all free directions reported explicitly",
+        "A8_components": "master formula eq:masterD: Upsilon^D_x two-body kernels, one-body terms, components Q_1, S_1, D_1, K_1, P_1, M_1, R_1, arity-two kernels; families: scalar bilinears, trace bilinear and descendants (weights 5/2, 3), su(2) two-letter words, twist two"
+      },
+      "outputs": [
+        "out/A_ct_action.json",
+        "out/A_breaking.json",
+        "out/A_Ob.json",
+        "out/A_F1.json",
+        "out/A_kernels.json",
+        "out/A_components.json",
+        "out/A_relations.json"
+      ]
+    },
+    "B": {
+      "name": "Direct route: renormalised one-loop Green functions with operator insertions in momentum space, Slavnov-Taylor identities evaluated directly (no quantum action principle)",
+      "principle": "Compute Gamma_D^(1) and the insertions [O]_R completely (poles and finite parts) by tensor reduction to scalar integrals with exact D-dependence; take LIM; evaluate S(Gamma_ren) and S_Gamma[O]_R as products and sums of 1PI functions; read off Ob and L_1 by matching to local cochains (Theorem thm:wellposed (i))",
+      "modules": {
+        "B1_rules": "two-component Feynman rules typed independently from the two-component Remarks of bv_dr.tex (rem:D2c, rem:B2c, the gauge-fixing vertex remark, [HK, prop:c8-twocomp]); Weinberg form as an internal consistency check",
+        "B2_tensor": "Passarino-Veltman / Davydychev tensor reduction in D dimensions with explicit QDS, 4S, Q(D-4)S splits (scheme B) and formal sigma-algebra (scheme D)",
+        "B3_scalar": "scalar integrals B0, C0 with exact D: B0(p^2) = Gamma(2-D/2) Gamma(D/2-1)^2/Gamma(D-2) (4pi)^(-D/2) (p^2)^(D/2-2), C0 by Feynman parameters; expansion to (4-D)^1 where finite parts are needed",
+        "B4_ST": "direct evaluation of the Slavnov-Taylor identities: arity 0 (gauge), arity 1 along xi, eta, Delta, K, R, arity 2 along (xi, xi'), (xi, eta), (K, P) on two- and three-point functions and on operator insertions",
+        "B5_extract": "matching of the finite local breaking and of S_Gamma[O]_R to local cochains; extraction of L_1 entries independently of Route A"
+      },
+      "outputs": [
+        "out/B_greens.json",
+        "out/B_ST.json",
+        "out/B_Ob.json",
+        "out/B_components.json",
+        "out/B_relations.json"
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "G0a",
+      "route": "A,B",
+      "statement": "Scheme B 4S realisation reproduces [HK, def:c8-twocomp]: Clifford relation, (rho(v)z1,z2) = (z1,rho(v)z2), Gamma components, chirality rho(e1e2e3e4) = +1 on S_+ (x) W",
+      "pass": "exact identities over Q(i)"
+    },
+    {
+      "id": "G0b",
+      "route": "A",
+      "statement": "formal Clifford engine (scheme D): Gamma^M Gamma^(k) Gamma_M = (-1)^k (10-2k) Gamma^(k) over V10^D; QDS-sandwich coefficients (D-4), (D-2), D on the three types of two-forms (proof of Theorem thm:breakD (iv)); no reduction of antisymmetrised products of more than ten directions",
+      "pass": "exact symbolic identities in D"
+    },
+    {
+      "id": "G0c",
+      "route": "A,B",
+      "statement": "scheme B hat algebra: rho_J(vhat) = i gamma_5 (J (x) tau(vhat)); {rho_J(vhat1), rho_J(vhat2)} = 2(vhat1,vhat2), {rho_J(vhat), rho(v)} = 0 for v in 4S; with W_perp_+- the eigenspaces of w_ij -> delta_ik delta_jl w^kl, rho_J anticommutes with rho(w) on one triple and commutes on the other (record which)",
+      "pass": "exact"
+    },
+    {
+      "id": "G0d",
+      "route": "A,B",
+      "statement": "the two hand-written classical inputs (index-free for A, two-component for B) define the same action and the same S^(1), S^(2) at D=4",
+      "pass": "all Euler-Lagrange derivatives of the difference vanish for su(2) and su(3) ([HK, rem:c1-method])"
+    },
+    {
+      "id": "G1a",
+      "route": "A,B",
+      "statement": "Q^2 = 0, (Q^GF)^2 = 0, [Q, Q^GF] = |p|^2 on every slot including (cbar, b) at xi_GF = 1; propagators of Definition def:gf",
+      "pass": "exact"
+    },
+    {
+      "id": "G1b",
+      "route": "A,B",
+      "statement": "equivariant Maurer-Cartan equation at D=4 for S_Psi,psl with the gauge-fixing vertices of Proposition prop:gfvert, all arity-1, 2, 3 components on all basis tuples, su(2) and su(3); fixes the sign kappa of transcription T5 and the sign convention xi.A = -Gamma(xi,lambda)",
+      "pass": "exact vanishing; kappa and the convention recorded"
+    },
+    {
+      "id": "G1c",
+      "route": "A",
+      "statement": "negative controls: dropping the arity-two cbar cbar vertex breaks the (xi, xibar') component for xi_GF != 0; dropping the lambda-cbar vertex breaks the arity-one component along xi; Landau gauge xi_GF = 0 needs no cbar cbar vertex",
+      "pass": "nonzero defects exactly where stated"
+    },
+    {
+      "id": "G2a",
+      "route": "A",
+      "statement": "classical breaking in D dimensions, scheme D: Deltahat^(0) = 0; Deltahat^(1)(v) = (4-D) int sigma_v L_0 for P, M, R, Delta, K; Deltahat^(1)(xi) = F(xi) cubic in lambda; Deltahat^(1)(eta) = x-moment of F + (4-D) N(eta), N(eta) = -1/2 int (rho(F_A)eta, lambda) with fixed relative normalisation; Deltahat^(2) zero with an even argument and Fierz-null on odd pairs; Bianchi identity d_CE Deltahat + {S, Deltahat} = 0; LIM Deltahat = 0 in the strict 4d/10d realisation",
+      "pass": "exact symbolic equalities in D (Theorem thm:breakD)"
+    },
+    {
+      "id": "G2b",
+      "route": "A",
+      "statement": "classical breaking, scheme B (Theorem thm:breakB): R-breaking exactly on su(4) minus so(4)_J; E(xi)|_2 nonzero and evanescent; arity-two evanescent terms along (K, zeta) and odd pairs",
+      "pass": "exact; LIM of every component = 0"
+    },
+    {
+      "id": "G3a",
+      "route": "A",
+      "statement": "BV Laplacian Delta_0 F = 0 on random local functionals (Lemma lem:lap)",
+      "pass": "exact"
+    },
+    {
+      "id": "G3b",
+      "route": "A,B",
+      "statement": "regularised quantum action principle S_D(Gamma_D) = [Deltahat].Gamma_D at one loop, exact in D and before LIM, on the two-point functions (A A, lambda lambdabar, A_E A_E, c cbar) and three-point functions (lambda lambdabar A, A_E lambda lambda) at arity one along xi and along Delta; Route B computes the left side directly, Route A the right side",
+      "pass": "equality of exact rational functions of D and momenta times the same scalar integrals"
+    },
+    {
+      "id": "G4a",
+      "route": "A,B",
+      "statement": "one-loop pole counterterms of the gauge-fixed action, both schemes, general xi_GF: coupling counterterm 0 (beta^(1) = 0); b_0 I^CT,(0) = 0",
+      "pass": "exact"
+    },
+    {
+      "id": "G4b",
+      "route": "A,B",
+      "statement": "Ob^(0) = 0 in both schemes; Ob^(1)(P) = Ob^(1)(M) = 0; Ob^(1)(R) = 0 (D) and on so(4)_J (B); Ob^(1)(Delta) in Im s with a field-counting F_1^(1)(Delta); no component along int (F_A,F_A) outside Im s (no trace-anomaly class) (Theorem thm:restore)",
+      "pass": "exact; F_1^(1)(Delta) and its free directions reported"
+    },
+    {
+      "id": "G4c",
+      "route": "A,B",
+      "statement": "test T1: Ob^(1)(xi) and Ob^(2)(xi,xi') in scheme D, i.e. LIM of the Fierz insertions (Theorem thm:table)",
+      "pass": "computed exactly; the result (zero or the explicit local cochain and its class) is the deliverable"
+    },
+    {
+      "id": "G4d",
+      "route": "A,B",
+      "statement": "scheme B: Ob^(1)(xi), Ob^(1)(R_r) for r outside so(4)_J, Ob^(2); solution of s F_1 = Ob with all free directions; absence of an anomaly class",
+      "pass": "exact solution exists; free directions listed"
+    },
+    {
+      "id": "G5",
+      "route": "A,B",
+      "statement": "Konishi: D_1 on the trace bilinear sum_I (A_I, A_I) equals 2 gamma_K with gamma_K = 3 g^2 N/(4 pi^2), i.e. -48 units, in both schemes, at general xi_GF",
+      "pass": "exact; xi_GF-independent"
+    },
+    {
+      "id": "G6",
+      "route": "A,B",
+      "statement": "20': D_1 = 0 on the traceless scalar bilinears in both schemes and all xi_GF; record (scheme-dependent) the one-loop counterterm of the 20' in each scheme and gauge",
+      "pass": "D_1 = 0 exactly"
+    },
+    {
+      "id": "G7",
+      "route": "A,B",
+      "statement": "spectra: su(2) sector D_1 = 2 (lambda/(8 pi^2)) sum_l (1 - P_{l,l+1}) on two-letter words (planar); twist two 2 gamma(S), gamma(S) = (lambda/(2 pi^2)) S_1(S) for S = 2, 4, 6; lambda = g^2 N",
+      "pass": "exact eigenvalues"
+    },
+    {
+      "id": "G8",
+      "route": "A,B",
+      "statement": "algebra: relations (R2)-(R10) of Definition def:rels on the families, with F_1 = 0 (MS) and with the restoring F_1; the defect of each relation equals the right side of eq:reldefect computed from Ob - s F_1 (Theorem thm:rel); reproduce the exactness table (Theorem thm:table)",
+      "pass": "exact matrix identities modulo Lambda^(0)-exact terms"
+    },
+    {
+      "id": "G9a",
+      "route": "A,B",
+      "statement": "scheme D and scheme B (restored) give the same spectra of D_1 and the same twisted classes [Q^xi_1] (Theorem thm:inv)",
+      "pass": "exact equality"
+    },
+    {
+      "id": "G9b",
+      "route": "A,B",
+      "statement": "infrared safety: residues with a common auxiliary mass m^2: m-independent part equals the massless residue (Proposition prop:irsafe); graphs with the q-derivative of a zero-momentum insertion along K have no infrared pole at generic momenta (hypothesis of Theorem thm:K1)",
+      "pass": "exact"
+    },
+    {
+      "id": "G9c",
+      "route": "A,B",
+      "statement": "Nielsen: spectra and classes independent of xi_GF (symbolic xi_GF); entries of Q_1 change by law (a) (Theorem thm:nielsen)",
+      "pass": "exact"
+    },
+    {
+      "id": "G9d",
+      "route": "A",
+      "statement": "MS versus MS-bar and two evanescent schemes (parameter b of Definition def:evop): L_1 changes by [s, psi'] only (Proposition prop:evan (iii))",
+      "pass": "exact"
+    },
+    {
+      "id": "G10",
+      "route": "A,B",
+      "statement": "Bonneau consistency: every finite part obtained in Route A as -dR/dD at D=4 equals the finite part of the same insertion computed in full in Route B",
+      "pass": "exact"
+    },
+    {
+      "id": "G11",
+      "route": "A,B",
+      "statement": "optional two-loop milestone: Konishi gamma^(2) = -3 lambda^2/(16 pi^4); 20' gamma^(2) = 0; tests T3, T4",
+      "pass": "exact"
+    },
+    {
+      "id": "G12",
+      "route": "compare",
+      "statement": "cross-track comparison through the invariants I1-I6 only (bv_dr.tex Definition def:targets, Theorem thm:inv): D_1 matrices at a point on every computed family, twisted d_1 on H(Q^xi_0) and its reduced pair entries, classes [delta] modulo [rho_0, e], lifting identities and norms on the Konishi extension, coboundary form on the 20'. The heat-kernel side counts only after that track is rebuilt on a valid gauge fixing ((Q^GF)^2 = 0, [FR Thm 2.4]); raw entries, finite counterterms, Ob, F_1 and kernels are never compared",
+      "pass": "equality of I1-I6 between scheme D, scheme B (restored) and the rebuilt heat-kernel track; a mismatch is reported as a failure of (Hs)"
+    },
+    {
+      "id": "G13",
+      "route": "A,B",
+      "statement": "joining/lifting and Beisert closure (relation R11): on the Konishi extension kappa(eta) beta(xi) c0 = -gamma_K (xi,eta) c0 and the additive form with a_xi + a'_eta [FR Thm 4.9 (iv), (v)]; on the su(2|3) sector c_9 c_10 = c_1/2 [Bei03b, (3.36)] with c_9, c_10 from the tree-level BV data (length-changing parts of the classical supercharges, Proposition prop:QS) and c_1 from D_1 (Theorem thm:D1); scheme D with F = 0 and scheme B with F_1^B, e^B",
+      "pass": "exact identities; record whether scheme D needs any finite counterterm"
+    },
+    {
+      "id": "G14",
+      "route": "A,B",
+      "statement": "Q1 of the literature synthesis: the one-loop composite-operator breaking A_O (part of L(O) along xi in scheme D with psi = 0, F_1 = 0 along xi) on (a) the 20' bilinears and their descendants and the stress-tensor multiplet: A_O = 0 or a coboundary [rho_0, e] (I5); (b) the Konishi multiplet: A_O = [rho_0, e] + lifting kappa with kappa(eta)beta(xi)c0 = -gamma_K (xi,eta) c0; (c) whether e = 0",
+      "pass": "exact; the deliverable is the explicit e (zero or not) for each multiplet"
+    },
+    {
+      "id": "G15",
+      "route": "A,B",
+      "statement": "two-loop special conformal constraint (Q4 (b)): order-hbar^2 part of the (K,P) component of L o L = 0, [K^(0), D^(2)] = [D^(1), K^(1)] on twist-two and su(2) families, with K^(1) = K_1 of Theorem thm:K1 [BKM05]",
+      "pass": "exact; optional milestone M5"
+    }
+  ],
+  "negative_controls": [
+    {
+      "id": "NC1",
+      "statement": "a DREG-type variant of scheme D without epsilon-scalars (V10 -> QDS + W_perp with totally anticommuting chirality) must give Ob^(1)(xi) != 0 already in the two-point sector (field counting D+6 against 16)"
+    },
+    {
+      "id": "NC2",
+      "statement": "omitting the cbar cbar arity-two vertex (G1c) must break gate G8 relation (R2) at xi_GF != 0"
+    },
+    {
+      "id": "NC3",
+      "statement": "canonical D-dimensional Weyl weights in place of transcription T3 must change Deltahat^(1)(Delta) by an s-exact term and leave the spectra of G5-G7 unchanged"
+    },
+    {
+      "id": "NC4",
+      "statement": "flipping the relative sign between the Fierz term and N(eta) in Deltahat^(1)(eta) must break (R3) on the trace bilinear"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "M1",
+      "content": "A1-A3, B1-B2; gates G0a-G0d, G1a-G1c, G2a-G2b, G3a"
+    },
+    {
+      "id": "M2",
+      "content": "action renormalisation and obstruction: G3b, G4a-G4d, G10 on two- and three-point functions"
+    },
+    {
+      "id": "M3",
+      "content": "operators: two-letter kernels, D_1, Konishi and 20', spectra: G5-G7, G9b-G9d"
+    },
+    {
+      "id": "M4",
+      "content": "Q_1, S_1, K_1, R_1 on the families; relations G8; joining/lifting and Beisert closure G13; composite-operator breaking G14 (target Q1, Q3); scheme comparison G9a; invariants G12"
+    },
+    {
+      "id": "M5",
+      "content": "optional two loops: G11, G15 and the targets Q2 (c), Q4 (b), Q5"
+    }
+  ],
+  "report_format": {
+    "per_gate": "out/gates/<id>.json with keys id, route, scheme, xi_GF, subtraction, evanescent_scheme, status (PASS/FAIL/OPEN), exact_result, comparison, timestamp",
+    "summary": "out/gates/SUMMARY.json",
+    "freedom_link": "free directions of every F_1 solution are written in the format of /Users/libotao/N4_BV_DR/freedom/ when that classification exists"
+  },
+  "invariant_targets": {
+    "definition": "bv_dr.tex Definition def:targets, from the freedom note N4_BV_DR/freedom/freedom.tex under (H0), (Hs), (Hc)",
+    "I1": "dilatation matrix delta(Delta) at a point: whole one-loop mixing matrix, eigenvectors, eigenvalues [FR Thm 4.1]",
+    "I2": "twisted d_1 = [Q^xi_1] on H(Q^xi_0), Q^xi_1 = L_1^(0) + L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi); reduced pair entries [FR Thm 5.1, 8.1]; in DR L_1^(0) = 0, so the Konishi entry sits in L_1^(1)(xi) - 1/2 L_1^(2)(xi,xi)",
+    "I3": "generic Q, S, K: class [delta] in H^1(psl(4|4); End V) mod C[rho_0 o B], i.e. modulo [rho_0, e] with ONE e for all generators; rho_0 o B is a coboundary on simple summands [FR Thm 8.1, Prop 4.3]",
+    "I4": "joining/lifting on non-split extensions (Konishi): [kappa], kappa(eta) beta(xi) c0 = -gamma (xi,eta) c0, (a_xi + a'_eta) mu c0 + kappa(eta) beta(xi) c0 = -gamma (xi,eta) c0 with a_xi + a'_eta invariant [FR Thm 4.9]; norms ||rho(xi)c0||^2 = (xi,xibar) gamma ||c0||^2 [FR Cor 4.10]",
+    "I5": "protection: on simple summands with gamma = 0 every one-loop component is one coboundary [rho_0, e] (20') [FR Thm 4.7]",
+    "I6": "P, M, R pure gauge on simple summands [FR Thm 8.1]; in DR P_1 = M_1 = 0 (both schemes), R_1 = 0 (scheme D) as representatives"
+  },
+  "targets_Q1_Q9": [
+    {
+      "id": "Q1",
+      "loop_order": "1",
+      "scheme": "D",
+      "what": "composite-operator SUSY Ward identity in DRED: action prerequisite Ob^(1)(xi) = Ob^(2)(xi,xi') = 0 (G4c); A_O on 1/2-BPS multiplets and on the Konishi multiplet; finite operator counterterm e (zero or not)",
+      "gates": [
+        "G4c",
+        "G14",
+        "G8",
+        "G13"
+      ],
+      "literature_status": "no composite-operator ST/SUSY Ward identity evaluated in any DR scheme at any loop order [LIT 2.3]: new",
+      "priority": 1
+    },
+    {
+      "id": "Q2",
+      "loop_order": "1 (a,b,d,e); 2 (c)",
+      "scheme": "B",
+      "what": "(a) N=4 analogues of SQED/SQCD restoring counterterms on elementary functions; (b) e^B for 20' and Konishi (SO(4)-singlet mixing before R-restoration); (c) two-loop dilatation equals scheme D up to similarity only with F_1^B, e^B, otherwise gamma^(2)_20' != 0; (d) F_1^B = epsilon-scalar finite terms (scheme conversion as canonical transformation); (e) with background SU(4)_R fields only the 't Hooft class survives",
+      "gates": [
+        "G4d",
+        "G9a",
+        "G11",
+        "G14"
+      ],
+      "literature_status": "BMHV applied to SUSY only in one-loop SQED; nothing for N=4 [LIT 4]",
+      "priority": 2
+    },
+    {
+      "id": "Q3",
+      "loop_order": "1",
+      "scheme": "D, B",
+      "what": "superconformal closure on operators: c_9 c_10 = c_1/2 [Bei03b (3.36)], the su(2|3) form of kappa(eta)beta(xi)c0 = -gamma (xi,eta) c0 [FR Thm 4.9]",
+      "gates": [
+        "G13",
+        "G8"
+      ],
+      "literature_status": "assumed in Beisert's algebraic construction, never derived from a regulated theory [LIT 3]",
+      "priority": 1
+    },
+    {
+      "id": "Q4",
+      "loop_order": "1 (a,c); 2 (b)",
+      "scheme": "D, B",
+      "what": "(a) D_1 normalisation from the dilatation breaking (Konishi, 20'); (b) K_1^0 special conformal anomaly and the two-loop constraint [K^(0),D^(2)] = [D^(1),K^(1)]; (c) in scheme B, does K_1 acquire [rho_0(K), e^B]",
+      "gates": [
+        "G5",
+        "G6",
+        "G9b",
+        "G15"
+      ],
+      "literature_status": "breaking = epsilon x integrated Lagrangian [DHKS07 (25),(27)]; constraint used in [BKM05] for QCD-type theories",
+      "priority": 1
+    },
+    {
+      "id": "Q5",
+      "loop_order": "2",
+      "scheme": "D",
+      "what": "four-scalar identity: is the two-loop Fierz part of Ob^(2) on the four-scalar function zero (poles fixed by Prop noevcoup)",
+      "gates": [
+        "G11"
+      ],
+      "literature_status": "one loop in DRED [S05 (4.8)], three loops in a restricted MSSM limit; open for N=4 [LIT 2.2]",
+      "priority": 3
+    },
+    {
+      "id": "Q6",
+      "loop_order": "4-5 (counting + selected graphs)",
+      "scheme": "D",
+      "what": "ten-dimensional counting rule for surviving Fierz insertions; Yukawa vertex through four loops; first candidates at five loops; conflicting 5 vs 8/10-loop estimates; first order at which chirality-odd traces (>= 10 rho's) reach a pole",
+      "gates": [],
+      "literature_status": "topological counts only; no four- or five-loop breaking ever computed [LIT 2.4]",
+      "priority": 3
+    },
+    {
+      "id": "Q7",
+      "loop_order": "1",
+      "scheme": "D",
+      "what": "local coupling: one-loop local-coupling class of the constant-ghost ST identity in scheme D (N=1 SYM: r_eta = C(G)/8pi^2; N=2: absent)",
+      "gates": [],
+      "literature_status": "computed for N=1 and N=2 [Kra02, LIT 3]; open for N=4",
+      "priority": 3
+    },
+    {
+      "id": "Q8",
+      "loop_order": "1",
+      "scheme": "D",
+      "what": "beta/gamma_i-deformed N=4: double-trace couplings in the local complex, their one-loop beta functions as obstruction; U(N) vs SU(N)",
+      "gates": [],
+      "literature_status": "conformality fails through induced double-trace running [LIT 2.3]; outside the present engines",
+      "priority": 4
+    },
+    {
+      "id": "Q9",
+      "loop_order": "4 (SM); minimal model at the first order where two gamma5-odd traces meet in a divergent graph",
+      "scheme": "B with sterile partners",
+      "what": "gamma5-odd four-loop g_s coefficient in restored BMHV versus the Weyl-consistency value",
+      "gates": [],
+      "literature_status": "reading-point and WCC arguments; no BMHV computation [LIT 4]; outside the present engines",
+      "priority": 4
+    }
+  ]
+}

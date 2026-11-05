@@ -1,0 +1,197 @@
+{
+ "A_realisation": {
+  "clifford_V10": true,
+  "rho_symmetric_for_pairing": true,
+  "chirality_rho(e1e2e3e4)=+1_on_S+W": true,
+  "thooft_sum_SigmaSigma=2eps": true,
+  "two-component Gamma|_V = i(ebar2 sigmabar e1 + ebar1 sigmabar e2)": true
+ },
+ "B_formulations": {
+  "min: Q^2=0": true,
+  "min: Q preserves pairing": true,
+  "min: scale-free H=p^2 & adjoint solutions": "[{g_AV_c: 1, g_AW: -2, g_AsV_AV: -2, g_cs_AsV: 1, g_lam: -1}]",
+  "min: unique solution equals former QGF": true,
+  "NEG min: (QGF)^2 != 0 for the unique solution": true,
+  "first-order: pairing_fixes_u_BA": "[{u_BA: -1}]",
+  "first-order: Q1^2=0": true,
+  "first-order: scale_free_solutions_H=p2_selfadjoint": "[{h1: 1, h2: -1, h3: -2, h4: 1, h5: 1}]",
+  "first-order: H=p2_solutions": "[{h1: 1, h2: -1, h3: -2, h4: 1, h5: 1}]",
+  "first-order: H=p2_solutions_with_QGF^2=0": [
+   false
+  ],
+  "first-order: costello_adjoint_(Qdag)^2=0": true,
+  "first-order: costello_adjoint_H_on_B_slot_entry": "(k_As*p1**2 + k_As*p2**2 + k_As*p3**2 + k_As*p4**2 + 4*k_Bs)/k_B",
+  "first-order: costello_adjoint_H_offdiagonal_B_to_A": "2*I*k_Bs*p4/k_A",
+  "red: Phi=1+N symplectic iff": "{-I*n1 - I*n2}",
+  "red: Q_Psi^2=0 (all alpha)": true,
+  "red: Q_Psi preserves pairing": true,
+  "red: H=p^2 & adjoint, family in alpha": "[{g_AV_c: alpha + 1/2, g_AW: -2, g_AsV_AV: -2, g_AsV_cbs: (-2*alpha - 1)/(2*alpha), g_cb_AV: (2*alpha + 1)/(2*alpha), g_cbs_c: 1/2 - alpha, g_cs_AsV: alpha + 1/2, g_cs_cb: alpha - 1/2, g_lam: -1}]",
+  "red: (QGF)^2 entries on the family": "{-I*p1*(2*alpha + 1)**2/(4*alpha), -I*p4*(2*alpha + 1)**2/(4*alpha), (2*alpha + 1)**2*(p1**2 + p2**2 + p3**2 + p4**2)/(4*alpha), -I*p2*(2*alpha + 1)**2/(4*alpha), -(2*alpha + 1)**2*(p1**2 + p2**2 + p3**2 + p4**2)/(4*alpha), -I*p3*(2*alpha + 1)**2/(4*alpha)}",
+  "red: (QGF)^2=0 iff alpha": "[(-1/2,)]",
+  "red: at alpha=-1/2 QGF = antifield->field operator": true,
+  "b: Q^2=0 & pairing": true,
+  "b: solutions (frame parameter kappa free)": "[{g_AV_c: 0, g_AW: -2, g_AsV_AV: -2, g_AsV_b: -1, g_AsV_cbs: -kappa - 1, g_b_c: -kappa - 1, g_bs_AV: 1, g_cb_AV: kappa + 1, g_cbs_c: 1, g_cs_AsV: 0, g_cs_bs: kappa + 1, g_cs_cb: -1, g_lam: -1}]",
+  "b: (QGF)^2=0 for every kappa": true
+ },
+ "C_axioms": {
+  "(0) Q^2=0": true,
+  "(0) Q preserves the pairing": true,
+  "(1) QGF adjointness opposite to Q": true,
+  "(2) QGF order <= 1": true,
+  "(3) (QGF)^2=0": true,
+  "(4) H=[Q,QGF]=|p|^2 on every slot": true,
+  "R4 Lemma 6.5.1: Q P + P Q = 1 (P = QGF/|p|^2)": true,
+  "R4 Lemma 6.5.1: P^2 = 0, P Q P = P, Q P Q = Q": true,
+  "projectors QP, PQ: idempotent, orthogonal, sum 1": true,
+  "(5) at p != 0: rank Q, rank QGF, rank [Q|QGF], dim": [
+   28,
+   28,
+   56,
+   56
+  ],
+  "NEG former operator at p != 0: rank Q + rank QGF > dim (Im Q cap Im QGF != 0)": [
+   27,
+   28,
+   54,
+   54
+  ],
+  "real slice: <A, Q A> block = -1/2 |p|^2 on all ten components": true,
+  "NEG former: <A|_V, Q A|_V> block has the longitudinal zero eigenvalue": true
+ },
+ "C_propagator": {
+  "nonzero slot pairs of P (times e^{-eps|p|^2}/|p|^2)": "[('AV', 'AV'), ('AW', 'AW'), ('c', 'cb'), ('cb', 'c'), ('lam', 'lam')]",
+  "A(x)A, c(x)cbar, cbar(x)c fibre factors": "(2, 2, -1, 1)",
+  "graded symmetry P_ij(p) = (-1)^{|i||j|} P_ji(-p)": true,
+  "K0 represents the identity (K0hat Omega Pi = 1)": true
+ },
+ "C_frames": {
+  "Q_Psi = Phi^{-1} Q_C Phi": true,
+  "frame C: (QGF_C)^2 = 0, [Q_C, QGF_C] = |p|^2": true,
+  "frame C: QGF_C entry cbar -> cbar^* (order two, axiom (2) fails in frame C)": "-2*p1**2 - 2*p2**2 - 2*p3**2 - 2*p4**2",
+  "frame C: QGF_C adjointness (axiom (1))": true,
+  "frame C: ranks at p != 0 (axiom (5))": [
+   28,
+   28,
+   56,
+   56
+  ],
+  "chain map j = p Phi: j Q_Psi = Q j": true,
+  "j j^dag = 1  ((j x j) K_t = K_t)": true,
+  "j QGF_Psi j^dag = former QGF  ((j x j) P_Psi = P_former)": true,
+  "compression: p QGF_C iota = former QGF": true,
+  "(former QGF)^2 = - p QGF_C pi_nm QGF_C iota": true
+ },
+ "D_engine": {
+  "frame min: {S_0, l} = l o Q on every coordinate (mismatches)": [],
+  "frame C: {S_0, l} = l o Q on every coordinate (mismatches)": [],
+  "frame Psi: {S_0, l} = l o Q on every coordinate (mismatches)": [],
+  "su2_frame_Psi_{S,S}=0": true,
+  "NEG_su2_shift_A*+dcbar_{S,S}!=0": true,
+  "NEG_su2_cbar*-d^*A_{S,S}!=0": true,
+  "_time_s": 0.4
+ },
+ "E_equivariant_nm_sector": {
+  "red_ar1_{Snm,S1(v)}=0": true,
+  "red_ar2_even-even": true,
+  "red_ar2_odd-odd_{Snm,S2(u)}+S1(u)=0_gamma2=-1": true,
+  "NEG_red_gamma2=+1_fails": true,
+  "red_ar3_{S1(v),S2(u)}+S2([v,u])=0": true,
+  "red_ar4_{S2,S2}=0": true,
+  "tp_ar1": true,
+  "tp_ar2_even-even": true,
+  "tp_gamma_b": "[{gamma_b: -1}]",
+  "tp_ar2_odd-odd_all_u": true,
+  "tp_ar3": true,
+  "tp_Eb_of_S_tp_Psi1": "{((((1, (0, 0, 0, 0)), 1),), ()): 1, ((((2, (0, 0, 0, 0)), 1),), ()): 2}",
+  "tp_reduced_action_equals_-1/4(cbar*,cbar*)": true,
+  "tp_S1_after_Psi1_at_bs=0_equals_-(v.cbar,cbar*)_mod_total_derivatives": true,
+  "tp_S2_after_Psi1_equals_reduced_cbar_cbar_vertex": true
+ },
+ "E_gauge_parameter": {
+  "G = -s(int (cbar^*+d^*A, cbar)) (free part)": true,
+  "NEG G = +s(...) fails": true
+ },
+ "E_equivariant_abelian": {
+  "min (former structure): components checked": 26,
+  "min (former structure): failing components": [],
+  "min (former structure): all components vanish": true,
+  "C, cbar weight 2, gamma2=-1: components checked": 26,
+  "C, cbar weight 2, gamma2=-1: failing components": [],
+  "C, cbar weight 2, gamma2=-1: all components vanish": true,
+  "Psi, cbar weight 2, gamma2=-1: components checked": 26,
+  "Psi, cbar weight 2, gamma2=-1: failing components": [],
+  "Psi, cbar weight 2, gamma2=-1: all components vanish": true,
+  "Psi, inert cbar, gamma2=0: components checked": 26,
+  "Psi, inert cbar, gamma2=0: failing components": [],
+  "Psi, inert cbar, gamma2=0: all components vanish": true,
+  "NEG Psi, cbar weight 2, gamma2=0: components checked": 26,
+  "NEG Psi, cbar weight 2, gamma2=0: failing components": [
+   "ar2_xi1_xi2",
+   "ar2_xi1_eta1",
+   "ar2_eta1_eta2",
+   "ar2_xi1_xi1"
+  ],
+  "NEG Psi, cbar weight 2, gamma2=0: fails exactly on the four odd-odd arity-two components": true,
+  "NEG Psi, inert cbar, gamma2=-1: components checked": 26,
+  "NEG Psi, inert cbar, gamma2=-1: failing components": [
+   "ar2_xi1_xi2",
+   "ar2_xi1_eta1",
+   "ar2_eta1_eta2",
+   "ar2_xi1_xi1"
+  ],
+  "NEG Psi, inert cbar, gamma2=-1: fails exactly on the four odd-odd arity-two components": true
+ },
+ "F_generators": {
+  "Q_from_S0_equals_Q_Psi": true,
+  "H=[Q,QGF]=-d^2_every_slot": true,
+  "QGF^2=0": true,
+  "composite QGF x. QGF = 0 along P": true,
+  "composite = QGF V_x QGF along P": true,
+  "[x., QGF] = 0 along P": true,
+  "composite QGF x. QGF = 0 along M": true,
+  "composite = QGF V_x QGF along M": true,
+  "[x., QGF] = 0 along M": true,
+  "composite QGF x. QGF = 0 along D": true,
+  "composite = QGF V_x QGF along D": true,
+  "[Delta., QGF] = -4 QGF": true,
+  "[Delta., Q] = 0": true,
+  "composite QGF x. QGF nonzero along K": true,
+  "composite = QGF V_x QGF along K": true,
+  "composite QGF x. QGF = 0 along R": true,
+  "composite = QGF V_x QGF along R": true,
+  "[x., QGF] = 0 along R": true,
+  "composite QGF x. QGF nonzero along xi": true,
+  "composite = QGF V_x QGF along xi": true,
+  "composite QGF x. QGF nonzero along eta": true,
+  "composite = QGF V_x QGF along eta": true,
+  "s_vPsi(P) = -1/2 (cbar, iota_grad(div v) A_V)": true,
+  "s_vPsi(M) = -1/2 (cbar, iota_grad(div v) A_V)": true,
+  "s_vPsi(D) = -1/2 (cbar, iota_grad(div v) A_V)": true,
+  "s_vPsi(K) = -1/2 (cbar, iota_grad(div v) A_V)": true,
+  "s_KPsi = 4 (cbar, iota_b A_V)": true,
+  "s_epsPsi(xi1) = (Gamma(eps,lambda)|_V, d cbar)": true,
+  "s_epsPsi(eta1) = (Gamma(eps,lambda)|_V, d cbar)": true,
+  "[v.,QGF] = -1/2 div v QGF + 1/4 rho(d div v)|_lam* + [V_v,QGF]  (D)": true,
+  "[v.,QGF] = -1/2 div v QGF + 1/4 rho(d div v)|_lam* + [V_v,QGF]  (K)": true,
+  "V_K_components": {
+   "As0": "-4*f54(x1, x2, x3, x4)",
+   "As1": "8*f54(x1, x2, x3, x4)",
+   "As2": "-4*f54(x1, x2, x3, x4)",
+   "As3": "-12*f54(x1, x2, x3, x4)",
+   "cbs": "4*(f1(x1, x2, x3, x4) - 2*f2(x1, x2, x3, x4) + f3(x1, x2, x3, x4) + 3*f4(x1, x2, x3, x4))"
+  },
+  "[V_K,QGF]_components": {
+   "As0": "4*f53(x1, x2, x3, x4)",
+   "As1": "-8*f53(x1, x2, x3, x4)",
+   "As2": "4*f53(x1, x2, x3, x4)",
+   "As3": "12*f53(x1, x2, x3, x4)",
+   "cbs": "-8*(f27(x1, x2, x3, x4) - 2*f28(x1, x2, x3, x4) + f29(x1, x2, x3, x4) + 3*f30(x1, x2, x3, x4))",
+   "c": "-4*(f1(x1, x2, x3, x4) - 2*f2(x1, x2, x3, x4) + f3(x1, x2, x3, x4) + 3*f4(x1, x2, x3, x4))",
+   "A0": "-8*f54(x1, x2, x3, x4)",
+   "A1": "16*f54(x1, x2, x3, x4)",
+   "A2": "-8*f54(x1, x2, x3, x4)",
+   "A3": "-24*f54(x1, x2, x3, x4)"
+  }
+ },
+ "_runtime_s": 384.5
+}

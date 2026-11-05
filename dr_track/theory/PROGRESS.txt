@@ -1,0 +1,55 @@
+N4_BV_DR / theory  --  PROGRESS log (append-only)
+=================================================
+Track: dimensional regularization of N=4 SYM formulated inside BV, psl(4|4) constant ghosts.
+Deliverables: bv_dr.tex (pdflatex, theorem form), engine_spec.json, notes.txt, PROGRESS.txt.
+
+2026-11-05 20:50  started.
+  Read: heat-kernel project README.md, DESIGN_STEP2.md (R0-R11), manuscript ch01, ch02, ch08 (defs:
+        Ob, s F_1 = Ob, L(M), components, laws, twist), ch10 (pair kernels, simplex formulas),
+        ch12 (strict construction, master formula, one-loop algebra R2-R8).
+  Coordinator message 1 (gauge fixing): use non-minimal (cbar,b), Psi = int cbar(d.A + xi b/2), xi=1;
+        s_X Psi vertices: lambda-cbar along Q,S; V-cbar along K; arity-two cbar cbar; Nielsen identity.
+        Survey read: step2/next/survey/old_work_survey.txt (method guidance only, no numbers used).
+Plan:
+  P1 literature fetch (Stoeckinger 2005, BM 1977, Belusca-Maito et al. 2020/2023, MPW 1996) -> notes.txt
+  P2 bv_dr.tex skeleton + Part 1 (schemes: DRED_Q10S, BMHV_sterile) incl. non-minimal sector
+  P3 Part 2 (QAP, renormalized ST identity, Ob_DR, F_1, [O]_R, L(M), components, D_1 via RG, K_1)
+  P4 Part 3 (one-loop two-letter kernels in DR: closed forms, poles/finite parts, evanescent ops)
+  P5 Part 4 (algebra verification table: exact vs after restoration, per scheme)
+  P6 engine_spec.json (two pure-Python routes + gates incl. Konishi, 20')
+  P7 Part 6 (testable SUSY-protection questions, 1 and 2 loops)
+  P8 compile clean, check refs, final report
+2026-11-05 ~21:10  P1 done: literature (S05 full text, BIMS20 sec 3/6, G17 eq 2.3, MPW96 sec 2) -> notes.txt.
+                   P2 done: parts/p0_preamble.tex (conventions, names), parts/p1_schemes.tex (Scheme D, Scheme B,
+                   no-go Prop, non-minimal sector, gauge fermion, canonical transformation, transcription T1-T5,
+                   gauge-fixing vertices, classical breaking theorems for D and B, which generators fail).
+                   Test build: 10 pp, compiles; refs to later sections pending.
+2026-11-05 ~21:30  P3 done: parts/p2_quantum.tex (BV Laplacian =0, QME=CME, DR transfer identity = regularized QAP,
+                   renormalized ST identity, Ob, Bonneau-type lemma, obstruction theory, restoring structure,
+                   Nielsen identity, insertions, local representative, master formula, exact components,
+                   D_1 via RG/CS, K_1 via conformal WI, IR safety, Q_1/S_1, laws, invariants).
+                   P4 done: parts/p3_oneloop.tex (two-letter decomposition, cycle formula with residue and finite part,
+                   Bessel generating functions, bubble closed form, defect cycles, output bound, evanescent operators,
+                   chirality-odd traces). Build: 20 pp, only refs to sec:alg, sec:engines pending.
+2026-11-05 ~21:40  P5 done: parts/p4_algebra.tex (relation defect theorem L.L = hbar ad_B, relations R2-R10, exactness
+                   table per scheme, verification protocol, two-component form). P6 done: engine_spec.json (valid JSON;
+                   routes A residue/QAP and B direct; 27 gates incl. G5 Konishi, G6 20'; 4 negative controls; milestones).
+2026-11-05 ~21:45  P7 done: parts/p5_engines.tex, parts/p6_questions.tex (Prop no evanescent couplings in Scheme D; T1-T8).
+                   Full assembly bv_dr.tex: 25 pp, pdflatex clean (no errors, no undefined refs), 7 small overfull boxes.
+                   Next: read-through for correctness (signs, claims), fix small overfulls, final report.
+2026-11-05 ~21:53  Review pass: fixed proof optional-argument bug, itemize run-ins, overfull boxes (1 x 6.7pt left), hyperref
+                   bookmarks; corrected rho_J definition (i gamma_5 J (x) tau) and gamma sign (gamma = -mu dlogZ/dmu); added
+                   two-component remark (N(eta), BMHV R-breaking, E(xi), ghost line). Final build: 25 pp, 0 errors, 0 undefined refs.
+                   notes.txt: results R1-R10 and open points O1-O5. engine_spec.json valid (26 gates, 4 negative controls).
+DONE.
+2026-11-05 ~21:56  Coordinator message 2: literature synthesis finished (literature/synthesis.txt, Q1-Q9). Read synthesis
+                   (sections 1-5) and survey records S1a.25 (Beisert su(2|3), eq 3.36 c9 c10 = c1/2), S1d.12 (DHKS 0712.1223
+                   eqs 25, 27), S6.01 (Barnich hep-th/9807210 Sec 2.8). Plan: (1) QAP status in Scheme D as external input
+                   argued in S05 (not proved); (2) cite Barnich Sec 2.8 and DHKS (25),(27); (3) relation R11 = Beisert closure;
+                   (4) rewrite Section 7 organised by Q1-Q9 with loop orders; (5) engine_spec: targets Q1-Q9 + gate G13.
+2026-11-05 ~22:01  Coordinator message 3: freedom note final (freedom/freedom.tex, summary.txt). Read Thm 2.3, 4.1, 4.7, 4.9,
+                   5.1, 8.1, Prop 4.3, Cor 4.10. Revision 2 done: ax:qapD, Barnich remark, DHKS citation, Def def:targets (I1-I6),
+                   Thm inv via [FR Thm 2.3], Remark rem:twistDR, relation (R11), Section 7 = Q1-Q9 (+ class comparison),
+                   references FR, LIT, Bar98, DHKS07, Bei03b, BKM05, HKS99, Kra02. engine_spec.json: invariant_targets,
+                   targets_Q1_Q9 (loop orders), gates G12 (rewritten), G13, G14, G15 (29 gates). Build: 27 pp, 0 errors,
+                   0 undefined refs, 1 overfull box of 6.7 pt. DONE (rev. 2).

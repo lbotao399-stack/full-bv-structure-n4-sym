@@ -1,0 +1,38 @@
+
+\section{Engine specification}
+\label{sec:engines}
+
+The machine-readable specification is \texttt{engine\_spec.json}; this section records its logic. The targets are the invariants (I1)--(I6) of Definition \ref{def:targets} and the questions Q1--Q9 of Section \ref{sec:questions}, each listed there with its loop order.
+
+\begin{definition}[Route A: residues and the quantum action principle]
+\label{def:routeA}
+Route A computes every one-loop component from graphs with exactly one evanescent vertex: the vertices of $S_{\Psi,\mathfrak{psl}}$ and the components of $\widehat\Delta$ are generated symbolically in $D$ (Theorems \ref{thm:breakD}, \ref{thm:breakB}); the pair cycles are enumerated within the output bound (Proposition \ref{prop:active}); residues are simplex integrals (Theorem \ref{thm:res}) with generating functions in the letter positions (Proposition \ref{prop:genD}); finite parts are $-\partial_D$ of normal-form residues at $D=4$ (Lemma \ref{lem:bonneau}); $sF_1=\mathrm{Ob}$ is solved by exact linear algebra with all free directions; the components follow from \eqref{eq:masterD}.
+\end{definition}
+
+\begin{definition}[Route B: direct evaluation]
+\label{def:routeB}
+Route B computes the one-loop one-particle-irreducible functions and the operator insertions completely in momentum space (tensor reduction to $B_0$, $C_0$ with exact $D$-dependence), from independently written two-component Feynman rules, takes $\mathrm{LIM}$, and evaluates $S(\Gamma_{\rm ren})$ and $S_\Gamma[O]_R$ as sums and products of one-particle-irreducible functions; it uses neither $\widehat\Delta$ nor Lemma \ref{lem:bonneau}.
+\end{definition}
+
+\begin{remark}[Gates]
+\mbox{}\par\smallskip\noindent{\small\begin{tabular}{p{0.13\textwidth}|p{0.8\textwidth}}
+gate & content\\
+\hline
+G0a--G0d & Clifford realisations (Scheme B explicit, Scheme D formal), hat algebra, equality of the two hand-written classical inputs\\
+G1a--G1c & $Q^2=0$, $(Q^{GF})^2=0$, $[Q,Q^{GF}]=|p|^2$; equivariant master equation at $D=4$ with the gauge-fixing vertices; negative controls\\
+G2a--G2b & the classical breaking of Theorems \ref{thm:breakD}, \ref{thm:breakB}, its Bianchi identity, $\mathrm{LIM}\,\widehat\Delta=0$\\
+G3a--G3b & $\Delta_0F=0$; the regularised quantum action principle on two- and three-point functions, Route A against Route B\\
+G4a--G4d & action counterterms, $\beta^{(1)}=0$, the obstruction components and the restoring counterterms\\
+G5 & Konishi: $D_1=2\gamma_K$, $\gamma_K=\frac{3g^2N}{4\pi^2}$ ($-48$ units)\\
+G6 & $\mathbf{20}'$: $D_1=0$\\
+G7 & $\mathfrak{su}(2)$ and twist-two spectra\\
+G8 & relations (R2)--(R10) with and without restoration (Theorems \ref{thm:rel}, \ref{thm:table})\\
+G9a--G9d & scheme D against scheme B; infrared safety; $\xi_{\rm GF}$-independence; MS against MS-bar and two evanescent schemes\\
+G10 & finite parts from residues against full finite parts\\
+G11 & two loops: Konishi $\gamma^{(2)}=-\frac{3\lambda^2}{16\pi^4}$, $\mathbf{20}'$ $\gamma^{(2)}=0$\\
+G12 & comparison with the heat-kernel track, rebuilt on a valid gauge fixing, through the invariants (I1)--(I6) of Definition \ref{def:targets} only\\
+G13 & joining and lifting on the Konishi extension and the closure $c_9c_{10}=\frac12c_1$ of [Bei03b, (3.36)], relation (R11)\\
+G14 & composite-operator breaking $A_O$ on the $\mathbf{20}'$, stress-tensor and Konishi multiplets (Problem \ref{q:Q1})\\
+G15 & two-loop special conformal constraint $[K^{(0)},D^{(2)}]=[D^{(1)},K^{(1)}]$ (Problem \ref{q:Q4})\\
+\end{tabular}}\par\smallskip
+\end{remark}

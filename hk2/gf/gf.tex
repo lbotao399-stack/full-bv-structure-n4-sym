@@ -1,0 +1,345 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\title{A square-zero gauge fixing for the heat-kernel track of $\mathcal N=4$ super Yang--Mills theory\\[2pt]\large formulations, exact checks, equivariant structure, migration}
+\author{}\date{2026-11-05}
+\begin{document}
+\maketitle
+
+Notation is that of the manuscript (Chapters 1, 2, 7, 8): $\mathscr E$ the BV fields $(c,A,\lambda;c^*,A^*,\lambda^*)$, $Q$ of Proposition c1-Q, the pairing of Definition c1-pairing, $K_0$ of Definition c1-bracket, $v.$ of Definition c7-vdot, conformal Killing spinors $\epsilon=\xi+\rho(x)\eta$, $\Gamma$ of [ESW, (28)]. Momentum space: $d\mapsto ip$, $d^*$ on one-forms $\mapsto-i(p,-)$. The unit is $\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)/(16\pi^2(X,Y))$. Every statement marked [check] is an exact computation of \texttt{checks.py}, recorded in \texttt{checks.json}.
+
+\section{\texorpdfstring{The conditions on $\mathbb R^4$}{The conditions on R4}}
+
+\begin{definition}[Admissible operators and the conditions]
+\label{def:adm}
+An operator $G$ on a BV complex $(\mathscr F,Q)$ over $\mathbb R^4$ is admissible if it is odd of degree $-1$, a sum of constant-coefficient differential operators of order $\le1$ between slots, covariant under $\mathrm{Spin}(4,\mathbb C)\times\mathrm{Spin}(6,\mathbb C)$, and homogeneous of Weyl weight $2$ (a component from weight $w$ to weight $w'$ carries $w'-w+2$ derivatives; no dimensionful constant). The conditions of [C07, Def 4.3.3] read on $\mathbb R^4$:
+\[
+\begin{aligned}
+&(1)\ \langle Ge_0,e_1\rangle=(-1)^{|e_0|}\langle e_0,Ge_1\rangle;\qquad (2)\ \operatorname{ord}G\le1;\qquad (3)\ G^2=0;\\
+&(4)\ H=[Q,G]=|p|^2\cdot1;\qquad (5)\ \forall p\neq0:\ \mathscr F_p=\operatorname{Im}Q(p)\oplus\operatorname{Im}G(p),\quad \operatorname{Ker}H(p)=0;\\
+&\text{zero modes }(p=0):\ \text{scale-}\infty\text{ statements (Theorem \ref{thm:axA} (iii)).}
+\end{aligned}
+\]
+\end{definition}
+
+\begin{proposition}[Minimal second-order complex]
+\label{prop:min}
+On $(\mathscr E,Q)$ the admissible $G$ with $[Q,G]=|p|^2$ is unique:
+\[
+G:\ A^*\mapsto-2A^*,\quad A\mapsto-d^*(A|_V)\ (\text{slot }c),\quad c^*\mapsto dc^*\ (\text{slot }A^*|_V),\quad \lambda^*\mapsto-{\not d}|_{\Sigma^*}\lambda^*,
+\]
+\[
+G^2A^*=2\,d^*(A^*|_V)\ (\text{slot }c),\qquad G^2c^*=-2\,dc^*\ (\text{slot }A|_V),\qquad \operatorname{rk}Q(p)+\operatorname{rk}G(p)=27+28>54 .
+\]
+[check: \texttt{B\_formulations}, \texttt{C\_axioms} NEG] Conditions (3), (5) fail for every admissible choice.
+\end{proposition}
+
+\section{Formulation (A): the non-minimal second-order complex}
+
+\begin{definition}[Trivial pair, reduced pair, gauge fermion]
+\label{def:A}
+\begin{itemize}
+\item Trivial pair: $\bar c$ (degree $+1$, odd), $b$ (degree $0$, even), antifields $\bar c^*$ (degree $0$), $b^*$ (degree $1$); weights $2,2,2,2$; even members $\bar c^*$, $b$; $S_b=S+\int(b,\bar c^*)$.
+\item Reduced pair: $\mathscr E^{\bar c}=\{\bar c,\bar c^*\}$, $S'=S-\tfrac14\int(\bar c^*,\bar c^*)$, $Q'=Q\oplus(\bar c^*\mapsto-\tfrac12\bar c^*\ \text{in slot }\bar c)$.
+\item Gauge fermion $\Psi=\int(\bar c,d^*A|_V)$; $\Phi_\Psi=1+N$, $N\bar c=-d\bar c$ (slot $A^*|_V$), $NA=d^*(A|_V)$ (slot $\bar c^*$);
+\[
+S_\Psi=S'\circ\Phi_\Psi=S\big(c,A,\lambda;c^*,A^*-d\bar c,\lambda^*\big)-\tfrac14\int\big(\bar c^*+d^*A|_V,\bar c^*+d^*A|_V\big),\qquad I_\Psi=I\circ j_\Psi .
+\]
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Canonical transformations and the elimination of $b$]
+\label{prop:reduction}
+\begin{itemize}
+\item (i) $1+N$ with $N\bar c=a_1d\bar c$, $NA=a_2d^*A|_V$ preserves the pairing iff $a_1=-a_2$. [check]
+\item (ii) $1+N_b$, $N_b\bar c=\kappa\bar c$ (slot $b^*$), $N_bb=\kappa'b$ (slot $\bar c^*$), preserves the pairing iff $\kappa'=-\kappa$. At $\kappa=-1$,
+\[
+S_b\circ(1+N_b)=S+\int(b,\bar c^*)+\int(b,b)=S'+\int\big(b+\tfrac12\bar c^*,b+\tfrac12\bar c^*\big),\qquad E_b=\bar c^*+2b=0\ \Rightarrow\ S' .
+\]
+\item (iii) With $S^{(1)}_b(v)=-\int(v.\bar c,\bar c^*)+\int(v.b,b^*)$, $S^{(2)}_b(x_1,x_2)=-\int(u_{12}.\bar c,b^*)$, the $b$-dependence after $1+N_b$ at $b^*=0$ is $\int\big((v.\bar c,b)+(v.b,\bar c)\big)=\int\operatorname{div}(\cdot)$, and the elimination of $b$ gives the reduced extension of Definition \ref{def:eq} exactly. [check: \texttt{E\_equivariant\_nm\_sector}, $\gamma_b=-1$]
+\end{itemize}
+\end{proposition}
+
+\begin{tabular}{l|l|l}
+\toprule
+slot & $Q$ (linear part of $S_\Psi$) & $Q^{GF}$ \\
+\midrule
+$c$ & $-dc$ ($A|_V$),\ \ $d^*dc$ ($\bar c^*$) & $0$ \\
+$A$ & $-\tfrac12(d^*d+dd^*)A$ ($A^*$),\ \ $-\tfrac12d^*A|_V$ ($\bar c$) & $0$ \\
+$\lambda$ & ${\not d}\lambda$ ($\lambda^*$) & $0$ \\
+$\bar c$ & $-d^*d\bar c$ ($c^*$) & $0$ \\
+$A^*$ & $d^*(A^*|_V)$ ($c^*$) & $-2A^*$ ($A$) \\
+$\lambda^*$ & $0$ & $-{\not d}|_{\Sigma^*}\lambda^*$ ($\lambda$) \\
+$\bar c^*$ & $-\tfrac12\bar c^*$ ($\bar c$),\ \ $-\tfrac12d\bar c^*$ ($A^*|_V$) & $\bar c^*$ ($c$) \\
+$c^*$ & $0$ & $-c^*$ ($\bar c$) \\
+\bottomrule
+\end{tabular}
+
+\begin{theorem}[Existence and uniqueness]
+\label{thm:uniqA}
+Replace $-\tfrac14$ by $\tfrac12\alpha$ in $S'$. On $\mathscr E\oplus\mathscr E^{\bar c}$ the admissible $G$ with $[Q_\alpha,G]=|p|^2$ and condition (1) is unique for every $\alpha\neq0$; its coefficients on $A\to c$, $A^*|_V\to\bar c^*$, $\bar c\to A|_V$, $c^*\to A^*|_V$ are $\alpha+\tfrac12$, $-\tfrac{2\alpha+1}{2\alpha}$, $\tfrac{2\alpha+1}{2\alpha}$, $\alpha+\tfrac12$, and
+\[
+G^2\ \propto\ \frac{(2\alpha+1)^2}{4\alpha},\qquad G^2=0\iff\alpha=-\tfrac12\ (\text{Feynman}),\qquad G|_{\alpha=-1/2}=Q^{GF}\ \text{of the table}.
+\]
+[check: \texttt{B\_formulations}]
+\end{theorem}
+
+\begin{theorem}[All conditions hold]
+\label{thm:axA}
+\begin{itemize}
+\item (i) (1)--(4): $(Q^{GF})^2=0$, $\operatorname{ord}\le1$, adjointness, and $H=QQ^{GF}+Q^{GF}Q=d^*d+dd^*$ on every component of every slot:
+\[
+\begin{aligned}
+&Q^{GF}Qc=Q^{GF}(d^*dc\ \text{in}\ \bar c^*)=d^*dc,\qquad Q^{GF}QA=-2\cdot(-\tfrac12)(d^*d+dd^*)A,\\
+&Q^{GF}Q\bar c=-(-d^*d\bar c),\\
+&QQ^{GF}A^*+Q^{GF}QA^*=(d^*d+dd^*)A^*+\underbrace{d^*A^*|_V-d^*A^*|_V}_{\text{slot }\bar c},\\
+&QQ^{GF}\bar c^*+Q^{GF}Q\bar c^*=d^*d\bar c^*+\underbrace{(-d\bar c^*+d\bar c^*)}_{\text{slot }A|_V}.
+\end{aligned}
+\]
+\item (ii) (5): at $p=(\tfrac32,-2,1,\tfrac53)$, $\operatorname{rk}Q=\operatorname{rk}Q^{GF}=28$, $\operatorname{rk}[Q\,|\,Q^{GF}]=56$ (per colour); $\operatorname{Ker}Q^{GF}(p)=\operatorname{Im}Q^{GF}(p)=$ span of the slots $c,A,\lambda,\bar c$ (Lagrangian); $\operatorname{Ker}Q=\operatorname{Im}Q$.
+\item (iii) Scale $\infty$ ([C07, Lemma 6.5.1] on $\mathbb R^4$): with $P=Q^{GF}|p|^{-2}$ on moment-free Schwartz sections,
+\[
+QP+PQ=1,\qquad P^2=0,\qquad PQP=P,\qquad QPQ=Q,\qquad P|_{\operatorname{Im}Q}=\big(Q|_{\operatorname{Im}Q^{GF}}\big)^{-1};
+\]
+the zero-mode classes on compactly supported sections are those of the minimal complex ($-\int(c^*,X)$, harmonic scalars, polynomial Weyl solutions, $(a,x)(b,-)$ with $(a,b)=0$); $\mathscr E^{\bar c}$ contributes none, $\bar c^*\mapsto-\tfrac12\bar c^*$ being invertible at $p=0$.
+\item (iv) Real slice: $\tfrac12\langle A,QA\rangle=-\tfrac14\int\big((dA,dA)+(d^*A|_V,d^*A|_V)\big)=-\tfrac14\int(A,HA)$, the $A$-block $-\tfrac12|p|^2\cdot1_{10}$; the former block $-\tfrac12(|p|^2-p\otimes\iota_p)$ on $A|_V$ has the longitudinal zero eigenvalue. [check]
+\end{itemize}
+\end{theorem}
+
+\begin{proposition}[Propagator]
+\label{prop:propA}
+$P(\varepsilon,T)=\int_\varepsilon^T(Q^{GF}\otimes1)K_t\,dt$, components times $(e^{-\varepsilon|p|^2}-e^{-T|p|^2})/|p|^2$:
+\[
+A\otimes A:\ 2(-,-)^{-1}\otimes g^{-1}_{V_{10}},\qquad \lambda\otimes\lambda:\ (-,-)^{-1}\,i\rho(p)|_{\Sigma^*\to\Sigma},\qquad c\otimes\bar c:\ -(-,-)^{-1},\qquad \bar c\otimes c:\ +(-,-)^{-1};
+\]
+all components with an antifield leg vanish; graded symmetry
+\[
+P_{ij}(p)=(-1)^{|i||j|}P_{ji}(-p).
+\] [check: \texttt{C\_propagator}]
+\end{proposition}
+
+\begin{proposition}[$b$ kept]
+\label{prop:bkept}
+On $\mathscr E\oplus\{\bar c,b,\bar c^*,b^*\}$ with $S_b\circ(1+N_b)\circ\Phi_\Psi$, for every frame parameter $\kappa$ the admissible $G$ with $[Q,G]=|p|^2$ and (1) is unique and $G^2=0$; at $\kappa=-1$ it maps antifields to fields, with the extra components $A^*\mapsto d^*A^*|_V$ (slot $b$), $b^*\mapsto db^*$ (slot $A|_V$). $b$ enters no vertex, so every graph agrees with the reduced pair. [check]
+\end{proposition}
+
+\section{Formulation (B): first order}
+
+\begin{definition}[First-order complex]
+Gauge sector (abelian; $\lambda$, $A|_{W_{\mathbb R}^\perp}$ unchanged): $c$ (w $0$), $A|_V$ (w $1$), $B\in\Omega^2_+$ (w $2$), $B^*$ (w $2$), $A^*|_V$ (w $3$), $c^*$ (w $4$); $S_0=\int\big((B,d_+A)+(B,B)+(dc,A^*)\big)$, $D^a(A)=\eta^a_{mn}\partial_mA_n$; eliminating $B$: $-\tfrac14\int(D,D)=-\tfrac14\int(dA,dA)+\text{topological}$.
+\end{definition}
+
+\begin{proposition}[No scale-free square-zero operator]
+\label{prop:fo}
+The admissible components are $A\to c$, $B^*\to A$, $A^*\to A$, $A^*\to B$, $c^*\to A^*$ ($B^*\to B$ needs two derivatives, $B\to c$ and $c^*\to B^*$ have no covariant form). $[Q,G]=|p|^2$ has the unique solution $(h_1,\dots,h_5)=(1,-1,-2,1,1)$, and $G^2\neq0$ ($A^*\to A\to c$). Costello's Hermitian adjoint $Q^\dagger$ for a metric $\operatorname{diag}(k_c,k_A,k_B,k_{B^*},k_{A^*},k_{c^*})$ has $(Q^\dagger)^2=0$ and
+\[
+H|_{B\to B}=\frac{k_{A^*}|p|^2+4k_{B^*}}{k_B},\qquad H|_{B\to A}=\frac{2i\,k_{B^*}}{k_A}\,p\ \ (\text{one component}),
+\]
+a mass term $\mu^2=4k_{B^*}/k_B$ and first-order mixing: an infrared scale. [check: \texttt{B\_formulations} first-order]
+\end{proposition}
+
+\begin{remark}[$\mathfrak{psl}(4|4)$ on $B$]
+With $\tilde B=B-F_{A+}$, $S_{\rm 1st}=S+\int(\tilde B,\tilde B)$ up to the topological term; the point transformation $(A,B)\mapsto(A,\tilde B)$, lifted to antifields, maps the extension $S^{(1)}+\int(x.\tilde B,\tilde B^*)$ ($\tilde B$ a weight-$2$ self-dual form, inert under $\Sigma\oplus\Sigma^*$) to a local solution of the equivariant master equation, with $\delta_xB=\delta_x(F_{A+})+x.(B-F_{A+})$, e.g. $\delta_\xi B=-\big(d_A\Gamma(\xi,\lambda)|_V\big)_+$. The extension is consistent; the gauge sector keeps the non-invariance of Theorem \ref{thm:noinv}, and (B) adds the scale of Proposition \ref{prop:fo}.
+\end{remark}
+
+\section{Formulation (C) and the recommendation}
+
+\begin{remark}[Other options]
+\begin{itemize}
+\item Covariant gauges $\xi\neq1$: $H|_{A_V}=|p|^2+(\xi^{-1}-1)p\otimes\iota_p$ has non-scalar symbol, condition (4) fails; enter only as the formal deformation of Proposition \ref{prop:nielsen}.
+\item Landau-type ($b$ as Lagrange multiplier, no $b^2$): the $(A_L,b)$ block is first order, (4) fails.
+\item Hermitian adjoint of the second-order $Q$: $H\ni(d^*d)^2$, order four, (4) fails.
+\item Holomorphic gauge $\bar\partial^*$: a twist as input, excluded by R2; breaks $\mathrm{Spin}(4)$.
+\item Background-field gauge $\int(\bar c,d_{\bar A}^*A)$: same structure as (A) at $\bar A=0$, not needed at one loop with the present observables.
+\end{itemize}
+\end{remark}
+
+\begin{tabular}{l|c|c|c|c}
+\toprule
+ & (3) $G^2=0$ & (4) $H=|p|^2$, scale-free & (5) at $p\neq0$ & extra fields \\
+\midrule
+minimal second order & no & yes & no & -- \\
+(A) reduced $(\bar c,\bar c^*)$, Feynman & yes & yes & yes & $\bar c,\bar c^*$ \\
+(A) with $b$ & yes & yes & yes & $\bar c,b,\bar c^*,b^*$ \\
+(B) scale-free & no & yes & no & $B,B^*$ \\
+(B) Hermitian adjoint & yes & no (mass $\mu^2$) & yes & $B,B^*$ \\
+\bottomrule
+\end{tabular}
+
+\begin{proposition}[Recommendation]
+Formulation (A) with the reduced pair $(\bar c,\bar c^*)$ in the gauge-fermion frame: (i) the unique admissible square-zero operator (Theorem \ref{thm:uniqA}); (ii) all conditions on $\mathbb R^4$ with no scale (Theorem \ref{thm:axA}); (iii) two extra slots, propagators $A\otimes A$, $\lambda\otimes\lambda$, $c\otimes\bar c$; (iv) arity zero is the former theory pulled back (Theorem \ref{thm:pull}); (v) the composite lines along $\Delta,P,M,R$ vanish and the remaining gauge-fixing variations are local vertices (Propositions \ref{prop:sx}, \ref{prop:gen}).
+\end{proposition}
+
+\section{The former construction inside (A)}
+
+\begin{theorem}[Pullback and compression]
+\label{thm:pull}
+$j_\Psi=\mathrm{pr}\circ\Phi_\Psi$, $j_\Psi(c,A,\lambda,\bar c;c^*,A^*,\lambda^*,\bar c^*)=(c,A,\lambda;c^*,A^*-d\bar c,\lambda^*)$, $Q^{GF}_C=\Phi_\Psi Q^{GF}\Phi_\Psi^{-1}$. Then
+\[
+\begin{aligned}
+&j_\Psi Q_\Psi=Q\,j_\Psi,\qquad j_\Psi j_\Psi^\dagger=1\ \Rightarrow\ (j_\Psi\otimes j_\Psi)K_t=K_t,\\
+&j_\Psi Q^{GF}j_\Psi^\dagger=G_{\rm former}\ \Rightarrow\ (j_\Psi\otimes j_\Psi)P_\Psi(\varepsilon,T)=P_{\rm former}(\varepsilon,T),\\
+&I_\Psi=I\circ j_\Psi,\qquad W\big(P_\Psi,J\circ j_\Psi\big)=W\big(P_{\rm former},J\big)\circ j_\Psi,\\
+&\Delta_t(J\circ j_\Psi)=(\Delta_tJ)\circ j_\Psi,\\
+&\mathrm{pr}\,Q^{GF}_C\,\iota=G_{\rm former},\qquad G_{\rm former}^2=-\mathrm{pr}\,Q^{GF}_C\,\pi_{\bar c}\,Q^{GF}_C\,\iota,\\
+&(Q^{GF}_C)_{\bar c\to\bar c^*}=-2d^*d\ \ (\text{order }2).
+\end{aligned}
+\]
+[check: \texttt{C\_frames}] The Costello frame satisfies (1), (3), (4), (5) and violates (2); the gauge-fermion frame satisfies all.
+\end{theorem}
+
+\begin{corollary}[Arity zero]
+$I^{CT}_\Psi[\varepsilon]=I^{CT}[\varepsilon]\circ j_\Psi$, the defect vertex and the obstruction are pullbacks, and $F\circ j_\Psi$ solves the new master equation iff $F$ solves the former one: $\tfrac94\varepsilon^{-1}$, the log class, $\mathrm{Ob}_2$, $\tfrac{27}{16}$, $\mathrm{Ob}_3$, $F_3$ are unchanged, with $A^*|_V\to A^*|_V-d\bar c$ in outputs (e.g. $-\log\varepsilon\int(dc,A^*)\to-\log\varepsilon\int(dc,A^*-d\bar c)$).
+\end{corollary}
+
+\section{Equivariant structure}
+
+\begin{definition}[Extension to the antighost]
+\label{def:eq}
+$v.\bar c=v(\bar c)+\tfrac12(\operatorname{div}v)\bar c$, $v.\bar c^*=v(\bar c^*)+\tfrac12(\operatorname{div}v)\bar c^*$ for conformal Killing $v$; $\mathfrak{so}(W_{\mathbb R}^\perp)$, $\Sigma$, $\Sigma^*$ act trivially on $\bar c,\bar c^*$; $u_{12}(x)=\Gamma(\epsilon_1(x),\epsilon_2(x))|_V$.
+\[
+\begin{aligned}
+&S^{(1)\prime}(v)=S^{(1)}(v)-\int(v.\bar c,\bar c^*),\qquad S^{(2)\prime}(x_1,x_2)=S^{(2)}(x_1,x_2)-\int\big(\bar c,u_{12}(\bar c)\big),\\
+&S^{(1)}_\Psi(v)=S^{(1)}(v)\circ j_\Psi-\int\big(v.\bar c,\bar c^*+d^*A|_V\big),\qquad S^{(1)}_\Psi(x)=S^{(1)}(x)\circ j_\Psi\ (x\in\mathfrak{so}(W)\oplus\Sigma\oplus\Sigma^*),\\
+&S^{(2)}_\Psi(x_1,x_2)=S^{(2)}(x_1,x_2)\circ j_\Psi-\int\big(\bar c,u_{12}(\bar c)\big).
+\end{aligned}
+\]
+\end{definition}
+
+\begin{theorem}[Equivariant master equation]
+\label{thm:MC}
+$d_{CE}S_\bullet+\tfrac12\{S_\bullet,S_\bullet\}=0$ for $S_\bullet=S'+S^{(1)\prime}+S^{(2)\prime}$ and $S_\bullet=S_\Psi+S^{(1)}_\Psi+S^{(2)}_\Psi$, every $\mathfrak g$. Proof: disjoint fields $\Rightarrow$ $S_\bullet=S_{\mathfrak{psl}(4|4)}+S^{\bar c}$ with zero cross bracket; Theorem c2-master for the first; for $S^{\bar c}$:
+\[
+\begin{aligned}
+&\{-\tfrac14(\bar c^*)^2,-(v.\bar c,\bar c^*)\}=\tfrac12\int(v.\bar c^*,\bar c^*)=\tfrac14\int\operatorname{div}\big(v(\bar c^*,\bar c^*)\big)=0,\qquad [v.,w.]=[v,w].,\\
+&\{-\tfrac14(\bar c^*)^2,-(\bar c,u(\bar c))\}=\tfrac12\int(\bar c^*,u(\bar c))-\tfrac12\int(\bar c,u(\bar c^*))=\int(u.\bar c,\bar c^*)=-S^{(1)\prime}(u)|_{\bar c},\\
+&\{-(v.\bar c,\bar c^*),-(\bar c,u(\bar c))\}=\int(\bar c,[v,u](\bar c)),\quad u_{[v,x_2],x_3}+u_{x_2,[v,x_3]}=[v,u_{23}],\qquad \{S^{(2)\prime}|_{\bar c},S^{(2)\prime}|_{\bar c}\}=0;
+\end{aligned}
+\]
+$\Phi_\Psi$ preserves the pairing and commutes with $d_{CE}$. The coefficient $-1$ is unique ($+1$ fails, $0$ fails). [check: \texttt{E\_equivariant\_abelian} 26 components $\times$ frames min/C/$\Psi$, NEG; \texttt{E\_equivariant\_nm\_sector}; $\mathfrak{su}(2)$ $\{S_\Psi,S_\Psi\}=0$ in \texttt{D\_engine}]
+\end{theorem}
+
+\begin{proposition}[The variations of the gauge fermion]
+\label{prop:sx}
+$s_x\Psi:=$ antifield-free part of $S^{(1)}_\Psi(x)$:
+\[
+\begin{aligned}
+&s_v\Psi=-\int\big((v.A|_V,d\bar c)+(v.\bar c,d^*A|_V)\big)=-\tfrac12\int\big(\bar c,\iota_{\operatorname{grad}\operatorname{div}v}A|_V\big),\\
+&s_v\Psi=\begin{cases}0&P_b,\ M_\omega,\ \Delta\\ 4\int(\bar c,\iota_{b}A|_V)&K_b\end{cases},\qquad s_{R}\Psi=0,\\
+&s_\epsilon\Psi=\int\big(\Gamma(\epsilon,\lambda)|_V,d\bar c\big),\\
+&(s_\epsilon\Psi).:\ \lambda\mapsto-d^*\Gamma(\epsilon,\lambda)|_V\ (\bar c^*),\quad \bar c\mapsto\rho(d\bar c)\epsilon\ (\lambda^*),\\
+&(s_{K_b}\Psi).:\ \bar c\mapsto-4(b,-)\bar c\ (A^*|_V),\quad A\mapsto4\iota_bA\ (\bar c^*),\\
+&S^{(2)}_\Psi\supset-\int\big(\bar c,\iota_{u_{12}}d\bar c\big).
+\end{aligned}
+\]
+[check: \texttt{F\_generators}]
+\end{proposition}
+
+\begin{proposition}[Generators on the gauge fixing]
+\label{prop:gen}
+$x.$ the operator of the quadratic part of $S^{(1)}_\Psi(x)$ ($\{F,\ell\}=\ell\circ F.$); $G_{\varepsilon T}=\int_\varepsilon^Te^{-tH}dt$; $[x.,Q]=0$ for all $x$.
+\[
+\begin{aligned}
+&(P\star)^2=(Q^{GF})^2G_{\varepsilon T}^2=0,\qquad P\star x.P\star=P\star[x.,Q^{GF}]G_{\varepsilon T}=P\star(s_x\Psi).P\star,\\
+&[x.,Q^{GF}]=0\ \ (P_b,M_\omega,R_r),\qquad [\Delta.,Q^{GF}]=-4Q^{GF},\ [\Delta.,H]=-4H,\\
+&[v.,Q^{GF}]=-\tfrac12(\operatorname{div}v)Q^{GF}+\tfrac14\rho(d\operatorname{div}v)|_{\lambda^*\to\lambda}+[(s_v\Psi).,Q^{GF}],\\
+&[(s_{K_b}\Psi).,Q^{GF}]:\ A\mapsto-4\iota_bA\ (c),\ \ \bar c\mapsto-8(b,-)\bar c\ (A|_V),\ \ A^*|_V\mapsto-8\iota_bA^*\ (\bar c^*),\ \ c^*\mapsto4(b,-)c^*\ (A^*|_V),\\
+&[\epsilon.,Q^{GF}]=[\epsilon.,Q^{GF}]_{A^*\to\lambda,\ \lambda^*\to A}\\
+&\qquad+[(s_\epsilon\Psi).,Q^{GF}]_{\lambda\to c,\ \bar c\to\lambda,\ \lambda^*\to\bar c^*,\ c^*\to\lambda^*};\\
+&P\star x.P\star=0\ \ (P_b,M_\omega,\Delta,R_r),\\
+&P\star x.P\star\neq0\ \ (\xi,\eta:\ \lambda\text{--}c\ \text{line};\ K_b:\ A|_V\text{--}c\ \text{line through }4\iota_b).
+\end{aligned}
+\]
+[check: \texttt{F\_generators}]
+\end{proposition}
+
+\begin{proposition}[Two descriptions]
+Costello frame: vertices $S',S^{(1)\prime},S^{(2)\prime}$ (no $s_x\Psi$), propagator $P_C=(\Phi_\Psi\otimes\Phi_\Psi)P_\Psi$, line $P_C\star[x.',Q^{GF}_C]G_{\varepsilon T}$; gauge-fermion frame: vertices $\circ\Phi_\Psi$ (with $s_x\Psi$, $-\int(\bar c,u_{12}\bar c)$), propagator $P_\Psi$:
+\[
+W(P_C,J)\circ\Phi_\Psi=W(P_\Psi,J\circ\Phi_\Psi),\qquad P_C\star[x.',Q^{GF}_C]G_{\varepsilon T}=\Phi_\Psi\,P_\Psi\star(s_x\Psi).P_\Psi\star\,\Phi_\Psi^{-1}.
+\]
+\end{proposition}
+
+\begin{theorem}[No invariant gauge fixing along $\Sigma$, $\Sigma^*$, $K$]
+\label{thm:noinv}
+For $\Psi'=\int(\bar c,\mathcal G)$, $\mathcal G$ local, invariant, weight $2$, linear part fixing the gauge: $\mathcal G_1=\kappa d^*A|_V$, $\kappa\neq0$, and for every admissible action on $\bar c$
+\[
+s_\epsilon\Psi'\big|_{\bar c\,\cdot\,\text{field}}=-\kappa\int(\bar c,d^*\Gamma(\epsilon,\lambda)|_V)\neq0,\qquad s_{K}\Psi'\big|_{\bar c\,\cdot\,\text{field}}=-\kappa\int\big(\bar c,\tfrac12\iota_{\operatorname{grad}\operatorname{div}v}A|_V+\tfrac{w-2}4(\operatorname{div}v)d^*A|_V\big)\neq0 .
+\]
+\end{theorem}
+
+\begin{proposition}[Gauge parameter: Nielsen identity]
+\label{prop:nielsen}
+$S_\Psi\to S_\Psi+uG_\alpha$, $G_\alpha=\tfrac12\int(\bar c^*+d^*A|_V)^2$:
+\[
+G_\alpha=-\big(Q+\{I_\Psi,-\}\big)\int\big(\bar c^*+d^*A|_V,\bar c\big)\qquad[\text{check}],
+\]
+the image of $\{\int(\bar c^*,\bar c),-\tfrac14\int(\bar c^*)^2\}=-\tfrac12\int(\bar c^*)^2$. With $uG_\alpha$ a formal quadratic vertex ($Q^{GF}$, $H$ of $u=0$), $\partial_u$ of a family of one-loop quantisations is $s$-closed with exact classical part; spectra of $\Lambda^{(1)}(\Delta)$ on cohomology and the classes $[Q^\xi_1]$ are $u$-independent (Theorems c8-invariants (iii), c8-twist). The same holds for $\Psi\to\Psi+u\Psi_1$: $\partial_uS_\Psi=\{S_\Psi,\Psi_1\}$. In finite form, in units: $\tfrac{27}{16}\int(d^*A|_V)^2\equiv-\tfrac{27}{16}\int\big((\bar c^*,\bar c^*)+2(\bar c^*,d^*A|_V)\big)$ modulo $s$-exact.
+\end{proposition}
+
+\section{Two-component forms (Weinberg--Srednicki)}
+
+Components of Definition c8-twocomp; $\epsilon_\alpha{}^i=\xi_\alpha{}^i-ix_m\sigma^m_{\alpha\dot\alpha}\bar\eta^{\dot\alpha i}$, $\bar\epsilon_{\dot\alpha i}=\bar\xi_{\dot\alpha i}+ix_m\eta^\alpha{}_i\sigma^m_{\alpha\dot\alpha}$, $\Gamma(\epsilon_1,\epsilon_2)|_V^m=i(\bar\epsilon_{2\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_{1\alpha}{}^i+\bar\epsilon_{1\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_{2\alpha}{}^i)$ [check].
+\[
+\begin{aligned}
+&S_\Psi\supset\int d^4x\Big\{-\tfrac18(F_{mn},F_{mn})-\tfrac14(\partial_mA_m,\partial_nA_n)-(D_mc,\partial_m\bar c)+(D_mc,A^*_m)-\tfrac14(\bar c^*,\bar c^*)+\tfrac12(\bar c^*,\partial_mA_m)\Big\},\\
+&\tfrac1\hbar S_\Psi\supset\int d^4x\Big\{-\tfrac14F^a_{mn}F^a_{mn}-\tfrac12(\partial_mA^a_m)^2-2(D_mc)^a\partial_m\bar c^a\Big\},\\
+&\qquad\mathfrak{su}(N):\ A=-igA^aT^a,\ c=-igc^aT^a,\ \bar c=-ig\bar c^aT^a,\\
+&(Q^{GF}e)_{A_m}=-2A^*_m,\quad (Q^{GF}e)_{A_{ij}}=-2A^*_{ij},\quad (Q^{GF}e)_c=\bar c^*,\quad (Q^{GF}e)_{\bar c}=-c^*,\\
+&(Q^{GF}e)_{\lambda_\alpha{}^i}=i\sigma^m_{\alpha\dot\alpha}\partial_m\bar\lambda^{*\dot\alpha i},\\
+&\langle A_mA_n\rangle:\ 2(-,-)^{-1}\delta_{mn},\quad \langle c\,\bar c\rangle:\ -(-,-)^{-1},\quad \langle\bar c\,c\rangle:\ (-,-)^{-1},\\
+&\langle\lambda_\alpha{}^i\bar\lambda_{\dot\beta j}\rangle:\ -(-,-)^{-1}p_m\sigma^m_{\alpha\dot\beta}\delta^i_j\quad\Big(\times\tfrac{e^{-\varepsilon|p|^2}}{|p|^2}\Big),\\
+&s_\epsilon\Psi=i\int d^4x\big(\bar\lambda_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\epsilon_\alpha{}^i+\bar\epsilon_{\dot\alpha i}\bar\sigma^{m\dot\alpha\alpha}\lambda_\alpha{}^i,\ \partial_m\bar c\big),\\
+&s_{K_b}\Psi=4\int d^4x\,(\bar c,b_mA_m),\\
+&S^{(2)}_\Psi(x_1,x_2)\supset-\int d^4x\,\big(\bar c,\Gamma(\epsilon_1,\epsilon_2)|_V^m\partial_m\bar c\big),\\
+&\text{Weinberg: }{\not d}=\gamma^\mu_W\partial_\mu=-i\gamma^\mu_S\partial_\mu\ \text{on the Dirac column}.
+\end{aligned}
+\]
+
+\section{Migration plan (detail in migration\_plan.json, 84 items)}
+
+\begin{longtable}{p{3.2cm}|p{12.6cm}}
+\toprule
+status & results \\
+\midrule
+pullback, identical & Ch4: $I^{CT}$ ($\tfrac94\varepsilon^{-1}\int(A,A)$, $\log\varepsilon[-(dA,dA)+4(\lambda,{\not d}\lambda)-(dc,A^*)]$), log class $\log\varepsilon\,s(\mathcal N\circ j_\Psi)$, coupling $0$, $\mathrm{Ob}_2=-\tfrac{27}8\int(d^*dc,d^*A|_V)$, $F_2=\tfrac{27}{16}\int(d^*A|_V)^2$ and its $Q$-closed directions, Prop c4-K. Ch5: $O(\varepsilon)$ of letters and scalar bilinears. Ch6: Callan--Symanzik form, field redefinition, $L_\varepsilon$ graphs. Ch9 \S1: $\mathrm{Ob}_3=(\tfrac{11}4+\tfrac{19}4\log\tfrac32)(G_1+G_3)+\tfrac{27}8G_2-9\log\tfrac32G_5$, $F_3$ family ($\beta_k,\kappa_k$), Wess--Zumino. Ch10: all pair kernels of the counterterm map, Thm c10-brst. Arity one along $\Sigma$, $\Sigma^*$, $\mathfrak{so}(W)$: defect cycles, $\mathrm{Ob}^{(1)}(\xi),\mathrm{Ob}^{(1)}(\eta)$, their solutions; two-body parts of $Q_1,S_1$ ($-2\log\tfrac32\mathcal B_1$, $4\log\tfrac32(\mathcal B_2+\mathcal B_3)$). Twisted theory along square-zero $\xi$: $[Q^\xi_1]$, chiral bilinears, BK comparison. \\
+\midrule
+rewritten & Ch3 (this replacement); Def c7-vdot, Prop c7-cov, c7-dil, c7-susy (with $\bar c$); Prop c8-twocomp; Lemma c9-SDelta; Prop c9-conj ($e^{\hbar\partial_P}S^{(1)}(\Delta)=(S^{(1)}(\Delta)+\hbar P\star v.)e^{\hbar\partial_P}$); Lemma c11-lines; placements in Ch11, Ch12. \\
+\midrule
+disappears & composite kernels $2P\star v.P\star\propto(Q^{GF})^2$ along $\Delta$, $P_b$, $\mathfrak{so}(V)$ (Def/Prop c9-composite, Rem c9-Pi, Prop c9-triangle, Ch11 \S\S1--3 composite pair kernels and their locality), $\theta_P$, the finite part $\psi'$ for $P_1=0$ (Prop c9-scheme), Rem c7-internal. \\
+\midrule
+recompute (R10) & arity one along $\Delta$, $P_b$, $\mathfrak{so}(V)$, $K_b$ (Thm c9-quadratic: composite part $[\tfrac13(dA,dA)-\tfrac13(\lambda,{\not d}\lambda)-\tfrac23(dc,A^*)]$ gone, special-edge part $4\times$log coefficient kept, new $\bar c$ placements); $\theta$ and all $t_x$ (Thm c9-theta2, c12-fix, c12-ar2, Cor c12-inv); $D_1$, $P_1$, $M_1$, $K_1$ representatives (Thm c9-D1, c10-D1, c12-F0, c12-D1); arity two along pairs with $u_{12}\neq0$ and along $(\Delta,P_b)$, $(K_b,P_{b'})$, $(v,\epsilon)$; $\log T$ along $K_b$ (Prop c8-Tsafe, Thm c8-K: former coefficient $\tfrac3{8\pi^2}$); reflection $\Theta_n$ on $\bar c,\bar c^*$. Expected from the structure: $D_1=4\times$(map of Thm c10-brst) with the new sector coefficient fixed by the new $(\Delta,P_b)$ equation. \\
+\midrule
+invariant, must agree & Konishi $\gamma_K=\tfrac{3g^2N}{4\pi^2}$ ($D_1=-48$ units on the trace), $20'$: $0$; families $D_1=-8$ units $\times E_H$ ($\sum_lH_{l,l+1}$ of [B03c]); dilatation coefficients $0$, $-24$; twist classes; one-loop algebra relations on cohomology. \\
+\bottomrule
+\end{longtable}
+
+\section{Machine checks}
+
+\begin{tabular}{l|p{11.5cm}}
+\toprule
+group & content (all exact; NEG = negative control, fails as required) \\
+\midrule
+A & Clifford relations of $\rho$ on $V_{10}$, symmetry for $(-,-)$, chirality, 't Hooft identity, two-component $\Gamma|_V$. \\
+B & minimal: unique $G$, $G^2\neq0$; first order: unique scale-free $G$, $G^2\neq0$, Hermitian adjoint with mass term; reduced: $a_1=-a_2$, $\alpha$-family, $G^2\propto(2\alpha+1)^2/(4\alpha)$; $b$ kept: unique $G$ for every $\kappa$, $G^2=0$. \\
+C & $Q^2=0$, $(Q^{GF})^2=0$, (1), (2), (4) on all $56$ components per colour; ranks $(28,28,56)$; NEG former ranks $(27,28,54)$; Lemma 6.5.1 identities; projectors; real slice; NEG former longitudinal zero mode; propagator and graded symmetry; $K_0$ represents $1$; frames: $Q_\Psi=\Phi_\Psi^{-1}Q'\Phi_\Psi$, $j_\Psi$ chain map, $j_\Psi j_\Psi^\dagger=1$, compression, $G_{\rm former}^2$ identity, order-two entry of $Q^{GF}_C$, adjointness and ranks of $Q^{GF}_C$. \\
+D & jet engine: linear part of $\{S_0,-\}$ equals $Q$ on every coordinate (frames min, C, $\Psi$); $\mathfrak{su}(2)$ $\{S_\Psi,S_\Psi\}=0$; three NEG. \\
+E & equivariant master equation, abelian, 26 components (arity one: $P,M,\Delta,K,K',R,\xi,\xi',\eta,\eta'$; arity two: even--even, even--odd, odd--odd incl. $R$): min, C, $\Psi$, inert $\bar c$ pass; NEG $\gamma_2=0$ and inert $\bar c$ with $\gamma_2=-1$ fail exactly on the four odd--odd components; antighost sector arities 1--4; trivial pair $(\bar c,b)$, $\gamma_b=-1$, elimination of $b$; $G_\alpha=-s(\cdot)$. \\
+F & $H=-\partial^2$ on all slots (position space); $[x.,Q^{GF}]$ for $P,M,R,\Delta,K$; $Q^{GF}x.Q^{GF}=0$ ($P,M,\Delta,R$), $\neq0$ ($K,\xi,\eta$), $=Q^{GF}(s_x\Psi).Q^{GF}$ (all); closed forms of $s_x\Psi$ and of $[v.,Q^{GF}]$. \\
+\bottomrule
+\end{tabular}
+
+\end{document}

@@ -1,0 +1,49 @@
+{
+ "id": "S1c.03_EHKSS2012",
+ "section": "1c correlator integrands",
+ "authors": "B. Eden, P. Heslop, G.P. Korchemsky, V.A. Smirnov, E. Sokatchev",
+ "title": "Five-loop Konishi in N=4 SYM",
+ "year": 2012,
+ "arxiv": "1202.5733",
+ "journal": "Nucl. Phys. B (2012), DOI 10.1016/j.nuclphysb.2012.04.015 (volume/page not verified)",
+ "claim": "The planar five-loop Konishi anomalous dimension is extracted from the known 4d integrand of the stress-tensor four-point correlator (S1c.02_EHKS2012) by taking the double coincidence (OPE) limit of the logarithm of the correlator and reading off the single-log coefficient; the result 237/16 + 27/4 z3 - 81/16 z3^2 - 135/16 z5 + 945/32 z7 (coefficient of the five-loop term, eq. 1.1) agrees with the integrability (Luscher/TBA) prediction.",
+ "loop_order": "5 loops (planar); four-loop non-planar Konishi reproduced only after fixing one integrand constant from a direct Feynman-graph result",
+ "theory": "planar N=4 SYM, SU(Nc); Konishi operator via OPE of four 20' operators",
+ "scheme": "The 4d integrand is kept unchanged (scalar 1/x^2 propagators) and only the integration measure is continued, d^4x -> mu^{2eps} d^{4-2eps}x (Sec. 3.1, footnote 6); the paper notes this differs from conventional coordinate-space DR and requires eps<0, and that only the singular terms are meaningful (finite parts differ from the true ones). The coincidence limit reduces five-loop quantities to four-loop two-point integrals (x3 -> infinity, eqs. 5.5-5.6); >17000 integrals reduced by IBP (FIRE) to 22 masters (eq. 5.8); 20 planar masters from known epsilon expansions, two non-planar masters computed in App. B and checked numerically with FIESTA; infrared rearrangement / R* reasoning in App. A.",
+ "symmetry_argument": "None at the level of the regulator: SUSY and superconformal symmetry enter only through the 4d integrand (hidden permutation symmetry, Lagrangian insertion) and through the OPE assumption that Konishi dominates the leading log singularity; the measure-only regulator is a mathematical device to isolate the log coefficient, not a symmetric regularization of the theory.",
+ "symmetry_status": {
+  "proved": [
+   "Given the 4d integrand and the OPE assumptions, the planar five-loop log coefficient is computed analytically (eq. 5.12); cancellation of 1/eps^2 and 1/eps poles in C_4 (eq. B.2, B.23) used as internal consistency check."
+  ],
+  "assumed": [
+   "Correctness of the six-loop-constructed 4d integrand (S1c.02_EHKS2012) at five loops.",
+   "Konishi is the leading contribution to the relevant singularity of log G4 (Sec. 2.2); leading singularity arises only from integration points approaching external points (Sec. 3.2).",
+   "IRR argument assumes the divergence is a pure constant counterterm, R* needed only if IR divergences arise (App. A, footnote 14).",
+   "Measure-only DR isolates the correct log coefficient (justified by the structure of the argument, not by a symmetry-preserving regularization of N=4)."
+  ],
+  "checked_partially": [
+   "Four-loop non-planar check: only the combination r of the four free non-planar constants enters; r = -135/2 is fixed by comparison with the direct four-loop Feynman-graph result of ref. [26] (eq. 4.38), not derived.",
+   "Non-planar masters checked numerically (FIESTA, six digits)."
+  ]
+ },
+ "evidence": [
+  "Sec. 3.1 and footnote 6: measure-only dimensional continuation, eps<0, finite parts not meaningful.",
+  "Sec. 3.4, eqs. (3.27)-(3.33): algorithm extracting gamma_K from the simple pole of the regulated coincidence-limit integral.",
+  "Eq. (4.2): five-loop combination; eq. (4.38): non-planar constant r fixed from direct computation.",
+  "Sec. 5, eqs. (5.5)-(5.12): reduction to four-loop two-point integrals, IBP to 22 masters, planar five-loop result eq. (5.12).",
+  "App. B, eqs. (B.10)-(B.25): non-planar masters via Fourier transform and gluing; numerical FIESTA check.",
+  "Sec. 6: six loops possible in principle (five-loop two-point integrals) but left open."
+ ],
+ "red_flags": [
+  "The only regulator ever applied is a measure-only continuation of a strictly 4d integrand: it is not DRED, not DREG, and not tied to any regularized N=4 action; its legitimacy rests on extracting only log coefficients.",
+  "Konishi five-loop result therefore tests the integrand + OPE assumptions + integrability, not any DR-type scheme for N=4.",
+  "Non-planar four-loop agreement is not independent: one integrand constant was fitted to a direct computation (eq. 4.38)."
+ ],
+ "cross_checks": [
+  "Agrees with the integrability five-loop Konishi prediction (refs. [5-8] of the paper; Bajnok-Hegedus-Janik-Lukowski 0906.4062 per S1b records).",
+  "Four-loop non-planar: matched to direct Feynman-graph computation cited as ref. [26] (likely Velizhanin 0811.0607; attribution not verified here)."
+ ],
+ "source_access": "full text via ar5iv",
+ "confidence": "high",
+ "notes": "Lead correct. Answer to the brief's question: integrals are evaluated with a measure-only DR on a 4d integrand plus IBP (FIRE), MINCER for some two-loop pieces; the attribution of ref. [26] to Velizhanin was not checked."
+}

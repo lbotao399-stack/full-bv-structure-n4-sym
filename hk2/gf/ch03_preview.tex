@@ -1,0 +1,39 @@
+% Compile check for ch03_revised.tex inside the manuscript (pdflatex).
+% Build: cd build && TEXINPUTS=..:/Users/libotao/Desktop/N4_Costello_BV_2026-10-27/manuscript: pdflatex ../ch03_preview.tex
+\documentclass[11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{adjustbox}
+\usepackage[hidelinks]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+\numberwithin{equation}{chapter}
+\newcommand{\fig}[2]{\begin{center}{\small [figure] #2}\end{center}}
+\newcommand{\tabcaption}[1]{\par\smallskip\noindent\centerline{\parbox{0.92\linewidth}{\small #1}}\par\medskip}
+\let\origtabular\tabular
+\let\endorigtabular\endtabular
+\renewenvironment{tabular}{\par\smallskip\noindent\begin{adjustbox}{max width=\linewidth,center}\origtabular}{\endorigtabular\end{adjustbox}\par}
+\begin{document}
+\input{ch01_classical.tex}
+\input{ch02_superconformal.tex}
+\input{ch03_revised.tex}
+\input{ch04_counterterms.tex}
+\input{ch05_operators.tex}
+\input{ch06_dilatation.tex}
+\input{ch07_selection_roadmap.tex}
+\input{ch08_definitions.tex}
+\input{ch09_cubic_and_dilatation.tex}
+\input{ch10_two_letter_kernels.tex}
+\input{ch11_composite_and_odd_kernels.tex}
+\input{ch12_strict_construction.tex}
+\end{document}

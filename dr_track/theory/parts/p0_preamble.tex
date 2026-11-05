@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{array,longtable}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\setlist{nosep,leftmargin=2em}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+\newtheorem{axiom}[definition]{External input}
+\newtheorem{problem}[definition]{Problem}
+\newtheorem{target}[definition]{Target}
+
+\tcolorboxenvironment{proof}{breakable,enhanced,colback=gray!4,colframe=gray!45,boxrule=0.4pt,arc=1pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+\tcolorboxenvironment{example}{breakable,enhanced,colback=blue!2,colframe=blue!25,boxrule=0.4pt,arc=1pt,left=4pt,right=4pt,top=2pt,bottom=2pt}
+
+\numberwithin{equation}{section}
+
+\title{Dimensional regularisation of $\mathcal N=4$ super Yang--Mills theory inside the BV formalism\\[2pt]
+\large with the superconformal algebra $\mathfrak{psl}(4|4)$ carried by constant ghosts:\\ schemes, quantum action principle, one-loop components and the algebra}
+\author{N4\_BV\_DR / theory track}
+\date{2026-11-05}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Conventions, names and the inherited classical data}
+
+The four-dimensional classical BV data, the equivariant action $S+S^{(1)}+S^{(2)}$ and the definitions of the obstruction, the local representative and the components are those of the heat-kernel manuscript [HK]. This note replaces the heat-kernel regulator by dimensional regularisation formulated as a BV theory in $D$ dimensions and derives the same objects from the regulated master equation and the quantum action principle. Numbers of [HK] are never used; the two tracks are compared only through scheme-independent data (spectra and cohomology classes, Section \ref{sec:alg}).
+
+\begin{axiom}[The four-dimensional classical data, {[HK, ch.~1--2]}]
+\label{ax:hk}
+The spaces $V_{10}=V\oplus W_{\mathbb R}^\perp$, the Lie algebra $\mathfrak g$ with its pairing $(-,-)$, the semi-spin representations $\Sigma,\Sigma^*$ with Clifford action $\rho$, pairing $(-,-)\colon\Sigma\otimes\Sigma^*\to\mathbb C$, $\Gamma$-pairing $(\rho(v)\zeta_1,\zeta_2)=(v,\Gamma(\zeta_1,\zeta_2))$ and antisymmetrisation $q$ [HK, def:c1-spaces]; the fields $(c,A,\lambda)$ and antifields $(c^*,A^*,\lambda^*)$ with degrees and parities [HK, def:c1-fields]; the odd pairing $\langle\,,\rangle$ [HK, def:c1-pairing]; the kernel $K_0$, the bracket $\{f,g\}=\Delta_0(fg)-\Delta_0(f)g-(-1)^{|f|}f\Delta_0(g)$ with $\Delta_0=-\partial_{K_0}$ [HK, def:c1-bracket]; the action
+\begin{equation}
+S=\int\mathrm{dvol}\Big(-\tfrac14(F_A,F_A)+\tfrac12(\lambda,{\not d}_A\lambda)+(d_Ac,A^*)+([c,\lambda],\lambda^*)+\tfrac12([c,c],c^*)\Big)
+\label{eq:S4}
+\end{equation}
+[HK, eq:c1-action]; the algebra $\mathfrak{psl}(4|4)$ realised by conformal Killing vectors and spinors [HK, def:c2-even, def:c2-odd, def:c2-bracket]; the cochains, $d_{CE}$ and the cochain bracket [HK, def:c2-cochains, def:c2-dce]; $S^{(1)}$, $S^{(2)}$ [HK, def:c2-S1, def:c2-S2] and the master equation
+\begin{equation}
+d_{CE}S_{\mathfrak{psl}(4|4)}+\tfrac12\{S_{\mathfrak{psl}(4|4)},S_{\mathfrak{psl}(4|4)}\}=0,\qquad S_{\mathfrak{psl}(4|4)}=S+S^{(1)}+S^{(2)}
+\label{eq:MC4}
+\end{equation}
+[HK, thm:c2-master]; the two-component realisation [HK, def:c8-twocomp] with $\sigma^m=(\vec\sigma,i)$, $\bar\sigma^m=(-\vec\sigma,i)$, $\sigma^m\bar\sigma^n+\sigma^n\bar\sigma^m=-2\delta^{mn}$, $\varepsilon^{12}=\varepsilon^{\dot1\dot2}=1$, $(\xi,\eta)=\xi_\alpha{}^i\eta^\alpha{}_i-\bar\xi_{\dot\alpha i}\bar\eta^{\dot\alpha i}$, $S_+$ undotted (Srednicki's $(2,1)$), $W$ with upper index $i$; for $\mathfrak g=\mathfrak{su}(N)$, $(X,Y)=-\tfrac{4\hbar}{g^2}\operatorname{tr}(XY)$, $A_m=-igA^a_mT^a$, $A_I=-igA^a_IT^a$, $\lambda=-\tfrac{ig}{\sqrt2}\lambda^aT^a$, $\operatorname{tr}(T^aT^b)=\tfrac12\delta^{ab}$ [HK, prop:c8-twocomp]. On the Dirac column $\rho(v)=-i\gamma_S^\mu v_\mu=\gamma_W^\mu v_\mu$ gives the Weinberg form of every two-component formula [HK, prop:c8-twocomp].
+\end{axiom}
+
+\begin{remark}[Names used in this note]
+\label{rem:names}
+\begin{itemize}
+\item $D$ is the regularised dimension, as in [S05]; the exterior derivative keeps the name $d$ of [HK], and $\varepsilon$ is not used. Laurent expansions are in $4-D$; $[f]_{(4-D)^{k}}$ is the coefficient of $(4-D)^k$.
+\item Spinor parameters are $\xi\in\Sigma$, $\eta\in\Sigma^*$ [HK, ch.~8, Names]; $Q_1,S_1,D_1,K_1,P_1,M_1,R_1$ are one-loop components (Definition \ref{def:comp}).
+\item The translation along $v_1\in V$ is $P_{v_1}$ and the special conformal field $x\mapsto(x,x)v_1-2(v_1,x)x$ is $K_{v_1}$ ([HK, def:c2-even] writes $v_1$, [HK, ch.~8] writes $b$); $b$ denotes here the Nakanishi--Lautrup field of the non-minimal pair $(\bar c,b)$, and $\xi_{\rm GF}$ the gauge parameter.
+\item The unit is $\frac{\hbar\operatorname{tr}_{\mathfrak g}(\mathrm{ad}_X\mathrm{ad}_Y)}{16\pi^2(X,Y)}$, equal to $-\frac{g^2N}{32\pi^2}$ for $\mathfrak{su}(N)$ [HK, ch.~8].
+\item For a vector field $v$, $\sigma_v:=\frac1D\operatorname{div}v$ is its conformal factor in $D$ dimensions: $\sigma_{P_{v_1}}=\sigma_{M_\omega}=0$, $\sigma_\Delta=2$, $\sigma_{K_{v_1}}=-2(v_1,x)$.
+\end{itemize}
+\end{remark}

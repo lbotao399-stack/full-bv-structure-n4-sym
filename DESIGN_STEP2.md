@@ -191,3 +191,21 @@ R10. (User, 2026-10-30) Strict Costello route for every component. Even where a 
     covariance arguments, twist literature) may be used only as cross-checks or as theorems proved FROM the construction,
     never as definitions or as the source of a number. Same for Q, S, K: each is computed from its own defect graphs and
     its own action-level obstruction Ob^(1)(x) and F_1^(1)(x), at T = infinity where safe and finite T for K.
+R11. (User, 2026-11-05) (a) The physical meaning of Q_1, S_1, K_1, ... is subtle; whether they are defined "up to cohomology"
+    is not clear because the renormalization freedom is complicated: this must be understood theoretically first
+    (classification of all freedoms, their action on each component, the invariants). (b) A PARALLEL dimensional-
+    regularization track is allowed and wanted, but DR must be formulated inside BV (regulated BV action, BV Laplacian,
+    quantum action principle, QME / Slavnov-Taylor identity with the constant psl(4|4) ghosts, restoring counterterms);
+    in it compute Q_1, K_1, D_1, ... and verify the commutation relations; critically study high-loop DR/DRED/BMHV/
+    reading-point works (SUSY protection of their schemes is unclear; SM >= 3 loops has gamma5 subtleties) with the QME.
+    The heat-kernel track stays DR-free; compare only scheme-independent data. (c) The twisted side uses the user's own
+    map and conventions (All-loop article, reader :8778 Appendix B from block b-01003). (d) Work outside iCloud:
+    ~/N4_BV_DR (freedom/, literature/, theory/, engines.nosync/).
+    (e) Earlier projects on this machine may now be READ (user, 2026-11-05) as cross-checks and for methods; no old
+    number enters the manuscript as input. Survey: step2/next/survey/old_work_survey.txt. Still blocked: the
+    SUSY_3p1d_foundations conventions and the susy-anomaly-program T1/T2/T4 claims.
+R12. (User, 2026-11-05) The Step-1 gauge fixing (Feynman gauge without antighost; (Q^GF)^2 != 0 and Im Q cap Im Q^GF != 0,
+    Chapter 3) is theoretically unacceptable. A gauge-fixing operator with (Q^GF)^2 = 0 satisfying ALL of Costello's axioms
+    must be developed and the heat-kernel track rebuilt on it. Old-gauge-fixing results are kept only as data; invariants
+    (spectra, Konishi, twist classes) must agree across the change. Rebuild root: ~/N4_BV_HK2 (outside iCloud); design in
+    ~/N4_BV_HK2/gf/. Agents computing representatives in the old gauge fixing (step2/next/action2, operator2) were stopped.

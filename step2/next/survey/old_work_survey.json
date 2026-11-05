@@ -1,0 +1,137 @@
+{
+  "title": "Survey of earlier projects for N4_Costello_BV_2026-10-27",
+  "date": "2026-11-05",
+  "mode": "read-only",
+  "status_rule": "DESIGN_STEP2.md forbids using earlier projects on this machine; every item below is a candidate cross-check or method only, usable only if the user lifts that rule for it; no number may enter the manuscript as input.",
+  "notation": {"L": "log(3/2)", "unit_current": "hbar tr_g(ad_X ad_Y)/(16 pi^2 (X,Y))", "units_old": "hbar/16pi^2 with C_ACD C_BCD (project 1, C contains g); e^2 hbar/16pi^2 (SQED, QED)"},
+  "unreadable_files": [
+    "/Users/libotao/Desktop/qed_costello_heatkernel_one_loop/sqed/design/sqed_bv_euclid.tex (iCloud dataless, read timed out; check logs readable)",
+    "/Users/libotao/Documents/Codex/2026-09-13/ge/work/claude_two_loop_handoff_20260923/claude_understanding_20260923/one_loop_diagrams.tex/.pdf (dataless)",
+    "project 1 oneloop_fullBV_report.pdf (dataless)",
+    "project 2 report4/report.tex and report5/report.tex (dataless, not read)",
+    "project 5 graded_check.py (no longer on disk)",
+    "project 6 ffpp_work/verify_family/C7_bV_derivation/out_check_bV_c7.txt (empty)"
+  ],
+  "verdicts": {
+    "nilpotent_QGF_removes_composite_layer": {
+      "answer": "partially",
+      "summary": "Removes the composite-line layer and theta along Delta, P, M, R; along Q, S, K the same graphs return as s_X Psi bivalent vertices.",
+      "mechanism_in_old_projects": "Projects 1, 3, 4: non-minimal pair (cbar, b), gauge fermion Psi = -+ int cbar(d.A + xi b/2), antifield shift dPsi/dPhi, b eliminated (S_0 gets +1/2 (cbar^dd - d.A)^2/xi). Q^GF maps antifield slots to field slots only, so (Q^GF)^2 = 0, Im Q^GF = field Lagrangian, [Q,Q^GF] = -d^2 on every slot at xi = 1.",
+      "machine_checks": [
+        "/Users/libotao/Documents/Codex/2026-09-13/ge/work/check_qgf.py, qgf_checks.json (30/30)",
+        "/Users/libotao/Desktop/qed_costello_heatkernel_one_loop/sqed/design/check_free.log, check_master.log, check_I.log (ALL PASS)",
+        "/Users/libotao/Desktop/qed_costello_heatkernel_one_loop/tex/qed_costello_one_loop.tex (40 coordinates)"
+      ],
+      "argument": "Composite kernel = 2 P* X P*, P* = Q^GF G, G = int_eps^T e^{-tH}. Along Delta it equals v.(P*)^2 + (P*)^2 v. (prop:c9-composite (i)), and (P*)^2 = (Q^GF)^2 G^2 = 0, so the A_V-c composite line and theta vanish (Psi is Poincare/scale/R invariant with weight(cbar) = 2). In general P* X P* = Q^GF G X Q^GF G vanishes iff X preserves the gauge-fixing Lagrangian; Q, S, K do not. Their terms appear as s_X Psi: (s_alpha V) d cbar (lambda-cbar line), 4 k.V cbar (V-cbar line), arity-two -1/2 cbar T cbar (alpha alphabar). The last is a negative control in project 3 check_master.log; it was missing at first and added later in project 2. No old project has a SUSY- or K-invariant gauge fixing; none exists off shell for N=4. Costello first-order YM [C07] also gives (Q^GF)^2 = 0, but no old project used it untwisted, and it has the same X-non-invariance.",
+      "cost": "New letters cbar, cbar^dd; c-cbar propagator replaces c-A^*; all Step-1 data (I^CT, log class Y, 27/16, Ob_3, F_3) to redo.",
+      "gain": "Costello axioms (3),(5) hold, so [C07 Lemma 6.5.1, 6.6.2] apply directly; theta disappears along Delta, P, M, R. No gain for Q_1, S_1, K_1."
+    },
+    "old_Q1_results_to_check_against": {
+      "answer": "no scheme-matched entry-by-entry target; class-level and structural targets exist",
+      "project_1": "Partial N=4 Q kernels (project G). At xi = 1 every two-body scalar-pair Q kernel is a pure multiple of L, e.g. alpha_1: (phibar_1,phibar_2)->(phibar_1,psi_4) c1 = -2 sqrt2 L, c2 = sqrt2 L; alpha_4: ->(V,lambdabar) 2L[sigma]. Compare with the current two-body 4L(B_2+B_3), conditional on a field/colour/unit dictionary and on project G having no finite composite counterterm on the probe pair. Single-letter rows (sqrt2/4)(log(27/64) - 3) are scheme-dependent, so not comparable with 79/12 - 3L - t_xi. Coincidence to examine: the Q#_2 restriction gives -5/2 at xi = 1, against -(5/2) u_0 in the current F_1^(1)(eta).",
+      "project_1_data": "/Users/libotao/Documents/Codex/2026-09-13/ge/work/claude_two_loop_handoff_20260923/workspace/candidate_runs/G_fullBV/out/{q_table.txt, q_pair_kernels.json, q_pair3_kernels.json, single_rows_finite.json} (present, not evicted)",
+      "projects_2_3": "Abelian N=1 SQED, not a sector of N=4 SU(N): no entry comparison. Class-level target: the Konishi class sqrt2 e^2 alpha_+ lambdabar lambdabar on H(s_tw), plus the structural identities.",
+      "N4_class_targets": ["Konishi channel: all-loop twisted table s6.md Q_1(phibar_1^A psi_+^{1B}) = (i sqrt2 g^2/16pi^2) C C lambdabar lambdabar (BK)", "D_1 spectrum (already matched to Beisert)", "project 1 no-DR Delta-hat formula"]
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "path": "/Users/libotao/Documents/Codex/2026-09-13/ge/work",
+      "established": {
+        "D": "Delta-hat = -2 x (log(Lambda/eps) residue of rooted insertion graphs) + elementary d rows (Lambda = upper Schwinger cutoff); closed harmonic-sum formula on f_++, psi_+, phibar, lambdabar with D_+ jets; gauge-invariant operators mod EOM; 4480 all-jet identities; general-xi cancellation; certified by two engines. Single letters: (xi+1) phibar, (xi+3) psi and lambdabar, (xi+3)/2 f_++, times hbar C C/16pi^2. d-anchor (phibar_1,phibar_2): residue -2B_1 + (1+xi)B_2.",
+        "Q_S_K": "Project G (unfinished): Gamma_g O = -d_g Pi_O, Pi_O = rooted marked wheels (special edge K_eps - delta) + (S_ct^(1),O) + s O_ct - (s O)_ct. Scalar-pair Q kernels 2->2 in a = log((4xi+2)/(9xi)), b = log((2xi+1)/(2xi)), L; 2->1 = 0 on scalar pairs; 163 2->3 kernels; a, omega, rho one-loop zero; c zero in cohomology; 20 alpha#/k identities close.",
+        "tree": "Q_- psi_+ = eps^{IJK} C phibar phibar; Q_- f_++ = -2 sqrt2 C phibar psi_+; Q_-(D O) = D Q_- O - 2 C lambdabar O (step15_radial_supercharge/report.tex)."
+      },
+      "gauge_fixing": "Non-minimal (cbar, B), Psi = -int cbar(d.V + xi B/2), B integrated out; Q^GF reads antifields only: (Q^GF)^2 = 0, [Q,Q^GF] = -d^2 at xi = 1 (longitudinal k^2/xi otherwise); no composite A-c kernel, no theta; s_X Psi vertices lambda-cbar, V-cbar, arity-two alpha alphabar. Files: qgf_costello_audit.md section 2-3, check_qgf.py, step13_costello_jets/report.tex, step17_superconformal_bv/report.tex.",
+      "regulator": "Per-edge heat kernel t in [eps, Lambda]; paired kernel s in [t/xi, t] for the longitudinal part; no DR in the one-loop core; N=1 auxiliaries eliminated by an exact BV pushforward (quadratic antifield terms). Finite counterterms from the one-loop QME: step14 97 nonzero coefficients, rank 102/135, 33 free directions set to 0; step18 513 component terms (full_one_loop_counterterm_prescription.json) with log 2, log 3, log 6 separately; no 79/12, no 27/16; power divergences 9/4 V.V, 9/2 phi phi*. Pure-K run (68,704 graphs) stopped.",
+      "signs": "step3/local_bv.py AST BV engine; Wick-word sign rule (fix_* logs); check_pairing.py, check_directed_kernel.py, check_susy_euclidean.py; s^2 = 0 at O(hbar) tests (test_tree_closure.py, test_QbarQbar.py, test_anticomm.py, test_bilinear.py); heat_qme_signs.md (d_K = -Delta; warning against double-counting the rigid-ghost Hamiltonian between the full and relative presentations).",
+      "scheme": "Closed directions = BV-exact field redefinitions and C dS/dC; Delta-hat proved scheme independent; raw entries xi-dependent.",
+      "twist_Phi": "none",
+      "errors_open": ["O2 rank report withdrawn", "K2 coupling used DR, withdrawn", "P_L6xi completion was a refuted trace fit", "phybench T2 counterterm wrong", "step10 imported Beisert (later replaced)", "G: (V,psi) covariance fails in 8-16/32 spinor groups; (V,V) jets-1 leaves 48 components; f_++ partial; k, alpha#, alphabar#, d tables beyond the anchor missing; fermionic 2->1 and all 2->3 kernels not in any checked identity"],
+      "reusable": ["non-minimal Q^GF method + check_qgf.py pattern", "xi = 1 pure-L scalar-pair two-body kernels as a structural target", "bilinear-ghost s^2 = 0 identities", "tree Q_- table for R5", "Delta-hat as independent no-DR D check"],
+      "not_reusable": ["entry-level finite counterterms and single-letter rows (different gauge fixing, auxiliary elimination, free-direction convention)", "xi != 1 data", "two-loop and withdrawn material"]
+    },
+    {
+      "id": 2,
+      "path": "/Users/libotao/Desktop/研究项目_非Git/SQED_Costello_anomalous_Q_2026-10-06",
+      "established": {
+        "definition": "hbar Q^(1) O = eps^0 part of 1PI one-loop rings through O with exactly one junction K_eps - K_0 (from (S_int,O)_eps - (S_int,O)_0 and (i/hbar)(1/2)[(S,S)_eps - (S,S)_0] O); ring part second order, zero on single letters.",
+        "psi_phibar": "O^CT = log eps [-e^2 O + (sqrt2/2) e d lambdabar]; c-sector (i e^2/sqrt2)(dc) lambdabar; gauge restoration O' = O - (i e^2/sqrt2) lambdabar V gives alpha-part sqrt2 alpha [F phibar + (e^2 hbar/16pi^2) lambdabar lambdabar] = Konishi; action QME defect fixed by s^(1) psi containing z alphabar V phi, z = -(sqrt2/2)(1/6 + log 2) e^3.",
+        "rounds_3_5": "(Q^2)^(1) removed by finite matter-antifield counterterms (32-dim freedom); unified finite QME rank 100 (40-dim freedom); scheme with Q_1 = 0 on letters (1450 unknowns, rank 286, w = -2 log 3).",
+        "twisted_invariant": "report6/7: d_1[X] = [Q^(1)_tw X] in H(s_tw), s_tw = s at alphabar = 0, alpha_- = 0; independent of h, S_fin^CT, w and the cutoff profile chi. Logs are Mellin-0 functionals c_E[chi] = int du/u chi^E (chi - 1), c_E[e^-u] = log(E/(E+1)), hence trivial in H(s_tw). Only class among closed bilinears: Q_1,tw(psitilde^1_+ phibar_1) ~ sqrt2 e^2 alpha_+ lambdabar lambdabar. Twisted letters ftilde = f_++ - 2 alpha_+ lambda^{-dd}, psitilde_+ = psi_+ + sqrt2 alpha_+ Fbar^dd; ftilde ftilde irreducible -4 sqrt2 e^2 alpha_+ sum d psi d phibar."
+      },
+      "gauge_fixing": "e^{iS/hbar} with Euclidean evaluation; Psi = int cbar d.V, V^+ = -d cbar, Feynman propagators; no cbar^dd/b sector; -1/2 cbar T cbar vertex added in round 3; known defect: s^2 != T on V^dd, lambda^dd, lambdabar^dd, c^dd (43/52 letters OK). No Costello Q^GF table.",
+      "regulator": "Per-edge [eps, T] heat kernel, T-independent results; SUSY breaking by finite action counterterms (solve_bv*.py) and composite counterterms h.",
+      "signs": "jets.py odd-derivation insertion order; odd defect D: (-1)^{|O|} O D = D O; check_s2.py, check_ct_ward.py ((sO)^CT = s O^CT + (S^CT,O)), wz_check.py, symmaps.py, regress*.py.",
+      "scheme": "Bi-letter Q_1 scheme-dependent (h2 on the probe pair unconstrained); invariants only at class level d_1.",
+      "twist_Phi": "Class-level twisted comparison for SQED via s_tw and antifield-completed twisted letters (template, not N=4).",
+      "errors_open": ["rings2.deg_of id()-keyed cache bug (fixed)", "gaugino kinetic coefficient i not i/2", "non-minimal sector incomplete", "gauge-restoring redefinition of f^ab f_ab open"],
+      "reusable": ["profile-variation argument for pain point (b)", "twisted-letter construction and d_1 definition as a template for Phi", "Konishi class normalisation", "counterterm Ward identity check"],
+      "not_reusable": ["numbers: abelian N=1, incomplete non-minimal sector, Lorentzian bookkeeping"]
+    },
+    {
+      "id": 3,
+      "path": "/Users/libotao/Desktop/qed_costello_heatkernel_one_loop/sqed",
+      "location_1093_pairs": "sqed/tex/sqed_Q1_biletters.pdf + sqed_Q1_appendix.pdf; data sqed/engine/out/Q1_all.pkl (54 letters; 364 field x field + 729 field x antifield; antifield x antifield pair part 0 by leg counting); scheme with Q_1' = 0 on letters: sqed/tex/sqed_Q1_scheme.pdf (1458 components, 27 composite slots).",
+      "established": {
+        "structure": "Q_1 = (I_CT^fin, .) [derivation] + bi-letter part (BV rings + Delta_eps).",
+        "log_identity": "BV rings carry no log eps, so Q_0(O_CT^log) - (Q_0 O)_CT^log = -(I_CT^log, O) on all 1093 components.",
+        "Delta_eps": "Delta_eps(Phi Phi^dd) = -(-1)^{|Phi|} K_eps(x,x) (Schwinger-Dyson check); e^0 part -(-1)^{|Phi|} (1/2)(m m*)^2.",
+        "rings": "Ring length n <= 8; n = 7, 8 cancel.",
+        "freedom": "Action finite-counterterm freedom: (S, gh -1) plus e d_e S and m (168 ansatz, ker 103, 93 gh -1 generators). -1/12 - (3/2) log 2 + (3/2) log 3 is invariant under all first-order freedoms and removable only by the second-order (c phi_+)^fin_CT.",
+        "Konishi": "Scheme B: (Q_0 + hbar Q_1)(Konishi antifield current) = Q_0(...) - hbar (i e^2/16pi^2) eps f f; -1/3 from the bi-letter part, -2/3 from the finite Konishi-current counterterm (8i/3) e^2 eps A dA."
+      },
+      "gauge_fixing": "Non-minimal cbar, cbar^dd; b eliminated (dS/db = cbar^dd + d.A + b); Psi-shift; (Q^GF)^2 = 0 and [Q,Q^GF] = H on all coordinates (p^2 on A, lambda, D, c, cbar; p^2 + m m* on matter); options A/B for translation-ghost terms; (S_ext,S_ext) = 0 with S_ext = S - (alphabar gamma alpha) a^dd; negative control: dropping (1/2)(alphabar gamma alpha)(d cbar) cbar breaks the master equation.",
+      "regulator": "Euclidean, T = infinity, per-edge t_e >= eps, matter masses m.",
+      "signs": "design/galg.py, grass.py, check_*.py (all PASS); engine/verify_display.py, verify_display_new.py (0 mismatches); cmap.py; twocomp.py; identical-leg averaging; check residuals after sympy.solve.",
+      "twist_Phi": "none here (see project 2 rounds 5b/5c)",
+      "errors_open": ["remainder e^2 A alphabar gamma lambda in [pair](phi_+ phi_+^*) not solved term by term", "sqed_bv_euclid.tex evicted"],
+      "reusable": ["Q_1 = derivation + bi-letter bookkeeping", "log-eps identity", "leg-counting zeros", "freedom taxonomy incl. second-order composite counterterms (c Phi)^fin_CT", "check-script design with negative controls", "verify_display pattern"],
+      "not_reusable": ["numbers: abelian, massive, N=1"]
+    },
+    {
+      "id": 4,
+      "path": "/Users/libotao/Desktop/qed_costello_heatkernel_one_loop",
+      "established": {
+        "I_CT": "hbar int { -(e^2/32pi^2 eps) A.A - (e^2/48pi^2) log eps F F - (e^2/16pi^2) log eps psibar gamma D psi - (e^2/4pi^2) log eps m psibar psi + (e^2 m^2/8pi^2) A.A + (e^2/48pi^2)(d.A)^2 + (e^4/96pi^2)(A.A)^2 - (e^2/16pi^2)(1/2 + log(2/3)) i e psibar gamma.A psi }",
+        "defects": "pi_1 + pi_2 = -e^2/24pi^2; v_0 + sigma_1 = (e^2/16pi^2)(1/2 + log(2/3)), so Z_1 != Z_2; log(3/2) = bubble (log 2) versus vertex (log 3) edge-count mismatch; box k.M(k) = k.M(0).",
+        "operators": "tex_ops/: bilinears, BRST variations, ABJ -hbar (e^2/16pi^2) eps F F (scheme B)."
+      },
+      "gauge_fixing": "Psi = int cbar(d.A + b/2), b eliminated, S_0 contains -1/2 (cbar^dd)^2; Q^GF: A -> A^dd, c -> cbar^dd, cbar -> -c^dd, psi -> (gamma.d - m) psibar^dd, antifields -> 0 (coordinates); (Q^GF)^2 = 0, [Q,Q^GF] = H on 40 coordinates, Im Q^GF = {Phi^dd = 0}.",
+      "regulator": "Euclidean, T = infinity, per-edge eps, m != 0.",
+      "signs": "checks/compute_one_loop.py (14/14), compute_bilinears.py (76 gates), checks/independent/.",
+      "reusable": ["cleanest nilpotent Q^GF template", "per-species analogue of the 27/16 unit int (d^*A|_V)^2 finite counterterm: QED (e^2/48pi^2)(d.A)^2 from pi_1 + pi_2 = -e^2/24pi^2; fermion-loop share of the N=4 two-leg obstruction checkable after a dictionary", "origin of log(3/2) as an edge-count mismatch"],
+      "not_reusable": ["massive abelian numbers; masses violate the no-IR-scale rule"]
+    },
+    {
+      "id": 5,
+      "path": "/Users/libotao/Desktop/研究项目_非Git/Higher_brackets_from_Costello_2026-10-06",
+      "established": "Structural, no numbers. Master identity (Prop 3.1) and graph form (Thm 3.5): Q-hat_T O[T] = limit of connected graphs with exactly one mark (Q on a vertex, -hbar K_eps self-loop, or -hbar K_eps edge); Lemma 3.3 holds without the QME. Twisted: Lemma 4.4 scaling-phase c(eps,T) = T^N c(eps/T,1); Thm 4.6 Q O = sum hbar^n/(n+1)! {I^{(n+1)},O}_0 = SC (3.33) = BK (1.6); Cor 4.7 Q_1 on pairs (BK (3.7)); Ex 4.9 Q_1 = triangle with three cut positions (BK (2.48)); general recursion (5.4).",
+      "gauge_fixing": "Twisted dbar^* only; proofs of sections 2-3 use only QP = K_eps - K_T, not (Q^GF)^2 = 0.",
+      "regulator": "Heat kernel [eps, T]; assumes UV finiteness in the twist; scheme independence only up to homotopy, not proved.",
+      "twist_Phi": "not built (open)",
+      "reusable": ["independent derivation of the marked-graph/defect-flow structure (Lemma c8-transfer)", "scaling-phase lemma as a template for twisted-slice T-independence"],
+      "not_reusable": ["no numbers", "UV-finiteness hypothesis fails untwisted", "dbar^* is twisted input (R2)"]
+    },
+    {
+      "id": 6,
+      "path": ["/Users/libotao/Desktop/Loop_corrected_supercharge_2026-08-29", "/Users/libotao/Desktop/研究项目_非Git/allloop_article_backup_2026-10-01"],
+      "established": "N=1 with chiral matter, Lorentzian, point splitting: pair-by-pair Q_1 (psi_+ phibar Konishi type; f_++ phibar, f_++ psi_+ local terms; f_++ f_++ channel 2 unresolved); 8-channel version = Budzik-Kulp 2512.07771 section 3.1; <t_1> = 1/3, <t_2> = 1/6. All-loop twisted N=4 table src/s6.md: Q_1(phibar_1^A psi_+^{1B}) = (i sqrt2 g^2/16pi^2) C C lambdabar lambdabar, Q_1(psi^1 psi^2), Q_1(f psi^1), all-n prefactor.",
+      "gauge_fixing": "Ordinary Feynman rules in Wess-Zumino gauge; no BV Q^GF; twisted dbar^* with (dbar^*)^2 = 0.",
+      "regulator": "Letter smearing + null separation + two-kernel family r; the 1/(1+r) commutator-weight result was voided by the 09-07 audit (missed b_V2 class); C6/C7 verdicts unfinished.",
+      "signs": "cohomology/nilpotency/galg.py, model.py, tests.py (graded Z2 jet algebra; s^2 = 0, Q_-^2 = 0, {s,Q_-} = 0; caught two table errors).",
+      "twist_Phi": "Closest to Phi: QV_{+bdot} = nabla_{+bdot} c - 2 lambdabar_{bdot}; free cohomology C[d_{+1},d_{+2}] (x) {c, f_++, phibar, psi_+}; homotopy h(f_--) = -i lambda_-, h(d_- phibar) = psibar/sqrt2, h(F) = -i psi_+/sqrt2, h(d_+ lambdabar) = -f_++/2; antifield-completed letters b <-> -(i/4g)(f_++ - 2i lambda_-^dd), beta <-> -(i/sqrt2)(psi_+ + i sqrt2 Fbar^dd).",
+      "errors_open": ["{Q_0,Q_1} = 0 not checked in the component scheme", "two-letter truncation fails at O(g^3)", "'only channel 1 invariant' unproved"],
+      "reusable": ["Konishi-channel and twisted-table targets after Phi", "classical part of Phi (dictionary, homotopy, antifield-completed letters)", "H^1 / [Q_0, xi] criterion to sort coboundaries from invariants", "galg.py approach"],
+      "not_reusable": ["regulator-specific numbers (r, W(r))", "N=1 Weinberg tables with known errors", "any use as input (R2, hard rule)"]
+    }
+  ],
+  "recommendations": [
+    {"id": "R1", "pain_point": "a", "text": "The non-minimal gauge (projects 1, 3, 4) is the only nilpotent untwisted Q^GF on this machine; it kills theta along Delta, P, M, R but moves the Q, S, K composite lines into s_X Psi vertices. Cheap test without switching: split each composite kernel P* X P* into a (Q^GF)^2 part and an 'X moves the slice' part; only the first should be theta-like."},
+    {"id": "R2", "pain_point": "b", "text": "(i) Profile-variation test (project 2 report6): replace e^{-eps p^2} by chi(eps p^2) and keep c_E[chi] and the rational moments as independent symbols; claimed scheme-independent combinations (27/4 - 8L; t_xi+ + t_xi- - t_P = 27/4 + 2L) must be chi-independent. (ii) Add second-order composite counterterms (c Phi)^fin_CT to the freedom table before calling a combination invariant (project 3: -1/12 + (3/2)L was removable only that way)."},
+    {"id": "R3", "pain_point": "c", "text": "Adopt the project 3 check design: machine Q table = (S_0,.); Q^2, (Q^GF)^2, [Q,Q^GF] = H on all coordinates; Schwinger-Dyson inverse; master equation with negative controls; displayed formulas re-evaluated against data. Unit tests: (-1)^{|O|} O D = D O; Delta_eps(Phi Phi^dd) = -(-1)^{|Phi|} K_eps(x,x); odd-derivation insertion order; identical-leg averaging; no id()-keyed caches; residual checks after sympy.solve."},
+    {"id": "R4", "pain_point": "d", "text": "Build the classical part of Phi from antifield-completed twisted letters (project 2 ftilde, psitilde; project 6 b, beta, dictionary, homotopy h); compare at class level, d_1 on H(s_tw), so that scheme freedom and logs drop out. First target: the Konishi class, coefficient sqrt2 g^2 C C lambdabar lambdabar in units hbar/16pi^2 (projects 2 and 6, BK)."},
+    {"id": "R5", "pain_point": "Q_1 entries", "text": "Compare the current two-body 4L(B_2+B_3) with project 1's xi = 1 scalar-pair kernels (G_fullBV/out/q_pair_kernels.json) after a dictionary, once it is confirmed that project G's Pi_O has no finite composite counterterm on the probe pair."}
+  ]
+}

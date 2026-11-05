@@ -1,0 +1,39 @@
+FREEDOM CLASSIFICATION, N=4 one-loop superconformal components -- progress log
+2026-11-05 21:0x  started; read DESIGN_STEP2 (R0-R11), ch08 (Def c8-quant/renorm, Thm c8-L, Def c8-components,
+                  Cor c8-homotopy, Prop c8-laws, Thm c8-invariants, Thm c8-twist), ch12 (free directions, eq c12-t,
+                  Thm c12-F0, Cor c12-F0inv, Rem c12-next), strict/results/summary.txt, composite_qsk summaries,
+                  sqed_Q1_biletters.tex, survey old_work_survey.txt.
+2026-11-05 21:1x  coordinator inputs received: (1) profile chi test of log(3/2) "invariants"; (2) composite c.X counterterms;
+                  (3) old gauge fixing outside Costello axioms ((Q^GF)^2 != 0): old data = data only; new gf in ~/N4_BV_HK2/gf (empty so far).
+PLAN: freedom.tex (theorem form) + checks.py/checks.json (sympy) + summary.txt.
+Key findings so far (to be proved in freedom.tex):
+  F1  t_xi+ + t_xi- - t_P = 27/4 + 2L and c_Q+ + c_Q- - p_1 = 27/4 - 8L are NOT invariant under field-counting
+      field redefinitions (exact directions s N_f): shift -2a resp. 2(f_O - f_QO).
+  F2  Mellin lemma: for profiles chi_k(u)=exp(-u^k) every one-loop eps^0 coefficient = Lambda/k + sum_j k^j R_j,
+      Lambda in Q log2 + Q log3 (k=1 value), R_j rational => any number with log(3/2) part is profile dependent;
+      true invariants are rational in the heat-kernel scheme.
+  F3  D_1 on BRST cohomology at a point is canonical (not only its spectrum) in weight-preserving schemes.
+  F4  twisted d_1 = [Q^xi_1] on H(Q^xi_0) canonical under all freedoms; arity-one Q_1 alone is not.
+2026-11-05 22:1x  checks.py written and run: 17/17 PASS (C1-C9), checks.json; peak RSS 0.12 GB, 1.5 s.
+                  C7 numerical second-profile test: heat vs exp(-u^2): D=2 model B = -3/8 -> -1/2, D=0 log -log2 -> -log2/2.
+2026-11-05 22:1x  Beisert hep-th/0310252, hep-th/0307015 read (pdftotext in lit_*); new gf folder ~/N4_BV_HK2/gf read (F1-F4, propagator).
+                  extra findings: G_B acts by a coboundary on every simple summand (B-grading) -> corrects Thm c12-opalg (iv);
+                  rigidity of simple summands (20') => all one-loop components there are coboundaries;
+                  joining/lifting theorem: gamma * tg_C = [kappa cup beta]; level-1/2 form (1/2)(xi,eta) gamma c0 = kappa(eta) beta(xi) c0.
+NEXT: write freedom.tex, compile, summary.txt.
+2026-11-05 22:3x  coordinator: twist agent result (step2/next/twist/twist.tex, OLD gauge fixing): class of Q^xi_1 = BK in 8 channels,
+                  one constant, all log(3/2) cancel; claims (A) class invariant under all freedoms, (B) reduced pair entries invariant
+                  in one-loop-local schemes. Verdict (to be written as theorems): (A) proved, with free directions = Z^0 and (H_s);
+                  "C S^xi" only at operator level Q0 = -[Q0,N_t]; (B) proved in sharper form: on H(Q_free) the classical twisted
+                  differential raises word length by exactly 1, so the 2->2 change is Q0 u_{2->1} - u_{3->2} Q0; first term has only
+                  symmetric derivative pairs, second needs a genuinely 3->2 finite part. Contrast: rho_0(x) for generic Q,S,K has a
+                  1->1 part, so 2->2 finite parts move two-body kernels (c_Q). Profile changes are one-loop-local => pair entries
+                  profile independent => rational: explains the log(3/2) cancellation.
+2026-11-05 23:0x  freedom.tex written and compiled (pdflatex x3): 10 pp, 0 errors, 0 undefined refs, 2 overfull < 3pt.
+                  Sections: object; freedoms (Thm 2.1 list, Lemma 2.2 locality, Thm 2.3 regularisations, Thm 2.4 gauge fixing,
+                  Thm 2.5 reduction, Cor 2.6 homotopy class); transformation laws (Thm 3.1, Cor 3.2); invariants (Thm 4.1 D_1,
+                  Prop 4.3 B, Thm 4.5 class, Thm 4.6 blocks, Thm 4.7 rigidity, Cor 4.8 20', Thm 4.9 joining/lifting, Cor 4.10 norms,
+                  Thm 4.11 relations); twisted (Thm 5.1, Thm 5.2 entries, Rem on TW, Prop 5.3 contrast); profiles (Lemma 6.3 Mellin,
+                  Thm 6.4, Cor 6.5 rationality, Cor 6.6 claims, Ex 6.7 C7); field countings (Prop 7.1, Cor 7.2); answer (Thm 8.1);
+                  numbers table; Beisert/BK; old gauge fixing; open.
+2026-11-05 23:0x  summary.txt written. DONE.

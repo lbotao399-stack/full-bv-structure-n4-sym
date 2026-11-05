@@ -1,0 +1,9 @@
+import env, sector as S, sympy as sp, time
+t0 = time.time()
+# sector of d1-derivative of c : charge (0,1;0,0,0), t = 3
+chi = S.wt5((0, 1)); R = S.cohomology(chi, 3, maxdeg=2)
+print('basis t:', [S.name(b) for b in R['B0']]); print('t-1:', [S.name(b) for b in R['Bm']])
+print('dim Z', len(R['Z']), 'dim B', len(R['Bim']))
+for z in R['Z']: print(' Z:', {S.name(R['B0'][i]): z[i] for i in range(len(z)) if z[i] != 0})
+for z in R['Bim']: print(' B:', {S.name(R['B0'][i]): z[i] for i in range(len(z)) if z[i] != 0})
+print(time.time() - t0)

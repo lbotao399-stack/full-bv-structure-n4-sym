@@ -1,0 +1,131 @@
+
+\section{One loop: two letters, closed formulas and evanescent operators}
+\label{sec:oneloop}
+
+At one loop a graph meets a local operator in at most two letters: its cycle uses two, a tree uses one [HK, thm:c10-decomp] (the R8 structure of [HK, DESIGN\_STEP2]). In DR the pair kernels have no power divergences and no self-contraction term, their residues are simplex integrals of a polynomial, and the finite parts of the evanescent insertions that produce every one-loop component are derivatives in $D$ of these residues (Lemma \ref{lem:bonneau}).
+
+\subsection{The decomposition}
+
+\begin{theorem}[Two-letter decomposition in DR]
+\label{thm:decompD}
+For a monomial $M=\int\omega\,X_1\cdots X_n$,
+\[
+\partial_\delta I^{CT}_D(M)=\sum_{1\le a<b\le n}(-1)^{|X_b|(|X_{a+1}|+\cdots+|X_{b-1}|)}\int\omega\,X_1\cdots X_{a-1}\,\partial_\delta I^{CT}_D(X_aX_b)\,X_{a+1}\cdots\widehat{X_b}\cdots X_n,
+\]
+with the pair kernel $\partial_\delta I^{CT}_D(X_aX_b)$ the pole part of $\hbar\,\partial^\alpha_x\partial^\beta_y$ of the value of $\partial_{\rm dressed\ propagator}$ on $\varphi_a(x)\varphi_b(y)$ at $y=x$, the dressed propagator built from $P_D$ and the one-loop operator of $I_{\Psi}$ [HK, def:c10-pair]. The term without vertices vanishes; every pair kernel is $(4-D)^{-1}$ times a local density, of output weight equal to the pair weight $w_{X_a}+w_{X_b}$. The same holds with $I_{\Psi,\mathfrak{psl}}$, giving the arity-one and arity-two counterterms, of output weight $w_{X_a}+w_{X_b}-\frac12\sum_i\lambda_{x_i}$.
+\end{theorem}
+
+\begin{proof}
+The combinatorics of [HK, thm:c10-decomp (i)--(iii)] is regulator-independent: the $\delta$-linear one-loop graphs through $M$ are trees of $I$ on the legs of $\hbar\,\partial_{\rm dressed\ propagator}M$, and $\partial_\phi$ is a second-order operator. The term without vertices is $P_D$ at coinciding points with derivatives, $\int d^Dp\,p^\alpha p^\beta|p|^{-2}=0$. One-loop integrals in DR have only simple poles and no $\log$; dimensional analysis with a log-divergent residue fixes the output weight.
+\end{proof}
+
+\subsection{The cycle formula}
+
+\begin{theorem}[One-loop cycles in $D$ dimensions]
+\label{thm:res}
+For a chain with $k$ vertices and $k+1$ edges carrying $l+q_j$ ($q_0=0$), numerator $N(l)$ (polynomial in $l$ and the output momenta, with the fibre and colour factors), centre $c=-\sum_j\alpha_jq_j$ and momentum form $\mathfrak m=\sum_j\alpha_j|q_j|^2-|\sum_j\alpha_jq_j|^2$ on the simplex with the Lebesgue measure $d\alpha$ of $(\alpha_1,\dots,\alpha_k)$:
+\begin{equation}
+\int\frac{d^Dl}{(2\pi)^D}\,N(l)\prod_{j=0}^k\frac1{|l+q_j|^2}=(4\pi)^{-D/2}\int d\alpha\sum_{j\ge0}\frac{\big((\sum_\mu\partial^2_{l_\mu})^jN\big)(c)}{j!\,4^j}\,\Gamma\Big(k+1-\tfrac D2-j\Big)\,\mathfrak m^{\frac D2+j-k-1}.
+\label{eq:cycleD}
+\end{equation}
+With $n:=j-k+1$ and $\mathcal F_0:=\sum_{j\ge k-1}\frac{((\sum\partial^2_l)^jN)(c)}{j!\,4^j}\frac{(-\mathfrak m)^{n}}{n!}$,
+\begin{equation}
+16\pi^2\,[\text{cycle}]_{(4-D)^{-1}}=2\int\mathcal F_0\,d\alpha,
+\label{eq:resD}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+16\pi^2\,[\text{cycle}]_{(4-D)^{0}}=\int d\alpha\Big\{&\sum_{j\ge k-1}\frac{((\sum\partial^2_l)^jN)(c)}{j!\,4^j}\frac{(-\mathfrak m)^n}{n!}\big(\psi(n+1)+\log4\pi-\log\mathfrak m\big)\\
+&+\sum_{j<k-1}\frac{((\sum\partial^2_l)^jN)(c)}{j!\,4^j}\,(k-2-j)!\,\mathfrak m^{j+1-k}\Big\},
+\end{aligned}
+\label{eq:finD}
+\end{equation}
+$\psi$ the digamma function. Every residue is a polynomial in the output momenta with rational coefficients, by $\int\prod_e\alpha_e^{n_e}d\alpha=\prod_en_e!/(\sum_en_e+k)!$.
+\end{theorem}
+
+\begin{proof}
+$\prod_j|l+q_j|^{-2}=\int_{[0,\infty)^{k+1}}\prod dt_j\,e^{-\sum t_j|l+q_j|^2}$, $t_j=\tau\alpha_j$, $\prod dt_j=\tau^kd\tau\,d\alpha$, $\sum_jt_j|l+q_j|^2=\tau(|l-c|^2+\mathfrak m)$. The Gaussian integral with a polynomial numerator is $(4\pi\tau)^{-D/2}\sum_j((\nabla^2_l)^jN)(c)/(j!(4\tau)^j)$ (Axiom \ref{ax:spaces}; $\nabla^2_l=\sum_\mu\partial_{l_\mu}^2$ with $\partial_{l_\mu}l_\mu$ summed to $D$ over $QDS$). Then $\int_0^\infty d\tau\,\tau^{k-D/2-j}e^{-\tau\mathfrak m}=\Gamma(k+1-\frac D2-j)\mathfrak m^{\frac D2+j-k-1}$. For $n\ge0$, $\Gamma(-n+\frac{4-D}2)=\frac{(-1)^n}{n!}\big(\frac2{4-D}+\psi(n+1)\big)+O(4-D)$, $(4\pi)^{-D/2}=\frac1{16\pi^2}(1+\frac{4-D}2\log4\pi+\cdots)$, $\mathfrak m^{n-\frac{4-D}2}=\mathfrak m^n(1-\frac{4-D}2\log\mathfrak m+\cdots)$; for $n<0$ the terms are finite at $D=4$.
+\end{proof}
+
+\begin{remark}
+In Scheme D the tensor algebra of $N$ uses $QDS$-contractions for loop momenta ($l_\mu l_\mu\to$ trace $D$) and $Q4S\oplus W^\perp$-contractions for field indices (trace $10$); in Scheme B the loop momentum splits as $l=l|_{4S}+l|_{Q(D-4)S}$ and $\nabla^2_l$ produces the traces $4$ and $D-4$ separately. These $D$-dependences of $N$ are the polynomial $D$-dependence of $\mathcal R_X(D)$ in Lemma \ref{lem:bonneau}; the numerator must be kept in normal form before $\mathrm{LIM}$.
+\end{remark}
+
+\begin{proposition}[Generating functions]
+\label{prop:genD}
+For the numerator $e^{i(y,l)}$, $y=y_b-y_a$,
+\[
+\int\frac{d^Dl}{(2\pi)^D}\frac{e^{i(y,l)}}{\prod_j|l+q_j|^2}=(4\pi)^{-D/2}\int d\alpha\,e^{i(y,c)}\,2\Big(\frac{|y|^2}{4\mathfrak m}\Big)^{\frac{k+1-D/2}2}K_{k+1-\frac D2}\big(|y|\sqrt{\mathfrak m}\big),
+\]
+and the integrand of \eqref{eq:resD} is
+\[
+\mathcal F_0=(-1)^{k-1}e^{i(y,c)}\sum_{i\ge0}\frac{(|y|^2/4)^{i+k-1}\mathfrak m^i}{i!\,(i+k-1)!}=(-1)^{k-1}e^{i(y,c)}\Big(\frac{|y|}{2\sqrt{\mathfrak m}}\Big)^{k-1}I_{k-1}\big(|y|\sqrt{\mathfrak m}\big),
+\]
+zero for $k=0$. With the letters at $x+y_a$, $x+y_b$ and a chain numerator $N_{\rm ch}(l)$, the generating function of the residues of the pair kernels is
+\[
+\sum_{\alpha,\beta}\frac{y_a^\alpha y_b^\beta}{\alpha!\beta!}\,\big[\partial_\delta I^{CT}_D(\partial^\alpha\varphi_a\partial^\beta\varphi_b)\big]_{(4-D)^{-1}}=\frac{2\hbar}{16\pi^2}\,e^{i(y_b,q_k)}\int N_{\rm ch}(-i\partial_y)\,\mathcal F_0\,d\alpha,
+\]
+summed over the chains; in position space $iq_j$ is the derivative acting on the product of the outputs at $x$.
+\end{proposition}
+
+\begin{proof}
+$\int d^Dl\,e^{i(y,l)}e^{-\tau|l-c|^2}=(\pi/\tau)^{D/2}e^{i(y,c)}e^{-|y|^2/4\tau}$ and $\int_0^\infty d\tau\,\tau^{\nu-1}e^{-\tau\mathfrak m-|y|^2/4\tau}=2(|y|^2/4\mathfrak m)^{\nu/2}K_\nu(|y|\sqrt{\mathfrak m})$ with $\nu=k+1-\frac D2$. For the residue use \eqref{eq:resD} with $(\nabla^2_l)^je^{i(y,l)}=(-|y|^2)^je^{i(y,l)}$, $j=i+k-1$; the letters carry $e^{-i(y_a,l)+i(y_b,l+q_k)}$.
+\end{proof}
+
+\begin{corollary}[The bubble in closed form]
+\label{cor:bubble}
+For $k=1$ and a constant chain numerator, the pair $\varphi_a(x+y_a)\varphi_b(x+y_b)$ has the counterterm
+\[
+\frac{2}{4-D}\,\frac{\hbar}{16\pi^2}\sum_{n_1,n_2,j\ge0}\frac{(n_1+j)!\,(n_2+j)!}{n_1!\,n_2!\,(j!)^2\,(n_1+n_2+2j+1)!}\,(y_a,\partial)^{n_1}(y_b,\partial)^{n_2}\,|y_b-y_a|^{2j}\big(-\tfrac14\partial^2\big)^j
+\]
+acting on the product of the two outputs, times the colour and fibre factor of the chain. At $n_1=n_2=j=0$ it is $\frac2{4-D}\frac{\hbar}{16\pi^2}$; for one derivative on each letter the coefficient of $y_a^\mu y_b^\nu$ is $\frac{2}{4-D}\frac{\hbar}{16\pi^2}\big(\frac16\partial_\mu\partial_\nu+\frac1{12}\delta_{\mu\nu}\partial^2\big)$ on the outputs.
+\end{corollary}
+
+\begin{proof}
+$k=1$: $c=-\alpha q_1$, $\mathfrak m=\alpha(1-\alpha)|q_1|^2$, $\mathcal F_0=e^{-i\alpha(y,q_1)}\sum_j(|y|^2|q_1|^2\alpha(1-\alpha)/4)^j/(j!)^2$; with the prefactor $e^{i(y_b,q_1)}$ the exponent is $i(1-\alpha)(y_b,q_1)+i\alpha(y_a,q_1)$, and $\int_0^1\alpha^{n_1+j}(1-\alpha)^{n_2+j}d\alpha=\frac{(n_1+j)!(n_2+j)!}{(n_1+n_2+2j+1)!}$. With one derivative on each letter: $(n_1,n_2,j)=(1,1,0)$ gives $\frac1{3!}(y_a,\partial)(y_b,\partial)$, and $(0,0,1)$ gives $\frac1{3!}|y_b-y_a|^2(-\frac14\partial^2)$, whose $y_a^\mu y_b^\nu$-coefficient is $\frac1{3!}(-2\delta_{\mu\nu})(-\frac14\partial^2)=\frac1{12}\delta_{\mu\nu}\partial^2$.
+\end{proof}
+
+\begin{definition}[Defect cycles in DR]
+\label{def:defcyc}
+For a generator $x$ and a pair $(X_a,X_b)$, the DR defect cycles are the chains from $X_a$ to $X_b$ with vertices of $I_{\Psi,\mathfrak{psl}}$, edges $P_D$ and exactly one vertex taken from $\widehat\Delta^{(1)}(x)$ (Theorems \ref{thm:breakD}, \ref{thm:breakB}); their residue polynomial in normal form is $\mathcal R^{\rm cyc}_x(X_a,X_b)(D)$ of Theorem \ref{thm:master}. Placements: the vertex of $\widehat\Delta^{(1)}(x)$ sits on the cycle with two of its legs; for $x=\Delta,K_{v_1}$ its legs are those of $\mathscr L_0$ (a kinetic or interaction vertex of $S_{0,D}$, weighted by $(4-D)\sigma_v$); for $x=\xi$ in Scheme D it is the cubic Fierz vertex $\mathfrak F(\xi)$ with two $\lambda$-legs on the cycle and one output $\lambda$; in Scheme B also the quadratic and cubic vertices of $\mathcal E(\xi)$.
+\end{definition}
+
+\begin{proposition}[Active pairs and output bound]
+\label{prop:active}
+\mbox{}\begin{itemize}
+\item[(i)] The active slots are those with a nonzero component of $P_D$: $A|_{QDS}$, $A|_E$, $\lambda$, $c$, $\bar c$, $b$ and, through $Q^{GF}$, none of the antifields; antifield letters are spectators of every pair kernel.
+\item[(ii)] For a pair of total weight $w$ and the generator $x$, the residue and $\Upsilon^D_x$ have output weight $w-\frac12\lambda_x$; a defect cycle with more output fields than this weight allows is finite and has $\mathrm{LIM}=0$.
+\item[(iii)] Along $\Delta$ and $K_{v_1}$ the defect vertex is $(4-D)\sigma_v$ times a vertex of $\mathscr L_0$, so $\Upsilon^D_\Delta$, $\Upsilon^D_{K_{v_1}}$ are, up to the factors $-2\partial_D(4-D)=2$ and the position weights, residues of ordinary cycles with one additional action vertex: no evanescent algebra is needed along $\Delta$ and $K$ beyond that of the counterterms.
+\item[(iv)] Along $\xi$ in Scheme D every defect cycle contains the Fierz vertex once; $\Upsilon^D_\xi$ is $-\partial_D$ of the $D$-dependence created by the $QDS$-contractions of the loop momentum with $\rho$'s adjacent to the Fierz vertex.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Lemma \ref{lem:canon}: $Q^{GF}$ reads antifields, so $P_D$ has components only between field slots. (ii) Theorem \ref{thm:decompD} and the weight of $\widehat\Delta^{(1)}(x)$, $4-\frac12\lambda_x$ (relative to $D$). (iii) Theorem \ref{thm:breakD} (ii) and Lemma \ref{lem:bonneau} with $\mathcal R_X(D)=(4-D)\mathcal R_{\mathscr L_0}(D)$. (iv) The contractions of the field indices of the Fierz vertex are over $Q4S\oplus W^\perp$ (trace $10$, $D$-independent); the only $D$ comes from $\nabla^2_l$.
+\end{proof}
+
+\subsection{Evanescent operators}
+
+\begin{definition}[Evanescent operators and the evanescent scheme]
+\label{def:evop}
+An evanescent operator is a local functional $E$ in normal form with $\mathrm{LIM}\,E=0$: in Scheme B a monomial with an uncontracted component along $Q(D{-}4)S$, a factor $\rho_J$, or a contracted evanescent trace; in Scheme D a Fierz-null combination, for instance $\rho\circ q$ of more than four $Q4S$-directions, the difference between an antisymmetrised product of three $\rho(Q4S)$ and its four-dimensional dual, or the cubic structure of $\mathfrak F$. An evanescent scheme is a choice, for each normal-form residue $\mathcal R$, of a decomposition $\mathcal R=\mathcal R^{\rm phys}_D+E$ with $\mathcal R^{\rm phys}_D$ a fixed $D$-dimensional lift of $\mathrm{LIM}\,\mathcal R$; two schemes differ by $(4-D)\times$(local) in $\mathcal R^{\rm phys}_D$, e.g. by the coefficient $b$ in $\rho(q(e^\mu\wedge e^\nu\wedge e^\sigma))\otimes\rho(q(e_\mu\wedge e_\nu\wedge e_\sigma))=(a+b(4-D))\,\rho(e^\mu)\otimes\rho(e_\mu)\cdot(\text{chirality})+E$.
+\end{definition}
+
+\begin{proposition}[Evanescent operators at one and two loops]
+\label{prop:evan}
+\mbox{}\begin{itemize}
+\item[(i)] The one-loop counterterms of local operators and of the action contain evanescent pole terms $(4-D)^{-1}E$, required for the finiteness of the $D$-dimensional theory; in Scheme D they arise in pair kernels with two spinor letters (open spinor chains whose four-dimensional reduction uses Fierz identities), in Scheme B in addition from the hat components of loop momenta.
+\item[(ii)] $\mathrm{LIM}[E\cdot\Gamma_D]^{(1)}$ is a finite local physical cochain (Lemma \ref{lem:bonneau}); adding the finite counterterm $-\mathrm{LIM}[E\cdot\Gamma_D]^{(1)}$ to $E$ makes the renormalised evanescent operators vanish in four dimensions at one loop [DG91], [HN95].
+\item[(iii)] The one-loop components $L_1$ on physical operators are independent of the evanescent scheme: a change $(4-D)\cdot e$ of $\mathcal R^{\rm phys}_D$ changes the counterterm by the finite $e$, i.e. by law (b).
+\item[(iv)] At two loops the evanescent scheme and the finite counterterms of (ii) enter $\mathrm{Ob}^{(2)}$, $F_2$ and $\gamma^{(2)}$; when $\beta=0$ the change of $\gamma^{(2)}$ is a commutator with $\gamma^{(1)}$, so the two-loop spectrum is unchanged.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) Theorem \ref{thm:res} in normal form: products of $\rho$'s along the open chain are reduced by the Clifford relation only. (ii), (iii) Lemma \ref{lem:bonneau}: $(4-D)^{-1}\cdot(4-D)e=e$ is finite and local. (iv) [DG91], [HN95]: the two-loop anomalous-dimension matrix changes by $[\gamma^{(1)},r]$ plus terms proportional to $\beta$.
+\end{proof}
+
+\begin{remark}[Closed fermion loops and the chirality-odd traces]
+\label{rem:g11}
+In Scheme D the chirality-odd part of every trace is set to $0$ (Definition \ref{def:schemeD}); in strict ten dimensions it is nonzero only for a product of at least ten $\rho$'s. A closed fermion loop with $n_v$ vertices of type $\lambda\lambda A$ or Yukawa carries $2n_v$ factors $\rho$, and its superficial degree is $4-n_v$; the loops with a pole have $n_v\le4$, at most eight $\rho$'s, and the loops with $n_v\ge5$ are finite. Pair kernels have no closed fermion loop through the operator. Hence the chirality-odd traces affect no pole and no $\mathrm{LIM}$ of an evanescent insertion at one loop, and they affect the finite parts of one-loop correlators with at least five vertices on a fermion loop (parity-odd terms of five-point functions).
+\end{remark}
