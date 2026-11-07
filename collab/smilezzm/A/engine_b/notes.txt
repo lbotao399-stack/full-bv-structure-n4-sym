@@ -1,0 +1,253 @@
+ENGINE B -- IP1 (tree + one-loop two-point functions of the scalar bilinears O_ab)
+=================================================================================
+Derivation notes.  Everything here is derived from the action (ch01 eq:c1-action), the propagator (ch03 prop:c3-P)
+and the definitions of ch04/ch05/ch08; the targets of ip1_spec.txt were not used as inputs.  Code: run_all.py
+(driver), gauss.py (Gaussian integration over vertices), hepp.py (eps -> 0 asymptotics), census.py (Wick
+enumeration, su(2)/su(3) colour, O(6) flavour, 10d gamma matrices), oneloop.py (G1, G2), classes.py (T, SE, QU, OC,
+B).  Numbers quoted below are those of results.json / run_all.log of the final run.
+
+F. FEYNMAN RULES (canonical form of the manuscript action)
+----------------------------------------------------------
+F.1 Normalisation.  With (X,Y) = -(4 hbar/g^2) tr(XY) and A = -i g A^a T^a (T^a hermitian, tr T^a T^b = delta/2),
+    write T_a := -i T^a (antihermitian), [T_a, T_b] = f^{abc} T_c with f real, totally antisymmetric,
+    f^{acd} f^{bcd} = C_A delta^{ab}, C_A = N.  Then A = g A^a T_a and (X,Y) = (2 hbar/g^2) X^a Y^a, so
+       -1/4 (F_A, F_A)  =  -hbar/4 F^a_MN F^a_MN   (10d indices, Hodge pairing = 1/2 sum over ordered pairs),
+    i.e. S/hbar = -S_E with the standard Euclidean action
+       S_E = int 1/4 F^a_mn F^a_mn + 1/2 (D_m phi_I)^a (D_m phi_I)^a + g^2/4 f^{abe} f^{cde} phi^a_I phi^b_J phi^c_I phi^d_J
+             + 1/2 (d.A)^2 [Feynman gauge, Q^GF] + 1/2 lambda^a gammabar^M (D_M lambda)^a + ghosts,
+       D_m phi^a = d_m phi^a + g f^{abc} A^b_m phi^c,  F_mI = D_m phi_I,  F_IJ = g f phi_I phi_J,
+       D_M lambda^a = d_M lambda^a + g f^{abc} A^b_M lambda^c (d_M = 0 along W_R^perp).
+    The relative normalisation kinetic : cubic : quartic : Yukawa is fixed by the covariant derivative of the 10d
+    action (one coupling g); the overall normalisation of lambda drops out of the loop.
+F.2 Propagators (every edge regulated, P(eps, inf) of prop:c3-P):
+       <phi^a_I(x) phi^b_J(y)> = delta^ab delta_IJ D_eps(x-y),  <A^a_m A^b_n> = delta^ab delta_mn D_eps,
+       D_eps(r) = int_eps^inf (4 pi t)^-2 exp(-r^2/4t) dt = (1 - e^{-r^2/4eps})/(4 pi^2 r^2),   -Lap D_eps = K_eps.
+    (In the manuscript normalisation hbar P = 2 hbar (-,-)^-1 delta_MN D_eps; with (X,Y) = (2 hbar/g^2) X^a Y^a and
+    A = g A^a T_a this is exactly <A^a_M A^b_N> = delta^ab delta_MN D_eps for the canonical components.)
+    Fermion: K0 = gammabar^m d_m, G = K0^-1 = -gamma^m d_m D_eps (K0 G = Lap D = -delta).
+F.3 Vertices of -S_E at order g^2 (entering exp(-S_E)):
+       V3 = -g f^{abc} (d_m phi^a_I) A^b_m phi^c_I                  [A|_V (A|_perp)^2]
+       Vs = -(g^2/2) f^{abc} f^{ab'c'} A^b_m A^b'_m phi^c_I phi^c'_I  [(A|_V)^2 (A|_perp)^2, seagull]
+       V4 = -(g^2/4) f^{abe} f^{cde} phi^a_I phi^b_J phi^c_I phi^d_J  [(A|_perp)^4]
+       Yukawa: 1/2 lambda^a gammabar^I g f^{abc} phi^b_I lambda^c, fermion integral = Pf(K), K = K0 + V,
+       V^{ab} = g f^{acb} phi^c_I gammabar^I;  -log Pf K = -1/2 Tr log K  =>  the quadratic term in phi of the
+       effective action is +1/4 Tr(G V G V)  (minus sign of the fermion loop and 1/2 of Majorana-Weyl automatic).
+    10d chiral blocks gamma^M, gammabar^M (16x16, Euclidean Cl(10) built from Pauli matrices in census.py):
+       gamma^M gammabar^N + gamma^N gammabar^M = 2 delta^MN,
+       tr(gamma^M gammabar^N gamma^P gammabar^Q) = 16 (d^MN d^PQ - d^MP d^NQ + d^MQ d^NP)    (checked: error 0),
+       sum_m tr(gamma^m gammabar^I gamma^m gammabar^J) = -64 delta^IJ.
+F.4 Operators.  O_ab = a_I b_J phi^c_I phi^c_J (the manuscript O_ab = int omega (iota_a A, iota_b A) is 2 hbar times
+    this at omega = delta_x).  All results are ratios to the tree, so the overall 2 hbar is irrelevant.
+    Tree: <O1(x) O2(0)> = dim g S12 D_eps(x)^2 (census: weight 1 per dim g S12), i.e. 4 hbar dim g S12 D_0^2 in the
+    manuscript normalisation; D_eps(x)^2/D_0(x)^2 = (1 - e^{-x^2/4eps})^2 -> 1 exponentially.
+F.5 Units.  unit = hbar tr(ad ad)/(16 pi^2 (X,Y)) = -g^2 N/(32 pi^2) =: -lambda_hat/2, lambda_hat = g^2 N/(16 pi^2).
+    Plane-wave dictionary (ch04 eq:c4-pw): int(A_perp,A_perp) = 2 hbar int phi.phi, int(dA_perp,dA_perp) =
+    2 hbar int (d phi)^2, K = sum_I O_{e_I e_I} = 2 hbar phi.phi.  A one-loop quadratic vertex
+    V2 = 1/2 int int phi(u) Sigma(u-v) phi(v) (in exp(+V2), i.e. the graph value with vertices from I) with
+    Sigma^(p) = s_m/eps + s_l p^2 log eps + finite gives the counterterm
+       I^CT  contains  unit [X eps^-1 int(A_perp,A_perp) + Y log eps int(dA_perp,dA_perp)],
+       X = -s_m/(2 lambda_hat),  Y = -s_l/(2 lambda_hat).
+    The seagull rows of G1 (no loop integral beyond D_eps(0)) fix this dictionary independently of any target
+    (X = 2 and 5/2 come out of the Wick count alone), and the bubble and gaugino rows then test two numbers each.
+
+C. CENSUS (census.py: explicit Wick enumeration of <O1(x) O2(0) exp(-S_E)> at order g^2)
+------------------------------------------------------------------------------------------
+Fields of O1, O2 (two phi each), of one V4, one Vs, or two V3 (with 1/2!).  All perfect matchings phi-phi, A-A are
+enumerated; connected graphs are kept; colour = einsum of the vertex tensors with explicit su(2) and su(3)
+structure constants (f from generalized Gell-Mann matrices, f f = N delta checked); flavour = chains of
+delta_IJ ending on the operator vectors, evaluated on 6 random sets (a1,b1,a2,b2) and fitted to S12, A12, T12.
+Weights per (g^2 C_A dim g), identical for su(2) and su(3) (G8):
+   QU (V4: two legs to O1, two to O2)            : 24 graphs (8 zero colour)   S12 - 2 T12
+   SE seagull, A_perp loop (V4 self-contraction) : 48 graphs (16 zero colour)  -10 S12  (both lines)
+   SE seagull, A|_V loop (Vs)                    :  8 graphs                    -8 S12  (both lines; Lorentz trace 4)
+   SE bubble (V3 V3, scalar + gluon between them): 32 graphs, 4 derivative placements, weights +2,-2,-2,+2 S12
+   EX (V3 V3, each vertex on both lines, gluon between): 16 graphs, 4 placements, weights +1,-1,-1,+1 S12
+   other V3 V3 (a cubic vertex with both legs on one operator): 24 graphs, all zero colour (f^{abc} delta^{ac} = 0)
+   No A12 anywhere (max |A12| < 1e-12, fit residuals ~1e-15): G6.
+   Fermion loop: only on a scalar line (Yukawa vertices need two lambda legs; a lambda line cannot end on O).
+   Ghosts: no ghost-scalar vertex without A^*_perp, which does not propagate.  -I^CT cubic/quartic vertices: order
+   g^4 relative.  The 27/16 part of F_0 has no A_perp legs.
+EX numerator from the enumeration (z1 -> vertex 0, z2 -> vertex 1, edges (x,z1;t1),(z1,0;t2),(x,z2;t3),(z2,0;t4),
+(z1,z2;t5)):  U_m(z1) U_m(z2) D(z1-z2),  U_m(z) = D(z) d_m D(z-x) - D(z-x) d_m D(z)   (difference to the hand
+form: 0, symbolic).  EX total = g^2 C_A dim g S12 int int U.U D.
+SE bubble numerator from the enumeration equals, pointwise in the four Schwinger times after symmetrisation of the
+scalar/gluon times, twice the line insertion of
+   Sigma_b = g^2 C_A [ -2 Lap(D_eps^2) + D_eps K_eps ]                                   (symbolic difference 0)
+(hand derivation: the four contractions C_A[+dphi(u).dphi(v) D + d_m phi(u) phi(v) d_m D - phi(u) d_m phi(v) d_m D
+ + phi phi K], then two integrations by parts).  Two derivatives on the same edge: d_u d_v Kt = -[w w/4t^2 -
+1/2t] Kt, implemented as a contact term in gauss.py (unit-tested against -d/dt).
+Fermion: V2_F = -1/4 Tr(G V G V) = 4 g^2 C_A int int phi(x).phi(y) (d D_eps(x-y))^2, Sigma_F = 8 g^2 C_A (dD)^2
+   = g^2 C_A [4 Lap(D^2) + 8 D K]   ((dD)^2 = 1/2 Lap(D^2) + D K, since -Lap D = K).
+
+G. GATES G1, G2 (oneloop.py, exact)
+-----------------------------------
+Schwinger facts used (all exact, sympy):
+   D_eps(0) = int_eps^inf (4 pi t)^-2 dt = 1/(16 pi^2 eps).
+   Plane wave of D_eps^2:  Bhat(p) = (16 pi^2)^-1 int int_[eps,inf)^2 (t1+t2)^-2 exp(-p^2 t1 t2/(t1+t2));
+       boundary form eps dBhat/deps = -2 eps int_eps^inf (eps+t)^-2 dt/(16 pi^2) + O(eps p^2) -> -1/(16 pi^2):
+       Sing Bhat = -(16 pi^2)^-1 log eps (no eps^-1).
+   D_eps K_eps(w) = (16 pi^2)^-1 int_eps^inf (t+eps)^-2 K_{t eps/(t+eps)}(w) dt  (Gaussian product, residual 0);
+       plane wave = 1/(32 pi^2 eps) - p^2 (3/8)/(16 pi^2) + O(eps):  Sing = 1/(32 pi^2 eps), no log.
+G1 (units; eps^-1 x int(A_perp,A_perp), log eps x int(dA_perp,dA_perp)):
+   seagull A|_V loop      : Sigma = -4 lh/eps delta              -> X = 2,    Y = 0
+   seagull A_perp loop    : Sigma = -5 lh/eps delta              -> X = 5/2,  Y = 0
+   bubble A|_V + A_perp   : Sigma^ = lh[1/(2eps) - 2 p^2 log eps] -> X = -1/4, Y = 1
+   gaugino loop           : Sigma^ = lh[4/eps + 4 p^2 log eps]    -> X = -2,   Y = -2
+   total                  : X = 9/4, Y = -1                       (all equal to the targets: PASS)
+   The gaugino row gives two independent conditions on the single number (Yukawa)^2 x (loop sign): both hold
+   with the 10d Majorana-Weyl Pfaffian of F.3.
+G2 (graphs with O on the cycle; manuscript basis unit log eps [alpha O + beta (a,b) K]):
+   (a) vacuum <O> = (a,b) dim g D_eps(0) -> 2 hbar dim g (a,b)/(16 pi^2 eps) int omega
+   (b) 0 (colour (X,[.,.]) on a symmetric tensor)
+   (e) V^(e) = -g^2 C_A [(a,b) phi.phi - (a.phi)(b.phi)] D_eps(z)^2 (hand Wick count, same counting as the QU census):
+       Sing -> lh log eps [(a,b) phi.phi - (a.phi)(b.phi)]  => alpha = 2, beta = -2
+   (f) V^(f) = g^2 C_A int int dD(z1).dD(z2) D(z1-z2) (a.phi(z1))(b.phi(z2)); log coefficient of the triangle at zero
+       external momentum from the boundary faces: f = 1/(8 pi^2 (t1+t2+t3)^3), each face t_e = 1 gives
+       1/(48 pi^2), total -1/(16 pi^2)  => alpha = 2, beta = 0
+   (c) seagull with external A|_V: -2;  (d) triangle with external A|_V (four placements, contact term included):
+       triangle log -1/(4 pi^2), isotropic average 1/4  => +2;  (c)+(d) = 0
+   total: unit log eps [4 O_ab - 2 (a,b) K] + 2 hbar dim g (a,b)/(16 pi^2 eps) int omega   (PASS)
+
+S. CLASS SE (exact; classes.py se_exact)
+----------------------------------------
+Sigma (all four 1PI graphs) = -9 lh/eps delta + g^2 C_A [2 Lap(D_eps^2) + 9 D_eps K_eps];
+Sing Sigma (plane wave) = lh[-9/(2 eps) + 2 p^2 log eps]  (= the G1 totals).
+Line insertion with the vertex -I^CT (J = I - I^CT): L = D_eps * (Sigma - Sing Sigma) * D_eps = L_i + L_ii:
+ S.1 L_i = 32 pi^2 lh D_eps*Lap(D_eps^2)*D_eps - 2 lh log eps D_eps*(-Lap delta)*D_eps
+         = -32 pi^2 lh [D_eps^2 * D_2eps](x) - 2 lh log eps D_2eps(x)       (Lap moved to a line, K_eps*D_eps = D_2eps).
+     Schwinger: D_eps^2(r) = (4pi)^-4 int_0^{2/eps} dw rho(w) e^{-r^2 w/4}, rho(w) = min(w, 2/eps - w) (u_i = 1/t_i);
+     Gaussian convolution with D_2eps:  [D_eps^2 * D_2eps](x) = D_0(x)/(16 pi^2) I_J,
+       I_J = int_0^{2/eps} dw rho(w) w^-2 (1 - exp(-x^2 w/(4(1 + 2 eps w)))).
+     x^2 = 1:  region w < 1/eps:  int_0^{1/eps} (1 - e^{-w/4}) dw/w + O(eps) = -log(4 eps) + EulerGamma + E1(1/4eps);
+               region 1/eps < w < 2/eps: int (2/eps - w)/w^2 dw = 1 - log 2 (+ exponentially small);
+     I_J = -log(eps/x^2) + kappa,  kappa = EulerGamma + 1 - 3 log 2.
+     L_i/D_0 = -2 lh (log x^2 + kappa)   (the log eps of the graph cancels against the counterterm).
+ S.2 L_ii = 9 lh D_eps*(16 pi^2 D_eps K_eps - delta/(2 eps))*D_eps
+          = 9 lh int_eps^inf dt (t+eps)^-2 int int_[eps,inf)^2 dt1 dt4 [K_{t1+t4+c} - K_{t1+t4}](x),  c = t eps/(t+eps)
+          = 9 lh int dt (t+eps)^-2 Phi(c),  Phi(c) = -int_{2eps}^{2eps+c} (T-2eps) K_T dT - c int_{2eps+c}^inf K_T dT
+          = -9 lh D_0(x) eps int_eps^inf t (t+eps)^-3 dt + O(e^{-x^2/12 eps}/eps) = -(27/8) lh D_0(x).
+     (Seagull graphs: Sigma_seagull = their own Sing exactly; they cancel identically against the mass counterterm.)
+ S.3 Both lines, relative to the tree:  2 L/D_0 = -4 lh (log x^2 + kappa) - 27/4 lh
+          = unit [ 8 log(x^2/ell^2) + 8 kappa + 27/2 ]:
+     c_S(SE) = 27/2 + 8 + 8 EulerGamma - 24 log 2,  d_S(SE) = 8,  log eps: graphs -8 S12, counterterm +8 S12.
+ Numerical confirmation (mpmath, 30 digits, exact one-dimensional representations at finite eps):
+     L_ii/(lh D_0) = -3.375 to 1e-30 for eps <= 2^-10 (4.8e-3 deviation at eps = 2^-6, e^{-1/12 eps});
+     I_J + log eps - kappa = -8.27 eps, -8.06 eps, -8.016 eps, -8.004 eps, -8.001 eps, -8.0002 eps
+     (eps = 2^-8 ... 2^-18): analytic corrections; fit (log coefficient fixed to -1) reproduces kappa (results.json).
+
+Q. CLASS QU (exact; classes.py qu_exact; three routes)
+------------------------------------------------------
+QU = g^2 C_A dim g (S12 - 2 T12) Q(x),  Q = int d^4z D_eps(x-z)^2 D_eps(z)^2.
+Schwinger (w-representation of D_eps^2, Gaussian in z):  Q/D_0^2 = I2/(256 pi^2),
+   I2 = int int dw1 dw2 rho(w1) rho(w2) (w1+w2)^-2 exp(-x^2 w1 w2/(4(w1+w2))).
+x^2 = 1, Lambda = 1/eps.  Region w1,w2 < Lambda in (W = w1+w2, u = w1/W): inner W-integral exact,
+   = 16 int_0^1 du G(u(1-u)Lambda/(4 max(u,1-u)))/(u(1-u)),  G(y) = 1 - (1+y)e^{-y},
+   = 32 [log(Lambda/8) + (EulerGamma - 1) + log 2] + o(1)   (int_0^Y G(y) dy/y = log Y + EulerGamma - 1 + o(1));
+regions w1 in [Lambda, 2 Lambda], w2 = O(1) (and symmetric): 2 * 16 (1 - log 2) + O(eps);  both > Lambda: e^{-Lambda/8}.
+   I2 = 32 [-log(eps/x^2) + EulerGamma - 3 log 2].
+Relative (units): (S12 - 2 T12) [4 log eps - 4 log x^2 - 4 EulerGamma + 12 log 2]:
+   c_S(QU) = -4 EulerGamma + 12 log 2, c_T(QU) = 8 EulerGamma - 24 log 2, log eps: S12 +4, T12 -8;
+   d_S(QU) = -4, d_T(QU) = +8.
+Confirmations: (i) exact one-dimensional representation (inner W-integral in closed form with E1) at eps = 2^-8..2^-22,
+   deviation from the asymptotic form = -192.0 eps (clean linear), free fit a = -32.00000002, b = -48.0712284 vs
+   exact -48.0712280569; (ii) Hepp-sector b-formula on the whole 4-edge graph: a = -32 (1e-14), b = -48.07122805690
+   (N=48) vs exact -48.071228056906 (agreement 1e-12); (iii) Hepp finite-eps + fit with a fixed: b = -48.07122815.
+
+E. CLASS EX (numeric, Hepp sectors; identification by PSLQ)
+-----------------------------------------------------------
+E.1 Integrand (gauss.py, from the enumerated vertices): with t1..t5 as in section C,
+    int d^4z1 d^4z2 prod Kt * (U.U numerator) = (4096 pi^6)^-1 U^-2 [ x^2 Pa Pb/(4 U^2) + 2 (t1-t2)(t3-t4)/U ] e^{-x^2 W/(4U)},
+      U  = t1t2t3 + t1t2t4 + t1t3t4 + t1t3t5 + t1t4t5 + t2t3t4 + t2t3t5 + t2t4t5   (Kirchhoff polynomial),
+      W  = t1t2 + t1t4 + t1t5 + t2t3 + t2t5 + t3t4 + t3t5 + t4t5,   (x^2 phi = x^2 W/(4U): R_eff = U/W)
+      Pa = 2t1t2 + t1t4 + 2t1t5 + t2t3 + 2t2t5,   Pb = t1t4 + t2t3 + 2t3t4 + 2t3t5 + 2t4t5.
+    Etilde(eps) := 4096 pi^6 int_[eps,inf)^5 dt (...)  (x^2 = 1);  relative EX = lh S12 Etilde/16 = -unit S12 Etilde/8.
+E.2 Result:  Etilde = a log eps + b,  a = -32 (numerically -31.99999999999989, exactly forced by G2: two triangles
+    (f), 2 unit each),  b = b_rat + 32 EulerGamma  (the EulerGamma coefficient is exactly -a, see H.4),
+       b_rat = -15.51701279321771 (N=40),  -15.51701279321262 (N=32);  difference 5.1e-12.
+    PSLQ on (b_rat, 1, log 2, log 3): relation [-1, 64, -64, -32], i.e. b_rat = 64 - 64 log 2 - 32 log 3
+       (residual of the identified value: 1.7e-12; stable for tol 1e-9..1e-11, maxcoeff 1e2..1e4; the 5-element
+        run with EulerGamma free, tol 1e-10, maxcoeff 100, returns [-1, 64, 32, -64, -32], the same relation).
+    NUMERICAL IDENTIFICATION:  b = 64 + 32 EulerGamma - 64 log 2 - 32 log 3 = 2.953888483633...
+    => c_S(EX) = -b/8 = -8 - 4 EulerGamma + 8 log 2 + 4 log 3 = -0.369236060454...,  log eps +4 S12, d_S(EX) = -4.
+    Only the EulerGamma coefficient (-4) and the log coefficients are exact; the rational/log2/log3 part is a
+    12-digit numerical identification.  (A 5-element PSLQ with EulerGamma free finds the same relation for
+    maxcoeff 100, tol <= 1e-10, but admits spurious relations at tol 1e-9 or maxcoeff >= 1e3: 12 digits are not
+    enough to fix five coefficients blind; this is why the exact EulerGamma coefficient is used.)
+E.3 Divergent Hepp sectors: exactly those in which the three smallest times are {t1,t3,t5} (triangle at x) or
+    {t2,t4,t5} (triangle at 0); 24 sector-terms, all with p_{j*} = 1, all in the nu = 2 term; no other exponent
+    a_j < 0 occurs (min a_j = -1): the overlapping triangles never occur nested.
+E.4 Finite-eps confirmation (spec route): Etilde(eps) evaluated in the same Hepp representation without expansion
+    (log variable in the divergent direction, Gauss-Legendre elsewhere) at eps = 2^-24, 2^-26, ..., 2^-44 at two
+    resolutions.  The O(eps) corrections are large in units x^2 = 1 (about -1.1e3 eps log(1/eps)), so the
+    window is shifted below the 2^-10..2^-26 suggested in the spec (deviations: -1.1e-3 at 2^-24, -1.2e-8 at 2^-44).
+    Least-squares fits (results.json, EX.numeric.finite_eps_extrapolation):
+       N=16: free fit a = -32.0000007, b = 2.9538686;  a fixed to -32: b = 2.9538870
+       N=20: free fit a = -31.9999996, b = 2.9538995;  a fixed to -32: b = 2.9538893
+       asymptotic formula: b = 2.9538884836.
+    The finite-eps route therefore confirms b to about 1e-6 (6 significant digits); the free fit is limited by the
+    conditioning (delta b ~ delta a * <log eps>), not by the asymptotic formula.
+
+H. THE eps -> 0 ASYMPTOTICS IN THE SCHWINGER REPRESENTATION (hepp.py)
+---------------------------------------------------------------------
+H.1 After the Gaussian integration over internal vertices, a graph is int_[eps,inf)^n sum_nu h_nu(t) e^{-phi(t)}
+    (x^2 = 1), h_nu rational homogeneous of degree -(n+nu), phi = W/(4U) homogeneous of degree -1 (nu = 3 for the
+    x^2 part, nu = 2 for the covariance part of EX; nu = 2 for QU).
+H.2 t = S tau: int_{S >= eps/min tau} S^{-nu-1} e^{-phi(tau)/S} dS = phi^-nu lowergamma(nu, phi min(tau)/eps)  (exact).
+H.3 Hepp sector sigma: t_sigma(k) = S prod_{j>=k} y_j, Jacobian S^{n-1} prod y_j^{j-1}, min tau = prod y_j.  Each
+    positive polynomial (U, W, t_e) is (monomial) x (polynomial with positive constant term) -- dominance checked in
+    every sector -- so the integrand is prod y_j^{a_j} R(y) lowergamma(nu, Z/eps), Z = y^p Ztilde.
+H.4 a_j >= 0 for all j: limit Gamma(nu) int R (dominated convergence, corrections O(eps log eps)).
+    One a_{j*} = -1 (p_{j*} > 0): int_0^1 dy/y lowergamma(nu, y^p c/eps) = (1/p)[Gamma(nu) log(c/eps) + C_nu] + o(1),
+    C_nu = -Gamma(nu) psi(nu) = Gamma(nu)(EulerGamma - H_{nu-1}); hence
+      coefficient of log eps:  a = -sum (Gamma(nu)/p) int R(0,y') dy',
+      constant: sum Gamma(nu) int [R(y) - R(0,y')]/y_{j*} dy + (1/p) int R(0,y') [Gamma(nu) log Ztilde(0,y') + C_nu] dy'
+      and the EulerGamma part of the constant is exactly -a.
+    Quadrature: Gauss-Legendre in u, y = u^5, N points per dimension (tensor product).  Test on QU against the
+    closed form: N=16: 4.6e-9, 24: 8.6e-11, 32: 5.0e-12, 48: 7.7e-13 error in b.
+H.5 EulerGamma: in every class it enters only through C_nu in the logarithmic sectors (EX, QU) or through the
+    analogous Ein/G integrals (SE, QU), always as -(coefficient of log eps) x EulerGamma, i.e. as
+    log(x^2 e^{EulerGamma}...): c_S contains d_S EulerGamma per class (SE +8, QU -4, EX -4) and c_T contains
+    d_T EulerGamma = 8 EulerGamma.  G5 is therefore a consequence of d_S = 0.
+
+O. CLASSES OC, B, T, F
+----------------------
+OC: vertex -d_delta I^CT[eps](O_a) at x resp. 0, joined to the other operator by two regulated lines (D_eps(x)^2):
+    -unit log eps [4 tree(O1,O2) - 2 (a1,b1) tree(K,O2)] - (same at 0); tree(K, O_cd) = 2 (c,d) S12-units;
+    => log eps: S12 -8, T12 +8; no finite part, no log x^2 (the vacuum term const/eps int omega has no legs).
+B:  -F_0 = -beta_2 unit int(dA_perp,dA_perp) = 4 beta_2 unit x (-1/4 int(dA,dA)) on each regulated line:
+    D_eps -> D_eps - 4 beta_2 unit D_eps*K_eps = D_eps - 4 beta_2 unit D_2eps  => c_S(B) = -8 beta_2 (exact).
+T:  1 (exponentially small corrections).   F: 0 (minimal scheme).
+
+R. RESULTS (units; <O1,O2> = 4 hbar dim g D_0^2 [S12 (1 + unit c_S) + T12 unit (c_T + d_T log(x^2/ell^2))])
+------------------------------------------------------------------------------------------------------------
+ class |  c_S                                   | c_T                    | d_S | d_T | log eps S | log eps T
+ T     |  0                                     | 0                      |  0  |  0  |   0       |   0
+ SE    |  27/2 + 8 + 8 gE - 24 log 2  (exact)   | 0                      |  8  |  0  |   0 (-8 graphs, +8 ct)
+ B     |  -8 beta_2 (exact)                     | 0                      |  0  |  0  |   0       |   0
+ EX    |  -8 - 4 gE + 8 log 2 + 4 log 3 (num.)  | 0                      | -4  |  0  |   4       |   0
+ QU    |  -4 gE + 12 log 2 (exact)              | 8 gE - 24 log 2 (exact)| -4  |  8  |   4       |  -8
+ OC    |  0                                     | 0                      |  0  |  0  |  -8       |   8
+ F     |  0                                     | 0                      |  0  |  0  |   0       |   0
+ total |  27/2 + 4 log(3/2) - 8 beta_2          | 8 (gE - 3 log 2)       |  0  |  8  |   0       |   0
+ Numerically: c_S(total, beta_2 = 0) = 15.12186043243..., c_T = -12.01780701423...;
+ per class: c_S(SE) = 9.48219298577, c_S(QU) = 6.00890350711, c_S(EX) = -0.36923606045 (EX numeric: -0.36923606045391).
+ Comparison with ip1_spec.txt: c_S, c_T, d_T all CONFIRMED (difference 0 symbolically, given the PSLQ identification
+ of the EX constant).  No discrepancy.
+
+U. WHAT IS NOT EXACT / UNCERTAINTIES
+------------------------------------
+ - c_S(EX): the constant b_rat = 64 - 64 log 2 - 32 log 3 is a numerical (PSLQ, 12 digits) identification; the
+   EulerGamma coefficient and the log eps / log x^2 coefficients of EX are exact.  Hence the total c_S is exact up
+   to this identification; numerically c_S(EX) = -0.36923606045 with an estimated error < 1e-12.
+ - The finite-eps extrapolation (spec route) confirms b(EX) only to ~1e-6 (6 digits), b(QU) to ~1e-7.
+ - Asymptotic statements in S and Q drop exponentially small terms (e^{-x^2/12 eps} etc.) and O(eps) terms whose
+   size is visible in the finite-eps tables.
+ - The census is exhaustive for the vertex types listed in C (enumeration), the exclusions of fermion/ghost/
+   counterterm vertices are by the vertex tables (argued, not enumerated).
+
+P. RUN
+------
+ python3 run_all.py: about 3 minutes on the owner's machine (Apple silicon, numpy 2.0), peak RSS 0.69 GB,
+ deterministic (fixed random seeds for the flavour fits), file-relative paths only; writes results.json,
+ gates.json (and run_all.log if redirected).  Heaviest step: EX Hepp b-formula at N = 40 (120 sectors x 2 terms,
+ 2.56e6 points each) and the finite-eps EX evaluations.
